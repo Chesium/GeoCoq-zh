@@ -123,12 +123,12 @@ Let stuff := thing / k3.
 
 Lemma thing_gt0 : thing > 0.
 Proof. by rewrite subr_gt0 ltr_paddl ?ltrW// gtr_pmull. Qed.
-Hint Resolve thing_gt0.
+Hint Resolve thing_gt0 : core.
 
 Lemma thing_neq0 : thing != 0. Proof. by rewrite gtr_eqF. Qed.
 
 Lemma stuff_gt0 : stuff > 0. Proof. by rewrite divr_gt0. Qed.
-Hint Resolve stuff_gt0.
+Hint Resolve stuff_gt0 : core.
 
 Lemma stuff_neq0 : stuff != 0. Proof. by rewrite gtr_eqF. Qed.
 

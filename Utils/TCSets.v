@@ -32,7 +32,7 @@ Proof. intro H; apply lt_not_eq in H; apply H, eq_refl. Qed.
 Instance lt_strorder : StrictOrder lt.
 Proof. split; [exact lt_antirefl|exact lt_trans]. Qed.
 
-Hint Resolve eq_refl eq_sym.
+Hint Resolve eq_refl eq_sym : core.
 
 Lemma lt_eq : forall x y z, lt x y -> eq y z -> lt x z.
 Proof.
@@ -161,7 +161,7 @@ Inductive In_list (x : elt) : t_aux -> Prop :=
   | In_cons_hd : forall y l, eq x y -> In_list x (y :: l)
   | In_cons_tl : forall y l, In_list x l -> In_list x (y :: l).
 
-Hint Resolve In_cons_hd In_cons_tl.
+Hint Resolve In_cons_hd In_cons_tl: core.
 
 Definition In x s := In_list x (this s).
 
@@ -524,7 +524,7 @@ Inductive lt_list : list elt -> list elt -> Prop :=
   | lt_list_cons_eq : forall x y l l',
       eq x y -> lt_list l l' -> lt_list (x :: l) (y :: l').
 
-Hint Resolve lt_list_nil lt_list_cons_lt lt_list_cons_eq.
+Hint Resolve lt_list_nil lt_list_cons_lt lt_list_cons_eq : core.
 
 Definition lt_set s s' := lt_list (this s) (this s').
 
