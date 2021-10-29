@@ -5,26 +5,28 @@ Section Definitions.
 Context `{Tn:Tarski_neutral_dimensionless}.
 
 (** Definition 2.10. *)
-
+(* 八点形成外五线段形式，即五线段公理除去A≠B外 *)
 Definition OFSC A B C D A' B' C' D' :=
   Bet A B C /\ Bet A' B' C' /\
   Cong A B A' B' /\ Cong B C B' C' /\
   Cong A D A' D' /\ Cong B D B' D'.
 
 (** Definition 3.8. *)
-
+(* 共线四点按照A-B-C-D顺序排列 *)
 Definition Bet_4 A1 A2 A3 A4 :=
    Bet A1 A2 A3 /\ Bet A2 A3 A4 /\ Bet A1 A3 A4 /\ Bet A1 A2 A4.
 
 (** Definition 4.1. *)
-
+(* 八点形成内五线段形式，即五线段公理除去A≠B外，并修改CD->BD *)
 Definition IFSC A B C D A' B' C' D' :=
    Bet A B C /\ Bet A' B' C' /\
    Cong A C A' C' /\ Cong B C B' C' /\
    Cong A D A' D' /\ Cong C D C' D'.
 
 (** Definition 4.4. *)
-
+(* 多边形的全等定义：两n边形A1 A2 ... An和B1 B2 ... Bn全等
+   当且仅当一多边形的任意两顶点组成的线段与另一多边形的对应相等 *)
+(* 以下为三角形、四边形和五边形的例子 *)
 Definition Cong_3 A B C A' B' C' :=
   Cong A B A' B' /\ Cong A C A' C' /\ Cong B C B' C'.
 
@@ -39,96 +41,96 @@ Definition Cong_5 P1 P2 P3 P4 P5 Q1 Q2 Q3 Q4 Q5 :=
   Cong P3 P4 Q3 Q4 /\ Cong P3 P5 Q3 Q5 /\ Cong P4 P5 Q4 Q5.
 
 (** Definition 4.10. *)
-
+(* 三点共线 *)
 Definition Col A B C := Bet A B C \/ Bet B C A \/ Bet C A B.
 
 (** Definition 4.15. *)
-
+(* 八点形成五线段形式 *)
 Definition FSC A B C D A' B' C' D' :=
   Col A B C /\ Cong_3 A B C A' B' C' /\ Cong A D A' D' /\ Cong B D B' D'.
 
 (** Definition 5.4. *)
-
+(* AB≤CD *)
 Definition Le A B C D := exists E, Bet C E D /\ Cong A B C E.
-
+(* AB≥CD *)
 Definition Ge A B C D := Le C D A B.
 
 (** Definition 5.14. *)
-
+(* AB<CD *)
 Definition Lt A B C D := Le A B C D /\ ~ Cong A B C D.
-
+(* AB>CD *)
 Definition Gt A B C D := Lt C D A B.
 
 (** Definition 6.1. *)
-
+(* A和B在P的一侧（A、B在P出发的同一条射线上） *)
 Definition Out P A B := A <> P /\ B <> P /\ (Bet P A B \/ Bet P B A).
 
 (** Definition 6.22. *)
-
+(* X是A1A2与B1B2的交点 *)
 Definition Inter A1 A2 B1 B2 X :=
  B1 <> B2 /\ (exists P, Col P B1 B2 /\ ~ Col P A1 A2) /\
  Col A1 A2 X /\ Col B1 B2 X.
 
 (** Definition 7.1. *)
-
+(* M是A与B的中点 *)
 Definition Midpoint M A B := Bet A M B /\ Cong A M M B.
 
 (** Definition 8.1. *)
-
+(* ∠ABC=90° *)
 Definition Per A B C := exists C', Midpoint B C C' /\ Cong A C A C'.
 
 (** Definition 8.11. *)
-
+(* AB⊥CD于X *)
 Definition Perp_at X A B C D :=
   A <> B /\ C <> D /\ Col X A B /\ Col X C D /\
   forall U V, Col U A B -> Col V C D -> Per U X V.
 
 (** Definition 8.11. *)
-
+(* AB⊥CD *)
 Definition Perp A B C D := exists X, Perp_at X A B C D.
 
 (** Definition 9.1. *)
-
+(* P和Q在直线AB异侧 *)
 Definition TS A B P Q :=
   ~ Col P A B /\ ~ Col Q A B /\ exists T, Col T A B /\ Bet P T Q.
 
 (** Definition 9.7. *)
-
+(* P和Q在直线AB同侧 *)
 Definition OS A B P Q := exists R, TS A B P R /\ TS A B Q R.
 
 (** Satz 9.33. *)
-
+(* ABCD四点共面 *)
 Definition Coplanar A B C D :=
   exists X, (Col A B X /\ Col C D X) \/
             (Col A C X /\ Col B D X) \/
             (Col A D X /\ Col B C X).
 
 (** Definition 9.37 *)
-
+(* P和Q在平面ABC异侧 *)
 Definition TSP A B C P Q :=
   ~ Coplanar A B C P /\ ~ Coplanar A B C Q /\ (exists T, Coplanar A B C T /\ Bet P T Q).
 
 (** Definition 9.40 *)
-
+(* P和Q在平面ABC同侧 *)
 Definition OSP A B C P Q :=
   exists R, TSP A B C P R /\ TSP A B C Q R.
 
 (** Definition 10.3. *)
-
+(* P和P'明确地关于直线AB对称 *)
 Definition ReflectL P' P A B :=
   (exists X, Midpoint X P P' /\ Col A B X) /\ (Perp A B P P' \/ P = P').
-
+(* P和P'关于AB对称，A与B可重合 *)
 Definition Reflect P' P A B :=
  (A <> B /\ ReflectL P' P A B) \/ (A = B /\ Midpoint A P P').
-
+(* P和P'明确地关于直线AB对称，对称轴与对称点连线交于M *)
 Definition ReflectL_at M P' P A B :=
   (Midpoint M P P' /\ Col A B M) /\ (Perp A B P P' \/ P = P').
-
+(* P和P'关于AB对称，对称轴与对称点连线交于M，A与B可重合 *)
 Definition Reflect_at M P' P A B :=
  (A <> B /\ ReflectL_at M P' P A B) \/ (A = B /\ A = M /\ Midpoint M P P').
 
 (** Definition 11.2. *)
-
+(* ∠ABC=∠DEF *)
 Definition CongA A B C D E F :=
   A <> B /\ C <> B /\ D <> E /\ F <> E /\
   exists A', exists C', exists D', exists F',
@@ -139,98 +141,100 @@ Definition CongA A B C D E F :=
   Cong A' C' D' F'.
 
 (** Definition 11.23. *)
-
+(* 点P在∠ABC内部 *)
 Definition InAngle P A B C :=
   A <> B /\ C <> B /\ P <> B /\ exists X, Bet A X C /\ (X = B \/ Out B X P).
 
 (** Definition 11.27. *)
-
+(* ∠ABC≤∠DEF *)
 Definition LeA A B C D E F := exists P, InAngle P D E F /\ CongA A B C D E P.
-
+(* ∠ABC≥∠DEF *)
 Definition GeA A B C D E F := LeA D E F A B C.
 
 (** Definition 11.38. *)
-
+(* ∠ABC<∠DEF *)
 Definition LtA A B C D E F := LeA A B C D E F /\ ~ CongA A B C D E F.
-
+(* ∠ABC>∠DEF *)
 Definition GtA A B C D E F := LtA D E F A B C.
 
 (** Definition 11.39. *)
-
+(* ∠ABC是锐角 *)
 Definition Acute A B C :=
   exists A' B' C', Per A' B' C' /\ LtA A B C A' B' C'.
 
 (** Definition 11.39. *)
-
+(* ∠ABC是钝角 *)
 Definition Obtuse A B C :=
   exists A' B' C', Per A' B' C' /\ LtA A' B' C' A B C.
 
 (** Definition 11.59. *)
-
+(* UV⊥平面ABC于X *)
 Definition Orth_at X A B C U V :=
   ~ Col A B C /\ U <> V /\ Coplanar A B C X /\ Col U V X /\
   forall P Q, Coplanar A B C P -> Col U V Q -> Per P X Q.
-
+(* UV⊥平面ABC *)
 Definition Orth A B C U V := exists X, Orth_at X A B C U V.
 
 (** Definition 12.2. *)
-
+(* AB∥CD，严格平行，即不允许ABCD四点共线 *)
 Definition Par_strict A B C D :=
   Coplanar A B C D /\ ~ exists X, Col X A B /\ Col X C D.
 
 (** Definition 12.3. *)
-
+(* AB∥CD *)
 Definition Par A B C D :=
   Par_strict A B C D \/ (A <> B /\ C <> D /\ Col A C D /\ Col B C D).
 
 (** Definition 13.4. *)
-
+(* l是描述一线段长度为特定值的一谓词（该类型简称为“长度”），l A B可理解为AB长度为l *)
+(* 长度的形式化类型为"Tpoint -> Tpoint -> Prop" *)
 Definition Q_Cong l := exists A B, forall X Y, Cong A B X Y <-> l X Y.
-
+(* AB长度为l *)
 Definition Len A B l := Q_Cong l /\ l A B.
-
+(* l是描述一线段长度为0的一谓词 *)
 Definition Q_Cong_Null l := Q_Cong l /\ exists A, l A A.
-
+(* 两长度相等 *)
 Definition EqL (l1 l2 : Tpoint -> Tpoint -> Prop) :=
   forall A B, l1 A B <-> l2 A B.
-
+(* a是描述一角大小为特定值的一谓词（该类型简称为“角度”），a A B C可理解为∠ABC大小为a *)
+(* 角度的形式化类型为"Tpoint -> Tpoint -> Tpoint -> Prop" *)
 Definition Q_CongA a :=
   exists A B C,
     A <> B /\ C <> B /\ forall X Y Z, CongA A B C X Y Z <-> a X Y Z.
-
+(* ∠ABC大小为a *)
 Definition Ang A B C a := Q_CongA a /\ a A B C.
-
+(* a是描述一角为平角的一谓词 *)
 Definition Ang_Flat a := Q_CongA a /\ forall A B C, a A B C -> Bet A B C.
-
+(* 两角度相等 *)
 Definition EqA (a1 a2 : Tpoint -> Tpoint -> Tpoint -> Prop) :=
   forall A B C, a1 A B C <-> a2 A B C.
 
 (** Definition 13.9. *)
-
+(* 存在一条过P，同时垂直于直线AB与直线CD的线 *)
 Definition Perp2 A B C D P :=
   exists X Y, Col P X Y /\ Perp X Y A B /\ Perp X Y C D.
-
+(* a是描述一锐角大小为特定值的一谓词 *)
 Definition Q_CongA_Acute a :=
   exists A B C,
     Acute A B C /\ forall X Y Z, CongA A B C X Y Z <-> a X Y Z.
-
+(* 锐角∠ABC大小为a *)
 Definition Ang_Acute A B C a := Q_CongA_Acute a /\ a A B C.
-
+(* a是描述一角为零角的一谓词 *)
 Definition Q_CongA_nNull a := Q_CongA a /\ forall A B C, a A B C -> ~ Out B A C.
-
+(* a是描述一角为非平角的一谓词 *)
 Definition Q_CongA_nFlat a := Q_CongA a /\ forall A B C, a A B C -> ~ Bet A B C.
-
+(* a是描述一角为零角的一谓词 *)
 Definition Q_CongA_Null a := Q_CongA a /\ forall A B C, a A B C -> Out B A C.
-
+(* a是描述一锐角为零角的一谓词 *)
 Definition Q_CongA_Null_Acute a :=
   Q_CongA_Acute a /\ forall A B C, a A B C -> Out B A C.
-
+(* a是描述一角为零角的一谓词，另一种描述 *)
 Definition is_null_anga' a :=
   Q_CongA_Acute a /\ exists A B C, a A B C /\ Out B A C.
-
+(* a是描述一锐角为非零角的一谓词 *)
 Definition Q_CongA_nNull_Acute a :=
   Q_CongA_Acute a /\ forall A B C, a A B C -> ~ Out B A C.
-
+(* cos(a)=lb/lc，a为锐角 *)
 Definition Lcos lb lc a :=
   Q_Cong lb /\ Q_Cong lc /\ Q_CongA_Acute a /\
   (exists A B C, (Per C B A /\ lb A B /\ lc A C /\ a B A C)).
