@@ -13,8 +13,8 @@ Proof.
     repeat split.
       assumption.
       assumption.
-      apply col_trivial_1.
-    apply col_trivial_3.
+      apply AAB型共线.
+    apply ABA型共线.
 Qed.
 
 Lemma par_strict_irreflexivity : forall A B,
@@ -26,7 +26,7 @@ Proof.
     spliter.
     apply H0.
     exists A.
-    split; apply col_trivial_1.
+    split; apply AAB型共线.
 Qed.
 
 Lemma not_par_strict_id : forall A B C,
@@ -697,7 +697,7 @@ Proof.
         eapply ex_per_cong.
           auto.
           assumption.
-          apply col_trivial_2.
+          apply ABB型共线.
         intro.
         apply H0.
         Col.
@@ -889,7 +889,7 @@ Proof.
     repeat split.
       assumption.
       assumption.
-      apply col_trivial_1.
+      apply AAB型共线.
     Col.
 Qed.
 
@@ -1280,7 +1280,7 @@ Proof.
           intro.
           treat_equalities.
           auto.
-          apply col_trivial_1.
+          apply AAB型共线.
         unfold 中点 in H1.
         spliter.
         apply 中间性转共线.
@@ -1300,7 +1300,7 @@ Proof.
           spliter.
           apply 中间性转共线 in H0 .
           Col.
-        apply col_trivial_3.
+        apply ABA型共线.
       assert(HH0 := H0).
       assert(HH1:= H1).
       unfold 中点 in H0.
@@ -1326,7 +1326,7 @@ Proof.
         intuition.
         induction(两点重合的决定性 A D).
           subst D.
-          apply col_trivial_3.
+          apply ABA型共线.
         assert(Col C D P).
           eapply (col_transitivity_1 _ B).
             intro.
@@ -1357,7 +1357,7 @@ Proof.
       intro.
       treat_equalities.
       apply H2.
-      apply col_trivial_3.
+      apply ABA型共线.
     induction(两点重合的决定性 A E).
       treat_equalities.
       assert(Per P A B).
@@ -1558,7 +1558,7 @@ Proof.
       intro.
       subst B.
       apply H1.
-      apply col_trivial_1.
+      apply AAB型共线.
       apply H5.
     apply H6.
 Qed.
@@ -1590,13 +1590,13 @@ Proof.
         apply is_midpoint_id in H5.
         subst C.
         apply H1.
-        apply col_trivial_3.
+        apply ABA型共线.
         Col.
       Col.
       intro.
       subst C.
       apply H1.
-      apply col_trivial_3.
+      apply ABA型共线.
       apply H4.
     Col.
 Qed.
@@ -1626,7 +1626,7 @@ Proof.
         apply is_midpoint_id in H5.
         subst C.
         apply H1.
-        apply col_trivial_3.
+        apply ABA型共线.
         Col.
       Col.
       intro.
@@ -1645,7 +1645,7 @@ Proof.
         apply is_midpoint_id in H5.
         subst C.
         apply H1.
-        apply col_trivial_3.
+        apply ABA型共线.
         Col.
       Col.
     exists P.
@@ -1687,7 +1687,7 @@ Proof.
       intro.
       subst C.
       apply H1.
-      apply col_trivial_3.
+      apply ABA型共线.
       Col.
     Col.
 Qed.
@@ -1870,7 +1870,7 @@ Proof.
       eapply l9_5.
         apply l9_2.
         apply H.
-        apply col_trivial_3.
+        apply ABA型共线.
       assumption.
     unfold TS in H12.
     spliter.

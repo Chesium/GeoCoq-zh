@@ -21,7 +21,7 @@ Proof.
     subst A3.
     assert(B1 = B3); [|subst; Cong].
     apply (l6_21 B1 B2 A1 B1); Col.
-      apply not_col_permutation_1, par_strict_not_col_1 with A2, sac__pars1234, HSac.
+      apply 共线否定排列BCA, par_strict_not_col_1 with A2, sac__pars1234, HSac.
       unfold Saccheri in HSac; spliter; apply (cop_perp2__col _ _ _ A1 A2); Perp.
       apply col_cop__cop with B2; Cop.
   }
@@ -39,7 +39,7 @@ Proof.
   apply col_permutation_2.
   assert (共面 A1 B2 B'3 B1).
   { apply coplanar_perm_15, coplanar_trans_1 with A3.
-      apply not_col_permutation_2, par_strict_not_col_4 with A1; assumption.
+      apply 共线否定排列CAB, par_strict_not_col_4 with A1; assumption.
       apply coplanar_perm_18, pars__coplanar; assumption.
     exists B3; right; right; split; Col.
   }
@@ -53,7 +53,7 @@ Proof.
     subst B3.
     assert(A1 = A3); auto.
     apply (l8_18_uniqueness A1 A2 B1); Col; Perp.
-    apply not_col_permutation_1; apply per_not_col; auto.
+    apply 共线否定排列BCA; apply per_not_col; auto.
   }
   assert(Per A1 A3 B'3).
   { apply perp_per_1, perp_comm, (perp_col _ A2); Col.
@@ -63,7 +63,7 @@ Proof.
     apply (per_col _ _ A2); auto.
   apply (one_side_transitivity _ _ _ B3).
     apply l12_6; auto; apply (par_strict_col_par_strict _ _ _ B2); Col; Par.
-    apply invert_one_side; apply out_one_side; auto; right; apply not_col_permutation_4; apply per_not_col; auto.
+    apply invert_one_side; apply out_one_side; auto; right; apply 共线否定排列BAC; apply per_not_col; auto.
 Qed.
 
 Lemma rah__posidonius :

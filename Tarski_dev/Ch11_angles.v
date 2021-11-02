@@ -1253,7 +1253,7 @@ Proof.
         absurde.
       exists M.
       split.
-        apply col_trivial_3.
+        apply ABA型共线.
       apply midpoint_bet.
       assumption.
     apply (col_two_sides _ _ A) in H26.
@@ -1262,7 +1262,7 @@ Proof.
       assert(TS A B C C1).
         eapply l9_5.
           apply H26.
-          apply col_trivial_3.
+          apply ABA型共线.
         unfold Out.
         repeat split.
           intro.
@@ -1278,7 +1278,7 @@ Proof.
       eapply l9_5.
         apply l9_2.
         apply H27.
-        apply col_trivial_3.
+        apply ABA型共线.
       unfold Out.
       repeat split.
         intro.
@@ -1395,12 +1395,12 @@ Proof.
           intro.
           subst A'.
           apply H0.
-          apply col_trivial_1.
+          apply AAB型共线.
           intro.
           subst C.
           apply H.
-          apply col_trivial_2.
-          apply col_trivial_2.
+          apply ABB型共线.
+          apply ABB型共线.
         assumption.
       ex_and  H3 C'.
       exists C'.
@@ -1413,24 +1413,24 @@ Proof.
           intro.
           subst A.
           apply H.
-          apply col_trivial_1.
+          apply AAB型共线.
           intro.
           subst C.
           apply H.
-          apply col_trivial_2.
+          apply ABB型共线.
           apply l8_2.
           assumption.
           intro.
           subst A'.
           apply H0.
-          apply col_trivial_1.
+          apply AAB型共线.
         intro.
         subst C'.
         apply 等长的对称性 in H4.
         apply 等长的同一性 in H4.
         subst C.
         apply H.
-        apply col_trivial_2.
+        apply ABB型共线.
       assumption.
     (*********** B <> C0 ***********)
     induction (out_dec B A C0).
@@ -1439,7 +1439,7 @@ Proof.
           intro.
           subst A'.
           apply H0.
-          apply col_trivial_1.
+          apply AAB型共线.
         assert (垂直于 C0 C0 C B C0).
           eapply perp_perp_in.
           apply perp_sym.
@@ -1464,7 +1464,7 @@ Proof.
           unfold 垂直于 in H7.
           spliter.
           absurde.
-          apply col_trivial_2.
+          apply ABB型共线.
         intro.
         apply H0.
         apply col_permutation_2.
@@ -1520,14 +1520,14 @@ Proof.
             intro.
             subst C.
             apply H.
-            apply col_trivial_2.
+            apply ABB型共线.
             assumption.
           assumption.
           apply out_trivial.
           intro.
           subst C.
           apply H.
-          apply col_trivial_2.
+          apply ABB型共线.
           assumption.
         apply out_trivial.
         intro.
@@ -1545,7 +1545,7 @@ Proof.
         intro.
         subst A'.
         apply H0.
-        apply col_trivial_1.
+        apply AAB型共线.
         assumption.
     (*********************)
     apply not_out_bet in H4.
@@ -1563,7 +1563,7 @@ Proof.
           apply perp_distinct in H2.
           spliter.
           absurde.
-          apply col_trivial_2.
+          apply ABB型共线.
         intro.
         apply H0.
         apply col_permutation_2.
@@ -1613,19 +1613,19 @@ Proof.
           intro.
           subst C.
           apply H.
-          apply col_trivial_2.
+          apply ABB型共线.
           apply 中间性的对称性.
           assumption.
           intro.
           subst A.
           apply H.
-          apply col_trivial_1.
+          apply AAB型共线.
           apply 中间性的对称性.
           assumption.
         intro.
         subst A'.
         apply H0.
-        apply col_trivial_1.
+        apply AAB型共线.
       apply invert_one_side.
       apply col_one_side with C0'.
         unfold Col.
@@ -1634,7 +1634,7 @@ Proof.
         intro.
         subst A'.
         apply H0.
-        apply col_trivial_1.
+        apply AAB型共线.
         assumption.
     apply col_permutation_4.
     assumption.
@@ -1666,7 +1666,7 @@ Proof.
             apply H7.
           assumption.
         right.
-        apply col_trivial_3.
+        apply ABA型共线.
       apply not_out_bet in H5.
         prolong A' B' C' A'  B'.
         exists C'.
@@ -1864,7 +1864,7 @@ Proof.
       intro.
       subst P'.
       apply H8.
-      apply col_trivial_2.
+      apply ABB型共线.
     assert (TS B' P' A' C'').
       unfold TS.
       repeat split.
@@ -1882,7 +1882,7 @@ Proof.
         assumption.
       exists B'.
       split.
-        apply col_trivial_1.
+        apply AAB型共线.
       assumption.
     assert (OS B' P' C' C'').
       eapply l9_8_1.
@@ -2117,9 +2117,9 @@ Proof.
           eapply l9_2.
           eapply l9_5.
             apply H0.
-            apply col_trivial_1.
+            apply AAB型共线.
           assumption.
-          apply col_trivial_1.
+          apply AAB型共线.
         apply out_trivial.
         auto.
       apply invert_two_sides in H35.
@@ -2316,9 +2316,9 @@ Proof.
           eapply l9_2.
           eapply l9_5.
             apply H0.
-            apply col_trivial_1.
+            apply AAB型共线.
           assumption.
-          apply col_trivial_1.
+          apply AAB型共线.
         apply out_trivial.
         auto.
       assert(OS B' P'  A'' C'').
@@ -2414,7 +2414,7 @@ Proof.
           assumption.
         exists B.
         split.
-          apply col_trivial_1.
+          apply AAB型共线.
         assumption.
       split.
         eapply l9_2.
@@ -2442,7 +2442,7 @@ Proof.
           assumption.
         exists B'.
         split.
-          apply col_trivial_1.
+          apply AAB型共线.
         assumption.
       split; assumption.
     eapply l11_13.
@@ -2585,7 +2585,7 @@ Proof.
         assumption.
       exists B.
       split.
-        apply col_trivial_3.
+        apply ABA型共线.
       assumption.
     repeat split.
       intro.
@@ -3132,7 +3132,7 @@ Proof.
             auto.
             apply col_permutation_3.
             assumption.
-          apply col_trivial_2.
+          apply ABB型共线.
         apply out_col.
         assumption.
         intro.
@@ -3144,7 +3144,7 @@ Proof.
           apply 等长的同一性 in H7.
           subst C.
           apply H.
-          apply col_trivial_3.
+          apply ABA型共线.
           apply col_permutation_4.
           assumption.
         unfold Col.
@@ -3152,7 +3152,7 @@ Proof.
         assumption.
       exists A.
       split.
-        apply col_trivial_1.
+        apply AAB型共线.
       eapply between_exchange3 with C; Between.
     split.
       apply l9_5 with X B; Col.
@@ -3169,7 +3169,7 @@ Proof.
         unfold TS in H8.
         spliter.
         apply H10.
-        apply col_trivial_1.
+        apply AAB型共线.
         apply col_permutation_4.
         assumption.
       unfold Col.
@@ -3177,7 +3177,7 @@ Proof.
       assumption.
     exists A.
     split.
-      apply col_trivial_1.
+      apply AAB型共线.
     assumption.
 Qed.
 
@@ -5318,12 +5318,12 @@ Proof.
       intro.
       subst A.
       apply H0.
-      apply col_trivial_1.
+      apply AAB型共线.
     assert(C <> B).
       intro.
       subst C.
       apply H2.
-      apply col_trivial_1.
+      apply AAB型共线.
     induction (两点重合的决定性 B T).
       subst T.
       left.
@@ -5464,7 +5464,7 @@ Proof.
             assumption.
           exists B.
           split.
-            apply col_trivial_3.
+            apply ABA型共线.
           assumption.
         apply l9_9 in H9.
         contradiction.
@@ -5577,7 +5577,7 @@ Proof.
         repeat split; try assumption.
         exists B.
         split.
-          apply col_trivial_3.
+          apply ABA型共线.
         assumption.
       assert(TS D B C A' ).
         eapply l9_8_2.
@@ -5634,7 +5634,7 @@ Proof.
               unfold TS in H26.
               spliter.
               apply H26.
-              apply col_trivial_3.
+              apply ABA型共线.
               apply col_permutation_2.
               assumption.
             apply col_permutation_1.
@@ -5646,7 +5646,7 @@ Proof.
             assumption.
           exists B.
           split.
-            apply col_trivial_3.
+            apply ABA型共线.
           apply 中间性的对称性.
           assumption.
         assert(TS C B A A').
@@ -5663,7 +5663,7 @@ Proof.
             assumption.
           exists B.
           split.
-            apply col_trivial_3.
+            apply ABA型共线.
           assumption.
         assert(TS C B Y A).
           eapply l9_8_2.
@@ -5787,12 +5787,12 @@ Proof.
       intro.
       subst C.
       apply H.
-      apply col_trivial_3.
+      apply ABA型共线.
     assert(B <> C).
       intro.
       subst C.
       apply H.
-      apply col_trivial_2.
+      apply ABB型共线.
     assert(C <> D).
       intro.
       subst C.
@@ -5989,7 +5989,7 @@ Proof.
         assumption.
       exists A.
       split.
-        apply col_trivial_1.
+        apply AAB型共线.
       assumption.
     assert(OS A C D P).
       unfold OS.
@@ -6253,7 +6253,7 @@ Proof.
         apply 等长的同一性 in H4.
         subst A.
         apply H2.
-        apply col_trivial_1.
+        apply AAB型共线.
         apply col_permutation_1.
         apply 中间性转共线.
         assumption.
@@ -6910,8 +6910,8 @@ Proof.
     spliter.
     assert(Per C H A).
       apply H5.
-        apply col_trivial_1.
-      apply col_trivial_1.
+        apply AAB型共线.
+      apply AAB型共线.
     assert(Perp C H A B).
       eapply l8_14_2_1a.
       apply HH1.
@@ -7126,15 +7126,15 @@ Proof.
     assert(C' = C'').
       apply conga_os__out in H20.
         eapply l6_21.
-          apply not_col_permutation_5.
+          apply 共线否定排列ACB.
           apply H10.
           apply H9.
-          apply col_trivial_2.
+          apply ABB型共线.
           apply out_col.
           assumption.
           apply out_col in H7.
           assumption.
-          apply col_trivial_2.
+          apply ABB型共线.
         apply out_one_side.
           left.
           intro.
@@ -7487,7 +7487,7 @@ Proof.
             intro.
             subst C'.
             apply H15.
-            apply col_trivial_3.
+            apply ABA型共线.
         assert(~Col B' C' A').
           Col.
         assert(HH:=l11_44_2 B' C' A' H28).
@@ -7573,7 +7573,7 @@ Proof.
           intro.
           subst C'.
           apply H16.
-          apply col_trivial_3.
+          apply ABA型共线.
       assert(~Col B' C' A'').
         Col.
       assert(HH:=l11_44_2 B' C' A'' H29).
@@ -7677,7 +7677,7 @@ Proof.
       intro.
       subst D.
       apply H5.
-      apply col_trivial_2.
+      apply ABB型共线.
     assert(角度小于 C A D C B D).
       assert(HH:=l11_41 B A D C H5 H3 H2).
       spliter.
@@ -7696,7 +7696,7 @@ Proof.
           intro.
           subst D.
           apply H5.
-          apply col_trivial_3.
+          apply ABA型共线.
         auto.
       assumption.
     split.
@@ -7761,13 +7761,13 @@ Proof.
           intro.
           subst B'.
           apply H10.
-          apply col_trivial_2.
+          apply ABB型共线.
           apply bet_out; auto.
         apply out_trivial.
         intro.
         subst D.
         apply H10.
-        apply col_trivial_1.
+        apply AAB型共线.
       assumption.
     assert(B' <> A).
       intro.
@@ -7796,7 +7796,7 @@ Proof.
           intro.
           subst B'.
           apply H10.
-          apply col_trivial_2.
+          apply ABB型共线.
           apply l6_6.
           apply bet_out.
             intro.

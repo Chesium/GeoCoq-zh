@@ -122,9 +122,9 @@ Proof.
     assert (HPer21 : Per U2 S U1) by (exists U1'; split; Cong).
     assert_diffs.
     absurd (Col U2 U1 S).
-      apply not_col_permutation_5, per_not_col; auto.
+      apply 共线否定排列ACB, per_not_col; auto.
     apply p4col with U3 U4;
-      [apply not_col_permutation_2, per_not_col; auto|..];
+      [apply 共线否定排列CAB, per_not_col; auto|..];
       apply (l8_10 U2 S U1); trivial; repeat split; CongR.
 Qed.
 

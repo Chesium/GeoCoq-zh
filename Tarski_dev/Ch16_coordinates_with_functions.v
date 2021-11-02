@@ -502,8 +502,8 @@ Defined.
 Lemma neq20 : ~ EqF (AddF OneF OneF) OF.
 Proof.
 unfold addition, add_notation, AddF, EqF; simpl.
-destruct (sum_f E E (col_trivial_2 O E)
-                (col_trivial_2 O E)) as [EPE HEPE]; simpl.
+destruct (sum_f E E (ABB型共线 O E)
+                (ABB型共线 O E)) as [EPE HEPE]; simpl.
 intro; treat_equalities.
 subst;
  apply double_null_null in HEPE.
@@ -619,7 +619,7 @@ intro x; try intro y; try intro z.
 
   {
   destruct x as [x Hx]; simpl.
-  elim (sum_f O x (col_trivial_3 O E) Hx).
+  elim (sum_f O x (ABA型共线 O E) Hx).
   intros; simpl; apply sum_uniqueness with O E E' O x; try assumption.
   apply sum_O_B; auto using ncolOEE'.
   }
@@ -646,7 +646,7 @@ intro x; try intro y; try intro z.
 
   {
   destruct x as [x Hx]; simpl.
-  destruct (prod_f E x (col_trivial_2 O E) Hx) as [x' Hx'].
+  destruct (prod_f E x (ABB型共线 O E) Hx) as [x' Hx'].
   simpl; apply prod_uniqueness with O E E' E x; try assumption.
   apply prod_1_l; auto using ncolOEE'.
   }

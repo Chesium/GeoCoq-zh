@@ -1289,7 +1289,7 @@ Proof.
       subst X.
       reflexivity.
       assumption.
-      apply col_trivial_3.
+      apply ABA型共线.
       assumption.
     intros.
     apply H4.
@@ -1899,8 +1899,8 @@ Proof.
       unfold 垂直于 in H2.
       spliter.
       apply H6.
-        apply col_trivial_1.
-      apply col_trivial_1.
+        apply AAB型共线.
+      apply AAB型共线.
     assert(HH:= H3).
     unfold Per in H3.
     ex_and H3 C'.
@@ -1976,8 +1976,8 @@ Proof.
       repeat split.
         assert_diffs; auto.
         auto.
-        apply col_trivial_1.
-        apply col_trivial_3.
+        apply AAB型共线.
+        apply ABA型共线.
       unfold 垂直于 in H2.
       spliter.
       intros.
@@ -2123,7 +2123,7 @@ Proof.
           apply H21.
           apply col_permutation_1.
           assumption.
-          apply col_trivial_3.
+          apply ABA型共线.
         unfold Col.
         right;left.
         apply 中间性的对称性.
@@ -2238,7 +2238,7 @@ Proof.
               assumption.
             assumption.
           assumption.
-        apply col_trivial_2.
+        apply ABB型共线.
         auto.
       intro.
       apply H13.
@@ -2263,7 +2263,7 @@ Proof.
       intro.
       subst X.
       apply H22.
-      apply col_trivial_1.
+      apply AAB型共线.
     assert (内五线段形式 P' A P R R' B R P).
       unfold 内五线段形式.
       repeat split.
@@ -2386,7 +2386,7 @@ Proof.
       subst R.
       treat_equalities.
       apply H9.
-      apply col_trivial_3.
+      apply ABA型共线.
     assert (~Col A B Q).
       intro.
       assert (A=B \/ Q=B).
@@ -2596,7 +2596,7 @@ Proof.
         subst T.
         apply 中间性的同一律 in H5.
         subst X.
-        apply col_trivial_2.
+        apply ABB型共线.
       assert (Col T X B).
         unfold Col.
         left.
@@ -2694,7 +2694,7 @@ Proof.
         right; left.
         apply 中间性的对称性.
         assumption.
-      apply col_trivial_2.
+      apply ABB型共线.
     assert (Cong A R P B).
       apply (perp_cong A B P R X).
         assumption.

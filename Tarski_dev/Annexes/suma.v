@@ -1073,7 +1073,7 @@ Proof.
         apply l9_2; apply cop_nos__ts; Col; Cop.
       apply invert_one_side; apply one_side_symmetry.
       apply in_angle_one_side; Col.
-      apply not_col_permutation_4; apply (ncol_conga_ncol D E F); auto.
+      apply 共线否定排列BAC; apply (ncol_conga_ncol D E F); auto.
     }
     exists F1.
     repeat (split; 等角); Side; Cop.
@@ -1294,7 +1294,7 @@ Proof.
         { apply (l9_8_2 _ _ A0).
             apply l9_2, invert_two_sides, bet__ts; Col.
           apply cop_nts__os; Col.
-          apply not_col_permutation_2.
+          apply 共线否定排列CAB.
           apply (ncol_conga_ncol D' E' F'); 等角.
         }
         repeat (split; 等角); Side; Cop.
@@ -1330,7 +1330,7 @@ Proof.
     apply os_ts1324__os.
     - apply invert_one_side.
       apply cop_nts__os; Col.
-      apply not_col_permutation_2; apply (ncol_conga_ncol A' B' C'); auto.
+      apply 共线否定排列CAB; apply (ncol_conga_ncol A' B' C'); auto.
     - apply cop_nos__ts; Col; Cop.
       apply (ncol_conga_ncol D E F); 等角.
   }
@@ -1343,7 +1343,7 @@ Proof.
       assert_diffs.
       assert(TS B C1 C C0).
       { apply bet__ts; auto.
-        apply not_col_permutation_1, (ncol_conga_ncol D E F); 等角.
+        apply 共线否定排列BCA, (ncol_conga_ncol D E F); 等角.
       }
       apply (conga3_suma__suma A B C C B C0 A B C0); [|等角..|].
         exists C0; repeat (split; 等角); Cop; apply col124__nos; Col.
@@ -1393,7 +1393,7 @@ Proof.
         apply l9_2; apply cop_nos__ts; Col; Cop.
       apply invert_one_side.
       apply cop_nts__os; Col; Cop.
-      apply not_col_permutation_2, (ncol_conga_ncol D' E' F'); 等角.
+      apply 共线否定排列CAB, (ncol_conga_ncol D' E' F'); 等角.
     }
     exists J.
     repeat (split; 等角); Side; Cop.
@@ -1546,7 +1546,7 @@ Proof.
       apply (one_side_transitivity _ _ _ J');
       [|apply invert_one_side; apply out_one_side; Col].
       apply cop_nts__os; Col.
-      apply not_col_permutation_2; apply (ncol_conga_ncol A B J); auto.
+      apply 共线否定排列CAB; apply (ncol_conga_ncol A B J); auto.
       apply out2__conga; [apply out_trivial|]; auto.
 
     - apply coplanar_trans_1 with C1; Cop; Col.

@@ -365,7 +365,7 @@ Proof.
       intros HCol; apply col123__nos; Col.
     intro HNCol1.
     apply l9_9, invert_two_sides, in_angle_two_sides; Col.
-    apply not_col_permutation_1, (ncol_conga_ncol D E F1); 等角.
+    apply 共线否定排列BCA, (ncol_conga_ncol D E F1); 等角.
   }
   assert (HSuma : SumA D E F1 D E F1 D E F) by (assert_diffs; exists F; repeat (split; 等角); Cop).
   destruct (archi_in_acute_angles archi A B C D E F1) as [P1 [Q1 [R1 [HGA HLea]]]]; trivial.

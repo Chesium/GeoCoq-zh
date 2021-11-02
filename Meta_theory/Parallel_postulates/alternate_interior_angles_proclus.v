@@ -81,7 +81,7 @@ Proof.
   assert_diffs.
   assert(HQ1 : exists Q1, Col Q P Q1 /\ OS A B C0 Q1).
   { apply cop_not_par_same_side with P; Col.
-      apply not_col_permutation_1, (par_not_col C D); Col; Par.
+      apply 共线否定排列BCA, (par_not_col C D); Col; Par.
     apply coplanar_pseudo_trans with C D P; trivial; apply coplanar_perm_1;
       [apply col_cop__cop with B|apply col_cop__cop with A; Col|]; Cop.
   }

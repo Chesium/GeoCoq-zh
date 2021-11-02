@@ -60,7 +60,7 @@ Proof.
 unfold Cd; unfold Projp; intros O E S U1 U2 P X Y HCd.
 destruct HCd as [HCs [HC [[PX HPX] [PY HPY]]]]; clear HC.
 destruct HPX as [[HDiff1 HElim1] HCong1]; destruct HPY as [[HDiff2 HElim2] HCong2].
-split; [apply l4_13 with S U1 PX|apply l4_13 with S U2 PY]; Cong;
+split; [apply 全等于退化的三角形 with S U1 PX|apply 全等于退化的三角形 with S U2 PY]; Cong;
 [induction HElim1|induction HElim2]; spliter; treat_equalities; Col.
 Qed.
 
@@ -119,11 +119,11 @@ exists P; split; auto.
 destruct HCs as [H [H' [H'' HPer]]]; clear H; clear H'; clear H''.
 split; try apply all_coplanar.
 assert_diffs; split; [exists P|exists S]; repeat (split; Cong);
-[right; split; try apply l4_13 with O E X; Col|].
+[right; split; try apply 全等于退化的三角形 with O E X; Col|].
 left; split; Col.
 apply per_perp in HPer; auto.
 apply perp_col0 with S U1; Col; Perp;
-[unfold 三角形全等 in *; spliter; assert_diffs|apply l4_13 with O E X]; Col.
+[unfold 三角形全等 in *; spliter; assert_diffs|apply 全等于退化的三角形 with O E X]; Col.
 Qed.
 
 Lemma point_of_coordinates : forall O E S U1 U2 X Y,
@@ -154,36 +154,36 @@ split; [exists PX|exists PY]; split; Cong.
 
   {
   assert_diffs; split; auto.
-  left; split; [apply l4_13 with O E X; Col|].
+  left; split; [apply 全等于退化的三角形 with O E X; Col|].
   unfold 垂直于 in *; spliter; apply perp_col0 with PX PX'; Col.
   assert (HPYS : PY <> S) by (unfold 三角形全等 in *; spliter; assert_diffs; auto).
   intro; treat_equalities; apply HPYS.
   apply l6_21 with S U1 U2 S; Col;
   [destruct HCs as [H' [H'' [H''' HPer]]]; apply perp_not_col;
    assert_diffs; apply per_perp in HPer; Perp|
-  |apply l4_13 with E O Y; try apply 三角形全等的BAC交换性; Col].
+  |apply 全等于退化的三角形 with E O Y; try apply 三角形全等的BAC交换性; Col].
   assert (HPar : Par S U1 PY PY')
     by (apply l12_9_2D with P PX'; Perp).
   elim HPar; clear HPar; intro HParS; [|spliter; ColR].
   exfalso; apply HParS; exists P; split; Col.
-  apply l4_13 with X O E; try (apply 三角形全等的BAC交换性; apply 三角形全等的ACB交换性); Col.
+  apply 全等于退化的三角形 with X O E; try (apply 三角形全等的BAC交换性; apply 三角形全等的ACB交换性); Col.
   }
 
   {
   assert_diffs; split; auto.
-  left; split; [apply l4_13 with O E Y; Col|].
+  left; split; [apply 全等于退化的三角形 with O E Y; Col|].
   unfold 垂直于 in *; spliter; apply perp_col0 with PY PY'; Col.
   assert (HPXS : PX <> S) by (unfold 三角形全等 in *; spliter; assert_diffs; auto).
   intro; treat_equalities; apply HPXS.
   apply l6_21 with S U2 U1 S; Col;
   [destruct HCs as [H' [H'' [H''' HPer]]]; apply perp_not_col;
    assert_diffs; apply per_perp in HPer; Perp|
-  |apply l4_13 with E O X; try apply 三角形全等的BAC交换性; Col].
+  |apply 全等于退化的三角形 with E O X; try apply 三角形全等的BAC交换性; Col].
   assert (HPar : Par S U2 PX PX')
     by (apply l12_9_2D with P PY'; Perp).
   elim HPar; clear HPar; intro HParS; [|spliter; ColR].
   exfalso; apply HParS; exists P; split; Col.
-  apply l4_13 with Y O E; try (apply 三角形全等的BAC交换性; apply 三角形全等的ACB交换性); Col.
+  apply 全等于退化的三角形 with Y O E; try (apply 三角形全等的BAC交换性; apply 三角形全等的ACB交换性); Col.
   }
 Qed.
 
@@ -201,11 +201,11 @@ split; intro; spliter; treat_equalities.
   assert (PY = PY2) by (spliter; apply projp_id with P1 S U2; auto); treat_equalities.
   destruct HPX1 as [H HCong1]; assert (H' : Col PX S U1)
     by (destruct H as [H' H]; induction H; spliter; treat_equalities; Col).
-  clear H; assert (HCol1 : Col O E X1) by (apply l4_13 with S U1 PX; Col; Cong).
+  clear H; assert (HCol1 : Col O E X1) by (apply 全等于退化的三角形 with S U1 PX; Col; Cong).
   clear H'; destruct HPX2 as [H HCong3]; clear H.
   destruct HPY1 as [H HCong2]; assert (H' : Col PY S U2)
     by (destruct H as [H' H]; induction H; spliter; treat_equalities; Col).
-  clear H; assert (HCol2 : Col O E Y1) by (apply l4_13 with S U2 PY; Col; Cong).
+  clear H; assert (HCol2 : Col O E Y1) by (apply 全等于退化的三角形 with S U2 PY; Col; Cong).
   clear H'; destruct HPY2 as [H HCong4]; clear H.
   unfold Cs in HCs; spliter.
   split; apply l4_18 with O E; Col;
@@ -474,9 +474,9 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
 
       {
       assert (HNC' : ~ Col S U1 U2) by (apply perp_not_col; Perp).
-      assert (HCol7 : Col S U1 PX') by (apply l4_13 with O E PX; Col).
-      assert (HCol8 : Col S U2 PY') by (apply l4_13 with O E PY; Col).
-      assert (HCol9 : Col S U1 QX') by (apply l4_13 with O E QX; Col).
+      assert (HCol7 : Col S U1 PX') by (apply 全等于退化的三角形 with O E PX; Col).
+      assert (HCol8 : Col S U2 PY') by (apply 全等于退化的三角形 with O E PY; Col).
+      assert (HCol9 : Col S U1 QX') by (apply 全等于退化的三角形 with O E QX; Col).
       assert (HDiff4 : P <> PY').
         {
         intro; treat_equalities; apply HDiff1.
@@ -819,17 +819,17 @@ assert (HDiff : O <> E) by (unfold Cd, Cs in *; spliter; auto).
 assert (HColAX : Col O E AX).
   {
   unfold Cd in *; destruct HCdA as [H [H' [[PX [HProjp HCong]] H'']]].
-  apply projp_col in HProjp; apply l4_13 with S U1 PX; Cong.
+  apply projp_col in HProjp; apply 全等于退化的三角形 with S U1 PX; Cong.
   }
 assert (HColBX : Col O E BX).
   {
   unfold Cd in *; destruct HCdB as [H [H' [[PX [HProjp HCong]] H'']]].
-  apply projp_col in HProjp; apply l4_13 with S U1 PX; Cong.
+  apply projp_col in HProjp; apply 全等于退化的三角形 with S U1 PX; Cong.
   }
 assert (HColCX : Col O E CX).
   {
   unfold Cd in *; destruct HCdC as [H [H' [[PX [HProjp HCong]] H'']]].
-  apply projp_col in HProjp; apply l4_13 with S U1 PX; Cong.
+  apply projp_col in HProjp; apply 全等于退化的三角形 with S U1 PX; Cong.
   }
 apply l4_6 with AX' BX' CX'.
 
@@ -919,9 +919,9 @@ elim (col_dec A B BX''); intro HABBX''.
           Col ; try (intro; apply HLine); Col.
           }
         apply l6_21 with S U1 A AX'; Col;
-        [| |apply l4_13 with O E AX|apply l4_13 with O E BX]; Col;
+        [| |apply 全等于退化的三角形 with O E AX|apply 全等于退化的三角形 with O E BX]; Col;
         intro; treat_equalities; apply HParS; exists A; split; Col;
-        apply col_permutation_2; apply l4_13 with O E AX; Col.
+        apply col_permutation_2; apply 全等于退化的三角形 with O E AX; Col.
         }
       }
     treat_equalities; assert (HPerp : Perp A C S U1).
@@ -934,12 +934,12 @@ elim (col_dec A B BX''); intro HABBX''.
     treat_equalities; assert (AX = BX).
       {
       assert_diffs; apply col_cong_3_cong_3_eq with S U1 AX' O E; Cong.
-      apply l4_13 with O E AX; auto.
+      apply 全等于退化的三角形 with O E AX; auto.
       }
     assert (AX = CX).
       {
       assert_diffs; apply col_cong_3_cong_3_eq with S U1 AX' O E; Cong.
-      apply l4_13 with O E AX; auto.
+      apply 全等于退化的三角形 with O E AX; auto.
       }
     treat_equalities;
     assert (O = BXMAX)
@@ -1645,7 +1645,7 @@ destruct HCdB as [H [H' [[PXB [HProjpB HCongB]] H'']]]; clear H; clear H'; clear
 destruct HCdC as [H [H' [[PXC [HProjpC HCongC]] H'']]]; clear H; clear H'; clear H''.
 assert (HDiff1 : O <> E) by (unfold Cs in *; spliter; auto).
 assert (HColAX : Col O E AX)
-  by (apply l4_13 with S U1 PXA; Cong; apply projp_col with A; auto).
+  by (apply 全等于退化的三角形 with S U1 PXA; Cong; apply projp_col with A; auto).
 eapply col_cong_3_cong_3_eq in HCongB; [| | |apply H等角]; treat_equalities; auto.
 eapply col_cong_3_cong_3_eq in HCongC; [| | |apply H等角]; treat_equalities; auto.
 clear H等角; elim (两点重合的决定性 A PXA); intro HDiff2; treat_equalities;

@@ -92,7 +92,7 @@ Proof.
           apply 等长的交换性.
           eapply is_image_spec_col_cong.
             apply H3.
-          apply col_trivial_3.
+          apply ABA型共线.
         apply col_permutation_2.
         apply cop_per2__col with A.
           assert_diffs; apply coplanar_perm_12, col_cop__cop with B; Cop.
@@ -478,7 +478,7 @@ Proof.
       apply 等长的对称性 in H1.
       apply False_ind.
       apply H.
-      apply col_trivial_1.
+      apply AAB型共线.
     assert(exists X, Col A B X /\ Perp A B C X).
       apply l8_18_existence.
       assumption.
@@ -490,7 +490,7 @@ Proof.
     ex_elim H5 X'.
     assert (exists Q, Perp A' B' Q X' /\ OS A' B' P Q).
       apply l10_15.
-        eapply l4_13.
+        eapply 全等于退化的三角形.
           apply H3.
         assumption.
       assumption.
@@ -525,8 +525,8 @@ Proof.
             apply perp_right_comm.
             apply H4.
           assumption.
-          apply col_trivial_3.
-        apply col_trivial_1.
+          apply ABA型共线.
+        apply AAB型共线.
         apply perp_in_per.
         eapply l8_14_2_1b_bis.
           eapply perp_col.
@@ -550,12 +550,12 @@ Proof.
             apply col_permutation_5.
             eapply out_col.
             assumption.
-          eapply l4_13.
+          eapply 全等于退化的三角形.
             apply H3.
           unfold 三角形全等.
           repeat split;assumption.
-          apply col_trivial_3.
-        apply col_trivial_1.
+          apply ABA型共线.
+        apply AAB型共线.
         assumption.
       apply 等长的对称性.
       assumption.
@@ -576,8 +576,8 @@ Proof.
             apply H4.
           apply col_permutation_4.
           assumption.
-          apply col_trivial_3.
-        apply col_trivial_1.
+          apply ABA型共线.
+        apply AAB型共线.
         apply perp_in_per.
         eapply l8_14_2_1b_bis.
           eapply perp_col.
@@ -602,12 +602,12 @@ Proof.
             eapply out_col.
             assumption.
           apply col_permutation_4.
-          eapply l4_13.
+          eapply 全等于退化的三角形.
             apply H3.
           unfold 三角形全等.
           repeat split; assumption.
-          apply col_trivial_3.
-        apply col_trivial_1.
+          apply ABA型共线.
+        apply AAB型共线.
         assumption.
       apply 等长的对称性.
       assumption.
@@ -618,7 +618,7 @@ Proof.
     assert (T19 := (l9_19 A' B' C' Q X')).
     assert (OS A' B' C' Q <-> Out X' C' Q /\ ~ Col A' B' C').
       apply T19.
-        eapply l4_13.
+        eapply 全等于退化的三角形.
           apply H3.
         unfold 三角形全等.
         repeat split; assumption.
@@ -634,7 +634,7 @@ Proof.
         assumption.
       intro.
       apply H.
-      eapply l4_13.
+      eapply 全等于退化的三角形.
         apply H16.
       unfold 三角形全等.
       repeat split.

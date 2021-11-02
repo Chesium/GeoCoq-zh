@@ -263,8 +263,8 @@ Proof.
         subst X.
         assert (~ Col A B P /\ Per P A B).
           eapply l8_16_1.
-            apply col_trivial_3.
-            apply col_trivial_2.
+            apply ABA型共线.
+            apply ABB型共线.
             auto.
           apply perp_sym.
           assumption.
@@ -275,7 +275,7 @@ Proof.
             assumption.
             apply perp_sym.
             assumption.
-            apply col_trivial_3.
+            apply ABA型共线.
           apply perp_sym.
           assumption.
         subst Y.
@@ -285,7 +285,7 @@ Proof.
       assert (~ Col A B P /\ Per P X A).
         eapply l8_16_1.
           assumption.
-          apply col_trivial_3.
+          apply ABA型共线.
           auto.
         apply perp_sym.
         assumption.
@@ -331,7 +331,7 @@ Proof.
         assert (~ Col A B P /\ Per P A B).
           eapply l8_16_1.
             assumption.
-            apply col_trivial_2.
+            apply ABB型共线.
             auto; auto.
           apply perp_sym.
           assumption.
@@ -340,7 +340,7 @@ Proof.
       assert (~ Col A B P /\ Per P Y A).
         eapply l8_16_1.
           assumption.
-          apply col_trivial_3.
+          apply ABA型共线.
           auto.
         apply perp_sym.
         assumption.
@@ -374,7 +374,7 @@ Proof.
         assert (~ Col A B P /\ Per P A B).
           eapply l8_16_1.
             assumption.
-            apply col_trivial_2.
+            apply ABB型共线.
             auto.
           apply perp_sym.
           assumption.
@@ -383,7 +383,7 @@ Proof.
       assert (~ Col A B P /\ Per P X A).
         eapply l8_16_1.
           assumption.
-          apply col_trivial_3.
+          apply ABA型共线.
           auto.
         apply perp_sym.
         assumption.
@@ -810,13 +810,13 @@ Proof.
           eapply l6_21.
             apply H8.
             apply H4.
-            apply col_trivial_3.
+            apply ABA型共线.
             unfold Col.
             right; right.
             apply midpoint_bet.
             apply l7_2.
             apply H1.
-            apply col_trivial_2.
+            apply ABB型共线.
             assumption.
         subst B.
         apply l7_2 in H1.
@@ -848,13 +848,13 @@ Proof.
         eapply l6_21.
           apply H10.
           apply H6.
-          apply col_trivial_3.
+          apply ABA型共线.
           unfold Col.
           right; right.
           apply midpoint_bet.
           apply l7_2.
           apply H1.
-          apply col_trivial_2.
+          apply ABB型共线.
           assumption.
       subst X.
       apply l7_2 in H1.
@@ -1047,7 +1047,7 @@ Proof.
                   subst X.
                   apply is_midpoint_id in H6.
                   subst M.
-                  apply col_trivial_1.
+                  apply AAB型共线.
                 eapply (col_transitivity_1 _ X).
                   assumption.
                   unfold Col.
@@ -1057,7 +1057,7 @@ Proof.
                   assumption.
                 apply col_permutation_5.
                 assumption.
-              apply col_trivial_2.
+              apply ABB型共线.
             induction (两点重合的决定性 B M).
               subst M.
               apply perp_left_comm.
@@ -1111,7 +1111,7 @@ Proof.
               apply H0.
             apply col_permutation_5.
             apply H0.
-          apply col_trivial_2.
+          apply ABB型共线.
         unfold Col.
         left.
         apply midpoint_bet.
@@ -1221,8 +1221,8 @@ Proof.
                 subst M'.
                 assert (~ Col A B P /\ Per P A B).
                   eapply l8_16_1.
-                    apply col_trivial_3.
-                    apply col_trivial_2.
+                    apply ABA型共线.
+                    apply ABB型共线.
                     apply perp_distinct in H3.
                     spliter.
                     auto.
@@ -1235,7 +1235,7 @@ Proof.
               assert (~ Col A B P /\ Per P M' A).
                 eapply l8_16_1.
                   assumption.
-                  apply col_trivial_3.
+                  apply ABA型共线.
                 apply perp_sym.
                 assumption.
               spliter.
@@ -1509,7 +1509,7 @@ Proof.
           assumption.
         exists M0.
         split.
-          apply col_trivial_1.
+          apply AAB型共线.
         apply midpoint_bet.
         apply l7_2.
         assumption.
@@ -1563,7 +1563,7 @@ Proof.
           assumption.
         exists M0.
         split.
-          apply col_trivial_3.
+          apply ABA型共线.
         apply midpoint_bet.
         apply l7_2.
         assumption.

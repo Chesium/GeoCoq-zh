@@ -782,7 +782,7 @@ Proof.
     assert(共面 X Y O C).
       induction H25.
         apply coplanar_pseudo_trans with B C B'.
-          apply not_col_permutation_1, (par_not_col X Y); Par.
+          apply 共线否定排列BCA, (par_not_col X Y); Par.
           apply coplanar_perm_1, col_cop__cop with Y; Col; Cop.
           apply coplanar_perm_1, col_cop__cop with X; Col; Cop.
           Cop.
@@ -1220,7 +1220,7 @@ Proof.
         apply(par_trans _ _ B' C'); Par.
       assert(共面 C P B' C').
         apply coplanar_perm_2, coplanar_trans_1 with B; [|Cop..].
-        apply not_col_permutation_1, par_not_col with B' C'; Par; Col.
+        apply 共线否定排列BCA, par_not_col with B' C'; Par; Col.
       assert(HH:=cop_npar__inter_exists C P B' C' H9 H8).
       ex_and HH C''.
       induction(两点重合的决定性 B' C'').

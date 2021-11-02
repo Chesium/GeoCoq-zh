@@ -211,7 +211,7 @@ apply H3.
 ColR.
 exists PX.
 split.
-apply col_trivial_1.
+apply AAB型共线.
 apply 中间性的对称性.
 assumption.
 eapply l9_8_1.

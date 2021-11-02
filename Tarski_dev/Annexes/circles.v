@@ -738,7 +738,7 @@ assert(Cong A O U O').
 apply(cong_cong_half_1 A O B U O' V); unfold 中点; try split; Cong.
 assert(Cong B O V O').
 apply(cong_cong_half_2 A O B U O' V); unfold 中点; try split; Cong.
-apply(l4_13 O A B).
+apply(全等于退化的三角形 O A B).
 Col.
 unfold 三角形全等.
 repeat split; Cong; apply 等长的传递性 with O P; Cong.
@@ -1205,7 +1205,7 @@ Proof.
   assert (HColO1 : Col M1 P1 O).
     apply (cop_mid_onc2_perp__col O P A B); Perp.
     apply coplanar_perm_12, coplanar_trans_1 with C; Cop.
-  apply not_col_permutation_3 in HNCol.
+  apply 共线否定排列CBA in HNCol.
   assert (HColX2 : Col M2 P2 X).
     apply (cop_mid_onc2_perp__col X A A C); Circle; Perp.
     apply coplanar_perm_12, coplanar_trans_1 with B; Cop.

@@ -267,7 +267,7 @@ Proof.
     apply (t22_20 archi); trivial.
   - destruct (archi__gradaexp_destruction archi P Q R HNCol1) as [S [T [U [HGAE H为钝角]]]].
     apply archi__obtuse_case_elimination in archi.
-    apply not_col_permutation_4 in HNCol.
+    apply 共线否定排列BAC in HNCol.
     destruct (legendre_aux2 archi A B C HNCol H为锐角 legendre P Q R S T U HDef HGAE) as [B' [C' HInter]].
     destruct HInter as [P' [Q' [R' [HOutB [HOutC [HDef' HLea]]]]]].
     apply (lea_obtuse_obtuse P' Q' R'), obtuse__nsams in H为钝角; auto.

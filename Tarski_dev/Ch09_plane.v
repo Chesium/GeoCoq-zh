@@ -1043,13 +1043,13 @@ Proof.
       apply H18.
       apply l7_2.
       assumption.
-      apply col_trivial_3.
+      apply ABA型共线.
     assert (forall X Y, 中点 M X Y -> (Out R X A <-> Out S C Y)).
       eapply l9_4_1.
         apply H9.
-        apply col_trivial_1.
+        apply AAB型共线.
         assumption.
-        apply col_trivial_3.
+        apply ABA型共线.
         assumption.
       apply l7_2.
       assumption.
@@ -1639,7 +1639,7 @@ Proof.
       assumption.
     exists P.
     split.
-      apply col_trivial_1.
+      apply AAB型共线.
     apply midpoint_bet.
     assumption.
 Qed.
@@ -1675,7 +1675,7 @@ Proof.
         assumption.
       exists P.
       split.
-        apply col_trivial_1.
+        apply AAB型共线.
       apply midpoint_bet.
       assumption.
     split; assumption.
@@ -2061,7 +2061,7 @@ Proof.
           assumption.
         exists A.
         split.
-          apply col_trivial_1.
+          apply AAB型共线.
         assumption.
       unfold TS.
       repeat split.
@@ -2091,7 +2091,7 @@ Proof.
           apply 等长的同一性 in H3.
           subst Y.
           apply H.
-          apply col_trivial_3.
+          apply ABA型共线.
           apply col_permutation_4.
           assumption.
         unfold Col.
@@ -2099,7 +2099,7 @@ Proof.
         assumption.
       exists A.
       split.
-        apply col_trivial_1.
+        apply AAB型共线.
       unfold Out in H0.
       spliter.
       induction H5.
@@ -2213,7 +2213,7 @@ Proof.
           assumption.
         exists A.
         split.
-          apply col_trivial_1.
+          apply AAB型共线.
         assumption.
       apply one_side_symmetry.
       assumption.
@@ -2269,7 +2269,7 @@ Proof.
             apply 中间性的同一律 in H6.
             subst Z.
             apply H4.
-            apply col_trivial_1.
+            apply AAB型共线.
             apply col_permutation_4.
             assumption.
           apply 中间性转共线 in H6.
@@ -2312,7 +2312,7 @@ Proof.
           assumption.
         exists A.
         split.
-          apply col_trivial_1.
+          apply AAB型共线.
         apply 中间性的对称性.
         assumption.
       assert(TS A Z Y X).
@@ -2355,7 +2355,7 @@ Proof.
         assumption.
       exists A.
       split.
-        apply col_trivial_1.
+        apply AAB型共线.
       apply 中间性的对称性.
       assumption.
     assert(OS A Y T X).
@@ -2569,7 +2569,7 @@ Proof.
         assumption.
       exists A.
       split.
-        apply col_trivial_1.
+        apply AAB型共线.
       apply 中间性的对称性.
       assumption.
     eapply l9_9 in H3.
@@ -2600,7 +2600,7 @@ Proof.
           assumption.
         subst X.
         apply H0.
-        apply col_trivial_1.
+        apply AAB型共线.
         apply col_permutation_4.
         assumption.
       apply col_permutation_1.
@@ -2647,7 +2647,7 @@ Proof.
           assumption.
         subst Y.
         apply H1.
-        apply col_trivial_1.
+        apply AAB型共线.
         apply col_permutation_4.
         assumption.
       apply col_permutation_1.

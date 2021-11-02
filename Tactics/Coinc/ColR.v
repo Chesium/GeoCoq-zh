@@ -347,16 +347,16 @@ apply CTcol_permutation_1.
 assumption.
 Qed.
 
-Lemma CTcol_trivial_1 : forall A B : COLTpoint, CTCol A A B.
+Lemma CTAAB型共线 : forall A B : COLTpoint, CTCol A A B.
 Proof.
 apply CTcol_trivial.
 Qed.
 
-Lemma CTcol_trivial_2 : forall A B : COLTpoint, CTCol A B B.
+Lemma CTABB型共线 : forall A B : COLTpoint, CTCol A B B.
 Proof.
 intros.
 apply CTcol_permutation_2.
-apply CTcol_trivial_1.
+apply CTAAB型共线.
 Qed.
 
 Definition ss_ok (ss : SS.t) (interp: positive -> COLTpoint) :=
@@ -556,7 +556,7 @@ elim Hs; intro HsE.
     elim (Pos.eq_dec p1 p2); intro Hp1p2.
 
       rewrite Hp1p2 in *; rewrite HA.
-      apply CTcol_trivial_1.
+      apply CTAAB型共线.
 
       rewrite SWP.Dec.F.add_neq_b in Hmem2.
       elim (Pos.eq_dec pb p2); intro Hpbp2.
@@ -564,11 +564,11 @@ elim Hs; intro HsE.
         rewrite Hpbp2 in *; rewrite HB.
         elim (Pos.eq_dec p3 p1); intro Hp3p1; elim (Pos.eq_dec p3 p2); intro Hp3p2.
 
-          rewrite Hp3p2; rewrite HB; apply CTcol_trivial_2.
+          rewrite Hp3p2; rewrite HB; apply CTABB型共线.
 
-          rewrite Hp3p1; rewrite HA; apply CTcol_permutation_1; apply CTcol_trivial_1.
+          rewrite Hp3p1; rewrite HA; apply CTcol_permutation_1; apply CTAAB型共线.
 
-          rewrite Hp3p2; rewrite HB; apply CTcol_trivial_2.
+          rewrite Hp3p2; rewrite HB; apply CTABB型共线.
 
           do 2 (rewrite SWP.Dec.F.add_neq_b in Hmem3).
           rewrite <- SWP.singleton_equal_add in Hmem3.
@@ -586,11 +586,11 @@ elim Hs; intro HsE.
         rewrite <- Hmem2 in *; rewrite HC.
         elim (Pos.eq_dec p3 p1); intro Hp3p1; elim (Pos.eq_dec p3 p2); intro Hp3p2.
 
-          rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTcol_trivial_2.
+          rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTABB型共线.
 
-          rewrite Hp3p1 in *; rewrite HA; apply CTcol_permutation_1; apply CTcol_trivial_1.
+          rewrite Hp3p1 in *; rewrite HA; apply CTcol_permutation_1; apply CTAAB型共线.
 
-          rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTcol_trivial_2.
+          rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTABB型共线.
 
           rewrite SWP.Dec.F.add_neq_b in Hmem3.
           elim (Pos.eq_dec p3 pb); intro Hp3pb.
@@ -619,11 +619,11 @@ elim Hs; intro HsE.
         rewrite Hpap2 in *; rewrite HA.
         elim (Pos.eq_dec p3 p2); intro Hp3p2; elim (Pos.eq_dec p3 pb); intro Hp3pb.
 
-          rewrite Hp3pb; rewrite HB; apply CTcol_permutation_1; apply CTcol_trivial_1.
+          rewrite Hp3pb; rewrite HB; apply CTcol_permutation_1; apply CTAAB型共线.
 
-          rewrite Hp3p2; rewrite HA; apply CTcol_trivial_2.
+          rewrite Hp3p2; rewrite HA; apply CTABB型共线.
 
-          rewrite Hp3pb; rewrite HB; apply CTcol_permutation_1; apply CTcol_trivial_1.
+          rewrite Hp3pb; rewrite HB; apply CTcol_permutation_1; apply CTAAB型共线.
 
           do 2 (rewrite SWP.Dec.F.add_neq_b in Hmem3).
           rewrite <- SWP.singleton_equal_add in Hmem3.
@@ -637,7 +637,7 @@ elim Hs; intro HsE.
         rewrite SWP.Dec.F.add_neq_b in Hmem2.
         elim (Pos.eq_dec p2 pb); intro Hp2pb.
 
-          rewrite Hp2pb; rewrite HB; apply CTcol_trivial_1.
+          rewrite Hp2pb; rewrite HB; apply CTAAB型共线.
 
           rewrite SWP.Dec.F.add_neq_b in Hmem2.
           rewrite <- SWP.singleton_equal_add in Hmem2.
@@ -646,11 +646,11 @@ elim Hs; intro HsE.
           rewrite <- Hmem2 in *; rewrite HC.
           elim (Pos.eq_dec p3 p1); intro Hp3p1; elim (Pos.eq_dec p3 p2); intro Hp3p2.
 
-            rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTcol_trivial_2.
+            rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTABB型共线.
 
-            rewrite Hp3p1 in *; rewrite Hp1pb; rewrite HB; apply CTcol_permutation_1; apply CTcol_trivial_1.
+            rewrite Hp3p1 in *; rewrite Hp1pb; rewrite HB; apply CTcol_permutation_1; apply CTAAB型共线.
 
-            rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTcol_trivial_2.
+            rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTABB型共线.
 
             elim (Pos.eq_dec p3 pa); intro Hp3pa.
 
@@ -659,7 +659,7 @@ elim Hs; intro HsE.
               rewrite SWP.Dec.F.add_neq_b in Hmem3.
               elim (Pos.eq_dec p3 pb); intro Hp3pb.
 
-                rewrite Hp3pb in *; rewrite HB; apply CTcol_permutation_5; apply CTcol_trivial_1.
+                rewrite Hp3pb in *; rewrite HB; apply CTcol_permutation_5; apply CTAAB型共线.
 
                 rewrite SWP.Dec.F.add_neq_b in Hmem3.
                 rewrite <- SWP.singleton_equal_add in Hmem3.
@@ -686,7 +686,7 @@ elim Hs; intro HsE.
 
           rewrite Hp3pb; rewrite HB; apply CTcol_permutation_2; assumption.
 
-          rewrite Hp3p2; rewrite HA; apply CTcol_trivial_2.
+          rewrite Hp3p2; rewrite HA; apply CTABB型共线.
 
           rewrite Hp3pb; rewrite HB; apply CTcol_permutation_2; assumption.
 
@@ -694,7 +694,7 @@ elim Hs; intro HsE.
           rewrite <- SWP.singleton_equal_add in Hmem3.
           apply SWP.Dec.F.mem_iff in Hmem3.
           apply SWP.Dec.F.singleton_1 in Hmem3.
-          rewrite <- Hmem3; rewrite HC; apply CTcol_permutation_1; apply CTcol_trivial_1.
+          rewrite <- Hmem3; rewrite HC; apply CTcol_permutation_1; apply CTAAB型共线.
           intuition.
           intuition.
           intuition.
@@ -709,13 +709,13 @@ elim Hs; intro HsE.
 
             rewrite Hp3pa; rewrite HA; apply CTcol_permutation_3; assumption.
 
-            rewrite Hp3pb; rewrite HB; apply CTcol_trivial_2.
+            rewrite Hp3pb; rewrite HB; apply CTABB型共线.
 
             do 2 (rewrite SWP.Dec.F.add_neq_b in Hmem3).
             rewrite <- SWP.singleton_equal_add in Hmem3.
             apply SWP.Dec.F.mem_iff in Hmem3.
             apply SWP.Dec.F.singleton_1 in Hmem3.
-            rewrite <- Hmem3 in *; rewrite HC; apply CTcol_permutation_1; apply CTcol_trivial_1.
+            rewrite <- Hmem3 in *; rewrite HC; apply CTcol_permutation_1; apply CTAAB型共线.
             intuition.
 
           intuition.
@@ -726,7 +726,7 @@ elim Hs; intro HsE.
         rewrite <- SWP.singleton_equal_add in Hmem2.
         apply SWP.Dec.F.mem_iff in Hmem2.
         apply SWP.Dec.F.singleton_1 in Hmem2.
-        rewrite <- Hmem2 in *; rewrite HC; apply CTcol_trivial_1.
+        rewrite <- Hmem2 in *; rewrite HC; apply CTAAB型共线.
         intuition.
 
         intuition.
@@ -928,13 +928,13 @@ elim Hs; intro HIn; clear Hs.
       elim (Pos.eq_dec pb p1); intro Hp1; elim (Pos.eq_dec pb p2); intro Hp2; elim (Pos.eq_dec pb p3); intro Hp3.
 
         subst.
-        apply CTcol_trivial_1.
+        apply CTAAB型共线.
 
         subst.
-        apply CTcol_trivial_1.
+        apply CTAAB型共线.
 
         subst.
-        apply CTcol_permutation_4; apply CTcol_trivial_2.
+        apply CTcol_permutation_4; apply CTABB型共线.
 
         subst.
         do 2 (rewrite andb_true_iff in Hmem).
@@ -947,7 +947,7 @@ elim Hs; intro HIn; clear Hs.
 
         elim (Pos.eq_dec pa p2); intro Hpap2.
 
-          subst; rewrite HB; apply CTcol_trivial_1.
+          subst; rewrite HB; apply CTAAB型共线.
 
           assert (Hmem2 : S.mem p2 x = true).
 
@@ -957,7 +957,7 @@ elim Hs; intro HIn; clear Hs.
 
           elim (Pos.eq_dec pa p3); intro Hpap3.
 
-            subst; rewrite HB; apply CTcol_permutation_4; apply CTcol_trivial_2.
+            subst; rewrite HB; apply CTcol_permutation_4; apply CTABB型共线.
 
             assert (Hmem3 : S.mem p3 x = true).
 
@@ -973,7 +973,7 @@ elim Hs; intro HIn; clear Hs.
               do 2 (rewrite andb_true_iff); repeat split; assumption.
 
         subst.
-        apply CTcol_trivial_2.
+        apply CTABB型共线.
 
         subst.
         do 2 (rewrite andb_true_iff in Hmem).
@@ -986,7 +986,7 @@ elim Hs; intro HIn; clear Hs.
 
         elim (Pos.eq_dec pa p1); intro Hpap1.
 
-          subst; rewrite HB; apply CTcol_trivial_1.
+          subst; rewrite HB; apply CTAAB型共线.
 
           assert (Hmem1 : S.mem p1 x = true).
 
@@ -996,7 +996,7 @@ elim Hs; intro HIn; clear Hs.
 
           elim (Pos.eq_dec pa p3); intro Hpap3.
 
-            subst; rewrite HB; apply CTcol_trivial_2.
+            subst; rewrite HB; apply CTABB型共线.
 
             assert (Hmem3 : S.mem p3 x = true).
 
@@ -1022,7 +1022,7 @@ elim Hs; intro HIn; clear Hs.
 
         elim (Pos.eq_dec pa p1); intro Hpap1.
 
-          subst; rewrite HB; apply CTcol_permutation_4; apply CTcol_trivial_2.
+          subst; rewrite HB; apply CTcol_permutation_4; apply CTABB型共线.
 
           assert (Hmem1 : S.mem p1 x = true).
 
@@ -1032,7 +1032,7 @@ elim Hs; intro HIn; clear Hs.
 
           elim (Pos.eq_dec pa p2); intro Hpap2.
 
-            subst; rewrite HB; apply CTcol_trivial_2.
+            subst; rewrite HB; apply CTABB型共线.
 
             assert (Hmem2 : S.mem p2 x = true).
 
@@ -1054,11 +1054,11 @@ elim Hs; intro HIn; clear Hs.
         elim (Pos.eq_dec pa p2); intro Hpap2;
         elim (Pos.eq_dec pa p3); intro Hpap3.
 
-          subst; apply CTcol_trivial_1.
+          subst; apply CTAAB型共线.
 
-          subst; apply CTcol_trivial_1.
+          subst; apply CTAAB型共线.
 
-          subst; apply CTcol_permutation_4; apply CTcol_trivial_2.
+          subst; apply CTcol_permutation_4; apply CTABB型共线.
 
           subst.
           assert (Hmem1 : S.mem pb x = true).
@@ -1087,7 +1087,7 @@ elim Hs; intro HIn; clear Hs.
 
             do 2 (rewrite andb_true_iff); repeat split; assumption.
 
-          subst; apply CTcol_trivial_2.
+          subst; apply CTABB型共线.
 
           subst.
           assert (Hmem2 : S.mem pb x = true).

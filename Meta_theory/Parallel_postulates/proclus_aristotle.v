@@ -96,7 +96,7 @@ Proof.
   { assert_diffs.
     assert(HAAS := l11_50_2 B Y D Y B X).
     destruct HAAS; Cong.
-      apply not_col_permutation_5, (par_strict_not_col_4 _ _ X); auto.
+      apply 共线否定排列ACB, (par_strict_not_col_4 _ _ X); auto.
       apply l11_16; Perp; apply perp_per_2, (perp_col _ Y0); Col; Perp.
     apply conga_comm.
     assert (aia : alternate_interior_angles_postulate).

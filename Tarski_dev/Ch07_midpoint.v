@@ -362,7 +362,7 @@ Proof.
       Cong.
     induction H9.
     assert (Col D B x) by
-      (apply l4_13 with B D P;Col).
+      (apply 全等于退化的三角形 with B D P;Col).
     assert (五线段形式 B D P A D B x C).
       unfold 五线段形式.
       unfold 三角形全等 in *.
@@ -376,7 +376,7 @@ Proof.
     assert (Cong P A x C) by (eauto using l4_16).
     assert (Cong P C x A) by (eauto using l4_16).
     assert (三角形全等 A P C C x A) by (unfold 三角形全等;repeat split; Cong).
-    assert (Col C x A) by (eauto using l4_13).
+    assert (Col C x A) by (eauto using 全等于退化的三角形).
     assert (P=x).
       unfold 五线段形式 in *.
       spliter.
@@ -740,7 +740,7 @@ Proof.
         assumption.
       assumption.
     assert (Col B R' P).
-      apply (l4_13 A R Q); Col.
+      apply (全等于退化的三角形 A R Q); Col.
     cut(R=R').
       intro.
       subst R'.

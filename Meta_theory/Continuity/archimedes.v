@@ -75,7 +75,7 @@ Proof.
     apply (col_one_side_out _ A0).
       apply col_permutation_2, cop_per2__col with A0; Perp.
       apply coplanar_perm_3, coplanar_trans_1 with B0; Cop.
-      apply not_col_permutation_2, one_side_not_col123 with B1; assumption.
+      apply 共线否定排列CAB, one_side_not_col123 with B1; assumption.
     apply (one_side_transitivity _ _ _ B0); Side.
   }
   rename C into A; rename F into E; rename C' into A'; rename F' into E'.

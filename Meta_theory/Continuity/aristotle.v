@@ -255,7 +255,7 @@ Proof.
   assert (HPar : 严格平行 Q' Q C' P) by (apply lam__pars1423, HLam).
   destruct HLam; spliter.
   destruct (l10_15 P Q P C') as [A' [HPerp HOS]]; Col.
-    apply not_col_permutation_1.
+    apply 共线否定排列BCA.
     apply par_strict_not_col_1 with Q'; Par.
   assert_diffs.
   assert (H角度小于 : 角度小于 Q P A' C' P Q) by (apply obtuse_per__lta; Perp).
@@ -324,7 +324,7 @@ Proof.
         apply coplanar_perm_12, col_cop__cop with C; Col.
         apply  col_cop__cop with C'; Col; Cop.
       }
-      apply not_col_permutation_1, par_not_col with P C'; Par; ColR.
+      apply 共线否定排列BCA, par_not_col with P C'; Par; ColR.
     }
     assert_diffs.
     apply bet__lt1213; auto.

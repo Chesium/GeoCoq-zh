@@ -2851,7 +2851,7 @@ unfold 中点 in H1.
 spliter.
 apply 中间性转共线 in H1.
 Col.
-apply col_trivial_2;assumption.
+apply ABB型共线;assumption.
 unfold Out.
 repeat split.
 intro.

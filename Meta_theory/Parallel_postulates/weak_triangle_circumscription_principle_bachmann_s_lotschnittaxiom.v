@@ -27,7 +27,7 @@ assert (共面 E F IAB D2) by CopR.
 assert (共面 E F IAB C1) by CopR.
 assert (共面 E F IAB C2) by CopR.
 destruct (HP E F IAB D1 D2 C1 C2) as [I [HC7 HC8]]; auto;
-[apply not_col_permutation_1, perp_not_col| |split..|exists I; split; Col]; Perp; split.
+[apply 共线否定排列BCA, perp_not_col| |split..|exists I; split; Col]; Perp; split.
   exists IBD; split; auto.
   left; apply perp_col0 with B1 B2; ColR.
   exists IAC; split; auto.

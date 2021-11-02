@@ -1464,7 +1464,7 @@ spliter.
 apply H6.
 exists C'.
 split; Col.
-apply col_trivial_2.
+apply ABB型共线.
 repeat split.
 auto.
 intro.

@@ -179,8 +179,8 @@ Ltac permutation_intro_in_goal :=
  | |- 垂直于 ?X ?A ?B ?C ?D => apply Perp_in_cases
  | |- Per ?A ?B ?C => apply Per_cases
  | |- 中点 ?A ?B ?C => apply Mid_cases
- | |- ~ Col ?A ?B ?C => apply NCol_cases
- | |- Col ?A ?B ?C => apply Col_cases
+ | |- ~ Col ?A ?B ?C => apply 共线否定的各排列情况
+ | |- Col ?A ?B ?C => apply 共线的各排列情况
  | |- Bet ?A ?B ?C => apply 中间性的各排列情况
  | |- Cong ?A ?B ?C ?D => apply 等长的各排列情况
  | |- Out ?A ?B ?C => apply Out_cases
@@ -549,7 +549,7 @@ exists B.
 split; Col.
 Col.
 Col.
-apply col_trivial_2;Col.
+apply ABB型共线;Col.
 assert_diffs.
 repeat split; Between.
 
@@ -1435,7 +1435,7 @@ unfold 中点 in H1.
 spliter.
 apply 中间性转共线 in H1.
 Col.
-apply col_trivial_2;Col.
+apply ABB型共线;Col.
 
 repeat split.
 intro.
@@ -2081,8 +2081,8 @@ Ltac permutation_intro_in_hyps_aux :=
  | H : Perp_in_tagged ?X ?A ?B ?C ?D |- _ => apply Perp_in_tagged_Perp_in in H; apply Perp_in_perm in H; spliter
  | H : Per_tagged ?A ?B ?C |- _ => apply Per_tagged_Per in H; apply Per_perm in H; spliter
  | H : Mid_tagged ?A ?B ?C |- _ => apply Mid_tagged_Mid in H; apply Mid_perm in H; spliter
- | H : NCol_tagged ?A ?B ?C |- _ => apply NCol_tagged_NCol in H; apply NCol_perm in H; spliter
- | H : Col_tagged ?A ?B ?C |- _ => apply Col_tagged_Col in H; apply Col_perm in H; spliter
+ | H : NCol_tagged ?A ?B ?C |- _ => apply NCol_tagged_NCol in H; apply 共线否定的等价排列 in H; spliter
+ | H : Col_tagged ?A ?B ?C |- _ => apply Col_tagged_Col in H; apply 共线的等价排列 in H; spliter
  | H : Bet_tagged ?A ?B ?C |- _ => apply Bet_tagged_Bet in H; apply 中间性的等价排列 in H; spliter
  | H : Cong_tagged ?A ?B ?C ?D |- _ => apply Cong_tagged_Cong in H; apply 等长的等价排列 in H; spliter
  | H : Diff_tagged ?A ?B |- _ => apply Diff_tagged_Diff in H; apply Diff_perm in H; spliter
@@ -2489,7 +2489,7 @@ assert (H12 : Col A C I').
  assert (H14 := midpoint_bet A I' C H2).
  assert (H15 := 中间性转共线 A I' C H14).
  Col.
-apply not_col_permutation_5 in H03.
+apply 共线否定排列ACB in H03.
 assert (H13 := l6_21 A C D B I I' H03 MDB H01 H12 H02 H11).
 split.
  rewrite H13;assumption.

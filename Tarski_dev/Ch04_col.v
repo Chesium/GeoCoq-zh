@@ -51,7 +51,7 @@ Section T4_2.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma not_col_permutation_1 :
+Lemma 共线否定排列BCA :
  forall (A B C : Tpoint), ~ Col A B C -> ~ Col B C A.
 Proof.
     intros.
@@ -60,7 +60,7 @@ Proof.
     Col.
 Qed.
 
-Lemma not_col_permutation_2 :
+Lemma 共线否定排列CAB :
  forall (A B C : Tpoint), ~ Col A B C -> ~ Col C A B.
 Proof.
     intros.
@@ -69,7 +69,7 @@ Proof.
     Col.
 Qed.
 
-Lemma not_col_permutation_3 :
+Lemma 共线否定排列CBA :
  forall (A B C : Tpoint), ~ Col A B C -> ~ Col C B A.
 Proof.
     intros.
@@ -78,7 +78,7 @@ Proof.
     Col.
 Qed.
 
-Lemma not_col_permutation_4 :
+Lemma 共线否定排列BAC :
  forall (A B C : Tpoint), ~ Col A B C -> ~ Col B A C.
 Proof.
     intros.
@@ -87,7 +87,7 @@ Proof.
     Col.
 Qed.
 
-Lemma not_col_permutation_5 :
+Lemma 共线否定排列ACB :
  forall (A B C : Tpoint), ~ Col A B C -> ~ Col A C B.
 Proof.
     intros.
@@ -98,15 +98,15 @@ Qed.
 
 End T4_2.
 
-Hint Resolve not_col_permutation_1 not_col_permutation_2
-not_col_permutation_3 not_col_permutation_4 not_col_permutation_5 : col.
+Hint Resolve 共线否定排列BCA 共线否定排列CAB
+共线否定排列CBA 共线否定排列BAC 共线否定排列ACB : col.
 
 Section T4_3.
 
 Context `{Tn:无维度中性塔斯基公理系统}.
 
 (** This lemma is used by tactics for trying several permutations. *)
-Lemma Col_cases :
+Lemma 共线的各排列情况 :
  forall A B C,
  Col A B C \/ Col A C B \/ Col B A C \/
  Col B C A \/ Col C A B \/ Col C B A ->
@@ -116,7 +116,7 @@ Proof.
     decompose [or] H; Col.
 Qed.
 
-Lemma Col_perm :
+Lemma 共线的等价排列 :
  forall A B C,
  Col A B C ->
  Col A B C /\ Col A C B /\ Col B A C /\
@@ -126,21 +126,21 @@ Proof.
     repeat split; Col.
 Qed.
 
-Lemma col_trivial_1 : forall A B, Col A A B.
+Lemma AAB型共线 : forall A B, Col A A B.
 Proof.
     unfold Col.
     intros.
     Between.
 Qed.
 
-Lemma col_trivial_2 : forall A B, Col A B B.
+Lemma ABB型共线 : forall A B, Col A B B.
 Proof.
     unfold Col.
     intros.
     Between.
 Qed.
 
-Lemma col_trivial_3 : forall A B, Col A B A.
+Lemma ABA型共线 : forall A B, Col A B A.
 Proof.
     unfold Col.
     intros.
@@ -149,13 +149,13 @@ Qed.
 
 End T4_3.
 
-Hint Immediate col_trivial_1 col_trivial_2 col_trivial_3: col.
+Hint Immediate AAB型共线 ABB型共线 ABA型共线: col.
 
 Section T4_4.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma l4_13 : forall A B C A' B' C',
+Lemma 全等于退化的三角形 : forall A B C A' B' C',
  Col A B C -> 三角形全等 A B C A' B' C' -> Col A' B' C'.
 Proof.
     unfold Col.
@@ -236,7 +236,7 @@ Proof.
     repeat split;(auto;intro); subst; apply H; Col.
 Qed.
 
-Lemma NCol_cases :
+Lemma 共线否定的各排列情况 :
  forall A B C,
  ~ Col A B C \/ ~ Col A C B \/ ~ Col B A C \/
  ~ Col B C A \/ ~ Col C A B \/ ~ Col C B A ->
@@ -246,7 +246,7 @@ Proof.
     decompose [or] H; Col.
 Qed.
 
-Lemma NCol_perm :
+Lemma 共线否定的等价排列 :
  forall A B C,
  ~ Col A B C ->
  ~ Col A B C /\ ~ Col A C B /\ ~ Col B A C /\
@@ -257,10 +257,10 @@ Proof.
 Qed.
 
 Lemma col_cong_3_cong_3_eq : forall A B C A' B' C1 C2,
-  A <>B -> Col A B C -> 三角形全等 A B C A' B' C1 -> 三角形全等 A B C A' B' C2 -> C1 = C2.
+  A <> B -> Col A B C -> 三角形全等 A B C A' B' C1 -> 三角形全等 A B C A' B' C2 -> C1 = C2.
 Proof.
 intros A B C A' B' C1 C2 HAB HCol HCong1 HCong2.
-apply l4_18 with A' B'; try apply l4_13 with A B C; Col;
+apply l4_18 with A' B'; try apply 全等于退化的三角形 with A B C; Col;
 unfold 三角形全等 in *; spliter.
   intro; treat_equalities; intuition.
   apply 等长的传递性 with A C; Cong.

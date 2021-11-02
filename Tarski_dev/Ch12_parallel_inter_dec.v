@@ -430,7 +430,7 @@ Proof.
         apply H.
         assert_diffs.
         eapply (col_transitivity_1 _ B0); Col.
-        apply col_trivial_2.
+        apply ABB型共线.
       apply bet_out.
         intro.
         treat_equalities.
@@ -444,7 +444,7 @@ Proof.
           intro.
           treat_equalities.
           Col.
-        apply col_trivial_3.
+        apply ABA型共线.
       assert_diffs; apply bet_out; Between.
     assert(OS A C B C').
       apply one_side_transitivity with B0.
