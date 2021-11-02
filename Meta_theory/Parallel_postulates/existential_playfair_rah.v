@@ -31,14 +31,14 @@ assert (HPar1 : Par A1 A2 P R).
     Cop.
     apply coplanar_perm_3, col_cop__cop with A3; Cop; ColR.
 }
-assert (HCop1 : Coplanar A1 A2 P R) by (apply par__coplanar, HPar1).
-assert (HNC2 : Par_strict A1 A2 P R)
+assert (HCop1 : 共面 A1 A2 P R) by (apply par__coplanar, HPar1).
+assert (HNC2 : 严格平行 A1 A2 P R)
   by (apply par_not_col_strict with P; Col).
 apply par_strict_not_col_4 in HNC2.
 destruct (l8_18_existence A1 A2 R) as [S [HCcol2 HPerp3]]; Col.
 assert (HPar2 : Par P Q R S) by (apply l12_9 with A1 A2; Perp; Cop).
 assert (HNC3 : ~ Col P Q R) by (apply perp_not_col; Perp).
-assert (HNC4 : Par_strict P Q R S) by (apply par_not_col_strict with R; Col).
+assert (HNC4 : 严格平行 P Q R S) by (apply par_not_col_strict with R; Col).
 apply par_strict_not_col_3 in HNC4.
 destruct (l8_18_existence R S P) as [R' [HCcol3 HPerp4]]; Col.
 assert (HPar3 : Par A1 A2 P R').
@@ -52,7 +52,7 @@ assert (HPar3 : Par A1 A2 P R').
 }
 destruct (HP P R P R') as [_ HCol4]; Col.
 assert (R = R') by (assert_diffs; apply l6_21 with P R S R; Col).
-assert (HPs : Par_strict P Q R S) by (apply par_not_col_strict with R; Col).
+assert (HPs : 严格平行 P Q R S) by (apply par_not_col_strict with R; Col).
 treat_equalities; rewrite <- (lam_per__rah P Q S R).
 
   {

@@ -25,11 +25,11 @@ Proof.
   assert(~ Col A C C') by (intro; apply HNCol; ColR).
   assert(~ Col B C C') by (intro; apply HNCol; ColR).
   assert_diffs.
-  assert(CongA A C B A C' B).
+  assert(等角 A C B A C' B).
     apply l11_16; auto; apply (thales _ _ _ M); assumption.
   assert(OS A B C C') by (apply (out_one_side_1 _ _ _ _ M); Col).
   destruct HC' as [_ [_ [HMCC'|HMC'C]]].
-  - assert(Hlta : LtA A C' B A C B); [|destruct Hlta; CongA].
+  - assert(Hlta : 角度小于 A C' B A C B); [|destruct Hlta; 等角].
     apply os3__lta; Side;
     apply (one_side_transitivity _ _ _ M).
       apply invert_one_side; apply out_one_side; Col; apply l6_6; apply bet_out; Between.
@@ -37,7 +37,7 @@ Proof.
       apply invert_one_side; apply out_one_side; Col; apply l6_6; apply bet_out; Between.
       apply out_one_side; Col; apply l6_6; apply bet_out; Between.
 
-  - assert(Hlta : LtA A C B A C' B); [|destruct Hlta; CongA].
+  - assert(Hlta : 角度小于 A C B A C' B); [|destruct Hlta; 等角].
     apply os3__lta; Side;
     apply (one_side_transitivity _ _ _ M).
       apply invert_one_side; apply out_one_side; Col; apply l6_6; apply bet_out; Between.

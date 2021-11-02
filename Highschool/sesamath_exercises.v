@@ -73,9 +73,9 @@ Lemma sesamath_4ieme_G2_ex35 :
  forall G A Z F E R,
  ~ Col G A Z ->
  Per G A Z ->
- Midpoint F A Z ->
- Midpoint E G Z ->
- Midpoint R G A ->
+ 中点 F A Z ->
+ 中点 E G Z ->
+ 中点 R G A ->
  Rectangle F E R A.
 Proof.
 intros G A Z F E R HnCol HPER HM1 HM2 HM3.
@@ -91,7 +91,7 @@ assert (Par A R E F)
  by (apply par_col_par_2 with G;finish).
 assert (~Col A R F)
   by (intro;apply HnCol;ColR).
-assert (Par_strict A R E F)
+assert (严格平行 A R E F)
  by (apply par_not_col_strict with F;finish).
 assert (Plg F E R A)
   by (apply pars_par_plg;finish).
@@ -116,9 +116,9 @@ Quelle est la nature de AIHJ ?
 Lemma sesamath_4ieme_G2_ex36_aux :
  forall A B C I J K,
  ~ Col A B C ->
- Midpoint I A B ->
- Midpoint J A C ->
- Midpoint K B C ->
+ 中点 I A B ->
+ 中点 J A C ->
+ 中点 K B C ->
  Plg I J K B.
 Proof.
 intros.
@@ -133,7 +133,7 @@ assert (Par B K I J)
  by (apply par_col_par_2 with C;finish).
 assert (~ Col B K J)
   by (intro;apply H;ColR).
-assert (Par_strict B K I J)
+assert (严格平行 B K I J)
  by (apply par_not_col_strict with J;finish).
 assert (Plg I J K B)
  by  (apply pars_par_plg;finish).
@@ -145,15 +145,15 @@ Lemma sesamath_4ieme_G2_ex36 :
  isosceles B A C -> 
  Perp A H B C ->
  Col B H C ->
- Midpoint I A B ->
- Midpoint J A C ->
+ 中点 I A B ->
+ 中点 J A C ->
  Rhombus A I H J.
 Proof.
 intros.
 assert_diffs.
 assert_cols.
 assert (~ Col B A C /\
-       B <> H /\ C <> H /\ Midpoint H B C /\ CongA H A B H A C)
+       B <> H /\ C <> H /\ 中点 H B C /\ 等角 H A B H A C)
  by (apply (isosceles_foot__midpoint_conga B A C );finish).
 spliter.
 assert (Plg A I H J).
@@ -186,11 +186,11 @@ Prouve-le.
 Lemma sesamath_4ieme_G2_ex37 :
 forall S E L I M A O,
 ~Col S E L ->
-Midpoint I L S ->
-Midpoint M S E ->
-Midpoint A E L ->
+中点 I L S ->
+中点 M S E ->
+中点 A E L ->
 Perp_bisect A O L E ->
-Coplanar S E L O ->
+共面 S E L O ->
 Perp A O I M.
 Proof.
 intros.
@@ -220,10 +220,10 @@ Justifie ta réponse.
 Lemma sesamath_4ieme_G2_ex38 :
 forall E A U M N L,
 ~ Col E A U ->
-Midpoint N E A ->
-Midpoint M E U ->
-Midpoint L U A ->
-exists O : Tpoint, Col O E L /\ Midpoint O M N.
+中点 N E A ->
+中点 M E U ->
+中点 L U A ->
+exists O : Tpoint, Col O E L /\ 中点 O M N.
 Proof.
 intros.
 assert_diffs.
@@ -233,7 +233,7 @@ assert (Plg M L N E)
   by (apply (sesamath_4ieme_G2_ex36_aux U E A M L N);finish).
 assert (Parallelogram M L N E)
   by (apply(plg_to_parallelogram M L N E);finish).
-assert (exists X, Midpoint X M N /\ Midpoint X L E)
+assert (exists X, 中点 X M N /\ 中点 X L E)
   by (apply plg_mid;finish).
 destruct H18 as [X [HX HX2]].
 exists X.
@@ -253,10 +253,10 @@ Lemma sesamath_4ieme_G2_ex39:
 forall S C T H A,
 ~Col A C T ->
 is_circumcenter S C T A->
-Midpoint S C T ->
+中点 S C T ->
 Col C H A ->
 Perp S H A C ->
-Midpoint H A C.
+中点 H A C.
 Proof.
 intros.
 assert_diffs.
@@ -269,7 +269,7 @@ assert(Per C A T)
 assert(Perp T A A C) by finish.
 assert(Par S H T A)
   by (perm_apply(l12_9 S H T A A C);finish).
-assert(Midpoint H A C)
+assert(中点 H A C)
   by (perm_apply(triangle_par_mid A T C S H);finish).
 assumption.
 Qed.
@@ -289,10 +289,10 @@ Lemma sesamath_4ieme_G2_ex40 :
 forall A B C M R N S T,
 ~Col A B C ->
 Bet C R B ->
-Midpoint M A B ->
-Midpoint N A C ->
-Midpoint S B R ->
-Midpoint T R C ->
+中点 M A B ->
+中点 N A C ->
+中点 S B R ->
+中点 T R C ->
 Par M S N T /\ Parallelogram M S T N.
 Proof.
 intros.
@@ -353,8 +353,8 @@ b- Montre que A est le milieu de [TS].
 Lemma sesamath_4ieme_G2_ex41 :
 forall (T L H O E S A: Tpoint) (a b : Tpoint ->Tpoint ->Tpoint -> Prop),
 ~ Col T L H ->
-Midpoint E T L ->
-Midpoint O T H ->
+中点 E T L ->
+中点 O T H ->
 A <> T ->
 A <> O ->
 A <> E ->
@@ -364,7 +364,7 @@ Bet O A E ->
 Bet H S L ->
 S <> H ->
 S <> L ->
-CongA S A E T S H /\ Midpoint A T S.
+等角 S A E T S H /\ 中点 A T S.
 Proof.
 intros.
 assert_diffs.
@@ -397,13 +397,13 @@ assert(Par H S O A)
   by(apply(par_col_par_2 H L O A S);finish).
 assert(Out T A S)
   by(apply(bet_out T A S);finish).
-assert(CongA O A T H S T)
+assert(等角 O A T H S T)
   by(apply(l12_22_a A O S H T);finish).
-assert(CongA O A T E A S)
+assert(等角 O A T E A S)
   by(apply(l11_14 O A T E S);finish).
-assert(CongA H S T E A S)
+assert(等角 H S T E A S)
   by(apply(conga_trans H S T O A T E A S);finish).
-assert(Midpoint A S T)
+assert(中点 A S T)
   by(apply(triangle_par_mid S H T O A);finish).
 split;finish.
 Qed.
@@ -422,10 +422,10 @@ Lemma sesamath_4ieme_G2_ex42 :
 forall A B C I K L J G,
 ~Col A B C ->
 is_gravity_center G A B C ->
-Midpoint I A C ->
-Midpoint J A B ->
-Midpoint K B G ->
-Midpoint L C G ->
+中点 I A C ->
+中点 J A B ->
+中点 K B G ->
+中点 L C G ->
 Parallelogram I J K L.
 Proof.
 intros.
@@ -438,11 +438,11 @@ assert (Par B C K L)
 assert (G<>C)
   by (apply(is_gravity_center_diff_3 A B C G);finish).
 assert_diffs.
-assert (Midpoint J B A)
+assert (中点 J B A)
   by(apply(l7_2 J A B);finish).
 assert(is_gravity_center G C B A)
   by(apply(is_gravity_center_perm_5 A B C G);finish). (* todo improve finish to include permutations of gravity center *)
-assert(Midpoint G J L)
+assert(中点 G J L)
   by(apply(is_gravity_center_third C B A G L J);finish).
 assert_diffs.
 assert(Parallelogram I L K J)
@@ -463,8 +463,8 @@ Lemma sesamath_4ieme_G2_ex44_1 :
 forall A B C D I J E F,
 
 Parallelogram_strict A B C D ->
-Midpoint I A D ->
-Midpoint J B C ->
+中点 I A D ->
+中点 J B C ->
 Bet A E C ->
 Bet I E B ->
 Bet A F C ->
@@ -486,7 +486,7 @@ assert(Par A D B J)
   by (apply(par_col_par A D B C);finish).
 assert(Par D I B J)
   by (apply(par_col_par_2 D A B J);finish).
-assert(exists M : Tpoint, Midpoint M A C /\ Midpoint M B D)
+assert(exists M : Tpoint, 中点 M A C /\ 中点 M B D)
   by (apply(plg_mid A B C D);finish).
 destruct H31.
 spliter.
@@ -519,7 +519,7 @@ assert(Cong A x0 I x)
   by(apply(等长的传递性 A x0 x0 B I x);finish).
 assert( Cong I x J x)
   by(apply(等长的传递性 I x A x0 J x);finish).
-assert(Midpoint x I J)
+assert(中点 x I J)
   by(apply(l7_20_bis x I J);finish).
 apply (mid_plg B J D I x);finish.
 Qed.
@@ -542,14 +542,14 @@ c- Que représente le point d'intersection des droites (CA) et (MK) pour le tria
 Lemma sesamath_4ieme_G2_ex45 :
 forall A B C I K J M G,
 ~ Col A B C ->
-Midpoint I B C ->
+中点 I B C ->
 Col I A M ->
-Midpoint A I M ->
-Midpoint J A I ->
+中点 A I M ->
+中点 J A I ->
 Par J K A C ->
 Col K I C ->
 Col G C A /\ Col G M K ->
-Midpoint K I C /\ Par A K M C /\ is_gravity_center G C M I.
+中点 K I C /\ Par A K M C /\ is_gravity_center G C M I.
 Proof.
 intros.
 assert_diffs.
@@ -558,7 +558,7 @@ assert (~ Col C I A)
   by (intro;apply H;ColR).
 spliter.
 split.
-assert(Midpoint K C I).
+assert(中点 K C I).
   (apply(triangle_par_mid C A I J K);finish).
 finish.
 destruct (两点重合的决定性 I M).
@@ -569,7 +569,7 @@ intuition.
 assert (~ Col I M C)
   by (intro;apply H14;ColR).
 assert_diffs.
-assert(Midpoint K C I).
+assert(中点 K C I).
  (apply(triangle_par_mid C A I J K);finish).
 split.
 assert(Par M C A K)
@@ -580,7 +580,7 @@ assert(~ Col C M I);finish.
 exists A.
 exists K.
 split.
-assert(Midpoint A M I);finish.
+assert(中点 A M I);finish.
 repeat split;finish.
 Qed.
 
@@ -600,10 +600,10 @@ forall A B C A' B' C',
 ~Col A C C' ->
 ~Col A A' C'->
 Col B' A' C' ->
-Midpoint B A C->
+中点 B A C->
 Par A A' B B' ->
 Par A A' C C' ->
-Midpoint B' A' C'.
+中点 B' A' C'.
 Proof.
 intros.
 assert_diffs.
@@ -635,7 +635,7 @@ assert(Par B x B' x)
   by(apply(par_col_par B x B' B x);finish).
 assert( Par A A' B' x)
   by(apply(par_trans A A' B x B' x);finish).
-assert(Midpoint B' A' C')
+assert(中点 B' A' C')
   by(apply(triangle_par_mid A' A C' x B');finish).
 assumption.
 Qed.

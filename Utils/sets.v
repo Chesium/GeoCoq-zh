@@ -824,7 +824,7 @@ Section Set_of_tuple_of_positive.
       | _           , _            => false
     end.
 
-  Lemma eqbListEqList : forall l1 l2, eqbList l1 l2 = true <-> eqList l1 l2.
+  Lemma eqbList谓词等长ist : forall l1 l2, eqbList l1 l2 = true <-> eqList l1 l2.
   Proof.
     intro l1.
     induction l1.
@@ -871,7 +871,7 @@ Section Set_of_tuple_of_positive.
     eqbList (PosSort.sort (CPToList cp1)) (PosSort.sort (CPToList cp2)).
 
   Lemma eqbST_eqST : forall cp1 cp2, eqbST cp1 cp2 = true <-> eqST cp1 cp2.
-  Proof. intros; unfold eqbST, eqST; apply eqbListEqList. Qed.
+  Proof. intros; unfold eqbST, eqST; apply eqbList谓词等长ist. Qed.
 
   Fixpoint ltList (l1 l2 : list positive) :=
     match l1, l2 with

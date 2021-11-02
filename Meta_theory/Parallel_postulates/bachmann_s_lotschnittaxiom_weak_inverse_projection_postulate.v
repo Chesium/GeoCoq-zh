@@ -13,7 +13,7 @@ Lemma bachmann_s_lotschnittaxiom__weak_inverse_projection_postulate :
   bachmann_s_lotschnittaxiom -> weak_inverse_projection_postulate.
 Proof.
 rewrite bachmann_s_lotschnittaxiom_aux.
-intros lotschnitt A B C D E F P Q HAcute HPer HSuma HOut HPQ HPerP HCop.
+intros lotschnitt A B C D E F P Q H为锐角 HPer HSuma HOut HPQ HPerP HCop.
 suma.assert_diffs.
 assert (HNCol : ~ Col A B C).
 { intro HCol.
@@ -22,26 +22,26 @@ assert (HNCol : ~ Col A B C).
 }
 assert (HNCol1 : ~ Col B C P) by (intro; apply HNCol; ColR).
 destruct (l10_6_existence_spec B C P) as [P' HP']; trivial.
-assert (HP'1 : Reflect P P' B C) by (apply is_image_is_image_spec; auto).
+assert (HP'1 : 对称 P P' B C) by (apply is_image_is_image_spec; auto).
 assert (HNCol2 : ~ Col B C P') by (apply osym_not_col with P; trivial).
 destruct (l10_6_existence_spec B C Q) as [Q' HQ']; trivial.
-assert (HQ'1 : Reflect Q Q' B C) by (apply is_image_is_image_spec; auto).
+assert (HQ'1 : 对称 Q Q' B C) by (apply is_image_is_image_spec; auto).
 assert_diffs.
 assert (P' <> Q').
  intro; subst Q'; assert (P = Q) by (apply (l10_2_uniqueness B C P'); assumption); auto.
-assert (HCongA : CongA C B P' A B C).
+assert (H等角 : 等角 C B P' A B C).
   apply l11_10 with C P' P C; Out.
   apply conga_sym, conga_left_comm, reflectl__conga; auto.
   apply is_image_spec_rev, HP'.
 assert (HTS : TS B C P P').
   repeat split; Col; destruct HP' as [[X [HX1 HX2]] _]; exists X; split; [Col|Between].
 apply l6_6 in HOut.
-assert (Coplanar P' C A B) by (apply col2_cop__cop with P B; Col; Cop).
-assert (Coplanar B P P' Q) by CopR.
+assert (共面 P' C A B) by (apply col2_cop__cop with P B; Col; Cop).
+assert (共面 B P P' Q) by CopR.
 assert (HPer1 : Per A B P').
 { apply l11_17 with D E F; trivial.
   apply (suma2__conga A B C A B C); trivial.
-  apply conga3_suma__suma with A B C C B P' A B P'; CongA.
+  apply conga3_suma__suma with A B C C B P' A B P'; 等角.
   exists P'; repeat (split; try (apply conga_refl; auto)); [|Cop].
   apply l9_9, l9_5 with P B; Col.
 }

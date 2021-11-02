@@ -7,13 +7,13 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma lemma_equaltorightisright : 
    forall A B C a b c, 
-   Per A B C -> CongA a b c A B C ->
+   Per A B C -> 等角 a b c A B C ->
    Per a b c.
 Proof.
 intros.
-assert (CongA A B C a b c) by (conclude lemma_equalanglessymmetric).
+assert (等角 A B C a b c) by (conclude lemma_equalanglessymmetric).
 let Tf:=fresh in
-assert (Tf:exists E F e f, (Out B A E /\ Out B C F /\ Out b a e /\ Out b c f /\ Cong B E b e /\ Cong B F b f /\ Cong E F e f /\ nCol A B C)) by (conclude_def CongA );destruct Tf as [E[F[e[f]]]];spliter.
+assert (Tf:exists E F e f, (Out B A E /\ Out B C F /\ Out b a e /\ Out b c f /\ Cong B E b e /\ Cong B F b f /\ Cong E F e f /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [E[F[e[f]]]];spliter.
 assert (Per A B F) by (conclude lemma_8_3).
 assert (Per F B A) by (conclude lemma_8_2).
 assert (Per F B E) by (conclude lemma_8_3).

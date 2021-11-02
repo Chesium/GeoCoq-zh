@@ -9,7 +9,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma proposition_27B : 
    forall A D E F, 
-   CongA A E F E F D -> TS A E F D ->
+   等角 A E F E F D -> TS A E F D ->
    Par A E F D.
 Proof.
 intros.

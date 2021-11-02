@@ -26,8 +26,8 @@ assert (Col C B B) by (conclude_def Col ).
 assert (neq D B) by (forward_using lemma_betweennotequal).
 assert (nCol D B A) by (conclude lemma_NChelper).
 assert (nCol A B D) by (forward_using lemma_NCorder).
-assert (CongA A B D A B D) by (conclude lemma_equalanglesreflexive).
-assert (CongA C B A C B A) by (conclude lemma_equalanglesreflexive).
+assert (等角 A B D A B D) by (conclude lemma_equalanglesreflexive).
+assert (等角 C B A C B A) by (conclude lemma_equalanglesreflexive).
 assert (RT C B A A B D) by (conclude_def RT ).
 close.
 Qed.

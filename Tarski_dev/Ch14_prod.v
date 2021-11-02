@@ -561,7 +561,7 @@ Proof.
       apply H18.
       right.
       repeat split; Col.
-    assert(Par_strict B B'' E E'').
+    assert(严格平行 B B'' E E'').
       induction H21.
         assumption.
       spliter.
@@ -576,14 +576,14 @@ Proof.
       apply H.
       ColR.
     clear H1.
-    assert(Par_strict E E' B B').
+    assert(严格平行 E E' B B').
       induction H23.
         assumption.
       spliter.
       apply False_ind.
       apply H.
       ColR.
-    assert(Par_strict E' A B' C).
+    assert(严格平行 E' A B' C).
       induction H20.
         assumption.
       spliter.
@@ -670,7 +670,7 @@ Proof.
         apply H1.
         exists E'.
         split; Col.
-      assert(Par_strict E' E'' B' B'').
+      assert(严格平行 E' E'' B' B'').
         induction H31.
           assumption.
         spliter.
@@ -1594,7 +1594,7 @@ Proof.
 Qed.
 
 Lemma change_grid_prod_l_O : forall O E E' B C O' A' B' C',
-  Par_strict O E O' E' -> Ar1 O E O B C -> Ar1 O' E' A' B' C' ->
+  严格平行 O E O' E' -> Ar1 O E O B C -> Ar1 O' E' A' B' C' ->
   Pj O O' E E' -> Pj O O' O A' -> Pj O O' B B' -> Pj O O' C C' ->
   Prod O E E' O B C ->
   Prod O' E' E A' B' C'.
@@ -1680,7 +1680,7 @@ Proof.
 Qed.
 
 Lemma change_grid_prod1 : forall O E E' B C O' A' B' C',
-  Par_strict O E O' E' -> Ar1 O E E B C -> Ar1 O' E' A' B' C' ->
+  严格平行 O E O' E' -> Ar1 O E E B C -> Ar1 O' E' A' B' C' ->
   Pj O O' E E' -> Pj O O' E A' -> Pj O O' B B' -> Pj O O' C C' ->
   Prod O E E' E B C ->
   Prod O' E' E A' B' C'.
@@ -1789,7 +1789,7 @@ Proof.
 Qed.
 
 Lemma change_grid_prod : forall O E E' A B C O' A' B' C',
-  Par_strict O E O' E' -> Ar1 O E A B C -> Ar1 O' E' A' B' C' ->
+  严格平行 O E O' E' -> Ar1 O E A B C -> Ar1 O' E' A' B' C' ->
   Pj O O' E E' -> Pj O O' A A' -> Pj O O' B B' -> Pj O O' C C' ->
   Prod O E E' A B C ->
   Prod O' E' E A' B' C'.

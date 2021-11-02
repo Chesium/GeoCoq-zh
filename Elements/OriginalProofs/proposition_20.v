@@ -58,15 +58,15 @@ assert (~ eq D C).
  }
 assert (Triangle A D C) by (conclude_def Triangle ).
 assert (isosceles A D C) by (conclude_def isosceles ).
-assert (CongA A D C A C D) by (conclude proposition_05).
+assert (等角 A D C A C D) by (conclude proposition_05).
 assert (~ Col A C D).
  {
  intro.
  assert (Col A D C) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA A C D D C A) by (conclude lemma_ABCequalsCBA).
-assert (CongA A D C D C A) by (conclude lemma_equalanglestransitive).
+assert (等角 A C D D C A) by (conclude lemma_ABCequalsCBA).
+assert (等角 A D C D C A) by (conclude lemma_equalanglestransitive).
 assert (eq D D) by (conclude cn_equalityreflexive).
 assert (eq B B) by (conclude cn_equalityreflexive).
 assert (eq C C) by (conclude cn_equalityreflexive).
@@ -79,16 +79,16 @@ assert (~ eq C D).
 assert (Out C D D) by (conclude lemma_ray4).
 assert (Out C B B) by (conclude lemma_ray4).
 assert (BetS D A B) by (conclude axiom_betweennesssymmetry).
-assert (LtA A D C D C B) by (conclude_def LtA ).
+assert (角度小于 A D C D C B) by (conclude_def 角度小于 ).
 assert (Out D A B) by (conclude lemma_ray4).
 assert (Out D C C) by (conclude lemma_ray4).
 assert (Out D B B) by (conclude lemma_ray4).
 assert (Cong D B D B) by (conclude cn_congruencereflexive).
 assert (Cong D C D C) by (conclude cn_congruencereflexive).
 assert (Cong B C B C) by (conclude cn_congruencereflexive).
-assert (CongA A D C B D C) by (conclude_def CongA ).
-assert (CongA B D C A D C) by (conclude lemma_equalanglessymmetric).
-assert (LtA B D C D C B) by (conclude lemma_angleorderrespectscongruence2).
+assert (等角 A D C B D C) by (conclude_def 等角 ).
+assert (等角 B D C A D C) by (conclude lemma_equalanglessymmetric).
+assert (角度小于 B D C D C B) by (conclude lemma_angleorderrespectscongruence2).
 assert (~ Col B C D).
  {
  intro.
@@ -107,10 +107,10 @@ assert (~ Col C D B).
  assert (Col B C D) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA C D B B D C) by (conclude lemma_ABCequalsCBA).
-assert (CongA B C D D C B) by (conclude lemma_ABCequalsCBA).
-assert (LtA C D B D C B) by (conclude lemma_angleorderrespectscongruence2).
-assert (LtA C D B B C D) by (conclude lemma_angleorderrespectscongruence).
+assert (等角 C D B B D C) by (conclude lemma_ABCequalsCBA).
+assert (等角 B C D D C B) by (conclude lemma_ABCequalsCBA).
+assert (角度小于 C D B D C B) by (conclude lemma_angleorderrespectscongruence2).
+assert (角度小于 C D B B C D) by (conclude lemma_angleorderrespectscongruence).
 assert (Triangle B C D) by (conclude_def Triangle ).
 assert (Lt B C B D) by (conclude proposition_19).
 assert (TG B A A C B C) by (conclude_def TG ).

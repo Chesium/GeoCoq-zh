@@ -40,7 +40,7 @@ Definition is_orthocenter H A B C :=
 Definition is_orthocenter H A B C :=
  ~ Col A B C /\ Perp A H B C /\ Perp B H A C /\ Perp C H A B.
 
-Lemma is_orthocenter_coplanar : forall A B C H, is_orthocenter H A B C -> Coplanar H A B C.
+Lemma is_orthocenter_coplanar : forall A B C H, is_orthocenter H A B C -> 共面 H A B C.
 Proof.
 intros A B C H [HNCol [HPerp]].
 apply coplanar_perm_6, perp__coplanar, HPerp.
@@ -131,7 +131,7 @@ Qed.
 
 Lemma diff_not_col_col_par4_mid: forall A B C D E,
   D <> E -> ~ Col A B C -> Col C D E -> Par A B C D ->
-  Par A B C E -> Par A E B C -> Par A C B D -> Midpoint C D E.
+  Par A B C E -> Par A E B C -> Par A C B D -> 中点 C D E.
 Proof.
 intros A B C D E HD HNC HC HPar1 HPar2 HPar3 HPar4.
 assert (HPara1 : Parallelogram_strict A B C E) by (apply parallel_2_plg; finish).
@@ -141,7 +141,7 @@ apply cong_col_mid; Col; CongR.
 Qed.
 
 Lemma altitude_is_perp_bisect : forall A B C O A1 E F,
-  A <> O -> E <> F -> Perp A A1 B C -> Col O A1 A -> Col A E F -> Par B C A E -> Midpoint A E F ->
+  A <> O -> E <> F -> Perp A A1 B C -> Col O A1 A -> Col A E F -> Par B C A E -> 中点 A E F ->
   Perp_bisect A O E F.
 Proof with finish.
 intros.
@@ -165,9 +165,9 @@ apply construct_triangle in HT.
 destruct HT as [D [E [F HT]]].
 spliter.
 
-assert (Midpoint A E F) by (apply diff_not_col_col_par4_mid with B C; finish).
-assert (Midpoint B D F) by (apply diff_not_col_col_par4_mid with A C; finish).
-assert (Midpoint C D E) by (apply diff_not_col_col_par4_mid with A B; finish).
+assert (中点 A E F) by (apply diff_not_col_col_par4_mid with B C; finish).
+assert (中点 B D F) by (apply diff_not_col_col_par4_mid with A C; finish).
+assert (中点 C D E) by (apply diff_not_col_col_par4_mid with A B; finish).
 
 assert_diffs.
 elim (两点重合的决定性 A O); intro.
@@ -298,7 +298,7 @@ Proof.
 intros.
 unfold is_orthocenter in *.
 spliter.
-assert (Perp_at H B C A H).
+assert (垂直于 H B C A H).
 apply l8_14_2_1b_bis;finish.
 induction (两点重合的决定性 B H).
 subst;auto.

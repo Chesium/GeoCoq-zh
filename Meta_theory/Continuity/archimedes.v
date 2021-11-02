@@ -223,7 +223,7 @@ Qed.
 
 Lemma t22_19 :
   archimedes_axiom ->
-  forall A B C D, Saccheri A B C D -> ~ Obtuse A B C.
+  forall A B C D, Saccheri A B C D -> ~ 为钝角 A B C.
 Proof.
   intros archi A B C D HSac HObt.
   assert (H := t22_18 archi _ _ _ _ (sac_perm _ _ _ _ HSac)).
@@ -237,21 +237,21 @@ Lemma archi__obtuse_case_elimination :
 Proof.
   intros archi obtuse.
   destruct ex_saccheri as [A [B [C [D HSac]]]].
-  absurd(Obtuse A B C).
+  absurd(为钝角 A B C).
     apply t22_19 with D; trivial.
     apply obtuse with D; trivial.
 Qed.
 
 Lemma t22_23_aux :
   forall A B C M N L,
-    ~ Col A M N -> Per B C A -> A <> C -> Midpoint M A B ->
+    ~ Col A M N -> Per B C A -> A <> C -> 中点 M A B ->
     Per M N A -> Col A C N ->
-    Midpoint M N L -> Bet A N C /\ Lambert N L B C /\ Cong B L A N.
+    中点 M N L -> Bet A N C /\ Lambert N L B C /\ Cong B L A N.
 Proof.
   intros A B C M N L HNCol HPerC HAC HM HPerN HColN HN.
   assert_diffs.
   assert (HBet : Bet A N C) by (apply per23_preserves_bet with M B; Perp; Col; Between).
-  destruct (l11_49 A M N B M L) as [HCong1 [HCongA1 HCongA2]]; auto with cong.
+  destruct (l11_49 A M N B M L) as [HCong1 [H等角1 H等角2]]; auto with cong.
     apply l11_14; Between.
   assert(B <> L) by (intro; treat_equalities; auto).
   repeat split; Cong.
@@ -272,18 +272,18 @@ Qed.
 Lemma t22_23 :
   ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C M N L,
-    ~ Col A M N -> Per B C A -> A <> C -> Midpoint M A B ->
-    Per M N A -> Col A C N -> Midpoint M N L ->
+    ~ Col A M N -> Per B C A -> A <> C -> 中点 M A B ->
+    Per M N A -> Col A C N -> 中点 M N L ->
     Bet A N C /\ Le N C A N /\ Le L N B C.
 Proof.
   intros HNob A B C M N L HNCol HPerC HAC HM HPerN HColN HN.
   destruct (t22_23_aux A B C M N L) as [HBet [HLam HCong]]; auto.
   split; auto.
-  assert (HLBC : ~ Obtuse L B C) by (intro; apply HNob, (lam_obtuse__oah N L B C); trivial).
+  assert (HLBC : ~ 为钝角 L B C) by (intro; apply HNob, (lam_obtuse__oah N L B C); trivial).
   assert (Hos1 : OS N L B C) by (apply lam__os; trivial).
   assert (Hos2 : OS N C B L) by (apply lam__os, lam_perm; trivial).
   unfold Lambert in HLam; spliter.
-  destruct (angle_partition L B C) as [HAcute | [HPer | HObtuse]]; trivial; [ | | exfalso; auto].
+  destruct (angle_partition L B C) as [H为锐角 | [HPer | H为钝角]]; trivial; [ | | exfalso; auto].
   - split; apply lt__le; [apply (cong2_lt__lt N C B L); Cong | ].
       apply lta_os_per2__lt; Perp; Side; apply lta_left_comm, acute_per__lta; auto.
     apply lt_left_comm, lta_os_per2__lt; Side; apply acute_per__lta; auto.
@@ -370,7 +370,7 @@ Proof.
   destruct (t22_24_aux1 A B0 C0 E) as [B [C [HGE2 [HPerp HCol]]]]; trivial.
   assert(HOut : Out A B0 B).
     apply gradexp2__gradexp123, gradexp__grad, grad__bet in HGE2; assert_diffs; apply bet_out; auto.
-  assert(HAcute : Acute D A B).
+  assert(H为锐角 : 为锐角 D A B).
     apply (acute_conga__acute D A B0); trivial.
     apply l6_6 in HOut.
     assert_diffs; apply out2__conga; auto; apply out_trivial; auto.

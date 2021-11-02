@@ -12,8 +12,8 @@ Proof.
 intros.
 assert (PG A B C D) by (conclude lemma_squareparallelogram).
 assert (PG a b c d) by (conclude lemma_squareparallelogram).
-assert (Cong_3 B A D D C B) by (conclude proposition_34).
-assert (Cong_3 b a d d c b) by (conclude proposition_34).
+assert (三角形全等 B A D D C B) by (conclude proposition_34).
+assert (三角形全等 b a d d c b) by (conclude proposition_34).
 assert (ET B A D D C B) by (conclude axiom_congruentequal).
 assert (ET b a d d c b) by (conclude axiom_congruentequal).
 assert (ET B A D B D C) by (forward_using axiom_ETpermutation).
@@ -55,14 +55,14 @@ assert (~ Lt a b A B).
  assert (Out A D F) by (conclude lemma_ray4).
  assert (Out A B E) by (conclude lemma_ray4).
  assert (nCol D A B) by (forward_using lemma_NCorder).
- assert (CongA D A B D A B) by (conclude lemma_equalanglesreflexive).
- assert (CongA D A B F A E) by (conclude lemma_equalangleshelper).
- assert (CongA F A E D A B) by (conclude lemma_equalanglessymmetric).
+ assert (等角 D A B D A B) by (conclude lemma_equalanglesreflexive).
+ assert (等角 D A B F A E) by (conclude lemma_equalangleshelper).
+ assert (等角 F A E D A B) by (conclude lemma_equalanglessymmetric).
  assert (Per F A E) by (conclude lemma_equaltorightisright).
- assert (CongA F A E d a b) by (conclude lemma_Euclid4).
+ assert (等角 F A E d a b) by (conclude lemma_Euclid4).
  assert (Cong F E d b) by (conclude proposition_04).
  assert (Cong F A d a) by (forward_using lemma_congruenceflip).
- assert (Cong_3 F A E d a b) by (conclude_def Cong_3 ).
+ assert (三角形全等 F A E d a b) by (conclude_def 三角形全等 ).
  assert (ET F A E d a b) by (conclude axiom_congruentequal).
  assert (ET F A E a b d) by (forward_using axiom_ETpermutation).
  assert (ET a b d A B D) by (conclude axiom_ETsymmetric).
@@ -89,14 +89,14 @@ assert (~ Lt A B a b).
  assert (Out a d f) by (conclude lemma_ray4).
  assert (Out a b e) by (conclude lemma_ray4).
  assert (nCol d a b) by (forward_using lemma_NCorder).
- assert (CongA d a b d a b) by (conclude lemma_equalanglesreflexive).
- assert (CongA d a b f a e) by (conclude lemma_equalangleshelper).
- assert (CongA f a e d a b) by (conclude lemma_equalanglessymmetric).
+ assert (等角 d a b d a b) by (conclude lemma_equalanglesreflexive).
+ assert (等角 d a b f a e) by (conclude lemma_equalangleshelper).
+ assert (等角 f a e d a b) by (conclude lemma_equalanglessymmetric).
  assert (Per f a e) by (conclude lemma_equaltorightisright).
- assert (CongA f a e D A B) by (conclude lemma_Euclid4).
+ assert (等角 f a e D A B) by (conclude lemma_Euclid4).
  assert (Cong f e D B) by (conclude proposition_04).
  assert (Cong f a D A) by (forward_using lemma_congruenceflip).
- assert (Cong_3 f a e D A B) by (conclude_def Cong_3 ).
+ assert (三角形全等 f a e D A B) by (conclude_def 三角形全等 ).
  assert (ET f a e D A B) by (conclude axiom_congruentequal).
  assert (ET f a e A B D) by (forward_using axiom_ETpermutation).
  assert (ET A B D f a e) by (conclude axiom_ETsymmetric).

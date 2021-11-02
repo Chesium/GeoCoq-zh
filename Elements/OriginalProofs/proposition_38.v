@@ -52,13 +52,13 @@ assert (TS G B A C) by (conclude_def TS ).
 assert (TS C B A G) by (conclude lemma_oppositesidesymmetric).
 assert (TS H F D E) by (conclude_def TS ).
 assert (TS E F D H) by (conclude lemma_oppositesidesymmetric).
-assert (Cong_3 F H D D E F) by (conclude proposition_34).
+assert (三角形全等 F H D D E F) by (conclude proposition_34).
 assert (ET F H D D E F) by (conclude axiom_congruentequal).
 assert (ET F H D E F D) by (forward_using axiom_ETpermutation).
 assert (ET E F D F H D) by (conclude axiom_ETsymmetric).
 assert (ET E F D F D H) by (forward_using axiom_ETpermutation).
 assert (PG G B C A) by (conclude lemma_PGrotate).
-assert (Cong_3 B G A A C B) by (conclude proposition_34).
+assert (三角形全等 B G A A C B) by (conclude proposition_34).
 assert (ET B G A A C B) by (conclude axiom_congruentequal).
 assert (ET B G A C B A) by (forward_using axiom_ETpermutation).
 assert (ET C B A B G A) by (conclude axiom_ETsymmetric).

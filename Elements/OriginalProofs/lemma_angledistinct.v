@@ -6,11 +6,11 @@ Context `{Ax1:euclidean_neutral_ruler_compass}.
 
 Lemma lemma_angledistinct : 
    forall A B C a b c, 
-   CongA A B C a b c ->
+   等角 A B C a b c ->
    neq A B /\ neq B C /\ neq A C /\ neq a b /\ neq b c /\ neq a c.
 Proof.
 intros.
-assert (nCol A B C) by (conclude_def CongA ).
+assert (nCol A B C) by (conclude_def 等角 ).
 assert (~ eq A B).
  {
  intro.
@@ -29,8 +29,8 @@ assert (~ eq A C).
  assert (Col A B C) by (conclude_def Col ).
  contradict.
  }
-assert (CongA a b c A B C) by (conclude lemma_equalanglessymmetric).
-assert (nCol a b c) by (conclude_def CongA ).
+assert (等角 a b c A B C) by (conclude lemma_equalanglessymmetric).
+assert (nCol a b c) by (conclude_def 等角 ).
 assert (~ eq a b).
  {
  intro.

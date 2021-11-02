@@ -4,49 +4,49 @@ Section UnitTests.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Goal forall A B I, A <> B -> Midpoint I A B -> I <> A /\ I <> B.
+Goal forall A B I, A <> B -> 中点 I A B -> I <> A /\ I <> B.
 Proof.
 intros.
 assert_diffs.
 split;assumption.
 Qed.
 
-Goal forall A B I, B <> A -> Midpoint I A B -> I <> A /\ I <> B.
+Goal forall A B I, B <> A -> 中点 I A B -> I <> A /\ I <> B.
 Proof.
 intros.
 assert_diffs.
 split;assumption.
 Qed.
 
-Goal forall A B I, I<>A -> Midpoint I A B -> I <> B /\ A <> B.
+Goal forall A B I, I<>A -> 中点 I A B -> I <> B /\ A <> B.
 Proof.
 intros.
 assert_diffs.
 split;assumption.
 Qed.
 
-Goal forall A B I, I<>B -> Midpoint I A B -> I <> A /\ A <> B.
+Goal forall A B I, I<>B -> 中点 I A B -> I <> A /\ A <> B.
 Proof.
 intros.
 assert_diffs.
 split;assumption.
 Qed.
 
-Goal forall A B I, A<>I -> Midpoint I A B -> I <> B /\ A <> B.
+Goal forall A B I, A<>I -> 中点 I A B -> I <> B /\ A <> B.
 Proof.
 intros.
 assert_diffs.
 split;assumption.
 Qed.
 
-Goal forall A B I, B<>I -> Midpoint I A B -> I <> A /\ A <> B.
+Goal forall A B I, B<>I -> 中点 I A B -> I <> A /\ A <> B.
 Proof.
 intros.
 assert_diffs.
 split;assumption.
 Qed.
 
-Goal forall A B I, A<>B -> Midpoint I A B -> A <> I /\ I <> B.
+Goal forall A B I, A<>B -> 中点 I A B -> A <> I /\ I <> B.
 Proof.
 intros.
 assert_diffs.
@@ -90,8 +90,8 @@ auto.
 Qed.
 
 Goal forall A B C Q,
- B <> A -> Col A B C -> Midpoint Q A C ->
- A <> C -> B <> C -> Midpoint A B C ->
+ B <> A -> Col A B C -> 中点 Q A C ->
+ A <> C -> B <> C -> 中点 A B C ->
  Q <> C.
 Proof.
 intros.
@@ -169,7 +169,7 @@ assert_diffs.
 split;intuition.
 Qed.
 
-Goal forall X A B C D, Perp_at X A B C D -> A<>B /\ C<>D.
+Goal forall X A B C D, 垂直于 X A B C D -> A<>B /\ C<>D.
 Proof.
 intros.
 assert_diffs.
@@ -183,7 +183,7 @@ assert_diffs.
 split;assumption.
 Qed.
 
-Goal forall A B C D, Par_strict A B C D -> A<>B /\ C<>D.
+Goal forall A B C D, 严格平行 A B C D -> A<>B /\ C<>D.
 Proof.
 intros.
 assert_diffs.
@@ -213,7 +213,7 @@ intuition.
 Qed.
 
 Goal forall A B C D I,
-  Midpoint I A B -> Par A B C D -> I<>A.
+  中点 I A B -> Par A B C D -> I<>A.
 Proof.
 intros.
 assert_diffs.
@@ -221,7 +221,7 @@ assumption.
 Qed.
 
 Goal forall A B C D I,
-  Midpoint I A B -> Par A I C D -> B<>A.
+  中点 I A B -> Par A I C D -> B<>A.
 Proof.
 intros.
 assert_diffs.
@@ -291,7 +291,7 @@ split; auto.
 Qed.
 
 Goal forall A B C D,
- Par_strict A B C D ->
+ 严格平行 A B C D ->
  A <> B /\ A <> C /\ A <> D /\ B <> C /\ B <> D /\ C <> D.
 Proof.
 intros.
@@ -323,7 +323,7 @@ finish.
 Qed.
 *)
 
-Goal forall A B C, Midpoint A B C -> Cong A B C A.
+Goal forall A B C, 中点 A B C -> Cong A B C A.
 Proof.
 intros.
 assert_congs_perm.
@@ -443,7 +443,7 @@ assert_ncols.
 split; assumption.
 Qed.
 
-Goal forall A B C D, ~ Coplanar A B C D ->
+Goal forall A B C D, ~ 共面 A B C D ->
   ~ Col A B C /\ ~ Col A B D /\ ~ Col A C D /\ ~ Col B C D.
 Proof.
 intros.
@@ -451,7 +451,7 @@ assert_ncols.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C D, Par_strict A B C D ->
+Goal forall A B C D, 严格平行 A B C D ->
   ~ Col A B C /\ ~ Col B C D /\ ~ Col C D A /\ ~ Col A B D.
 Proof.
 intros.
@@ -467,7 +467,7 @@ assert_ncols.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C D, Col A B C \/ Col A B D \/ Col A C D \/ Col B C D -> Coplanar A B C D.
+Goal forall A B C D, Col A B C \/ Col A B D \/ Col A C D \/ Col B C D -> 共面 A B C D.
 Proof.
 intros A B C D [|[|[|]]];
 Cop.

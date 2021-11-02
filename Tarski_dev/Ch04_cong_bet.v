@@ -4,15 +4,15 @@ Require Export GeoCoq.Tarski_dev.Tactics.CongR.
 Ltac CongR :=
  let tpoint := constr:(Tpoint) in
  let cong := constr:(Cong) in
-   treat_equalities; unfold Midpoint in *; spliter; Cong; Cong_refl tpoint cong.
+   treat_equalities; unfold 中点 in *; spliter; Cong; Cong_refl tpoint cong.
 
 Section T3.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma l4_2 : forall A B C D A' B' C' D', IFSC A B C D A' B' C' D' -> Cong B D B' D'.
+Lemma l4_2 : forall A B C D A' B' C' D', 内五线段形式 A B C D A' B' C' D' -> Cong B D B' D'.
 Proof.
-unfold IFSC.
+unfold 内五线段形式.
 intros.
 spliter.
 
@@ -28,11 +28,11 @@ prolong A' C' E' C E.
 assert  (Cong E D E' D')
  by (
   apply (五线段公理_等价SAS_with_def A C E D A' C' E' D');[
-  unfold OFSC;  repeat split;Cong|
+  unfold 外五线段形式;  repeat split;Cong|
   assumption]).
 
 apply (五线段公理_等价SAS_with_def E C B D E' C' B' D').
-unfold OFSC.
+unfold 外五线段形式.
 repeat split; try solve [eBetween| Cong ].
 auto.
 Qed.
@@ -43,7 +43,7 @@ Proof.
 intros.
 apply 等长的交换性.
 apply (l4_2 A B C A A' B' C' A').
-unfold IFSC.
+unfold 内五线段形式.
 repeat split;Cong.
 Qed.
 
@@ -57,10 +57,10 @@ Qed.
 
 Lemma l4_5 : forall A B C A' C',
   Bet A B C -> Cong A C A' C' ->
-  exists B', Bet A' B' C' /\ Cong_3 A B C A' B' C'.
+  exists B', Bet A' B' C' /\ 三角形全等 A B C A' B' C'.
 Proof.
 intros.
-unfold Cong_3.
+unfold 三角形全等.
 
 assert (exists D', Bet C' A' D' /\ A' <> D')
  by (apply point_construction_different).
@@ -86,23 +86,23 @@ exists B'.
 repeat split;Cong.
 Qed.
 
-Lemma l4_6 : forall A B C A' B' C', Bet A B C -> Cong_3 A B C A' B' C' -> Bet A' B' C'.
+Lemma l4_6 : forall A B C A' B' C', Bet A B C -> 三角形全等 A B C A' B' C' -> Bet A' B' C'.
 Proof.
-unfold Cong_3.
+unfold 三角形全等.
 intros.
-assert (exists B'', Bet A' B'' C' /\ Cong_3 A B C A' B'' C')
+assert (exists B'', Bet A' B'' C' /\ 三角形全等 A B C A' B'' C')
   by (eapply l4_5;intuition).
 ex_and H1 x.
-unfold Cong_3 in *;spliter.
+unfold 三角形全等 in *;spliter.
 
-assert (Cong_3 A' x C' A' B' C').
-  unfold Cong_3;repeat split; Cong.
+assert (三角形全等 A' x C' A' B' C').
+  unfold 三角形全等;repeat split; Cong.
   apply 等长的传递性 with A B; Cong.
   apply 等长的传递性 with B C; Cong.
-unfold Cong_3 in H7;spliter.
+unfold 三角形全等 in H7;spliter.
 
-assert (IFSC A' x C' x  A' x C' B')
- by (unfold IFSC;repeat split;Cong).
+assert (内五线段形式 A' x C' x  A' x C' B')
+ by (unfold 内五线段形式;repeat split;Cong).
 assert (Cong x x x B')
  by (eapply l4_2;apply H10).
 treat_equalities.
@@ -110,13 +110,13 @@ Between.
 Qed.
 
 Lemma cong3_bet_eq : forall  A B C X,
- Bet A B C -> Cong_3 A B C A X C -> X = B.
+ Bet A B C -> 三角形全等 A B C A X C -> X = B.
 Proof.
-unfold Cong_3.
+unfold 三角形全等.
 intros.
 spliter.
-assert (IFSC A B C B A B C X)
- by (unfold IFSC;intuition).
+assert (内五线段形式 A B C B A B C X)
+ by (unfold 内五线段形式;intuition).
 assert (Cong B B B X)
  by (apply (l4_2 _ _ _ _ _ _ _ _ H3)).
 treat_equalities.

@@ -61,11 +61,11 @@ Proof.
     ex_and H0 M.
     exists M.
     split.
-    { unfold Midpoint.
+    { unfold 中点.
       split;Between. 
       Cong. 
     }
-    { unfold Midpoint in *.
+    { unfold 中点 in *.
       split;Between. 
       Cong.
     }
@@ -73,7 +73,7 @@ Proof.
     unfold OnCircle in *.
     ex_and H0 M.
     ex_and H1 M1.
-    unfold Midpoint in *.
+    unfold 中点 in *.
     exists M1.
     split;Cong.
     split;[Cong|Between].
@@ -111,12 +111,12 @@ Proof.
   assumption.
   unfold Perp_bisect in HAB.
   spliter.
-  unfold ReflectL in *.
+  unfold 严格对称 in *.
   spliter.
   destruct H0 as [M H0];
   spliter.
   assert(H10 := H).
-  unfold Midpoint in H10.
+  unfold 中点 in H10.
   spliter.
   assert (exists x, Bet C1 M x /\ Cong M x C1 M) by (apply 由一点往一方向构造等长线段).
   ex_and H8 x.
@@ -131,7 +131,7 @@ Proof.
   exists M.
   split.
   apply l7_2;assumption.
-  unfold Midpoint.
+  unfold 中点.
   split.
   assumption.
   Cong.
@@ -156,12 +156,12 @@ Proof.
   apply symmetric_point_uniqueness with B N;assumption.
 Qed.
 
-Lemma ColCongMid: forall A B C, A <> C -> Col A B C -> Cong A B B C -> Midpoint B A C.
+Lemma ColCongMid: forall A B C, A <> C -> Col A B C -> Cong A B B C -> 中点 B A C.
 Proof.
   intros.
   assert(Col A B C). Col.
   assert(Cong B A B C). Cong.
-  assert(A = C \/ Midpoint B A C).
+  assert(A = C \/ 中点 B A C).
   apply l7_20; tauto. 
   tauto.
 Qed.
@@ -170,7 +170,7 @@ Lemma PlgExABC1: forall A B C, A <> C -> Col A B C -> Cong A B B C -> exists D, 
 Proof.
   intros.
   unfold Col in H0.
-  assert(Midpoint B A C).
+  assert(中点 B A C).
   apply ColCongMid;
   trivial.
   exists B.
@@ -180,7 +180,7 @@ Proof.
   exists B.
   split.
   trivial.
-  Midpoint.
+  中点.
 Qed.
 
 Lemma PlgExABC2: forall A B C, ~Col A B C -> Cong A B B C -> exists D, Plg A B C D.
@@ -190,13 +190,13 @@ Proof.
   assert(Is_on_perp_bisect B A C). exact H.
   destruct (midpoint_existence A B) as [X H1].
   destruct (l10_2_existence A C B) as [D H3].
-  unfold Reflect in H3.
-  unfold ReflectL in H3.
+  unfold 对称 in H3.
+  unfold 严格对称 in H3.
   induction (两点重合的决定性 A C).
   case H3.
     - intros. tauto.
     - intros.
-      unfold Midpoint in H4.
+      unfold 中点 in H4.
       destruct (midpoint_existence A C) as [Y H5].
       destruct (symmetric_point_construction B Y) as [E H6].
       exists E.
@@ -214,7 +214,7 @@ Proof.
       destruct H3.
       destruct H3;destruct H4;destruct H4.
       destruct H4.
-      unfold Midpoint in H4.
+      unfold 中点 in H4.
       destruct (midpoint_existence A C) as [Y H7].
       destruct (symmetric_point_construction B Y) as [E H8].
       exists E.
@@ -238,7 +238,7 @@ Qed.
 Lemma RhombusExABC1: forall A B C, A <> C -> Col A B C -> Cong A B B C -> exists D, Rhombus A B C D.
 Proof.
   intros.
-  assert(Midpoint B A C).
+  assert(中点 B A C).
   apply ColCongMid; tauto.
   exists B.
   unfold Rhombus in *.
@@ -249,7 +249,7 @@ Proof.
   exists B.
   split. 
   assumption. 
-  Midpoint. 
+  中点. 
   assumption.
 Qed.
 

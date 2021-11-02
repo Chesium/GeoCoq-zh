@@ -73,14 +73,14 @@ Proof.
 trivial.
 Qed.
 
-Definition Mid_tagged A B C := Midpoint A B C.
+Definition Mid_tagged A B C := 中点 A B C.
 
-Lemma Mid_Mid_tagged : forall A B C, Midpoint A B C -> Mid_tagged A B C.
+Lemma Mid_Mid_tagged : forall A B C, 中点 A B C -> Mid_tagged A B C.
 Proof.
 trivial.
 Qed.
 
-Lemma Mid_tagged_Mid : forall A B C, Mid_tagged A B C -> Midpoint A B C.
+Lemma Mid_tagged_Mid : forall A B C, Mid_tagged A B C -> 中点 A B C.
 Proof.
 trivial.
 Qed.
@@ -97,14 +97,14 @@ Proof.
 trivial.
 Qed.
 
-Definition Perp_in_tagged X A B C D := Perp_at X A B C D.
+Definition Perp_in_tagged X A B C D := 垂直于 X A B C D.
 
-Lemma Perp_in_Perp_in_tagged : forall X A B C D, Perp_at X A B C D -> Perp_in_tagged X A B C D.
+Lemma Perp_in_Perp_in_tagged : forall X A B C D, 垂直于 X A B C D -> Perp_in_tagged X A B C D.
 Proof.
 trivial.
 Qed.
 
-Lemma Perp_in_tagged_Perp_in : forall X A B C D, Perp_in_tagged X A B C D -> Perp_at X A B C D.
+Lemma Perp_in_tagged_Perp_in : forall X A B C D, Perp_in_tagged X A B C D -> 垂直于 X A B C D.
 Proof.
 trivial.
 Qed.
@@ -121,14 +121,14 @@ Proof.
 trivial.
 Qed.
 
-Definition Par_strict_tagged A B C D := Par_strict A B C D.
+Definition 严格平行_tagged A B C D := 严格平行 A B C D.
 
-Lemma Par_strict_Par_strict_tagged : forall A B C D, Par_strict A B C D -> Par_strict_tagged A B C D.
+Lemma 严格平行_严格平行_tagged : forall A B C D, 严格平行 A B C D -> 严格平行_tagged A B C D.
 Proof.
 trivial.
 Qed.
 
-Lemma Par_strict_tagged_Par_strict : forall A B C D, Par_strict_tagged A B C D -> Par_strict A B C D.
+Lemma 严格平行_tagged_严格平行 : forall A B C D, 严格平行_tagged A B C D -> 严格平行 A B C D.
 Proof.
 trivial.
 Qed.

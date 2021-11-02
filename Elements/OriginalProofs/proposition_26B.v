@@ -7,13 +7,13 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma proposition_26B : 
    forall A B C D E F, 
-   Triangle A B C -> Triangle D E F -> CongA A B C D E F -> CongA B C A E F D -> Cong A B D E ->
-   Cong B C E F /\ Cong A C D F /\ CongA B A C E D F.
+   Triangle A B C -> Triangle D E F -> 等角 A B C D E F -> 等角 B C A E F D -> Cong A B D E ->
+   Cong B C E F /\ Cong A C D F /\ 等角 B A C E D F.
 Proof.
 intros.
 assert (~ Lt E F B C) by (conclude lemma_26helper).
-assert (CongA D E F A B C) by (conclude lemma_equalanglessymmetric).
-assert (CongA E F D B C A) by (conclude lemma_equalanglessymmetric).
+assert (等角 D E F A B C) by (conclude lemma_equalanglessymmetric).
+assert (等角 E F D B C A) by (conclude lemma_equalanglessymmetric).
 assert (Cong D E A B) by (conclude lemma_congruencesymmetric).
 assert (~ Lt B C E F) by (conclude lemma_26helper).
 assert (~ eq B C).
@@ -32,7 +32,7 @@ assert (~ eq E F).
  }
 assert (Cong B C E F) by (conclude lemma_trichotomy1).
 assert (Cong B A E D) by (forward_using lemma_congruenceflip).
-assert ((Cong A C D F /\ CongA B A C E D F /\ CongA B C A E F D)) by (conclude proposition_04).
+assert ((Cong A C D F /\ 等角 B A C E D F /\ 等角 B C A E F D)) by (conclude proposition_04).
 close.
 Qed.
 

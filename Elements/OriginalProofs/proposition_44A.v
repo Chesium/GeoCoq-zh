@@ -13,8 +13,8 @@ Context `{Ax:area}.
 
 Lemma proposition_44A : 
    forall A B D E F G J N, 
-   PG B E F G -> CongA E B G J D N -> BetS A B E ->
-   exists X Y, PG A B X Y /\ CongA A B X J D N /\ EF B E F G Y X B A /\ BetS G B X.
+   PG B E F G -> 等角 E B G J D N -> BetS A B E ->
+   exists X Y, PG A B X Y /\ 等角 A B X J D N /\ EF B E F G Y X B A /\ BetS G B X.
 Proof.
 intros.
 assert (PG E F G B) by (conclude lemma_PGrotate).
@@ -41,7 +41,7 @@ assert (Col G B G) by (conclude_def Col ).
 assert (nCol q G A) by (conclude lemma_NChelper).
 assert (nCol G q A) by (forward_using lemma_NCorder).
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H h T, (BetS H A h /\ CongA h A B A B G /\ CongA h A B G B A /\ CongA B A h G B A /\ CongA H A B A B q /\ CongA H A B q B A /\ CongA B A H q B A /\ Par H h G q /\ Cong H A B q /\ Cong A h G B /\ Cong A T T B /\ Cong H T T q /\ Cong G T T h /\ BetS H T q /\ BetS G T h /\ BetS A T B)) by (conclude proposition_31);destruct Tf as [H[h[T]]];spliter.
+assert (Tf:exists H h T, (BetS H A h /\ 等角 h A B A B G /\ 等角 h A B G B A /\ 等角 B A h G B A /\ 等角 H A B A B q /\ 等角 H A B q B A /\ 等角 B A H q B A /\ Par H h G q /\ Cong H A B q /\ Cong A h G B /\ Cong A T T B /\ Cong H T T q /\ Cong G T T h /\ BetS H T q /\ BetS G T h /\ BetS A T B)) by (conclude proposition_31);destruct Tf as [H[h[T]]];spliter.
 assert (Par H h q G) by (forward_using lemma_parallelflip).
 assert (Col G B q) by (conclude_def Col ).
 assert (Col q G B) by (forward_using lemma_collinearorder).
@@ -123,9 +123,9 @@ assert (PG H A E F) by (conclude_def PG ).
 assert (nCol H F E) by (forward_using lemma_parallelNC).
 assert (nCol E F H) by (forward_using lemma_NCorder).
 let Tf:=fresh in
-assert (Tf:exists t, (Midpoint H t E /\ Midpoint A t F)) by (conclude lemma_diagonalsbisect);destruct Tf as [t];spliter.
-assert ((BetS H t E /\ Cong H t t E)) by (conclude_def Midpoint ).
-assert ((BetS A t F /\ Cong A t t F)) by (conclude_def Midpoint ).
+assert (Tf:exists t, (中点 H t E /\ 中点 A t F)) by (conclude lemma_diagonalsbisect);destruct Tf as [t];spliter.
+assert ((BetS H t E /\ Cong H t t E)) by (conclude_def 中点 ).
+assert ((BetS A t F /\ Cong A t t F)) by (conclude_def 中点 ).
 assert (Cong A t F t) by (forward_using lemma_congruenceflip).
 assert (Cong H t E t) by (forward_using lemma_congruenceflip).
 assert (Cong t A t F) by (forward_using lemma_congruenceflip).
@@ -252,10 +252,10 @@ assert (~ Meet H F L K)
  by (unfold Par in H251;decompose [ex and] H251;auto).
 assert (Col G M B) by (forward_using lemma_collinearorder).
 assert (BetS G B M) by (conclude lemma_collinearbetween).
-assert (CongA A B M G B E) by (conclude proposition_15).
-assert (CongA G B E E B G) by (conclude lemma_ABCequalsCBA).
-assert (CongA A B M E B G) by (conclude lemma_equalanglestransitive).
-assert (CongA A B M J D N) by (conclude lemma_equalanglestransitive).
+assert (等角 A B M G B E) by (conclude proposition_15).
+assert (等角 G B E E B G) by (conclude lemma_ABCequalsCBA).
+assert (等角 A B M E B G) by (conclude lemma_equalanglestransitive).
+assert (等角 A B M J D N) by (conclude lemma_equalanglestransitive).
 close.
 Qed.
 

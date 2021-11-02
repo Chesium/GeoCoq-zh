@@ -8,15 +8,15 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Inductive cX A C (Alpha Beta : Tpoint -> Prop) : nat -> Tpoint -> Prop :=
 | cX_init : cX A C Alpha Beta O A
-| cX_same : forall n X Y M, cX A C Alpha Beta n X -> cY A C Alpha Beta n Y -> Midpoint M X Y ->
+| cX_same : forall n X Y M, cX A C Alpha Beta n X -> cY A C Alpha Beta n Y -> 中点 M X Y ->
                 Beta M -> cX A C Alpha Beta (S n) X
-| cX_other : forall n X Y M, cX A C Alpha Beta n X -> cY A C Alpha Beta n Y -> Midpoint M X Y ->
+| cX_other : forall n X Y M, cX A C Alpha Beta n X -> cY A C Alpha Beta n Y -> 中点 M X Y ->
                 Alpha M -> cX A C Alpha Beta (S n) M
 with cY A C (Alpha Beta : Tpoint -> Prop) : nat -> Tpoint -> Prop :=
 | cY_init : cY A C Alpha Beta O C
-| cY_same : forall n X Y M, cX A C Alpha Beta n X -> cY A C Alpha Beta n Y -> Midpoint M X Y ->
+| cY_same : forall n X Y M, cX A C Alpha Beta n X -> cY A C Alpha Beta n Y -> 中点 M X Y ->
                 Alpha M -> cY A C Alpha Beta (S n) Y
-| cY_other : forall n X Y M, cX A C Alpha Beta n X -> cY A C Alpha Beta n Y -> Midpoint M X Y ->
+| cY_other : forall n X Y M, cX A C Alpha Beta n X -> cY A C Alpha Beta n Y -> 中点 M X Y ->
                 Beta M -> cY A C Alpha Beta (S n) M.
 
 Scheme cX_cY_ind := Induction for cX Sort Prop
@@ -31,7 +31,7 @@ Proof.
   assert (A <> C) by (apply Hcut; assumption).
   pose (Alpha' := cX A C Alpha Beta).
   pose (Beta' := cY A C Alpha Beta).
-  assert (Haux : forall X Y M, Alpha X -> Out A Y C -> Midpoint M X Y -> Out A M C).
+  assert (Haux : forall X Y M, Alpha X -> Out A Y C -> 中点 M X Y -> Out A M C).
   { intros X Y M HX HY HM.
     destruct (Hcut X C HX HC).
     apply l6_7 with Y; trivial.
@@ -92,7 +92,7 @@ Proof.
     destruct (midpoint_existence X Y) as [M HM].
     destruct (Hdis M); [apply (Haux X Y); eauto|..].
     - exists M, Y; repeat split; [apply cX_other with X Y|apply cY_same with X M|]; auto.
-      apply 等长的左交换性, cong_cong_half_1 with X B0; [|split|Cong]; Midpoint.
+      apply 等长的左交换性, cong_cong_half_1 with X B0; [|split|Cong]; 中点.
     - exists X, M; repeat split; [apply cX_same with Y M|apply cY_other with X Y|]; auto.
       apply cong_cong_half_1 with Y B0; [|split|]; assumption.
   }

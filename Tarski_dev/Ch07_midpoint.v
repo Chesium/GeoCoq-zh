@@ -67,63 +67,63 @@ Section T7_1.
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma midpoint_dec :
- forall I A B, Midpoint I A B \/ ~ Midpoint I A B.
+ forall I A B, 中点 I A B \/ ~ 中点 I A B.
 Proof.
     intros.
-    unfold Midpoint.
+    unfold 中点.
     elim (bet_dec A I B);intro; elim (cong_dec A I I B);intro; tauto.
 Qed.
 
-Lemma is_midpoint_id : forall A B, Midpoint A A B -> A = B.
+Lemma is_midpoint_id : forall A B, 中点 A A B -> A = B.
 Proof.
     intros.
-    unfold Midpoint in H.
+    unfold 中点 in H.
     spliter.
     treat_equalities;reflexivity.
 Qed.
 
-Lemma is_midpoint_id_2 : forall A B, Midpoint A B A -> A=B.
+Lemma is_midpoint_id_2 : forall A B, 中点 A B A -> A=B.
 Proof.
     intros.
-    unfold Midpoint in *.
+    unfold 中点 in *.
     spliter.
     apply 等长的同一性 in H0.
     auto.
 Qed.
 
-Lemma l7_2 : forall M A B, Midpoint M A B -> Midpoint M B A.
+Lemma l7_2 : forall M A B, 中点 M A B -> 中点 M B A.
 Proof.
-    unfold Midpoint.
+    unfold 中点.
     intuition.
 Qed.
 
-Lemma l7_3 : forall M A, Midpoint M A A -> M=A.
+Lemma l7_3 : forall M A, 中点 M A A -> M=A.
 Proof.
-    unfold Midpoint.
+    unfold 中点.
     intros;spliter;treat_equalities;reflexivity.
 Qed.
 
 
-Lemma l7_3_2 : forall A, Midpoint A A A.
+Lemma l7_3_2 : forall A, 中点 A A A.
 Proof.
-    unfold Midpoint.
+    unfold 中点.
     intros;repeat split;Between;Cong.
 Qed.
 
 (** This corresponds to l7_8 in Tarski's book. *)
 
-Lemma symmetric_point_construction : forall P A, exists P', Midpoint A P P'.
+Lemma symmetric_point_construction : forall P A, exists P', 中点 A P P'.
 Proof.
-    unfold Midpoint.
+    unfold 中点.
     intros.
     prolong P A E P A.
     exists E.
     split;Cong;Between.
 Qed.
 
-Lemma symmetric_point_uniqueness : forall A P P1 P2, Midpoint P A P1 -> Midpoint P A P2 -> P1=P2.
+Lemma symmetric_point_uniqueness : forall A P P1 P2, 中点 P A P1 -> 中点 P A P2 -> P1=P2.
 Proof.
-    unfold Midpoint.
+    unfold 中点.
     intros.
     spliter.
     elim (两点重合的决定性 A P); intros.
@@ -131,9 +131,9 @@ Proof.
     apply (点的唯一构造 A P A P);Cong.
 Qed.
 
-Lemma l7_9 : forall P Q A X, Midpoint A P X -> Midpoint A Q X -> P=Q.
+Lemma l7_9 : forall P Q A X, 中点 A P X -> 中点 A Q X -> P=Q.
 Proof.
-    unfold Midpoint.
+    unfold 中点.
     intros.
     spliter.
     induction (两点重合的决定性 A X).
@@ -141,14 +141,14 @@ Proof.
     apply (点的唯一构造 X A X A);Cong;Between.
 Qed.
 
-Lemma l7_9_bis : forall P Q A X, Midpoint A P X -> Midpoint A X Q -> P=Q.
+Lemma l7_9_bis : forall P Q A X, 中点 A P X -> 中点 A X Q -> P=Q.
 Proof.
-intros; apply l7_9 with A X; unfold Midpoint in *; split; spliter; Cong; Between.
+intros; apply l7_9 with A X; unfold 中点 in *; split; spliter; Cong; Between.
 Qed.
 
-Lemma l7_13 : forall A P Q P' Q',  Midpoint A P' P -> Midpoint A Q' Q -> Cong P Q P' Q'.
+Lemma l7_13 : forall A P Q P' Q',  中点 A P' P -> 中点 A Q' Q -> Cong P Q P' Q'.
 Proof.
-    unfold Midpoint.
+    unfold 中点.
     intros.
     spliter.
     induction (两点重合的决定性 P A).
@@ -175,8 +175,8 @@ Proof.
       apply 等长的传递性 with A P; Cong.
     assert (Cong X A Y' A) by (apply 等长的传递性 with A Y; Cong).
     assert (Cong A X' A Y) by (apply 等长的传递性 with A Y'; Cong).
-    assert (FSC X A X' Y' Y' A Y X).
-      unfold FSC;repeat split; Cong.
+    assert (五线段形式 X A X' Y' Y' A Y X).
+      unfold 五线段形式;repeat split; Cong.
         apply 中间性转共线;auto.
       eapply (两组连续三点分段等则全体等 X A X' Y' A Y);Between.
     assert (A <> X).
@@ -185,20 +185,20 @@ Proof.
       auto.
     assert (Cong X' Y' Y X) by eauto using l4_16.
     assert (Cong A X A X') by (apply 等长的传递性 with A Y; Cong).
-    assert (IFSC Y Q A X Y' Q' A X') by (unfold IFSC, FSC in *;spliter;repeat split;Between; Cong).
+    assert (内五线段形式 Y Q A X Y' Q' A X') by (unfold 内五线段形式, 五线段形式 in *;spliter;repeat split;Between; Cong).
     assert (Cong Q X Q' X') by eauto using l4_2.
-    assert (IFSC X P A Q X' P' A Q') by (unfold IFSC;repeat split;Between;Cong).
+    assert (内五线段形式 X P A Q X' P' A Q') by (unfold 内五线段形式;repeat split;Between;Cong).
     eauto using l4_2.
 Qed.
 
 Lemma l7_15 : forall P Q R P' Q' R' A,
- Midpoint A P P' -> Midpoint A Q Q' -> Midpoint A R R' -> Bet P Q R -> Bet P' Q' R'.
+ 中点 A P P' -> 中点 A Q Q' -> 中点 A R R' -> Bet P Q R -> Bet P' Q' R'.
 Proof.
     intros.
     spliter.
     eapply l4_6.
       apply H2.
-    unfold Cong_3.
+    unfold 三角形全等.
     repeat split.
       eapply l7_13.
         apply l7_2.
@@ -219,8 +219,8 @@ Qed.
 
 
 Lemma l7_16 : forall P Q R S P' Q' R' S' A,
-  Midpoint A P P' -> Midpoint A Q Q' ->
-  Midpoint A R R' -> Midpoint A S S' ->
+  中点 A P P' -> 中点 A Q Q' ->
+  中点 A R R' -> 中点 A S S' ->
   Cong P Q R S -> Cong P' Q' R' S'.
 Proof.
     intros.
@@ -243,12 +243,12 @@ Qed.
 
 Lemma symmetry_preserves_midpoint :
    forall A B C D E F Z,
- Midpoint Z A D -> Midpoint Z B E ->
- Midpoint Z C F -> Midpoint B A C -> Midpoint E D F.
+ 中点 Z A D -> 中点 Z B E ->
+ 中点 Z C F -> 中点 B A C -> 中点 E D F.
 Proof.
     intros.
-    unfold Midpoint.
-    unfold Midpoint in H2.
+    unfold 中点.
+    unfold 中点 in H2.
     spliter.
     split.
       eapply l7_15;eauto.
@@ -260,7 +260,7 @@ End T7_1.
 Hint Resolve l7_13 : cong.
 Hint Resolve l7_2 l7_3_2 : midpoint.
 
-Ltac Midpoint := auto with midpoint.
+Ltac 中点 := auto with midpoint.
 
 Section T7_2.
 
@@ -269,58 +269,58 @@ Context {TnEQD:无维度中性塔斯基公理系统_带两点重合决定性 Tn}
 
 Lemma Mid_cases :
   forall A B C,
-  Midpoint A B C \/ Midpoint A C B ->
-  Midpoint A B C.
+  中点 A B C \/ 中点 A C B ->
+  中点 A B C.
 Proof.
     intros.
-    decompose [or] H; Midpoint.
+    decompose [or] H; 中点.
 Qed.
 
 Lemma Mid_perm :
   forall A B C,
-  Midpoint A B C ->
-  Midpoint A B C /\ Midpoint A C B.
+  中点 A B C ->
+  中点 A B C /\ 中点 A C B.
 Proof.
-    unfold Midpoint.
+    unfold 中点.
     intros.
     spliter.
     repeat split; Between; Cong.
 Qed.
 
-Lemma l7_17 : forall P P' A B, Midpoint A P P' -> Midpoint B P P' -> A=B.
+Lemma l7_17 : forall P P' A B, 中点 A P P' -> 中点 B P P' -> A=B.
 Proof.
     intros.
     assert (Cong P B P' B).
-      unfold Midpoint in *.
+      unfold 中点 in *.
       spliter.
       Cong.
-    assert (exists B', Midpoint A B B') by (apply symmetric_point_construction).
+    assert (exists B', 中点 A B B') by (apply symmetric_point_construction).
     induction H2.
     assert (Cong P' B P x) by eauto with midpoint cong.
     assert (Cong P B P x) by (apply 等长的传递性 with P' B; Cong).
     assert (Cong P B P' x) by eauto with midpoint cong.
     assert (Cong P' B P' x) by (apply 等长的传递性 with P x; Cong; apply 等长的传递性 with P B; Cong).
-    assert (Bet P B P') by (unfold Midpoint in *;spliter;assumption).
+    assert (Bet P B P') by (unfold 中点 in *;spliter;assumption).
     assert (B=x) by (apply (l4_19 P P' B x);Between).
     subst x.
     apply l7_3.
     assumption.
 Qed.
 
-Lemma l7_17_bis : forall P P' A B, Midpoint A P P' -> Midpoint B P' P -> A=B.
+Lemma l7_17_bis : forall P P' A B, 中点 A P P' -> 中点 B P' P -> A=B.
 Proof.
     intros.
-    apply l7_17 with P P'; Midpoint.
+    apply l7_17 with P P'; 中点.
 Qed.
 
 Lemma l7_20 : forall M A B,
-  Col A M B -> Cong M A M B -> A=B \/ Midpoint M A B.
+  Col A M B -> Cong M A M B -> A=B \/ 中点 M A B.
 Proof.
     unfold Col.
     intros.
     induction H.
       right.
-      unfold Midpoint.
+      unfold 中点.
       split.
         assumption.
       Cong.
@@ -332,7 +332,7 @@ Proof.
 Qed.
 
 Lemma l7_20_bis : forall M A B, A<>B ->
-  Col A M B -> Cong M A M B -> Midpoint M A B.
+  Col A M B -> Cong M A M B -> 中点 M A B.
 Proof.
    intros.
    induction (l7_20 M A B H0 H1);intuition.
@@ -340,7 +340,7 @@ Qed.
 
 Lemma cong_col_mid : forall A B C,
  A <> C -> Col A B C -> Cong A B B C ->
- Midpoint B A C.
+ 中点 B A C.
 Proof.
     intros.
     apply l7_20 in H0.
@@ -352,44 +352,44 @@ Lemma l7_21 : forall A B C D P,
   ~ Col A B C -> B<>D ->
   Cong A B C D -> Cong B C D A ->
   Col A P C -> Col B P D ->
-  Midpoint P A C /\ Midpoint P B D.
+  中点 P A C /\ 中点 P B D.
 Proof.
     intros.
     assert_diffs.
-    assert (exists P', Cong_3 B D P D B P').
+    assert (exists P', 三角形全等 B D P D B P').
       eapply l4_14.
         Col.
       Cong.
     induction H9.
     assert (Col D B x) by
       (apply l4_13 with B D P;Col).
-    assert (FSC B D P A D B x C).
-      unfold FSC.
-      unfold Cong_3 in *.
+    assert (五线段形式 B D P A D B x C).
+      unfold 五线段形式.
+      unfold 三角形全等 in *.
       spliter.
       repeat split; Cong; Col.
-    assert (FSC B D P C D B x A).
-      unfold FSC.
-      unfold Cong_3 in *.
+    assert (五线段形式 B D P C D B x A).
+      unfold 五线段形式.
+      unfold 三角形全等 in *.
       spliter.
       repeat split; Col; Cong.
     assert (Cong P A x C) by (eauto using l4_16).
     assert (Cong P C x A) by (eauto using l4_16).
-    assert (Cong_3 A P C C x A) by (unfold Cong_3;repeat split; Cong).
+    assert (三角形全等 A P C C x A) by (unfold 三角形全等;repeat split; Cong).
     assert (Col C x A) by (eauto using l4_13).
     assert (P=x).
-      unfold FSC in *.
+      unfold 五线段形式 in *.
       spliter.
       apply (l6_21 A C B D); Col.
     subst x.
-    unfold Cong_3 in *;spliter.
+    unfold 三角形全等 in *;spliter.
     split;apply l7_20_bis;Col;Cong.
 Qed.
 
 Lemma l7_22_aux : forall A1 A2 B1 B2 C M1 M2,
    Bet A1 C A2 -> Bet B1 C B2 ->
    Cong C A1 C B1 -> Cong C A2 C B2 ->
-   Midpoint M1 A1 B1 -> Midpoint M2 A2 B2 ->
+   中点 M1 A1 B1 -> 中点 M2 A2 B2 ->
    Le C A1 C A2 ->
    Bet M1 C M2.
 Proof.
@@ -405,23 +405,23 @@ Proof.
       apply l7_3 in H4.
       subst A1.
       apply ABB中间性.
-    assert (exists A, Midpoint C A2 A).
+    assert (exists A, 中点 C A2 A).
       apply symmetric_point_construction.
     induction H7.
-    assert (exists B, Midpoint C B2 B).
+    assert (exists B, 中点 C B2 B).
       apply symmetric_point_construction.
     induction H8.
-    assert (exists M, Midpoint C M2 M).
+    assert (exists M, 中点 C M2 M).
       apply symmetric_point_construction.
     induction H9.
-    assert(Midpoint x1 x x0).
-      unfold Midpoint.
+    assert(中点 x1 x x0).
+      unfold 中点.
       split.
         eapply l7_15.
           apply H7.
           apply H9.
           apply H8.
-        unfold Midpoint in H4.
+        unfold 中点 in H4.
         spliter.
         assumption.
       eapply l7_16.
@@ -429,7 +429,7 @@ Proof.
         apply H9.
         apply H9.
         apply H8.
-      unfold Midpoint in H4.
+      unfold 中点 in H4.
       spliter.
       assumption.
     assert (Le C A1 C x).
@@ -437,7 +437,7 @@ Proof.
       repeat split.
         apply H5.
         apply 等长的自反性.
-      unfold Midpoint in H7.
+      unfold 中点 in H7.
       spliter.
       apply 等长的左交换性.
       assumption.
@@ -459,17 +459,17 @@ Proof.
         apply H6.
         apply 中间性的对称性.
         assumption; intro.
-      unfold Midpoint in H7.
+      unfold 中点 in H7.
       spliter.
       assumption.
     (* assert (M1=x).
-    eauto with Midpoint.
+    eauto with 中点.
     *)
     assert (Le C B1 C x0).
       eapply l5_6.
         apply H11.
         assumption.
-      unfold Midpoint in *.
+      unfold 中点 in *.
       spliter.
       eapply 等长的传递性.
         apply 等长的对称性.
@@ -508,7 +508,7 @@ Proof.
           assumption.
           assumption.
         apply l5_2 with B2; Between.
-        unfold Midpoint in H8.
+        unfold 中点 in H8.
         spliter.
         assumption.
       assumption.
@@ -518,13 +518,13 @@ Proof.
         apply H12.
         apply 中间性的对称性.
         apply H14.
-      unfold Midpoint in H10.
+      unfold 中点 in H10.
       spliter.
       assumption.
     ex_and H15 Q.
-    assert (IFSC x A1 C x1 x0 B1 C x1).
-      unfold IFSC.
-      unfold Midpoint in *.
+    assert (内五线段形式 x A1 C x1 x0 B1 C x1).
+      unfold 内五线段形式.
+      unfold 中点 in *.
       spliter.
       repeat split.
         apply 中间性的对称性.
@@ -562,8 +562,8 @@ Proof.
         assumption.
       apply 等长的交换性.
       assumption.
-    assert (Midpoint Q A1 B1).
-      unfold Midpoint.
+    assert (中点 Q A1 B1).
+      unfold 中点.
       split.
         assumption.
       apply 等长的左交换性.
@@ -575,7 +575,7 @@ Proof.
     subst Q.
     eapply between_exchange3.
       apply H15.
-    unfold Midpoint in H9.
+    unfold 中点 in H9.
     spliter.
     apply 中间性的对称性.
     assumption.
@@ -586,7 +586,7 @@ Qed.
 Lemma l7_22 : forall A1 A2 B1 B2 C M1 M2,
    Bet A1 C A2 -> Bet B1 C B2 ->
    Cong C A1 C B1 -> Cong C A2 C B2 ->
-   Midpoint M1 A1 B1 -> Midpoint M2 A2 B2 ->
+   中点 M1 A1 B1 -> 中点 M2 A2 B2 ->
    Bet M1 C M2.
 Proof.
     intros.
@@ -623,11 +623,11 @@ Qed.
 
 Lemma l7_25 : forall A B C,
   Cong C A C B ->
-  exists X, Midpoint X A B.
+  exists X, 中点 X A B.
 Proof.
     intros.
     induction(col_dec A B C).
-      assert(A = B \/ Midpoint C A B).
+      assert(A = B \/ 中点 C A B).
         apply l7_20.
           unfold Col in *.
           intuition.
@@ -655,7 +655,7 @@ Proof.
       assumption.
     ex_and H7 X.
     exists X.
-    unfold Midpoint.
+    unfold 中点.
     split.
       assumption.
     apply 等长的左交换性.
@@ -676,8 +676,8 @@ Proof.
         assumption.
         assumption.
       assumption.
-    assert (OFSC C A P B C B Q A).
-      unfold OFSC.
+    assert (外五线段形式 C A P B C B Q A).
+      unfold 外五线段形式.
       repeat split.
         assumption.
         assumption.
@@ -695,32 +695,32 @@ Proof.
       apply H0.
       subst A.
       apply ABB中间性.
-    assert (exists R', Bet A R' Q /\ Cong_3 B R P A R' Q).
+    assert (exists R', Bet A R' Q /\ 三角形全等 B R P A R' Q).
       eapply l4_5.
         assumption.
       apply 等长的交换性.
       assumption.
     ex_and H11 R'.
-    assert (IFSC B R P A A R' Q B).
-      unfold IFSC.
+    assert (内五线段形式 B R P A A R' Q B).
+      unfold 内五线段形式.
       repeat split.
         assumption.
         assumption.
         apply 等长的交换性.
         assumption.
-        unfold Cong_3 in H12.
+        unfold 三角形全等 in H12.
         spliter.
         assumption.
         apply 等长的伪自反性.
       apply 等长的交换性.
       apply 等长的对称性.
       assumption.
-    assert (IFSC B R P Q A R' Q P).
-      unfold IFSC.
+    assert (内五线段形式 B R P Q A R' Q P).
+      unfold 内五线段形式.
       repeat split;try assumption.
         apply 等长的交换性.
         assumption.
-        unfold Cong_3 in H12.
+        unfold 三角形全等 in H12.
         spliter.
         assumption.
       apply 等长的伪自反性.
@@ -730,8 +730,8 @@ Proof.
     assert (Cong R Q R' P).
       eapply l4_2.
       apply H14.
-    assert (Cong_3 A R Q B R' P).
-      unfold Cong_3.
+    assert (三角形全等 A R Q B R' P).
+      unfold 三角形全等.
       repeat split.
         apply 等长的交换性.
         assumption.
@@ -746,7 +746,7 @@ Proof.
       subst R'.
       assumption.
     assert (B <> P).
-      unfold IFSC, OFSC, Cong_3 in *.
+      unfold 内五线段形式, 外五线段形式, 三角形全等 in *.
       spliter.
       intro.
       subst P.
@@ -760,7 +760,7 @@ Proof.
       apply H2.
       assumption.
     assert (A <> Q).
-      unfold IFSC, OFSC, Cong_3 in *.
+      unfold 内五线段形式, 外五线段形式, 三角形全等 in *.
       spliter.
       intro.
       subst Q.
@@ -778,7 +778,7 @@ Proof.
       reflexivity.
     assert (B <> R).
       intro.
-      unfold Cong_3, IFSC, OFSC in *.
+      unfold 三角形全等, 内五线段形式, 外五线段形式 in *.
       spliter.
       subst R.
       clean_duplicated_hyps.
@@ -871,19 +871,19 @@ Qed.
 
 Lemma midpoint_distinct_1 : forall I A B,
  A<>B ->
- Midpoint I A B ->
+ 中点 I A B ->
  I<>A /\ I<>B.
 Proof.
     intros.
     split.
       intro.
       subst.
-      unfold Midpoint in *.
+      unfold 中点 in *.
       decompose [and] H0.
       treat_equalities.
       intuition.
     intro;subst.
-    unfold Midpoint in *.
+    unfold 中点 in *.
     decompose [and] H0.
     treat_equalities.
     intuition.
@@ -891,13 +891,13 @@ Qed.
 
 Lemma midpoint_distinct_2 : forall I A B,
  I<>A ->
- Midpoint I A B ->
+ 中点 I A B ->
  A<>B /\ I<>B.
 Proof.
     intros.
     assert (A<>B).
       intro.
-      unfold Midpoint in *;spliter.
+      unfold 中点 in *;spliter.
       treat_equalities.
       intuition.
     split.
@@ -910,13 +910,13 @@ Qed.
 
 Lemma midpoint_distinct_3 : forall I A B,
  I<>B ->
- Midpoint I A B ->
+ 中点 I A B ->
  A<>B /\ I<>A.
 Proof.
     intros.
     assert (A<>B).
       intro.
-      unfold Midpoint in *;spliter.
+      unfold 中点 in *;spliter.
       treat_equalities.
       intuition.
     split.
@@ -927,23 +927,23 @@ Proof.
 Qed.
 
 
-Lemma midpoint_def : forall A B C, Bet A B C -> Cong A B B C -> Midpoint B A C.
+Lemma midpoint_def : forall A B C, Bet A B C -> Cong A B B C -> 中点 B A C.
 Proof.
     intros.
-    unfold Midpoint.
+    unfold 中点.
     split;assumption.
 Qed.
 
-Lemma midpoint_bet : forall A B C, Midpoint B A C -> Bet A B C.
+Lemma midpoint_bet : forall A B C, 中点 B A C -> Bet A B C.
 Proof.
-    unfold Midpoint.
+    unfold 中点.
     intros.
     elim H.
     intros.
     assumption.
 Qed.
 
-Lemma midpoint_col : forall A M B, Midpoint M A B -> Col M A B.
+Lemma midpoint_col : forall A M B, 中点 M A B -> Col M A B.
 Proof.
     intros.
     unfold Col.
@@ -953,16 +953,16 @@ Proof.
     assumption.
 Qed.
 
-Lemma midpoint_cong : forall A B C, Midpoint B A C -> Cong A B B C.
+Lemma midpoint_cong : forall A B C, 中点 B A C -> Cong A B B C.
 Proof.
-    unfold Midpoint.
+    unfold 中点.
     intros.
     elim H.
     intros.
     assumption.
 Qed.
 
-Lemma midpoint_out : forall A B C, A <> C -> Midpoint B A C -> Out A B C.
+Lemma midpoint_out : forall A B C, A <> C -> 中点 B A C -> Out A B C.
 Proof.
     intros.
     repeat split.
@@ -973,16 +973,16 @@ Proof.
     assumption.
 Qed.
 
-Lemma midpoint_out_1 : forall A B C, A <> C -> Midpoint B A C -> Out C A B.
+Lemma midpoint_out_1 : forall A B C, A <> C -> 中点 B A C -> Out C A B.
 Proof.
     intros.
-    apply l6_6, midpoint_out; Midpoint.
+    apply l6_6, midpoint_out; 中点.
 Qed.
 
 Lemma midpoint_not_midpoint : forall I A B,
   A<>B ->
-  Midpoint I A B ->
-~ Midpoint B A I.
+  中点 I A B ->
+~ 中点 B A I.
 Proof.
     intros.
     assert (I<>B).
@@ -1007,22 +1007,22 @@ Proof.
 Qed.
 
 Lemma cong_cong_half_1 : forall A M B A' M' B',
- Midpoint M A B -> Midpoint M' A' B' ->
+ 中点 M A B -> 中点 M' A' B' ->
  Cong A B A' B' -> Cong A M A' M'.
 Proof.
     intros.
-    unfold Midpoint in *.
+    unfold 中点 in *.
     spliter.
-    assert(exists M'', Bet A' M'' B' /\ Cong_3 A M B A' M'' B').
+    assert(exists M'', Bet A' M'' B' /\ 三角形全等 A M B A' M'' B').
       eapply l4_5.
         assumption.
       assumption.
     ex_and H4 M''.
-    assert (Midpoint M'' A' B').
-      unfold Midpoint.
+    assert (中点 M'' A' B').
+      unfold 中点.
       split.
         assumption.
-      unfold Cong_3 in H5.
+      unfold 三角形全等 in H5.
       spliter.
       eapply 等长的传递性.
         apply 等长的对称性.
@@ -1031,32 +1031,32 @@ Proof.
         apply H3.
       assumption.
     assert(M'=M'').
-      eapply l7_17; unfold Midpoint; split.
+      eapply l7_17; unfold 中点; split.
         apply H0.
         apply H2.
         apply H4.
-      unfold Midpoint in H6.
+      unfold 中点 in H6.
       spliter.
       assumption.
     subst M''.
-    unfold Cong_3 in H5.
+    unfold 三角形全等 in H5.
     spliter.
     assumption.
 Qed.
 
 Lemma cong_cong_half_2 : forall A M B A' M' B',
- Midpoint M A B -> Midpoint M' A' B' ->
+ 中点 M A B -> 中点 M' A' B' ->
  Cong A B A' B' -> Cong B M B' M'.
 Proof.
     intros.
     apply cong_cong_half_1 with A A'.
-      Midpoint.
-      Midpoint.
+      中点.
+      中点.
     Cong.
 Qed.
 
 Lemma cong_mid2__cong : forall A M B A' M' B',
- Midpoint M A B -> Midpoint M' A' B' ->
+ 中点 M A B -> 中点 M' A' B' ->
  Cong A M A' M' -> Cong A B A' B'.
 Proof.
     intros A M B A' M' B' HM HM' HCong.
@@ -1068,7 +1068,7 @@ Proof.
 Qed.
 
 Lemma mid__lt : forall A M B,
- A <> B -> Midpoint M A B ->
+ A <> B -> 中点 M A B ->
  Lt A M A B.
 Proof.
     intros A M B HAB HM.
@@ -1081,7 +1081,7 @@ Proof.
 Qed.
 
 Lemma le_mid2__le13 : forall A M B A' M' B',
- Midpoint M A B -> Midpoint M' A' B' ->
+ 中点 M A B -> 中点 M' A' B' ->
  Le A M A' M' -> Le A B A' B'.
 Proof.
     intros A M B A' M' B' HM HM' Hle.
@@ -1092,7 +1092,7 @@ Proof.
 Qed.
 
 Lemma le_mid2__le12 : forall A M B A' M' B',
- Midpoint M A B -> Midpoint M' A' B' ->
+ 中点 M A B -> 中点 M' A' B' ->
  Le A B A' B' -> Le A M A' M'.
 Proof.
     intros A M B A' M' B' HM HM' Hle.
@@ -1105,7 +1105,7 @@ Proof.
 Qed.
 
 Lemma lt_mid2__lt13 : forall A M B A' M' B',
- Midpoint M A B -> Midpoint M' A' B' ->
+ 中点 M A B -> 中点 M' A' B' ->
  Lt A M A' M' -> Lt A B A' B'.
 Proof.
     intros A M B A' M' B' HM HM' [HLe HNcong].
@@ -1116,7 +1116,7 @@ Proof.
 Qed.
 
 Lemma lt_mid2__lt12 : forall A M B A' M' B',
- Midpoint M A B -> Midpoint M' A' B' ->
+ 中点 M A B -> 中点 M' A' B' ->
  Lt A B A' B' -> Lt A M A' M'.
 Proof.
     intros A M B A' M' B' HM HM' [HLe HNcong].
@@ -1129,9 +1129,9 @@ Qed.
 Lemma midpoint_preserves_out :
  forall A B C A' B' C' M,
   Out A B C ->
-  Midpoint M A A' ->
-  Midpoint M B B' ->
-  Midpoint M C C' ->
+  中点 M A A' ->
+  中点 M B B' ->
+  中点 M C C' ->
  Out A' B' C'.
 Proof.
     intros.
@@ -1180,7 +1180,7 @@ apply H1.
 assumption.
 apply 等长的伪自反性.
 Cong.
-assert(D = D1 \/ Midpoint C D D1).
+assert(D = D1 \/ 中点 C D D1).
 eapply l7_20.
 apply 中间性转共线 in H1.
 apply 中间性转共线 in H2.
@@ -1212,8 +1212,8 @@ assumption.
 apply 等长的伪自反性.
 Cong.
 
-assert(Midpoint C D2 D1).
-unfold Midpoint.
+assert(中点 C D2 D1).
+unfold 中点.
 split.
 
 induction(两点重合的决定性 A B).
@@ -1241,7 +1241,7 @@ eapply (outer_transitivity_between).
 apply H11.
 assumption.
 auto.
-unfold Midpoint in H7.
+unfold 中点 in H7.
 spliter.
 eapply 等长的传递性.
 apply 等长的对称性.
@@ -1414,7 +1414,7 @@ assert(Bet A b' B) by eBetween.
 
 induction(两点重合的决定性 A a').
 treat_equalities.
-assert(b'=B \/ Midpoint A b' B).
+assert(b'=B \/ 中点 A b' B).
 {
   apply l7_20.
   Col.
@@ -1423,7 +1423,7 @@ assert(b'=B \/ Midpoint A b' B).
 induction H1.
 treat_equalities.
 contradiction.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 assert(b' = B).
 {
@@ -1436,7 +1436,7 @@ treat_equalities; tauto.
 assert(Bet B a' A) by eBetween.
 induction(两点重合的决定性 B b').
 treat_equalities.
-assert(a'=A \/ Midpoint B a' A).
+assert(a'=A \/ 中点 B a' A).
 {
   apply l7_20.
   Col.
@@ -1445,7 +1445,7 @@ assert(a'=A \/ Midpoint B a' A).
 induction H2.
 treat_equalities.
 contradiction.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 assert(a' = A).
 {

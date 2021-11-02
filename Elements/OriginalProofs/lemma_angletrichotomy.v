@@ -8,18 +8,18 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma lemma_angletrichotomy : 
    forall A B C D E F, 
-   LtA A B C D E F ->
-   ~ LtA D E F A B C.
+   角度小于 A B C D E F ->
+   ~ 角度小于 D E F A B C.
 Proof.
 intros.
-assert (~ LtA D E F A B C).
+assert (~ 角度小于 D E F A B C).
  {
  intro.
- assert (LtA A B C A B C) by (conclude lemma_angleordertransitive).
+ assert (角度小于 A B C A B C) by (conclude lemma_angleordertransitive).
  rename_H H;let Tf:=fresh in
- assert (Tf:exists G H J, (BetS G H J /\ Out B A G /\ Out B C J /\ CongA A B C A B H)) by (conclude_def LtA );destruct Tf as [G[H[J]]];spliter.
+ assert (Tf:exists G H J, (BetS G H J /\ Out B A G /\ Out B C J /\ 等角 A B C A B H)) by (conclude_def 角度小于 );destruct Tf as [G[H[J]]];spliter.
  let Tf:=fresh in
- assert (Tf:exists U V u v, (Out B A U /\ Out B C V /\ Out B A u /\ Out B H v /\ Cong B U B u /\ Cong B V B v /\ Cong U V u v /\ nCol A B C)) by (conclude_def CongA );destruct Tf as [U[V[u[v]]]];spliter.
+ assert (Tf:exists U V u v, (Out B A U /\ Out B C V /\ Out B A u /\ Out B H v /\ Cong B U B u /\ Cong B V B v /\ Cong U V u v /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];spliter.
  assert (~ eq A B).
   {
   intro.

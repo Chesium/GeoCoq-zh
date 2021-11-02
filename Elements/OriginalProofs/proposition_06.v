@@ -7,7 +7,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma proposition_06 : 
    forall A B C, 
-   Triangle A B C -> CongA A B C A C B ->
+   Triangle A B C -> 等角 A B C A C B ->
    Cong A B A C.
 Proof.
 intros.
@@ -20,7 +20,7 @@ assert (~ Col A C B).
  contradict.
  }
 assert (Triangle A C B) by (conclude_def Triangle ).
-assert (CongA A C B A B C) by (conclude lemma_equalanglessymmetric).
+assert (等角 A C B A B C) by (conclude lemma_equalanglessymmetric).
 assert (~ Lt A B A C) by (conclude proposition_06a).
 assert (neq A B) by (forward_using lemma_angledistinct).
 assert (neq A C) by (forward_using lemma_angledistinct).

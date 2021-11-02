@@ -10,8 +10,8 @@ Lemma bachmann_s_lotschnittaxiom_aux : bachmann_s_lotschnittaxiom <->
   Perp A1 A2 B1 B2 -> Perp A1 A2 C1 C2 -> Perp B1 B2 D1 D2 ->
   Col A1 A2 IAB -> Col B1 B2 IAB -> Col A1 A2 IAC ->
   Col C1 C2 IAC -> Col B1 B2 IBD -> Col D1 D2 IBD ->
-  Coplanar IAB IAC IBD C1 -> Coplanar IAB IAC IBD C2 ->
-  Coplanar IAB IAC IBD D1 -> Coplanar IAB IAC IBD D2 ->
+  共面 IAB IAC IBD C1 -> 共面 IAB IAC IBD C2 ->
+  共面 IAB IAC IBD D1 -> 共面 IAB IAC IBD D2 ->
   exists I, Col C1 C2 I /\ Col D1 D2 I.
 Proof.
   split.
@@ -21,20 +21,20 @@ Proof.
     assert (Col IAB IAC A2) by ColR.
     assert (Col IAB IBD B1) by ColR.
     assert (Col IAB IBD B2) by ColR.
-    assert (Coplanar IAB IAC IBD A1) by Cop.
-    assert (Coplanar IAB IAC IBD A2) by Cop.
-    assert (Coplanar IAB IAC IBD B1) by Cop.
-    assert (Coplanar IAB IAC IBD B2) by Cop.
+    assert (共面 IAB IAC IBD A1) by Cop.
+    assert (共面 IAB IAC IBD A2) by Cop.
+    assert (共面 IAB IAC IBD B1) by Cop.
+    assert (共面 IAB IAC IBD B2) by Cop.
     assert (Per IAC IAB IBD) by (apply perp_per_1, (perp_col4 A1 A2 B1 B2); auto).
     assert (HNC1 : ~ Col IAC IAB IBD) by (apply per_not_col; auto).
-    assert (HParA : Par_strict A1 A2 D1 D2).
+    assert (HParA : 严格平行 A1 A2 D1 D2).
       {
       clear dependent C1; clear dependent C2;
       apply par_not_col_strict with IBD; Col.
         apply l12_9 with B1 B2; Perp; CopR.
       intro; apply HNC1; ColR.
       }
-    assert (HParB : Par_strict B1 B2 C1 C2).
+    assert (HParB : 严格平行 B1 B2 C1 C2).
       {
       clear dependent D1; clear dependent D2;
       apply par_not_col_strict with IAC; Col.

@@ -74,7 +74,7 @@ Qed.
 
 Lemma exists_coord : forall O E S U P,
   S <> U -> Cong O E S U ->
-  exists PX, exists X, Projp P PX S U /\ Cong_3 O E X S U PX.
+  exists PX, exists X, Projp P PX S U /\ 三角形全等 O E X S U PX.
 Proof.
 intros O E S U P HSU HCong.
 destruct (exists_projp S U P HSU) as [PX Hprojp].
@@ -123,7 +123,7 @@ assert_diffs; split; [exists P|exists S]; repeat (split; Cong);
 left; split; Col.
 apply per_perp in HPer; auto.
 apply perp_col0 with S U1; Col; Perp;
-[unfold Cong_3 in *; spliter; assert_diffs|apply l4_13 with O E X]; Col.
+[unfold 三角形全等 in *; spliter; assert_diffs|apply l4_13 with O E X]; Col.
 Qed.
 
 Lemma point_of_coordinates : forall O E S U1 U2 X Y,
@@ -155,8 +155,8 @@ split; [exists PX|exists PY]; split; Cong.
   {
   assert_diffs; split; auto.
   left; split; [apply l4_13 with O E X; Col|].
-  unfold Perp_at in *; spliter; apply perp_col0 with PX PX'; Col.
-  assert (HPYS : PY <> S) by (unfold Cong_3 in *; spliter; assert_diffs; auto).
+  unfold 垂直于 in *; spliter; apply perp_col0 with PX PX'; Col.
+  assert (HPYS : PY <> S) by (unfold 三角形全等 in *; spliter; assert_diffs; auto).
   intro; treat_equalities; apply HPYS.
   apply l6_21 with S U1 U2 S; Col;
   [destruct HCs as [H' [H'' [H''' HPer]]]; apply perp_not_col;
@@ -172,8 +172,8 @@ split; [exists PX|exists PY]; split; Cong.
   {
   assert_diffs; split; auto.
   left; split; [apply l4_13 with O E Y; Col|].
-  unfold Perp_at in *; spliter; apply perp_col0 with PY PY'; Col.
-  assert (HPXS : PX <> S) by (unfold Cong_3 in *; spliter; assert_diffs; auto).
+  unfold 垂直于 in *; spliter; apply perp_col0 with PY PY'; Col.
+  assert (HPXS : PX <> S) by (unfold 三角形全等 in *; spliter; assert_diffs; auto).
   intro; treat_equalities; apply HPXS.
   apply l6_21 with S U2 U1 S; Col;
   [destruct HCs as [H' [H'' [H''' HPer]]]; apply perp_not_col;
@@ -209,7 +209,7 @@ split; intro; spliter; treat_equalities.
   clear H'; destruct HPY2 as [H HCong4]; clear H.
   unfold Cs in HCs; spliter.
   split; apply l4_18 with O E; Col;
-  unfold Cong_3 in *; spliter; eapply 等长的传递性; eCong.
+  unfold 三角形全等 in *; spliter; eapply 等长的传递性; eCong.
   }
 
   {
@@ -217,7 +217,7 @@ split; intro; spliter; treat_equalities.
   destruct HCd2 as [H [H' [[PX2 HPX2] [PY2 HPY2]]]]; clear H; clear H'.
   assert (PX = PX2); treat_equalities.
     {
-    destruct HPX1 as [[H HElim] H0]; unfold Cs in HCs; unfold Cong_3 in *;
+    destruct HPX1 as [[H HElim] H0]; unfold Cs in HCs; unfold 三角形全等 in *;
     spliter; assert_diffs; apply l4_18 with S U1; auto.
     induction HElim; spliter; treat_equalities; Col.
     apply 等长的传递性 with O X1; Cong.
@@ -225,7 +225,7 @@ split; intro; spliter; treat_equalities.
     }
   assert (PY = PY2); treat_equalities.
     {
-    destruct HPY1 as [[H HElim] H0]; unfold Cs in HCs; unfold Cong_3 in *;
+    destruct HPY1 as [[H HElim] H0]; unfold Cs in HCs; unfold 三角形全等 in *;
     spliter; assert_diffs; apply l4_18 with S U2; auto.
     induction HElim; spliter; treat_equalities; Col.
     apply 等长的传递性 with O Y1; Cong.
@@ -349,8 +349,8 @@ Qed.
 (** Lemma 16.10 for k  = 2. *)
 Lemma cong_3_2_cong_4 : forall O E I J S U X Y,
   O <> E -> Col O E I -> Col O E J ->
-  Cong_3 O E I S U X -> Cong_3 O E J S U Y ->
-  Cong_4 O E I J S U X Y.
+  三角形全等 O E I S U X -> 三角形全等 O E J S U Y ->
+  四边形全等 O E I J S U X Y.
 Proof.
 intros O E I J S U X Y HOE HCol1 HCol2 HCong1 HCong4.
 destruct HCong1 as [HCong1 [HCong2 HCong3]].
@@ -363,8 +363,8 @@ Qed.
 (** Lemma 16.10 for k  = 3. *)
 Lemma cong_3_3_cong_5: forall O E I J K S U X Y Z,
   O <> E -> Col O E I -> Col O E J -> Col O E K ->
-  Cong_3 O E I S U X -> Cong_3 O E J S U Y -> Cong_3 O E K S U Z ->
-  Cong_5 O E I J K S U X Y Z.
+  三角形全等 O E I S U X -> 三角形全等 O E J S U Y -> 三角形全等 O E K S U Z ->
+  五边形全等 O E I J K S U X Y Z.
 Proof.
 intros O E I J K S U X Y Z HOE HCol1 HCol2 HCol3 HCong1 HCong4 HCong7.
 destruct HCong1 as [HCong1 [HCong2 HCong3]].
@@ -402,7 +402,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
   elim (两点重合的决定性 S QX'); intro HDiff2; treat_equalities.
 
     {
-    exfalso; unfold Cong_3 in *; spliter; treat_equalities.
+    exfalso; unfold 三角形全等 in *; spliter; treat_equalities.
     assert (HPar1 : Par P Q S U1)
       by (apply l12_9_2D with S U2; Perp).
     assert (HPar2 : Par P S Q S)
@@ -414,7 +414,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
     }
 
     {
-    assert (O = PX) by (unfold Cong_3 in HCong1; spliter; treat_equalities; auto).
+    assert (O = PX) by (unfold 三角形全等 in HCong1; spliter; treat_equalities; auto).
     treat_equalities; assert (HCol7 : Col S U2 P).
       {
       assert (H : Par P S S U2)
@@ -432,11 +432,11 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       }
     apply Rectangle_Plg in H; apply plg_to_parallelogram in H;
     apply plg_cong_2 in H.
-    unfold Cong_3 in HCong3; spliter; apply 等长的传递性 with S QX'; Cong.
+    unfold 三角形全等 in HCong3; spliter; apply 等长的传递性 with S QX'; Cong.
     }
 
     {
-    assert (O = QX) by (unfold Cong_3 in HCong3; spliter; treat_equalities; auto).
+    assert (O = QX) by (unfold 三角形全等 in HCong3; spliter; treat_equalities; auto).
     treat_equalities; assert (HCol7 : Col S U2 Q).
       {
       assert (H : Par Q S S U2)
@@ -454,7 +454,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       }
     apply Rectangle_Plg in H; apply plg_to_parallelogram in H;
     apply plg_cong_2 in H.
-    unfold Cong_3 in HCong1; spliter; apply 等长的传递性 with S PX'; Cong.
+    unfold 三角形全等 in HCong1; spliter; apply 等长的传递性 with S PX'; Cong.
     }
 
     {
@@ -542,7 +542,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       apply Rectangle_Parallelogram in HRect3; apply plg_cong_2 in HRect3.
       assert_diffs;
       apply cong_3_2_cong_4 with O E PX QX S U1 PX' QX' in HCong1; Col.
-      unfold Cong_4 in HCong1; spliter; apply 等长的传递性 with PX' QX'; Cong.
+      unfold 四边形全等 in HCong1; spliter; apply 等长的传递性 with PX' QX'; Cong.
       }
     }
   }
@@ -562,8 +562,8 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
   }
 
   {
-  assert (Cong_4 O E PX QX S U1 P Q) by (assert_diffs; apply cong_3_2_cong_4; Col).
-  unfold Cong_4 in *; spliter; Cong.
+  assert (四边形全等 O E PX QX S U1 P Q) by (assert_diffs; apply cong_3_2_cong_4; Col).
+  unfold 四边形全等 in *; spliter; Cong.
   }
 Qed.
 
@@ -782,7 +782,7 @@ split; [intro HCong|intro; treat_equalities].
   elim (eq_squares_eq_or_opp O E E' AB CD AB2); auto; intro HOpp; treat_equalities;
   [apply length_eq_cong_1 with O E E' AB; auto|].
   unfold Length, LeP, LtP in *; spliter; apply opp_midpoint in HOpp.
-  unfold Midpoint in *; spliter.
+  unfold 中点 in *; spliter.
   apply 等长的传递性 with O CD; trivial.
   apply 等长的传递性 with O AB; Cong.
   }
@@ -798,7 +798,7 @@ destruct (parallel_existence S U1 A) as [A1 [A2 [HDiff4 [HPar HCol]]]];
 try (intro; unfold Cd, Cs in *; spliter; treat_equalities; intuition).
 assert (HAX' := HCdA).
 destruct HAX' as [H [H' [HAX' H'']]]; clear H; clear H'; clear H''.
-destruct HAX' as [AX' [HProjpAX' HCongAX']].
+destruct HAX' as [AX' [HProjpAX' H等角X']].
 assert (HA : Projp AX' A A1 A2).
   {
   split; auto; induction (两点重合的决定性 A AX');
@@ -838,9 +838,9 @@ apply l4_6 with AX' BX' CX'.
   }
 
   {
-  assert (Cong_5 O E AX BX CX S U1 AX' BX' CX')
+  assert (五边形全等 O E AX BX CX S U1 AX' BX' CX')
     by (apply cong_3_3_cong_5; assert_diffs; auto).
-  unfold Cong_5 in *; spliter; repeat (split; Cong).
+  unfold 五边形全等 in *; spliter; repeat (split; Cong).
   }
 Qed.
 
@@ -875,7 +875,7 @@ destruct (parallel_existence S U1 A) as [A1 [A2 [HDiff4 [HPar HCol]]]];
 try (intro; unfold Cd, Cs in *; spliter; treat_equalities; intuition).
 assert (HAX' := HCdA).
 destruct HAX' as [H [H' [HAX' H'']]]; clear H; clear H'; clear H''.
-destruct HAX' as [AX' [HProjpAX' HCongAX']].
+destruct HAX' as [AX' [HProjpAX' H等角X']].
 assert (HA : Projp AX' A A1 A2).
   {
   split; auto; induction (两点重合的决定性 A AX');
@@ -912,7 +912,7 @@ elim (col_dec A B BX''); intro HABBX''.
 
         {
         assert (HCol' : Col A AX' BX') by (apply projp2_col with A1 A2; auto).
-        assert (HParS : Par_strict S U1 A1 A2); [|clear HLine].
+        assert (HParS : 严格平行 S U1 A1 A2); [|clear HLine].
           {
           elim (col_dec S U1 A1); intro HCol'';
           [apply par_not_col_strict with A2|apply par_not_col_strict with A1];
@@ -973,7 +973,7 @@ elim (col_dec A B BX''); intro HABBX''.
         assert (Cong AX BX AX' BX').
           {
           apply cong_3_2_cong_4 with O E AX BX S U1 AX' BX' in HCongBX';
-          try intro; treat_equalities; Col; unfold Cong_4 in *; spliter; Cong.
+          try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
           }
         assert (Cong A B AX' BX').
           {
@@ -999,7 +999,7 @@ elim (col_dec A B BX''); intro HABBX''.
           {
           apply cong_3_2_cong_4 with O E AX CX S U1 AX' CX' in HCongCX';
           try intro; treat_equalities; Col;
-          unfold Cong_4 in *; spliter; Cong.
+          unfold 四边形全等 in *; spliter; Cong.
           }
         assert (Cong A C AX' CX').
           {
@@ -1031,7 +1031,7 @@ elim (col_dec A B BX''); intro HABBX''.
         assert (Cong AX BX AX' BX').
           {
           apply cong_3_2_cong_4 with O E AX BX S U1 AX' BX' in HCongBX';
-          try intro; treat_equalities; Col; unfold Cong_4 in *; spliter; Cong.
+          try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
           }
         assert (Cong A B AX' BX').
           {
@@ -1058,7 +1058,7 @@ elim (col_dec A B BX''); intro HABBX''.
           {
           apply cong_3_2_cong_4 with O E AX CX S U1 AX' CX' in HCongCX';
           try intro; treat_equalities; Col;
-          unfold Cong_4 in *; spliter; Cong.
+          unfold 四边形全等 in *; spliter; Cong.
           }
         assert (Cong A C AX' CX').
           {
@@ -1283,7 +1283,7 @@ elim (col_dec A B BX''); intro HABBX''.
       assert (Cong AX BX AX' BX').
         {
         apply cong_3_2_cong_4 with O E AX BX S U1 AX' BX' in HCongBX';
-        try intro; treat_equalities; Col; unfold Cong_4 in *; spliter; Cong.
+        try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
         }
       assert (Cong A BX'' AX' BX').
         {
@@ -1308,7 +1308,7 @@ elim (col_dec A B BX''); intro HABBX''.
       assert (Cong AX CX AX' CX').
         {
         apply cong_3_2_cong_4 with O E AX CX S U1 AX' CX' in HCongCX';
-        try intro; treat_equalities; Col; unfold Cong_4 in *; spliter; Cong.
+        try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
         }
       assert (Cong A CX'' AX' CX').
         {
@@ -1329,7 +1329,7 @@ elim (col_dec A B BX''); intro HABBX''.
       assert (Cong AX BX AX' BX').
         {
         apply cong_3_2_cong_4 with O E AX BX S U1 AX' BX' in HCongBX';
-        try intro; treat_equalities; Col; unfold Cong_4 in *; spliter; Cong.
+        try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
         }
       assert (Cong A BX'' AX' BX').
         {
@@ -1355,7 +1355,7 @@ elim (col_dec A B BX''); intro HABBX''.
       assert (Cong AX CX AX' CX').
         {
         apply cong_3_2_cong_4 with O E AX CX S U1 AX' CX' in HCongCX';
-        try intro; treat_equalities; Col; unfold Cong_4 in *; spliter; Cong.
+        try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
         }
       assert (Cong A CX'' AX' CX').
         {
@@ -1640,15 +1640,15 @@ Lemma same_abscissa_col : forall O E S U1 U2 A AX AY B BY C CY,
   Col A B C.
 Proof.
 intros O E S U1 U2 A AX AY B BY C CY HCdA HCdB HCdC.
-destruct HCdA as [HCs [H [[PXA [HProjpA HCongA]] H']]]; clear H; clear H'.
+destruct HCdA as [HCs [H [[PXA [HProjpA H等角]] H']]]; clear H; clear H'.
 destruct HCdB as [H [H' [[PXB [HProjpB HCongB]] H'']]]; clear H; clear H'; clear H''.
 destruct HCdC as [H [H' [[PXC [HProjpC HCongC]] H'']]]; clear H; clear H'; clear H''.
 assert (HDiff1 : O <> E) by (unfold Cs in *; spliter; auto).
 assert (HColAX : Col O E AX)
   by (apply l4_13 with S U1 PXA; Cong; apply projp_col with A; auto).
-eapply col_cong_3_cong_3_eq in HCongB; [| | |apply HCongA]; treat_equalities; auto.
-eapply col_cong_3_cong_3_eq in HCongC; [| | |apply HCongA]; treat_equalities; auto.
-clear HCongA; elim (两点重合的决定性 A PXA); intro HDiff2; treat_equalities;
+eapply col_cong_3_cong_3_eq in HCongB; [| | |apply H等角]; treat_equalities; auto.
+eapply col_cong_3_cong_3_eq in HCongC; [| | |apply H等角]; treat_equalities; auto.
+clear H等角; elim (两点重合的决定性 A PXA); intro HDiff2; treat_equalities;
 [apply projp2_col with S U1; auto|].
 eapply projp2_col in HProjpB; [|apply HProjpA].
 eapply projp2_col in HProjpC; [|apply HProjpA].

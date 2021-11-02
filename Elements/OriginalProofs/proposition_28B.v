@@ -12,21 +12,21 @@ Proof.
 intros.
 assert (OS D B G H) by (forward_using lemma_samesidesymmetric).
 let Tf:=fresh in
-assert (Tf:exists a b c d e, (Supp a b c e d /\ CongA B G H a b c /\ CongA G H D e b d)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];spliter.
-assert (CongA a b c B G H) by (conclude lemma_equalanglessymmetric).
+assert (Tf:exists a b c d e, (Supp a b c e d /\ 等角 B G H a b c /\ 等角 G H D e b d)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];spliter.
+assert (等角 a b c B G H) by (conclude lemma_equalanglessymmetric).
 assert (neq G H) by (forward_using lemma_angledistinct).
-assert (CongA e b d G H D) by (conclude lemma_equalanglessymmetric).
+assert (等角 e b d G H D) by (conclude lemma_equalanglessymmetric).
 assert (eq H H) by (conclude cn_equalityreflexive).
 assert (Out G H H) by (conclude lemma_ray4).
 assert (Supp A G H H B) by (conclude_def Supp ).
 assert (Supp B G H H A) by (conclude lemma_supplementsymmetric).
-assert (CongA e b d H G A) by (conclude lemma_supplements).
-assert (CongA G H D e b d) by (conclude lemma_equalanglessymmetric).
-assert (CongA G H D H G A) by (conclude lemma_equalanglestransitive).
+assert (等角 e b d H G A) by (conclude lemma_supplements).
+assert (等角 G H D e b d) by (conclude lemma_equalanglessymmetric).
+assert (等角 G H D H G A) by (conclude lemma_equalanglestransitive).
 assert (nCol H G A) by (conclude lemma_equalanglesNC).
-assert (CongA H G A A G H) by (conclude lemma_ABCequalsCBA).
-assert (CongA G H D A G H) by (conclude lemma_equalanglestransitive).
-assert (CongA A G H G H D) by (conclude lemma_equalanglessymmetric).
+assert (等角 H G A A G H) by (conclude lemma_ABCequalsCBA).
+assert (等角 G H D A G H) by (conclude lemma_equalanglestransitive).
+assert (等角 A G H G H D) by (conclude lemma_equalanglessymmetric).
 assert (eq G G) by (conclude cn_equalityreflexive).
 assert (Col G H G) by (conclude_def Col ).
 assert (nCol A G H) by (conclude lemma_equalanglesNC).

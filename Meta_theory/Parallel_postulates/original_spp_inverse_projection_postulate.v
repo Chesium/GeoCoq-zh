@@ -26,7 +26,7 @@ Proof.
     split; auto.
     split.
     apply l11_31_2; Between.
-    intro; destruct Hlta; CongA.
+    intro; destruct Hlta; 等角.
   }
   intro HNCol1.
   assert(HNCol2 : ~ Col B P Q) by (apply per_not_col; auto).
@@ -42,7 +42,7 @@ Proof.
   destruct HY as [Y []]; auto.
     apply (col_one_side _ A); Side.
   { intro.
-    assert(Hlta : LtA A B C C B P).
+    assert(Hlta : 角度小于 A B C C B P).
     { apply acute_per__lta; auto.
       apply (bet_per_suma__per123 _ _ _ B P Q0 D E F); auto.
       apply l8_2.
@@ -71,8 +71,8 @@ Proof.
     { intro.
       assert(HInter := l8_16_1 B0 B A C B).
       destruct HInter; Col; Perp.
-      assert(Habs : LtA A B C A B C) by (apply acute_per__lta; auto).
-      destruct Habs; CongA.
+      assert(Habs : 角度小于 A B C A B C) by (apply acute_per__lta; auto).
+      destruct Habs; 等角.
     }
     apply l11_24.
     apply lea_in_angle; Side.

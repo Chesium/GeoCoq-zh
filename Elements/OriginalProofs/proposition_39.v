@@ -36,7 +36,7 @@ assert (Out C D D) by (conclude lemma_ray4).
 assert (~ ~ Par A D B C).
  {
  intro.
- assert (~ LtA C B D C B A).
+ assert (~ 角度小于 C B D C B A).
   {
   intro.
   let Tf:=fresh in
@@ -44,7 +44,7 @@ assert (~ ~ Par A D B C).
   assert (Par A D B C) by (conclude proposition_39A).
   contradict.
   }
- assert (~ LtA C B A C B D).
+ assert (~ 角度小于 C B A C B D).
   {
   intro.
   let Tf:=fresh in
@@ -54,12 +54,12 @@ assert (~ ~ Par A D B C).
   assert (Par A D B C) by (forward_using lemma_parallelflip).
   contradict.
   }
- assert (~ ~ CongA C B D C B A).
+ assert (~ ~ 等角 C B D C B A).
   {
   intro.
   assert (nCol C B A) by (forward_using lemma_NCorder).
   assert (nCol C B D) by (forward_using lemma_NCorder).
-  assert (LtA C B D C B A) by (conclude lemma_angletrichotomy2).
+  assert (角度小于 C B D C B A) by (conclude lemma_angletrichotomy2).
   contradict.
   }
  assert (nCol A C B) by (forward_using lemma_NCorder).
@@ -71,7 +71,7 @@ assert (~ ~ Par A D B C).
  assert (ET D C B A B C) by (conclude axiom_ETsymmetric).
  assert (ET D C B A C B) by (forward_using axiom_ETpermutation).
  assert (ET A C B D C B) by (conclude axiom_ETsymmetric).
- assert (~ LtA B C D B C A).
+ assert (~ 角度小于 B C D B C A).
   {
   intro.
   let Tf:=fresh in
@@ -80,7 +80,7 @@ assert (~ ~ Par A D B C).
   assert (Par A D B C) by (forward_using lemma_parallelflip).
   contradict.
   }
- assert (~ LtA B C A B C D).
+ assert (~ 角度小于 B C A B C D).
   {
   intro.
   let Tf:=fresh in
@@ -90,19 +90,19 @@ assert (~ ~ Par A D B C).
   assert (Par A D B C) by (forward_using lemma_parallelflip).
   contradict.
   }
- assert (~ ~ CongA B C D B C A).
+ assert (~ ~ 等角 B C D B C A).
   {
   intro.
   assert (nCol B C A) by (forward_using lemma_NCorder).
   assert (nCol B C D) by (forward_using lemma_NCorder).
-  assert (LtA B C D B C A) by (conclude lemma_angletrichotomy2).
+  assert (角度小于 B C D B C A) by (conclude lemma_angletrichotomy2).
   contradict.
   }
- assert (CongA B C A B C D) by (conclude lemma_equalanglessymmetric).
+ assert (等角 B C A B C D) by (conclude lemma_equalanglessymmetric).
  assert (Cong B C B C) by (conclude cn_congruencereflexive).
- assert (CongA D B C A B C) by (conclude lemma_equalanglesflip).
- assert (CongA A B C D B C) by (conclude lemma_equalanglessymmetric).
- assert ((Cong A B D B /\ Cong A C D C /\ CongA B A C B D C)) by (conclude proposition_26A).
+ assert (等角 D B C A B C) by (conclude lemma_equalanglesflip).
+ assert (等角 A B C D B C) by (conclude lemma_equalanglessymmetric).
+ assert ((Cong A B D B /\ Cong A C D C /\ 等角 B A C B D C)) by (conclude proposition_26A).
  assert (neq B C) by (forward_using lemma_NCdistinct).
  assert (eq A D) by (conclude proposition_07).
  contradict.

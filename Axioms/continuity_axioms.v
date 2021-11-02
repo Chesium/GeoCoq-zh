@@ -142,13 +142,13 @@ Definition first_order_dedekind := forall Alpha Beta,
 Definition archimedes_axiom := forall A B C D, A <> B -> Reach A B C D.
 
 Definition aristotle_s_axiom := forall P Q A B C,
-  ~ Col A B C -> Acute A B C ->
+  ~ Col A B C -> 为锐角 A B C ->
   exists X Y, Out B A X /\ Out B C Y /\ Per B X Y /\ Lt P Q X Y.
 
 Definition greenberg_s_axiom := forall P Q R A B C,
   ~ Col A B C ->
-  Acute A B C -> Q <> R -> Per P Q R ->
-  exists S, LtA P S Q A B C /\ Out Q S R.
+  为锐角 A B C -> Q <> R -> Per P Q R ->
+  exists S, 角度小于 P S Q A B C /\ Out Q S R.
 
 End Continuity_Defs.
 

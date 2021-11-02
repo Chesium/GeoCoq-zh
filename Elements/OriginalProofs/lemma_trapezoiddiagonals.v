@@ -16,11 +16,11 @@ assert (~ Meet A B C D) by (conclude_def Par ).
 assert (neq A B) by (conclude_def Par ).
 assert (neq C D) by (conclude_def Par ).
 let Tf:=fresh in
-assert (Tf:exists M, (Midpoint A M C /\ Midpoint B M D)) by (conclude lemma_diagonalsbisect);destruct Tf as [M];spliter.
-assert (BetS A M C) by (conclude_def Midpoint ).
-assert (Cong A M M C) by (conclude_def Midpoint ).
-assert (BetS B M D) by (conclude_def Midpoint ).
-assert (Cong B M M D) by (conclude_def Midpoint ).
+assert (Tf:exists M, (中点 A M C /\ 中点 B M D)) by (conclude lemma_diagonalsbisect);destruct Tf as [M];spliter.
+assert (BetS A M C) by (conclude_def 中点 ).
+assert (Cong A M M C) by (conclude_def 中点 ).
+assert (BetS B M D) by (conclude_def 中点 ).
+assert (Cong B M M D) by (conclude_def 中点 ).
 assert (Cong B M D M) by (forward_using lemma_congruenceflip).
 assert (eq B B) by (conclude cn_equalityreflexive).
 assert (~ Col B D C).

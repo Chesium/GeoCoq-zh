@@ -7,7 +7,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma proposition_12 : 
    forall A B C, 
    nCol A B C ->
-   exists X, Perp_at C X A B X.
+   exists X, 垂直于 C X A B X.
 Proof.
 intros.
 assert (~ eq B C).
@@ -70,7 +70,7 @@ assert (~ eq M C).
 assert (Per P M C) by (conclude_def Per ).
 assert (eq M M) by (conclude cn_equalityreflexive).
 assert (Col C M M) by (conclude_def Col ).
-assert (Perp_at C M A B M) by (conclude_def Perp_at ).
+assert (垂直于 C M A B M) by (conclude_def 垂直于 ).
 close.
 Qed.
 

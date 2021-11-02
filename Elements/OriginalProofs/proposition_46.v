@@ -63,7 +63,7 @@ assert (BetS F A B) by (conclude axiom_betweennesssymmetry).
 assert (Col A B B) by (conclude_def Col ).
 assert (nCol F B D) by (conclude lemma_NChelper).
 let Tf:=fresh in
-assert (Tf:exists G e M, (BetS G D e /\ CongA G D A D A B /\ Par G e F B /\ BetS G M B /\ BetS D M A)) by (conclude proposition_31short);destruct Tf as [G[e[M]]];spliter.
+assert (Tf:exists G e M, (BetS G D e /\ 等角 G D A D A B /\ Par G e F B /\ BetS G M B /\ BetS D M A)) by (conclude proposition_31short);destruct Tf as [G[e[M]]];spliter.
 assert (Par G e A B) by (conclude lemma_collinearparallel).
 assert (Par A B G e) by (conclude lemma_parallelsymmetric).
 assert (Col G D e) by (conclude_def Col ).
@@ -178,7 +178,7 @@ by cases on (eq G D \/ eq G E \/ eq D E \/ BetS D G E \/ BetS G D E \/ BetS G E 
 assert (Col G D E) by (conclude_def Col ).
 assert (neq E D) by (conclude lemma_inequalitysymmetric).
 assert (Per E D A) by (conclude lemma_collinearright).
-assert ((Cong D A E B /\ Cong D E A B /\ CongA E D A A B E /\ CongA D A B B E D /\ Cong_3 E D A A B E)) by (conclude proposition_34).
+assert ((Cong D A E B /\ Cong D E A B /\ 等角 E D A A B E /\ 等角 D A B B E D /\ 三角形全等 E D A A B E)) by (conclude proposition_34).
 assert (Cong A B D E) by (conclude lemma_congruencesymmetric).
 assert (Cong A B E D) by (forward_using lemma_congruenceflip).
 assert (Cong A B A D) by (conclude lemma_congruencesymmetric).
@@ -186,8 +186,8 @@ assert (Cong A D E B) by (forward_using lemma_congruenceflip).
 assert (Cong A B E B) by (conclude lemma_congruencetransitive).
 assert (Cong A B B E) by (forward_using lemma_congruenceflip).
 assert (Cong A B D A) by (forward_using lemma_congruenceflip).
-assert (CongA B E D D A B) by (conclude lemma_equalanglessymmetric).
-assert (CongA A B E E D A) by (conclude lemma_equalanglessymmetric).
+assert (等角 B E D D A B) by (conclude lemma_equalanglessymmetric).
+assert (等角 A B E E D A) by (conclude lemma_equalanglessymmetric).
 assert (Per B E D) by (conclude lemma_equaltorightisright).
 assert (Per A B E) by (conclude lemma_equaltorightisright).
 assert (SQ A B E D) by (conclude_def SQ ).

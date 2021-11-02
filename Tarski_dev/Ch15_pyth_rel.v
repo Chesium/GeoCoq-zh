@@ -161,7 +161,7 @@ induction(两点重合的决定性 A O).
 subst A.
 assert(Cong O B O C).
 apply 等长的传递性 with O B'; Cong.
-assert(B = C \/ Midpoint O B C).
+assert(B = C \/ 中点 O B C).
 apply l7_20; auto.
 ColR.
 induction H12.
@@ -184,7 +184,7 @@ apply prod_0_l; auto.
 subst A2.
 apply (midpoint_opp O E E') in H12;
 
-unfold Midpoint in H12.
+unfold 中点 in H12.
 assert(C2 = B2).
 apply(prod_uniqueness O E E' C C);auto.
 apply (opp_same_square O E E' B C); auto.
@@ -282,7 +282,7 @@ unfold Ps in H17.
 Col.
 
 apply opp_midpoint in H16.
-unfold Midpoint in H16.
+unfold 中点 in H16.
 spliter.
 apply 等长的传递性 with O C; Cong.
 
@@ -373,7 +373,7 @@ split; auto.
 apply diff_A_O; auto.
 Col.
 apply opp_midpoint in H16.
-unfold Midpoint in H16.
+unfold 中点 in H16.
 spliter.
 apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' B OB B2 H16 H1).
@@ -442,7 +442,7 @@ apply diff_A_O; auto.
 unfold Ps in H17.
 Col.
 apply opp_midpoint in H16.
-unfold Midpoint in H16.
+unfold 中点 in H16.
 spliter.
 apply 等长的传递性 with O C; Cong.
 
@@ -469,7 +469,7 @@ split; auto.
 apply diff_A_O; auto.
 Col.
 apply opp_midpoint in H19.
-unfold Midpoint in H19.
+unfold 中点 in H19.
 spliter.
 apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' B OB B2 H19 H1).
@@ -520,7 +520,7 @@ apply sum_diff.
 apply sum_O_B; Col.
 unfold Ps.
 apply opp_midpoint in H16.
-unfold Midpoint in H16.
+unfold 中点 in H16.
 spliter.
 apply not_out_bet in H12.
 assert(HP:=l5_2 A O E OA H11 H12 H16).
@@ -537,7 +537,7 @@ Col.
 
 unfold Opp in H16.
 apply opp_midpoint in H16.
-unfold Midpoint in H16.
+unfold 中点 in H16.
 unfold Sum in H16.
 spliter.
 Cong.
@@ -615,7 +615,7 @@ apply diff_A_O; auto.
 unfold Ps in H17.
 Col.
 apply opp_midpoint in H16.
-unfold Midpoint in H16.
+unfold 中点 in H16.
 spliter.
 apply 等长的传递性 with O C; Cong.
 
@@ -630,7 +630,7 @@ apply sum_diff.
 apply sum_O_B; Col.
 unfold Ps.
 apply opp_midpoint in H19.
-unfold Midpoint in H19.
+unfold 中点 in H19.
 spliter.
 apply not_out_bet in H12.
 assert(HP:=l5_2 A O E OA H11 H12 H19).
@@ -645,7 +645,7 @@ right; auto.
 left; auto.
 Col.
 apply opp_midpoint in H19.
-unfold Midpoint in H19.
+unfold 中点 in H19.
 spliter.
 Cong.
 
@@ -728,7 +728,7 @@ apply sum_diff.
 apply sum_O_B; Col.
 unfold Ps.
 apply opp_midpoint in H19.
-unfold Midpoint in H19.
+unfold 中点 in H19.
 spliter.
 apply not_out_bet in H12.
 assert(HP:=l5_2 A O E OA H11 H12 H19).
@@ -743,7 +743,7 @@ right; auto.
 left; auto.
 Col.
 apply opp_midpoint in H19.
-unfold Midpoint in H19.
+unfold 中点 in H19.
 spliter.
 Cong.
 
@@ -758,7 +758,7 @@ split; auto.
 apply diff_A_O; auto.
 Col.
 apply opp_midpoint in H16.
-unfold Midpoint in H16.
+unfold 中点 in H16.
 spliter.
 apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' A OA A2 H19 H0).
@@ -847,7 +847,7 @@ apply diff_A_O; auto.
 unfold Ps in H17.
 Col.
 apply opp_midpoint in H16.
-unfold Midpoint in H16.
+unfold 中点 in H16.
 spliter.
 apply 等长的传递性 with O C; Cong.
 
@@ -862,7 +862,7 @@ apply sum_diff.
 apply sum_O_B; Col.
 unfold Ps.
 apply opp_midpoint in H19.
-unfold Midpoint in H19.
+unfold 中点 in H19.
 spliter.
 apply not_out_bet in H12.
 assert(HP:=l5_2 A O E OA H11 H12 H19).
@@ -877,7 +877,7 @@ right; auto.
 left; auto.
 Col.
 apply opp_midpoint in H19.
-unfold Midpoint in H19.
+unfold 中点 in H19.
 spliter.
 Cong.
 
@@ -892,7 +892,7 @@ split; auto.
 apply diff_A_O; auto.
 Col.
 apply opp_midpoint in H22.
-unfold Midpoint in H22.
+unfold 中点 in H22.
 spliter.
 apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' A OA A2 H19 H0).
@@ -977,7 +977,7 @@ apply H;Col.
 
 assert(HH:= perp2__col O B1 B2 O B H0 H2).
 
-assert(B1 = B2 \/ Midpoint O B1 B2).
+assert(B1 = B2 \/ 中点 O B1 B2).
 apply l7_20; Col.
 
 induction H13.
@@ -988,7 +988,7 @@ clean_trivial_hyps.
 assert(Cong O C2 O C1).
 apply 等长的传递性 with A B1; Cong.
 
-assert(C1 = C2 \/ Midpoint O C1 C2).
+assert(C1 = C2 \/ 中点 O C1 C2).
 apply l7_20.
 ColR.
 Cong.
@@ -1002,13 +1002,13 @@ unfold Ps in H2.
 spliter.
 assert(Out O C1 C2).
 apply (l6_7 _ _ E); Out.
-unfold Midpoint in H5.
+unfold 中点 in H5.
 spliter.
 apply l6_4_1 in H5; auto.
 tauto.
 
 subst C1.
-unfold Midpoint in H5.
+unfold 中点 in H5.
 spliter.
 apply 等长的对称性 in H5.
 apply (等长的同一性 O C2 O);auto.
@@ -1019,7 +1019,7 @@ subst A.
 assert(Cong O C1 O C2).
 apply 等长的传递性 with O B2; trivial.
 apply 等长的传递性 with O B1; Cong.
-assert(C1 = C2 \/ Midpoint O C1 C2).
+assert(C1 = C2 \/ 中点 O C1 C2).
 apply l7_20; eCol.
 
 induction H15.
@@ -1032,7 +1032,7 @@ unfold Ps in H2.
 spliter.
 assert(Out O C1 C2).
 apply (l6_7 _ _ E); Out.
-unfold Midpoint in H15.
+unfold 中点 in H15.
 spliter.
 apply l6_4_1 in H15; auto.
 tauto.
@@ -1062,7 +1062,7 @@ assert(Cong O C1 O C2).
 apply 等长的传递性 with A B2; trivial.
 apply 等长的传递性 with A B1; Cong.
 
-assert(C1 = C2 \/ Midpoint O C1 C2).
+assert(C1 = C2 \/ 中点 O C1 C2).
 apply l7_20.
 ColR.
 Cong.
@@ -1077,7 +1077,7 @@ unfold Ps in H1.
 unfold Ps in H19.
 assert(Out O C1 C2).
 apply (l6_7 _ _ E); Out.
-unfold Midpoint in H18.
+unfold 中点 in H18.
 spliter.
 apply l6_4_1 in H18; auto.
 tauto.

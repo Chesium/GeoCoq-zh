@@ -13,9 +13,9 @@ Lemma weak_inverse_projection_postulate__bachmann_s_lotschnittaxiom_aux :
   weak_inverse_projection_postulate -> forall A1 A2 B1 B2 C1 C2 Q P R M,
   Perp A1 A2 B1 B2 -> Perp A1 A2 C1 C2 -> Col A1 A2 Q -> Col B1 B2 Q ->
   Col A1 A2 P -> Col C1 C2 P -> Col B1 B2 R ->
-  Coplanar Q P R C1 -> Coplanar Q P R C2 -> ~ Col Q P R ->
-  InAngle M P Q R -> CongA M Q P M Q R ->
-  Par_strict B1 B2 C1 C2 /\ exists S, Out Q M S /\ Col C1 C2 S.
+  共面 Q P R C1 -> 共面 Q P R C2 -> ~ Col Q P R ->
+  在角内 M P Q R -> 等角 M Q P M Q R ->
+  严格平行 B1 B2 C1 C2 /\ exists S, Out Q M S /\ Col C1 C2 S.
 Proof.
 intro hrap.
 intros A1 A2 B1 B2 C1 C2 Q P R M HPerpAB HPerpAC.
@@ -23,17 +23,17 @@ intros HCol1 HCol2 HCol3 HCol4 HCol5 HCop1 HCop2 HNC HM1 HM2.
 assert_diffs.
 assert (HNCol1 : ~ Col A1 A2 R) by (intro; apply HNC, (col3 A1 A2); auto).
 assert (HNCol2 : ~ Col B1 B2 P) by (intro; apply HNC, (col3 B1 B2); auto).
-assert (HPar : Par_strict B1 B2 C1 C2).
+assert (HPar : 严格平行 B1 B2 C1 C2).
   {
   apply par_not_col_strict with P; Col.
   assert (Col A1 P Q /\ Col A2 P Q /\ Col B1 R Q /\ Col B2 R Q)
     by (repeat split; [apply col_transitivity_1 with A2|apply (col_transitivity_2 A1)
                       |apply col_transitivity_1 with B2|apply (col_transitivity_2 B1)]; auto).
   spliter.
-  assert (Coplanar Q P R A1) by Cop.
-  assert (Coplanar Q P R A2) by Cop.
-  assert (Coplanar Q P R B1) by Cop.
-  assert (Coplanar Q P R B2) by Cop.
+  assert (共面 Q P R A1) by Cop.
+  assert (共面 Q P R A2) by Cop.
+  assert (共面 Q P R B1) by Cop.
+  assert (共面 Q P R B2) by Cop.
   apply l12_9 with A1 A2; Perp; apply coplanar_pseudo_trans with Q P R; assumption.
   }
 split; [assumption|].
@@ -44,11 +44,11 @@ assert (Per P Q R).
   apply perp_sym, perp_col2 with B1 B2; Col; Perp.
   }
 assert (HSuma : SumA P Q M P Q M P Q R).
-  assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; CongA; SumA.
-assert (HAcute : Acute P Q M).
+  assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; 等角; SumA.
+assert (H为锐角 : 为锐角 P Q M).
 { apply nbet_sams_suma__acute with P Q R; auto.
     intro; apply HNC; Col.
-  assert (LeA P Q M P Q R) by Lea.
+  assert (角度小于等于 P Q M P Q R) by Lea.
   apply sams_lea2__sams with P Q R P Q R; SumA.
 }
 assert (HC3 : exists C3, Col C1 C2 C3 /\ OS P Q R C3).
@@ -81,12 +81,12 @@ assert (HNC : ~ Col P Q R).
   apply per_not_col; auto; apply perp_per_1, (perp_col4 A1 A2 B1 B2); auto.
 destruct (angle_bisector P Q R) as [M [HM1 HM2]]; auto.
 assert (HSuma : SumA P Q M P Q M P Q R).
-  assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; CongA; SumA.
-assert (HAcute : Acute P Q M).
+  assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; 等角; SumA.
+assert (H为锐角 : 为锐角 P Q M).
   {
   apply nbet_sams_suma__acute with P Q R; auto.
     intro; apply HNC; Col.
-  assert (LeA P Q M P Q R) by Lea.
+  assert (角度小于等于 P Q M P Q R) by Lea.
   assert (Per P Q R)
     by (apply perp_per_2, perp_col2 with A1 A2; Col; apply perp_sym, perp_col2 with B1 B2; Col; Perp).
   apply sams_lea2__sams with P Q R P Q R; SumA.
@@ -94,7 +94,7 @@ assert (HAcute : Acute P Q M).
 destruct (weak_inverse_projection_postulate__bachmann_s_lotschnittaxiom_aux
     hrap A1 A2 B1 B2 C1 C2 Q P R M) as [HParB [S [HS1 HS2]]]; Col.
 destruct (weak_inverse_projection_postulate__bachmann_s_lotschnittaxiom_aux
-    hrap B1 B2 A1 A2 D1 D2 Q R P M) as [HParA [T [HT1 HT2]]]; [trivial..|]; [Perp|Cop..|Col| |CongA|].
+    hrap B1 B2 A1 A2 D1 D2 Q R P M) as [HParA [T [HT1 HT2]]]; [trivial..|]; [Perp|Cop..|Col| |等角|].
   apply l11_24, HM1.
 destruct (col_dec C1 C2 T).
   exists T; split; Col.

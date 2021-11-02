@@ -33,8 +33,8 @@ assert (Col A F E) by (conclude lemma_collinear4).
 assert (Col E A D) by (forward_using lemma_collinearorder).
 assert (Col E A F) by (forward_using lemma_collinearorder).
 assert (EF E B C A F B C D) by (conclude proposition_35).
-assert (Cong_3 B E A A C B) by (conclude proposition_34).
-assert (Cong_3 B F D D C B) by (conclude proposition_34).
+assert (三角形全等 B E A A C B) by (conclude proposition_34).
+assert (三角形全等 B F D D C B) by (conclude proposition_34).
 let Tf:=fresh in
 assert (Tf:exists M, (BetS E M C /\ BetS B M A)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];spliter.
 let Tf:=fresh in

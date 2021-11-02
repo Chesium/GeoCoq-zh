@@ -284,7 +284,7 @@ apply (leP_bet O E E'); assumption.
 prolong D C M' A B.
 assert(HH:=symmetric_point_construction M' C).
 ex_and HH M.
-unfold Midpoint in H11.
+unfold 中点 in H11.
 spliter.
 
 assert(Cong A B C M).
@@ -361,7 +361,7 @@ apply 等长的同一性 in H23.
 subst X.
 clean_trivial_hyps.
 
-assert(AB = M \/ Midpoint O AB M).
+assert(AB = M \/ 中点 O AB M).
 apply(l7_20 O AB M); Cong.
 
 unfold Ps in *.
@@ -377,7 +377,7 @@ apply (col_transitivity_1 _ CD); Col.
 induction H3.
 subst M.
 assumption.
-unfold Midpoint in H3.
+unfold 中点 in H3.
 spliter.
 
 assert(Out O AB CD).
@@ -471,13 +471,13 @@ unfold Length in *.
 spliter.
 assert(Cong O AB O AB').
 apply 等长的传递性 with A B; Cong.
-assert(AB = AB' \/ Midpoint O AB AB').
+assert(AB = AB' \/ 中点 O AB AB').
 apply(l7_20 O AB AB').
 ColR.
 Cong.
 induction H10.
 assumption.
-unfold Midpoint in H10.
+unfold 中点 in H10.
 spliter.
 
 induction H1; induction H2.
@@ -1329,13 +1329,13 @@ contradiction.
 Qed.
 
 Lemma image_preserves_bet1 : forall X Y A B C A' B' C',
-  Bet A B C -> Reflect A A' X Y -> Reflect B B' X Y -> Reflect C C' X Y ->
+  Bet A B C -> 对称 A A' X Y -> 对称 B B' X Y -> 对称 C C' X Y ->
   Bet A' B' C'.
 Proof.
 intros.
 induction(两点重合的决定性 X Y).
 subst Y.
-unfold Reflect in *.
+unfold 对称 in *.
 induction H0.
 tauto.
 induction H1.
@@ -1351,12 +1351,12 @@ apply l7_2; auto.
 apply l7_2; auto.
 assumption.
 apply (image_preserves_bet A B C A' B' C' X Y).
-unfold Reflect in H0.
+unfold 对称 in H0.
 induction H0.
 tauto.
 spliter.
 contradiction.
-unfold Reflect in *.
+unfold 对称 in *.
 induction H0; induction H1; induction H2; try( spliter; contradiction).
 spliter.
 auto.
@@ -1369,7 +1369,7 @@ auto.
 Qed.
 
 Lemma image_preserves_col : forall X Y A B C A' B' C',
-  Col A B C -> Reflect A A' X Y -> Reflect B B' X Y -> Reflect C C' X Y ->
+  Col A B C -> 对称 A A' X Y -> 对称 B B' X Y -> 对称 C C' X Y ->
   Col A' B' C'.
 Proof.
 intros.
@@ -1387,7 +1387,7 @@ apply (image_preserves_bet1 X Y C A B C' A' B'); auto.
 Qed.
 
 Lemma image_preserves_out : forall X Y A B C A' B' C',
-  Out A B C -> Reflect A A' X Y -> Reflect B B' X Y -> Reflect C C' X Y ->
+  Out A B C -> 对称 A A' X Y -> 对称 B B' X Y -> 对称 C C' X Y ->
   Out A' B' C'.
 Proof.
 intros.
@@ -1518,9 +1518,9 @@ apply (project_preserves_bet P Q X Y A C B A' C' B'); assumption.
 Qed.
 
 Lemma conga_bet_conga : forall A B C D E F A' C' D' F',
-  CongA A B C D E F -> A' <> B -> C' <> B -> D' <> E -> F' <> E ->
+  等角 A B C D E F -> A' <> B -> C' <> B -> D' <> E -> F' <> E ->
   Bet A B A' -> Bet C B C' -> Bet D E D' -> Bet F E F' ->
-  CongA A' B C' D' E F'.
+  等角 A' B C' D' E F'.
 Proof.
 intros.
 assert(HH:= l11_13 A B C D E F A' D' H H4 H0 H6 H2).
@@ -1647,7 +1647,7 @@ spliter.
 clean_duplicated_hyps.
 
 
-assert(exists C' : Tpoint, Cong_3 P A C O A1 C' /\ OS O A1 E' C').
+assert(exists C' : Tpoint, 三角形全等 P A C O A1 C' /\ OS O A1 E' C').
 {
 apply(l10_16 P A C O A1 E');
 Cong.
@@ -1675,7 +1675,7 @@ Col.
 
 ex_and H4 C1'.
 
-assert(CongA P A C O A1 C1').
+assert(等角 P A C O A1 C1').
 {
 apply(cong3_conga).
 intro.
@@ -1711,10 +1711,10 @@ ex_and HH M.
 
 assert(HH:= l10_2_existence O M D1).
 ex_and HH D1'.
-unfold Reflect in H23.
+unfold 对称 in H23.
 induction H23.
 spliter.
-unfold ReflectL in H24.
+unfold 严格对称 in H24.
 spliter.
 ex_and H24 N.
 
@@ -1785,7 +1785,7 @@ apply H2.
 apply out_col.
 
 apply(cong3_preserves_out O A1 C1 P A C H28).
-unfold Cong_3 in *.
+unfold 三角形全等 in *.
 spliter.
 repeat split; Cong.
 apply l7_3_2.
@@ -1797,7 +1797,7 @@ unfold Per.
 exists C1'.
 split.
 assumption.
-unfold Cong_3 in H4.
+unfold 三角形全等 in H4.
 spliter.
 apply (等长的传递性 _ _ P C); Cong.
 }
@@ -1811,23 +1811,23 @@ assert(Out O C1' D1').
 {
 apply(image_preserves_out O M O C1 D1).
 assumption.
-unfold Reflect.
+unfold 对称.
 left.
 split; auto.
-unfold ReflectL.
+unfold 严格对称.
 split.
 exists O.
-split; Midpoint; Col.
+split; 中点; Col.
 right.
 auto.
 
-unfold Reflect.
+unfold 对称.
 left.
 split; auto.
-unfold ReflectL.
+unfold 严格对称.
 split.
 exists M.
-split; Midpoint; Col.
+split; 中点; Col.
 left.
 induction H30.
 apply perp_sym.
@@ -1839,18 +1839,18 @@ subst C1'.
 apply l7_3 in H7.
 contradiction.
 Perp.
-unfold Midpoint in H7.
+unfold 中点 in H7.
 spliter.
 Col.
 apply perp_distinct in H30.
 tauto.
-unfold Reflect.
+unfold 对称.
 left.
 split; auto.
-unfold ReflectL.
+unfold 严格对称.
 split.
 exists N.
-split; Midpoint; Col.
+split; 中点; Col.
 left.
 induction H25.
 apply perp_right_comm.
@@ -1893,7 +1893,7 @@ apply (perp_col O M D1 N).
 intro.
 subst N.
 apply HN.
-unfold Midpoint in H24.
+unfold 中点 in H24.
 spliter.
 apply 中间性转共线 in H24.
 apply out_col in H31.
@@ -1935,7 +1935,7 @@ apply perp_sym.
 apply (perp_col _ D1').
 intro.
 subst N.
-unfold Midpoint in H24.
+unfold 中点 in H24.
 spliter.
 treat_equalities.
 apply HN.
@@ -1983,7 +1983,7 @@ subst B.
 tauto.
 Col.
 Col.
-unfold Midpoint in H24.
+unfold 中点 in H24.
 spliter.
 apply 中间性转共线 in H24.
 Col.
@@ -1999,7 +1999,7 @@ apply perp_in_per in H32.
 unfold Per in H32.
 ex_and H32 D2.
 assert(D2 = D1').
-apply (l7_9 _ _ N D1); Midpoint.
+apply (l7_9 _ _ N D1); 中点.
 subst D2.
 assumption.
 }
@@ -2016,7 +2016,7 @@ subst C1'.
 apply HN.
 Col.
 Perp.
-unfold Midpoint in H7.
+unfold 中点 in H7.
 spliter.
 Col.
 Perp.
@@ -2033,13 +2033,13 @@ subst N.
 apply perp_distinct in H32.
 tauto.
 }
-assert(Cong_3 P C A O C1' A1).
+assert(三角形全等 P C A O C1' A1).
 {
-unfold Cong_3 in *.
+unfold 三角形全等 in *.
 spliter.
 repeat split; Cong.
 }
-assert(CongA P C A O C1' A1).
+assert(等角 P C A O C1' A1).
 {
 apply cong3_conga.
 intro.
@@ -2052,9 +2052,9 @@ apply H2.
 Col.
 assumption.
 }
-unfold Cong_3 in H35.
+unfold 三角形全等 in H35.
 spliter.
-assert(Cong P A O A1 /\ (P <> A -> CongA C P A C1' O A1 /\ CongA C A P C1' A1 O)).
+assert(Cong P A O A1 /\ (P <> A -> 等角 C P A C1' O A1 /\ 等角 C A P C1' A1 O)).
 {
 apply(l11_49 P C A O C1' A1); Cong.
 }
@@ -2070,7 +2070,7 @@ apply H40 in H41.
 clear H40.
 spliter.
 
-assert(CongA C A P D B P).
+assert(等角 C A P D B P).
 {
 induction(bet_dec C P D).
 assert(Bet A P B).
@@ -2153,7 +2153,7 @@ apply False_ind.
 apply H2.
 ColR.
 
-assert(CongA C A B D B A <-> Par A C B D).
+assert(等角 C A B D B A <-> Par A C B D).
 apply(l12_21 A C B D).
 unfold TS.
 repeat split.
@@ -2340,7 +2340,7 @@ assert(C <> A).
 {
 intro.
 subst C.
-unfold CongA in H42.
+unfold 等角 in H42.
 tauto.
 }
 
@@ -2348,7 +2348,7 @@ assert(P <> A).
 {
 intro.
 subst A.
-unfold CongA in H42.
+unfold 等角 in H42.
 tauto.
 }
 
@@ -2364,7 +2364,7 @@ apply H2.
 Col.
 }
 
-assert(CongA C P A D P B).
+assert(等角 C P A D P B).
 {
 induction(bet_dec C P D).
 
@@ -2385,7 +2385,7 @@ auto.
 apply(l11_14 C P A D B); auto.
 intro.
 subst C.
-unfold CongA in H36.
+unfold 等角 in H36.
 tauto.
 intro.
 subst D.
@@ -2439,7 +2439,7 @@ induction H3.
 Par.
 subst D.
 apply False_ind.
-unfold CongA in H42.
+unfold 等角 in H42.
 tauto.
 
 apply conga_sym.
@@ -2458,7 +2458,7 @@ assert(O <> C1').
 {
 intro.
 subst C1'.
-unfold CongA in H36.
+unfold 等角 in H36.
 tauto.
 }
 
@@ -2468,7 +2468,7 @@ intro.
 induction H30.
 apply perp_not_col in H30.
 apply H30.
-unfold Midpoint in H7.
+unfold 中点 in H7.
 spliter.
 apply 中间性转共线 in H7.
 ColR.
@@ -2515,7 +2515,7 @@ subst N.
 apply perp_distinct in H32.
 tauto.
 Perp.
-unfold Midpoint in H24.
+unfold 中点 in H24.
 spliter.
 apply 中间性转共线 in H24.
 Col.
@@ -2526,21 +2526,21 @@ Perp.
 Col.
 induction H30.
 apply (perp_col C1 M O M C1'); Col; Perp.
-unfold Midpoint in H7.
+unfold 中点 in H7.
 spliter.
 apply 中间性转共线 in H7.
 Col.
 apply perp_distinct in H30.
 tauto.
 }
-assert(CongA C1' O A1 D1' O B1).
+assert(等角 C1' O A1 D1' O B1).
 {
 apply out2__conga.
 apply l6_6.
 assumption.
 apply(length_out O E E' P B  P A B1 A1); auto.
 }
-assert(CongA D1' O B1 D P B).
+assert(等角 D1' O B1 D P B).
 {
 apply (conga_trans _ _ _ C P A).
 apply (conga_trans _ _ _ C1' O A1).
@@ -2550,7 +2550,7 @@ apply conga_sym.
 assumption.
 assumption.
 }
-assert((D1' <> B1 -> CongA O D1' B1 P D B /\ CongA O B1 D1' P B D)).
+assert((D1' <> B1 -> 等角 O D1' B1 P D B /\ 等角 O B1 D1' P B D)).
 {
 apply (l11_49 D1' O B1 D P B).
 assumption.
@@ -2582,7 +2582,7 @@ spliter.
 clear H55.
 apply conga_comm in H57.
 
-assert(CongA C1' A1 O D1' B1 O <-> Par A1 C1' B1 D1').
+assert(等角 C1' A1 O D1' B1 O <-> Par A1 C1' B1 D1').
 {
 apply(l12_22 A1 C1' B1 D1' O).
 apply (length_out O E E' P A P B); auto.
@@ -2593,7 +2593,7 @@ apply H49.
 assert(A1 <> O).
 intro.
 subst A1.
-unfold CongA in H53.
+unfold 等角 in H53.
 tauto.
 ColR.
 assumption.
@@ -2654,7 +2654,7 @@ assumption.
 spliter.
 subst M.
 apply False_ind.
-unfold Midpoint in H7.
+unfold 中点 in H7.
 spliter.
 apply 中间性转共线 in H7.
 Col.
@@ -2719,7 +2719,7 @@ Qed.
 
 (** Known as Euklid *)
 Lemma l15_7 : forall O E E' A B C H AB AC AH AC2,
-  O<>E -> Per A C B -> Perp_at H C H A B ->
+  O<>E -> Per A C B -> 垂直于 H C H A B ->
   Length O E E' A B AB -> Length O E E' A C AC -> Length O E E' A H AH ->
   (Prod O E E' AC AC AC2 <-> Prod O E E' AB AH AC2).
 Proof.
@@ -2811,7 +2811,7 @@ subst H.
 apply perp_in_distinct in H2.
 tauto.
 
-assert(Cong H C H' C' /\ (H <> C -> CongA A H C A H' C' /\ CongA A C H A C' H')).
+assert(Cong H C H' C' /\ (H <> C -> 等角 A H C A H' C' /\ 等角 A C H A C' H')).
 apply(l11_49 H A C H' A C').
 apply conga_left_comm.
 apply out2__conga.
@@ -2925,14 +2925,14 @@ apply H28.
 assert(A <> C').
 intro.
 subst C'.
-unfold CongA in H20.
+unfold 等角 in H20.
 tauto.
 assert(Col A H H').
 ColR.
 assert(A <> H').
 intro.
 subst H'.
-unfold CongA in H19.
+unfold 等角 in H19.
 tauto.
 ColR.
 
@@ -2984,7 +2984,7 @@ assumption.
 Qed.
 
 Lemma l15_7_1 : forall O E E' A B C H AB AC AH AC2,
-  O<>E -> Per A C B -> Perp_at H C H A B ->
+  O<>E -> Per A C B -> 垂直于 H C H A B ->
   Length O E E' A B AB -> Length O E E' A C AC -> Length O E E' A H AH ->
   Prod O E E' AC AC AC2 ->
   Prod O E E' AB AH AC2.
@@ -2996,7 +2996,7 @@ assumption.
 Qed.
 
 Lemma l15_7_2 : forall O E E' A B C H AB AC AH AC2,
-  O<>E -> Per A C B -> Perp_at H C H A B ->
+  O<>E -> Per A C B -> 垂直于 H C H A B ->
   Length O E E' A B AB -> Length O E E' A C AC -> Length O E E' A H AH ->
   Prod O E E' AB AH AC2 ->
   Prod O E E' AC AC AC2.
@@ -3089,7 +3089,7 @@ apply sum_A_O; Col.
 assert(exists X : Tpoint, Col A B X /\ Perp A B C X).
 apply(l8_18_existence A B C); Col.
 ex_and H12 P.
-assert(Perp_at P A B C P).
+assert(垂直于 P A B C P).
 apply(l8_14_2_1b_bis A B C P P H13); Col.
 assert(Bet A P B /\ A <> P /\ B <> P).
 apply(l11_47 A B C P H0).
@@ -4034,13 +4034,13 @@ induction H1.
 Qed.
 
 Lemma cong2_lea__le :   forall A B C D E F : Tpoint,
-  Cong A B D E -> Cong A C D F -> LeA F D E C A B -> Le E F B C.
+  Cong A B D E -> Cong A C D F -> 角度小于等于 F D E C A B -> Le E F B C.
 Proof.
 intros.
 
-assert(LtA F D E C A B \/ CongA F D E C A B).
+assert(角度小于 F D E C A B \/ 等角 F D E C A B).
 {
-  unfold LtA.
+  unfold 角度小于.
   induction (conga_dec F D E C A B).
   {
     right; assumption.
@@ -4060,7 +4060,7 @@ induction H2.
   apply lt__le.
   assumption.
 }
-assert(Cong F E C B /\ (F <> E -> CongA D F E A C B /\ CongA D E F A B C)).
+assert(Cong F E C B /\ (F <> E -> 等角 D F E A C B /\ 等角 D E F A B C)).
 apply(l11_49 F D E C A B); Cong.
 spliter.
 unfold Le.
@@ -4070,29 +4070,29 @@ Between.
 Qed.
 
 Lemma lea_out_lea : forall A B C D E F A' C' D' F', Out B A A' -> Out B C C' -> Out E D D' -> Out E F F'
-                      -> LeA A B C D E F -> LeA A' B C' D' E F'.
+                      -> 角度小于等于 A B C D E F -> 角度小于等于 A' B C' D' E F'.
 Proof.
 intros.
-unfold LeA in *.
+unfold 角度小于等于 in *.
 ex_and H3 P.
 exists P.
 split.
 apply (l11_25 P D E F D' F' P);
 try apply l6_6; auto.
 apply out_trivial.
-unfold CongA in H4.
+unfold 等角 in H4.
 tauto.
 apply (l11_10 A B C D E P); try apply l6_6; auto.
 apply out_trivial.
-unfold CongA in H4.
+unfold 等角 in H4.
 tauto.
 Qed.
 
 Lemma lta_out_lta : forall A B C D E F A' C' D' F', Out B A A' -> Out B C C' -> Out E D D' -> Out E F F'
-                      -> LtA A B C D E F -> LtA A' B C' D' E F'.
+                      -> 角度小于 A B C D E F -> 角度小于 A' B C' D' E F'.
 Proof.
 intros.
-unfold LtA in *.
+unfold 角度小于 in *.
 spliter.
 split.
 apply(lea_out_lea A B C D E F A' C' D' F');auto.
@@ -4103,23 +4103,23 @@ Qed.
 
 
 Lemma pythagoras_obtuse : forall O E E' A B C AC BC AB AC2 BC2 AB2 S2,
-  O<>E -> Obtuse A C B ->
+  O<>E -> 为钝角 A C B ->
   Length O E E' A B AB -> Length O E E' A C AC -> Length O E E' B C BC ->
   Prod O E E' AC AC AC2 -> Prod O E E' BC BC BC2 -> Prod O E E' AB AB AB2 ->
   Sum  O E E' AC2 BC2 S2 -> LtP O E E' S2 AB2.
 intros.
-unfold Obtuse in H0.
+unfold 为钝角 in H0.
 ex_and H0 A'.
 ex_and H8 B'.
 ex_and H0 C'.
 assert(A' <> B' /\ C' <> B' /\ C <> A /\ C' <> B' /\ C <> B).
 {
-  unfold LtA in H8.
+  unfold 角度小于 in H8.
   spliter.
-  unfold LeA in H8.
+  unfold 角度小于等于 in H8.
   ex_and H8 P.
-  unfold CongA in H10.
-  unfold InAngle in H8.
+  unfold 等角 in H10.
+  unfold 在角内 in H8.
   repeat split;
   try tauto.
   spliter.
@@ -4234,7 +4234,7 @@ apply out_col in H16; Col.
 Qed.
 
 Lemma pythagoras_obtuse_or_per : forall O E E' A B C AC BC AB AC2 BC2 AB2 S2,
-  O<>E -> Obtuse A C B \/ Per A C B ->
+  O<>E -> 为钝角 A C B \/ Per A C B ->
   Length O E E' A B AB -> Length O E E' A C AC -> Length O E E' B C BC ->
   Prod O E E' AC AC AC2 -> Prod O E E' BC BC BC2 -> Prod O E E' AB AB AB2 ->
   Sum  O E E' AC2 BC2 S2 -> LeP O E E' S2 AB2.
@@ -4256,12 +4256,12 @@ induction H0.
 Qed.
 
 Lemma pythagoras_acute : forall O E E' A B C AC BC AB AC2 BC2 AB2 S2,
-  O<>E -> Acute A C B ->
+  O<>E -> 为锐角 A C B ->
   Length O E E' A B AB -> Length O E E' A C AC -> Length O E E' B C BC ->
   Prod O E E' AC AC AC2 -> Prod O E E' BC BC BC2 -> Prod O E E' AB AB AB2 ->
   Sum  O E E' AC2 BC2 S2 -> LtP O E E' AB2 S2.
 intros.
-unfold Acute in H0.
+unfold 为锐角 in H0.
 ex_and H0 A'.
 ex_and H8 B'.
 ex_and H0 C'.
@@ -4271,11 +4271,11 @@ assert(A <> C /\ B <> C).
   split;
   intro;
   treat_equalities;
-  unfold LtA in H8;
+  unfold 角度小于 in H8;
   spliter;
-  unfold LeA in H8;
+  unfold 角度小于等于 in H8;
   ex_and H8 P;
-  unfold CongA in *;
+  unfold 等角 in *;
   tauto.
 }
 spliter.
@@ -4337,12 +4337,12 @@ induction(两点重合的决定性 A B).
   assert(A' <> B' /\ C' <> B'  /\ C' <> B').
   {
 
-    unfold LtA in H8.
+    unfold 角度小于 in H8.
     spliter.
-    unfold LeA in H8.
+    unfold 角度小于等于 in H8.
     ex_and H8 P.
-    unfold CongA in H10.
-    unfold InAngle in H8.
+    unfold 等角 in H10.
+    unfold 在角内 in H8.
     repeat split;
     tauto.
   }
@@ -4765,11 +4765,11 @@ Lemma inter_tangent_circle : forall P Q O M, P <> Q -> Cong P O Q O -> Col P O Q
                       -> M = O.
 Proof.
 intros.
-assert(P = Q \/ Midpoint O P Q).
+assert(P = Q \/ 中点 O P Q).
 apply(l7_20 O P Q H1);Cong.
 induction H4.
 contradiction.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 assert(Le Q M P O).
 {
@@ -5050,7 +5050,7 @@ Qed.
 
 Lemma inter_circle_obtuse : forall P Q A T M, Cong P A Q A 
                           -> Le P M P A -> Le Q M Q A 
-                          ->  Projp A T P Q -> Obtuse P T M \/ Per P T M -> Le T M T A.
+                          ->  Projp A T P Q -> 为钝角 P T M \/ Per P T M -> Le T M T A.
 
 Proof.
 intros.
@@ -5337,7 +5337,7 @@ induction(两点重合的决定性 P T).
       apply (perp_col _ T'); Perp; Col.
       intro.
       treat_equalities.
-      unfold Midpoint in H5; spliter.
+      unfold 中点 in H5; spliter.
       apply H7; ColR.
       intro.
       subst T'.
@@ -5355,7 +5355,7 @@ induction(两点重合的决定性 P T).
       apply perp_distinct in H3; tauto.
       intro.
       treat_equalities.
-      unfold Midpoint in H5; spliter.
+      unfold 中点 in H5; spliter.
       apply H7; ColR.
     }
     subst T'.
@@ -5363,7 +5363,7 @@ induction(两点重合的决定性 P T).
   }
   spliter.
   subst T.
-  assert(P = Q \/ Midpoint A P Q).
+  assert(P = Q \/ 中点 A P Q).
   {
     apply(l7_20 A P Q); Col.
     Cong.

@@ -10,7 +10,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma proposition_08 : 
    forall A B C D E F, 
    Triangle A B C -> Triangle D E F -> Cong A B D E -> Cong A C D F -> Cong B C E F ->
-   CongA B A C E D F /\ CongA C B A F E D /\ CongA A C B D F E.
+   等角 B A C E D F /\ 等角 C B A F E D /\ 等角 A C B D F E.
 Proof.
 intros.
 assert (eq E E) by (conclude cn_equalityreflexive).
@@ -73,7 +73,7 @@ assert (~ Col B A C).
  assert (Col A B C) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA B A C E D F) by (conclude_def CongA ).
+assert (等角 B A C E D F) by (conclude_def 等角 ).
 assert (Cong B A E D) by (forward_using lemma_congruenceflip).
 assert (Cong C A F D) by (forward_using lemma_congruenceflip).
 assert (Out E F F) by (conclude lemma_ray4).
@@ -86,7 +86,7 @@ assert (~ Col C B A).
  assert (Col A B C) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA C B A F E D) by (conclude_def CongA ).
+assert (等角 C B A F E D) by (conclude_def 等角 ).
 assert (Cong C A F D) by (forward_using lemma_congruenceflip).
 assert (Cong C B F E) by (forward_using lemma_congruenceflip).
 assert (Out F D D) by (conclude lemma_ray4).
@@ -99,7 +99,7 @@ assert (~ Col A C B).
  assert (Col A B C) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA A C B D F E) by (conclude_def CongA ).
+assert (等角 A C B D F E) by (conclude_def 等角 ).
 close.
 Qed.
 

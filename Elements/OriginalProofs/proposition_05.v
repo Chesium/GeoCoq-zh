@@ -8,7 +8,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma proposition_05 : 
    forall A B C, 
    isosceles A B C ->
-   CongA A B C A C B.
+   等角 A B C A C B.
 Proof.
 intros.
 assert ((Triangle A B C /\ Cong A B A C)) by (conclude_def isosceles ).
@@ -20,8 +20,8 @@ assert (~ Col C A B).
  assert (Col A B C) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA C A B B A C) by (conclude lemma_ABCequalsCBA).
-assert ((Cong C B B C /\ CongA A C B A B C /\ CongA A B C A C B)) by (conclude proposition_04).
+assert (等角 C A B B A C) by (conclude lemma_ABCequalsCBA).
+assert ((Cong C B B C /\ 等角 A C B A B C /\ 等角 A B C A C B)) by (conclude proposition_04).
 close.
 Qed.
 

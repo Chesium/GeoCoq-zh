@@ -46,7 +46,7 @@ assert (BetS F D A) by (conclude axiom_betweennesssymmetry).
 assert (TP A D B C) by (conclude lemma_paralleldef2B).
 assert (OS B C A D) by (conclude_def TP ).
 assert (OS C B D A) by (forward_using lemma_samesidesymmetric).
-assert (CongA F D C D A B) by (conclude proposition_29C).
+assert (等角 F D C D A B) by (conclude proposition_29C).
 assert (eq D D) by (conclude cn_equalityreflexive).
 assert (eq C C) by (conclude cn_equalityreflexive).
 assert (eq B B) by (conclude cn_equalityreflexive).
@@ -91,9 +91,9 @@ by cases on (BetS A D E \/ BetS A E D \/ eq D E).
 (** cases *)
 assert (nCol A D B) by (forward_using lemma_parallelNC).
 assert (nCol D A B) by (forward_using lemma_NCorder).
-assert (CongA D A B D A B) by (conclude lemma_equalanglesreflexive).
-assert (CongA D A B E A B) by (conclude lemma_equalangleshelper).
-assert (CongA F D C E A B) by (conclude lemma_equalanglestransitive).
+assert (等角 D A B D A B) by (conclude lemma_equalanglesreflexive).
+assert (等角 D A B E A B) by (conclude lemma_equalangleshelper).
+assert (等角 F D C E A B) by (conclude lemma_equalanglestransitive).
 assert (Cong A B D C) by (forward_using proposition_34).
 assert (Cong D E E D) by (conclude cn_equalityreverse).
 assert (Cong A E D F).
@@ -121,13 +121,13 @@ by cases on (BetS A D E \/ BetS A E D \/ eq D E).
 (** cases *)
 assert (Cong D F A E) by (conclude lemma_congruencesymmetric).
 assert (Cong D C A B) by (conclude lemma_congruencesymmetric).
-assert ((Cong F C E B /\ CongA D F C A E B /\ CongA D C F A B E)) by (conclude proposition_04).
+assert ((Cong F C E B /\ 等角 D F C A E B /\ 等角 D C F A B E)) by (conclude proposition_04).
 assert (Cong F D E A) by (forward_using lemma_congruenceflip).
-assert (CongA A B E D C F) by (conclude lemma_equalanglessymmetric).
+assert (等角 A B E D C F) by (conclude lemma_equalanglessymmetric).
 assert (nCol D C F) by (conclude lemma_equalanglesNC).
 assert (nCol F D C) by (forward_using lemma_NCorder).
 assert (Triangle F D C) by (conclude_def Triangle ).
-assert (Cong_3 F D C E A B) by (conclude_def Cong_3 ).
+assert (三角形全等 F D C E A B) by (conclude_def 三角形全等 ).
 assert (ET F D C E A B) by (conclude axiom_congruentequal).
 assert (EF A B C D E B C F).
 by cases on (BetS A D E \/ BetS A E D \/ eq D E).

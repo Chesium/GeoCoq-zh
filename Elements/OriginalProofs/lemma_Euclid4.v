@@ -11,7 +11,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma lemma_Euclid4 : 
    forall A B C a b c, 
    Per A B C -> Per a b c ->
-   CongA A B C a b c.
+   等角 A B C a b c.
 Proof.
 intros.
 let Tf:=fresh in
@@ -109,9 +109,9 @@ assert (Out B C C) by (conclude lemma_ray4).
 assert (Out B A A) by (conclude lemma_ray4).
 assert (Cong B A B A) by (conclude cn_congruencereflexive).
 assert (nCol A B C) by (conclude lemma_rightangleNC).
-assert (CongA A B C A B F) by (conclude_def CongA ).
-assert (CongA A B C A B C) by (conclude lemma_equalanglesreflexive).
-assert (CongA A B C A B F) by (conclude lemma_equalanglestransitive).
+assert (等角 A B C A B F) by (conclude_def 等角 ).
+assert (等角 A B C A B C) by (conclude lemma_equalanglesreflexive).
+assert (等角 A B C A B F) by (conclude lemma_equalanglestransitive).
 assert (eq p p) by (conclude cn_equalityreflexive).
 assert (eq q q) by (conclude cn_equalityreflexive).
 assert (Out b p p) by (conclude lemma_ray4).
@@ -121,17 +121,17 @@ assert (Out B A A) by (conclude lemma_ray4).
 assert (Cong B A b p) by (conclude lemma_congruencesymmetric).
 assert (Cong B A p b) by (forward_using lemma_congruenceflip).
 assert (nCol A B F) by (conclude lemma_rightangleNC).
-assert (CongA A B F p b q) by (conclude_def CongA ).
-assert (CongA A B C p b q) by (conclude lemma_equalanglestransitive).
+assert (等角 A B F p b q) by (conclude_def 等角 ).
+assert (等角 A B C p b q) by (conclude lemma_equalanglestransitive).
 assert (nCol a b c) by (conclude lemma_rightangleNC).
 assert (Out b p p) by (conclude lemma_ray4).
 assert (Out b q q) by (conclude lemma_ray4).
 assert (Cong b p b p) by (conclude cn_congruencereflexive).
 assert (Cong b q b q) by (conclude cn_congruencereflexive).
 assert (Cong p q p q) by (conclude cn_congruencereflexive).
-assert (CongA a b c p b q) by (conclude_def CongA ).
-assert (CongA p b q a b c) by (conclude lemma_equalanglessymmetric).
-assert (CongA A B C a b c) by (conclude lemma_equalanglestransitive).
+assert (等角 a b c p b q) by (conclude_def 等角 ).
+assert (等角 p b q a b c) by (conclude lemma_equalanglessymmetric).
+assert (等角 A B C a b c) by (conclude lemma_equalanglestransitive).
 close.
 Qed.
 

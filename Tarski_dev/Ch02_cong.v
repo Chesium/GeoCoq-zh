@@ -162,9 +162,9 @@ Section T1_3.
 Context `{Tn:无维度中性塔斯基公理系统}.
 
 Lemma 五线段公理_等价SAS_with_def : forall A B C D A' B' C' D',
- OFSC A B C D A' B' C' D' -> A<>B -> Cong C D C' D'.
+ 外五线段形式 A B C D A' B' C' D' -> A<>B -> Cong C D C' D'.
 Proof.
-    unfold OFSC.
+    unfold 外五线段形式.
     intros;spliter.
     apply (五线段公理_等价SAS A A' B B'); assumption.
 Qed.
@@ -209,30 +209,30 @@ Proof.
 Qed.
 
 Lemma 三角形全等的对称性 : forall A B C A' B' C',
- Cong_3 A B C A' B' C' -> Cong_3 A' B' C' A B C.
+ 三角形全等 A B C A' B' C' -> 三角形全等 A' B' C' A B C.
 Proof.
-    unfold Cong_3.
+    unfold 三角形全等.
     intuition.
 Qed.
 
 Lemma 三角形全等的BAC交换性 : forall A B C A' B' C',
-  Cong_3 A B C A' B' C' -> Cong_3 B A C B' A' C'.
+  三角形全等 A B C A' B' C' -> 三角形全等 B A C B' A' C'.
 Proof.
-    unfold Cong_3.
+    unfold 三角形全等.
     intuition.
 Qed.
 
 Lemma 三角形全等的ACB交换性 : forall A B C A' B' C',
- Cong_3 A B C A' B' C' -> Cong_3 A C B A' C' B'.
+ 三角形全等 A B C A' B' C' -> 三角形全等 A C B A' C' B'.
 Proof.
-    unfold Cong_3.
+    unfold 三角形全等.
     intuition.
 Qed.
 
 Lemma 三角形全等的传递性 : forall A0 B0 C0 A1 B1 C1 A2 B2 C2,
- Cong_3 A0 B0 C0 A1 B1 C1 -> Cong_3 A1 B1 C1 A2 B2 C2 -> Cong_3 A0 B0 C0 A2 B2 C2.
+ 三角形全等 A0 B0 C0 A1 B1 C1 -> 三角形全等 A1 B1 C1 A2 B2 C2 -> 三角形全等 A0 B0 C0 A2 B2 C2.
 Proof.
-    unfold Cong_3.
+    unfold 三角形全等.
     intros.
     spliter.
     repeat split; eapply 等长的传递性; eCong.
@@ -242,7 +242,7 @@ End T1_3.
 
 Hint Resolve 三角形全等的对称性 : cong.
 Hint Resolve 三角形全等的BAC交换性 三角形全等的ACB交换性 三角形全等的传递性 : cong3.
-Hint Unfold Cong_3 : cong3.
+Hint Unfold 三角形全等 : cong3.
 
 Section T1_4.
 
@@ -274,7 +274,7 @@ Proof.
     apply 等长的交换性; apply (五线段公理_等价SAS A A' B B' C C' A A'); Cong.
 Qed.
 
-Lemma bet_cong3 : forall A B C A' B',  Bet A B C -> Cong A B A' B' -> exists C', Cong_3 A B C A' B' C'.
+Lemma bet_cong3 : forall A B C A' B',  Bet A B C -> Cong A B A' B' -> exists C', 三角形全等 A B C A' B' C'.
 Proof.
     intros.
     assert (exists x, Bet A' B' x /\ Cong B' x B C) by (apply 由一点往一方向构造等长线段).
@@ -285,7 +285,7 @@ Proof.
         apply H1.
         assumption.
       Cong.
-    exists x;unfold Cong_3; repeat split;Cong.
+    exists x;unfold 三角形全等; repeat split;Cong.
 Qed.
 
 Lemma 点的唯一构造 : forall Q A B C X Y,
@@ -294,7 +294,7 @@ Proof.
     intros.
     assert (Cong A X A Y) by (apply 等长的传递性 with B C; Cong).
     assert (Cong Q X Q Y) by (apply (两组连续三点分段等则全体等 Q A X Q A Y);Cong).
-    assert(OFSC Q A X Y Q A X X) by (unfold OFSC;repeat split;Cong).
+    assert(外五线段形式 Q A X Y Q A X X) by (unfold 外五线段形式;repeat split;Cong).
     apply 五线段公理_等价SAS_with_def in H6; try assumption.
     apply 等长的同一性 with X; Cong.
 Qed.

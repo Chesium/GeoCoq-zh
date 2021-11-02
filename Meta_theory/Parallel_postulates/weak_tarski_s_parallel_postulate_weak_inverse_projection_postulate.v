@@ -11,17 +11,17 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma  weak_tarski_s_parallel_postulate__weak_inverse_projection_postulate_aux :
   weak_tarski_s_parallel_postulate ->
   forall A B C P T,
-    Per A B C -> InAngle T A B C ->
-    P <> T -> CongA P B A P B C -> Per B P T -> Coplanar A B C P ->
+    Per A B C -> 在角内 T A B C ->
+    P <> T -> 等角 P B A P B C -> Per B P T -> 共面 A B C P ->
     (exists X, Out B A X /\ Col T P X) \/ (exists Y, Out B C Y /\ Col T P Y).
 Proof.
-  intros tora A B C P T HPer HInAngle HPT HCongA HPerP HCop.
+  intros tora A B C P T HPer H在角内 HPT H等角 HPerP HCop.
 
-  assert (HIn : InAngle P A B C)
+  assert (HIn : 在角内 P A B C)
     by (apply conga_cop_inangle_per2__inangle with T; assumption).
-  assert (HAcute : Acute P B A)
+  assert (H为锐角 : 为锐角 P B A)
     by (apply acute_sym, conga_inangle_per__acute with C; assumption).
-  assert (HAcute' : Acute P B C) by (apply (acute_conga__acute P B A); assumption).
+  assert (H为锐角' : 为锐角 P B C) by (apply (acute_conga__acute P B A); assumption).
   assert_diffs.
   assert (HPerp : Perp B P P T) by (apply per_perp; auto).
   assert (HNCol : ~ Col A B C) by (apply per_not_col; auto).
@@ -53,23 +53,23 @@ Lemma weak_tarski_s_parallel_postulate__weak_inverse_projection_postulate :
 Proof.
 intro wtpp.
 cut (forall A B C P T,
-       Per A B C -> InAngle T A B C ->
-       P <> T -> CongA P B A P B C -> Coplanar A B C P -> Per B P T ->
+       Per A B C -> 在角内 T A B C ->
+       P <> T -> 等角 P B A P B C -> 共面 A B C P -> Per B P T ->
        exists X Y, Out B A X /\ Col T P X /\ Out B C Y /\ Col T P Y).
 
   {
-  intros rabp A B C D E F P Q HAcute HPerE HSuma HOut HPQ HPerP HCop.
+  intros rabp A B C D E F P Q H为锐角 HPerE HSuma HOut HPQ HPerP HCop.
   assert (HNCol1 : ~ Col A B C).
     intro; suma.assert_diffs; apply (per_not_col D E F); auto.
     apply (col2_suma__col A B C A B C); assumption.
   assert (HNCol2 : ~ Col B P Q) by (assert_diffs; apply per_not_col; auto).
-  assert (HCongA : CongA A B C P B C).
+  assert (H等角 : 等角 A B C P B C).
     assert_diffs; apply out2__conga; [apply l6_6|apply out_trivial]; auto.
   assert (HNCol3 : ~ Col P B C) by (apply (ncol_conga_ncol A B C); assumption).
   assert (HPerp : Perp B P P Q) by (apply per_perp; assert_diffs; auto).
   apply suma_left_comm in HSuma.
   destruct HSuma as [J [HJ1 [HJ2 [HJ3 HJ4]]]].
-  assert (HQ' : exists Q', P <> Q' /\ Col P Q Q' /\ InAngle Q' C B P).
+  assert (HQ' : exists Q', P <> Q' /\ Col P Q Q' /\ 在角内 Q' C B P).
   { destruct (cop_not_par_same_side B P Q P P C) as [Q0 [HCol HOS]]; Col.
       CopR.
     destruct (one_side_dec B C P Q0).
@@ -93,28 +93,28 @@ cut (forall A B C P T,
   }
   destruct HQ' as [Q' [HPQ' [HCol HInangle]]].
   apply l6_6 in HOut.
-  assert (HInangle' : InAngle Q' C B J).
+  assert (HInangle' : 在角内 Q' C B J).
   { apply in_angle_trans with P; trivial.
     assert_diffs.
     apply l11_25 with A C J; [|apply out_trivial..|]; auto.
     apply os_ts__inangle.
-      assert (~ Col A B J) by (apply (ncol_conga_ncol A B C); CongA).
+      assert (~ Col A B J) by (apply (ncol_conga_ncol A B C); 等角).
       apply cop_nos__ts; Col; Cop.
     assert (~ Col C B J).
-      apply (ncol_conga_ncol D E F); CongA; apply per_not_col; auto.
+      apply (ncol_conga_ncol D E F); 等角; apply per_not_col; auto.
     apply invert_one_side, one_side_symmetry, cop_nts__os; Col.
     apply conga_sams_nos__nts with A B C; SumA.
   }
   destruct (rabp C B J P Q') as [Y [_ [HY1 [HY2 _]]]]; trivial.
-    apply (l11_17 D E F); CongA.
-    assert_diffs; apply l11_10 with A C A J; try (apply out_trivial); CongA.
+    apply (l11_17 D E F); 等角.
+    assert_diffs; apply l11_10 with A C A J; try (apply out_trivial); 等角.
     CopR.
     apply per_col with Q; auto.
   exists Y; split; ColR.
   }
 
   {
-  intros A B C P T HPer HInAngle HPT HCongA HCop HPerP.
+  intros A B C P T HPer H在角内 HPT H等角 HCop HPerP.
   assert (HNOut : ~ Out B A C) by (intro; assert_diffs; apply (per_not_col A B C); Col).
   assert (HPerp : Perp B P P T) by (assert_diffs; apply per_perp; auto).
   destruct (weak_tarski_s_parallel_postulate__weak_inverse_projection_postulate_aux wtpp A B C P T) as [[X [HX1 HX2]]|[Y [HY1 HY2]]]; trivial.
@@ -135,10 +135,10 @@ cut (forall A B C P T,
     assert (X <> Y).
     { intro; treat_equalities.
       apply HNOut, l6_7 with P; apply l6_6; trivial.
-      apply (l11_21_a P B C); [Out|CongA].
+      apply (l11_21_a P B C); [Out|等角].
     }
     assert (Out B A X).
-    { apply conga_cop_out_reflectl__out with C P Y; Out; [Cop|CongA|].
+    { apply conga_cop_out_reflectl__out with C P Y; Out; [Cop|等角|].
       apply l10_4_spec; split.
         exists P; split; Col.
       left; apply perp_col2_bis with P T; ColR.

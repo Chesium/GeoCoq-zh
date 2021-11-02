@@ -6,12 +6,12 @@ Section Euclid.
 Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma lemma_pointreflectionisometry : 
    forall A B C P Q, 
-   Midpoint A B C -> Midpoint P B Q -> neq A P ->
+   中点 A B C -> 中点 P B Q -> neq A P ->
    Cong A P C Q.
 Proof.
 intros.
-assert ((BetS A B C /\ Cong A B B C)) by (conclude_def Midpoint ).
-assert ((BetS P B Q /\ Cong P B B Q)) by (conclude_def Midpoint ).
+assert ((BetS A B C /\ Cong A B B C)) by (conclude_def 中点 ).
+assert ((BetS P B Q /\ Cong P B B Q)) by (conclude_def 中点 ).
 assert (Cong A P C Q).
 by cases on (Col A B P \/ nCol A B P).
 {
@@ -22,7 +22,7 @@ by cases on (Col A B P \/ nCol A B P).
   assert (~ ~ Cong A P C Q).
    {
    intro.
-   assert (BetS A B C) by (conclude_def Midpoint ).
+   assert (BetS A B C) by (conclude_def 中点 ).
    assert (neq A B) by (forward_using lemma_betweennotequal).
    contradict.
    }
@@ -148,10 +148,10 @@ by cases on (Col A B P \/ nCol A B P).
  close.
  }
 {
- assert (CongA A B P Q B C) by (conclude proposition_15a).
+ assert (等角 A B P Q B C) by (conclude proposition_15a).
  assert (nCol Q B C) by (conclude lemma_equalanglesNC).
- assert (CongA Q B C C B Q) by (conclude lemma_ABCequalsCBA).
- assert (CongA A B P C B Q) by (conclude lemma_equalanglestransitive).
+ assert (等角 Q B C C B Q) by (conclude lemma_ABCequalsCBA).
+ assert (等角 A B P C B Q) by (conclude lemma_equalanglestransitive).
  assert (Cong B A B C) by (forward_using lemma_congruenceflip).
  assert (Cong B P B Q) by (forward_using lemma_congruenceflip).
  assert (Cong A P C Q) by (conclude proposition_04).

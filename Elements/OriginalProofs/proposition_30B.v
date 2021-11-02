@@ -19,27 +19,27 @@ assert (neq H K) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
 assert (Tf:exists P, (BetS H G P /\ Cong G P G H)) by (conclude lemma_extension);destruct Tf as [P];spliter.
 assert (BetS P G H) by (conclude axiom_betweennesssymmetry).
-assert (CongA A G H G H F)
+assert (等角 A G H G H F)
  by (apply (proposition_29 A B E F P G H);auto).
 assert (BetS P K H) by (conclude lemma_3_5b).
-assert (CongA C K H K H F) by (conclude (proposition_29 C D E F P  )).
+assert (等角 C K H K H F) by (conclude (proposition_29 C D E F P  )).
 assert (BetS H K G) by (conclude axiom_betweennesssymmetry).
 assert (Out H K G) by (conclude lemma_ray4).
 assert (Out H G K) by (conclude lemma_ray5).
 assert (eq F F) by (conclude cn_equalityreflexive).
 assert (neq H F) by (forward_using lemma_betweennotequal).
 assert (Out H F F) by (conclude lemma_ray4).
-assert (CongA A G H K H F) by (conclude lemma_equalangleshelper).
-assert (CongA K H F A G H) by (conclude lemma_equalanglessymmetric).
-assert (CongA C K H A G H) by (conclude lemma_equalanglestransitive).
+assert (等角 A G H K H F) by (conclude lemma_equalangleshelper).
+assert (等角 K H F A G H) by (conclude lemma_equalanglessymmetric).
+assert (等角 C K H A G H) by (conclude lemma_equalanglestransitive).
 assert (neq G H) by (forward_using lemma_betweennotequal).
 assert (Out G H K) by (conclude lemma_ray4).
 assert (neq A G) by (forward_using lemma_betweennotequal).
 assert (neq G A) by (conclude lemma_inequalitysymmetric).
 assert (eq A A) by (conclude cn_equalityreflexive).
 assert (Out G A A) by (conclude lemma_ray4).
-assert (CongA C K H A G K) by (conclude lemma_equalangleshelper).
-assert (CongA H K C K G A) by (conclude lemma_equalanglesflip).
+assert (等角 C K H A G K) by (conclude lemma_equalangleshelper).
+assert (等角 H K C K G A) by (conclude lemma_equalanglesflip).
 let Tf:=fresh in
 assert (Tf:exists M, (BetS A M F /\ Col G H M /\ nCol G H A)) by (conclude_def TS );destruct Tf as [M];spliter.
 let Tf:=fresh in

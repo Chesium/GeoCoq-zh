@@ -7,8 +7,8 @@ Section Desargues_Hessenberg.
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma l13_15_1 : forall A B C A' B' C' O,
-  ~ Col A B C -> ~ Par O B A C -> Coplanar O B A C ->
-  Par_strict A B A' B' -> Par_strict A C A' C'->
+  ~ Col A B C -> ~ Par O B A C -> 共面 O B A C ->
+  严格平行 A B A' B' -> 严格平行 A C A' C'->
   Col O A A' -> Col O B B' -> Col O C C' ->
   Par B C B' C'.
 Proof.
@@ -154,8 +154,8 @@ Proof.
       auto.
     ex_and H26 X.
     ex_and H27 Y.
-    assert(Coplanar O B X A) by (apply col_cop__cop with Y; Col; Cop).
-    assert(Coplanar O B Y A) by (apply col_cop__cop with X; Col; Cop).
+    assert(共面 O B X A) by (apply col_cop__cop with Y; Col; Cop).
+    assert(共面 O B Y A) by (apply col_cop__cop with X; Col; Cop).
     assert(exists L : Tpoint, Col L X Y /\ Col L A' C').
       apply(cop_npar__inter_exists X Y A' C').
       apply coplanar_pseudo_trans with O A B; [Cop..|].
@@ -200,7 +200,7 @@ Proof.
       spliter.
       apply H16.
       Col.
-    assert(Coplanar X Y O C).
+    assert(共面 X Y O C).
       apply coplanar_pseudo_trans with O A B; Cop.
     assert(HH:=cop_npar__inter_exists X Y O C H36 H35).
     ex_and HH M.
@@ -262,11 +262,11 @@ Proof.
       intro.
       apply H42.
       Par.
-    assert(Coplanar A B L B').
+    assert(共面 A B L B').
       apply coplanar_perm_4, col_cop__cop with O; Col; Cop.
     assert(HH:=cop_npar__inter_exists A B L B' H44 H43).
     ex_and HH N.
-    assert(Par_strict A L O B').
+    assert(严格平行 A L O B').
       induction H34.
         auto.
       spliter.
@@ -286,7 +286,7 @@ Proof.
     (**********************************)
     assert(Par O N L A').
       induction(par_dec A O N L).
-        assert(Par_strict A O N L).
+        assert(严格平行 A O N L).
           induction H18.
             auto.
           spliter.
@@ -305,7 +305,7 @@ Proof.
         apply H47.
         exists B.
         split; Col.
-      assert(Coplanar A O N L).
+      assert(共面 A O N L).
         assert_diffs; apply coplanar_perm_1, col_cop__cop with B'; Col; Cop.
       assert(HH:=cop_npar__inter_exists A O N L H51 H18).
       ex_and HH P.
@@ -400,7 +400,7 @@ Proof.
       apply (par_trans _ _ A' C'); Par.
     assert(Par N M B C).
       induction(par_dec A N O C).
-        assert(Par_strict A N O C).
+        assert(严格平行 A N O C).
           induction H52.
             auto.
           spliter.
@@ -409,7 +409,7 @@ Proof.
           Col.
         apply par_right_comm.
         apply(l13_14 A N B A O C M O ); Par; Col.
-      assert(Coplanar A N O C) by Cop.
+      assert(共面 A N O C) by Cop.
       assert(HH:= cop_npar__inter_exists A N O C H53 H52).
       ex_and HH P.
       assert(B <> P).
@@ -472,7 +472,7 @@ Proof.
     *)
     assert(Par N M B' C').
       induction(par_dec N B' O C').
-        assert(Par_strict N B' O C').
+        assert(严格平行 N B' O C').
           induction H53.
             auto.
           spliter.
@@ -510,7 +510,7 @@ Proof.
           Par.
         apply par_right_comm.
         apply(l13_14 B' N B' L O C' M O); Par; ColR.
-      assert(Coplanar N B' O C').
+      assert(共面 N B' O C').
         apply coplanar_pseudo_trans with O A B; [Cop..|].
         apply coplanar_perm_12, col_cop__cop with C; Col; Cop.
       assert(HH:= cop_npar__inter_exists N B' O C' H54 H53).
@@ -645,8 +645,8 @@ Qed.
 Lemma l13_15_2_aux : forall A B C A' B' C' O , ~Col A B C
                                          -> ~Par O A B C
                                          -> Par O B A C
-                                         -> Par_strict A B A' B'
-                                         -> Par_strict A C A' C'
+                                         -> 严格平行 A B A' B'
+                                         -> 严格平行 A C A' C'
                                          -> Col O A A' -> Col O B B' -> Col O C C'
                                          -> Par B C B' C'.
 Proof.
@@ -779,7 +779,7 @@ Proof.
         split; Col.
       spliter.
       contradiction.
-    assert(Coplanar X Y O C).
+    assert(共面 X Y O C).
       induction H25.
         apply coplanar_pseudo_trans with B C B'.
           apply not_col_permutation_1, (par_not_col X Y); Par.
@@ -847,8 +847,8 @@ Qed.
 
 Lemma l13_15_2 : forall A B C A' B' C' O , ~Col A B C
                                          -> Par O B A C
-                                         -> Par_strict A B A' B'
-                                         -> Par_strict A C A' C'
+                                         -> 严格平行 A B A' B'
+                                         -> 严格平行 A C A' C'
                                          -> Col O A A' -> Col O B B' -> Col O C C'
                                          -> Par B C B' C'.
 Proof.
@@ -946,9 +946,9 @@ Proof.
 Qed.
 
 
-Lemma l13_15 : forall A B C A' B' C' O , ~Col A B C -> Coplanar O B A C
-                                         -> Par_strict A B A' B'
-                                         -> Par_strict A C A' C'
+Lemma l13_15 : forall A B C A' B' C' O , ~Col A B C -> 共面 O B A C
+                                         -> 严格平行 A B A' B'
+                                         -> 严格平行 A C A' C'
                                          -> Col O A A' -> Col O B B' -> Col O C C'
                                          -> Par B C B' C'.
 Proof.
@@ -960,8 +960,8 @@ Qed.
 
 
 Lemma l13_15_par : forall A B C A' B' C', ~Col A B C
-                                         -> Par_strict A B A' B'
-                                         -> Par_strict A C A' C'
+                                         -> 严格平行 A B A' B'
+                                         -> 严格平行 A C A' C'
                                          -> Par A A' B B'
                                          -> Par A A' C C'
                                          -> Par B C B' C'.
@@ -1042,9 +1042,9 @@ Proof.
 Qed.
 
 Lemma l13_18_2 : forall A B C A' B' C' O, ~Col A B C
-                               -> Par_strict A B A' B'
-                               -> Par_strict A C A' C'
-                               -> (Par_strict B C B' C' /\ Col O A A' /\ Col O B B' -> Col O C C').
+                               -> 严格平行 A B A' B'
+                               -> 严格平行 A C A' C'
+                               -> (严格平行 B C B' C' /\ Col O A A' /\ Col O B B' -> Col O C C').
 Proof.
     intros.
     spliter.
@@ -1099,7 +1099,7 @@ Proof.
       apply par_left_comm.
       left.
       Par.
-    assert(Par_strict C' C'' B C).
+    assert(严格平行 C' C'' B C).
       induction H9.
         auto.
       spliter.
@@ -1138,7 +1138,7 @@ Proof.
         split; Col.
       left.
       Par.
-    assert(Par_strict B' C'' B C).
+    assert(严格平行 B' C'' B C).
       induction H12.
         auto.
       spliter.
@@ -1181,9 +1181,9 @@ Proof.
 Qed.
 
 Lemma l13_18_3 : forall A B C A' B' C', ~Col A B C
-                               -> Par_strict A B A' B'
-                               -> Par_strict A C A' C'
-                               -> (Par_strict B C B' C' /\ Par A A' B B')
+                               -> 严格平行 A B A' B'
+                               -> 严格平行 A C A' C'
+                               -> (严格平行 B C B' C' /\ Par A A' B B')
                                -> (Par C C' A A' /\ Par C C' B B').
 Proof.
     intros.
@@ -1218,7 +1218,7 @@ Proof.
         intro.
         apply H7.
         apply(par_trans _ _ B' C'); Par.
-      assert(Coplanar C P B' C').
+      assert(共面 C P B' C').
         apply coplanar_perm_2, coplanar_trans_1 with B; [|Cop..].
         apply not_col_permutation_1, par_not_col with B' C'; Par; Col.
       assert(HH:=cop_npar__inter_exists C P B' C' H9 H8).
@@ -1301,9 +1301,9 @@ Proof.
     apply (par_trans _ _ A A'); Par.
 Qed.
 
-Lemma l13_18 :  forall A B C A' B' C' O, ~Col A B C /\ Par_strict A B A' B' /\  Par_strict A C A' C'
-                                        ->(Par_strict B C B' C' /\ Col O A A' /\ Col O B B' -> Col O C C')
-                                          /\ ((Par_strict B C B' C' /\ Par A A' B B') -> (Par C C' A A' /\ Par C C' B B'))
+Lemma l13_18 :  forall A B C A' B' C' O, ~Col A B C /\ 严格平行 A B A' B' /\  严格平行 A C A' C'
+                                        ->(严格平行 B C B' C' /\ Col O A A' /\ Col O B B' -> Col O C C')
+                                          /\ ((严格平行 B C B' C' /\ Par A A' B B') -> (Par C C' A A' /\ Par C C' B B'))
                                           /\ (Par A A' B B' /\ Par A A' C C' -> Par B C B' C').
 Proof.
     intros.
@@ -1330,7 +1330,7 @@ Lemma l13_19_aux : forall A B C D A' B' C' D' O, ~Col O A B -> A <> A' -> A <> C
                                           -> Par C D C' D'.
 Proof.
     intros.
-    assert(Coplanar A B C D) by (exists O; right; left; split; Col).
+    assert(共面 A B C D) by (exists O; right; left; split; Col).
     assert(HH:= cop_npar__inter_exists A B C D H20 H16).
     ex_and HH E.
     assert(~Par A' B' O E).
@@ -1344,7 +1344,7 @@ Proof.
       spliter.
       apply H.
       apply (col_transitivity_1 _ E); Col.
-    assert(Coplanar A' B' O E).
+    assert(共面 A' B' O E).
       apply coplanar_pseudo_trans with O A B; Cop.
     assert(HH:= cop_npar__inter_exists A' B' O E H24 H23).
     ex_and HH E'.
@@ -1643,13 +1643,13 @@ Lemma l13_19_par_aux : forall A B C D A' B' C' D' X Y,
                                           -> Col X A C -> Col X A A' -> Col X A C'
                                           -> Col Y B D -> Col Y B B' -> Col Y B D'
                                           -> A <> C -> B <> D -> A <> A'
-                                          -> Par_strict X A Y B
+                                          -> 严格平行 X A Y B
                                           -> ~Par A B C D
                                           -> Par A B A' B' -> Par A D A' D' -> Par B C B' C'
                                           -> Par C D C' D'.
 Proof.
     intros.
-    assert(Coplanar A B C D).
+    assert(共面 A B C D).
       apply coplanar_perm_2, col_cop__cop with Y; Col.
       apply coplanar_perm_16, col_cop__cop with X; Col; Cop.
     assert(HH := cop_npar__inter_exists A B C D H21 H17).
@@ -1682,7 +1682,7 @@ Proof.
       intro.
       apply H25.
       apply (par_trans _ _ A' B'); Par.
-    assert(Coplanar A' B' E Z).
+    assert(共面 A' B' E Z).
       induction H24.
         CopR.
       spliter.
@@ -1717,7 +1717,7 @@ Proof.
       exists A.
       split; Col.
       ColR.
-    assert(Par_strict X A E Z).
+    assert(严格平行 X A E Z).
       induction H24.
         Par.
       spliter.
@@ -1741,7 +1741,7 @@ Proof.
         apply (col_transitivity_1  _ C); Col.
     assert(Par Y B E Z).
       apply (par_trans _ _ X A); Par.
-    assert(Par_strict Y B E Z).
+    assert(严格平行 Y B E Z).
       induction H32.
         Par.
       spliter.
@@ -1910,7 +1910,7 @@ Proof.
       apply par_symmetry.
       apply (par_col_par_2 _ B'); Col.
       Par.
-    assert(Par_strict A E A' E').
+    assert(严格平行 A E A' E').
       induction H46.
         Par.
       spliter.
@@ -2026,7 +2026,7 @@ Qed.
 Lemma l13_19_par : forall A B C D A' B' C' D' X Y,
  X <> A -> X <> A' -> X <> C -> X <> C'-> Y <> B -> Y <> B' -> Y <> D -> Y <> D' ->
  Col X A C -> Col X A A' -> Col X A C' -> Col Y B D -> Col Y B B' -> Col Y B D' ->
- Par_strict X A Y B -> Par A B A' B' -> Par A D A' D' -> Par B C B' C' ->
+ 严格平行 X A Y B -> Par A B A' B' -> Par A D A' D' -> Par B C B' C' ->
  Par C D C' D'.
 Proof.
     intros.
@@ -2161,9 +2161,9 @@ Proof.
           split; Col.
         spliter.
         Col.
-      unfold Par_strict in H13.
+      unfold 严格平行 in H13.
       spliter.
-      unfold Par_strict.
+      unfold 严格平行.
       split.
         apply coplanar_perm_16, col_cop__cop with A; Col.
         apply coplanar_perm_16, col_cop__cop with B; Col.

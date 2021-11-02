@@ -9,7 +9,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma proposition_27 : 
    forall A B C D E F, 
-   BetS A E B -> BetS C F D -> CongA A E F E F D -> TS A E F D ->
+   BetS A E B -> BetS C F D -> 等角 A E F E F D -> TS A E F D ->
    Par A B C D.
 Proof.
 intros.
@@ -21,8 +21,8 @@ assert (Col A E B) by (conclude_def Col ).
 assert (neq A E) by (forward_using lemma_betweennotequal).
 assert (Col C F D) by (conclude_def Col ).
 assert (neq F D) by (forward_using lemma_betweennotequal).
-assert (CongA E F D A E F) by (conclude lemma_equalanglessymmetric).
-assert (nCol E F D) by (conclude_def CongA ).
+assert (等角 E F D A E F) by (conclude lemma_equalanglessymmetric).
+assert (nCol E F D) by (conclude_def 等角 ).
 assert (neq E F) by (forward_using lemma_angledistinct).
 assert (neq F E) by (conclude lemma_inequalitysymmetric).
 assert (~ Meet A B C D).
@@ -42,10 +42,10 @@ assert (~ Meet A B C D).
  assert (Out F E E) by (conclude lemma_ray4).
  assert (BetS D F C) by (conclude axiom_betweennesssymmetry).
  assert (Supp D F E E C) by (conclude_def Supp ).
- assert (CongA E F D D F E) by (conclude lemma_ABCequalsCBA).
- assert (CongA A E F D F E) by (conclude lemma_equalanglestransitive).
- assert (CongA F E B E F C) by (conclude lemma_supplements).
- assert (CongA B E F C F E) by (conclude lemma_equalanglesflip).
+ assert (等角 E F D D F E) by (conclude lemma_ABCequalsCBA).
+ assert (等角 A E F D F E) by (conclude lemma_equalanglestransitive).
+ assert (等角 F E B E F C) by (conclude lemma_supplements).
+ assert (等角 B E F C F E) by (conclude lemma_equalanglesflip).
  assert (~ BetS A E G).
   {
   intro.
@@ -118,8 +118,8 @@ assert (~ Meet A B C D).
    contradict.
    }
   assert (Triangle E G F) by (conclude_def Triangle ).
-  assert (LtA G E F E F C) by (conclude proposition_16).
-  assert (LtA G E F F E B) by (conclude lemma_angleorderrespectscongruence).
+  assert (角度小于 G E F E F C) by (conclude proposition_16).
+  assert (角度小于 G E F F E B) by (conclude lemma_angleorderrespectscongruence).
   assert (eq F F) by (conclude cn_equalityreflexive).
   assert (Out E F F) by (conclude lemma_ray4).
   assert (Out E G B) by (conclude_def Out ).
@@ -129,14 +129,14 @@ assert (~ Meet A B C D).
    assert (Col E G F) by (forward_using lemma_collinearorder).
    contradict.
    }
-  assert (CongA G E F G E F) by (conclude lemma_equalanglesreflexive).
-  assert (CongA G E F B E F) by (conclude lemma_equalangleshelper).
-  assert (nCol B E F) by (conclude_def CongA ).
-  assert (CongA B E F F E B) by (conclude lemma_ABCequalsCBA).
-  assert (CongA G E F F E B) by (conclude lemma_equalanglestransitive).
-  assert (CongA F E B G E F) by (conclude lemma_equalanglessymmetric).
-  assert (LtA F E B F E B) by (conclude lemma_angleorderrespectscongruence2).
-  assert (~ LtA F E B F E B) by (conclude lemma_angletrichotomy).
+  assert (等角 G E F G E F) by (conclude lemma_equalanglesreflexive).
+  assert (等角 G E F B E F) by (conclude lemma_equalangleshelper).
+  assert (nCol B E F) by (conclude_def 等角 ).
+  assert (等角 B E F F E B) by (conclude lemma_ABCequalsCBA).
+  assert (等角 G E F F E B) by (conclude lemma_equalanglestransitive).
+  assert (等角 F E B G E F) by (conclude lemma_equalanglessymmetric).
+  assert (角度小于 F E B F E B) by (conclude lemma_angleorderrespectscongruence2).
+  assert (~ 角度小于 F E B F E B) by (conclude lemma_angletrichotomy).
   contradict.
   }
  assert (~ Out E A G).
@@ -145,8 +145,8 @@ assert (~ Meet A B C D).
   assert (eq F F) by (conclude cn_equalityreflexive).
   assert (Out E F F) by (conclude lemma_ray4).
   assert (Out E G A) by (conclude lemma_ray5).
-  assert (CongA E F D A E F) by (conclude lemma_equalanglessymmetric).
-  assert (CongA E F D G E F) by (conclude lemma_equalangleshelper).
+  assert (等角 E F D A E F) by (conclude lemma_equalanglessymmetric).
+  assert (等角 E F D G E F) by (conclude lemma_equalangleshelper).
   assert (BetS B E A) by (conclude axiom_betweennesssymmetry).
   assert ((BetS E A G \/ eq G A \/ BetS E G A)) by (conclude lemma_ray1).
   assert (BetS B E G).
@@ -216,10 +216,10 @@ assert (~ Meet A B C D).
    assert (Col E F A) by (forward_using lemma_collinearorder).
    contradict.
    }
-  assert (CongA F E A F E A) by (conclude lemma_equalanglesreflexive).
-  assert (CongA F E A F E G) by (conclude lemma_equalangleshelper).
-  assert (CongA F E G F E A) by (conclude lemma_equalanglessymmetric).
-  assert (nCol F E G) by (conclude_def CongA ).
+  assert (等角 F E A F E A) by (conclude lemma_equalanglesreflexive).
+  assert (等角 F E A F E G) by (conclude lemma_equalangleshelper).
+  assert (等角 F E G F E A) by (conclude lemma_equalanglessymmetric).
+  assert (nCol F E G) by (conclude_def 等角 ).
   assert (~ Col E G F).
    {
    intro.
@@ -227,9 +227,9 @@ assert (~ Meet A B C D).
    contradict.
    }
   assert (Triangle E G F) by (conclude_def Triangle ).
-  assert (LtA G E F E F D) by (conclude proposition_16).
-  assert (LtA E F D E F D) by (conclude lemma_angleorderrespectscongruence2).
-  assert (~ LtA E F D E F D) by (conclude lemma_angletrichotomy).
+  assert (角度小于 G E F E F D) by (conclude proposition_16).
+  assert (角度小于 E F D E F D) by (conclude lemma_angleorderrespectscongruence2).
+  assert (~ 角度小于 E F D E F D) by (conclude lemma_angletrichotomy).
   contradict.
   }
  assert ((eq A E \/ eq A G \/ eq E G \/ BetS E A G \/ BetS A E G \/ BetS A G E)) by (conclude_def Col ).
@@ -269,13 +269,13 @@ assert (~ Meet A B C D).
    contradict.
    }
   assert (Triangle E A F) by (conclude_def Triangle ).
-  assert (LtA A E F E F D) by (conclude proposition_16).
-  assert (CongA E F D A E F) by (conclude lemma_equalanglessymmetric).
-  assert (LtA E F D E F D) by (conclude lemma_angleorderrespectscongruence2).
+  assert (角度小于 A E F E F D) by (conclude proposition_16).
+  assert (等角 E F D A E F) by (conclude lemma_equalanglessymmetric).
+  assert (角度小于 E F D E F D) by (conclude lemma_angleorderrespectscongruence2).
   assert (~ Meet A B C D).
    {
    intro.
-   assert (~ LtA E F D E F D) by (conclude lemma_angletrichotomy).
+   assert (~ 角度小于 E F D E F D) by (conclude lemma_angletrichotomy).
    contradict.
    }
   close.

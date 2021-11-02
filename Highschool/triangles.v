@@ -24,25 +24,25 @@ Qed.
 Lemma isosceles_conga :
   A<>C -> A<>B ->
   isosceles A B C ->
-  CongA C A B A C B.
+  等角 C A B A C B.
 Proof.
 intros.
 apply cong3_conga.
 auto.
 auto.
-unfold Cong_3.
+unfold 三角形全等.
 unfold isosceles in H.
 repeat split;Cong.
 Qed.
 
 Lemma conga_isosceles :
  ~ Col A B C ->
- CongA C A B A C B ->
+ 等角 C A B A C B ->
  isosceles A B C. 
 Proof.
 intros.
 assert (Cong B A B C)
- by (apply l11_44_1_b;finish;CongA).
+ by (apply l11_44_1_b;finish;等角).
 unfold isosceles.
 Cong.
 Qed.
@@ -54,7 +54,7 @@ Lemma isosceles_foot__midpoint_conga :
  isosceles A B C ->
  Col H A C -> 
  Perp H B A C ->
- ~ Col A B C /\ A<>H /\ C<>H /\ Midpoint H A C /\ CongA H B A H B C.
+ ~ Col A B C /\ A<>H /\ C<>H /\ 中点 H A C /\ 等角 H B A H B C.
 Proof.
 intros.
 assert_diffs.
@@ -85,15 +85,15 @@ assert (C<>H).
  unfold isosceles in *.
  apply (cong__nlt C B B A);finish.
  } 
-assert (Perp_at H A C B H)
+assert (垂直于 H A C B H)
  by (apply l8_14_2_1b_bis;finish).
 assert (Per A H B) by (apply perp_in_per_1 with C H;finish).
 assert (Per C H B) by (apply perp_in_per_3 with A H;finish). 
 (* We prove that A H B and C H B are congruent triangles *)
-assert (Cong H A H C /\ CongA H A B H C B /\ CongA H B A H B C)
+assert (Cong H A H C /\ 等角 H A B H C B /\ 等角 H B A H B C)
  by (apply (cong2_per2__cong_conga2 A H B C H B);finish).
 spliter.
-assert (Midpoint H A C)
+assert (中点 H A C)
  by (apply l7_20_bis;finish).
 auto.
 Qed.
@@ -281,14 +281,14 @@ unfold equilateral_strict in *.
 unfold equilateral in *.
 spliter.
 intro.
-assert (Midpoint B A C) by (apply (l7_20_bis B A C);finish).
-assert (Midpoint C A B) by (apply (l7_20_bis C A B);finish).
+assert (中点 B A C) by (apply (l7_20_bis B A C);finish).
+assert (中点 C A B) by (apply (l7_20_bis C A B);finish).
 apply midpoint_not_midpoint with C A B;auto.
 Qed.
 
 Lemma equilateral_strict_conga_1 :
  equilateral_strict A B C ->
- CongA C A B A C B.
+ 等角 C A B A C B.
 Proof.
 intros.
 assert (T:= equilateral_strict_neq H).
@@ -305,7 +305,7 @@ End ABC.
 Lemma equilateral_strict_conga_2 :
  forall A B C,
  equilateral_strict A B C ->
- CongA B A C A B C.
+ 等角 B A C A B C.
 Proof.
 intros.
 apply equilateral_strict_swap_1 in H.
@@ -316,7 +316,7 @@ Qed.
 Lemma equilateral_strict_conga_3 :
  forall A B C,
  equilateral_strict A B C ->
- CongA C B A B C A.
+ 等角 C B A B C A.
 Proof.
 intros.
 apply equilateral_strict_swap_2 in H.
@@ -327,15 +327,15 @@ Qed.
 Lemma conga3_equilateral :
  forall A B C, 
  ~ Col A B C ->
- CongA B A C A B C ->
- CongA A B C B C A ->
+ 等角 B A C A B C ->
+ 等角 A B C B C A ->
  equilateral A B C.
 Proof.
 intros.
 assert (isosceles B C A)
- by (apply conga_isosceles;CongA;Col).
+ by (apply conga_isosceles;等角;Col).
 assert (isosceles C A B)
- by (apply conga_isosceles;CongA;Col).
+ by (apply conga_isosceles;等角;Col).
 unfold isosceles in *.
 unfold equilateral.
 split;eCong.

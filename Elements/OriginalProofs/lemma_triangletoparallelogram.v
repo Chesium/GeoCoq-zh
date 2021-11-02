@@ -33,7 +33,7 @@ assert (~ Col B C A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists c b M, (BetS c A b /\ CongA b A D A D B /\ CongA b A D B D A /\ CongA D A b B D A /\ CongA c A D A D C /\ CongA c A D C D A /\ CongA D A c C D A /\ Par c b B C /\ Cong c A D C /\ Cong A b B D /\ Cong A M M D /\ Cong c M M C /\ Cong B M M b /\ BetS c M C /\ BetS B M b /\ BetS A M D)) by (conclude proposition_31);destruct Tf as [c[b[M]]];spliter.
+assert (Tf:exists c b M, (BetS c A b /\ 等角 b A D A D B /\ 等角 b A D B D A /\ 等角 D A b B D A /\ 等角 c A D A D C /\ 等角 c A D C D A /\ 等角 D A c C D A /\ Par c b B C /\ Cong c A D C /\ Cong A b B D /\ Cong A M M D /\ Cong c M M C /\ Cong B M M b /\ BetS c M C /\ BetS B M b /\ BetS A M D)) by (conclude proposition_31);destruct Tf as [c[b[M]]];spliter.
 assert (BetS b M B) by (conclude axiom_betweennesssymmetry).
 assert (nCol b B C) by (forward_using lemma_parallelNC).
 let Tf:=fresh in

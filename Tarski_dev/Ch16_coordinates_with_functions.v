@@ -143,7 +143,7 @@ exists B'.
 repeat split; auto.
 
 apply opp_midpoint in H.
-unfold Midpoint in H.
+unfold 中点 in H.
 spliter.
 apply 等长的传递性 with O0 C; Cong.
 Qed.
@@ -158,7 +158,7 @@ spliter.
 induction H1.
 split; auto.
 apply opp_midpoint in H1.
-unfold Midpoint in H1.
+unfold 中点 in H1.
 spliter.
 apply 等长的同一性 in H2.
 split; auto.
@@ -195,7 +195,7 @@ subst C.
 tauto.
 subst B.
 apply opp_midpoint in H5.
-unfold Midpoint in H5.
+unfold 中点 in H5.
 spliter.
 apply 等长的对称性 in H5.
 apply 等长的同一性 in H5.
@@ -218,7 +218,7 @@ spliter.
 induction H1.
 auto.
 apply opp_midpoint in H1.
-unfold Midpoint in H1.
+unfold 中点 in H1.
 spliter.
 apply 等长的对称性 in H2.
 apply 等长的同一性 in H2.
@@ -265,7 +265,7 @@ apply (opp_pythrel _ _ _ _ _ C); auto.
 left.
 unfold Ps.
 apply opp_midpoint in H4.
-unfold Midpoint in H4.
+unfold 中点 in H4.
 spliter.
 unfold Out.
 repeat split.
@@ -1130,7 +1130,7 @@ elim (coordinates_of_point_F B); intros [Bx By] _; simpl; split; auto.
 Qed.
 
 Lemma characterization_of_midpoint_F : forall A B I,
-  Midpoint I A B <->
+  中点 I A B <->
   let (Ac, _) := coordinates_of_point_F A in
   let (Ax, Ay) := Ac in
   let (Bc, _) := coordinates_of_point_F B in
@@ -1150,7 +1150,7 @@ intros; elim (两点重合的决定性 A B); intro HAB.
     }
 
     {
-    cut (A = I); [intro; treat_equalities; Midpoint|].
+    cut (A = I); [intro; treat_equalities; 中点|].
     rewrite characterization_of_equality_F; revert HMid.
     elim (coordinates_of_point_F A); intros Ac HAc.
     elim (coordinates_of_point_F I); intros Ic HIc.
@@ -1222,7 +1222,7 @@ Qed.
 Lemma characterization_of_parallelism_F_aux : forall A B C D,
   Par A B C D <->
   A <> B /\ C <> D /\
-  exists P, Midpoint C A P /\ exists Q, Midpoint Q B P /\ Col C D Q.
+  exists P, 中点 C A P /\ exists Q, 中点 Q B P /\ Col C D Q.
 Proof.
 intros; split; intro H; [do 2 (split; try solve [assert_diffs; auto])|
                          destruct H as [HAB [HCD [P [HP [Q [HQ HCol]]]]]]].
@@ -1368,7 +1368,7 @@ intros; split; [intro H; destruct H as [X [HAB [HCD [HC1 [HC2 HPer]]]]]|].
   }
 
   {
-  unfold Perp, Perp_at; intro HPerp.
+  unfold Perp, 垂直于; intro HPerp.
   assert (HX : ~ Par A B C D); revert HPerp.
     {
     intro H; assert (HAB : A <> B); revert H.
@@ -1502,9 +1502,9 @@ Ltac convert_to_algebra :=
 Ltac express_disj_as_a_single_poly := repeat rewrite <- mulF__eq0.
 
 Lemma centroid_theorem : forall A B C A1 B1 C1 G,
-  Midpoint A1 B C ->
-  Midpoint B1 A C ->
-  Midpoint C1 A B ->
+  中点 A1 B C ->
+  中点 B1 A C ->
+  中点 C1 A B ->
   Col A A1 G ->
   Col B B1 G ->
   Col C C1 G \/ Col A B C.
@@ -1533,8 +1533,8 @@ Lemma nine_point_circle : forall A B C A1 B1 C1 A2 B2 C2 A3 B3 C3 H O,
   Col A B C2 -> Col B C A2 -> Col A C B2 ->
   Perp A B C C2 -> Perp B C A A2 -> Perp A C B B2 ->
   Perp A B C2 H -> Perp B C A2 H -> Perp A C B2 H ->
-  Midpoint A3 A H -> Midpoint B3 B H -> Midpoint C3 C H ->
-  Midpoint C1 A B -> Midpoint A1 B C -> Midpoint B1 C A ->
+  中点 A3 A H -> 中点 B3 B H -> 中点 C3 C H ->
+  中点 C1 A B -> 中点 A1 B C -> 中点 B1 C A ->
   Cong O A1 O B1 -> Cong O A1 O C1 ->
   Cong O A2 O A1 /\ Cong O B2 O A1 /\ Cong O C2 O A1 /\
   Cong O A3 O A1 /\ Cong O B3 O A1 /\ Cong O C3 O A1.
@@ -2086,14 +2086,14 @@ rewrite <- H0.
 ring.
 Qed.
 
-Definition AM_CongAL A B C D E F := Py A B C * twice_signed_area D E F =F= Py D E F * twice_signed_area A B C.
+Definition AM_等角L A B C D E F := Py A B C * twice_signed_area D E F =F= Py D E F * twice_signed_area A B C.
 
 (** This shows that we have a notion of congruence of line angles, every angle is congruent to its supplement. *)
 
-Lemma supplement_AM_CongA : forall A B M C, Midpoint M A B -> AM_CongAL  A M C B M C.
+Lemma supplement_AM_等角 : forall A B M C, 中点 M A B -> AM_等角L  A M C B M C.
 Proof.
 intros A B M C.
-unfold AM_CongAL, twice_signed_area, Py, square_dist.
+unfold AM_等角L, twice_signed_area, Py, square_dist.
 rewrite characterization_of_midpoint_F.
 decompose_coordinates.
 unfold cross_product.

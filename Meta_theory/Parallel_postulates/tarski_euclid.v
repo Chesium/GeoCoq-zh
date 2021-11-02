@@ -11,7 +11,7 @@ Lemma tarski_s_euclid_implies_euclid_5 :
 Proof.
 intros HT P Q R S T U HPTQ HRTS HQUR HNC HCong1 HCong2.
 destruct (symmetric_point_construction R P) as [V HMid].
-assert (Hc1 : Bet V P R) by (unfold Midpoint in *; spliter; Between).
+assert (Hc1 : Bet V P R) by (unfold 中点 in *; spliter; Between).
 assert (Hc2 : Bet Q U R) by (unfold BetS in *; spliter; Between).
 destruct (帕施公理 V Q R P U) as [W [HPWQ HUWV]]; Col; clear Hc1; clear Hc2.
 assert (HPW : P <> W).
@@ -24,7 +24,7 @@ assert (HPW : P <> W).
   apply HNC; unfold BetS in *; spliter; ColR.
   }
 destruct (HT P V U W Q) as [X [Y [HPVX [HPUY HXQY]]]]; Between.
-assert (HPar : Par_strict Q S P R).
+assert (HPar : 严格平行 Q S P R).
   {
   apply par_not_col_strict with P; Col.
   assert_diffs; unfold BetS in *; spliter;

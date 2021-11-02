@@ -83,21 +83,21 @@ Qed.
 Lemma legendre_aux :
   ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C D B1 C1 P Q R S T U V W X,
-    ~ Col A B C -> CongA A C B C B D ->
+    ~ Col A B C -> 等角 A C B C B D ->
     Cong A C B D -> TS B C A D -> Out A B B1 -> Out A C C1 -> Bet B1 D C1 ->
     Defect A B C P Q R -> Defect A B1 C1 S T U -> SumA P Q R P Q R V W X ->
-    SAMS P Q R P Q R /\ LeA V W X S T U.
+    SAMS P Q R P Q R /\ 角度小于等于 V W X S T U.
 Proof.
   intros noah A B C D B1 C1 P Q R S T U V W X HNCol HConga HCong HTS HOutB HOutC HBet HDef HDef1 HSuma.
-  destruct (l11_49 A C B D B C) as [HCong1 [HConga1 HConga2]]; CongA; Cong.
+  destruct (l11_49 A C B D B C) as [HCong1 [HConga1 HConga2]]; 等角; Cong.
     assert_diffs; auto.
-  assert (HPar : Par_strict A C B D).
+  assert (HPar : 严格平行 A C B D).
   { apply par_not_col_strict with B; Col.
-    apply par_left_comm, l12_21_b; Side; CongA.
+    apply par_left_comm, l12_21_b; Side; 等角.
   }
-  assert (HPar' : Par_strict A B C D).
+  assert (HPar' : 严格平行 A B C D).
   { apply par_not_col_strict with C; Col.
-    apply par_left_comm, l12_21_b; Side; CongA.
+    apply par_left_comm, l12_21_b; Side; 等角.
   }
   assert (HNCol2:= HPar'); assert (HNCol3 := HPar'); assert (HNCol4 := HPar').
   apply par_strict_not_col_2 in HNCol2; apply par_strict_not_col_3 in HNCol3; apply par_strict_not_col_4 in HNCol4.
@@ -170,9 +170,9 @@ Proof.
   assert (HIsi7 : SAMS P Q R J' K' L').
     apply sams_assoc_1 with M N O A' B' C' G H I; trivial.
   destruct (t22_16_2 noah C B B1 D M' N' O' A' B' C' P Q R M N O Z J' K' L') as [HIsi8 HSuma8]; trivial.
-    apply defect_perm_231, (conga3_defect__defect A B C); CongA.
+    apply defect_perm_231, (conga3_defect__defect A B C); 等角.
     apply defect_perm_231, HDef5.
-  assert (HLea : LeA P Q R J' K' L') by (apply sams_suma__lea123789 with M' N' O'; trivial).
+  assert (HLea : 角度小于等于 P Q R J' K' L') by (apply sams_suma__lea123789 with M' N' O'; trivial).
 
   split.
     suma.assert_diffs.
@@ -184,7 +184,7 @@ Qed.
 
 Lemma legendre_aux1 : forall A B C B' C',
   ~ Col A B C -> Out A B B' -> Out A C C' ->
-  exists D', InAngle D' B A C /\ CongA A C' B' C' B' D' /\
+  exists D', 在角内 D' B A C /\ 等角 A C' B' C' B' D' /\
              Cong A C' B' D' /\ TS B' C' A D'.
 Proof.
   intros A B C B' C' HNCol HOutB HOutC.
@@ -203,7 +203,7 @@ Proof.
   destruct (l11_49 A M C' D' M B') as [HCong1 [HConga1 HConga2]]; Cong.
     apply l11_14; Between.
   split.
-    apply (l11_10 A C' M M B' D'); Out; CongA.
+    apply (l11_10 A C' M M B' D'); Out; 等角.
   split; Cong.
   repeat split; Col.
   exists M; split; Col.
@@ -212,17 +212,17 @@ Qed.
 Lemma legendre_aux2 :
   ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C,
-    ~ Col A B C ->  Acute B A C ->
+    ~ Col A B C ->  为锐角 B A C ->
     (forall T,
-       InAngle T B A C ->
+       在角内 T B A C ->
        exists X Y : Tpoint, Out A B X /\ Out A C Y /\ Bet X T Y) ->
     forall P Q R S T U,
       Defect A B C P Q R -> GradAExp P Q R S T U ->
       exists B' C' P' Q' R',
         (Out A B B' /\ Out A C C' /\
-         Defect A B' C' P' Q' R' /\ LeA S T U P' Q' R').
+         Defect A B' C' P' Q' R' /\ 角度小于等于 S T U P' Q' R').
 Proof.
-  intros noah A B C HNCol HAcute legendre P Q R S T U HDef.
+  intros noah A B C HNCol H为锐角 legendre P Q R S T U HDef.
   induction 1; rename A0 into P; rename B0 into Q; rename C0 into R.
     exists B; exists C; exists P; exists Q; exists R; assert_diffs.
     repeat (split; [Out|]); Lea.
@@ -250,7 +250,7 @@ Lemma legendre_s_fourth_theorem_aux :
   postulate_of_right_saccheri_quadrilaterals.
 Proof.
   intros archi legendre.
-  destruct legendre as [B [A [C [HNCol [HAcute legendre]]]]].
+  destruct legendre as [B [A [C [HNCol [H为锐角 legendre]]]]].
   assert_diffs.
   destruct (ex_defect A B C) as [P [Q [R HDef]]]; auto.
   destruct (col_dec P Q R) as [HCol|HNCol1].
@@ -265,14 +265,14 @@ Proof.
       apply (bet_suppa__out P Q R); [|apply suppa_sym]; assumption.
     apply sams_suma__lea456789 with G H I; trivial.
     apply (t22_20 archi); trivial.
-  - destruct (archi__gradaexp_destruction archi P Q R HNCol1) as [S [T [U [HGAE HObtuse]]]].
+  - destruct (archi__gradaexp_destruction archi P Q R HNCol1) as [S [T [U [HGAE H为钝角]]]].
     apply archi__obtuse_case_elimination in archi.
     apply not_col_permutation_4 in HNCol.
-    destruct (legendre_aux2 archi A B C HNCol HAcute legendre P Q R S T U HDef HGAE) as [B' [C' HInter]].
+    destruct (legendre_aux2 archi A B C HNCol H为锐角 legendre P Q R S T U HDef HGAE) as [B' [C' HInter]].
     destruct HInter as [P' [Q' [R' [HOutB [HOutC [HDef' HLea]]]]]].
-    apply (lea_obtuse_obtuse P' Q' R'), obtuse__nsams in HObtuse; auto.
+    apply (lea_obtuse_obtuse P' Q' R'), obtuse__nsams in H为钝角; auto.
     exfalso.
-    apply HObtuse.
+    apply H为钝角.
     destruct (legendre_aux1 A B C B' C') as [D' [HInangle [HConga [HCong HTS]]]]; trivial.
     assert (HNCol' : ~ Col A B' C') by (destruct HTS; Col).
     destruct (legendre D' HInangle) as [B'' [C'' [HOutB' [HOutC' HBet]]]].

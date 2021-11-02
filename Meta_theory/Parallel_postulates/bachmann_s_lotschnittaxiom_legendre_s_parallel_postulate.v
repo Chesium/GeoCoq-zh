@@ -13,13 +13,13 @@ Lemma bachmann_s_lotschnittaxiom__legendre_s_parallel_postulate :
 Proof.
 rewrite bachmann_s_lotschnittaxiom_aux.
 intro bla.
-cut (exists A B C, ~ Col A B C /\ Acute A B C /\ forall P Q,
-          Out B A P -> P <> Q -> Per B P Q -> Coplanar A B C Q ->
+cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
+          Out B A P -> P <> Q -> Per B P Q -> 共面 A B C Q ->
           exists Y, Out B C Y /\ Col P Q Y).
   {
   clear bla.
-  intros [A [B [C [HNC [HAcute HP]]]]]; exists A, B, C; repeat split; Col.
-  intros T HInAngle; elim (col_dec A B T); intro HABT.
+  intros [A [B [C [HNC [H为锐角 HP]]]]]; exists A, B, C; repeat split; Col.
+  intros T H在角内; elim (col_dec A B T); intro HABT.
 
     {
     assert (HNC' : ~ Col B C T)
@@ -69,7 +69,7 @@ cut (exists A B C, ~ Col A B C /\ Acute A B C /\ forall P Q,
 
       {
       assert (HOS : OS C B T A)
-        by (apply in_angle_one_side; [Col..|apply l11_24, HInAngle]).
+        by (apply in_angle_one_side; [Col..|apply l11_24, H在角内]).
       exfalso; apply (l9_9_bis _ _ _ _ HOS).
       apply l9_2, l9_8_2 with X.
 
@@ -135,10 +135,10 @@ cut (exists A B C, ~ Col A B C /\ Acute A B C /\ forall P Q,
       }
 
       {
-      intro HCongA.
+      intro H等角.
       assert (HPer1 : Per A B D).
         {
-        apply l11_17 with A B C; [Perp|CongA].
+        apply l11_17 with A B C; [Perp|等角].
         }
       assert (HPer2 : Per C B D).
         {
@@ -148,7 +148,7 @@ cut (exists A B C, ~ Col A B C /\ Acute A B C /\ forall P Q,
         }
       assert (HSumA : SumA A B D C B D A B C).
         {
-        exists C; repeat (split; CongA); [|Cop].
+        exists C; repeat (split; 等角); [|Cop].
         apply l9_9.
         repeat split; [apply per_not_col; auto..|].
         exists D; split; [Col|Between].
@@ -169,7 +169,7 @@ cut (exists A B C, ~ Col A B C /\ Acute A B C /\ forall P Q,
       apply per_not_col in HPer; auto.
       intro; apply HPer; ColR.
       }
-    assert (Coplanar B Q A C)
+    assert (共面 B Q A C)
       by (assert_diffs; apply col2_cop__cop with A D; Col; Cop).
     assert (B <> P') by (destruct HOut2; auto).
     assert (B <> P) by (intro; treat_equalities; auto).
@@ -195,7 +195,7 @@ cut (exists A B C, ~ Col A B C /\ Acute A B C /\ forall P Q,
 
       {
       elim (两点重合的决定性 D I); intro HNE3; [treat_equalities; Col|].
-      assert (Coplanar A B C I) by (apply col_cop2__cop with P Q; Cop).
+      assert (共面 A B C I) by (apply col_cop2__cop with P Q; Cop).
       assert_diffs.
       apply cop_perp2__col with A C;
       [Cop|apply perp_bisect_perp, perp_bisect_sym_1, cong_mid_perp_bisect; Cong..].
@@ -215,7 +215,7 @@ cut (exists A B C, ~ Col A B C /\ Acute A B C /\ forall P Q,
         }
       assert_diffs.
       destruct (per_lt B P I) as [HLt _]; [Perp..|].
-      destruct (l11_52 I P B I P' B) as [_ [_ HCongA2]]; Cong; Le.
+      destruct (l11_52 I P B I P' B) as [_ [_ H等角2]]; Cong; Le.
         apply l11_16; Perp.
       apply cong2_conga_cong with B B; Cong.
       apply l11_10 with P I P' I; Out.

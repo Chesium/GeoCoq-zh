@@ -59,7 +59,7 @@ assert (nCol m C A) by (forward_using lemma_NCorder).
 assert (neq m H) by (forward_using lemma_betweennotequal).
 assert (nCol m H A) by (conclude lemma_NChelper).
 assert (nCol A m H) by (forward_using lemma_NCorder).
-assert (CongA A m H C m B) by (conclude proposition_15a).
+assert (等角 A m H C m B) by (conclude proposition_15a).
 assert (nCol H m A) by (forward_using lemma_NCorder).
 assert (Col A m B) by (conclude_def Col ).
 assert (Col A B m) by (forward_using lemma_collinearorder).
@@ -67,29 +67,29 @@ assert (eq B B) by (conclude cn_equalityreflexive).
 assert (Col A B B) by (conclude_def Col ).
 assert (neq m B) by (forward_using lemma_betweennotequal).
 assert (nCol m B C) by (conclude lemma_NChelper).
-assert (CongA H m A A m H) by (conclude lemma_ABCequalsCBA).
-assert (CongA H m A C m B) by (conclude lemma_equalanglestransitive).
+assert (等角 H m A A m H) by (conclude lemma_ABCequalsCBA).
+assert (等角 H m A C m B) by (conclude lemma_equalanglestransitive).
 assert (Cong m A m B) by (conclude lemma_congruencesymmetric).
-assert (CongA m H A m C B) by (apply (proposition_04 m H A m C B);auto).
+assert (等角 m H A m C B) by (apply (proposition_04 m H A m C B);auto).
 assert (eq B B) by (conclude cn_equalityreflexive).
 assert (neq B C) by (forward_using lemma_NCdistinct).
 assert (neq C B) by (conclude lemma_inequalitysymmetric).
 assert (Out C B B) by (conclude lemma_ray4).
 assert (Out C m H) by (conclude lemma_ray4).
-assert (CongA m H A H C B) by (conclude lemma_equalangleshelper).
-assert (CongA H C B m H A) by (conclude lemma_equalanglessymmetric).
+assert (等角 m H A H C B) by (conclude lemma_equalangleshelper).
+assert (等角 H C B m H A) by (conclude lemma_equalanglessymmetric).
 assert (eq A A) by (conclude cn_equalityreflexive).
 assert (neq H A) by (forward_using lemma_NCdistinct).
 assert (Out H A A) by (conclude lemma_ray4).
 assert (BetS H m C) by (conclude axiom_betweennesssymmetry).
 assert (neq H m) by (forward_using lemma_betweennotequal).
 assert (Out H m C) by (conclude lemma_ray4).
-assert (CongA H C B C H A) by (conclude lemma_equalangleshelper).
-assert (CongA C H A H C B) by (conclude lemma_equalanglessymmetric).
-assert (CongA A H C B C H) by (conclude lemma_equalanglesflip).
+assert (等角 H C B C H A) by (conclude lemma_equalangleshelper).
+assert (等角 C H A H C B) by (conclude lemma_equalanglessymmetric).
+assert (等角 A H C B C H) by (conclude lemma_equalanglesflip).
 assert (nCol B C H) by (conclude lemma_equalanglesNC).
-assert (CongA B C H H C B) by (conclude lemma_ABCequalsCBA).
-assert (CongA A H C H C B) by (conclude lemma_equalanglestransitive).
+assert (等角 B C H H C B) by (conclude lemma_ABCequalsCBA).
+assert (等角 A H C H C B) by (conclude lemma_equalanglestransitive).
 assert (Col C m H) by (conclude_def Col ).
 assert (Col H C m) by (forward_using lemma_collinearorder).
 assert (Col H m C) by (forward_using lemma_collinearorder).

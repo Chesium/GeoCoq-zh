@@ -19,7 +19,7 @@ Proof.
   assert(HNCol3 : ~ Col B B' C) by (intro; apply HNCol2; ColR).
   destruct (l8_18_existence A C B') as [C' []]; auto.
   exists A, B, C, A, B', C'.
-  assert(Par_strict B C B' C').
+  assert(严格平行 B C B' C').
     apply (par_not_col_strict _ _ _ _ B'); Col; apply (l12_9 _ _ _ _ A C); Perp; Cop.
   assert(HNCol4 : ~ Col B C C') by (apply (par_strict_not_col_4 _ _ B'); auto).
   assert_diffs.
@@ -32,8 +32,8 @@ Proof.
   }
   assert(A <> C') by (intro; treat_equalities; auto).
   assert(Per B' C' A) by (apply perp_per_1, (perp_col1 _ _ _ C); Col; Perp).
-  assert(CongA B C A B' C' A) by (apply l11_16; Perp).
-  assert(CongA C A B C' A B').
+  assert(等角 B C A B' C' A) by (apply l11_16; Perp).
+  assert(等角 C A B C' A B').
     apply out2__conga; apply l6_6, bet_out; Between.
   split; Col; split.
 
@@ -47,9 +47,9 @@ Proof.
     split; [|split; auto].
     apply (sams2_suma2__conga456 C A B _ _ _ _ _ _ B C A).
       SumA.
-      apply (conga2_sams__sams C' A B' A B' C'); CongA; SumA.
+      apply (conga2_sams__sams C' A B' A B' C'); 等角; SumA.
       apply t22_12__rah; Perp.
-      apply (conga3_suma__suma C' A B' A B' C' B' C' A); CongA; apply t22_12__rah; auto.
+      apply (conga3_suma__suma C' A B' A B' C' B' C' A); 等角; apply t22_12__rah; auto.
     }
 Qed.
 

@@ -9,9 +9,9 @@ Lemma Per_mid_rectangle : forall A B C I J K,
   A <> B ->
   B <> C ->
   Per B A C ->
-  Midpoint I B C ->
-  Midpoint J A C ->
-  Midpoint K A B ->
+  中点 I B C ->
+  中点 J A C ->
+  中点 K A B ->
   Rectangle A J I K.
 Proof.
 intros.
@@ -20,7 +20,7 @@ assert_cols.
 elim (两点重合的决定性 A C); intro; apply plg_per_rect.
 
   treat_equalities.
-  assert (HM : exists M : Tpoint, Midpoint M J I) by (apply midpoint_existence); decompose [ex] HM; repeat split; intuition; exists x; intuition.
+  assert (HM : exists M : Tpoint, 中点 M J I) by (apply midpoint_existence); decompose [ex] HM; repeat split; intuition; exists x; intuition.
 
   treat_equalities; intuition.
 
@@ -42,7 +42,7 @@ elim (两点重合的决定性 A C); intro; apply plg_per_rect.
 
     apply pars_par_plg.
 
-      assert (Par_strict A B J I /\ Par_strict A C I K /\ Par_strict B C J K /\
+      assert (严格平行 A B J I /\ 严格平行 A C I K /\ 严格平行 B C J K /\
         Cong A K I J /\ Cong B K I J /\ Cong A J I K /\ Cong C J I K /\ Cong B I J K /\ Cong C I J K)
       by (apply triangle_mid_par_strict_cong; intuition).
       spliter.
@@ -50,7 +50,7 @@ elim (两点重合的决定性 A C); intro; apply plg_per_rect.
       Par.
       Col.
 
-      assert (Par_strict A B J I /\ Par_strict A C I K /\ Par_strict B C J K /\
+      assert (严格平行 A B J I /\ 严格平行 A C I K /\ 严格平行 B C J K /\
         Cong A K I J /\ Cong B K I J /\ Cong A J I K /\ Cong C J I K /\ Cong B I J K /\ Cong C I J K)
       by (apply triangle_mid_par_strict_cong; intuition).
       spliter.
@@ -94,19 +94,19 @@ end.
 Lemma quadrileral_midpoints:
  forall A B C D I J K L X Y,
   ~ Col I J K ->
-  Midpoint I A B ->
-  Midpoint J B C ->
-  Midpoint K C D ->
-  Midpoint L A D ->
-  Midpoint X I K ->
-  Midpoint Y J L ->
+  中点 I A B ->
+  中点 J B C ->
+  中点 K C D ->
+  中点 L A D ->
+  中点 X I K ->
+  中点 Y J L ->
   X = Y.
 Proof.
 intros.
 assert_diffs_by_cases.
 assert (Parallelogram I J K L)
   by (apply (varignon A B C D I J K L);finish).
-assert (Midpoint X J L)
+assert (中点 X J L)
   by (perm_apply (plg_mid_2 I J K L X)).
 treat_equalities;trivial.
 Qed.

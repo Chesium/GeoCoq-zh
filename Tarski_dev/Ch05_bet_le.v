@@ -42,7 +42,7 @@ Proof.
       apply between_exchange4 with D; Between.
     subst B''.
     assert (Bet B C D') by (apply between_exchange3 with A; assumption).
-    assert (FSC B C D' C' B' C' D C).
+    assert (五线段形式 B C D' C' B' C' D C).
       repeat split; Cong.
         left; apply between_exchange3 with A; Between.
         apply (两组连续三点分段等则全体等 B C D' B' C' D); Cong.
@@ -55,8 +55,8 @@ Proof.
     assert (Cong D' C' D C) by (eapply l4_16; try apply H13; assumption).
     assert (exists E, Bet C E C' /\ Bet D E D') by (apply 帕施公理 with A; Between).
     ex_and H16 E.
-    assert (IFSC D E D' C D E D' C') by (unfold IFSC; repeat split; Cong; apply 等长的传递性 with C D; Cong).
-    assert (IFSC C E C' D C E C' D') by (unfold IFSC; repeat split; Cong; apply 等长的传递性 with C D; Cong).
+    assert (内五线段形式 D E D' C D E D' C') by (unfold 内五线段形式; repeat split; Cong; apply 等长的传递性 with C D; Cong).
+    assert (内五线段形式 C E C' D C E C' D') by (unfold 内五线段形式; repeat split; Cong; apply 等长的传递性 with C D; Cong).
     assert (Cong E C E C') by (eapply l4_2; try apply H18; auto).
     assert (Cong E D E D') by (eapply l4_2; try apply H19; auto).
     induction (两点重合的决定性 C C').
@@ -66,7 +66,7 @@ Proof.
     prolong C' C P C D'.
     prolong D' C R C E.
     prolong P R Q R P.
-    assert (FSC D' C R P P C E D').
+    assert (五线段形式 D' C R P P C E D').
       repeat split; Col; Cong.
       apply 两组连续三点分段等则全体等 with C C; Cong.
       apply between_inner_transitivity with C'; Between.
@@ -75,15 +75,15 @@ Proof.
       eapply 等长的传递性.
         apply 等长的传递性 with R P; Cong.
       apply 等长的传递性 with E D'; Cong.
-    assert (FSC D' E D C P R Q C).
+    assert (五线段形式 D' E D C P R Q C).
       repeat split; Col; Cong.
       eapply (两组连续三点分段等则全体等 D' E D P R Q); Between; Cong.
     assert (Cong D C Q C).
       induction (两点重合的决定性 D' E).
-        unfold IFSC, Cong_3 in *; spliter; treat_equalities; Cong.
+        unfold 内五线段形式, 三角形全等 in *; spliter; treat_equalities; Cong.
       apply l4_16 with D' E P R; assumption.
     assert (Cong C P C Q).
-      unfold FSC, Cong_3 in *; spliter.
+      unfold 五线段形式, 三角形全等 in *; spliter.
       apply 等长的传递性 with C D; Cong.
       apply 等长的传递性 with C D'; Cong.
     show_distinct R C.
@@ -178,10 +178,10 @@ Proof.
     intros.
     ex_and H P.
     unfold Le.
-    assert (exists B' : Tpoint, Bet C B' D /\ Cong_3 A B P C B' D) by (eapply l4_5;auto).
+    assert (exists B' : Tpoint, Bet C B' D /\ 三角形全等 A B P C B' D) by (eapply l4_5;auto).
     ex_and H1 y.
     exists y.
-    unfold Cong_3 in *;intuition.
+    unfold 三角形全等 in *;intuition.
 Qed.
 
 Lemma l5_6 : forall A B C D A' B' C' D',
@@ -191,12 +191,12 @@ Proof.
     intros.
     spliter.
     ex_and H y.
-    assert (exists z : Tpoint, Bet C' z D' /\ Cong_3 C y D C' z D') by (eapply l4_5;auto).
+    assert (exists z : Tpoint, Bet C' z D' /\ 三角形全等 C y D C' z D') by (eapply l4_5;auto).
     ex_and H3 z.
     exists z.
     split.
       assumption.
-    unfold Cong_3 in *; spliter.
+    unfold 三角形全等 in *; spliter.
     apply 等长的传递性 with A B; Cong.
     apply 等长的传递性 with C y; assumption.
 Qed.
@@ -215,25 +215,25 @@ Proof.
     intros.
     ex_and H y.
     ex_and H0 z.
-    assert (exists P : Tpoint, Bet E P z /\ Cong_3 C y D E P z) by (eapply l4_5;assumption).
+    assert (exists P : Tpoint, Bet E P z /\ 三角形全等 C y D E P z) by (eapply l4_5;assumption).
     ex_and H3 P.
     exists P.
     split.
       eBetween.
-    unfold Cong_3 in H4; spliter; apply 等长的传递性 with C y; Cong.
+    unfold 三角形全等 in H4; spliter; apply 等长的传递性 with C y; Cong.
 Qed.
 
 Lemma between_cong : forall A B C, Bet A C B -> Cong A C A B -> C = B.
 Proof.
     intros.
     assert (Bet A B C).
-    eapply l4_6 with A C B; unfold Cong_3; repeat split; Cong.
+    eapply l4_6 with A C B; unfold 三角形全等; repeat split; Cong.
     eapply between_equality; eBetween.
 Qed.
 
-Lemma cong3_symmetry : forall A B C A' B' C' : Tpoint , Cong_3 A B C A' B' C' -> Cong_3 A' B' C' A B C.
+Lemma cong3_symmetry : forall A B C A' B' C' : Tpoint , 三角形全等 A B C A' B' C' -> 三角形全等 A' B' C' A B C.
 Proof.
-    unfold Cong_3.
+    unfold 三角形全等.
     intros.
     intuition.
 Qed.
@@ -241,9 +241,9 @@ Qed.
 Lemma between_cong_2 : forall A B D E, Bet A D B -> Bet A E B -> Cong A D A E -> D = E.
 Proof.
     intros.
-    apply cong3_bet_eq with A B; unfold Cong_3; repeat split; Cong.
+    apply cong3_bet_eq with A B; unfold 三角形全等; repeat split; Cong.
     eapply (l4_2 B E A B B D A B).
-    unfold IFSC; repeat split; Cong; Between.
+    unfold 内五线段形式; repeat split; Cong; Between.
 Qed.
 
 Lemma between_cong_3 :

@@ -19,7 +19,7 @@ assert (HF : exists A1 A2 B1 B2,
   destruct H as [A1' [A2' [B1 [B2 [HNC [HNE [HCop HF]]]]]]].
   destruct (l8_18_existence _ _ _ HNC) as [A1 [HC1 HPerp1]].
   assert_diffs.
-  assert (HPar : Par_strict A1' A2' B1 B2).
+  assert (HPar : 严格平行 A1' A2' B1 B2).
     {
     split; trivial.
     intros [I [HI1 HI2]].

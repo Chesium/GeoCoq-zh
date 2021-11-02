@@ -35,7 +35,7 @@ C'est une appliquette Java créée avec GeoGebra ( www.geogebra.org) - Il semble
 Lemma intersection_two_medians_exist :
 forall A B C I J,
  ~Col A B C ->
- Midpoint I B C -> Midpoint J A C ->
+ 中点 I B C -> 中点 J A C ->
  exists G, Col G A I /\ Col G B J.
 Proof with finish.
 intros.
@@ -49,7 +49,7 @@ Qed.
 Lemma intersection_two_medians_exist_unique :
 forall A B C I J,
  ~Col A B C ->
- Midpoint I B C -> Midpoint J A C ->
+ 中点 I B C -> 中点 J A C ->
  exists! G, Col G A I /\ Col G B J.
 Proof with finish.
 intros.
@@ -66,10 +66,10 @@ Qed.
 
 Definition is_gravity_center G A B C :=
  ~ Col A B C /\
- exists I, exists J, Midpoint I B C /\ Midpoint J A C /\ Col G A I /\ Col G B J.
+ exists I, exists J, 中点 I B C /\ 中点 J A C /\ Col G A I /\ Col G B J.
 
 Lemma is_gravity_center_coplanar : forall A B C G,
-  is_gravity_center G A B C -> Coplanar G A B C.
+  is_gravity_center G A B C -> 共面 G A B C.
 Proof.
 intros.
 destruct H as [HNCol [I [J]]]; spliter.
@@ -104,9 +104,9 @@ Tactic Notation "Name" ident(G) "the" "intersection" "of" "the" "medians" "(" id
 Lemma three_medians_intersect:
  forall A B C I J K,
  ~Col A B C ->
- Midpoint I B C ->
- Midpoint J A C ->
- Midpoint K A B ->
+ 中点 I B C ->
+ 中点 J A C ->
+ 中点 K A B ->
  exists G, Col G A I /\ Col G B J /\Col G C K.
 Proof with assert_all.
 intros.
@@ -141,7 +141,7 @@ Qed.
 
 Lemma is_gravity_center_col : forall A B C G I,
   is_gravity_center G A B C ->
-  Midpoint I A B ->
+  中点 I A B ->
   Col G I C.
 Proof.
 intros.
@@ -229,9 +229,9 @@ Qed.
 Lemma is_gravity_center_third :
  forall A B C G G' A',
  is_gravity_center G A B C ->
- Midpoint G' A G ->
- Midpoint A' B C ->
- Midpoint G A' G'.
+ 中点 G' A G ->
+ 中点 A' B C ->
+ 中点 G A' G'.
 Proof.
 intros.
 Name C' the midpoint of A and B.
@@ -259,9 +259,9 @@ Qed.
 
 Lemma is_gravity_center_third_reci :
  forall A B C G A' A'',
- Midpoint A' B C ->
- Midpoint A'' A G ->
- Midpoint G A' A'' ->
+ 中点 A' B C ->
+ 中点 A'' A G ->
+ 中点 G A' A'' ->
  ~ Col A B C ->
  is_gravity_center G A B C.
 Proof.
@@ -278,7 +278,7 @@ destruct HB' as [B''' HB'].
 assert (HPar1 : Par B A A' B').
   {
   apply triangle_mid_par with C; assert_diffs; try split;
-  unfold Midpoint in *; spliter; Between; Cong.
+  unfold 中点 in *; spliter; Between; Cong.
   }
 assert (HCong1 : Cong A C' A' B').
   {
@@ -288,7 +288,7 @@ assert (HCong1 : Cong A C' A' B').
 assert (HPar2 : Par A B A'' B'').
   {
   apply triangle_mid_par with G; assert_diffs; try split;
-  unfold Midpoint in *; spliter; Between; Cong.
+  unfold 中点 in *; spliter; Between; Cong.
   }
 assert (HCong2 : Cong A C' A'' B'').
   {
@@ -301,13 +301,13 @@ assert (HPar3 : Par A'' B'' A' B''').
   {
   apply plg_par_1; try (intro; treat_equalities; Col; assert_diffs; assert_cols; apply HNC; ColR).
   apply mid_plg_1 with G; try (intro; treat_equalities; assert_cols; Col);
-  unfold Midpoint in *; spliter; split; Between; Cong.
+  unfold 中点 in *; spliter; split; Between; Cong.
   }
 assert (Cong3 : Cong A'' B'' A' B''').
   {
   apply plg_cong_1.
   apply mid_plg_1 with G; try (intro; treat_equalities; assert_cols; Col);
-  unfold Midpoint in *; spliter; split; Between; Cong.
+  unfold 中点 in *; spliter; split; Between; Cong.
   }
 assert (HCol : Col A' B' B''').
   {
@@ -338,7 +338,7 @@ assert (HElim := l7_20 A' B' B'''); elim HElim; clear HElim; try intro HElim; Co
       split; try (intro; apply HABG; ColR).
       split; Col.
       split; try (intro; treat_equalities; Col).
-      unfold Midpoint in *; spliter; Between.
+      unfold 中点 in *; spliter; Between.
       }
 
       {
@@ -353,7 +353,7 @@ assert (HElim := l7_20 A' B' B'''); elim HElim; clear HElim; try intro HElim; Co
       split; try (intro; apply HABG; ColR).
       split; Col.
       split; try (intro; treat_equalities; Col).
-      unfold Midpoint in *; spliter; Between.
+      unfold 中点 in *; spliter; Between.
       }
     }
   apply l9_9_bis in HFalse; exfalso; apply HFalse; clear HFalse.
@@ -367,7 +367,7 @@ assert (HElim := l7_20 A' B' B'''); elim HElim; clear HElim; try intro HElim; Co
     assert_diffs; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
     split; try (intro; apply HABG; ColR).
     split; try (intro; apply HABG; ColR).
-    exists A'; unfold Midpoint in *; spliter; split; Col; Between.
+    exists A'; unfold 中点 in *; spliter; split; Col; Between.
     }
 
     {
@@ -375,7 +375,7 @@ assert (HElim := l7_20 A' B' B'''); elim HElim; clear HElim; try intro HElim; Co
 
       {
       apply one_side_symmetry; apply l9_17 with C;
-      try (unfold Midpoint in *; spliter; assumption).
+      try (unfold 中点 in *; spliter; assumption).
       apply one_side_transitivity with G.
 
         {
@@ -391,7 +391,7 @@ assert (HElim := l7_20 A' B' B'''); elim HElim; clear HElim; try intro HElim; Co
         split; try (intro; apply HABG; ColR).
         split; Col.
         split; try (intro; treat_equalities; Col).
-        unfold Midpoint in *; spliter; eBetween.
+        unfold 中点 in *; spliter; eBetween.
         }
 
         {
@@ -405,7 +405,7 @@ assert (HElim := l7_20 A' B' B'''); elim HElim; clear HElim; try intro HElim; Co
           assert_diffs; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
           split; try (intro; apply HABG; ColR).
           split; try (intro; apply HABG; ColR).
-          exists B''; unfold Midpoint in *; spliter; split; Col; Between.
+          exists B''; unfold 中点 in *; spliter; split; Col; Between.
           }
 
           {
@@ -416,7 +416,7 @@ assert (HElim := l7_20 A' B' B'''); elim HElim; clear HElim; try intro HElim; Co
           assert_diffs; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
           split; try (intro; apply HABG; ColR).
           split; try (intro; apply HABG; ColR).
-          exists A'; unfold Midpoint in *; spliter; split; Col; Between.
+          exists A'; unfold 中点 in *; spliter; split; Col; Between.
           }
         }
       }
@@ -434,7 +434,7 @@ assert (HElim := l7_20 A' B' B'''); elim HElim; clear HElim; try intro HElim; Co
       split; try (intro; apply HABG; ColR).
       split; Col.
       split; try (intro; treat_equalities; Col).
-      unfold Midpoint in *; spliter; eBetween.
+      unfold 中点 in *; spliter; eBetween.
       }
     }
   }
@@ -532,11 +532,11 @@ Hint Resolve
 Ltac permutation_intro_in_goal :=
  match goal with
  | |- Par ?A ?B ?C ?D => apply Par_cases
- | |- Par_strict ?A ?B ?C ?D => apply Par_strict_cases
+ | |- 严格平行 ?A ?B ?C ?D => apply 严格平行_cases
  | |- Perp ?A ?B ?C ?D => apply Perp_cases
- | |- Perp_at ?X ?A ?B ?C ?D => apply Perp_in_cases
+ | |- 垂直于 ?X ?A ?B ?C ?D => apply Perp_in_cases
  | |- Per ?A ?B ?C => apply Per_cases
- | |- Midpoint ?A ?B ?C => apply Mid_cases
+ | |- 中点 ?A ?B ?C => apply Mid_cases
  | |- ~ Col ?A ?B ?C => apply NCol_cases
  | |- Col ?A ?B ?C => apply Col_cases
  | |- Bet ?A ?B ?C => apply 中间性的各排列情况
@@ -552,13 +552,13 @@ Ltac finish := repeat match goal with
  | |- Col ?A ?B ?C => Col
  | |- ~ Col ?A ?B ?C => Col
  | |- Par ?A ?B ?C ?D => Par
- | |- Par_strict ?A ?B ?C ?D => Par
+ | |- 严格平行 ?A ?B ?C ?D => Par
  | |- Perp ?A ?B ?C ?D => Perp
- | |- Perp_at ?A ?B ?C ?D ?E => Perp
+ | |- 垂直于 ?A ?B ?C ?D ?E => Perp
  | |- Per ?A ?B ?C => Perp
  | |- Cong ?A ?B ?C ?D => Cong
  | |- is_gravity_center ?G ?A ?B ?C => Gravitycenter
- | |- Midpoint ?A ?B ?C => Midpoint
+ | |- 中点 ?A ?B ?C => 中点
  | |- ?A<>?B => apply swap_diff;assumption
  | |- _ => try assumption
 end.
@@ -570,13 +570,13 @@ Ltac sfinish := spliter; repeat match goal with
  | |- ~ Col ?A ?B ?C => Col
  | |- ~ Col ?A ?B ?C => intro;search_contradiction
  | |- Par ?A ?B ?C ?D => Par
- | |- Par_strict ?A ?B ?C ?D => Par
+ | |- 严格平行 ?A ?B ?C ?D => Par
  | |- Perp ?A ?B ?C ?D => Perp
- | |- Perp_at ?A ?B ?C ?D ?E => Perp
+ | |- 垂直于 ?A ?B ?C ?D ?E => Perp
  | |- Per ?A ?B ?C => Perp
  | |- Cong ?A ?B ?C ?D => Cong;CongR
  | |- is_gravity_center ?G ?A ?B ?C => Gravitycenter
- | |- Midpoint ?A ?B ?C => Midpoint
+ | |- 中点 ?A ?B ?C => 中点
  | |- ?A<>?B => assumption
  | |- ?A<>?B => apply swap_diff;assumption
  | |- ?A<>?B => intro;treat_equalities; solve [search_contradiction]

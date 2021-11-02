@@ -8,7 +8,7 @@ Definition 防升维公理_axiom := forall A B C P Q : Tpoint,
   P <> Q -> Cong A P A Q -> Cong B P B Q -> Cong C P C Q ->
   (Bet A B C \/ Bet B C A \/ Bet C A B).
 
-Definition all_coplanar_axiom := forall A B C D, Coplanar A B C D.
+Definition all_coplanar_axiom := forall A B C D, 共面 A B C D.
 
 Lemma 防升维公理_implies_per2__col :
   防升维公理_axiom ->
@@ -19,7 +19,7 @@ destruct HPer1 as [C' HPer1].
 destruct HPer2 as [C'' HPer2].
 assert (C' = C'') by (apply symmetric_point_uniqueness with C X; spliter; auto); treat_equalities.
 unfold 防升维公理_axiom in HUD.
-spliter; assert_diffs; unfold Midpoint in *; spliter; apply HUD with C C'; Cong.
+spliter; assert_diffs; unfold 中点 in *; spliter; apply HUD with C C'; Cong.
 Qed.
 
 Lemma 防升维公理_implies_col_perp2__col :

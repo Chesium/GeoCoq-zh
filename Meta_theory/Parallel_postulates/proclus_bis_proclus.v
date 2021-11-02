@@ -32,7 +32,7 @@ Proof.
   assert(HA' := l10_15 C0 P P A0).
   destruct HA' as [A' []]; Col.
   assert_diffs.
-  assert (Coplanar C D P A0) by (apply col2_cop__cop with A B; Col; Cop).
+  assert (共面 C D P A0) by (apply col2_cop__cop with A B; Col; Cop).
   elim(col_dec A0 P A').
   - intro.
     apply (proclus_bis A0 P); Col; [|CopR|intro; apply HNCol; ColR].

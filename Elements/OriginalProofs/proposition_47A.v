@@ -59,9 +59,9 @@ assert (~ Col D E A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists L, Perp_at A L D E L) by (conclude proposition_12);destruct Tf as [L];spliter.
+assert (Tf:exists L, 垂直于 A L D E L) by (conclude proposition_12);destruct Tf as [L];spliter.
 let Tf:=fresh in
-assert (Tf:exists p, (Col A L L /\ Col D E L /\ Col D E p /\ Per p L A)) by (conclude_def Perp_at );destruct Tf as [p];spliter.
+assert (Tf:exists p, (Col A L L /\ Col D E L /\ Col D E p /\ Per p L A)) by (conclude_def 垂直于 );destruct Tf as [p];spliter.
 assert (Per A L p) by (conclude lemma_8_2).
 assert (~ eq B N).
  {
@@ -167,7 +167,7 @@ assert (TP M L B D) by (conclude lemma_paralleldef2B).
 assert (OS B D M L) by (conclude_def TP ).
 assert (BetS A M L) by (conclude axiom_betweennesssymmetry).
 assert (Par M B L D) by (forward_using lemma_parallelflip).
-assert (CongA A M B M L D) by (conclude proposition_29C).
+assert (等角 A M B M L D) by (conclude proposition_29C).
 assert (Per M L D) by (conclude lemma_8_2).
 assert (Per A M B) by (conclude lemma_equaltorightisright).
 assert (eq B B) by (conclude cn_equalityreflexive).

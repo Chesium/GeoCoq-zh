@@ -5,7 +5,7 @@ Ltac clean_reap_hyps :=
   clean_duplicated_hyps;
   repeat
   match goal with
-   | H:(Midpoint ?A ?B ?C), H2 : Midpoint ?A ?C ?B |- _ => clear H2
+   | H:(中点 ?A ?B ?C), H2 : 中点 ?A ?C ?B |- _ => clear H2
    | H:(Col ?A ?B ?C), H2 : Col ?A ?C ?B |- _ => clear H2
    | H:(Col ?A ?B ?C), H2 : Col ?B ?A ?C |- _ => clear H2
    | H:(Col ?A ?B ?C), H2 : Col ?B ?C ?A |- _ => clear H2
@@ -28,13 +28,13 @@ Ltac clean_reap_hyps :=
    | H:(Perp ?A ?B ?C ?D), H2 : Perp ?B ?A ?D ?C |- _ => clear H2
    | H:(?A<>?B), H2 : (?B<>?A) |- _ => clear H2
    | H:(Per ?A ?D ?C), H2 : (Per ?C ?D ?A) |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?A ?B ?D ?C |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?C ?D ?A ?B |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?C ?D ?B ?A |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?D ?C ?B ?A |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?D ?C ?A ?B |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?B ?A ?C ?D |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?B ?A ?D ?C |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?A ?B ?D ?C |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?C ?D ?A ?B |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?C ?D ?B ?A |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?D ?C ?B ?A |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?D ?C ?A ?B |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?B ?A ?C ?D |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?B ?A ?D ?C |- _ => clear H2
 end.
 
 Ltac assert_diffs :=
@@ -85,29 +85,29 @@ repeat
       let T:= fresh in (not_exist_hyp_comm C D);
         assert (T:= lt_diff A B C D H);clean_reap_hyps
 
-      | H:Midpoint ?I ?A ?B, H2 : ?A<>?B |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
        assert (T:= midpoint_distinct_1 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Midpoint ?I ?A ?B, H2 : ?B<>?A |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
        assert (T:= midpoint_distinct_1 I A B (swap_diff B A H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
-      | H:Midpoint ?I ?A ?B, H2 : ?I<>?A |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?I<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
        assert (T:= midpoint_distinct_2 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Midpoint ?I ?A ?B, H2 : ?A<>?I |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?A<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
        assert (T:= midpoint_distinct_2 I A B (swap_diff A I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
-      | H:Midpoint ?I ?A ?B, H2 : ?I<>?B |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?I<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
        assert (T:= midpoint_distinct_3 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Midpoint ?I ?A ?B, H2 : ?B<>?I |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?B<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
        assert (T:= midpoint_distinct_3 I A B (swap_diff B I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
@@ -129,7 +129,7 @@ repeat
       let T:= fresh in (not_exist_hyp2 A B C D);
        assert (T:= perp_distinct A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Perp_at ?X ?A ?B ?C ?D |- _ =>
+      | H:垂直于 ?X ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
        assert (T:= perp_in_distinct X A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
@@ -157,7 +157,7 @@ Ltac clean_trivial_hyps :=
    | H:(Col ?X1 ?X2 ?X1) |- _ => clear H
    | H:(Per ?X1 ?X2 ?X2)     |- _ => clear H
    | H:(Per ?X1 ?X1 ?X2)     |- _ => clear H
-   | H:(Midpoint ?X1 ?X1 ?X1) |- _ => clear H
+   | H:(中点 ?X1 ?X1 ?X1) |- _ => clear H
 end.
 
 Ltac clean := clean_trivial_hyps;clean_reap_hyps.
@@ -200,7 +200,7 @@ Qed.
 
 Lemma l9_3 : forall P Q A C M R B,
  TS P Q A C -> Col M P Q ->
- Midpoint M A C -> Col R P Q ->
+ 中点 M A C -> Col R P Q ->
  Out R A B -> TS P Q B C.
 Proof with Col.
     intros.
@@ -359,7 +359,7 @@ Proof with Col.
 Qed.
 
 (*
-Lemma sym_sym : forall A C A', Midpoint C A A' -> ReflectP A' A C.
+Lemma sym_sym : forall A C A', 中点 C A A' -> 对称P A' A C.
 Proof.
     intros.
     apply l7_2.
@@ -369,9 +369,9 @@ Qed.
 
 Lemma mid_preserves_col : forall A B C M A' B' C',
   Col A B C ->
-  Midpoint M A A' ->
-  Midpoint M B B' ->
-  Midpoint M C C' ->
+  中点 M A A' ->
+  中点 M B B' ->
+  中点 M C C' ->
   Col A' B' C'.
 Proof.
     intros.
@@ -390,7 +390,7 @@ Qed.
 
 Lemma per_mid_per : forall A B X Y M,
    A <> B -> Per X A B ->
-   Midpoint M A B -> Midpoint M X Y ->
+   中点 M A B -> 中点 M X Y ->
    Cong A X B Y /\ Per Y B A.
 Proof.
     intros.
@@ -410,15 +410,15 @@ Proof.
         apply H1.
       apply l7_2.
       assumption.
-    assert (OFSC B A B' X A B A' Y).
-      unfold OFSC.
+    assert (外五线段形式 B A B' X A B A' Y).
+      unfold 外五线段形式.
       repeat split.
         apply midpoint_bet.
         assumption.
         apply midpoint_bet.
         assumption.
         apply 等长的伪自反性.
-        unfold Midpoint in *.
+        unfold 中点 in *.
         spliter.
         eapply 等长的传递性.
           apply 等长的对称性.
@@ -450,7 +450,7 @@ Qed.
 
 
 Lemma sym_preserve_diff : forall A B M A' B',
- A <> B -> Midpoint M A A' -> Midpoint M B B' -> A'<> B'.
+ A <> B -> 中点 M A A' -> 中点 M B B' -> A'<> B'.
 Proof.
     intros.
     intro.
@@ -466,8 +466,8 @@ Qed.
 Lemma l9_4_1_aux : forall P Q A C R S M,
  Le S C R A ->
  TS P Q A C -> Col R P Q -> Perp P Q A R -> Col S P Q ->
- Perp P Q C S -> Midpoint M R S ->
- (forall U C',Midpoint M U C' -> (Out R U A <-> Out S C C')).
+ Perp P Q C S -> 中点 M R S ->
+ (forall U C',中点 M U C' -> (Out R U A <-> Out S C C')).
 Proof.
     intros.
     induction (两点重合的决定性 R S).
@@ -511,7 +511,7 @@ Proof.
                 apply 中间性的对称性.
                 apply H12.
               assumption.
-            unfold Midpoint in H13.
+            unfold 中点 in H13.
             spliter.
             eapply l5_2.
               apply H10.
@@ -527,7 +527,7 @@ Proof.
           eapply l5_2.
             apply H10.
             assumption.
-          unfold Midpoint in H6.
+          unfold 中点 in H6.
           spliter.
           assumption.
         intro.
@@ -546,7 +546,7 @@ Proof.
           spliter.
           apply H13.
           reflexivity.
-        unfold Midpoint in H6.
+        unfold 中点 in H6.
         spliter.
         assert (Bet A M C').
           induction H12.
@@ -619,7 +619,7 @@ Proof.
         assumption.
         apply col_permutation_1.
         assumption.
-    assert(exists M, Midpoint M S R /\ Midpoint M C D).
+    assert(exists M, 中点 M S R /\ 中点 M C D).
       unfold TS in H0.
       assert (~ Col A P Q).
         spliter.
@@ -746,7 +746,7 @@ Proof.
     assert_bets.
     assert_cols.
     assert (Col A C C') by ColR.
-    assert (C = C' \/ Midpoint A C C') by (eapply l7_20;Col).
+    assert (C = C' \/ 中点 A C C') by (eapply l7_20;Col).
     induction H6.
       treat_equalities.
       intuition.
@@ -757,8 +757,8 @@ Qed.
 Lemma l9_4_1 : forall P Q A C R S M,
  TS P Q A C -> Col R P Q ->
  Perp P Q A R -> Col S P Q ->
- Perp P Q C S -> Midpoint M R S ->
- (forall U C',Midpoint M U C' -> (Out R U A <-> Out S C C')).
+ Perp P Q C S -> 中点 M R S ->
+ (forall U C',中点 M U C' -> (Out R U A <-> Out S C C')).
 Proof.
     intros.
     assert (Le S C R A \/ Le R A S C).
@@ -806,7 +806,7 @@ Proof.
 Qed.
 
 Lemma mid_two_sides : forall A B M X Y,
- Midpoint M A B -> ~ Col A B X -> Midpoint M X Y ->
+ 中点 M A B -> ~ Col A B X -> 中点 M X Y ->
  TS A B X Y.
 Proof.
     intros A B M X Y HM1 HNCol HM2.
@@ -989,7 +989,7 @@ Proof.
     ex_and H15 T.
     unfold Le in H.
     ex_and H C'.
-    assert (exists M, Midpoint M S R /\ Midpoint M C C').
+    assert (exists M, 中点 M S R /\ 中点 M C C').
       eapply (l8_24 S R C A C' T).
         apply perp_sym.
         apply perp_left_comm.
@@ -1044,7 +1044,7 @@ Proof.
       apply l7_2.
       assumption.
       apply col_trivial_3.
-    assert (forall X Y, Midpoint M X Y -> (Out R X A <-> Out S C Y)).
+    assert (forall X Y, 中点 M X Y -> (Out R X A <-> Out S C Y)).
       eapply l9_4_1.
         apply H9.
         apply col_trivial_1.
@@ -1135,7 +1135,7 @@ Proof.
     ex_and H3 A'.
     ex_and H4 C'.
     ex_and H5 B'.
-    assert (exists M, Midpoint M A' C').
+    assert (exists M, 中点 M A' C').
       apply midpoint_existence.
     ex_and H9 M.
     double A M D.
@@ -2932,7 +2932,7 @@ Proof.
 Qed.
 
 Lemma cop__one_or_two_sides :
- forall A B C D, Coplanar A B C D ->
+ forall A B C D, 共面 A B C D ->
   ~ Col C A B ->
   ~ Col D A B ->
   TS A B C D \/ OS A B C D.
@@ -2951,7 +2951,7 @@ Proof.
     right; apply one_side_symmetry; assumption.
 Qed.
 
-Lemma os__coplanar : forall A B C D, OS A B C D -> Coplanar A B C D.
+Lemma os__coplanar : forall A B C D, OS A B C D -> 共面 A B C D.
 Proof.
   intros A B C D HOS.
   assert (HNCol : ~ Col A B C) by (apply one_side_not_col123 with D, HOS).
@@ -2980,7 +2980,7 @@ Proof.
 Qed.
 
 Lemma coplanar_trans_1 : forall P Q R A B,
-  ~ Col P Q R -> Coplanar P Q R A -> Coplanar P Q R B -> Coplanar Q R A B.
+  ~ Col P Q R -> 共面 P Q R A -> 共面 P Q R B -> 共面 Q R A B.
 Proof.
   intros P Q R A B HNCol HCop1 HCop2.
   destruct (col_dec Q R A).
@@ -3001,7 +3001,7 @@ Proof.
   destruct HDij; [apply ts__coplanar|apply os__coplanar]; assumption.
 Qed.
 
-Lemma col_cop__cop : forall A B C D E, Coplanar A B C D -> C <> D -> Col C D E -> Coplanar A B C E.
+Lemma col_cop__cop : forall A B C D E, 共面 A B C D -> C <> D -> Col C D E -> 共面 A B C E.
 Proof.
   intros A B C D E HCop HCD HCol.
   destruct (col_dec D A C).
@@ -3009,7 +3009,7 @@ Proof.
   apply coplanar_perm_2, (coplanar_trans_1 D); Cop.
 Qed.
 
-Lemma bet_cop__cop : forall A B C D E, Coplanar A B C E -> Bet C D E -> Coplanar A B C D.
+Lemma bet_cop__cop : forall A B C D E, 共面 A B C E -> Bet C D E -> 共面 A B C D.
 Proof.
   intros A B C D E HCop HBet.
   destruct (两点重合的决定性 C E).
@@ -3017,8 +3017,8 @@ Proof.
   apply col_cop__cop with E; Col.
 Qed.
 
-Lemma col2_cop__cop : forall A B C D E F, Coplanar A B C D -> C <> D -> Col C D E -> Col C D F ->
-  Coplanar A B E F.
+Lemma col2_cop__cop : forall A B C D E F, 共面 A B C D -> C <> D -> Col C D E -> Col C D F ->
+  共面 A B E F.
 Proof.
   intros A B C D E F HCop HCD HE HF.
   destruct (两点重合的决定性 E C).
@@ -3027,8 +3027,8 @@ Proof.
 Qed.
 
 Lemma col_cop2__cop : forall A B C U V P, U <> V ->
-  Coplanar A B C U -> Coplanar A B C V -> Col U V P ->
-  Coplanar A B C P.
+  共面 A B C U -> 共面 A B C V -> Col U V P ->
+  共面 A B C P.
 Proof.
   intros A B C U V P HUV HU HV HCol.
   destruct (col_dec A B C) as [HCol1|HNCol].
@@ -3036,7 +3036,7 @@ Proof.
   revert dependent C.
   revert A B.
   assert (Haux : forall A B C, ~ Col A B C -> ~ Col U A B ->
-  Coplanar A B C U -> Coplanar A B C V -> Coplanar A B C P).
+  共面 A B C U -> 共面 A B C V -> 共面 A B C P).
   { intros A B C HNCol HNCol' HU HV.
     apply (coplanar_trans_1 U); [Cop..|].
     apply coplanar_perm_12, col_cop__cop with V; auto.
@@ -3051,7 +3051,7 @@ Proof.
 Qed.
 
 Lemma bet_cop2__cop : forall A B C U V W,
-  Coplanar A B C U -> Coplanar A B C W -> Bet U V W -> Coplanar A B C V.
+  共面 A B C U -> 共面 A B C W -> Bet U V W -> 共面 A B C V.
 Proof.
   intros A B C U V W HU HW HBet.
   destruct (两点重合的决定性 U W).
@@ -3061,15 +3061,15 @@ Qed.
 
 Lemma coplanar_pseudo_trans : forall A B C D P Q R,
   ~ Col P Q R ->
-  Coplanar P Q R A ->
-  Coplanar P Q R B ->
-  Coplanar P Q R C ->
-  Coplanar P Q R D ->
-  Coplanar A B C D.
+  共面 P Q R A ->
+  共面 P Q R B ->
+  共面 P Q R C ->
+  共面 P Q R D ->
+  共面 A B C D.
 Proof.
 assert (Haux : forall P Q R A B C,
-  ~ Col P Q R -> Coplanar P Q R A -> Coplanar P Q R B -> Coplanar P Q R C ->
-  Coplanar A B C R).
+  ~ Col P Q R -> 共面 P Q R A -> 共面 P Q R B -> 共面 P Q R C ->
+  共面 A B C R).
   {
   intros P Q R A B C HNC HCop1 HCop2 HCop3.
   assert_diffs.
@@ -3085,9 +3085,9 @@ apply (Haux P Q); [assumption|apply (coplanar_trans_1 R); Col; Cop..].
 Qed.
 
 Lemma l9_30 : forall A B C D E F P X Y Z,
-  ~ Coplanar A B C P -> ~ Col D E F -> Coplanar D E F P ->
-  Coplanar A B C X -> Coplanar A B C Y -> Coplanar A B C Z ->
-  Coplanar D E F X -> Coplanar D E F Y -> Coplanar D E F Z ->
+  ~ 共面 A B C P -> ~ Col D E F -> 共面 D E F P ->
+  共面 A B C X -> 共面 A B C Y -> 共面 A B C Z ->
+  共面 D E F X -> 共面 D E F Y -> 共面 D E F Z ->
   Col X Y Z.
 Proof.
   intros A B C D E F P X Y Z HNCop HNCol HP HX1 HY1 HZ1 HX2 HY2 HZ2.
@@ -3100,7 +3100,7 @@ Proof.
 Qed.
 
 Lemma cop_per2__col : forall A X Y Z,
-  Coplanar A X Y Z ->  A <> Z -> Per X Z A -> Per Y Z A -> Col X Y Z.
+  共面 A X Y Z ->  A <> Z -> Per X Z A -> Per Y Z A -> Col X Y Z.
 Proof.
 intros A X Y Z HC HAZ HPer1 HPer2.
 destruct HPer1 as [B' [HMid1 HCong1]]; destruct HPer2 as [B [HMid2 HCong2]]; treat_equalities.
@@ -3113,7 +3113,7 @@ try (intros HCol1 HCol2); try (intro H; destruct H as [HCol1 HCol2]).
 
   {
   elim (两点重合的决定性 X I); intro HXI; treat_equalities; Col.
-  assert (HCong3 : Cong I A I B) by (apply l4_17 with Y Z; unfold Midpoint in *; spliter; Cong).
+  assert (HCong3 : Cong I A I B) by (apply l4_17 with Y Z; unfold 中点 in *; spliter; Cong).
   elim HCol1; clear HCol1; intro HCol1; try (elim HCol1; clear HCol1; intro HCol1).
 
     {
@@ -3175,7 +3175,7 @@ try (intros HCol1 HCol2); try (intro H; destruct H as [HCol1 HCol2]).
 
   {
   elim (两点重合的决定性 Y I); intro HYI; treat_equalities; Col.
-  assert (HCong3 : Cong I A I B) by (apply l4_17 with X Z; unfold Midpoint in *; spliter; Cong).
+  assert (HCong3 : Cong I A I B) by (apply l4_17 with X Z; unfold 中点 in *; spliter; Cong).
   elim HCol1; clear HCol1; intro HCol1; try (elim HCol1; clear HCol1; intro HCol1).
 
     {
@@ -3237,7 +3237,7 @@ try (intros HCol1 HCol2); try (intro H; destruct H as [HCol1 HCol2]).
 
   {
   elim (两点重合的决定性 Z I); intro HZI; treat_equalities; Col.
-  assert (HCong3 : Cong I A I B) by (apply l4_17 with X Y; unfold Midpoint in *; spliter; Cong).
+  assert (HCong3 : Cong I A I B) by (apply l4_17 with X Y; unfold 中点 in *; spliter; Cong).
   assert (H := l7_20 I A B).
   elim H; try ColR; intro.
     treat_equalities; exfalso; auto.
@@ -3246,7 +3246,7 @@ try (intros HCol1 HCol2); try (intro H; destruct H as [HCol1 HCol2]).
 Qed.
 
 Lemma cop_perp2__col : forall X Y Z A B,
- Coplanar A B Y Z -> Perp X Y A B -> Perp X Z A B -> Col X Y Z.
+ 共面 A B Y Z -> Perp X Y A B -> Perp X Z A B -> Col X Y Z.
 Proof.
     intros.
     induction(col_dec A B X).
@@ -3386,7 +3386,7 @@ Qed.
 
 Lemma cop_nts__os :
  forall A B C D,
-  Coplanar A B C D ->
+  共面 A B C D ->
   ~ Col C A B ->
   ~ Col D A B ->
   ~ TS A B C D ->
@@ -3399,7 +3399,7 @@ Qed.
 
 Lemma cop_nos__ts :
  forall A B C D,
-  Coplanar A B C D ->
+  共面 A B C D ->
   ~ Col C A B ->
   ~ Col D A B ->
   ~ OS A B C D ->
@@ -3426,7 +3426,7 @@ Proof.
 Qed.
 
 Lemma cop_dec : forall A B C D,
- Coplanar A B C D \/ ~ Coplanar A B C D.
+ 共面 A B C D \/ ~ 共面 A B C D.
 Proof.
   intros A B C D.
   destruct (col_dec C A B).
@@ -3441,7 +3441,7 @@ Proof.
 Qed.
 
 Lemma ex_diff_cop : forall A B C D, exists E,
-  Coplanar A B C E /\ D <> E.
+  共面 A B C E /\ D <> E.
 Proof.
   intros A B C D.
   destruct (两点重合的决定性 A D); [destruct (两点重合的决定性 B D); subst|].
@@ -3451,7 +3451,7 @@ Proof.
 Qed.
 
 Lemma ex_ncol_cop : forall A B C D E, D <> E ->
-  exists F, Coplanar A B C F /\ ~ Col D E F.
+  exists F, 共面 A B C F /\ ~ Col D E F.
 Proof.
   intros A B C D E HDE.
   destruct (col_dec A B C) as [|HNCol].
@@ -3464,7 +3464,7 @@ Proof.
 Qed.
 
 Lemma ex_ncol_cop2 : forall A B C D, exists E F,
-  Coplanar A B C E /\ Coplanar A B C F /\ ~ Col D E F.
+  共面 A B C E /\ 共面 A B C F /\ ~ Col D E F.
 Proof.
   intros A B C D.
   destruct (ex_diff_cop A B C D) as [E [HE HDE]].
@@ -3472,8 +3472,8 @@ Proof.
   exists E, F; repeat split; assumption.
 Qed.
 
-Lemma col2_cop2__eq : forall A B C U V P Q, ~ Coplanar A B C U -> U <> V ->
-  Coplanar A B C P -> Coplanar A B C Q -> Col U V P -> Col U V Q ->
+Lemma col2_cop2__eq : forall A B C U V P Q, ~ 共面 A B C U -> U <> V ->
+  共面 A B C P -> 共面 A B C Q -> Col U V P -> Col U V Q ->
   P = Q.
 Proof.
   intros A B C U V P Q HNCop; intros.
@@ -3483,7 +3483,7 @@ Proof.
 Qed.
 
 Lemma cong3_cop2__col : forall A B C P Q,
-  Coplanar A B C P -> Coplanar A B C Q ->
+  共面 A B C P -> 共面 A B C Q ->
   P <> Q -> Cong A P A Q -> Cong B P B Q -> Cong C P C Q ->
   Col A B C.
 Proof.
@@ -3507,15 +3507,15 @@ Proof.
   apply col_transitivity_1 with M; Col.
 Qed.
 
-Lemma l9_38 : forall A B C P Q, TSP A B C P Q -> TSP A B C Q P.
+Lemma l9_38 : forall A B C P Q, 在平面异侧 A B C P Q -> 在平面异侧 A B C Q P.
 Proof.
   intros A B C P Q [HP [HQ [T [HT HBet]]]].
   repeat split; trivial.
   exists T; split; Between.
 Qed.
 
-Lemma l9_39 : forall A B C D P Q R, TSP A B C P R -> Coplanar A B C D -> Out D P Q ->
-  TSP A B C Q R.
+Lemma l9_39 : forall A B C D P Q R, 在平面异侧 A B C P R -> 共面 A B C D -> Out D P Q ->
+  在平面异侧 A B C Q R.
 Proof.
   intros A B C D P Q R [HP [HR [T [HT HBet]]]] HCop HOut.
   assert (HNCol : ~ Col A B C) by (apply ncop__ncol with P, HP).
@@ -3537,13 +3537,13 @@ Proof.
   apply col_cop2__cop with D T; Col.
 Qed.
 
-Lemma l9_41_1 : forall A B C P Q R, TSP A B C P R -> TSP A B C Q R -> OSP A B C P Q.
+Lemma l9_41_1 : forall A B C P Q R, 在平面异侧 A B C P R -> 在平面异侧 A B C Q R -> 在平面同侧 A B C P Q.
 Proof.
   intros A B C P Q R H1 H2.
   exists R; split; assumption.
 Qed.
 
-Lemma l9_41_2 : forall A B C P Q R, TSP A B C P R -> OSP A B C P Q -> TSP A B C Q R.
+Lemma l9_41_2 : forall A B C P Q R, 在平面异侧 A B C P R -> 在平面同侧 A B C P Q -> 在平面异侧 A B C Q R.
 Proof.
   intros A B C P Q R HPR [S [[HP [_ [X []]]] [HQ [HS [Y []]]]]].
   assert (P <> X /\ S <> X /\ Q <> Y /\ S <> Y) by (repeat split; intro; subst; auto); spliter.
@@ -3560,11 +3560,11 @@ Proof.
   apply l9_39 with Y P; [assumption..|apply l6_6, bet_out; auto].
 Qed.
 
-Lemma tsp_exists : forall A B C P, ~ Coplanar A B C P -> exists Q, TSP A B C P Q.
+Lemma tsp_exists : forall A B C P, ~ 共面 A B C P -> exists Q, 在平面异侧 A B C P Q.
 Proof.
   intros A B C P HP.
   destruct (由一点往一方向构造等长线段 P A A P) as [Q []].
-  assert (HA : Coplanar A B C A) by Cop.
+  assert (HA : 共面 A B C A) by Cop.
   exists Q; repeat split.
   - assumption.
   - assert (A <> P) by (intro; subst; apply HP, HA); assert_diffs.
@@ -3572,32 +3572,32 @@ Proof.
   - exists A; split; assumption.
 Qed.
 
-Lemma osp_reflexivity : forall A B C P, ~ Coplanar A B C P -> OSP A B C P P.
+Lemma osp_reflexivity : forall A B C P, ~ 共面 A B C P -> 在平面同侧 A B C P P.
 Proof.
   intros A B C P HP.
   destruct (tsp_exists A B C P HP) as [Q].
   exists Q; split; assumption.
 Qed.
 
-Lemma osp_symmetry : forall A B C P Q, OSP A B C P Q -> OSP A B C Q P.
+Lemma osp_symmetry : forall A B C P Q, 在平面同侧 A B C P Q -> 在平面同侧 A B C Q P.
 Proof.
   intros A B C P Q [R []].
   exists R; split; assumption.
 Qed.
 
-Lemma osp_transitivity : forall A B C P Q R, OSP A B C P Q -> OSP A B C Q R -> OSP A B C P R.
+Lemma osp_transitivity : forall A B C P Q R, 在平面同侧 A B C P Q -> 在平面同侧 A B C Q R -> 在平面同侧 A B C P R.
 Proof.
   intros A B C P Q R [S [HPS HQS]] HQR.
   exists S; split; [|apply l9_41_2 with Q]; assumption.
 Qed.
 
 Lemma cop3_tsp__tsp : forall A B C D E F P Q, ~ Col D E F ->
-  Coplanar A B C D -> Coplanar A B C E -> Coplanar A B C F ->
-  TSP A B C P Q -> TSP D E F P Q.
+  共面 A B C D -> 共面 A B C E -> 共面 A B C F ->
+  在平面异侧 A B C P Q -> 在平面异侧 D E F P Q.
 Proof.
   intros A B C D E F P Q HNCol HD HE HF [HP [HQ [T [HT HBet]]]].
   assert (~ Col A B C) by (apply ncop__ncol with P, HP).
-  assert (Coplanar D E F A /\ Coplanar D E F B /\ Coplanar D E F C /\ Coplanar D E F T).
+  assert (共面 D E F A /\ 共面 D E F B /\ 共面 D E F C /\ 共面 D E F T).
     repeat split; apply coplanar_pseudo_trans with A B C; Cop.
   spliter.
   repeat split.
@@ -3607,20 +3607,20 @@ Proof.
 Qed.
 
 Lemma cop3_osp__osp : forall A B C D E F P Q, ~ Col D E F ->
-  Coplanar A B C D -> Coplanar A B C E -> Coplanar A B C F ->
-  OSP A B C P Q -> OSP D E F P Q.
+  共面 A B C D -> 共面 A B C E -> 共面 A B C F ->
+  在平面同侧 A B C P Q -> 在平面同侧 D E F P Q.
 Proof.
   intros A B C D E F P Q HNCol HD HE HF [R []].
   exists R; split; apply (cop3_tsp__tsp A B C); assumption.
 Qed.
 
-Lemma ncop_distincts : forall A B C D, ~ Coplanar A B C D ->
+Lemma ncop_distincts : forall A B C D, ~ 共面 A B C D ->
   A <> B /\ A <> C /\ A <> D /\ B <> C /\ B <> D /\ C <> D.
 Proof.
   intros A B C D H; repeat split; intro; subst; apply H; Cop.
 Qed.
 
-Lemma tsp_distincts : forall A B C P Q, TSP A B C P Q ->
+Lemma tsp_distincts : forall A B C P Q, 在平面异侧 A B C P Q ->
   A <> B /\ A <> C /\ B <> C /\ A <> P /\ B <> P /\ C <> P /\ A <> Q /\ B <> Q /\ C <> Q /\ P <> Q.
 Proof.
   intros A B C P Q [HP [HQ HT]].
@@ -3632,7 +3632,7 @@ Proof.
   intro; apply HP; treat_equalities; assumption.
 Qed.
 
-Lemma osp_distincts : forall A B C P Q, OSP A B C P Q ->
+Lemma osp_distincts : forall A B C P Q, 在平面同侧 A B C P Q ->
   A <> B /\ A <> C /\ B <> C /\ A <> P /\ B <> P /\ C <> P /\ A <> Q /\ B <> Q /\ C <> Q.
 Proof.
   intros A B C P Q [R [HPR HQR]].
@@ -3641,43 +3641,43 @@ Proof.
   spliter; clean; repeat split; auto.
 Qed.
 
-Lemma tsp__ncop1 : forall A B C P Q, TSP A B C P Q -> ~ Coplanar A B C P.
+Lemma tsp__ncop1 : forall A B C P Q, 在平面异侧 A B C P Q -> ~ 共面 A B C P.
 Proof.
-  unfold TSP; intros; spliter; assumption.
+  unfold 在平面异侧; intros; spliter; assumption.
 Qed.
 
-Lemma tsp__ncop2 : forall A B C P Q, TSP A B C P Q -> ~ Coplanar A B C Q.
+Lemma tsp__ncop2 : forall A B C P Q, 在平面异侧 A B C P Q -> ~ 共面 A B C Q.
 Proof.
-  unfold TSP; intros; spliter; assumption.
+  unfold 在平面异侧; intros; spliter; assumption.
 Qed.
 
-Lemma osp__ncop1 : forall A B C P Q, OSP A B C P Q -> ~ Coplanar A B C P.
+Lemma osp__ncop1 : forall A B C P Q, 在平面同侧 A B C P Q -> ~ 共面 A B C P.
 Proof.
   intros A B C P Q [R [H1 H2]].
   apply tsp__ncop1 with R, H1.
 Qed.
 
-Lemma osp__ncop2 : forall A B C P Q, OSP A B C P Q -> ~ Coplanar A B C Q.
+Lemma osp__ncop2 : forall A B C P Q, 在平面同侧 A B C P Q -> ~ 共面 A B C Q.
 Proof.
   intros A B C P Q [R [H1 H2]].
   apply tsp__ncop1 with R, H2.
 Qed.
 
-Lemma tsp__nosp : forall A B C P Q, TSP A B C P Q -> ~ OSP A B C P Q.
+Lemma tsp__nosp : forall A B C P Q, 在平面异侧 A B C P Q -> ~ 在平面同侧 A B C P Q.
 Proof.
   intros A B C P Q HTS HOS.
-  absurd (TSP A B C P P).
+  absurd (在平面异侧 A B C P P).
     intro Habs; apply tsp_distincts in Habs; spliter; auto.
     apply l9_41_2 with Q; [apply l9_38 | apply osp_symmetry]; assumption.
 Qed.
 
-Lemma osp__ntsp : forall A B C P Q, OSP A B C P Q -> ~ TSP A B C P Q.
+Lemma osp__ntsp : forall A B C P Q, 在平面同侧 A B C P Q -> ~ 在平面异侧 A B C P Q.
 Proof.
   intros A B C P Q HOS HTS.
   apply (tsp__nosp A B C P Q); assumption.
 Qed.
 
-Lemma osp_bet__osp : forall A B C P Q R, OSP A B C P R -> Bet P Q R -> OSP A B C P Q.
+Lemma osp_bet__osp : forall A B C P Q R, 在平面同侧 A B C P R -> Bet P Q R -> 在平面同侧 A B C P Q.
 Proof.
   intros A B C P Q R [S [HPS [HR [_ [Y []]]]]] HBet.
   destruct (col_dec P R S) as [|HNCol].
@@ -3701,9 +3701,9 @@ Proof.
       exists Y; split; Col.
   }
   destruct HOS as [S' [[HNCol1 [HNCol2 [X' []]]] [HNCol3 [_ [Y' []]]]]].
-  assert (Coplanar A B C X') by (assert_diffs; apply col_cop2__cop with X Y; Col).
-  assert (Coplanar A B C Y') by (assert_diffs; apply col_cop2__cop with X Y; Col).
-  assert (HS' : ~ Coplanar A B C S').
+  assert (共面 A B C X') by (assert_diffs; apply col_cop2__cop with X Y; Col).
+  assert (共面 A B C Y') by (assert_diffs; apply col_cop2__cop with X Y; Col).
+  assert (HS' : ~ 共面 A B C S').
     intro; apply HP, col_cop2__cop with X' S'; Col; intro; subst; Col.
   exists S'; repeat split; trivial.
     exists X'; split; assumption.
@@ -3711,8 +3711,8 @@ Proof.
     exists Y'; split; assumption.
 Qed.
 
-Lemma l9_18_3 : forall A B C X Y P, Coplanar A B C P -> Col X Y P ->
-  TSP A B C X Y <-> Bet X P Y /\ ~ Coplanar A B C X /\ ~ Coplanar A B C Y.
+Lemma l9_18_3 : forall A B C X Y P, 共面 A B C P -> Col X Y P ->
+  在平面异侧 A B C X Y <-> Bet X P Y /\ ~ 共面 A B C X /\ ~ 共面 A B C Y.
 Proof.
   intros A B C X Y P HP HCol.
   split; [|intros [HBet [HX HY]]; repeat split; trivial; exists P; split; assumption].
@@ -3724,8 +3724,8 @@ Proof.
 Qed.
 
 Lemma bet_cop__tsp : forall A B C X Y P,
-  ~ Coplanar A B C X -> P <> Y -> Coplanar A B C P -> Bet X P Y ->
-  TSP A B C X Y.
+  ~ 共面 A B C X -> P <> Y -> 共面 A B C P -> Bet X P Y ->
+  在平面异侧 A B C X Y.
 Proof.
   intros A B C X Y P HX HPY HP HBet.
   apply (l9_18_3 A B C X Y P); Col.
@@ -3734,26 +3734,26 @@ Proof.
 Qed.
 
 Lemma cop_out__osp : forall A B C X Y P,
-  ~ Coplanar A B C X -> Coplanar A B C P -> Out P X Y -> OSP A B C X Y.
+  ~ 共面 A B C X -> 共面 A B C P -> Out P X Y -> 在平面同侧 A B C X Y.
 Proof.
   intros A B C X Y P HX HP HOut.
-  assert (~ Coplanar A B C Y).
+  assert (~ 共面 A B C Y).
     assert_diffs; intro; apply HX, col_cop2__cop with P Y; Col.
   destruct (由一点往一方向构造等长线段 X P P X) as [X' []].
-  assert (~ Coplanar A B C X').
+  assert (~ 共面 A B C X').
     assert_diffs; intro; apply HX, col_cop2__cop with P X'; Col.
   exists X'; repeat split; trivial; exists P; split; trivial.
   apply bet_out__bet with X; assumption.
 Qed.
 
-Lemma l9_19_3 : forall A B C X Y P, Coplanar A B C P -> Col X Y P ->
-  OSP A B C X Y <-> Out P X Y /\ ~ Coplanar A B C X.
+Lemma l9_19_3 : forall A B C X Y P, 共面 A B C P -> Col X Y P ->
+  在平面同侧 A B C X Y <-> Out P X Y /\ ~ 共面 A B C X.
 Proof.
   intros A B C X Y P HP HCol.
   split; [|intros []; apply cop_out__osp with P; assumption].
   intro HOS.
-  assert (~ Coplanar A B C X /\ ~ Coplanar A B C Y).
-    unfold OSP, TSP in HOS; destruct HOS as [Z []]; spliter; split; assumption.
+  assert (~ 共面 A B C X /\ ~ 共面 A B C Y).
+    unfold 在平面同侧, 在平面异侧 in HOS; destruct HOS as [Z []]; spliter; split; assumption.
   spliter.
   split; [|assumption].
   apply not_bet_out; [Col|].
@@ -3763,24 +3763,24 @@ Proof.
   repeat split; trivial; exists P; split; assumption.
 Qed.
 
-Lemma cop2_ts__tsp : forall A B C D E X Y, ~ Coplanar A B C X ->
-  Coplanar A B C D -> Coplanar A B C E -> TS D E X Y ->
-  TSP A B C X Y.
+Lemma cop2_ts__tsp : forall A B C D E X Y, ~ 共面 A B C X ->
+  共面 A B C D -> 共面 A B C E -> TS D E X Y ->
+  在平面异侧 A B C X Y.
 Proof.
   intros A B C D E X Y HX HD HE [HNCol [HNCol' [T []]]].
-  assert (Coplanar A B C T) by (assert_diffs; apply col_cop2__cop with D E; Col).
+  assert (共面 A B C T) by (assert_diffs; apply col_cop2__cop with D E; Col).
   repeat split.
     assumption.
     intro; apply HX, col_cop2__cop with T Y; Col; intro; subst; apply HNCol'; Col.
   exists T; split; assumption.
 Qed.
 
-Lemma cop2_os__osp : forall A B C D E X Y, ~ Coplanar A B C X ->
-  Coplanar A B C D -> Coplanar A B C E -> OS D E X Y ->
-  OSP A B C X Y.
+Lemma cop2_os__osp : forall A B C D E X Y, ~ 共面 A B C X ->
+  共面 A B C D -> 共面 A B C E -> OS D E X Y ->
+  在平面同侧 A B C X Y.
 Proof.
   intros A B C D E X Y HX HD HE [Z [HXZ HYZ]].
-  assert (HTS : TSP A B C X Z) by (apply cop2_ts__tsp with D E; assumption).
+  assert (HTS : 在平面异侧 A B C X Z) by (apply cop2_ts__tsp with D E; assumption).
   exists Z; split; [assumption|].
   destruct HTS as [_ []].
   apply l9_2 in HYZ.
@@ -3788,60 +3788,60 @@ Proof.
 Qed.
 
 Lemma cop3_tsp__ts : forall A B C D E X Y, D <> E ->
-  Coplanar A B C D -> Coplanar A B C E -> Coplanar D E X Y ->
-  TSP A B C X Y -> TS D E X Y.
+  共面 A B C D -> 共面 A B C E -> 共面 D E X Y ->
+  在平面异侧 A B C X Y -> TS D E X Y.
 Proof.
-  intros A B C D E X Y HDE HD HE HCop HTSP.
-  assert (HX : ~ Coplanar A B C X) by (apply tsp__ncop1 with Y, HTSP).
-  assert (HY : ~ Coplanar A B C Y) by (apply tsp__ncop2 with X, HTSP).
+  intros A B C D E X Y HDE HD HE HCop H在平面异侧.
+  assert (HX : ~ 共面 A B C X) by (apply tsp__ncop1 with Y, H在平面异侧).
+  assert (HY : ~ 共面 A B C Y) by (apply tsp__ncop2 with X, H在平面异侧).
   apply cop_nos__ts.
     assumption.
     intro; apply HX, col_cop2__cop with D E; Col.
     intro; apply HY, col_cop2__cop with D E; Col.
   intro.
-  apply tsp__nosp in HTSP.
-  apply HTSP, cop2_os__osp with D E; assumption.
+  apply tsp__nosp in H在平面异侧.
+  apply H在平面异侧, cop2_os__osp with D E; assumption.
 Qed.
 
 Lemma cop3_osp__os : forall A B C D E X Y, D <> E ->
-  Coplanar A B C D -> Coplanar A B C E -> Coplanar D E X Y ->
-  OSP A B C X Y -> OS D E X Y.
+  共面 A B C D -> 共面 A B C E -> 共面 D E X Y ->
+  在平面同侧 A B C X Y -> OS D E X Y.
 Proof.
-  intros A B C D E X Y HDE HD HE HCop HOSP.
-  assert (HX : ~ Coplanar A B C X) by (apply osp__ncop1 with Y, HOSP).
-  assert (HY : ~ Coplanar A B C Y) by (apply osp__ncop2 with X, HOSP).
+  intros A B C D E X Y HDE HD HE HCop H在平面同侧.
+  assert (HX : ~ 共面 A B C X) by (apply osp__ncop1 with Y, H在平面同侧).
+  assert (HY : ~ 共面 A B C Y) by (apply osp__ncop2 with X, H在平面同侧).
   apply cop_nts__os.
     assumption.
     intro; apply HX, col_cop2__cop with D E; Col.
     intro; apply HY, col_cop2__cop with D E; Col.
   intro.
-  apply osp__ntsp in HOSP.
-  apply HOSP, cop2_ts__tsp with D E; assumption.
+  apply osp__ntsp in H在平面同侧.
+  apply H在平面同侧, cop2_ts__tsp with D E; assumption.
 Qed.
 
 Lemma cop_tsp__ex_cop2 : forall A B C D E P,
-  Coplanar A B C P -> TSP A B C D E ->
-  exists Q, Coplanar A B C Q /\ Coplanar D E P Q /\ P <> Q.
+  共面 A B C P -> 在平面异侧 A B C D E ->
+  exists Q, 共面 A B C Q /\ 共面 D E P Q /\ P <> Q.
 Proof.
-  intros A B C D E P HCop HTSP.
+  intros A B C D E P HCop H在平面异侧.
   destruct (col_dec D E P) as [|HNCol].
-  { apply tsp_distincts in HTSP; spliter.
+  { apply tsp_distincts in H在平面异侧; spliter.
     destruct (两点重合的决定性 P A).
       subst; exists B; repeat split; Cop.
       exists A; repeat split; Cop.
   }
-  destruct HTSP as [_ [_ [Q []]]].
+  destruct H在平面异侧 as [_ [_ [Q []]]].
   exists Q; repeat split; Cop.
   intro; subst; apply HNCol; Col.
 Qed.
 
 Lemma cop_osp__ex_cop2 : forall A B C D E P,
-  Coplanar A B C P -> OSP A B C D E ->
-  exists Q, Coplanar A B C Q /\ Coplanar D E P Q /\ P <> Q.
+  共面 A B C P -> 在平面同侧 A B C D E ->
+  exists Q, 共面 A B C Q /\ 共面 D E P Q /\ P <> Q.
 Proof.
-  intros A B C D E P HCop HOSP.
+  intros A B C D E P HCop H在平面同侧.
   destruct (col_dec D E P) as [|HNCol].
-  { apply osp_distincts in HOSP; spliter.
+  { apply osp_distincts in H在平面同侧; spliter.
     destruct (两点重合的决定性 P A).
       subst; exists B; repeat split; Cop.
       exists A; repeat split; Cop.
@@ -3850,14 +3850,14 @@ Proof.
   assert (~ Col D E' P) by (intro; apply HNCol; ColR).
   destruct (cop_tsp__ex_cop2 A B C D E' P) as [Q [HQ1 [HQ2 HPQ]]]; [assumption|..].
   { apply l9_41_2 with E.
-      assert_diffs; destruct HOSP as [F [_ [HE]]]; apply bet_cop__tsp with P; Cop.
-      apply osp_symmetry, HOSP.
+      assert_diffs; destruct H在平面同侧 as [F [_ [HE]]]; apply bet_cop__tsp with P; Cop.
+      apply osp_symmetry, H在平面同侧.
   }
   exists Q; repeat split; auto.
   apply coplanar_perm_2, coplanar_trans_1 with E'; Col; Cop.
 Qed.
 
-Lemma sac__coplanar : forall A B C D, Saccheri A B C D -> Coplanar A B C D.
+Lemma sac__coplanar : forall A B C D, Saccheri A B C D -> 共面 A B C D.
 Proof.
   intros A B C D [_ [_ [_ HOS]]].
   apply os__coplanar in HOS; Cop.
@@ -3890,7 +3890,7 @@ repeat
       | H:TS ?A ?B ?X ?Y |- _ =>
      not_exist_hyp_perm_ncol A B Y;assert (~ Col A B Y) by (apply(two_sides_not_col A B Y X);Side)
 
-      | H:~ Coplanar ?A ?B ?C ?D |- _ =>
+      | H:~ 共面 ?A ?B ?C ?D |- _ =>
       let h := fresh in
       not_exist_hyp_perm_ncol4 A B C D;
       assert (h := ncop__ncols A B C D H);decompose [and] h;clear h;clean_reap_hyps

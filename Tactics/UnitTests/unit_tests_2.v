@@ -44,42 +44,42 @@ not_exist_hyp4 A B C D E F G H.
 auto.
 Qed.
 
-Goal forall A B C D E F, CongA A B C D E F -> A <> B /\ C <> B /\ D <> E /\ F <> E.
+Goal forall A B C D E F, 等角 A B C D E F -> A <> B /\ C <> B /\ D <> E /\ F <> E.
 Proof.
 intros.
 assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C P, InAngle P A B C -> A <> B /\ C <> B /\ P <> B.
+Goal forall A B C P, 在角内 P A B C -> A <> B /\ C <> B /\ P <> B.
 Proof.
 intros.
 assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C D E F, LeA A B C D E F -> A <> B /\ C <> B /\ D <> E /\ F <> E.
+Goal forall A B C D E F, 角度小于等于 A B C D E F -> A <> B /\ C <> B /\ D <> E /\ F <> E.
 Proof.
 intros.
 assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C D E F, LtA A B C D E F -> A <> B /\ C <> B /\ D <> E /\ F <> E.
+Goal forall A B C D E F, 角度小于 A B C D E F -> A <> B /\ C <> B /\ D <> E /\ F <> E.
 Proof.
 intros.
 assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C, Acute A B C -> A <> B /\ C <> B.
+Goal forall A B C, 为锐角 A B C -> A <> B /\ C <> B.
 Proof.
 intros.
 assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C, Obtuse A B C -> A <> B /\ C <> B.
+Goal forall A B C, 为钝角 A B C -> A <> B /\ C <> B.
 Proof.
 intros.
 assert_diffs.
@@ -178,7 +178,7 @@ assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C D, ~ Coplanar A B C D ->
+Goal forall A B C D, ~ 共面 A B C D ->
   A <> B /\ A <> C /\ A <> D /\ B <> C /\ B <> D /\ C <> D. 
 Proof.
 intros.
@@ -186,7 +186,7 @@ assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C U V X, Orth_at X A B C U V -> A <> B /\ B <> C /\ A <> C /\ U <> V.
+Goal forall A B C U V X, 垂直平面于 X A B C U V -> A <> B /\ B <> C /\ A <> C /\ U <> V.
 Proof.
 intros.
 assert_diffs.

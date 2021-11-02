@@ -35,8 +35,8 @@ assert (~ Col a c d).
  }
 assert (Triangle a c d) by (conclude_def Triangle ).
 assert (Triangle a c b) by (conclude_def Triangle ).
-assert (Cong_3 a c d a c d) by (conclude lemma_TCreflexive).
-assert (Cong_3 a c b a c b) by (conclude lemma_TCreflexive).
+assert (三角形全等 a c d a c d) by (conclude lemma_TCreflexive).
+assert (三角形全等 a c b a c b) by (conclude lemma_TCreflexive).
 assert (ET a c d a c d) by (conclude axiom_congruentequal).
 assert (ET a c b a c b) by (conclude axiom_congruentequal).
 assert (Col a c p) by (conclude_def Col ).

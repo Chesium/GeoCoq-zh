@@ -15,9 +15,9 @@ let Tf:=fresh in
 assert (Tf:exists M, (nCol A B M /\ OS M P A B /\ ~ Per A C M)) by (conclude lemma_notperp);destruct Tf as [M];spliter.
 assert (neq A B) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists Q, Perp_at M Q A B Q) by (conclude proposition_12);destruct Tf as [Q];spliter.
+assert (Tf:exists Q, 垂直于 M Q A B Q) by (conclude proposition_12);destruct Tf as [Q];spliter.
 let Tf:=fresh in
-assert (Tf:exists E, (Col M Q Q /\ Col A B Q /\ Col A B E /\ Per E Q M)) by (conclude_def Perp_at );destruct Tf as [E];spliter.
+assert (Tf:exists E, (Col M Q Q /\ Col A B Q /\ Col A B E /\ Per E Q M)) by (conclude_def 垂直于 );destruct Tf as [E];spliter.
 assert (~ eq M Q).
  {
  intro.
@@ -65,9 +65,9 @@ assert (~ eq M G).
 rename_H H;let Tf:=fresh in
 assert (Tf:exists H, (BetS M G H /\ Cong G H M G)) by (conclude lemma_extension);destruct Tf as [H];spliter.
 assert (Cong M G G H) by (conclude lemma_congruencesymmetric).
-assert (Midpoint M G H) by (conclude_def Midpoint ).
+assert (中点 M G H) by (conclude_def 中点 ).
 assert (Cong Q G G C) by (forward_using lemma_congruenceflip).
-assert (Midpoint Q G C) by (conclude_def Midpoint ).
+assert (中点 Q G C) by (conclude_def 中点 ).
 assert (Col Q G C) by (conclude_def Col ).
 assert (Col C Q G) by (forward_using lemma_collinearorder).
 assert (neq Q G) by (forward_using lemma_betweennotequal).
@@ -92,7 +92,7 @@ assert (~ eq J G).
 let Tf:=fresh in
 assert (Tf:exists K, (BetS J G K /\ Cong G K J G)) by (conclude lemma_extension);destruct Tf as [K];spliter.
 assert (Cong J G G K) by (conclude lemma_congruencesymmetric).
-assert (Midpoint J G K) by (conclude_def Midpoint ).
+assert (中点 J G K) by (conclude_def 中点 ).
 assert (Cong M Q H C) by (conclude lemma_pointreflectionisometry).
 assert (neq J Q) by (forward_using lemma_betweennotequal).
 assert (neq Q J) by (conclude lemma_inequalitysymmetric).

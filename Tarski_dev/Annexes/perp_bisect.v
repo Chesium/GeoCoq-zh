@@ -7,11 +7,11 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma perp_bisect_equiv_def :
   forall P Q A B, Perp_bisect P Q A B <-> Perp_bisect_bis P Q A B.
 Proof.
-intros; unfold Perp_bisect; unfold Perp_bisect_bis; unfold ReflectL; split.
+intros; unfold Perp_bisect; unfold Perp_bisect_bis; unfold 严格对称; split.
 
   {
   intro H; destruct H as [[[X [HMid HCol]] HPerp] HDiff].
-  exists X; split; Midpoint.
+  exists X; split; 中点.
   elim HPerp; clear HPerp; intro HPerp; [|exfalso;auto].
   apply l8_14_2_1b_bis; Col; Perp.
   }
@@ -20,8 +20,8 @@ intros; unfold Perp_bisect; unfold Perp_bisect_bis; unfold ReflectL; split.
   intro H; destruct H as [I [HPerp HMid]].
   assert_diffs; split; Col.
   split; try (left; apply l8_14_2_1a with I); Perp.
-  exists I; split; Midpoint.
-  unfold Perp_at in *; spliter; Col.
+  exists I; split; 中点.
+  unfold 垂直于 in *; spliter; Col.
   }
 Qed.
 
@@ -150,7 +150,7 @@ Qed.
 Lemma cong_cop_perp_bisect :
  forall P Q A B,
  P <> Q -> A <> B ->
- Coplanar P Q A B ->
+ 共面 P Q A B ->
  Cong A P B P ->
  Cong A Q B Q ->
  Perp_bisect P Q A B.
@@ -166,13 +166,13 @@ assert (Per P I A)
  by (exists B; split; Cong).
 
 show_distinct A I.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 treat_equalities.
 intuition.
 
 show_distinct B I.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 treat_equalities.
 intuition.
@@ -184,7 +184,7 @@ exists Q. exists B;repeat split;Col.
 unfold Per.
 exists A.
 split.
-Midpoint.
+中点.
 Cong.
 
 eapply l8_13_2.
@@ -210,7 +210,7 @@ Lemma cong_mid_perp_bisect :
  forall P Q A B,
  P <> Q -> A <> B ->
  Cong A P B P ->
- Midpoint Q A B ->
+ 中点 Q A B ->
  Perp_bisect P Q A B.
 Proof.
 intros.
@@ -229,7 +229,7 @@ CongR.
 Qed.
 
 Lemma perp_mid_perp_bisect : forall A B C D,
- Midpoint C A B -> Perp C D A B ->
+ 中点 C A B -> Perp C D A B ->
  Perp_bisect C D A B.
 Proof.
 intros.
@@ -241,8 +241,8 @@ apply l8_14_2_1b_bis; Col.
 Qed.
 
 Lemma cong_cop2_perp_bisect_col : forall A B C D E,
-  Coplanar A C D E ->
-  Coplanar B C D E ->
+  共面 A C D E ->
+  共面 B C D E ->
   Cong C D C E ->
   Perp_bisect A B D E ->
   Col A B C.
@@ -260,14 +260,14 @@ apply perp_bisect_perp; apply cong_cop_perp_bisect; Cong.
 Qed.
 
 Lemma perp_bisect_cop2_existence : forall A B C,
-  A <> B -> exists P, exists Q, Perp_bisect P Q A B /\ Coplanar A B C P /\ Coplanar A B C Q.
+  A <> B -> exists P, exists Q, Perp_bisect P Q A B /\ 共面 A B C P /\ 共面 A B C Q.
 Proof.
 intros A B C HDiff.
 destruct (midpoint_existence A B) as [M HM].
 destruct (ex_perp_cop A B M C HDiff) as [Q []].
 exists M; exists Q; unfold Perp_bisect.
 repeat split; Cop.
-  exists M; split; Col; Midpoint.
+  exists M; split; Col; 中点.
   left; Perp.
 Qed.
 
@@ -280,15 +280,15 @@ exists P; exists Q; assumption.
 Qed.
 
 Lemma perp_bisect_existence_cop : forall A B C,
-  A <> B -> exists P, exists Q, Perp_bisect P Q A B /\ Coplanar A B C P /\
-                                Coplanar A B C Q.
+  A <> B -> exists P, exists Q, Perp_bisect P Q A B /\ 共面 A B C P /\
+                                共面 A B C Q.
 Proof.
 intros A B C HDiff.
 destruct (midpoint_existence A B) as [M HM].
 destruct (ex_perp_cop A B M C) as [Q [HQ HCop]]; auto.
 exists M; exists Q; unfold Perp_bisect.
 repeat split; Perp; [|Cop].
-exists M; split; [Midpoint|Col].
+exists M; split; [中点|Col].
 Qed.
 
 End PerpBisect_3.

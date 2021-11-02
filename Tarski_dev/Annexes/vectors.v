@@ -357,7 +357,7 @@ Qed.
 Lemma eqv_mid :
  forall A B C,
   EqV A B B C ->
-  Midpoint B A C.
+  中点 B A C.
 Proof.
 intros.
 unfold EqV in H.
@@ -374,7 +374,7 @@ apply l7_3_2.
 Qed.
 
 Lemma mid_eqv :
-  forall A B C, Midpoint A B C ->
+  forall A B C, 中点 A B C ->
   EqV B A A C.
 Proof.
 intros.
@@ -394,7 +394,7 @@ subst C.
 apply l7_3 in H.
 contradiction.
 assumption.
-Midpoint.
+中点.
 Qed.
 
 
@@ -433,7 +433,7 @@ ex_and H0 M.
 assert( A = M).
 apply (l7_17 B D).
 apply HP.
-Midpoint.
+中点.
 subst M.
 
 apply mid_eqv in H0.
@@ -459,14 +459,14 @@ ex_and H1 M1.
 assert(M1 = M0).
 apply (l7_17 B D).
 apply H5.
-Midpoint.
+中点.
 subst M1.
 assert(Parallelogram A D' D'0 C).
 apply (mid_plg _ _ _ _ M0).
 left.
 assumption.
 assumption.
-Midpoint.
+中点.
 assert(EqV C D'0 A D').
 unfold EqV.
 left.
@@ -653,11 +653,11 @@ split; Between.
 ex_and H D'.
 induction H0.
 
-assert(exists M : Tpoint, Midpoint M A D' /\ Midpoint M B C).
+assert(exists M : Tpoint, 中点 M A D' /\ 中点 M B C).
 apply plg_mid.
 assumption.
 ex_and H1 M.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 
 induction H0.
@@ -703,7 +703,7 @@ spliter.
 assert(~Col A B C).
 assumption.
 
-assert(Par_strict A B D' C /\ Par_strict A C B D').
+assert(严格平行 A B D' C /\ 严格平行 A C B D').
 
 apply(plgs_par_strict A B D' C).
 assumption.
@@ -728,7 +728,7 @@ apply par_right_comm.
 left.
 assumption.
 
-assert(Par_strict A B C D).
+assert(严格平行 A B C D).
 apply par_strict_symmetry.
 induction H21.
 auto.
@@ -849,7 +849,7 @@ induction (两点重合的决定性 A D').
 subst D'.
 unfold Parallelogram_flat in H0.
 spliter.
-assert(B = C \/ Midpoint A B C).
+assert(B = C \/ 中点 A B C).
 apply l7_20.
 Col.
 Cong.
@@ -866,7 +866,7 @@ induction (两点重合的决定性 B C).
 subst C.
 unfold Parallelogram_flat in H0.
 spliter.
-assert(A = D' \/ Midpoint B A D').
+assert(A = D' \/ 中点 B A D').
 apply l7_20.
 Col.
 Cong.
@@ -996,7 +996,7 @@ contradiction.
 Qed.
 
 Lemma par_ts_same_dir :
- forall A B C D, Par_strict A B C D ->
+ forall A B C D, 严格平行 A B C D ->
  (exists M, Bet A M D /\ Bet B M C) ->
  Same_dir A B C D.
 Proof.
@@ -1154,7 +1154,7 @@ exists B.
 split; Col.
 unfold Parallelogram_flat in H0.
 spliter.
-assert(A = D' \/ Midpoint B A D').
+assert(A = D' \/ 中点 B A D').
 apply l7_20.
 Col.
 Cong.
@@ -1162,7 +1162,7 @@ induction H5.
 subst D'.
 tauto.
 left.
-unfold Midpoint in H5.
+unfold 中点 in H5.
 spliter.
 unfold Out.
 repeat split.
@@ -1236,12 +1236,12 @@ spliter.
 repeat split; auto.
 spliter.
 
-assert(Par_strict A B C D).
+assert(严格平行 A B C D).
 apply plgs_par_strict in H.
 spliter.
 auto.
 
-assert(Par_strict A B' D C').
+assert(严格平行 A B' D C').
 assert(Par A B' D C').
 apply (par_col_par_2 _ B).
 auto.
@@ -2439,7 +2439,7 @@ tauto.
 
 induction H2.
 
-assert( A = C' \/ Midpoint B A C').
+assert( A = C' \/ 中点 B A C').
 apply l7_20.
 Col.
 Cong.
@@ -2447,11 +2447,11 @@ induction H8.
 induction H7.
 tauto.
 tauto.
-unfold Midpoint in H8.
+unfold 中点 in H8.
 spliter.
 apply (l5_2 A); auto.
 
-assert( A = C' \/ Midpoint B A C').
+assert( A = C' \/ 中点 B A C').
 apply l7_20.
 Col.
 Cong.
@@ -2459,7 +2459,7 @@ induction H8.
 induction H7.
 tauto.
 tauto.
-unfold Midpoint in H8.
+unfold 中点 in H8.
 spliter.
 apply (l5_2 A); auto.
 Qed.
@@ -2697,7 +2697,7 @@ induction H.
 tauto.
 ex_and H C.
 apply eqv_mid in H0.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 unfold Out in H.
 spliter.
 induction H3.

@@ -16,11 +16,11 @@ elim HPar1; clear HPar1; intro HPar1; elim HPar2; clear HPar2; intro HPar2.
   assert (HDiff : P <> A1) by (intro; apply HPar1; exists P; subst; Col).
   assert (HX := symmetric_point_construction A1 P); destruct HX as [X HMid1].
   revert B1 B2 C1 C2 HCol1 HCol2 HPar1 HPar2.
-  assert (Haux : forall B1 B2, Col P B1 B2 -> Par_strict A1 A2 B1 B2 ->
-            exists B3, Col B1 B2 B3 /\ BetS A2 B3 X /\ Par_strict A1 A2 P B3).
+  assert (Haux : forall B1 B2, Col P B1 B2 -> 严格平行 A1 A2 B1 B2 ->
+            exists B3, Col B1 B2 B3 /\ BetS A2 B3 X /\ 严格平行 A1 A2 P B3).
     {
-    cut (forall B1 B2, Col P B1 B2 -> Par_strict A1 A2 B1 B2 -> P <> B1 ->
-            exists B3, Col B1 B2 B3 /\ BetS A2 B3 X /\ Par_strict A1 A2 P B3).
+    cut (forall B1 B2, Col P B1 B2 -> 严格平行 A1 A2 B1 B2 -> P <> B1 ->
+            exists B3, Col B1 B2 B3 /\ BetS A2 B3 X /\ 严格平行 A1 A2 P B3).
       {
       intros Haux B1 B2 HCol1 HPar1.
       elim (两点重合的决定性 P B1); auto.

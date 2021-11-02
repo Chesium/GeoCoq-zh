@@ -16,7 +16,7 @@ Proof.
   intro Haux.
   cut (forall A B C D P Q,
   OnCircle P C D -> OnCircle Q C D -> InCircleS P A B -> OutCircleS Q A B ->
-  Coplanar A C P Q -> (~ Col P A C \/ ~ Col Q A C) ->
+  共面 A C P Q -> (~ Col P A C \/ ~ Col Q A C) ->
   exists Z : Tpoint, OnCircle Z A B /\ OnCircle Z C D).
   - intros Haux' A B C D P Q HPOn HQOn HPIn HQOut.
     assert (HQ' : exists Q', OnCircle Q' C D /\ OutCircle Q' A B /\ Col Q' A C).
@@ -104,7 +104,7 @@ Proof.
     - apply bet_ts__ts with Y; trivial.
       apply l9_2, bet_ts__ts with X; Side; Between.
   }
-  assert (HLta : LtA A C P A C Q).
+  assert (HLta : 角度小于 A C P A C Q).
   { apply t18_19; Cong.
       intro; treat_equalities; auto.
       apply 等长的传递性 with C D; Cong.
@@ -114,8 +114,8 @@ Proof.
   { intro.
     destruct HDij as [HOS'|[[HCol HNCol]|[HNCol HCol]]];
       [|apply HNCol; ColR..].
-    destruct HLta as [_ HNCongA].
-    apply HNCongA, out2__conga.
+    destruct HLta as [_ HN等角].
+    apply HN等角, out2__conga.
       apply out_trivial; auto.
     apply col_one_side_out with A; Col; Side.
   }
@@ -242,7 +242,7 @@ Proof.
         apply HMT, (between_cong A); assumption.
     }
     assert_diffs.
-    assert (HX : InAngle X0 R C Q).
+    assert (HX : 在角内 X0 R C Q).
     { apply l11_25 with X0 Z Q; try (apply out_trivial); auto.
       apply lea_in_angle.
       - apply t18_19; auto.
@@ -330,7 +330,7 @@ Proof.
         assert_diffs; apply l6_6, bet_out; eBetween.
     }
     assert_diffs.
-    assert (HY : InAngle Y0 P C R).
+    assert (HY : 在角内 Y0 P C R).
     { apply l11_25 with Y0 P Z; try (apply out_trivial); auto.
       apply l11_24, lea_in_angle.
       - apply t18_19; auto.

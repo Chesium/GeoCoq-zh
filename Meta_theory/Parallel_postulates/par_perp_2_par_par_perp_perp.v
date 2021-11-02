@@ -15,27 +15,27 @@ elim HPar; clear HPar; intro HPar;
 assert (HX := HPerp); destruct HX as [X HX].
 elim (col_dec C D X); intro HCDX.
 
-  exfalso; apply HPar; exists X; unfold Perp_at in HX; spliter; Col.
+  exfalso; apply HPar; exists X; unfold 垂直于 in HX; spliter; Col.
 
   assert (HY := l8_18_existence C D X HCDX); destruct HY as [Y [HCDY HPerp']].
   assert (HPar' : Par P Q X Y).
     {
     destruct HX as [_ [_ [HCol [ ]]]]; assert_diffs.
-    assert (Coplanar C D X A)
+    assert (共面 C D X A)
       by (apply col2_cop__cop with A B; Col; apply pars__coplanar; Par).
-    assert (Coplanar C D X B)
+    assert (共面 C D X B)
       by (apply col2_cop__cop with A B; Col; apply pars__coplanar; Par).
-    assert (Coplanar C D X P)
+    assert (共面 C D X P)
       by (apply col2_cop__cop with P Q; Col; apply perp__coplanar; Perp).
-    assert (Coplanar C D X Q)
+    assert (共面 C D X Q)
       by (apply col2_cop__cop with P Q; Col; apply perp__coplanar; Perp).
-    assert (Coplanar C D X Y) by Cop.
+    assert (共面 C D X Y) by Cop.
     apply HPPP with A B C D; Perp; try solve [left; auto];
     try solve [apply col2_cop__cop with P Q; Col; Cop]; CopR.
     }
   elim HPar'; clear HPar'; intro HPar'.
 
-    exfalso; apply HPar'; exists X; unfold Perp_at in HX; spliter; Col.
+    exfalso; apply HPar'; exists X; unfold 垂直于 in HX; spliter; Col.
 
     destruct HPar' as [HPQ [HXY [HCol1 HCol2]]].
     apply perp_sym; apply perp_col2 with X Y; Col; Perp.

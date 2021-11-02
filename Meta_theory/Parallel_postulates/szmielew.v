@@ -40,7 +40,7 @@ Proof.
   }
   assert (B1 <> P) by (apply sac_distincts in HSac; spliter; auto).
   assert (C1 <> P) by (apply sac_distincts in HSac'; spliter; auto).
-  assert (HLta : LtA B1 P C1 X Q Y); [|destruct HLta as [_ HNConga]; apply HNConga; CongA].
+  assert (HLta : 角度小于 B1 P C1 X Q Y); [|destruct HLta as [_ HNConga]; apply HNConga; 等角].
   assert (~ Col P Q X) by (apply per_not_col; auto).
   assert (HTS : TS Q P X Y) by (apply bet__ts; Col).
   apply sams_lta2_suma2__lta with B1 P Q Q P C1 P Q X P Q Y; SumA.

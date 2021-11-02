@@ -54,14 +54,14 @@ let Tf:=fresh in
 assert (Tf:exists Q, (BetS F M Q /\ Cong M Q M F)) by (conclude lemma_extension);destruct Tf as [Q];spliter.
 assert (Cong M D M R) by (conclude lemma_congruencesymmetric).
 assert (Cong D M M R) by (forward_using lemma_congruenceflip).
-assert (Midpoint D M R) by (conclude_def Midpoint ).
+assert (中点 D M R) by (conclude_def 中点 ).
 assert (Cong M F M Q) by (conclude lemma_congruencesymmetric).
 assert (Cong F M M Q) by (forward_using lemma_congruenceflip).
-assert (Midpoint F M Q) by (conclude_def Midpoint ).
+assert (中点 F M Q) by (conclude_def 中点 ).
 assert (Cong M B M A) by (conclude lemma_congruencesymmetric).
 assert (Cong B M M A) by (forward_using lemma_congruenceflip).
 assert (BetS B M A) by (conclude axiom_betweennesssymmetry).
-assert (Midpoint B M A) by (conclude_def Midpoint ).
+assert (中点 B M A) by (conclude_def 中点 ).
 assert (Cong F B Q A) by (conclude lemma_pointreflectionisometry).
 assert (Cong B F F B) by (conclude cn_equalityreverse).
 assert (Cong B D F B) by (conclude lemma_congruencetransitive).
@@ -83,11 +83,11 @@ assert (Cong C A A E) by (forward_using lemma_congruenceflip).
 assert (Cong C M E M) by (conclude lemma_rightreverse).
 assert (Cong E M C M) by (conclude lemma_congruencesymmetric).
 assert (Cong M E M C) by (forward_using lemma_congruenceflip).
-assert (Midpoint D M R) by (conclude_def Midpoint ).
-assert (Midpoint F M Q) by (conclude_def Midpoint ).
+assert (中点 D M R) by (conclude_def 中点 ).
+assert (中点 F M Q) by (conclude_def 中点 ).
 assert (Cong M B M A) by (conclude lemma_congruencesymmetric).
 assert (Cong B M M A) by (forward_using lemma_congruenceflip).
-assert (Midpoint B M A) by (conclude_def Midpoint ).
+assert (中点 B M A) by (conclude_def 中点 ).
 assert (Cong F B Q A) by (conclude lemma_pointreflectionisometry).
 assert (nCol D B A) by (conclude lemma_rightangleNC).
 assert (neq D B) by (forward_using lemma_NCdistinct).
@@ -104,10 +104,10 @@ assert (Cong F D Q R) by (forward_using lemma_congruenceflip).
 assert (BetS F B D) by (conclude axiom_betweennesssymmetry).
 assert (Cong B D A R) by (forward_using lemma_congruenceflip).
 assert (BetS Q A R) by (conclude lemma_betweennesspreserved).
-assert (Midpoint Q A R) by (conclude_def Midpoint ).
+assert (中点 Q A R) by (conclude_def 中点 ).
 assert (Cong E A A C) by (forward_using lemma_doublereverse).
 assert (BetS E A C) by (conclude axiom_betweennesssymmetry).
-assert (Midpoint E A C) by (conclude_def Midpoint ).
+assert (中点 E A C) by (conclude_def 中点 ).
 assert (Cong C D E F).
 by cases on (neq E Q \/ eq E Q).
 {
@@ -118,7 +118,7 @@ by cases on (neq E Q \/ eq E Q).
  close.
  }
 {
- assert (Midpoint F M E) by (conclude cn_equalitysub).
+ assert (中点 F M E) by (conclude cn_equalitysub).
  assert (neq F B) by (forward_using lemma_betweennotequal).
  assert (neq F D) by (forward_using lemma_betweennotequal).
  assert (neq B D) by (forward_using lemma_betweennotequal).

@@ -9,7 +9,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma alternate_interior__proclus_aux :
   greenberg_s_axiom ->
   alternate_interior_angles_postulate -> forall A C D P Q,
-  Par_strict P A C D -> Perp C D P C -> OS P A C Q -> OS P C Q A -> OS P C Q D ->
+  严格平行 P A C D -> Perp C D P C -> OS P A C Q -> OS P C Q A -> OS P C Q D ->
   exists Y, Col P Q Y /\ Col C D Y.
 Proof.
   intros greenberg aia.
@@ -19,9 +19,9 @@ Proof.
   assert (~ Col P A Q) by (apply one_side_not_col124 with C, HOS1).
   assert (~ Col P C Q) by (apply one_side_not_col123 with D, HOS3).
   assert (~ Col P C D) by (apply one_side_not_col124 with Q, HOS3).
-  assert (LtA A P Q A P C) by (apply inangle__lta; [Col|Side]).
+  assert (角度小于 A P Q A P C) by (apply inangle__lta; [Col|Side]).
   assert (OS P C D A) by (apply one_side_transitivity with Q; Side).
-  assert (Acute A P Q).
+  assert (为锐角 A P Q).
   { exists A, P, C; split; auto.
     apply (l11_17 P C D').
       apply per_col with D; Col; Perp.
@@ -31,20 +31,20 @@ Proof.
   }
   destruct (greenberg P C D A P Q) as [S [HS1 HS2]]; Perp; Col.
   assert (OS P C S D) by (apply invert_one_side, out_one_side; Col).
-  assert (HY : InAngle Q C P S).
+  assert (HY : 在角内 Q C P S).
   { apply os2__inangle.
       apply one_side_transitivity with D; Side.
     exists A.
     assert (OS P C S A).
       apply one_side_transitivity with D; Side.
-    assert (Par_strict P A S C).
+    assert (严格平行 P A S C).
     { apply lta_distincts in HS1; spliter.
       apply par_strict_right_comm, par_strict_col_par_strict with D; Col.
     }
     assert (HTS : TS P S C A) by (apply l9_31; Side).
     split; trivial.
-    assert (CongA A P S C S P) by (apply aia; [Side|Par]).
-    assert (HLta : LtA A P S A P Q) by (apply (conga_preserves_lta P S C A P Q); CongA).
+    assert (等角 A P S C S P) by (apply aia; [Side|Par]).
+    assert (HLta : 角度小于 A P S A P Q) by (apply (conga_preserves_lta P S C A P Q); 等角).
     destruct HLta as [HLea HNConga].
     apply invert_two_sides, in_angle_two_sides; [|destruct HTS as [_ []]; Col|].
     { intro.
@@ -71,7 +71,7 @@ Proof.
   elim(col_dec C D P).
     intro HConf; exists P; split; Col.
   intro HStrict.
-  assert(HParS : Par_strict A B C D).
+  assert(HParS : 严格平行 A B C D).
   { apply par_strict_symmetry, par_not_col_strict with P; auto.
     apply par_symmetry, HPar.
   }
@@ -99,7 +99,7 @@ Proof.
   }
   destruct HA1 as [A1 []].
   assert(HC1 : exists C1, Col C D C1 /\ OS P C0 Q1 C1).
-  { assert (Coplanar C D P Q1) by (apply col_cop__cop with Q; Col).
+  { assert (共面 C D P Q1) by (apply col_cop__cop with Q; Col).
     destruct (perp_not_col2 P C0 C D); Perp.
       apply (cop_not_par_same_side _ _ _ _ C0); Col.
       apply coplanar_perm_5, col_cop__cop with D; Cop.

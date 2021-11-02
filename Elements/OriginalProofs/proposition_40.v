@@ -26,7 +26,7 @@ assert (Col H E E) by (conclude_def Col ).
 assert (neq R E) by (forward_using lemma_betweennotequal).
 assert (nCol R E D) by (conclude lemma_NChelper).
 let Tf:=fresh in
-assert (Tf:exists P Q M, (BetS P D Q /\ CongA P D H D H E /\ Par P Q R E /\ BetS P M E /\ BetS D M H)) by (conclude proposition_31short);destruct Tf as [P[Q[M]]];spliter.
+assert (Tf:exists P Q M, (BetS P D Q /\ 等角 P D H D H E /\ Par P Q R E /\ BetS P M E /\ BetS D M H)) by (conclude proposition_31short);destruct Tf as [P[Q[M]]];spliter.
 assert (Col R E H) by (forward_using lemma_collinearorder).
 assert (Par P Q H E) by (conclude lemma_collinearparallel).
 assert (Col P D Q) by (conclude_def Col ).

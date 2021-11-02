@@ -79,7 +79,7 @@ assert (EF B C E D B c e d) by (conclude lemma_paste5).
 assert (Cong B C B c) by (conclude proposition_48A).
 assert (Cong A C A c) by (conclude lemma_congruencesymmetric).
 assert (Triangle A B c) by (conclude_def Triangle ).
-assert (CongA B A C B A c) by (apply (proposition_08 A B C A B c);auto).
+assert (等角 B A C B A c) by (apply (proposition_08 A B C A B c);auto).
 assert (Per B A C) by (conclude lemma_equaltorightisright).
 close.
 Qed.

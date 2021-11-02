@@ -24,8 +24,8 @@ assert (Par M C E L) by (conclude_def PG ).
 assert (nCol M C L) by (forward_using lemma_parallelNC).
 assert (Par m c e l) by (conclude_def PG ).
 assert (nCol m c l) by (forward_using lemma_parallelNC).
-assert (Cong_3 C M L L E C) by (conclude proposition_34).
-assert (Cong_3 c m l l e c) by (conclude proposition_34).
+assert (三角形全等 C M L L E C) by (conclude proposition_34).
+assert (三角形全等 c m l l e c) by (conclude proposition_34).
 assert (ET C M L L E C) by (conclude axiom_congruentequal).
 assert (ET c m l l e c) by (conclude axiom_congruentequal).
 assert (CR M E C L) by (conclude_def RE ).

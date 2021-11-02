@@ -9,7 +9,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma proposition_28D : 
    forall B D E G H, 
-   BetS E G H -> CongA E G B G H D -> OS B D G H ->
+   BetS E G H -> 等角 E G B G H D -> OS B D G H ->
    Par G B H D.
 Proof.
 intros.

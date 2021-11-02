@@ -11,7 +11,7 @@ Lemma lemma_ETreflexive :
 Proof.
 intros.
 assert (nCol A B C) by (conclude_def Triangle ).
-assert (Cong_3 A B C A B C) by (conclude lemma_TCreflexive).
+assert (三角形全等 A B C A B C) by (conclude lemma_TCreflexive).
 assert (ET A B C A B C) by (conclude axiom_congruentequal).
 close.
 Qed.

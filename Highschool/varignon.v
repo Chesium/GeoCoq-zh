@@ -17,10 +17,10 @@ http://polib.univ-lille3.fr/documents/B590092101_000000011.489_IMT.pdf
 Lemma varignon :
  forall A B C D I J K L,
   A<>C -> B<>D -> ~ Col I J K ->
-  Midpoint I A B ->
-  Midpoint J B C ->
-  Midpoint K C D ->
-  Midpoint L A D ->
+  中点 I A B ->
+  中点 J B C ->
+  中点 K C D ->
+  中点 L A D ->
   Parallelogram I J K L.
 Proof.
 intros.
@@ -50,10 +50,10 @@ Lemma varignon_aux_aux :
  forall A B C D I J K L,
   A<>C ->
   J<>L -> 
-  Midpoint I A B ->
-  Midpoint J B C ->
-  Midpoint K C D ->
-  Midpoint L A D ->
+  中点 I A B ->
+  中点 J B C ->
+  中点 K C D ->
+  中点 L A D ->
   Parallelogram I J K L.
 Proof.
 intros.
@@ -92,10 +92,10 @@ Lemma varignon_aux :
  forall A B C D I J K L,
   (A<>C \/ B<>D) ->
   J<>L ->
-  Midpoint I A B ->
-  Midpoint J B C ->
-  Midpoint K C D ->
-  Midpoint L A D ->
+  中点 I A B ->
+  中点 J B C ->
+  中点 K C D ->
+  中点 L A D ->
   Parallelogram I J K L.
 Proof.
 intros.
@@ -136,10 +136,10 @@ Qed.
 Lemma varignon' :
  forall A B C D I J K L,
   (A<>C \/ B<>D) ->
-  Midpoint I A B ->
-  Midpoint J B C ->
-  Midpoint K C D ->
-  Midpoint L A D ->
+  中点 I A B ->
+  中点 J B C ->
+  中点 K C D ->
+  中点 L A D ->
   Parallelogram I J K L.
 Proof.
 intros.
@@ -167,7 +167,7 @@ induction (两点重合的决定性 A D).
        Cong B X K L /\
        Cong L X K L /\
        Cong B L K X /\ Cong C L K X /\ Cong L K L X /\ Cong C K L X).
-  apply (triangle_mid_par_flat_cong B L C K L X);Col;Midpoint.
+  apply (triangle_mid_par_flat_cong B L C K L X);Col;中点.
    intro;treat_equalities. intuition.
    intro;treat_equalities. intuition.
    spliter.
@@ -182,7 +182,7 @@ induction (两点重合的决定性 A D).
  left;auto.
 induction (两点重合的决定性 B D).
  treat_equalities. intuition.
-assert (Midpoint L I K).
+assert (中点 L I K).
 assert (Par A B L X /\
        Par A D X I /\
        Par B D L I /\
@@ -212,8 +212,8 @@ apply (triangle_mid_par_cong B C D K X L);auto.
 spliter.
 induction (两点重合的决定性 I K).
   treat_equalities.
-  assert (Parallelogram A D B C) by (apply mid_plg with I;Midpoint).
-  assert (Parallelogram A B D C) by (apply mid_plg with L;Midpoint).
+  assert (Parallelogram A D B C) by (apply mid_plg with I;中点).
+  assert (Parallelogram A B D C) by (apply mid_plg with L;中点).
   exfalso.
   apply Plg_perm in H35.
   apply Plg_perm in H39.

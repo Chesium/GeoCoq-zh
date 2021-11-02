@@ -9,7 +9,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma proposition_09 : 
    forall A B C, 
    nCol B A C ->
-   exists X, CongA B A X X A C /\ InAngle B A C X.
+   exists X, 等角 B A X X A C /\ 在角内 B A C X.
 Proof.
 intros.
 assert (~ eq A B).
@@ -74,12 +74,12 @@ assert (~ eq A F).
  contradict.
  }
 assert (Out A F F) by (conclude lemma_ray4).
-assert (CongA B A F C A F) by (conclude_def CongA ).
-assert (CongA C A F B A F) by (conclude lemma_equalanglessymmetric).
-assert (nCol C A F) by (conclude_def CongA ).
-assert (CongA C A F F A C) by (conclude lemma_ABCequalsCBA).
-assert (CongA B A F F A C) by (conclude lemma_equalanglestransitive).
-assert (InAngle B A C F) by (conclude_def InAngle ).
+assert (等角 B A F C A F) by (conclude_def 等角 ).
+assert (等角 C A F B A F) by (conclude lemma_equalanglessymmetric).
+assert (nCol C A F) by (conclude_def 等角 ).
+assert (等角 C A F F A C) by (conclude lemma_ABCequalsCBA).
+assert (等角 B A F F A C) by (conclude lemma_equalanglestransitive).
+assert (在角内 B A C F) by (conclude_def 在角内 ).
 close.
 Qed.
 

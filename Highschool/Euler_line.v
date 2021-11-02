@@ -10,45 +10,45 @@ Import concyclic.
 Ltac assert_cops :=
  repeat match goal with
       | H:Perp ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply perp__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply perp__coplanar, H)
       | H:TS ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply ts__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply ts__coplanar, H)
       | H:OS ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply os__coplanar, H)
-      | H:ReflectL ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply reflectl__coplanar, H)
-      | H:Reflect ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply reflect__coplanar, H)
-      | H:InAngle ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply inangle__coplanar, H)
-      | H:Par_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply pars__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply os__coplanar, H)
+      | H:严格对称 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply reflectl__coplanar, H)
+      | H:对称 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply reflect__coplanar, H)
+      | H:在角内 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply inangle__coplanar, H)
+      | H:严格平行 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply pars__coplanar, H)
       | H:Par ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply par__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply par__coplanar, H)
       | H:Plg ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply plg__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plg__coplanar, H)
       | H:Parallelogram_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply plgs__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgs__coplanar, H)
       | H:Parallelogram_flat ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply plgf__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgf__coplanar, H)
       | H:Parallelogram ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply parallelogram__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply parallelogram__coplanar, H)
       | H:Rhombus ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply rhombus__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rhombus__coplanar, H)
       | H:Rectangle ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply rectangle__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rectangle__coplanar, H)
       | H:Square ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply square__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply square__coplanar, H)
       | H:Saccheri ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply sac__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply sac__coplanar, H)
       | H:Lambert ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply lambert__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply lambert__coplanar, H)
       | H:is_circumcenter ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply is_circumcenter_coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply is_circumcenter_coplanar, H)
       | H:is_orthocenter ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply is_orthocenter_coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply is_orthocenter_coplanar, H)
       | H:is_gravity_center ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply is_gravity_center_coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply is_gravity_center_coplanar, H)
  end.
 
 Ltac Cop := auto; try (intros; solve [apply col__coplanar; Col
@@ -60,15 +60,15 @@ Ltac copr_aux :=
  repeat match goal with
       | H: ~ Col ?X1 ?X2 ?X3, X4 : Tpoint |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4;
-     first[exist_hyp_perm_col X1 X2 X4; assert (Coplanar X1 X2 X4 X3) by (apply col__coplanar; Col)
-          |exist_hyp_perm_col X2 X3 X4; assert (Coplanar X2 X3 X4 X1) by (apply col__coplanar; Col)
-          |exist_hyp_perm_col X1 X3 X4; assert (Coplanar X1 X3 X4 X2) by (apply col__coplanar; Col)]
+     first[exist_hyp_perm_col X1 X2 X4; assert (共面 X1 X2 X4 X3) by (apply col__coplanar; Col)
+          |exist_hyp_perm_col X2 X3 X4; assert (共面 X2 X3 X4 X1) by (apply col__coplanar; Col)
+          |exist_hyp_perm_col X1 X3 X4; assert (共面 X1 X3 X4 X2) by (apply col__coplanar; Col)]
  end.
 
 Ltac CopR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
- let cop := constr:(Coplanar) in
+ let cop := constr:(共面) in
    treat_equalities; assert_cols; clean; assert_ncols; assert_cops; auto 2 with cop_perm;
    solve[apply col__coplanar; Col|apply coplanar_perm_1, col__coplanar; Col
         |apply coplanar_perm_4, col__coplanar; Col|apply coplanar_perm_18, col__coplanar; Col
@@ -139,7 +139,7 @@ assert (HOM1M2 : ~ Col O M1 M2).
   intro HOM1M2; assert (H := l7_20 O A B); elim H; clear H; try intro H; Cong;
   try (apply HOM1; apply l7_17 with A B; Col); assert_diffs; assert_cols; ColR.
   }
-assert (HPar_strict : Par_strict O M1 O M2).
+assert (H严格平行 : 严格平行 O M1 O M2).
   {
   apply par_not_col_strict with M2; Col.
   apply l12_9 with A B; try CopR.
@@ -179,7 +179,7 @@ intros.
 assert (H=B).
   apply orthocenter_per with A C;finish.
 subst.
-assert (Midpoint O A C).
+assert (中点 O A C).
  apply circumcenter_per with B;finish.
  unfold is_orthocenter in *;spliter;assert_diffs;finish.
  unfold is_orthocenter in *;spliter;assert_diffs;finish.
@@ -191,14 +191,14 @@ Qed.
 Lemma gravity_center_change_triangle:
  forall A B C G I B' C',
  is_gravity_center G A B C ->
- Midpoint I B C ->
- Midpoint I B' C' ->
+ 中点 I B C ->
+ 中点 I B' C' ->
  ~ Col A B' C' ->
  is_gravity_center G A B' C'.
 Proof.
 intros.
 Name G' the midpoint of A and G.
-assert (Midpoint G I G')
+assert (中点 G I G')
   by (apply (is_gravity_center_third A B C G G' I);finish).
 apply (is_gravity_center_third_reci A B' C' G I G');finish.
 Qed.
@@ -323,7 +323,7 @@ induction (col_dec B H C).
  * assert (H=B \/ H=C) by (apply (orthocenter_col A B C H);finish).
    induction H26.
    + subst H.
-     assert (Midpoint O A C) by (apply (circumcenter_per) with B;finish).
+     assert (中点 O A C) by (apply (circumcenter_per) with B;finish).
      assert (Col G O B).
         apply (is_gravity_center_col A C B G O).
         apply is_gravity_center_perm in H1;intuition idtac.
@@ -334,7 +334,7 @@ induction (col_dec B H C).
  * assert (Parallelogram B H C A')
      by (apply par_2_plg;finish).
 
-   assert (T:exists I : Tpoint, Midpoint I B C /\ Midpoint I H A')
+   assert (T:exists I : Tpoint, 中点 I B C /\ 中点 I H A')
      by (apply plg_mid;finish).
 
    destruct T as [I [HI1 HI2]].

@@ -135,10 +135,10 @@ Proof.
     apply (lg_cong l); auto.
 Qed.
 
-Lemma lg_null_instance : forall l A, Q_Cong_Null l -> l A A.
+Lemma lg_null_instance : forall l A, 零长谓词 l -> l A A.
 Proof.
     intros.
-    unfold Q_Cong_Null in H.
+    unfold 零长谓词 in H.
     spliter.
     unfold Q_Cong in H.
     ex_and H X.
@@ -156,17 +156,17 @@ Proof.
     apply 等长的平凡同一性.
 Qed.
 
-Lemma lg_null_trivial : forall l A, Q_Cong l -> l A A -> Q_Cong_Null l.
+Lemma lg_null_trivial : forall l A, Q_Cong l -> l A A -> 零长谓词 l.
 Proof.
     intros.
-    unfold Q_Cong_Null.
+    unfold 零长谓词.
     split.
       auto.
     exists A.
     auto.
 Qed.
 
-Lemma lg_null_dec : forall l, Q_Cong l -> Q_Cong_Null l \/ ~ Q_Cong_Null l.
+Lemma lg_null_dec : forall l, Q_Cong l -> 零长谓词 l \/ ~ 零长谓词 l.
 Proof.
     intros.
     assert(HH:=H).
@@ -176,7 +176,7 @@ Proof.
     induction(两点重合的决定性 A B).
       subst B.
       left.
-      unfold Q_Cong_Null.
+      unfold 零长谓词.
       split.
         auto.
       exists A.
@@ -184,7 +184,7 @@ Proof.
       Cong.
     right.
     intro.
-    unfold Q_Cong_Null in H1.
+    unfold 零长谓词 in H1.
     spliter.
     ex_and H2 P.
     apply H0.
@@ -216,7 +216,7 @@ Proof.
         intro.
         subst Y.
         apply H0.
-        unfold Q_Cong_Null.
+        unfold 零长谓词.
         split.
           auto.
         exists X.
@@ -234,7 +234,7 @@ Qed.
 
 
 
-Lemma ex_point_lg_out : forall l A P, A <> P -> Q_Cong l -> ~ Q_Cong_Null l -> exists B, l A B /\ Out A B P.
+Lemma ex_point_lg_out : forall l A P, A <> P -> Q_Cong l -> ~ 零长谓词 l -> exists B, l A B /\ Out A B P.
 Proof.
     intros.
     assert(HH:= H0).
@@ -250,7 +250,7 @@ Proof.
       intro.
       subst Y.
       apply H1.
-      unfold Q_Cong_Null.
+      unfold 零长谓词.
       split.
         auto.
       exists X.
@@ -304,7 +304,7 @@ Ltac lg_instance2 l A P B :=
                         match goal with
                            |HP : Q_Cong l |-  _ =>
                                                match goal with
-                                                 |HQ : ~ Q_Cong_Null l |-  _ => assert(tempo_HQ:=HQ);
+                                                 |HQ : ~ 零长谓词 l |-  _ => assert(tempo_HQ:=HQ);
                                                                            apply (tempo_sg A P H HP) in tempo_HQ;
                                                                            ex_and tempo_HQ B
                                                end
@@ -319,7 +319,7 @@ Section Length_3.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma ex_points_lg_not_col : forall l P, Q_Cong l -> ~ Q_Cong_Null l -> exists A, exists B, l A B /\ ~Col A B P.
+Lemma ex_points_lg_not_col : forall l P, Q_Cong l -> ~ 零长谓词 l -> exists A, exists B, l A B /\ ~Col A B P.
 Proof.
     intros.
     assert(HH:=another_point P).
@@ -353,7 +353,7 @@ Ltac lg_instance_not_col l P A B :=
   assert(tempo_sg:= ex_points_lg_not_col l P);
   match goal with
         |HP : Q_Cong l |-  _ => match goal with
-                                  |HQ : ~ Q_Cong_Null l |-  _ => assert(tempo_HQ:=HQ);
+                                  |HQ : ~ 零长谓词 l |-  _ => assert(tempo_HQ:=HQ);
                                                             apply (tempo_sg HP) in tempo_HQ;
                                                             elim tempo_HQ;
                                                             intro A;
@@ -378,7 +378,7 @@ Section Length_4.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Notation "l1 =l= l2" := (EqL l1 l2) (at level 80, right associativity).
+Notation "l1 =l= l2" := (谓词等长 l1 l2) (at level 80, right associativity).
 
 Lemma ex_eql : forall l1 l2, (exists A , exists B, Len A B l1 /\ Len A B l2)  -> l1 =l= l2.
 Proof.
@@ -390,7 +390,7 @@ Proof.
     unfold Len in HH.
     unfold Len in HH0.
     spliter.
-    unfold EqL.
+    unfold 谓词等长.
     repeat split; auto.
       intro.
       assert(Len A0 B0 l1).
@@ -421,7 +421,7 @@ Proof.
 Qed.
 
 
-Lemma all_eql : forall A B l1 l2, Len A B l1 -> Len A B l2 -> EqL l1 l2.
+Lemma all_eql : forall A B l1 l2, Len A B l1 -> Len A B l2 -> 谓词等长 l1 l2.
 Proof.
     intros.
     apply ex_eql.
@@ -432,7 +432,7 @@ Qed.
 
 
 
-Lemma null_len : forall A B la lb, Len A A la -> Len B B lb -> EqL la lb.
+Lemma null_len : forall A B la lb, Len A A la -> Len B B lb -> 谓词等长 la lb.
 Proof.
     intros.
     eapply (all_eql A A).
@@ -440,20 +440,20 @@ Proof.
     eapply (is_len_cong_is_len B B); Cong.
 Qed.
 
-Global Instance eqL_equivalence : Equivalence EqL.
+Global Instance eqL_equivalence : Equivalence 谓词等长.
 Proof.
 split.
 - unfold Reflexive.
   intros.
-  unfold EqL.
+  unfold 谓词等长.
   intros.
   tauto.
 - unfold Symmetric.
   intros.
-  unfold EqL in *.
+  unfold 谓词等长 in *.
   firstorder.
 - unfold Transitive.
-  unfold EqL.
+  unfold 谓词等长.
   intros.
   rewrite H.
   apply H0.
@@ -471,10 +471,10 @@ Proof.
     Cong.
 Qed.
 
-Lemma lg_eql_lg : forall l1 l2, Q_Cong l1 -> EqL l1 l2 -> Q_Cong l2.
+Lemma lg_eql_lg : forall l1 l2, Q_Cong l1 -> 谓词等长 l1 l2 -> Q_Cong l2.
 Proof.
     intros.
-    unfold EqL in *.
+    unfold 谓词等长 in *.
     unfold Q_Cong in *.
     decompose [ex] H.
     exists x. exists x0.
@@ -483,12 +483,12 @@ Proof.
     apply H0.
 Qed.
 
-Lemma ex_eqL : forall l1 l2, Q_Cong l1 -> Q_Cong l2 -> (exists A, exists B, l1 A B /\ l2 A B) -> EqL l1 l2.
+Lemma ex_eqL : forall l1 l2, Q_Cong l1 -> Q_Cong l2 -> (exists A, exists B, l1 A B /\ l2 A B) -> 谓词等长 l1 l2.
 Proof.
 intros.
 ex_and H1 A.
 ex_and H2 B.
-unfold EqL.
+unfold 谓词等长.
 assert(HH1:= H).
 assert(HH2:= H0).
 

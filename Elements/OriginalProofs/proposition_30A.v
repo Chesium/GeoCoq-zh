@@ -28,14 +28,14 @@ assert (neq A G) by (forward_using lemma_betweennotequal).
 assert (neq G A) by (conclude lemma_inequalitysymmetric).
 assert (neq G H) by (forward_using lemma_betweennotequal).
 assert (nCol A G H) by (forward_using lemma_NCorder).
-assert (CongA A G H G H F) by (conclude (proposition_29 A B E F P G H)).
+assert (等角 A G H G H F) by (conclude (proposition_29 A B E F P G H)).
 assert (eq A A) by (conclude cn_equalityreflexive).
 assert (Out G A A) by (conclude lemma_ray4).
 assert (Out G H K) by (conclude lemma_ray4).
-assert (CongA A G H A G H) by (conclude lemma_equalanglesreflexive).
-assert (CongA A G H A G K) by (conclude lemma_equalangleshelper).
-assert (CongA A G K A G H) by (conclude lemma_equalanglessymmetric).
-assert (CongA A G K G H F) by (conclude lemma_equalanglestransitive).
+assert (等角 A G H A G H) by (conclude lemma_equalanglesreflexive).
+assert (等角 A G H A G K) by (conclude lemma_equalangleshelper).
+assert (等角 A G K A G H) by (conclude lemma_equalanglessymmetric).
+assert (等角 A G K G H F) by (conclude lemma_equalanglestransitive).
 assert (BetS C N F) by (conclude axiom_betweennesssymmetry).
 assert (eq H H) by (conclude cn_equalityreflexive).
 assert (nCol F H K) by (forward_using lemma_NCorder).
@@ -82,7 +82,7 @@ assert (eq K K) by (conclude cn_equalityreflexive).
 assert (Col H K K) by (conclude_def Col ).
 assert (TS C H K D) by (conclude_def TS ).
 assert (TS E H K D) by (conclude lemma_planeseparation).
-assert (CongA G H F H K D) by (conclude proposition_29).
+assert (等角 G H F H K D) by (conclude proposition_29).
 assert (nCol C K H) by (forward_using lemma_NCorder).
 assert (Col C K D) by (conclude_def Col ).
 assert (eq K K) by (conclude cn_equalityreflexive).
@@ -91,15 +91,15 @@ assert (neq K D) by (forward_using lemma_betweennotequal).
 assert (neq D K) by (conclude lemma_inequalitysymmetric).
 assert (nCol D K H) by (conclude lemma_NChelper).
 assert (nCol H K D) by (forward_using lemma_NCorder).
-assert (CongA H K D H K D) by (conclude lemma_equalanglesreflexive).
+assert (等角 H K D H K D) by (conclude lemma_equalanglesreflexive).
 assert (eq D D) by (conclude cn_equalityreflexive).
 assert (Out K D D) by (conclude lemma_ray4).
 assert (BetS K H G) by (conclude axiom_betweennesssymmetry).
 assert (neq K H) by (forward_using lemma_betweennotequal).
 assert (Out K H G) by (conclude lemma_ray4).
-assert (CongA H K D G K D) by (conclude lemma_equalangleshelper).
-assert (CongA G H F G K D) by (conclude lemma_equalanglestransitive).
-assert (CongA A G K G K D) by (conclude lemma_equalanglestransitive).
+assert (等角 H K D G K D) by (conclude lemma_equalangleshelper).
+assert (等角 G H F G K D) by (conclude lemma_equalanglestransitive).
+assert (等角 A G K G K D) by (conclude lemma_equalanglestransitive).
 assert (Col G H K) by (conclude_def Col ).
 assert (neq G H) by (forward_using lemma_betweennotequal).
 assert (Col H M K) by (conclude lemma_collinear4).

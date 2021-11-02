@@ -218,8 +218,8 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container4"></div> # **)
 
-Lemma prop_4 : forall A B C D E F, CongA C A B F D E -> Cong A C D F -> Cong A B D E ->
-  Cong C B F E /\ (C <> B -> CongA A C B D F E /\ CongA A B C D E F).
+Lemma prop_4 : forall A B C D E F, 等角 C A B F D E -> Cong A C D F -> Cong A B D E ->
+  Cong C B F E /\ (C <> B -> 等角 A C B D F E /\ 等角 A B C D E F).
 Proof.
   intros A B C D E F.
   apply l11_49.
@@ -233,7 +233,7 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container5"></div> # **)
 
-Lemma prop_5_1 : forall A B C, A <> B -> B <> C -> Cong A B A C -> CongA A B C A C B.
+Lemma prop_5_1 : forall A B C, A <> B -> B <> C -> Cong A B A C -> 等角 A B C A C B.
 Proof.
   intros.
   apply l11_44_1_a; auto.
@@ -241,7 +241,7 @@ Qed.
 
 Lemma prop_5_2 : forall A B C F G, A <> B -> B <> C -> Cong A B A C ->
   Bet A B F -> B <> F -> Bet A C G -> C <> G ->
-  CongA F B C G C B.
+  等角 F B C G C B.
 Proof.
   intros A B C F G.
   intros.
@@ -256,7 +256,7 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container6"></div> # **)
 
-Lemma prop_6 : forall A B C, ~ Col A B C -> CongA A B C A C B -> Cong A B A C.
+Lemma prop_6 : forall A B C, ~ Col A B C -> 等角 A B C A C B -> Cong A B A C.
 Proof.
   intros A B C H.
   apply l11_44_1_b; Col.
@@ -274,10 +274,10 @@ Qed.
 
 Lemma prop_7 : forall A B C C', Cong A C A C' -> Cong B C B C' -> OS A B C C' -> C = C'.
 Proof.
-  intros A B C C' HCongA HCongB HOS.
+  intros A B C C' H等角 HCongB HOS.
   assert (HNCol := one_side_not_col123 A B C C' HOS).
   assert_diffs.
-  destruct (l11_51 A B C A B C') as [HCongAA [HCongAB HCongAC]]; Cong.
+  destruct (l11_51 A B C A B C') as [H等角A [H等角B H等角C]]; Cong.
   apply (l6_21 A C B C); Col; apply out_col.
     apply (conga_os__out B); Side.
     apply (conga_os__out A); assumption.
@@ -293,7 +293,7 @@ Qed.
 
 Lemma prop_8 : forall A B C D E F, A <> B -> A <> C -> B <> C ->
        Cong A B D E -> Cong A C D F -> Cong B C E F ->
-       CongA B A C E D F /\ CongA A B C D E F /\ CongA B C A E F D.
+       等角 B A C E D F /\ 等角 A B C D E F /\ 等角 B C A E F D.
 Proof.
   apply l11_51.
 Qed.
@@ -305,7 +305,7 @@ Qed.
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container9"></div> # **)
 
 Lemma prop_9 : forall A B C, A <> B -> A <> C ->
-  exists F, InAngle F B A C /\ CongA F A B F A C.
+  exists F, 在角内 F B A C /\ 等角 F A B F A C.
 Proof.
   intros.
   apply angle_bisector; auto.
@@ -317,7 +317,7 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container10"></div> # **)
 
-Lemma prop_10 : forall A B, exists D, Midpoint D A B.
+Lemma prop_10 : forall A B, exists D, 中点 D A B.
 Proof.
   apply midpoint_existence.
 Qed.
@@ -391,7 +391,7 @@ Qed.
 
 Lemma prop_15 : forall A B C D E, Bet A E B -> A <> E -> B <> E ->
   Bet C E D -> C <> E -> D <> E ->
-  CongA A E C B E D.
+  等角 A E C B E D.
 Proof.
   intros.
   apply l11_14; auto.
@@ -405,7 +405,7 @@ Qed.
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container16"></div> # **)
 
 Lemma prop_16 : forall A B C D, ~ Col A B C -> Bet B C D -> C <> D ->
-  LtA C A B A C D /\ LtA C B A A C D.
+  角度小于 C A B A C D /\ 角度小于 C B A A C D.
 Proof.
   intros.
   apply l11_41; Col.
@@ -440,7 +440,7 @@ Qed.
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container18"></div> # **)
 
 Lemma prop_18 : forall A B C, ~ Col A B C -> Lt A B A C -> Lt B C A C ->
-  LtA B C A A B C /\ LtA C A B A B C.
+  角度小于 B C A A B C /\ 角度小于 C A B A B C.
 Proof.
   intros.
   split.
@@ -456,7 +456,7 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container19"></div> # **)
 
-Lemma prop_19 : forall A B C, ~ Col A B C -> LtA B C A A B C -> LtA C A B A B C ->
+Lemma prop_19 : forall A B C, ~ Col A B C -> 角度小于 B C A A B C -> 角度小于 C A B A B C ->
   Lt A B A C /\ Lt B C A C.
 Proof.
   intros.
@@ -494,7 +494,7 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container21"></div> # **)
 
-Lemma prop_21_1 : forall A B C D, OS A B C D -> OS B C A D -> OS A C B D -> LtA B A C B D C.
+Lemma prop_21_1 : forall A B C D, OS A B C D -> OS B C A D -> OS A C B D -> 角度小于 B A C B D C.
 Proof.
   apply os3__lta.
 Qed.
@@ -557,7 +557,7 @@ Qed.
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container23"></div> # **)
 
 Lemma prop_23 : forall A B C D E, A <> B -> C <> D -> C <> E ->
-  exists F, CongA D C E B A F.
+  exists F, 等角 D C E B A F.
 Proof.
   intros.
   apply angle_construction_3; auto.
@@ -571,7 +571,7 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container24"></div> # **)
 
-Lemma prop_24 : forall A B C D E F, Cong A B D E -> Cong A C D F -> LtA F D E C A B ->
+Lemma prop_24 : forall A B C D E F, Cong A B D E -> Cong A C D F -> 角度小于 F D E C A B ->
   Lt E F B C.
 Proof.
   apply t18_18.
@@ -587,7 +587,7 @@ Qed.
 
 Lemma prop_25 : forall A B C D E F, A <> B -> A <> C ->
   Cong A B D E -> Cong A C D F -> Lt E F B C ->
-  LtA F D E C A B.
+  角度小于 F D E C A B.
 Proof.
   apply t18_19.
 Qed.
@@ -602,15 +602,15 @@ Qed.
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container26"></div> # **)
 
 Lemma prop_26_1 : forall A B C D E F, ~ Col A B C ->
-       CongA B A C E D F -> CongA A B C D E F -> Cong A B D E ->
-       Cong A C D F /\ Cong B C E F /\ CongA A C B D F E.
+       等角 B A C E D F -> 等角 A B C D E F -> Cong A B D E ->
+       Cong A C D F /\ Cong B C E F /\ 等角 A C B D F E.
 Proof.
   apply l11_50_1.
 Qed.
 
 Lemma prop_26_2 : forall A B C D E F, ~ Col A B C ->
-       CongA B C A E F D -> CongA A B C D E F -> Cong A B D E ->
-       Cong A C D F /\ Cong B C E F /\ CongA C A B F D E.
+       等角 B C A E F D -> 等角 A B C D E F -> Cong A B D E ->
+       Cong A C D F /\ Cong B C E F /\ 等角 C A B F D E.
 Proof.
   apply l11_50_2.
 Qed.
@@ -623,7 +623,7 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container27"></div> # **)
 
-Lemma prop_27 : forall A D E F, TS E F A D -> CongA A E F D F E -> Par E A F D.
+Lemma prop_27 : forall A D E F, TS E F A D -> 等角 A E F D F E -> Par E A F D.
 Proof.
   intros A D E F.
   apply l12_21_b.
@@ -638,7 +638,7 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container28"></div> # **)
 
-Lemma prop_28_1 : forall B D E G H, Out E G H -> OS E G B D -> CongA B G E D H E ->
+Lemma prop_28_1 : forall B D E G H, Out E G H -> OS E G B D -> 等角 B G E D H E ->
   Par G B H D.
 Proof.
   intros B D E G H.
@@ -661,7 +661,7 @@ Proof.
     exists H; Col.
   - apply suppa2__conga123 with G H C.
       apply bet_suma__suppa with P Q R; assumption.
-      split; auto; exists C; split; [Between|CongA].
+      split; auto; exists C; split; [Between|等角].
 Qed.
 
 End Book_1_part_2.
@@ -684,14 +684,14 @@ Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container29"></div> # **)
 
-Lemma prop_29_1 : forall A D G H, TS G H A D -> Par G A H D -> CongA A G H D H G.
+Lemma prop_29_1 : forall A D G H, TS G H A D -> Par G A H D -> 等角 A G H D H G.
 Proof.
   intros A D G H.
   apply l12_21_a.
 Qed.
 
 Lemma prop_29_2 : forall B D E G H, Out E G H -> OS E G B D -> Par G B H D ->
-  CongA B G E D H E.
+  等角 B G E D H E.
 Proof.
   intros B D E G H.
   apply l12_22_a.
@@ -765,9 +765,9 @@ Proof.
   destruct HTri as [S [T [U [HSuma1 HSumA2]]]].
   apply conga3_suma__suma with C A B A B C S T U; try (apply conga_refl); auto.
   assert_diffs.
-  assert (HCongA : CongA B C D P Q R) by (apply conga_line; auto).
+  assert (H等角 : 等角 B C D P Q R) by (apply conga_line; auto).
   assert (HSumA' : SumA A C D B C A P Q R).
-    apply conga3_suma__suma with A C D B C A B C D; CongA.
+    apply conga3_suma__suma with A C D B C A B C D; 等角.
     apply suma_sym, bet__suma; auto.
   apply sams2_suma2__conga123 with B C A P Q R; trivial;
     apply bet_suma__sams with P Q R; assumption.
@@ -801,7 +801,7 @@ Qed.
 
 Lemma prop_34_1 : forall A B D C,
   A <> B /\ A <> D /\ B <> D ->
-  Parallelogram A B D C -> (CongA A B D D C A /\ CongA B D C C A B) /\ (Cong A B D C /\ Cong A C B D).
+  Parallelogram A B D C -> (等角 A B D D C A /\ 等角 B D C C A B) /\ (Cong A B D C /\ Cong A C B D).
 Proof.
   intros; split.
   - apply plg_conga; auto.

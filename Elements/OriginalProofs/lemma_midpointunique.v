@@ -6,12 +6,12 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma lemma_midpointunique : 
    forall A B C D, 
-   Midpoint A B C -> Midpoint A D C ->
+   中点 A B C -> 中点 A D C ->
    eq B D.
 Proof.
 intros.
-assert ((BetS A B C /\ Cong A B B C)) by (conclude_def Midpoint ).
-assert ((BetS A D C /\ Cong A D D C)) by (conclude_def Midpoint ).
+assert ((BetS A B C /\ Cong A B B C)) by (conclude_def 中点 ).
+assert ((BetS A D C /\ Cong A D D C)) by (conclude_def 中点 ).
 assert (Cong A B A B) by (conclude cn_congruencereflexive).
 assert (~ BetS C D B).
  {

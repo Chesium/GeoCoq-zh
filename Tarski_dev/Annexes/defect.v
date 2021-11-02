@@ -26,7 +26,7 @@ Proof.
 Qed.
 
 Lemma conga_defect__defect : forall A B C D E F D' E' F',
-  Defect A B C D E F -> CongA D E F D' E' F' ->
+  Defect A B C D E F -> 等角 D E F D' E' F' ->
   Defect A B C D' E' F'.
 Proof.
   intros A B C D E F D' E' F' HDef HConga.
@@ -34,12 +34,12 @@ Proof.
   exists G, H, I.
   split; trivial.
   assert_diffs.
-  apply (conga2_suppa__suppa G H I D E F); CongA.
+  apply (conga2_suppa__suppa G H I D E F); 等角.
 Qed.
 
 Lemma defect2__conga : forall A B C D E F D' E' F',
   Defect A B C D E F -> Defect A B C D' E' F' ->
-  CongA D E F D' E' F'.
+  等角 D E F D' E' F'.
 Proof.
   intros A B C D E F D' E' F' HDef HDef'.
   destruct HDef as [G [H [I [HTri HSuppa]]]].
@@ -93,7 +93,7 @@ Qed.
 
 Lemma conga3_defect__defect : forall A B C D E F A' B' C',
   Defect A B C D E F ->
-  CongA A B C A' B' C' -> CongA B C A B' C' A' -> CongA C A B C' A' B' ->
+  等角 A B C A' B' C' -> 等角 B C A B' C' A' -> 等角 C A B C' A' B' ->
   Defect A' B' C' D E F.
 Proof.
   intros A B C D E F A' B' C' HDef HCongaB HCongaC HCongaA.
@@ -215,15 +215,15 @@ Proof.
   apply trisuma_perm_132.
   exists D, E, F.
   split.
-  - assert (HConga : CongA C1 C B A C B).
+  - assert (HConga : 等角 C1 C B A C B).
       apply out2__conga; [apply l6_6, bet_out|apply out_trivial]; Between.
-    apply (conga3_suma__suma C1 C B C B A D E F); CongA.
-    assert (HInAngle : InAngle C1 C B A).
+    apply (conga3_suma__suma C1 C B C B A D E F); 等角.
+    assert (H在角内 : 在角内 C1 C B A).
       repeat split; auto; exists C1; split; Between; right; apply out_trivial; auto.
     apply suma_assoc_1 with C B C1 C1 B A V W X; SumA.
-  - assert (HConga : CongA B A C B A C1).
+  - assert (HConga : 等角 B A C B A C1).
       apply out2__conga; [apply out_trivial|apply bet_out]; auto.
-    apply (conga3_suma__suma D E F B A C1 A' B' C'); CongA.
+    apply (conga3_suma__suma D E F B A C1 A' B' C'); 等角.
     apply suma_assoc_2 with V W X C1 B A S T U; SumA.
 Qed.
 
@@ -278,7 +278,7 @@ Proof.
     apply defect_perm_132, HDefC.
     apply defect_perm_321, HDefA.
   split; trivial.
-  apply (conga3_suma__suma C1 C2 C3 A1 A2 A3 B1 B2 B3); CongA.
+  apply (conga3_suma__suma C1 C2 C3 A1 A2 A3 B1 B2 B3); 等角.
 Qed.
 
 Lemma t22_16_2aux1 :

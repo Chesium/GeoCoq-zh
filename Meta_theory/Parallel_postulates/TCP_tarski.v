@@ -11,7 +11,7 @@ Lemma impossible_case_1 :
   forall A B C x y,
   Bet A B x ->
   Bet C y A ->
-  Par_strict B C x y ->
+  严格平行 B C x y ->
   False.
 Proof.
 intros A B C x y.
@@ -63,7 +63,7 @@ Lemma impossible_case_3 :
   Bet B D C ->
   Bet B x A ->
   Bet x T y ->
-  Par_strict B C x y ->
+  严格平行 B C x y ->
   False.
 Proof.
 intros A B C D T x y.
@@ -115,7 +115,7 @@ Lemma impossible_case_4_2 :
   Bet B D C ->
   Bet B A x ->
   Bet T y x ->
-  Par_strict B C x y ->
+  严格平行 B C x y ->
   False.
 Proof.
 intros A B C D T x y.
@@ -132,7 +132,7 @@ assert (HOS : OS B C A x).
 assert (HTS' : TS B C x T) by (apply l9_8_2 with A; assumption);
 clear HTS; clear HOS; destruct HTS' as [_ [_ [I [HBCI HITx]]]].
 assert (HTx : T <> x) by (intro; treat_equalities; apply HBCT; Col).
-assert (HPar' : Par_strict B C x T) by (apply par_strict_col_par_strict with y; Col).
+assert (HPar' : 严格平行 B C x T) by (apply par_strict_col_par_strict with y; Col).
 apply HPar'; exists I; split; Col.
 Qed.
 
@@ -149,7 +149,7 @@ Lemma impossible_case_4 :
   Bet B D C ->
   Col A B x ->
   Bet T y x ->
-  Par_strict B C x y ->
+  严格平行 B C x y ->
   False.
 Proof.
 intros A B C D T x y.
@@ -188,7 +188,7 @@ Qed.
 
 (*
 Lemma triangle_circumscription_aux : forall A B C P,
-  Cong A P B P -> Cong A P C P -> exists CC, Cong A CC B CC /\ Cong A CC C CC /\ Coplanar A B C CC.
+  Cong A P B P -> Cong A P C P -> exists CC, Cong A CC B CC /\ Cong A CC C CC /\ 共面 A B C CC.
 Proof.
   intros A B C D HCong1 HCong2.
   destruct (cop_dec A B C D).
@@ -235,7 +235,7 @@ Lemma triangle_circumscription_implies_tarski_s_euclid_aux1 :
   Cong Y M1 M1 Z1 ->
   Perp B C T Z ->
   Perp A B Y Z1 ->
-  exists x, Col A B x /\ Par_strict B C x T /\ Cong X x Y x.
+  exists x, Col A B x /\ 严格平行 B C x T /\ Cong X x Y x.
 Proof.
 intros A B C D T X Y Z M1 Z1; intro HTC.
 intros HBD HCD HDT HTX.
@@ -243,31 +243,31 @@ intros HABC HABM1 HADT HBCT HBDC HTYZ HYTX HYM1Z1.
 intros HCong1 HCong2 HPerp1 HPerp2.
 assert (A <> D) by (intro; subst; apply HABC; Col).
 assert_diffs.
-assert (HCopA : Coplanar B C T A) by (exists D; left; split; Col).
-assert (HCopB : Coplanar B C T B) by Cop.
-assert (HCopC : Coplanar B C T C) by Cop.
-assert (HCopT : Coplanar B C T T) by Cop.
-assert (HCopZ : Coplanar B C T Z) by Cop.
-assert (HCopY : Coplanar B C T Y) by (apply col_cop__cop with Z; Col).
-assert (HCopX : Coplanar B C T X) by (apply col_cop__cop with Y; Col).
+assert (HCopA : 共面 B C T A) by (exists D; left; split; Col).
+assert (HCopB : 共面 B C T B) by Cop.
+assert (HCopC : 共面 B C T C) by Cop.
+assert (HCopT : 共面 B C T T) by Cop.
+assert (HCopZ : 共面 B C T Z) by Cop.
+assert (HCopY : 共面 B C T Y) by (apply col_cop__cop with Z; Col).
+assert (HCopX : 共面 B C T X) by (apply col_cop__cop with Y; Col).
 assert (HXYZ1 : ~ Col X Y Z1).
   {
   intro; apply HABC, col_permutation_4, par_id.
   assert (Col T Z Z1) by ColR.
-  assert (Coplanar B C Y Z1) by (apply col2_cop__cop with T Z; Col).
+  assert (共面 B C Y Z1) by (apply col2_cop__cop with T Z; Col).
   apply l12_9 with Y Z1; [Cop..| |Perp|].
     apply coplanar_pseudo_trans with B C T; auto; apply col_cop__cop with Z; auto.
   apply perp_sym, perp_col2 with T Z; Perp; Col.
   }
 destruct (HTC X Y Z1 HXYZ1) as [x [HCong3 [HCong4 HCop1]]]; exists x.
 assert (HYM1 : Y <> M1) by (intro; treat_equalities; auto).
-assert (HCopZ1 : Coplanar B C T Z1).
+assert (HCopZ1 : 共面 B C T Z1).
   {
   assert (~ Col A B Y)
     by (intro; destruct (perp_not_col2 A B Y Z1) as [|HNCol]; Perp; apply HNCol; ColR).
   apply coplanar_pseudo_trans with A B Y; [| |apply coplanar_pseudo_trans with B C T..|]; Cop.
   }
-assert (HCopx : Coplanar B C T x).
+assert (HCopx : 共面 B C T x).
   apply coplanar_pseudo_trans with X Y Z1; trivial; apply coplanar_pseudo_trans with B C T; assumption.
 assert (Col A B x).
   {
@@ -325,11 +325,11 @@ assert (HxTy : Col x T y).
   assert_diffs.
   apply col_permutation_4, cop_perp2__col with X Y;
     [|apply perp_bisect_perp, cong_cop_perp_bisect; Cong; Cop..].
-  assert (Coplanar B C T Y) by (apply col_cop__cop with Z; Col; Cop).
-  assert (Coplanar B C T X) by (apply col_cop__cop with Y; Col).
+  assert (共面 B C T Y) by (apply col_cop__cop with Z; Col; Cop).
+  assert (共面 B C T X) by (apply col_cop__cop with Y; Col).
   apply coplanar_pseudo_trans with B C T; Cop.
   }
-assert (HPar : Par_strict B C x y).
+assert (HPar : 严格平行 B C x y).
   {
   apply par_strict_col_par_strict with T; Col.
   intro; subst y.

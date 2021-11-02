@@ -36,7 +36,7 @@ Proof.
     assert_diffs.
     exists J.
     exists J.
-    repeat (split; CongA); Cop.
+    repeat (split; 等角); Cop.
     apply (col123__nos); Col.
   }
   intro HNColB.
@@ -44,16 +44,16 @@ Proof.
   { intro HColE.
     elim (bet_dec D E F).
     { intro HEBet.
-      assert (HJ : exists J, Midpoint B C J) by (apply symmetric_point_construction).
+      assert (HJ : exists J, 中点 B C J) by (apply symmetric_point_construction).
       destruct HJ as [J HMid].
       assert_diffs.
       destruct HMid as [HJBet HCong].
       exists J, J.
       split.
-        CongA.
+        等角.
       split.
         apply col124__nos; Col.
-      split; CongA; Cop.
+      split; 等角; Cop.
     }
     intro HENBet.
     assert (HEOut : Out E D F) by (apply l6_4_2; auto).
@@ -63,27 +63,27 @@ Proof.
     apply l11_21_b; [apply out_trivial|]; auto.
     split.
       apply col124__nos; Col.
-    split; CongA; Cop.
+    split; 等角; Cop.
   }
   intro HNColE.
-  assert (HJ : exists J, CongA D E F C B J /\ TS C B J A) by (apply ex_conga_ts; Col).
+  assert (HJ : exists J, 等角 D E F C B J /\ TS C B J A) by (apply ex_conga_ts; Col).
   destruct HJ as [J [HConga HTwo]].
   assert_diffs.
   exists J, J.
-  repeat (split; CongA); [Side|Cop].
+  repeat (split; 等角); [Side|Cop].
 Qed.
 
 (** Unicity of the sum. *)
 
 Lemma suma2__conga : forall A B C D E F G H I G' H' I',
-   SumA A B C D E F G H I -> SumA A B C D E F G' H' I' -> CongA G H I G' H' I'.
+   SumA A B C D E F G H I -> SumA A B C D E F G' H' I' -> 等角 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I G' H' I' Hsuma Hsuma'.
   destruct Hsuma as [J [HJ1 [HJ2 [HJ3 HCop]]]].
   destruct Hsuma' as [J' [HJ'1 [HJ'2 [HJ'3 HCop']]]].
   assert_diffs.
-  assert (HcongaC : CongA C B J C B J') by (apply (conga_trans C B J D E F); auto; apply conga_sym; auto).
-  assert (HcongaA : CongA A B J A B J').
+  assert (HcongaC : 等角 C B J C B J') by (apply (conga_trans C B J D E F); auto; apply conga_sym; auto).
+  assert (HcongaA : 等角 A B J A B J').
   { elim (col_dec A B C).
     { intro HColB.
       elim (bet_dec A B C).
@@ -102,19 +102,19 @@ Proof.
       { intro HEBet.
         apply l6_3_2; repeat split; auto.
         exists C.
-        split; auto; split; apply (bet_conga__bet D E F); CongA.
+        split; auto; split; apply (bet_conga__bet D E F); 等角.
       }
       intro HENBet.
       assert (HEOut : Out E D F) by (apply l6_4_2; auto).
-      apply l6_7 with C; apply (l11_21_a D E F); CongA.
+      apply l6_7 with C; apply (l11_21_a D E F); 等角.
     }
     intro HNColE.
     apply (l11_22a A B J C A B J' C); auto.
-    repeat (split; try (apply cop_nos__ts); CongA); Cop;
-    apply (ncol_conga_ncol D E F); CongA.
+    repeat (split; try (apply cop_nos__ts); 等角); Cop;
+    apply (ncol_conga_ncol D E F); 等角.
   }
   apply (conga_trans G H I A B J).
-    CongA.
+    等角.
   apply (conga_trans A B J A B J'); auto.
 Qed.
 
@@ -129,16 +129,16 @@ Proof.
   { intro HColB.
     elim (bet_dec A B C).
     { intro HBBet.
-      assert (HK : exists K, Midpoint E F K) by (apply symmetric_point_construction).
+      assert (HK : exists K, 中点 E F K) by (apply symmetric_point_construction).
       destruct HK as [K [HKBet HCong]].
       assert_diffs.
       exists K.
-      split; CongA.
+      split; 等角.
       split.
         apply col124__nos; Col.
       split; Cop.
       apply (conga_trans D E K A B J); auto.
-      apply conga_left_comm; apply (l11_13 F E D C B J); Between; CongA.
+      apply conga_left_comm; apply (l11_13 F E D C B J); Between; 等角.
     }
     intro HBNBet.
     assert (HBOut : Out B A C) by (apply l6_4_2; auto).
@@ -156,11 +156,11 @@ Proof.
   intro HNColB.
   elim (col_dec D E F).
   { intro HColE.
-    assert (HK : exists K, CongA A B C F E K) by (apply angle_construction_3; auto).
+    assert (HK : exists K, 等角 A B C F E K) by (apply angle_construction_3; auto).
     destruct HK as [K HConga].
     assert_diffs.
     exists K.
-    split; CongA.
+    split; 等角.
     split.
       apply col123__nos; Col.
     split; Cop.
@@ -168,21 +168,21 @@ Proof.
     elim (bet_dec D E F).
     { intro HEBet.
       apply conga_sym; apply conga_left_comm.
-      apply (l11_13 C B A F); CongA; Between.
-      apply (bet_conga__bet D E F); CongA.
+      apply (l11_13 C B A F); 等角; Between.
+      apply (bet_conga__bet D E F); 等角.
     }
     intro HENBet.
     assert (HEOut : Out E D F) by (apply l6_4_2; auto).
     apply conga_sym.
     apply (l11_10 A B C F E K); try (apply out_trivial); auto.
-    apply (l11_21_a D E F); CongA.
+    apply (l11_21_a D E F); 等角.
   }
 
   intro HNColE.
-  assert (HK : exists K, CongA A B C F E K /\ TS F E K D) by (apply ex_conga_ts; Col).
+  assert (HK : exists K, 等角 A B C F E K /\ TS F E K D) by (apply ex_conga_ts; Col).
   destruct HK as [K [HConga HTwo]].
   exists K.
-  split; CongA.
+  split; 等角.
   split.
     apply l9_9; apply l9_2; apply invert_two_sides; auto.
   split; Cop.
@@ -194,16 +194,16 @@ Proof.
     intro; apply HNColE; apply (col_conga_col C B J D E F); Col.
   split.
     apply invert_two_sides; auto.
-  split; CongA.
+  split; 等角.
 Qed.
 
-(** CongA preserves SumA. *)
+(** 等角 preserves SumA. *)
 
 Lemma conga3_suma__suma : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
    SumA A B C D E F G H I ->
-   CongA A B C A' B' C' ->
-   CongA D E F D' E' F' ->
-   CongA G H I G' H' I' ->
+   等角 A B C A' B' C' ->
+   等角 D E F D' E' F' ->
+   等角 G H I G' H' I' ->
    SumA A' B' C' D' E' F' G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I' Hsuma HCongaB HCongaE HCongaH.
@@ -239,7 +239,7 @@ Qed.
 (** ABC + 0 =  ABC (two lemmas) *)
 
 Lemma out546_suma__conga : forall A B C D E F G H I, SumA A B C D E F G H I ->
-   Out E D F -> CongA A B C G H I.
+   Out E D F -> 等角 A B C G H I.
 Proof.
   intros A B C D E F G H I Hsuma Hout.
   assert(A<>B/\B<>C/\D<>E/\E<>F/\G<>H/\H<>I) by (apply suma_distincts; auto).
@@ -250,7 +250,7 @@ Proof.
   apply l11_21_b; try (apply out_trivial); auto.
   split.
     apply col124__nos; Col.
-  split; Cop; CongA.
+  split; Cop; 等角.
 Qed.
 
 Lemma out546__suma : forall A B C D E F, A <> B -> B <> C -> Out E D F -> SumA A B C D E F A B C.
@@ -265,7 +265,7 @@ Qed.
 (** 0 + DEF = DEF (two lemmas) *)
 
 Lemma out213_suma__conga : forall A B C D E F G H I, SumA A B C D E F G H I ->
-   Out B A C -> CongA D E F G H I.
+   Out B A C -> 等角 D E F G H I.
 Proof.
   intros A B C D E F G H I Hsuma Hout.
   apply (out546_suma__conga D E F A B C); auto.
@@ -285,7 +285,7 @@ Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := suma_distincts A B C D E F G H I Hsuma).
   spliter.
-  apply (conga3_suma__suma A B C D E F G H I); CongA.
+  apply (conga3_suma__suma A B C D E F G H I); 等角.
 Qed.
 
 Lemma suma_middle_comm : forall A B C D E F G H I,
@@ -294,7 +294,7 @@ Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := suma_distincts A B C D E F G H I Hsuma).
   spliter.
-  apply (conga3_suma__suma A B C D E F G H I); CongA.
+  apply (conga3_suma__suma A B C D E F G H I); 等角.
 Qed.
 
 Lemma suma_right_comm : forall A B C D E F G H I,
@@ -303,7 +303,7 @@ Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := suma_distincts A B C D E F G H I Hsuma).
   spliter.
-  apply (conga3_suma__suma A B C D E F G H I); CongA.
+  apply (conga3_suma__suma A B C D E F G H I); 等角.
 Qed.
 
 Lemma suma_comm : forall A B C D E F G H I,
@@ -312,7 +312,7 @@ Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := suma_distincts A B C D E F G H I Hsuma).
   spliter.
-  apply (conga3_suma__suma A B C D E F G H I); CongA.
+  apply (conga3_suma__suma A B C D E F G H I); 等角.
 Qed.
 
 (** Basic cases of sum *)
@@ -322,9 +322,9 @@ Proof.
   intros A B C D HTS.
   exists D.
   assert_diffs.
-  split; CongA.
+  split; 等角.
   split; Side.
-  split; CongA; Cop.
+  split; 等角; Cop.
 Qed.
 
 Lemma ts__suma_1 : forall A B C D, TS A B C D -> SumA C A B B A D C A D.
@@ -333,11 +333,11 @@ Proof.
   apply ts__suma, invert_two_sides, HTS.
 Qed.
 
-Lemma inangle__suma : forall A B C P, InAngle P A B C -> SumA A B P P B C A B C.
+Lemma inangle__suma : forall A B C P, 在角内 P A B C -> SumA A B P P B C A B C.
 Proof.
   intros A B C P HInangle.
   assert (Hcopy := HInangle); destruct Hcopy as [HAB [HCB [HPB _]]].
-  exists C; repeat (split; CongA); Cop.
+  exists C; repeat (split; 等角); Cop.
   elim (col_dec B P A).
     apply col123__nos.
   intro HNCol.
@@ -355,10 +355,10 @@ Proof.
 Qed.
 
 
-(** Characterization of SAMS using LeA. *)
+(** Characterization of SAMS using 角度小于等于. *)
 
 Lemma sams_chara : forall A B C D E F A', A<>B -> A'<>B -> Bet A B A' ->
-   (SAMS A B C D E F <-> LeA D E F C B A').
+   (SAMS A B C D E F <-> 角度小于等于 D E F C B A').
 Proof.
   intros A B C D E F A' HAB HA'B HABA'.
   split.
@@ -380,7 +380,7 @@ Proof.
       { intro HDEF.
         exfalso.
         apply HJ3.
-        assert (HCBJ : Bet C B J) by (apply (bet_conga__bet D E F); CongA).
+        assert (HCBJ : Bet C B J) by (apply (bet_conga__bet D E F); 等角).
         repeat split; Col.
           intro; apply HNColB; apply (l6_16_1 B J C A); Col.
         exists B.
@@ -391,11 +391,11 @@ Proof.
     intro HNColE.
     apply lea_trans with C B J; [Lea|].
     exists J.
-    split; CongA.
+    split; 等角.
     apply l11_24; apply (in_angle_reverse A); auto.
     assert (HTwo : TS B C A J).
     { apply cop_nos__ts; Cop.
-      apply (ncol_conga_ncol D E F); CongA.
+      apply (ncol_conga_ncol D E F); 等角.
     }
     destruct HTwo as [_ [_ [X [HXCol HXBet]]]].
     repeat split; auto.
@@ -443,10 +443,10 @@ Proof.
       assert (HBOut : Out B A C) by (apply not_bet_out; auto).
       split.
       right; auto.
-      assert (HJ : exists J : Tpoint, CongA D E F C B J) by (apply (angle_construction_3 D E F C B); auto).
+      assert (HJ : exists J : Tpoint, 等角 D E F C B J) by (apply (angle_construction_3 D E F C B); auto).
       destruct HJ as [J HJ].
       exists J.
-      split; CongA.
+      split; 等角.
       split.
       apply col123__nos; Col.
       split; Cop.
@@ -476,11 +476,11 @@ Proof.
     intro HNColE.
     split.
     right; intro; Col.
-    assert (HJ : exists J, CongA D E F C B J /\ TS C B J A) by (apply ex_conga_ts; Col).
+    assert (HJ : exists J, 等角 D E F C B J /\ TS C B J A) by (apply ex_conga_ts; Col).
     destruct HJ as [J [HCongaJ HTwo]].
     assert_diffs.
     exists J.
-    split; CongA.
+    split; 等角.
     split.
     apply l9_9; apply l9_2; apply invert_two_sides; auto.
     elim (col_dec A B J).
@@ -497,9 +497,9 @@ Proof.
       apply (in_angle_one_side); auto.
       intro; apply HNColJ; apply (l6_16_1 B A'); Col.
       apply l11_24.
-      destruct Hlea as [K [HInAngle HCongaK]].
-      apply (conga_preserves_in_angle C B A' K C B A' J); CongA.
-      apply (conga_trans C B K D E F); CongA.
+      destruct Hlea as [K [H在角内 HCongaK]].
+      apply (conga_preserves_in_angle C B A' K C B A' J); 等角.
+      apply (conga_trans C B K D E F); 等角.
       exists A; split; auto.
       apply l9_2, invert_two_sides, bet__ts; Col.
     }
@@ -524,9 +524,9 @@ Proof.
   intros A B C D E F Hisi.
   assert(A<>B/\B<>C/\D<>E/\E<>F) by (apply sams_distincts; auto).
   spliter.
-  assert(HD' : exists D', Midpoint E D D') by apply symmetric_point_construction.
+  assert(HD' : exists D', 中点 E D D') by apply symmetric_point_construction.
   destruct HD' as [D'].
-  assert(HA' : exists A', Midpoint B A A') by apply symmetric_point_construction.
+  assert(HA' : exists A', 中点 B A A') by apply symmetric_point_construction.
   destruct HA' as [A'].
   assert_diffs.
   apply (sams_chara D E F A B C D'); Between.
@@ -573,13 +573,13 @@ Proof.
 Qed.
 
 Lemma conga2_sams__sams : forall A B C D E F A' B' C' D' E' F',
-   CongA A B C A' B' C' -> CongA D E F D' E' F' ->
+   等角 A B C A' B' C' -> 等角 D E F D' E' F' ->
    SAMS A B C D E F -> SAMS A' B' C' D' E' F'.
 Proof.
   intros A B C D E F A' B' C' D' E' F' HCongaB HCongaE Hisi.
-  assert(HA0 : exists A0, Midpoint B A A0) by apply symmetric_point_construction.
+  assert(HA0 : exists A0, 中点 B A A0) by apply symmetric_point_construction.
   destruct HA0 as [A0].
-  assert(HA'0 : exists A'0, Midpoint B' A' A'0) by apply symmetric_point_construction.
+  assert(HA'0 : exists A'0, 中点 B' A' A'0) by apply symmetric_point_construction.
   destruct HA'0 as [A'0].
   assert_diffs.
   apply (sams_chara _ _ _ _ _ _ A'0); Between.
@@ -607,7 +607,7 @@ Lemma bet_suma__sams : forall A B C D E F G H I, SumA A B C D E F G H I -> Bet G
 Proof.
   intros A B C D E F G H I HSuma HBet.
   destruct HSuma as [A' [HConga1 [HNOS [HCop HConga2]]]].
-  apply (bet_conga__bet _ _ _ A B A') in HBet; CongA.
+  apply (bet_conga__bet _ _ _ A B A') in HBet; 等角.
   assert_diffs.
   repeat split; auto.
   - elim (bet_dec A B C).
@@ -632,7 +632,7 @@ Lemma suppa__sams : forall A B C D E F, SuppA A B C D E F -> SAMS A B C D E F.
 Proof.
   intros A B C D E F [HAB [A' [HBet HCong]]].
   assert_diffs.
-  apply (conga2_sams__sams A B C C B A'); CongA.
+  apply (conga2_sams__sams A B C C B A'); 等角.
   apply bet__sams; auto.
 Qed.
 
@@ -643,7 +643,7 @@ Proof.
   repeat split; auto.
     right; intro; apply (one_side_not_col123 A B P C); Col.
   exists C.
-  split; CongA.
+  split; 等角.
   repeat split; Side; Cop.
 Qed.
 
@@ -654,7 +654,7 @@ Proof.
   apply l9_31; Side.
 Qed.
 
-Lemma inangle__sams : forall A B C P, InAngle P A B C -> SAMS A B P P B C.
+Lemma inangle__sams : forall A B C P, 在角内 P A B C -> SAMS A B P P B C.
 Proof.
   intros A B C P HIn.
   assert_diffs.
@@ -722,29 +722,29 @@ repeat
       let T:= fresh in (not_exist_hyp_comm C D);
         assert (T:= lt_diff A B C D H);clean_reap_hyps
 
-      | H:Midpoint ?I ?A ?B, H2 : ?A<>?B |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
        assert (T:= midpoint_distinct_1 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Midpoint ?I ?A ?B, H2 : ?B<>?A |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
        assert (T:= midpoint_distinct_1 I A B (swap_diff B A H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
-      | H:Midpoint ?I ?A ?B, H2 : ?I<>?A |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?I<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
        assert (T:= midpoint_distinct_2 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Midpoint ?I ?A ?B, H2 : ?A<>?I |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?A<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
        assert (T:= midpoint_distinct_2 I A B (swap_diff A I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
-      | H:Midpoint ?I ?A ?B, H2 : ?I<>?B |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?I<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
        assert (T:= midpoint_distinct_3 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Midpoint ?I ?A ?B, H2 : ?B<>?I |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?B<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
        assert (T:= midpoint_distinct_3 I A B (swap_diff B I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
@@ -766,7 +766,7 @@ repeat
       let T:= fresh in (not_exist_hyp2 A B C D);
        assert (T:= perp_distinct A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Perp_at ?X ?A ?B ?C ?D |- _ =>
+      | H:垂直于 ?X ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
        assert (T:= perp_in_distinct X A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
@@ -783,25 +783,25 @@ repeat
       let h := fresh in
       not_exist_hyp5 A B A C A D B C B D;
       assert (h := os_distincts A B C D H);decompose [and] h;clear h;clean_reap_hyps
-      | H:~ Coplanar ?A ?B ?C ?D |- _ =>
+      | H:~ 共面 ?A ?B ?C ?D |- _ =>
       let h := fresh in
       not_exist_hyp6 A B A C A D B C B D C D;
       assert (h := ncop_distincts A B C D H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:CongA ?A ?B ?C ?A' ?B' ?C' |- _ =>
+      | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm A B);
         assert (T:= conga_diff1 A B C A' B' C' H);clean_reap_hyps
-      | H:CongA ?A ?B ?C ?A' ?B' ?C' |- _ =>
+      | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm B C);
         assert (T:= conga_diff2 A B C A' B' C' H);clean_reap_hyps
-      | H:CongA ?A ?B ?C ?A' ?B' ?C' |- _ =>
+      | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm A' B');
         assert (T:= conga_diff45 A B C A' B' C' H);clean_reap_hyps
-      | H:CongA ?A ?B ?C ?A' ?B' ?C' |- _ =>
+      | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm B' C');
         assert (T:= conga_diff56 A B C A' B' C' H);clean_reap_hyps
 
-      | H:(Orth_at ?X ?A ?B ?C ?U ?V) |- _ =>
+      | H:(垂直平面于 ?X ?A ?B ?C ?U ?V) |- _ =>
       let h := fresh in
       not_exist_hyp4 A B A C B C U V;
       assert (h := orth_at_distincts A B C U V X H);decompose [and] h;clear h;clean_reap_hyps
@@ -823,23 +823,23 @@ repeat
       not_exist_hyp4 A B B C D E E F;
       assert (h := sams_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:(InAngle ?P ?A ?B ?C) |- _ =>
+      | H:(在角内 ?P ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp3 A B C B P B;
       assert (h := inangle_distincts A B C P H);decompose [and] h;clear h;clean_reap_hyps
-      | H:LeA ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:角度小于等于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
       assert (h := lea_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
-      | H:LtA ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:角度小于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
       assert (h := lta_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
-      | H:(Acute ?A ?B ?C) |- _ =>
+      | H:(为锐角 ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp2 A B B C;
       assert (h := acute_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
-      | H:(Obtuse ?A ?B ?C) |- _ =>
+      | H:(为钝角 ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp2 A B B C;
       assert (h := obtuse_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
@@ -863,7 +863,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 (** ABC <= ABC + DEF. *)
 
 Lemma sams_suma__lea123789 : forall A B C D E F G H I, SumA A B C D E F G H I ->
-   SAMS A B C D E F -> LeA A B C G H I.
+   SAMS A B C D E F -> 角度小于等于 A B C G H I.
 Proof.
   intros A B C D E F G H I Hsuma Hisi.
   assert_diffs.
@@ -917,21 +917,21 @@ Proof.
   assert(HNColJ : ~ Col J B C).
   { intro HColJ.
     apply HNColE.
-    apply (col_conga_col J B C); CongA.
+    apply (col_conga_col J B C); 等角.
   }
-  assert(HCongaJ : CongA A B J G H I).
+  assert(HCongaJ : 等角 A B J G H I).
   { apply (suma2__conga A B C D E F); auto.
     exists J.
-    repeat (split; CongA).
+    repeat (split; 等角).
   }
   assert(HNColJ2 : ~ Col J B A).
   { intro HColJ.
     apply HNColH.
     apply (col_conga_col A B J); Col.
   }
-  apply (l11_30 A B C A B J); CongA.
+  apply (l11_30 A B C A B J); 等角.
   exists C.
-  split; CongA.
+  split; 等角.
   apply cop_nos__ts in HJ2; Cop.
   destruct HJ2 as [a [b [X [HColX HXBet]]]].
   repeat split; auto.
@@ -958,22 +958,22 @@ Qed.
 (** DEF <= ABC + DEF. *)
 
 Lemma sams_suma__lea456789 : forall A B C D E F G H I, SumA A B C D E F G H I ->
-   SAMS A B C D E F -> LeA D E F G H I.
+   SAMS A B C D E F -> 角度小于等于 D E F G H I.
 Proof.
   intros A B C D E F G H I Hsuma Hisi.
   apply (sams_suma__lea123789 D E F A B C G H I); SumA.
 Qed.
 
-(** LeA preserves SAMS. *)
+(** 角度小于等于 preserves SAMS. *)
 
 Lemma sams_lea2__sams : forall A B C D E F A' B' C' D' E' F',
-   SAMS A' B' C' D' E' F' -> LeA A B C A' B' C' -> LeA D E F D' E' F' ->
+   SAMS A' B' C' D' E' F' -> 角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' ->
    SAMS A B C D E F.
 Proof.
   intros A B C D E F A' B' C' D' E' F' Hisi HleaB HleaE.
-  assert(HA0 : exists A0, Midpoint B A A0) by apply symmetric_point_construction.
+  assert(HA0 : exists A0, 中点 B A A0) by apply symmetric_point_construction.
   destruct HA0 as [A0].
-  assert(HA'0 : exists A'0, Midpoint B' A' A'0) by apply symmetric_point_construction.
+  assert(HA'0 : exists A'0, 中点 B' A' A'0) by apply symmetric_point_construction.
   destruct HA'0 as [A'0].
   assert_diffs.
   apply (sams_chara _ _ _ _ _ _ A0); Between.
@@ -985,8 +985,8 @@ Proof.
 Qed.
 
 Lemma sams_lea456_suma2__lea : forall A B C D E F G H I D' E' F' G' H' I',
-   LeA D E F D' E' F' -> SAMS A B C D' E' F' -> SumA A B C D E F G H I ->
-   SumA A B C D' E' F' G' H' I' -> LeA G H I G' H' I'.
+   角度小于等于 D E F D' E' F' -> SAMS A B C D' E' F' -> SumA A B C D E F G H I ->
+   SumA A B C D' E' F' G' H' I' -> 角度小于等于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I D' E' F' G' H' I' Hlea Hisi' Hsuma Hsuma'.
   assert_diffs.
@@ -1040,17 +1040,17 @@ Proof.
   intro HNColH'.
   destruct Hisi' as [_[_[F'1]]].
   spliter.
-  apply(l11_30 _ _ _ _ _ _ D E F C B F'1) in Hlea; CongA.
+  apply(l11_30 _ _ _ _ _ _ D E F C B F'1) in Hlea; 等角.
   destruct Hlea as [F1].
   spliter.
   assert_diffs.
-  assert(CongA A B F'1 G' H' I').
-    apply (suma2__conga A B C D' E' F'); auto; exists F'1; repeat (split; CongA).
-  assert(~ Col A B F'1) by (apply (ncol_conga_ncol G' H' I'); CongA).
-  assert(~ Col C B F'1) by (apply (ncol_conga_ncol D' E' F'); CongA).
+  assert(等角 A B F'1 G' H' I').
+    apply (suma2__conga A B C D' E' F'); auto; exists F'1; repeat (split; 等角).
+  assert(~ Col A B F'1) by (apply (ncol_conga_ncol G' H' I'); 等角).
+  assert(~ Col C B F'1) by (apply (ncol_conga_ncol D' E' F'); 等角).
   apply (l11_30 A B F1 A B F'1); auto.
   - exists F1.
-    split; CongA.
+    split; 等角.
     apply l11_24.
     apply (in_angle_trans _ _ _ C).
     apply l11_24; auto.
@@ -1076,23 +1076,23 @@ Proof.
       apply not_col_permutation_4; apply (ncol_conga_ncol D E F); auto.
     }
     exists F1.
-    repeat (split; CongA); Side; Cop.
+    repeat (split; 等角); Side; Cop.
 Qed.
 
 Lemma sams_lea123_suma2__lea : forall A B C D E F G H I A' B' C' G' H' I',
-   LeA A B C A' B' C' -> SAMS A' B' C' D E F -> SumA A B C D E F G H I ->
-   SumA A' B' C' D E F G' H' I' -> LeA G H I G' H' I'.
+   角度小于等于 A B C A' B' C' -> SAMS A' B' C' D E F -> SumA A B C D E F G H I ->
+   SumA A' B' C' D E F G' H' I' -> 角度小于等于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C'.
   intros.
   apply (sams_lea456_suma2__lea D E F A B C _ _ _ A' B' C'); SumA.
 Qed.
 
-(** SumA preserves LeA. *)
+(** SumA preserves 角度小于等于. *)
 
 Lemma sams_lea2_suma2__lea : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LeA A B C A' B' C' -> LeA D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LeA G H I G' H' I'.
+   角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于等于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I' HleaB HleaD Hisi' Hsuma Hsuma'.
   assert_diffs.
@@ -1109,7 +1109,7 @@ Qed.
 Lemma sams2_suma2__conga456 : forall A B C D E F D' E' F' G H I,
    SAMS A B C D E F -> SAMS A B C D' E' F' ->
    SumA A B C D E F G H I -> SumA A B C D' E' F' G H I ->
-   CongA D E F D' E' F'.
+   等角 D E F D' E' F'.
 Proof.
   intros A B C D E F D' E' F' G H I Hisi Hisi' Hsuma Hsuma'.
   assert_diffs.
@@ -1134,10 +1134,10 @@ Proof.
   assert_diffs.
   apply (conga_trans _ _ _ C B J); try solve [apply conga_sym; auto].
   apply (conga_trans _ _ _ C B J'); auto.
-  assert(CongA A B J A B J').
+  assert(等角 A B J A B J').
   { apply (conga_trans _ _ _ G H I).
-      apply (suma2__conga A B C D E F); auto; exists J; repeat (split; CongA).
-    apply (suma2__conga A B C D' E' F'); auto; exists J'; repeat (split; CongA).
+      apply (suma2__conga A B C D E F); auto; exists J; repeat (split; 等角).
+    apply (suma2__conga A B C D' E' F'); auto; exists J'; repeat (split; 等角).
   }
   assert(HJJ' : Out B J J' \/ TS A B J J').
     apply conga_cop__or_out_ts; auto; apply coplanar_trans_1 with C; Cop; Col.
@@ -1156,7 +1156,7 @@ Qed.
 Lemma sams2_suma2__conga123 : forall A B C A' B' C' D E F G H I,
    SAMS A B C D E F -> SAMS A' B' C' D E F ->
    SumA A B C D E F G H I -> SumA A' B' C' D E F G H I ->
-   CongA A B C A' B' C'.
+   等角 A B C A' B' C'.
 Proof.
   intros A B C A' B' C' D E F G H I Hisi Hisi' Hsuma Hsuma'.
   apply (sams2_suma2__conga456 D E F _ _ _ _ _ _ G H I); SumA.
@@ -1168,9 +1168,9 @@ Lemma suma_assoc_1 : forall A B C D E F G H I K L M A' B' C' D' E' F',
    SumA A' B' C' G H I K L M -> SumA A B C D' E' F' K L M.
 Proof.
   intros A B C D E F G H I K L M A' B' C' D' E' F' HisiBE HisiEH HsBE HsEH HsB'H.
-  assert(HA0 : exists A0, Midpoint B A A0) by apply symmetric_point_construction.
+  assert(HA0 : exists A0, 中点 B A A0) by apply symmetric_point_construction.
   destruct HA0 as [A0 []].
-  assert(HD0 : exists D0, Midpoint E D D0) by apply symmetric_point_construction.
+  assert(HD0 : exists D0, 中点 E D D0) by apply symmetric_point_construction.
   destruct HD0 as [D0 []].
   assert_diffs.
   elim(col_dec A B C).
@@ -1243,17 +1243,17 @@ Proof.
         elim(bet_dec D' E' F').
         { intro HE'Bet.
           apply suma_sym.
-          apply (conga3_suma__suma A' B' C' G H I K L M); [CongA..| |CongA].
+          apply (conga3_suma__suma A' B' C' G H I K L M); [等角..| |等角].
           apply conga_sym.
           apply (conga_trans _ _ _ D0 E F).
           - apply (sams2_suma2__conga123 _ _ _ _ _ _ D E F A' B' C'); [SumA..|].
             apply suma_sym.
             exists D0.
-            repeat (split; CongA); Side; Cop.
+            repeat (split; 等角); Side; Cop.
           - apply (sams2_suma2__conga456 D E F _ _ _ _ _ _ D' E' F'); auto.
               SumA.
             exists D0.
-            repeat (split; CongA); Side; Cop.
+            repeat (split; 等角); Side; Cop.
         }
         intro HE'out.
         apply not_bet_out in HE'out; auto.
@@ -1265,28 +1265,28 @@ Proof.
         apply (sams_suma__lea123789 _ _ _ G H I); auto.
       }
       intro HNColE'.
-      assert(CongA D E F C B A0).
+      assert(等角 D E F C B A0).
       { apply (sams2_suma2__conga456 A B C _ _ _ _ _ _ A' B' C'); auto.
           SumA.
-        apply (conga3_suma__suma A B C C B A0 A B A0); [SumA|CongA..].
+        apply (conga3_suma__suma A B C C B A0 A B A0); [SumA|等角..].
       }
       assert(HJ : SAMS C B A0 G H I) by (apply (conga2_sams__sams D E F G H I); try (apply conga_refl); auto).
       destruct HJ as [_ [_ [J]]].
       destruct HisiEH as [_ [_ [F1]]].
       spliter.
       assert_diffs.
-      assert(CongA C B J D' E' F').
+      assert(等角 C B J D' E' F').
       { apply (conga_trans _ _ _ D E F1); auto.
         - apply (l11_22 _ _ _ A0 _ _ _ F); auto.
           split.
-            left; split; apply cop_nos__ts; Cop; apply (ncol_conga_ncol G H I); CongA.
+            left; split; apply cop_nos__ts; Cop; apply (ncol_conga_ncol G H I); 等角.
           split.
-            CongA.
-          apply (conga_trans _ _ _ G H I); CongA.
+            等角.
+          apply (conga_trans _ _ _ G H I); 等角.
 
         - apply (suma2__conga D E F G H I); auto.
           exists F1.
-          repeat (split; CongA).
+          repeat (split; 等角).
       }
       apply (conga3_suma__suma A B C D' E' F' A B J); [|apply conga_refl; auto..|].
       { exists J.
@@ -1295,14 +1295,14 @@ Proof.
             apply l9_2, invert_two_sides, bet__ts; Col.
           apply cop_nts__os; Col.
           apply not_col_permutation_2.
-          apply (ncol_conga_ncol D' E' F'); CongA.
+          apply (ncol_conga_ncol D' E' F'); 等角.
         }
-        repeat (split; CongA); Side; Cop.
+        repeat (split; 等角); Side; Cop.
       }
       apply (suma2__conga A' B' C' G H I); auto.
-      apply (conga3_suma__suma A B A0 A0 B J A B J); [|CongA..].
+      apply (conga3_suma__suma A B A0 A0 B J A B J); [|等角..].
       exists J.
-      repeat (split; CongA); Cop.
+      repeat (split; 等角); Cop.
       apply col123__nos; Col.
     }
     intro HB'out.
@@ -1319,11 +1319,11 @@ Proof.
   destruct HisiBE as [_ [_ [C1 HC1]]].
   spliter.
   assert_diffs.
-  assert(CongA A' B' C' A B C1).
+  assert(等角 A' B' C' A B C1).
   { apply (suma2__conga A B C D E F); auto.
-    apply (conga3_suma__suma A B C C B C1 A B C1); CongA.
+    apply (conga3_suma__suma A B C C B C1 A B C1); 等角.
     exists C1.
-    repeat (split; CongA).
+    repeat (split; 等角).
   }
   assert(OS B C1 C A).
   { apply one_side_symmetry.
@@ -1332,29 +1332,29 @@ Proof.
       apply cop_nts__os; Col.
       apply not_col_permutation_2; apply (ncol_conga_ncol A' B' C'); auto.
     - apply cop_nos__ts; Col; Cop.
-      apply (ncol_conga_ncol D E F); CongA.
+      apply (ncol_conga_ncol D E F); 等角.
   }
   elim(col_dec D' E' F').
   { intro HColE'.
     elim(bet_dec D' E' F').
     { intro HE'Bet.
-      assert(HC0 : exists C0, Midpoint B C C0) by apply symmetric_point_construction.
+      assert(HC0 : exists C0, 中点 B C C0) by apply symmetric_point_construction.
       destruct HC0 as [C0 []].
       assert_diffs.
       assert(TS B C1 C C0).
       { apply bet__ts; auto.
-        apply not_col_permutation_1, (ncol_conga_ncol D E F); CongA.
+        apply not_col_permutation_1, (ncol_conga_ncol D E F); 等角.
       }
-      apply (conga3_suma__suma A B C C B C0 A B C0); [|CongA..|].
-        exists C0; repeat (split; CongA); Cop; apply col124__nos; Col.
+      apply (conga3_suma__suma A B C C B C0 A B C0); [|等角..|].
+        exists C0; repeat (split; 等角); Cop; apply col124__nos; Col.
       apply (suma2__conga A' B' C' G H I); auto.
-      apply (conga3_suma__suma A B C1 C1 B C0 A B C0); [|CongA| |CongA].
+      apply (conga3_suma__suma A B C1 C1 B C0 A B C0); [|等角| |等角].
         apply ts__suma, invert_two_sides, (l9_8_2 _ _ C); auto.
       apply (sams2_suma2__conga456 C B C1 _ _ _ _ _ _ C B C0).
         SumA.
-        apply (conga2_sams__sams D E F G H I); CongA.
+        apply (conga2_sams__sams D E F G H I); 等角.
         SumA.
-        apply (conga3_suma__suma D E F G H I D' E' F'); CongA.
+        apply (conga3_suma__suma D E F G H I D' E' F'); 等角.
     }
     intro HE'out.
     apply not_bet_out in HE'out; auto.
@@ -1367,45 +1367,45 @@ Proof.
   }
   intro HNColE'.
   clear dependent D0.
-  assert(HJ : SAMS C B C1 G H I) by (apply (conga2_sams__sams D E F G H I); CongA).
+  assert(HJ : SAMS C B C1 G H I) by (apply (conga2_sams__sams D E F G H I); 等角).
   destruct HJ as [_ [_ [J]]].
   destruct HisiEH as [_ [_ [F1 HF1]]].
   spliter.
   assert_diffs.
-  assert(CongA C B J D' E' F').
+  assert(等角 C B J D' E' F').
   { apply (conga_trans _ _ _ D E F1); auto.
     - apply (l11_22 _ _ _ C1 _ _ _ F); auto.
       split.
         left; split; apply cop_nos__ts; Cop;
-        [apply (ncol_conga_ncol D E F)|apply (ncol_conga_ncol G H I)..]; CongA.
+        [apply (ncol_conga_ncol D E F)|apply (ncol_conga_ncol G H I)..]; 等角.
       split.
-      CongA.
-      apply (conga_trans _ _ _ G H I); CongA.
+      等角.
+      apply (conga_trans _ _ _ G H I); 等角.
 
     - apply (suma2__conga D E F G H I); auto.
       exists F1.
-      repeat (split; CongA).
+      repeat (split; 等角).
   }
-  assert (~ Col C B C1) by (apply (ncol_conga_ncol D E F); CongA).
+  assert (~ Col C B C1) by (apply (ncol_conga_ncol D E F); 等角).
   apply (conga3_suma__suma A B C C B J A B J); try (apply conga_refl); auto.
   - assert (TS B C J A).
     { apply (l9_8_2 _ _ C1).
         apply l9_2; apply cop_nos__ts; Col; Cop.
       apply invert_one_side.
       apply cop_nts__os; Col; Cop.
-      apply not_col_permutation_2, (ncol_conga_ncol D' E' F'); CongA.
+      apply not_col_permutation_2, (ncol_conga_ncol D' E' F'); 等角.
     }
     exists J.
-    repeat (split; CongA); Side; Cop.
+    repeat (split; 等角); Side; Cop.
   - apply (suma2__conga A' B' C' G H I); auto.
-    apply (conga3_suma__suma A B C1 C1 B J A B J); CongA.
+    apply (conga3_suma__suma A B C1 C1 B J A B J); 等角.
     assert (TS B C1 A J).
     { apply (l9_8_2 _ _ C); auto.
       apply cop_nos__ts; Cop.
-      apply (ncol_conga_ncol G H I); CongA.
+      apply (ncol_conga_ncol G H I); 等角.
     }
     exists J.
-    repeat (split; CongA); Side; Cop.
+    repeat (split; 等角); Side; Cop.
 Qed.
 
 Lemma suma_assoc_2 : forall A B C D E F G H I K L M A' B' C' D' E' F',
@@ -1496,26 +1496,26 @@ Proof.
     apply (out_lea__out _ _ _ A' B' C'); auto.
     apply (sams_suma__lea123789 _ _ _ D E F); auto.
   }
-  assert(HC1 : exists C1, CongA C B C1 D E F /\ ~ OS B C A C1 /\ ~ TS A B C C1 /\ Coplanar A B C C1).
+  assert(HC1 : exists C1, 等角 C B C1 D E F /\ ~ OS B C A C1 /\ ~ TS A B C C1 /\ 共面 A B C C1).
     destruct Hsams1 as [_ []]; auto.
   destruct HC1 as [C1].
   spliter.
   assert_diffs.
-  assert(CongA A B C1 A' B' C').
-    apply (suma2__conga A B C D E F); auto; exists C1; repeat (split; CongA).
-  assert(HJ : exists J, CongA C1 B J G H I /\ ~ OS B C1 C J /\ ~ TS C B C1 J /\ Coplanar C B C1 J).
-  { apply (conga2_sams__sams _ _ _ _ _ _ C B C1 G H I) in Hsams2; CongA.
+  assert(等角 A B C1 A' B' C').
+    apply (suma2__conga A B C D E F); auto; exists C1; repeat (split; 等角).
+  assert(HJ : exists J, 等角 C1 B J G H I /\ ~ OS B C1 C J /\ ~ TS C B C1 J /\ 共面 C B C1 J).
+  { apply (conga2_sams__sams _ _ _ _ _ _ C B C1 G H I) in Hsams2; 等角.
     destruct Hsams2 as [_ [_ HJ]]; auto.
   }
   destruct HJ as [J [HJ1 [HJ2 [HJ3 HJ4]]]].
   spliter.
-  apply (conga2_sams__sams _ _ _ _ _ _ A B C1 C1 B J) in Hsams1'; CongA.
+  apply (conga2_sams__sams _ _ _ _ _ _ A B C1 C1 B J) in Hsams1'; 等角.
   destruct Hsams1' as [_ [_ [J']]].
   spliter.
   assert_diffs.
-  assert (~ Col A B C1) by (apply (ncol_conga_ncol A' B' C'); CongA).
-  assert (~ Col C B C1) by (apply (ncol_conga_ncol D E F); CongA).
-  assert (Coplanar C1 B A J) by (apply coplanar_trans_1 with C; Cop; Col).
+  assert (~ Col A B C1) by (apply (ncol_conga_ncol A' B' C'); 等角).
+  assert (~ Col C B C1) by (apply (ncol_conga_ncol D E F); 等角).
+  assert (共面 C1 B A J) by (apply coplanar_trans_1 with C; Cop; Col).
   assert (HUn : Out B J' J \/ TS C1 B J' J).
     apply conga_cop__or_out_ts; auto.
     apply coplanar_trans_1 with A; Cop; Col.
@@ -1525,7 +1525,7 @@ Proof.
     - apply (suma2__conga D E F G H I); auto.
       apply (conga3_suma__suma C B C1 C1 B J C B J); try (apply conga_refl); auto.
       exists J.
-      repeat (split; CongA).
+      repeat (split; 等角).
 
     - elim(col_dec C B J).
       intro; apply col124__nos; Col.
@@ -1560,7 +1560,7 @@ Proof.
   apply (l9_8_2 _ _ A).
   - apply cop_nos__ts; Cop.
     apply (ncol_conga_ncol G H I); auto.
-    apply (conga_trans _ _ _ C1 B J); CongA.
+    apply (conga_trans _ _ _ C1 B J); 等角.
   - apply os_ts1324__os.
     apply invert_one_side; apply cop_nts__os; Col.
     apply cop_nos__ts; Col; Cop.
@@ -1593,10 +1593,10 @@ Lemma sams_nos__nts : forall A B C J, SAMS A B C C B J -> ~ OS B C A J ->
 Proof.
   intros A B C J HIsi HNOS HTS.
   destruct HIsi as [_ [HUn [J' [HConga [HNOS' [HNTS HCop]]]]]].
-  assert (Coplanar C B J J').
+  assert (共面 C B J J').
     apply coplanar_trans_1 with A; Cop.
     apply two_sides_not_col in HTS; Col.
-  destruct (conga_cop__or_out_ts C B J J') as [HOut|HTS1]; CongA.
+  destruct (conga_cop__or_out_ts C B J J') as [HOut|HTS1]; 等角.
   - apply HNTS.
     apply l9_2, l9_8_2 with J; Side.
     apply invert_one_side, out_one_side; trivial.
@@ -1605,27 +1605,27 @@ Proof.
     assert_diffs.
     absurd (OS B C J J'); Side.
     destruct HTS1 as [HNCol _].
-    assert (~ Col C B J') by (apply (ncol_conga_ncol C B J); Col; CongA).
+    assert (~ Col C B J') by (apply (ncol_conga_ncol C B J); Col; 等角).
     exists A; split; apply cop_nos__ts; Col; Side.
       apply coplanar_trans_1 with J'; Col; Cop.
       Cop.
 Qed.
 
 Lemma conga_sams_nos__nts : forall A B C D E F J,
-  SAMS A B C D E F -> CongA C B J D E F -> ~ OS B C A J -> ~ TS A B C J.
+  SAMS A B C D E F -> 等角 C B J D E F -> ~ OS B C A J -> ~ TS A B C J.
 Proof.
   intros A B C D E F J HIsi HConga.
   apply sams_nos__nts.
   assert_diffs.
-  apply (conga2_sams__sams A B C D E F); CongA.
+  apply (conga2_sams__sams A B C D E F); 等角.
 Qed.
 
 
 (** If B <= B', E <= E' and B + E = B' + E', then B = B' and E = E' *)
 
 Lemma sams_lea2_suma2__conga123 : forall A B C D E F G H I A' B' C' D' E' F',
-   LeA A B C A' B' C' -> LeA D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G H I -> CongA A B C A' B' C'.
+   角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G H I -> 等角 A B C A' B' C'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' HleaB HleaE Hisi' Hsuma Hsuma'.
   assert_diffs.
@@ -1642,8 +1642,8 @@ Proof.
 Qed.
 
 Lemma sams_lea2_suma2__conga456 : forall A B C D E F G H I A' B' C' D' E' F',
-   LeA A B C A' B' C' -> LeA D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G H I -> CongA D E F D' E' F'.
+   角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G H I -> 等角 D E F D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F'.
   intros.
@@ -1659,7 +1659,7 @@ Proof.
   apply (l11_21_a D E D).
     apply out_trivial; auto.
   apply sams_lea2_suma2__conga123 with D E F D E F D E F; Lea.
-  exists F; repeat (split; CongA); Cop.
+  exists F; repeat (split; 等角); Cop.
   apply col123__nos; Col.
 Qed.
 
@@ -1674,8 +1674,8 @@ Qed.
 (** If B < B' and E <= E', then B + E < B' + E' *)
 
 Lemma sams_lea_lta123_suma2__lta : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LtA A B C A' B' C' -> LeA D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LtA G H I G' H' I'.
+   角度小于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I' HltaB HleaE Hisi' Hsuma Hsuma'.
   assert_diffs.
@@ -1685,12 +1685,12 @@ Proof.
   destruct HltaB as [HleaB HNConga].
   apply HNConga.
   apply (sams_lea2_suma2__conga123 _ _ _ D E F G H I _ _ _ D' E' F'); auto.
-  apply (conga3_suma__suma A' B' C' D' E' F' G' H' I'); CongA.
+  apply (conga3_suma__suma A' B' C' D' E' F' G' H' I'); 等角.
 Qed.
 
 Lemma sams_lea_lta456_suma2__lta : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LeA A B C A' B' C' -> LtA D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LtA G H I G' H' I'.
+   角度小于等于 A B C A' B' C' -> 角度小于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1698,8 +1698,8 @@ Proof.
 Qed.
 
 Lemma sams_lta2_suma2__lta : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LtA A B C A' B' C' -> LtA D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LtA G H I G' H' I'.
+   角度小于 A B C A' B' C' -> 角度小于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1710,8 +1710,8 @@ Qed.
 (** If E >= E' and B + E <= B' + E', then B <= B' *)
 
 Lemma sams_lea2_suma2__lea123 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LeA D' E' F' D E F -> LeA G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LeA A B C A' B' C'.
+   角度小于等于 D' E' F' D E F -> 角度小于等于 G H I G' H' I' -> SAMS A B C D E F ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于等于 A B C A' B' C'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1719,14 +1719,14 @@ Proof.
   elim(lta_dec A' B' C' A B C); [|intro; apply nlta__lea; auto].
   intro Hlta.
   exfalso.
-  assert(~ LeA G H I G' H' I'); auto.
+  assert(~ 角度小于等于 G H I G' H' I'); auto.
   apply lta__nlea.
   apply(sams_lea_lta123_suma2__lta A' B' C' D' E' F' _ _ _ A B C D E F); auto.
 Qed.
 
 Lemma sams_lea2_suma2__lea456 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LeA A' B' C' A B C -> LeA G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LeA D E F D' E' F'.
+   角度小于等于 A' B' C' A B C -> 角度小于等于 G H I G' H' I' -> SAMS A B C D E F ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于等于 D E F D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1737,8 +1737,8 @@ Qed.
 (** If E > E' and B + E <= B' + E', then B < B' *)
 
 Lemma sams_lea_lta456_suma2__lta123 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LtA D' E' F' D E F -> LeA G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LtA A B C A' B' C'.
+   角度小于 D' E' F' D E F -> 角度小于等于 G H I G' H' I' -> SAMS A B C D E F ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 A B C A' B' C'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1746,14 +1746,14 @@ Proof.
   elim(lea_dec A' B' C' A B C) ;[|intro; apply nlea__lta; auto].
   intro Hlea.
   exfalso.
-  assert(~ LeA G H I G' H' I'); auto.
+  assert(~ 角度小于等于 G H I G' H' I'); auto.
   apply lta__nlea.
   apply(sams_lea_lta456_suma2__lta A' B' C' D' E' F' _ _ _ A B C D E F); auto.
 Qed.
 
 Lemma sams_lea_lta123_suma2__lta456 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LtA A' B' C' A B C -> LeA G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LtA D E F D' E' F'.
+   角度小于 A' B' C' A B C -> 角度小于等于 G H I G' H' I' -> SAMS A B C D E F ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 D E F D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1764,8 +1764,8 @@ Qed.
 (** If E >= E' and B + E < B' + E', then B < B' *)
 
 Lemma sams_lea_lta789_suma2__lta123 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LeA D' E' F' D E F -> LtA G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LtA A B C A' B' C'.
+   角度小于等于 D' E' F' D E F -> 角度小于 G H I G' H' I' -> SAMS A B C D E F ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 A B C A' B' C'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1773,14 +1773,14 @@ Proof.
   elim(lea_dec A' B' C' A B C); [|intro; apply nlea__lta; auto].
   intro Hlta.
   exfalso.
-  assert(~ LtA G H I G' H' I'); auto.
+  assert(~ 角度小于 G H I G' H' I'); auto.
   apply lea__nlta.
   apply(sams_lea2_suma2__lea A' B' C' D' E' F' _ _ _ A B C D E F); auto.
 Qed.
 
 Lemma sams_lea_lta789_suma2__lta456 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LeA A' B' C' A B C -> LtA G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LtA D E F D' E' F'.
+   角度小于等于 A' B' C' A B C -> 角度小于 G H I G' H' I' -> SAMS A B C D E F ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 D E F D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1789,8 +1789,8 @@ Proof.
 Qed.
 
 Lemma sams_lta2_suma2__lta123 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LtA D' E' F' D E F -> LtA G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LtA A B C A' B' C'.
+   角度小于 D' E' F' D E F -> 角度小于 G H I G' H' I' -> SAMS A B C D E F ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 A B C A' B' C'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1799,8 +1799,8 @@ Proof.
 Qed.
 
 Lemma sams_lta2_suma2__lta456 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   LtA A' B' C' A B C -> LtA G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> LtA D E F D' E' F'.
+   角度小于 A' B' C' A B C -> 角度小于 G H I G' H' I' -> SAMS A B C D E F ->
+   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 D E F D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1845,8 +1845,8 @@ Proof.
   - assert (HP := symmetric_point_construction A B).
     destruct HP as [P []].
     assert_diffs.
-    assert (Hlta : LtA D E F A B P);
-    [|destruct Hlta as [Hlea HNConga]; apply HNConga; CongA].
+    assert (Hlta : 角度小于 D E F A B P);
+    [|destruct Hlta as [Hlea HNConga]; apply HNConga; 等角].
     assert (TS B C A P).
       apply bet__ts; Col.
     apply (sams_lea_lta456_suma2__lta A B C B C A _ _ _ A B C C B P); [Lea| |SumA..].
@@ -1879,7 +1879,7 @@ Proof.
   intros A B C D E F G H I HB HE HSuma.
   destruct HSuma as [A1 [HConga1 [HNos [HCop HConga2]]]].
   assert_diffs.
-  assert(Per A1 B C) by (apply (l11_17 D E F); CongA).
+  assert(Per A1 B C) by (apply (l11_17 D E F); 等角).
   apply (bet_conga__bet A B A1); auto.
   apply (col_two_sides_bet _ C).
   apply col_permutation_2; apply cop_per2__col with C; Cop.
@@ -1934,7 +1934,7 @@ Proof.
     apply Habs.
     apply col_permutation_2.
     apply 中间性转共线.
-    apply (bet_conga__bet G H I); CongA.
+    apply (bet_conga__bet G H I); 等角.
 
   - assert(HSuma' := ex_suma A B C A B C).
     destruct HSuma' as [G' [H' [I']]]; auto.
@@ -1962,13 +1962,13 @@ Proof.
   assert_diffs.
   destruct HSuma as [A' [HConga1 [_ [_ HConga2]]]].
   apply l8_2.
-  apply (l11_18_2 _ _ _ A'); CongA.
-  apply (bet_conga__bet D E F); CongA.
+  apply (l11_18_2 _ _ _ A'); 等角.
+  apply (bet_conga__bet D E F); 等角.
 Qed.
 
 (** If x<90 then x+x<180 (two lemmas). *)
 
-Lemma acute__sams : forall A B C, Acute A B C -> SAMS A B C A B C.
+Lemma acute__sams : forall A B C, 为锐角 A B C -> SAMS A B C A B C.
 Proof.
   intros A B C Hacute.
   assert(HA' := symmetric_point_construction A B).
@@ -1980,7 +1980,7 @@ Proof.
   apply (acute_bet__obtuse A); Between.
 Qed.
 
-Lemma acute_suma__nbet : forall A B C D E F, Acute A B C -> SumA A B C A B C D E F -> ~ Bet D E F.
+Lemma acute_suma__nbet : forall A B C D E F, 为锐角 A B C -> SumA A B C A B C D E F -> ~ Bet D E F.
 Proof.
   intros A B C D E F Hacute HSuma.
   assert_diffs.
@@ -1992,35 +1992,35 @@ Qed.
 
 (** If x<90 and y<90 then x+y<180 (two lemmas). *)
 
-Lemma acute2__sams : forall A B C D E F, Acute A B C -> Acute D E F -> SAMS A B C D E F.
+Lemma acute2__sams : forall A B C D E F, 为锐角 A B C -> 为锐角 D E F -> SAMS A B C D E F.
 Proof.
-  assert (Haux : forall A B C D E F, Acute A B C -> LeA D E F A B C -> SAMS A B C D E F).
-  { intros A B C D E F HAcute HLea.
+  assert (Haux : forall A B C D E F, 为锐角 A B C -> 角度小于等于 D E F A B C -> SAMS A B C D E F).
+  { intros A B C D E F H为锐角 HLea.
     apply sams_lea2__sams with A B C A B C.
-      apply acute__sams, HAcute.
+      apply acute__sams, H为锐角.
       assert_diffs; apply lea_refl; auto.
       assumption.
   }
-  intros A B C D E F HAcute1 HAcute2.
+  intros A B C D E F H为锐角1 H为锐角2.
   assert_diffs.
   destruct (lea_total A B C D E F); SumA.
 Qed.
 
 Lemma acute2_suma__nbet : forall A B C D E F G H I,
-  Acute A B C -> Acute D E F -> SumA A B C D E F G H I -> ~ Bet G H I.
+  为锐角 A B C -> 为锐角 D E F -> SumA A B C D E F G H I -> ~ Bet G H I.
 Proof.
-  assert (Haux : forall A B C D E F G H I, Acute A B C -> LeA D E F A B C -> SumA A B C D E F G H I ->
+  assert (Haux : forall A B C D E F G H I, 为锐角 A B C -> 角度小于等于 D E F A B C -> SumA A B C D E F G H I ->
     ~ Bet G H I).
-  { intros A B C D E F G H I HAcute HLea HSuma HBet.
+  { intros A B C D E F G H I H为锐角 HLea HSuma HBet.
     assert_diffs.
     destruct (ex_suma A B C A B C) as [A' [B' [C']]]; auto.
     apply (acute_suma__nbet A B C A' B' C'); trivial.
     apply (bet_lea__bet G H I); [apply HBet|].
     apply sams_lea2_suma2__lea with A B C D E F A B C A B C; trivial.
       apply lea_refl; auto.
-      apply acute__sams, HAcute.
+      apply acute__sams, H为锐角.
   }
-  intros A B C D E F G H I HAcute1 HAcute2 HSuma.
+  intros A B C D E F G H I H为锐角1 H为锐角2 HSuma.
   assert_diffs.
   destruct (lea_total A B C D E F); auto.
     apply suma_sym in HSuma; apply (Haux D E F A B C); assumption.
@@ -2030,9 +2030,9 @@ Qed.
 (** If x<90 then x+90<180 (two lemmas) *)
 
 Lemma acute_per__sams : forall A B C D E F, A <> B -> B <> C ->
-  Per A B C -> Acute D E F -> SAMS A B C D E F.
+  Per A B C -> 为锐角 D E F -> SAMS A B C D E F.
 Proof.
-  intros A B C D E F HAB HBC HPer HAcute.
+  intros A B C D E F HAB HBC HPer H为锐角.
   apply sams_lea2__sams with A B C A B C.
     apply per2__sams; auto.
     apply lea_refl; auto.
@@ -2040,9 +2040,9 @@ Proof.
 Qed.
 
 Lemma acute_per_suma__nbet : forall A B C D E F G H I, A <> B -> B <> C ->
-  Per A B C -> Acute D E F -> SumA A B C D E F G H I -> ~ Bet G H I.
+  Per A B C -> 为锐角 D E F -> SumA A B C D E F G H I -> ~ Bet G H I.
 Proof.
-  intros A B C D E F G H I HAB HBC HPer HAcute HSuma HBet.
+  intros A B C D E F G H I HAB HBC HPer H为锐角 HSuma HBet.
   assert_diffs.
   apply (nlta G H I).
   apply sams_lea_lta456_suma2__lta with A B C D E F A B C A B C; Lea.
@@ -2052,7 +2052,7 @@ Qed.
 
 (** If x>90 then x+x>180. *)
 
-Lemma obtuse__nsams : forall A B C, Obtuse A B C -> ~ SAMS A B C A B C.
+Lemma obtuse__nsams : forall A B C, 为钝角 A B C -> ~ SAMS A B C A B C.
 Proof.
   intros A B C Hobtuse.
   assert(HA' := symmetric_point_construction A B).
@@ -2070,7 +2070,7 @@ Qed.
 (** If x+x<180 then x<90. *)
 
 Lemma nbet_sams_suma__acute : forall A B C D E F, ~ Bet D E F -> SAMS A B C A B C ->
-   SumA A B C A B C D E F -> Acute A B C.
+   SumA A B C A B C D E F -> 为锐角 A B C.
 Proof.
   intros A B C D E F HNBet HIsi HSuma.
   assert_diffs.
@@ -2086,7 +2086,7 @@ Qed.
 
 (** If x+x>180 then x>90. *)
 
-Lemma nsams__obtuse : forall A B C, A <> B -> B <> C -> ~ SAMS A B C A B C -> Obtuse A B C.
+Lemma nsams__obtuse : forall A B C, A <> B -> B <> C -> ~ SAMS A B C A B C -> 为钝角 A B C.
 Proof.
   intros A B C HAB HBC HNIsi.
   elim(angle_partition A B C); auto.
@@ -2121,7 +2121,7 @@ Qed.
 Lemma sams2_suma2__conga : forall A B C D E F A' B' C',
   SAMS A B C A B C -> SumA A B C A B C D E F ->
   SAMS A' B' C' A' B' C' -> SumA A' B' C' A' B' C' D E F ->
-  CongA A B C A' B' C'.
+  等角 A B C A' B' C'.
 Proof.
   intros A B C D E F A' B' C' HIsi HSuma HIsi' HSuma'.
   assert_diffs.
@@ -2130,9 +2130,9 @@ Proof.
 Qed.
 
 Lemma acute2_suma2__conga : forall A B C D E F A' B' C',
-  Acute A B C -> SumA A B C A B C D E F ->
-  Acute A' B' C' -> SumA A' B' C' A' B' C' D E F ->
-  CongA A B C A' B' C'.
+  为锐角 A B C -> SumA A B C A B C D E F ->
+  为锐角 A' B' C' -> SumA A' B' C' A' B' C' D E F ->
+  等角 A B C A' B' C'.
 Proof.
   intros A B C D E F A' B' C' HB HSuma HB'.
   apply sams2_suma2__conga; try apply acute__sams; assumption.
@@ -2148,7 +2148,7 @@ Proof.
   apply (eq_conga_out A B).
   apply (suma2__conga A B C D E F); trivial.
   exists A.
-  repeat (split; CongA); Cop.
+  repeat (split; 等角); Cop.
   apply col123__nos; Col.
 Qed.
 
@@ -2180,7 +2180,7 @@ Proof.
   apply 中间性的对称性, l6_2 with A'; Between.
   destruct (conga_cop__or_out_ts C B A' A'') as [|HTS]; auto.
     apply coplanar_perm_3, col_cop__cop with A; Col; Cop.
-    apply conga_trans with D E F; CongA.
+    apply conga_trans with D E F; 等角.
   exfalso.
   apply HNOS.
   exists A'; split; [|Side].
@@ -2212,8 +2212,8 @@ Proof.
   assert_diffs.
   split; auto.
   exists A'.
-  split; CongA.
-  apply (bet_conga__bet G H I); CongA.
+  split; 等角.
+  apply (bet_conga__bet G H I); 等角.
 Qed.
 
 (** The sum of two angles is equal to the sum of their two supplementary angles *)
@@ -2224,7 +2224,7 @@ Proof.
   intros A B C D E F G H I A' D' HBA' HED' HBetA HBetD [J [HJ1 [HJ2 [HJ3 HJ4]]]]; spliter.
   destruct (由一点往一方向构造等长线段 C B B C) as [C' []].
   assert_diffs.
-  apply (conga3_suma__suma A B C' D' E F G H I); [|apply l11_14; Between|CongA..].
+  apply (conga3_suma__suma A B C' D' E F G H I); [|apply l11_14; Between|等角..].
   exists J.
   split.
     apply l11_13 with C D; Between.
@@ -2239,16 +2239,16 @@ Lemma suma_suppa2__suma : forall A B C D E F G H I A' B' C' D' E' F',
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' [_ [A0 []]] [_ [D0 []]] HSuma.
   assert_diffs.
-  apply (conga3_suma__suma A0 B C D0 E F G H I); CongA.
+  apply (conga3_suma__suma A0 B C D0 E F G H I); 等角.
   apply bet2_suma__suma with A D; auto.
 Qed.
 
 (** If doubling two obtuse angles makes the same result, then these angles are congruent *)
 
 Lemma suma2_obtuse2__conga : forall A B C D E F A' B' C',
-  Obtuse A B C -> SumA A B C A B C D E F ->
-  Obtuse A' B' C' -> SumA A' B' C' A' B' C' D E F ->
-  CongA A B C A' B' C'.
+  为钝角 A B C -> SumA A B C A B C D E F ->
+  为钝角 A' B' C' -> SumA A' B' C' A' B' C' D E F ->
+  等角 A B C A' B' C'.
 Proof.
   intros A B C D E F A' B' C' HB HSuma HB' HSuma'.
   destruct (由一点往一方向构造等长线段 A B A B) as [A0 []].
@@ -2266,15 +2266,15 @@ Qed.
 
 Lemma bet_suma2__or_conga : forall A B C D E F A' B' C' A0, A0 <> B ->
   Bet A B A0 -> SumA A B C A B C D E F -> SumA A' B' C' A' B' C' D E F ->
-  CongA A B C A' B' C' \/ CongA A0 B C A' B' C'.
+  等角 A B C A' B' C' \/ 等角 A0 B C A' B' C'.
 Proof.
   intros A B C D E F A' B' C' A0 HBA0 HBet HSuma.
   revert A' B' C'.
-  assert (Haux : forall A' B' C', Acute A' B' C' -> SumA A' B' C' A' B' C' D E F ->
-    CongA A B C A' B' C' \/ CongA A0 B C A' B' C').
-  { intros A' B' C' HAcute' HSuma'.
+  assert (Haux : forall A' B' C', 为锐角 A' B' C' -> SumA A' B' C' A' B' C' D E F ->
+    等角 A B C A' B' C' \/ 等角 A0 B C A' B' C').
+  { intros A' B' C' H为锐角' HSuma'.
     assert_diffs.
-    destruct (angle_partition A B C) as [HAcute|[HPer|HObtuse]]; auto.
+    destruct (angle_partition A B C) as [H为锐角|[HPer|H为钝角]]; auto.
     - left; apply acute2_suma2__conga with D E F; auto.
     - exfalso.
       apply (acute_suma__nbet A' B' C' D E F); [..|apply (per2_suma__bet A B C A B C)]; assumption.
@@ -2284,7 +2284,7 @@ Proof.
   }
   intros A' B' C' HSuma'.
   assert_diffs.
-  destruct (angle_partition A' B' C') as [HAcute|[HPer|HObtuse]]; auto.
+  destruct (angle_partition A' B' C') as [H为锐角|[HPer|H为钝角]]; auto.
   - left.
     apply l11_16; auto.
     apply bet_suma__per with D E F; [apply (per2_suma__bet A' B' C' A' B' C')|]; assumption.
@@ -2299,7 +2299,7 @@ Qed.
 
 Lemma suma2__or_conga_suppa : forall A B C A' B' C' D E F ,
   SumA A B C A B C D E F -> SumA A' B' C' A' B' C' D E F ->
-  CongA A B C A' B' C' \/ SuppA A B C A' B' C'.
+  等角 A B C A' B' C' \/ SuppA A B C A' B' C'.
 Proof.
   intros A B C A' B' C' D E F HSuma HSuma'.
   destruct (由一点往一方向构造等长线段 A B A B) as [A0 []].
@@ -2307,7 +2307,7 @@ Proof.
   destruct (bet_suma2__or_conga A B C D E F A' B' C' A0); auto.
   right.
   split; auto.
-  exists A0; split; CongA.
+  exists A0; split; 等角.
 Qed.
 
 
@@ -2380,34 +2380,34 @@ Proof.
 Qed.
 
 Lemma conga_trisuma__trisuma : forall A B C D E F D' E' F',
-  TriSumA A B C D E F -> CongA D E F D' E' F' -> TriSumA A B C D' E' F'.
+  TriSumA A B C D E F -> 等角 D E F D' E' F' -> TriSumA A B C D' E' F'.
 Proof.
   intros A B C D E F D' E' F' HTri HConga.
   destruct HTri as [G [H [I [HSuma1 HSuma2]]]].
   exists G; exists H; exists I; split; trivial.
-  assert_diffs; apply (conga3_suma__suma G H I C A B D E F); CongA.
+  assert_diffs; apply (conga3_suma__suma G H I C A B D E F); 等角.
 Qed.
 
 Lemma trisuma2__conga : forall A B C D E F D' E' F',
-  TriSumA A B C D E F -> TriSumA A B C D' E' F' -> CongA D E F D' E' F'.
+  TriSumA A B C D E F -> TriSumA A B C D' E' F' -> 等角 D E F D' E' F'.
 Proof.
   intros A B C D E F D' E' F' HTri HTri'.
   destruct HTri as [G [H [I [HSuma1 HSuma2]]]].
   destruct HTri' as [G' [H' [I' [HSuma1' HSuma2']]]].
   apply (suma2__conga G H I C A B); trivial.
   assert_diffs.
-  apply (conga3_suma__suma G' H' I' C A B D' E' F'); CongA.
+  apply (conga3_suma__suma G' H' I' C A B D' E' F'); 等角.
   apply (suma2__conga A B C B C A); trivial.
 Qed.
 
 Lemma conga3_trisuma__trisuma : forall A B C D E F A' B' C', TriSumA A B C D E F ->
-  CongA A B C A' B' C' -> CongA B C A B' C' A' -> CongA C A B C' A' B' ->
+  等角 A B C A' B' C' -> 等角 B C A B' C' A' -> 等角 C A B C' A' B' ->
   TriSumA A' B' C' D E F.
 Proof.
   intros A B C D E F A' B' C' HTri HCongaB HCongaC HCongaA.
   destruct HTri as [G [H [I [HSuma HSuma']]]].
   assert_diffs; exists G; exists H; exists I; split;
-  [apply (conga3_suma__suma A B C B C A G H I)|apply (conga3_suma__suma G H I C A B D E F)]; CongA.
+  [apply (conga3_suma__suma A B C B C A G H I)|apply (conga3_suma__suma G H I C A B D E F)]; 等角.
 Qed.
 
 (** The sum of the angles of a degenerate triangle is a straight angle *)
@@ -2446,11 +2446,11 @@ Proof.
   destruct(两点重合的决定性 F E).
     subst; right; intro; assert_diffs; auto.
   destruct (ex_suma A B C D E F) as [G' [H' [I']]]; auto.
-  destruct(conga_dec G H I G' H' I') as [|HNCongA].
-    left; apply (conga3_suma__suma A B C D E F G' H' I'); CongA.
+  destruct(conga_dec G H I G' H' I') as [|HN等角].
+    left; apply (conga3_suma__suma A B C D E F G' H' I'); 等角.
   right.
   intro.
-  apply HNCongA, (suma2__conga A B C D E F); auto.
+  apply HN等角, (suma2__conga A B C D E F); auto.
 Qed.
 
 Lemma sams_dec : forall A B C D E F, SAMS A B C D E F \/ ~ SAMS A B C D E F.

@@ -9,14 +9,14 @@ Lemma par_dec_NID : decidability_of_parallelism <-> decidability_of_not_intersec
 Proof.
 split; intros Hdec A B C D; destruct (cop_dec A B C D) as [|HNCop].
 - destruct (Hdec A B C D) as [[HParS|Heq]|HNPar].
-  * left; unfold Par_strict in HParS; spliter; assumption.
+  * left; unfold 严格平行 in HParS; spliter; assumption.
   * right; intro Habs; apply Habs; exists B; spliter; Col.
   * right; intro Habs.
     destruct (两点重合的决定性 A B).
       apply Habs; exists C; subst; split; Col.
     destruct (两点重合的决定性 C D).
       apply Habs; exists A; subst; split; Col.
-    apply HNPar; left; unfold Par_strict; repeat split; assumption.
+    apply HNPar; left; unfold 严格平行; repeat split; assumption.
 
 - left; intros [I []]; apply HNCop; exists I; left; split; Col.
 
@@ -38,7 +38,7 @@ split; intros Hdec A B C D; destruct (cop_dec A B C D) as [|HNCop].
     left; left; repeat split; assumption.
   right.
   intros [HParS|Heq].
-    apply HNPar; unfold Par_strict in HParS; spliter; assumption.
+    apply HNPar; unfold 严格平行 in HParS; spliter; assumption.
   spliter; auto.
 
 - right; intro HPar; apply HNCop, par__coplanar, HPar.

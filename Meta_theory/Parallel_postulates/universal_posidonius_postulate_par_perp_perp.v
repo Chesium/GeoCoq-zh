@@ -13,12 +13,12 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma universal_posidonius_postulate__perpendicular_transversal_postulate_aux :
   universal_posidonius_postulate -> forall E F G H R P,
-  Perp E G R P -> Coplanar F H P R -> Col E G R -> Saccheri E F H G ->
+  Perp E G R P -> 共面 F H P R -> Col E G R -> Saccheri E F H G ->
   Perp F H P R.
 Proof.
 intros HP E F G H R P HPerp HCop HCol HSacc.
 assert (HPerp1 : Perp E G E F) by (apply perp_sym, sac__perp1214 with H, HSacc).
-assert (HPar : Par_strict E G F H) by (apply sac__pars1423, HSacc).
+assert (HPar : 严格平行 E G F H) by (apply sac__pars1423, HSacc).
 assert_diffs.
 assert (HRAH : postulate_of_right_saccheri_quadrilaterals).
   {
@@ -47,8 +47,8 @@ assert (HP' : forall A1 A2 B1 B2 C1 C2 D1 D2 IAB IAC IBD, IAB <> IAC -> IAB <> I
         Col A1 A2 IAB -> Col B1 B2 IAB ->
         Col A1 A2 IAC -> Col C1 C2 IAC ->
         Col B1 B2 IBD -> Col D1 D2 IBD ->
-        Coplanar IAB IAC IBD C1 -> Coplanar IAB IAC IBD C2 ->
-        Coplanar IAB IAC IBD D1 -> Coplanar IAB IAC IBD D2 ->
+        共面 IAB IAC IBD C1 -> 共面 IAB IAC IBD C2 ->
+        共面 IAB IAC IBD D1 -> 共面 IAB IAC IBD D2 ->
         exists I, Col C1 C2 I /\ Col D1 D2 I).
   {
   apply bachmann_s_lotschnittaxiom_aux.
@@ -57,7 +57,7 @@ assert (HP' : forall A1 A2 B1 B2 C1 C2 D1 D2 IAB IAC IBD, IAB <> IAC -> IAB <> I
   apply thales_postulate__thales_converse_postulate.
   apply rah__thales_postulate; assumption.
   }
-assert (Coplanar F H E R) by (apply col_cop__cop with G; Col; Cop).
+assert (共面 F H E R) by (apply col_cop__cop with G; Col; Cop).
 assert (~ Col F H R) by (intro; apply HPar; exists R; split; Col).
 destruct (HP' E G E F P R F H E R F) as [S [HC7 HC8]]; Col; [Perp| |CopR|Cop..|].
   apply HRAH in HSacc; Perp.
@@ -91,7 +91,7 @@ Lemma universal_posidonius_postulate__perpendicular_transversal_postulate :
 Proof.
 intros HP A B C D P Q HPar.
 revert P Q.
-cut (forall P Q, Perp A B P Q -> Coplanar C D P Q -> ~ Col A B P -> Perp C D P Q).
+cut (forall P Q, Perp A B P Q -> 共面 C D P Q -> ~ Col A B P -> Perp C D P Q).
   {
   intros Haux P Q HPerp HCop.
   destruct (perp_not_col2 A B P Q HPerp); [|apply perp_right_comm]; apply Haux; Perp; Cop.

@@ -9,13 +9,13 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma proposition_04 : 
    forall A B C a b c, 
-   Cong A B a b -> Cong A C a c -> CongA B A C b a c ->
-   Cong B C b c /\ CongA A B C a b c /\ CongA A C B a c b.
+   Cong A B a b -> Cong A C a c -> 等角 B A C b a c ->
+   Cong B C b c /\ 等角 A B C a b c /\ 等角 A C B a c b.
 Proof.
 intros.
 assert (nCol b a c) by (conclude lemma_equalanglesNC).
 let Tf:=fresh in
-assert (Tf:exists U V u v, (Out A B U /\ Out A C V /\ Out a b u /\ Out a c v /\ Cong A U a u /\ Cong A V a v /\ Cong U V u v /\ nCol B A C)) by (conclude_def CongA );destruct Tf as [U[V[u[v]]]];spliter.
+assert (Tf:exists U V u v, (Out A B U /\ Out A C V /\ Out a b u /\ Out a c v /\ Cong A U a u /\ Cong A V a v /\ Cong U V u v /\ nCol B A C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];spliter.
 assert (neq a b) by (conclude lemma_ray2).
 assert (neq b a) by (conclude lemma_inequalitysymmetric).
 assert (~ Col A B C).
@@ -208,7 +208,7 @@ assert (Out B C C) by (conclude lemma_ray4).
 assert (Out b a a) by (conclude lemma_ray4).
 assert (Out b c c) by (conclude lemma_ray4).
 assert (Cong B A b a) by (forward_using lemma_congruenceflip).
-assert (CongA A B C a b c) by (conclude_def CongA ).
+assert (等角 A B C a b c) by (conclude_def 等角 ).
 assert (Out C A A) by (conclude lemma_ray4).
 assert (Out C B B) by (conclude lemma_ray4).
 assert (Out c a a) by (conclude lemma_ray4).
@@ -221,7 +221,7 @@ assert (~ Col A C B).
  assert (Col A B C) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA A C B a c b) by (conclude_def CongA ).
+assert (等角 A C B a c b) by (conclude_def 等角 ).
 close.
 Qed.
 

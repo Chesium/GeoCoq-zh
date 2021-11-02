@@ -7,7 +7,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma proposition_06a : 
    forall A B C, 
-   Triangle A B C -> CongA A B C A C B ->
+   Triangle A B C -> 等角 A B C A C B ->
    ~ Lt A C A B.
 Proof.
 intros.
@@ -29,31 +29,31 @@ assert (~ Lt A C A B).
  assert (eq C C) by (conclude cn_equalityreflexive).
  assert (Out B C C) by (conclude lemma_ray4).
  assert (nCol A B C) by (conclude_def Triangle ).
- assert (CongA A B C A B C) by (conclude lemma_equalanglesreflexive).
- assert (CongA A B C D B C) by (conclude lemma_equalangleshelper).
- assert (CongA D B C A B C) by (conclude lemma_equalanglessymmetric).
- assert (CongA D B C A C B) by (conclude lemma_equalanglestransitive).
+ assert (等角 A B C A B C) by (conclude lemma_equalanglesreflexive).
+ assert (等角 A B C D B C) by (conclude lemma_equalangleshelper).
+ assert (等角 D B C A B C) by (conclude lemma_equalanglessymmetric).
+ assert (等角 D B C A C B) by (conclude lemma_equalanglestransitive).
  assert (Cong B D C A) by (forward_using lemma_congruenceflip).
  assert (Cong B C C B) by (conclude cn_equalityreverse).
- assert ((Cong D C A B /\ CongA B D C C A B /\ CongA B C D C B A)) by (conclude proposition_04).
+ assert ((Cong D C A B /\ 等角 B D C C A B /\ 等角 B C D C B A)) by (conclude proposition_04).
  assert (~ Col C B A).
   {
   intro.
   assert (Col A B C) by (forward_using lemma_collinearorder).
   contradict.
   }
- assert (CongA C B A A B C) by (conclude lemma_ABCequalsCBA).
- assert (CongA B C D A B C) by (conclude lemma_equalanglestransitive).
- assert (CongA B C D A C B) by (conclude lemma_equalanglestransitive).
+ assert (等角 C B A A B C) by (conclude lemma_ABCequalsCBA).
+ assert (等角 B C D A B C) by (conclude lemma_equalanglestransitive).
+ assert (等角 B C D A C B) by (conclude lemma_equalanglestransitive).
  assert (~ Col A C B).
   {
   intro.
   assert (Col A B C) by (forward_using lemma_collinearorder).
   contradict.
   }
- assert (CongA A C B B C A) by (conclude lemma_ABCequalsCBA).
- assert (CongA B C D B C A) by (conclude lemma_equalanglestransitive).
- assert (CongA B C A B C D) by (conclude lemma_equalanglessymmetric).
+ assert (等角 A C B B C A) by (conclude lemma_ABCequalsCBA).
+ assert (等角 B C D B C A) by (conclude lemma_equalanglestransitive).
+ assert (等角 B C A B C D) by (conclude lemma_equalanglessymmetric).
  assert (eq B B) by (conclude cn_equalityreflexive).
  assert (eq A A) by (conclude cn_equalityreflexive).
  assert (Out C B B) by (conclude lemma_ray4).
@@ -70,10 +70,10 @@ assert (~ Lt A C A B).
   assert (Col A B C) by (forward_using lemma_collinearorder).
   contradict.
   }
- assert (CongA B C D B C D) by (conclude lemma_equalanglesreflexive).
- assert (LtA B C D B C A) by (conclude_def LtA ).
- assert (LtA B C A B C A) by (conclude lemma_angleorderrespectscongruence2).
- assert (~ LtA B C A B C A) by (conclude lemma_angletrichotomy).
+ assert (等角 B C D B C D) by (conclude lemma_equalanglesreflexive).
+ assert (角度小于 B C D B C A) by (conclude_def 角度小于 ).
+ assert (角度小于 B C A B C A) by (conclude lemma_angleorderrespectscongruence2).
+ assert (~ 角度小于 B C A B C A) by (conclude lemma_angletrichotomy).
  contradict.
  }
 close.

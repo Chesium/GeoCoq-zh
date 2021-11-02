@@ -33,16 +33,16 @@ Qed.
 
 (** We need a notion of equality over lines. *)
 
-Definition EqL : relation Line := fun l m => forall X, IncidentL X l <-> IncidentL X m.
+Definition 谓词等长 : relation Line := fun l m => forall X, IncidentL X l <-> IncidentL X m.
 
-Infix "=l=" := EqL (at level 70):type_scope.
+Infix "=l=" := 谓词等长 (at level 70):type_scope.
 
 Lemma incident_eq : forall A B l, forall H : A<>B,
  IncidentL A l -> IncidentL B l ->
  (Lin A B H) =l= l.
 Proof.
 intros.
-unfold EqL.
+unfold 谓词等长.
 intros.
 unfold IncidentL in *.
 replace (P1 (Lin A B H)) with A; trivial.
@@ -66,7 +66,7 @@ Qed.
 
 Lemma eq_transitivity : forall l m n, l =l= m -> m =l= n -> l =l= n.
 Proof.
-unfold EqL,IncidentL.
+unfold 谓词等长,IncidentL.
 intros.
 assert (T:=H X).
 assert (V:= H0 X).
@@ -76,19 +76,19 @@ Qed.
 Lemma eq_reflexivity : forall l, l =l= l.
 Proof.
 intros.
-unfold EqL.
+unfold 谓词等长.
 intuition.
 Qed.
 
 Lemma eq_symmetry : forall l m, l =l= m -> m =l= l.
 Proof.
-unfold EqL.
+unfold 谓词等长.
 intros.
 assert (T:=H X).
 intuition.
 Qed.
 
-Instance EqL_Equiv : Equivalence EqL.
+Instance 谓词等长_Equiv : Equivalence 谓词等长.
 Proof.
 split.
 unfold Reflexive.
@@ -107,13 +107,13 @@ Lemma eq_incident : forall A l m, l =l= m ->
 Proof.
 intros.
 split;intros;
-unfold EqL in *;
+unfold 谓词等长 in *;
 assert (T:= H A);
 intuition.
 Qed.
 
 Instance incident_Proper (A:Tpoint) :
-Proper (EqL ==>iff) (IncidentL A).
+Proper (谓词等长 ==>iff) (IncidentL A).
 Proof.
 intros a b H .
 apply eq_incident.
@@ -121,7 +121,7 @@ assumption.
 Defined.
 
 Lemma axiom_Incid_morphism :
- forall P l m, IncidentL P l -> EqL l m -> IncidentL P m.
+ forall P l m, IncidentL P l -> 谓词等长 l m -> IncidentL P m.
 Proof.
 intros.
 destruct (eq_incident P l m H0).
@@ -229,7 +229,7 @@ Qed.
 
 Record Plane := Plan {M1; M2; M3; NCol : ~ Col_H M1 M2 M3}.
 
-Definition IncidentP := fun A p => Coplanar (M1 p) (M2 p) (M3 p) A.
+Definition IncidentP := fun A p => 共面 (M1 p) (M2 p) (M3 p) A.
 
 (** For every triplet of non collinear points there is a plane containing them. *)
 
@@ -507,7 +507,7 @@ treat_equalities.
 contradiction.
 Qed.
 
-Lemma cop_plane_aux : forall A B C D, Coplanar A B C D -> A <> B ->
+Lemma cop_plane_aux : forall A B C D, 共面 A B C D -> A <> B ->
   exists p, IncidentP A p /\ IncidentP B p /\ IncidentP C p /\ IncidentP D p.
 Proof.
   intros A B C D HCop HAB.
@@ -524,7 +524,7 @@ Proof.
     unfold IncidentP; simpl; repeat split; Cop.
 Qed.
 
-Lemma cop_plane : forall A B C D, Coplanar A B C D ->
+Lemma cop_plane : forall A B C D, 共面 A B C D ->
   exists p, IncidentP A p /\ IncidentP B p /\ IncidentP C p /\ IncidentP D p.
 Proof.
   intros A B C D HCop.
@@ -541,7 +541,7 @@ Proof.
 Qed.
 
 Lemma plane_cop: forall A B C D p,
-  IncidentP A p -> IncidentP B p -> IncidentP C p -> IncidentP D p -> Coplanar A B C D.
+  IncidentP A p -> IncidentP B p -> IncidentP C p -> IncidentP D p -> 共面 A B C D.
 Proof.
   unfold IncidentP.
   intros A B C D p HA HB HC HD.
@@ -565,7 +565,7 @@ unfold TS in HH.
 spliter.
 
 unfold IncidentL in H4.
-assert (HCop : Coplanar (P1 l) (P2 l) A C).
+assert (HCop : 共面 (P1 l) (P2 l) A C).
 apply plane_cop with p; trivial; apply H3; unfold IncidentL; simpl; Col.
 
 assert(HH:= cop__one_or_two_sides (P1 l)(P2 l) A C HCop H7 H4).
@@ -781,10 +781,10 @@ assumption.
 induction H.
 apply False_ind.
 apply H0.
-assert(exists M, Midpoint M B C) by(apply midpoint_existence).
+assert(exists M, 中点 M B C) by(apply midpoint_existence).
 ex_and H3 M.
 exists M.
-unfold Midpoint in H4.
+unfold 中点 in H4.
 spliter.
 split.
 unfold Between_H.
@@ -822,10 +822,10 @@ assumption.
 
 apply False_ind.
 apply H0.
-assert(exists M, Midpoint M A B) by(apply midpoint_existence).
+assert(exists M, 中点 M A B) by(apply midpoint_existence).
 ex_and H3 M.
 exists M.
-unfold Midpoint in H4.
+unfold 中点 in H4.
 spliter.
 split.
 unfold Between_H.
@@ -1050,7 +1050,7 @@ intuition.
 Qed.
 
 Lemma axiom_cong_5' : forall A B C A' B' C', ~ Col_H A B C -> ~ Col_H A' B' C' ->
-           Cong A B A' B' -> Cong A C A' C' -> CongA B A C B' A' C' -> CongA A B C A' B' C'.
+           Cong A B A' B' -> Cong A C A' C' -> 等角 B A C B' A' C' -> 等角 A B C A' B' C'.
 Proof.
 intros A B C A' B' C'.
 intros.
@@ -1066,7 +1066,7 @@ Qed.
 
 Lemma axiom_hcong_4_existence :  forall A B C O X P,
    ~ Col_H P O X -> ~ Col_H A B C ->
-  exists Y, CongA A B C X O Y  (* /\ ~Col O X Y *) /\ same_side' P Y O X.
+  exists Y, 等角 A B C X O Y  (* /\ ~Col O X Y *) /\ same_side' P Y O X.
 Proof.
 intros.
 rewrite <- cols_coincide in H.
@@ -1115,13 +1115,13 @@ Qed.
 
 
 Lemma axiom_hcong_4_uniqueness :
-  forall A B C O P X Y Y', ~ Col_H P O X  -> ~ Col_H A B C -> CongA A B C X O Y -> CongA A B C X O Y' -> 
+  forall A B C O P X Y Y', ~ Col_H P O X  -> ~ Col_H A B C -> 等角 A B C X O Y -> 等角 A B C X O Y' -> 
   same_side' P Y O X -> same_side' P Y' O X -> outH O Y Y'.
 Proof.
 intros.
 rewrite <- cols_coincide in H.
 rewrite <- cols_coincide in H0.
-assert (T:CongA X O Y X O Y').
+assert (T:等角 X O Y X O Y').
 eapply conga_trans.
 apply conga_sym.
 apply H1.
@@ -1141,7 +1141,7 @@ assumption.
 Qed.
 
 Lemma axiom_conga_comm : forall A B C,
- ~ Col_H A B C -> CongA A B C C B A.
+ ~ Col_H A B C -> 等角 A B C C B A.
 Proof.
 intros.
 rewrite <- cols_coincide in H.
@@ -1151,19 +1151,19 @@ Qed.
 
 Lemma axiom_congaH_outH_congaH :
  forall A B C D E F A' C' D' F' : Tpoint,
-  CongA A B C D E F ->
+  等角 A B C D E F ->
   Between_H B A A' \/ Between_H B A' A \/ B <> A /\ A = A' ->
   Between_H B C C' \/ Between_H B C' C \/ B <> C /\ C = C' ->
   Between_H E D D' \/ Between_H E D' D \/ E <> D /\ D = D' ->
   Between_H E F F' \/ Between_H E F' F \/ E <> F /\ F = F' ->
-  CongA A' B C' D' E F'.
+  等角 A' B C' D' E F'.
 Proof.
 intros.
 apply l11_10 with A C D F; trivial; apply l6_6; apply outH_out; auto.
 Qed.
 
 Lemma axiom_conga_permlr:
-forall A B C D E F : Tpoint, CongA A B C D E F -> CongA C B A F E D.
+forall A B C D E F : Tpoint, 等角 A B C D E F -> 等角 C B A F E D.
 Proof.
 apply Ch11_angles.conga_comm.
 Qed.
@@ -1178,7 +1178,7 @@ intro; [left|right]; auto.
 Qed.
 *)
 
-Lemma axiom_conga_refl : forall A B C, ~ Col_H A B C -> CongA A B C A B C.
+Lemma axiom_conga_refl : forall A B C, ~ Col_H A B C -> 等角 A B C A B C.
 Proof.
 intros A B C H.
 apply Ch11_angles.conga_refl; intro; subst; apply H; apply cols_coincide; Col.
@@ -1192,14 +1192,14 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Instance Hilbert_neutral_follows_from_Tarski_neutral : Hilbert_neutral_dimensionless.
 Proof.
-exact (Build_Hilbert_neutral_dimensionless Tpoint Line Plane EqL EqL_Equiv EqP EqP_Equiv IncidentL
+exact (Build_Hilbert_neutral_dimensionless Tpoint Line Plane 谓词等长 谓词等长_Equiv EqP EqP_Equiv IncidentL
        IncidentP axiom_Incid_morphism axiom_Incid_dec axiom_Incidp_morphism axiom_Incidp_dec
        两点重合的决定性 axiom_line_existence axiom_line_uniqueness axiom_two_points_on_line PA
        PB PC 防降维公理' axiom_plane_existence axiom_one_point_on_plane axiom_plane_uniqueness
        axiom_line_on_plane Between_H axiom_between_diff axiom_between_col axiom_between_comm
        axiom_between_out axiom_between_only_one axiom_pasch Cong 等长的右交换性
        axiom_hcong_1_existence 等长的内传递性
-        axiom_hcong_3 CongA axiom_conga_refl axiom_conga_comm
+        axiom_hcong_3 等角 axiom_conga_refl axiom_conga_comm
        axiom_conga_permlr axiom_congaH_outH_congaH axiom_hcong_4_existence
        axiom_hcong_4_uniqueness axiom_cong_5').
 Defined.
@@ -1263,7 +1263,7 @@ Definition Para := fun l m =>
 Lemma Para_Par : forall A B C D (HAB : A<>B) (HCD: C<>D),
  Para (Lin A B HAB) (Lin C D HCD) -> Par A B C D.
 Proof.
-unfold Para, IncidentL, Par, Par_strict; simpl.
+unfold Para, IncidentL, Par, 严格平行; simpl.
 intros.
 destruct H as [HNI [p []]].
 left.
@@ -1276,7 +1276,7 @@ Lemma axiom_euclid_uniqueness :
   ~ IncidentL P l ->
    Para l m1 -> IncidentL P m1 ->
    Para l m2 -> IncidentL P m2 ->
-   EqL m1 m2.
+   谓词等长 m1 m2.
 Proof.
 intros.
 destruct l as [A B HAB].

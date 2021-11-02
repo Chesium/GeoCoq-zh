@@ -70,11 +70,11 @@ apply congH_refl.
 assumption.
 Qed.
 
-Global Instance IncidL_morphism' : Proper(eq ==> EqL ==> iff) IncidL.
+Global Instance IncidL_morphism' : Proper(eq ==> 谓词等长 ==> iff) IncidL.
 Proof.
 apply proper_sym_impl_iff_2.
 apply eq_Symmetric.
-apply (Equivalence.equiv_symmetric EqL_Equiv).
+apply (Equivalence.equiv_symmetric 谓词等长_Equiv).
 intro.
 intros.
 subst y.
@@ -220,7 +220,7 @@ Ltac col_line H l := assert(HH:=H); unfold ColH in HH; destruct HH as [l HH]; sp
 Ltac lines_eq l m :=
 match goal with
    | H0:(?X1 <> ?X2), H1:(IncidL ?X1 l), H2:(IncidL ?X1 m),
-   H3:(IncidL ?X2 l) , H4:(IncidL ?X2 m) |- _ => let HH := fresh in assert(HH : EqL l m) by (apply (line_uniqueness X1 X2 l m);auto);
+   H3:(IncidL ?X2 l) , H4:(IncidL ?X2 m) |- _ => let HH := fresh in assert(HH : 谓词等长 l m) by (apply (line_uniqueness X1 X2 l m);auto);
                                                rewrite <-HH in *;
                                                clean_duplicated_hyps
 end.
@@ -296,7 +296,7 @@ Ltac col_line H l := assert(HH:=H); unfold ColH in HH; destruct HH as [l HH]; sp
 Ltac lines_eq l m :=
 match goal with
    | H0:(?X1 <> ?X2), H1:(IncidL ?X1 l), H2:(IncidL ?X1 m),
-   H3:(IncidL ?X2 l) , H4:(IncidL ?X2 m) |- _ => let HH := fresh in assert(HH : EqL l m)
+   H3:(IncidL ?X2 l) , H4:(IncidL ?X2 m) |- _ => let HH := fresh in assert(HH : 谓词等长 l m)
                                                    by (apply (line_uniqueness X1 X2 l m);auto);
                                                rewrite <-HH in *;
                                                clean_duplicated_hyps
@@ -1389,7 +1389,7 @@ assert (H : exists P, IncidL P l /\ M <> P).
   }
 destruct H as [P [HInP HMP]].
 destruct (between_out P M) as [P' HP']; auto.
-destruct (cong_existence A B M P l) as [A' [HInA' [HoutA' HCongA']]]; auto.
+destruct (cong_existence A B M P l) as [A' [HInA' [HoutA' H等角']]]; auto.
 destruct (cong_existence A B M P' l) as [B' [HInB' [HoutB' HCongB']]]; auto;
 [apply betH_distincts in HP'; tauto|apply between_col in HP'|
  exists A', B'; repeat split; auto; apply betH_outH2__betH with P P'; auto].
@@ -1440,7 +1440,7 @@ Qed.
 
 (************************************************************)
 
-Lemma morph : forall l m, EqL l m -> (forall A, IncidL A l <-> IncidL A m).
+Lemma morph : forall l m, 谓词等长 l m -> (forall A, IncidL A l <-> IncidL A m).
 Proof.
 intros.
 split.
@@ -1580,7 +1580,7 @@ apply betH_expand in H3.
 spliter.
 destruct H8.
 spliter.
-assert (EqL x2 l).
+assert (谓词等长 x2 l).
 apply line_uniqueness with x x1;try assumption.
 apply H.
 rewrite H11 in H8;auto.
@@ -1590,7 +1590,7 @@ apply betH_expand in H3.
 spliter.
 destruct H8.
 spliter.
-assert (EqL x2 l).
+assert (谓词等长 x2 l).
 apply line_uniqueness with x x1;try assumption.
 apply H.
 rewrite H11 in H8;auto.
@@ -2724,7 +2724,7 @@ tauto.
 tauto.
 Qed.
 
-Lemma EqL_dec : forall l m, EqL l m \/ ~EqL l m.
+Lemma 谓词等长_dec : forall l m, 谓词等长 l m \/ ~谓词等长 l m.
 Proof.
 intros.
 assert(HH:=two_points_on_line l).
@@ -2877,7 +2877,7 @@ apply cut_comm in H1.
 apply(cut2_not_cut P A B l); auto.
 Qed.
 
-Lemma IncidLP_morphism : forall l m p q, IncidLP l p -> EqL l m -> EqP p q -> IncidLP m q.
+Lemma IncidLP_morphism : forall l m p q, IncidLP l p -> 谓词等长 l m -> EqP p q -> IncidLP m q.
 Proof.
 unfold IncidLP.
 intros.
@@ -2885,15 +2885,15 @@ apply IncidP_morphism with p.
 apply H.
 apply IncidL_morphism with m.
 assumption.
-apply Equivalence.equiv_symmetric_obligation_1 with EqL_Equiv.
+apply Equivalence.equiv_symmetric_obligation_1 with 谓词等长_Equiv.
 assumption.
 assumption.
 Qed.
 
-Global Instance IncidLP_morphisml : Proper(EqL ==> eq ==> iff) IncidLP.
+Global Instance IncidLP_morphisml : Proper(谓词等长 ==> eq ==> iff) IncidLP.
 Proof.
 apply proper_sym_impl_iff_2.
-apply (Equivalence.equiv_symmetric EqL_Equiv).
+apply (Equivalence.equiv_symmetric 谓词等长_Equiv).
 apply eq_Symmetric.
 intro.
 intros.
@@ -2920,7 +2920,7 @@ intros.
 intro.
 apply IncidLP_morphism with x x0.
 assumption.
-apply Equivalence.equiv_reflexive_obligation_1, EqL_Equiv.
+apply Equivalence.equiv_reflexive_obligation_1, 谓词等长_Equiv.
 assumption.
 Defined.
 
@@ -3467,10 +3467,10 @@ apply betH_expand in H15.
 spliter.
 destruct H23.
 spliter.
-assert (EqL x1 l).
+assert (谓词等长 x1 l).
 apply line_uniqueness with B' x;auto.
 rewrite H26 in *.
-assert (EqL x0 l).
+assert (谓词等长 x0 l).
 apply line_uniqueness with B' D';auto.
 rewrite H27 in *.
 apply H0.
@@ -3498,10 +3498,10 @@ apply betH_expand in H15.
 spliter.
 destruct H23.
 spliter.
-assert (EqL x1 l).
+assert (谓词等长 x1 l).
 apply line_uniqueness with B' x;auto.
 rewrite H26 in *.
-assert (EqL x0 l).
+assert (谓词等长 x0 l).
 apply line_uniqueness with B' D';auto.
 rewrite H27 in *.
 apply H0.
@@ -3523,14 +3523,14 @@ exists lB'C';auto.
 apply outH_col in HD2.
 destruct HD2.
 spliter.
-assert (EqL x lB'C').
+assert (谓词等长 x lB'C').
 apply line_uniqueness with B' C';auto.
 rewrite H21 in H20.
 auto.
 apply outH_col in H13.
 destruct H13.
 spliter.
-assert (EqL x lA'C').
+assert (谓词等长 x lA'C').
 apply line_uniqueness with A' C';auto.
 rewrite H20 in H19.
 auto.
@@ -3698,7 +3698,7 @@ Qed.
 
 Definition cut' A B X Y := X <> Y /\ forall l, IncidL X l -> IncidL Y l -> cut l A B.
 
-Global Instance cut_morphism : Proper(EqL ==> eq ==> eq ==> iff) cut.
+Global Instance cut_morphism : Proper(谓词等长 ==> eq ==> eq ==> iff) cut.
 Proof.
 intro.
 intros.
@@ -3715,7 +3715,7 @@ elim H3;intros I;intros;spliter;exists I;split;try rewrite <- H;auto.
 elim H3;intros I;intros;spliter;exists I;split;try rewrite H;auto.
 Defined.
 
-Global Instance same_side_morphism : Proper(eq ==> eq ==> EqL ==> iff) same_side.
+Global Instance same_side_morphism : Proper(eq ==> eq ==> 谓词等长 ==> iff) same_side.
 Proof.
 intro.
 intros.
@@ -3850,7 +3850,7 @@ intros.
 elim H2.
 intros.
 spliter.
-assert (EqL l x) by (eauto using line_uniqueness).
+assert (谓词等长 l x) by (eauto using line_uniqueness).
 rewrite H6 in *.
 assumption.
 Qed.
@@ -4329,7 +4329,7 @@ split.
   unfold same_side'.
   split;auto.
   intros.
-  assert (EqL l0 l).
+  assert (谓词等长 l0 l).
    apply line_uniqueness with O X;auto.
   rewrite H12.
   unfold same_side' in HB;spliter.
@@ -5079,7 +5079,7 @@ Lemma coplanar_plane0 : forall A B C D X, ColH A B X -> ColH C D X ->
 Proof.
 intros A B C D X [l] [m]; spliter.
 destruct (other_point_on_line X l) as [Y [HXY ]]; [assumption|].
-destruct (EqL_dec l m) as [Heq|Hneq].
+destruct (谓词等长_dec l m) as [Heq|Hneq].
 rewrite <- Heq in *.
 destruct (ncolH_exists X Y HXY) as [Z HNCol].
 destruct (plane_existence X Y Z HNCol) as [p]; spliter.
@@ -5105,7 +5105,7 @@ clear H2; destruct H1 as [|[|]]; Col.
 clear H1; destruct H2 as [|[|]]; Col.
 Qed.
 
-Lemma coplanar_plane : forall A B C D, Coplanar A B C D ->
+Lemma coplanar_plane : forall A B C D, 共面 A B C D ->
   exists p, IncidP A p /\ IncidP B p /\ IncidP C p /\ IncidP D p.
 Proof.
 intros A B C D [X [[H1 H2]|[[H1 H2]|[H1 H2]]]].
@@ -5115,14 +5115,14 @@ destruct (coplanar_plane1 A D B C X) as [p]; [..|spliter; exists p]; repeat spli
 Qed.
 
 Lemma plane_coplanar : forall A B C D p, IncidP A p -> IncidP B p -> IncidP C p -> IncidP D p ->
-  Coplanar A B C D.
+  共面 A B C D.
 Proof.
 intros A B C D p HA HB HC HD.
 destruct (colH_dec A B C) as [HCol|HNCol].
   apply col__coplanar, col_colh, HCol.
 assert (HAB : A <> B).
   intro; subst; apply HNCol; Col.
-assert (HM : exists M, Midpoint M A B).
+assert (HM : exists M, 中点 M A B).
   apply midpoint_existence.
 destruct HM as [M HM].
 destruct (midpoint_distinct_1 M A B HAB HM).
@@ -5133,13 +5133,13 @@ destruct (两点重合的决定性H D M) as [|HDM].
 destruct (line_existence D M HDM) as [l []].
 destruct (IncidL_dec A l).
   destruct HM as [m]; spliter.
-  assert (Heq : hilbert_axioms.EqL m l) by (apply (line_uniqueness M A); auto).
+  assert (Heq : hilbert_axioms.谓词等长 m l) by (apply (line_uniqueness M A); auto).
   rewrite Heq in *.
   exists A; right; left; split; [|apply line_col with l]; Col.
 assert (~ IncidL B l).
   intro.
   destruct HM as [m]; spliter.
-  assert (Heq : hilbert_axioms.EqL m l) by (apply (line_uniqueness M B); auto).
+  assert (Heq : hilbert_axioms.谓词等长 m l) by (apply (line_uniqueness M B); auto).
   rewrite Heq in *; auto.
 destruct (IncidL_dec C l).
   exists M; left; split; [Col|apply line_col with l; assumption].
@@ -5161,7 +5161,7 @@ destruct (pasch A B C l p) as [HI|HI]; trivial.
 Qed.
 
 Lemma pars__para : forall A B C D l m,
-  IncidL A l -> IncidL B l -> IncidL C m -> IncidL D m -> Par_strict A B C D -> Para l m.
+  IncidL A l -> IncidL B l -> IncidL C m -> IncidL D m -> 严格平行 A B C D -> Para l m.
 Proof.
 intros A B C D l m HA HB HC HD [HCop HNI].
 assert (A <> B) by (intro; subst; apply HNI; exists C; split; Col).
@@ -5177,7 +5177,7 @@ split; [apply (line_on_plane A B)|apply (line_on_plane C D)]; assumption.
 Qed.
 
 Lemma par__or_eq_para : forall A B C D l m,
-  IncidL A l -> IncidL B l -> IncidL C m -> IncidL D m -> Par A B C D -> Para l m \/ EqL l m.
+  IncidL A l -> IncidL B l -> IncidL C m -> IncidL D m -> Par A B C D -> Para l m \/ 谓词等长 l m.
 Proof.
   intros A B C D l m HA HB HC HD [HParS|Heq].
     left; apply (pars__para A B C D); assumption.
@@ -5733,10 +5733,10 @@ elim (IncidL_dec P l); intro HInc.
 
   {
   assert (Col A1 A2 P) by (apply ColH__Col; exists l; auto).
-  elim HPar1; [unfold Par_strict in *|];
+  elim HPar1; [unfold 严格平行 in *|];
   [intros [_ HFalse]; exfalso; apply HFalse; exists P; Col|];
   intros [? [? [? ?]]].
-  elim HPar2; [unfold Par_strict in *|];
+  elim HPar2; [unfold 严格平行 in *|];
   [intros [_ HFalse]; exfalso; apply HFalse; exists P; Col|];
   intros [? [? [? ?]]]; split; ColR.
   }
@@ -5802,7 +5802,7 @@ elim (IncidL_dec P l); intro HInc.
     }
   assert (HEq := euclid_uniqueness l P m1 m2 HInc HPara1 HInc1 HPara2 HInc2).
   split; apply ColH__Col; exists m1; split; auto;
-  apply IncidL_morphism with m2; auto; assert(HH:= EqL_Equiv); destruct HH;
+  apply IncidL_morphism with m2; auto; assert(HH:= 谓词等长_Equiv); destruct HH;
   apply Equivalence_Symmetric; auto.
   }
 Qed.

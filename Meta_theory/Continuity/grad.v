@@ -203,7 +203,7 @@ Inductive GradExpInv : Tpoint -> Tpoint -> Tpoint -> Prop :=
                     GradExpInv A B' C.
 
 Lemma gradexp_clos_trans : forall A B C, GradExp A B C <->
-  clos_refl_trans_n1 Tpoint (fun X Y => Midpoint X A Y) B C.
+  clos_refl_trans_n1 Tpoint (fun X Y => 中点 X A Y) B C.
 Proof.
   intros; split; induction 1; try constructor.
     apply Relation_Operators.rtn1_trans with C; [split|]; assumption.
@@ -211,7 +211,7 @@ Proof.
 Qed.
 
 Lemma gradexpinv_clos_trans : forall A B C, GradExpInv A B C <->
-  clos_refl_trans_1n Tpoint (fun X Y => Midpoint X A Y) B C.
+  clos_refl_trans_1n Tpoint (fun X Y => 中点 X A Y) B C.
 Proof.
   intros; split; induction 1; try constructor.
     apply Relation_Operators.rt1n_trans with B; [split|]; assumption.

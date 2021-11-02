@@ -45,7 +45,7 @@ Proof.
   }
   apply conga_preserves_lta with P S Q T S Q; try (apply conga_refl; auto); [|split].
   - apply conga_trans with X B Y; [|apply out2__conga; auto].
-    assert (HInter : (Cong T S Y B /\ (T <> S -> CongA Q T S X Y B /\ CongA Q S T X B Y))).
+    assert (HInter : (Cong T S Y B /\ (T <> S -> 等角 Q T S X Y B /\ 等角 Q S T X B Y))).
     { apply (l11_49 T Q S Y X B); Cong.
       apply l11_16; Perp.
     }
@@ -55,7 +55,7 @@ Proof.
   - apply lea_comm.
     apply (l11_29_b Q S P Q S T).
     exists T.
-    split; CongA.
+    split; 等角.
     repeat split; auto.
     exists P.
     split; [|right; apply out_trivial; auto].
@@ -66,14 +66,14 @@ Proof.
     apply (cong__le); Cong.
 
   - intro HConga.
-    assert (HInter : Cong Q P Q T /\ Cong S P S T /\ CongA Q P S Q T S).
+    assert (HInter : Cong Q P Q T /\ Cong S P S T /\ 等角 Q P S Q T S).
     { apply l11_50_1; Cong.
       { intro.
         assert (HUn : S=Q\/P=Q) by (apply l8_9; Col).
         destruct HUn; treat_equalities; absurde.
       }
       apply l11_16; Perp.
-      CongA.
+      等角.
     }
     destruct HInter as [HCong _].
     apply HNcong.
@@ -85,7 +85,7 @@ Qed.
 
 Lemma greenberg__aristotle : greenberg_s_axiom -> aristotle_s_axiom.
 Proof.
-intros HG P Q A B C HNC HAcute.
+intros HG P Q A B C HNC H为锐角.
 destruct (l10_15 A B B C) as [D' [HPerp1 HOS1]]; Col.
 elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
 
@@ -103,7 +103,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
   try solve [assert_diffs; auto].
   destruct (HG P' B A A B C) as [C' HC']; Col; try solve [assert_diffs; auto];
   [apply perp_per_2,  perp_col2 with D' B; finish; assert_diffs; auto|].
-  destruct HC' as [HLtA HOut2].
+  destruct HC' as [H角度小于 HOut2].
   destruct (l10_15 B C' C' C) as [D'' [HPerp2 HOS2]]; Col;
   try (intro H; apply HNC; assert_diffs; assert_cols; ColR).
   destruct (由一点往一方向构造等长线段_3 C' D'' P Q) as [P'' [HOut3 HCong2]];
@@ -124,7 +124,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
   apply cong_lt_per2__lt_1 with B B; Cong; try (apply perp_per_1);
   [apply perp_col2 with A B|apply perp_col2_bis with C' D''|];
   try solve [assert_diffs; Col; Perp].
-  assert (HCongA : CongA B C' P' A B P'').
+  assert (H等角 : 等角 B C' P' A B P'').
     {
     apply l11_10 with B P' C' P''; try solve [assert_diffs; finish].
     apply l11_49; try solve [assert_diffs; finish]; eCong.
@@ -132,7 +132,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     [apply perp_col2 with B D'|apply perp_col2 with C' D''];
     assert_diffs; finish; apply perp_sym; apply perp_col2 with B A; finish.
     }
-  assert (HT : InAngle P'' Z' B Z).
+  assert (HT : 在角内 P'' Z' B Z).
     {
     apply l11_25 with P'' A C; finish; [|apply out_trivial; intro];
     [|treat_equalities; elim (perp_not_col2 _ _ _ _ HPerp3); Col].
@@ -158,13 +158,13 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     apply l12_9 with B C'; Cop; [|apply col__coplanar; ColR|apply perp_sym|];
     [|apply perp_col2 with A B; assert_diffs; finish|
     apply perp_col2 with C' D''; assert_diffs; finish].
-    assert (Coplanar B Z C  C') by (apply col__coplanar; ColR).
-    assert (Coplanar C' P'' D'' B) by (apply col__coplanar; ColR).
-    assert (Coplanar C' B D'' C); [Cop|CopR].
+    assert (共面 B Z C  C') by (apply col__coplanar; ColR).
+    assert (共面 C' P'' D'' B) by (apply col__coplanar; ColR).
+    assert (共面 C' B D'' C); [Cop|CopR].
     }
   assert (HTZ : T <> Z).
     {
-    intro; treat_equalities; destruct HLtA as [_ HF]; apply HF.
+    intro; treat_equalities; destruct H角度小于 as [_ HF]; apply HF.
     apply conga_trans with A B P''; finish.
     apply conga_sym, out2__conga; [assert_diffs; finish|].
     apply l6_7 with T; finish.
@@ -178,7 +178,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     }
   assert (HTP'' : T <> P'').
     {
-    intro; treat_equalities; assert (HF : Acute B T Z).
+    intro; treat_equalities; assert (HF : 为锐角 B T Z).
       {
       apply cong__acute; try solve [assert_diffs; finish].
       }
@@ -192,7 +192,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
   assert (HBet2 : Bet B T P''); [|clear HOut6].
     {
     elim HOut6; [auto|clear HOut6; intro HF; exfalso].
-    assert (HObtuse : Obtuse Z T B).
+    assert (H为钝角 : 为钝角 Z T B).
       {
       apply acute_suppa__obtuse with B T Z';
       try (apply suppa_left_comm, suppa_right_comm);
@@ -251,27 +251,27 @@ Lemma aristotle__obtuse_case_elimination :
 Proof.
   intros aristotle obtuse.
   destruct ex_lambert as [Q' [C' [P [Q HLam]]]].
-  assert (HObtuse : Obtuse C' P Q) by (apply <- (lam_obtuse__oah Q'); trivial).
-  assert (HPar : Par_strict Q' Q C' P) by (apply lam__pars1423, HLam).
+  assert (H为钝角 : 为钝角 C' P Q) by (apply <- (lam_obtuse__oah Q'); trivial).
+  assert (HPar : 严格平行 Q' Q C' P) by (apply lam__pars1423, HLam).
   destruct HLam; spliter.
   destruct (l10_15 P Q P C') as [A' [HPerp HOS]]; Col.
     apply not_col_permutation_1.
     apply par_strict_not_col_1 with Q'; Par.
   assert_diffs.
-  assert (HLtA : LtA Q P A' C' P Q) by (apply obtuse_per__lta; Perp).
-  destruct HLtA as [HLeA HNCongA].
-  assert (HInAngle : InAngle A' Q P C').
+  assert (H角度小于 : 角度小于 Q P A' C' P Q) by (apply obtuse_per__lta; Perp).
+  destruct H角度小于 as [H角度小于等于 HN等角].
+  assert (H在角内 : 在角内 A' Q P C').
     apply lea_in_angle; Side; apply lea_right_comm; trivial.
   destruct (由一点往一方向构造等长线段 C' P C' P) as [C [HC1 HC2]].
   destruct (由一点往一方向构造等长线段 A' P A' P) as [A [HA1 HA2]].
   assert_diffs.
-  assert (HInAngle1 : InAngle C A P Q).
+  assert (H在角内1 : 在角内 C A P Q).
     apply in_angle_reverse with A'; auto.
     apply l11_24, in_angle_reverse with C'; auto.
     apply l11_24; trivial.
   assert (HNCol : ~ Col P C' A').
   { intro Habs.
-    apply HNCongA, conga_right_comm, out2__conga.
+    apply HN等角, conga_right_comm, out2__conga.
       apply out_trivial; auto.
     apply col_one_side_out with Q; trivial.
   }
@@ -284,7 +284,7 @@ Proof.
   destruct (aristotle P Q A P C) as [X [Y]]; Col.
   { exists A, P, Q; split; Perp; split.
       apply inangle__lea; trivial.
-    intro HCongA.
+    intro H等角.
     assert (Out P C Q) by (apply (conga_os__out A); assumption).
     apply HNCol2; Col.
   }
@@ -308,7 +308,7 @@ Proof.
         apply per_col with Q; Col.
         apply l8_2, per_col with A; Perp; Col.
         apply perp_per_1, perp_left_comm, perp_col with Q; auto.
-        assert (InAngle Y X P Q).
+        assert (在角内 Y X P Q).
           apply l11_25 with C A Q; try (apply l6_6); trivial; apply out_trivial; auto.
         apply coplanar_perm_12, col_cop__cop with Q; Col; Cop.
     }

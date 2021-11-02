@@ -9,13 +9,13 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma lemma_crossbar2 : 
    forall A G H P S T, 
-   LtA H G A H G P -> OS A P G H -> Out G H S -> Out G P T ->
+   角度小于 H G A H G P -> OS A P G H -> Out G H S -> Out G P T ->
    exists X, BetS T X S /\ Out G A X.
 Proof.
 intros.
 assert (nCol G H P) by (conclude_def OS ).
 let Tf:=fresh in
-assert (Tf:exists J K L, (BetS L K J /\ Out G H L /\ Out G P J /\ CongA H G A H G K)) by (conclude_def LtA );destruct Tf as [J[K[L]]];spliter.
+assert (Tf:exists J K L, (BetS L K J /\ Out G H L /\ Out G P J /\ 等角 H G A H G K)) by (conclude_def 角度小于 );destruct Tf as [J[K[L]]];spliter.
 assert (nCol H G K) by (conclude lemma_equalanglesNC).
 assert (~ Col L G J).
  {
@@ -39,7 +39,7 @@ assert (Out G L S) by (conclude lemma_ray3).
 let Tf:=fresh in
 assert (Tf:exists M, (Out G K M /\ BetS S M T)) by (conclude lemma_crossbar);destruct Tf as [M];spliter.
 assert (BetS T M S) by (conclude axiom_betweennesssymmetry).
-assert (CongA H G K H G A) by (conclude lemma_equalanglessymmetric).
+assert (等角 H G K H G A) by (conclude lemma_equalanglessymmetric).
 assert (neq G A) by (forward_using lemma_angledistinct).
 assert (neq G M) by (conclude lemma_raystrict).
 let Tf:=fresh in
@@ -64,15 +64,15 @@ assert (~ Col H G M).
  assert (Col H G K) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA H G M H G M) by (conclude lemma_equalanglesreflexive).
+assert (等角 H G M H G M) by (conclude lemma_equalanglesreflexive).
 assert (Out G M K) by (conclude lemma_ray5).
-assert (CongA H G M H G K) by (conclude lemma_equalangleshelper).
-assert (CongA H G M H G A) by (conclude lemma_equalanglestransitive).
+assert (等角 H G M H G K) by (conclude lemma_equalangleshelper).
+assert (等角 H G M H G A) by (conclude lemma_equalanglestransitive).
 assert (nCol H G A) by (conclude lemma_equalanglesNC).
-assert (CongA H G A H G A) by (conclude lemma_equalanglesreflexive).
-assert (CongA H G A H G N) by (conclude lemma_equalangleshelper).
-assert (CongA H G M H G N) by (conclude lemma_equalanglestransitive).
-assert (CongA H G N H G M) by (conclude lemma_equalanglessymmetric).
+assert (等角 H G A H G A) by (conclude lemma_equalanglesreflexive).
+assert (等角 H G A H G N) by (conclude lemma_equalangleshelper).
+assert (等角 H G M H G N) by (conclude lemma_equalanglestransitive).
+assert (等角 H G N H G M) by (conclude lemma_equalanglessymmetric).
 assert (Cong G H G H) by (conclude cn_congruencereflexive).
 assert (Cong H N H M) by (conclude proposition_04).
 assert (eq G G) by (conclude cn_equalityreflexive).

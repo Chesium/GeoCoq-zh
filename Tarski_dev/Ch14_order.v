@@ -25,7 +25,7 @@ Proof.
       subst B.
       unfold Parallelogram_flat in H7.
       spliter.
-      assert(O = C \/ Midpoint A O C).
+      assert(O = C \/ 中点 A O C).
         apply(l7_20 A O C); Cong.
       induction H13.
         subst C.
@@ -33,7 +33,7 @@ Proof.
         apply HS.
         apply (double_null_null O E E') in HS; auto.
         tauto.
-      unfold Midpoint in H13.
+      unfold 中点 in H13.
       tauto.
     induction H3.
       apply plg_permut in H8.
@@ -112,7 +112,7 @@ Proof.
     spliter.
     assert(HG:=grid_not_par O E E' H).
     spliter.
-    assert(A = MA \/ Midpoint O A MA).
+    assert(A = MA \/ 中点 O A MA).
       apply(l7_20 O A MA); Col.
     induction H16.
       subst MA.
@@ -129,7 +129,7 @@ Proof.
       apply is_midpoint_id_2 in H16.
       subst A.
       tauto.
-    unfold Midpoint in H16.
+    unfold 中点 in H16.
     spliter.
     unfold Ps.
     unfold Col in H2.
@@ -287,7 +287,7 @@ Proof.
     unfold Ng.
     unfold Ps in H.
     unfold Out in H.
-    unfold Midpoint in HH.
+    unfold 中点 in HH.
     spliter.
     repeat split; auto.
       intro.
@@ -305,7 +305,7 @@ Proof.
     assert(HH:=opp_midpoint O E E' A MA H0).
     unfold Ng in H.
     unfold Ps.
-    unfold Midpoint in HH.
+    unfold 中点 in HH.
     spliter.
     apply l6_6.
     unfold Out.
@@ -373,7 +373,7 @@ Proof.
       apply sum_ar2; auto.
     unfold Ar2 in H1.
     apply opp_midpoint in H0.
-    unfold Midpoint in H0.
+    unfold 中点 in H0.
     unfold Ps in H.
     unfold Out in H.
     spliter.
@@ -629,8 +629,8 @@ Lemma compatibility_of_prod_with_order : forall O E E' A B AB,
   LeP O E E' O A -> LeP O E E' O B -> Prod O E E' A B AB ->
   LeP O E E' O AB.
 Proof.
-intros O E E' A B AB HLeA HLeB HAB.
-elim HLeA; clear HLeA; intro HLeA;
+intros O E E' A B AB H角度小于等于 HLeB HAB.
+elim H角度小于等于; clear H角度小于等于; intro H角度小于等于;
 elim HLeB; clear HLeB; intro HLeB; treat_equalities;
 try (apply prod_O_l_eq in HAB); try (apply prod_O_r_eq in HAB);
 treat_equalities; try (apply leP_refl).
@@ -639,7 +639,7 @@ assert (HColA : Col O E A) by (unfold Prod, Ar2 in *; spliter; Col).
 assert (HColB : Col O E B) by (unfold Prod, Ar2 in *; spliter; Col).
 assert (HColAB : Col O E AB) by (unfold Prod, Ar2 in *; spliter; Col).
 left; exists AB; split; try (apply diff_A_O); Col.
-destruct HLeA as [A' [HDiff1 HPsA]]; destruct HLeB as [B' [HDiff2 HPsB]].
+destruct H角度小于等于 as [A' [HDiff1 HPsA]]; destruct HLeB as [B' [HDiff2 HPsB]].
 assert (A = A')
   by (apply diff_uniqueness with O E E' A O; auto; apply diff_A_O; Col).
 assert (B = B')

@@ -13,7 +13,7 @@ Proof.
       treat_equalities; Perp.
     destruct (l7_20 M A C); [ColR|Cong|..].
       subst; Perp.
-    assert (B = C) by (apply l7_9 with M A; Midpoint).
+    assert (B = C) by (apply l7_9 with M A; 中点).
     subst; Perp.
   }
   apply (t22_17__rah _ _ _ M); assumption.

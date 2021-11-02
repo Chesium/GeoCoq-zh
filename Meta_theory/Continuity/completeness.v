@@ -103,8 +103,8 @@ Lemma line_completeness_aux : line_completeness ->
   (f : @Tpoint Tn -> @Tpoint Tm),
   @archimedes_axiom Tm ->
   extension f ->
-  forall A P Q R, ~ Col P Q R -> Coplanar (f P) (f Q) (f R) A ->
-    exists B, Coplanar P Q R B /\ f B = A.
+  forall A P Q R, ~ Col P Q R -> 共面 (f P) (f Q) (f R) A ->
+    exists B, 共面 P Q R B /\ f B = A.
 Proof.
   intros lc Tm Tm2 f archi fext A P Q R HNCol HCop.
   assert (fext' := fext).
@@ -127,7 +127,7 @@ Proof.
   }
   destruct (hilbert_s_version_of_pasch (f P) (f Q) (f R) A (f S)) as [X [HX1 HX2]]; trivial.
     repeat split; Between.
-  assert (HY : exists Y, Coplanar P Q R Y /\ f Y = X).
+  assert (HY : exists Y, 共面 P Q R Y /\ f Y = X).
   { destruct HX2 as [[]|[]];
       [assert (HY : exists Y, Col P R Y /\ f Y = X)|assert (HY : exists Y, Col Q R Y /\ f Y = X)];
       try apply lc; Col;
@@ -153,19 +153,19 @@ Qed.
 Lemma line_completeness__completeness_for_planes : line_completeness -> completeness_for_planes.
 Proof.
   intros lc Tm Tm2 M f archi fext A.
-  assert (HB : exists B, Coplanar PA PB PC B /\ f B = A).
+  assert (HB : exists B, 共面 PA PB PC B /\ f B = A).
     apply line_completeness_aux; trivial; [exact 防降维公理|apply all_coplanar].
   destruct HB as [B []].
   exists B; assumption.
 Qed.
 
 Lemma line_completeness__completeness_for_3d_spaces :
-  (exists P Q R S, ~ Coplanar P Q R S) ->
+  (exists P Q R S, ~ 共面 P Q R S) ->
   line_completeness -> completeness_for_3d_spaces.
 Proof.
   intros [P [Q [R [S HNCop]]]] lc Tm Tm2 M f archi fext A.
   assert (~ Col P Q R) by (apply ncop__ncol with S, HNCop).
-  assert (Haux : forall X, (exists B, Coplanar P Q X B /\ f B = A) -> exists B, f B = A).
+  assert (Haux : forall X, (exists B, 共面 P Q X B /\ f B = A) -> exists B, f B = A).
     intros X [B []]; exists B; assumption.
   destruct (col_dec (f P) (f Q) A).
     apply (Haux R), line_completeness_aux; Cop.
@@ -175,7 +175,7 @@ Proof.
     unfold 三维防升维公理_axiom; exact 三维防升维公理.
   }
   destruct (pi (f P) (f Q) A (f P) (f R) (f S) (f P)) as [X [HX1 [HX2 HX3]]]; Cop.
-  assert (HY : exists Y, Coplanar P R S Y /\ f Y = X).
+  assert (HY : exists Y, 共面 P R S Y /\ f Y = X).
     apply line_completeness_aux; trivial; apply ncop__ncol with Q; Cop.
   destruct HY as [Y []]; subst.
   apply (Haux Y), line_completeness_aux; Cop.

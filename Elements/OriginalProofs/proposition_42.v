@@ -9,11 +9,11 @@ Context `{Ax:area}.
 
 Lemma proposition_42 : 
    forall A B C D E J K, 
-   Triangle A B C -> nCol J D K -> Midpoint B E C ->
-   exists X Z, PG X E C Z /\ EF A B E C X E C Z /\ CongA C E X J D K /\ Col X Z A.
+   Triangle A B C -> nCol J D K -> 中点 B E C ->
+   exists X Z, PG X E C Z /\ EF A B E C X E C Z /\ 等角 C E X J D K /\ Col X Z A.
 Proof.
 intros.
-assert ((BetS B E C /\ Cong B E E C)) by (conclude_def Midpoint ).
+assert ((BetS B E C /\ Cong B E E C)) by (conclude_def 中点 ).
 assert (Cong E B E C) by (forward_using lemma_congruenceflip).
 assert (nCol A B C) by (conclude_def Triangle ).
 assert (Col B E C) by (conclude_def Col ).
@@ -24,11 +24,11 @@ assert (Col B C C) by (conclude_def Col ).
 assert (neq E C) by (forward_using lemma_betweennotequal).
 assert (nCol E C A) by (conclude lemma_NChelper).
 let Tf:=fresh in
-assert (Tf:exists f c, (Out E C c /\ CongA f E c J D K /\ OS f A E C)) by (conclude proposition_23C);destruct Tf as [f[c]];spliter.
+assert (Tf:exists f c, (Out E C c /\ 等角 f E c J D K /\ OS f A E C)) by (conclude proposition_23C);destruct Tf as [f[c]];spliter.
 assert (nCol B C A) by (forward_using lemma_NCorder).
 let Tf:=fresh in
-assert (Tf:exists P Q M, (BetS P A Q /\ CongA Q A E A E B /\ CongA Q A E B E A /\ CongA E A Q B E A /\ CongA P A E A E C /\ CongA P A E C E A /\ CongA E A P C E A /\ Par P Q B C /\ Cong P A E C /\ Cong A Q B E /\ Cong A M M E /\ Cong P M M C /\ Cong B M M Q /\ BetS P M C /\ BetS B M Q /\ BetS A M E)) by (conclude proposition_31);destruct Tf as [P[Q[M]]];spliter.
-assert (CongA A E C P A E) by (conclude lemma_equalanglessymmetric).
+assert (Tf:exists P Q M, (BetS P A Q /\ 等角 Q A E A E B /\ 等角 Q A E B E A /\ 等角 E A Q B E A /\ 等角 P A E A E C /\ 等角 P A E C E A /\ 等角 E A P C E A /\ Par P Q B C /\ Cong P A E C /\ Cong A Q B E /\ Cong A M M E /\ Cong P M M C /\ Cong B M M Q /\ BetS P M C /\ BetS B M Q /\ BetS A M E)) by (conclude proposition_31);destruct Tf as [P[Q[M]]];spliter.
+assert (等角 A E C P A E) by (conclude lemma_equalanglessymmetric).
 assert (nCol P A E) by (conclude lemma_equalanglesNC).
 assert (nCol E A P) by (forward_using lemma_NCorder).
 assert (OS A f E C) by (forward_using lemma_samesidesymmetric).
@@ -48,7 +48,7 @@ assert (neq E A) by (forward_using lemma_NCdistinct).
 assert (~ ~ Meet E f P Q).
  {
  intro.
- assert (~ LtA C E f C E A).
+ assert (~ 角度小于 C E f C E A).
   {
   intro.
   assert (Out E C C) by (conclude lemma_ray4).
@@ -100,19 +100,19 @@ assert (~ ~ Meet E f P Q).
  assert (Col E B E) by (conclude_def Col ).
  assert (nCol E C f) by (conclude lemma_NChelper).
  assert (nCol C E f) by (forward_using lemma_NCorder).
- assert (~ LtA C E A C E f).
+ assert (~ 角度小于 C E A C E f).
   {
   intro.
   assert (Out E A A) by (conclude lemma_ray4).
   assert (Out E f f) by (conclude lemma_ray4).
   assert (Supp C E A A B) by (conclude_def Supp ).
   assert (Supp C E f f B) by (conclude_def Supp ).
-  assert (LtA f E B A E B) by (conclude lemma_supplementinequality).
+  assert (角度小于 f E B A E B) by (conclude lemma_supplementinequality).
   assert (nCol B E f) by (forward_using lemma_NCorder).
-  assert (CongA B E f f E B) by (conclude lemma_ABCequalsCBA).
-  assert (LtA B E f A E B) by (conclude lemma_angleorderrespectscongruence2).
-  assert (CongA B E A A E B) by (conclude lemma_ABCequalsCBA).
-  assert (LtA B E f B E A) by (conclude lemma_angleorderrespectscongruence).
+  assert (等角 B E f f E B) by (conclude lemma_ABCequalsCBA).
+  assert (角度小于 B E f A E B) by (conclude lemma_angleorderrespectscongruence2).
+  assert (等角 B E A A E B) by (conclude lemma_ABCequalsCBA).
+  assert (角度小于 B E f B E A) by (conclude lemma_angleorderrespectscongruence).
   assert (Out E B B) by (conclude lemma_ray4).
   assert (Out E A A) by (conclude lemma_ray4).
   let Tf:=fresh in
@@ -154,15 +154,15 @@ assert (~ ~ Meet E f P Q).
   assert (Meet E f P Q) by (conclude_def Meet ).
   contradict.
   }
- assert (~ ~ CongA C E A C E f).
+ assert (~ ~ 等角 C E A C E f).
   {
   intro.
-  assert (LtA C E A C E f) by (conclude lemma_angletrichotomy2).
+  assert (角度小于 C E A C E f) by (conclude lemma_angletrichotomy2).
   contradict.
   }
  let Tf:=fresh in
  assert (Tf:exists d a p q, (Out E C d /\ Out E A a /\ Out E C p /\ Out E f q /\ Cong E d E p /\ Cong E a E q /\ Cong d a p q /\ nCol C E A))
-  by (remove_double_neg;unfold CongA in *; assumption);destruct Tf as [d[a[p[q]]]];spliter.
+  by (remove_double_neg;unfold 等角 in *; assumption);destruct Tf as [d[a[p[q]]]];spliter.
  assert (Col P Q A) by (conclude_def Col ).
  assert (eq d p) by (conclude lemma_layoffunique).
  assert (Cong d a d q) by (conclude cn_equalitysub).
@@ -224,7 +224,7 @@ assert (Col A E E) by (conclude_def Col ).
 assert (nCol A E B) by (forward_using lemma_NCorder).
 assert (TS B A E C) by (conclude_def TS ).
 assert (PG E F G C) by (conclude lemma_PGflip).
-assert (Cong_3 F E C C G F) by (conclude proposition_34).
+assert (三角形全等 F E C C G F) by (conclude proposition_34).
 assert (ET F E C C G F) by (conclude axiom_congruentequal).
 assert (ET F E C F C G) by (forward_using axiom_ETpermutation).
 assert (ET F C G F E C) by (conclude axiom_ETsymmetric).
@@ -249,7 +249,7 @@ assert (ET A E C F C G) by (conclude axiom_ETtransitive).
 assert (EF A B E C F E C G) by (conclude axiom_paste3).
 assert (nCol F E C) by (forward_using lemma_parallelNC).
 assert (nCol C E F) by (forward_using lemma_NCorder).
-assert (CongA C E F C E F) by (conclude lemma_equalanglesreflexive).
+assert (等角 C E F C E F) by (conclude lemma_equalanglesreflexive).
 assert ((eq E f \/ eq E F \/ eq f F \/ BetS f E F \/ BetS E f F \/ BetS E F f)) by (conclude_def Col ).
 assert (neq F E) by (forward_using lemma_NCdistinct).
 assert (neq E F) by (conclude lemma_inequalitysymmetric).
@@ -319,11 +319,11 @@ by cases on (eq E f \/ eq E F \/ eq f F \/ BetS f E F \/ BetS E f F \/ BetS E F 
  close.
  }
 (** cases *)
-assert (CongA C E F c E f) by (conclude lemma_equalangleshelper).
-assert (CongA F E C f E c) by (conclude lemma_equalanglesflip).
-assert (CongA F E C J D K) by (conclude lemma_equalanglestransitive).
-assert (CongA C E F F E C) by (conclude lemma_ABCequalsCBA).
-assert (CongA C E F J D K) by (conclude lemma_equalanglestransitive).
+assert (等角 C E F c E f) by (conclude lemma_equalangleshelper).
+assert (等角 F E C f E c) by (conclude lemma_equalanglesflip).
+assert (等角 F E C J D K) by (conclude lemma_equalanglestransitive).
+assert (等角 C E F F E C) by (conclude lemma_ABCequalsCBA).
+assert (等角 C E F J D K) by (conclude lemma_equalanglestransitive).
 close.
 Qed.
 

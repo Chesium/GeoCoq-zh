@@ -12,13 +12,13 @@ assert(~ Col B A C) by (destruct Hts; auto).
 assert(HD' := ex_conga_ts B A C A C B).
 destruct HD' as [D' []]; Col.
 apply (conga_trans _ _ _ D' C A).
-CongA.
+等角.
 assert_diffs.
 apply out2__conga; [|apply out_trivial; auto].
 apply (col_one_side_out _ A).
 assert (HP := playfair A B C D C D' C).
 destruct HP; Col.
-apply l12_21_b; CongA; Side.
+apply l12_21_b; 等角; Side.
 apply invert_one_side; exists B; split; Side.
 Qed.
 

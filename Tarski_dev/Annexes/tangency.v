@@ -51,10 +51,10 @@ apply H.
 split; auto.
 subst Y.
 
-unfold Reflect in H6.
+unfold 对称 in H6.
 induction H6.
 spliter.
-unfold ReflectL in *.
+unfold 严格对称 in *.
 spliter.
 ex_and H11 Z.
 
@@ -202,7 +202,7 @@ subst A.
 assert(Perp T R R O).
 apply perp_comm.
 apply (perp_col R B O R T); Col.
-assert(Perp_at R T R R O).
+assert(垂直于 R T R R O).
 apply perp_in_comm.
 apply perp_perp_in.
 Perp.
@@ -242,11 +242,11 @@ apply perp_comm.
 apply (perp_col R A O R T); Col.
 apply perp_left_comm.
 eapply (perp_col A B O R R); auto.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 apply 中间性转共线 in H8.
 ColR.
-assert(Perp_at R T R R O).
+assert(垂直于 R T R R O).
 apply perp_in_comm.
 apply perp_perp_in.
 Perp.
@@ -273,7 +273,7 @@ unfold OnCircle in *.
 apply 等长的传递性 with O T; Cong.
 
 assert(OutCircleS T' O P).
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 apply 中间性转共线 in H12.
 apply (tangent_out A B O P T T'); auto.
@@ -291,7 +291,7 @@ Qed.
 such that AB is perpendicular to OX. *)
 
 Lemma tangency_chara : forall A B O P, P <> O ->
- (exists X, OnCircle X O P /\ Perp_at X A B O X) <-> Tangent A B O P.
+ (exists X, OnCircle X O P /\ 垂直于 X A B O X) <-> Tangent A B O P.
 Proof.
 intros.
 
@@ -320,7 +320,7 @@ apply (perp_col2 A B); auto.
 apply perp_in_perp in H1.
 auto.
 
-assert(Perp_at T T x' O T).
+assert(垂直于 T T x' O T).
 apply perp_perp_in; auto.
 
 assert(Per x' T O).
@@ -435,12 +435,12 @@ intro.
 subst M.
 apply is_midpoint_id in H7.
 contradiction.
-unfold Midpoint in H7.
+unfold 中点 in H7.
 spliter.
 Between.
 
 assert(Col A B M).
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 ColR.
 assert(HH:=(H2 M H9)).
@@ -518,7 +518,7 @@ apply(H1 B); Cong.
 subst T.
 assert(HH:=symmetric_point_construction B A).
 ex_and HH B'.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 assert(B = B').
   apply(H1 B'); split; Cong.
@@ -618,7 +618,7 @@ assert(exists X : Tpoint, Perp U X O U).
 ex_and H7 R.
 assert(HP:=symmetric_point_construction X O).
 ex_and HP W.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 assert(exists X0 : Tpoint, (Bet U R X0 \/ Bet U X0 R) /\ Cong U X0 W X).
 {
@@ -692,7 +692,7 @@ assert(Cong O X O Y) by Cong.
 assert(Cong O U O V) by (apply 等长的传递性 with O P; Cong).
 
 
-assert(CongA X O V Y O U).
+assert(等角 X O V Y O U).
 {
   unfold OnCircle in *.
   apply(l11_10 U O Y Y O U X V Y U).
@@ -710,10 +710,10 @@ assert(Cong V X U Y).
 {
 
   apply(cong2_conga_cong V O X U O Y); Cong.
-  CongA.
+  等角.
 }
 
-assert(CongA O U Y O V X).
+assert(等角 O U Y O V X).
 {
   unfold OnCircle in *.
   apply(cong3_conga O U Y O V X).
@@ -739,7 +739,7 @@ assert(Per O V X).
   assumption.
   intro.
   treat_equalities.
-  unfold CongA in H23.
+  unfold 等角 in H23.
   tauto.
   induction H10;
   ColR.
@@ -758,7 +758,7 @@ intro.
 treat_equalities; tauto.
 intro.
 treat_equalities.
-unfold CongA in H23.
+unfold 等角 in H23.
 tauto.
 Qed.
 
@@ -783,8 +783,8 @@ Qed.
  A circle does not cut a circle at more than two points.
  *)
 Lemma cop_onc2__oreq : forall A B C D P Q,
- InterCCAt A B C D P Q -> Coplanar A C P Q ->
- forall Z, OnCircle Z A B -> OnCircle Z C D -> Coplanar A C P Z -> Z=P \/ Z=Q.
+ InterCCAt A B C D P Q -> 共面 A C P Q ->
+ forall Z, OnCircle Z A B -> OnCircle Z C D -> 共面 A C P Z -> Z=P \/ Z=Q.
 Proof.
 intros.
 assert(HIC := H).
@@ -807,14 +807,14 @@ assert(Per A N Q).
 apply(mid_onc2__per A Z Q Z).
 apply 等长的传递性 with A B; Cong.
 Circle.
-Midpoint.
+中点.
 
 
 assert(Per C N Q).
 apply(mid_onc2__per C Z Q Z).
 apply 等长的传递性 with C D; Cong.
 Circle.
-Midpoint.
+中点.
 
 assert(Col A C M).
 apply cop_per2__col with Q; auto.
@@ -892,7 +892,7 @@ apply coplanar_trans_1 with P; Cop.
 apply interccat__ncol in HIC.
 Col.
 induction HH.
-unfold Par_strict in H22.
+unfold 严格平行 in H22.
 spliter.
 apply False_ind.
 apply H23.

@@ -16,7 +16,7 @@ Lemma ss_ok_empty_for_cop : forall interp, ss_ok_for_cop SS.empty interp.
 Proof. exact ss_ok_empty. Qed.
 
 Lemma collect_coincs_for_cop : forall A B C D pa pb pc pd ss interp,
-  Coplanar A B C D ->
+  共面 A B C D ->
   interp pa = A ->
   interp pb = B ->
   interp pc = C ->
@@ -63,7 +63,7 @@ Lemma test_coinc_ok_for_cop : forall pa pb pc pd ss st interp,
   ss_ok_for_cop ss interp ->
   st_ok_for_cop st interp ->
   test_coinc_for_cop ss st pa pb pc pd = true ->
-  Coplanar (interp pa) (interp pb) (interp pc) (interp pd).
+  共面 (interp pa) (interp pb) (interp pc) (interp pd).
 Proof.
 intros pa pb pc pd ss st interp HSS HST HTest.
 assert (HCop := @test_coinc_ok Tarski_is_a_Arity_for_cop
@@ -127,20 +127,20 @@ Section Test.
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Goal forall P24 P23 P22 P21 P20 P19 P18 P17 P16 P15 P14 P13 P12 P11 P10 P9 P8 P7 P6 P5 P4 P3 P2 P1 P0,
-  Coplanar P1 P0 P2 P12 -> Coplanar P8 P2 P0 P1 -> ~ Col P18 P20 P19 ->
-  Coplanar P19 P2 P1 P0 -> Coplanar P1 P15 P2 P0 -> Coplanar P23 P13 P12 P14 ->
-  ~ Col P10 P9 P11 -> Coplanar P1 P2 P18 P0 -> Coplanar P11 P2 P1 P0 ->
-  ~ Col P2 P1 P0 -> Coplanar P0 P1 P2 P6 -> Coplanar P16 P2 P1 P0 ->
-  Coplanar P15 P22 P16 P17 -> Coplanar P2 P1 P0 P17 -> Coplanar P20 P0 P2 P1 ->
-  Coplanar P1 P2 P0 P4 -> Coplanar P13 P1 P2 P0 -> ~ Col P7 P8 P6 ->
-  Coplanar P2 P9 P1 P0 -> Coplanar P2 P10 P0 P1 -> Coplanar P1 P0 P14 P2 ->
-  Coplanar P1 P7 P0 P2 -> ~ Col P4 P5 P3 -> Coplanar P0 P3 P1 P2 ->
-  Coplanar P24 P11 P9 P10 -> ~ Col P14 P13 P12 -> ~ Col P15 P17 P16 ->
-  Coplanar P18 P21 P20 P19 -> Coplanar P0 P5 P2 P1 ->
-  Coplanar P21 P22 P23 P24.
+  共面 P1 P0 P2 P12 -> 共面 P8 P2 P0 P1 -> ~ Col P18 P20 P19 ->
+  共面 P19 P2 P1 P0 -> 共面 P1 P15 P2 P0 -> 共面 P23 P13 P12 P14 ->
+  ~ Col P10 P9 P11 -> 共面 P1 P2 P18 P0 -> 共面 P11 P2 P1 P0 ->
+  ~ Col P2 P1 P0 -> 共面 P0 P1 P2 P6 -> 共面 P16 P2 P1 P0 ->
+  共面 P15 P22 P16 P17 -> 共面 P2 P1 P0 P17 -> 共面 P20 P0 P2 P1 ->
+  共面 P1 P2 P0 P4 -> 共面 P13 P1 P2 P0 -> ~ Col P7 P8 P6 ->
+  共面 P2 P9 P1 P0 -> 共面 P2 P10 P0 P1 -> 共面 P1 P0 P14 P2 ->
+  共面 P1 P7 P0 P2 -> ~ Col P4 P5 P3 -> 共面 P0 P3 P1 P2 ->
+  共面 P24 P11 P9 P10 -> ~ Col P14 P13 P12 -> ~ Col P15 P17 P16 ->
+  共面 P18 P21 P20 P19 -> 共面 P0 P5 P2 P1 ->
+  共面 P21 P22 P23 P24.
 Proof.
 intros.
-Time Cop_refl Tpoint Col Coplanar.
+Time Cop_refl Tpoint Col 共面.
 Qed.
 
 End Test.

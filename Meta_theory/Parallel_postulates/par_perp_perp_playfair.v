@@ -35,20 +35,20 @@ elim (col_dec A1 A2 P); intro HCol.
 
   {
   assert(HI := l8_18_existence A1 A2 P HCol); destruct HI as [I [HCol' HPerp]].
-  assert (HCop1 : Coplanar B1 B2 P I) by (apply col__coplanar; Col).
-  assert (HCop2 : Coplanar C1 C2 P I) by (apply col__coplanar; Col).
+  assert (HCop1 : 共面 B1 B2 P I) by (apply col__coplanar; Col).
+  assert (HCop2 : 共面 C1 C2 P I) by (apply col__coplanar; Col).
   assert (HPerp1 := HPTP A1 A2 B1 B2 P I HPar1 HPerp HCop1).
   assert (HPerp2 := HPTP A1 A2 C1 C2 P I HPar2 HPerp HCop2).
-  assert (HCop3 : Coplanar A1 A2 P B1)
+  assert (HCop3 : 共面 A1 A2 P B1)
     by (assert_diffs; apply coplanar_perm_1, col_cop__cop with B2;
         Col; apply par__coplanar, HPar1).
-  assert (HCop4 : Coplanar A1 A2 P B2)
+  assert (HCop4 : 共面 A1 A2 P B2)
     by (assert_diffs; apply coplanar_perm_1, col_cop__cop with B1;
         Col; apply coplanar_perm_1, par__coplanar, HPar1).
-  assert (HCop5 : Coplanar A1 A2 P C1)
+  assert (HCop5 : 共面 A1 A2 P C1)
     by (assert_diffs; apply coplanar_perm_1, col_cop__cop with C2;
         Col; apply par__coplanar, HPar2).
-  assert (HCop6 : Coplanar A1 A2 P I) by Cop.
+  assert (HCop6 : 共面 A1 A2 P I) by Cop.
   assert (Perp P C1 P I)
     by (apply perp_left_comm, perp_col with C2; Col).
   assert (Col P C1 B1).

@@ -7,7 +7,7 @@ Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma cop_npars__inter_exists :
  forall A1 B1 A2 B2,
-  Coplanar A1 B1 A2 B2 -> ~ Par_strict A1 B1 A2 B2 ->
+  共面 A1 B1 A2 B2 -> ~ 严格平行 A1 B1 A2 B2 ->
   exists X, Col X A1 B1 /\ Col X A2 B2.
 Proof.
 intros.
@@ -27,7 +27,7 @@ split; assumption.
 Qed.
 
 Lemma cop_npar__inter_exists : forall A1 B1 A2 B2,
-  Coplanar A1 B1 A2 B2 -> ~ Par A1 B1 A2 B2 -> exists X, Col X A1 B1 /\ Col X A2 B2.
+  共面 A1 B1 A2 B2 -> ~ Par A1 B1 A2 B2 -> exists X, Col X A1 B1 /\ Col X A2 B2.
 Proof.
 intros.
 apply cop_npars__inter_exists.
@@ -39,7 +39,7 @@ assumption.
 Qed.
 
 Lemma cop_npar__inter : forall A1 B1 A2 B2, A1 <> B1 -> A2 <> B2 ->
-  Coplanar A1 B1 A2 B2 -> ~ Par A1 B1 A2 B2 -> exists X, Inter A1 B1 A2 B2 X.
+  共面 A1 B1 A2 B2 -> ~ Par A1 B1 A2 B2 -> exists X, Inter A1 B1 A2 B2 X.
 Proof.
 intros.
 destruct (cop_npar__inter_exists A1 B1 A2 B2) as [X []].
@@ -93,7 +93,7 @@ Proof.
 Qed.
 
 Lemma l12_16 : forall A1 A2 B1 B2 C1 C2 X,
-  Par A1 A2 B1 B2 -> Coplanar B1 B2 C1 C2 -> Inter A1 A2 C1 C2 X -> exists Y, Inter B1 B2 C1 C2 Y.
+  Par A1 A2 B1 B2 -> 共面 B1 B2 C1 C2 -> Inter A1 A2 C1 C2 X -> exists Y, Inter B1 B2 C1 C2 Y.
 Proof.
     intros.
     assert_diffs.
@@ -118,7 +118,7 @@ apply par_trans with C D; Par.
 Qed.
 
 Lemma cop_par__inter : forall A B C D P Q,
-  Par A B C D -> ~Par A B P Q -> Coplanar C D P Q ->
+  Par A B C D -> ~Par A B P Q -> 共面 C D P Q ->
   exists Y, Col P Q Y /\ Col C D Y.
 Proof.
     intros A B C D P Q HPar HNPar HCop.
@@ -135,13 +135,13 @@ Lemma l12_19 :
    Cong A B C D /\ Cong B C D A /\ TS B D A C /\ TS A C B D.
 Proof.
     intros.
-    assert(exists P, Midpoint P A C) by (eapply midpoint_existence).
+    assert(exists P, 中点 P A C) by (eapply midpoint_existence).
     ex_and H2 P.
     double B P D'.
     assert(Cong C D' A B).
       apply (l7_13 P); assumption.
     assert(Cong B C D' A).
-      apply (l7_13 P); Midpoint.
+      apply (l7_13 P); 中点.
     assert(Par A B C D').
       assert_diffs; apply l12_17 with P; auto.
     assert(Par C D C D').
@@ -153,7 +153,7 @@ Proof.
       apply par_id.
       assumption.
     assert(Par B C D' A).
-      assert_diffs; apply l12_17 with P; Midpoint.
+      assert_diffs; apply l12_17 with P; 中点.
     assert(Par D A D' A).
       eapply par_trans.
         apply par_symmetry.
@@ -203,7 +203,7 @@ Proof.
       unfold TS in H1.
       spliter.
       contradiction.
-    assert(exists P, Midpoint P A C) by (apply midpoint_existence).
+    assert(exists P, 中点 P A C) by (apply midpoint_existence).
     ex_and H5 P.
     double B P D'.
     assert(Par B C D' A).
@@ -217,7 +217,7 @@ Proof.
     assert(Cong C D' A B).
       apply (l7_13 P); assumption.
     assert(Cong B C D' A).
-      apply (l7_13 P); Midpoint.
+      apply (l7_13 P); 中点.
     assert(Par C D C D').
       eapply par_trans.
         apply par_symmetry.
@@ -227,7 +227,7 @@ Proof.
       apply par_id; assumption.
     assert(Cong C D C D').
       apply (等长的传递性 _ _ A B); Cong.
-    assert(D = D' \/ Midpoint C D D').
+    assert(D = D' \/ 中点 C D D').
       apply l7_20; Col.
     induction H14.
     { subst D'.
@@ -289,14 +289,14 @@ Qed.
 Lemma l12_21_a :
  forall A B C D,
   TS A C B D ->
-  (Par A B C D -> CongA B A C D C A).
+  (Par A B C D -> 等角 B A C D C A).
 Proof.
     apply postulates_in_euclidean_context; simpl; repeat (try (left; reflexivity); right).
 Qed.
 
 Lemma l12_21 : forall A B C D,
  TS A C B D ->
- (CongA B A C D C A <-> Par A B C D).
+ (等角 B A C D C A <-> Par A B C D).
 Proof.
     intros.
     split.
@@ -308,11 +308,11 @@ Qed.
 
 Lemma l12_22_a : forall A B C D P,
  Out P A C -> OS P A B D -> Par A B C D ->
- CongA B A P D C P.
+ 等角 B A P D C P.
 Proof.
     cut (forall A B C D P,
          A <> P -> Bet P A C -> OS P A B D -> Par A B C D ->
-         CongA B A P D C P).
+         等角 B A P D C P).
     { intros Haux A B C D P HOut HOS HPar.
       destruct HOut as [HAP [HCP [|]]].
         apply Haux; trivial.
@@ -343,7 +343,7 @@ Qed.
 Lemma l12_22 :
   forall A B C D P,
   Out P A C -> OS P A B D ->
-  (CongA B A P D C P <-> Par A B C D).
+  (等角 B A P D C P <-> Par A B C D).
 Proof.
     intros.
     split; intro.
@@ -356,11 +356,11 @@ Lemma l12_23 :
   ~Col A B C ->
   exists B', exists C',
   TS A C B B' /\ TS A B C C' /\
-      Bet B' A C' /\ CongA A B C B A C' /\ CongA A C B C A B'.
+      Bet B' A C' /\ 等角 A B C B A C' /\ 等角 A C B C A B'.
 Proof.
     intros.
-    assert(exists B0, Midpoint B0 A B) by (apply midpoint_existence).
-    assert(exists C0, Midpoint C0 A C) by (apply midpoint_existence).
+    assert(exists B0, 中点 B0 A B) by (apply midpoint_existence).
+    assert(exists C0, 中点 C0 A C) by (apply midpoint_existence).
     ex_and H0 B0.
     ex_and H1 C0.
     prolong B C0 B' B C0.
@@ -460,14 +460,14 @@ Proof.
       apply col_two_sides_bet with C; assumption.
     split.
       apply l9_2 in H7.
-      assert(HH:= l12_21_a A C' B C H7 H9); CongA.
+      assert(HH:= l12_21_a A C' B C H7 H9); 等角.
     apply par_symmetry in H8.
     apply invert_two_sides in H6.
-    assert(HH:= l12_21_a C B A B' H6 H8); CongA.
+    assert(HH:= l12_21_a C B A B' H6 H8); 等角.
 Qed.
 
 Lemma cop2_npar__inter : forall A B A' B' X Y,
-  Coplanar A B X Y -> Coplanar A' B' X Y -> ~ Par A B A' B' ->
+  共面 A B X Y -> 共面 A' B' X Y -> ~ Par A B A' B' ->
   (exists P, Col P X Y /\ (Col P A B \/ Col P A' B')).
 Proof.
     intros.
@@ -530,7 +530,7 @@ Proof.
     Col.
 Qed.
 
-Lemma cop_par_perp__perp : forall A B C D P Q, Par A B C D -> Perp A B P Q -> Coplanar C D P Q ->
+Lemma cop_par_perp__perp : forall A B C D P Q, Par A B C D -> Perp A B P Q -> 共面 C D P Q ->
   Perp C D P Q.
 Proof.
     apply universal_posidonius_postulate__perpendicular_transversal_postulate.
@@ -540,8 +540,8 @@ Qed.
 
 Lemma cop4_par_perp2__par : forall A B C D E F G H,
   Par A B C D -> Perp A B E F -> Perp C D G H ->
-  Coplanar A B E G -> Coplanar A B E H ->
-  Coplanar A B F G -> Coplanar A B F H ->
+  共面 A B E G -> 共面 A B E H ->
+  共面 A B F G -> 共面 A B F H ->
   Par E F G H.
 Proof.
     apply par_perp_perp_implies_par_perp_2_par.
@@ -558,7 +558,7 @@ Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma not_par_strict_inter_exists :
  forall A1 B1 A2 B2,
-  ~Par_strict A1 B1 A2 B2 ->
+  ~严格平行 A1 B1 A2 B2 ->
   exists X, Col X A1 B1 /\ Col X A2 B2.
 Proof.
     intros A1 B1 A2 B2.

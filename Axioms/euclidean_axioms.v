@@ -20,7 +20,7 @@ Class euclidean_neutral :=
   TE A B C := ~ (neq A B /\ neq B C /\ ~ BetS A B C);
   nCol A B C := neq A B /\ neq A C /\ neq B C /\ ~ BetS A B C /\ ~ BetS A C B /\ ~ BetS B A C;
   Col A B C := (eq A B \/ eq A C \/ eq B C \/ BetS B A C \/ BetS A B C \/ BetS A C B);
-  Cong_3 A B C a b c := Cong A B a b /\ Cong B C b c /\ Cong A C a c;
+  三角形全等 A B C a b c := Cong A B a b /\ Cong B C b c /\ Cong A C a c;
   TS P A B Q := exists X, BetS P X Q /\ Col A B X /\ nCol A B P;
   Triangle A B C := nCol A B C;
 
@@ -112,7 +112,7 @@ Class area `(Ax : euclidean_euclidean) :=
   EF : Point -> Point -> Point -> Point -> Point -> Point -> Point -> Point -> Prop;
   ET : Point -> Point -> Point -> Point -> Point -> Point -> Prop;
   axiom_congruentequal :
-   forall A B C a b c, Cong_3 A B C a b c -> ET A B C a b c;
+   forall A B C a b c, 三角形全等 A B C a b c -> ET A B C a b c;
   axiom_ETpermutation :
    forall A B C a b c,
     ET A B C a b c ->

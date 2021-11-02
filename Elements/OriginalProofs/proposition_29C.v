@@ -10,7 +10,7 @@ Context `{Ax:euclidean_euclidean}.
 Lemma proposition_29C : 
    forall B D E G H, 
    Par G B H D -> OS B D G H -> BetS E G H ->
-   CongA E G B G H D /\ RT B G H G H D.
+   等角 E G B G H D /\ RT B G H G H D.
 Proof.
 intros.
 assert (nCol G B H) by (forward_using lemma_parallelNC).
@@ -83,7 +83,7 @@ assert (OS D B G H) by (forward_using lemma_samesidesymmetric).
 assert (TS B G H A) by (conclude_def TS ).
 assert (TS D G H A) by (conclude lemma_planeseparation).
 assert (TS A G H D) by (conclude lemma_oppositesidesymmetric).
-assert ((CongA A G H G H D /\ CongA E G B G H D /\ RT B G H G H D)) by (conclude proposition_29).
+assert ((等角 A G H G H D /\ 等角 E G B G H D /\ RT B G H G H D)) by (conclude proposition_29).
 close.
 Qed.
 

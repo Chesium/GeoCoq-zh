@@ -10,8 +10,8 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma lemma_supplements : 
    forall A B C D F a b c d f, 
-   CongA A B C a b c -> Supp A B C D F -> Supp a b c d f ->
-   CongA D B F d b f.
+   等角 A B C a b c -> Supp A B C D F -> Supp a b c d f ->
+   等角 D B F d b f.
 Proof.
 intros.
 assert (BetS A B F) by (conclude_def Supp ).
@@ -19,7 +19,7 @@ assert (Out B C D) by (conclude_def Supp ).
 assert (BetS a b f) by (conclude_def Supp ).
 assert (Out b c d) by (conclude_def Supp ).
 let Tf:=fresh in
-assert (Tf:exists U V u v, (Out B A U /\ Out B C V /\ Out b a u /\ Out b c v /\ Cong B U b u /\ Cong B V b v /\ Cong U V u v /\ nCol A B C)) by (conclude_def CongA );destruct Tf as [U[V[u[v]]]];spliter.
+assert (Tf:exists U V u v, (Out B A U /\ Out B C V /\ Out b a u /\ Out b c v /\ Cong B U b u /\ Cong B V b v /\ Cong U V u v /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];spliter.
 assert (neq A B) by (forward_using lemma_betweennotequal).
 assert (neq B U) by (conclude lemma_raystrict).
 assert (neq U B) by (conclude lemma_inequalitysymmetric).
@@ -131,7 +131,7 @@ assert (~ Col D B F).
  }
 assert (Out B D V) by (conclude lemma_ray3).
 assert (Out b d v) by (conclude lemma_ray3).
-assert (CongA D B F d b f) by (conclude_def CongA ).
+assert (等角 D B F d b f) by (conclude_def 等角 ).
 close.
 Qed.
 

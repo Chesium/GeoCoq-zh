@@ -13,8 +13,8 @@ which are difficult to handle in our formalization.
 *)
 
 Lemma similar__rah_aux : forall A B C D E F,
-  ~ Col A B C -> CongA A B C D E F -> CongA B C A E F D -> CongA C A B F D E ->
-  LeA B C A A B C -> Lt D E A B -> postulate_of_right_saccheri_quadrilaterals.
+  ~ Col A B C -> 等角 A B C D E F -> 等角 B C A E F D -> 等角 C A B F D E ->
+  角度小于等于 B C A A B C -> Lt D E A B -> postulate_of_right_saccheri_quadrilaterals.
 Proof.
   intros A B C D E F HNCol HCongaB HCongaC HCongaA Hlea Hlt.
   assert_diffs.
@@ -24,20 +24,20 @@ Proof.
   apply (cong2_lt__lt _ _ _ _ A G A B) in Hlt; Cong.
   assert(Bet A G B) by (apply (l6_13_1); Le; apply l6_6; auto).
   assert(B <> G) by (intro; subst; destruct Hlt; Cong).
-  assert(HCongaA' : CongA C A B H A G) by (apply out2__conga; apply l6_6; auto).
+  assert(HCongaA' : 等角 C A B H A G) by (apply out2__conga; apply l6_6; auto).
   destruct(l11_49 F D E H A G) as [_ [HConga1 HConga2]]; Cong.
-    apply (conga_trans _ _ _ C A B); CongA.
+    apply (conga_trans _ _ _ C A B); 等角.
   apply (conga_trans _ _ _ _ _ _ A G H) in HCongaB; auto.
-  apply (conga_trans _ _ _ _ _ _ G H A) in HCongaC; CongA.
+  apply (conga_trans _ _ _ _ _ _ G H A) in HCongaC; 等角.
   clear dependent D; clear dependent E; clear dependent F.
   rename HCongaA' into HCongaA.
 
   assert(HNCol1 : ~ Col A G H) by (apply (ncol_conga_ncol A B C); auto).
   assert(HNCol2 : ~ Col B G H) by (intro; apply HNCol1; ColR).
-  assert(Par_strict G H B C).
+  assert(严格平行 G H B C).
   { apply (par_not_col_strict _ _ _ _ B); Col.
     apply par_symmetry.
-    apply (l12_22_b _ _ _ _ A); CongA.
+    apply (l12_22_b _ _ _ _ A); 等角.
     apply out_one_side; auto.
   }
   assert(HNCol3 : ~ Col G H C) by (apply (par_strict_not_col_4 _ _ B); auto).
@@ -57,12 +57,12 @@ Proof.
     apply (l11_30 B C A A B C); auto; apply conga_right_comm; auto.
     apply out2__conga; [apply out_trivial|]; auto.
   }
-  assert(CongA A G H G B C).
-    apply (l11_10 A G H A B C); try (apply out_trivial); CongA; apply bet_out; Between.
-  assert(CongA G H A B C H).
-    apply (l11_10 G H A B C A); try (apply out_trivial); CongA.
-  assert(SAMS B G H C B G) by (apply (conga2_sams__sams B G H H G A); CongA; SumA).
-  assert(SAMS C H G B C H) by (apply (conga2_sams__sams C H G G H A); CongA; SumA).
+  assert(等角 A G H G B C).
+    apply (l11_10 A G H A B C); try (apply out_trivial); 等角; apply bet_out; Between.
+  assert(等角 G H A B C H).
+    apply (l11_10 G H A B C A); try (apply out_trivial); 等角.
+  assert(SAMS B G H C B G) by (apply (conga2_sams__sams B G H H G A); 等角; SumA).
+  assert(SAMS C H G B C H) by (apply (conga2_sams__sams C H G G H A); 等角; SumA).
   destruct(ex_suma B C G C G B) as [I [J [K]]]; auto.
   destruct(ex_suma H C G C G H) as [L [M [N]]]; auto.
   suma.assert_diffs.
@@ -107,13 +107,13 @@ Proof.
     apply (sams_lta2_suma2__lta I J K L M N _ _ _ H G B B C H); SumA.
     { destruct (t22_14__sams_nbet aah C G B I J K O P Q) as [HIsi HNBet]; Col.
       apply (sams_lea_lta789_suma2__lta123 _ _ _ G B C O P Q _ _ _ G B C A G B); Lea.
-        split; Lea; intro; apply HNBet; apply (bet_conga__bet A G B); CongA.
-        apply (conga3_suma__suma B G H H G A A G B); CongA; SumA.
+        split; Lea; intro; apply HNBet; apply (bet_conga__bet A G B); 等角.
+        apply (conga3_suma__suma B G H H G A A G B); 等角; SumA.
     }
     destruct (t22_14__sams_nbet aah C G H L M N R S T) as [HIsi HNBet]; Col.
     apply (sams_lea_lta789_suma2__lta123 _ _ _ G H C R S T _ _ _ G H C A H C); Lea.
-      split; Lea; intro; apply HNBet; apply (bet_conga__bet A H C); CongA.
-      apply (conga3_suma__suma A H G G H C A H C); CongA; SumA.
+      split; Lea; intro; apply HNBet; apply (bet_conga__bet A H C); 等角.
+      apply (conga3_suma__suma A H G G H C A H C); 等角; SumA.
 
   - intro HUn.
     destruct HUn as [|oah]; auto.
@@ -139,21 +139,21 @@ Proof.
     split; Cong.
 
   - intro.
-    apply (similar__rah_aux D E F A B C); CongA.
+    apply (similar__rah_aux D E F A B C); 等角.
       apply (ncol_conga_ncol A B C); auto.
       apply (l11_30 B C A A B C); auto.
       split; auto.
 
   - intro.
-    apply (similar__rah_aux A C B D F E); Col; CongA.
+    apply (similar__rah_aux A C B D F E); Col; 等角.
       apply lea_comm; trivial.
-    split; auto; intro; destruct(l11_50_1 A C B D F E); Col; CongA; Cong.
+    split; auto; intro; destruct(l11_50_1 A C B D F E); Col; 等角; Cong.
 
   - intro.
-    apply (similar__rah_aux D F E A C B); CongA.
-      apply (ncol_conga_ncol A C B); Col; CongA.
-      apply (l11_30 A B C B C A); CongA.
-      split; auto; intro; destruct(l11_50_1 A C B D F E); Col; CongA; Cong.
+    apply (similar__rah_aux D F E A C B); 等角.
+      apply (ncol_conga_ncol A C B); Col; 等角.
+      apply (l11_30 A B C B C A); 等角.
+      split; auto; intro; destruct(l11_50_1 A C B D F E); Col; 等角; Cong.
 Qed.
 
 End similar_rah.

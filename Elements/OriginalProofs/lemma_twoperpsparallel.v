@@ -26,8 +26,8 @@ assert (nCol B C D) by (conclude lemma_rightangleNC).
 assert (neq C D) by (forward_using lemma_NCdistinct).
 assert (Out C D D) by (conclude lemma_ray4).
 assert (Supp B C D D E) by (conclude_def Supp ).
-assert (CongA A B C B C D) by (conclude lemma_Euclid4).
-assert (CongA B C D D C E) by (conclude lemma_Euclid4).
+assert (等角 A B C B C D) by (conclude lemma_Euclid4).
+assert (等角 B C D D C E) by (conclude lemma_Euclid4).
 assert (RT A B C B C D) by (conclude_def RT ).
 assert (Par B A C D) by (conclude proposition_28C).
 assert (Par C D B A) by (conclude lemma_parallelsymmetric).

@@ -631,7 +631,7 @@ apply equivalent_postulates_without_decidability_of_intersection_of_lines_bis; s
 unfold tarski_s_parallel_postulate; apply euclid.
 Qed.
 
-Lemma aristotle : forall P Q A B C, ~ Col A B C -> Acute A B C ->
+Lemma aristotle : forall P Q A B C, ~ Col A B C -> 为锐角 A B C ->
   exists X Y, Out B A X /\ Out B C Y /\ Per B X Y /\ Lt P Q X Y.
 Proof.
 assert (H : aristotle_s_axiom).
@@ -644,8 +644,8 @@ apply H.
 Qed.
 
 Lemma greenberg : forall P Q R A B C, ~ Col A B C ->
-  Acute A B C -> Q <> R -> Per P Q R ->
-  exists S, LtA P S Q A B C /\ Out Q S R.
+  为锐角 A B C -> Q <> R -> Per P Q R ->
+  exists S, 角度小于 P S Q A B C /\ Out Q S R.
 Proof.
 apply aristotle__greenberg.
 unfold aristotle_s_axiom; apply aristotle.

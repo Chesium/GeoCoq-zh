@@ -48,10 +48,10 @@ Proof.
   unfold Saccheri in HSac.
   spliter.
   assert(HSAS := l11_49 B A D C D A).
-  destruct HSAS; Cong; CongA.
+  destruct HSAS; Cong; 等角.
 Qed.
 
-Lemma sac__conga : forall A B C D, Saccheri A B C D -> CongA A B C B C D.
+Lemma sac__conga : forall A B C D, Saccheri A B C D -> 等角 A B C B C D.
 Proof.
   intros A B C D HSac.
   assert(Hdiff := sac_distincts A B C D HSac).
@@ -59,10 +59,10 @@ Proof.
   unfold Saccheri in HSac.
   spliter.
   assert(HSSS := l11_51 A B C D C B).
-  destruct HSSS as [_ []]; Cong; CongA.
+  destruct HSSS as [_ []]; Cong; 等角.
 Qed.
 
-Lemma lam__pars1234 : forall A B C D, Lambert A B C D -> Par_strict A B C D.
+Lemma lam__pars1234 : forall A B C D, Lambert A B C D -> 严格平行 A B C D.
 Proof.
   unfold Lambert.
   intros A B C D HLam.
@@ -71,7 +71,7 @@ Proof.
   apply (col_cop_perp2__pars D A); Perp; Col.
 Qed.
 
-Lemma lam__pars1423 : forall A B C D, Lambert A B C D -> Par_strict A D B C.
+Lemma lam__pars1423 : forall A B C D, Lambert A B C D -> 严格平行 A D B C.
 Proof.
   intros; apply par_strict_right_comm, lam__pars1234, lam_perm; assumption.
 Qed.
@@ -94,7 +94,7 @@ Proof.
 Qed.
 
 Lemma per2_os__pars : forall A B C D, Per B A D -> Per A D C -> OS A D B C ->
-  Par_strict A B C D.
+  严格平行 A B C D.
 Proof.
   intros A B C D HPer1 HPer2 Hos.
   assert_diffs.
@@ -118,7 +118,7 @@ Proof.
   apply (par_strict_not_col_2 A), per2_os__pars; assumption.
 Qed.
 
-Lemma sac__pars1234 : forall A B C D, Saccheri A B C D -> Par_strict A B C D.
+Lemma sac__pars1234 : forall A B C D, Saccheri A B C D -> 严格平行 A B C D.
 Proof.
   unfold Saccheri.
   intros A B C D HSac; spliter.
@@ -137,7 +137,7 @@ Lemma lt_os_per2__lta : forall A B C D,
   Per B A D -> Per A D C ->
   OS A D B C ->
   Lt A B C D ->
-  LtA B C D A B C.
+  角度小于 B C D A B C.
 Proof.
   intros A B C D HPer1 HPer2 Hos Hlt.
   apply lt_right_comm in Hlt.
@@ -158,7 +158,7 @@ Proof.
     apply bet_out; auto.
   }
   assert(HNCol3 : ~ Col E C B) by (intro; apply HNCol2; ColR).
-  assert(Par_strict A B C D).
+  assert(严格平行 A B C D).
   { apply (par_not_col_strict _ _ _ _ D); Col.
     apply (l12_9 _ _ _ _ A D); Perp; Cop.
   }
@@ -167,7 +167,7 @@ Proof.
   - assert(HInter := l11_41 E C B D).
     destruct HInter; Between.
     apply (conga_preserves_lta E C B B E D); try (apply conga_refl); auto.
-    apply (l11_10 E C B B C E); try (apply out_trivial); CongA.
+    apply (l11_10 E C B B C E); try (apply out_trivial); 等角.
     apply l6_6, bet_out; Between.
 
   - apply (conga_preserves_lta A B E A B C); try (apply conga_refl); auto.
@@ -192,7 +192,7 @@ Qed.
 Lemma lt4321_os_per2__lta : forall A B C D,
   Per B A D -> Per A D C ->
   OS A D B C -> Lt D C B A ->
-  LtA A B C B C D.
+  角度小于 A B C B C D.
 Proof.
   intros.
   apply lta_comm, lt_os_per2__lta; Perp; Side.
@@ -200,25 +200,25 @@ Qed.
 
 Lemma lta_os_per2__lt : forall A B C D,
   Per B A D -> Per A D C ->
-  OS A D B C -> LtA B C D A B C ->
+  OS A D B C -> 角度小于 B C D A B C ->
   Lt A B C D.
 Proof.
-  intros A B C D HPer1 HPer2 Hos HLtA.
+  intros A B C D HPer1 HPer2 Hos H角度小于.
   destruct (or_lt_cong_gt A B C D) as [Hlt | [Hlt | Hcong]]; trivial; exfalso.
   - unfold Gt in Hlt.
     apply lt_comm in Hlt.
     apply (not_and_lta B C D A B C).
     split; trivial.
     apply lt4321_os_per2__lta; trivial.
-  - destruct HLtA as [HLeA HNCongA].
-    apply HNCongA.
+  - destruct H角度小于 as [H角度小于等于 HN等角].
+    apply HN等角.
     apply conga_sym, sac__conga.
     unfold Saccheri; repeat (split; trivial).
 Qed.
 
 Lemma lta123234_os_per2__lt : forall A B C D,
   Per B A D -> Per A D C ->
-  OS A D B C -> LtA A B C B C D ->
+  OS A D B C -> 角度小于 A B C B C D ->
   Lt D C B A.
 Proof.
   intros.
@@ -228,22 +228,22 @@ Qed.
 
 Lemma conga_per2_os__cong : forall A B C D,
   Per B A D -> Per A D C ->
-  OS A D B C -> CongA B C D A B C ->
+  OS A D B C -> 等角 B C D A B C ->
   Cong A B C D.
 Proof.
-  intros A B C D HPer1 HPer2 Hos HCongA.
+  intros A B C D HPer1 HPer2 Hos H等角.
   destruct (or_lt_cong_gt A B C D) as [Hlt | [Hlt | Hcong]]; trivial; exfalso.
   - destruct (lt_os_per2__lta A B C D); auto.
   - unfold Gt in Hlt.
     apply lt_comm in Hlt.
-    destruct (lt4321_os_per2__lta A B C D); CongA.
+    destruct (lt4321_os_per2__lta A B C D); 等角.
 Qed.
 
 (** The two following lemmas constitute Theorem 21.11 *)
 
 Lemma mid2_sac__perp_lower : forall A B C D M N,
   Saccheri A B C D ->
-  Midpoint M B C -> Midpoint N A D ->
+  中点 M B C -> 中点 N A D ->
   Perp A D M N.
 Proof.
   intros A B C D M N HSac HM HN.
@@ -254,7 +254,7 @@ Proof.
   assert_diffs.
   assert(HSAS := l11_49 M B A M C D).
   destruct HSAS; Cong.
-    apply (l11_10 C B A B C D); [CongA|Out..].
+    apply (l11_10 C B A B C D); [等角|Out..].
   apply (l8_16_2 _ _ _ A); Col.
   { apply one_side_not_col124 with B.
     apply l9_17 with C; Between.
@@ -264,7 +264,7 @@ Proof.
 Qed.
 
 Lemma mid2_sac__perp_upper : forall A B C D M N, Saccheri A B C D ->
-  Midpoint M B C -> Midpoint N A D -> Perp B C M N.
+  中点 M B C -> 中点 N A D -> Perp B C M N.
 Proof.
   intros A B C D M N HSac HM HN.
   assert(Hdiff := sac_distincts A B C D HSac).
@@ -290,7 +290,7 @@ Proof.
   split; auto.
 Qed.
 
-Lemma sac__pars1423 : forall A B C D, Saccheri A B C D -> Par_strict A D B C.
+Lemma sac__pars1423 : forall A B C D, Saccheri A B C D -> 严格平行 A D B C.
 Proof.
   intros A B C D HSac.
   assert(HM := midpoint_existence B C).
@@ -316,7 +316,7 @@ Qed.
 
 Lemma mid2_sac__lam6521 : forall A B C D M N,
   Saccheri A B C D ->
-  Midpoint M B C -> Midpoint N A D ->
+  中点 M B C -> 中点 N A D ->
   Lambert N M B A.
 Proof.
   intros A B C D M N HSac HM HN.
@@ -338,7 +338,7 @@ Qed.
 
 Lemma mid2_sac__lam6534 : forall A B C D M N,
   Saccheri A B C D ->
-  Midpoint M B C -> Midpoint N A D ->
+  中点 M B C -> 中点 N A D ->
   Lambert N M C D.
 Proof.
   intros A B C D M N HSac HM HN.
@@ -347,7 +347,7 @@ Qed.
 
 Lemma lam6521_mid2__sac : forall A B C D M N,
   Lambert N M B A ->
-  Midpoint M B C -> Midpoint N A D ->
+  中点 M B C -> 中点 N A D ->
   Saccheri A B C D.
 Proof.
   intros A B C D M N HLam HM HN.
@@ -356,18 +356,18 @@ Proof.
   spliter.
   assert_diffs.
   assert(Per D A B) by (apply (l8_3 N); Col).
-  assert(ReflectL D A M N).
+  assert(严格对称 D A M N).
   { split.
     exists N; Col.
     left; apply (perp_col1 _ _ _ N); Col; Perp.
   }
-  assert(ReflectL A D M N) by (apply l10_4_spec; auto).
-  assert(ReflectL C B M N).
+  assert(严格对称 A D M N) by (apply l10_4_spec; auto).
+  assert(严格对称 C B M N).
   { split.
     exists M; Col.
     left; apply (perp_col1 _ _ _ M); Col; Perp.
   }
-  assert(ReflectL B C M N) by (apply l10_4_spec; auto).
+  assert(严格对称 B C M N) by (apply l10_4_spec; auto).
   repeat split; auto.
   - Perp.
   - apply (image_spec_preserves_per D A B _ _ _ M N); auto.
@@ -381,12 +381,12 @@ Qed.
 
 Lemma lam6534_mid2__sac : forall A B C D M N,
   Lambert N M C D ->
-  Midpoint M B C -> Midpoint N A D ->
+  中点 M B C -> 中点 N A D ->
   Saccheri A B C D.
 Proof.
   intros A B C D M N HLam HM HN.
   apply sac_perm.
-  apply (lam6521_mid2__sac _ _ _ _ M N); Midpoint.
+  apply (lam6521_mid2__sac _ _ _ _ M N); 中点.
 Qed.
 
 (** The six following lemmas constitute Theorem 22.5 *)
@@ -409,7 +409,7 @@ Qed.
 Lemma lam_lt__acute : forall A B C D,
   Lambert A B C D ->
   Lt A D B C ->
-  Acute B C D.
+  为锐角 B C D.
 Proof.
   intros A B C D HLam HLt.
   assert (HLam' := HLam).
@@ -424,7 +424,7 @@ Qed.
 Lemma lam_lt__obtuse : forall A B C D,
   Lambert A B C D ->
   Lt B C A D ->
-  Obtuse B C D.
+  为钝角 B C D.
 Proof.
   intros A B C D HLam HLt.
   assert (HLam' := HLam).
@@ -455,10 +455,10 @@ Qed.
 
 Lemma acute_lam__lt : forall A B C D,
   Lambert A B C D ->
-  Acute B C D ->
+  为锐角 B C D ->
   Lt A D B C.
 Proof.
-  intros A B C D HLam HAcute.
+  intros A B C D HLam H为锐角.
   destruct (or_lt_cong_gt A D B C) as [|Habs]; trivial.
   exfalso; apply (nlta B C D).
   destruct Habs.
@@ -472,10 +472,10 @@ Qed.
 
 Lemma lam_obtuse__lt : forall A B C D,
   Lambert A B C D ->
-  Obtuse B C D ->
+  为钝角 B C D ->
   Lt B C A D.
 Proof.
-  intros A B C D HLam HObtuse.
+  intros A B C D HLam H为钝角.
   destruct (or_lt_cong_gt A D B C) as [Habs|[Habs|HLt]]; trivial;
   exfalso; apply (nlta B C D).
   - apply acute_obtuse__lta; trivial.
@@ -513,7 +513,7 @@ Qed.
 
 Lemma lt_sac__acute : forall A B C D,
   Saccheri A B C D ->
-  Lt A D B C <-> Acute A B C.
+  Lt A D B C <-> 为锐角 A B C.
 Proof.
   intros A B C D HSac.
   assert(HM := midpoint_existence B C).
@@ -521,7 +521,7 @@ Proof.
   assert(HN := midpoint_existence A D).
   destruct HN as [N HN].
   assert(HLam := mid2_sac__lam6521 A B C D M N HSac HM HN).
-  assert (HCongA : CongA A B C M B A).
+  assert (H等角 : 等角 A B C M B A).
   { apply sac_distincts in HSac; spliter.
     assert_diffs.
     apply conga_right_comm, out2__conga.
@@ -530,10 +530,10 @@ Proof.
   }
   split.
   - intro HLt.
-    apply (acute_conga__acute M B A); CongA.
+    apply (acute_conga__acute M B A); 等角.
     apply (lam_lt__acute N); trivial.
     apply lt_comm, lt_mid2__lt12 with D C; trivial.
-  - intro HAcute.
+  - intro H为锐角.
     apply lt_mid2__lt13 with N M; trivial.
     apply lt_comm, acute_lam__lt; trivial.
     apply (acute_conga__acute A B C); trivial.
@@ -541,7 +541,7 @@ Qed.
 
 Lemma lt_sac__obtuse : forall A B C D,
   Saccheri A B C D ->
-  Lt B C A D <-> Obtuse A B C.
+  Lt B C A D <-> 为钝角 A B C.
 Proof.
   intros A B C D HSac.
   assert(HM := midpoint_existence B C).
@@ -549,7 +549,7 @@ Proof.
   assert(HN := midpoint_existence A D).
   destruct HN as [N HN].
   assert(HLam := mid2_sac__lam6521 A B C D M N HSac HM HN).
-  assert (HCongA : CongA A B C M B A).
+  assert (H等角 : 等角 A B C M B A).
   { apply sac_distincts in HSac; spliter.
     assert_diffs.
     apply conga_right_comm, out2__conga.
@@ -558,10 +558,10 @@ Proof.
   }
   split.
   - intro HLt.
-    apply (conga_obtuse__obtuse M B A); CongA.
+    apply (conga_obtuse__obtuse M B A); 等角.
     apply (lam_lt__obtuse N); trivial.
     apply lt_comm, lt_mid2__lt12 with C D; trivial.
-  - intro HObtuse.
+  - intro H为钝角.
     apply lt_mid2__lt13 with M N; trivial.
     apply lt_comm, lam_obtuse__lt; trivial.
     apply (conga_obtuse__obtuse A B C); trivial.
@@ -609,7 +609,7 @@ Proof.
   }
   apply (bet_suma__per _ _ _ B P C); auto.
   assert (P <> Q) by (intro; treat_equalities; auto).
-  apply (conga3_suma__suma B P Q Q P C B P C); [SumA|..|CongA].
+  apply (conga3_suma__suma B P Q Q P C B P C); [SumA|..|等角].
   - apply (l11_10 B P Q A B P); Out.
     apply conga_sym, sac__conga, HSac1.
 
@@ -625,7 +625,7 @@ Lemma t22_7__acute : forall A B C D P Q,
   A <> Q ->
   Per P Q A ->
   Lt P Q A B ->
-  Acute A B C.
+  为锐角 A B C.
 Proof.
   intros A B C D P Q HSac HP HQ HAQ HPerQ Hlt.
   assert(HSac' := HSac).
@@ -655,24 +655,24 @@ Proof.
       apply coplanar_perm_3, col_cop__cop with B; Col; Cop.
     apply (par_strict_not_col_2 A B C D HPar'); ColR.
   }
-  assert(Hlta1 : LtA A B C B P Q).
+  assert(Hlta1 : 角度小于 A B C B P Q).
   { apply (conga_preserves_lta A B P B P Q); try (apply conga_refl); auto.
       apply out2__conga; Out.
     apply lt4321_os_per2__lta; Le; Perp.
       apply (per_col _ _ D); Col.
     apply (col_one_side _ D); Col; apply (l9_17 _ _ C); auto.
   }
-  assert(Hlta2 : LtA A B C C P Q).
+  assert(Hlta2 : 角度小于 A B C C P Q).
   { apply (conga_preserves_lta D C P C P Q); try (apply conga_refl); auto.
     - apply sac__conga in HSac.
-      apply (l11_10 D C B A B C); [CongA|Out..].
+      apply (l11_10 D C B A B C); [等角|Out..].
     - apply lt4321_os_per2__lta; auto.
         apply (per_col _ _ A); Perp; Col.
         apply (l8_3 A); Perp; Col.
         apply (col_one_side _ A); Col; apply (l9_17 _ _ B); Between; Side.
         apply (cong2_lt__lt P Q A B); Cong.
   }
-  destruct (angle_partition B P Q) as [HAcute|[HPer|HObtuse]]; auto.
+  destruct (angle_partition B P Q) as [H为锐角|[HPer|H为钝角]]; auto.
   - apply acute_lea_acute with B P Q; Lea.
   - exists B, P, Q; auto.
   - apply acute_lea_acute with C P Q; Lea.
@@ -685,7 +685,7 @@ Lemma t22_7__obtuse : forall A B C D P Q,
   A <> Q ->
   Per P Q A ->
   Lt A B P Q ->
-  Obtuse A B C.
+  为钝角 A B C.
 Proof.
   intros A B C D P Q HSac HP HQ HAQ HPerQ Hlt.
   assert(HSac' := HSac).
@@ -714,17 +714,17 @@ Proof.
       apply coplanar_perm_3, col_cop__cop with B; Col; Cop.
     apply (par_strict_not_col_2 A B C D HPar'); ColR.
   }
-  assert (LtA B P Q A B C).
+  assert (角度小于 B P Q A B C).
   { apply (conga_preserves_lta B P Q A B P); try (apply conga_refl); auto.
       apply out2__conga; [apply out_trivial|apply l6_6, bet_out]; auto.
     apply lt_os_per2__lta; Perp.
       apply (per_col _ _ D); Col.
     apply (col_one_side _ D); Col; apply (l9_17 _ _ C); auto.
   }
-  assert (LtA C P Q A B C).
+  assert (角度小于 C P Q A B C).
   { apply (conga_preserves_lta Q P C P C D); try (apply conga_pseudo_refl); auto.
     - apply sac__conga in HSac.
-      apply (l11_10 B C D A B C); [CongA|Out..].
+      apply (l11_10 B C D A B C); [等角|Out..].
     - apply lt4321_os_per2__lta.
         apply (per_col _ _ A); Perp; Col.
         apply (l8_3 A); Col.
@@ -732,11 +732,11 @@ Proof.
         apply one_side_symmetry, (l9_17 _ _ B); Side; Between.
         apply (cong2_lt__lt A B P Q); Cong.
   }
-  destruct (angle_partition B P Q) as [HAcute|[HPer|HObtuse]]; auto.
-  - apply lea_obtuse_obtuse with C P Q; [|unfold GeA; Lea].
+  destruct (angle_partition B P Q) as [H为锐角|[HPer|H为钝角]]; auto.
+  - apply lea_obtuse_obtuse with C P Q; [|unfold 角度大于等于; Lea].
     apply (acute_bet__obtuse B); auto.
   - exists B, P, Q; auto.
-  - apply lea_obtuse_obtuse with B P Q; [|unfold GeA]; Lea.
+  - apply lea_obtuse_obtuse with B P Q; [|unfold 角度大于等于]; Lea.
 Qed.
 
 Lemma t22_7__cong : forall A B C D P Q,
@@ -767,7 +767,7 @@ Lemma t22_7__lt5612 : forall A B C D P Q,
   Saccheri A B C D ->
   Bet B P C -> Bet A Q D ->
   A <> Q -> Q <> D ->
-  Per P Q A -> Acute A B C ->
+  Per P Q A -> 为锐角 A B C ->
   Lt P Q A B.
 Proof.
   intros A B C D P Q HSac HP HQ HAQ HQD HPerQ Hacute.
@@ -792,7 +792,7 @@ Lemma t22_7__lt1256 : forall A B C D P Q,
   Saccheri A B C D ->
   Bet B P C -> Bet A Q D ->
   A <> Q -> Q <> D ->
-  Per P Q A -> Obtuse A B C ->
+  Per P Q A -> 为钝角 A B C ->
   Lt A B P Q.
 Proof.
   intros A B C D P Q HSac HP HQ HAQ HQD HPerQ Hobtuse.
@@ -816,7 +816,7 @@ Qed.
 Lemma t22_8_aux : forall A B C D R S J,
   Saccheri A B C D -> Bet B C R -> Bet A D S -> D <> S -> Per A S R ->
   Out S R J -> Cong S J A B ->
-  C <> R /\ Saccheri A B J S /\ Saccheri D C J S /\ OS S J C B /\ Coplanar A B C J.
+  C <> R /\ Saccheri A B J S /\ Saccheri D C J S /\ OS S J C B /\ 共面 A B C J.
 Proof.
   intros A B C D R S J HSac HR HS HDS HPer HJ1 HJ2.
   assert(HSac' := HSac).
@@ -880,7 +880,7 @@ Lemma t22_8__acute : forall A B C D R S,
   D <> S ->
   Per A S R ->
   Lt A B R S ->
-  Acute A B C.
+  为锐角 A B C.
 Proof.
   intros A B C D R S HSac HR HS HDS HPer Hlt.
   assert(Hdiff := sac_distincts A B C D HSac).
@@ -890,12 +890,12 @@ Proof.
   destruct HJ as [[J []] _].
   assert_diffs.
   assert(J <> R) by (intro; subst J; destruct Hlt; Cong).
-  assert(CongA A B C B C D) by (apply sac__conga; auto).
+  assert(等角 A B C B C D) by (apply sac__conga; auto).
   destruct (t22_8_aux A B C D R S J) as [HCR [HSac1 [HSac2 [HOS HCop]]]]; [Out; Cong..|].
   apply (acute_lea_acute _ _ _ B C D); Lea.
   apply (acute_chara _ _ _ R); auto.
-  assert(CongA A B J B J S) by (apply sac__conga; auto).
-  assert(CongA D C J C J S) by (apply sac__conga; auto).
+  assert(等角 A B J B J S) by (apply sac__conga; auto).
+  assert(等角 D C J C J S) by (apply sac__conga; auto).
   assert_diffs.
   assert(HPar1 := sac__pars1234 A B J S HSac1).
   assert(HPar2 := sac__pars1423 D C J S HSac2).
@@ -913,13 +913,13 @@ Proof.
   }
   assert (HNCol2 : ~ Col J B C) by (apply two_sides_not_col with S; auto).
   apply (sams_lta2_suma2__lta A B J J B C _ _ _ D C J J C R); [..|SumA].
-  - apply (conga_preserves_lta S J B S J C); CongA.
+  - apply (conga_preserves_lta S J B S J C); 等角.
     split.
       apply inangle__lea; Side.
     intro Habs.
     apply HNCol2, out_col, (conga_os__out S); Side.
 
-  - apply (conga_preserves_lta C B J J C R); CongA.
+  - apply (conga_preserves_lta C B J J C R); 等角.
     apply l11_41; Col.
 
   - apply os_ts__sams; trivial.
@@ -927,7 +927,7 @@ Proof.
     apply sac__pars1234, HSac2.
 
   - exists C.
-    repeat (split; CongA); [|Cop].
+    repeat (split; 等角); [|Cop].
     assert(HPar3 := sac__pars1423 A B J S HSac1).
     apply l9_9, (l9_8_2 _ _ S); [|Side].
     apply l9_2, (l9_8_2 _ _ R).
@@ -941,7 +941,7 @@ Lemma t22_8__obtuse : forall A B C D R S,
   D <> S ->
   Per A S R ->
   Lt R S A B ->
-  Obtuse A B C.
+  为钝角 A B C.
 Proof.
   intros A B C D R S HSac HR HS HDS HPer Hlt.
   assert(Hdiff := sac_distincts A B C D HSac).
@@ -952,12 +952,12 @@ Proof.
   assert(HPar := sac__pars1423 A B C D HSac).
   assert(R <> I) by (intro; subst I; destruct Hlt; Cong).
   assert(R <> S) by (intro; apply HPar; exists R; subst; split; Col).
-  assert(CongA A B C B C D) by (apply sac__conga; auto).
+  assert(等角 A B C B C D) by (apply sac__conga; auto).
   destruct (t22_8_aux A B C D R S I) as [HCR [HSac1 [HSac2 [HOS HCop]]]]; [Out; Cong..|].
-  apply (lea_obtuse_obtuse _ _ _ B C D); [|apply conga__lea; CongA].
+  apply (lea_obtuse_obtuse _ _ _ B C D); [|apply conga__lea; 等角].
   apply (obtuse_chara _ _ _ R); auto.
-  assert(CongA A B I B I S) by (apply sac__conga; auto).
-  assert(CongA D C I C I S) by (apply sac__conga; auto).
+  assert(等角 A B I B I S) by (apply sac__conga; auto).
+  assert(等角 D C I C I S) by (apply sac__conga; auto).
   assert_diffs.
   assert(HPar1 := sac__pars1234 A B I S HSac1).
   assert(HPar2 := sac__pars1423 D C I S HSac2).
@@ -975,10 +975,10 @@ Proof.
   - apply lta_left_comm, l11_41; Col.
 
   - assert(OS R S C B) by (apply out_one_side; Out; Col).
-    apply (conga_preserves_lta S I C S I B); CongA.
+    apply (conga_preserves_lta S I C S I B); 等角.
     split.
     { exists C.
-      split; CongA.
+      split; 等角.
       apply os2__inangle; Side.
       apply one_side_transitivity with R.
       - apply par_strict_not_col_2 in HPar1.
@@ -997,7 +997,7 @@ Proof.
   - SumA.
 
   - exists A.
-    repeat (split; CongA); [|Cop].
+    repeat (split; 等角); [|Cop].
     assert (OS B C A S) by (apply par_strict_all_one_side with D; Par; Col).
     apply l9_9, l9_2, (l9_8_2 _ _ S); Side.
     repeat split; Col.
@@ -1031,7 +1031,7 @@ Lemma t22_8__lt1256 : forall A B C D R S,
   Saccheri A B C D ->
   Bet B C R -> Bet A D S ->
   D <> S ->
-  Per A S R -> Acute A B C ->
+  Per A S R -> 为锐角 A B C ->
   Lt A B R S.
 Proof.
   intros A B C D R S HSac.
@@ -1053,7 +1053,7 @@ Lemma t22_8__lt5612 : forall A B C D R S,
   Saccheri A B C D ->
   Bet B C R -> Bet A D S ->
   D <> S ->
-  Per A S R -> Obtuse A B C ->
+  Per A S R -> 为钝角 A B C ->
   Lt R S A B.
 Proof.
   intros A B C D R S HSac.
@@ -1078,7 +1078,7 @@ Qed.
 Lemma t22_9_aux : forall N M P Q R S,
   Lambert N M P Q -> Lambert N M R S ->
   Bet M P R -> Bet N Q S ->
-  (Per S R M <-> Per Q P M) /\ (Acute S R M <-> Acute Q P M).
+  (Per S R M <-> Per Q P M) /\ (为锐角 S R M <-> 为锐角 Q P M).
 Proof.
   intros N M P Q R S HLamP HLamR HR HS.
   destruct(两点重合的决定性 Q S).
@@ -1121,23 +1121,23 @@ Proof.
   assert(S' <> Q) by (intro; treat_equalities; auto).
   repeat split; intro.
   - apply (per_col _ _ P'); Col.
-    apply (l11_17 Q' P' P); CongA.
+    apply (l11_17 Q' P' P); 等角.
     apply (t22_8__per _ _ _ Q R S); auto.
     apply 等长的对称性.
     apply (等长的传递性 _ _ S' R'); auto.
     apply (等长的传递性 _ _ P Q); auto.
     apply (t22_7__cong _ _ R S); Perp.
-    apply (l11_17 S R R'); CongA.
+    apply (l11_17 S R R'); 等角.
     apply (per_col _ _ M); Col.
 
   - apply (per_col _ _ R'); Col.
-    apply (l11_17 S' R' R); CongA.
+    apply (l11_17 S' R' R); 等角.
     apply (t22_7__per _ _ _ S P Q); Perp.
     apply 等长的对称性.
     apply (等长的传递性 _ _ Q' P'); auto.
     apply (等长的传递性 _ _ R S); auto.
     apply (t22_8__cong _ _ P Q); auto.
-    apply (l11_17 Q P P'); CongA.
+    apply (l11_17 Q P P'); 等角.
     apply (per_col _ _ M); Col.
 
   - apply (acute_conga__acute Q' P' P).
@@ -1145,18 +1145,18 @@ Proof.
       apply (cong2_lt__lt P Q S' R'); Cong.
       apply (t22_7__lt5612 _ _ R S); Perp.
       apply (acute_conga__acute S R M); auto.
-      apply (l11_10 S R R' S' R' R); [CongA|Out..].
+      apply (l11_10 S R R' S' R' R); [等角|Out..].
     }
-    apply (l11_10 Q' P' P Q P P'); [CongA|Out..].
+    apply (l11_10 Q' P' P Q P P'); [等角|Out..].
 
   - apply (acute_conga__acute S' R' R).
     { apply (t22_7__acute _ _ _ S P Q); Perp.
       apply (cong2_lt__lt Q' P' R S); Cong.
       apply (t22_8__lt1256 _ _ P Q); auto.
       apply (acute_conga__acute Q P M); auto.
-      apply (l11_10 Q P P' Q' P' P); [CongA|Out..].
+      apply (l11_10 Q P P' Q' P' P); [等角|Out..].
     }
-    apply (l11_10 S' R' R S R R'); [CongA|Out..].
+    apply (l11_10 S' R' R S R R'); [等角|Out..].
 Qed.
 
 Lemma t22_9__per : forall N M P Q R S,
@@ -1171,7 +1171,7 @@ Qed.
 Lemma t22_9__acute : forall N M P Q R S,
   Lambert N M P Q -> Lambert N M R S ->
   Bet M P R -> Bet N Q S ->
-  (Acute S R M <-> Acute Q P M).
+  (为锐角 S R M <-> 为锐角 Q P M).
 Proof.
   intros N M P Q R S HLamP HLamR HR HS.
   apply (t22_9_aux N); assumption.
@@ -1180,7 +1180,7 @@ Qed.
 Lemma t22_9__obtuse : forall N M P Q R S,
   Lambert N M P Q -> Lambert N M R S ->
   Bet M P R -> Bet N Q S ->
-  (Obtuse S R M <-> Obtuse Q P M).
+  (为钝角 S R M <-> 为钝角 Q P M).
 Proof.
   intros N M P Q R S HLamP HLamR HR HS.
   destruct (t22_9_aux N M P Q R S HLamP HLamR HR HS) as [[][]].
@@ -1201,13 +1201,13 @@ Qed.
 Lemma cong2_lam2__cong_conga : forall N M P Q N' M' P' Q',
   Lambert N M P Q -> Lambert N' M' P' Q' ->
   Cong N Q N' Q' -> Cong P Q P' Q' ->
-  Cong N M N' M' /\ CongA M P Q M' P' Q'.
+  Cong N M N' M' /\ 等角 M P Q M' P' Q'.
 Proof.
   intros N M P Q N' M' P' Q' HLam HLam' HCong1 HCong2.
-  assert(Par_strict N Q M P) by (apply lam__pars1423, HLam).
-  assert(Par_strict N M P Q) by (apply lam__pars1234, HLam).
-  assert(Par_strict N' Q' M' P') by (apply lam__pars1423, HLam').
-  assert(Par_strict N' M' P' Q') by (apply lam__pars1234, HLam').
+  assert(严格平行 N Q M P) by (apply lam__pars1423, HLam).
+  assert(严格平行 N M P Q) by (apply lam__pars1234, HLam).
+  assert(严格平行 N' Q' M' P') by (apply lam__pars1423, HLam').
+  assert(严格平行 N' M' P' Q') by (apply lam__pars1234, HLam').
   unfold Lambert in *.
   spliter.
   assert(~ Col N M P) by (apply per_not_col; auto).
@@ -1215,16 +1215,16 @@ Proof.
   assert(~ Col M' N' Q') by (apply per_not_col; auto).
   assert_diffs.
   assert(HSAS := l11_49 N Q P N' Q' P').
-  destruct HSAS as [HCong3 [HConga1 HConga2]]; Cong; [CongA|].
-  assert(CongA M N P M' N' P').
+  destruct HSAS as [HCong3 [HConga1 HConga2]]; Cong; [等角|].
+  assert(等角 M N P M' N' P').
   { apply (l11_22b _ _ _ Q _ _ _ Q').
-    repeat (split; CongA); Side.
+    repeat (split; 等角); Side.
   }
   assert(HAAS := l11_50_2 P N M P' N' M').
-  destruct HAAS as [HCong4 [HCong5 HCong6]]; [Col|CongA..|Cong|].
+  destruct HAAS as [HCong4 [HCong5 HCong6]]; [Col|等角..|Cong|].
   split; trivial.
   apply (l11_22a _ _ _ N _ _ _ N').
-  repeat (split; Side; CongA).
+  repeat (split; Side; 等角).
 Qed.
 
 Lemma cong2_sac2__cong : forall A B C D A' B' C' D',
@@ -1237,11 +1237,11 @@ Proof.
   assert(Hdiff' := sac_distincts A' B' C' D' HSac').
   unfold Saccheri in *.
   spliter.
-  destruct (l11_49 B A D B' A' D') as [HCongD [HConga1 HConga2]]; Cong; CongA.
+  destruct (l11_49 B A D B' A' D') as [HCongD [HConga1 HConga2]]; Cong; 等角.
   destruct (l11_49 B D C B' D' C'); Cong;
   [|apply (等长的传递性 _ _ A B); Cong; apply (等长的传递性 _ _ A' B'); Cong].
   apply (l11_22b _ _ _ A _ _ _ A').
-  repeat (split; CongA); Side.
+  repeat (split; 等角); Side.
 Qed.
 
 Lemma sac__perp1214 : forall A B C D, Saccheri A B C D -> Perp A B A D.
@@ -1259,7 +1259,7 @@ Proof.
 Qed.
 
 Lemma cop_sac2__sac : forall A B C D E F,
-  Saccheri A B C D -> Saccheri A B E F -> D<>F -> Coplanar A B D F -> Saccheri D C E F.
+  Saccheri A B C D -> Saccheri A B E F -> D<>F -> 共面 A B D F -> Saccheri D C E F.
 Proof.
   intros A B C D E F HSac HSac2 HDF HCop.
   assert(HPerp := sac__perp1214 _ _ _ _ HSac); assert(HPerp2 := sac__perp1214 _ _ _ _ HSac2).
@@ -1281,9 +1281,9 @@ Qed.
 
 Lemma three_hypotheses_aux : forall A B C D M N A' B' C' D' M' N',
   Saccheri A B C D -> Saccheri A' B' C' D' ->
-  Midpoint M B C -> Midpoint M' B' C' -> Midpoint N A D -> Midpoint N' A' D' ->
+  中点 M B C -> 中点 M' B' C' -> 中点 N A D -> 中点 N' A' D' ->
   Le M N M' N' ->
-  (Per A B C <-> Per A' B' C') /\ (Acute A B C <-> Acute A' B' C').
+  (Per A B C <-> Per A' B' C') /\ (为锐角 A B C <-> 为锐角 A' B' C').
 Proof.
   intros A B C D M N A' B' C' D' M' N' HSac HSac' HM HM' HN HN' Hle.
   assert(HLam1 := mid2_sac__lam6534 A B C D M N HSac HM HN).
@@ -1320,7 +1320,7 @@ Proof.
     apply per_not_col; auto.
     apply (per_col _ _ D); auto; ColR.
   }
-  assert (HCop : Coplanar A D M G).
+  assert (HCop : 共面 A D M G).
   { apply coplanar_trans_1 with C; Col.
       apply coplanar_perm_12, col_cop__cop with B; Col; Cop.
       apply coplanar_perm_5, col_cop__cop with N; Col; Cop.
@@ -1367,7 +1367,7 @@ Proof.
       apply coplanar_pseudo_trans with A D M; [Col|Cop| |Cop..].
       exists N; left; split; Col.
   }
-  assert(Par_strict N D M C) by (apply lam__pars1423, HLam1).
+  assert(严格平行 N D M C) by (apply lam__pars1423, HLam1).
   assert(Bet N M L).
   { destruct (cong2_lam2__cong_conga N' M' C' D' N L G H); Cong.
     apply l6_13_1; [|apply (l5_6 M N M' N'); Cong].
@@ -1379,7 +1379,7 @@ Proof.
   }
   assert(HNCol5 : ~ Col N M C) by (unfold Lambert in HLam1; spliter; apply per_not_col; auto).
   assert(HNCol6 : ~ Col N D M) by (apply (par_strict_not_col_1 _ _ _ C); auto).
-  assert (Coplanar M C D A).
+  assert (共面 M C D A).
     apply pars__coplanar, par_strict_col_par_strict with N; Col; Par.
   assert(HK : exists K, Col K M C /\ Bet G K H).
   { elim(两点重合的决定性 L M).
@@ -1410,9 +1410,9 @@ Proof.
   destruct HK as [K []].
   assert(HNCol7 : ~ Col H M C) by (apply (par_not_col N D); Col).
   assert(K <> H) by (intro; subst K; auto).
-  assert(Par_strict N M C D) by (apply lam__pars1234, HLam1).
+  assert(严格平行 N M C D) by (apply lam__pars1234, HLam1).
   assert(HNCol8 : ~ Col N C D) by (apply (par_strict_not_col_2 M); Par).
-  assert(Par_strict M N H K).
+  assert(严格平行 M N H K).
   { apply par_strict_col_par_strict with G; Col.
     apply par_strict_comm, par_strict_symmetry, par_strict_col_par_strict with L; Col.
     apply par_strict_symmetry, lam__pars1234, HLam2.
@@ -1437,7 +1437,7 @@ Proof.
       apply coplanar_perm_7, pars__coplanar; assumption.
   }
   assert(HConga := sac__conga A B C D HSac).
-  assert(CongA A' B' C' H G L).
+  assert(等角 A' B' C' H G L).
   { apply (conga_trans _ _ _ M' C' D').
       apply (l11_10 A' B' C' B' C' D'); [apply sac__conga, HSac'|Out..].
     apply conga_right_comm, (cong2_lam2__cong_conga N' _ _ _ N); Cong.
@@ -1452,7 +1452,7 @@ Proof.
         apply os__coplanar, par_strict_all_one_side with M; Par; Col.
       apply perp_comm, (perp_col _ G); Col; apply (perp_col1 _ _ _ A); Perp; Col.
     }
-    assert (Par_strict C D K H).
+    assert (严格平行 C D K H).
     { destruct HPar; auto.
       exfalso.
       unfold Lambert in *.
@@ -1476,12 +1476,12 @@ Proof.
   }
   spliter; split; split; intro.
 
-  - apply (l11_17 L G H); CongA.
+  - apply (l11_17 L G H); 等角.
     apply (t22_9__per N _ K M); try (apply lam_perm); Between.
     apply l8_2.
     assert(Per D C M).
     { apply (l11_17 A B C); auto.
-      apply (l11_10 A B C D C B); [CongA|Out..].
+      apply (l11_10 A B C D C B); [等角|Out..].
     }
     destruct HMout as [_ [_ [HMCK|HMKC]]].
       apply (t22_9__per N _ C D); auto.
@@ -1490,34 +1490,34 @@ Proof.
   - apply (l11_17 D C M).
     { assert(Per H K M).
         apply l8_2, (t22_9__per N _ _ _ G L); try (apply lam_perm); Between.
-        apply (l11_17 A' B' C'); CongA.
+        apply (l11_17 A' B' C'); 等角.
       destruct HMout as [_ [_ [HMCK|HMKC]]].
         apply (t22_9__per N _ _ _ K H); auto.
         apply (t22_9__per N _ K H); auto.
     }
-    apply (l11_10 D C B A B C); [CongA|Out..].
+    apply (l11_10 D C B A B C); [等角|Out..].
 
-  - apply (acute_conga__acute L G H); CongA.
+  - apply (acute_conga__acute L G H); 等角.
     apply (t22_9__acute N _ K M); try (apply lam_perm); Between.
     apply acute_sym.
-    assert(Acute D C M).
+    assert(为锐角 D C M).
     { apply (acute_conga__acute A B C); auto.
-      apply (l11_10 A B C D C B); [CongA|Out..].
+      apply (l11_10 A B C D C B); [等角|Out..].
     }
     destruct HMout as [_ [_ [HMCK|HMKC]]].
       apply (t22_9__acute N _ C D); auto.
       apply (t22_9__acute N _ _ _ C D); auto.
 
   - apply (acute_conga__acute D C M).
-    { assert(Acute H K M).
+    { assert(为锐角 H K M).
         apply acute_sym.
           apply (t22_9__acute N _ _ _ G L); try (apply lam_perm); Between.
-          apply (acute_conga__acute A' B' C'); CongA.
+          apply (acute_conga__acute A' B' C'); 等角.
       destruct HMout as [_ [_ [HMCK|HMKC]]].
         apply (t22_9__acute N _ _ _ K H); auto.
         apply (t22_9__acute N _ K H); auto.
     }
-    apply (l11_10 D C B A B C); [CongA|Out..].
+    apply (l11_10 D C B A B C); [等角|Out..].
 Qed.
 
 
@@ -1525,9 +1525,9 @@ Qed.
 
 Definition hypothesis_of_right_saccheri_quadrilaterals := forall A B C D, Saccheri A B C D -> Per A B C.
 
-Definition hypothesis_of_acute_saccheri_quadrilaterals := forall A B C D, Saccheri A B C D -> Acute A B C.
+Definition hypothesis_of_acute_saccheri_quadrilaterals := forall A B C D, Saccheri A B C D -> 为锐角 A B C.
 
-Definition hypothesis_of_obtuse_saccheri_quadrilaterals := forall A B C D, Saccheri A B C D -> Obtuse A B C.
+Definition hypothesis_of_obtuse_saccheri_quadrilaterals := forall A B C D, Saccheri A B C D -> 为钝角 A B C.
 
 Lemma per_sac__rah : forall A B C D,
   Saccheri A B C D -> Per A B C -> hypothesis_of_right_saccheri_quadrilaterals.
@@ -1549,7 +1549,7 @@ Proof.
 Qed.
 
 Lemma acute_sac__aah : forall A B C D,
-  Saccheri A B C D -> Acute A B C -> hypothesis_of_acute_saccheri_quadrilaterals.
+  Saccheri A B C D -> 为锐角 A B C -> hypothesis_of_acute_saccheri_quadrilaterals.
 Proof.
   intros A B C D HSac HPer A' B' C' D' HSac'.
   assert(HM := midpoint_existence B C).
@@ -1568,7 +1568,7 @@ Proof.
 Qed.
 
 Lemma obtuse_sac__oah : forall A B C D,
-  Saccheri A B C D -> Obtuse A B C -> hypothesis_of_obtuse_saccheri_quadrilaterals.
+  Saccheri A B C D -> 为钝角 A B C -> hypothesis_of_obtuse_saccheri_quadrilaterals.
 Proof.
   intros A B C D HSac HPer A' B' C' D' HSac'.
   assert(Hdiff := sac_distincts A B C D HSac).
@@ -1646,7 +1646,7 @@ Proof.
   assert(Hdiff := sac_distincts A B C D HSac).
   spliter.
   apply (nlta A B C).
-  assert(Acute A B C) by (apply (aah _ _ _ D); auto).
+  assert(为锐角 A B C) by (apply (aah _ _ _ D); auto).
   destruct HUn as [rah|oah].
   - apply (acute_per__lta); auto.
     apply (rah _ _ _ D); auto.
@@ -1680,7 +1680,7 @@ Proof.
   assert(Hdiff := sac_distincts A B C D HSac).
   spliter.
   apply (nlta A B C).
-  assert(Obtuse A B C) by (apply (oah _ _ _ D); auto).
+  assert(为钝角 A B C) by (apply (oah _ _ _ D); auto).
   destruct HUn as [aah|rah].
   - apply (acute_obtuse__lta); auto.
     apply (aah _ _ _ D); auto.
@@ -1715,7 +1715,7 @@ Proof.
 Qed.
 
 Lemma lam_acute__aah : forall A B C D,
-  Lambert A B C D -> (Acute B C D <-> hypothesis_of_acute_saccheri_quadrilaterals).
+  Lambert A B C D -> (为锐角 B C D <-> hypothesis_of_acute_saccheri_quadrilaterals).
 Proof.
   intros A B C D HLam.
   assert(HC' := symmetric_point_construction C B).
@@ -1742,7 +1742,7 @@ Proof.
 Qed.
 
 Lemma lam_obtuse__oah : forall A B C D,
-  Lambert A B C D -> (Obtuse B C D <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
+  Lambert A B C D -> (为钝角 B C D <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
 Proof.
   intros A B C D HLam.
   assert(HC' := symmetric_point_construction C B).
@@ -1770,7 +1770,7 @@ Qed.
 
 
 Lemma t22_11__per : forall A B C D,
-  Saccheri A B C D -> (CongA A B D B D C <-> Per A B C).
+  Saccheri A B C D -> (等角 A B D B D C <-> Per A B C).
 Proof.
   intros A B C D HSac.
   split.
@@ -1779,7 +1779,7 @@ Proof.
     unfold Saccheri in HSac.
     spliter.
     assert(HSAS := l11_49 A B D C D B).
-    destruct HSAS; Cong; CongA.
+    destruct HSAS; Cong; 等角.
 
   - intro HPer.
     apply <- (cong_sac__per A B C D) in HPer; trivial.
@@ -1787,11 +1787,11 @@ Proof.
     unfold Saccheri in HSac.
     spliter.
     assert(HSSS := l11_51 A B D C D B).
-    destruct HSSS as [_ []]; Cong; CongA.
+    destruct HSSS as [_ []]; Cong; 等角.
 Qed.
 
 Lemma t22_11__acute : forall A B C D,
-  Saccheri A B C D -> (LtA A B D B D C <-> Acute A B C).
+  Saccheri A B C D -> (角度小于 A B D B D C <-> 为锐角 A B C).
 Proof.
   intros A B C D HSac.
   split.
@@ -1814,7 +1814,7 @@ Proof.
 Qed.
 
 Lemma t22_11__obtuse : forall A B C D,
-  Saccheri A B C D -> (LtA B D C A B D <-> Obtuse A B C).
+  Saccheri A B C D -> (角度小于 B D C A B D <-> 为钝角 A B C).
 Proof.
   intros A B C D HSac.
   split.
@@ -1847,7 +1847,7 @@ Proof.
   assert(HPars2 := sac__pars1234 B A D C HSac).
   assert(TS C A B D) by (apply l9_31; Side).
   assert_diffs.
-  assert(CongA B C D A B C) by (unfold Saccheri in HSac; spliter; CongA).
+  assert(等角 B C D A B C) by (unfold Saccheri in HSac; spliter; 等角).
   split.
   - intro.
     apply (per_sac__rah B A D C); auto.
@@ -1856,11 +1856,11 @@ Proof.
     apply (sams2_suma2__conga456 B C A _ _ _ _ _ _ A B C); try (apply sams123231); auto.
       apply os_ts__sams; Side.
     exists D.
-    repeat (split; CongA); Side; Cop.
+    repeat (split; 等角); Side; Cop.
 
   - intro rah.
     apply (conga3_suma__suma B C A A C D B C D); try (apply conga_refl); auto.
-      exists D; repeat (split; CongA); Side; Cop.
+      exists D; repeat (split; 等角); Side; Cop.
     apply conga_sym.
     apply conga_left_comm.
     apply t22_11__per; auto.
@@ -1869,7 +1869,7 @@ Qed.
 
 Lemma t22_12__aah : forall A B C P Q R,
   Per A B C -> SumA B C A C A B P Q R ->
-  (Acute P Q R <-> hypothesis_of_acute_saccheri_quadrilaterals).
+  (为锐角 P Q R <-> hypothesis_of_acute_saccheri_quadrilaterals).
 Proof.
   intros A B C P Q R HPer HSuma.
   suma.assert_diffs.
@@ -1881,7 +1881,7 @@ Proof.
   assert(HPars1 := sac__pars1423 B A D C HSac).
   assert(HPars2 := sac__pars1234 B A D C HSac).
   assert(TS C A B D) by (apply l9_31; Side).
-  assert(CongA B C D A B C) by CongA.
+  assert(等角 B C D A B C) by 等角.
   split.
   - intro.
     apply (acute_sac__aah B A D C); auto.
@@ -1901,7 +1901,7 @@ Qed.
 
 Lemma t22_12__oah : forall A B C P Q R,
   Per A B C -> SumA B C A C A B P Q R ->
-  (Obtuse P Q R <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
+  (为钝角 P Q R <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
 Proof.
   intros A B C P Q R HPer HSuma.
   suma.assert_diffs.
@@ -1913,7 +1913,7 @@ Proof.
   assert(HPars1 := sac__pars1423 B A D C HSac).
   assert(HPars2 := sac__pars1234 B A D C HSac).
   assert(TS C A B D) by (apply l9_31; Side).
-  assert(CongA B C D A B C) by CongA.
+  assert(等角 B C D A B C) by 等角.
   split.
   - intro.
     apply (obtuse_sac__oah B A D C); auto.
@@ -1931,9 +1931,9 @@ Proof.
 Qed.
 
 Lemma t22_14_aux : forall A B C,
-  ~ Col A B C -> Acute A B C -> Acute A C B ->
+  ~ Col A B C -> 为锐角 A B C -> 为锐角 A C B ->
   exists A', Bet B A' C /\ Per B A' A /\ Per C A' A /\
-  CongA B A' A C A' A /\ CongA A B C A B A' /\ CongA B C A A' C A /\ TS A A' B C.
+  等角 B A' A C A' A /\ 等角 A B C A B A' /\ 等角 B C A A' C A /\ TS A A' B C.
 Proof.
   intros A B C HNCol HacuteB HacuteC.
   destruct (l8_18_existence B C A) as [A' [HCol HPerp]]; Col.
@@ -1944,7 +1944,7 @@ Proof.
   assert_diffs.
   assert(Per B A' A) by (apply perp_per_1, perp_left_comm, (perp_col _ C); Col).
   assert(Per C A' A) by (apply (l8_3 B); Col).
-  do 4 (split; [CongA|]).
+  do 4 (split; [等角|]).
   split; [|split]; [apply out2__conga; Out..|].
   assert(~ Col B A' A) by (apply per_not_col; auto).
   apply invert_two_sides, bet__ts; Col.
@@ -1952,7 +1952,7 @@ Qed.
 
 Lemma t22_14__bet_aux : forall A B C P Q R,
   hypothesis_of_right_saccheri_quadrilaterals ->
-  ~ Col A B C -> TriSumA A B C P Q R -> Acute A B C -> Acute A C B -> Bet P Q R.
+  ~ Col A B C -> TriSumA A B C P Q R -> 为锐角 A B C -> 为锐角 A C B -> Bet P Q R.
 Proof.
   intros A B C P Q R rah HNCol HTri HacuteB HacuteC.
   apply trisuma_perm_312 in HTri.
@@ -1963,16 +1963,16 @@ Proof.
   apply (bet_conga__bet B A' C); auto.
   apply (suma2__conga D E F B C A); auto.
   apply (suma_assoc B A' A C A A' _ _ _ _ _ _ _ _ _ A A' C); [..|SumA].
-    apply (conga2_sams__sams C A' A A' A C); CongA; SumA.
-    apply (conga2_sams__sams A' A C A C A'); CongA; SumA.
+    apply (conga2_sams__sams C A' A A' A C); 等角; SumA.
+    apply (conga2_sams__sams A' A C A C A'); 等角; SumA.
     { apply suma_sym, (suma_assoc _ _ _ A' A B A B C _ _ _ C A B); auto.
       - apply os_ts__sams; Side.
         apply out_one_side; [Col|Out].
-      - apply (conga2_sams__sams A' A B A B A'); CongA; SumA.
+      - apply (conga2_sams__sams A' A B A B A'); 等角; SumA.
       - SumA.
-      - apply (conga3_suma__suma A' A B A B A' B A' A); CongA; apply t22_12__rah; auto.
+      - apply (conga3_suma__suma A' A B A B A' B A' A); 等角; apply t22_12__rah; auto.
     }
-  apply (conga3_suma__suma A' A C A C A' C A' A); CongA; apply t22_12__rah; auto.
+  apply (conga3_suma__suma A' A C A C A' C A' A); 等角; apply t22_12__rah; auto.
 Qed.
 
 (** Under the Right angle hypothesis,
@@ -2005,7 +2005,7 @@ Lemma t22_14__sams_nbet_aux : forall A B C D E F P Q R,
   hypothesis_of_acute_saccheri_quadrilaterals ->
   ~ Col A B C ->
   SumA C A B A B C D E F -> SumA D E F B C A P Q R ->
-  Acute A B C -> Acute A C B ->
+  为锐角 A B C -> 为锐角 A C B ->
   SAMS D E F B C A /\ ~ Bet P Q R.
 Proof.
   intros A B C D E F P Q R aah HNCol HSuma1 HSuma2 HacuteB HacuteC.
@@ -2016,51 +2016,51 @@ Proof.
   assert(HSuma3 := ex_suma B A' A C A A').
   destruct HSuma3 as [G [H [I HSuma3]]]; auto.
   suma.assert_diffs.
-  assert(LtA D E F G H I).
+  assert(角度小于 D E F G H I).
   { assert(HSuma4 := ex_suma A' A B A B C).
     destruct HSuma4 as [V [W [X HSuma4]]]; auto.
     suma.assert_diffs.
     apply (sams_lea_lta456_suma2__lta C A A' V W X _ _ _ C A A' B A' A); [Lea|..|SumA].
-      apply (acute_per__lta); auto; apply (t22_12__aah B A' A); auto; apply (conga3_suma__suma A' A B A B C V W X); CongA.
-      apply (conga2_sams__sams C A A' A A' C); SumA; CongA.
+      apply (acute_per__lta); auto; apply (t22_12__aah B A' A); auto; apply (conga3_suma__suma A' A B A B C V W X); 等角.
+      apply (conga2_sams__sams C A A' A A' C); SumA; 等角.
     apply (suma_assoc _ _ _ A' A B A B C _ _ _ C A B); auto.
     - apply os_ts__sams; Side.
       apply out_one_side; [Col|Out].
-    - apply (conga2_sams__sams A' A B A B A'); SumA; CongA.
-    - exists B; repeat (split; CongA); Side.
+    - apply (conga2_sams__sams A' A B A B A'); SumA; 等角.
+    - exists B; repeat (split; 等角); Side.
       exists C; left; split; Col.
   }
   assert(HSuma4 := ex_suma C A A' B C A).
   destruct HSuma4 as [J [K [L HSuma4]]]; auto.
   suma.assert_diffs.
-  assert(LtA J K L A A' C).
-    apply (acute_per__lta); Perp; apply (t22_12__aah C A' A); auto; apply (conga3_suma__suma C A A' B C A J K L); CongA.
+  assert(角度小于 J K L A A' C).
+    apply (acute_per__lta); Perp; apply (t22_12__aah C A' A); auto; apply (conga3_suma__suma C A A' B C A J K L); 等角.
   assert(SAMS G H I B C A).
   { apply (sams_assoc B A' A C A A' _ _ _ _ _ _ J K L); auto.
-      apply (conga2_sams__sams C A' A A' A C); SumA; CongA.
-      apply (conga2_sams__sams A' A C A C A'); SumA; CongA.
+      apply (conga2_sams__sams C A' A A' A C); SumA; 等角.
+      apply (conga2_sams__sams A' A C A C A'); SumA; 等角.
       apply (sams_chara _ _ _ _ _ _ C); Lea.
   }
   assert(HSuma5 := ex_suma G H I B C A).
   destruct HSuma5 as [S [T [U HSuma5]]]; auto.
   suma.assert_diffs.
-  assert(LtA S T U B A' C).
+  assert(角度小于 S T U B A' C).
   { apply (sams_lea_lta456_suma2__lta B A' A J K L _ _ _ B A' A A A' C); [Lea..|SumA| |SumA].
     apply (suma_assoc _ _ _ C A A' B C A _ _ _ G H I); auto;
       [apply (conga2_sams__sams C A' A A' A C)|apply (conga2_sams__sams A' A C A C A')];
-      SumA; CongA.
+      SumA; 等角.
   }
 
   split.
     apply (sams_lea2__sams _ _ _ _ _ _ G H I B C A); Lea.
   intro.
   apply (nlta P Q R).
-  apply (conga_preserves_lta P Q R B A' C); CongA.
+  apply (conga_preserves_lta P Q R B A' C); 等角.
   apply (lta_trans _ _ _ S T U); auto.
   apply (sams_lea_lta123_suma2__lta D E F B C A _ _ _ G H I B C A); Lea.
 Qed.
 
-(** Under the Acute angle hypothesis,
+(** Under the 为锐角 angle hypothesis,
     the sum of the three angles of a triangle is less than 180
  *)
 
@@ -2077,7 +2077,7 @@ Proof.
 
   - destruct (l11_43 C A B); auto.
     assert(HSuma3 := ex_suma B C A C A B).
-    rename H into HAcute.
+    rename H into H为锐角.
     destruct HSuma3 as [G [H [I HSuma3]]]; auto.
     suma.assert_diffs.
     assert(HInter := t22_14__sams_nbet_aux C A B G H I P Q R).
@@ -2094,7 +2094,7 @@ Qed.
 Lemma t22_14__nsams_aux : forall A B C D E F,
   hypothesis_of_obtuse_saccheri_quadrilaterals ->
   ~ Col A B C ->
-  SumA C A B A B C D E F -> Acute A B C -> Acute A C B ->
+  SumA C A B A B C D E F -> 为锐角 A B C -> 为锐角 A C B ->
   ~ SAMS D E F B C A.
 Proof.
   intros A B C D E F oah HNCol HSuma1 HacuteB HacuteC HIsi.
@@ -2103,12 +2103,12 @@ Proof.
 
   assert(HSuma2 := ex_suma D E F B C A).
   destruct HSuma2 as [P [Q [R HSuma2]]]; suma.assert_diffs; auto.
-  absurd (LtA B A' C P Q R).
+  absurd (角度小于 B A' C P Q R).
     apply (lea__nlta); apply l11_31_2; auto.
   assert(HSuma3 := ex_suma B A' A C A A').
   rename H into HBet.
   destruct HSuma3 as [G [H [I HSuma3]]]; auto.
-  assert(LtA G H I D E F).
+  assert(角度小于 G H I D E F).
   { assert(HSuma4 := ex_suma A' A B A B C).
     destruct HSuma4 as [V [W [X HSuma4]]]; auto.
     suma.assert_diffs.
@@ -2116,10 +2116,10 @@ Proof.
     { apply os_ts__sams; Side.
       apply out_one_side; [Col|Out].
     }
-    assert(SAMS A' A B A B C) by (apply (conga2_sams__sams A' A B A B A'); SumA; CongA).
-    assert(SumA C A A' A' A B C A B) by (exists B; repeat (split; CongA); Side; Cop).
+    assert(SAMS A' A B A B C) by (apply (conga2_sams__sams A' A B A B A'); SumA; 等角).
+    assert(SumA C A A' A' A B C A B) by (exists B; repeat (split; 等角); Side; Cop).
     apply (sams_lea_lta456_suma2__lta C A A' B A' A _ _ _ C A A' V W X); Lea.
-      apply (obtuse_per__lta); auto; apply (t22_12__oah B A' A); auto; apply (conga3_suma__suma A' A B A B C V W X); CongA.
+      apply (obtuse_per__lta); auto; apply (t22_12__oah B A' A); auto; apply (conga3_suma__suma A' A B A B C V W X); 等角.
       apply (sams_assoc _ _ _ A' A B A B C C A B); SumA.
       SumA.
       apply (suma_assoc _ _ _ A' A B A B C _ _ _ C A B); auto.
@@ -2127,26 +2127,26 @@ Proof.
   assert(HSuma4 := ex_suma C A A' B C A).
   destruct HSuma4 as [J [K [L HSuma4]]]; auto.
   suma.assert_diffs.
-  assert(LtA A A' C J K L).
-    apply (obtuse_per__lta); Perp; apply (t22_12__oah C A' A); auto; apply (conga3_suma__suma C A A' B C A J K L); CongA.
+  assert(角度小于 A A' C J K L).
+    apply (obtuse_per__lta); Perp; apply (t22_12__oah C A' A); auto; apply (conga3_suma__suma C A A' B C A J K L); 等角.
   assert(HSuma5 := ex_suma B A' A J K L).
   destruct HSuma5 as [S [T [U HSuma5]]]; auto.
   suma.assert_diffs.
   apply (lta_trans _ _ _ S T U).
   - apply (sams_lea_lta456_suma2__lta B A' A A A' C _ _ _ B A' A J K L); Lea;
-    [|exists C; repeat (split; CongA); Side; Cop].
+    [|exists C; repeat (split; 等角); Side; Cop].
     apply (sams_assoc _ _ _ C A A' B C A G H I); auto.
-      apply (conga2_sams__sams C A' A C A A'); SumA; CongA.
-      apply (conga2_sams__sams C A A' A' C A); SumA; CongA.
+      apply (conga2_sams__sams C A' A C A A'); SumA; 等角.
+      apply (conga2_sams__sams C A A' A' C A); SumA; 等角.
     apply (sams_lea2__sams _ _ _ _ _ _ D E F B C A); Lea.
 
   - apply (sams_lea_lta123_suma2__lta G H I B C A _ _ _ D E F B C A); Lea.
     apply (suma_assoc B A' A C A A' _ _ _ _ _ _ _ _ _ J K L); auto.
-      apply (conga2_sams__sams C A' A C A A'); SumA; CongA.
-      apply (conga2_sams__sams C A A' A' C A); SumA; CongA.
+      apply (conga2_sams__sams C A' A C A A'); SumA; 等角.
+      apply (conga2_sams__sams C A A' A' C A); SumA; 等角.
 Qed.
 
-(** Under the Obtuse angle hypothesis,
+(** Under the 为钝角 angle hypothesis,
     the sum of the three angles of a triangle is greater than 180
  *)
 
@@ -2167,7 +2167,7 @@ Proof.
     assert(HInter := l11_43 C A B).
     destruct HInter; Col.
     assert(HSuma3 := ex_suma B C A C A B).
-    rename H into HAcute.
+    rename H into H为锐角.
     destruct HSuma3 as [G [H [I HSuma3]]]; auto.
     suma.assert_diffs.
     assert(HNIsi := t22_14__nsams_aux C A B G H I).
@@ -2207,11 +2207,11 @@ Proof.
     apply conga_sym in HConga1.
     assert_diffs.
     apply (sams_chara _ _ _ _ _ _ G); Lea.
-    apply (bet_conga__bet P Q R); CongA.
+    apply (bet_conga__bet P Q R); 等角.
 Qed.
 
 (** If the sum of the angles of a triangle is less than 180,
-    then the Acute angle hypothesis holds
+    then the 为锐角 angle hypothesis holds
  *)
 
 Lemma t22_14__aah : forall A B C D E F P Q R,
@@ -2239,7 +2239,7 @@ Proof.
 Qed.
 
 (** If the sum of the angles of a triangle is greater than 180,
-    then the Obtuse angle hypothesis holds
+    then the 为钝角 angle hypothesis holds
  *)
 
 Lemma t22_14__oah : forall A B C D E F,
@@ -2270,23 +2270,23 @@ Qed.
 
 Lemma cong_mid__suma : forall A B C M,
   ~ Col A B C ->
-  Midpoint M A B -> Cong M A M C ->
+  中点 M A B -> Cong M A M C ->
   SumA C A B A B C A C B.
 Proof.
   intros A B C M HNCol HM HCong.
   assert_diffs.
-  assert(CongA A B C M C B).
+  assert(等角 A B C M C B).
   { apply (l11_10 M B C M C B); Out.
     apply l11_44_1_a; auto; apply (等长的传递性 _ _ M A); Cong.
   }
-  assert(CongA B A C M C A).
+  assert(等角 B A C M C A).
   { apply (l11_10 M A C M C A); Out.
     apply l11_44_1_a; Cong.
   }
-  apply (conga3_suma__suma A C M M C B A C B); CongA.
+  apply (conga3_suma__suma A C M M C B A C B); 等角.
   assert (TS M C A B) by (apply bet__ts; Between; intro; apply HNCol; ColR).
   exists B.
-  repeat (split; CongA); Side; Cop.
+  repeat (split; 等角); Side; Cop.
 Qed.
 
 
@@ -2297,7 +2297,7 @@ Qed.
 
 Lemma t22_17__rah : forall A B C M,
   ~ Col A B C ->
-  Midpoint M A B -> Cong M A M C ->
+  中点 M A B -> Cong M A M C ->
   (Per A C B <-> hypothesis_of_right_saccheri_quadrilaterals).
 Proof.
   intros A B C M HNCol HM HCong.
@@ -2317,8 +2317,8 @@ Qed.
 
 Lemma t22_17__oah : forall A B C M,
   ~ Col A B C ->
-  Midpoint M A B -> Cong M A M C ->
-  (Obtuse A C B <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
+  中点 M A B -> Cong M A M C ->
+  (为钝角 A C B <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
 Proof.
   intros A B C M HNCol HM HCong.
   assert_diffs.
@@ -2336,8 +2336,8 @@ Qed.
 
 Lemma t22_17__aah : forall A B C M,
   ~ Col A B C ->
-  Midpoint M A B -> Cong M A M C ->
-  (Acute A C B <-> hypothesis_of_acute_saccheri_quadrilaterals).
+  中点 M A B -> Cong M A M C ->
+  (为锐角 A C B <-> hypothesis_of_acute_saccheri_quadrilaterals).
 Proof.
   intros A B C M HNCol HM HCong.
   assert_diffs.
@@ -2363,7 +2363,7 @@ Qed.
 
 Lemma absolute_exterior_angle_theorem : ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C D E F B', Bet B A B' -> A <> B' -> SumA A B C B C A D E F ->
-  LeA D E F C A B'.
+  角度小于等于 D E F C A B'.
 Proof.
   intros noah A B C D E F B' HBet HAB' HSuma.
   assert (HIsi := t22_20 noah A B C D E F HSuma).

@@ -5,9 +5,9 @@ Section Circumcenter.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
-Definition is_circumcenter G A B C := Cong A G B G /\ Cong B G C G /\ Coplanar G A B C.
+Definition is_circumcenter G A B C := Cong A G B G /\ Cong B G C G /\ 共面 G A B C.
 
-Lemma is_circumcenter_coplanar : forall A B C G, is_circumcenter G A B C -> Coplanar G A B C.
+Lemma is_circumcenter_coplanar : forall A B C G, is_circumcenter G A B C -> 共面 G A B C.
 Proof.
 unfold is_circumcenter; intros; spliter; assumption.
 Qed.
@@ -97,41 +97,41 @@ Hint Resolve is_circumcenter_coplanar : cop.
 Ltac assert_cops :=
  repeat match goal with
       | H:Perp ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply perp__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply perp__coplanar, H)
       | H:TS ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply ts__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply ts__coplanar, H)
       | H:OS ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply os__coplanar, H)
-      | H:ReflectL ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply reflectl__coplanar, H)
-      | H:Reflect ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply reflect__coplanar, H)
-      | H:InAngle ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply inangle__coplanar, H)
-      | H:Par_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply pars__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply os__coplanar, H)
+      | H:严格对称 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply reflectl__coplanar, H)
+      | H:对称 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply reflect__coplanar, H)
+      | H:在角内 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply inangle__coplanar, H)
+      | H:严格平行 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply pars__coplanar, H)
       | H:Par ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply par__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply par__coplanar, H)
       | H:Plg ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply plg__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plg__coplanar, H)
       | H:Parallelogram_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply plgs__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgs__coplanar, H)
       | H:Parallelogram_flat ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply plgf__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgf__coplanar, H)
       | H:Parallelogram ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply parallelogram__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply parallelogram__coplanar, H)
       | H:Rhombus ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply rhombus__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rhombus__coplanar, H)
       | H:Rectangle ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply rectangle__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rectangle__coplanar, H)
       | H:Square ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply square__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply square__coplanar, H)
       | H:Saccheri ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply sac__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply sac__coplanar, H)
       | H:Lambert ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply lambert__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply lambert__coplanar, H)
       | H:is_circumcenter ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply is_circumcenter_coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply is_circumcenter_coplanar, H)
  end.
 
 Ltac Cop := auto; try (intros; solve [apply col__coplanar; Col
@@ -143,15 +143,15 @@ Ltac copr_aux :=
  repeat match goal with
       | H: ~ Col ?X1 ?X2 ?X3, X4 : Tpoint |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4;
-     first[exist_hyp_perm_col X1 X2 X4; assert (Coplanar X1 X2 X4 X3) by (apply col__coplanar; Col)
-          |exist_hyp_perm_col X2 X3 X4; assert (Coplanar X2 X3 X4 X1) by (apply col__coplanar; Col)
-          |exist_hyp_perm_col X1 X3 X4; assert (Coplanar X1 X3 X4 X2) by (apply col__coplanar; Col)]
+     first[exist_hyp_perm_col X1 X2 X4; assert (共面 X1 X2 X4 X3) by (apply col__coplanar; Col)
+          |exist_hyp_perm_col X2 X3 X4; assert (共面 X2 X3 X4 X1) by (apply col__coplanar; Col)
+          |exist_hyp_perm_col X1 X3 X4; assert (共面 X1 X3 X4 X2) by (apply col__coplanar; Col)]
  end.
 
 Ltac CopR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
- let cop := constr:(Coplanar) in
+ let cop := constr:(共面) in
    treat_equalities; assert_cols; clean; assert_ncols; assert_cops; auto 2 with cop_perm;
    solve[apply col__coplanar; Col|apply coplanar_perm_1, col__coplanar; Col
         |apply coplanar_perm_4, col__coplanar; Col|apply coplanar_perm_18, col__coplanar; Col
@@ -172,12 +172,12 @@ data-param-showResetIcon="false" data-param-enableLabelDrags="false" data-param-
 Lemma circumcenter_perp : forall A B C A' G,
   A<>B -> B<>C -> A<>C -> G <> A' ->
   is_circumcenter G A B C ->
-  Midpoint A' B C ->
+  中点 A' B C ->
   Perp_bisect G A' B C.
 Proof.
 intros.
 apply cong_cop_perp_bisect; try assumption;
-unfold Midpoint, is_circumcenter in *; spliter; Cong; Cop.
+unfold 中点, is_circumcenter in *; spliter; Cong; Cop.
 Qed.
 
 
@@ -201,9 +201,9 @@ Qed.
 Lemma circumcenter_perp_all : forall A B C A' B' C' G,
   A<>B -> B<>C -> A<>C -> G <> A' -> G <> B' -> G <> C' ->
   is_circumcenter G A B C ->
-  Midpoint A' B C ->
-  Midpoint B' A C ->
-  Midpoint C' A B ->
+  中点 A' B C ->
+  中点 B' A C ->
+  中点 C' A B ->
   Perp_bisect G A' B C /\ Perp_bisect G B' A C /\ Perp_bisect G C' A B.
 Proof.
 intros.
@@ -213,9 +213,9 @@ Qed.
 
 Lemma circumcenter_intersect : forall A B C A' B' C' G,
   A<>B -> B<>C -> A<>C -> G <> A' -> G <> B' -> G <> C' ->
-  Midpoint A' B C ->
-  Midpoint B' A C ->
-  Midpoint C' A B ->
+  中点 A' B C ->
+  中点 B' A C ->
+  中点 C' A B ->
   Perp_bisect G A' B C ->
   Perp_bisect G B' A C ->
   Perp G C' A B.
@@ -232,7 +232,7 @@ assert (Cong A G B G).
 apply perp_col1 with C'; Col.
 apply perp_right_comm.
 apply per_perp; auto.
- apply midpoint_distinct_1 with B; Midpoint.
+ apply midpoint_distinct_1 with B; 中点.
 exists B.
 split; Cong.
 Qed.
@@ -266,7 +266,7 @@ elim (col_dec A B C); intro HABC.
       ColR.
     treat_equalities; auto.
     }
-  assert (HPar : Par_strict O A' O C').
+  assert (HPar : 严格平行 O A' O C').
     {
     apply par_not_col_strict with C'; Col.
 
@@ -278,14 +278,14 @@ elim (col_dec A B C); intro HABC.
 
       {
       show_distinct A' C'; try (apply HAC; apply symmetric_point_uniqueness with B A';
-      unfold Midpoint in *; spliter; split; Cong; Between).
+      unfold 中点 in *; spliter; split; Cong; Between).
       intro; assert (HFalse := l7_20 O A B); elim HFalse; clear HFalse; try intro HFalse;
       unfold is_circumcenter in *; spliter; Cong; assert_diffs; assert_cols; try ColR.
       assert (HOC' : O <> C').
         {
         apply perp_bisect_equiv_def in HPer1.
         apply perp_bisect_equiv_def in HPer2.
-        unfold Perp_bisect in *; unfold Perp_at in *;
+        unfold Perp_bisect in *; unfold 垂直于 in *;
         destruct HPer1 as [I [HOC' Hc1]]; assert_diffs; Col.
         }
       apply HOC'; apply l7_17 with A B; Col.
@@ -314,7 +314,7 @@ elim (col_dec A B C); intro HABC.
         apply midpoint_thales with O'; Col.
         unfold is_circumcenter in *; spliter; Cong.
         }
-      assert (HPar : Par_strict A B A C).
+      assert (HPar : 严格平行 A B A C).
         {
         apply par_not_col_strict with C; Col.
         apply l12_9 with B C; [Cop..| |apply perp_right_comm]; apply per_perp; Perp.
@@ -330,7 +330,7 @@ elim (col_dec A B C); intro HABC.
         apply midpoint_thales with O'; Col.
         unfold is_circumcenter in *; spliter; Cong.
         }
-      assert (HPar : Par_strict B A B C).
+      assert (HPar : 严格平行 B A B C).
         {
         apply par_not_col_strict with C; Col.
         apply l12_9 with A C; [Cop..| |apply perp_right_comm]; apply per_perp; Perp.
@@ -359,7 +359,7 @@ elim (col_dec A B C); intro HABC.
       {
       assert (HRect : Rectangle C B' O A').
         {
-        apply Per_mid_rectangle with B A; Perp; unfold Midpoint in *; spliter;
+        apply Per_mid_rectangle with B A; Perp; unfold 中点 in *; spliter;
         split; Between; Cong.
         }
       destruct HRect as [HPara Hc]; clear Hc.
@@ -394,7 +394,7 @@ elim (col_dec A B C); intro HABC.
         apply midpoint_thales with O; Col.
         unfold is_circumcenter in *; spliter; Cong.
         }
-      assert (HPar : Par_strict A B A C).
+      assert (HPar : 严格平行 A B A C).
         {
         apply par_not_col_strict with C; Col.
         apply l12_9 with B C; [Cop..| |apply perp_right_comm]; apply per_perp; Perp.
@@ -410,7 +410,7 @@ elim (col_dec A B C); intro HABC.
         apply midpoint_thales with O; Col.
         unfold is_circumcenter in *; spliter; Cong.
         }
-      assert (HPar : Par_strict B A B C).
+      assert (HPar : 严格平行 B A B C).
         {
         apply par_not_col_strict with C; Col.
         apply l12_9 with A C; [Cop..| |apply perp_right_comm]; apply per_perp; Perp.
@@ -478,7 +478,7 @@ elim (col_dec A B C); intro HABC.
           apply midpoint_thales with O'; Col.
           unfold is_circumcenter in *; spliter; Cong.
           }
-        assert (HPar : Par_strict A C B C).
+        assert (HPar : 严格平行 A C B C).
           {
           apply par_not_col_strict with B; Col.
           apply l12_9 with A B; [Cop..|apply perp_left_comm|apply perp_comm]; apply per_perp; Perp.
@@ -540,7 +540,7 @@ elim (col_dec A B C); intro HABC.
           apply midpoint_thales with O; Col.
           unfold is_circumcenter in *; spliter; Cong.
           }
-        assert (HPar : Par_strict A C B C).
+        assert (HPar : 严格平行 A C B C).
           {
           apply par_not_col_strict with B; Col.
           apply l12_9 with A B; [Cop..|apply perp_left_comm|apply perp_comm]; apply per_perp; Perp.
@@ -693,7 +693,7 @@ elim (col_dec A B C); intro HABC.
         apply l6_21 with O A' B' O; Col.
 
           {
-          intro HOA'B'; assert (HPar : Par_strict A C C B).
+          intro HOA'B'; assert (HPar : 严格平行 A C C B).
             {
             apply par_not_col_strict with B; Col.
             apply l12_9 with O A'; try CopR.
@@ -726,7 +726,7 @@ Context `{TE:塔斯基公理系统_欧几里得几何}.
 Lemma midpoint_thales_reci_circum :
   forall A B C O: Tpoint,
    Per A C B ->
-   Midpoint O A B ->
+   中点 O A B ->
    is_circumcenter O A B C.
 Proof.
 intros.
@@ -740,7 +740,7 @@ Lemma circumcenter_per :
  A<>B -> B<>C ->
  Per A B C ->
  is_circumcenter O A B C ->
- Midpoint O A C.
+ 中点 O A C.
 Proof.
 intros.
 

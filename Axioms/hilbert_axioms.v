@@ -5,15 +5,15 @@ Class Hilbert_neutral_dimensionless :=
  Point : Type;
  Line  : Type;
  Plane : Type;
- EqL   : Line -> Line -> Prop;
- EqL_Equiv : Equivalence EqL;
+ 谓词等长   : Line -> Line -> Prop;
+ 谓词等长_Equiv : Equivalence 谓词等长;
  EqP   : Plane -> Plane -> Prop;
  EqP_Equiv : Equivalence EqP;
  IncidL : Point -> Line -> Prop;
  IncidP : Point -> Plane -> Prop;
 
  IncidL_morphism :
-   forall P l m, IncidL P l -> EqL l m -> IncidL P m;
+   forall P l m, IncidL P l -> 谓词等长 l m -> IncidL P m;
  IncidL_dec : forall P l, IncidL P l \/ ~ IncidL P l;
  IncidP_morphism :
    forall M p q, IncidP M p -> EqP p q -> IncidP M q;
@@ -27,7 +27,7 @@ Class Hilbert_neutral_dimensionless :=
    forall A B l m,
      A <> B ->
      IncidL A l -> IncidL B l -> IncidL A m -> IncidL B m ->
-     EqL l m;
+     谓词等长 l m;
  two_points_on_line :
    forall l,
      { A : Point & { B | IncidL B l /\ IncidL A l /\ A <> B}};
@@ -153,7 +153,7 @@ Class Hilbert_euclidean `(Hi : Hilbert_neutral_dimensionless) :=
    forall l P m1 m2,
      ~ IncidL P l ->
      Para l m1 -> IncidL P m1-> Para l m2 -> IncidL P m2 ->
-     EqL m1 m2
+     谓词等长 m1 m2
 }.
 
 Class Hilbert_euclidean_ID `(H_euclidean : Hilbert_euclidean) :=

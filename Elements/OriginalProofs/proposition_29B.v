@@ -7,7 +7,7 @@ Context `{Ax:euclidean_euclidean}.
 Lemma proposition_29B : 
    forall A D G H, 
    Par A G H D -> TS A G H D ->
-   CongA A G H G H D.
+   等角 A G H G H D.
 Proof.
 intros.
 let Tf:=fresh in
@@ -64,7 +64,7 @@ assert (~ Meet A B C D).
 assert (Par A B C D) by (conclude_def Par ).
 assert (BetS C H D) by (conclude axiom_betweennesssymmetry).
 assert (BetS E G H) by (conclude axiom_betweennesssymmetry).
-assert ((CongA A G H G H D /\ CongA E G B G H D /\ RT B G H G H D)) by (conclude proposition_29).
+assert ((等角 A G H G H D /\ 等角 E G B G H D /\ RT B G H G H D)) by (conclude proposition_29).
 close.
 Qed.
 

@@ -7,7 +7,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma alternate_interior__playfair_aux : alternate_interior_angles_postulate ->
    forall A1 A2 B1 B2 C1 C2 P,
-   Perp2 A1 A2 B1 B2 P -> ~ Col A1 A2 P -> Col P B1 B2 -> Coplanar A1 A2 B1 B2 ->
+   Perp2 A1 A2 B1 B2 P -> ~ Col A1 A2 P -> Col P B1 B2 -> 共面 A1 A2 B1 B2 ->
    Par A1 A2 C1 C2 -> Col P C1 C2 ->
    Col C1 B1 B2. (** "half" of playfair_bis *)
 Proof.
@@ -15,7 +15,7 @@ Proof.
   elim(两点重合的决定性 P C1).
     intro; subst C1; auto.
   intro.
-  assert(HParAB : Par_strict A1 A2 B1 B2)
+  assert(HParAB : 严格平行 A1 A2 B1 B2)
     by (apply (col_cop_perp2__pars_bis P); Col).
   apply (par_not_col_strict _ _ _ _ P) in HParAC; Col.
   destruct HPerp2 as [P1 [P2 [HP [HPerpAP HPerpBP]]]].

@@ -31,7 +31,7 @@ Proof.
   destruct HSAS as [HConga1 HConga2]; auto.
   assert_diffs.
   assert (Hts : TS C B D D') by (apply bet__ts; Between; Col).
-  assert(HA' : InAngle A C B E).
+  assert(HA' : 在角内 A C B E).
   { apply lea_in_angle; auto.
     - apply (l11_30 A B C B C D').
         apply (sams_chara D); Between; SumA.
@@ -63,7 +63,7 @@ Proof.
     apply (suma2__conga A B C B C D); auto.
     apply l6_6 in Hout.
     apply (conga3_suma__suma D' C B B C D D' C D); try (apply conga_refl); SumA.
-    apply (l11_10 D' C M E B M); Out; CongA.
+    apply (l11_10 D' C M E B M); Out; 等角.
   }
   unfold BetS in HY.
   spliter.

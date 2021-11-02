@@ -33,7 +33,7 @@ Proof.
       [|Col|intro; apply HNCop, coplanar_perm_1, col_cop__cop with B2; Cop].
     destruct (cop_osp__ex_cop2 A1 A2 C1 B1 B2 C1) as [C' [HCop1 [HCop2 HC1C']]]; Cop.
       apply cop2_os__osp with A1 A2; Side; Cop.
-    assert (HC' : forall X, Coplanar A1 A2 B1 X -> ~ Col X C1 C').
+    assert (HC' : forall X, 共面 A1 A2 B1 X -> ~ Col X C1 C').
     { intros X HX1 HX2.
       apply (par_not_col A1 A2 B1 B2 X HAB).
       - apply (l9_30 A1 A2 C1 A1 A2 B1 B1); Cop.
@@ -49,7 +49,7 @@ Proof.
       revert HX2.
       apply HC'; Cop.
     }
-    assert (HBC' : Par_strict B1 B2 C1 C').
+    assert (HBC' : 严格平行 B1 B2 C1 C').
     { split; trivial.
       intros [X [HX1 HX2]].
       revert HX2.

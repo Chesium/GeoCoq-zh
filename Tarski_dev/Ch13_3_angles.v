@@ -8,12 +8,12 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (************************************* angle *****************************)
 
-Lemma ang_exists : forall A B C, A <> B -> C <> B -> exists a, Q_CongA a /\ a A B C.
+Lemma ang_exists : forall A B C, A <> B -> C <> B -> exists a, 角谓词 a /\ a A B C.
 Proof.
     intros.
-    exists (fun D E F => CongA A B C D E F).
+    exists (fun D E F => 等角 A B C D E F).
     split.
-      unfold Q_CongA.
+      unfold 角谓词.
       exists A.
       exists B.
       exists C.
@@ -26,10 +26,10 @@ Proof.
     apply conga_refl; auto.
 Qed.
 
-Lemma ex_points_ang : forall a , Q_CongA a ->  exists A, exists B, exists C, a A B C.
+Lemma ex_points_ang : forall a , 角谓词 a ->  exists A, exists B, exists C, a A B C.
 Proof.
     intros.
-    unfold Q_CongA in H.
+    unfold 角谓词 in H.
     ex_and H A.
     ex_and H0 B.
     ex_and H C.
@@ -47,7 +47,7 @@ End Angles_1.
 Ltac ang_instance a A B C :=
   assert(tempo_ang:= ex_points_ang a);
   match goal with
-    |H: Q_CongA a |-  _ => assert(tempo_H:=H); apply tempo_ang in tempo_H;
+    |H: 角谓词 a |-  _ => assert(tempo_H:=H); apply tempo_ang in tempo_H;
                        elim tempo_H; intros A ; let tempo_HP := fresh "tempo_HP" in intro tempo_HP; clear tempo_H;
                        elim tempo_HP; intro B; let tempo_HQ := fresh "tempo_HQ" in intro tempo_HQ ; clear tempo_HP ;
                        elim tempo_HQ; intro C; intro;  clear tempo_HQ
@@ -58,10 +58,10 @@ Section Angles_2.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma ang_conga : forall a A B C A' B' C', Q_CongA a -> a A B C -> a A' B' C' -> CongA A B C A' B' C'.
+Lemma ang_conga : forall a A B C A' B' C', 角谓词 a -> a A B C -> a A' B' C' -> 等角 A B C A' B' C'.
 Proof.
     intros.
-    unfold Q_CongA in H.
+    unfold 角谓词 in H.
     ex_and H A0.
     ex_and H2 B0.
     ex_and H C0.
@@ -77,7 +77,7 @@ Proof.
     auto.
 Qed.
 
-Lemma is_ang_conga : forall A B C A' B' C' a, Ang A B C a -> Ang A' B' C' a -> CongA A B C A' B' C'.
+Lemma is_ang_conga : forall A B C A' B' C' a, Ang A B C a -> Ang A' B' C' a -> 等角 A B C A' B' C'.
 Proof.
     intros.
     unfold Ang in *.
@@ -85,14 +85,14 @@ Proof.
     eapply (ang_conga a); auto.
 Qed.
 
-Lemma is_ang_conga_is_ang : forall A B C A' B' C' a, Ang A B C a -> CongA A B C A' B' C' -> Ang A' B' C' a.
+Lemma is_ang_conga_is_ang : forall A B C A' B' C' a, Ang A B C a -> 等角 A B C A' B' C' -> Ang A' B' C' a.
 Proof.
     intros.
     unfold Ang in *.
     spliter.
     split.
       auto.
-    unfold Q_CongA in H.
+    unfold 角谓词 in H.
     ex_and H A0.
     ex_and H2 B0.
     ex_and H C0.
@@ -107,7 +107,7 @@ Proof.
     auto.
 Qed.
 
-Lemma not_conga_not_ang : forall A B C A' B' C' a , Q_CongA a -> ~(CongA A B C A' B' C') -> a A B C -> ~(a A' B' C').
+Lemma not_conga_not_ang : forall A B C A' B' C' a , 角谓词 a -> ~(等角 A B C A' B' C') -> a A B C -> ~(a A' B' C').
 Proof.
     intros.
     intro.
@@ -115,7 +115,7 @@ Proof.
     contradiction.
 Qed.
 
-Lemma not_conga_is_ang : forall A B C A' B' C' a , ~(CongA A B C A' B' C') -> Ang A B C a -> ~(a A' B' C').
+Lemma not_conga_is_ang : forall A B C A' B' C' a , ~(等角 A B C A' B' C') -> Ang A B C a -> ~(a A' B' C').
 Proof.
     intros.
     unfold Ang in H0.
@@ -125,7 +125,7 @@ Proof.
     apply (ang_conga a); auto.
 Qed.
 
-Lemma not_cong_is_ang1 : forall A B C A' B' C' a , ~(CongA A B C A' B' C') -> Ang A B C a -> ~(Ang A' B' C' a).
+Lemma not_cong_is_ang1 : forall A B C A' B' C' a , ~(等角 A B C A' B' C') -> Ang A B C a -> ~(Ang A' B' C' a).
 Proof.
     intros.
     intro.
@@ -148,14 +148,14 @@ Proof.
     spliter.
     unfold EqA.
     repeat split; auto; intro.
-      assert(CongA A B C A0 B0 C0).
+      assert(等角 A B C A0 B0 C0).
         eapply (is_ang_conga _ _ _ _ _ _ a1); auto.
         split; auto.
       assert(Ang A0 B0 C0 a2).
         apply (is_ang_conga_is_ang A B C); auto.
       unfold Ang in H7.
       tauto.
-    assert(CongA A B C A0 B0 C0).
+    assert(等角 A B C A0 B0 C0).
       eapply (is_ang_conga _ _ _ _ _ _ a2); auto.
       split; auto.
     assert(Ang A0 B0 C0 a1).
@@ -179,14 +179,14 @@ Proof.
     intros.
     unfold Ang in H.
     spliter.
-    unfold Q_CongA in H.
+    unfold 角谓词 in H.
     ex_and H A0.
     ex_and H1 B0.
     ex_and H C0.
     assert(HH:= H2 A B C).
     destruct HH.
     apply H4 in H0.
-    unfold CongA in H0.
+    unfold 等角 in H0.
     spliter.
     tauto.
 Qed.
@@ -221,7 +221,7 @@ Proof.
     eapply conga_line; auto.
 Qed.
 
-Lemma ang_distinct: forall a A B C, Q_CongA a -> a A B C -> A <> B /\ C <> B.
+Lemma ang_distinct: forall a A B C, 角谓词 a -> a A B C -> A <> B /\ C <> B.
 Proof.
     intros.
     assert(Ang A B C a).
@@ -229,11 +229,11 @@ Proof.
     apply (is_ang_distinct _ _ _ a); auto.
 Qed.
 
-Lemma ex_ang : forall A B C, B <> A -> B <> C -> exists a, Q_CongA a /\ a A B C.
+Lemma ex_ang : forall A B C, B <> A -> B <> C -> exists a, 角谓词 a /\ a A B C.
 Proof.
     intros.
-    exists (fun X Y Z => CongA A B C X Y Z).
-    unfold Q_CongA.
+    exists (fun X Y Z => 等角 A B C X Y Z).
+    unfold 角谓词.
     split.
       exists A.
       exists B.
@@ -251,14 +251,14 @@ Proof.
     apply conga_refl; auto.
 Qed.
 
-(************************************* Acute angle *****************************************)
+(************************************* 为锐角 angle *****************************************)
 
-Lemma anga_exists : forall A B C, A <> B -> C <> B -> Acute A B C -> exists a, Q_CongA_Acute a /\ a A B C.
+Lemma anga_exists : forall A B C, A <> B -> C <> B -> 为锐角 A B C -> exists a, 锐角谓词 a /\ a A B C.
 Proof.
     intros.
-    exists (fun D E F => CongA A B C D E F).
+    exists (fun D E F => 等角 A B C D E F).
     split.
-      unfold Q_CongA.
+      unfold 角谓词.
       exists A.
       exists B.
       exists C.
@@ -269,11 +269,11 @@ Proof.
     apply conga_refl; auto.
 Qed.
 
-Lemma anga_is_ang : forall a, Q_CongA_Acute a -> Q_CongA a.
+Lemma anga_is_ang : forall a, 锐角谓词 a -> 角谓词 a.
 Proof.
     intros.
-    unfold Q_CongA_Acute in H.
-    unfold Q_CongA.
+    unfold 锐角谓词 in H.
+    unfold 角谓词.
     ex_and H A.
     ex_and H0 B.
     ex_and H C.
@@ -292,7 +292,7 @@ Proof.
       assert(Ang X Y Z a).
         unfold Ang.
         split.
-          unfold Q_CongA.
+          unfold 角谓词.
           exists A.
           exists B.
           exists C.
@@ -312,7 +312,7 @@ Proof.
     auto.
 Qed.
 
-Lemma ex_points_anga : forall a , Q_CongA_Acute a ->  exists A, exists B, exists C, a A B C.
+Lemma ex_points_anga : forall a , 锐角谓词 a ->  exists A, exists B, exists C, a A B C.
 Proof.
     intros.
     assert(HH:=H).
@@ -329,7 +329,7 @@ End Angles_2.
 Ltac anga_instance a A B C :=
   assert(tempo_anga:= ex_points_anga a);
   match goal with
-    |H: Q_CongA_Acute a |-  _ => assert(tempo_H:=H); apply tempo_anga in tempo_H;
+    |H: 锐角谓词 a |-  _ => assert(tempo_H:=H); apply tempo_anga in tempo_H;
                                  elim tempo_H; intros A ;
                                  let tempo_HP := fresh "tempo_HP" in
                                  intro tempo_HP; clear tempo_H;
@@ -346,7 +346,7 @@ Section Angles_3.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma anga_conga : forall a A B C A' B' C', Q_CongA_Acute a -> a A B C -> a A' B' C' -> CongA A B C A' B' C'.
+Lemma anga_conga : forall a A B C A' B' C', 锐角谓词 a -> a A B C -> a A' B' C' -> 等角 A B C A' B' C'.
 Proof.
     intros.
     apply (ang_conga a); auto.
@@ -354,10 +354,10 @@ Proof.
     auto.
 Qed.
 
-Lemma is_anga_to_is_ang : forall A B C a, Ang_Acute A B C a -> Ang A B C a.
+Lemma is_anga_to_is_ang : forall A B C a, 锐角 A B C a -> Ang A B C a.
 Proof.
     intros.
-    unfold Ang_Acute in H.
+    unfold 锐角 in H.
     unfold Ang.
     spliter.
     split.
@@ -366,23 +366,23 @@ Proof.
     auto.
 Qed.
 
-Lemma is_anga_conga : forall A B C A' B' C' a, Ang_Acute A B C a -> Ang_Acute A' B' C' a -> CongA A B C A' B' C'.
+Lemma is_anga_conga : forall A B C A' B' C' a, 锐角 A B C a -> 锐角 A' B' C' a -> 等角 A B C A' B' C'.
 Proof.
     intros.
-    unfold Ang_Acute in *.
+    unfold 锐角 in *.
     spliter.
     apply (anga_conga a); auto.
 Qed.
 
-Lemma is_anga_conga_is_anga : forall A B C A' B' C' a, Ang_Acute A B C a -> CongA A B C A' B' C' -> Ang_Acute A' B' C' a.
+Lemma is_anga_conga_is_anga : forall A B C A' B' C' a, 锐角 A B C a -> 等角 A B C A' B' C' -> 锐角 A' B' C' a.
 Proof.
     intros.
-    unfold Ang_Acute in *.
+    unfold 锐角 in *.
     spliter.
     split.
       auto.
     apply anga_is_ang in H.
-    unfold Q_CongA in H.
+    unfold 角谓词 in H.
     ex_and H A0.
     ex_and H2 B0.
     ex_and H C0.
@@ -397,27 +397,27 @@ Proof.
     auto.
 Qed.
 
-Lemma not_conga_is_anga : forall A B C A' B' C' a , ~ CongA A B C A' B' C' -> Ang_Acute A B C a -> ~(a A' B' C').
+Lemma not_conga_is_anga : forall A B C A' B' C' a , ~ 等角 A B C A' B' C' -> 锐角 A B C a -> ~(a A' B' C').
 Proof.
     intros.
-    unfold Ang_Acute in H0.
+    unfold 锐角 in H0.
     spliter.
     intro.
     apply H.
     apply (anga_conga a); auto.
 Qed.
 
-Lemma not_cong_is_anga1 : forall A B C A' B' C' a , ~ CongA A B C A' B' C' -> Ang_Acute A B C a -> ~ Ang_Acute A' B' C' a.
+Lemma not_cong_is_anga1 : forall A B C A' B' C' a , ~ 等角 A B C A' B' C' -> 锐角 A B C a -> ~ 锐角 A' B' C' a.
 Proof.
     intros.
     intro.
-    unfold Ang_Acute in *.
+    unfold 锐角 in *.
     spliter.
     apply H.
     apply (anga_conga a); auto.
 Qed.
 
-Lemma ex_eqaa : forall a1 a2, (exists A , exists B, exists C, Ang_Acute A B C a1 /\ Ang_Acute A B C a2)  -> EqA a1 a2.
+Lemma ex_eqaa : forall a1 a2, (exists A , exists B, exists C, 锐角 A B C a1 /\ 锐角 A B C a2)  -> EqA a1 a2.
 Proof.
     intros.
     apply ex_eqa.
@@ -430,7 +430,7 @@ Proof.
     split; apply is_anga_to_is_ang; auto.
 Qed.
 
-Lemma all_eqaa : forall A B C a1 a2, Ang_Acute A B C a1 -> Ang_Acute A B C a2 -> EqA a1 a2.
+Lemma all_eqaa : forall A B C a1 a2, 锐角 A B C a1 -> 锐角 A B C a2 -> EqA a1 a2.
 Proof.
     intros.
     apply ex_eqaa.
@@ -440,7 +440,7 @@ Proof.
     split; auto.
 Qed.
 
-Lemma is_anga_distinct : forall A B C a , Ang_Acute A B C a -> A <> B /\ C <> B.
+Lemma is_anga_distinct : forall A B C a , 锐角 A B C a -> A <> B /\ C <> B.
 Proof.
     intros.
     apply (is_ang_distinct A B C a).
@@ -464,7 +464,7 @@ rewrite H.
 apply H0.
 Qed.
 
-Lemma null_anga : forall A B C D a1 a2, Ang_Acute A B A a1 -> Ang_Acute C D C a2 -> EqA a1 a2.
+Lemma null_anga : forall A B C D a1 a2, 锐角 A B A a1 -> 锐角 C D C a2 -> EqA a1 a2.
 Proof.
     intros.
     eapply (all_eqaa A B A).
@@ -480,10 +480,10 @@ Proof.
     tauto.
 Qed.
 
-Lemma anga_distinct: forall a A B C, Q_CongA_Acute a -> a A B C -> A <> B /\ C <> B.
+Lemma anga_distinct: forall a A B C, 锐角谓词 a -> a A B C -> A <> B /\ C <> B.
 Proof.
     intros.
-    assert(Ang_Acute A B C a).
+    assert(锐角 A B C a).
       split; auto.
     apply (is_anga_distinct _ _ _ a); auto.
 Qed.
@@ -511,11 +511,11 @@ Proof.
     split; auto.
 Qed.
 
-Lemma ex_anga : forall A B C, Acute A B C -> exists a, Q_CongA_Acute a /\ a A B C.
+Lemma ex_anga : forall A B C, 为锐角 A B C -> exists a, 锐角谓词 a /\ a A B C.
 Proof.
     intros.
-    exists (fun X Y Z => CongA A B C X Y Z).
-    unfold Q_CongA_Acute.
+    exists (fun X Y Z => 等角 A B C X Y Z).
+    unfold 锐角谓词.
     assert (HH := acute_distincts A B C H).
     spliter.
     split.
@@ -533,22 +533,22 @@ Proof.
     apply conga_refl; auto.
 Qed.
 
-Lemma not_null_ang_ang : forall a, Q_CongA_nNull a -> Q_CongA a.
+Lemma not_null_ang_ang : forall a, 非零角谓词 a -> 角谓词 a.
 Proof.
     intros.
-    unfold Q_CongA_nNull  in H.
+    unfold 非零角谓词  in H.
     spliter; auto.
 Qed.
 
-Lemma not_null_ang_def_equiv : forall a, Q_CongA_nNull a <-> (Q_CongA a /\ exists A, exists B, exists C, a A B C /\  ~Out B A C).
+Lemma not_null_ang_def_equiv : forall a, 非零角谓词 a <-> (角谓词 a /\ exists A, exists B, exists C, a A B C /\  ~Out B A C).
 Proof.
     intros.
     split.
       intro.
-      unfold Q_CongA_nNull in H.
+      unfold 非零角谓词 in H.
       spliter.
       assert(HH:= H).
-      unfold Q_CongA in HH.
+      unfold 角谓词 in HH.
       ex_and HH A.
       ex_and H1 B.
       ex_and H2 C.
@@ -571,25 +571,25 @@ Proof.
     ex_and H0 A.
     ex_and H1 B.
     ex_and H0 C.
-    unfold Q_CongA_nNull.
+    unfold 非零角谓词.
     split; auto.
     intros.
-    assert(CongA A0 B0 C0 A B C).
+    assert(等角 A0 B0 C0 A B C).
       apply (ang_conga a); auto.
     intro.
     apply H1.
     apply (l11_21_a A0 B0 C0); auto.
 Qed.
 
-Lemma not_flat_ang_def_equiv : forall a, Q_CongA_nFlat a <-> (Q_CongA a /\ exists A, exists B, exists C, a A B C /\  ~Bet A B C).
+Lemma not_flat_ang_def_equiv : forall a, 非平角谓词 a <-> (角谓词 a /\ exists A, exists B, exists C, a A B C /\  ~Bet A B C).
 Proof.
     intros.
     split.
       intro.
-      unfold Q_CongA_nFlat in H.
+      unfold 非平角谓词 in H.
       spliter.
       assert(HH:= H).
-      unfold Q_CongA in HH.
+      unfold 角谓词 in HH.
       ex_and HH A.
       ex_and H1 B.
       ex_and H2 C.
@@ -612,20 +612,20 @@ Proof.
     ex_and H0 A.
     ex_and H1 B.
     ex_and H0 C.
-    unfold Q_CongA_nFlat.
+    unfold 非平角谓词.
     split; auto.
     intros.
-    assert(CongA A0 B0 C0 A B C).
+    assert(等角 A0 B0 C0 A B C).
       apply (ang_conga a); auto.
     intro.
     apply H1.
     apply (bet_conga__bet A0 B0 C0); auto.
 Qed.
 
-Lemma ang_const : forall a A B, Q_CongA a -> A <> B -> exists C, a A B C.
+Lemma ang_const : forall a A B, 角谓词 a -> A <> B -> exists C, a A B C.
 Proof.
     intros.
-    unfold Q_CongA in H.
+    unfold 角谓词 in H.
     ex_and H A0.
     ex_and H1 B0.
     ex_and H C0.
@@ -656,7 +656,7 @@ End Angles_3.
 Ltac ang_instance1 a A B C :=
 	assert(tempo_ang:= ang_const a A B);
         match goal with
-           |H: Q_CongA a |-  _ => assert(tempo_H:= H);apply tempo_ang in tempo_H; ex_elim tempo_H C
+           |H: 角谓词 a |-  _ => assert(tempo_H:= H);apply tempo_ang in tempo_H; ex_elim tempo_H C
         end;
         clear tempo_ang.
 
@@ -664,10 +664,10 @@ Section Angles_4.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma ang_sym : forall a A B C, Q_CongA a -> a A B C -> a C B A.
+Lemma ang_sym : forall a A B C, 角谓词 a -> a A B C -> a C B A.
 Proof.
     intros.
-    unfold Q_CongA in H.
+    unfold 角谓词 in H.
     ex_and H A0.
     ex_and H1 B0.
     ex_and H C0.
@@ -681,12 +681,12 @@ Proof.
     auto.
 Qed.
 
-Lemma ang_not_null_lg : forall a l A B C, Q_CongA a -> Q_Cong l -> a A B C -> l A B -> ~ Q_Cong_Null l.
+Lemma ang_not_null_lg : forall a l A B C, 角谓词 a -> Q_Cong l -> a A B C -> l A B -> ~ 零长谓词 l.
 Proof.
     intros.
     intro.
-    unfold Q_CongA in H.
-    unfold Q_Cong_Null in H3.
+    unfold 角谓词 in H.
+    unfold 零长谓词 in H3.
     spliter.
     unfold Q_Cong in H0.
     ex_and H A0.
@@ -694,7 +694,7 @@ Proof.
     ex_and H C0.
     assert(HH:= H6 A B C).
     destruct HH.
-    assert(CongA A0 B0 C0 A B C).
+    assert(等角 A0 B0 C0 A B C).
       apply H8.
       auto.
     apply conga_distinct in H8.
@@ -721,7 +721,7 @@ Proof.
     auto.
 Qed.
 
-Lemma ang_distincts : forall a A B C, Q_CongA a -> a A B C -> A <> B /\ C <> B.
+Lemma ang_distincts : forall a A B C, 角谓词 a -> a A B C -> A <> B /\ C <> B.
 Proof.
     intros.
     assert(HH:= ex_lg A B).
@@ -734,23 +734,23 @@ Proof.
     assert(HQ:= ang_not_null_lg a lc C B A H H3 H5 H4).
     split; intro; subst B.
       apply HH.
-      unfold Q_Cong_Null.
+      unfold 零长谓词.
       split.
         auto.
       exists A.
       auto.
     apply HQ.
-    unfold Q_Cong_Null.
+    unfold 零长谓词.
     split.
       auto.
     exists C.
     auto.
 Qed.
 
-Lemma anga_sym : forall a A B C, Q_CongA_Acute a -> a A B C -> a C B A.
+Lemma anga_sym : forall a A B C, 锐角谓词 a -> a A B C -> a C B A.
 Proof.
     intros.
-    unfold Q_CongA_Acute in H.
+    unfold 锐角谓词 in H.
     ex_and H A0.
     ex_and H1 B0.
     ex_and H C0.
@@ -764,12 +764,12 @@ Proof.
     auto.
 Qed.
 
-Lemma anga_not_null_lg : forall a l A B C, Q_CongA_Acute a -> Q_Cong l -> a A B C -> l A B -> ~ Q_Cong_Null l.
+Lemma anga_not_null_lg : forall a l A B C, 锐角谓词 a -> Q_Cong l -> a A B C -> l A B -> ~ 零长谓词 l.
 Proof.
     intros.
     intro.
-    unfold Q_CongA_Acute in H.
-    unfold Q_Cong_Null in H3.
+    unfold 锐角谓词 in H.
+    unfold 零长谓词 in H3.
     spliter.
     unfold Q_Cong in H0.
     ex_and H A0.
@@ -777,7 +777,7 @@ Proof.
     ex_and H C0.
     assert(HH:= H5 A B C).
     destruct HH.
-    assert(CongA A0 B0 C0 A B C).
+    assert(等角 A0 B0 C0 A B C).
       apply H7.
       auto.
     apply conga_distinct in H8.
@@ -802,7 +802,7 @@ Proof.
     contradiction.
 Qed.
 
-Lemma anga_distincts : forall a A B C, Q_CongA_Acute a -> a A B C -> A <> B /\ C <> B.
+Lemma anga_distincts : forall a A B C, 锐角谓词 a -> a A B C -> A <> B /\ C <> B.
 Proof.
     intros.
     assert(HH:= ex_lg A B).
@@ -815,24 +815,24 @@ Proof.
     assert(HQ:= anga_not_null_lg a lc C B A H H3 H5 H4).
     split; intro; subst B.
       apply HH.
-      unfold Q_Cong_Null.
+      unfold 零长谓词.
       split.
         auto.
       exists A.
       auto.
     apply HQ.
-    unfold Q_Cong_Null.
+    unfold 零长谓词.
     split.
       auto.
     exists C.
     auto.
 Qed.
 
-Lemma ang_const_o : forall a A B P, ~Col A B P -> Q_CongA a -> Q_CongA_nNull a -> Q_CongA_nFlat a -> exists C, a A B C /\ OS A B C P.
+Lemma ang_const_o : forall a A B P, ~Col A B P -> 角谓词 a -> 非零角谓词 a -> 非平角谓词 a -> exists C, a A B C /\ OS A B C P.
 Proof.
     intros.
     assert(HH:= H0).
-    unfold Q_CongA in HH.
+    unfold 角谓词 in HH.
     ex_and HH A0.
     ex_and H3 B0.
     ex_and H4 C0.
@@ -846,7 +846,7 @@ Proof.
     assert(A0 <> C0).
       intro.
       subst C0.
-      unfold Q_CongA_nNull in H1.
+      unfold 非零角谓词 in H1.
       spliter.
       assert(HH:=H11 A0 B0 A0 H8).
       apply HH.
@@ -869,10 +869,10 @@ Proof.
       auto.
     induction H14.
       auto.
-    unfold Q_CongA_nNull in H1.
+    unfold 非零角谓词 in H1.
     spliter.
     assert(HH:= H16 A B C H15).
-    unfold Q_CongA_nFlat in H2.
+    unfold 非平角谓词 in H2.
     spliter.
     assert(Hh:=H17 A B C H15).
     apply False_ind.
@@ -886,7 +886,7 @@ Proof.
     contradiction.
 Qed.
 
-Lemma anga_const : forall a A B, Q_CongA_Acute a -> A <> B -> exists C, a A B C.
+Lemma anga_const : forall a A B, 锐角谓词 a -> A <> B -> exists C, a A B C.
 Proof.
     intros.
     apply anga_is_ang in H.
@@ -898,7 +898,7 @@ End Angles_4.
 Ltac anga_instance1 a A B C :=
 	assert(tempo_anga:= anga_const a A B);
         match goal with
-           |H: Q_CongA_Acute a |-  _ => assert(tempo_H:= H); apply tempo_anga in tempo_H; ex_elim tempo_H C
+           |H: 锐角谓词 a |-  _ => assert(tempo_H:= H); apply tempo_anga in tempo_H; ex_elim tempo_H C
         end;
         clear tempo_anga.
 
@@ -906,13 +906,13 @@ Section Angles_5.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma null_anga_null_anga' : forall a, Q_CongA_Null_Acute a <-> is_null_anga' a.
+Lemma null_anga_null_anga' : forall a, 锐零角谓词 a <-> 零角谓词' a.
 Proof.
     intro.
     split.
       intro.
-      unfold Q_CongA_Null_Acute in H.
-      unfold is_null_anga'.
+      unfold 锐零角谓词 in H.
+      unfold 零角谓词'.
       spliter.
       split.
         auto.
@@ -923,23 +923,23 @@ Proof.
       exists C.
       split; auto.
     intro.
-    unfold is_null_anga' in H.
-    unfold Q_CongA_Null_Acute.
+    unfold 零角谓词' in H.
+    unfold 锐零角谓词.
     spliter.
     ex_and H0 A.
     ex_and H1 B.
     ex_and H0 C.
     split; auto.
     intros.
-    assert(CongA A B C A0 B0 C0).
+    assert(等角 A B C A0 B0 C0).
       apply (anga_conga a); auto.
     apply (l11_21_a A B C); auto.
 Qed.
 
-Lemma is_null_anga_out : forall a A B C, Q_CongA_Acute a -> a A B C -> Q_CongA_Null_Acute a -> Out B A C.
+Lemma is_null_anga_out : forall a A B C, 锐角谓词 a -> a A B C -> 锐零角谓词 a -> Out B A C.
 Proof.
     intros.
-    unfold Q_CongA_Null_Acute in H1.
+    unfold 锐零角谓词 in H1.
     spliter.
     assert(HH:= (H2 A B C)).
     apply HH.
@@ -947,18 +947,18 @@ Proof.
 Qed.
 
 
-Lemma acute_not_bet : forall A B C, Acute A B C -> ~Bet A B C.
+Lemma acute_not_bet : forall A B C, 为锐角 A B C -> ~Bet A B C.
 Proof.
     intros.
-    unfold Acute in H.
+    unfold 为锐角 in H.
     ex_and H A0.
     ex_and H0 B0.
     ex_and H C0.
-    unfold LtA in H0.
+    unfold 角度小于 in H0.
     spliter.
-    unfold LeA in H0.
+    unfold 角度小于等于 in H0.
     ex_and H0 P.
-    unfold InAngle in H0.
+    unfold 在角内 in H0.
     spliter.
     ex_and H5 X.
     intro.
@@ -981,20 +981,20 @@ Proof.
     apply (conga_line A B C); auto.
 Qed.
 
-Lemma anga_acute : forall a A B C , Q_CongA_Acute a -> a A B C -> Acute A B C.
+Lemma anga_acute : forall a A B C , 锐角谓词 a -> a A B C -> 为锐角 A B C.
 Proof.
     intros.
-    unfold Q_CongA_Acute in H.
+    unfold 锐角谓词 in H.
     ex_and H A0.
     ex_and H1 B0.
     ex_and H C0.
     assert(HH:= acute_lea_acute A B C A0 B0 C0).
     apply HH.
       auto.
-    unfold LeA.
+    unfold 角度小于等于.
     exists C0.
     split.
-      unfold InAngle.
+      unfold 在角内.
       apply acute_distincts in H.
       spliter.
       repeat split; auto.
@@ -1011,15 +1011,15 @@ Proof.
     auto.
 Qed.
 
-Lemma not_null_not_col : forall a A B C, Q_CongA_Acute a -> ~ Q_CongA_Null_Acute a -> a A B C -> ~Col A B C.
+Lemma not_null_not_col : forall a A B C, 锐角谓词 a -> ~ 锐零角谓词 a -> a A B C -> ~Col A B C.
 Proof.
     intros.
     intro.
     apply H0.
-    unfold Q_CongA_Null_Acute.
+    unfold 锐零角谓词.
     split.
       auto.
-    assert(Acute A B C).
+    assert(为锐角 A B C).
       apply (anga_acute a); auto.
     intros.
     assert(Out B A C).
@@ -1029,7 +1029,7 @@ Proof.
 Qed.
 
 
-Lemma ang_cong_ang : forall a A B C A' B' C', Q_CongA a -> a A B C -> CongA A B C A' B' C' -> a A' B' C'.
+Lemma ang_cong_ang : forall a A B C A' B' C', 角谓词 a -> a A B C -> 等角 A B C A' B' C' -> a A' B' C'.
 Proof.
     intros.
     assert(Ang A B C a).
@@ -1041,20 +1041,20 @@ Proof.
     tauto.
 Qed.
 
-Lemma is_null_ang_out : forall a A B C, Q_CongA a -> a A B C -> Q_CongA_Null a -> Out B A C.
+Lemma is_null_ang_out : forall a A B C, 角谓词 a -> a A B C -> 零角谓词 a -> Out B A C.
 Proof.
     intros.
-    unfold Q_CongA_Null in H1.
+    unfold 零角谓词 in H1.
     spliter.
     assert(HH:= (H2 A B C)).
     apply HH.
     auto.
 Qed.
 
-Lemma out_null_ang : forall a A B C, Q_CongA a -> a A B C -> Out B A C -> Q_CongA_Null a.
+Lemma out_null_ang : forall a A B C, 角谓词 a -> a A B C -> Out B A C -> 零角谓词 a.
 Proof.
     intros.
-    unfold Q_CongA_Null.
+    unfold 零角谓词.
     split.
       auto.
     intros.
@@ -1063,10 +1063,10 @@ Proof.
     apply (ang_conga a); auto.
 Qed.
 
-Lemma bet_flat_ang : forall a A B C, Q_CongA a -> a A B C -> Bet A B C -> Ang_Flat a.
+Lemma bet_flat_ang : forall a A B C, 角谓词 a -> a A B C -> Bet A B C -> 平角谓词 a.
 Proof.
     intros.
-    unfold Ang_Flat.
+    unfold 平角谓词.
     split.
       auto.
     intros.
@@ -1075,10 +1075,10 @@ Proof.
     apply (ang_conga a); auto.
 Qed.
 
-Lemma out_null_anga : forall a A B C, Q_CongA_Acute a -> a A B C -> Out B A C -> Q_CongA_Null_Acute a.
+Lemma out_null_anga : forall a A B C, 锐角谓词 a -> a A B C -> Out B A C -> 锐零角谓词 a.
 Proof.
     intros.
-    unfold Q_CongA_Null_Acute.
+    unfold 锐零角谓词.
     split.
       auto.
     intros.
@@ -1087,16 +1087,16 @@ Proof.
     apply (anga_conga a); auto.
 Qed.
 
-Lemma anga_not_flat : forall a, Q_CongA_Acute a -> Q_CongA_nFlat a.
+Lemma anga_not_flat : forall a, 锐角谓词 a -> 非平角谓词 a.
 Proof.
     intros.
-    unfold Q_CongA_nFlat.
+    unfold 非平角谓词.
     split.
       apply anga_is_ang in H.
       auto.
     intros.
     assert(HH:= anga_acute a A B C H H0).
-    unfold Q_CongA_Acute in H.
+    unfold 锐角谓词 in H.
     ex_and H A0.
     ex_and H1 B0.
     ex_and H C0.
@@ -1106,30 +1106,30 @@ Proof.
 Qed.
 
 
-Lemma anga_const_o : forall a A B P, ~Col A B P -> ~ Q_CongA_Null_Acute a -> Q_CongA_Acute a -> exists C, a A B C /\ OS A B C P.
+Lemma anga_const_o : forall a A B P, ~Col A B P -> ~ 锐零角谓词 a -> 锐角谓词 a -> exists C, a A B C /\ OS A B C P.
 Proof.
     intros.
-    assert(Q_CongA a).
+    assert(角谓词 a).
       apply anga_is_ang; auto.
-    assert(Q_CongA_nNull a).
-      unfold Q_CongA_nNull.
+    assert(非零角谓词 a).
+      unfold 非零角谓词.
       split.
         auto.
       intros A' B' C' HP.
       intro.
       apply H0.
       eapply (out_null_anga a A' B' C'); auto.
-    assert(Q_CongA_nFlat a).
+    assert(非平角谓词 a).
       apply anga_not_flat.
       auto.
     assert(HH:= ang_const_o a A B P H H2 H3 H4).
     auto.
 Qed.
 
-Lemma anga_conga_anga : forall a A B C A' B' C' , Q_CongA_Acute a -> a A B C -> CongA A B C A' B' C' -> a A' B' C'.
+Lemma anga_conga_anga : forall a A B C A' B' C' , 锐角谓词 a -> a A B C -> 等角 A B C A' B' C' -> a A' B' C'.
 Proof.
     intros.
-    unfold Q_CongA_Acute in H.
+    unfold 锐角谓词 in H.
     ex_and H A0.
     ex_and H2 B0.
     ex_and H C0.
@@ -1138,7 +1138,7 @@ Proof.
     destruct HH.
     destruct HP.
     apply H4 in H0.
-    assert(CongA A0 B0 C0 A' B' C').
+    assert(等角 A0 B0 C0 A' B' C').
       eapply conga_trans.
         apply H0.
       apply H1.
@@ -1146,22 +1146,22 @@ Proof.
     auto.
 Qed.
 
-Lemma anga_out_anga : forall a A B C A' C', Q_CongA_Acute a -> a A B C -> Out B A A' -> Out B C C' -> a A' B C'.
+Lemma anga_out_anga : forall a A B C A' C', 锐角谓词 a -> a A B C -> Out B A A' -> Out B C C' -> a A' B C'.
 Proof.
     intros.
     assert(HH:= H).
-    unfold Q_CongA_Acute in HH.
+    unfold 锐角谓词 in HH.
     ex_and HH A0.
     ex_and H3 B0.
     ex_and H4 C0.
     assert(HP:= H4 A B C).
     destruct HP.
-    assert(CongA A0 B0 C0 A B C).
+    assert(等角 A0 B0 C0 A B C).
       apply H6.
       auto.
     assert(HP:= anga_distincts a A B C H H0).
     spliter.
-    assert(CongA A B C A' B C').
+    assert(等角 A B C A' B C').
       apply out2__conga; apply l6_6; assumption.
     assert(HH:= H4 A' B C').
     destruct HH.
@@ -1169,21 +1169,21 @@ Proof.
     apply (conga_trans _ _ _ A B C); auto.
 Qed.
 
-Lemma out_out_anga : forall a A B C A' B' C', Q_CongA_Acute a -> Out B A C -> Out B' A' C' -> a A B C -> a A' B' C'.
+Lemma out_out_anga : forall a A B C A' B' C', 锐角谓词 a -> Out B A C -> Out B' A' C' -> a A B C -> a A' B' C'.
 Proof.
     intros.
-    assert(CongA A B C A' B' C').
+    assert(等角 A B C A' B' C').
       apply l11_21_b; auto.
     apply (anga_conga_anga a A B C); auto.
 Qed.
 
-Lemma is_null_all : forall a A B, A <> B -> Q_CongA_Null_Acute a -> a A B A.
+Lemma is_null_all : forall a A B, A <> B -> 锐零角谓词 a -> a A B A.
 Proof.
     intros.
-    unfold Q_CongA_Null_Acute in H0.
+    unfold 锐零角谓词 in H0.
     spliter.
     assert(HH:= H0).
-    unfold Q_CongA_Acute in HH.
+    unfold 锐角谓词 in HH.
     ex_and HH A0.
     ex_and H2 B0.
     ex_and H3 C0.
@@ -1199,10 +1199,10 @@ Proof.
     auto.
 Qed.
 
-Lemma anga_col_out : forall a A B C, Q_CongA_Acute a -> a A B C -> Col A B C -> Out B A C.
+Lemma anga_col_out : forall a A B C, 锐角谓词 a -> a A B C -> Col A B C -> Out B A C.
 Proof.
     intros.
-    assert(Acute A B C).
+    assert(为锐角 A B C).
       apply (anga_acute a); auto.
     unfold Col in H1.
     induction H1.
@@ -1220,22 +1220,22 @@ Proof.
     auto.
 Qed.
 
-Lemma ang_not_lg_null : forall a la lc A B C, Q_Cong la -> Q_Cong lc -> Q_CongA a ->
- la A B -> lc C B -> a A B C -> ~ Q_Cong_Null la /\ ~ Q_Cong_Null lc.
+Lemma ang_not_lg_null : forall a la lc A B C, Q_Cong la -> Q_Cong lc -> 角谓词 a ->
+ la A B -> lc C B -> a A B C -> ~ 零长谓词 la /\ ~ 零长谓词 lc.
 Proof.
     intros.
     assert(HH:=ang_distincts a A B C H1 H4).
     spliter.
     split.
       intro.
-      unfold Q_Cong_Null in H7.
+      unfold 零长谓词 in H7.
       spliter.
       ex_and H8 P.
       assert(HH:= lg_cong la A B P P H H2 H9).
       apply 等长的同一性 in HH.
       contradiction.
     intro.
-    unfold Q_Cong_Null in H7.
+    unfold 零长谓词 in H7.
     spliter.
     ex_and H8 P.
     assert(HH:= lg_cong lc C B P P H0 H3 H9).
@@ -1244,14 +1244,14 @@ Proof.
 Qed.
 
 Lemma anga_not_lg_null : forall a la lc A B C, Q_Cong la -> Q_Cong lc ->
- Q_CongA_Acute a -> la A B -> lc C B -> a A B C -> ~ Q_Cong_Null la /\ ~ Q_Cong_Null lc.
+ 锐角谓词 a -> la A B -> lc C B -> a A B C -> ~ 零长谓词 la /\ ~ 零长谓词 lc.
 Proof.
     intros.
     apply anga_is_ang in H1.
     apply(ang_not_lg_null a la lc A B C); auto.
 Qed.
 
-Lemma anga_col_null : forall a A B C, Q_CongA_Acute a -> a A B C -> Col A B C -> Out B A C /\ Q_CongA_Null_Acute a.
+Lemma anga_col_null : forall a A B C, 锐角谓词 a -> a A B C -> Col A B C -> Out B A C /\ 锐零角谓词 a.
 Proof.
     intros.
     assert(HH:= anga_distincts a A B C H H0).
@@ -1273,10 +1273,10 @@ Proof.
     apply (out_null_anga a A B C); auto.
 Qed.
 
-Lemma eqA_preserves_ang: forall a b, Q_CongA a -> EqA a b -> Q_CongA b.
+Lemma eqA_preserves_ang: forall a b, 角谓词 a -> EqA a b -> 角谓词 b.
 Proof.
 intros.
-unfold Q_CongA in *.
+unfold 角谓词 in *.
 decompose [ex and] H.
 exists x. exists x0. exists x1.
 split.
@@ -1289,10 +1289,10 @@ unfold EqA in H0.
 apply H0.
 Qed.
 
-Lemma eqA_preserves_anga : forall a b, Q_CongA_Acute a -> Q_CongA b -> EqA a b -> Q_CongA_Acute b.
+Lemma eqA_preserves_anga : forall a b, 锐角谓词 a -> 角谓词 b -> EqA a b -> 锐角谓词 b.
 Proof.
     intros.
-    assert (Q_CongA a).
+    assert (角谓词 a).
         apply eqA_preserves_ang with b;auto.
         symmetry;auto.
     unfold EqA in H1.
@@ -1300,19 +1300,19 @@ Proof.
 
     assert(HH:= H1 A B C).
     destruct HH.
-    unfold Q_CongA_Acute.
+    unfold 锐角谓词.
     exists A.
     exists B.
     exists C.
     split.
-      unfold Q_CongA_Acute in H.
+      unfold 锐角谓词 in H.
       ex_and H A'.
       ex_and H6 B'.
       ex_and H C'.
       assert(a A' B' C').
         assert(HP:= H6 A B C).
         destruct HP.
-        assert(CongA A B C A' B' C') by (apply conga_sym;auto).
+        assert(等角 A B C A' B' C') by (apply conga_sym;auto).
         assert(HP:=is_ang_conga_is_ang A B C A' B' C' a).
         assert(Ang A' B' C' a).
           apply HP.
@@ -1323,7 +1323,7 @@ Proof.
         auto.
       apply (acute_lea_acute _ _ _ A' B' C').
         auto.
-      unfold LeA.
+      unfold 角度小于等于.
       exists C'.
       split.
         assert (HH:= acute_distincts A' B' C' H).

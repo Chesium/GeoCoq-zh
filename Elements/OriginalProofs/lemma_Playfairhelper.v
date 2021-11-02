@@ -35,10 +35,10 @@ assert (Par C D A B) by (conclude lemma_parallelsymmetric).
 assert (Par C E A B) by (conclude lemma_parallelsymmetric).
 assert (Par E C B A) by (forward_using lemma_parallelflip).
 assert (Par D C B A) by (forward_using lemma_parallelflip).
-assert (CongA E C B C B A) by (conclude proposition_29B).
-assert (CongA D C B C B A) by (conclude proposition_29B).
-assert (CongA C B A D C B) by (conclude lemma_equalanglessymmetric).
-assert (CongA E C B D C B) by (conclude lemma_equalanglestransitive).
+assert (等角 E C B C B A) by (conclude proposition_29B).
+assert (等角 D C B C B A) by (conclude proposition_29B).
+assert (等角 C B A D C B) by (conclude lemma_equalanglessymmetric).
+assert (等角 E C B D C B) by (conclude lemma_equalanglestransitive).
 assert (neq C E) by (forward_using lemma_NCdistinct).
 assert (neq C D) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
@@ -48,10 +48,10 @@ assert (neq C B) by (conclude lemma_inequalitysymmetric).
 assert (Out C B B) by (conclude lemma_ray4).
 assert (Cong C B C B) by (conclude cn_congruencereflexive).
 assert (nCol E C B) by (forward_using lemma_NCorder).
-assert (CongA E C B E C B) by (conclude lemma_equalanglesreflexive).
-assert (CongA E C B e C B) by (conclude lemma_equalangleshelper).
-assert (CongA e C B E C B) by (conclude lemma_equalanglessymmetric).
-assert (CongA e C B D C B) by (conclude lemma_equalanglestransitive).
+assert (等角 E C B E C B) by (conclude lemma_equalanglesreflexive).
+assert (等角 E C B e C B) by (conclude lemma_equalangleshelper).
+assert (等角 e C B E C B) by (conclude lemma_equalanglessymmetric).
+assert (等角 e C B D C B) by (conclude lemma_equalanglestransitive).
 assert (Col C E e) by (conclude lemma_rayimpliescollinear).
 assert (eq C C) by (conclude cn_equalityreflexive).
 assert (Col C E C) by (conclude_def Col ).

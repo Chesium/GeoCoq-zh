@@ -930,10 +930,10 @@ Proof.
     assumption.
 Qed.
 
-Lemma proj_pars : forall A A' C' , A <> O -> Col O E A -> Par O E A' C' -> Proj A A' O E' E E' -> Par_strict O E A' C'.
+Lemma proj_pars : forall A A' C' , A <> O -> Col O E A -> Par O E A' C' -> Proj A A' O E' E E' -> 严格平行 O E A' C'.
 Proof.
     intros.
-    unfold Par_strict.
+    unfold 严格平行.
     assert(HH:=grid_ok).
     split.
       apply all_coplanar.
@@ -1070,7 +1070,7 @@ Proof.
 Qed.
 
 Lemma sum_par_strict : forall A B C A' C', Ar2 O E E' A B C -> A <> O -> Pj E E' A A' -> Col O E' A' -> Pj O E A' C' -> Pj O E' B C' -> Pj E' E C' C
-                                           -> A' <> O /\ (Par_strict O E A' C' \/ B = O).
+                                           -> A' <> O /\ (严格平行 O E A' C' \/ B = O).
 Proof.
     intros.
     assert(Sum O E E' A B C).
@@ -1200,7 +1200,7 @@ Proof.
         apply grid_ok.
         ColR.
       assumption.
-    assert(A' <> O /\ (Par_strict O E A' C' \/ B = O)).
+    assert(A' <> O /\ (严格平行 O E A' C' \/ B = O)).
       apply(sum_par_strict A B A A' C');auto.
     spliter.
     induction(两点重合的决定性 B O).
@@ -1257,7 +1257,7 @@ Proof.
     subst C'.
     induction(两点重合的决定性 A O).
       auto.
-    assert(A' <> O /\ (Par_strict O E A' B \/ B = O)).
+    assert(A' <> O /\ (严格平行 O E A' B \/ B = O)).
       apply(sum_par_strict A B B A' B);auto.
         repeat split; auto.
       unfold Pj.
@@ -1310,9 +1310,9 @@ Proof.
     ex_and H3 A'.
     ex_and H14 C'.
     clean_duplicated_hyps.
-    assert(A' <> O /\ (Par_strict O E A' C' \/ X = O)).
+    assert(A' <> O /\ (严格平行 O E A' C' \/ X = O)).
       apply(sum_par_strict A X C A' C'); auto.
-    assert(A'' <> O /\ (Par_strict O E A'' C'' \/ Y = O)).
+    assert(A'' <> O /\ (严格平行 O E A'' C'' \/ Y = O)).
       apply(sum_par_strict A Y C A'' C''); auto.
     spliter.
     unfold Pj in *.
@@ -1490,9 +1490,9 @@ Proof.
         apply (sum_uniqueness O B); auto.
       subst C.
       apply (sum_A_B_B X B); auto.
-    assert(A' <> O /\ (Par_strict O E A' C' \/ B = O)).
+    assert(A' <> O /\ (严格平行 O E A' C' \/ B = O)).
       apply(sum_par_strict X B C A' C'); auto.
-    assert(A'' <> O /\ (Par_strict O E A'' C'' \/ B = O)).
+    assert(A'' <> O /\ (严格平行 O E A'' C'' \/ B = O)).
       apply(sum_par_strict Y B C A'' C''); auto.
     spliter.
     induction H12.
@@ -1762,7 +1762,7 @@ Proof.
         apply par_symmetry.
         apply (par_col_par _ _ _ A); Col;Par.
       contradiction.
-    assert(A' <> O /\ (Par_strict O E A' C' \/ B = O)).
+    assert(A' <> O /\ (严格平行 O E A' C' \/ B = O)).
       apply(sum_par_strict A B C A' C');auto.
       repeat split; auto.
     spliter.
@@ -1770,7 +1770,7 @@ Proof.
       assert(Par O B C' A').
         apply par_symmetry.
         apply (par_col_par _ _ _ E); Par.
-      assert(Par_strict O B C' A').
+      assert(严格平行 O B C' A').
         induction H20.
           auto.
         spliter.
@@ -1797,7 +1797,7 @@ Proof.
               Par.
             ColR.
           ColR.
-        assert(Par_strict C' A' A C).
+        assert(严格平行 C' A' A C).
           induction H23.
             auto.
           spliter.
@@ -1961,7 +1961,7 @@ Proof.
     split; auto.
     split; auto.
     split; auto.
-    assert(Par_strict O E B' P').
+    assert(严格平行 O E B' P').
       induction H12.
         auto.
       spliter.
@@ -2010,7 +2010,7 @@ Proof.
       unfold Proj in H13.
       spliter.
       Col.
-    assert(Par_strict O A B' D').
+    assert(严格平行 O A B' D').
       induction H19.
         auto.
       spliter.
@@ -2151,8 +2151,8 @@ Proof.
         spliter.
         contradiction.
       contradiction.
-    assert(Par_strict O E A' P').
-      unfold Par_strict.
+    assert(严格平行 O E A' P').
+      unfold 严格平行.
       repeat split; auto; try apply all_coplanar.
       intro.
       ex_and H21 X.
@@ -2704,7 +2704,7 @@ Proof.
     clean_duplicated_hyps.
     assert(HH:=sum_par_strict O E E' H B A AB B1' A1 H19 H1 H20 H21 H22 H23 H24).
     spliter.
-    assert(Par_strict O E B1' A1).
+    assert(严格平行 O E B1' A1).
       induction H25.
         auto.
       contradiction.
@@ -3181,7 +3181,7 @@ Qed.
 
 Lemma change_grid_sum_0 :
  forall O E E' A B C O' A' B' C',
-  Par_strict O E O' E' ->
+  严格平行 O E O' E' ->
   Ar1 O E A B C ->
   Ar1 O' E' A' B' C' ->
   Pj O O' E E' ->
@@ -3264,7 +3264,7 @@ Qed.
 
 Lemma change_grid_sum :
  forall O E E' A B C O' A' B' C',
-  Par_strict O E O' E' ->
+  严格平行 O E O' E' ->
   Ar1 O E A B C ->
   Ar1 O' E' A' B' C' ->
   Pj O O' E E' ->
@@ -3640,14 +3640,14 @@ Proof.
 Qed.
 
 Lemma midpoint_opp: forall O E E' A B,
-  Ar2 O E E' O A B -> Midpoint O A B -> Opp O E E' A B.
+  Ar2 O E E' O A B -> 中点 O A B -> Opp O E E' A B.
 Proof.
     intros.
     unfold Ar2.
     unfold Ar2 in H.
     spliter.
     clear H1.
-    unfold Midpoint in H0.
+    unfold 中点 in H0.
     spliter.
     induction (两点重合的决定性 A B).
       subst B.
@@ -3895,7 +3895,7 @@ Proof.
       subst B.
       unfold Parallelogram_flat in H0.
       spliter.
-      assert(O = C \/ Midpoint A O C).
+      assert(O = C \/ 中点 A O C).
         apply(l7_20 A O C H0).
         Cong.
       induction H5.
@@ -3904,9 +3904,9 @@ Proof.
       apply cong_sum; auto.
         unfold Ar2 in H.
         tauto.
-        unfold Midpoint in H5.
+        unfold 中点 in H5.
         tauto.
-      unfold Midpoint in H5.
+      unfold 中点 in H5.
       tauto.
     unfold Ar2 in H.
     unfold Parallelogram_flat in H0.
@@ -3920,7 +3920,7 @@ Qed.
 Lemma opp_midpoint :
  forall O E E' A MA,
  Opp O E E' A MA ->
- Midpoint O A MA.
+ 中点 O A MA.
 Proof.
     intros.
     unfold Opp in H.
@@ -3933,7 +3933,7 @@ Proof.
       subst A.
       assert(HH:= sum_A_O_eq O E E' H MA O HS).
       subst MA.
-      unfold Midpoint.
+      unfold 中点.
       split; Cong.
       apply ABB中间性.
     assert(Parallelogram_flat O MA O A).
@@ -3941,7 +3941,7 @@ Proof.
       tauto.
     unfold Parallelogram_flat in H5.
     spliter.
-    assert(A = MA \/ Midpoint O A MA).
+    assert(A = MA \/ 中点 O A MA).
       apply(l7_20 O A MA).
         Col.
       Cong.
@@ -3978,7 +3978,7 @@ Proof.
         unfold Opp.
         auto.
       apply opp_midpoint in H7.
-      unfold Midpoint in H7.
+      unfold 中点 in H7.
       spliter.
       unfold Parallelogram_flat.
       repeat split; Col.

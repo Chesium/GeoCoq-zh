@@ -6,7 +6,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma lemma_altitudebisectsbase : 
    forall A B M P, 
    BetS A M B -> Cong A P B P -> Per A M P ->
-   Midpoint A M B.
+   中点 A M B.
 Proof.
 intros.
 let Tf:=fresh in
@@ -72,11 +72,11 @@ assert (~ eq P B).
  }
 assert (Out P B B) by (conclude lemma_ray4).
 assert (Out P M Q) by (conclude lemma_ray4).
-assert (CongA A P M B P M) by (conclude_def CongA ).
+assert (等角 A P M B P M) by (conclude_def 等角 ).
 assert (Cong P M P M) by (conclude cn_congruencereflexive).
-assert ((Cong A M B M /\ CongA P A M P B M /\ CongA P M A P M B)) by (conclude proposition_04).
+assert ((Cong A M B M /\ 等角 P A M P B M /\ 等角 P M A P M B)) by (conclude proposition_04).
 assert (Cong A M M B) by (forward_using lemma_congruenceflip).
-assert (Midpoint A M B) by (conclude_def Midpoint ).
+assert (中点 A M B) by (conclude_def 中点 ).
 close.
 Qed.
 

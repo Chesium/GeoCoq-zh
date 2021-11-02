@@ -9,7 +9,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma proposition_15 : 
    forall A B C D E, 
    BetS A E B -> BetS C E D -> nCol A E C ->
-   CongA A E C D E B /\ CongA C E B A E D.
+   等角 A E C D E B /\ 等角 C E B A E D.
 Proof.
 intros.
 assert (neq E D) by (forward_using lemma_betweennotequal).
@@ -48,8 +48,8 @@ assert (~ Col A E D).
  assert (Col A E C) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA B E D D E B) by (conclude lemma_ABCequalsCBA).
-assert (CongA D E A B E C) by (conclude lemma_supplements).
+assert (等角 B E D D E B) by (conclude lemma_ABCequalsCBA).
+assert (等角 D E A B E C) by (conclude lemma_supplements).
 assert (~ Col B E C).
  {
  intro.
@@ -59,11 +59,11 @@ assert (~ Col B E C).
  assert (Col A E C) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA B E C C E B) by (conclude lemma_ABCequalsCBA).
-assert (CongA D E A C E B) by (conclude lemma_equalanglestransitive).
-assert (CongA A E D D E A) by (conclude lemma_ABCequalsCBA).
-assert (CongA A E D C E B) by (conclude lemma_equalanglestransitive).
-assert (CongA C E B A E D) by (conclude lemma_equalanglessymmetric).
+assert (等角 B E C C E B) by (conclude lemma_ABCequalsCBA).
+assert (等角 D E A C E B) by (conclude lemma_equalanglestransitive).
+assert (等角 A E D D E A) by (conclude lemma_ABCequalsCBA).
+assert (等角 A E D C E B) by (conclude lemma_equalanglestransitive).
+assert (等角 C E B A E D) by (conclude lemma_equalanglessymmetric).
 assert (~ eq E C).
  {
  intro.
@@ -85,8 +85,8 @@ assert (~ Col A E C).
  assert (Col A E D) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA B E C C E B) by (conclude lemma_ABCequalsCBA).
-assert (CongA C E A B E D) by (conclude lemma_supplements).
+assert (等角 B E C C E B) by (conclude lemma_ABCequalsCBA).
+assert (等角 C E A B E D) by (conclude lemma_supplements).
 assert (~ Col B E D).
  {
  intro.
@@ -96,17 +96,17 @@ assert (~ Col B E D).
  assert (Col A E D) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA B E D D E B) by (conclude lemma_ABCequalsCBA).
-assert (CongA C E A D E B) by (conclude lemma_equalanglestransitive).
-assert (CongA A E C C E A) by (conclude lemma_ABCequalsCBA).
-assert (CongA A E C D E B) by (conclude lemma_equalanglestransitive).
+assert (等角 B E D D E B) by (conclude lemma_ABCequalsCBA).
+assert (等角 C E A D E B) by (conclude lemma_equalanglestransitive).
+assert (等角 A E C C E A) by (conclude lemma_ABCequalsCBA).
+assert (等角 A E C D E B) by (conclude lemma_equalanglestransitive).
 close.
 Qed.
 
 Lemma proposition_15a :
  forall A B C D E : Point,
        BetS A E B ->
-       BetS C E D -> nCol A E C -> CongA A E C D E B.
+       BetS C E D -> nCol A E C -> 等角 A E C D E B.
 Proof.
 intros.
 apply (proposition_15 A B C D E);assumption.
@@ -116,7 +116,7 @@ Lemma proposition_15b :
  forall A B C D E : Point,
        BetS A E B ->
        BetS C E D -> nCol A E C ->
-       CongA C E B A E D.
+       等角 C E B A E D.
 Proof.
 intros.
 apply (proposition_15 A B C D E);assumption.

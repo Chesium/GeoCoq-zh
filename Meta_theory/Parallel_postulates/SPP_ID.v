@@ -17,7 +17,7 @@ assert (H := symmetric_point_construction S T); destruct H as [R [HRTS HCong2]].
 elim (col_dec P R U); intro HPRU.
 
   {
-  assert (HPar : Par_strict Q S P U).
+  assert (HPar : 严格平行 Q S P U).
     {
     apply par_strict_col_par_strict with R; Col.
     apply par_not_col_strict with P; Col.

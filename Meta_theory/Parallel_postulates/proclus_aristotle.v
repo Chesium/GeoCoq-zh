@@ -40,7 +40,7 @@ Proof.
   { apply (one_side_transitivity _ _ _ D0); auto.
     apply out_one_side; [Col|Out].
   }
-  assert(Hlta : LtA A B C A B D).
+  assert(Hlta : 角度小于 A B C A B D).
   { apply acute_per__lta; auto.
     apply perp_per_2; auto.
   }
@@ -62,13 +62,13 @@ Proof.
   assert(Y<>D) by (intro; subst Y; Col).
   assert(OS B A C D).
     apply (one_side_transitivity _ _ _ D0); auto; apply out_one_side; Col; apply bet_out; auto.
-  assert(Par_strict B D X Y).
+  assert(严格平行 B D X Y).
   { apply (par_not_col_strict _ _ _ _ Y); Col.
     apply (l12_9 _ _ _ _ B A); Perp; Cop.
       apply coplanar_perm_12, col_cop__cop with C; Col; Cop.
     intro; apply HNCol2; ColR.
   }
-  assert(InAngle C A B D) by (apply lea_in_angle; [Lea|Side]).
+  assert(在角内 C A B D) by (apply lea_in_angle; [Lea|Side]).
   assert(Out B C Y).
   { apply (col_one_side_out _ A); Col.
     apply (one_side_transitivity _ _ _ D); auto.

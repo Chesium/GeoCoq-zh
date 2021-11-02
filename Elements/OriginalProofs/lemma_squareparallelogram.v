@@ -58,13 +58,13 @@ assert (Cong B c B C) by (conclude lemma_congruencetransitive).
 assert (Cong c B C B) by (forward_using lemma_congruenceflip).
 assert (Per B C D) by (conclude_def SQ ).
 assert (Per B c D) by (conclude_def SQ ).
-assert (CongA B c D B C D) by (conclude lemma_Euclid4).
-assert ((Cong B D B D /\ CongA c B D C B D /\ CongA c D B C D B)) by (conclude proposition_04).
+assert (等角 B c D B C D) by (conclude lemma_Euclid4).
+assert ((Cong B D B D /\ 等角 c B D C B D /\ 等角 c D B C D B)) by (conclude proposition_04).
 let Tf:=fresh in
-assert (Tf:exists m, (Midpoint A m c /\ Midpoint B m D)) by (conclude lemma_diagonalsbisect);destruct Tf as [m];spliter.
-assert ((BetS A m c /\ Cong A m m c)) by (conclude_def Midpoint ).
-assert ((BetS B m D /\ Cong B m m D)) by (conclude_def Midpoint ).
-assert (CongA C D B c D B) by (conclude lemma_equalanglessymmetric).
+assert (Tf:exists m, (中点 A m c /\ 中点 B m D)) by (conclude lemma_diagonalsbisect);destruct Tf as [m];spliter.
+assert ((BetS A m c /\ Cong A m m c)) by (conclude_def 中点 ).
+assert ((BetS B m D /\ Cong B m m D)) by (conclude_def 中点 ).
+assert (等角 C D B c D B) by (conclude lemma_equalanglessymmetric).
 assert (Cong D m D m) by (conclude cn_congruencereflexive).
 assert (Cong D c D C) by (forward_using lemma_congruenceflip).
 assert (nCol C D A) by (conclude lemma_rightangleNC).
@@ -90,20 +90,20 @@ assert (~ Col C D m).
  assert (nCol B C D) by (conclude lemma_rightangleNC).
  contradict.
  }
-assert (CongA c D B C D B) by (conclude lemma_equalanglessymmetric).
+assert (等角 c D B C D B) by (conclude lemma_equalanglessymmetric).
 assert (BetS D m B) by (conclude axiom_betweennesssymmetry).
 assert (neq D B) by (forward_using lemma_betweennotequal).
 assert (Out D B m) by (conclude lemma_ray4).
 assert (eq C C) by (conclude cn_equalityreflexive).
 assert (neq D C) by (forward_using lemma_NCdistinct).
 assert (Out D C C) by (conclude lemma_ray4).
-assert (CongA c D B C D m) by (conclude lemma_equalangleshelper).
-assert (CongA C D m c D B) by (conclude lemma_equalanglessymmetric).
+assert (等角 c D B C D m) by (conclude lemma_equalangleshelper).
+assert (等角 C D m c D B) by (conclude lemma_equalanglessymmetric).
 assert (eq c c) by (conclude cn_equalityreflexive).
 assert (neq D c) by (forward_using lemma_NCdistinct).
 assert (Out D c c) by (conclude lemma_ray4).
-assert (CongA C D m c D m) by (conclude lemma_equalangleshelper).
-assert (CongA c D m C D m) by (conclude lemma_equalanglessymmetric).
+assert (等角 C D m c D m) by (conclude lemma_equalangleshelper).
+assert (等角 c D m C D m) by (conclude lemma_equalanglessymmetric).
 assert (Cong c m C m) by (conclude proposition_04).
 assert (Cong m c m C) by (forward_using lemma_congruenceflip).
 assert (Cong A m A m) by (conclude cn_congruencereflexive).
@@ -111,7 +111,7 @@ assert (Cong D A D A) by (conclude cn_congruencereflexive).
 assert (Per c D A) by (conclude cn_equalitysub).
 assert (Per A D c) by (conclude lemma_8_2).
 assert (Per A D C) by (conclude lemma_8_2).
-assert (CongA A D C A D c) by (conclude lemma_Euclid4).
+assert (等角 A D C A D c) by (conclude lemma_Euclid4).
 assert (Cong D C D c) by (conclude lemma_congruencesymmetric).
 assert (Cong A C A c) by (conclude proposition_04).
 assert (Cong A c A C) by (conclude lemma_congruencesymmetric).

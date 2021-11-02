@@ -25,7 +25,7 @@ assert (~ Col B C A).
  contradict.
  }
 assert (TS A B C D) by (conclude_def TS ).
-assert (CongA A B C B C D) by (conclude proposition_29B).
+assert (等角 A B C B C D) by (conclude proposition_29B).
 assert (~ Col B C D).
  {
  intro.
@@ -35,17 +35,17 @@ assert (~ Col B C D).
  assert (Meet A B C D) by (conclude_def Meet ).
  contradict.
  }
-assert (CongA B C D D C B) by (conclude lemma_ABCequalsCBA).
-assert (CongA A B C D C B) by (conclude lemma_equalanglestransitive).
+assert (等角 B C D D C B) by (conclude lemma_ABCequalsCBA).
+assert (等角 A B C D C B) by (conclude lemma_equalanglestransitive).
 assert (Cong B C B C) by (conclude cn_congruencereflexive).
 assert (nCol A B C) by (assert (nCol B C A) by auto;
  (forward_using lemma_NCorder)). 
 assert (Cong B A C D) by (forward_using lemma_congruenceflip).
 assert (Cong B C C B) by (forward_using lemma_congruenceflip).
-assert ((Cong A C D B /\ CongA B A C C D B /\ CongA B C A C B D)) by (conclude proposition_04).
+assert ((Cong A C D B /\ 等角 B A C C D B /\ 等角 B C A C B D)) by (conclude proposition_04).
 assert (nCol A C B) by (forward_using lemma_NCorder).
-assert (CongA A C B B C A) by (conclude lemma_ABCequalsCBA).
-assert (CongA A C B C B D) by (conclude lemma_equalanglestransitive).
+assert (等角 A C B B C A) by (conclude lemma_ABCequalsCBA).
+assert (等角 A C B C B D) by (conclude lemma_equalanglestransitive).
 assert (Cong A C B D) by (forward_using lemma_congruenceflip).
 assert (Col C B M) by (forward_using lemma_collinearorder).
 assert (nCol C B A) by (forward_using lemma_NCorder).

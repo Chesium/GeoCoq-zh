@@ -7,7 +7,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 
 Definition is_incenter I A B C :=
- ~ Col A B C /\ CongA B A I I A C /\ CongA A B I I B C /\ CongA A C I I C B.
+ ~ Col A B C /\ 等角 B A I I A C /\ 等角 A B I I B C /\ 等角 A C I I C B.
 
 (** Proof of the existence of the incenter of a triangle. *)
 
@@ -52,20 +52,20 @@ assert (Out A X IA) by (assert (Out A X XA) by (assert_diffs;apply (bet_out A X 
 apply (l6_7 A X XA IA);auto).
 assert (Out B X IB) by (assert (Out B X XB) by (assert_diffs;apply (bet_out B X XB);Between);
 apply (l6_7 B X XB IB);auto).
-assert (CongA B A X X A C).
+assert (等角 B A X X A C).
 { apply (l11_10 B A IA IA A C B X X C);Out.
 }
-assert (CongA A B X X B C).
+assert (等角 A B X X B C).
 { apply (l11_10 A B IB IB B C A X X C);Out.
 }
-assert (Coplanar C A B X) by (exists XB; left; split; Col).
-assert (Cong X HB X HC) by (apply (bisector_perp_equality C A B X HB HC);Col;Perp;CongA).
+assert (共面 C A B X) by (exists XB; left; split; Col).
+assert (Cong X HB X HC) by (apply (bisector_perp_equality C A B X HB HC);Col;Perp;等角).
 assert (Cong X HC X HA) by (apply (bisector_perp_equality A B C X HC HA);Col;Cop).
 assert (Cong X HB X HA) by (apply (等长的传递性 X HB X HC X HA);auto).
-assert (CongA A C X X C B).
+assert (等角 A C X X C B).
 { 
  apply (perp_equality_bisector A C B X HB HA);Col;Perp.
- assert (InAngle X A B C).
+ assert (在角内 X A B C).
  repeat split;auto.
  exists XB.
  split;auto.
@@ -73,7 +73,7 @@ assert (CongA A C X X C B).
  apply (l6_6 B X XB);auto.
  apply (bet_out B X XB);auto.
  Between.
- assert (InAngle X B A C).
+ assert (在角内 X B A C).
  assert_diffs.
  repeat split;auto.
  exists XA.
@@ -100,7 +100,7 @@ intros A B C I HIABC.
 destruct HIABC as [HNCOL [HCONGAA [HCONGAB HCONGAC]]].
 split.
 Col.
-split;CongA.
+split;等角.
 Qed.
 
 Lemma incenter_permut213 : forall A B C I, is_incenter I A B C -> is_incenter I B A C.
@@ -111,7 +111,7 @@ destruct HIABC as [HNCOL [HCONGAA [HCONGAB HCONGAC]]].
 split.
 intro;Col.
 split;auto.
-split;CongA.
+split;等角.
 Qed.
 
 Lemma incenter_permut231 : forall A B C I, is_incenter I A B C -> is_incenter I B C A.
@@ -153,7 +153,7 @@ destruct HN as [HNCOL1 [HCONGA [HCONGAB HCONGAC]]].
 elim HCNC;auto.
 right;intro HN.
 destruct HN as [HNCOL1 [HCONGA [HCONGAB HCONGAC]]].
-elim HBNC;CongA.
+elim HBNC;等角.
 right;intro HN.
 destruct HN as [HNCOL1 [HCONGA [HCONGAB HCONGAC]]].
 elim HANC;auto.

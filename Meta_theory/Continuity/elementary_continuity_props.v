@@ -192,7 +192,7 @@ Proof.
         subst C.
         assert (Col A U V) by (apply l10_8, HC).
         apply HNCol; ColR.
-      assert (Habs : ReflectL_at U A C U V).
+      assert (Habs : 严格对称于 U A C U V).
         apply image_image_in; Col.
         apply is_image_is_image_spec; auto.
       destruct Habs as [_ [|]]; auto.
@@ -365,7 +365,7 @@ Proof.
   }
   destruct HXYZ as [X [Y [Z [HAC [HAB HCD]]]]].
   assert_diffs.
-  assert (HZ0 : exists Z0, CongA Y X Z C A Z0 /\ Cong X Z A Z0).
+  assert (HZ0 : exists Z0, 等角 Y X Z C A Z0 /\ Cong X Z A Z0).
   { destruct (angle_construction_3 Y X Z C A) as [Z']; auto.
     assert_diffs.
     destruct (由一点往一方向构造等长线段_3 A Z' X Z) as [Z0 []]; auto.

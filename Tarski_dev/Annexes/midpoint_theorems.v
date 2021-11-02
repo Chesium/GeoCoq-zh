@@ -2,7 +2,7 @@ Require Export GeoCoq.Tarski_dev.Annexes.quadrilaterals_inter_dec.
 
 Ltac assert_all := treat_equalities; assert_cols_perm; assert_diffs; assert_congs_perm.
 
-Section TriangleMidpointsTheorems.
+Section Triangle中点sTheorems.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
@@ -31,9 +31,9 @@ Proof. exact col_transitivity_2. Qed.
 
 Lemma triangle_mid_par_strict : forall A B C P Q,
  ~Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Par_strict A B Q P.
+ 中点 P B C ->
+ 中点 Q A C ->
+ 严格平行 A B Q P.
 Proof.
 intros.
 Name x the symmetric of P wrt Q.
@@ -67,10 +67,10 @@ Qed.
 
 Lemma triangle_mid_par_strict_cong_aux : forall A B C P Q R,
  ~Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Midpoint R A B ->
- Par_strict A B Q P  /\ Cong A R P Q /\ Cong B R P Q.
+ 中点 P B C ->
+ 中点 Q A C ->
+ 中点 R A B ->
+ 严格平行 A B Q P  /\ Cong A R P Q /\ Cong B R P Q.
 Proof.
 intros.
 Name x the symmetric of P wrt Q.
@@ -104,10 +104,10 @@ Qed.
 
 Lemma triangle_par_mid : forall A B C P Q,
  ~ Col A B C ->
- Midpoint P B C ->
+ 中点 P B C ->
  Par A B Q P ->
  Col Q A C ->
- Midpoint Q A C.
+ 中点 Q A C.
 Proof.
 assert (H:=playfair_s_postulate_implies_midpoint_converse_postulate);
 unfold midpoint_converse_postulate in H; intros; apply H with B P; Col.
@@ -117,13 +117,13 @@ Qed.
 
 Lemma triangle_mid_par_strict_cong_1 : forall A B C P Q R,
  ~Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Midpoint R A B ->
- Par_strict A B Q P  /\ Cong A R P Q.
+ 中点 P B C ->
+ 中点 Q A C ->
+ 中点 R A B ->
+ 严格平行 A B Q P  /\ Cong A R P Q.
 Proof.
 intros.
-assert (Par_strict A B Q P /\ Cong A R P Q /\ Cong B R P Q)
+assert (严格平行 A B Q P /\ Cong A R P Q /\ Cong B R P Q)
   by (apply triangle_mid_par_strict_cong_aux with C; assumption).
 spliter.
 split; assumption.
@@ -131,13 +131,13 @@ Qed.
 
 Lemma triangle_mid_par_strict_cong_2 : forall A B C P Q R,
  ~Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Midpoint R A B ->
- Par_strict A B Q P  /\ Cong B R P Q.
+ 中点 P B C ->
+ 中点 Q A C ->
+ 中点 R A B ->
+ 严格平行 A B Q P  /\ Cong B R P Q.
 Proof.
 intros.
-assert (Par_strict A B Q P /\ Cong A R P Q /\ Cong B R P Q)
+assert (严格平行 A B Q P /\ Cong A R P Q /\ Cong B R P Q)
   by (apply triangle_mid_par_strict_cong_aux with C; assumption).
 spliter.
 split; assumption.
@@ -146,28 +146,28 @@ Qed.
 Lemma triangle_mid_par_strict_cong_simp :
  forall A B C P Q,
  ~ Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Par_strict A B Q P.
+ 中点 P B C ->
+ 中点 Q A C ->
+ 严格平行 A B Q P.
 Proof.
 apply triangle_mid_par.
 Qed.
 
 Lemma triangle_mid_par_strict_cong : forall A B C P Q R,
  ~Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Midpoint R A B ->
- Par_strict A B Q P /\ Par_strict A C P R /\ Par_strict B C Q R /\
+ 中点 P B C ->
+ 中点 Q A C ->
+ 中点 R A B ->
+ 严格平行 A B Q P /\ 严格平行 A C P R /\ 严格平行 B C Q R /\
  Cong A R P Q /\ Cong B R P Q /\ Cong A Q P R /\ Cong C Q P R /\ Cong B P Q R /\ Cong C P Q R.
 Proof.
 intros.
 permutation_intro_in_hyps.
-assert (Par_strict A B Q P /\ Cong A R P Q /\ Cong B R P Q)
+assert (严格平行 A B Q P /\ Cong A R P Q /\ Cong B R P Q)
   by (apply triangle_mid_par_strict_cong_aux with C; assumption).
-assert (Par_strict A C R P /\ Cong A Q P R /\ Cong C Q P R)
+assert (严格平行 A C R P /\ Cong A Q P R /\ Cong C Q P R)
   by (apply triangle_mid_par_strict_cong_aux with B; Col).
-assert (Par_strict C B Q R /\ Cong C P R Q /\ Cong B P R Q)
+assert (严格平行 C B Q R /\ Cong C P R Q /\ Cong B P R Q)
   by (apply triangle_mid_par_strict_cong_aux with A; Col).
 spliter.
 
@@ -180,9 +180,9 @@ Qed.
 Lemma triangle_mid_par_flat_cong_aux : forall A B C P Q R,
  B <> A ->
  Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Midpoint R A B ->
+ 中点 P B C ->
+ 中点 Q A C ->
+ 中点 R A B ->
  Par A B Q P /\ Cong A R P Q /\ Cong B R P Q.
 Proof.
 intros.
@@ -236,9 +236,9 @@ Qed.
 Lemma triangle_mid_par_flat_cong_1 : forall A B C P Q R,
  B <> A ->
  Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Midpoint R A B ->
+ 中点 P B C ->
+ 中点 Q A C ->
+ 中点 R A B ->
  Par A B Q P  /\ Cong A R P Q.
 Proof.
 intros.
@@ -251,9 +251,9 @@ Qed.
 Lemma triangle_mid_par_flat_cong_2 : forall A B C P Q R,
  B <> A ->
  Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Midpoint R A B ->
+ 中点 P B C ->
+ 中点 Q A C ->
+ 中点 R A B ->
  Par A B Q P /\ Cong B R P Q.
 Proof.
 intros.
@@ -268,9 +268,9 @@ Lemma triangle_mid_par_flat_cong : forall A B C P Q R,
  C <> A ->
  C <> B ->
  Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Midpoint R A B ->
+ 中点 P B C ->
+ 中点 Q A C ->
+ 中点 R A B ->
  Par A B Q P /\ Par A C P R /\ Par B C Q R /\
  Cong A R P Q /\ Cong B R P Q /\ Cong A Q P R /\ Cong C Q P R /\ Cong B P Q R /\ Cong C P Q R.
 Proof.
@@ -288,8 +288,8 @@ Qed.
 Lemma triangle_mid_par_flat : forall A B C P Q,
  B <> A ->
  Col A B C ->
- Midpoint P B C ->
- Midpoint Q A C ->
+ 中点 P B C ->
+ 中点 Q A C ->
  Par A B Q P.
 Proof.
 intros.
@@ -300,8 +300,8 @@ Qed.
 
 Lemma triangle_mid_par : forall A B C P Q,
  A <> B ->
- Midpoint P B C ->
- Midpoint Q A C ->
+ 中点 P B C ->
+ 中点 Q A C ->
  Par A B Q P.
 Proof.
 intros.
@@ -316,9 +316,9 @@ Lemma triangle_mid_par_cong : forall A B C P Q R,
  B <> A ->
  C <> A ->
  C <> B ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Midpoint R A B ->
+ 中点 P B C ->
+ 中点 Q A C ->
+ 中点 R A B ->
  Par A B Q P /\ Par A C P R /\ Par B C Q R /\
  Cong A R P Q /\ Cong B R P Q /\ Cong A Q P R /\ Cong C Q P R /\ Cong B P Q R /\ Cong C P Q R.
 Proof.
@@ -334,9 +334,9 @@ Qed.
 
 Lemma triangle_mid_par_cong_1 : forall A B C P Q R,
  C <> B ->
- Midpoint P B C ->
- Midpoint Q A C ->
- Midpoint R A B ->
+ 中点 P B C ->
+ 中点 Q A C ->
+ 中点 R A B ->
  Par B C Q R /\ Cong B P Q R .
 Proof.
 intros.
@@ -344,11 +344,11 @@ split.
 perm_apply (triangle_mid_par B C A Q R).
 induction (col_dec A B C).
  assert (Par C B Q R /\ Cong B P R Q).
-  apply (triangle_mid_par_flat_cong_2 C B A R Q P); Midpoint; Col.
+  apply (triangle_mid_par_flat_cong_2 C B A R Q P); 中点; Col.
   spliter.
   Cong.
  assert (HTMT := triangle_mid_par_strict_cong A B C P Q R H3 H0 H1 H2); spliter.
  assumption.
 Qed.
 
-End TriangleMidpointsTheorems.
+End Triangle中点sTheorems.

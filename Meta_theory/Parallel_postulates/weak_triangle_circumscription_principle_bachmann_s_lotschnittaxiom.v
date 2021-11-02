@@ -22,10 +22,10 @@ assert (HPerp4 : Perp E IAB IAB F).
   }
 assert (~ Col IAC IAB IBD).
   apply per_not_col; auto; apply per_col with F; Col; apply l8_2, per_col with E; Perp; Col.
-assert (Coplanar E F IAB D1) by CopR.
-assert (Coplanar E F IAB D2) by CopR.
-assert (Coplanar E F IAB C1) by CopR.
-assert (Coplanar E F IAB C2) by CopR.
+assert (共面 E F IAB D1) by CopR.
+assert (共面 E F IAB D2) by CopR.
+assert (共面 E F IAB C1) by CopR.
+assert (共面 E F IAB C2) by CopR.
 destruct (HP E F IAB D1 D2 C1 C2) as [I [HC7 HC8]]; auto;
 [apply not_col_permutation_1, perp_not_col| |split..|exists I; split; Col]; Perp; split.
   exists IBD; split; auto.

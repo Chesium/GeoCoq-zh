@@ -8,7 +8,7 @@ Context `{Ax1:euclidean_neutral_ruler_compass}.
 Lemma lemma_ABCequalsCBA : 
    forall A B C, 
    nCol A B C ->
-   CongA A B C C B A.
+   等角 A B C C B A.
 Proof.
 intros.
 assert (~ eq B A).
@@ -45,7 +45,7 @@ assert (Cong B F B E) by (conclude lemma_congruencesymmetric).
 assert (Cong E F F E) by (conclude cn_equalityreverse).
 assert (Out B A E) by (conclude lemma_ray4).
 assert (Out B C F) by (conclude lemma_ray4).
-assert (CongA A B C C B A) by (conclude_def CongA ).
+assert (等角 A B C C B A) by (conclude_def 等角 ).
 close.
 Qed.
 

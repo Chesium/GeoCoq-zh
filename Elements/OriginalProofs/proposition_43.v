@@ -12,11 +12,11 @@ Lemma proposition_43 :
 Proof.
 intros.
 assert (PG B A D C) by (conclude lemma_PGflip).
-assert (Cong_3 A B C C D A) by (conclude proposition_34).
+assert (三角形全等 A B C C D A) by (conclude proposition_34).
 assert (ET A B C C D A) by (conclude axiom_congruentequal).
-assert (Cong_3 A E K K H A) by (conclude proposition_34).
+assert (三角形全等 A E K K H A) by (conclude proposition_34).
 assert (ET A E K K H A) by (conclude axiom_congruentequal).
-assert (Cong_3 K G C C F K) by (conclude proposition_34).
+assert (三角形全等 K G C C F K) by (conclude proposition_34).
 assert (ET K G C C F K) by (conclude axiom_congruentequal).
 assert (ET K G C K C F) by (forward_using axiom_ETpermutation).
 assert (ET K C F K G C) by (conclude axiom_ETsymmetric).

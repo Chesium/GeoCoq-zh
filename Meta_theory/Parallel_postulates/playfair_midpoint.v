@@ -12,7 +12,7 @@ Proof.
 intros HP A; intros.
 destruct (midpoint_existence A C) as [X HAC].
 assert (X = Q).
- assert (Par_strict A B X P).
+ assert (严格平行 A B X P).
   apply triangle_mid_par with C; assumption.
  assert_diffs.
  assert_cols.

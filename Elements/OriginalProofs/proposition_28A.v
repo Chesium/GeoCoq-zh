@@ -7,12 +7,12 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma proposition_28A : 
    forall A B C D E G H, 
-   BetS A G B -> BetS C H D -> BetS E G H -> CongA E G B G H D -> OS B D G H ->
+   BetS A G B -> BetS C H D -> BetS E G H -> 等角 E G B G H D -> OS B D G H ->
    Par A B C D.
 Proof.
 intros.
 assert (OS D B G H) by (forward_using lemma_samesidesymmetric).
-assert (nCol E G B) by (conclude_def CongA ).
+assert (nCol E G B) by (conclude_def 等角 ).
 assert (eq G G) by (conclude cn_equalityreflexive).
 assert (Col G H G) by (conclude_def Col ).
 assert (~ Col G H A).
@@ -34,9 +34,9 @@ assert (~ Col G H A).
 assert (TS A G H B) by (conclude_def TS ).
 assert (TS B G H A) by (conclude lemma_oppositesidesymmetric).
 assert (BetS B G A) by (conclude axiom_betweennesssymmetry).
-assert (CongA E G B A G H) by (conclude proposition_15a).
-assert (CongA A G H E G B) by (conclude lemma_equalanglessymmetric).
-assert (CongA A G H G H D) by (conclude lemma_equalanglestransitive).
+assert (等角 E G B A G H) by (conclude proposition_15a).
+assert (等角 A G H E G B) by (conclude lemma_equalanglessymmetric).
+assert (等角 A G H G H D) by (conclude lemma_equalanglestransitive).
 assert (TS D G H A) by (conclude lemma_planeseparation).
 assert (TS A G H D) by (conclude lemma_oppositesidesymmetric).
 assert (Par A B C D) by (conclude proposition_27).

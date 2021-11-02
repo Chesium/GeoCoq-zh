@@ -256,9 +256,9 @@ Section T2_4.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma l3_9_4 : forall A1 A2 A3 A4, Bet_4 A1 A2 A3 A4 -> Bet_4 A4 A3 A2 A1.
+Lemma l3_9_4 : forall A1 A2 A3 A4, 四点中间性 A1 A2 A3 A4 -> 四点中间性 A4 A3 A2 A1.
 Proof.
-    unfold Bet_4.
+    unfold 四点中间性.
     intros;spliter; auto with between.
 Qed.
 

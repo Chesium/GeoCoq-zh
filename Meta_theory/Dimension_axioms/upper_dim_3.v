@@ -20,19 +20,19 @@ Definition 三维防升维公理_axiom := forall A B C P Q R,
 
 Definition median_planes_axiom := forall A B C D P Q, P <> Q ->
   Cong A P A Q -> Cong B P B Q -> Cong C P C Q -> Cong D P D Q ->
-  Coplanar A B C D.
+  共面 A B C D.
 
 (** If two planes meet in some point, then they also meet in another point. *)
 
 Definition plane_intersection_axiom := forall A B C D E F P,
-  Coplanar A B C P -> Coplanar D E F P ->
-  exists Q, Coplanar A B C Q /\ Coplanar D E F Q /\ P <> Q.
+  共面 A B C P -> 共面 D E F P ->
+  exists Q, 共面 A B C Q /\ 共面 D E F Q /\ P <> Q.
 
 (** If two points do not lie on a plane, then they are either
     on opposite sides or on the same side of the plane. *)
 
 Definition space_separation_axiom := forall A B C P Q,
-  ~ Coplanar A B C P -> ~ Coplanar A B C Q -> TSP A B C P Q \/ OSP A B C P Q.
+  ~ 共面 A B C P -> ~ 共面 A B C Q -> 在平面异侧 A B C P Q \/ 在平面同侧 A B C P Q.
 
 (** The line segments SU1, SU2, SU3 and SU4 can not form an orthonormal family *)
 
@@ -72,8 +72,8 @@ Proof.
 Qed.
 
 Lemma median_planes_aux :
-  (forall A B C P Q M, P <> Q -> Cong A P A Q -> Cong B P B Q -> Cong C P C Q -> Midpoint M P Q ->
-                       Coplanar M A B C) ->
+  (forall A B C P Q M, P <> Q -> Cong A P A Q -> Cong B P B Q -> Cong C P C Q -> 中点 M P Q ->
+                       共面 M A B C) ->
   median_planes_axiom.
 Proof.
   intros Haux A B C D P Q; intros.
@@ -118,7 +118,7 @@ Proof.
       apply l10_12 with X X; Perp;
       apply 等长的传递性 with P' X; Cong.
   - intros p4col S U1' U1 U2 U3 U4 H; spliter.
-    assert (HMid : Midpoint S U1 U1') by (split; Cong).
+    assert (HMid : 中点 S U1 U1') by (split; Cong).
     assert (HPer21 : Per U2 S U1) by (exists U1'; split; Cong).
     assert_diffs.
     absurd (Col U2 U1 S).
@@ -153,7 +153,7 @@ Qed.
 
 Lemma orthonormal_family_axiom_implies_orth_at2__col :
   orthonormal_family_axiom ->
-  (forall A B C P Q X, Orth_at X A B C X P -> Orth_at X A B C X Q -> Col P Q X).
+  (forall A B C P Q X, 垂直平面于 X A B C X P -> 垂直平面于 X A B C X Q -> Col P Q X).
 Proof.
   rewrite orthonormal_family_aux.
   intros up A B C P Q X HP HQ.
@@ -166,7 +166,7 @@ Qed.
 
 Lemma orthonormal_family_axiom_implies_not_two_sides_one_side :
   orthonormal_family_axiom ->
-  (forall A B C X Y, ~ Coplanar A B C X -> ~ Coplanar A B C Y -> ~ TSP A B C X Y -> OSP A B C X Y).
+  (forall A B C X Y, ~ 共面 A B C X -> ~ 共面 A B C Y -> ~ 在平面异侧 A B C X Y -> 在平面同侧 A B C X Y).
 Proof.
   intros up A B C X Y HX HY HNTS.
   destruct (l11_62_existence_bis A B C X HX) as [P HOrth].
@@ -175,8 +175,8 @@ Proof.
   destruct HOrth1 as [HNCol [HPX [HP HOrth1]]].
   destruct (l8_21_3 A B C P Y HP HY) as [X' [T [HOrth' [HT HBet]]]].
   apply (col_cop_orth__orth_at _ _ _ _ _ P) in HOrth'; Col.
-  assert (~ Coplanar A B C X') by (apply orth_at__ncop with P, HOrth').
-  assert (HTS : TSP A B C Y X').
+  assert (~ 共面 A B C X') by (apply orth_at__ncop with P, HOrth').
+  assert (HTS : 在平面异侧 A B C Y X').
     repeat split; trivial; exists T; split; assumption.
   exists X'; split; [|assumption].
   repeat split; trivial.
@@ -201,8 +201,8 @@ Qed.
 Lemma space_separation_implies_plane_intersection : space_separation_axiom -> plane_intersection_axiom.
 Proof.
   intro sep.
-  assert (Haux : forall A B C D E P, Coplanar A B C P -> ~ Col D E P ->
-    exists Q, Coplanar A B C Q /\ Coplanar D E P Q /\ P <> Q).
+  assert (Haux : forall A B C D E P, 共面 A B C P -> ~ Col D E P ->
+    exists Q, 共面 A B C Q /\ 共面 D E P Q /\ P <> Q).
   { intros A B C D E P HP1 HP2.
     destruct (cop_dec A B C D).
       assert_diffs; exists D; repeat split; Cop.
@@ -226,7 +226,7 @@ Lemma plane_intersection_implies_space_separation :
   plane_intersection_axiom -> space_separation_axiom.
 Proof.
   intros pint A B C X Y HX HY.
-  assert (HA : Coplanar A B C A) by Cop.
+  assert (HA : 共面 A B C A) by Cop.
   destruct (pint A B C A X Y A HA) as [D [HD1 [HD2 HAD]]]; Cop.
   destruct (cop__one_or_two_sides A D X Y).
     Cop.
@@ -242,16 +242,16 @@ Proof.
   apply median_planes_aux.
   intros A B.
   assert (Haux : forall X P Q M, P <> Q ->
-          Cong A P A Q -> Cong B P B Q -> Midpoint M P Q -> TSP M A B Q X -> Cong X P X Q -> False).
+          Cong A P A Q -> Cong B P B Q -> 中点 M P Q -> 在平面异侧 M A B Q X -> Cong X P X Q -> False).
   { intros X P Q M HPQ HA HB HM [HQ [HX [T [HT HBet]]]].
-    assert (HCong : forall C, Coplanar M A B C -> Cong C P C Q).
+    assert (HCong : forall C, 共面 M A B C -> Cong C P C Q).
       intros; apply (l11_60_aux M A B); Cong; apply ncop__ncol with Q, HQ.
     apply triangle_strict_inequality with T; Between.
     intro.
     apply (not_bet_and_out P M Q); split; [Between|].
-    assert (~ Coplanar M A B P) by (intro HP; apply HCong in HP; treat_equalities; auto).
+    assert (~ 共面 M A B P) by (intro HP; apply HCong in HP; treat_equalities; auto).
     assert_diffs.
-    assert (forall Z, ~ Coplanar M A B Z -> Z <> T) by (intros Z HZ He; subst; apply HZ, HT).
+    assert (forall Z, ~ 共面 M A B Z -> Z <> T) by (intros Z HZ He; subst; apply HZ, HT).
     assert (X <> T) by auto.
     replace M with T.
       apply l6_2 with X; Between.
@@ -260,7 +260,7 @@ Proof.
   intros C P Q M HPQ HA HB HC HM.
   destruct (cop_dec M A B C) as [HCop|HNCop]; [apply HCop|].
   assert (~ Col M A B) by (apply ncop__ncol with C, HNCop).
-  assert (HQ : ~ Coplanar M A B Q).
+  assert (HQ : ~ 共面 M A B Q).
     intro Ha; apply (l11_60_aux _ _ _ _ P Q) in Ha; Cong; treat_equalities; auto.
   exfalso.
   destruct (sep M A B Q C HQ HNCop).

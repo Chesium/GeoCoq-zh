@@ -72,9 +72,9 @@ assert (~ Col A B M).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists R, Perp_at M R A B R) by (conclude proposition_12);destruct Tf as [R];spliter.
+assert (Tf:exists R, 垂直于 M R A B R) by (conclude proposition_12);destruct Tf as [R];spliter.
 let Tf:=fresh in
-assert (Tf:exists E, (Col M R R /\ Col A B R /\ Col A B E /\ Per E R M)) by (conclude_def Perp_at );destruct Tf as [E];spliter.
+assert (Tf:exists E, (Col M R R /\ Col A B R /\ Col A B E /\ Per E R M)) by (conclude_def 垂直于 );destruct Tf as [E];spliter.
 assert (Per M R E) by (conclude lemma_8_2).
 assert (~ eq M R).
  {

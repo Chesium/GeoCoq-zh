@@ -1493,7 +1493,7 @@ Col.
 Qed.
 
 
-Lemma symmetry_preserves_per : forall A P B A' P', Per B P A -> Midpoint B A A' -> Midpoint B P P'
+Lemma symmetry_preserves_per : forall A P B A' P', Per B P A -> 中点 B A A' -> 中点 B P P'
                                                    -> Per B P' A'.
 Proof.
 intros.
@@ -1512,7 +1512,7 @@ ex_and H X.
 assert(X = C).
 apply(symmetric_point_uniqueness A P X C); auto.
 subst X.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 apply (等长的传递性 _ _ B A).
 Cong.
@@ -1522,14 +1522,14 @@ Cong.
 Qed.
 
 Lemma l13_1_aux : forall A B C P Q R,
-   ~ Col A B C -> Midpoint P B C -> Midpoint Q A C -> Midpoint R A B ->
-   exists X, exists Y, Perp_at R X Y A B /\ Perp X Y P Q /\ Coplanar A B C X /\ Coplanar A B C Y.
+   ~ Col A B C -> 中点 P B C -> 中点 Q A C -> 中点 R A B ->
+   exists X, exists Y, 垂直于 R X Y A B /\ Perp X Y P Q /\ 共面 A B C X /\ 共面 A B C Y.
 Proof.
 intros A B C P Q R HC MBC MAC MAB.
 assert(Q <> C).
 intro.
 subst Q.
-unfold Midpoint in MAC.
+unfold 中点 in MAC.
 spliter.
 apply 等长的同一性 in H0.
 subst C.
@@ -1538,7 +1538,7 @@ Col.
 assert(P <> C).
 intro.
 subst P.
-unfold Midpoint in MBC.
+unfold 中点 in MBC.
 spliter.
 apply 等长的同一性 in H1.
 subst C.
@@ -1557,7 +1557,7 @@ contradiction.
 assert(D2:R <> B).
 intro.
 subst R.
-unfold Midpoint in MAB.
+unfold 中点 in MAB.
 spliter.
 apply 等长的同一性 in H2.
 subst B.
@@ -1567,7 +1567,7 @@ Col.
 assert(~Col P Q C).
 intro.
 apply HC.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 apply 中间性转共线 in H2.
 apply 中间性转共线 in H4.
@@ -1583,14 +1583,14 @@ assert(HS1:=symmetric_point_construction C' P).
 ex_and HS1 B'.
 
 assert(Cong C C' B B').
-apply(l7_13 P C C' B B' MBC); Midpoint.
+apply(l7_13 P C C' B B' MBC); 中点.
 assert(Cong C C' A A').
-apply(l7_13 Q C C' A A'); Midpoint.
+apply(l7_13 Q C C' A A'); 中点.
 
 assert(Per P B' B).
 induction(两点重合的决定性 P C').
 subst C'.
-unfold Midpoint in H5.
+unfold 中点 in H5.
 spliter.
 apply 等长的对称性 in H8.
 apply 等长的同一性 in H8.
@@ -1598,7 +1598,7 @@ subst B'.
 apply l8_2.
 apply l8_5.
 
-apply(symmetry_preserves_per C C' P B B'); Midpoint.
+apply(symmetry_preserves_per C C' P B B'); 中点.
 apply perp_in_per.
 apply perp_in_comm.
 apply perp_perp_in.
@@ -1608,14 +1608,14 @@ apply (perp_col _ Q); Col.
 assert(Per Q A' A).
 induction(两点重合的决定性 Q C').
 subst C'.
-unfold Midpoint in H4.
+unfold 中点 in H4.
 spliter.
 apply 等长的对称性 in H9.
 apply 等长的同一性 in H9.
 subst A'.
 apply l8_2.
 apply l8_5.
-apply(symmetry_preserves_per C C' Q A A'); Midpoint.
+apply(symmetry_preserves_per C C' Q A A'); 中点.
 apply perp_in_per.
 apply perp_in_comm.
 apply perp_perp_in.
@@ -1624,13 +1624,13 @@ apply (perp_col _ P); Col.
 Perp.
 
 assert(Cl1: Col A' C' Q).
-unfold Midpoint in H4.
+unfold 中点 in H4.
 spliter.
 apply 中间性转共线 in H4.
 Col.
 
 assert(Cl2: Col B' C' P).
-unfold Midpoint in H5.
+unfold 中点 in H5.
 spliter.
 apply 中间性转共线 in H5.
 Col.
@@ -1647,7 +1647,7 @@ apply (l7_17 C' A'); auto.
 assert(Cl3: Col A' B' P).
 induction(两点重合的决定性 P C').
 subst P.
-unfold Midpoint in  H5.
+unfold 中点 in  H5.
 spliter.
 apply 等长的对称性 in H10.
 apply 等长的同一性 in H10.
@@ -1655,7 +1655,7 @@ subst C'.
 Col.
 induction(两点重合的决定性 Q C').
 subst Q.
-unfold Midpoint in  H4.
+unfold 中点 in  H4.
 spliter.
 apply 等长的对称性 in H11.
 apply 等长的同一性 in H11.
@@ -1666,7 +1666,7 @@ ColR.
 assert(Cl4: Col A' B' Q).
 induction(两点重合的决定性 P C').
 subst P.
-unfold Midpoint in  H5.
+unfold 中点 in  H5.
 spliter.
 apply 等长的对称性 in H10.
 apply 等长的同一性 in H10.
@@ -1674,7 +1674,7 @@ subst C'.
 Col.
 induction(两点重合的决定性 Q C').
 subst Q.
-unfold Midpoint in  H4.
+unfold 中点 in  H4.
 spliter.
 apply 等长的对称性 in H11.
 apply 等长的同一性 in H11.
@@ -1704,7 +1704,7 @@ contradiction.
 assert(Per P A' A).
 induction(两点重合的决定性 A' Q).
 subst Q.
-unfold Midpoint in H4.
+unfold 中点 in H4.
 spliter.
 apply 等长的同一性 in H10.
 subst C'.
@@ -1713,7 +1713,7 @@ apply perp_left_comm in H3.
 apply perp_perp_in in H3.
 apply perp_in_comm in H3.
 apply perp_in_per in H3.
-unfold Midpoint in MAC.
+unfold 中点 in MAC.
 spliter.
 apply 中间性转共线 in H2.
 apply (per_col P A' C A); Col.
@@ -1724,7 +1724,7 @@ ColR.
 assert(Per Q B' B).
 induction(两点重合的决定性 B' P).
 subst P.
-unfold Midpoint in H5.
+unfold 中点 in H5.
 spliter.
 apply 等长的同一性 in H11.
 subst C'.
@@ -1732,7 +1732,7 @@ clean_trivial_hyps.
 apply perp_perp_in in H3.
 apply perp_in_comm in H3.
 apply perp_in_per in H3.
-unfold Midpoint in MBC.
+unfold 中点 in MBC.
 spliter.
 apply 中间性转共线 in H2.
 apply (per_col Q B' C B); Col.
@@ -1744,7 +1744,7 @@ assert(Per A' B' B).
 apply l8_2.
 induction(两点重合的决定性 B' P).
 subst P.
-unfold Midpoint in H5.
+unfold 中点 in H5.
 spliter.
 apply 等长的同一性 in H12.
 subst C'.
@@ -1756,7 +1756,7 @@ assert(Per B' A' A).
 apply l8_2.
 induction(两点重合的决定性 A' Q).
 subst Q.
-unfold Midpoint in H4.
+unfold 中点 in H4.
 spliter.
 apply 等长的同一性 in H13.
 subst C'.
@@ -1791,21 +1791,21 @@ spliter.
 auto.
 
 
-assert(Reflect B'' A X y).
-unfold Reflect.
+assert(对称 B'' A X y).
+unfold 对称.
 left.
 repeat split;auto.
 ex_and H18 M.
 exists M.
 split; Col.
 
-assert(Reflect A' B' X y).
-unfold Reflect.
+assert(对称 A' B' X y).
+unfold 对称.
 left.
 split; auto.
 repeat split.
 exists X.
-split; [Midpoint|Col].
+split; [中点|Col].
 left.
 Perp.
 apply l10_4 in H20.
@@ -1813,7 +1813,7 @@ apply l10_4 in H20.
 assert(HH:= l10_10 X y B''  B' A A' H20 H21).
 
 assert(Per A' B' B'').
-unfold Reflect in *.
+unfold 对称 in *.
 induction H20; induction H21.
 spliter.
 
@@ -1827,18 +1827,18 @@ contradiction.
 spliter.
 contradiction.
 
-unfold Reflect in H21.
+unfold 对称 in H21.
 induction H21.
 spliter.
-unfold ReflectL in H23.
+unfold 严格对称 in H23.
 
 
 assert(OS A' B' A B'').
 induction H17.
 assert(Par A' B' A B'').
-assert(Coplanar A y A' X).
+assert(共面 A y A' X).
 apply col_cop__cop with B'; Col; Cop.
-assert(Coplanar A y B' X).
+assert(共面 A y B' X).
 apply col_cop__cop with A'; Col; Cop.
 assert(~ Col A X y).
 intro.
@@ -1885,7 +1885,7 @@ apply H1.
 ColR.
 exists Q.
 split; Col.
-unfold Midpoint in MAC.
+unfold 中点 in MAC.
 tauto.
 unfold TS.
 repeat split; Col.
@@ -1894,7 +1894,7 @@ apply H1.
 ColR.
 exists P.
 split; Col.
-unfold Midpoint in MBC.
+unfold 中点 in MBC.
 tauto.
 
 (*********************************)
@@ -1907,7 +1907,7 @@ apply coplanar_trans_1 with A; Col; Cop.
 assert(Cong B B' A A').
 apply 等长的传递性 with C C'; Cong.
 
-assert(B = B'' \/ Midpoint B' B B'').
+assert(B = B'' \/ 中点 B' B B'').
 apply( l7_20); Col.
 
 apply 等长的传递性 with A A'; Cong.
@@ -1928,7 +1928,7 @@ subst B.
 apply HC; Col.
 
 assert(Col R A B).
-unfold Midpoint in MAB.
+unfold 中点 in MAB.
 spliter.
 apply 中间性转共线 in H31.
 Col.
@@ -1937,9 +1937,9 @@ assert(X <> R).
 intro.
 subst X.
 assert(Par A B A' B').
-assert(Coplanar A y A' R).
+assert(共面 A y A' R).
 apply col_cop__cop with B'; Col; Cop.
-assert(Coplanar A y B' R).
+assert(共面 A y B' R).
 apply col_cop__cop with A'; Col; Cop.
 assert(~ Col A R y).
 intro.
@@ -1959,7 +1959,7 @@ induction H32.
 apply H32.
 exists R.
 
-unfold Midpoint in H14.
+unfold 中点 in H14.
 spliter.
 apply 中间性转共线 in H14.
 split; Col.
@@ -2012,7 +2012,7 @@ apply H22.
 Col.
 intro.
 subst B''.
-unfold Midpoint in H28.
+unfold 中点 in H28.
 spliter.
 apply 等长的同一性 in H30.
 subst B'.
@@ -2024,7 +2024,7 @@ apply H30.
 Col.
 exists B'.
 split; Col.
-unfold Midpoint in H28.
+unfold 中点 in H28.
 tauto.
 assert(OS A' B' B B'').
 apply (one_side_transitivity A' B' B A ).
@@ -2038,8 +2038,8 @@ contradiction.
 Qed.
 
 Lemma l13_1 : forall A B C P Q R,
-   ~ Col A B C -> Midpoint P B C -> Midpoint Q A C -> Midpoint R A B ->
-   exists X, exists Y, Perp_at R X Y A B /\ Perp X Y P Q.
+   ~ Col A B C -> 中点 P B C -> 中点 Q A C -> 中点 R A B ->
+   exists X, exists Y, 垂直于 R X Y A B /\ Perp X Y P Q.
 Proof.
 intros.
 destruct (l13_1_aux A B C P Q R) as [X [Y]]; trivial.
@@ -2060,7 +2060,7 @@ Lemma per_lt : forall A B C, A <> B ->  C <> B -> Per A B C -> Lt A B A C /\ Lt 
     split; apply lt_left_comm; assumption.
   Qed.
 
-Lemma cong_perp_conga : forall A B C P,  Cong A B C B -> Perp A C B P -> CongA A B P C B P /\ TS B P A C.
+Lemma cong_perp_conga : forall A B C P,  Cong A B C B -> Perp A C B P -> 等角 A B P C B P /\ TS B P A C.
 Proof.
     intros.
     assert(A <> C /\ B <> P).
@@ -2104,7 +2104,7 @@ Proof.
       apply l8_2 in H8.
       split.
         apply l11_16; auto.
-      assert( A = C \/ Midpoint B A C).
+      assert( A = C \/ 中点 B A C).
         eapply l7_20; Cong.
       induction H9.
         contradiction.
@@ -2118,7 +2118,7 @@ Proof.
         apply H6.
         ColR.
       exists B.
-      unfold Midpoint in H9.
+      unfold 中点 in H9.
       spliter.
       split; [Col|Between].
     assert(HH:= H0).
@@ -2161,7 +2161,7 @@ Proof.
       spliter.
       apply H13.
       Cong.
-    assert(Perp_at T B T T A).
+    assert(垂直于 T B T T A).
       apply perp_in_comm.
       apply perp_perp_in.
       apply perp_sym.
@@ -2171,7 +2171,7 @@ Proof.
         apply perp_left_comm.
         apply (perp_col _ P); Perp.
       Col.
-    assert(Perp_at T B T T C).
+    assert(垂直于 T B T T C).
       apply perp_in_comm.
       apply perp_perp_in.
       apply perp_sym.
@@ -2181,7 +2181,7 @@ Proof.
         apply perp_left_comm.
         apply (perp_col _ P); Perp.
       Col.
-    assert(Cong T A T C /\ CongA T A B T C B /\ CongA T B A T B C).
+    assert(Cong T A T C /\ 等角 T A B T C B /\ 等角 T B A T B C).
       apply( l11_52 A T B C T B); Cong.
         eapply l11_16; auto.
           apply perp_in_per.
@@ -2231,7 +2231,7 @@ Proof.
         assumption.
       apply out_trivial.
       auto.
-    assert(A = C \/ Midpoint T A C).
+    assert(A = C \/ 中点 T A C).
       apply l7_20; Col.
     induction H17.
       contradiction.
@@ -2265,7 +2265,7 @@ Qed.
 
 
 
-Lemma perp_per_bet : forall A B C P, ~Col A B C -> Col A P C -> Per A B C -> Perp_at P P B A C -> Bet A P C.
+Lemma perp_per_bet : forall A B C P, ~Col A B C -> Col A P C -> Per A B C -> 垂直于 P P B A C -> Bet A P C.
 Proof.
 intros.
 assert( A <> C).
@@ -2419,8 +2419,8 @@ Qed.
 
 
 Lemma l13_2_1 : forall A B C D E, TS A B C D -> Per B C A -> Per B D A -> Col C D E
-    -> Perp A E C D -> CongA C A B D A B
-    -> CongA B A C D A E /\ CongA B A D C A E /\ Bet C E D.
+    -> Perp A E C D -> 等角 C A B D A B
+    -> 等角 B A C D A E /\ 等角 B A D C A E /\ Bet C E D.
 Proof.
     intros.
     intros.
@@ -2431,11 +2431,11 @@ Proof.
       assumption.
     spliter.
     assert(A <> C /\ A <> B /\ A <> D).
-      unfold CongA in H4.
+      unfold 等角 in H4.
       spliter.
       repeat split; auto.
     spliter.
-    assert(Cong B C B D /\ Cong A C A D /\ CongA C B A D B A).
+    assert(Cong B C B D /\ Cong A C A D /\ 等角 C B A D B A).
       apply(l11_50_2 B A C B A D).
         intro.
         apply H6.
@@ -2502,7 +2502,7 @@ Proof.
 Qed.
 
 
-  Lemma triangle_mid_par : forall A B C P Q, ~Col A B C -> Midpoint P B C -> Midpoint Q A C -> Par_strict A B Q P.
+  Lemma triangle_mid_par : forall A B C P Q, ~Col A B C -> 中点 P B C -> 中点 Q A C -> 严格平行 A B Q P.
   Proof.
   intros.
    assert(HM:= midpoint_existence A B).
@@ -2510,20 +2510,20 @@ Qed.
    assert(HH:= l13_1_aux A B C P Q R H H0 H1 H2).
    ex_and HH X.
    ex_and H3 Y.
-assert(Coplanar X Y A P /\ Coplanar X Y A Q /\ Coplanar X Y B P /\ Coplanar X Y B Q).
-  assert(Coplanar A B C A).
+assert(共面 X Y A P /\ 共面 X Y A Q /\ 共面 X Y B P /\ 共面 X Y B Q).
+  assert(共面 A B C A).
   exists A.
   left.
   split; Col.
-  assert(Coplanar A B C B).
+  assert(共面 A B C B).
   exists B.
   left.
   split; Col.
-  assert(Coplanar A B C P).
+  assert(共面 A B C P).
   exists B.
   left.
   split; Col.
-  assert(Coplanar A B C Q).
+  assert(共面 A B C Q).
   exists A.
   left.
   split; Col.
@@ -2532,7 +2532,7 @@ spliter.
 assert(HH:= perp_in_col X Y A B R H3).
 spliter.
    apply perp_in_perp_bis in H3.
-unfold Midpoint in H2.
+unfold 中点 in H2.
 spliter.
 apply 中间性转共线 in H2.
 assert(X <> Y).
@@ -2553,7 +2553,7 @@ assert(Col A B P).
 ColR.
 assert(P = B).
 apply (l6_21 A B C P); Col.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 spliter.
 apply 中间性转共线 in H0.
 Col.
@@ -2561,7 +2561,7 @@ intro.
 subst P.
 contradiction.
 subst P.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 spliter.
 apply 等长的对称性 in H21.
 apply 等长的同一性 in H21.
@@ -2580,7 +2580,7 @@ assert(Col A B P).
 ColR.
 assert(P = B).
 apply (l6_21 A B C P); Col.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 spliter.
 apply 中间性转共线 in H0.
 Col.
@@ -2588,7 +2588,7 @@ intro.
 subst P.
 contradiction.
 subst P.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 spliter.
 apply 等长的对称性 in H21.
 apply 等长的同一性 in H21.
@@ -2597,9 +2597,9 @@ contradiction.
 Qed.
 
 Lemma cop4_perp_in2__col : forall A B A' B' X Y P,
-  Coplanar X Y A A' -> Coplanar X Y A B' ->
-  Coplanar X Y B A' -> Coplanar X Y B B' ->
-  Perp_at P A B X Y -> Perp_at P A' B' X Y  -> Col A B A'.
+  共面 X Y A A' -> 共面 X Y A B' ->
+  共面 X Y B A' -> 共面 X Y B B' ->
+  垂直于 P A B X Y -> 垂直于 P A' B' X Y  -> Col A B A'.
 Proof.
 intros.
 assert(HP1:= H3).
@@ -2609,8 +2609,8 @@ apply perp_in_col in H3.
 spliter.
 split; Col.
 spliter.
-unfold Perp_at in H3.
-unfold Perp_at in H4.
+unfold 垂直于 in H3.
+unfold 垂直于 in H4.
 spliter.
 induction(两点重合的决定性 A P);
 induction(两点重合的决定性 P X).
@@ -2671,7 +2671,7 @@ Qed.
 
 
 Lemma l13_2 : forall A B C D E, TS A B C D -> Per B C A -> Per B D A -> Col C D E -> Perp A E C D
-    -> CongA B A C D A E /\ CongA B A D C A E /\ Bet C E D.
+    -> 等角 B A C D A E /\ 等角 B A D C A E /\ Bet C E D.
 Proof.
     intros.
     assert(HH:= H).
@@ -2688,7 +2688,7 @@ Proof.
         assumption.
       apply l9_9 in H.
       contradiction.
-    assert(exists C', CongA B A C D A C' /\ OS D A C' B).
+    assert(exists C', 等角 B A C D A C' /\ OS D A C' B).
       apply(angle_construction_1 B A C D A B).
         intro.
         apply H5.
@@ -2698,7 +2698,7 @@ Proof.
       Col.
     ex_and H9 E'.
     assert(A <> B /\ A <> C /\ A <> D).
-      unfold CongA in H9.
+      unfold 等角 in H9.
       spliter; auto.
     spliter.
     assert(HH:=l11_22 C A E' B D A B E').
@@ -2713,8 +2713,8 @@ Proof.
     assert(T = T2).
       apply (l6_21 A B C D); Col.
     subst T2.
-    assert(InAngle B D A C).
-      unfold InAngle.
+    assert(在角内 B D A C).
+      unfold 在角内.
       repeat split; auto.
       exists T.
       split.
@@ -2735,14 +2735,14 @@ Proof.
         auto.
       left.
       assumption.
-    assert(LeA C A B C A D).
-      unfold LeA.
+    assert(角度小于等于 C A B C A D).
+      unfold 角度小于等于.
       exists B.
       split.
         apply l11_24.
         assumption.
       apply conga_refl; auto.
-    assert(InAngle E' D A C).
+    assert(在角内 E' D A C).
       eapply lea_in_angle.
         apply lea_comm.
         eapply l11_30.
@@ -2761,7 +2761,7 @@ Proof.
         apply H22.
       apply one_side_symmetry.
       assumption.
-    unfold InAngle in H22.
+    unfold 在角内 in H22.
     spliter.
     ex_and H25 E''.
     induction H26.
@@ -2770,7 +2770,7 @@ Proof.
       apply H15.
       apply 中间性转共线 in H25.
       Col.
-    assert(CongA B A C D A E'').
+    assert(等角 B A C D A E'').
       apply (l11_10 B A C D A E'); try apply out_trivial; auto.
     assert(A <> T).
       intro.
@@ -2822,7 +2822,7 @@ Proof.
       apply H29.
       apply 中间性转共线 in H25.
       apply (l6_21 A B C D); Col.
-    assert(CongA C A E'' D A B).
+    assert(等角 C A E'' D A B).
       apply (l11_22 C A E'' B D A B E'').
       split.
         induction(one_side_dec A B C E'').
@@ -2937,12 +2937,12 @@ Proof.
     (***********************)
     prolong B C C' B C.
     prolong B D D' B D.
-    assert(Cong_3 B A D D' A D).
+    assert(三角形全等 B A D D' A D).
       apply l8_2 in H1.
       unfold Per in H1.
       ex_and H1 D''.
-      assert(Midpoint D B D').
-        unfold Midpoint.
+      assert(中点 D B D').
+        unfold 中点.
         split; Cong.
       assert(D' = D'').
         eapply symmetric_point_uniqueness.
@@ -2950,14 +2950,14 @@ Proof.
         auto.
       subst D''.
       repeat split; Cong.
-    assert(CongA B A D D' A D).
+    assert(等角 B A D D' A D).
       apply cong3_conga; auto.
-    assert(Cong_3 B A C C' A C).
+    assert(三角形全等 B A C C' A C).
       apply l8_2 in H0.
       unfold Per in H0.
       ex_and H0 C''.
-      assert(Midpoint C B C').
-        unfold Midpoint.
+      assert(中点 C B C').
+        unfold 中点.
         split; Cong.
       assert(C' = C'').
         eapply symmetric_point_uniqueness.
@@ -2965,9 +2965,9 @@ Proof.
         auto.
       subst C''.
       repeat split; Cong.
-    assert(CongA B A C C' A C).
+    assert(等角 B A C C' A C).
       apply cong3_conga; auto.
-    assert(CongA E'' A C' D' A E'').
+    assert(等角 E'' A C' D' A E'').
       apply l11_22 with C D.
       split.
         clear HH.
@@ -3103,14 +3103,14 @@ Proof.
       assert(Col C' B D).
         ColR.
       ColR.
-    assert(Par_strict C' D' C D).
+    assert(严格平行 C' D' C D).
       apply(triangle_mid_par C' D' B D C).
         auto.
-        unfold Midpoint.
+        unfold 中点.
         split.
           Between.
         Cong.
-      unfold Midpoint.
+      unfold 中点.
       split.
         Between.
       Cong.
@@ -3193,7 +3193,7 @@ Proof.
         apply invert_two_sides.
         assumption.
         apply coplanar_pseudo_trans with B C D; Cop.
-        unfold Cong_3 in *.
+        unfold 三角形全等 in *.
         spliter.
         apply 等长的传递性 with B A; Cong.
       apply conga_left_comm.
@@ -3225,7 +3225,7 @@ apply 等长的传递性 with A B; Cong.
 
 assert(HM:=midpoint_existence C' D').
 ex_and HM R.
-assert(exists X Y : Tpoint, Perp_at R X Y C' D' /\ Perp X Y D C /\ Coplanar C' D' B X /\ Coplanar C' D' B Y).
+assert(exists X Y : Tpoint, 垂直于 R X Y C' D' /\ Perp X Y D C /\ 共面 C' D' B X /\ 共面 C' D' B Y).
 apply l13_1_aux; auto.
 split; Between; Cong.
 split; Between; Cong.
@@ -3241,21 +3241,21 @@ assert(Perp C D A E'').
 induction(两点重合的决定性 A R).
 subst R.
 
-assert(Perp_at A C' D' A E'').
+assert(垂直于 A C' D' A E'').
 assert_cols.
 apply(l8_14_2_1b_bis C' D' A E'' A); Col.
 
-assert(Coplanar B C' D' E'').
+assert(共面 B C' D' E'').
 apply coplanar_pseudo_trans with B C D; Cop.
-assert(Coplanar C' D' X E'').
+assert(共面 C' D' X E'').
 apply coplanar_trans_1 with B; Col; Cop.
-assert(Coplanar C' D' Y E'').
+assert(共面 C' D' Y E'').
 apply coplanar_trans_1 with B; Col; Cop.
-assert(Coplanar C' D' X A).
+assert(共面 C' D' X A).
 exists A.
 left.
 split; Col.
-assert(Coplanar C' D' Y A).
+assert(共面 C' D' Y A).
 exists A.
 left.
 split; Col.
@@ -3280,7 +3280,7 @@ ColR.
 assert(R <> C').
 intro.
 subst R.
-unfold Midpoint in H58.
+unfold 中点 in H58.
 spliter.
 apply 等长的对称性 in H64.
 apply 等长的同一性 in H64.
@@ -3307,20 +3307,20 @@ assumption.
 assert_cols.
 Col.
 
-assert(Perp_at R C' D' R A).
+assert(垂直于 R C' D' R A).
 apply(l8_14_2_1b_bis C' D' R A R); Col.
 assert_cols.
 Col.
 
-assert(Coplanar C' D' X A).
+assert(共面 C' D' X A).
 apply coplanar_trans_1 with B; Cop; Col.
-assert(Coplanar C' D' Y A).
+assert(共面 C' D' Y A).
 apply coplanar_trans_1 with B; Cop; Col.
-assert(Coplanar C' D' X R).
+assert(共面 C' D' X R).
 exists R.
 left.
 split; Col.
-assert(Coplanar C' D' Y R).
+assert(共面 C' D' Y R).
 exists R.
 left.
 split; Col.
@@ -3453,7 +3453,7 @@ Proof.
     ex_and H0 X'.
     ex_and H4 Y'.
     assert(Par X Y X' Y').
-      assert(Coplanar P C D X).
+      assert(共面 P C D X).
       induction(两点重合的决定性 X P).
         subst.
         exists P.
@@ -3462,7 +3462,7 @@ Proof.
       apply coplanar_perm_9.
       apply perp__coplanar.
       apply perp_col with Y; Col.
-      assert(Coplanar P C D Y).
+      assert(共面 P C D Y).
       induction(两点重合的决定性 Y P).
         subst.
         exists P.
@@ -3471,7 +3471,7 @@ Proof.
       apply coplanar_perm_9.
       apply perp__coplanar.
       apply perp_col with X; Perp; Col.
-      assert(Coplanar P C D X').
+      assert(共面 P C D X').
       induction(两点重合的决定性 X' P).
         subst.
         exists P.
@@ -3480,7 +3480,7 @@ Proof.
       apply coplanar_perm_9.
       apply perp__coplanar.
       apply perp_col with Y'; Col.
-      assert(Coplanar P C D Y').
+      assert(共面 P C D Y').
       induction(两点重合的决定性 Y' P).
         subst.
         exists P.
@@ -3494,7 +3494,7 @@ Proof.
     exists Y.
     assert(Col X X' Y').
       induction H6.
-        unfold Par_strict in H6.
+        unfold 严格平行 in H6.
         spliter.
         apply False_ind.
         apply H7.
@@ -3504,7 +3504,7 @@ Proof.
       auto.
     assert(Col Y X' Y').
       induction H6.
-        unfold Par_strict in H6.
+        unfold 严格平行 in H6.
         spliter.
         apply False_ind.
         apply H8.
@@ -3531,7 +3531,7 @@ Proof.
       ColR.
     apply par_symmetry in H6.
     induction H6.
-      unfold Par_strict in H6.
+      unfold 严格平行 in H6.
       spliter.
       apply False_ind.
       apply H11.
@@ -3542,7 +3542,7 @@ Proof.
 Qed.
 
 Lemma col_cop_perp2__pars_bis : forall P A B C D, ~ Col A B P ->
-    Col C D P -> Coplanar A B C D -> Perp2 A B C D P -> Par_strict A B C D.
+    Col C D P -> 共面 A B C D -> Perp2 A B C D P -> 严格平行 A B C D.
 Proof.
     unfold Perp2.
     intros.
@@ -3588,7 +3588,7 @@ assert(Par A A' B B').
 unfold Perp2 in H2.
 ex_and H2 X.
 ex_and H5 Y.
-assert(Coplanar X Y A B).
+assert(共面 X Y A B).
 exists O.
 left.
 split; Col.
@@ -3682,11 +3682,11 @@ assert(Par B C' C B').
 unfold Perp2 in H2.
 ex_and H2 X.
 ex_and H9 Y.
-assert(Coplanar X Y B C).
+assert(共面 X Y B C).
 exists O.
 left.
 split; Col.
-assert(Coplanar X Y C' B').
+assert(共面 X Y C' B').
 exists O.
 left.
 split; Col.
@@ -3704,7 +3704,7 @@ assert_diffs.
 split; ColR.
 apply coplanar_trans_1 with B; Cop.
 
-assert(Par_strict B C' C B').
+assert(严格平行 B C' C B').
 induction H9.
 assumption.
 spliter.
@@ -3715,7 +3715,7 @@ ColR.
 assert(C<> O).
 intro.
 subst C.
-assert(Par_strict B C' O C').
+assert(严格平行 B C' O C').
 apply(par_strict_col_par_strict _ _ _ B'); auto.
 apply H11.
 exists C'.
@@ -3724,7 +3724,7 @@ Col.
 assert(B' <> O).
 intro.
 subst B'.
-assert(Par_strict B C' O B).
+assert(严格平行 B C' O B).
 apply(par_strict_col_par_strict _ _ _ C); auto.
 apply par_strict_right_comm.
 assumption.
@@ -3966,14 +3966,14 @@ Perp.
 Qed.
 
 
-Lemma is_image_perp_in : forall A A' X Y, A <> A' -> X <> Y -> Reflect A A' X Y ->
-  exists P, Perp_at P A A' X Y.
+Lemma is_image_perp_in : forall A A' X Y, A <> A' -> X <> Y -> 对称 A A' X Y ->
+  exists P, 垂直于 P A A' X Y.
 Proof.
 intros.
-unfold Reflect in H.
+unfold 对称 in H.
 induction H1.
 spliter.
-unfold ReflectL in H2.
+unfold 严格对称 in H2.
 spliter.
 ex_and H2 P.
 induction H3.
@@ -3993,7 +3993,7 @@ Qed.
 Lemma perp_inter_perp_in_n
      : forall A B C D : Tpoint,
        Perp A B C D ->
-       exists P : Tpoint, Col A B P /\ Col C D P /\ Perp_at P A B C D.
+       exists P : Tpoint, Col A B P /\ Col C D P /\ 垂直于 P A B C D.
 Proof.
 intros.
 assert(A <> B /\ C <> D).
@@ -4020,7 +4020,7 @@ apply(l8_14_2_1b_bis A B C D P); Col.
 Qed.
 
 Lemma perp2_perp_in : forall A B C D O, Perp2 A B C D O -> ~Col O A B /\ ~Col O C D ->
-    exists P, exists Q, Col A B P /\ Col C D Q /\ Col O P Q /\ Perp_at P O P A B /\ Perp_at Q O Q C D.
+    exists P, exists Q, Col A B P /\ Col C D Q /\ Col O P Q /\ 垂直于 P O P A B /\ 垂直于 Q O Q C D.
   Proof.
     intros.
     unfold Perp2 in H.
@@ -4051,7 +4051,7 @@ Lemma perp2_perp_in : forall A B C D O, Perp2 A B C D O -> ~Col O A B /\ ~Col O 
           Col.
         apply perp_in_sym.
         auto.
-      assert(Perp_at P A B X O).
+      assert(垂直于 P A B X O).
         apply(perp_in_col_perp_in A B X Y O P H11).
           Col.
         apply perp_in_sym.
@@ -4076,7 +4076,7 @@ Lemma perp2_perp_in : forall A B C D O, Perp2 A B C D O -> ~Col O A B /\ ~Col O 
         Col.
       apply perp_in_sym.
       auto.
-    assert(Perp_at Q C D X O).
+    assert(垂直于 Q C D X O).
       apply(perp_in_col_perp_in C D X Y O Q H11).
         Col.
       apply perp_in_sym.
@@ -4152,11 +4152,11 @@ apply(per23_preserves_bet_inv O Q P V U); Perp.
 Col.
 Qed.
 
-Lemma perp_in_rewrite : forall A B C D P, Perp_at P A B C D ->
-                                          Perp_at P A P P C \/
-                                          Perp_at P A P P D \/
-                                          Perp_at P B P P C \/
-                                          Perp_at P B P P D.
+Lemma perp_in_rewrite : forall A B C D P, 垂直于 P A B C D ->
+                                          垂直于 P A P P C \/
+                                          垂直于 P A P P D \/
+                                          垂直于 P B P P C \/
+                                          垂直于 P B P P D.
 Proof.
 intros.
 assert(HH:= perp_in_col A B C D P H).
@@ -4185,7 +4185,7 @@ apply(perp_in_col_perp_in C P A B P P H2 H0).
 Perp.
 Qed.
 
-Lemma perp_out_acute : forall A B C C', Out B A C' -> Perp A B C C' -> Acute A B C.
+Lemma perp_out_acute : forall A B C C', Out B A C' -> Perp A B C C' -> 为锐角 A B C.
 Proof.
 intros.
 assert(A <> B /\ C' <> B).
@@ -4203,7 +4203,7 @@ apply perp_left_comm in H3.
 apply perp_perp_in in H3.
 apply perp_in_comm.
 assumption.
-assert(Acute C' C B /\ Acute C' B C).
+assert(为锐角 C' C B /\ 为锐角 C' B C).
 apply(l11_43 C' C B).
 
 assert_diffs.
@@ -4224,7 +4224,7 @@ apply acute_out2__acute with C' C; auto.
 apply out_trivial; auto.
 Qed.
 
-Lemma perp_bet_obtuse : forall A B C C', B <> C' -> Perp A B C C' -> Bet A B C' -> Obtuse A B C.
+Lemma perp_bet_obtuse : forall A B C C', B <> C' -> Perp A B C C' -> Bet A B C' -> 为钝角 A B C.
 Proof.
 intros.
 assert(HPO:=perp_out_acute).
@@ -4232,7 +4232,7 @@ assert(HBO:=acute_bet__obtuse).
 assert(Col A B C').
 apply 中间性转共线 in H1.
 Col.
-assert(Acute C' B C).
+assert(为锐角 C' B C).
 apply (HPO _ _ _ C').
 apply out_trivial; auto.
 apply perp_left_comm.
@@ -4253,7 +4253,7 @@ Section L13_1_2D.
 
 Context `{T2D:Tarski_2D}.
 
-Lemma perp_in2__col : forall A B A' B' X Y P, Perp_at P A B X Y -> Perp_at P A' B' X Y  ->
+Lemma perp_in2__col : forall A B A' B' X Y P, 垂直于 P A B X Y -> 垂直于 P A' B' X Y  ->
   Col A B A'.
 Proof.
 intros A B A' B' X Y P.
@@ -4274,7 +4274,7 @@ Proof.
     exists Y.
     assert(Col X X' Y').
       induction H5.
-        unfold Par_strict in H5.
+        unfold 严格平行 in H5.
         spliter.
         apply False_ind.
         apply H6.
@@ -4284,7 +4284,7 @@ Proof.
       auto.
     assert(Col Y X' Y').
       induction H5.
-        unfold Par_strict in H5.
+        unfold 严格平行 in H5.
         spliter.
         apply False_ind.
         apply H7.
@@ -4314,7 +4314,7 @@ Proof.
       ColR.
     apply par_symmetry in H5.
     induction H5.
-      unfold Par_strict in H5.
+      unfold 严格平行 in H5.
       spliter.
       apply False_ind.
       apply H10.

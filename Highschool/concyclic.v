@@ -4,10 +4,10 @@ Section Concyclic.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
-Definition Concyclic A B C D := Coplanar A B C D /\ exists O, Cong O A O B /\ Cong O A O C /\ Cong O A O D.
+Definition Concyclic A B C D := 共面 A B C D /\ exists O, Cong O A O B /\ Cong O A O C /\ Cong O A O D.
 
 Lemma concyclic_aux : forall A B C D, Concyclic A B C D ->
-  exists O, Cong O A O B /\ Cong O A O C /\ Cong O A O D /\ Coplanar A B C O.
+  exists O, Cong O A O B /\ Cong O A O C /\ Cong O A O D /\ 共面 A B C O.
 Proof.
   intros A B C D [HCop [O1]]; spliter.
   destruct (col_dec A B C).

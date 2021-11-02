@@ -376,7 +376,7 @@ eapply par_trans.
 apply H10.
 Par.
 
-assert(Par_strict  Q Q' P P').
+assert(严格平行  Q Q' P P').
 induction H20.
 apply par_strict_symmetry.
 assumption.
@@ -398,7 +398,7 @@ assert(Par R R' Q Q').
 eapply par_trans.
 apply H7.
 Par.
-assert(Par_strict Q Q' R R' ).
+assert(严格平行 Q Q' R R' ).
 induction H23.
 apply par_strict_symmetry.
 assumption.
@@ -504,7 +504,7 @@ apply par_symmetry.
 apply H19.
 Par.
 
-assert(Par_strict Qx Qy P P').
+assert(严格平行 Qx Qy P P').
 induction H21.
 assumption.
 spliter.
@@ -533,7 +533,7 @@ apply par_symmetry.
 apply H19.
 Par.
 
-assert(Par_strict Qx Qy R R').
+assert(严格平行 Qx Qy R R').
 induction H24.
 assumption.
 spliter.
@@ -628,7 +628,7 @@ assert(Par Q Q' R R').
 eapply par_trans.
 apply H10.
 Par.
-assert(Par_strict Q Q' R R').
+assert(严格平行 Q Q' R R').
 induction H20.
 assumption.
 spliter.
@@ -730,7 +730,7 @@ Lemma triangle_par :
   Par A B A' B' ->
   Par B C B' C' ->
   Par A C A' C' ->
- CongA A B C A' B' C'.
+ 等角 A B C A' B' C'.
 Proof.
 intros.
 
@@ -739,9 +739,9 @@ ex_and HH M.
 prolong A' M A'' A' M.
 prolong C' M C'' C' M.
 
-assert(Midpoint M A' A'')
+assert(中点 M A' A'')
  by (split;Cong).
-assert(Midpoint M C' C'')
+assert(中点 M C' C'')
  by (split;Cong).
 
 assert(A' <> B').
@@ -759,14 +759,14 @@ spliter.
 tauto.
 
 assert(Par B' C' B C'').
-apply (l12_17 _ _ _ _ M); Midpoint.
+apply (l12_17 _ _ _ _ M); 中点.
 
 assert(Col B B C /\ Col C'' B C).
 apply(parallel_uniqueness B' C' B C B C'' B); Col.
 Par.
 
 assert(Par B' A' B A'').
-apply (l12_17 _ _ _ _ M); Midpoint.
+apply (l12_17 _ _ _ _ M); 中点.
 assert(Col B B A /\ Col A'' B A).
 apply(parallel_uniqueness B' A' B A B A'' B); Col.
 apply par_symmetry.
@@ -777,9 +777,9 @@ spliter.
 clear H13.
 clear H15.
 
-assert(CongA A' B' C' A'' B C'').
+assert(等角 A' B' C' A'' B C'').
 
-apply (symmetry_preserves_conga _ _ _ _ _ _ M); Midpoint.
+apply (symmetry_preserves_conga _ _ _ _ _ _ M); 中点.
 eapply conga_trans; [|apply conga_sym, H13].
 
 show_distinct B A''.
@@ -798,7 +798,7 @@ tauto.
 assert(Par A C A'' C'').
 eapply par_trans.
 apply H2.
-eapply (l12_17 _ _ _ _ M); Midpoint.
+eapply (l12_17 _ _ _ _ M); 中点.
 
 intro.
 subst C'.
@@ -810,7 +810,7 @@ spliter.
 
 
 induction H17.
-assert(Par_strict A C A'' C'').
+assert(严格平行 A C A'' C'').
 induction H21.
 assumption.
 spliter.
@@ -918,7 +918,7 @@ apply (col3 A'' B); Col.
 repeat split; auto.
 intro.
 subst.
-unfold Par_strict in H24.
+unfold 严格平行 in H24.
 spliter.
 apply H27.
 exists C''; split; Col.
@@ -940,7 +940,7 @@ split; Col.
 induction H17.
 induction H16.
 
-assert(Par_strict A C A'' C'').
+assert(严格平行 A C A'' C'').
 induction H21.
 assumption.
 spliter.
@@ -1018,7 +1018,7 @@ repeat split; auto.
 
 induction H16.
 
-assert(Par_strict A C A'' C'').
+assert(严格平行 A C A'' C'').
 induction H21.
 assumption.
 spliter.
@@ -1085,7 +1085,7 @@ repeat split; auto.
 
 intro.
 subst.
-unfold Par_strict in H24.
+unfold 严格平行 in H24.
 spliter.
 apply H27.
 exists A''.
@@ -1127,10 +1127,10 @@ Lemma par3_conga3 :
  Par A B A' B' ->
  Par B C B' C' ->
  Par A C A' C' ->
- CongA_3 A B C A' B' C'.
+ 等角_3 A B C A' B' C'.
 Proof.
 intros.
-unfold CongA_3.
+unfold 等角_3.
 split.
 apply triangle_par; auto.
 split.
@@ -1158,13 +1158,13 @@ Lemma cong_conga3_cong3 :
  forall A B C A' B' C',
  ~ Col A B C ->
  Cong A B A' B' ->
- CongA_3 A B C A' B' C' ->
- Cong_3 A B C A' B' C'.
+ 等角_3 A B C A' B' C' ->
+ 三角形全等 A B C A' B' C'.
 Proof.
 intros.
-unfold CongA_3 in H1.
+unfold 等角_3 in H1.
 spliter.
-assert(Cong A C A' C' /\ Cong B C B' C' /\ CongA C A B C' A' B').
+assert(Cong A C A' C' /\ Cong B C B' C' /\ 等角 C A B C' A' B').
 apply( l11_50_2 A B C A' B' C' H); auto.
 spliter.
 repeat split; auto.
@@ -1220,7 +1220,7 @@ left.
 apply H1.
 Par.
 
-assert(Par_strict P Q P' Q').
+assert(严格平行 P Q P' Q').
 apply par_symmetry in H2.
 induction H2.
 apply par_strict_symmetry.
@@ -1688,7 +1688,7 @@ assert(Col P' Q' B).
 ColR.
 apply (col3 P' Q'); Col.
 
-assert(Cong_3 P' Q'' Q' R' S'' S').
+assert(三角形全等 P' Q'' Q' R' S'' S').
 eapply cong_conga3_cong3.
 assumption.
 
@@ -1782,7 +1782,7 @@ ColR.
 assert(Col Q' S' B).
 ColR.
 apply (col3 Q' S'); Col.
-unfold Cong_3 in H21.
+unfold 三角形全等 in H21.
 spliter.
 Cong.
 unfold EqV in H13.
@@ -1811,7 +1811,7 @@ apply (col3 P' R'); Col.
 assert(HH:= plgs_par_strict R' P' Q'' S'' H24).
 spliter.
 
-assert(Par_strict Q'' S'' Q' S').
+assert(严格平行 Q'' S'' Q' S').
 eapply par_strict_col2_par_strict.
 auto.
 apply par_strict_symmetry.
@@ -1836,7 +1836,7 @@ apply H13.
 assumption.
 Qed.
 
-Lemma perp_projp : forall P P' A B, Perp_at P' A B P P' -> Projp P P' A B.
+Lemma perp_projp : forall P P' A B, 垂直于 P' A B P P' -> Projp P P' A B.
 intros.
 unfold Projp.
 split.

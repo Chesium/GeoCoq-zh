@@ -9,7 +9,7 @@ Lemma inverse_projection_postulate__proclus_bis :
   inverse_projection_postulate -> alternative_proclus_postulate.
 Proof.
   intros ip A B C D P Q HPerp2 HNC1 HCop1 HInter HNC2 HCop2.
-  assert(Par_strict C D A B)
+  assert(严格平行 C D A B)
     by (apply (col_cop_perp2__pars_bis P); [..|apply coplanar_perm_16|apply perp2_sym]; assumption).
   destruct HPerp2 as [P1 [P2 [HP [HPerpAP HPerpCP]]]].
   assert(HC0 := HPerpCP); auto.

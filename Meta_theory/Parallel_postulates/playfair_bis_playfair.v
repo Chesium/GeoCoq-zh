@@ -30,7 +30,7 @@ elim (col_dec A1 A2 P); [intro HCol; treat_equalities|intro HNC1].
   }
 
   intros A1 A2 HParAB HParAC HNC1 HPerp1 HNC2.
-  assert (HCop1 : Coplanar P X A1 A2) by Cop.
+  assert (HCop1 : 共面 P X A1 A2) by Cop.
   assert(HD := ex_perp_cop P X P A1).
   assert_diffs.
   destruct HD as [D [HPerp2 HCop2]]; auto.

@@ -7,13 +7,13 @@ Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma midpoint_thales : forall O A B C : Tpoint,
    ~ Col A B C ->
-   Midpoint O A B ->
+   中点 O A B ->
    Cong O A O C ->
    Per A C B.
 Proof.
 intros.
 Name X the midpoint of C and A.
-assert (Par_strict O X B C)
+assert (严格平行 O X B C)
  by perm_apply (triangle_mid_par_strict_cong_simp C B A O X).
 assert(Per O X A)
  by (exists C;split;finish).
@@ -31,7 +31,7 @@ Qed.
 Lemma midpoint_thales_reci :
   forall a b c o: Tpoint,
    Per a c b ->
-   Midpoint o a b ->
+   中点 o a b ->
    Cong o a o b /\ Cong o b o c.
 Proof.
 intros.
@@ -57,7 +57,7 @@ apply (triangle_mid_par c b a o x);finish.
 assert(Hper : Perp c b c a)
  by (apply perp_left_comm;apply per_perp;Perp).
 (* Demonstratin du sous but Cop pour appliquer par_perp_perp *)
-assert(Hcop : Coplanar x o c a) by Cop.
+assert(Hcop : 共面 x o c a) by Cop.
 (* Application de par_perp_perp *)
 assert(HH := cop_par_perp__perp c b x o c a Hpar Hper).
 assert(Hper2 : Perp c x o x).
@@ -78,7 +78,7 @@ spliter.
 apply l7_2 in H8.
 assert(HmidU := l7_9 a x0 x c H2 H8).
 subst.
-unfold Midpoint in H2.
+unfold 中点 in H2.
 spliter.
 eCong.
 Qed.

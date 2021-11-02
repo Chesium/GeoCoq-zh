@@ -10,7 +10,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma proposition_23 : 
    forall A B C D E, 
    neq A B -> nCol D C E ->
-   exists X Y, Out A B Y /\ CongA X A Y D C E.
+   exists X Y, Out A B Y /\ 等角 X A Y D C E.
 Proof.
 intros.
 assert (~ Col E C D).
@@ -84,7 +84,7 @@ assert (~ eq A G).
  contradict.
  }
 assert (Out A G G) by (conclude lemma_ray4).
-assert (CongA F A G D C E) by (conclude_def CongA ).
+assert (等角 F A G D C E) by (conclude_def 等角 ).
 close.
 Qed.
 

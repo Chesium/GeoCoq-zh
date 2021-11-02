@@ -13,14 +13,14 @@ Lemma lemma_RTsymmetric :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists a b c d e, (Supp a b c d e /\ CongA A B C a b c /\ CongA D E F d b e)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];spliter.
+assert (Tf:exists a b c d e, (Supp a b c d e /\ 等角 A B C a b c /\ 等角 D E F d b e)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];spliter.
 assert (Supp e b d c a) by (conclude lemma_supplementsymmetric).
 assert (nCol d b e) by (conclude lemma_equalanglesNC).
-assert (CongA d b e e b d) by (conclude lemma_ABCequalsCBA).
+assert (等角 d b e e b d) by (conclude lemma_ABCequalsCBA).
 assert (nCol a b c) by (conclude lemma_equalanglesNC).
-assert (CongA a b c c b a) by (conclude lemma_ABCequalsCBA).
-assert (CongA D E F e b d) by (conclude lemma_equalanglestransitive).
-assert (CongA A B C c b a) by (conclude lemma_equalanglestransitive).
+assert (等角 a b c c b a) by (conclude lemma_ABCequalsCBA).
+assert (等角 D E F e b d) by (conclude lemma_equalanglestransitive).
+assert (等角 A B C c b a) by (conclude lemma_equalanglestransitive).
 assert (RT D E F A B C) by (conclude_def RT ).
 close.
 Qed.

@@ -137,7 +137,7 @@ intros;subst.
 unfold InCirc in *.
 unfold two_points_line_circle in H.
 
-destruct H1 as [D1 [D2 [HBetS [HCongA [HCongB HBetSB]]]]].
+destruct H1 as [D1 [D2 [HBetS [H等角 [HCongB HBetSB]]]]].
 destruct (两点重合的决定性 B C).
 subst.
 assert (HColD: Definitions.Col A C C)
@@ -433,8 +433,8 @@ destruct H as [U [V HUV]];spliter.
 intro.
 unfold Definitions.BetS in *;spliter.
 assert (tarski_axioms.Cong X U X V) by CongR.
-assert (Midpoint X U V) by (split;Cong).
-assert (Midpoint X A V).
+assert (中点 X U V) by (split;Cong).
+assert (中点 X A V).
 apply (cong_col_mid A X V).
 assumption.
 ColR.

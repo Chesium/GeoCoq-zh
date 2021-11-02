@@ -25,7 +25,7 @@ simpl.
 Col.
 Qed.
 
-Definition cop : arity Tpoint 4 := Coplanar.
+Definition cop : arity Tpoint 4 := 共面.
 
 Lemma cop_perm_1 : forall A (X : cartesianPower Tpoint 3), app_1_n cop A X -> app_n_1 cop X A.
 Proof.

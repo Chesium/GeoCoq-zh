@@ -10,12 +10,12 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma lemma_supplementinequality : 
    forall A B C D F a b c d f, 
-   Supp A B C D F -> Supp a b c d f -> LtA a b c A B C ->
-   LtA D B F d b f.
+   Supp A B C D F -> Supp a b c d f -> 角度小于 a b c A B C ->
+   角度小于 D B F d b f.
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists P Q R, (BetS P R Q /\ Out B A P /\ Out B C Q /\ CongA a b c A B R)) by (conclude_def LtA );destruct Tf as [P[Q[R]]];spliter.
+assert (Tf:exists P Q R, (BetS P R Q /\ Out B A P /\ Out B C Q /\ 等角 a b c A B R)) by (conclude_def 角度小于 );destruct Tf as [P[Q[R]]];spliter.
 assert (nCol A B R) by (conclude lemma_equalanglesNC).
 assert ((Out B C D /\ BetS A B F)) by (conclude_def Supp ).
 assert (BetS Q R P) by (conclude axiom_betweennesssymmetry).
@@ -76,12 +76,12 @@ assert (~ eq B R).
  }
 assert (Out B R R) by (conclude lemma_ray4).
 assert (Supp A B R R F) by (conclude_def Supp ).
-assert (CongA A B R a b c) by (conclude lemma_equalanglessymmetric).
-assert (CongA R B F d b f) by (conclude lemma_supplements).
+assert (等角 A B R a b c) by (conclude lemma_equalanglessymmetric).
+assert (等角 R B F d b f) by (conclude lemma_supplements).
 assert (neq B F) by (forward_using lemma_betweennotequal).
 assert (eq F F) by (conclude cn_equalityreflexive).
 assert (Out B F F) by (conclude lemma_ray4).
-assert (CongA d b f R B F) by (conclude lemma_equalanglessymmetric).
+assert (等角 d b f R B F) by (conclude lemma_equalanglessymmetric).
 assert (nCol R B F) by (conclude lemma_equalanglesNC).
 assert (~ Col F B Q).
  {
@@ -100,19 +100,19 @@ assert (~ Col F B Q).
  assert (Col R B F) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA F B Q F B Q) by (conclude lemma_equalanglesreflexive).
+assert (等角 F B Q F B Q) by (conclude lemma_equalanglesreflexive).
 assert (BetS B M Q) by (conclude axiom_betweennesssymmetry).
 assert (neq B M) by (forward_using lemma_betweennotequal).
 assert (Out B M Q) by (conclude lemma_ray4).
 assert (Out B Q M) by (conclude lemma_ray5).
-assert (CongA F B Q F B M) by (conclude lemma_equalangleshelper).
+assert (等角 F B Q F B M) by (conclude lemma_equalangleshelper).
 assert (BetS R M F) by (conclude axiom_betweennesssymmetry).
-assert (LtA F B Q F B R) by (conclude_def LtA ).
-assert (CongA f b d F B R) by (conclude lemma_equalanglesflip).
-assert (CongA F B R f b d) by (conclude lemma_equalanglessymmetric).
-assert (LtA F B Q f b d) by (conclude lemma_angleorderrespectscongruence).
+assert (角度小于 F B Q F B R) by (conclude_def 角度小于 ).
+assert (等角 f b d F B R) by (conclude lemma_equalanglesflip).
+assert (等角 F B R f b d) by (conclude lemma_equalanglessymmetric).
+assert (角度小于 F B Q f b d) by (conclude lemma_angleorderrespectscongruence).
 assert (Out B Q D) by (conclude lemma_ray3).
-assert (CongA F B Q F B D) by (conclude lemma_equalangleshelper).
+assert (等角 F B Q F B D) by (conclude lemma_equalangleshelper).
 assert (~ Col F B D).
  {
  intro.
@@ -125,10 +125,10 @@ assert (~ Col F B D).
  assert (Col F B Q) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA F B D D B F) by (conclude lemma_ABCequalsCBA).
-assert (CongA F B Q D B F) by (conclude lemma_equalanglestransitive).
-assert (CongA D B F F B Q) by (conclude lemma_equalanglessymmetric).
-assert (LtA D B F f b d) by (conclude lemma_angleorderrespectscongruence2).
+assert (等角 F B D D B F) by (conclude lemma_ABCequalsCBA).
+assert (等角 F B Q D B F) by (conclude lemma_equalanglestransitive).
+assert (等角 D B F F B Q) by (conclude lemma_equalanglessymmetric).
+assert (角度小于 D B F f b d) by (conclude lemma_angleorderrespectscongruence2).
 assert (nCol f b d) by (conclude lemma_equalanglesNC).
 assert (~ Col d b f).
  {
@@ -136,8 +136,8 @@ assert (~ Col d b f).
  assert (Col f b d) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA d b f f b d) by (conclude lemma_ABCequalsCBA).
-assert (LtA D B F d b f) by (conclude lemma_angleorderrespectscongruence).
+assert (等角 d b f f b d) by (conclude lemma_ABCequalsCBA).
+assert (角度小于 D B F d b f) by (conclude lemma_angleorderrespectscongruence).
 close.
 Qed.
 

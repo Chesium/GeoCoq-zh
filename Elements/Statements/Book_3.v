@@ -41,7 +41,7 @@ Lemma prop_3_1 : forall O P A B X,
  O <> X -> A <> B ->
  OnCircle A O P ->
  OnCircle B O P ->
- Midpoint X A B ->
+ 中点 X A B ->
  Perp O X A B.
 Proof.
 exact mid_onc2__perp.
@@ -53,7 +53,7 @@ Lemma prop_3_2 : forall O P A B X,
  OnCircle A O P ->
  OnCircle B O P ->
  Perp O X A B ->
- Midpoint X A B.
+ 中点 X A B.
 Proof.
 exact col_onc2_perp__mid.
 Qed.
@@ -67,8 +67,8 @@ Lemma prop_4 : forall O P A B C D X, B <> C -> A <> B ->
  OnCircle B O P ->
  OnCircle C O P ->
  OnCircle D O P ->
- Midpoint X A C ->
- Midpoint X B D ->
+ 中点 X A C ->
+ 中点 X B D ->
  X = O.
 Proof.
 exact mid2_onc4__eq.

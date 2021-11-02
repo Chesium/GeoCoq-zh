@@ -6,19 +6,19 @@ Context `{Tn:无维度中性塔斯基公理系统}.
 
 (** Definition 2.10. *)
 (* 八点形成外五线段形式，即五线段公理除去A≠B外 *)
-Definition OFSC A B C D A' B' C' D' :=
+Definition 外五线段形式 A B C D A' B' C' D' :=
   Bet A B C /\ Bet A' B' C' /\
   Cong A B A' B' /\ Cong B C B' C' /\
   Cong A D A' D' /\ Cong B D B' D'.
 
 (** Definition 3.8. *)
 (* 共线四点按照A-B-C-D顺序排列 *)
-Definition Bet_4 A1 A2 A3 A4 :=
+Definition 四点中间性 A1 A2 A3 A4 :=
    Bet A1 A2 A3 /\ Bet A2 A3 A4 /\ Bet A1 A3 A4 /\ Bet A1 A2 A4.
 
 (** Definition 4.1. *)
 (* 八点形成内五线段形式，即五线段公理除去A≠B外，并修改CD->BD *)
-Definition IFSC A B C D A' B' C' D' :=
+Definition 内五线段形式 A B C D A' B' C' D' :=
    Bet A B C /\ Bet A' B' C' /\
    Cong A C A' C' /\ Cong B C B' C' /\
    Cong A D A' D' /\ Cong C D C' D'.
@@ -27,14 +27,14 @@ Definition IFSC A B C D A' B' C' D' :=
 (* 多边形的全等定义：两n边形A1 A2 ... An和B1 B2 ... Bn全等
    当且仅当一多边形的任意两顶点组成的线段与另一多边形的对应相等 *)
 (* 以下为三角形、四边形和五边形的例子 *)
-Definition Cong_3 A B C A' B' C' :=
+Definition 三角形全等 A B C A' B' C' :=
   Cong A B A' B' /\ Cong A C A' C' /\ Cong B C B' C'.
 
-Definition Cong_4 P1 P2 P3 P4 Q1 Q2 Q3 Q4 :=
+Definition 四边形全等 P1 P2 P3 P4 Q1 Q2 Q3 Q4 :=
   Cong P1 P2 Q1 Q2 /\ Cong P1 P3 Q1 Q3 /\ Cong P1 P4 Q1 Q4 /\
   Cong P2 P3 Q2 Q3 /\ Cong P2 P4 Q2 Q4 /\ Cong P3 P4 Q3 Q4.
 
-Definition Cong_5 P1 P2 P3 P4 P5 Q1 Q2 Q3 Q4 Q5 :=
+Definition 五边形全等 P1 P2 P3 P4 P5 Q1 Q2 Q3 Q4 Q5 :=
   Cong P1 P2 Q1 Q2 /\ Cong P1 P3 Q1 Q3 /\
   Cong P1 P4 Q1 Q4 /\ Cong P1 P5 Q1 Q5 /\
   Cong P2 P3 Q2 Q3 /\ Cong P2 P4 Q2 Q4 /\ Cong P2 P5 Q2 Q5 /\
@@ -46,8 +46,8 @@ Definition Col A B C := Bet A B C \/ Bet B C A \/ Bet C A B.
 
 (** Definition 4.15. *)
 (* 八点形成五线段形式 *)
-Definition FSC A B C D A' B' C' D' :=
-  Col A B C /\ Cong_3 A B C A' B' C' /\ Cong A D A' D' /\ Cong B D B' D'.
+Definition 五线段形式 A B C D A' B' C' D' :=
+  Col A B C /\ 三角形全等 A B C A' B' C' /\ Cong A D A' D' /\ Cong B D B' D'.
 
 (** Definition 5.4. *)
 (* AB≤CD *)
@@ -73,21 +73,21 @@ Definition Inter A1 A2 B1 B2 X :=
 
 (** Definition 7.1. *)
 (* M是A与B的中点 *)
-Definition Midpoint M A B := Bet A M B /\ Cong A M M B.
+Definition 中点 M A B := Bet A M B /\ Cong A M M B.
 
 (** Definition 8.1. *)
 (* ∠ABC=90° *)
-Definition Per A B C := exists C', Midpoint B C C' /\ Cong A C A C'.
+Definition Per A B C := exists C', 中点 B C C' /\ Cong A C A C'.
 
 (** Definition 8.11. *)
 (* AB⊥CD于X *)
-Definition Perp_at X A B C D :=
+Definition 垂直于 X A B C D :=
   A <> B /\ C <> D /\ Col X A B /\ Col X C D /\
   forall U V, Col U A B -> Col V C D -> Per U X V.
 
 (** Definition 8.11. *)
 (* AB⊥CD *)
-Definition Perp A B C D := exists X, Perp_at X A B C D.
+Definition Perp A B C D := exists X, 垂直于 X A B C D.
 
 (** Definition 9.1. *)
 (* P和Q在直线AB异侧 *)
@@ -100,38 +100,38 @@ Definition OS A B P Q := exists R, TS A B P R /\ TS A B Q R.
 
 (** Satz 9.33. *)
 (* ABCD四点共面 *)
-Definition Coplanar A B C D :=
+Definition 共面 A B C D :=
   exists X, (Col A B X /\ Col C D X) \/
             (Col A C X /\ Col B D X) \/
             (Col A D X /\ Col B C X).
 
 (** Definition 9.37 *)
 (* P和Q在平面ABC异侧 *)
-Definition TSP A B C P Q :=
-  ~ Coplanar A B C P /\ ~ Coplanar A B C Q /\ (exists T, Coplanar A B C T /\ Bet P T Q).
+Definition 在平面异侧 A B C P Q :=
+  ~ 共面 A B C P /\ ~ 共面 A B C Q /\ (exists T, 共面 A B C T /\ Bet P T Q).
 
 (** Definition 9.40 *)
 (* P和Q在平面ABC同侧 *)
-Definition OSP A B C P Q :=
-  exists R, TSP A B C P R /\ TSP A B C Q R.
+Definition 在平面同侧 A B C P Q :=
+  exists R, 在平面异侧 A B C P R /\ 在平面异侧 A B C Q R.
 
 (** Definition 10.3. *)
 (* P和P'明确地关于直线AB对称 *)
-Definition ReflectL P' P A B :=
-  (exists X, Midpoint X P P' /\ Col A B X) /\ (Perp A B P P' \/ P = P').
+Definition 严格对称 P' P A B :=
+  (exists X, 中点 X P P' /\ Col A B X) /\ (Perp A B P P' \/ P = P').
 (* P和P'关于AB对称，A与B可重合 *)
-Definition Reflect P' P A B :=
- (A <> B /\ ReflectL P' P A B) \/ (A = B /\ Midpoint A P P').
+Definition 对称 P' P A B :=
+ (A <> B /\ 严格对称 P' P A B) \/ (A = B /\ 中点 A P P').
 (* P和P'明确地关于直线AB对称，对称轴与对称点连线交于M *)
-Definition ReflectL_at M P' P A B :=
-  (Midpoint M P P' /\ Col A B M) /\ (Perp A B P P' \/ P = P').
+Definition 严格对称于 M P' P A B :=
+  (中点 M P P' /\ Col A B M) /\ (Perp A B P P' \/ P = P').
 (* P和P'关于AB对称，对称轴与对称点连线交于M，A与B可重合 *)
-Definition Reflect_at M P' P A B :=
- (A <> B /\ ReflectL_at M P' P A B) \/ (A = B /\ A = M /\ Midpoint M P P').
+Definition 对称于 M P' P A B :=
+ (A <> B /\ 严格对称于 M P' P A B) \/ (A = B /\ A = M /\ 中点 M P P').
 
 (** Definition 11.2. *)
 (* ∠ABC=∠DEF *)
-Definition CongA A B C D E F :=
+Definition 等角 A B C D E F :=
   A <> B /\ C <> B /\ D <> E /\ F <> E /\
   exists A', exists C', exists D', exists F',
   Bet B A A' /\ Cong A A' E D /\
@@ -142,48 +142,48 @@ Definition CongA A B C D E F :=
 
 (** Definition 11.23. *)
 (* 点P在∠ABC内部 *)
-Definition InAngle P A B C :=
+Definition 在角内 P A B C :=
   A <> B /\ C <> B /\ P <> B /\ exists X, Bet A X C /\ (X = B \/ Out B X P).
 
 (** Definition 11.27. *)
 (* ∠ABC≤∠DEF *)
-Definition LeA A B C D E F := exists P, InAngle P D E F /\ CongA A B C D E P.
+Definition 角度小于等于 A B C D E F := exists P, 在角内 P D E F /\ 等角 A B C D E P.
 (* ∠ABC≥∠DEF *)
-Definition GeA A B C D E F := LeA D E F A B C.
+Definition 角度大于等于 A B C D E F := 角度小于等于 D E F A B C.
 
 (** Definition 11.38. *)
 (* ∠ABC<∠DEF *)
-Definition LtA A B C D E F := LeA A B C D E F /\ ~ CongA A B C D E F.
+Definition 角度小于 A B C D E F := 角度小于等于 A B C D E F /\ ~ 等角 A B C D E F.
 (* ∠ABC>∠DEF *)
-Definition GtA A B C D E F := LtA D E F A B C.
+Definition 角度大于 A B C D E F := 角度小于 D E F A B C.
 
 (** Definition 11.39. *)
 (* ∠ABC是锐角 *)
-Definition Acute A B C :=
-  exists A' B' C', Per A' B' C' /\ LtA A B C A' B' C'.
+Definition 为锐角 A B C :=
+  exists A' B' C', Per A' B' C' /\ 角度小于 A B C A' B' C'.
 
 (** Definition 11.39. *)
 (* ∠ABC是钝角 *)
-Definition Obtuse A B C :=
-  exists A' B' C', Per A' B' C' /\ LtA A' B' C' A B C.
+Definition 为钝角 A B C :=
+  exists A' B' C', Per A' B' C' /\ 角度小于 A' B' C' A B C.
 
 (** Definition 11.59. *)
 (* UV⊥平面ABC于X *)
-Definition Orth_at X A B C U V :=
-  ~ Col A B C /\ U <> V /\ Coplanar A B C X /\ Col U V X /\
-  forall P Q, Coplanar A B C P -> Col U V Q -> Per P X Q.
+Definition 垂直平面于 X A B C U V :=
+  ~ Col A B C /\ U <> V /\ 共面 A B C X /\ Col U V X /\
+  forall P Q, 共面 A B C P -> Col U V Q -> Per P X Q.
 (* UV⊥平面ABC *)
-Definition Orth A B C U V := exists X, Orth_at X A B C U V.
+Definition Orth A B C U V := exists X, 垂直平面于 X A B C U V.
 
 (** Definition 12.2. *)
 (* AB∥CD，严格平行，即不允许ABCD四点共线 *)
-Definition Par_strict A B C D :=
-  Coplanar A B C D /\ ~ exists X, Col X A B /\ Col X C D.
+Definition 严格平行 A B C D :=
+  共面 A B C D /\ ~ exists X, Col X A B /\ Col X C D.
 
 (** Definition 12.3. *)
 (* AB∥CD *)
 Definition Par A B C D :=
-  Par_strict A B C D \/ (A <> B /\ C <> D /\ Col A C D /\ Col B C D).
+  严格平行 A B C D \/ (A <> B /\ C <> D /\ Col A C D /\ Col B C D).
 
 (** Definition 13.4. *)
 (* l是描述一线段长度为特定值的一谓词（该类型简称为“长度”），l A B可理解为AB长度为l *)
@@ -192,19 +192,19 @@ Definition Q_Cong l := exists A B, forall X Y, Cong A B X Y <-> l X Y.
 (* AB长度为l *)
 Definition Len A B l := Q_Cong l /\ l A B.
 (* l是描述一线段长度为0的一谓词 *)
-Definition Q_Cong_Null l := Q_Cong l /\ exists A, l A A.
+Definition 零长谓词 l := Q_Cong l /\ exists A, l A A.
 (* 两长度相等 *)
-Definition EqL (l1 l2 : Tpoint -> Tpoint -> Prop) :=
+Definition 谓词等长 (l1 l2 : Tpoint -> Tpoint -> Prop) :=
   forall A B, l1 A B <-> l2 A B.
 (* a是描述一角大小为特定值的一谓词（该类型简称为“角度”），a A B C可理解为∠ABC大小为a *)
 (* 角度的形式化类型为"Tpoint -> Tpoint -> Tpoint -> Prop" *)
-Definition Q_CongA a :=
+Definition 角谓词 a :=
   exists A B C,
-    A <> B /\ C <> B /\ forall X Y Z, CongA A B C X Y Z <-> a X Y Z.
+    A <> B /\ C <> B /\ forall X Y Z, 等角 A B C X Y Z <-> a X Y Z.
 (* ∠ABC大小为a *)
-Definition Ang A B C a := Q_CongA a /\ a A B C.
+Definition Ang A B C a := 角谓词 a /\ a A B C.
 (* a是描述一角为平角的一谓词 *)
-Definition Ang_Flat a := Q_CongA a /\ forall A B C, a A B C -> Bet A B C.
+Definition 平角谓词 a := 角谓词 a /\ forall A B C, a A B C -> Bet A B C.
 (* 两角度相等 *)
 Definition EqA (a1 a2 : Tpoint -> Tpoint -> Tpoint -> Prop) :=
   forall A B C, a1 A B C <-> a2 A B C.
@@ -214,29 +214,29 @@ Definition EqA (a1 a2 : Tpoint -> Tpoint -> Tpoint -> Prop) :=
 Definition Perp2 A B C D P :=
   exists X Y, Col P X Y /\ Perp X Y A B /\ Perp X Y C D.
 (* a是描述一锐角大小为特定值的一谓词 *)
-Definition Q_CongA_Acute a :=
+Definition 锐角谓词 a :=
   exists A B C,
-    Acute A B C /\ forall X Y Z, CongA A B C X Y Z <-> a X Y Z.
+    为锐角 A B C /\ forall X Y Z, 等角 A B C X Y Z <-> a X Y Z.
 (* 锐角∠ABC大小为a *)
-Definition Ang_Acute A B C a := Q_CongA_Acute a /\ a A B C.
-(* a是描述一角为零角的一谓词 *)
-Definition Q_CongA_nNull a := Q_CongA a /\ forall A B C, a A B C -> ~ Out B A C.
+Definition 锐角 A B C a := 锐角谓词 a /\ a A B C.
+(* a是描述一角为非零角的一谓词 *)
+Definition 非零角谓词 a := 角谓词 a /\ forall A B C, a A B C -> ~ Out B A C.
 (* a是描述一角为非平角的一谓词 *)
-Definition Q_CongA_nFlat a := Q_CongA a /\ forall A B C, a A B C -> ~ Bet A B C.
+Definition 非平角谓词 a := 角谓词 a /\ forall A B C, a A B C -> ~ Bet A B C.
 (* a是描述一角为零角的一谓词 *)
-Definition Q_CongA_Null a := Q_CongA a /\ forall A B C, a A B C -> Out B A C.
+Definition 零角谓词 a := 角谓词 a /\ forall A B C, a A B C -> Out B A C.
 (* a是描述一锐角为零角的一谓词 *)
-Definition Q_CongA_Null_Acute a :=
-  Q_CongA_Acute a /\ forall A B C, a A B C -> Out B A C.
+Definition 锐零角谓词 a :=
+  锐角谓词 a /\ forall A B C, a A B C -> Out B A C.
 (* a是描述一角为零角的一谓词，另一种描述 *)
-Definition is_null_anga' a :=
-  Q_CongA_Acute a /\ exists A B C, a A B C /\ Out B A C.
+Definition 零角谓词' a :=
+  锐角谓词 a /\ exists A B C, a A B C /\ Out B A C.
 (* a是描述一锐角为非零角的一谓词 *)
-Definition Q_CongA_nNull_Acute a :=
-  Q_CongA_Acute a /\ forall A B C, a A B C -> ~ Out B A C.
+Definition 非锐零角谓词 a :=
+  锐角谓词 a /\ forall A B C, a A B C -> ~ Out B A C.
 (* cos(a)=lb/lc，a为锐角 *)
 Definition Lcos lb lc a :=
-  Q_Cong lb /\ Q_Cong lc /\ Q_CongA_Acute a /\
+  Q_Cong lb /\ Q_Cong lc /\ 锐角谓词 a /\
   (exists A B C, (Per C B A /\ lb A B /\ lc A C /\ a B A C)).
 
 Definition Eq_Lcos la a lb b := exists lp, Lcos lp la a /\ Lcos lp lb b.
@@ -368,9 +368,9 @@ Definition Projp P Q A B :=
 (** P is of coordinates (X,Y) in the grid SU1U2 using unit length OE. *)
 
 Definition Cd O E S U1 U2 P X Y :=
-  Cs O E S U1 U2 /\ Coplanar P S U1 U2 /\
-  (exists PX, Projp P PX S U1 /\ Cong_3 O E X S U1 PX) /\
-  (exists PY, Projp P PY S U2 /\ Cong_3 O E Y S U2 PY).
+  Cs O E S U1 U2 /\ 共面 P S U1 U2 /\
+  (exists PX, Projp P PX S U1 /\ 三角形全等 O E X S U1 PX) /\
+  (exists PY, Projp P PY S U2 /\ 三角形全等 O E Y S U2 PY).
 
 
 (** Strict betweenness *)
@@ -385,10 +385,10 @@ Definition SumS A B C D E F := exists P Q R,
 
 (** PQ is the perpendicular bisector of segment AB *)
 
-Definition Perp_bisect P Q A B := ReflectL A B P Q /\ A <> B.
+Definition Perp_bisect P Q A B := 严格对称 A B P Q /\ A <> B.
 
 Definition Perp_bisect_bis P Q A B :=
-  exists I, Perp_at I P Q A B /\ Midpoint I A B.
+  exists I, 垂直于 I P Q A B /\ 中点 I A B.
 
 Definition Is_on_perp_bisect P A B := Cong A P P B.
 
@@ -396,18 +396,18 @@ Definition Is_on_perp_bisect P A B := Cong A P P B.
     SumA A B C D E F G H I means that ABC + DEF = GHI. *)
 
 Definition SumA A B C D E F G H I :=
-  exists J, CongA C B J D E F /\ ~ OS B C A J /\ Coplanar A B C J /\ CongA A B J G H I.
+  exists J, 等角 C B J D E F /\ ~ OS B C A J /\ 共面 A B C J /\ 等角 A B J G H I.
 
 (** The SAMS predicate describes the fact that the sum of the two angles is "at most straight" *)
 
 Definition SAMS A B C D E F :=
   A <> B /\ (Out E D F \/ ~ Bet A B C) /\
-  exists J, CongA C B J D E F /\ ~ OS B C A J /\ ~ TS A B C J /\ Coplanar A B C J.
+  exists J, 等角 C B J D E F /\ ~ OS B C A J /\ ~ TS A B C J /\ 共面 A B C J.
 
 (** Supplementary angles *)
 
 Definition SuppA A B C D E F :=
-  A <> B /\ exists A', Bet A B A' /\ CongA D E F C B A'.
+  A <> B /\ exists A', Bet A B A' /\ 等角 D E F C B A'.
 
 (** Definition of the sum of the interior angles of a triangle.
     TriSumA A B C D E F means that the sum of the angles of the triangle ABC
@@ -480,7 +480,7 @@ Definition TangentAt A B O P T :=
 
 (** The points A, B, C and D belong to a same circle *)
 
-Definition Concyclic A B C D := Coplanar A B C D /\
+Definition Concyclic A B C D := 共面 A B C D /\
   exists O P, OnCircle A O P /\ OnCircle B O P /\ OnCircle C O P /\ OnCircle D O P.
 
 (** The points A, B, C and D are concyclic or lined up *)
@@ -528,7 +528,7 @@ Inductive GradExp2 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
 (** There exists n such that the angle DEF is congruent to n times the angle ABC *)
 Inductive GradA : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
                   Prop :=
-  | grada_init : forall A B C D E F, CongA A B C D E F -> GradA A B C D E F
+  | grada_init : forall A B C D E F, 等角 A B C D E F -> GradA A B C D E F
   | grada_stab : forall A B C D E F G H I,
                    GradA A B C D E F ->
                    SAMS D E F A B C -> SumA D E F A B C G H I ->
@@ -537,7 +537,7 @@ Inductive GradA : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
 (** There exists n such that the angle DEF is congruent to 2^n times the angle ABC *)
 Inductive GradAExp : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
                      Prop :=
-  | gradaexp_init : forall A B C D E F, CongA A B C D E F -> GradAExp A B C D E F
+  | gradaexp_init : forall A B C D E F, 等角 A B C D E F -> GradAExp A B C D E F
   | gradaexp_stab : forall A B C D E F G H I,
                       GradAExp A B C D E F ->
                       SAMS D E F D E F -> SumA D E F D E F G H I ->
@@ -557,7 +557,7 @@ Definition Parallelogram A B A' B' :=
   Parallelogram_strict A B A' B' \/ Parallelogram_flat A B A' B'.
 
 Definition Plg A B C D :=
-  (A <> C \/ B <> D) /\ exists M, Midpoint M A C /\ Midpoint M B D.
+  (A <> C \/ B <> D) /\ exists M, 中点 M A C /\ 中点 M B D.
 
 (** Rhombus *)
 
@@ -583,7 +583,7 @@ Definition Saccheri A B C D :=
 (** Lambert *)
 
 Definition Lambert A B C D :=
-  A <> B /\ B <> C /\ C <> D /\ A <> D /\ Per B A D /\ Per A D C /\ Per A B C /\ Coplanar A B C D.
+  A <> B /\ B <> C /\ C <> D /\ A <> D /\ Per B A D /\ Per A D C /\ Per A B C /\ 共面 A B C D.
 
 (** Vector *)
 
@@ -600,7 +600,7 @@ Definition Opp_dir A B C D := Same_dir A B D C.
 
 (** Projections *)
 
-Definition CongA_3 A B C A' B' C' :=
-  CongA A B C A' B' C' /\ CongA B C A B' C' A' /\ CongA C A B C' A' B'.
+Definition 等角_3 A B C A' B' C' :=
+  等角 A B C A' B' C' /\ 等角 B C A B' C' A' /\ 等角 C A B C' A' B'.
 
 End Definitions.

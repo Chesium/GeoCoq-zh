@@ -22,13 +22,13 @@ assert (Out A B B) by (conclude lemma_ray4).
 assert (Supp G A B B D) by (conclude_def Supp ).
 assert (nCol B A G) by (conclude_def TS ).
 assert (nCol G A B) by (forward_using lemma_NCorder).
-assert (CongA G A B G A B) by (conclude lemma_equalanglesreflexive).
+assert (等角 G A B G A B) by (conclude lemma_equalanglesreflexive).
 assert (Col G A D) by (conclude_def Col ).
 assert (neq A D) by (forward_using lemma_betweennotequal).
 assert (neq D A) by (conclude lemma_inequalitysymmetric).
 assert (Per D A B) by (conclude lemma_collinearright).
 assert (Per B A D) by (conclude lemma_8_2).
-assert (CongA B A C B A D) by (conclude lemma_Euclid4).
+assert (等角 B A C B A D) by (conclude lemma_Euclid4).
 assert (RT G A B B A C) by (conclude_def RT ).
 assert (TS C B A G) by (conclude lemma_oppositesidesymmetric).
 assert (BetS G A C) by (conclude proposition_14).

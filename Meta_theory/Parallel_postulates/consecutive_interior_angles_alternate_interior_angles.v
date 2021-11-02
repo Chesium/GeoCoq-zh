@@ -20,7 +20,7 @@ Proof.
       Col.
     exists C; split; [Col|Between].
   - assert_diffs; split; auto.
-    exists D'; split; CongA.
+    exists D'; split; 等角.
 Qed.
 
 End consecutive_interior_angles_alternate_interior_angles.

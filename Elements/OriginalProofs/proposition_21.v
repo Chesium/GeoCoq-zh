@@ -14,7 +14,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma proposition_21 : 
    forall A B C D E, 
    Triangle A B C -> BetS A E C -> BetS B D E ->
-   TT B A A C B D D C /\ LtA B A C B D C.
+   TT B A A C B D D C /\ 角度小于 B A C B D C.
 Proof.
 intros.
 assert (BetS E D B) by (conclude axiom_betweennesssymmetry).
@@ -54,7 +54,7 @@ assert (TT B A A C C D D B) by (conclude lemma_TTtransitive).
 assert (TT B A A C B D D C) by (conclude lemma_TTflip2).
 assert (nCol C E D) by (forward_using lemma_NCorder).
 assert (Triangle C E D) by (conclude_def Triangle ).
-assert (LtA D E C C D B) by (conclude proposition_16).
+assert (角度小于 D E C C D B) by (conclude proposition_16).
 assert (nCol E B C) by (forward_using lemma_NCorder).
 assert (eq B B) by (conclude cn_equalityreflexive).
 assert (Col E B B) by (conclude_def Col ).
@@ -65,36 +65,36 @@ assert (neq D B) by (conclude lemma_inequalitysymmetric).
 assert (nCol D B C) by (conclude lemma_NChelper).
 assert (nCol B A E) by (forward_using lemma_NCorder).
 assert (Triangle B A E) by (conclude_def Triangle ).
-assert (LtA E A B B E C) by (conclude proposition_16).
-assert (CongA B A E E A B) by (conclude lemma_ABCequalsCBA).
-assert (LtA B A E B E C) by (conclude lemma_angleorderrespectscongruence2).
+assert (角度小于 E A B B E C) by (conclude proposition_16).
+assert (等角 B A E E A B) by (conclude lemma_ABCequalsCBA).
+assert (角度小于 B A E B E C) by (conclude lemma_angleorderrespectscongruence2).
 assert (nCol C E B) by (forward_using lemma_NCorder).
-assert (CongA C E B B E C) by (conclude lemma_ABCequalsCBA).
-assert (LtA B A E C E B) by (conclude lemma_angleorderrespectscongruence).
+assert (等角 C E B B E C) by (conclude lemma_ABCequalsCBA).
+assert (角度小于 B A E C E B) by (conclude lemma_angleorderrespectscongruence).
 assert (neq A E) by (forward_using lemma_betweennotequal).
 assert (Out A E C) by (conclude lemma_ray4).
 assert (Out A C E) by (conclude lemma_ray5).
 assert (neq A B) by (forward_using lemma_NCdistinct).
 assert (Out A B B) by (conclude lemma_ray4).
 assert (nCol B A C) by (forward_using lemma_NCorder).
-assert (CongA B A C B A C) by (conclude lemma_equalanglesreflexive).
-assert (CongA B A C B A E) by (conclude lemma_equalangleshelper).
+assert (等角 B A C B A C) by (conclude lemma_equalanglesreflexive).
+assert (等角 B A C B A E) by (conclude lemma_equalangleshelper).
 assert (BetS E D B) by (conclude axiom_betweennesssymmetry).
 assert (Out E D B) by (conclude lemma_ray4).
 assert (eq C C) by (conclude cn_equalityreflexive).
 assert (Out E C C) by (conclude lemma_ray4).
 assert (nCol C E D) by (forward_using lemma_NCorder).
-assert (CongA C E D C E D) by (conclude lemma_equalanglesreflexive).
-assert (CongA C E D C E B) by (conclude lemma_equalangleshelper).
-assert (LtA B A E C E D) by (conclude lemma_angleorderrespectscongruence).
-assert (LtA B A C C E D) by (conclude lemma_angleorderrespectscongruence2).
+assert (等角 C E D C E D) by (conclude lemma_equalanglesreflexive).
+assert (等角 C E D C E B) by (conclude lemma_equalangleshelper).
+assert (角度小于 B A E C E D) by (conclude lemma_angleorderrespectscongruence).
+assert (角度小于 B A C C E D) by (conclude lemma_angleorderrespectscongruence2).
 assert (nCol D E C) by (forward_using lemma_NCorder).
-assert (CongA D E C C E D) by (conclude lemma_ABCequalsCBA).
-assert (LtA B A C D E C) by (conclude lemma_angleorderrespectscongruence).
-assert (LtA B A C C D B) by (conclude lemma_angleordertransitive).
+assert (等角 D E C C E D) by (conclude lemma_ABCequalsCBA).
+assert (角度小于 B A C D E C) by (conclude lemma_angleorderrespectscongruence).
+assert (角度小于 B A C C D B) by (conclude lemma_angleordertransitive).
 assert (nCol B D C) by (forward_using lemma_NCorder).
-assert (CongA B D C C D B) by (conclude lemma_ABCequalsCBA).
-assert (LtA B A C B D C) by (conclude lemma_angleorderrespectscongruence).
+assert (等角 B D C C D B) by (conclude lemma_ABCequalsCBA).
+assert (角度小于 B A C B D C) by (conclude lemma_angleorderrespectscongruence).
 close.
 Qed.
 

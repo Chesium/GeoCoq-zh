@@ -77,7 +77,7 @@ Qed.
     then the angle ACB is a right angle. *)
 
 Lemma thales_theorem : forall A B C M,
-  Midpoint M A B -> Cong M A M C -> Per A C B.
+  中点 M A B -> Cong M A M C -> Per A C B.
 Proof.
   apply rah__thales_postulate.
   unfold postulate_of_right_saccheri_quadrilaterals; apply right_saccheris.
@@ -86,14 +86,14 @@ Qed.
 (** In a right triangle, the midpoint of the hypotenuse is the circumcenter. *)
 
 Lemma thales_converse_theorem : forall A B C M,
-  Midpoint M A B -> Per A C B -> Cong M A M C.
+  中点 M A B -> Per A C B -> Cong M A M C.
 Proof.
   apply thales_postulate__thales_converse_postulate.
   unfold thales_postulate; apply thales_theorem.
 Qed.
 
 Lemma thales_converse_theorem_1 : forall A B C O, A <> C -> B <> C ->
-  Per A C B -> Cong O A O B -> Cong O A O C -> Coplanar A B C O -> Midpoint O A B.
+  Per A C B -> Cong O A O B -> Cong O A O C -> 共面 A B C O -> 中点 O A B.
 Proof.
   intros A B C O HAC HBC HPer HCong1 HCong2 HCop.
   destruct (midpoint_existence A B) as [M HM].
@@ -120,7 +120,7 @@ Qed.
 
 Lemma onc3_os__acute : forall O P A B C,
   OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OS A B O C ->
-  Acute A C B.
+  为锐角 A C B.
 Proof.
   intros O P A B C HA HB HC HOS.
   destruct (midpoint_existence A B) as [M HM].
@@ -226,16 +226,16 @@ Proof.
     - repeat split; auto.
         right; intro; assert_cols; assert_ncols; Col.
       exists C'.
-      split; CongA.
+      split; 等角.
       repeat split; [Side| |Cop].
       apply l9_9_bis, invert_one_side, one_side_symmetry, os_ts1324__os; [|Side].
       apply col_one_side with C; Col; Side.
     - apply (onc3_os__acute O P); assumption.
     - exists O.
-      repeat (split; CongA); [|Cop].
+      repeat (split; 等角); [|Cop].
       apply l9_9, invert_two_sides, l9_31; Side.
     - exists C'.
-      repeat (split; CongA); [Side|Cop].
+      repeat (split; 等角); [Side|Cop].
     - apply ghalfa_left_comm, bet_cong__ghalfa; auto.
     - apply ghalfa_left_comm, bet_cong__ghalfa; auto.
   }
@@ -284,7 +284,7 @@ Proof.
   intros O P A B C C' HA HB [HBet [HC HC']] HTS.
   suma.assert_diffs.
   assert (HCong := onc2__cong O P).
-  assert (HMid : Midpoint O C C') by (split; Cong).
+  assert (HMid : 中点 O C C') by (split; Cong).
   assert (C <> C') by (intro; treat_equalities; auto).
   assert (HNColA : ~ Col C C' A) by (apply (onc3__ncol O P); auto).
   assert (HNColB : ~ Col C C' B) by (apply (onc3__ncol O P); auto).
@@ -297,25 +297,25 @@ Proof.
   destruct (ex_suma C A C' C' C B) as [D [E [F HSuma1]]]; auto.
   assert (HTS2 : TS C C' A B) by (apply (chord_intersection O P); assumption).
   assert (HTS3 : TS C' C A B) by (apply invert_two_sides, HTS2).
-  assert (Acute C' C A).
+  assert (为锐角 C' C A).
   { suma.assert_diffs; apply acute_out2__acute with O A.
       apply l6_6, bet_out; auto.
       apply out_trivial; auto.
       apply cong__acute; auto.
   }
-  assert (Acute C' C B).
+  assert (为锐角 C' C B).
   { suma.assert_diffs; apply acute_out2__acute with O B.
       apply l6_6, bet_out; auto.
       apply out_trivial; auto.
       apply cong__acute; auto.
   }
-  assert (Acute C C' A).
+  assert (为锐角 C C' A).
   { suma.assert_diffs; apply acute_out2__acute with O A.
       apply l6_6, bet_out; Between.
       apply out_trivial; auto.
       apply cong__acute; auto.
   }
-  assert (Acute C C' B).
+  assert (为锐角 C C' B).
   { suma.assert_diffs; apply acute_out2__acute with O B.
       apply l6_6, bet_out; Between.
       apply out_trivial; auto.
@@ -332,13 +332,13 @@ Qed.
 (** In a circle the angle at the centre is double of the angle at the circumference. *)
 
 Lemma inscribed_angle_1 : forall O P A B C, A <> B -> B <> C -> A <> C ->
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> Coplanar A B C O ->
+  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> 共面 A B C O ->
   SumA A C B A C B A O B.
 Proof.
   intros O P A B C HAB HBC HAC HA HB HC HCop.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
   destruct (col_dec A B O).
-  { assert (Midpoint O A B) by (apply col_onc2__mid with P; auto).
+  { assert (中点 O A B) by (apply col_onc2__mid with P; auto).
     assert (Per A C B) by (apply thales_theorem with O; auto; apply 等长的传递性 with O P; Cong).
     suma.assert_diffs; apply bet_per2__suma; Between.
   }
@@ -359,8 +359,8 @@ Qed.
 Lemma cop2_onc4__or_conga_suppa : forall O P A B C C',
   A <> B -> B <> C -> A <> C -> B <> C' -> A <> C' ->
   OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OnCircle C' O P ->
-  Coplanar A B C O -> Coplanar A B C' O ->
-  CongA A C B A C' B \/ SuppA A C B A C' B.
+  共面 A B C O -> 共面 A B C' O ->
+  等角 A C B A C' B \/ SuppA A C B A C' B.
 Proof.
   intros O P A B C C'; intros.
   apply suma2__or_conga_suppa with A O B; trivial; apply inscribed_angle_1 with P; assumption.
@@ -371,7 +371,7 @@ Qed.
 
 Lemma onc3_ts__obtuse : forall O P A B C,
   OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> TS A B O C ->
-  Obtuse A C B.
+  为钝角 A C B.
 Proof.
   intros O P A B C HA HB HC HTS.
   destruct (chord_completion O P C O) as [C' []]; Circle.
@@ -387,14 +387,14 @@ Qed.
 
 Lemma cop_onc4_os__conga : forall O P A B C C',
   OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OnCircle C' O P ->
-  OS A B C C' -> Coplanar A B C O ->
-  CongA A C B A C' B.
+  OS A B C C' -> 共面 A B C O ->
+  等角 A C B A C' B.
 Proof.
   intros O P A B C C' HA HB HC HC' HOS HCop.
   assert_ncols.
   destruct (col_dec A B O).
   { suma.assert_diffs.
-    assert (Midpoint O A B) by (apply col_onc2__mid with P; auto).
+    assert (中点 O A B) by (apply col_onc2__mid with P; auto).
     apply l11_16; auto; apply thales_theorem with O; Col; apply 等长的传递性 with O P; Cong.
   }
   destruct (cop__one_or_two_sides A B O C); Col; Cop.
@@ -413,7 +413,7 @@ Qed.
 
 Lemma cop_onc4_ts__suppa : forall O P A B C C',
   OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OnCircle C' O P ->
-  TS A B C C' -> Coplanar A B C O ->
+  TS A B C C' -> 共面 A B C O ->
   SuppA A C B A C' B.
 Proof.
   intros O P A B C C' HA HB.
@@ -423,10 +423,10 @@ Proof.
   { intros C C' HC HC' HTS HOS.
     suma.assert_diffs.
     assert (~ Col C A B) by (destruct HTS; assumption).
-    assert (Coplanar A B C' O) by (apply coplanar_trans_1 with C; Cop).
+    assert (共面 A B C' O) by (apply coplanar_trans_1 with C; Cop).
     destruct (cop2_onc4__or_conga_suppa O P A B C C') as [Habs|]; Cop.
     exfalso.
-    assert (HLta : LtA A C B A C' B); [|destruct HLta as [_ HN]; apply HN, Habs].
+    assert (HLta : 角度小于 A C B A C' B); [|destruct HLta as [_ HN]; apply HN, Habs].
     apply acute_obtuse__lta.
       apply (onc3_os__acute O P); assumption.
     apply (onc3_ts__obtuse O P); trivial.
@@ -436,7 +436,7 @@ Proof.
   assert (~ Col C A B) by (destruct HTS; assumption).
   destruct (col_dec A B O).
   { suma.assert_diffs.
-    assert (Midpoint O A B) by (apply col_onc2__mid with P; auto).
+    assert (中点 O A B) by (apply col_onc2__mid with P; auto).
     destruct HTS as [_ []].
     apply per2__suppa; auto; apply thales_theorem with O; trivial; apply onc2__cong with P; assumption.
   }
@@ -448,10 +448,10 @@ Qed.
     then C and O lie on the same side of AB. *)
 
 Lemma acute_cop_onc3__os : forall O P A B C, A <> B ->
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> Coplanar A B C O -> Acute A C B ->
+  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> 共面 A B C O -> 为锐角 A C B ->
   OS A B O C.
 Proof.
-  intros O P A B C HAB HA HB HC HCop HAcute.
+  intros O P A B C HAB HA HB HC HCop H为锐角.
   suma.assert_diffs.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
   apply coplanar_perm_1 in HCop.
@@ -468,10 +468,10 @@ Qed.
     then C and O lie on opposite sides of AB. *)
 
 Lemma cop_obtuse_onc3__ts : forall O P A B C,
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> Coplanar A B C O -> Obtuse A C B ->
+  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> 共面 A B C O -> 为钝角 A C B ->
   TS A B O C.
 Proof.
-  intros O P A B C HA HB HC HCop HObtuse.
+  intros O P A B C HA HB HC HCop H为钝角.
   suma.assert_diffs.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
   apply coplanar_perm_1 in HCop.
@@ -489,12 +489,12 @@ Qed.
 
 Lemma conga_cop2_onc4__os : forall O P A B C D, ~ Col A B O ->
   OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OnCircle D O P ->
-  Coplanar A B O C -> Coplanar A B O D -> CongA A C B A D B ->
+  共面 A B O C -> 共面 A B O D -> 等角 A C B A D B ->
   OS A B C D.
 Proof.
   intros O P A B C D HNCol HA HB HC HD HCopC HCopD HConga.
   suma.assert_diffs.
-  destruct (angle_partition A C B) as [HAcute|[HPer|HObtuse]]; auto.
+  destruct (angle_partition A C B) as [H为锐角|[HPer|H为钝角]]; auto.
   - apply one_side_transitivity with O; [apply one_side_symmetry|];
       apply acute_cop_onc3__os with P; Cop.
     apply (acute_conga__acute A C B); assumption.
@@ -511,12 +511,12 @@ Qed.
 
 Lemma cop2_onc4_suppa__ts : forall O P A B C D, ~ Col A B O ->
   OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OnCircle D O P ->
-  Coplanar A B O C -> Coplanar A B O D -> SuppA A C B A D B ->
+  共面 A B O C -> 共面 A B O D -> SuppA A C B A D B ->
   TS A B C D.
 Proof.
   intros O P A B C D HNCol HA HB HC HD HCopC HCopD HSuppa.
   suma.assert_diffs.
-  destruct (angle_partition A C B) as [HAcute|[HPer|HObtuse]]; auto.
+  destruct (angle_partition A C B) as [H为锐角|[HPer|H为钝角]]; auto.
   - apply l9_8_2 with O.
       apply cop_obtuse_onc3__ts with P; Cop; apply (acute_suppa__obtuse A C B); assumption.
       apply acute_cop_onc3__os with P; Cop.
@@ -532,7 +532,7 @@ Qed.
 (** Non degenerated triangles can be circumscribed. *)
 
 Lemma triangle_circumscription : forall A B C, ~ Col A B C ->
-  exists CC : Tpoint, Cong A CC B CC /\ Cong A CC C CC /\ Coplanar A B C CC.
+  exists CC : Tpoint, Cong A CC B CC /\ Cong A CC C CC /\ 共面 A B C CC.
 Proof.
   apply postulates_in_euclidean_context; simpl; repeat (try (left; reflexivity); right).
 Qed.
@@ -542,9 +542,9 @@ Qed.
     two similar and unequal segments of circles on the same side. *)
 
 Lemma conga_cop_onc6_os__eqc : forall A B C D O P O' P',
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> Coplanar A B C O ->
-  OnCircle A O' P' -> OnCircle B O' P' -> OnCircle D O' P' -> Coplanar A B D O' ->
-  OS A B C D -> CongA A C B A D B ->
+  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> 共面 A B C O ->
+  OnCircle A O' P' -> OnCircle B O' P' -> OnCircle D O' P' -> 共面 A B D O' ->
+  OS A B C D -> 等角 A C B A D B ->
   EqC O P O' P'.
 Proof.
   intros A B C D O P O' P' HA HB HC HCop HA' HB' HD' HCop' HOS HConga.
@@ -555,7 +555,7 @@ Proof.
   assert (HCong' := onc2__cong O' P').
   destruct (col_dec A B O) as [|HNCol1].
   { suma.assert_diffs.
-    assert (Midpoint O A B) by (apply col_onc2__mid with P; assumption).
+    assert (中点 O A B) by (apply col_onc2__mid with P; assumption).
     apply (l7_17 A B); trivial.
     apply thales_converse_theorem_1 with D; auto.
     apply (l11_17 A C B); trivial.
@@ -564,7 +564,7 @@ Proof.
   assert (HNCol' : ~ Col A B D) by (apply one_side_not_col124 with C, HOS).
   destruct (midpoint_existence A B) as [M HM].
   assert (HOS1 : OS A B O O').
-  { suma.assert_diffs; destruct (angle_partition A C B) as [HAcute|[HPer|HObtuse]]; auto.
+  { suma.assert_diffs; destruct (angle_partition A C B) as [H为锐角|[HPer|H为钝角]]; auto.
     - apply one_side_transitivity with C;
         [|apply one_side_transitivity with D; trivial; apply one_side_symmetry].
         apply acute_cop_onc3__os with P; auto.
@@ -601,13 +601,13 @@ Proof.
     apply (cong4_cop2__eq A B C1); Cong; exists M; left; split; Col.
   }
   assert (HNCol2' : ~ Col A B D1) by (apply one_side_not_col124 with D; assumption).
-  assert (CongA A C1 B A C B) by (apply (cop_onc4_os__conga O P); Side; exists M; left; split; Col).
-  assert (CongA A D1 B A D B) by (apply (cop_onc4_os__conga O' P'); Side; exists M; left; split; Col).
+  assert (等角 A C1 B A C B) by (apply (cop_onc4_os__conga O P); Side; exists M; left; split; Col).
+  assert (等角 A D1 B A D B) by (apply (cop_onc4_os__conga O' P'); Side; exists M; left; split; Col).
   assert (Out A B M) by (suma.assert_diffs; apply l6_6, bet_out; Between).
   assert (Out B A M) by (suma.assert_diffs; apply l6_6, bet_out; Between).
   assert (HH := HOut).
   destruct HH as [HMC1 [HMD1 [HBet|HBet]]]; exfalso.
-  - apply (lta_not_conga A D B A C B); CongA.
+  - apply (lta_not_conga A D B A C B); 等角.
     apply (conga_preserves_lta A D1 B A C1 B); trivial.
     assert (Out D1 M C1) by (apply l6_6, bet_out; Between).
     apply os3__lta; [|apply one_side_symmetry, l9_19 with M; Col|];
@@ -629,7 +629,7 @@ Qed.
 
 Lemma conga_cop_onc3_os__onc : forall A B C D O P,
   OnCircle A O P -> OnCircle B O P -> OnCircle C O P ->
-  Coplanar A B C O -> OS A B C D -> CongA A C B A D B ->
+  共面 A B C O -> OS A B C D -> 等角 A C B A D B ->
   OnCircle D O P.
 Proof.
   intros A B C D O P HA HB HC HCop HOS HConga.
@@ -646,7 +646,7 @@ Qed.
     then A, B, C and D are concyclic. *)
 
 Lemma conga_os__concyclic : forall A B C D,
-  OS A B C D -> CongA A C B A D B -> Concyclic A B C D.
+  OS A B C D -> 等角 A C B A D B -> Concyclic A B C D.
 Proof.
   intros A B C D HOS HConga.
   split.
@@ -667,8 +667,8 @@ Lemma suppa_ts__concyclic : forall A B C D,
   TS A B C D -> SuppA A C B A D B -> Concyclic A B C D.
 Proof.
   intros A B.
-  assert (Haux : forall C D, TS A B C D -> Obtuse A C B -> SuppA A C B A D B -> Concyclic A B C D).
-  { intros C D HTS HObtuse HSuppa.
+  assert (Haux : forall C D, TS A B C D -> 为钝角 A C B -> SuppA A C B A D B -> Concyclic A B C D).
+  { intros C D HTS H为钝角 HSuppa.
     split.
       apply ts__coplanar, HTS.
     assert (HNCol : ~ Col A B C) by (destruct HTS; Col).
@@ -686,7 +686,7 @@ Proof.
       apply (suppa2__conga456 A C B); [apply (cop_onc4_ts__suppa O A)|]; assumption.
   }
   intros C D HTS HSuppa.
-  assert (HCop : Coplanar A B C D) by (apply ts__coplanar, HTS).
+  assert (HCop : 共面 A B C D) by (apply ts__coplanar, HTS).
   suma.assert_diffs; destruct (angle_partition A C B) as [|[|]]; auto; split; trivial.
   { destruct (Haux D C) as [_ [O [P]]].
       Side.
@@ -725,12 +725,12 @@ Context `{T2D:Tarski_2D}.
 Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma chord_par_diam : forall O P A B C C' A' U,
- O <> P -> ~Col A B C' -> Diam C C' O P -> Midpoint A' A C' -> OnCircle A O P -> OnCircle B O P ->
+ O <> P -> ~Col A B C' -> Diam C C' O P -> 中点 A' A C' -> OnCircle A O P -> OnCircle B O P ->
  Col A B U -> Perp O U A B -> Par A C' O U -> B = C.
 Proof.
 intros.
 suma.assert_diffs.
-assert(Midpoint U A B).
+assert(中点 U A B).
 {
   apply(col_onc2_perp__mid O P A B U); Col.
 }
@@ -787,7 +787,7 @@ assert(Col O O' A').
 
 induction(两点重合的决定性 O O').
 treat_equalities.
-apply(symmetric_point_uniqueness C' O); Midpoint.
+apply(symmetric_point_uniqueness C' O); 中点.
 split; [Between|CongR].
 
 assert(HQ:= mid_onc2__perp O P B C' O' H23  H10 H4 H17 H20).

@@ -41,7 +41,7 @@ destruct (由一点往一方向构造等长线段_2 B3 A3 A1' B1) as [B3' [HC4 H
   }
 
   {
-  assert (HParS' : Par_strict A1' A3 B1 B3').
+  assert (HParS' : 严格平行 A1' A3 B1 B3').
     {
     apply sac__pars1423; repeat split; [apply perp_per_1..|Cong|].
       apply perp_col0 with A1 A2; Perp.

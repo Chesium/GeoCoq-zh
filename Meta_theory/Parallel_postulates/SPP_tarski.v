@@ -46,7 +46,7 @@ intros P Q R S U I HQUR HNC HPar HSQI HPUI.
 apply BetSEq in HQUR.
 apply 中间性的对称性 in HPUI.
 destruct (帕施公理 S U I Q P HSQI HPUI) as [J [HBet1 HBet2]].
-assert (HParS : Par_strict P S Q U).
+assert (HParS : 严格平行 P S Q U).
   {
   spliter.
   apply par_strict_col_par_strict with R; Col.
@@ -96,7 +96,7 @@ Proof.
 intros P Q R S U I HQUR HNC HPar1 HPar2 HPUI HSQI.
 apply BetSEq in HQUR.
 destruct HQUR as [HQUR [HQU [HQR HUR]]].
-assert (H : Par_strict P S Q U)
+assert (H : 严格平行 P S Q U)
   by (apply par_strict_col_par_strict with R; Col; apply par_not_col_strict with Q; Col; Par).
 apply 中间性的对称性 in HSQI.
 elim HPUI; clear HPUI; intro HPUI.
@@ -117,7 +117,7 @@ elim HPUI; clear HPUI; intro HPUI.
     }
 
     {
-    assert (H1 : Par_strict P R Q I).
+    assert (H1 : 严格平行 P R Q I).
       assert_diffs; apply par_strict_col_par_strict with S; Col.
       apply par_strict_symmetry, par_not_col_strict with P; Col; Par.
     apply H1.
@@ -138,7 +138,7 @@ Lemma strong_parallel_postulate_implies_tarski_s_euclid_aux :
    D <> T ->
    ~ Col A B T ->
    Bet A D T ->
-   exists B', exists B'', exists MB, exists X, Bet A B X /\ Par_strict T X B D /\
+   exists B', exists B'', exists MB, exists X, Bet A B X /\ 严格平行 T X B D /\
    BetS B MB T /\ BetS B' MB B'' /\
    Cong B MB T MB /\ Cong B' MB B'' MB /\
    Col B B' D /\ Bet B'' T X /\
@@ -272,7 +272,7 @@ elim (col_dec X T Y); intro HXTY.
   assert (HNC : ~ Col T B'' Y) by (intro; apply HXTY; ColR).
   apply (par_strict_col_par_strict T Y C D B) in HPar; Col.
   apply (par_strict_col_par_strict T X B D C) in HPar'; Col.
-  assert (HCop : Coplanar T B B'' Y).
+  assert (HCop : 共面 T B B'' Y).
     {
     apply not_col_distincts in HXTY; spliter.
     apply coplanar_perm_13, col_cop__cop with X; Col.

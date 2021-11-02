@@ -26,14 +26,14 @@ Ltac parallel A B C D P :=
 Ltac par_strict :=
 repeat
  match goal with
-      | H: Par_strict ?A ?B ?C ?D |- _ =>
-       let T := fresh in not_exist_hyp (Par_strict B A D C); assert (T := par_strict_comm A B C D H)  
-      | H: Par_strict ?A ?B ?C ?D |- _ =>
-       let T := fresh in not_exist_hyp (Par_strict C D A B); assert (T := par_strict_symmetry A B C D H)  
-      | H: Par_strict ?A ?B ?C ?D |- _ =>
-       let T := fresh in not_exist_hyp (Par_strict B A C D); assert (T := par_strict_left_comm A B C D H)   
-      | H: Par_strict ?A ?B ?C ?D |- _ =>
-       let T := fresh in not_exist_hyp (Par_strict A B D C); assert (T := par_strict_right_comm A B C D H) 
+      | H: 严格平行 ?A ?B ?C ?D |- _ =>
+       let T := fresh in not_exist_hyp (严格平行 B A D C); assert (T := par_strict_comm A B C D H)  
+      | H: 严格平行 ?A ?B ?C ?D |- _ =>
+       let T := fresh in not_exist_hyp (严格平行 C D A B); assert (T := par_strict_symmetry A B C D H)  
+      | H: 严格平行 ?A ?B ?C ?D |- _ =>
+       let T := fresh in not_exist_hyp (严格平行 B A C D); assert (T := par_strict_left_comm A B C D H)   
+      | H: 严格平行 ?A ?B ?C ?D |- _ =>
+       let T := fresh in not_exist_hyp (严格平行 A B D C); assert (T := par_strict_right_comm A B C D H) 
  end.
 
 Ltac clean_trivial_hyps :=
@@ -51,7 +51,7 @@ Ltac clean_trivial_hyps :=
    | H:(Par ?X1 ?X2 ?X2 ?X1) |- _ => clear H
    | H:(Per ?X1 ?X2 ?X2)     |- _ => clear H
    | H:(Per ?X1 ?X1 ?X2)     |- _ => clear H
-   | H:(Midpoint ?X1 ?X1 ?X1) |- _ => clear H
+   | H:(中点 ?X1 ?X1 ?X1) |- _ => clear H
 end.
 
 Ltac show_distinct2 := unfold not;intro;treat_equalities; try (solve [intuition]).
@@ -69,12 +69,12 @@ Ltac sfinish := spliter; repeat match goal with
  | |- ~ Col ?A ?B ?C => Col
  | |- ~ Col ?A ?B ?C => intro;search_contradiction
  | |- Par ?A ?B ?C ?D => Par
- | |- Par_strict ?A ?B ?C ?D => Par
+ | |- 严格平行 ?A ?B ?C ?D => Par
  | |- Perp ?A ?B ?C ?D => Perp
- | |- Perp_at ?A ?B ?C ?D ?E => Perp
+ | |- 垂直于 ?A ?B ?C ?D ?E => Perp
  | |- Per ?A ?B ?C => Perp
  | |- Cong ?A ?B ?C ?D => CongR
- | |- Midpoint ?A ?B ?C => Midpoint
+ | |- 中点 ?A ?B ?C => 中点
  | |- ?A<>?B => assumption
  | |- ?A<>?B => apply swap_diff;assumption
  | |- ?A<>?B => intro;treat_equalities; solve [search_contradiction]
@@ -100,13 +100,13 @@ Ltac clean_reap_hyps :=
    | H:(Par ?A ?B ?C ?D), H2 : Par ?D ?C ?A ?B |- _ => clear H2
    | H:(Par ?A ?B ?C ?D), H2 : Par ?B ?A ?C ?D |- _ => clear H2
    | H:(Par ?A ?B ?C ?D), H2 : Par ?B ?A ?D ?C |- _ => clear H2
-   | H:(Par_strict ?A ?B ?C ?D), H2 : Par_strict ?A ?B ?D ?C |- _ => clear H2
-   | H:(Par_strict ?A ?B ?C ?D), H2 : Par_strict ?C ?D ?A ?B |- _ => clear H2
-   | H:(Par_strict ?A ?B ?C ?D), H2 : Par_strict ?C ?D ?B ?A |- _ => clear H2
-   | H:(Par_strict ?A ?B ?C ?D), H2 : Par_strict ?D ?C ?B ?A |- _ => clear H2
-   | H:(Par_strict ?A ?B ?C ?D), H2 : Par_strict ?D ?C ?A ?B |- _ => clear H2
-   | H:(Par_strict ?A ?B ?C ?D), H2 : Par_strict ?B ?A ?C ?D |- _ => clear H2
-   | H:(Par_strict ?A ?B ?C ?D), H2 : Par_strict ?B ?A ?D ?C |- _ => clear H2
+   | H:(严格平行 ?A ?B ?C ?D), H2 : 严格平行 ?A ?B ?D ?C |- _ => clear H2
+   | H:(严格平行 ?A ?B ?C ?D), H2 : 严格平行 ?C ?D ?A ?B |- _ => clear H2
+   | H:(严格平行 ?A ?B ?C ?D), H2 : 严格平行 ?C ?D ?B ?A |- _ => clear H2
+   | H:(严格平行 ?A ?B ?C ?D), H2 : 严格平行 ?D ?C ?B ?A |- _ => clear H2
+   | H:(严格平行 ?A ?B ?C ?D), H2 : 严格平行 ?D ?C ?A ?B |- _ => clear H2
+   | H:(严格平行 ?A ?B ?C ?D), H2 : 严格平行 ?B ?A ?C ?D |- _ => clear H2
+   | H:(严格平行 ?A ?B ?C ?D), H2 : 严格平行 ?B ?A ?D ?C |- _ => clear H2
    | H:(Perp ?A ?B ?C ?D), H2 : Perp ?A ?B ?D ?C |- _ => clear H2
    | H:(Perp ?A ?B ?C ?D), H2 : Perp ?C ?D ?A ?B |- _ => clear H2
    | H:(Perp ?A ?B ?C ?D), H2 : Perp ?C ?D ?B ?A |- _ => clear H2
@@ -114,15 +114,15 @@ Ltac clean_reap_hyps :=
    | H:(Perp ?A ?B ?C ?D), H2 : Perp ?D ?C ?A ?B |- _ => clear H2
    | H:(Perp ?A ?B ?C ?D), H2 : Perp ?B ?A ?C ?D |- _ => clear H2
    | H:(Perp ?A ?B ?C ?D), H2 : Perp ?B ?A ?D ?C |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?A ?B ?D ?C |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?C ?D ?A ?B |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?C ?D ?B ?A |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?D ?C ?B ?A |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?D ?C ?A ?B |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?B ?A ?C ?D |- _ => clear H2
-   | H:(Perp_at ?X ?A ?B ?C ?D), H2 : Perp_at ?X ?B ?A ?D ?C |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?A ?B ?D ?C |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?C ?D ?A ?B |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?C ?D ?B ?A |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?D ?C ?B ?A |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?D ?C ?A ?B |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?B ?A ?C ?D |- _ => clear H2
+   | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?B ?A ?D ?C |- _ => clear H2
    | H:(Per ?A ?B ?C), H2 : Per ?C ?B ?A |- _ => clear H2
-   | H:(Midpoint ?A ?B ?C), H2 : Midpoint ?A ?C ?B |- _ => clear H2
+   | H:(中点 ?A ?B ?C), H2 : 中点 ?A ?C ?B |- _ => clear H2
    | H:(~Col ?A ?B ?C), H2 : (~Col ?B ?A ?C) |- _ => clear H2
    | H:(~Col ?A ?B ?C), H2 : (~Col ?B ?C ?A) |- _ => clear H2
    | H:(~Col ?A ?B ?C), H2 : (~Col ?C ?B ?A) |- _ => clear H2
@@ -162,11 +162,11 @@ Ltac tag_hyps :=
     | H : Bet ?A ?B ?C |- _ => apply Bet_Bet_tagged in H
     | H : Col ?A ?B ?C |- _ => apply Col_Col_tagged in H
     | H : ~ Col ?A ?B ?C |- _ => apply NCol_NCol_tagged in H
-    | H : Midpoint ?A ?B ?C |- _ => apply Mid_Mid_tagged in H
+    | H : 中点 ?A ?B ?C |- _ => apply Mid_Mid_tagged in H
     | H : Per ?A ?B ?C |- _ => apply Per_Per_tagged in H
-    | H : Perp_at ?X ?A ?B ?C ?D |- _ => apply Perp_in_Perp_in_tagged in H
+    | H : 垂直于 ?X ?A ?B ?C ?D |- _ => apply Perp_in_Perp_in_tagged in H
     | H : Perp ?A ?B ?C ?D |- _ => apply Perp_Perp_tagged in H
-    | H : Par_strict ?A ?B ?C ?D |- _ => apply Par_strict_Par_strict_tagged in H
+    | H : 严格平行 ?A ?B ?C ?D |- _ => apply 严格平行_严格平行_tagged in H
     | H : Par ?A ?B ?C ?D |- _ => apply Par_Par_tagged in H
     | H : Parallelogram ?A ?B ?C ?D |- _ => apply Plg_Plg_tagged in H
   end.
@@ -174,11 +174,11 @@ Ltac tag_hyps :=
 Ltac permutation_intro_in_goal :=
  match goal with
  | |- Par ?A ?B ?C ?D => apply Par_cases
- | |- Par_strict ?A ?B ?C ?D => apply Par_strict_cases
+ | |- 严格平行 ?A ?B ?C ?D => apply 严格平行_cases
  | |- Perp ?A ?B ?C ?D => apply Perp_cases
- | |- Perp_at ?X ?A ?B ?C ?D => apply Perp_in_cases
+ | |- 垂直于 ?X ?A ?B ?C ?D => apply Perp_in_cases
  | |- Per ?A ?B ?C => apply Per_cases
- | |- Midpoint ?A ?B ?C => apply Mid_cases
+ | |- 中点 ?A ?B ?C => apply Mid_cases
  | |- ~ Col ?A ?B ?C => apply NCol_cases
  | |- Col ?A ?B ?C => apply Col_cases
  | |- Bet ?A ?B ?C => apply 中间性的各排列情况
@@ -207,12 +207,12 @@ repeat
       | H:TS ?A ?B ?X ?Y |- _ =>
      not_exist_hyp_perm_ncol A B Y;assert (~ Col A B Y) by (apply(two_sides_not_col A B Y X);Side)
 
-      | H:~ Coplanar ?A ?B ?C ?D |- _ =>
+      | H:~ 共面 ?A ?B ?C ?D |- _ =>
       let h := fresh in
       not_exist_hyp_perm_ncol4 A B C D;
       assert (h := ncop__ncols A B C D H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:Par_strict ?A ?B ?C ?D |- _ =>
+      | H:严格平行 ?A ?B ?C ?D |- _ =>
       let h := fresh in
       not_exist_hyp_perm_ncol4 A B C D;
       assert (h := par_strict_not_cols A B C D H);decompose [and] h;clear h;clean_reap_hyps
@@ -235,9 +235,9 @@ repeat
       apply 中间性的同一律 in H;smart_subst X2
    | H : Le ?X1 ?X2 ?X3 ?X3 |- _ =>
       apply le_zero in H;smart_subst X2
-   | H : Midpoint ?X ?Y ?Y |- _ => apply l7_3 in H; smart_subst Y
-   | H : Midpoint ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
-   | H : Midpoint ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
+   | H : 中点 ?X ?Y ?Y |- _ => apply l7_3 in H; smart_subst Y
+   | H : 中点 ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
+   | H : 中点 ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?A ?C |- _ =>
      let T := fresh in assert (T : A=B) by (apply (between_equality A B C); Between);
                        smart_subst A
@@ -250,15 +250,15 @@ repeat
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?C ?A |- _ =>
      let T := fresh in assert (T : B=C) by (apply (between_equality_2 A B C); Between);
                        smart_subst A
-   | H : Midpoint ?P ?A ?P1, H2 : Midpoint ?P ?A ?P2 |- _ =>
+   | H : 中点 ?P ?A ?P1, H2 : 中点 ?P ?A ?P2 |- _ =>
      let T := fresh in assert (T := symmetric_point_uniqueness A P P1 P2 H H2); smart_subst P1
-   | H : Midpoint ?A ?P ?X, H2 : Midpoint ?A ?Q ?X |- _ =>
+   | H : 中点 ?A ?P ?X, H2 : 中点 ?A ?Q ?X |- _ =>
      let T := fresh in assert (T := l7_9 P Q A X H H2); smart_subst P
-   | H : Midpoint ?A ?P ?X, H2 : Midpoint ?A ?X ?Q |- _ =>
+   | H : 中点 ?A ?P ?X, H2 : 中点 ?A ?X ?Q |- _ =>
      let T := fresh in assert (T := l7_9_bis P Q A X H H2); smart_subst P
-   | H : Midpoint ?A ?P ?P', H2 : Midpoint ?B ?P ?P' |- _ =>
+   | H : 中点 ?A ?P ?P', H2 : 中点 ?B ?P ?P' |- _ =>
      let T := fresh in assert (T := l7_17 P P' A B H H2); smart_subst A
-   | H : Midpoint ?A ?P ?P', H2 : Midpoint ?B ?P' ?P |- _ =>
+   | H : 中点 ?A ?P ?P', H2 : 中点 ?B ?P' ?P |- _ =>
      let T := fresh in assert (T := l7_17_bis P P' A B H H2); smart_subst A
 end;
 repeat
@@ -279,7 +279,7 @@ end.
 Ltac CopR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
- let cop := constr:(Coplanar) in
+ let cop := constr:(共面) in
    treat_equalities; assert_cols; clean; assert_ncols; assert_cops; auto 2 with cop_perm;
    solve[apply col__coplanar; Col|apply coplanar_perm_1, col__coplanar; Col
         |apply coplanar_perm_4, col__coplanar; Col|apply coplanar_perm_18, col__coplanar; Col
@@ -291,10 +291,10 @@ Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma par_cong_mid_ts :
  forall A B A' B',
-  Par_strict A B A' B' ->
+  严格平行 A B A' B' ->
   Cong A B A' B' ->
   TS A A' B B' ->
-  exists M,  Midpoint M A A' /\ Midpoint M B B'.
+  exists M,  中点 M A A' /\ 中点 M B B'.
 Proof.
 intros.
 
@@ -307,20 +307,20 @@ ex_and H5 M.
 exists M.
 
 assert(HH:= H).
-unfold Par_strict in HH.
+unfold 严格平行 in HH.
 spliter.
 
 assert(HH:=(midpoint_existence A A')).
 ex_and HH X.
 
 prolong B X B'' B X.
-assert(Midpoint X B B'').
-unfold Midpoint.
+assert(中点 X B B'').
+unfold 中点.
 split.
 assumption.
 Cong.
 
-assert(Par_strict B A B'' A').
+assert(严格平行 B A B'' A').
 apply (midpoint_par_strict B A B'' A' X); auto.
 
 assert(Col B'' B' A' /\ Col A' B' A').
@@ -348,7 +348,7 @@ apply 等长的对称性.
 apply H0.
 assumption.
 
-assert(B' = B'' \/ Midpoint A' B' B'').
+assert(B' = B'' \/ 中点 A' B' B'').
 apply l7_20.
 Col.
 Cong.
@@ -416,14 +416,14 @@ Qed.
 
 Lemma par_cong_mid_os :
   forall A B A' B',
-   Par_strict A B A' B' ->
+   严格平行 A B A' B' ->
    Cong A B A' B' ->
    OS A A' B B' ->
-   exists M, Midpoint M A B' /\ Midpoint M B A'.
+   exists M, 中点 M A B' /\ 中点 M B A'.
 Proof.
 intros.
 assert(HH:= H).
-unfold Par_strict in HH.
+unfold 严格平行 in HH.
 spliter.
 
 assert(HH:=(midpoint_existence A' B)).
@@ -431,8 +431,8 @@ ex_and HH X.
 exists X.
 
 prolong A X B'' A X.
-assert(Midpoint X A B'').
-unfold Midpoint.
+assert(中点 X A B'').
+unfold 中点.
 split.
 assumption.
 Cong.
@@ -443,7 +443,7 @@ apply H3.
 exists A'.
 split; Col.
 
-assert(Par_strict  A B B'' A').
+assert(严格平行  A B B'' A').
 apply (midpoint_par_strict A B  B'' A' X).
 assumption.
 assumption.
@@ -475,7 +475,7 @@ eapply 等长的传递性.
 apply 等长的对称性.
 apply H0.
 Cong.
-assert(B' = B'' \/ Midpoint A' B' B'').
+assert(B' = B'' \/ 中点 A' B' B'').
 apply l7_20.
 Col.
 Cong.
@@ -522,7 +522,7 @@ assumption.
 exists A'.
 split.
 Col.
-unfold Midpoint in H14.
+unfold 中点 in H14.
 spliter.
 assumption.
 
@@ -563,10 +563,10 @@ Qed.
 
 Lemma par_strict_cong_mid :
  forall A B A' B',
-  Par_strict A B A' B' ->
+  严格平行 A B A' B' ->
   Cong A B A' B' ->
-  exists M,  Midpoint M A A' /\ Midpoint M B B' \/
-             Midpoint M A B' /\ Midpoint M B A'.
+  exists M,  中点 M A A' /\ 中点 M B B' \/
+             中点 M A B' /\ 中点 M B A'.
 Proof.
 intros A B A' B' HParS HCong.
 assert (HP:=parallel_uniqueness).
@@ -608,7 +608,7 @@ elim (l7_20 A' B' B''); Col; intro HElim1; treat_equalities.
 
     {
     exfalso; destruct (outer_pasch B' A A' B'' M1) as [I [HAIB' HA''IM1]];
-    unfold Midpoint in*; spliter; Between.
+    unfold 中点 in*; spliter; Between.
     assert (HM1I : M1 <> I).
       {
       intro; treat_equalities.
@@ -703,14 +703,14 @@ Qed.
 
 Lemma par_strict_cong_mid1 :
  forall A B A' B',
-  Par_strict A B A' B' ->
+  严格平行 A B A' B' ->
   Cong A B A' B' ->
-  (TS A A' B B'  /\ exists M,  Midpoint M A A' /\ Midpoint M B B') \/ 
-  (OS A A' B B' /\ exists M, Midpoint M A B' /\ Midpoint M B A').
+  (TS A A' B B'  /\ exists M,  中点 M A A' /\ 中点 M B B') \/ 
+  (OS A A' B B' /\ exists M, 中点 M A B' /\ 中点 M B A').
 Proof.
 intros.
 assert(HH:= H).
-unfold Par_strict in HH.
+unfold 严格平行 in HH.
 spliter.
 destruct (cop__one_or_two_sides A A' B B').
 Cop.
@@ -736,8 +736,8 @@ Lemma par_cong_mid :
  forall A B A' B',
   Par A B A' B' ->
   Cong A B A' B' ->
-  exists M,  Midpoint M A A' /\ Midpoint M B B' \/
-             Midpoint M A B' /\ Midpoint M B A'.
+  exists M,  中点 M A A' /\ 中点 M B B' \/
+             中点 M A B' /\ 中点 M B A'.
 Proof.
 intros.
 induction H.
@@ -747,7 +747,7 @@ unfold Par.
 right.
 assumption.
 intro.
-unfold Par_strict in H1.
+unfold 严格平行 in H1.
 spliter.
 apply H2.
 exists A.
@@ -769,14 +769,14 @@ elim HM; clear HM; intro HM; destruct HM as [HMid1 HMid2].
 
   {
   assert(HAB' : A <> B') by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
-  split; try apply l7_13 with M; try apply l12_17 with M; Midpoint.
+  split; try apply l7_13 with M; try apply l12_17 with M; 中点.
   }
 
   {
   assert(HAA' : A <> A') by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
   assert (HFalse := HTS); apply l9_9 in HFalse; exfalso; apply HFalse; clear HFalse.
   unfold TS in HTS; spliter; apply l12_6; apply par_not_col_strict with B; Col.
-  assert (Par  A A' B' B); Par; apply l12_17 with M; Midpoint.
+  assert (Par  A A' B' B); Par; apply l12_17 with M; 中点.
   }
 Qed.
 
@@ -820,7 +820,7 @@ Qed.
 
 Lemma rmb_per:
  forall A B C D M,
-  Midpoint M A C ->
+  中点 M A C ->
   Rhombus A B C D ->
   Per A M D.
 Proof.
@@ -850,7 +850,7 @@ Qed.
 Lemma per_rmb :
  forall A B C D M,
   Plg A B C D ->
-  Midpoint M A C ->
+  中点 M A C ->
   Per A M B ->
   Rhombus A B C D.
 Proof.
@@ -923,11 +923,11 @@ apply perp_not_eq_2 in H0.
 tauto.
 apply perp_sym.
 apply H0.
-unfold Midpoint in H3.
+unfold 中点 in H3.
 spliter.
 apply 中间性转共线 in H3.
 Col.
-unfold Midpoint in H2.
+unfold 中点 in H2.
 spliter.
 apply 中间性转共线 in H2.
 Col.
@@ -937,7 +937,7 @@ apply perp_in_comm.
 assumption.
 Qed.
 
-Lemma plg_conga1 : forall A B C D, A <> B -> A <> C -> Plg A B C D -> CongA B A C D C A.
+Lemma plg_conga1 : forall A B C D, A <> B -> A <> C -> Plg A B C D -> 等角 B A C D C A.
 Proof.
 intros.
 apply cong3_conga; auto.
@@ -1023,7 +1023,7 @@ elim HM; clear HM; intro HM; destruct HM as [HMid1 HMid2].
   exfalso; apply (l9_9 A C B D HTS).
   unfold TS in HTS; spliter.
   apply l12_6; apply par_not_col_strict with B; Col.
-  apply par_right_comm; apply l12_17 with M; Midpoint.
+  apply par_right_comm; apply l12_17 with M; 中点.
   intro; subst; Col.
   }
 Qed.
@@ -1047,7 +1047,7 @@ Qed.
 Lemma plgs_mid :
  forall A B C D,
   Parallelogram_strict A B C D ->
-  exists M, Midpoint M A C /\ Midpoint M B D.
+  exists M, 中点 M A C /\ 中点 M B D.
 Proof.
 intros A B C D HPara.
 destruct HPara as [HTS [HCong HPar]].
@@ -1057,13 +1057,13 @@ assert(HAB : A <> B) by (intro; treat_equalities; unfold TS in HTS; spliter; Col
 assert(HAC : A <> C) by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
 assert (HFalse := HTS); apply l9_9 in HFalse; exfalso; apply HFalse; clear HFalse.
 unfold TS in HTS; spliter; apply l12_6; apply par_not_col_strict with B; Col.
-assert (Par A C D B); Par; apply l12_17 with M; Midpoint.
+assert (Par A C D B); Par; apply l12_17 with M; 中点.
 Qed.
 
 Lemma plg_mid :
  forall A B C D,
   Parallelogram A B C D ->
-  exists M, Midpoint M A C /\ Midpoint M B D.
+  exists M, 中点 M A C /\ 中点 M B D.
 Proof.
 intros A B C D HPara.
 elim HPara; clear HPara; intro HPara.
@@ -1081,8 +1081,8 @@ Qed.
 Lemma plg_mid_2 :
  forall A B C D I,
   Parallelogram A B C D ->
-  Midpoint I A C ->
-  Midpoint I B D.
+  中点 I A C ->
+  中点 I B D.
 Proof.
 intros.
 elim (plg_mid A B C D).
@@ -1108,12 +1108,12 @@ assert(HH:=
 ts_cong_par_cong_par A B C D H H4 H3).
 spliter.
 
-assert(Par_strict A D C B).
+assert(严格平行 A D C B).
 induction H6.
 assumption.
 spliter.
 
-unfold Par_strict.
+unfold 严格平行.
 repeat split; Cop.
 intro.
 unfold TS in *.
@@ -1131,11 +1131,11 @@ assert(HH:=ts_cong_par_cong_par A B C D H H4 H3).
 spliter.
 apply par_symmetry in H6.
 
-assert(Par_strict C B A D).
+assert(严格平行 C B A D).
 induction H6.
 assumption.
 spliter.
-unfold Par_strict.
+unfold 严格平行.
 repeat split; Cop.
 intro.
 unfold TS in *.
@@ -1169,7 +1169,7 @@ unfold Parallelogram_flat in H1.
 spliter.
 apply par_symmetry in H2.
 induction H2.
-unfold Par_strict in H2.
+unfold 严格平行 in H2.
 spliter.
 apply H8.
 exists D; Col.
@@ -1238,7 +1238,7 @@ apply parallelogram_to_plg.
 apply plg_to_parallelogram.
 Qed.
 
-Lemma plg_conga : forall A B C D, A <> B /\ A <> C /\ B <> C -> Parallelogram A B C D -> CongA A B C C D A /\ CongA B C D D A B.
+Lemma plg_conga : forall A B C D, A <> B /\ A <> C /\ B <> C -> Parallelogram A B C D -> 等角 A B C C D A /\ 等角 B C D D A B.
 Proof.
 intros.
 assert(Cong A B C D /\ Cong A D B C).
@@ -1264,10 +1264,10 @@ Qed.
 Lemma half_plgs :
  forall A B C D P Q M,
   Parallelogram_strict A B C D ->
-  Midpoint P A B ->
-  Midpoint Q C D ->
-  Midpoint M A C ->
-  Par P Q A D /\ Midpoint M P Q /\ Cong A D P Q.
+  中点 P A B ->
+  中点 Q C D ->
+  中点 M A C ->
+  Par P Q A D /\ 中点 M P Q /\ Cong A D P Q.
 Proof.
 intros.
 assert(HH:=H).
@@ -1281,11 +1281,11 @@ subst M'.
 clear H3.
 
 prolong P M Q' P M.
-assert(Midpoint M P Q').
+assert(中点 M P Q').
 split.
 assumption.
 Cong.
-assert(Midpoint Q' C D).
+assert(中点 Q' C D).
 eapply symmetry_preserves_midpoint.
 apply H2.
 apply H6.
@@ -1315,7 +1315,7 @@ apply is_midpoint_id in H0.
 subst B.
 apply par_neq1 in H9.
 auto.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 spliter.
 apply 中间性转共线 in H0.
 apply col_permutation_5.
@@ -1331,7 +1331,7 @@ apply is_midpoint_id in H0.
 subst B.
 apply par_neq1 in H9.
 auto.
-unfold Midpoint in H1.
+unfold 中点 in H1.
 spliter.
 apply 中间性转共线 in H1.
 apply col_permutation_2.
@@ -1363,7 +1363,7 @@ apply 等长的同一性 in H10.
 subst D.
 apply H14.
 Col.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 spliter.
 apply 中间性转共线 in H0.
 Col.
@@ -1384,14 +1384,14 @@ eapply (col_transitivity_1 _ P).
 intro.
 subst P.
 apply H22.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 spliter.
 apply 中间性转共线 in H0.
 Col.
 Col.
 Col.
 Col.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 spliter.
 
 repeat split.
@@ -1411,7 +1411,7 @@ intro.
 subst B.
 apply 等长的对称性 in H10.
 apply 等长的同一性 in H10;
-unfold Par_strict in H12.
+unfold 严格平行 in H12.
 subst D.
 apply H13.
 Col.
@@ -1431,7 +1431,7 @@ subst D.
 apply H14.
 Col.
 Col.
-unfold Midpoint in H1.
+unfold 中点 in H1.
 spliter.
 apply 中间性转共线 in H1.
 Col.
@@ -1455,7 +1455,7 @@ subst B.
 apply H14.
 Col.
 
-unfold Midpoint in H1.
+unfold 中点 in H1.
 spliter.
 left.
 Between.
@@ -1467,7 +1467,7 @@ spliter.
 
 induction H18.
 apply l12_6.
-unfold Par_strict in *.
+unfold 严格平行 in *.
 spliter.
 split; Cop.
 intro.
@@ -1526,7 +1526,7 @@ spliter.
 repeat split.
 intro.
 assert(Col M A B).
-unfold Midpoint in H1.
+unfold 中点 in H1.
 spliter.
 apply 中间性转共线 in H1.
 ColR.
@@ -1539,14 +1539,14 @@ subst M.
 apply is_midpoint_id in H0.
 subst C.
 Col.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 spliter.
 apply 中间性转共线.
 assumption.
 Col.
 intro.
 assert(Col M B C).
-unfold Midpoint in H1.
+unfold 中点 in H1.
 spliter.
 apply 中间性转共线 in H1.
 ColR.
@@ -1560,12 +1560,12 @@ apply is_midpoint_id in H0.
 subst C.
 Col.
 Col.
-unfold Midpoint in H0.
+unfold 中点 in H0.
 spliter.
 apply 中间性转共线 in H0.
 Col.
 exists M.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 apply 中间性转共线 in H1.
 split; Col.
@@ -1574,7 +1574,7 @@ Qed.
 Lemma plgs_par_strict :
  forall A B C D,
   Parallelogram_strict A B C D ->
-  Par_strict A B C D /\ Par_strict A D B C.
+  严格平行 A B C D /\ 严格平行 A D B C.
 Proof.
 intros A B C D HPara.
 destruct (plgs_mid A B C D) as [M [HMid1 HMid2]]; Col.
@@ -1582,14 +1582,14 @@ destruct HPara as [HTS [HCong HPar]].
 assert(HAB : A <> B) by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
 assert(HAC : A <> D) by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
 unfold TS in HTS; spliter; split; try apply par_not_col_strict with C; Col.
-assert (Par A D C B); Par; apply l12_17 with M; Midpoint.
+assert (Par A D C B); Par; apply l12_17 with M; 中点.
 Qed.
 
 Lemma plgs_half_plgs_aux :
  forall A B C D P Q,
   Parallelogram_strict A B C D ->
-  Midpoint P A B ->
-  Midpoint Q C D ->
+  中点 P A B ->
+  中点 Q C D ->
   Parallelogram_strict A P Q D.
 Proof.
 intros.
@@ -1608,7 +1608,7 @@ ex_and HH N.
 induction H9.
 spliter.
 apply False_ind.
-unfold Par_strict in H7.
+unfold 严格平行 in H7.
 spliter.
 apply H11.
 exists N.
@@ -1637,7 +1637,7 @@ auto.
 
 eapply mid_plgs.
 intro.
-unfold Par_strict in H7.
+unfold 严格平行 in H7.
 spliter.
 apply H14.
 exists Q.
@@ -1700,7 +1700,7 @@ assumption.
 Qed.
 
 Lemma par_preserves_conga_os :
- forall A B C D P , Par A B C D -> Bet A D P -> D <> P -> OS A D B C -> CongA B A P C D P.
+ forall A B C D P , Par A B C D -> Bet A D P -> D <> P -> OS A D B C -> 等角 B A P C D P.
 Proof.
 intros.
 assert(HH:= H2).
@@ -1720,7 +1720,7 @@ subst D.
 apply H4.
 Col.
 
-assert(CongA B A D C' D A).
+assert(等角 B A D C' D A).
 eapply l12_21_a.
 apply (l9_8_2 _ _ C).
 unfold TS.
@@ -1752,7 +1752,7 @@ subst B.
 apply H3.
 Col.
 
-assert(CongA B A D B A P).
+assert(等角 B A D B A P).
 assert(A <> D).
 intro.
 subst D.
@@ -1767,7 +1767,7 @@ apply 中间性的同一律 in H0.
 contradiction.
 apply conga_right_comm.
 
-assert(CongA C D P C' D A).
+assert(等角 C D P C' D A).
 eapply l11_14; auto.
 intro.
 subst D.
@@ -1788,8 +1788,8 @@ assumption.
 Qed.
 
 Lemma cong3_par2_par :
- forall A B C A' B' C', A <> C -> Cong_3 B A C B' A' C' -> Par B A B' A' -> Par B C B' C' ->
- Par A C A' C' \/ ~ Par_strict B B' A A' \/ ~Par_strict B B' C C'.
+ forall A B C A' B' C', A <> C -> 三角形全等 B A C B' A' C' -> Par B A B' A' -> Par B C B' C' ->
+ Par A C A' C' \/ ~ 严格平行 B B' A A' \/ ~严格平行 B B' C C'.
 Proof.
 intros.
 
@@ -1803,9 +1803,9 @@ ex_and HH M.
 prolong A M A'' A M.
 prolong C M C'' C M.
 
-assert(Midpoint M A A'').
+assert(中点 M A A'').
 split; Cong.
-assert(Midpoint M C C'').
+assert(中点 M C C'').
 split; Cong.
 
 assert(Par B A B' A'').
@@ -1864,15 +1864,15 @@ apply H7.
 apply l7_2.
 assumption.
 
-unfold Cong_3 in H0.
+unfold 三角形全等 in H0.
 spliter.
 
-assert(A' = A'' \/ Midpoint B' A' A'').
+assert(A' = A'' \/ 中点 B' A' A'').
 eapply l7_20.
 Col.
 apply 等长的传递性 with B A; Cong.
 
-assert(C' = C'' \/ Midpoint B' C' C'').
+assert(C' = C'' \/ 中点 B' C' C'').
 eapply l7_20.
 Col.
 apply 等长的传递性 with B C; Cong.
@@ -1889,7 +1889,7 @@ right; left.
 intro.
 apply H27.
 exists M.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 split.
 apply 中间性转共线 in H7.
@@ -1909,11 +1909,11 @@ intro.
 apply H15.
 exists M.
 split.
-unfold Midpoint in H7.
+unfold 中点 in H7.
 spliter.
 apply 中间性转共线 in  H7.
 Col.
-unfold Midpoint in H13.
+unfold 中点 in H13.
 spliter.
 apply 中间性转共线 in  H13.
 Col.
@@ -1960,7 +1960,7 @@ Qed.
 Lemma plgs_half_plgs :
  forall A B C D P Q,
   Parallelogram_strict A B C D ->
-  Midpoint P A B -> Midpoint Q C D ->
+  中点 P A B -> 中点 Q C D ->
   Parallelogram_strict A P Q D /\ Parallelogram_strict B P Q C.
 Proof.
 intros.
@@ -1972,8 +1972,8 @@ assumption.
 apply plgs_comm2 in H.
 eapply plgs_half_plgs_aux.
 apply H.
-Midpoint.
-Midpoint.
+中点.
+中点.
 Qed.
 
 Lemma parallel_2_plg :
@@ -2076,7 +2076,7 @@ Ltac permutation_intro_in_hyps_aux :=
  match goal with
  | H : Plg_tagged ?A ?B ?C ?D |- _ => apply Plg_tagged_Plg in H; apply Plg_perm in H; spliter
  | H : Par_tagged ?A ?B ?C ?D |- _ => apply Par_tagged_Par in H; apply Par_perm in H; spliter
- | H : Par_strict_tagged ?A ?B ?C ?D |- _ => apply Par_strict_tagged_Par_strict in H; apply Par_strict_perm in H; spliter
+ | H : 严格平行_tagged ?A ?B ?C ?D |- _ => apply 严格平行_tagged_严格平行 in H; apply 严格平行_perm in H; spliter
  | H : Perp_tagged ?A ?B ?C ?D |- _ => apply Perp_tagged_Perp in H; apply Perp_perm in H; spliter
  | H : Perp_in_tagged ?X ?A ?B ?C ?D |- _ => apply Perp_in_tagged_Perp_in in H; apply Perp_in_perm in H; spliter
  | H : Per_tagged ?A ?B ?C |- _ => apply Per_tagged_Per in H; apply Per_perm in H; spliter
@@ -2116,7 +2116,7 @@ Ltac not_exist_hyp_perm_cong A B C D := not_exist_hyp (Cong A B C D); not_exist_
 Ltac assert_congs_1 :=
 repeat
  match goal with
-      | H:Midpoint ?X1 ?X2 ?X3 |- _ =>
+      | H:中点 ?X1 ?X2 ?X3 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_cong X1 X2 X1 X3;
       assert (h := midpoint_cong X2 X1 X3 H)
@@ -2145,7 +2145,7 @@ repeat
 Ltac assert_congs_2 :=
 repeat
  match goal with
-      | H1:Midpoint ?M1 ?A1 ?B1, H2:Midpoint ?M2 ?A2 ?B2, H3:Cong ?A1 ?B1 ?A2 ?B2 |- _ =>
+      | H1:中点 ?M1 ?A1 ?B1, H2:中点 ?M2 ?A2 ?B2, H3:Cong ?A1 ?B1 ?A2 ?B2 |- _ =>
       first [ not_exist_hyp_perm_cong A1 M1 A2 M2 | not_exist_hyp_perm_cong B1 M1 B2 M2 ];
       let h1 := fresh in assert (h1 := cong_cong_half_1 A1 M1 B1 A2 M2 B2 H1 H2 H3);
       let h2 := fresh in assert (h2 := cong_cong_half_2 A1 M1 B1 A2 M2 B2 H1 H2 H3)
@@ -2259,29 +2259,29 @@ repeat
       let T:= fresh in (not_exist_hyp_comm C D);
         assert (T:= lt_diff A B C D H);clean_reap_hyps
 
-      | H:Midpoint ?I ?A ?B, H2 : ?A<>?B |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
        assert (T:= midpoint_distinct_1 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Midpoint ?I ?A ?B, H2 : ?B<>?A |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
        assert (T:= midpoint_distinct_1 I A B (swap_diff B A H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
-      | H:Midpoint ?I ?A ?B, H2 : ?I<>?A |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?I<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
        assert (T:= midpoint_distinct_2 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Midpoint ?I ?A ?B, H2 : ?A<>?I |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?A<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
        assert (T:= midpoint_distinct_2 I A B (swap_diff A I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
-      | H:Midpoint ?I ?A ?B, H2 : ?I<>?B |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?I<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
        assert (T:= midpoint_distinct_3 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Midpoint ?I ?A ?B, H2 : ?B<>?I |- _ =>
+      | H:中点 ?I ?A ?B, H2 : ?B<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
        assert (T:= midpoint_distinct_3 I A B (swap_diff B I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
@@ -2303,7 +2303,7 @@ repeat
       let T:= fresh in (not_exist_hyp2 A B C D);
        assert (T:= perp_distinct A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Perp_at ?X ?A ?B ?C ?D |- _ =>
+      | H:垂直于 ?X ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
        assert (T:= perp_in_distinct X A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
@@ -2320,41 +2320,41 @@ repeat
       let h := fresh in
       not_exist_hyp5 A B A C A D B C B D;
       assert (h := os_distincts A B C D H);decompose [and] h;clear h;clean_reap_hyps
-      | H:~ Coplanar ?A ?B ?C ?D |- _ =>
+      | H:~ 共面 ?A ?B ?C ?D |- _ =>
       let h := fresh in
       not_exist_hyp6 A B A C A D B C B D C D;
       assert (h := ncop_distincts A B C D H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:CongA ?A ?B ?C ?A' ?B' ?C' |- _ =>
+      | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm A B);
         assert (T:= conga_diff1 A B C A' B' C' H);clean_reap_hyps
-      | H:CongA ?A ?B ?C ?A' ?B' ?C' |- _ =>
+      | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm B C);
         assert (T:= conga_diff2 A B C A' B' C' H);clean_reap_hyps
-      | H:CongA ?A ?B ?C ?A' ?B' ?C' |- _ =>
+      | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm A' B');
         assert (T:= conga_diff45 A B C A' B' C' H);clean_reap_hyps
-      | H:CongA ?A ?B ?C ?A' ?B' ?C' |- _ =>
+      | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm B' C');
         assert (T:= conga_diff56 A B C A' B' C' H);clean_reap_hyps
 
-      | H:(InAngle ?P ?A ?B ?C) |- _ =>
+      | H:(在角内 ?P ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp3 A B C B P B;
       assert (h := inangle_distincts A B C P H);decompose [and] h;clear h;clean_reap_hyps
-      | H:LeA ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:角度小于等于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
       assert (h := lea_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
-      | H:LtA ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:角度小于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
       assert (h := lta_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
-      | H:(Acute ?A ?B ?C) |- _ =>
+      | H:(为锐角 ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp2 A B B C;
       assert (h := acute_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
-      | H:(Obtuse ?A ?B ?C) |- _ =>
+      | H:(为钝角 ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp2 A B B C;
       assert (h := obtuse_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
@@ -2363,7 +2363,7 @@ repeat
       not_exist_hyp4 A B B C D E E F;
       assert (h := suppa_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:(Orth_at ?X ?A ?B ?C ?U ?V) |- _ =>
+      | H:(垂直平面于 ?X ?A ?B ?C ?U ?V) |- _ =>
       let h := fresh in
       not_exist_hyp4 A B A C B C U V;
       assert (h := orth_at_distincts A B C U V X H);decompose [and] h;clear h;clean_reap_hyps
@@ -2376,7 +2376,7 @@ repeat
       let T:= fresh in (not_exist_hyp2 A B C D);
        assert (T:= inter_distincts A B C D X H);decompose [and] T;clear T;clean_reap_hyps
 
-      | H:Par_strict ?A ?B ?C ?D |- _ =>
+      | H:严格平行 ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp6 A B A C A D B C B D C D);
        assert (T:= par_strict_distinct A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
@@ -2387,7 +2387,7 @@ repeat
       let T:= fresh in (not_exist_hyp2 A B C D);
        assert (T:= perp_distinct A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
-      | H:Perp_at ?X ?A ?B ?C ?D |- _ =>
+      | H:垂直于 ?X ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
        assert (T:= perp_in_distinct X A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
@@ -2453,7 +2453,7 @@ Lemma parallelogram_strict_midpoint : forall A B C D I,
   Parallelogram_strict A B C D ->
   Col I A C ->
   Col I B D ->
-  Midpoint I A C /\ Midpoint I B D.
+  中点 I A C /\ 中点 I B D.
 Proof.
 intros.
 assert (T:=Parallelogram_strict_Parallelogram A B C D H).
@@ -2517,7 +2517,7 @@ apply perp_in_perp_bis in HH.
 induction HH.
 apply perp_not_eq_1 in H5.
 tauto.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 eapply perp_col.
 assumption.
@@ -2603,7 +2603,7 @@ assert(B = C).
 eapply symmetric_point_uniqueness.
 apply l7_2.
 apply H5.
-Midpoint.
+中点.
 subst C.
 unfold Parallelogram_strict in H.
 spliter.
@@ -2620,7 +2620,7 @@ eapply (cong_cong_half_1 _ M _ _ M) in H0.
 Cong.
 assumption.
 assumption.
-unfold Midpoint in H7.
+unfold 中点 in H7.
 spliter.
 apply 中间性转共线.
 assumption.
@@ -2660,7 +2660,7 @@ apply perp_sym.
 eapply perp_col.
 assumption.
 apply H9.
-unfold Midpoint in H1.
+unfold 中点 in H1.
 spliter.
 apply 中间性转共线.
 assumption.
@@ -2774,7 +2774,7 @@ subst M.
 apply is_midpoint_id in H7.
 contradiction.
 apply H13.
-unfold Midpoint in H7.
+unfold 中点 in H7.
 spliter.
 apply 中间性转共线 in H7.
 Col.
@@ -2784,7 +2784,7 @@ eapply perp_col.
 assumption.
 apply perp_sym.
 apply H14.
-unfold Midpoint in H1.
+unfold 中点 in H1.
 spliter.
 apply 中间性转共线 in H1.
 Col.
@@ -2811,9 +2811,9 @@ apply H1.
 assumption.
 subst B'.
 
-unfold Midpoint in H4.
+unfold 中点 in H4.
 spliter.
-unfold Midpoint in H5.
+unfold 中点 in H5.
 spliter.
 eapply 两组连续三点分段等则全体等.
 apply H4.
@@ -2936,7 +2936,7 @@ Qed.
 
 Lemma cop_perp3__perp :
  forall A B C D,
-  Coplanar A B C D ->
+  共面 A B C D ->
   Perp A B B C ->
   Perp B C C D ->
   Perp C D D A ->
@@ -2952,7 +2952,7 @@ Qed.
 
 Lemma cop_perp3__rect :
  forall A B C D,
-  Coplanar A B C D ->
+  共面 A B C D ->
   Perp A B B C ->
   Perp B C C D ->
   Perp C D D A ->
@@ -2976,10 +2976,10 @@ assumption.
 Perp.
 Qed.
 
-Lemma conga_to_par_os : forall A B C D P , Bet A D P -> OS A D B C -> CongA B A P C D P
+Lemma conga_to_par_os : forall A B C D P , Bet A D P -> OS A D B C -> 等角 B A P C D P
                                            -> Par A B C D.
 Proof.
-intros A B C D P HBet HOS HCongA.
+intros A B C D P HBet HOS H等角.
 assert_diffs.
 apply par_right_comm, l12_22_b with P; trivial.
   apply l6_6, bet_out; Between.
@@ -3014,13 +3014,13 @@ intros.
 assert (HPar := plg_par A B C D H H0 H1); spliter; assumption.
 Qed.
 
-Lemma plgs_pars_1: forall A B C D : Tpoint, Parallelogram_strict A B C D -> Par_strict A B C D.
+Lemma plgs_pars_1: forall A B C D : Tpoint, Parallelogram_strict A B C D -> 严格平行 A B C D.
 Proof.
 intros.
 assert (HPar := plgs_par_strict A B C D H); spliter; assumption.
 Qed.
 
-Lemma plgs_pars_2: forall A B C D : Tpoint, Parallelogram_strict A B C D -> Par_strict A D B C.
+Lemma plgs_pars_2: forall A B C D : Tpoint, Parallelogram_strict A B C D -> 严格平行 A D B C.
 Proof.
 intros.
 assert (HPar := plgs_par_strict A B C D H); spliter; assumption.
@@ -3033,15 +3033,15 @@ Ltac not_exist_hyp_perm_par A B C D := not_exist_hyp (Par A B C D); not_exist_hy
                                        not_exist_hyp (Par C D A B); not_exist_hyp (Par C D B A);
                                        not_exist_hyp (Par D C A B); not_exist_hyp (Par D C B A).
 
-Ltac not_exist_hyp_perm_pars A B C D := not_exist_hyp (Par_strict A B C D); not_exist_hyp (Par_strict A B D C);
-                                        not_exist_hyp (Par_strict B A C D); not_exist_hyp (Par_strict B A D C);
-                                        not_exist_hyp (Par_strict C D A B); not_exist_hyp (Par_strict C D B A);
-                                        not_exist_hyp (Par_strict D C A B); not_exist_hyp (Par_strict D C B A).
+Ltac not_exist_hyp_perm_pars A B C D := not_exist_hyp (严格平行 A B C D); not_exist_hyp (严格平行 A B D C);
+                                        not_exist_hyp (严格平行 B A C D); not_exist_hyp (严格平行 B A D C);
+                                        not_exist_hyp (严格平行 C D A B); not_exist_hyp (严格平行 C D B A);
+                                        not_exist_hyp (严格平行 D C A B); not_exist_hyp (严格平行 D C B A).
 
 Ltac assert_pars_1 :=
  repeat
  match goal with
-      | H:Par_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:严格平行 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_par X1 X2 X3 X4;
       assert (h := par_strict_par X1 X2 X3 X4 H)
@@ -3095,12 +3095,12 @@ Cong.
 induction(两点重合的决定性 A D).
 subst D.
 
-assert(B = C \/ Midpoint A B C).
+assert(B = C \/ 中点 A B C).
 eapply l7_20.
 unfold Par in H.
 induction H.
 apply False_ind.
-unfold Par_strict in H.
+unfold 严格平行 in H.
 spliter.
 apply H2.
 exists A.
@@ -3112,7 +3112,7 @@ induction H2.
 subst C.
 left.
 Cong.
-unfold Midpoint in H2.
+unfold 中点 in H2.
 spliter.
 left.
 Cong.
@@ -3129,12 +3129,12 @@ Cong.
 
 induction(两点重合的决定性 A C).
 subst C.
-assert(B = D \/ Midpoint A B D).
+assert(B = D \/ 中点 A B D).
 eapply l7_20.
 unfold Par in H.
 induction H.
 apply False_ind.
-unfold Par_strict in H.
+unfold 严格平行 in H.
 spliter.
 apply H5.
 exists A.
@@ -3146,7 +3146,7 @@ induction H4.
 subst D.
 right.
 Cong.
-unfold Midpoint in H4.
+unfold 中点 in H4.
 spliter.
 right.
 Cong.
@@ -3184,7 +3184,7 @@ assumption.
 Qed.
 
 Lemma par_cong_cop :
-  forall A B C D, Par A B C D -> Cong A B C D -> Coplanar A B C D.
+  forall A B C D, Par A B C D -> Cong A B C D -> 共面 A B C D.
 Proof.
 intros.
 destruct (par_cong_mid A B C D) as [M HM]; trivial.
@@ -3257,7 +3257,7 @@ split; auto.
 left.
 intro.
 subst D.
-unfold Par_strict in H0.
+unfold 严格平行 in H0.
 spliter.
 apply H7.
 exists A.
@@ -3283,7 +3283,7 @@ repeat split; Col; Cong.
 repeat split; Col; Cong; ColR.
 Qed.
 
-Lemma pars_par_pars : forall A B C D, Par_strict A B C D -> Par A D B C -> Par_strict A D B C.
+Lemma pars_par_pars : forall A B C D, 严格平行 A B C D -> Par A D B C -> 严格平行 A D B C.
 Proof.
 intros.
 induction H0.
@@ -3292,17 +3292,17 @@ spliter.
 repeat split; Cop.
 intro.
 ex_and H4 X.
-unfold Par_strict in H.
+unfold 严格平行 in H.
 spliter.
 apply H6.
 exists C.
 split; Col.
 Qed.
 
-Lemma pars_par_plg : forall A B C D, Par_strict A B C D -> Par A D B C -> Plg A B C D.
+Lemma pars_par_plg : forall A B C D, 严格平行 A B C D -> Par A D B C -> Plg A B C D.
 Proof.
 intros.
-assert(Par_strict A D B C).
+assert(严格平行 A D B C).
 apply pars_par_pars; auto.
 
 assert(Par A B C D).
@@ -3319,7 +3319,7 @@ spliter.
 assert(A <> C).
 intro.
 subst C.
-unfold Par_strict in H.
+unfold 严格平行 in H.
 spliter.
 apply H7.
 exists A.
@@ -3328,7 +3328,7 @@ split; Col.
 assert(B <> D).
 intro.
 subst D.
-unfold Par_strict in H.
+unfold 严格平行 in H.
 spliter.
 apply H8.
 exists B.
@@ -3346,8 +3346,8 @@ exists M.
 split.
 assumption.
 prolong B M D' B M.
-assert(Midpoint M B D').
-unfold Midpoint.
+assert(中点 M B D').
+unfold 中点.
 split; auto.
 Cong.
 assert(Plg A B C D').
@@ -3369,7 +3369,7 @@ spliter.
 
 assert(~Col C A B).
 intro.
-unfold Par_strict in H.
+unfold 严格平行 in H.
 spliter.
 apply H18.
 exists C.
@@ -3386,7 +3386,7 @@ spliter.
 assert(A <> D').
 intro.
 subst D'.
-unfold Par_strict in H1.
+unfold 严格平行 in H1.
 spliter.
 apply H20.
 exists C.
@@ -3409,7 +3409,7 @@ assert(D = D').
 
 eapply (l6_21 A D C D D D'); Col.
 intro.
-unfold Par_strict in H.
+unfold 严格平行 in H.
 spliter.
 apply H28.
 exists A.
@@ -3418,7 +3418,7 @@ subst D'.
 assumption.
 Qed.
 
-Lemma not_par_pars_not_cong : forall O A B A' B', Out O A B -> Out O A' B' -> Par_strict A A' B B' -> ~Cong A A' B B'.
+Lemma not_par_pars_not_cong : forall O A B A' B', Out O A B -> Out O A' B' -> 严格平行 A A' B B' -> ~Cong A A' B B'.
 Proof.
 intros.
 intro.
@@ -3426,7 +3426,7 @@ intro.
 assert(A <> B).
 intro.
 subst B.
-unfold Par_strict in H1.
+unfold 严格平行 in H1.
 spliter.
 apply H3.
 exists A.
@@ -3435,7 +3435,7 @@ split; Col.
 assert(A' <> B').
 intro.
 subst B'.
-unfold Par_strict in H1.
+unfold 严格平行 in H1.
 spliter.
 apply H4.
 exists A'.
@@ -3457,7 +3457,7 @@ apply out_col in H.
 apply out_col in H0.
 assert(Col O B A').
 ColR.
-unfold Par_strict in H1.
+unfold 严格平行 in H1.
 spliter.
 apply H9.
 exists O.
@@ -3485,7 +3485,7 @@ assert(HH:=os_cong_par_cong_par A A' B B' H8 H2 H9).
 spliter.
 unfold Par in H11.
 induction H11.
-unfold Par_strict in H11.
+unfold 严格平行 in H11.
 spliter.
 apply H12.
 exists O.
@@ -3537,7 +3537,7 @@ spliter.
 assumption.
 Qed.
 
-Lemma par_strict_trans : forall A B C D E F, Par_strict A B C D -> Par_strict C D E F -> Par A B E F.
+Lemma par_strict_trans : forall A B C D E F, 严格平行 A B C D -> 严格平行 C D E F -> Par A B E F.
 Proof.
 intros.
 eapply par_trans.
@@ -3581,7 +3581,7 @@ assert(HH1:= l12_6 C D A B H18).
 assert(HH2:= l12_6 C D E F H16).
 
 
-assert(CongA A D D' B C D').
+assert(等角 A D D' B C D').
 apply par_preserves_conga_os.
 left.
 Par.
@@ -3590,7 +3590,7 @@ assumption.
 apply invert_one_side.
 assumption.
 
-assert(CongA E D D' F C D').
+assert(等角 E D D' F C D').
 apply par_preserves_conga_os.
 left.
 Par.
@@ -3611,7 +3611,7 @@ induction (cop_dec C D A E).
 
 assert(HH:=cop__one_or_two_sides C D A E H24 H22 H23).
 
-assert(CongA A D E B C F).
+assert(等角 A D E B C F).
 
 induction HH.
 
@@ -3723,13 +3723,13 @@ apply 等长的对称性 in H27.
 assert(HQ:=par_strict_cong_mid C A D B H17 H27).
 ex_and HQ M.
 induction H35.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 
 apply H16.
 exists M.
 split; Col.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 apply H19.
 exists M.
@@ -3739,7 +3739,7 @@ ColR.
 left.
 assumption.
 
-assert(Par A E B F \/ ~ Par_strict D C A B \/ ~ Par_strict D C E F).
+assert(Par A E B F \/ ~ 严格平行 D C A B \/ ~ 严格平行 D C E F).
 
 eapply(cong3_par2_par ); auto.
 repeat split; Cong.
@@ -3879,7 +3879,7 @@ apply 等长的同一性 in H23.
 contradiction.
 
 
-assert(CongA E D D' F C D').
+assert(等角 E D D' F C D').
 
 apply(par_preserves_conga_os D E F C D').
 apply par_symmetry.
@@ -3898,7 +3898,7 @@ assumption.
 
 induction(两点重合的决定性 A C).
 subst C.
-assert(B=D \/ Midpoint A B D).
+assert(B=D \/ 中点 A B D).
 eapply l7_20.
 Col.
 Cong.
@@ -3936,7 +3936,7 @@ assumption.
 split.
 eapply (par_col_par_2 _ D).
 auto.
-unfold Midpoint in H27.
+unfold 中点 in H27.
 spliter.
 apply 中间性转共线 in H27.
 Col.
@@ -3948,7 +3948,7 @@ apply 等长的传递性 with A D; Cong.
 induction(两点重合的决定性 B D).
 subst D.
 
-assert(A=C \/ Midpoint B A C).
+assert(A=C \/ 中点 B A C).
 eapply l7_20.
 Col.
 Cong.
@@ -3983,7 +3983,7 @@ assumption.
 split.
 eapply (par_col_par_2 _ C).
 auto.
-unfold Midpoint in H28.
+unfold 中点 in H28.
 spliter.
 apply 中间性转共线 in H28.
 Col.
@@ -3994,7 +3994,7 @@ apply 等长的传递性 with C B; Cong.
 
 assert(HH:=plgf_bet A B D C H0).
 
-assert(CongA A D E B C F).
+assert(等角 A D E B C F).
 
 induction HH.
 spliter.
@@ -4115,7 +4115,7 @@ auto.
 assert(Cong A E B F).
 
 eapply(cong2_conga_cong A D E B C F H29);Cong.
-assert(Cong_3 E A D F B C).
+assert(三角形全等 E A D F B C).
 repeat split; Cong.
 
 assert(Par A B E F).
@@ -4130,7 +4130,7 @@ ColR.
 left.
 assumption.
 
-assert(CongA E A D F B C).
+assert(等角 E A D F B C).
 apply cong3_conga.
 intro.
 subst E.
@@ -4491,7 +4491,7 @@ unfold Square in H.
 tauto.
 Qed.
 
-Lemma plgs_in_angle : forall A B C D, Parallelogram_strict A B C D -> InAngle D A B C.
+Lemma plgs_in_angle : forall A B C D, Parallelogram_strict A B C D -> 在角内 D A B C.
 Proof.
 intros.
 assert(Plg A B C D).
@@ -4520,7 +4520,7 @@ unfold TS in HH.
 spliter.
 ex_and H9 T.
 
-unfold InAngle.
+unfold 在角内.
 repeat split; auto.
 intro.
 subst D.
@@ -4541,7 +4541,7 @@ unfold Out.
 repeat split.
 intro.
 subst M.
-unfold Midpoint in H4.
+unfold 中点 in H4.
 spliter.
 apply 等长的对称性 in H11.
 apply 等长的同一性 in H11.
@@ -4646,7 +4646,7 @@ elim (两点重合的决定性 C1 C2); intro HC1C2; treat_equalities.
     {
     apply rect_per in HRect1; apply rect_per in HRect2; spliter.
     destruct (两点重合的决定性 C2 D2); [subst; Perp|].
-    assert (HOrth : Orth_at C2 B C1 C2 C2 D2);
+    assert (HOrth : 垂直平面于 C2 B C1 C2 C2 D2);
       [|destruct HOrth as [_ [_ [_ [_ HOrth]]]]; apply HOrth; Col; Cop].
     apply l11_61_bis with B A; Perp; Cop.
     apply l11_60_bis; Perp; Cop.
@@ -4684,49 +4684,49 @@ exfalso; apply HNC; unfold Parallelogram_flat in *; spliter; ColR.
 Qed.
 
 Lemma ncol123_plg__pars1234 : forall A B C D,
-  ~ Col A B C -> Parallelogram A B C D -> Par_strict A B C D.
+  ~ Col A B C -> Parallelogram A B C D -> 严格平行 A B C D.
 Proof.
 intros; apply plgs_pars_1; apply ncol123_plg__plgs; auto.
 Qed.
 
 Lemma ncol124_plg__pars1234 : forall A B C D,
-  ~ Col A B D -> Parallelogram A B C D -> Par_strict A B C D.
+  ~ Col A B D -> Parallelogram A B C D -> 严格平行 A B C D.
 Proof.
 intros; apply plgs_pars_1; apply ncol124_plg__plgs; auto.
 Qed.
 
 Lemma ncol134_plg__pars1234 : forall A B C D,
-  ~ Col A C D -> Parallelogram A B C D -> Par_strict A B C D.
+  ~ Col A C D -> Parallelogram A B C D -> 严格平行 A B C D.
 Proof.
 intros; apply plgs_pars_1; apply ncol134_plg__plgs; auto.
 Qed.
 
 Lemma ncol234_plg__pars1234 : forall A B C D,
-  ~ Col B C D -> Parallelogram A B C D -> Par_strict A B C D.
+  ~ Col B C D -> Parallelogram A B C D -> 严格平行 A B C D.
 Proof.
 intros; apply plgs_pars_1; apply ncol234_plg__plgs; auto.
 Qed.
 
 Lemma ncol123_plg__pars1423 : forall A B C D,
-  ~ Col A B C -> Parallelogram A B C D -> Par_strict A D B C.
+  ~ Col A B C -> Parallelogram A B C D -> 严格平行 A D B C.
 Proof.
 intros; apply plgs_pars_2; apply ncol123_plg__plgs; auto.
 Qed.
 
 Lemma ncol124_plg__pars1423 : forall A B C D,
-  ~ Col A B D -> Parallelogram A B C D -> Par_strict A D B C.
+  ~ Col A B D -> Parallelogram A B C D -> 严格平行 A D B C.
 Proof.
 intros; apply plgs_pars_2; apply ncol124_plg__plgs; auto.
 Qed.
 
 Lemma ncol134_plg__pars1423 : forall A B C D,
-  ~ Col A C D -> Parallelogram A B C D -> Par_strict A D B C.
+  ~ Col A C D -> Parallelogram A B C D -> 严格平行 A D B C.
 Proof.
 intros; apply plgs_pars_2; apply ncol134_plg__plgs; auto.
 Qed.
 
 Lemma ncol234_plg__pars1423 : forall A B C D,
-  ~ Col B C D -> Parallelogram A B C D -> Par_strict A D B C.
+  ~ Col B C D -> Parallelogram A B C D -> 严格平行 A D B C.
 Proof.
 intros; apply plgs_pars_2; apply ncol234_plg__plgs; auto.
 Qed.

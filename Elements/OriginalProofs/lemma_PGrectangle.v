@@ -14,18 +14,18 @@ Lemma lemma_PGrectangle :
    RE A C D B.
 Proof.
 intros.
-assert ((Cong A B C D /\ Cong A C B D /\ CongA C A B B D C /\ CongA A B D D C A /\ Cong_3 C A B B D C)) by (conclude proposition_34).
+assert ((Cong A B C D /\ Cong A C B D /\ 等角 C A B B D C /\ 等角 A B D D C A /\ 三角形全等 C A B B D C)) by (conclude proposition_34).
 assert (Par A C D B) by (conclude_def PG ).
 assert (nCol A C B) by (forward_using lemma_parallelNC).
 assert (nCol A B C) by (forward_using lemma_NCorder).
 assert (nCol C A B) by (forward_using lemma_NCorder).
-assert (CongA C A B B A C) by (conclude lemma_ABCequalsCBA).
+assert (等角 C A B B A C) by (conclude lemma_ABCequalsCBA).
 assert (Per C A B) by (conclude lemma_8_2).
 assert (neq A B) by (forward_using lemma_NCdistinct).
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
-assert (CongA B A C C A B) by (conclude lemma_equalanglessymmetric).
-assert (CongA B A C B D C) by (conclude lemma_equalanglestransitive).
-assert (CongA B D C B A C) by (conclude lemma_equalanglessymmetric).
+assert (等角 B A C C A B) by (conclude lemma_equalanglessymmetric).
+assert (等角 B A C B D C) by (conclude lemma_equalanglestransitive).
+assert (等角 B D C B A C) by (conclude lemma_equalanglessymmetric).
 assert (Per B D C) by (conclude lemma_equaltorightisright).
 assert (Per C D B) by (conclude lemma_8_2).
 assert (Par A C B D) by (forward_using lemma_parallelflip).
@@ -38,14 +38,14 @@ assert (Tf:exists E, (BetS B A E /\ Cong A E A B)) by (conclude lemma_extension)
 assert (BetS E A B) by (conclude axiom_betweennesssymmetry).
 assert (RT C A B A B D) by (conclude proposition_29C).
 let Tf:=fresh in
-assert (Tf:exists p q r s t, (Supp p q r s t /\ CongA C A B p q r /\ CongA A B D s q t)) by (conclude_def RT );destruct Tf as [p[q[r[s[t]]]]];spliter.
-assert (CongA p q r C A B) by (conclude lemma_equalanglessymmetric).
+assert (Tf:exists p q r s t, (Supp p q r s t /\ 等角 C A B p q r /\ 等角 A B D s q t)) by (conclude_def RT );destruct Tf as [p[q[r[s[t]]]]];spliter.
+assert (等角 p q r C A B) by (conclude lemma_equalanglessymmetric).
 assert (Per p q r) by (conclude lemma_equaltorightisright).
 assert (Per s q t) by (conclude lemma_supplementofright).
-assert (CongA s q t A B D) by (conclude lemma_equalanglessymmetric).
+assert (等角 s q t A B D) by (conclude lemma_equalanglessymmetric).
 assert (Per A B D) by (conclude lemma_equaltorightisright).
 assert (Per D B A) by (conclude lemma_8_2).
-assert (CongA D C A A B D) by (conclude lemma_equalanglessymmetric).
+assert (等角 D C A A B D) by (conclude lemma_equalanglessymmetric).
 assert (Per D C A) by (conclude lemma_equaltorightisright).
 assert (Per A C D) by (conclude lemma_8_2).
 let Tf:=fresh in

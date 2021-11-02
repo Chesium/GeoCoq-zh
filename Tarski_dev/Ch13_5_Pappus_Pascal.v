@@ -10,10 +10,10 @@ Context `{TE:塔斯基公理系统_欧几里得几何}.
 Lemma l13_10_aux1 : forall O A B P Q la lb lp lq,
  Col O A B -> Col O P Q -> Perp O P P A -> Perp O Q Q B ->
  Q_Cong la -> Q_Cong lb -> Q_Cong lp -> Q_Cong lq -> la O A -> lb O B -> lp O P -> lq O Q ->
- exists a, Q_CongA_Acute a /\ Lcos lp la a /\ Lcos lq lb a.
+ exists a, 锐角谓词 a /\ Lcos lp la a /\ Lcos lq lb a.
 Proof.
     intros.
-    assert(Acute A O P).
+    assert(为锐角 A O P).
       apply (perp_acute _ _ P); Col; Perp.
     assert(P <> O).
       intro.
@@ -44,7 +44,7 @@ Proof.
         intro.
         unfold Par in H18.
         induction H18.
-          unfold Par_strict in H18.
+          unfold 严格平行 in H18.
           spliter.
           apply H19.
           exists P.
@@ -89,7 +89,7 @@ apply perp_perp_in in H2.
 Perp.
 
    (*       apply(project_preserves_bet O P A P O A B O P Q); auto. *)
-        assert(CongA A O P B O Q).
+        assert(等角 A O P B O Q).
           apply out2__conga.
             repeat split; auto.
             repeat split; auto.
@@ -110,7 +110,7 @@ apply perp_perp_in in H1.
 Perp.
 
  (*         apply(project_preserves_bet O P A P A B O P Q O); auto.*)
-        assert(CongA A O P B O Q).
+        assert(等角 A O P B O Q).
           apply out2__conga.
             repeat split; auto.
             left.
@@ -132,7 +132,7 @@ apply perp_perp_in in H1.
 Perp.
 
  (*       apply(project_preserves_bet O P A P B O A Q O P); auto. *)
-      assert(CongA A O P B O Q).
+      assert(等角 A O P B O Q).
         eapply (l11_14 ); Between.
       apply (anga_conga_anga _ A O P); auto.
     exists a.
@@ -155,20 +155,20 @@ Qed.
 
 Lemma l13_10_aux2 : forall O A B la lla lb llb,
  Col O A B  -> Q_Cong la -> Q_Cong lla -> Q_Cong lb -> Q_Cong llb -> la O A -> lla O A -> lb O B -> llb O B ->
- A <> O -> B <> O -> exists a, Q_CongA_Acute a /\ Lcos lla la a /\ Lcos llb lb a.
+ A <> O -> B <> O -> exists a, 锐角谓词 a /\ Lcos lla la a /\ Lcos llb lb a.
 Proof.
     intros.
     assert(HH:=anga_exists A O A H8 H8 (acute_trivial A O H8)).
     ex_and HH a.
     exists a.
     split; auto.
-    assert(Q_CongA_Null_Acute a).
-      assert(Out O A A /\ Q_CongA_Null_Acute a).
+    assert(锐零角谓词 a).
+      assert(Out O A A /\ 锐零角谓词 a).
         apply(anga_col_null a A O A); auto.
         Col.
       tauto.
     split.
-      assert(EqL la lla).
+      assert(谓词等长 la lla).
         apply ex_eql.
         exists O.
         exists A.
@@ -176,7 +176,7 @@ Proof.
       rewrite <- H13.
       apply null_lcos; auto.
       intro.
-      unfold Q_Cong_Null in H14.
+      unfold 零长谓词 in H14.
       spliter.
       ex_and H15 X.
       assert(HH:= lg_cong la O A X X H0 H4 H16).
@@ -187,7 +187,7 @@ Proof.
     assert(EqA a b).
       assert(HH:=null_anga A O B O a b).
       apply HH; split; auto.
-    assert(EqL lb llb).
+    assert(谓词等长 lb llb).
       apply ex_eql.
       exists O.
       exists B.
@@ -195,7 +195,7 @@ Proof.
     rewrite <- H16.
     apply null_lcos; auto.
     intro.
-    unfold Q_Cong_Null in H17.
+    unfold 零长谓词 in H17.
     spliter.
     ex_and H18 X.
     assert(HH:= lg_cong lb O B X X H2 H6 H19).
@@ -204,7 +204,7 @@ Proof.
 Qed.
 
 
-Lemma l13_6_bis : forall lp l1 l2 a, Lcos lp l1 a -> Lcos lp l2 a -> EqL l1 l2.
+Lemma l13_6_bis : forall lp l1 l2 a, Lcos lp l1 a -> Lcos lp l2 a -> 谓词等长 l1 l2.
 Proof.
     intros.
     induction(is_null_anga_dec a).
@@ -246,11 +246,11 @@ Proof.
       spliter.
       assert(Cong A B A' B').
         apply (lg_cong lp); auto.
-      assert(CongA B A C B' A' C').
+      assert(等角 B A C B' A' C').
         apply (anga_conga a); auto.
-      assert(CongA C B A C' B' A').
+      assert(等角 C B A C' B' A').
         apply l11_16; auto.
-      assert(Cong A C A' C' /\ Cong B C B' C' /\ CongA A C B A' C' B').
+      assert(Cong A C A' C' /\ Cong B C B' C' /\ 等角 A C B A' C' B').
         apply(l11_50_1 A B C A' B' C'); auto.
           intro.
           apply HH.
@@ -276,7 +276,7 @@ Proof.
     apply lcos3_lcos_2_1 in H0.
     ex_and H ll1.
     ex_and H0 ll2.
-    assert (EqL ll1 ll2).
+    assert (谓词等长 ll1 ll2).
       eapply(l13_6_bis lp _ _ n); auto.
     exists ll1.
     split; auto.
@@ -298,7 +298,7 @@ Proof.
     ex_and H lx.
     ex_and H0 ly.
     unfold Eq_Lcos.
-    assert(EqL lx ly).
+    assert(谓词等长 lx ly).
       eapply(l13_6_bis lp _ _ c); auto.
     exists lx.
     split; auto.
@@ -344,13 +344,13 @@ Proof.
         apply H18.
         Cong.
       subst A'.
-      assert(Q_CongA_Null_Acute a).
+      assert(锐零角谓词 a).
         apply(out_null_anga a P' O' P'); auto.
         apply out_trivial.
         intro.
         subst P'.
         apply H12.
-        unfold Q_Cong_Null.
+        unfold 零长谓词.
         split.
           auto.
         exists O'.
@@ -359,7 +359,7 @@ Proof.
         intro.
         subst P.
         apply H12.
-        unfold Q_Cong_Null.
+        unfold 零长谓词.
         split.
           auto.
         exists O.
@@ -401,9 +401,9 @@ Proof.
       spliter.
       apply H22.
       Cong.
-    assert(CongA A P O A' P' O').
+    assert(等角 A P O A' P' O').
       apply l11_16; auto.
-    assert(Cong P A P' A' /\ CongA P A O P' A' O' /\ CongA P O A P' O' A').
+    assert(Cong P A P' A' /\ 等角 P A O P' A' O' /\ 等角 P O A P' O' A').
       assert(Lt P A A O /\ Lt P O A O).
         assert_diffs; apply(l11_46 A P O); auto.
       spliter.
@@ -419,7 +419,7 @@ Proof.
 Qed.
 
 Lemma lcos_lcos_cop__col : forall la lb lp a b O A B P,
- Lcos lp la a -> Lcos lp lb b -> la O A -> lb O B -> lp O P -> a A O P -> b B O P -> Coplanar O A B P ->
+ Lcos lp la a -> Lcos lp lb b -> la O A -> lb O B -> lp O P -> a A O P -> b B O P -> 共面 O A B P ->
  Col A B P.
 Proof.
     intros.
@@ -438,7 +438,7 @@ Proof.
     assert(HH:=lcos_lg_not_null lp la a H).
     spliter.
     apply H15.
-    unfold Q_Cong_Null.
+    unfold 零长谓词.
     split; auto.
     exists O.
     auto.
@@ -876,7 +876,7 @@ Qed.
 Lemma cop_per2__perp : forall A B X Y,
  A <> B -> X <> Y ->
  (B <> X \/ B <> Y) ->
- Coplanar A B X Y ->
+ 共面 A B X Y ->
  Per A B X -> Per A B Y ->
  Perp A B X Y.
 Proof.
@@ -993,7 +993,7 @@ Proof.
           assert(Col O A C').
             eapply (col_transitivity_1 _ C); Col.
           eapply (col_transitivity_1 _ C'); Col.
-        assert(exists a, Q_CongA_Acute a /\ Lcos ll lb a /\ Lcos ll' lc a).
+        assert(exists a, 锐角谓词 a /\ Lcos ll lb a /\ Lcos ll' lc a).
           induction(两点重合的决定性 B L).
             subst L.
             assert(C = L').
@@ -1027,11 +1027,11 @@ Proof.
             apply(l6_21 O C C' B B L); Col.
             intro.
             subst C'.
-            unfold Perp_at in H17.
+            unfold 垂直于 in H17.
             tauto.
           Perp.
         ex_and H52 l'.
-        assert(exists a, Q_CongA_Acute a /\ Lcos ll lc' a /\ Lcos ll' lb' a).
+        assert(exists a, 锐角谓词 a /\ Lcos ll lc' a /\ Lcos ll' lb' a).
           induction(两点重合的决定性 C' L).
             subst L.
             assert(B' = L').
@@ -1066,11 +1066,11 @@ Proof.
             apply(l6_21 O B' B C' C' L); Col.
             intro.
             subst C'.
-            unfold Perp_at in H17.
+            unfold 垂直于 in H17.
             tauto.
           Perp.
         ex_and H55 l.
-        assert(exists a, Q_CongA_Acute a /\ Lcos lm lc a /\ Lcos lm' la a).
+        assert(exists a, 锐角谓词 a /\ Lcos lm lc a /\ Lcos lm' la a).
           induction (两点重合的决定性 C M).
             subst M.
             assert(A = M').
@@ -1104,11 +1104,11 @@ Proof.
             apply(l6_21 O A A' C C M); Col.
             intro.
             subst A'.
-            unfold Perp_at in H22.
+            unfold 垂直于 in H22.
             tauto.
           Perp.
         ex_and H58 m'.
-        assert(exists a, Q_CongA_Acute a /\ Lcos lm la' a /\ Lcos lm' lc' a).
+        assert(exists a, 锐角谓词 a /\ Lcos lm la' a /\ Lcos lm' lc' a).
           induction(两点重合的决定性 A' M).
             subst M.
             assert(C' = M').
@@ -1147,12 +1147,12 @@ Proof.
             apply(l6_21 O C' C A' A' M); Col.
             intro.
             subst A'.
-            unfold Perp_at in H22.
+            unfold 垂直于 in H22.
             tauto.
           Perp.
         ex_and H61 m.
-        assert(exists a, Q_CongA_Acute a /\ Lcos ln la a).
-          assert(exists a, Q_CongA_Acute a /\ a A O N).
+        assert(exists a, 锐角谓词 a /\ Lcos ln la a).
+          assert(exists a, 锐角谓词 a /\ a A O N).
             apply(anga_exists A O N).
               intro.
               subst A.
@@ -1200,8 +1200,8 @@ Proof.
             Col.
           apply anga_sym; auto.
         ex_and H64 n'.
-        assert(exists a, Q_CongA_Acute a /\ Lcos ln lb' a).
-          assert(exists a, Q_CongA_Acute a /\ a B' O N).
+        assert(exists a, 锐角谓词 a /\ Lcos ln lb' a).
+          assert(exists a, 锐角谓词 a /\ a B' O N).
             apply(anga_exists B' O N).
               intro.
               subst B'.
@@ -1269,7 +1269,7 @@ Proof.
         assert(exists lp, Lcos lp lb n').
           apply(lcos_exists lb n'); auto.
           intro.
-          unfold Q_Cong_Null in H73.
+          unfold 零长谓词 in H73.
           spliter.
           ex_and H74 X.
           apply H0.
@@ -1280,7 +1280,7 @@ Proof.
         assert(exists lp, Lcos lp ll n').
           apply(lcos_exists ll n'); auto.
           intro.
-          unfold Q_Cong_Null in H73.
+          unfold 零长谓词 in H73.
           spliter.
           ex_and H75 X.
           apply H48.
@@ -1303,7 +1303,7 @@ Proof.
           unfold Lcos2.
           exists bn'.
           split; auto.
-        assert(EqL bl'n' bn'l').
+        assert(谓词等长 bl'n' bn'l').
           apply lcos2_comm in H77.
           apply (lcos2_uniqueness lb _ _ l' n'); auto.
         apply lcos_lg_anga in H75.
@@ -1445,7 +1445,7 @@ Proof.
             assert(HH:=lcos_lg_not_null ln' lb n' H85).
             spliter.
             apply H96.
-            unfold Q_Cong_Null.
+            unfold 零长谓词.
             split; auto.
             exists O.
             auto.
@@ -1456,7 +1456,7 @@ Proof.
 (*************** we prove (Per O N' B) using Lcos ln' lb n'  ********************)        
             assert(Per O N' B).
             apply(lcos_per O N' B ln' lb n'); auto.
-            assert(CongA N O A B O N').
+            assert(等角 N O A B O N').
 (*************** pair of vertical angles (angles opposés par Le sommet) ********************)  
               apply(l11_13 N' O A A O N' N B ); Between.
               apply conga_left_comm.
@@ -1467,7 +1467,7 @@ Proof.
 (*************** we prove (Per O N' A') usinglcos ln' la' n  ********************) 
           assert(Per O N' A').
             apply(lcos_per O N' A' ln' la' n); auto.
-            assert(CongA N O B' A' O N').
+            assert(等角 N O B' A' O N').
               apply(l11_13 N' O B' B' O N' N A' ); Between.
                 apply conga_left_comm.
                 apply conga_refl; auto.
@@ -1509,7 +1509,7 @@ Proof.
 (*************** we prove (Per O N' B) using Lcos ln' lb n'  ********************)
           assert(Per O N' B).
             apply(lcos_per O N' B ln' lb n'); auto.
-            assert(CongA A O N B O N').
+            assert(等角 A O N B O N').
               apply out2__conga; auto.
               apply l6_6.
               auto.
@@ -1519,7 +1519,7 @@ Proof.
 (*************** we prove (Per O N' A) using Lcos ln' la' n  ********************)
           assert(Per O N' A').
             apply(lcos_per O N' A' ln' la' n); auto.
-            assert(CongA B' O N A' O N').
+            assert(等角 B' O N A' O N').
               apply out2__conga; auto.
                 apply (l13_10_aux5 A B C A' B' C'); Col.
             apply (anga_conga_anga n B' O N); auto.
@@ -1571,7 +1571,7 @@ Section Pappus_Pascal_2.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
-Lemma cop_par__perp2 : forall A B C D P, Coplanar A B C P -> Par A B C D -> Perp2 A B C D P.
+Lemma cop_par__perp2 : forall A B C D P, 共面 A B C P -> Par A B C D -> Perp2 A B C D P.
 Proof.
     intros.
     apply par_distincts in H0.
@@ -1604,8 +1604,8 @@ Lemma l13_11 : forall A B C A' B' C' O,
   Par A B' B A'.
 Proof.
     intros.
-    assert (Coplanar B C' C O) by Cop.
-    assert (Coplanar C A' A O) by (apply coplanar_perm_1, col_cop__cop with B; Col; Cop).
+    assert (共面 B C' C O) by Cop.
+    assert (共面 C A' A O) by (apply coplanar_perm_1, col_cop__cop with B; Col; Cop).
     assert(HH:=cop_par__perp2 B C' C B' O H10 H8).
     assert(HP:=cop_par__perp2 C A' A C' O H11 H9).
     assert(HQ : Perp2 A B' B A' O).
@@ -1613,10 +1613,10 @@ Proof.
     ex_and HQ X.
     ex_and H12 Y.
     assert_diffs.
-    assert (Coplanar O A A' X).
+    assert (共面 O A A' X).
       apply coplanar_perm_13, col_cop__cop with B'; Col.
       apply coplanar_perm_3, col_cop__cop with Y; Col; Cop.
-    assert (Coplanar O A A' Y).
+    assert (共面 O A A' Y).
       apply coplanar_perm_13, col_cop__cop with B'; Col.
       apply coplanar_perm_3, col_cop__cop with X; Col; Cop.
     apply l12_9 with X Y; Perp; apply coplanar_pseudo_trans with O A A'; Cop.
@@ -1624,13 +1624,13 @@ Qed.
 
 
 Lemma l13_14 : forall O A B C O' A' B' C',
-  Par_strict O A O' A' -> Col O A B -> Col O B C -> Col O A C ->
+  严格平行 O A O' A' -> Col O A B -> Col O B C -> Col O A C ->
   Col O' A' B' -> Col O' B' C' -> Col O' A' C' ->
   Par A C' A' C -> Par B C' B' C -> Par A B' A' B.
 Proof.
     intros.
     assert(HP:= H).
-    unfold Par_strict in HP.
+    unfold 严格平行 in HP.
     spliter.
     assert (O <> A) by (apply par_strict_distinct in H; spliter; auto).
     assert (O' <> A') by (apply par_strict_distinct in H; spliter; auto).
@@ -1674,7 +1674,7 @@ Proof.
       spliter.
       apply H13.
       eapply (l6_21 A A' O A); Col.
-    assert(Par_strict A C A' C').
+    assert(严格平行 A C A' C').
       split.
         Cop.
       intro.
@@ -1736,7 +1736,7 @@ Proof.
         Col.
         Col.
         Col.
-    assert(Par_strict B C B' C').
+    assert(严格平行 B C B' C').
       split.
         Cop.
       intro.

@@ -29,7 +29,7 @@ Proof.
   destruct(由一点往一方向构造等长线段_3 A3 B3 A1 B1) as [B'3 []]; auto.
   assert_diffs.
   assert(B3 = B'3); [|subst; assumption].
-  assert(Par_strict B1 B2 A1 A3).
+  assert(严格平行 B1 B2 A1 A3).
   { apply (par_strict_col_par_strict _ _ _ A2); auto.
     apply par_strict_symmetry.
     apply sac__pars1423; assumption.
@@ -37,7 +37,7 @@ Proof.
   apply (l6_21 B1 B2 A3 B3); Col.
     apply (par_strict_not_col_4 _ _ A1); auto.
   apply col_permutation_2.
-  assert (Coplanar A1 B2 B'3 B1).
+  assert (共面 A1 B2 B'3 B1).
   { apply coplanar_perm_15, coplanar_trans_1 with A3.
       apply not_col_permutation_2, par_strict_not_col_4 with A1; assumption.
       apply coplanar_perm_18, pars__coplanar; assumption.

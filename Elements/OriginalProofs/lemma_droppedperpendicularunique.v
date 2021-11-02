@@ -46,10 +46,10 @@ assert (~ neq M J).
  assert (Per F M P) by (conclude lemma_collinearright).
  assert (BetS F M E) by (conclude axiom_betweennesssymmetry).
  assert (Cong F P E P) by (conclude lemma_rightreverse).
- assert (Midpoint F J E) by (conclude lemma_altitudebisectsbase).
+ assert (中点 F J E) by (conclude lemma_altitudebisectsbase).
  assert (BetS F M E) by (conclude axiom_betweennesssymmetry).
  assert (Cong F M M E) by (forward_using lemma_congruenceflip).
- assert (Midpoint F M E) by (conclude_def Midpoint ).
+ assert (中点 F M E) by (conclude_def 中点 ).
  assert (eq J M) by (conclude lemma_midpointunique).
  contradict.
  }

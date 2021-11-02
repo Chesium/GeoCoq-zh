@@ -27,8 +27,8 @@ assert (nCol A B C) by (conclude lemma_rightangleNC).
 assert (Supp A B C C D) by (conclude_def Supp ).
 assert (Out B A A) by (conclude lemma_ray4).
 assert (Supp C B A A E) by (conclude_def Supp ).
-assert (CongA A B C C B A) by (conclude lemma_ABCequalsCBA).
-assert (CongA C B D A B E) by (conclude lemma_supplements).
+assert (等角 A B C C B A) by (conclude lemma_ABCequalsCBA).
+assert (等角 C B D A B E) by (conclude lemma_supplements).
 assert (Cong B C B E) by (conclude lemma_congruencesymmetric).
 assert (Cong B D B A) by (forward_using lemma_doublereverse).
 assert (~ Col E B A).
@@ -48,9 +48,9 @@ assert (~ Col A B E).
  assert (Col E B A) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA A B E E B A) by (conclude lemma_ABCequalsCBA).
-assert (CongA C B D E B A) by (conclude lemma_equalanglestransitive).
-assert ((Cong C D E A /\ CongA B C D B E A /\ CongA B D C B A E)) by (conclude proposition_04).
+assert (等角 A B E E B A) by (conclude lemma_ABCequalsCBA).
+assert (等角 C B D E B A) by (conclude lemma_equalanglestransitive).
+assert ((Cong C D E A /\ 等角 B C D B E A /\ 等角 B D C B A E)) by (conclude proposition_04).
 assert (Cong A C C D) by (forward_using lemma_congruenceflip).
 assert (Cong A C E A) by (conclude lemma_congruencetransitive).
 assert (Cong C A E A) by (forward_using lemma_congruenceflip).

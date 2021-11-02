@@ -8,14 +8,14 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma lemma_angleaddition : 
    forall A B C D E F P Q R a b c d e f p q r, 
-   SumA A B C D E F P Q R -> CongA A B C a b c -> CongA D E F d e f -> SumA a b c d e f p q r ->
-   CongA P Q R p q r.
+   SumA A B C D E F P Q R -> 等角 A B C a b c -> 等角 D E F d e f -> SumA a b c d e f p q r ->
+   等角 P Q R p q r.
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists S, (CongA A B C P Q S /\ CongA D E F S Q R /\ BetS P S R)) by (conclude_def SumA );destruct Tf as [S];spliter.
+assert (Tf:exists S, (等角 A B C P Q S /\ 等角 D E F S Q R /\ BetS P S R)) by (conclude_def SumA );destruct Tf as [S];spliter.
 let Tf:=fresh in
-assert (Tf:exists s, (CongA a b c p q s /\ CongA d e f s q r /\ BetS p s r)) by (conclude_def SumA );destruct Tf as [s];spliter.
+assert (Tf:exists s, (等角 a b c p q s /\ 等角 d e f s q r /\ BetS p s r)) by (conclude_def SumA );destruct Tf as [s];spliter.
 assert (nCol P Q S) by (conclude lemma_equalanglesNC).
 assert (nCol S Q R) by (conclude lemma_equalanglesNC).
 assert (neq Q P) by (forward_using lemma_NCdistinct).
@@ -32,20 +32,20 @@ rename_H H;let Tf:=fresh in
 assert (Tf:exists H, (Out q s H /\ Cong q H Q S)) by (conclude lemma_layoff);destruct Tf as [H];spliter.
 let Tf:=fresh in
 assert (Tf:exists K, (Out q r K /\ Cong q K Q R)) by (conclude lemma_layoff);destruct Tf as [K];spliter.
-assert (CongA P Q S A B C) by (conclude lemma_equalanglessymmetric).
-assert (CongA P Q S a b c) by (conclude lemma_equalanglestransitive).
-assert (CongA P Q S p q s) by (conclude lemma_equalanglestransitive).
-assert (CongA P Q S G q H) by (conclude lemma_equalangleshelper).
-assert (CongA S Q R D E F) by (conclude lemma_equalanglessymmetric).
-assert (CongA S Q R d e f) by (conclude lemma_equalanglestransitive).
-assert (CongA S Q R s q r) by (conclude lemma_equalanglestransitive).
-assert (CongA S Q R H q K) by (conclude lemma_equalangleshelper).
+assert (等角 P Q S A B C) by (conclude lemma_equalanglessymmetric).
+assert (等角 P Q S a b c) by (conclude lemma_equalanglestransitive).
+assert (等角 P Q S p q s) by (conclude lemma_equalanglestransitive).
+assert (等角 P Q S G q H) by (conclude lemma_equalangleshelper).
+assert (等角 S Q R D E F) by (conclude lemma_equalanglessymmetric).
+assert (等角 S Q R d e f) by (conclude lemma_equalanglestransitive).
+assert (等角 S Q R s q r) by (conclude lemma_equalanglestransitive).
+assert (等角 S Q R H q K) by (conclude lemma_equalangleshelper).
 assert (nCol G q H) by (conclude lemma_equalanglesNC).
-assert (CongA G q H P Q S) by (conclude lemma_equalanglessymmetric).
-assert ((Cong G H P S /\ CongA q G H Q P S /\ CongA q H G Q S P)) by (conclude proposition_04).
-assert (CongA H q K S Q R) by (conclude lemma_equalanglessymmetric).
-assert ((Cong H K S R /\ CongA q H K Q S R /\ CongA q K H Q R S)) by (conclude proposition_04).
-assert (CongA G H q P S Q) by (conclude lemma_equalanglesflip).
+assert (等角 G q H P Q S) by (conclude lemma_equalanglessymmetric).
+assert ((Cong G H P S /\ 等角 q G H Q P S /\ 等角 q H G Q S P)) by (conclude proposition_04).
+assert (等角 H q K S Q R) by (conclude lemma_equalanglessymmetric).
+assert ((Cong H K S R /\ 等角 q H K Q S R /\ 等角 q K H Q R S)) by (conclude proposition_04).
+assert (等角 G H q P S Q) by (conclude lemma_equalanglesflip).
 assert (eq Q Q) by (conclude cn_equalityreflexive).
 assert (neq S Q) by (forward_using lemma_NCdistinct).
 assert (Out S Q Q) by (conclude lemma_ray4).
@@ -89,7 +89,7 @@ assert (nCol P Q R) by (forward_using lemma_NCorder).
 assert (Cong Q P q G) by (conclude lemma_congruencesymmetric).
 assert (Cong Q R q K) by (conclude lemma_congruencesymmetric).
 assert (Cong P R G K) by (conclude lemma_congruencesymmetric).
-assert (CongA P Q R p q r) by (conclude_def CongA ).
+assert (等角 P Q R p q r) by (conclude_def 等角 ).
 close.
 Qed.
 

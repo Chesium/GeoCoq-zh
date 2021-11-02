@@ -5,7 +5,7 @@ Section HalfAngle.
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 
-Definition HalfA P A O B := ~ Bet A O B /\ InAngle P A O B /\ CongA A O P B O P.
+Definition HalfA P A O B := ~ Bet A O B /\ 在角内 P A O B /\ 等角 A O P B O P.
 
 Lemma halfa_distincts : forall P A O B, HalfA P A O B -> O <> A /\ O <> B /\ O <> P.
 Proof.
@@ -22,7 +22,7 @@ Proof.
   intros P A O B H.
   spliter.
   assert_diffs.
-  apply (conga3_suma__suma A O P B O P A O B); [SumA|CongA..].
+  apply (conga3_suma__suma A O P B O P A O B); [SumA|等角..].
 Qed.
 
 Lemma halfa_exists : forall A O B, ~ Bet A O B -> exists P, HalfA P A O B.
@@ -85,7 +85,7 @@ Qed.
 
 
 Lemma halfa_chara1 : forall P A O B, HalfA P A O B -> 
-  exists A', exists M, Cong O A' O A /\ Out O A' B /\ Midpoint M A A' /\ Out O M P.
+  exists A', exists M, Cong O A' O A /\ Out O A' B /\ 中点 M A A' /\ Out O M P.
 Proof.
   unfold HalfA.
   intros P A O B H.
@@ -106,7 +106,7 @@ Proof.
     treat_equalities.
     apply in_angle_out with B; trivial.
   }
-  assert (InAngle M A O B).
+  assert (在角内 M A O B).
   { assert_diffs.
     assert (O <> M).
     { intro.
@@ -131,7 +131,7 @@ Proof.
 Qed.
 
 Lemma halfa_chara2 : forall P A O B,
-  (exists A', exists M, Cong O A' O A /\ Out O A' B /\ Midpoint M A A' /\ Out O M P) -> HalfA P A O B.
+  (exists A', exists M, Cong O A' O A /\ Out O A' B /\ 中点 M A A' /\ Out O M P) -> HalfA P A O B.
 Proof.
   intros P A O B H.
   destruct H as [A' [M [HCong [HOut [HM1 HM2]]]]].
@@ -193,8 +193,8 @@ Qed.
 
 Lemma halfa1123__out : forall A O B, HalfA A A O B -> Out O A B.
 Proof.
-  intros A O B [_ [_ HCongA]].
-  apply eq_conga_out with A O; CongA.
+  intros A O B [_ [_ H等角]].
+  apply eq_conga_out with A O; 等角.
 Qed.
 
 Lemma halfa3123__out : forall A O B, HalfA B A O B -> Out O A B.
@@ -209,10 +209,10 @@ Proof.
   intros P A O B H.
   spliter.
   assert_diffs.
-  apply (conga2_sams__sams A O P P O B); [CongA..|SumA].
+  apply (conga2_sams__sams A O P P O B); [等角..|SumA].
 Qed.
 
-Lemma halfa__acute : forall P A O B, HalfA P A O B -> Acute A O P.
+Lemma halfa__acute : forall P A O B, HalfA P A O B -> 为锐角 A O P.
 Proof.
   intros P A O B HHalfa.
   apply nbet_sams_suma__acute with A O B.
@@ -221,7 +221,7 @@ Proof.
     apply halfa__suma; assumption.
 Qed.
 
-Lemma halfa__lea : forall P A O B, HalfA P A O B -> LeA A O P A O B.
+Lemma halfa__lea : forall P A O B, HalfA P A O B -> 角度小于等于 A O P A O B.
 Proof.
   unfold HalfA.
   intros.
@@ -230,7 +230,7 @@ Proof.
 Qed.
 
 Lemma halfa2_lea__lea1 : forall P A O B P' A' O' B',
-  HalfA P A O B -> HalfA P' A' O' B' -> LeA A' O' P' A O P -> LeA A' O' B' A O B.
+  HalfA P A O B -> HalfA P' A' O' B' -> 角度小于等于 A' O' P' A O P -> 角度小于等于 A' O' B' A O B.
 Proof.
   intros P A O B P' A' O' B' HP HP' HLea.
   apply sams_lea2_suma2__lea with A' O' P' A' O' P' A O P A O P; trivial.
@@ -252,8 +252,8 @@ Qed.
 
 Lemma conga_halfa__conga1 : forall P A O B P' A' O' B', 
  HalfA P A O B -> HalfA P' A' O' B' ->
- CongA A O P A' O' P' -> 
- CongA A O B A' O' B'.
+ 等角 A O P A' O' P' -> 
+ 等角 A O B A' O' B'.
 Proof.
   intros P A O B P' A' O' B' HP HP' HConga.
   apply (suma2__conga A O P A O P).
@@ -261,12 +261,12 @@ Proof.
   assert (Hd := HP').
   apply halfa_distincts in Hd.
   spliter.
-  apply (conga3_suma__suma A' O' P' A' O' P' A' O' B'); [|CongA..].
+  apply (conga3_suma__suma A' O' P' A' O' P' A' O' B'); [|等角..].
   apply halfa__suma; assumption.
 Qed.
 
 Lemma conga_halfa__conga2 : forall P A O B P' A' O' B', 
- HalfA P A O B -> HalfA P' A' O' B' -> CongA A O B A' O' B' -> CongA A O P A' O' P'.
+ HalfA P A O B -> HalfA P' A' O' B' -> 等角 A O B A' O' B' -> 等角 A O P A' O' P'.
 Proof.
   intros P A O B P' A' O' B' HP HP' HConga.
   apply sams2_suma2__conga with A O B.
@@ -275,11 +275,11 @@ Proof.
     apply halfa__sams with B'; assumption.
   apply halfa__suma in HP'.
   assert_diffs.
-  apply (conga3_suma__suma A' O' P' A' O' P' A' O' B'); CongA.
+  apply (conga3_suma__suma A' O' P' A' O' P' A' O' B'); 等角.
 Qed.
 
 Lemma halfa2_lta__lta1 : forall P A O B P' A' O' B',
-  HalfA P A O B -> HalfA P' A' O' B' -> LtA A' O' P' A O P -> LtA A' O' B' A O B.
+  HalfA P A O B -> HalfA P' A' O' B' -> 角度小于 A' O' P' A O P -> 角度小于 A' O' B' A O B.
 Proof.
   intros P A O B P' A' O' B' HP HP' [HLea HNCong].
   split.
@@ -290,9 +290,9 @@ Proof.
 Qed.
 
 Lemma halfa2_lea__lea2 : forall P A O B P' A' O' B',
-  HalfA P A O B -> HalfA P' A' O' B' -> LeA A' O' B' A O B -> LeA A' O' P' A O P.
+  HalfA P A O B -> HalfA P' A' O' B' -> 角度小于等于 A' O' B' A O B -> 角度小于等于 A' O' P' A O P.
 Proof.
-  intros P A O B P' A' O' B' HP HP' HLeA.
+  intros P A O B P' A' O' B' HP HP' H角度小于等于.
   assert (Hd := HP).
   apply halfa_distincts in Hd.
   assert (Hd' := HP').
@@ -306,7 +306,7 @@ Proof.
 Qed.
 
 Lemma halfa2_lta__lta2 : forall P A O B P' A' O' B',
-  HalfA P A O B -> HalfA P' A' O' B' -> LtA A' O' B' A O B -> LtA A' O' P' A O P.
+  HalfA P A O B -> HalfA P' A' O' B' -> 角度小于 A' O' B' A O B -> 角度小于 A' O' P' A O P.
 Proof.
   intros P A O B P' A' O' B' HP HP' [HLea HNCong].
   split.
@@ -325,7 +325,7 @@ Proof.
 Qed.
 
 (*
-Lemma lta_nbet__ncol : forall A B C X Y Z, ~ Bet X Y Z -> LtA A B C X Y Z -> ~ Col X Y Z.
+Lemma lta_nbet__ncol : forall A B C X Y Z, ~ Bet X Y Z -> 角度小于 A B C X Y Z -> ~ Col X Y Z.
 Proof.
   intros A B C X Y Z HNBet HLta HCol.
   apply HNBet.
@@ -334,7 +334,7 @@ Qed.
 *)
 
 Lemma halfa__coplanar : forall A B C D, 
-  HalfA A B C D -> Coplanar A B C D.
+  HalfA A B C D -> 共面 A B C D.
 Proof.
   unfold HalfA.
   intros.
@@ -342,7 +342,7 @@ Proof.
   apply inangle__coplanar; assumption.
 Qed.
 
-Lemma cop_halfa_perp__os : forall P A O B T, HalfA P A O B -> Perp O P T O -> Coplanar A O P T ->
+Lemma cop_halfa_perp__os : forall P A O B T, HalfA P A O B -> Perp O P T O -> 共面 A O P T ->
   OS O T P A.
 Proof.
   intros P A O B T HP HPerp HCop.
@@ -352,7 +352,7 @@ Proof.
     Cop.
 Qed.
 
-Lemma cop_halfa_perp__os2 : forall P A O B T, HalfA P A O B -> Perp O P T O -> Coplanar A O P T ->
+Lemma cop_halfa_perp__os2 : forall P A O B T, HalfA P A O B -> Perp O P T O -> 共面 A O P T ->
   OS O T P A /\ OS O T P B.
 Proof.
   intros P A O B T HP HPerp HCop.
@@ -371,9 +371,9 @@ Proof.
 Qed.
 
 Lemma inangle_halfa2__inangle : forall O A B C A' C',
-  ~ Col A O B -> InAngle C A O B ->
+  ~ Col A O B -> 在角内 C A O B ->
   HalfA A' A O B -> HalfA C' C O B ->
-  InAngle C' A' O B.
+  在角内 C' A' O B.
 Proof.
   intros O A B C A' C' HNCol HC HA' HC'.
   apply halfa_sym in HA'.
@@ -395,7 +395,7 @@ Proof.
     destruct HC' as [_ []]; Col.
 Qed.
 
-Definition gHalfA A' O' B' A O B := exists P, HalfA P A O B /\ CongA A' O' B' A O P.
+Definition gHalfA A' O' B' A O B := exists P, HalfA P A O B /\ 等角 A' O' B' A O P.
 
 Lemma ghalfa_distincts : forall A' O' B' A O B, gHalfA A' O' B' A O B ->
   O' <> A' /\ O' <> B' /\ O <> A /\ O <> B.
@@ -422,7 +422,7 @@ Lemma ghalfa_left_comm : forall A' O' B' A O B, gHalfA A' O' B' A O B ->
 Proof.
   intros A' O' B' A O B [P [HP]].
   exists P.
-  split; CongA.
+  split; 等角.
 Qed.
 
 Lemma ghalfa_right_comm : forall A' O' B' A O B, gHalfA A' O' B' A O B ->
@@ -433,7 +433,7 @@ Proof.
   split; [split; [|split]|].
     Between.
     apply l11_24, HP1.
-    CongA.
+    等角.
     apply conga_trans with A O P; assumption.
 Qed.
 
@@ -460,25 +460,25 @@ Proof.
   assert (Hd := HHalf).
   apply halfa_distincts in HHalf.
   spliter.
-  apply (conga3_suma__suma A O P A O P A O B); [|CongA..].
+  apply (conga3_suma__suma A O P A O P A O B); [|等角..].
   apply halfa__suma; assumption.
 Qed.
 
 Lemma ghalfa__acute : forall A' O' B' A O B, gHalfA A' O' B' A O B ->
-  Acute A' O' B'.
+  为锐角 A' O' B'.
 Proof.
   intros A' O' B' A O B [P [HHalf HConga]].
-  apply (acute_conga__acute A O P); CongA.
+  apply (acute_conga__acute A O P); 等角.
   apply halfa__acute with B, HHalf.
 Qed.
 
 Lemma ghalfa_chara : forall A' O' B' A O B,
-  gHalfA A' O' B' A O B <-> (Acute A' O' B' /\ SumA A' O' B' A' O' B' A O B).
+  gHalfA A' O' B' A O B <-> (为锐角 A' O' B' /\ SumA A' O' B' A' O' B' A O B).
 Proof.
   intros A' O' B' A O B.
   split.
     intro HHalf; split; [eapply ghalfa__acute, HHalf|apply ghalfa__suma, HHalf].
-  intros [HAcute HSuma].
+  intros [H为锐角 HSuma].
   destruct (halfa_exists A O B) as [P HP].
     apply (acute_suma__nbet A' O' B'); assumption.
   exists P; split; [assumption|].
@@ -495,18 +495,18 @@ Proof.
 Qed.
 
 Lemma ghalfa_preserves_lta : forall A B C X Y Z A' B' C' X' Y' Z',
-  gHalfA A' B' C' A B C -> gHalfA X' Y' Z' X Y Z -> LtA A B C X Y Z -> LtA A' B' C' X' Y' Z'.
+  gHalfA A' B' C' A B C -> gHalfA X' Y' Z' X Y Z -> 角度小于 A B C X Y Z -> 角度小于 A' B' C' X' Y' Z'.
 Proof.
   intros A B C X Y Z A' B' C' X' Y' Z' [P1 []] [P2 []] HLta.
-  apply (conga_preserves_lta A B P1 X Y P2); [CongA..|].
+  apply (conga_preserves_lta A B P1 X Y P2); [等角..|].
   apply halfa2_lta__lta2 with Z C; assumption.
 Qed.
 
 (** Given two angles a and b, a/2 = b/2 -> a = b *)
 
 Lemma ghalfa_preserves_conga_1 : forall A B C A' B' C' X Y Z X' Y' Z', 
-  gHalfA X Y Z A B C -> gHalfA X' Y' Z' A' B' C' -> CongA X Y Z X' Y' Z' ->
-  CongA A B C A' B' C'.
+  gHalfA X Y Z A B C -> gHalfA X' Y' Z' A' B' C' -> 等角 X Y Z X' Y' Z' ->
+  等角 A B C A' B' C'.
 Proof.
   intros A B C A' B' C' X Y Z X' Y' Z' [P []] [P' []] HConga.
   apply conga_halfa__conga1 with P P'; [assumption..|].
@@ -518,8 +518,8 @@ Qed.
 (** Given two angles a and b, a = b -> a/2 = b/2 *)
 
 Lemma ghalfa_preserves_conga_2 : forall A B C A' B' C' X Y Z X' Y' Z',
-  gHalfA X Y Z A B C -> gHalfA X' Y' Z' A' B' C' -> CongA A B C A' B' C' ->
-  CongA X Y Z X' Y' Z'.
+  gHalfA X Y Z A B C -> gHalfA X' Y' Z' A' B' C' -> 等角 A B C A' B' C' ->
+  等角 X Y Z X' Y' Z'.
 Proof.
   intros A B C A' B' C' X Y Z X' Y' Z' [P []] [P' []] HConga.
   apply conga_trans with A B P.
@@ -531,36 +531,36 @@ Qed.
 (** Unicity of the double angle *)
 
 Lemma ghalfa2__conga_1 : forall A B C A' B' C' A'' B'' C'',
-  gHalfA A B C A' B' C' -> gHalfA A B C A'' B'' C'' -> CongA A' B' C' A'' B'' C''.
+  gHalfA A B C A' B' C' -> gHalfA A B C A'' B'' C'' -> 等角 A' B' C' A'' B'' C''.
 Proof.
   intros A B C A' B' C' A'' B'' C''.
   rewrite 2 ghalfa_chara.
-  intros [HAcute' HSuma'] [HAcute'' HSuma''].
+  intros [H为锐角' HSuma'] [H为锐角'' HSuma''].
   apply (suma2__conga A B C A B C); assumption.
 Qed.
 
 (** Unicity of the half angle *)
 
 Lemma ghalfa2__conga_2 : forall A B C A' B' C' A'' B'' C'',
-  gHalfA A' B' C' A B C -> gHalfA A'' B'' C'' A B C -> CongA A' B' C' A'' B'' C''.
+  gHalfA A' B' C' A B C -> gHalfA A'' B'' C'' A B C -> 等角 A' B' C' A'' B'' C''.
 Proof.
   intros A B C A' B' C' A'' B'' C'' [P' []] [P'' []].
   apply conga_trans with A B P'; [assumption|].
-  apply conga_trans with A B P''; [|CongA].
+  apply conga_trans with A B P''; [|等角].
   apply out2__conga.
     apply out_trivial; assert_diffs; auto.
   apply halfa_uniqueness with A C; assumption.
 Qed.
 
-(** CongA preserves gHalfA *)
+(** 等角 preserves gHalfA *)
 
 Lemma conga2_ghalfa__ghalfa : forall A B C A' B' C' D E F D' E' F',
-  CongA A B C D E F -> CongA A' B' C' D' E' F' -> gHalfA A B C A' B' C' ->
+  等角 A B C D E F -> 等角 A' B' C' D' E' F' -> gHalfA A B C A' B' C' ->
   gHalfA D E F D' E' F'.
 Proof.
   intros A B C A' B' C' D E F D' E' F' HConga HConga1.
   rewrite 2 ghalfa_chara.
-  intros [HAcute HSuma].
+  intros [H为锐角 HSuma].
   split.
     apply (acute_conga__acute A B C); assumption.
     apply (conga3_suma__suma A B C A B C A' B' C'); assumption.
@@ -579,15 +579,15 @@ Qed.
 (** Given two angles a and b such that a/2 + b/2 is acute, a/2 + b/2 = (a+b)/2 *)
 
 Lemma suma_preserves_ghalfa : forall A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z',
-  Acute X Y Z ->
+  为锐角 X Y Z ->
   SumA A B C D E F X Y Z -> SumA A' B' C' D' E' F' X' Y' Z' ->
   gHalfA A B C A' B' C' -> gHalfA D E F D' E' F' ->
   gHalfA X Y Z X' Y' Z'.
 Proof.
-  intros A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z' HAcute HSuma HSuma'.
+  intros A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z' H为锐角 HSuma HSuma'.
   rewrite 3 ghalfa_chara.
-  intros [HAcute1 HSuma1] [HAcute2 HSuma2].
-  split; [apply HAcute|].
+  intros [H为锐角1 HSuma1] [H为锐角2 HSuma2].
+  split; [apply H为锐角|].
   assert_diffs.
   destruct (ex_suma A' B' C' D E F) as [G [H [I]]]; auto.
   assert (SumA A B C X Y Z G H I) by (apply suma_assoc_1 with A B C D E F A' B' C'; SumA).
@@ -599,15 +599,15 @@ Qed.
 (** Given two angles a and b, a/2 - b/2 = (a-b)/2 *)
 
 Lemma acute_ghalfa2_sams_suma2__ghalfa456 : forall A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z',
-  SAMS A' B' C' D' E' F' -> Acute D E F ->
+  SAMS A' B' C' D' E' F' -> 为锐角 D E F ->
   SumA A B C D E F X Y Z -> SumA A' B' C' D' E' F' X' Y' Z' ->
   gHalfA A B C A' B' C' -> gHalfA X Y Z X' Y' Z' ->
   gHalfA D E F D' E' F'.
 Proof.
-  intros A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z' HSams HAcute HSuma HSuma'.
+  intros A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z' HSams H为锐角 HSuma HSuma'.
   rewrite 3 ghalfa_chara.
-  intros [HAcute1 HSuma1] [HAcute2 HSuma2].
-  split; [apply HAcute|].
+  intros [H为锐角1 HSuma1] [H为锐角2 HSuma2].
+  split; [apply H为锐角|].
   assert_diffs.
   destruct (ex_suma D E F D E F) as [D'' [E'' [F'' HSuma3]]]; auto.
   apply (conga3_suma__suma D E F D E F D'' E'' F''); try apply conga_refl; auto.
@@ -620,12 +620,12 @@ Proof.
 Qed.
 
 Lemma acute_ghalfa2_sams_suma2__ghalfa123 : forall A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z',
-  SAMS A' B' C' D' E' F' -> Acute A B C ->
+  SAMS A' B' C' D' E' F' -> 为锐角 A B C ->
   SumA A B C D E F X Y Z -> SumA A' B' C' D' E' F' X' Y' Z' ->
   gHalfA D E F D' E' F' -> gHalfA X Y Z X' Y' Z' ->
   gHalfA A B C A' B' C'.
 Proof.
-  intros A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z' HSams HAcute HSuma HSuma' HHalf1 HHalf2.
+  intros A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z' HSams H为锐角 HSuma HSuma' HHalf1 HHalf2.
   apply acute_ghalfa2_sams_suma2__ghalfa456 with D E F X Y Z D' E' F' X' Y' Z'; SumA.
 Qed.
 

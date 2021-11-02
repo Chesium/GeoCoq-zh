@@ -135,9 +135,9 @@ repeat
       apply 中间性的同一律 in H;smart_subst X2
    | H : Le ?X1 ?X2 ?X3 ?X3 |- _ =>
       apply le_zero in H;smart_subst X2
-   | H : Midpoint ?X ?Y ?Y |- _ => apply l7_3 in H; smart_subst Y
-   | H : Midpoint ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
-   | H : Midpoint ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
+   | H : 中点 ?X ?Y ?Y |- _ => apply l7_3 in H; smart_subst Y
+   | H : 中点 ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
+   | H : 中点 ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
    | H : OnCircle ?A ?A ?B |- _ =>
       apply 等长的反向同一性 in H;smart_subst B
    | H : OnCircle ?B ?A ?A |- _ =>
@@ -158,22 +158,22 @@ repeat
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?C ?A |- _ =>
      let T := fresh in assert (T : B=C) by (apply (between_equality_2 A B C); Between);
                        smart_subst A
-   | H : Midpoint ?P ?A ?P1, H2 : Midpoint ?P ?A ?P2 |- _ =>
+   | H : 中点 ?P ?A ?P1, H2 : 中点 ?P ?A ?P2 |- _ =>
      let T := fresh in assert (T := symmetric_point_uniqueness A P P1 P2 H H2); smart_subst P1
-   | H : Midpoint ?A ?P ?X, H2 : Midpoint ?A ?Q ?X |- _ =>
+   | H : 中点 ?A ?P ?X, H2 : 中点 ?A ?Q ?X |- _ =>
      let T := fresh in assert (T := l7_9 P Q A X H H2); smart_subst P
-   | H : Midpoint ?A ?P ?X, H2 : Midpoint ?A ?X ?Q |- _ =>
+   | H : 中点 ?A ?P ?X, H2 : 中点 ?A ?X ?Q |- _ =>
      let T := fresh in assert (T := l7_9_bis P Q A X H H2); smart_subst P
-   | H : Midpoint ?A ?P ?P', H2 : Midpoint ?B ?P ?P' |- _ =>
+   | H : 中点 ?A ?P ?P', H2 : 中点 ?B ?P ?P' |- _ =>
      let T := fresh in assert (T := l7_17 P P' A B H H2); smart_subst A
-   | H : Midpoint ?A ?P ?P', H2 : Midpoint ?B ?P' ?P |- _ =>
+   | H : 中点 ?A ?P ?P', H2 : 中点 ?B ?P' ?P |- _ =>
      let T := fresh in assert (T := l7_17_bis P P' A B H H2); smart_subst A
 end.
 
 Ltac CongR :=
  let tpoint := constr:(Tpoint) in
  let cong := constr:(Cong) in
-   treat_equalities; unfold OnCircle, Midpoint in *; spliter; Cong; Cong_refl tpoint cong.
+   treat_equalities; unfold OnCircle, 中点 in *; spliter; Cong; Cong_refl tpoint cong.
 
 Section Circle_2.
 
@@ -269,7 +269,7 @@ Qed.
 (** If the center of a circle belongs to a chord, then it is the midpoint of the chord. *)
 
 Lemma col_onc2__mid : forall A B U V, U <> V -> OnCircle U A B -> OnCircle V A B ->
-  Col U V A -> Midpoint A U V.
+  Col U V A -> 中点 A U V.
 Proof.
   intros A B U V HUV HU HV HCol.
   split.
@@ -427,7 +427,7 @@ Qed.
 (** The symmetric of a point on a circle relative to the center is also on the circle. *)
 
 Lemma symmetric_oncircle : forall X Y O P, 
- Midpoint O X Y -> OnCircle X O P -> OnCircle Y O P.
+ 中点 O X Y -> OnCircle X O P -> OnCircle Y O P.
 Proof.
 intros.
 apply 等长的传递性 with O X; Cong.
@@ -438,7 +438,7 @@ Qed.
     form a right angle *)
 
 Lemma mid_onc2__per : forall O P U V X,
- OnCircle U O P -> OnCircle V O P -> Midpoint X U V -> Per O X U.
+ OnCircle U O P -> OnCircle V O P -> 中点 X U V -> Per O X U.
 Proof.
 intros.
 unfold Per.
@@ -457,12 +457,12 @@ Qed.
 (** The line from the center of a circle to the midpoint of a chord is perpendicular to the chord. *)
 
 Lemma mid_onc2__perp : forall O P A B X,
- O <> X -> A <> B -> OnCircle A O P -> OnCircle B O P -> Midpoint X A B -> Perp O X A B.
+ O <> X -> A <> B -> OnCircle A O P -> OnCircle B O P -> 中点 X A B -> Perp O X A B.
 Proof.
 intros.
 assert(Per O X A).
 apply (mid_onc2__per O P A B X); auto.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 
 apply per_perp_in in H4; auto.
@@ -480,7 +480,7 @@ Qed.
     then they intersect at the middle of the chord *)
 
 Lemma col_onc2_perp__mid : forall O P A B X,
- O<>X -> A<>B -> Col A B X -> OnCircle A O P -> OnCircle B O P -> Perp O X A B -> Midpoint X A B.
+ O<>X -> A<>B -> Col A B X -> OnCircle A O P -> OnCircle B O P -> Perp O X A B -> 中点 X A B.
 Proof.
   intros O P A B X HOX HAB HCol HAOn HBOn HPerp.
   destruct (midpoint_existence A B) as [M HM].
@@ -527,7 +527,7 @@ Qed.
 (** If two circles intersect, then they intersect on any plane containing the centers *)
 
 Lemma circle_circle_cop : forall A B C D I P, OnCircle I A B -> OnCircle I C D ->
-  exists Z, OnCircle Z A B /\ OnCircle Z C D /\ Coplanar A C P Z.
+  exists Z, OnCircle Z A B /\ OnCircle Z C D /\ 共面 A C P Z.
 Proof.
   intros A B C D I P HI1 HI2.
   destruct (col_dec A C P).
@@ -555,7 +555,7 @@ Qed.
 (** The midpoint of a chord is strictly inside the circle. *)
 
 Lemma onc2_mid__incs : forall O P U V M, 
- U <> V -> OnCircle U O P -> OnCircle V O P -> Midpoint M U V ->
+ U <> V -> OnCircle U O P -> OnCircle V O P -> 中点 M U V ->
  InCircleS M O P.
 Proof.
 intros O P U V M HUV HUOn HVOn HM.
@@ -613,7 +613,7 @@ treat_equalities; tauto.
 Qed.
 
 Lemma onc2_per__mid : forall O P U V M, U <> V -> M <> U ->
- OnCircle U O P -> OnCircle V O P -> Col M U V -> Per O M U -> Midpoint M U V .
+ OnCircle U O P -> OnCircle V O P -> Col M U V -> Per O M U -> 中点 M U V .
 Proof.
 intros.
 assert(HH:=midpoint_existence U V).
@@ -640,23 +640,23 @@ Lemma cong_chord_cong_center : forall O P A B C D M N,
  OnCircle B O P ->
  OnCircle C O P ->
  OnCircle D O P ->
- Midpoint M A B ->
- Midpoint N C D ->
+ 中点 M A B ->
+ 中点 N C D ->
  Cong A B C D ->
  Cong O N O M.
 Proof.
 intros.
 assert(Cong M B N D).
 apply 等长的交换性.
-eapply (cong_cong_half_1 _ _ A _ _ C); Midpoint.
+eapply (cong_cong_half_1 _ _ A _ _ C); 中点.
 Cong.
-unfold Midpoint in *.
+unfold 中点 in *.
 unfold OnCircle in *.
 spliter.
 apply 等长的交换性.
 apply 等长的对称性.
 apply(l4_2 A M B O C N D O).
-unfold IFSC.
+unfold 内五线段形式.
 repeat split; Cong.
 apply (等长的传递性 _ _ O P); Cong.
 apply (等长的传递性 _ _ O P); Cong.
@@ -677,9 +677,9 @@ Lemma cong_chord_cong_center1 : forall O P A B C D M N,
  Cong O N O M.
 Proof.
 intros.
-assert(Midpoint M A B).
+assert(中点 M A B).
 apply(onc2_per__mid O P A B M H H1 H3 H4 H7 H9).
-assert(Midpoint N C D).
+assert(中点 N C D).
 apply(onc2_per__mid O P C D N H0 H2 H5 H6 H8 H10).
 apply (cong_chord_cong_center O P A B C D M N); auto.
 Qed.
@@ -687,7 +687,7 @@ Qed.
 (** Prop 7   **)
 
 Lemma onc_sym__onc : forall O P A B X Y, 
-Bet O A B -> OnCircle A O P -> OnCircle B O P -> OnCircle X O P -> ReflectL X Y A B -> OnCircle Y O P.
+Bet O A B -> OnCircle A O P -> OnCircle B O P -> OnCircle X O P -> 严格对称 X Y A B -> OnCircle Y O P.
 Proof.
 intros.
 unfold OnCircle in *.
@@ -699,7 +699,7 @@ apply 等长的传递性 with O X; Cong.
 Qed.
 
 
-Lemma mid_onc__diam : forall O P A B, OnCircle A O P -> Midpoint O A B -> Diam A B O P.
+Lemma mid_onc__diam : forall O P A B, OnCircle A O P -> 中点 O A B -> Diam A B O P.
 Proof.
   intros O P A B HA HB.
   repeat split; Between.
@@ -730,17 +730,17 @@ apply H.
 unfold Diam in *.
 assert(HP:=midpoint_existence U V).
 ex_and HP O'.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 unfold OnCircle in *.
 assert(Cong O A O B) by (apply 等长的传递性 with O P; Cong).
 assert(Cong A O U O').
-apply(cong_cong_half_1 A O B U O' V); unfold Midpoint; try split; Cong.
+apply(cong_cong_half_1 A O B U O' V); unfold 中点; try split; Cong.
 assert(Cong B O V O').
-apply(cong_cong_half_2 A O B U O' V); unfold Midpoint; try split; Cong.
+apply(cong_cong_half_2 A O B U O' V); unfold 中点; try split; Cong.
 apply(l4_13 O A B).
 Col.
-unfold Cong_3.
+unfold 三角形全等.
 repeat split; Cong; apply 等长的传递性 with O P; Cong.
 Qed.
 
@@ -789,8 +789,8 @@ assert(Col A O X) by ColR.
 assert(HH:= l7_20 O A X H11 H10).
 induction HH.
 auto.
-assert(Midpoint O A B).
-unfold Midpoint; split; trivial.
+assert(中点 O A B).
+unfold 中点; split; trivial.
 apply 等长的传递性 with O P; Cong.
 apply False_ind.
 apply H5.
@@ -844,7 +844,7 @@ induction H13.
 assert(Bet O X T).
 {
   apply(l4_6 O A T O X T); auto.
-  unfold Cong_3.
+  unfold 三角形全等.
   repeat split; Cong.
 }
 apply False_ind.
@@ -853,7 +853,7 @@ apply(between_cong_2 O T); Cong.
 assert(Bet O T X).
 {
   apply(l4_6 O T A O T X); auto.
-  unfold Cong_3.
+  unfold 三角形全等.
   repeat split; Cong.
 }
 apply False_ind.
@@ -931,11 +931,11 @@ apply H0; Cong.
 
 assert(Lt A O A B /\ Lt B O A B).
 {
-  assert (Midpoint O A B).
+  assert (中点 O A B).
     split; [assumption|apply 等长的传递性 with O P; Cong].
   split.
   apply(mid__lt ); assert_diffs;auto.
-  assert (Lt B O B A) by (assert_diffs; apply mid__lt; Midpoint).
+  assert (Lt B O B A) by (assert_diffs; apply mid__lt; 中点).
   auto using lt_right_comm.
 }
 spliter.
@@ -1098,18 +1098,18 @@ intros.
 unfold Diam.
 split; Circle.
 assert(Cong O A O B) by (apply 等长的传递性 with O P; Cong).
-assert(A = B \/ Midpoint O A B) by (apply(l7_20 O A B); Col).
+assert(A = B \/ 中点 O A B) by (apply(l7_20 O A B); Col).
 induction H4.
 contradiction.
 Between.
 Qed.
 
-Lemma diam__midpoint: forall O P A B, Diam A B O P -> Midpoint O A B.
+Lemma diam__midpoint: forall O P A B, Diam A B O P -> 中点 O A B.
 Proof.
 intros.
 unfold Diam in *.
 spliter.
-unfold Midpoint.
+unfold 中点.
 unfold OnCircle in *.
 split.
   assumption.
@@ -1129,19 +1129,19 @@ Proof.
 intros.
 apply diam__midpoint in H.
 apply diam__midpoint in H0.
-apply (symmetric_point_uniqueness A O); Midpoint.
+apply (symmetric_point_uniqueness A O); 中点.
 Qed.
 
 
 Lemma center_onc2_mid__ncol : forall O P A B M ,
  O <> P -> ~ Col O A B ->
  OnCircle A O P -> OnCircle B O P ->
- Midpoint M A B  -> ~ Col A O M.
+ 中点 M A B  -> ~ Col A O M.
 Proof.
 intros.
 intro.
 assert_diffs.
-unfold Midpoint in H3.
+unfold 中点 in H3.
 spliter.
 apply H0.
 ColR.
@@ -1165,11 +1165,11 @@ Qed.
 
 Lemma mid_chord__diam_or_ncol : forall O P A B T,
  A <> B -> OnCircle A O P -> OnCircle B O P ->
- Midpoint T A B ->
+ 中点 T A B ->
  Diam A B O P \/ ~Col O A T /\ ~Col O B T.
 Proof.
 intros.
-unfold Midpoint in H2.
+unfold 中点 in H2.
 spliter.
 apply(bet_chord__diam_or_ncol);auto.
 intro.
@@ -1179,7 +1179,7 @@ treat_equalities; tauto.
 Qed.
 
 Lemma cop_mid_onc2_perp__col : forall O P A B X Y, A <> B -> OnCircle A O P -> OnCircle B O P ->
-  Midpoint X A B -> Perp X Y A B -> Coplanar O A B Y -> Col X Y O.
+  中点 X A B -> Perp X Y A B -> 共面 O A B Y -> Col X Y O.
 Proof.
   intros O P A B X Y HAB HAOn HBOn HX HPerp HCop.
   destruct (两点重合的决定性 O X).
@@ -1189,8 +1189,8 @@ Proof.
 Qed.
 
 Lemma cong2_cop2_onc3__eq : forall O P X A B C, A <> B -> A <> C -> B <> C ->
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> Coplanar A B C O ->
-  Cong X A X B -> Cong X A X C -> Coplanar A B C X ->
+  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> 共面 A B C O ->
+  Cong X A X B -> Cong X A X C -> 共面 A B C X ->
   X = O.
 Proof.
   intros O P X A B C HAB HAC HBC HAOn HBOn HCOn HCop HCong1 HCong2 HCop1.
@@ -1227,7 +1227,7 @@ Proof.
 Qed.
 
 Lemma tree_points_onc_cop : forall O P, O <> P -> exists A B C,
-  A <> B /\ A <> C /\ B <> C /\ OnCircle A O P /\ OnCircle B O P /\ OnCircle C O P /\ Coplanar A B C O.
+  A <> B /\ A <> C /\ B <> C /\ OnCircle A O P /\ OnCircle B O P /\ OnCircle C O P /\ 共面 A B C O.
 Proof.
   intros O P HOP.
   destruct (not_col_exists O P) as [X HNCol]; auto.
@@ -1242,7 +1242,7 @@ Qed.
 
 Lemma tree_points_onc_cop2 : forall O P Q, O <> P -> exists A B C,
   A <> B /\ A <> C /\ B <> C /\ OnCircle A O P /\ OnCircle B O P /\ OnCircle C O P /\
-  Coplanar A B C O /\ Coplanar A B C Q.
+  共面 A B C O /\ 共面 A B C Q.
 Proof.
   intros O P Q HOP.
   destruct (两点重合的决定性 O Q).
@@ -1271,7 +1271,7 @@ Qed.
 
 Lemma bet_cop_onc2__ex_onc_os_out : forall O P A B C I,
   A <> I -> B <> I -> ~ Col A B C -> ~ Col A B O ->
-  OnCircle A O P -> OnCircle B O P -> Bet A I B -> Coplanar A B C O ->
+  OnCircle A O P -> OnCircle B O P -> Bet A I B -> 共面 A B C O ->
   exists C1, Out C1 O I /\ OnCircle C1 O P /\ OS A B C C1.
 Proof.
   intros O P A B C I HAI HBI HNCol HNCol1 HA HB HBet HCop.
@@ -1386,8 +1386,8 @@ Qed.
 (** If two circles have three common points, then they are equal *)
 
 Lemma cop2_onc6__eqc : forall A B C O P O' P', A <> B -> B <> C -> A <> C ->
-  OnCircle A O P ->  OnCircle B O P -> OnCircle C O P -> Coplanar A B C O ->
-  OnCircle A O' P' ->  OnCircle B O' P' -> OnCircle C O' P' -> Coplanar A B C O' ->
+  OnCircle A O P ->  OnCircle B O P -> OnCircle C O P -> 共面 A B C O ->
+  OnCircle A O' P' ->  OnCircle B O' P' -> OnCircle C O' P' -> 共面 A B C O' ->
   EqC O P O' P'.
 Proof.
   intros A B C O P O' P'; intros.
@@ -1405,7 +1405,7 @@ Qed.
     This lemma justifies our definition of Concyclic. *)
 
 Lemma concyclic_aux : forall A B C D, Concyclic A B C D -> exists O P,
-  OnCircle A O P /\ OnCircle B O P /\ OnCircle C O P /\ OnCircle D O P /\ Coplanar A B C O.
+  OnCircle A O P /\ OnCircle B O P /\ OnCircle C O P /\ OnCircle D O P /\ 共面 A B C O.
 Proof.
   intros A B C D [HCop [O1 [P1]]]; spliter.
   destruct (col_dec A B C).
@@ -1516,7 +1516,7 @@ Context `{T2D:Tarski_2D}.
 (** The center of a circle belongs to the perpendicular bisector of each chord *)
 
 Lemma mid_onc2_perp__col : forall O P A B X Y,
- A <> B -> OnCircle A O P -> OnCircle B O P -> Midpoint X A B -> Perp X Y A B -> Col X Y O.
+ A <> B -> OnCircle A O P -> OnCircle B O P -> 中点 X A B -> Perp X Y A B -> Col X Y O.
 Proof.
   intros O P A B X Y HAB HAOn HBOn HX HPerp.
   assert (HCop := all_coplanar O A B Y).
@@ -1533,8 +1533,8 @@ Lemma mid2_onc4__eq : forall O P A B C D X, B <> C-> A <> B ->
  OnCircle B O P ->
  OnCircle C O P ->
  OnCircle D O P ->
- Midpoint X A C ->
- Midpoint X B D ->
+ 中点 X A C ->
+ 中点 X B D ->
  X=O.
 Proof.
 intros O P A B C D X Hbc.
@@ -1546,7 +1546,7 @@ induction(两点重合的决定性 X O).
 auto.
 assert(Col A B X).
 apply(per2__col A B O X); Perp.
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 assert(Col B X D).
 apply 中间性转共线; auto.
@@ -1606,7 +1606,7 @@ Proof.
 Qed.
 
 Lemma onc2_mid_cong_col : forall O P U V M X,
- U <> V ->OnCircle U O P -> OnCircle V O P -> Midpoint M U V -> Cong U X V X -> Col O X M.
+ U <> V ->OnCircle U O P -> OnCircle V O P -> 中点 M U V -> Cong U X V X -> Col O X M.
 Proof.
 intros.
 assert(HH:=mid_onc2__per O P U V M H0 H1 H2).
@@ -1624,7 +1624,7 @@ Qed.
 Lemma cong_onc3_cases : forall O P A X Y,
  Cong A X A Y ->
  OnCircle A O P -> OnCircle X O P -> OnCircle Y O P ->
- X = Y \/ ReflectL X Y O A.
+ X = Y \/ 严格对称 X Y O A.
 Proof.
 intros.
 unfold OnCircle in *.
@@ -1650,14 +1650,14 @@ assert(Col A O M).
   treat_equalities; tauto.
 }
 
-unfold ReflectL.
+unfold 严格对称.
 split.
 exists M.
-split; Midpoint.
+split; 中点.
 Col.
 left.
 
-unfold Midpoint in *.
+unfold 中点 in *.
 spliter.
 
 induction(两点重合的决定性 M O).
@@ -1692,7 +1692,7 @@ Qed.
 Lemma bet_cong_onc3_cases : forall O P A X Y T,
  T <> O -> Bet A O T -> Cong T X T Y ->
  OnCircle A O P  -> OnCircle X O P  -> OnCircle Y O P ->
- X = Y \/ ReflectL X Y O A.
+ X = Y \/ 严格对称 X Y O A.
 Proof.
 intros.
 unfold OnCircle in *.
@@ -1704,7 +1704,7 @@ induction(两点重合的决定性 T X).
 treat_equalities.
 left; auto.
 
-assert(CongA T O X T O Y /\ CongA O T X O T Y /\ CongA T X O T Y O).
+assert(等角 T O X T O Y /\ 等角 O T X O T Y /\ 等角 T X O T Y O).
 {
   apply(l11_51 O T X O T Y); Cong.
     intro.
@@ -1732,7 +1732,7 @@ Qed.
 
 Lemma prop_7_8 : forall O P A B T X Y , Diam A B O P -> Bet A O T 
                                -> OnCircle X O P -> OnCircle Y O P
-                               -> LeA A O X A O Y -> Le T Y T X.
+                               -> 角度小于等于 A O X A O Y -> Le T Y T X.
 Proof.
 intros.
 assert(HD:=H).
@@ -1749,7 +1749,7 @@ treat_equalities.
 apply cong__le, 等长的传递性 with O P; Cong.
 
 induction(cong_dec A X A Y).
-assert(X = Y \/ ReflectL X Y O A).
+assert(X = Y \/ 严格对称 X Y O A).
 {
   apply(cong_onc3_cases O P A X Y); Circle.
 }
@@ -1771,7 +1771,7 @@ assert(Le T X T A).
 }
 assert_diffs.
 
-assert(LeA Y O T X O T).
+assert(角度小于等于 Y O T X O T).
 {
   apply lea_comm.
   apply(l11_36 A O X A O Y T T); auto.
@@ -1781,16 +1781,16 @@ assert(Lt T Y T X).
 {
   assert(Cong O X O Y) by (apply 等长的传递性 with O P; Cong).
   apply(t18_18 O T X O T Y); Cong.
-  unfold LtA.
+  unfold 角度小于.
   split; auto.
   intro.
   assert(Cong Y T X T).
   {
     apply(cong2_conga_cong Y O T X O T); Cong.
   }
-  assert(CongA A O X A O Y).
+  assert(等角 A O X A O Y).
   apply(l11_13 T O X T O Y A A); Between.
-  CongA.
+  等角.
   apply H8.
   apply(cong2_conga_cong A O X A O Y); Cong.
 }
@@ -1811,15 +1811,15 @@ induction(两点重合的决定性 O P).
 unfold OnCircle in *.
 treat_equalities.
 auto.
-assert(X = Y \/ ReflectL X Y O A).
+assert(X = Y \/ 严格对称 X Y O A).
 {
   apply(bet_cong_onc3_cases O P A X Y T); auto.
 }
-assert(X = Z \/ ReflectL X Z O A).
+assert(X = Z \/ 严格对称 X Z O A).
 {
   apply(bet_cong_onc3_cases O P A X Z T); auto.
 }
-assert(Y = Z \/ ReflectL Y Z O A).
+assert(Y = Z \/ 严格对称 Y Z O A).
 {
   apply(bet_cong_onc3_cases O P A Y Z T); auto.
   apply 等长的传递性 with T X; Cong.
@@ -1838,7 +1838,7 @@ Lemma chords_midpoints_col_par : forall O P A M B C N D,
  O <> P ->
  OnCircle A O P -> OnCircle B O P ->
  OnCircle C O P -> OnCircle D O P ->
- Midpoint M A B -> Midpoint N C D ->
+ 中点 M A B -> 中点 N C D ->
  Col O M N -> ~ Col O A B -> ~ Col O C D -> Par A B C D.
 Proof.
 intros.
@@ -1877,12 +1877,12 @@ Qed.
 Lemma onc3_mid2__ncol : forall O P A B C A' B',
  O <> P -> 
  OnCircle A O P -> OnCircle B O P -> OnCircle C O P ->
- Midpoint A' A C -> Midpoint B' B C -> ~ Col A B C ->
+ 中点 A' A C -> 中点 B' B C -> ~ Col A B C ->
  ~ Col O A' B' \/ A' = O \/ B' = O.
 Proof.
 intros.
 induction(col_dec O A C).
-assert(A = C \/ Midpoint O A C) by (apply l7_20; [Col|CongR]).
+assert(A = C \/ 中点 O A C) by (apply l7_20; [Col|CongR]).
 induction H7.
 treat_equalities.
 apply False_ind.
@@ -1891,7 +1891,7 @@ right; left.
 apply (l7_17 A C); auto.
 
 induction(col_dec O B C).
-assert(B = C \/ Midpoint O B C) by (apply l7_20; [Col|CongR]).
+assert(B = C \/ 中点 O B C) by (apply l7_20; [Col|CongR]).
 induction H8.
 treat_equalities.
 apply False_ind.
@@ -1958,7 +1958,7 @@ induction HH2.
 subst N.
 
 induction(col_dec O A B).
-assert(A = B \/ Midpoint O A B).
+assert(A = B \/ 中点 O A B).
 unfold OnCircle in *.
 apply l7_20; Col.
 apply 等长的传递性 with O P; Cong.
@@ -1969,7 +1969,7 @@ apply (l7_17 A B); auto.
 subst M; tauto.
 
 induction(col_dec O C D).
-assert(C = D \/ Midpoint O C D).
+assert(C = D \/ 中点 O C D).
 unfold OnCircle in *.
 apply l7_20; Col.
 apply 等长的传递性 with O P; Cong.
@@ -1985,7 +1985,7 @@ apply (l12_9_2D _ _ _ _ O M); Perp.
 spliter.
 apply perp_in_perp in H15.
 induction(col_dec O A B).
-assert(A = B \/ Midpoint O A B).
+assert(A = B \/ 中点 O A B).
 unfold OnCircle in *.
 apply l7_20; Col.
 apply 等长的传递性 with O P; Cong.
@@ -2004,7 +2004,7 @@ subst X.
 spliter.
 
 induction(col_dec O C D).
-assert(C = D \/ Midpoint O C D).
+assert(C = D \/ 中点 O C D).
 unfold OnCircle in *.
 apply l7_20; Col.
 apply 等长的传递性 with O P; Cong.

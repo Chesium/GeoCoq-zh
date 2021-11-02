@@ -11,20 +11,20 @@ Lemma legendre_aux :
   greenberg_s_axiom ->
   triangle_postulate ->
   forall A B C P Q,
-    Perp Q A P Q -> Perp P B P Q -> Par_strict Q A P B ->
-    Par_strict Q A P C -> OS P B Q C -> OS P Q C A -> OS P Q C B ->
+    Perp Q A P Q -> Perp P B P Q -> 严格平行 Q A P B ->
+    严格平行 Q A P C -> OS P B Q C -> OS P Q C A -> OS P Q C B ->
     False.
 Proof.
   intros greenberg triangle.
   intros A B C P Q HPerpAP HPerpBP HParAB HParAC HOS1 HOS2 HOS3.
   destruct (symmetric_point_construction B P) as [B'].
-  assert(HInAngle : InAngle C Q P B) by Side.
+  assert(H在角内 : 在角内 C Q P B) by Side.
   assert (~ Col P B C) by (apply one_side_not_col124 with Q, HOS1).
   assert (~ Col P Q C) by (apply one_side_not_col123 with A, HOS2).
   assert (~ Col P Q A) by (apply one_side_not_col124 with C, HOS2).
-  assert(LtA B P C B P Q).
-    apply inangle__lta; [Col|apply l11_24, HInAngle].
-  assert(Acute B P C).
+  assert(角度小于 B P C B P Q).
+    apply inangle__lta; [Col|apply l11_24, H在角内].
+  assert(为锐角 B P C).
     exists B, P, Q; split; Perp.
   assert_diffs.
   destruct (greenberg P Q A B P C) as [R []]; Perp; Col.
@@ -37,7 +37,7 @@ Proof.
   { exists B', P, R; split; auto.
     apply (conga3_suma__suma B' P Q Q P R B' P R); try (apply conga_refl; auto).
     - exists R.
-      assert (TS P Q R B'); [|repeat (split; CongA); Side; Cop].
+      assert (TS P Q R B'); [|repeat (split; 等角); Side; Cop].
       apply (l9_8_2 _ _ B).
         apply bet__ts; Between; apply one_side_not_col124 with C, HOS3.
       apply (one_side_transitivity _ _ _ A); [|Side].
@@ -53,14 +53,14 @@ Proof.
   }
   assert(Hsuma3 : SumA B' P R R P B B' P B) by (apply bet__suma; Between).
   assert(Hsams3 : SAMS B' P R R P B) by (apply bet__sams; Between).
-  assert(LeA C P B R P B).
+  assert(角度小于等于 C P B R P B).
   { apply lea_comm, inangle__lea, os_ts__inangle.
     - apply l9_2, (l9_8_2 _ _ Q); trivial.
       apply invert_two_sides, in_angle_two_sides; Col.
     - apply (one_side_transitivity _ _ _ Q); trivial.
       apply one_side_symmetry, l12_6, par_strict_col_par_strict with A; Par; Col.
   }
-  assert(Habs : LtA D E F B' P B).
+  assert(Habs : 角度小于 D E F B' P B).
   { apply (lea456789_lta__lta _ _ _ I J K);
     [|apply (sams_lea2_suma2__lea B' P R C P B _ _ _ B' P R R P B); Lea].
     apply (sams_lea_lta456_suma2__lta B' P R P R Q _ _ _ B' P R C P B); Lea.
@@ -76,13 +76,13 @@ Lemma legendre_aux1 :
   greenberg_s_axiom ->
   triangle_postulate ->
   forall A1 A2 B1 B2 C1 C2 P,
-    Perp2 A1 A2 B1 B2 P -> ~ Col A1 A2 P -> Col P B1 B2 -> Coplanar A1 A2 B1 B2 ->
+    Perp2 A1 A2 B1 B2 P -> ~ Col A1 A2 P -> Col P B1 B2 -> 共面 A1 A2 B1 B2 ->
     Par A1 A2 C1 C2 -> Col P C1 C2 -> ~ TS B1 B2 A1 C1 ->
     Col C1 B1 B2.
 Proof.
   intros greenberg triangle.
   intros A1 A2 B1 B2 C1 C2 P HPerp2 HNC HPB HCop HParAC HPC HNts.
-  assert(HParAB : Par_strict A1 A2 B1 B2)
+  assert(HParAB : 严格平行 A1 A2 B1 B2)
     by (apply (col_cop_perp2__pars_bis P); Col).
   apply (par_not_col_strict _ _ _ _ P) in HParAC; Col.
   elim(col_dec C1 B1 B2); auto.
@@ -125,7 +125,7 @@ Proof.
   destruct HB3 as [B3 []].
   assert(~ Col P Q B3) by (apply (one_side_not_col123 _ _ _ C1); Side).
   assert(HA3 : exists A3, Col A1 A2 A3 /\ OS P Q C1 A3).
-  { assert (Coplanar A1 A2 C1 P) by (apply col_cop__cop with C2; Col; Cop).
+  { assert (共面 A1 A2 C1 P) by (apply col_cop__cop with C2; Col; Cop).
     destruct (col_dec P Q A1);
     [|apply cop_not_par_same_side with Q; Col; apply coplanar_perm_5, col_cop__cop with A2; Col; Cop].
     assert (Q = A1) by (apply (l6_21 A1 A2 P Q); Col).
@@ -147,13 +147,13 @@ Lemma legendre_aux2 :
   greenberg_s_axiom ->
   triangle_postulate ->
   forall A1 A2 B1 B2 C1 C2 P,
-    Perp2 A1 A2 B1 B2 P -> ~ Col A1 A2 P -> Col P B1 B2 -> Coplanar A1 A2 B1 B2 ->
+    Perp2 A1 A2 B1 B2 P -> ~ Col A1 A2 P -> Col P B1 B2 -> 共面 A1 A2 B1 B2 ->
     Par A1 A2 C1 C2 -> Col P C1 C2 ->
     Col C1 B1 B2. (** "half" of playfair_bis *)
 Proof.
   intros greenberg triangle.
   intros A1 A2 B1 B2 C1 C2 P HPerp2 HNC HPB HCop HParAC HPC.
-  assert(HParAB : Par_strict A1 A2 B1 B2)
+  assert(HParAB : 严格平行 A1 A2 B1 B2)
     by (apply (col_cop_perp2__pars_bis P); Col).
   apply (legendre_aux1 greenberg triangle A1 A2 _ _ _ C2 P); auto.
   intro Hts.

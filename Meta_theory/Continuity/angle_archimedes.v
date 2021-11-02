@@ -20,22 +20,22 @@ Qed.
 
 Lemma conga2_grada__grada : forall A B C D E F A' B' C' D' E' F',
   GradA A B C D E F ->
-  CongA A B C A' B' C' -> CongA D E F D' E' F' ->
+  等角 A B C A' B' C' -> 等角 D E F D' E' F' ->
   GradA A' B' C' D' E' F'.
 Proof.
   intros A B C D E F A' B' C' D' E' F' HGA.
   revert A' B' C' D' E' F'.
   induction HGA; intros A' B' C' D' E' F' Hconga1 Hconga2.
-    apply grada_init, conga_trans with D E F; trivial; apply conga_trans with A B C; CongA.
+    apply grada_init, conga_trans with D E F; trivial; apply conga_trans with A B C; 等角.
   suma.assert_diffs.
-  assert (Hconga3 : CongA D E F D E F) by CongA.
+  assert (Hconga3 : 等角 D E F D E F) by 等角.
   apply grada_stab with D E F.
     apply (IHHGA A' B' C' D E F); trivial.
     apply (conga2_sams__sams D E F A B C); trivial.
   apply (conga3_suma__suma D E F A B C G H I); trivial.
 Qed.
 
-Lemma grada__lea : forall A B C D E F, GradA A B C D E F -> LeA A B C D E F.
+Lemma grada__lea : forall A B C D E F, GradA A B C D E F -> 角度小于等于 A B C D E F.
 Proof.
   intros A B C D E F.
   induction 1.
@@ -64,8 +64,8 @@ Proof.
   { rename H into HConga; rename D0 into G; rename E0 into H; rename F0 into I.
     intros K L M HSuma.
     suma.assert_diffs.
-    apply (conga2_sams__sams D E F G H I D E F A B C) in HIsi; CongA.
-    apply (conga3_suma__suma D E F G H I K L M D E F A B C K L M) in HSuma; CongA.
+    apply (conga2_sams__sams D E F G H I D E F A B C) in HIsi; 等角.
+    apply (conga3_suma__suma D E F G H I K L M D E F A B C K L M) in HSuma; 等角.
     apply grada_stab with D E F; trivial.
   }
   assert (Hd1 := sams_distincts D0 E0 F0 A B C H0); assert (Hd2 := sams_distincts D E F G H I HIsi); spliter.
@@ -89,37 +89,37 @@ Qed.
 
 Lemma acute_archi_aux : forall O A B C D E,
   Per O A B -> O <> A -> B <> A -> C <> D -> D <> E ->
-  Bet A C D -> Bet C D E -> Bet D E B -> CongA C O D D O E ->
+  Bet A C D -> Bet C D E -> Bet D E B -> 等角 C O D D O E ->
   Lt C D D E.
 Proof.
-  intros O A B C D E HPer HOA HBA HCD HDE HBet1 HBet2 HBet3 HCongA.
+  intros O A B C D E HPer HOA HBA HCD HDE HBet1 HBet2 HBet3 H等角.
   assert_diffs.
   assert (HNCol1 : ~ Col O A B) by (apply per_not_col; auto).
   assert (HNCol2 : ~ Col O A D).
     assert_cols; intro; elim (两点重合的决定性 A C); intro; [treat_equalities|]; apply HNCol1; ColR.
   destruct (angle_construction_1 A D O O D E) as [P [HP1 HP2]]; Col.
     intro; apply HNCol2; ColR.
-  assert (HAcute : Acute A D O).
+  assert (H为锐角 : 为锐角 A D O).
     apply l11_43_aux; Col; left; apply l8_2, per_col with B; auto; ColR.
-  assert (HF : InAngle P O D E).
+  assert (HF : 在角内 P O D E).
   { apply lea_in_angle; Side.
-    apply (l11_30 A D O E D O); CongA.
+    apply (l11_30 A D O E D O); 等角.
     destruct (acute_chara A D O E) as [HD HI]; eBetween.
-    apply lta__lea, HD, HAcute.
+    apply lta__lea, HD, H为锐角.
   }
   destruct HF as [_ [_ [HDP [F [HBet4 [Heq|HOut]]]]]].
     exfalso; subst F; apply HNCol2; ColR.
   assert_diffs.
-  assert (HCongA1 : CongA A D O O D F).
+  assert (H等角1 : 等角 A D O O D F).
     apply (l11_10 A D O O D P); try apply out_trivial; auto.
-  assert (HCongA2 : CongA O D C A D O).
+  assert (H等角2 : 等角 O D C A D O).
     apply conga_left_comm, out2__conga; [apply l6_6, bet_out|apply out_trivial]; Between.
   clear dependent P.
   assert (HNCol3 : ~ Col O D F) by (apply (ncol_conga_ncol A D O); Col).
   assert_diffs.
-  destruct (l11_50_1 O D C O D F) as [HCong1 [HCong2 HCongA3]]; Cong.
+  destruct (l11_50_1 O D C O D F) as [HCong1 [HCong2 H等角3]]; Cong.
     intro; apply HNCol2; ColR.
-    apply (l11_10 D O C D O E); CongA; try (apply out_trivial; auto); apply bet_out; auto.
+    apply (l11_10 D O C D O E); 等角; try (apply out_trivial; auto); apply bet_out; auto.
     apply conga_trans with A D O; trivial.
   apply (cong2_lt__lt D F D E); Cong.
   assert (HNCol4 : ~ Col E D F).
@@ -135,7 +135,7 @@ Proof.
   - destruct (l11_41 D E O C) as [Hlta1 Hlta2]; Between.
       intro; apply HNCol3; ColR.
     apply (conga_preserves_lta D E O O D C); trivial;
-      [apply out2__conga|apply (l11_10 O D A F D O)]; CongA;
+      [apply out2__conga|apply (l11_10 O D A F D O)]; 等角;
       try (apply out_trivial; auto); apply bet_out; Between.
   - destruct (l11_41 F O D E); Col.
 Qed.
@@ -143,14 +143,14 @@ Qed.
 Lemma acute_archi_aux1 : forall O A0 A1 B P Q R,
   Per O A0 B -> B <> A0 -> Bet A0 A1 B ->
   GradA A0 O A1 P Q R -> A0 <> A1 ->
-  LeA A0 O B P Q R \/ exists A, Bet A0 A1 A /\ Bet A0 A B /\ CongA P Q R A0 O A.
+  角度小于等于 A0 O B P Q R \/ exists A, Bet A0 A1 A /\ Bet A0 A B /\ 等角 P Q R A0 O A.
 Proof.
   intros O A0 A1 B P Q R HPer HBA0 HBet HGA HA0A1.
   assert (Hdiff := grada_distincts A0 O A1 P Q R HGA); spliter.
   assert (HNCol : ~ Col O A0 B) by (apply per_not_col; auto).
   assert_diffs.
   elim (lea_total A0 O B P Q R); auto.
-  intro HLeA; right.
+  intro H角度小于等于; right.
   assert (HNCol2 : ~ Col P Q R).
   { intro HCol.
     assert (HBet1 : Bet P Q R).
@@ -161,22 +161,22 @@ Proof.
     apply HNCol; Col.
   }
   destruct (angle_construction_1 P Q R A0 O B) as [C [Hconga HOS]]; Col.
-  assert (HA : InAngle C A0 O B).
-    apply lea_in_angle; Side; apply (l11_30 P Q R A0 O B); CongA.
+  assert (HA : 在角内 C A0 O B).
+    apply lea_in_angle; Side; apply (l11_30 P Q R A0 O B); 等角.
   destruct HA as [_ [_ [HCO [A [HA HUn]]]]].
   destruct HUn as [Heq|Hout].
     exfalso; treat_equalities; apply HNCol; Col.
   exists A.
-  assert (Hconga1 : CongA P Q R A0 O A).
+  assert (Hconga1 : 等角 P Q R A0 O A).
     apply l11_10 with P R A0 C; trivial; apply out_trivial; auto.
   repeat (split; trivial).
   elim (两点重合的决定性 A1 A).
     intro; subst A; Between.
   intro HAA1.
   apply (ncol_conga_ncol P Q R A0 O A) in HNCol2; trivial.
-  assert (HInangle : InAngle A1 A0 O A).
+  assert (HInangle : 在角内 A1 A0 O A).
   { apply lea_in_angle.
-      apply (l11_30 A0 O A1 P Q R); CongA; apply grada__lea; trivial.
+      apply (l11_30 A0 O A1 P Q R); 等角; apply grada__lea; trivial.
     apply out_one_side; auto.
     assert_diffs.
     apply l6_7 with B; [|apply l6_6]; apply bet_out; auto.
@@ -192,18 +192,18 @@ Qed.
 Lemma acute_archi_aux2 : forall O A0 A1 B C,
   Per O A0 B -> O <> A0 -> B <> A0 ->
   Bet A0 A1 B -> A0 <> A1 -> Grad A0 A1 C ->
-  exists P, exists Q, exists R, GradA A0 O A1 P Q R /\ (LeA A0 O B P Q R \/
-  exists A', Bet A0 A1 A' /\ Bet A0 A' B /\ CongA P Q R A0 O A' /\ Le A0 C A0 A' /\
-  exists A, Bet A0 A A' /\ CongA A O A' A0 O A1 /\ Le A0 A1 A A').
+  exists P, exists Q, exists R, GradA A0 O A1 P Q R /\ (角度小于等于 A0 O B P Q R \/
+  exists A', Bet A0 A1 A' /\ Bet A0 A' B /\ 等角 P Q R A0 O A' /\ Le A0 C A0 A' /\
+  exists A, Bet A0 A A' /\ 等角 A O A' A0 O A1 /\ Le A0 A1 A A').
 Proof.
   intros O A0 A1 B E HPer HOA0 HBA0 HBet HA0A1 HG.
   assert (HNCol : ~ Col O A0 B) by (apply per_not_col; auto).
   assert (HNCol1 : ~ Col A0 O A1) by (intro; apply HNCol; ColR).
   assert_diffs.
   induction HG; rename A into A0; rename B0 into A1.
-    exists A0; exists O; exists A1; split; [apply grada_init; CongA|].
-    right; exists A1; repeat (split; CongA); Between; Le.
-    exists A0; repeat (split; CongA); Between; Le.
+    exists A0; exists O; exists A1; split; [apply grada_init; 等角|].
+    right; exists A1; repeat (split; 等角); Between; Le.
+    exists A0; repeat (split; 等角); Between; Le.
   destruct IHHG as [P [Q [R [HGA HUn]]]]; auto.
   destruct HUn as [HLea|HA'].
     exists P; exists Q; exists R; split; trivial; left; trivial.
@@ -212,12 +212,12 @@ Proof.
   assert (HIsi : SAMS P Q R A0 O A1).
   { apply sams_lea2__sams with A0 O B A0 O B.
     - apply acute__sams, l11_43_aux; Col.
-    - apply (l11_30 A0 O A' A0 O B); CongA.
-      exists A'; assert_diffs; split; CongA.
+    - apply (l11_30 A0 O A' A0 O B); 等角.
+      exists A'; assert_diffs; split; 等角.
       repeat split; auto.
       exists A'; split; trivial.
       right; apply out_trivial; auto.
-    - exists A1; split; CongA.
+    - exists A1; split; 等角.
       repeat split; auto.
       exists A1; split; trivial.
       right; apply out_trivial; auto.
@@ -228,16 +228,16 @@ Proof.
   exists P'; exists Q'; exists R'; split; trivial.
   destruct (acute_archi_aux1 O A0 A1 B P' Q' R') as [HLea|HA'']; auto.
   right; destruct HA'' as [A'' [HBet1'' [HBet2'' HConga'']]].
-  assert (HNCol2 : ~ Col A O A') by (apply (ncol_conga_ncol A0 O A1); Col; CongA).
+  assert (HNCol2 : ~ Col A O A') by (apply (ncol_conga_ncol A0 O A1); Col; 等角).
   assert (HNCol3 : ~ Col A0 O A') by (intro; assert_diffs; apply HNCol; ColR).
   assert (HNCol4 : ~ Col A' O A'').
   { intro HCol; apply HNCol1.
     elim (两点重合的决定性 A' A''); intro; [|ColR].
     treat_equalities.
     assert (HSuma2 : SumA A0 O A' A0 O A1 A0 O A').
-      apply (conga3_suma__suma P Q R A0 O A1 P' Q' R'); CongA.
+      apply (conga3_suma__suma P Q R A0 O A1 P' Q' R'); 等角.
     apply sams_suma__out546 in HSuma2; Col.
-    apply (conga2_sams__sams P Q R A0 O A1); CongA.
+    apply (conga2_sams__sams P Q R A0 O A1); 等角.
   }
   assert (HNCol5 : ~ Col A0 O A'') by (intro; assert_diffs; apply HNCol4; ColR).
   assert (HBet4 : Bet A0 A' A'').
@@ -245,22 +245,22 @@ Proof.
       ColR.
     apply in_angle_two_sides; Col.
     apply lea_in_angle.
-      apply (l11_30 P Q R P' Q' R'); CongA; apply sams_suma__lea123789 with A0 O A1; trivial.
+      apply (l11_30 P Q R P' Q' R'); 等角; apply sams_suma__lea123789 with A0 O A1; trivial.
     apply out_one_side; Col; apply l6_7 with B; [|apply l6_6]; assert_diffs; apply bet_out; auto.
   }
-  assert (HConga4 : CongA A O A' A' O A'').
+  assert (HConga4 : 等角 A O A' A' O A'').
   { assert_diffs.
     assert (HNOS : ~ OS O A' A0 A'') by (apply l9_9; repeat split; auto; Col; exists A'; Col).
     apply conga_trans with A0 O A1; trivial.
     apply sams2_suma2__conga456 with P Q R P' Q' R'; trivial.
-    - apply (conga2_sams__sams A0 O A' A' O A''); CongA.
+    - apply (conga2_sams__sams A0 O A' A' O A''); 等角.
       split; auto; split.
         right; intro; Col.
-      exists A''; repeat (split; CongA); Cop.
+      exists A''; repeat (split; 等角); Cop.
       apply l9_9_bis, out_one_side; Col.
       apply bet_out; auto.
-    - apply (conga3_suma__suma A0 O A' A' O A'' A0 O A''); CongA.
-      exists A''; repeat (split; CongA); Cop.
+    - apply (conga3_suma__suma A0 O A' A' O A'' A0 O A''); 等角.
+      exists A''; repeat (split; 等角); Cop.
   }
   assert (HLe'' : Le A0 A1 A' A'').
     apply le_transitivity with A A'; trivial; assert_diffs.
@@ -269,42 +269,42 @@ Proof.
     apply bet2_le2__le1346 with C A'; auto.
     apply (l5_6 A0 A1 A' A''); Cong.
   exists A'; split; trivial; split; trivial.
-  apply conga_trans with A O A'; CongA.
+  apply conga_trans with A O A'; 等角.
 Qed.
 
 Lemma archi_in_acute_angles :
   archimedes_axiom ->
   forall A B C D E F,
-    ~ Col A B C -> Acute D E F ->
-    exists P Q R, GradA A B C P Q R /\ LeA D E F P Q R.
+    ~ Col A B C -> 为锐角 D E F ->
+    exists P Q R, GradA A B C P Q R /\ 角度小于等于 D E F P Q R.
 Proof.
-  intros archi A B C D E F HNCol HAcute.
+  intros archi A B C D E F HNCol H为锐角.
   assert_diffs.
   elim (col_dec D E F).
   { intro HCol; exists A; exists B; exists C; split.
-      apply grada_init; CongA.
+      apply grada_init; 等角.
     apply l11_31_1; auto; apply not_bet_out; trivial.
     intro HBet; apply (nlta D E F), acute_obtuse__lta; trivial.
     apply bet__obtuse; auto.
   }
   intro HNCol1.
   elim (lea_total D E F A B C); auto; intro HLea.
-    exists A; exists B; exists C; split; trivial; apply grada_init; CongA.
+    exists A; exists B; exists C; split; trivial; apply grada_init; 等角.
   destruct (l8_18_existence D E F) as [D0 [HD0 HD0']]; trivial.
   assert (HOut : Out E D0 D) by (apply acute_col_perp__out with F; Col; Perp; apply acute_sym; trivial).
   assert_diffs.
-  assert (HConga : CongA D E F D0 E F) by (apply out2__conga; [|apply out_trivial]; auto).
-  apply (acute_conga__acute D E F D0 E F) in HAcute; trivial.
-  apply (l11_30 A B C D E F A B C D0 E F) in HLea; CongA.
+  assert (HConga : 等角 D E F D0 E F) by (apply out2__conga; [|apply out_trivial]; auto).
+  apply (acute_conga__acute D E F D0 E F) in H为锐角; trivial.
+  apply (l11_30 A B C D E F A B C D0 E F) in HLea; 等角.
   apply (ncol_conga_ncol D E F D0 E F) in HNCol1; trivial.
   assert (HPer : Per E D0 F) by (apply perp_per_1, perp_left_comm, perp_col with D; Perp; Col).
   clear H0 HD0 HD0' HOut H9.
   destruct (angle_construction_1 A B C D0 E F) as [D1' [HConga1 HOS]]; trivial.
   destruct (lea_in_angle D0 E F D1') as [_ [_ [_ [D1 [HBet HUn]]]]]; Side.
-    apply (l11_30 A B C D0 E F); CongA.
+    apply (l11_30 A B C D0 E F); 等角.
   destruct HUn as [Heq|HOut].
     exfalso; subst D1; Col.
-  assert (HConga2 : CongA A B C D0 E D1).
+  assert (HConga2 : 等角 A B C D0 E D1).
     apply (l11_10 A B C D0 E D1'); trivial; apply out_trivial; auto.
   apply one_side_not_col123 in HOS.
   assert_diffs.
@@ -315,9 +315,9 @@ Proof.
   destruct (acute_archi_aux2 E D0 D1 F G) as [P [Q [R [HGA HUn]]]]; auto.
   exists P; exists Q; exists R; split.
     assert (Hdistincts := grada_distincts D0 E D1 P Q R HGA); spliter.
-    apply (conga2_grada__grada D0 E D1 P Q R); CongA.
+    apply (conga2_grada__grada D0 E D1 P Q R); 等角.
   destruct HUn as [HLea2|Habs].
-    assert_diffs; apply (l11_30 D0 E F P Q R); CongA.
+    assert_diffs; apply (l11_30 D0 E F P Q R); 等角.
   exfalso.
   destruct Habs as [A' [HBet2 [HBet3 [HConga3 [HLe HA]]]]].
   apply (le__nlt D0 F' D0 G); trivial.
@@ -338,7 +338,7 @@ Proof.
   induction HGA2.
     intro HNIsi; exists D; exists E; exists F; split; trivial.
     assert (Hd := grada_distincts A B C D E F HGA1); spliter.
-    intro HIsi; apply HNIsi, (conga2_sams__sams D E F A B C); CongA.
+    intro HIsi; apply HNIsi, (conga2_sams__sams D E F A B C); 等角.
   intro HNIsi.
   elim (sams_dec D E F D0 E0 F0); [|apply IHHGA2; trivial].
   intro HIsi; clear IHHGA2.
@@ -353,7 +353,7 @@ Lemma angles_archi_aux1 :
   archimedes_axiom ->
   forall A B C D E F,
     ~ Col A B C -> ~ Bet D E F ->
-    exists P Q R, GradA A B C P Q R /\ (LeA D E F P Q R \/ ~ SAMS P Q R A B C).
+    exists P Q R, GradA A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ SAMS P Q R A B C).
 Proof.
   intros archi A B C D E F HNCol HNBet.
   assert (Hdiff : D <> E /\ F <> E) by (split; intro; subst E; Between); spliter.
@@ -365,14 +365,14 @@ Proof.
       intros HCol; apply col123__nos; Col.
     intro HNCol1.
     apply l9_9, invert_two_sides, in_angle_two_sides; Col.
-    apply not_col_permutation_1, (ncol_conga_ncol D E F1); CongA.
+    apply not_col_permutation_1, (ncol_conga_ncol D E F1); 等角.
   }
-  assert (HSuma : SumA D E F1 D E F1 D E F) by (assert_diffs; exists F; repeat (split; CongA); Cop).
+  assert (HSuma : SumA D E F1 D E F1 D E F) by (assert_diffs; exists F; repeat (split; 等角); Cop).
   destruct (archi_in_acute_angles archi A B C D E F1) as [P1 [Q1 [R1 [HGA HLea]]]]; trivial.
   { apply nbet_sams_suma__acute with D E F; trivial.
     assert_diffs; split; trivial; split.
       right; intro HBet; apply HNBet, bet_in_angle_bet with F1; trivial.
-    exists F; repeat (split; CongA); Cop.
+    exists F; repeat (split; 等角); Cop.
     elim (col_dec D E F1).
       intros HCol HTS; destruct HTS; Col.
     intro HNCol1.
@@ -396,7 +396,7 @@ Lemma archi_in_angles :
   archimedes_axiom ->
   forall A B C D E F,
     ~ Col A B C -> D <> E -> F <> E ->
-    exists P Q R, GradA A B C P Q R /\ (LeA D E F P Q R \/ ~ SAMS P Q R A B C).
+    exists P Q R, GradA A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ SAMS P Q R A B C).
 Proof.
   intros archi A B C D E F HNCol HDE HFE.
   elim (bet_dec D E F); [|apply angles_archi_aux1; trivial].
@@ -417,7 +417,7 @@ Proof.
   left; apply l11_31_2; auto.
   apply (bet_lea__bet A B A0); trivial.
   apply sams_lea2_suma2__lea with A0 B C A B C P1 Q1 R1 A B C; Lea.
-  exists A; repeat (split; CongA); Cop.
+  exists A; repeat (split; 等角); Cop.
   apply l9_9; repeat split; auto.
   exists B; split; Col; Between.
 Qed.
@@ -444,7 +444,7 @@ Qed.
 
 Lemma gradaexp_destruction_aux : forall A B C P Q R,
   GradA A B C P Q R ->
-  exists S T U, GradAExp A B C S T U /\ (Obtuse S T U \/ LeA P Q R S T U).
+  exists S T U, GradAExp A B C S T U /\ (为钝角 S T U \/ 角度小于等于 P Q R S T U).
 Proof.
   intros A B C.
   induction 1.
@@ -469,13 +469,13 @@ Lemma archi__gradaexp_destruction :
   archimedes_axiom ->
   forall A B C,
     ~ Col A B C ->
-    exists P Q R, GradAExp A B C P Q R /\ Obtuse P Q R.
+    exists P Q R, GradAExp A B C P Q R /\ 为钝角 P Q R.
 Proof.
   intros archi A B C HNCol.
   destruct (archi__grada_destruction archi A B C HNCol) as [D [E [F [HGA HNIsi]]]].
   destruct (gradaexp_destruction_aux A B C D E F HGA) as [P [Q [R [HGAE HUn]]]].
   exists P; exists Q; exists R; split; trivial.
-  destruct HUn as [HObtuse|HLea]; trivial.
+  destruct HUn as [H为钝角|HLea]; trivial.
   assert_diffs.
   apply nsams__obtuse; auto.
   intro HIsi; apply HNIsi.

@@ -23,7 +23,7 @@ assert (~ Col A C B).
  contradict.
  }
 assert (Triangle A C B) by (conclude_def Triangle ).
-assert ((LtA C A B A B D /\ LtA B C A A B D)) by (conclude proposition_16).
+assert ((角度小于 C A B A B D /\ 角度小于 B C A A B D)) by (conclude proposition_16).
 assert (eq A A) by (conclude cn_equalityreflexive).
 assert (eq C C) by (conclude cn_equalityreflexive).
 assert (eq D D) by (conclude cn_equalityreflexive).
@@ -52,19 +52,19 @@ assert (~ Col A B D).
  assert (Col A B C) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA A B D A B C) by (conclude_def CongA ).
-assert (CongA A B C A B D) by (conclude lemma_equalanglessymmetric).
-assert (LtA B C A A B C) by (conclude lemma_angleorderrespectscongruence).
+assert (等角 A B D A B C) by (conclude_def 等角 ).
+assert (等角 A B C A B D) by (conclude lemma_equalanglessymmetric).
+assert (角度小于 B C A A B C) by (conclude lemma_angleorderrespectscongruence).
 assert (Lt A B A C) by (conclude proposition_19).
-assert (LtA C A B A B C) by (conclude lemma_angleorderrespectscongruence).
+assert (角度小于 C A B A B C) by (conclude lemma_angleorderrespectscongruence).
 assert (~ Col B A C).
  {
  intro.
  assert (Col A B C) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (CongA B A C C A B) by (conclude lemma_ABCequalsCBA).
-assert (LtA B A C A B C) by (conclude lemma_angleorderrespectscongruence2).
+assert (等角 B A C C A B) by (conclude lemma_ABCequalsCBA).
+assert (角度小于 B A C A B C) by (conclude lemma_angleorderrespectscongruence2).
 assert (~ Col C B A).
  {
  intro.
@@ -72,8 +72,8 @@ assert (~ Col C B A).
  contradict.
  }
 assert (Triangle C B A) by (conclude_def Triangle ).
-assert (CongA C B A A B C) by (conclude lemma_ABCequalsCBA).
-assert (LtA B A C C B A) by (conclude lemma_angleorderrespectscongruence).
+assert (等角 C B A A B C) by (conclude lemma_ABCequalsCBA).
+assert (角度小于 B A C C B A) by (conclude lemma_angleorderrespectscongruence).
 assert (Lt C B C A) by (conclude proposition_19).
 assert (Cong C B B C) by (conclude cn_equalityreverse).
 assert (Lt B C C A) by (conclude lemma_lessthancongruence2).

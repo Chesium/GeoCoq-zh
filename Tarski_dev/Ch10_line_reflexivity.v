@@ -4,39 +4,39 @@ Require Export GeoCoq.Tarski_dev.Tactics.CoincR_for_cop.
 Ltac assert_cops :=
  repeat match goal with
       | H:Perp ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply perp__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply perp__coplanar, H)
       | H:TS ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply ts__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply ts__coplanar, H)
       | H:OS ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply os__coplanar, H)
-      | H:ReflectL ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply reflectl__coplanar, H)
-      | H:Reflect ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply reflect__coplanar, H)
-      | H:InAngle ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply inangle__coplanar, H)
-      | H:Par_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply pars__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply os__coplanar, H)
+      | H:严格对称 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply reflectl__coplanar, H)
+      | H:对称 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply reflect__coplanar, H)
+      | H:在角内 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply inangle__coplanar, H)
+      | H:严格平行 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply pars__coplanar, H)
       | H:Par ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply par__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply par__coplanar, H)
       | H:Plg ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply plg__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plg__coplanar, H)
       | H:Parallelogram_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply plgs__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgs__coplanar, H)
       | H:Parallelogram_flat ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply plgf__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgf__coplanar, H)
       | H:Parallelogram ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply parallelogram__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply parallelogram__coplanar, H)
       | H:Rhombus ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply rhombus__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rhombus__coplanar, H)
       | H:Rectangle ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply rectangle__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rectangle__coplanar, H)
       | H:Square ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply square__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply square__coplanar, H)
       | H:Saccheri ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply sac__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply sac__coplanar, H)
       | H:Lambert ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (Coplanar X1 X2 X3 X4) by (apply lambert__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply lambert__coplanar, H)
  end.
 
 Ltac Cop := auto; try (intros; solve [apply col__coplanar; Col
@@ -52,15 +52,15 @@ Ltac copr_aux :=
  repeat match goal with
       | H: ~ Col ?X1 ?X2 ?X3, X4 : Tpoint |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4;
-     first[exist_hyp_perm_col X1 X2 X4; assert (Coplanar X1 X2 X4 X3) by (apply col__coplanar; Col)
-          |exist_hyp_perm_col X2 X3 X4; assert (Coplanar X2 X3 X4 X1) by (apply col__coplanar; Col)
-          |exist_hyp_perm_col X1 X3 X4; assert (Coplanar X1 X3 X4 X2) by (apply col__coplanar; Col)]
+     first[exist_hyp_perm_col X1 X2 X4; assert (共面 X1 X2 X4 X3) by (apply col__coplanar; Col)
+          |exist_hyp_perm_col X2 X3 X4; assert (共面 X2 X3 X4 X1) by (apply col__coplanar; Col)
+          |exist_hyp_perm_col X1 X3 X4; assert (共面 X1 X3 X4 X2) by (apply col__coplanar; Col)]
  end.
 
 Ltac CopR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
- let cop := constr:(Coplanar) in
+ let cop := constr:(共面) in
    treat_equalities; assert_cols; clean; assert_ncols; assert_cops; auto 2 with cop_perm;
    solve[apply col__coplanar; Col|apply coplanar_perm_1, col__coplanar; Col
         |apply coplanar_perm_4, col__coplanar; Col|apply coplanar_perm_18, col__coplanar; Col
@@ -69,16 +69,16 @@ Ltac CopR :=
 Section T10.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
-Goal forall A B C D, ~ Coplanar D C B A -> ~ Coplanar A B C D.
+Goal forall A B C D, ~ 共面 D C B A -> ~ 共面 A B C D.
 Proof.
 intros.
 match goal with
-       | |- Coplanar ?A ?B ?C ?D => exist_hyp_perm_cop A B C D; auto with cop_perm
-       | |- ~ Coplanar ?A ?B ?C ?D => exist_hyp_perm_ncop A B C D; auto with cop_perm
+       | |- 共面 ?A ?B ?C ?D => exist_hyp_perm_cop A B C D; auto with cop_perm
+       | |- ~ 共面 ?A ?B ?C ?D => exist_hyp_perm_ncop A B C D; auto with cop_perm
       end.
 Qed.
 Lemma ex_sym : forall A B X, exists Y, (Perp A B X Y \/ X = Y) /\
-   (exists M, Col A B M /\ Midpoint M X Y).
+   (exists M, Col A B M /\ 中点 M X Y).
 Proof.
     intros.
     induction (col_dec A B X).
@@ -119,15 +119,15 @@ Proof.
     assumption.
 Qed.
 
-Lemma is_image_is_image_spec : forall P P' A B, A<>B -> (Reflect P' P A B <-> ReflectL P' P A B).
+Lemma is_image_is_image_spec : forall P P' A B, A<>B -> (对称 P' P A B <-> 严格对称 P' P A B).
 Proof.
     intros.
-    unfold Reflect.
+    unfold 对称.
     tauto.
 Qed.
 
 Lemma ex_sym1 : forall A B X, A<>B -> exists Y, (Perp A B X Y \/ X = Y) /\
- (exists M, Col A B M /\ Midpoint M X Y /\ Reflect X Y A B).
+ (exists M, Col A B M /\ 中点 M X Y /\ 对称 X Y A B).
 Proof.
     intros.
     induction (col_dec A B X).
@@ -141,7 +141,7 @@ Proof.
         assumption.
       split.
         apply l7_3_2.
-      unfold ReflectL.
+      unfold 严格对称.
       split.
         exists X.
         split.
@@ -178,7 +178,7 @@ Proof.
     split.
       assumption.
     rewrite -> (is_image_is_image_spec) by apply H.
-    unfold ReflectL.
+    unfold 严格对称.
     split.
       exists M0.
       split.
@@ -205,12 +205,12 @@ Proof.
 Qed.
 
 Lemma l10_2_uniqueness : forall A B P P1 P2,
- Reflect P1 P A B -> Reflect P2 P A B -> P1=P2.
+ 对称 P1 P A B -> 对称 P2 P A B -> P1=P2.
 Proof.
     intros.
     induction (两点重合的决定性 A B).
       subst.
-      unfold Reflect in *.
+      unfold 对称 in *.
       induction H.
         intuition.
       induction H0.
@@ -218,7 +218,7 @@ Proof.
       spliter.
       eapply symmetric_point_uniqueness with P B;auto.
     rewrite -> (is_image_is_image_spec) in * by apply H1.
-    unfold ReflectL in *.
+    unfold 严格对称 in *.
     spliter.
     ex_and H X.
     ex_and H0 Y.
@@ -395,7 +395,7 @@ Proof.
 Qed.
 
 Lemma l10_2_uniqueness_spec : forall A B P P1 P2,
- ReflectL P1 P A B -> ReflectL P2 P A B -> P1=P2.
+ 严格对称 P1 P A B -> 严格对称 P2 P A B -> P1=P2.
 Proof.
     intros A B P P1 P2 HP1 HP2.
     assert (HR1 := HP1).
@@ -408,11 +408,11 @@ Proof.
 Qed.
 
 Lemma l10_2_existence_spec : forall A B P,
- exists P', ReflectL P' P A B.
+ exists P', 严格对称 P' P A B.
 Proof.
     intros.
     induction (col_dec A B P).
-      unfold ReflectL.
+      unfold 严格对称.
       exists P.
       split.
         exists P.
@@ -427,7 +427,7 @@ Proof.
     ex_and H0 X.
     double P X P'.
     exists P'.
-    unfold ReflectL.
+    unfold 严格对称.
     split.
       exists X.
       split; assumption.
@@ -450,12 +450,12 @@ Proof.
 Qed.
 
 Lemma l10_2_existence : forall A B P,
- exists P', Reflect P' P A B.
+ exists P', 对称 P' P A B.
 Proof.
     intros.
     induction (两点重合的决定性 A B).
       subst B.
-      unfold Reflect.
+      unfold 对称.
       elim (symmetric_point_construction P A).
       intros P'.
       exists P'.
@@ -463,16 +463,16 @@ Proof.
     elim (l10_2_existence_spec A B P).
     intros P'; intros.
     exists P'.
-    unfold Reflect.
+    unfold 对称.
     tauto.
 Qed.
 
 Lemma l10_4_spec : forall A B P P',
- ReflectL P P' A B ->
- ReflectL P' P A B.
+ 严格对称 P P' A B ->
+ 严格对称 P' P A B.
 Proof.
     intros.
-    unfold ReflectL in *.
+    unfold 严格对称 in *.
     spliter.
     ex_and H X.
     split.
@@ -488,12 +488,12 @@ Proof.
     auto.
 Qed.
 
-Lemma l10_4 : forall A B P P', Reflect P P' A B -> Reflect P' P A B.
+Lemma l10_4 : forall A B P P', 对称 P P' A B -> 对称 P' P A B.
 Proof.
     intros.
     induction (两点重合的决定性 A B).
       subst B.
-      unfold Reflect in *.
+      unfold 对称 in *.
       elim H;intros.
         intuition.
       right.
@@ -507,12 +507,12 @@ Proof.
 Qed.
 
 Lemma l10_5 : forall A B P P' P'',
- Reflect P' P A B ->
- Reflect P'' P' A B -> P=P''.
+ 对称 P' P A B ->
+ 对称 P'' P' A B -> P=P''.
 Proof.
     intros.
     induction (两点重合的决定性 A B).
-      unfold Reflect in *.
+      unfold 对称 in *.
       subst.
       induction H.
         intuition.
@@ -534,12 +534,12 @@ Proof.
     assumption.
 Qed.
 
-Lemma l10_6_uniqueness : forall A B P P1 P2, Reflect P P1 A B -> Reflect P P2 A B -> P1 = P2.
+Lemma l10_6_uniqueness : forall A B P P1 P2, 对称 P P1 A B -> 对称 P P2 A B -> P1 = P2.
 Proof.
     intros.
     induction (两点重合的决定性 A B).
       subst.
-      unfold Reflect in *.
+      unfold 对称 in *.
       induction H.
         intuition.
       induction H0.
@@ -557,7 +557,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma l10_6_uniqueness_spec : forall A B P P1 P2, ReflectL P P1 A B -> ReflectL P P2 A B -> P1 = P2.
+Lemma l10_6_uniqueness_spec : forall A B P P1 P2, 严格对称 P P1 A B -> 严格对称 P P2 A B -> P1 = P2.
 Proof.
     intros A B P P1 P2 HP1 HP2.
     assert (HR1 := HP1).
@@ -569,10 +569,10 @@ Proof.
     subst; reflexivity.
 Qed.
 
-Lemma l10_6_existence_spec : forall A B P', A<>B -> exists P, ReflectL P' P A B.
+Lemma l10_6_existence_spec : forall A B P', A<>B -> exists P, 严格对称 P' P A B.
 Proof.
     intros.
-    assert (exists P, ReflectL P P' A B).
+    assert (exists P, 严格对称 P P' A B).
       eapply l10_2_existence_spec.
     ex_and H0 P.
     exists P.
@@ -580,10 +580,10 @@ Proof.
     assumption.
 Qed.
 
-Lemma l10_6_existence : forall A B P', exists P, Reflect P' P A B.
+Lemma l10_6_existence : forall A B P', exists P, 对称 P' P A B.
 Proof.
     intros.
-    assert (exists P, Reflect P P' A B).
+    assert (exists P, 对称 P P' A B).
       eapply l10_2_existence.
     ex_and H P.
     exists P.
@@ -592,7 +592,7 @@ Proof.
 Qed.
 
 Lemma l10_7 : forall A B P P' Q Q',
- Reflect P' P A B -> Reflect Q' Q A B ->
+ 对称 P' P A B -> 对称 Q' Q A B ->
   P'=Q' -> P = Q.
 Proof.
     intros.
@@ -604,13 +604,13 @@ Proof.
     assumption.
 Qed.
 
-Lemma l10_8 : forall A B P, Reflect P P A B -> Col P A B.
+Lemma l10_8 : forall A B P, 对称 P P A B -> Col P A B.
 Proof.
     intros.
     induction (两点重合的决定性 A B).
       subst;Col.
-    unfold Reflect in H.
-    unfold ReflectL in H.
+    unfold 对称 in H.
+    unfold 严格对称 in H.
     induction H.
       spliter.
       ex_and H1 X.
@@ -620,22 +620,22 @@ Proof.
     spliter. subst. Col.
 Qed.
 
-Lemma col__refl : forall A B P, Col P A B -> ReflectL P P A B.
+Lemma col__refl : forall A B P, Col P A B -> 严格对称 P P A B.
 Proof.
     intros A B P HCol.
     split.
-      exists P; split; [Midpoint|Col].
+      exists P; split; [中点|Col].
     right; reflexivity.
 Qed.
 
 
 (** Here we need the assumption that A<>B *)
 Lemma is_image_col_cong : forall A B P P' X, A<>B ->
- Reflect P P' A B -> Col A B X -> Cong P X P' X.
+ 对称 P P' A B -> Col A B X -> Cong P X P' X.
 Proof.
     intros.
     rewrite is_image_is_image_spec in H0 by apply H.
-    unfold ReflectL in *.
+    unfold 严格对称 in *.
     spliter.
     ex_and H0 M0.
     induction H2.
@@ -644,7 +644,7 @@ Proof.
       spliter.
       induction (两点重合的决定性 M0 X).
         subst X.
-        unfold Midpoint in *.
+        unfold 中点 in *.
         spliter.
         Cong.
       assert (Perp M0 X P' P).
@@ -686,10 +686,10 @@ Proof.
 Qed.
 
 Lemma is_image_spec_col_cong : forall A B P P' X,
- ReflectL P P' A B -> Col A B X -> Cong P X P' X.
+ 严格对称 P P' A B -> Col A B X -> Cong P X P' X.
 Proof.
     intros.
-    unfold ReflectL in *.
+    unfold 严格对称 in *.
     spliter.
     ex_and H M0.
     induction H1.
@@ -698,7 +698,7 @@ Proof.
       spliter.
       induction (两点重合的决定性 M0 X).
         subst X.
-        unfold Midpoint in *.
+        unfold 中点 in *.
         spliter.
         Cong.
       assert (Perp M0 X P' P) by (eauto using perp_col2).
@@ -740,12 +740,12 @@ Qed.
 Lemma image_id : forall A B T T',
   A<>B ->
   Col A B T ->
-  Reflect T T' A B ->
+  对称 T T' A B ->
   T = T'.
 Proof.
     intros.
     rewrite is_image_is_image_spec in H1 by apply H.
-    unfold ReflectL in H1.
+    unfold 严格对称 in H1.
     spliter.
     ex_and H1 X.
     induction H2.
@@ -866,15 +866,15 @@ Proof.
 Qed.
 
 Lemma osym_not_col : forall A B P P',
- Reflect P P' A B ->
+ 对称 P P' A B ->
  ~ Col A B P -> ~ Col A B P'.
 Proof.
     intros.
-    unfold Reflect in *.
+    unfold 对称 in *.
     induction H.
       spliter.
       assert ( HH:= H1).
-      unfold ReflectL in HH.
+      unfold 严格对称 in HH.
       spliter.
       ex_and H2 T.
       intro.
@@ -898,18 +898,18 @@ Proof.
 Qed.
 
 Lemma midpoint_preserves_image : forall A B P P' Q Q' M,
- A <> B -> Col A B M -> Reflect P P' A B ->
- Midpoint M P Q -> Midpoint M P' Q' -> Reflect Q Q' A B.
+ A <> B -> Col A B M -> 对称 P P' A B ->
+ 中点 M P Q -> 中点 M P' Q' -> 对称 Q Q' A B.
 Proof.
     intros.
     rewrite is_image_is_image_spec in * by apply H.
     assert (HH1:=H1).
-    unfold ReflectL in H1.
+    unfold 严格对称 in H1.
     spliter.
     ex_and H1 X.
     induction H4.
       double X M Y.
-      assert (Midpoint Y Q Q').
+      assert (中点 Y Q Q').
         eapply symmetry_preserves_midpoint.
           apply H2.
           apply H6.
@@ -951,7 +951,7 @@ Proof.
         exists Q'.
         split.
           assumption.
-        unfold Midpoint in *.
+        unfold 中点 in *.
         spliter.
         eapply 等长的传递性.
           apply 等长的对称性.
@@ -1155,12 +1155,12 @@ Qed.
 
 Lemma image_in_is_image_spec :
  forall M A B P P',
-  ReflectL_at M P P' A B -> ReflectL P P' A B.
+  严格对称于 M P P' A B -> 严格对称 P P' A B.
 Proof.
     intros.
-    unfold ReflectL_at in H.
+    unfold 严格对称于 in H.
     spliter.
-    unfold ReflectL.
+    unfold 严格对称.
     split.
       exists M.
       split; assumption.
@@ -1168,33 +1168,33 @@ Proof.
 Qed.
 
 Lemma image_in_gen_is_image : forall M A B P P',
- Reflect_at M P P' A B  -> Reflect P P' A B.
+ 对称于 M P P' A B  -> 对称 P P' A B.
 Proof.
     intros.
-    unfold Reflect_at in H.
+    unfold 对称于 in H.
     induction H.
       spliter.
       apply image_in_is_image_spec in H0.
-      unfold Reflect.
+      unfold 对称.
       tauto.
     spliter.
     subst.
     subst.
-    unfold Reflect.
+    unfold 对称.
     right.
     auto.
 Qed.
 
 Lemma image_image_in : forall A B P P' M,
- P <> P'-> ReflectL P P' A B -> Col A B M -> Col P M P' ->
- ReflectL_at M P P' A B.
+ P <> P'-> 严格对称 P P' A B -> Col A B M -> Col P M P' ->
+ 严格对称于 M P P' A B.
 Proof.
     intros.
-    unfold ReflectL_at.
+    unfold 严格对称于.
     split.
       split.
         assert(HH:=H0).
-        unfold ReflectL in H0.
+        unfold 严格对称 in H0.
         spliter.
         ex_and H0 M'.
         induction H3.
@@ -1251,7 +1251,7 @@ Proof.
         absurde.
       assumption.
     assert (HH:=H0).
-    unfold ReflectL in H0.
+    unfold 严格对称 in H0.
     spliter.
     induction H3.
       left.
@@ -1261,18 +1261,18 @@ Proof.
 Qed.
 
 Lemma image_in_col : forall A B P P' Y : Tpoint,
- ReflectL_at Y P P' A B -> Col P P' Y.
+ 严格对称于 Y P P' A B -> Col P P' Y.
 Proof.
     intros.
-    unfold ReflectL_at in *.
+    unfold 严格对称于 in *.
     spliter.
     assert_cols.
     Col.
 Qed.
 
-Lemma is_image_spec_rev : forall P P' A B, ReflectL P P' A B -> ReflectL P P' B A.
+Lemma is_image_spec_rev : forall P P' A B, 严格对称 P P' A B -> 严格对称 P P' B A.
 Proof.
-    unfold ReflectL.
+    unfold 严格对称.
     intros.
     spliter.
     split.
@@ -1291,10 +1291,10 @@ Proof.
 Qed.
 
 Lemma is_image_rev : forall P P' A B,
- Reflect P P' A B -> Reflect P P' B A.
+ 对称 P P' A B -> 对称 P P' B A.
 Proof.
     intros.
-    unfold Reflect in *.
+    unfold 对称 in *.
     induction H.
       spliter.
       left.
@@ -1308,9 +1308,9 @@ Qed.
 
 Lemma midpoint_preserves_per : forall A B C A1 B1 C1 M,
  Per A B C ->
- Midpoint M A A1 ->
- Midpoint M B B1 ->
- Midpoint M C C1 ->
+ 中点 M A A1 ->
+ 中点 M B B1 ->
+ 中点 M C C1 ->
  Per A1 B1 C1.
 Proof.
     intros.
@@ -1332,10 +1332,10 @@ Proof.
     assumption.
 Qed.
 
-Lemma col__image_spec : forall A B X, Col A B X -> ReflectL X X A B.
+Lemma col__image_spec : forall A B X, Col A B X -> 严格对称 X X A B.
 Proof.
     intros.
-    unfold ReflectL.
+    unfold 严格对称.
     split.
       exists X.
       split.
@@ -1345,17 +1345,17 @@ Proof.
     reflexivity.
 Qed.
 
-Lemma image_triv : forall A B, Reflect A A A B.
+Lemma image_triv : forall A B, 对称 A A A B.
 Proof.
     intros.
     induction (两点重合的决定性 A B).
-      right; split; Midpoint.
+      right; split; 中点.
     left; split.
       auto.
     apply col__image_spec; Col.
 Qed.
 
-Lemma cong_midpoint__image : forall A B X Y, Cong A X A Y -> Midpoint B X Y -> Reflect Y X A B.
+Lemma cong_midpoint__image : forall A B X Y, Cong A X A Y -> 中点 B X Y -> 对称 Y X A B.
 Proof.
     intros.
     induction (两点重合的决定性 A B).
@@ -1379,7 +1379,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma col_image_spec__eq : forall A B P P', Col A B P -> ReflectL P P' A B -> P = P'.
+Lemma col_image_spec__eq : forall A B P P', Col A B P -> 严格对称 P P' A B -> P = P'.
 Proof.
     intros.
     apply (l10_6_uniqueness_spec A B P).
@@ -1387,19 +1387,19 @@ Proof.
       assumption.
 Qed.
 
-Lemma image_spec_triv : forall A B, ReflectL A A B B.
+Lemma image_spec_triv : forall A B, 严格对称 A A B B.
 Proof.
     intros.
     apply col__image_spec.
     Col.
 Qed.
 
-Lemma image_spec__eq : forall A P P', ReflectL P P' A A -> P = P'.
+Lemma image_spec__eq : forall A P P', 严格对称 P P' A A -> P = P'.
 Proof.
     intros A P P'; apply col_image_spec__eq; Col.
 Qed.
 
-Lemma image__midpoint : forall A P P', Reflect P P' A A -> Midpoint A P' P.
+Lemma image__midpoint : forall A P P', 对称 P P' A A -> 中点 A P' P.
 Proof.
     induction 1; spliter.
       contradiction.
@@ -1407,7 +1407,7 @@ Proof.
 Qed.
 
 Lemma is_image_spec_dec :
-  forall A B C D, ReflectL A B C D \/ ~ ReflectL A B C D.
+  forall A B C D, 严格对称 A B C D \/ ~ 严格对称 A B C D.
 Proof.
     intros.
     elim (两点重合的决定性 C D); intro HCD.
@@ -1418,7 +1418,7 @@ Proof.
         apply image_spec_triv.
       right.
       intro H.
-      unfold ReflectL in *.
+      unfold 严格对称 in *.
       destruct H as [H HFalse].
       elim HFalse; clear HFalse; intro HFalse.
         apply perp_distinct in HFalse.
@@ -1432,18 +1432,18 @@ Proof.
     intro H.
     apply HBB'.
     apply l10_6_uniqueness with C D A.
-      unfold Reflect.
+      unfold 对称.
       tauto.
-    unfold Reflect.
+    unfold 对称.
     tauto.
 Qed.
 
 Lemma l10_14 : forall P P' A B, P <> P' -> A <> B ->
- Reflect P P' A B -> TS A B P P'.
+ 对称 P P' A B -> TS A B P P'.
 Proof.
     intros.
     rewrite is_image_is_image_spec in H1 by apply H0.
-    unfold ReflectL in H1.
+    unfold 严格对称 in H1.
     spliter.
     ex_and H1 M0.
     induction H2.
@@ -1467,7 +1467,7 @@ Proof.
           right; left.
           apply midpoint_bet.
           assumption.
-        assert (Perp_at M0 M0 B P M0).
+        assert (垂直于 M0 M0 B P M0).
           eapply perp_perp_in.
           assumption.
         assert(Per B M0 P).
@@ -1526,7 +1526,7 @@ Proof.
           right; left.
           apply midpoint_bet.
           assumption.
-        assert (Perp_at M0 M0 A P M0).
+        assert (垂直于 M0 M0 A P M0).
           eapply perp_perp_in.
           assumption.
         assert(Per A M0 P).

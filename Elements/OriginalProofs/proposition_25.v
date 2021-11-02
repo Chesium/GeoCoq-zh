@@ -6,12 +6,12 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma proposition_25 : 
    forall A B C D E F, 
    Triangle A B C -> Triangle D E F -> Cong A B D E -> Cong A C D F -> Lt E F B C ->
-   LtA E D F B A C.
+   角度小于 E D F B A C.
 Proof.
 intros.
 assert (Cong D E A B) by (conclude lemma_congruencesymmetric).
 assert (Cong D F A C) by (conclude lemma_congruencesymmetric).
-assert (~ LtA B A C E D F).
+assert (~ 角度小于 B A C E D F).
  {
  intro.
  assert (Lt B C E F) by (conclude proposition_24).
@@ -32,17 +32,17 @@ assert (~ Col E D F).
  assert (Col D E F) by (forward_using lemma_collinearorder).
  contradict.
  }
-assert (~ CongA E D F B A C).
+assert (~ 等角 E D F B A C).
  {
  intro.
- assert (CongA B A C E D F) by (conclude lemma_equalanglessymmetric).
+ assert (等角 B A C E D F) by (conclude lemma_equalanglessymmetric).
  assert (Cong B C E F) by (conclude proposition_04).
  assert (Cong E F B C) by (conclude lemma_congruencesymmetric).
  assert (Lt B C B C) by (conclude lemma_lessthancongruence2).
  assert (~ Lt B C B C) by (conclude lemma_trichotomy2).
  contradict.
  }
-assert (LtA E D F B A C) by (conclude lemma_angletrichotomy2).
+assert (角度小于 E D F B A C) by (conclude lemma_angletrichotomy2).
 close.
 Qed.
 
