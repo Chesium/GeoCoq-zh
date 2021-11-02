@@ -14,7 +14,7 @@ Lemma not_col_perm_2 : forall A B (X : cartesianPower Tpoint 1),
   app_2_n not_col A B X -> app_2_n not_col B A X.
 Proof. unfold not_col, app_2_n; simpl; Col. Qed.
 
-Definition concy : arity Tpoint 4 := Concyclic_gen.
+Definition concy : arity Tpoint 4 := 共圆或共线.
 
 Lemma concy_perm_1 : forall (A : Tpoint) (X : cartesianPower Tpoint 3),
 app_1_n concy A X -> app_n_1 concy X A.
@@ -26,14 +26,14 @@ Proof.
 unfold app_2_n, concy; simpl; intros; apply concyclic_gen_perm_2; auto.
 Qed.
 
-Lemma concyclic_gen_1123 : forall A B C, Concyclic_gen A A B C.
+Lemma concyclic_gen_1123 : forall A B C, 共圆或共线 A A B C.
 Proof.
-unfold Concyclic_gen; simpl; intros A B C.
+unfold 共圆或共线; simpl; intros A B C.
 elim (col_dec A B C); intro; [right; repeat split; Col|].
 left.
 split; Cop.
 destruct (triangle_circumscription A B C H) as [O]; spliter.
-exists O, A; unfold OnCircle; repeat split; Cong.
+exists O, A; unfold 在圆上; repeat split; Cong.
 Qed.
 
 Lemma concy_bd : forall (A : Tpoint) (X : cartesianPower Tpoint 2),

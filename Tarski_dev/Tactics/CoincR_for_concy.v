@@ -16,7 +16,7 @@ Lemma ss_ok_empty_for_concy : forall interp, ss_ok_for_concy SS.empty interp.
 Proof. exact ss_ok_empty. Qed.
 
 Lemma collect_coincs_for_concy : forall A B C D pa pb pc pd ss interp,
-  Concyclic_gen A B C D ->
+  共圆或共线 A B C D ->
   interp pa = A ->
   interp pb = B ->
   interp pc = C ->
@@ -63,7 +63,7 @@ Lemma test_coinc_ok_for_concy : forall pa pb pc pd ss st interp,
   ss_ok_for_concy ss interp ->
   st_ok_for_concy st interp ->
   test_coinc_for_concy ss st pa pb pc pd = true ->
-  Concyclic_gen (interp pa) (interp pb) (interp pc) (interp pd).
+  共圆或共线 (interp pa) (interp pb) (interp pc) (interp pd).
 Proof.
 intros pa pb pc pd ss st interp HSS HST HTest.
 assert (HConcy := @test_coinc_ok Tarski_is_a_Arity_for_concy
@@ -75,10 +75,10 @@ Qed.
 
 End CoincR_for_concyclic.
 
-Ltac assert_ss_ok Tpoint Concyclic_gen lvar :=
+Ltac assert_ss_ok Tpoint 共圆或共线 lvar :=
   repeat
   match goal with
-    | HConcy : Concyclic_gen ?A ?B ?C ?D, HOK : ss_ok_for_concy ?SS ?Interp |- _ =>
+    | HConcy : 共圆或共线 ?A ?B ?C ?D, HOK : ss_ok_for_concy ?SS ?Interp |- _ =>
       let pa := List_assoc Tpoint A lvar in
       let pb := List_assoc Tpoint B lvar in
       let pc := List_assoc Tpoint C lvar in
@@ -100,9 +100,9 @@ Ltac assert_st_ok Tpoint Col lvar :=
       try reflexivity
   end.
 
-Ltac Concy_refl Tpoint Col Concyclic_gen :=
+Ltac Concy_refl Tpoint Col 共圆或共线 :=
   match goal with
-    | Default : Tpoint |- Concyclic_gen ?A ?B ?C ?D =>
+    | Default : Tpoint |- 共圆或共线 ?A ?B ?C ?D =>
       let lvar := build_numbered_points_list Tpoint in
       let pa := List_assoc Tpoint A lvar in
       let pb := List_assoc Tpoint B lvar in
@@ -111,10 +111,10 @@ Ltac Concy_refl Tpoint Col Concyclic_gen :=
       let c := ((vm_compute;reflexivity) || fail 2 "Can not be deduced") in
       let HSS := fresh in
       assert (HSS := ss_ok_empty_for_concy (interp lvar Default));
-      assert_ss_ok Tpoint Concyclic_gen lvar;
+      assert_ss_ok Tpoint 共圆或共线 lvar;
       let HST := fresh in
       assert (HST := st_ok_empty_for_concy (interp lvar Default));
-      assert_st_ok Tpoint Concyclic_gen lvar;
+      assert_st_ok Tpoint 共圆或共线 lvar;
       match goal with
         | HOKSS : ss_ok_for_concy ?SS ?Interp, HOKST : st_ok_for_concy ?ST ?Interp |- _ =>
           apply (test_coinc_ok_for_concy pa pb pc pd SS ST

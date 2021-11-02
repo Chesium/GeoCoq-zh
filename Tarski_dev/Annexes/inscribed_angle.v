@@ -119,7 +119,7 @@ Qed.
     C, O lie on the same side of AB, then this angle is acute. *)
 
 Lemma onc3_os__acute : forall O P A B C,
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OS A B O C ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> OS A B O C ->
   为锐角 A C B.
 Proof.
   intros O P A B C HA HB HC HOS.
@@ -183,7 +183,7 @@ Proof.
 Qed.
 
 Lemma inscribed_angle_aux : forall O P A B C,
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P ->
   OS A B O C -> TS O C A B ->
   gHalfA A C B A O B.
 Proof.
@@ -203,11 +203,11 @@ Proof.
 Qed.
 
 Lemma inscribed_angle_aux1 : forall O P A B C,
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P ->
   OS A B O C -> OS O C A B ->
   gHalfA A C B A O B.
 Proof.
-  assert (Haux : forall O P A B C, OnCircle A O P -> OnCircle B O P -> OnCircle C O P ->
+  assert (Haux : forall O P A B C, 在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P ->
   OS A B O C -> OS O C A B -> OS O B A C -> gHalfA A C B A O B).
   { intros O P A B C HA HB HC HOS1 HOS2 HOS3.
     destruct (chord_completion O P C O) as [C' [HC' HBet ]]; Circle.
@@ -251,7 +251,7 @@ Qed.
     when the angles have the same circumference as base. *)
 
 Lemma inscribed_angle : forall O P A B C,
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OS A B O C ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> OS A B O C ->
   gHalfA A C B A O B.
 Proof.
   intros O P A B C HA HB HC HOS.
@@ -278,7 +278,7 @@ Proof.
 Qed.
 
 Lemma diam_onc2_ts__suppa : forall O P A B C C',
-  OnCircle A O P -> OnCircle B O P -> Diam C C' O P -> TS A B C C' ->
+  在圆上 A O P -> 在圆上 B O P -> 直径 C C' O P -> TS A B C C' ->
   SuppA A C B A C' B.
 Proof.
   intros O P A B C C' HA HB [HBet [HC HC']] HTS.
@@ -332,7 +332,7 @@ Qed.
 (** In a circle the angle at the centre is double of the angle at the circumference. *)
 
 Lemma inscribed_angle_1 : forall O P A B C, A <> B -> B <> C -> A <> C ->
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> 共面 A B C O ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 共面 A B C O ->
   SumA A C B A C B A O B.
 Proof.
   intros O P A B C HAB HBC HAC HA HB HC HCop.
@@ -358,7 +358,7 @@ Qed.
 
 Lemma cop2_onc4__or_conga_suppa : forall O P A B C C',
   A <> B -> B <> C -> A <> C -> B <> C' -> A <> C' ->
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OnCircle C' O P ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 在圆上 C' O P ->
   共面 A B C O -> 共面 A B C' O ->
   等角 A C B A C' B \/ SuppA A C B A C' B.
 Proof.
@@ -370,7 +370,7 @@ Qed.
     C, O lie on opposite sides of AB, then this angle is obtuse. *)
 
 Lemma onc3_ts__obtuse : forall O P A B C,
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> TS A B O C ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> TS A B O C ->
   为钝角 A C B.
 Proof.
   intros O P A B C HA HB HC HTS.
@@ -386,7 +386,7 @@ Qed.
     In a circle the angles in the same segment are equal to one another. *)
 
 Lemma cop_onc4_os__conga : forall O P A B C C',
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OnCircle C' O P ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 在圆上 C' O P ->
   OS A B C C' -> 共面 A B C O ->
   等角 A C B A C' B.
 Proof.
@@ -412,13 +412,13 @@ Qed.
     The opposite angles of quadrilaterals in circles are equal to two right angles. *)
 
 Lemma cop_onc4_ts__suppa : forall O P A B C C',
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OnCircle C' O P ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 在圆上 C' O P ->
   TS A B C C' -> 共面 A B C O ->
   SuppA A C B A C' B.
 Proof.
   intros O P A B C C' HA HB.
   revert C C'.
-  assert (Haux : forall C C', OnCircle C O P -> OnCircle C' O P -> TS A B C C' -> OS A B O C ->
+  assert (Haux : forall C C', 在圆上 C O P -> 在圆上 C' O P -> TS A B C C' -> OS A B O C ->
     SuppA A C B A C' B).
   { intros C C' HC HC' HTS HOS.
     suma.assert_diffs.
@@ -448,7 +448,7 @@ Qed.
     then C and O lie on the same side of AB. *)
 
 Lemma acute_cop_onc3__os : forall O P A B C, A <> B ->
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> 共面 A B C O -> 为锐角 A C B ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 共面 A B C O -> 为锐角 A C B ->
   OS A B O C.
 Proof.
   intros O P A B C HAB HA HB HC HCop H为锐角.
@@ -468,7 +468,7 @@ Qed.
     then C and O lie on opposite sides of AB. *)
 
 Lemma cop_obtuse_onc3__ts : forall O P A B C,
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> 共面 A B C O -> 为钝角 A C B ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 共面 A B C O -> 为钝角 A C B ->
   TS A B O C.
 Proof.
   intros O P A B C HA HB HC HCop H为钝角.
@@ -488,7 +488,7 @@ Qed.
     then C and D lie on the same side of AB. *)
 
 Lemma conga_cop2_onc4__os : forall O P A B C D, ~ Col A B O ->
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OnCircle D O P ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 在圆上 D O P ->
   共面 A B O C -> 共面 A B O D -> 等角 A C B A D B ->
   OS A B C D.
 Proof.
@@ -510,7 +510,7 @@ Qed.
     then C and D lie on opposite sides of AB. *)
 
 Lemma cop2_onc4_suppa__ts : forall O P A B C D, ~ Col A B O ->
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> OnCircle D O P ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 在圆上 D O P ->
   共面 A B O C -> 共面 A B O D -> SuppA A C B A D B ->
   TS A B C D.
 Proof.
@@ -542,10 +542,10 @@ Qed.
     two similar and unequal segments of circles on the same side. *)
 
 Lemma conga_cop_onc6_os__eqc : forall A B C D O P O' P',
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P -> 共面 A B C O ->
-  OnCircle A O' P' -> OnCircle B O' P' -> OnCircle D O' P' -> 共面 A B D O' ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 共面 A B C O ->
+  在圆上 A O' P' -> 在圆上 B O' P' -> 在圆上 D O' P' -> 共面 A B D O' ->
   OS A B C D -> 等角 A C B A D B ->
-  EqC O P O' P'.
+  同圆 O P O' P'.
 Proof.
   intros A B C D O P O' P' HA HB HC HCop HA' HB' HD' HCop' HOS HConga.
   apply eqc_chara.
@@ -628,16 +628,16 @@ Proof.
 Qed.
 
 Lemma conga_cop_onc3_os__onc : forall A B C D O P,
-  OnCircle A O P -> OnCircle B O P -> OnCircle C O P ->
+  在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P ->
   共面 A B C O -> OS A B C D -> 等角 A C B A D B ->
-  OnCircle D O P.
+  在圆上 D O P.
 Proof.
   intros A B C D O P HA HB HC HCop HOS HConga.
   destruct (triangle_circumscription A B D) as [O'].
     apply one_side_not_col124 in HOS; Col.
   spliter.
-  assert (OnCircle A O' A /\ OnCircle B O' A /\ OnCircle D O' A).
-    unfold OnCircle; repeat split; Cong.
+  assert (在圆上 A O' A /\ 在圆上 B O' A /\ 在圆上 D O' A).
+    unfold 在圆上; repeat split; Cong.
   spliter.
   apply (conga_cop_onc6_os__eqc A B C D O P O' A); trivial.
 Qed.
@@ -646,15 +646,15 @@ Qed.
     then A, B, C and D are concyclic. *)
 
 Lemma conga_os__concyclic : forall A B C D,
-  OS A B C D -> 等角 A C B A D B -> Concyclic A B C D.
+  OS A B C D -> 等角 A C B A D B -> 共圆 A B C D.
 Proof.
   intros A B C D HOS HConga.
   split.
     apply os__coplanar, HOS.
   destruct (triangle_circumscription A B C) as [O]; spliter.
     apply one_side_not_col123 with D, HOS.
-  assert (OnCircle A O A /\ OnCircle B O A /\ OnCircle C O A).
-    unfold OnCircle; repeat split; Cong.
+  assert (在圆上 A O A /\ 在圆上 B O A /\ 在圆上 C O A).
+    unfold 在圆上; repeat split; Cong.
   spliter.
   exists O, A; repeat split; trivial.
   apply (conga_cop_onc3_os__onc A B C); assumption.
@@ -664,17 +664,17 @@ Qed.
     then A, B, C and D are concyclic. *)
 
 Lemma suppa_ts__concyclic : forall A B C D,
-  TS A B C D -> SuppA A C B A D B -> Concyclic A B C D.
+  TS A B C D -> SuppA A C B A D B -> 共圆 A B C D.
 Proof.
   intros A B.
-  assert (Haux : forall C D, TS A B C D -> 为钝角 A C B -> SuppA A C B A D B -> Concyclic A B C D).
+  assert (Haux : forall C D, TS A B C D -> 为钝角 A C B -> SuppA A C B A D B -> 共圆 A B C D).
   { intros C D HTS H为钝角 HSuppa.
     split.
       apply ts__coplanar, HTS.
     assert (HNCol : ~ Col A B C) by (destruct HTS; Col).
     destruct (triangle_circumscription A B C HNCol) as [O]; spliter.
-    assert (OnCircle A O A /\ OnCircle B O A /\ OnCircle C O A).
-      unfold OnCircle; repeat split; Cong.
+    assert (在圆上 A O A /\ 在圆上 B O A /\ 在圆上 C O A).
+      unfold 在圆上; repeat split; Cong.
     spliter.
     exists O, A; repeat split; trivial.
     destruct (chord_completion O A C O) as [C'[HC' HBet]]; Circle.
@@ -698,7 +698,7 @@ Proof.
   destruct (midpoint_existence A B) as [M].
   exists M, A.
   destruct HTS as [HNCol1 [HNCol2 _]].
-  unfold OnCircle; repeat split; [Cong..| |];
+  unfold 在圆上; repeat split; [Cong..| |];
     apply 等长的对称性, thales_converse_theorem with B; auto.
   apply (per_suppa__per A C B); assumption.
 Qed.
@@ -710,7 +710,7 @@ Lemma suppa_ts2__suppa : forall A B C D,
   TS A C B D -> TS B D A C -> SuppA A B C A D C -> SuppA B A D B C D.
 Proof.
   intros A B C D HTS1 HTS2 HSuppa.
-  assert (HCon : Concyclic A C B D) by (apply suppa_ts__concyclic; trivial).
+  assert (HCon : 共圆 A C B D) by (apply suppa_ts__concyclic; trivial).
   apply concyclic_aux in HCon.
   destruct HCon as [O [P]]; spliter.
   apply (cop_onc4_ts__suppa O P); trivial.
@@ -725,7 +725,7 @@ Context `{T2D:Tarski_2D}.
 Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma chord_par_diam : forall O P A B C C' A' U,
- O <> P -> ~Col A B C' -> Diam C C' O P -> 中点 A' A C' -> OnCircle A O P -> OnCircle B O P ->
+ O <> P -> ~Col A B C' -> 直径 C C' O P -> 中点 A' A C' -> 在圆上 A O P -> 在圆上 B O P ->
  Col A B U -> Perp O U A B -> Par A C' O U -> B = C.
 Proof.
 intros.
@@ -754,7 +754,7 @@ assert(Perp A U  O U).
 apply perp_left_comm in H18.
 apply perp_not_col in H18.
 apply H18; Col.
-unfold Diam in H1.
+unfold 直径 in H1.
 spliter.
 assert(HH:=mid_onc2__perp O P A C' A' H15 H13 H3 H17 H2).
 assert(Perp O U O A').

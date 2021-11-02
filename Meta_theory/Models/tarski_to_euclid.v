@@ -168,7 +168,7 @@ assert (Z1<>Z2) by auto.
 assert (Z1<>B).
 {
  intro. subst.
- unfold OnCircle in *.
+ unfold 在圆上 in *.
  assert (B=D1) by (apply between_cong with C;auto).
  subst. intuition.
 }
@@ -178,7 +178,7 @@ assert (B<>Z2).
  intro. subst.
  assert (Bet C Z2 D1)
   by (unfold BetS in *;spliter;auto).
- unfold OnCircle in *.
+ unfold 在圆上 in *.
  assert (Z2=D1)
   by (apply between_cong with C;auto).
  intuition.
@@ -202,7 +202,7 @@ assert (Z1<>Z2) by auto.
 assert (Z1<>B).
 {
  intro. subst.
- unfold OnCircle in *.
+ unfold 在圆上 in *.
  assert (B=D2) by (apply between_cong with C;auto).
  subst. intuition.
 }
@@ -212,7 +212,7 @@ assert (B<>Z2).
  intro. subst.
  assert (Bet C Z2 D2)
   by (unfold BetS in *;spliter;auto).
- unfold OnCircle in *.
+ unfold 在圆上 in *.
  assert (Z2=D2)
   by (apply between_cong with C;auto).
  intuition.
@@ -249,11 +249,11 @@ spliter.
 unfold OutCirc in *.
 destruct H2 as [X HX].
 spliter.
-assert (OnCircle P D Q) by CongR.
-assert (OnCircle Q D Q) by CongR.
-assert (InCircle P C D1).
+assert (在圆上 P D Q) by CongR.
+assert (在圆上 Q D Q) by CongR.
+assert (在圆上或圆内 P C D1).
 {
- unfold InCircle.
+ unfold 在圆上或圆内.
  destruct (两点重合的决定性 C P).
  subst. apply le_trivial.
  assert (TwoCases:Definitions.BetS D1 P C \/ Definitions.BetS C P D2)
@@ -267,13 +267,13 @@ assert (InCircle P C D1).
  Cong.
  apply 等长的传递性 with R S; Cong.
 }
-assert (OutCircle Q C D1).
+assert (在圆上或圆外 Q C D1).
 {
- unfold OutCircle.
+ unfold 在圆上或圆外.
  exists X.
  split; [unfold Definitions.BetS in *;spliter; auto|CongR].
 }
-assert (Hex: exists Z : Tpoint, OnCircle Z C D1 /\ OnCircle Z D Q) by eauto.
+assert (Hex: exists Z : Tpoint, 在圆上 Z C D1 /\ 在圆上 Z D Q) by eauto.
 destruct Hex as [Z []].
 exists Z.
 split; CongR.

@@ -105,7 +105,7 @@ C'est une appliquette Java créée avec GeoGebra ( www.geogebra.org) - Il semble
 *)
 
 Lemma concyclic_not_col_or_eq_aux :
-  forall A B C D, Concyclic A B C D -> A = B \/ A = C \/ B = C \/ ~ Col A B C.
+  forall A B C D, 共圆 A B C D -> A = B \/ A = C \/ B = C \/ ~ Col A B C.
 Proof.
 intros A B C D HC.
 elim (两点重合的决定性 A B); intro HAB; Col.
@@ -152,7 +152,7 @@ assert (H := not_par_strict_id O M1 M2); Col.
 Qed.
 
 Lemma concyclic_not_col_or_eq :
-  forall A B C A', Concyclic A B C A' ->
+  forall A B C A', 共圆 A B C A' ->
   A'=C \/ A'=B \/ A=B \/ A=C \/ A=A' \/ (~ Col A B A' /\ ~ Col A C A').
 Proof.
 intros A B C A' H.
@@ -251,8 +251,8 @@ Name A' the symmetric of A wrt O.
 
 assert_diffs.
 
-assert (Concyclic A B C A').
- unfold Concyclic.
+assert (共圆 A B C A').
+ unfold 共圆.
  split.
  destruct (两点重合的决定性 A O).
   treat_equalities; Cop.
@@ -299,7 +299,7 @@ assert (Perp A' B B A)
  by (apply per_perp;finish).
 
 assert (Par C H A' B).
- unfold Concyclic in *; spliter.
+ unfold 共圆 in *; spliter.
  apply is_orthocenter_coplanar in H2.
  apply l12_9 with A B; try CopR; Perp.
 
@@ -316,7 +316,7 @@ assert (Per A C A').
 assert (Perp A' C C A) by (apply per_perp;finish).
 
 assert (Par B H C A').
- unfold Concyclic in *; spliter.
+ unfold 共圆 in *; spliter.
  apply l12_9 with A C; try CopR; Perp.
 
 induction (col_dec B H C).

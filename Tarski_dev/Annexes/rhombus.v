@@ -50,12 +50,12 @@ assumption.
 Qed.
 
 Lemma PlgEquivDef: forall A B C D, (A <> C \/ B <> D) -> ((exists M,
-OnCircle C M A /\ OnCircle D M B /\ Bet C M A /\ Bet D M B) <-> Plg A B C D).
+在圆上 C M A /\ 在圆上 D M B /\ Bet C M A /\ Bet D M B) <-> Plg A B C D).
 Proof.
   intros.
   split.
   - intros.
-    unfold OnCircle in *.
+    unfold 在圆上 in *.
     split. 
     assumption.
     ex_and H0 M.
@@ -70,7 +70,7 @@ Proof.
       Cong.
     }
   - intros.
-    unfold OnCircle in *.
+    unfold 在圆上 in *.
     ex_and H0 M.
     ex_and H1 M1.
     unfold 中点 in *.

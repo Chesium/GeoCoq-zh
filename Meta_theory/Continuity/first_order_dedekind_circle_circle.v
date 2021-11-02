@@ -8,18 +8,18 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 (** This proof is inspired by Franz Rothe's proof of Theorem 8.5 in Several topics from geometry *)
 
 Lemma circle_circle_aux : (forall A B C D P Q,
-  OnCircle P C D -> OnCircle Q C D -> InCircleS P A B -> OutCircleS Q A B ->
+  在圆上 P C D -> 在圆上 Q C D -> 在圆内 P A B -> 在圆外 Q A B ->
   OS A C P Q \/ (Col P A C /\ ~ Col Q A C) \/ (~ Col P A C /\ Col Q A C ) ->
-  exists Z : Tpoint, OnCircle Z A B /\ OnCircle Z C D) ->
+  exists Z : Tpoint, 在圆上 Z A B /\ 在圆上 Z C D) ->
   circle_circle.
 Proof.
   intro Haux.
   cut (forall A B C D P Q,
-  OnCircle P C D -> OnCircle Q C D -> InCircleS P A B -> OutCircleS Q A B ->
+  在圆上 P C D -> 在圆上 Q C D -> 在圆内 P A B -> 在圆外 Q A B ->
   共面 A C P Q -> (~ Col P A C \/ ~ Col Q A C) ->
-  exists Z : Tpoint, OnCircle Z A B /\ OnCircle Z C D).
+  exists Z : Tpoint, 在圆上 Z A B /\ 在圆上 Z C D).
   - intros Haux' A B C D P Q HPOn HQOn HPIn HQOut.
-    assert (HQ' : exists Q', OnCircle Q' C D /\ OutCircle Q' A B /\ Col Q' A C).
+    assert (HQ' : exists Q', 在圆上 Q' C D /\ 在圆上或圆外 Q' A B /\ Col Q' A C).
     { destruct (由一点往一方向构造等长线段 A C C D) as [Q' []].
       exists Q'.
       repeat split; Col.
@@ -33,8 +33,8 @@ Proof.
       exists P; split; trivial.
     destruct (cong_dec A B A Q).
       exists Q; Circle.
-    assert (HPInS : InCircleS P A B) by (split; trivial).
-    assert (HQOutS : OutCircleS Q A B) by (split; trivial).
+    assert (HPInS : 在圆内 P A B) by (split; trivial).
+    assert (HQOutS : 在圆外 Q A B) by (split; trivial).
     assert (A <> C).
     { intro; subst C.
       apply (not_and_lt A B A P); split; trivial.
@@ -121,7 +121,7 @@ Proof.
   }
 
   assert (Haux : forall X Y X0 Y0, Bet P Y Q -> X <> Y ->
-    OnCircle X0 C D -> Out C X X0 -> OnCircle Y0 C D -> Out C Y Y0 -> Bet P X Y -> Lt A X0 A Y0).
+    在圆上 X0 C D -> Out C X X0 -> 在圆上 Y0 C D -> Out C Y Y0 -> Bet P X Y -> Lt A X0 A Y0).
   { intros X Y X0 Y0; intros.
     apply t18_18 with C C; Cong.
       apply 等长的传递性 with C D; Cong.
@@ -157,8 +157,8 @@ Proof.
   }
 
   assert (HR : exists R, forall X Y,
-    (Bet P X Q /\ (exists X0, OnCircle X0 C D /\ Out C X X0 /\ InCircle X0 A B)) ->
-    (Bet P Y Q /\ (exists Y0, OnCircle Y0 C D /\ Out C Y Y0 /\ OutCircle Y0 A B)) ->
+    (Bet P X Q /\ (exists X0, 在圆上 X0 C D /\ Out C X X0 /\ 在圆上或圆内 X0 A B)) ->
+    (Bet P Y Q /\ (exists Y0, 在圆上 Y0 C D /\ Out C Y Y0 /\ 在圆上或圆外 Y0 A B)) ->
     Bet X R Y).
   { apply dedekind; [repeat constructor..|].
     exists P.
@@ -172,9 +172,9 @@ Proof.
       apply (Haux Y X); auto.
     apply le_transitivity with A B; trivial.
   }
-  assert (HP : exists X0, OnCircle X0 C D /\ Out C P X0 /\ InCircle X0 A B).
+  assert (HP : exists X0, 在圆上 X0 C D /\ Out C P X0 /\ 在圆上或圆内 X0 A B).
     exists P; repeat (split; Circle); apply out_trivial; assert_diffs; auto.
-  assert (HQ : exists Y0, OnCircle Y0 C D /\ Out C Q Y0 /\ OutCircle Y0 A B).
+  assert (HQ : exists Y0, 在圆上 Y0 C D /\ Out C Q Y0 /\ 在圆上或圆外 Y0 A B).
     exists Q; repeat (split; Circle); apply out_trivial; assert_diffs; auto.
   destruct HR as [R HR].
   assert (HBet : Bet P R Q) by (apply HR; split; Between).
@@ -192,7 +192,7 @@ Proof.
       apply outcs__ninc in HQOut; Circle.
     }
     assert (HNCol2 : ~ Col C Q R) by (intro; apply HNCol1; ColR).
-    assert (HT : exists T, OnCircle T A B /\ Bet A Z T).
+    assert (HT : exists T, 在圆上 T A B /\ Bet A Z T).
     { destruct (两点重合的决定性 Z A).
         subst; exists B; split; Circle; Between.
       destruct (onc_exists A B Z) as [T [HT1 HT2]]; auto.
@@ -225,7 +225,7 @@ Proof.
       apply 等长的传递性 with C D; Cong.
     }
 
-    assert (HX0In : InCircleS X0 A B).
+    assert (HX0In : 在圆内 X0 A B).
     { destruct (le_bet Z T Z X0) as [M [HM1 HM2]].
         apply (l5_6 X0 Z I Z); Cong; Le.
       assert (HMT : M <> T).
@@ -312,7 +312,7 @@ Proof.
       apply 等长的传递性 with C D; Cong.
     }
 
-    assert (HY0OutC : OutCircleS Y0 A B).
+    assert (HY0OutC : 在圆外 Y0 A B).
     { destruct (le_bet Z T Z Y0) as [M [HM1 HM2]].
         apply (l5_6 Y0 Z I Z); Cong; Le.
       assert (HTM : T <> M).

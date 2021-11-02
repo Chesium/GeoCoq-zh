@@ -28,10 +28,10 @@ Proof.
   split.
   - intros Hsc A B U V P HCol HUV HBet.
     destruct (两点重合的决定性 A B).
-      unfold InCircle, OnCircle in *.
+      unfold 在圆上或圆内, 在圆上 in *.
       treat_equalities.
       exists A; Cong.
-    assert (HPIn : InCircle P A B) by (apply bet__le1213; assumption).
+    assert (HPIn : 在圆上或圆内 P A B) by (apply bet__le1213; assumption).
     destruct (diff_col_ex3 U V P) as [W [HUW [HVW [HPW HCol2]]]]; trivial.
     destruct (两点重合的决定性 A P).
     { subst P.
@@ -53,7 +53,7 @@ Proof.
 
   - intros Hoplc A B P Q HPIn HQOut.
     destruct (两点重合的决定性 A B).
-      unfold InCircle in HPIn; treat_equalities.
+      unfold 在圆上或圆内 in HPIn; treat_equalities.
       exists A; split; Between; Circle.
     destruct (两点重合的决定性 P Q).
       subst Q; exists P; split; Between; Circle.
@@ -70,7 +70,7 @@ Proof.
     }
     destruct HB' as [B' [HCong HBet]].
     destruct (Hoplc A B' P Q P) as [Z1 [HCol1 HZ1]]; Col.
-    assert (HZ1On: OnCircle Z1 A B) by (apply 等长的传递性 with A B'; Cong).
+    assert (HZ1On: 在圆上 Z1 A B) by (apply 等长的传递性 with A B'; Cong).
     clear dependent B'.
     destruct (or_bet_out P Z1 Q) as [HBet|[HOut|HNCol]];
       [exists Z1; auto| |exfalso; apply HNCol; Col].
@@ -98,7 +98,7 @@ Proof.
       subst P; exists B, B; repeat split; Circle; Between.
     destruct (Hoplc A B U V P HCol HUV HBet) as [Z1 [HZ1Col HZ1On]].
     exists Z1.
-    assert (HPIn : InCircle P A B) by (apply bet__le1213, HBet).
+    assert (HPIn : 在圆上或圆内 P A B) by (apply bet__le1213, HBet).
     destruct (chord_completion A B Z1 P) as [Z2 [HZ2On HPBet]]; trivial.
     assert (Z1 <> P).
       intro; treat_equalities; apply HPB, between_cong with A; trivial.
@@ -154,7 +154,7 @@ Proof.
   unfold circle_circle_bis, one_point_line_circle.
   intro Hcc.
   assert (Haux : forall A B U V P, Col U V P -> U <> V -> Bet A P B -> ~ Per A U V ->
-      exists Z : Tpoint, Col U V Z /\ OnCircle Z A B).
+      exists Z : Tpoint, Col U V Z /\ 在圆上 Z A B).
   { intros A B U V P HCol HUV HBet HNPer.
     destruct (col_dec U V B) as [|HNCol].
       exists B; split; Circle.
@@ -170,9 +170,9 @@ Proof.
       left; split; trivial.
       apply col__image_spec, HCol.
     assert (HCong : Cong B P D P) by (apply (is_image_col_cong U V); assumption).
-    assert (HDIn : InCircle D A B).
+    assert (HDIn : 在圆上或圆内 D A B).
       apply triangle_inequality with P; Cong.
-    assert (HBIn : InCircle B C D).
+    assert (HBIn : 在圆上或圆内 B C D).
       apply triangle_inequality with P; Cong.
     destruct (Hcc A B C D D B) as [Z0 []]; Circle.
     destruct (circle_circle_cop A B C D Z0 U) as [Z [HZ1 [HZ2 HCop]]]; trivial.

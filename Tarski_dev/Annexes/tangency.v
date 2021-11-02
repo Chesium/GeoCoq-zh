@@ -10,15 +10,15 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** If two circles are tangent, the common point is on the line joining the centers. *)
 
-Lemma TangentCC_Col : forall A B C D X,
- TangentCC A B C D ->
- OnCircle X A B ->
- OnCircle X C D ->
+Lemma 两圆相切_Col : forall A B C D X,
+ 两圆相切 A B C D ->
+ 在圆上 X A B ->
+ 在圆上 X C D ->
  Col X A C.
 Proof.
 intros.
 
-unfold TangentCC in *.
+unfold 两圆相切 in *.
 
 induction(两点重合的决定性 A C).
 subst C.
@@ -40,11 +40,11 @@ assert(x =X).
 apply H.
 split; auto.
 subst x.
-assert(OnCircle Y A B).
-unfold OnCircle in *.
+assert(在圆上 Y A B).
+unfold 在圆上 in *.
 apply 等长的传递性 with A X; Cong.
-assert(OnCircle Y C D).
-unfold OnCircle in *.
+assert(在圆上 Y C D).
+unfold 在圆上 in *.
 apply 等长的传递性 with C X; Cong.
 assert(X = Y).
 apply H.
@@ -67,17 +67,17 @@ contradiction.
 Qed.
 
 Lemma tangent_neq : forall A B O P,
- O<>P -> Tangent A B O P -> A<>B.
+ O<>P -> 圆的切线 A B O P -> A<>B.
 Proof.
 intros.
 intro.
 subst B.
-unfold Tangent in *.
+unfold 圆的切线 in *.
 unfold unique in *.
 ex_and H0 T.
 assert(HH:=symmetric_point_construction T O).
 ex_and HH T'.
-assert(OnCircle T' O P).
+assert(在圆上 T' O P).
 apply (symmetric_oncircle T T' O P); auto.
 assert(T = T').
 apply H1.
@@ -86,14 +86,14 @@ subst T'.
 apply H.
 apply l7_3 in H3.
 subst T.
-unfold OnCircle in H2.
+unfold 在圆上 in H2.
 treat_equalities; tauto.
 Qed.
 
 (** A line going through the center is not tangent to the circle. *)
 
 Lemma diam_not_tangent : forall O P A B, 
-  P <> O -> Col O A B -> ~ Tangent A B O P.
+  P <> O -> Col O A B -> ~ 圆的切线 A B O P.
 Proof.
 intros O P A B HOP HCol HTan.
 destruct HTan as [Q [[HQCol HQOn] HQUnique]].
@@ -114,21 +114,21 @@ Qed.
 (** Every point on the tangent different from the point of tangency is strictly outside the circle. *)
 
 Lemma tangent_out : forall A B O P T X,
-  X <> T -> Col A B X -> TangentAt A B O P T -> OutCircleS X O P.
+  X <> T -> Col A B X -> 圆的切线切于 A B O P T -> 在圆外 X O P.
 Proof.
 intros.
-unfold TangentAt in *.
+unfold 圆的切线切于 in *.
 spliter.
 
 induction(两点重合的决定性 O P).
 subst P.
-unfold OutCircleS.
+unfold 在圆外.
 unfold Lt.
 
 split.
 apply le_trivial.
 intro.
-unfold OnCircle in *.
+unfold 在圆上 in *.
 assert(T = O).
 apply 等长的同一性 with O; Cong.
 assert(X = O).
@@ -136,14 +136,14 @@ apply 等长的同一性 with O; Cong.
 subst O.
 contradiction.
 
-assert(InCircle X O P -> X = T).
+assert(在圆上或圆内 X O P -> X = T).
 intro.
 
 assert(HH:= chord_completion O P T X H3 H5).
 ex_and HH T'.
 assert(A <> B).
 apply (tangent_neq A B O P); auto.
-unfold Tangent in *.
+unfold 圆的切线 in *.
 unfold unique in *.
 ex_and H1 TT.
 assert(TT= T).
@@ -161,7 +161,7 @@ apply 中间性的同一律 in H7.
 subst X.
 tauto.
 
-assert(~InCircle X O P).
+assert(~在圆上或圆内 X O P).
 intro.
 apply H5 in H6.
 contradiction.
@@ -173,17 +173,17 @@ Qed.
 This is Euclid Book III, Prop 18 *)
 
 Lemma tangentat_perp : 
-forall A B O P T, O <> P -> TangentAt A B O P T -> Perp A B O T.
+forall A B O P T, O <> P -> 圆的切线切于 A B O P T -> Perp A B O T.
 Proof.
 intros.
 assert(TA:=H0).
-unfold TangentAt in H0.
+unfold 圆的切线切于 in H0.
 spliter.
 assert(A <> B).
 apply (tangent_neq A B O P); auto.
 assert(~Col A B O).
 intro.
-assert(~Tangent A B O P).
+assert(~圆的切线 A B O P).
 apply(diam_not_tangent); Col.
 contradiction.
 
@@ -222,16 +222,16 @@ apply H7.
 apply sym_equal.
 apply l7_3; auto.
 
-assert(OnCircle T' O P).
-unfold OnCircle in *.
+assert(在圆上 T' O P).
+unfold 在圆上 in *.
 apply 等长的传递性 with O T; Cong.
 
-assert(OutCircleS T' O P).
+assert(在圆外 T' O P).
 apply (tangent_out R B O P T T'); ColR.
-unfold OutCircleS in *.
+unfold 在圆外 in *.
 unfold Lt in *.
 spliter.
-unfold OnCircle in H14.
+unfold 在圆上 in H14.
 apply False_ind.
 apply H16.
 Cong.
@@ -268,20 +268,20 @@ apply H7.
 apply sym_equal.
 apply l7_3; auto.
 
-assert(OnCircle T' O P).
-unfold OnCircle in *.
+assert(在圆上 T' O P).
+unfold 在圆上 in *.
 apply 等长的传递性 with O T; Cong.
 
-assert(OutCircleS T' O P).
+assert(在圆外 T' O P).
 unfold 中点 in *.
 spliter.
 apply 中间性转共线 in H12.
 apply (tangent_out A B O P T T'); auto.
 ColR.
-unfold OutCircleS in *.
+unfold 在圆外 in *.
 unfold Lt in *.
 spliter.
-unfold OnCircle in H14.
+unfold 在圆上 in H14.
 apply False_ind.
 apply H17.
 Cong.
@@ -291,14 +291,14 @@ Qed.
 such that AB is perpendicular to OX. *)
 
 Lemma tangency_chara : forall A B O P, P <> O ->
- (exists X, OnCircle X O P /\ 垂直于 X A B O X) <-> Tangent A B O P.
+ (exists X, 在圆上 X O P /\ 垂直于 X A B O X) <-> 圆的切线 A B O P.
 Proof.
 intros.
 
 split.
 intro.
 ex_and H0 T.
-unfold Tangent.
+unfold 圆的切线.
 unfold unique.
 exists T.
 split.
@@ -334,7 +334,7 @@ ColR.
 assert(Lt T x' x' O /\ Lt T O x' O).
 assert_diffs.
 apply(l11_46 x' T O); auto.
-unfold OnCircle in *.
+unfold 在圆上 in *.
 unfold Lt in H10.
 spliter.
 apply H12.
@@ -342,12 +342,12 @@ apply 等长的传递性 with O P; Cong.
 
 intros.
 assert(HT:=H0).
-unfold Tangent in H0.
+unfold 圆的切线 in H0.
 unfold unique in H0.
 ex_and H0 T.
 
-assert(TangentAt A B O P T).
-unfold TangentAt.
+assert(圆的切线切于 A B O P T).
+unfold 圆的切线切于.
 repeat split; auto.
 exists T.
 split; auto.
@@ -360,13 +360,13 @@ Qed.
 
 
 Lemma tangency_chara2 : forall A B O P Q,
- OnCircle Q O P -> Col Q A B -> 
- ((forall X, Col A B X -> X = Q \/ OutCircleS X O P) <-> Tangent A B O P).
+ 在圆上 Q O P -> Col Q A B -> 
+ ((forall X, Col A B X -> X = Q \/ 在圆外 X O P) <-> 圆的切线 A B O P).
 Proof.
 intros.
 split.
 intros.
-unfold Tangent.
+unfold 圆的切线.
 unfold unique.
 exists Q.
 repeat split; Col.
@@ -375,22 +375,22 @@ spliter.
 assert(HH:=(H1 x' H2)).
 induction HH.
 auto.
-unfold OnCircle in *.
-unfold OutCircleS in *.
+unfold 在圆上 in *.
+unfold 在圆外 in *.
 unfold Lt in *.
 spliter.
 apply False_ind.
 apply H5; Cong.
 
 intros.
-assert(TangentAt A B O P Q).
-unfold TangentAt.
+assert(圆的切线切于 A B O P Q).
+unfold 圆的切线切于.
 repeat split; Col.
 
 induction(两点重合的决定性 X Q).
 left; auto;
 
-unfold Tangent in H1.
+unfold 圆的切线 in H1.
 right.
 
 apply(tangent_out A B O P Q X); auto.
@@ -398,8 +398,8 @@ Qed.
 
 
 Lemma tangency_chara3 : forall A B O P Q, A <> B ->
- OnCircle Q O P -> Col Q A B -> 
- ((forall X, Col A B X -> OutCircle X O P) <-> Tangent A B O P).
+ 在圆上 Q O P -> Col Q A B -> 
+ ((forall X, Col A B X -> 在圆上或圆外 X O P) <-> 圆的切线 A B O P).
 Proof.
 
 intros.
@@ -412,18 +412,18 @@ intros.
 induction(两点重合的决定性 X Q).
 left; auto.
 right.
-assert(OutCircle X O P).
+assert(在圆上或圆外 X O P).
 apply H2; Col.
 
-unfold OutCircleS.
-unfold OutCircle in H5.
+unfold 在圆外.
+unfold 在圆上或圆外 in H5.
 unfold Lt.
 split; auto.
 intro.
 
 assert(HH:=midpoint_existence X Q).
 ex_and HH M.
-assert(InCircleS M O P).
+assert(在圆内 M O P).
 apply(bet_inc2__incs O P Q X M); Circle.
 intro.
 subst M.
@@ -444,27 +444,27 @@ unfold 中点 in *.
 spliter.
 ColR.
 assert(HH:=(H2 M H9)).
-unfold InCircleS in *.
-unfold OutCircle in *.
+unfold 在圆内 in *.
+unfold 在圆上或圆外 in *.
 
 apply le__nlt in HH.
 contradiction.
 
 intros.
-assert(TangentAt A B O P Q).
-unfold TangentAt.
+assert(圆的切线切于 A B O P Q).
+unfold 圆的切线切于.
 repeat split; Col.
 
 induction(两点重合的决定性 X Q).
 subst X.
-unfold TangentAt in *.
+unfold 圆的切线切于 in *.
 spliter.
 apply onc__outc; auto.
 
-assert(OutCircleS X O P).
+assert(在圆外 X O P).
 apply(tangent_out A B O P Q X); auto.
-unfold OutCircleS in *.
-unfold OutCircle.
+unfold 在圆外 in *.
+unfold 在圆上或圆外.
 unfold Lt in H6.
 tauto.
 Qed.
@@ -473,20 +473,20 @@ Qed.
  If two circles cut one another, then they do not have the same center. *)
 
 Lemma intercc__neq :  forall A B C D,
- InterCC A B C D -> A<>C.
+ 两圆相交 A B C D -> A<>C.
 Proof.
 intros.
-unfold InterCC in *.
+unfold 两圆相交 in *.
 ex_and H P.
 ex_and H0 Q.
-unfold InterCCAt in *.
+unfold 两圆相交于 in *.
 spliter.
-unfold OnCircle in *.
+unfold 在圆上 in *.
 intro.
 subst C.
 apply H.
-unfold EqC.
-unfold OnCircle in *.
+unfold 同圆.
+unfold 在圆上 in *.
 assert(Cong A B A D) by (apply 等长的传递性 with A P; Cong).
 intro.
 split.
@@ -502,16 +502,16 @@ If two circles touch one another, then they do not have the same center.
 
 Lemma tangentcc__neq: forall A B C D,
  A<>B ->
- TangentCC A B C D ->
+ 两圆相切 A B C D ->
  A<>C.
 Proof.
 intros.
-unfold TangentCC in *.
+unfold 两圆相切 in *.
 unfold unique in *.
 ex_and H0 T.
 intro.
 subst C.
-unfold OnCircle in *.
+unfold 在圆上 in *.
 assert(Cong A B A D) by (apply 等长的传递性 with A T; Cong).
 assert(T = B).
 apply(H1 B); Cong.
@@ -527,26 +527,26 @@ subst B'.
 treat_equalities; tauto.
 Qed.
 
-Lemma interccat__neq : forall A B C D P Q, InterCCAt A B C D P Q -> A <> C.
+Lemma interccat__neq : forall A B C D P Q, 两圆相交于 A B C D P Q -> A <> C.
 Proof.
 intros.
 apply intercc__neq  with B D.
-unfold InterCC.
+unfold 两圆相交.
 exists P; exists Q;auto.
 Qed.
 
 (** Prop 17 construction of the tangent to a circle at a given point *)
 
-Lemma tangent_construction : forall O P X, segment_circle -> OutCircle X O P 
-                                                  -> exists Y, Tangent X Y O P.
+Lemma tangent_construction : forall O P X, segment_circle -> 在圆上或圆外 X O P 
+                                                  -> exists Y, 圆的切线 X Y O P.
 Proof.
 intros.
 induction(两点重合的决定性 O P).
 subst P.
 exists O.
-unfold Tangent.
+unfold 圆的切线.
 unfold unique.
-unfold OnCircle in *.
+unfold 在圆上 in *.
 exists O.
 repeat split; Col; Cong.
 intros.
@@ -566,7 +566,7 @@ induction HH.
 
 assert(HH:= perp_exists X O X H2).
 ex_and HH Y.
-unfold OnCircle in *.
+unfold 在圆上 in *.
 exists Y.
 apply tangency_chara; auto.
 exists X.
@@ -574,12 +574,12 @@ apply perp_perp_in in H4.
 split; Circle.
 
 induction H3.
-unfold OutCircle in *.
-unfold InCircleS in *.
+unfold 在圆上或圆外 in *.
+unfold 在圆内 in *.
 apply lt__nle in H3; contradiction.
 
 
-assert(exists Q : Tpoint, OnCircle Q O P /\ Out O X Q).
+assert(exists Q : Tpoint, 在圆上 Q O P /\ Out O X Q).
 {
   apply(onc_exists); auto.
 }
@@ -591,8 +591,8 @@ assert(Bet O U X).
   unfold Out in H5.
   spliter.
   induction H7.
-  unfold OutCircleS in *.
-  unfold OnCircle in *.
+  unfold 在圆外 in *.
+  unfold 在圆上 in *.
   assert(Le O X O U).
   {
     unfold Le.
@@ -612,7 +612,7 @@ assert(exists X : Tpoint, Perp U X O U).
 {
   apply(perp_exists U O U).
   intro.
-  unfold OnCircle in H4.
+  unfold 在圆上 in H4.
   treat_equalities; tauto.
 }
 ex_and H7 R.
@@ -630,24 +630,24 @@ assert(exists X0 : Tpoint, (Bet U R X0 \/ Bet U X0 R) /\ Cong U X0 W X).
 
 ex_and H10 T.
 
-assert(InCircleS U O X).
+assert(在圆内 U O X).
 {
-  unfold InCircleS.
-  unfold OutCircleS in H3.
-  unfold OnCircle in H4.
+  unfold 在圆内.
+  unfold 在圆外 in H3.
+  unfold 在圆上 in H4.
   apply(cong2_lt__lt O P O X); Cong.
 }
 
-assert(OutCircleS T O X).
+assert(在圆外 T O X).
 {
   apply(diam_cong_incs__outcs O X X W U T); auto.
-  unfold Diam.
-  unfold OnCircle.
+  unfold 直径.
+  unfold 在圆上.
   repeat split; Cong.
   Cong.
 }
 unfold segment_circle in H.
-assert(exists Z : Tpoint, Bet U Z T /\ OnCircle Z O X).
+assert(exists Z : Tpoint, Bet U Z T /\ 在圆上 Z O X).
 {
   apply(H O X U T).
   apply incs__inc; auto.
@@ -655,11 +655,11 @@ assert(exists Z : Tpoint, Bet U Z T /\ OnCircle Z O X).
 }
 
 ex_and H14 Y.
-assert(exists Q : Tpoint, OnCircle Q O P /\ Out O Y Q).
+assert(exists Q : Tpoint, 在圆上 Q O P /\ Out O Y Q).
 {
   apply(onc_exists O P Y); auto.
   intro.
-  unfold OnCircle in H15.
+  unfold 在圆上 in H15.
   treat_equalities; tauto.
 }
 ex_and H16 V.
@@ -671,12 +671,12 @@ assert(Bet O V Y).
   unfold Out in H17.
   spliter.
   induction H19.
-  unfold OutCircleS in H3.
+  unfold 在圆外 in H3.
   assert(Lt O V O Y).
   {
     apply (cong2_lt__lt O P O X); Cong.
   }
-  unfold OnCircle in *.
+  unfold 在圆上 in *.
   assert(Le O Y O V).
   {
     unfold Le.
@@ -694,7 +694,7 @@ assert(Cong O U O V) by (apply 等长的传递性 with O P; Cong).
 
 assert(等角 X O V Y O U).
 {
-  unfold OnCircle in *.
+  unfold 在圆上 in *.
   apply(l11_10 U O Y Y O U X V Y U).
   apply conga_left_comm.
   apply conga_refl; intro;treat_equalities; tauto.
@@ -715,11 +715,11 @@ assert(Cong V X U Y).
 
 assert(等角 O U Y O V X).
 {
-  unfold OnCircle in *.
+  unfold 在圆上 in *.
   apply(cong3_conga O U Y O V X).
   intro;treat_equalities; tauto.
   intro;treat_equalities.
-  unfold OutCircleS in *.
+  unfold 在圆外 in *.
   unfold Lt in *.
   spliter.
   Cong.
@@ -753,7 +753,7 @@ apply per_perp_in in H24; Cong.
 apply perp_in_left_comm.
 apply perp_in_sym.
 assumption.
-unfold OnCircle in *.
+unfold 在圆上 in *.
 intro.
 treat_equalities; tauto.
 intro.
@@ -763,12 +763,12 @@ tauto.
 Qed.
 
 Lemma interccat__ncol : forall A B C D P Q,
- InterCCAt A B C D P Q -> ~ Col A C P.
+ 两圆相交于 A B C D P Q -> ~ Col A C P.
 Proof.
 intros.
 intro.
 assert (HH := H).
-unfold InterCCAt in HH.
+unfold 两圆相交于 in HH.
 spliter.
 apply H2.
 apply (l4_18 A C).
@@ -783,12 +783,12 @@ Qed.
  A circle does not cut a circle at more than two points.
  *)
 Lemma cop_onc2__oreq : forall A B C D P Q,
- InterCCAt A B C D P Q -> 共面 A C P Q ->
- forall Z, OnCircle Z A B -> OnCircle Z C D -> 共面 A C P Z -> Z=P \/ Z=Q.
+ 两圆相交于 A B C D P Q -> 共面 A C P Q ->
+ forall Z, 在圆上 Z A B -> 在圆上 Z C D -> 共面 A C P Z -> Z=P \/ Z=Q.
 Proof.
 intros.
 assert(HIC := H).
-unfold InterCCAt in H.
+unfold 两圆相交于 in H.
 spliter.
 induction (两点重合的决定性 Z Q).
   right; auto.
@@ -911,8 +911,8 @@ Section Tangency_2D.
 Context `{T2D:Tarski_2D}.
 
 Lemma onc2__oreq : forall A B C D P Q,
- InterCCAt A B C D P Q ->
- forall Z, OnCircle Z A B -> OnCircle Z C D  -> Z=P \/ Z=Q.
+ 两圆相交于 A B C D P Q ->
+ forall Z, 在圆上 Z A B -> 在圆上 Z C D  -> Z=P \/ Z=Q.
 Proof.
 intros.
 assert(HCop := all_coplanar A C P Q).

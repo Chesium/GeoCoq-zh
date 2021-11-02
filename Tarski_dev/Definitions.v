@@ -424,69 +424,69 @@ Definition Defect A B C D E F := exists G H I,
 
 (** P is on the circle of center A going through B *)
 
-Definition OnCircle P A B := Cong A P A B.
+Definition 在圆上 P A B := Cong A P A B.
 
 (** P is inside or on the circle of center A going through B *)
 
-Definition InCircle P A B := Le A P A B.
+Definition 在圆上或圆内 P A B := Le A P A B.
 
 (** P is outside or on the circle of center A going through B *)
 
-Definition OutCircle P A B := Le A B A P.
+Definition 在圆上或圆外 P A B := Le A B A P.
 
 (** P is strictly inside the circle of center A going through B *)
 
-Definition InCircleS P A B := Lt A P A B.
+Definition 在圆内 P A B := Lt A P A B.
 
 (** P is strictly outside the circle of center A going through B *)
 
-Definition OutCircleS P A B := Lt A B A P.
+Definition 在圆外 P A B := Lt A B A P.
 
 (** The line segment AB is a diameter of the circle of center O going through P *)
 
-Definition Diam A B O P := Bet A O B /\ OnCircle A O P /\ OnCircle B O P.
+Definition 直径 A B O P := Bet A O B /\ 在圆上 A O P /\ 在圆上 B O P.
 
-Definition EqC A B C D :=
- forall X, OnCircle X A B <-> OnCircle X C D.
+Definition 同圆 A B C D :=
+ forall X, 在圆上 X A B <-> 在圆上 X C D.
 
 (** The circles of center A passing through B and
                 of center C passing through D intersect
                 in two distinct points P and Q. *)
 
-Definition InterCCAt A B C D P Q :=
-  ~ EqC A B C D /\
-  P<>Q /\ OnCircle P C D /\ OnCircle Q C D /\ OnCircle P A B /\ OnCircle Q A B.
+Definition 两圆相交于 A B C D P Q :=
+  ~ 同圆 A B C D /\
+  P<>Q /\ 在圆上 P C D /\ 在圆上 Q C D /\ 在圆上 P A B /\ 在圆上 Q A B.
 
 
 (** The circles of center A passing through B and
                 of center C passing through D
                 have two distinct intersections. *)
 
-Definition InterCC A B C D :=
- exists P Q, InterCCAt A B C D P Q.
+Definition 两圆相交 A B C D :=
+ exists P Q, 两圆相交于 A B C D P Q.
 
 (** The circles of center A passing through B and
                 of center C passing through D
                 are tangent. *)
 
-Definition TangentCC A B C D := exists !X, OnCircle X A B /\ OnCircle X C D.
+Definition 两圆相切 A B C D := exists !X, 在圆上 X A B /\ 在圆上 X C D.
 
 (** The line AB is tangent to the circle OP *)
 
-Definition Tangent A B O P := exists !X, Col A B X /\ OnCircle X O P.
+Definition 圆的切线 A B O P := exists !X, Col A B X /\ 在圆上 X O P.
 
-Definition TangentAt A B O P T :=
-  Tangent A B O P /\ Col A B T /\ OnCircle T O P.
+Definition 圆的切线切于 A B O P T :=
+  圆的切线 A B O P /\ Col A B T /\ 在圆上 T O P.
 
 (** The points A, B, C and D belong to a same circle *)
 
-Definition Concyclic A B C D := 共面 A B C D /\
-  exists O P, OnCircle A O P /\ OnCircle B O P /\ OnCircle C O P /\ OnCircle D O P.
+Definition 共圆 A B C D := 共面 A B C D /\
+  exists O P, 在圆上 A O P /\ 在圆上 B O P /\ 在圆上 C O P /\ 在圆上 D O P.
 
 (** The points A, B, C and D are concyclic or lined up *)
 
-Definition Concyclic_gen A B C D :=
-  Concyclic A B C D \/ (Col A B C /\ Col A B D /\ Col A C D /\ Col B C D).
+Definition 共圆或共线 A B C D :=
+  共圆 A B C D \/ (Col A B C /\ Col A B D /\ Col A C D /\ Col B C D).
 
 (** C is on the graduation based on [AB] *)
 Inductive Grad : Tpoint -> Tpoint -> Tpoint -> Prop :=

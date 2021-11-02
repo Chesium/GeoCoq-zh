@@ -1,12 +1,12 @@
 Require Export GeoCoq.Highschool.circumcenter.
 
-Section Concyclic.
+Section 共圆.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
-Definition Concyclic A B C D := 共面 A B C D /\ exists O, Cong O A O B /\ Cong O A O C /\ Cong O A O D.
+Definition 共圆 A B C D := 共面 A B C D /\ exists O, Cong O A O B /\ Cong O A O C /\ Cong O A O D.
 
-Lemma concyclic_aux : forall A B C D, Concyclic A B C D ->
+Lemma concyclic_aux : forall A B C D, 共圆 A B C D ->
   exists O, Cong O A O B /\ Cong O A O C /\ Cong O A O D /\ 共面 A B C O.
 Proof.
   intros A B C D [HCop [O1]]; spliter.
@@ -19,11 +19,11 @@ Qed.
 
 Lemma concyclic_trans : forall A B C D E,
  ~ Col A B C ->
- Concyclic A B C D  -> Concyclic A B C E -> Concyclic A B D E.
+ 共圆 A B C D  -> 共圆 A B C E -> 共圆 A B D E.
 Proof.
 intros.
 split.
-unfold Concyclic in *; spliter; CopR.
+unfold 共圆 in *; spliter; CopR.
 apply concyclic_aux in H0.
 apply concyclic_aux in H1.
 decompose [ex and] H0;clear H0.
@@ -40,7 +40,7 @@ Cong.
 Qed.
 
 Lemma concyclic_perm_1: forall A B C D,
-  Concyclic A B C D -> Concyclic A B D C.
+  共圆 A B C D -> 共圆 A B D C.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -48,7 +48,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_2 : forall A B C D,
-  Concyclic A B C D -> Concyclic A C B D.
+  共圆 A B C D -> 共圆 A C B D.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -56,7 +56,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_3 : forall A B C D,
-  Concyclic A B C D -> Concyclic A C D B.
+  共圆 A B C D -> 共圆 A C D B.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -64,7 +64,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_4 : forall A B C D,
-  Concyclic A B C D -> Concyclic A D B C.
+  共圆 A B C D -> 共圆 A D B C.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -72,7 +72,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_5 : forall A B C D,
-  Concyclic A B C D -> Concyclic A D C B.
+  共圆 A B C D -> 共圆 A D C B.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -80,7 +80,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_6 : forall A B C D,
-  Concyclic A B C D -> Concyclic B A C D.
+  共圆 A B C D -> 共圆 B A C D.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -88,7 +88,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_7 : forall A B C D,
-  Concyclic A B C D -> Concyclic B A D C.
+  共圆 A B C D -> 共圆 B A D C.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -96,7 +96,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_8 : forall A B C D,
-  Concyclic A B C D -> Concyclic B C A D.
+  共圆 A B C D -> 共圆 B C A D.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -104,7 +104,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_9 : forall A B C D,
-  Concyclic A B C D -> Concyclic B C D A.
+  共圆 A B C D -> 共圆 B C D A.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -112,7 +112,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_10 : forall A B C D,
-  Concyclic A B C D -> Concyclic B D A C.
+  共圆 A B C D -> 共圆 B D A C.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -120,7 +120,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_11 : forall A B C D,
-  Concyclic A B C D -> Concyclic B D C A.
+  共圆 A B C D -> 共圆 B D C A.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -128,7 +128,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_12 : forall A B C D,
-  Concyclic A B C D -> Concyclic C A B D.
+  共圆 A B C D -> 共圆 C A B D.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -136,7 +136,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_13 : forall A B C D,
-  Concyclic A B C D -> Concyclic C A D B.
+  共圆 A B C D -> 共圆 C A D B.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -144,7 +144,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_14 : forall A B C D,
-  Concyclic A B C D -> Concyclic C B A D.
+  共圆 A B C D -> 共圆 C B A D.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -152,7 +152,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_15 : forall A B C D,
-  Concyclic A B C D -> Concyclic C B D A.
+  共圆 A B C D -> 共圆 C B D A.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -160,7 +160,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_16 : forall A B C D,
-  Concyclic A B C D -> Concyclic C D A B.
+  共圆 A B C D -> 共圆 C D A B.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -168,7 +168,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_17 : forall A B C D,
-  Concyclic A B C D -> Concyclic C D B A.
+  共圆 A B C D -> 共圆 C D B A.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -176,7 +176,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_18 : forall A B C D,
-  Concyclic A B C D -> Concyclic D A B C.
+  共圆 A B C D -> 共圆 D A B C.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -184,7 +184,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_19 : forall A B C D,
-  Concyclic A B C D -> Concyclic D A C B.
+  共圆 A B C D -> 共圆 D A C B.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -192,7 +192,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_20 : forall A B C D,
-  Concyclic A B C D -> Concyclic D B A C.
+  共圆 A B C D -> 共圆 D B A C.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -200,7 +200,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_21 : forall A B C D,
-  Concyclic A B C D -> Concyclic D B C A.
+  共圆 A B C D -> 共圆 D B C A.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -208,7 +208,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_22 : forall A B C D,
-  Concyclic A B C D -> Concyclic D C A B.
+  共圆 A B C D -> 共圆 D C A B.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -216,7 +216,7 @@ split; [Cop|spliter; exists X; repeat split; CongR..].
 Qed.
 
 Lemma concyclic_perm_23 : forall A B C D,
-  Concyclic A B C D -> Concyclic D C B A.
+  共圆 A B C D -> 共圆 D C B A.
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
@@ -225,10 +225,10 @@ Qed.
 
 Lemma concyclic_1123 : forall A B C,
  ~ Col A B C ->
- Concyclic A A B C.
+ 共圆 A A B C.
 Proof.
 intros A B C HABC.
-unfold Concyclic.
+unfold 共圆.
 split.
 apply coplanar_trivial.
 destruct (exists_circumcenter A B C HABC) as [G HG].
@@ -236,4 +236,4 @@ exists G.
 apply circumcenter_cong in HG;spliter;repeat split;Cong.
 Qed.
 
-End Concyclic.
+End 共圆.

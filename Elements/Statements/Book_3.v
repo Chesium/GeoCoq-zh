@@ -25,9 +25,9 @@ If on the circumference of a circle two points are taken at random, the straight
 Lemma prop_2 : forall O P U V X,
  X <> U -> X <> V ->
  Bet U X V ->
- OnCircle U O P ->
- OnCircle V O P ->
- InCircleS X O P.
+ 在圆上 U O P ->
+ 在圆上 V O P ->
+ 在圆内 X O P.
 Proof.
 intros O P U V X; intros.
 apply bet_inc2__incs with U V; Circle.
@@ -39,8 +39,8 @@ If in a circle a straight line passing through the center bisects a straight lin
 
 Lemma prop_3_1 : forall O P A B X,
  O <> X -> A <> B ->
- OnCircle A O P ->
- OnCircle B O P ->
+ 在圆上 A O P ->
+ 在圆上 B O P ->
  中点 X A B ->
  Perp O X A B.
 Proof.
@@ -50,8 +50,8 @@ Qed.
 Lemma prop_3_2 : forall O P A B X,
  O<>X -> A<>B ->
  Col A B X ->
- OnCircle A O P ->
- OnCircle B O P ->
+ 在圆上 A O P ->
+ 在圆上 B O P ->
  Perp O X A B ->
  中点 X A B.
 Proof.
@@ -63,10 +63,10 @@ If in a circle two straight lines cut one another which are not through the cent
         *)
 
 Lemma prop_4 : forall O P A B C D X, B <> C -> A <> B ->
- OnCircle A O P ->
- OnCircle B O P ->
- OnCircle C O P ->
- OnCircle D O P ->
+ 在圆上 A O P ->
+ 在圆上 B O P ->
+ 在圆上 C O P ->
+ 在圆上 D O P ->
  中点 X A C ->
  中点 X B D ->
  X = O.
@@ -79,7 +79,7 @@ If two circles cut one another, they will not have the same center.
         *)
 
 Lemma prop_5 :  forall A B C D,
- InterCC A B C D ->
+ 两圆相交 A B C D ->
  A <> C.
 Proof.
 exact intercc__neq.
@@ -92,7 +92,7 @@ If two circles touch one another, they will not have the same center.
 
 Lemma prop_6: forall A B C D,
  A <> B ->
- TangentCC A B C D ->
+ 两圆相切 A B C D ->
  A <> C.
 Proof.
 exact tangentcc__neq.
@@ -103,9 +103,9 @@ If a point is taken within a circle, and more than two equal straight lines fall
        *)
 
 Lemma prop_9 : forall O P X A B C, A <> B -> A <> C -> B <> C ->
-  OnCircle A O P ->
-  OnCircle B O P ->
-  OnCircle C O P ->
+  在圆上 A O P ->
+  在圆上 B O P ->
+  在圆上 C O P ->
   Cong X A X B ->
   Cong X A X C ->
   X = O.
@@ -125,12 +125,12 @@ If two circles touch one another externally, the straight line joining their cen
     the two kinds of tangency. *)
 
 Lemma prop_11_12 : forall A B C D X,
- TangentCC A B C D ->
- OnCircle X A B ->
- OnCircle X C D ->
+ 两圆相切 A B C D ->
+ 在圆上 X A B ->
+ 在圆上 X C D ->
  Col X A C.
 Proof.
-exact TangentCC_Col.
+exact 两圆相切_Col.
 Qed.
 
 
@@ -141,7 +141,7 @@ If a straight line touches a circle, and a straight line is joined from the cent
 Lemma prop_18 : 
 forall A B O P T,
  O <> P ->
- TangentAt A B O P T ->
+ 圆的切线切于 A B O P T ->
  Perp A B O T.
 Proof.
 exact tangentat_perp.
