@@ -302,7 +302,7 @@ Proof.
       assert (Per Q P C) by (apply per_col with Y; Col; Perp).
       apply HNCol1, cop_perp2__col with P Q; Perp; Cop.
     }
-    assert (HLam : Lambert P X Y Z).
+    assert (HLam : Lambert四边形 P X Y Z).
     { assert_diffs.
       repeat split; auto.
         apply per_col with Q; Col.

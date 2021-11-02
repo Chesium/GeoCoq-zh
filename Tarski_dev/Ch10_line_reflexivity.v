@@ -21,21 +21,21 @@ Ltac assert_cops :=
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply par__coplanar, H)
       | H:Plg ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plg__coplanar, H)
-      | H:Parallelogram_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:严格平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgs__coplanar, H)
-      | H:Parallelogram_flat ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:退化平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgf__coplanar, H)
-      | H:Parallelogram ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply parallelogram__coplanar, H)
-      | H:Rhombus ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:菱形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rhombus__coplanar, H)
-      | H:Rectangle ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:长方形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rectangle__coplanar, H)
-      | H:Square ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:正方形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply square__coplanar, H)
-      | H:Saccheri ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:萨凯里四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply sac__coplanar, H)
-      | H:Lambert ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:Lambert四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply lambert__coplanar, H)
  end.
 

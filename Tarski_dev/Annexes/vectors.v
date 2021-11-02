@@ -38,7 +38,7 @@ intros.
 unfold EqV in *.
 
 induction H; induction H0.
-assert(Parallelogram A B F E \/ A = B /\ D = C /\ E = F /\ A = E).
+assert(平行四边形 A B F E \/ A = B /\ D = C /\ E = F /\ A = E).
 apply (plg_pseudo_trans A B D C E F); auto.
 apply plg_comm2.
 assumption.
@@ -254,13 +254,13 @@ Proof.
 intros.
 unfold EqV in H0.
 induction H0.
-unfold Parallelogram in H0.
+unfold 平行四边形 in H0.
 induction H0.
-unfold Parallelogram_strict in H0.
+unfold 严格平行四边形 in H0.
 spliter.
 apply par_right_comm.
 assumption.
-unfold Parallelogram_flat in H0.
+unfold 退化平行四边形 in H0.
 spliter.
 right.
 spliter.
@@ -461,7 +461,7 @@ apply (l7_17 B D).
 apply H5.
 中点.
 subst M1.
-assert(Parallelogram A D' D'0 C).
+assert(平行四边形 A D' D'0 C).
 apply (mid_plg _ _ _ _ M0).
 left.
 assumption.
@@ -847,7 +847,7 @@ assert(HH:= plgf_bet A B C D' H0).
 
 induction (两点重合的决定性 A D').
 subst D'.
-unfold Parallelogram_flat in H0.
+unfold 退化平行四边形 in H0.
 spliter.
 assert(B = C \/ 中点 A B C).
 apply l7_20.
@@ -864,7 +864,7 @@ assumption.
 
 induction (两点重合的决定性 B C).
 subst C.
-unfold Parallelogram_flat in H0.
+unfold 退化平行四边形 in H0.
 spliter.
 assert(A = D' \/ 中点 B A D').
 apply l7_20.
@@ -1090,7 +1090,7 @@ apply invert_one_side.
 apply H12.
 
 apply False_ind.
-unfold Parallelogram_flat in H2.
+unfold 退化平行四边形 in H2.
 spliter.
 apply H.
 exists C.
@@ -1152,7 +1152,7 @@ apply False_ind.
 apply H1.
 exists B.
 split; Col.
-unfold Parallelogram_flat in H0.
+unfold 退化平行四边形 in H0.
 spliter.
 assert(A = D' \/ 中点 B A D').
 apply l7_20.
@@ -1217,11 +1217,11 @@ Qed.
 
 Lemma plgs_out_plgs :
  forall A B C D B' C',
- Parallelogram_strict A B C D ->
+ 严格平行四边形 A B C D ->
  Out A B B' ->
  Out D C C' ->
  Cong A B' D C' ->
- Parallelogram_strict A B' C' D.
+ 严格平行四边形 A B' C' D.
 Proof.
 intros.
 assert(OS A D C B /\ OS C B A D).
@@ -1313,9 +1313,9 @@ Qed.
 
 Lemma plgs_plgs_bet :
  forall A B C D B' C',
- Parallelogram_strict A B C D ->
+ 严格平行四边形 A B C D ->
  Bet A B B' ->
- Parallelogram_strict A B' C' D ->
+ 严格平行四边形 A B' C' D ->
  Bet D C C'.
 Proof.
 intros.
@@ -1400,10 +1400,10 @@ assumption.
 apply l9_9 in H8.
 contradiction.
 
-assert(Parallelogram_strict B C D A).
+assert(严格平行四边形 B C D A).
 apply plgs_permut.
 assumption.
-assert(Parallelogram_strict D A B' C').
+assert(严格平行四边形 D A B' C').
 apply plgs_permut.
 apply plgs_sym.
 assumption.
@@ -1413,10 +1413,10 @@ subst C'.
 Between.
 
 assert(HH:= plgs_pseudo_trans B C D A B' C' H3 H4).
-assert(Parallelogram_strict B C C' B').
+assert(严格平行四边形 B C C' B').
 induction HH.
 assumption.
-unfold Parallelogram_flat in H6.
+unfold 退化平行四边形 in H6.
 spliter.
 apply False_ind.
 
@@ -1491,9 +1491,9 @@ Qed.
 
 Lemma plgf_plgf_bet :
  forall A B C D B' C',
- Parallelogram_flat A B C D ->
+ 退化平行四边形 A B C D ->
  Bet A B B' ->
- Parallelogram_flat A B' C' D ->
+ 退化平行四边形 A B' C' D ->
  Bet D C C'.
 Proof.
 intros.
@@ -1511,14 +1511,14 @@ ex_and HH P.
 assert(HH:=plg_existence A B P H2).
 ex_and HH Q.
 
-assert(Parallelogram_strict A B P Q).
+assert(严格平行四边形 A B P Q).
 induction H4.
 assumption.
-unfold Parallelogram_flat in H4.
+unfold 退化平行四边形 in H4.
 spliter.
 contradiction.
 
-assert(Parallelogram_strict C D Q P).
+assert(严格平行四边形 C D Q P).
 
 apply(plgf_plgs_trans C D A B P Q).
 intro.
@@ -1587,13 +1587,13 @@ auto.
 spliter.
 clear H13.
 
-assert(Parallelogram_strict A B' P' Q).
+assert(严格平行四边形 A B' P' Q).
 induction H8.
 auto.
-unfold Parallelogram_flat in H8.
+unfold 退化平行四边形 in H8.
 spliter.
 apply False_ind.
-unfold Parallelogram_flat in *.
+unfold 退化平行四边形 in *.
 spliter.
 apply 中间性转共线 in H0.
 assert(Col B' P' Q).
@@ -1607,7 +1607,7 @@ split.
 ColR.
 Col.
 
-assert(Parallelogram_strict D C' P' Q).
+assert(严格平行四边形 D C' P' Q).
 apply (plgf_plgs_trans _ _ B' A).
 intro.
 subst C'.
@@ -1633,9 +1633,9 @@ Qed.
 
 Lemma plg_plg_bet :
  forall A B C D B' C',
- Parallelogram A B C D ->
+ 平行四边形 A B C D ->
  Bet A B B' ->
- Parallelogram A B' C' D ->
+ 平行四边形 A B' C' D ->
  Bet D C C'.
 Proof.
 intros.
@@ -1731,7 +1731,7 @@ apply H0.
 auto.
 
 apply False_ind.
-unfold Parallelogram_flat in H11.
+unfold 退化平行四边形 in H11.
 spliter.
 apply plgs_par_strict in H10.
 spliter.
@@ -1743,7 +1743,7 @@ exists C'.
 split; Col.
 
 apply False_ind.
-unfold Parallelogram_flat in H10.
+unfold 退化平行四边形 in H10.
 spliter.
 apply plgs_par_strict in H11.
 spliter.
@@ -1763,11 +1763,11 @@ Qed.
 
 Lemma plgf_out_plgf :
  forall A B C D B' C',
- Parallelogram_flat A B C D ->
+ 退化平行四边形 A B C D ->
  Out A B B' ->
  Out D C C' ->
  Cong A B' D C' ->
- Parallelogram_flat A B' C' D.
+ 退化平行四边形 A B' C' D.
 Proof.
 intros.
 assert( A <> B /\ A <> B' /\ D <> C /\ D <> C').
@@ -1780,14 +1780,14 @@ assert(HH:=not_col_exists A B H3).
 ex_and HH P.
 assert(HH:=plg_existence A B P H3).
 ex_and HH Q.
-assert(Parallelogram_strict A B P Q).
+assert(严格平行四边形 A B P Q).
 induction H8.
 assumption.
-unfold Parallelogram_flat in H8.
+unfold 退化平行四边形 in H8.
 spliter.
 contradiction.
 
-assert(Parallelogram_strict C D Q P).
+assert(严格平行四边形 C D Q P).
 
 apply(plgf_plgs_trans C D A B P Q).
 auto.
@@ -1817,7 +1817,7 @@ spliter.
 apply H11.
 exists B'.
 split; Col.
-unfold Parallelogram_flat in H11.
+unfold 退化平行四边形 in H11.
 spliter.
 apply 等长的同一性 in H15.
 subst Q.
@@ -1842,10 +1842,10 @@ spliter.
 Col.
 
 
-assert(Parallelogram_strict A B' P' Q).
+assert(严格平行四边形 A B' P' Q).
 induction H11.
 assumption.
-unfold Parallelogram_flat in H11.
+unfold 退化平行四边形 in H11.
 spliter.
 apply False_ind.
 
@@ -1871,7 +1871,7 @@ subst Q.
 apply H15.
 Col.
 
-assert(Parallelogram_strict D C' P' Q).
+assert(严格平行四边形 D C' P' Q).
 apply (plgs_out_plgs _ C P).
 apply plgs_comm2.
 apply H10.
@@ -1892,7 +1892,7 @@ apply plg_cong in H11.
 spliter.
 CongR.
 
-assert(Parallelogram A B' C' D).
+assert(平行四边形 A B' C' D).
 apply (plgs_pseudo_trans _ _ P' Q).
 apply H15.
 apply plgs_sym.
@@ -1901,7 +1901,7 @@ induction H19.
 apply False_ind.
 apply plgs_par_strict in H19.
 spliter.
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 apply out_col in H0.
 apply out_col in H1.
@@ -1925,11 +1925,11 @@ Qed.
 
 Lemma plg_out_plg : 
  forall A B C D B' C',
- Parallelogram A B C D ->
+ 平行四边形 A B C D ->
  Out A B B' ->
  Out D C C' ->
  Cong A B' D C' ->
- Parallelogram A B' C' D.
+ 平行四边形 A B' C' D.
 Proof.
 intros.
 induction H.
@@ -2084,7 +2084,7 @@ apply (plg_plg_bet C D _ _ D').
 apply H2.
 apply H12.
 
-assert(Parallelogram C D' F'' E \/ C = D' /\ B = A /\ E = F'' /\ C = E).
+assert(平行四边形 C D' F'' E \/ C = D' /\ B = A /\ E = F'' /\ C = E).
 
 apply(plg_pseudo_trans C D' B A E F'').
 apply plg_sym.
@@ -2113,7 +2113,7 @@ tauto.
 assert(Bet E F'' F').
 apply (plg_plg_bet C D' _ _ D); trivial.
 
-assert(Parallelogram C D' F'' E \/ C = D' /\ B = A /\ E = F'' /\ C = E).
+assert(平行四边形 C D' F'' E \/ C = D' /\ B = A /\ E = F'' /\ C = E).
 apply plg_pseudo_trans.
 apply plg_sym.
 apply plg_comm2.
@@ -2143,7 +2143,7 @@ assert(Bet E F' F'').
 apply (plg_plg_bet C D _ _ D').
 apply H2.
 apply H12.
-assert(Parallelogram C D' F'' E \/ C = D' /\ B = A /\ E = F'' /\ C = E).
+assert(平行四边形 C D' F'' E \/ C = D' /\ B = A /\ E = F'' /\ C = E).
 apply plg_pseudo_trans.
 apply plg_sym.
 apply plg_comm2.
@@ -2173,7 +2173,7 @@ tauto.
 assert(Bet E F'' F').
 apply (plg_plg_bet C D' _ _ D); trivial.
 
-assert(Parallelogram C D' F'' E \/ C = D' /\ B = A /\ E = F'' /\ C = E).
+assert(平行四边形 C D' F'' E \/ C = D' /\ B = A /\ E = F'' /\ C = E).
 apply plg_pseudo_trans.
 apply plg_sym.
 apply plg_comm2.
@@ -2240,7 +2240,7 @@ left.
 
 induction H0; induction H2;try tauto.
 
-assert(Parallelogram C D' D C' \/ C = D' /\ B = A /\ C' = D /\ C = C').
+assert(平行四边形 C D' D C' \/ C = D' /\ B = A /\ C' = D /\ C = C').
 
 apply(plg_pseudo_trans C D' B A C' D).
 apply plg_sym.
@@ -2249,7 +2249,7 @@ assumption.
 assumption.
 induction H5.
 
-assert(Parallelogram_flat C D' D C').
+assert(退化平行四边形 C D' D C').
 induction H5.
 apply False_ind.
 apply plgs_par_strict in H5.
@@ -2260,7 +2260,7 @@ apply 中间性转共线 in H4.
 split; Col.
 assumption.
 
-unfold Parallelogram_flat in H6.
+unfold 退化平行四边形 in H6.
 spliter.
 
 apply (col_cong2_bet1 D').
@@ -2298,7 +2298,7 @@ subst C'.
 left.
 Between.
 
-assert(Parallelogram C D' D C' \/ C = D' /\ B = A /\ C' = D /\ C = C').
+assert(平行四边形 C D' D C' \/ C = D' /\ B = A /\ C' = D /\ C = C').
 
 apply(plg_pseudo_trans C D' B A C' D).
 apply plg_sym.
@@ -2307,7 +2307,7 @@ assumption.
 assumption.
 induction H6.
 
-assert(Parallelogram_flat C D' D C').
+assert(退化平行四边形 C D' D C').
 induction H6.
 apply False_ind.
 apply plgs_par_strict in H6.
@@ -2321,7 +2321,7 @@ assumption.
 right.
 
 assert(HH:= H7).
-unfold Parallelogram_flat in H7.
+unfold 退化平行四边形 in H7.
 spliter.
 
 apply plgf_bet in HH.
@@ -2398,7 +2398,7 @@ apply H3.
 exists B.
 split; Col.
 assert(HH:= H2).
-unfold Parallelogram_flat in HH.
+unfold 退化平行四边形 in HH.
 apply plgf_bet in H2.
 spliter.
 
@@ -2464,7 +2464,7 @@ spliter.
 apply (l5_2 A); auto.
 Qed.
 
-Lemma plg_opp_dir : forall A B C D, Parallelogram A B C D -> Same_dir A B D C.
+Lemma plg_opp_dir : forall A B C D, 平行四边形 A B C D -> Same_dir A B D C.
 intros.
 
 induction(两点重合的决定性 A B).

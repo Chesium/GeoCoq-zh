@@ -981,7 +981,7 @@ Proof.
       Par.
     apply plg_to_parallelogram in H5.
     apply plg_permut in H5.
-    assert(Parallelogram B B' C' C \/ B = B' /\ A' = A /\ C = C' /\ B = C).
+    assert(平行四边形 B B' C' C \/ B = B' /\ A' = A /\ C = C' /\ B = C).
       apply(plg_pseudo_trans B B' A' A C C').
         apply plg_sym.
         auto.

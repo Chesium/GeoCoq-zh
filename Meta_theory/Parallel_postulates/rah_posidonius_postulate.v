@@ -12,7 +12,7 @@ Lemma rah__posidonius_aux : postulate_of_right_saccheri_quadrilaterals ->
   Cong A3 B3 A1 B1.
 Proof.
   intros rah A1 A2 A3 B1 B2 B3 HPer1 HPer2 HCong HOS HA HB HPerp.
-  assert (HSac : Saccheri A1 B1 B2 A2) by (repeat split; Perp; Cong).
+  assert (HSac : 萨凯里四边形 A1 B1 B2 A2) by (repeat split; Perp; Cong).
   assert(Hdiff := sac_distincts A1 B1 B2 A2 HSac).
   spliter.
   assert_diffs.
@@ -22,7 +22,7 @@ Proof.
     assert(B1 = B3); [|subst; Cong].
     apply (l6_21 B1 B2 A1 B1); Col.
       apply 共线否定排列BCA, par_strict_not_col_1 with A2, sac__pars1234, HSac.
-      unfold Saccheri in HSac; spliter; apply (cop_perp2__col _ _ _ A1 A2); Perp.
+      unfold 萨凯里四边形 in HSac; spliter; apply (cop_perp2__col _ _ _ A1 A2); Perp.
       apply col_cop__cop with B2; Cop.
   }
   intro.
@@ -46,7 +46,7 @@ Proof.
   apply cop_per2__col with A1; auto; apply l8_2.
     apply (rah _ _ _ A2); auto.
   apply (rah _ _ _ A3).
-  unfold Saccheri in *.
+  unfold 萨凯里四边形 in *.
   spliter.
   assert(B1 <> B3).
   { intro.

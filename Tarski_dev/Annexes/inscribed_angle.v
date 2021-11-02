@@ -29,7 +29,7 @@ Proof.
   apply (trisuma__bet A B C); trivial.
 Qed.
 
-Lemma right_saccheris : forall A B C D, Saccheri A B C D -> Per A B C.
+Lemma right_saccheris : forall A B C D, 萨凯里四边形 A B C D -> Per A B C.
 Proof.
   apply postulates_in_euclidean_context; simpl; repeat (try (left; reflexivity); right).
 Qed.

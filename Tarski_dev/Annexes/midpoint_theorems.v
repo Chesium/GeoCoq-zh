@@ -40,10 +40,10 @@ Name x the symmetric of P wrt Q.
 assert_all.
 assert (~ Col A P C) by (intro; apply H; ColR).
 assert_diffs.
-assert (Parallelogram_strict A P C x) by (apply mid_plgs with Q;auto).
+assert (严格平行四边形 A P C x) by (apply mid_plgs with Q;auto).
 assert (Cong A x B P) by CongR.
 assert (Par A x B P) by (assert_pars_perm; apply par_col2_par with P C; Col).
-assert (HElim : Parallelogram A x B P \/ Parallelogram A x P B) by (apply par_cong_plg_2; assumption).
+assert (HElim : 平行四边形 A x B P \/ 平行四边形 A x P B) by (apply par_cong_plg_2; assumption).
 
 induction HElim.
 
@@ -77,12 +77,12 @@ Name x the symmetric of P wrt Q.
 assert_all.
 assert (~ Col A P C) by (intro; search_contradiction).
 assert_diffs.
-assert (Parallelogram_strict A P C x) by (apply mid_plgs with Q;auto).
+assert (严格平行四边形 A P C x) by (apply mid_plgs with Q;auto).
 assert_all.
 assert_pars_perm.
 assert (Cong A x B P) by (apply 等长的传递性 with P C; Cong).
 assert (Par A x B P) by (apply par_col2_par with P C; Col).
-assert (HElim : Parallelogram A x B P \/ Parallelogram A x P B) by (apply par_cong_plg_2; assumption).
+assert (HElim : 平行四边形 A x B P \/ 平行四边形 A x P B) by (apply par_cong_plg_2; assumption).
 
 induction HElim.
 
@@ -212,13 +212,13 @@ elim (两点重合的决定性 P x); intro.
   treat_equalities; intuition.
 
 assert_cols.
-assert (Parallelogram A P C x) by (apply mid_plg_1 with Q;auto).
+assert (平行四边形 A P C x) by (apply mid_plg_1 with Q;auto).
 assert_all.
 assert_pars_perm.
 assert (Cong A x B P) by (apply 等长的传递性 with P C; Cong).
 assert (Par A x B P) by (apply par_col2_par with P C; Col; Par).
 
-assert (HElim : Parallelogram A x B P \/ Parallelogram A x P B) by (apply par_cong_plg_2; assumption).
+assert (HElim : 平行四边形 A x B P \/ 平行四边形 A x P B) by (apply par_cong_plg_2; assumption).
 
 induction HElim.
 

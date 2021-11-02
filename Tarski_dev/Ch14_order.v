@@ -15,15 +15,15 @@ Proof.
     unfold Ar2 in H.
     unfold Out in H0.
     spliter.
-    assert(Parallelogram_flat O A C B).
+    assert(退化平行四边形 O A C B).
       apply(sum_cong O E E' H A B C HS).
       tauto.
-    assert(Parallelogram O A C B).
+    assert(平行四边形 O A C B).
       right.
       auto.
     induction(两点重合的决定性 A B).
       subst B.
-      unfold Parallelogram_flat in H7.
+      unfold 退化平行四边形 in H7.
       spliter.
       assert(O = C \/ 中点 A O C).
         apply(l7_20 A O C); Cong.
@@ -106,9 +106,9 @@ Proof.
     spliter.
     unfold Ar2 in H.
     spliter.
-    assert(Parallelogram_flat O MA O A).
+    assert(退化平行四边形 O MA O A).
       apply(sum_cong O E E' H MA A O HS); tauto.
-    unfold Parallelogram_flat in H5.
+    unfold 退化平行四边形 in H5.
     spliter.
     assert(HG:=grid_not_par O E E' H).
     spliter.

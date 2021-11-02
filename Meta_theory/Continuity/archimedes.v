@@ -62,15 +62,15 @@ Qed.
 
 (** For every n, B0Bn is lower than or equal to n times B0B1 *)
 Lemma t22_18_aux2 : forall A0 A1 B0 B1 A B E,
-  Saccheri A0 B0 B1 A1 ->
-  在同样的线性刻度上 A0 A1 A B0 B1 E -> Saccheri A0 B0 B A -> Le B0 B B0 E.
+  萨凯里四边形 A0 B0 B1 A1 ->
+  在同样的线性刻度上 A0 A1 A B0 B1 E -> 萨凯里四边形 A0 B0 B A -> Le B0 B B0 E.
 Proof.
   intros A0 A1 B0 B1 A B E HSac1 HG.
   revert B.
   induction HG; rename A into A0; rename B into A1; rename D into B0; rename E into B1.
   { intros B HSac.
     assert(B = B1); [|subst B; Le].
-    assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac1); unfold Saccheri in *; spliter.
+    assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac1); unfold 萨凯里四边形 in *; spliter.
     apply (l6_11_uniqueness A1 A0 B0 B1); Cong; [|apply out_trivial; auto].
     apply (col_one_side_out _ A0).
       apply col_permutation_2, cop_per2__col with A0; Perp.
@@ -86,7 +86,7 @@ Proof.
     treat_equalities.
     apply sac_distincts in HSac1; spliter; auto.
   }
-  assert (HB : exists B, Saccheri A0 B0 B A).
+  assert (HB : exists B, 萨凯里四边形 A0 B0 B A).
   { clear dependent A'; clear dependent B'; clear IHHG.
     apply grad2__grad123 in HG.
     apply grad__bet in HG.
@@ -96,7 +96,7 @@ Proof.
       assert_diffs; auto.
       assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac1); spliter; auto.
     exists B.
-    unfold Saccheri in *; spliter; assert_diffs.
+    unfold 萨凯里四边形 in *; spliter; assert_diffs.
     repeat split; Cong.
     - apply (per_col _ _ A1); Col.
     - apply perp_per_2, (perp_col1 _ _ _ P); Col.
@@ -112,7 +112,7 @@ Proof.
   clear IHHG.
   destruct (由一点往一方向构造等长线段 B0 B E E') as [C [HBet HCong]].
   assert (Cong B0 B1 B B').
-    apply (cong2_sac2__cong A0 B0 B1 A1 A _ _ A'); auto; [|unfold Saccheri in *; spliter; Cong].
+    apply (cong2_sac2__cong A0 B0 B1 A1 A _ _ A'); auto; [|unfold 萨凯里四边形 in *; spliter; Cong].
     apply cop_sac2__sac with A0 B0; Cop.
     intro; treat_equalities; apply sac_distincts in HSac1; spliter; auto.
   apply (le_transitivity _ _ B0 C).
@@ -124,7 +124,7 @@ Qed.
 
 Lemma t22_18 :
   archimedes_axiom ->
-  forall A0 B0 B1 A1, Saccheri A0 B0 B1 A1 -> ~ Lt B0 B1 A1 A0.
+  forall A0 B0 B1 A1, 萨凯里四边形 A0 B0 B1 A1 -> ~ Lt B0 B1 A1 A0.
 Proof.
   intros Harchi A0 B0 B1 A1 HSac.
   intro Hlt.
@@ -143,8 +143,8 @@ Proof.
     destruct (l6_11_existence A A0 B0 P) as [B [HOut Hcong5]].
       assert_diffs; auto.
       assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac); spliter; auto.
-    assert(HSac2 : Saccheri A0 B0 B A).
-    { unfold Saccheri in *; spliter; assert_diffs; assert(A0 <> A) by (intro; treat_equalities; auto).
+    assert(HSac2 : 萨凯里四边形 A0 B0 B A).
+    { unfold 萨凯里四边形 in *; spliter; assert_diffs; assert(A0 <> A) by (intro; treat_equalities; auto).
       repeat split; Cong.
       - apply (per_col _ _ A1); Col.
       - apply perp_per_2, (perp_col1 _ _ _ P); Col.
@@ -223,7 +223,7 @@ Qed.
 
 Lemma t22_19 :
   archimedes_axiom ->
-  forall A B C D, Saccheri A B C D -> ~ 为钝角 A B C.
+  forall A B C D, 萨凯里四边形 A B C D -> ~ 为钝角 A B C.
 Proof.
   intros archi A B C D HSac HObt.
   assert (H := t22_18 archi _ _ _ _ (sac_perm _ _ _ _ HSac)).
@@ -246,7 +246,7 @@ Lemma t22_23_aux :
   forall A B C M N L,
     ~ Col A M N -> Per B C A -> A <> C -> 中点 M A B ->
     Per M N A -> Col A C N ->
-    中点 M N L -> Bet A N C /\ Lambert N L B C /\ Cong B L A N.
+    中点 M N L -> Bet A N C /\ Lambert四边形 N L B C /\ Cong B L A N.
 Proof.
   intros A B C M N L HNCol HPerC HAC HM HPerN HColN HN.
   assert_diffs.
@@ -282,7 +282,7 @@ Proof.
   assert (HLBC : ~ 为钝角 L B C) by (intro; apply HNob, (lam_obtuse__oah N L B C); trivial).
   assert (Hos1 : OS N L B C) by (apply lam__os; trivial).
   assert (Hos2 : OS N C B L) by (apply lam__os, lam_perm; trivial).
-  unfold Lambert in HLam; spliter.
+  unfold Lambert四边形 in HLam; spliter.
   destruct (angle_partition L B C) as [H为锐角 | [HPer | H为钝角]]; trivial; [ | | exfalso; auto].
   - split; apply lt__le; [apply (cong2_lt__lt N C B L); Cong | ].
       apply lta_os_per2__lt; Perp; Side; apply lta_left_comm, acute_per__lta; auto.

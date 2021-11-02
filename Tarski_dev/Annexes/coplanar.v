@@ -466,21 +466,21 @@ Proof.
 Qed.
 
 Lemma plgs__coplanar : forall A B C D,
-  Parallelogram_strict A B C D -> 共面 A B C D.
+  严格平行四边形 A B C D -> 共面 A B C D.
 Proof.
   intros A B C D [_ [HPar _]].
   apply par__coplanar, HPar.
 Qed.
 
 Lemma plgf__coplanar : forall A B C D,
-  Parallelogram_flat A B C D -> 共面 A B C D.
+  退化平行四边形 A B C D -> 共面 A B C D.
 Proof.
   intros A B C D [HCol _].
   apply col__coplanar, HCol.
 Qed.
 
 Lemma parallelogram__coplanar : forall A B C D,
-  Parallelogram A B C D -> 共面 A B C D.
+  平行四边形 A B C D -> 共面 A B C D.
 Proof.
   intros A B C D [Hs|Hf].
     apply plgs__coplanar, Hs.
@@ -488,30 +488,30 @@ Proof.
 Qed.
 
 Lemma rhombus__coplanar : forall A B C D,
-  Rhombus A B C D -> 共面 A B C D.
+  菱形 A B C D -> 共面 A B C D.
 Proof.
-  unfold Rhombus.
+  unfold 菱形.
   intros; spliter; apply plg__coplanar; assumption.
 Qed.
 
 Lemma rectangle__coplanar : forall A B C D,
-  Rectangle A B C D -> 共面 A B C D.
+  长方形 A B C D -> 共面 A B C D.
 Proof.
-  unfold Rectangle.
+  unfold 长方形.
   intros; spliter; apply plg__coplanar; assumption.
 Qed.
 
 Lemma square__coplanar : forall A B C D,
-  Square A B C D -> 共面 A B C D.
+  正方形 A B C D -> 共面 A B C D.
 Proof.
-  unfold Square.
+  unfold 正方形.
   intros; spliter; apply rectangle__coplanar; assumption.
 Qed.
 
 Lemma lambert__coplanar : forall A B C D,
-  Lambert A B C D -> 共面 A B C D.
+  Lambert四边形 A B C D -> 共面 A B C D.
 Proof.
-  unfold Lambert.
+  unfold Lambert四边形.
   intros; spliter; assumption.
 Qed.
 
@@ -559,19 +559,19 @@ Ltac assert_cops :=
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply par__coplanar, H)
       | H:Plg ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plg__coplanar, H)
-      | H:Parallelogram_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:严格平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgs__coplanar, H)
-      | H:Parallelogram_flat ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:退化平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgf__coplanar, H)
-      | H:Parallelogram ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply parallelogram__coplanar, H)
-      | H:Rhombus ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:菱形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rhombus__coplanar, H)
-      | H:Rectangle ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:长方形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rectangle__coplanar, H)
-      | H:Square ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:正方形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply square__coplanar, H)
-      | H:Lambert ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:Lambert四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply lambert__coplanar, H)
  end.
 

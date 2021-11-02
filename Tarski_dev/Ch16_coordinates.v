@@ -422,7 +422,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       elim H; clear H; intro H; [exfalso; apply H; exists S|spliter]; Col.
       }
     assert (HNC' : ~ Col S U1 U2) by (apply perp_not_col; Perp).
-    assert (H : Rectangle P S QX' Q).
+    assert (H : 长方形 P S QX' Q).
       {
       apply perp3__rect; try (intro; assert_diffs; apply HNC'; ColR);
       [apply perp_col0 with S U1|apply perp_sym; apply perp_col0 with S U1|];
@@ -430,7 +430,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       apply perp_sym; apply par_perp__perp with S U1; Perp.
       apply l12_9_2D with S U2; Perp.
       }
-    apply Rectangle_Plg in H; apply plg_to_parallelogram in H;
+    apply 长方形_Plg in H; apply plg_to_parallelogram in H;
     apply plg_cong_2 in H.
     unfold 三角形全等 in HCong3; spliter; apply 等长的传递性 with S QX'; Cong.
     }
@@ -444,7 +444,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       elim H; clear H; intro H; [exfalso; apply H; exists S|spliter]; Col.
       }
     assert (HNC' : ~ Col S U1 U2) by (apply perp_not_col; Perp).
-    assert (H : Rectangle Q S PX' P).
+    assert (H : 长方形 Q S PX' P).
       {
       apply perp3__rect; try (intro; assert_diffs; apply HNC'; ColR);
       [apply perp_col0 with S U1|apply perp_sym; apply perp_col0 with S U1|];
@@ -452,7 +452,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       apply perp_sym; apply par_perp__perp with S U1; Perp.
       apply l12_9_2D with S U2; Perp.
       }
-    apply Rectangle_Plg in H; apply plg_to_parallelogram in H;
+    apply 长方形_Plg in H; apply plg_to_parallelogram in H;
     apply plg_cong_2 in H.
     unfold 三角形全等 in HCong1; spliter; apply 等长的传递性 with S PX'; Cong.
     }
@@ -495,7 +495,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
         elim HPar; clear HPar; intro HPar;
         [exfalso; apply HPar; exists Q|]; spliter; Col.
         }
-      assert (HRect1 : Rectangle PX' S PY' P).
+      assert (HRect1 : 长方形 PX' S PY' P).
         {
         apply perp3__rect; try (intro; assert_diffs; apply HNC'; ColR).
 
@@ -516,7 +516,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
           apply col_permutation_1; apply projp2_col with S U2; auto.
           }
         }
-      assert (HRect2 : Rectangle QX' S PY' Q).
+      assert (HRect2 : 长方形 QX' S PY' Q).
         {
         apply perp3__rect; try (intro; assert_diffs; apply HNC'; ColR).
 
@@ -537,9 +537,9 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
           apply col_permutation_1; apply projp2_col with S U2; auto.
           }
         }
-      assert (HRect3 : Rectangle P PX' QX' Q)
+      assert (HRect3 : 长方形 P PX' QX' Q)
         by (apply rect_2_rect with S PY'; try apply rect_permut; auto).
-      apply Rectangle_Parallelogram in HRect3; apply plg_cong_2 in HRect3.
+      apply 长方形_平行四边形 in HRect3; apply plg_cong_2 in HRect3.
       assert_diffs;
       apply cong_3_2_cong_4 with O E PX QX S U1 PX' QX' in HCong1; Col.
       unfold 四边形全等 in HCong1; spliter; apply 等长的传递性 with PX' QX'; Cong.

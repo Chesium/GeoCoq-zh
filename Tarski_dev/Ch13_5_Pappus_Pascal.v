@@ -1761,10 +1761,10 @@ Proof.
         auto.
       apply par_right_comm.
       auto.
-    assert(Parallelogram A C A' C').
+    assert(平行四边形 A C A' C').
       apply plg_to_parallelogram.
       auto.
-    assert(Parallelogram B C B' C').
+    assert(平行四边形 B C B' C').
       apply plg_to_parallelogram.
       auto.
     apply plg_mid in H21.
@@ -1774,7 +1774,7 @@ Proof.
     assert(M = N).
       eapply (l7_17 C C'); auto.
     subst N.
-    assert(Parallelogram A B A' B').
+    assert(平行四边形 A B A' B').
       apply(mid_plg A B A' B' M).
         left.
         intro.

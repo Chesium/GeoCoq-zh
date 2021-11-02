@@ -175,11 +175,11 @@ unfold Out in H2.
 spliter.
 tauto.
 
-assert(Parallelogram_flat O AB CD P).
+assert(退化平行四边形 O AB CD P).
 apply (sum_cong O E E' H4 AB P CD H1).
 left.
 assumption.
-unfold Parallelogram_flat in H10.
+unfold 退化平行四边形 in H10.
 spliter.
 
 assert(Bet CD P O).
@@ -351,7 +351,7 @@ apply diff_sum in H6.
 apply diff_sum in H3.
 apply sum_cong in H6; auto.
 apply sum_cong in H3; auto.
-unfold Parallelogram_flat in *.
+unfold 退化平行四边形 in *.
 spliter.
 apply 等长的对称性 in H19.
 apply 等长的同一性 in H19.
@@ -451,7 +451,7 @@ apply sum_O_B; auto.
 subst C.
 Cong.
 apply sum_cong in H; auto.
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 Cong.
 Qed.
@@ -558,7 +558,7 @@ unfold LtP in H2.
 ex_and H2 X.
 apply diff_sum in H2.
 apply sum_cong in H2.
-unfold Parallelogram_flat in H2.
+unfold 退化平行四边形 in H2.
 spliter.
 apply 等长的对称性 in H6.
 apply 等长的同一性 in H6.

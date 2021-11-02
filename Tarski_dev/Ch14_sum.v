@@ -646,9 +646,9 @@ Proof.
         apply par_symmetry.
         Par.
       Col.
-    assert(Parallelogram A O MA O).
+    assert(平行四边形 A O MA O).
       right.
-      unfold Parallelogram_flat.
+      unfold 退化平行四边形.
       repeat split; Col; Cong.
       left.
       intro.
@@ -658,7 +658,7 @@ Proof.
     apply plg_to_parallelogram in H20.
     apply plg_permut in H20.
     apply plg_comm2 in H21.
-    assert(Parallelogram C' A' MA O).
+    assert(平行四边形 C' A' MA O).
       assert(HH:= plg_pseudo_trans C' A' O A O MA H20 H21).
       induction HH.
         auto.
@@ -678,13 +678,13 @@ Proof.
       tauto.
       intro.
       subst C'.
-      unfold Parallelogram in H20.
+      unfold 平行四边形 in H20.
       induction H20.
-        unfold Parallelogram_strict in H20.
+        unfold 严格平行四边形 in H20.
         spliter.
         apply par_distincts in H23.
         tauto.
-      unfold Parallelogram_flat in H20.
+      unfold 退化平行四边形 in H20.
       spliter.
       apply 等长的对称性 in H24.
       apply 等长的同一性 in H24.
@@ -692,13 +692,13 @@ Proof.
       tauto.
     intro.
     subst MA.
-    unfold Parallelogram in H21.
+    unfold 平行四边形 in H21.
     induction H21.
-      unfold Parallelogram_strict in H21.
+      unfold 严格平行四边形 in H21.
       spliter.
-      unfold TS in H21; unfold Parallelogram.
+      unfold TS in H21; unfold 平行四边形.
       spliter; Col.
-    unfold Parallelogram_flat in H21.
+    unfold 退化平行四边形 in H21.
     spliter.
     apply NC.
     apply (col_transitivity_1 _ A); Col.
@@ -1826,7 +1826,7 @@ Proof.
     tauto.
 Qed.
 
-Lemma sum_cong : forall A B C, Sum O E E' A B C -> (A <> O \/ B <> O) -> Parallelogram_flat O A C B.
+Lemma sum_cong : forall A B C, Sum O E E' A B C -> (A <> O \/ B <> O) -> 退化平行四边形 O A C B.
 Proof.
     intros.
     induction(两点重合的决定性 A O).
@@ -1835,11 +1835,11 @@ Proof.
       subst C.
       induction H0.
         tauto.
-      assert(Parallelogram O O B B).
+      assert(平行四边形 O O B B).
         apply plg_trivial1; auto.
       induction H1.
         apply False_ind.
-        unfold Parallelogram_strict in H1.
+        unfold 严格平行四边形 in H1.
         spliter.
         apply par_distincts in H2.
         tauto.
@@ -1878,7 +1878,7 @@ Lemma sum_cong2 : forall A B C,
 Proof.
 intros.
 apply sum_cong in H.
-unfold Parallelogram_flat in *.
+unfold 退化平行四边形 in *.
 spliter;split;Cong.
 assumption.
 Qed.
@@ -2045,7 +2045,7 @@ Proof.
     assert(Plg O A D' B').
       apply(pars_par_plg O A D' B' ); Par.
     assert(HT:=sum_cong A B C H H2).
-    assert(Parallelogram D' B' B C \/ D' = B' /\ O = A /\ C = B /\ D' = C).
+    assert(平行四边形 D' B' B C \/ D' = B' /\ O = A /\ C = B /\ D' = C).
       apply(plg_pseudo_trans D' B' O A C B).
         apply plg_to_parallelogram in H22.
         apply plg_permut in H22.
@@ -2236,15 +2236,15 @@ Proof.
     assert(Plg O B C A).
       apply(parallelogram_to_plg).
       right.
-      unfold Parallelogram_flat.
+      unfold 退化平行四边形.
       repeat split; try ColR.
         Cong.
         Cong.
       auto.
     apply plg_to_parallelogram in H24.
     apply plg_to_parallelogram in H25.
-    assert(Parallelogram A C C' A').
-      assert(Parallelogram C A A' C' \/ C = A /\ O = B /\ C' = A' /\ C = C').
+    assert(平行四边形 A C C' A').
+      assert(平行四边形 C A A' C' \/ C = A /\ O = B /\ C' = A' /\ C = C').
         apply(plg_pseudo_trans C A O B C' A').
           apply plg_permut.
           apply plg_permut.
@@ -2343,31 +2343,31 @@ Proof.
         apply plg_to_parallelogram in H0.
         apply plg_to_parallelogram in H2.
         apply plg_to_parallelogram in H3.
-        assert(Parallelogram C' A' A'' C'' \/ C' = A' /\ A = O /\ C'' = A'' /\ C' = C'').
+        assert(平行四边形 C' A' A'' C'' \/ C' = A' /\ A = O /\ C'' = A'' /\ C' = C'').
           apply(plg_pseudo_trans C' A' A O C'' A''); auto.
           apply plg_permut.
           apply plg_permut.
           auto.
         induction H4.
-          assert(Parallelogram O MA1 C'' A'' \/ O = MA1 /\ C' = A' /\ A'' = C'' /\ O = A'').
+          assert(平行四边形 O MA1 C'' A'' \/ O = MA1 /\ C' = A' /\ A'' = C'' /\ O = A'').
             apply(plg_pseudo_trans O MA1 C' A' A'' C''); auto.
           induction H5.
-            assert(Parallelogram O MA1 MA2 O \/ O = MA1 /\ C'' = A'' /\ O = MA2 /\ O = O).
+            assert(平行四边形 O MA1 MA2 O \/ O = MA1 /\ C'' = A'' /\ O = MA2 /\ O = O).
               apply(plg_pseudo_trans O MA1 C'' A'' O MA2); auto.
               apply plg_permut.
               apply plg_permut.
               assumption.
             induction H6.
-              unfold Parallelogram in H6.
+              unfold 平行四边形 in H6.
               induction H6.
-                unfold Parallelogram_strict in H6.
+                unfold 严格平行四边形 in H6.
                 spliter.
                 unfold TS in H6.
                 spliter.
                 apply False_ind.
                 apply H9.
                 Col.
-              unfold Parallelogram_flat in H6.
+              unfold 退化平行四边形 in H6.
               spliter.
               apply 等长的对称性 in H9.
               apply 等长的同一性 in H9.
@@ -2381,13 +2381,13 @@ Proof.
           subst C''.
           subst A''.
           subst C'.
-          unfold Parallelogram in H0.
+          unfold 平行四边形 in H0.
           induction H0.
-            unfold Parallelogram_strict in H0.
+            unfold 严格平行四边形 in H0.
             spliter.
             apply par_distincts in H5.
             tauto.
-          unfold Parallelogram_flat in H0.
+          unfold 退化平行四边形 in H0.
           spliter.
           apply 等长的同一性 in H6.
           auto.
@@ -2568,10 +2568,10 @@ Proof.
         left.
         apply par_symmetry.
         apply(par_col_par _ _ _ A); Par; Col.
-      assert(Parallelogram_flat O A C B).
+      assert(退化平行四边形 O A C B).
         apply(sum_cong O E E' H4 A B C H).
         left; auto.
-      assert(Parallelogram B' D C B \/ B' = D /\ A = O /\ B = C /\ B' = B).
+      assert(平行四边形 B' D C B \/ B' = D /\ A = O /\ B = C /\ B' = B).
         apply(plg_pseudo_trans B' D A O B C).
           apply plg_permut.
           apply plg_permut.
@@ -2773,16 +2773,16 @@ Proof.
         apply (par_trans _ _ O AB2'); Par.
         right.
         repeat split; Col.
-      assert(Parallelogram O BC ABC A).
+      assert(平行四边形 O BC ABC A).
         right.
         apply(sum_cong O E E' H BC A ABC S3);auto.
-      assert(Parallelogram O B AB A).
+      assert(平行四边形 O B AB A).
         right.
         apply(sum_cong O E E' H B A AB S1); auto.
-      assert(Parallelogram O B BC C ).
+      assert(平行四边形 O B BC C ).
         right.
         apply(sum_cong O E E' H B C BC); auto.
-      assert( Parallelogram B AB ABC BC \/ B = AB /\ A = O /\ BC = ABC /\ B = BC).
+      assert( 平行四边形 B AB ABC BC \/ B = AB /\ A = O /\ BC = ABC /\ B = BC).
         apply(plg_pseudo_trans B AB A O BC ABC).
           apply plg_permut.
           assumption.
@@ -2790,13 +2790,13 @@ Proof.
         apply plg_permut.
         apply plg_permut.
         assumption.
-      assert(Parallelogram B AB ABC BC).
+      assert(平行四边形 B AB ABC BC).
         induction H43.
           assumption.
         spliter.
         contradiction.
       clear H43.
-      assert(Parallelogram O C ABC AB \/ O = C /\ BC = B /\ AB = ABC /\ O = AB).
+      assert(平行四边形 O C ABC AB \/ O = C /\ BC = B /\ AB = ABC /\ O = AB).
         apply(plg_pseudo_trans O C BC B AB ABC).
           apply plg_permut.
           apply plg_comm2.
@@ -2805,21 +2805,21 @@ Proof.
         apply plg_permut.
         apply plg_permut.
         assumption.
-      assert(Parallelogram O C ABC AB).
+      assert(平行四边形 O C ABC AB).
         induction H43.
           assumption.
         spliter.
         subst C.
         tauto.
       clear H43.
-      assert(Parallelogram ABC AB AB2' C2 \/ ABC = AB /\ O = C /\ C2 = AB2' /\ ABC = C2).
+      assert(平行四边形 ABC AB AB2' C2 \/ ABC = AB /\ O = C /\ C2 = AB2' /\ ABC = C2).
         apply(plg_pseudo_trans ABC AB O C C2 AB2').
           apply plg_permut.
           apply plg_permut.
           assumption.
         apply plg_comm2.
         assumption.
-      assert(Parallelogram ABC AB AB2' C2).
+      assert(平行四边形 ABC AB AB2' C2).
         induction H43.
           assumption.
         spliter.
@@ -2837,26 +2837,26 @@ Proof.
     assert(HH:= plg_trivial C O H2).
     assert(Hp:= plg_uniqueness C O O C C2 HH H34).
     subst C2.
-    assert(Parallelogram_flat O B BC C).
+    assert(退化平行四边形 O B BC C).
       apply(sum_cong O E E' H B C BC);auto.
-    assert(Parallelogram_flat O BC ABC A).
+    assert(退化平行四边形 O BC ABC A).
       apply(sum_cong O E E' H BC A ABC);auto.
-    assert(Parallelogram_flat O B O A).
+    assert(退化平行四边形 O B O A).
       apply(sum_cong O E E' H B A O); auto.
-    assert(Parallelogram BC C A O \/ BC = C /\ O = B /\ O = A /\ BC = O).
+    assert(平行四边形 BC C A O \/ BC = C /\ O = B /\ O = A /\ BC = O).
       apply(plg_pseudo_trans BC C O B O A).
         apply plg_permut.
         apply plg_permut.
         right; assumption.
       right; assumption.
-    assert(Parallelogram BC C A O).
+    assert(平行四边形 BC C A O).
       induction H38.
         assumption.
       spliter.
       subst A.
       tauto.
     clear H38.
-    assert(Parallelogram O BC ABC A).
+    assert(平行四边形 O BC ABC A).
       right; assumption.
     apply plg_permut in H38.
     apply plg_permut in H38.
@@ -2987,12 +2987,12 @@ Proof.
       apply par_symmetry.
       apply (par_col_par _ _ _ A''); Par; Col.
     left.
-    assert(Parallelogram_flat O A C B).
+    assert(退化平行四边形 O A C B).
       apply(sum_cong O E E' H1 A B C HS).
       left; auto.
-    assert(Parallelogram O A C B).
+    assert(平行四边形 O A C B).
       right; auto.
-    assert(Parallelogram C'' A'' A C \/ C'' = A'' /\ O = B /\ C = A /\ C'' = C).
+    assert(平行四边形 C'' A'' A C \/ C'' = A'' /\ O = B /\ C = A /\ C'' = C).
       apply(plg_pseudo_trans C'' A'' O B C A).
         apply plg_comm2.
         apply plg_permut.
@@ -3003,7 +3003,7 @@ Proof.
       apply plg_permut.
       apply plg_permut.
       assumption.
-    assert(Parallelogram C'' A'' A C).
+    assert(平行四边形 C'' A'' A C).
       induction H23.
         assumption.
       spliter.
@@ -3013,7 +3013,7 @@ Proof.
     assert(A <> C).
       intro.
       subst C.
-      assert(Parallelogram O A A O).
+      assert(平行四边形 O A A O).
         apply(plg_trivial O A); auto.
       assert(HH:=plg_uniqueness O A A O B H23 H22).
       subst B.
@@ -3026,7 +3026,7 @@ Proof.
     assert(A'' <> C'').
       intro.
       subst C''.
-      assert(Parallelogram A'' A'' A A).
+      assert(平行四边形 A'' A'' A A).
         apply(plg_trivial1); auto.
       assert(HH:= plg_uniqueness A'' A'' A A C H26 H24).
       contradiction.
@@ -3142,17 +3142,17 @@ Proof.
         right.
         repeat split; Col.
       apply(par_trans _ _ O A''); Par.
-    assert(Parallelogram_flat O A C B).
+    assert(退化平行四边形 O A C B).
       apply(sum_cong O E E' H3 A B C HS); auto.
-    assert(Parallelogram O A C B).
+    assert(平行四边形 O A C B).
       right.
       assumption.
-    assert(Parallelogram A C C'' A'' \/ A = C /\ B = O /\ A'' = C'' /\ A = A'').
+    assert(平行四边形 A C C'' A'' \/ A = C /\ B = O /\ A'' = C'' /\ A = A'').
       apply(plg_pseudo_trans A C B O A'' C'').
         apply plg_permut.
         assumption.
       assumption.
-    assert(Parallelogram A C C'' A'').
+    assert(平行四边形 A C C'' A'').
       induction H32.
         assumption.
       spliter.
@@ -3335,11 +3335,11 @@ Proof.
       subst A.
       apply H15.
       Col.
-    assert(Parallelogram_flat O A C B).
+    assert(退化平行四边形 O A C B).
       apply(sum_cong O E E' H6 A B C HS).
       left.
       auto.
-    unfold Parallelogram_flat in H32.
+    unfold 退化平行四边形 in H32.
     spliter.
     assert(Proj O O' O' E' E E').
       unfold Proj.
@@ -3399,7 +3399,7 @@ Proof.
       left.
       right.
       apply plgf_permut.
-      unfold Parallelogram_flat.
+      unfold 退化平行四边形.
       repeat split; Col; Cong.
         ColR.
       induction H38.
@@ -3410,7 +3410,7 @@ Proof.
     assert(HH:=project_preserves_eqv O A B C O' A' B' C' O' E' E E' H43 H39 H40 H42 H41).
     unfold EqV in HH.
     induction HH.
-      assert(Parallelogram_flat O' A' C' B').
+      assert(退化平行四边形 O' A' C' B').
         induction H44.
           induction H44.
           unfold TS in H44.
@@ -3419,7 +3419,7 @@ Proof.
           apply H47.
           ColR.
         assumption.
-      unfold Parallelogram_flat in H45.
+      unfold 退化平行四边形 in H45.
       spliter.
       apply cong_sum; auto.
         induction H49.
@@ -3443,10 +3443,10 @@ Proof.
     spliter.
     unfold Ar2 in H.
     spliter.
-    assert(Parallelogram_flat O A O A).
+    assert(退化平行四边形 O A O A).
       apply(sum_cong O E E' H A A O HS).
       left; auto.
-    unfold Parallelogram_flat in H5.
+    unfold 退化平行四边形 in H5.
     tauto.
 Qed.
 
@@ -3705,22 +3705,22 @@ Proof.
       subst E.
       apply H0.
       Col.
-    assert(Parallelogram O mA B S \/ O = mA /\ O = A /\ S = B /\ O = S).
+    assert(平行四边形 O mA B S \/ O = mA /\ O = A /\ S = B /\ O = S).
       apply(plg_pseudo_trans O mA O A S B); auto.
         right; auto.
       right; auto.
     induction H9.
       induction H9.
         apply False_ind.
-        unfold Parallelogram_strict in H9.
+        unfold 严格平行四边形 in H9.
         spliter.
         unfold TS in H9.
         spliter.
         apply H12.
         ColR.
-      unfold Parallelogram_flat in H.
-      unfold Parallelogram_flat in H4.
-      unfold Parallelogram_flat in H9.
+      unfold 退化平行四边形 in H.
+      unfold 退化平行四边形 in H4.
+      unfold 退化平行四边形 in H9.
       spliter.
       apply cong_sum; auto.
         repeat split; Col.
@@ -3768,7 +3768,7 @@ intro.
 subst E.
 apply H0.
 Col.
-assert(Parallelogram O A S B \/ O = A /\ O = mA /\ B = S /\ O = B).
+assert(平行四边形 O A S B \/ O = A /\ O = mA /\ B = S /\ O = B).
 apply(plg_pseudo_trans O A O mA B S).
 apply plg_permut.
 apply plg_permut.
@@ -3783,15 +3783,15 @@ auto.
 induction H9.
 induction H9.
 apply False_ind.
-unfold Parallelogram_strict in H9.
+unfold 严格平行四边形 in H9.
 spliter.
 unfold TS in H9.
 spliter.
 apply H12.
 ColR.
-unfold Parallelogram_flat in H.
-unfold Parallelogram_flat in H5.
-unfold Parallelogram_flat in H9.
+unfold 退化平行四边形 in H.
+unfold 退化平行四边形 in H5.
+unfold 退化平行四边形 in H9.
 spliter.
 apply cong_sum; Cong.
 repeat split; Col.
@@ -3829,14 +3829,14 @@ Proof.
       apply sum_comm; auto.
     apply sum_cong in H0; auto.
     apply sum_cong in H; auto.
-    assert(Parallelogram A O BmA B).
+    assert(平行四边形 A O BmA B).
       apply plg_comm2.
       right.
       assumption.
     apply plg_permut in H4.
     apply plg_permut in H4.
     apply plg_permut in H4.
-    assert(Parallelogram AmB O BmA O \/ AmB = O /\ B = A /\ O = BmA /\ AmB = O).
+    assert(平行四边形 AmB O BmA O \/ AmB = O /\ B = A /\ O = BmA /\ AmB = O).
       apply(plg_pseudo_trans AmB O  B A O BmA).
         apply plg_permut.
         apply plg_permut.
@@ -3851,14 +3851,14 @@ Proof.
     induction H9.
       induction H9.
         apply False_ind.
-        unfold Parallelogram_strict in H9.
+        unfold 严格平行四边形 in H9.
         unfold TS in H9.
         spliter.
         apply H13.
         ColR.
-      unfold Parallelogram_flat in H.
-      unfold Parallelogram_flat in H0.
-      unfold Parallelogram_flat in H9.
+      unfold 退化平行四边形 in H.
+      unfold 退化平行四边形 in H0.
+      unfold 退化平行四边形 in H9.
       spliter.
       unfold Opp.
       apply cong_sum; Cong.
@@ -3888,12 +3888,12 @@ Proof.
     apply(diff_uniqueness O E E' A C); auto.
 Qed.
 
-Lemma plg_to_sum : forall O E E' A B C, Ar2 O E E' A B C ->Parallelogram_flat O A C B -> Sum O E E' A B C.
+Lemma plg_to_sum : forall O E E' A B C, Ar2 O E E' A B C ->退化平行四边形 O A C B -> Sum O E E' A B C.
 Proof.
     intros.
     induction(两点重合的决定性 A B).
       subst B.
-      unfold Parallelogram_flat in H0.
+      unfold 退化平行四边形 in H0.
       spliter.
       assert(O = C \/ 中点 A O C).
         apply(l7_20 A O C H0).
@@ -3909,7 +3909,7 @@ Proof.
       unfold 中点 in H5.
       tauto.
     unfold Ar2 in H.
-    unfold Parallelogram_flat in H0.
+    unfold 退化平行四边形 in H0.
     spliter.
     apply cong_sum; auto.
       repeat split; auto.
@@ -3936,10 +3936,10 @@ Proof.
       unfold 中点.
       split; Cong.
       apply ABB中间性.
-    assert(Parallelogram_flat O MA O A).
+    assert(退化平行四边形 O MA O A).
       apply(sum_cong O E E' H MA A O HS).
       tauto.
-    unfold Parallelogram_flat in H5.
+    unfold 退化平行四边形 in H5.
     spliter.
     assert(A = MA \/ 中点 O A MA).
       apply(l7_20 O A MA).
@@ -3951,7 +3951,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma diff_to_plg : forall O E E' A B dBA, A <> O \/ B <> O -> Diff O E E' B A dBA -> Parallelogram_flat O A B dBA.
+Lemma diff_to_plg : forall O E E' A B dBA, A <> O \/ B <> O -> Diff O E E' B A dBA -> 退化平行四边形 O A B dBA.
 Proof.
     intros.
     assert(Ar2 O E E' B A dBA).
@@ -3980,7 +3980,7 @@ Proof.
       apply opp_midpoint in H7.
       unfold 中点 in H7.
       spliter.
-      unfold Parallelogram_flat.
+      unfold 退化平行四边形.
       repeat split; Col.
         Cong.
         Cong.

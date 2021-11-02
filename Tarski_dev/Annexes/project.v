@@ -1790,11 +1790,11 @@ induction H13.
 
 apply plg_permut in H13.
 
-assert(Parallelogram_strict  R' P' Q'' S'').
+assert(严格平行四边形  R' P' Q'' S'').
 apply plg_sym in H13.
 induction H13.
 assumption.
-unfold Parallelogram_flat in H13.
+unfold 退化平行四边形 in H13.
 spliter.
 apply False_ind.
 apply H19.

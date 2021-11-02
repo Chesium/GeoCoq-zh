@@ -86,13 +86,13 @@ Ltac clean_reap_hyps :=
   clean_duplicated_hyps;
   repeat
   match goal with
-   | H:(Parallelogram ?A ?B ?C ?D), H2 : Parallelogram ?B ?C ?D ?A |- _ => clear H2
-   | H:(Parallelogram ?A ?B ?C ?D), H2 : Parallelogram ?C ?D ?A ?B |- _ => clear H2
-   | H:(Parallelogram ?A ?B ?C ?D), H2 : Parallelogram ?D ?A ?B ?C |- _ => clear H2
-   | H:(Parallelogram ?A ?B ?C ?D), H2 : Parallelogram ?D ?C ?B ?A |- _ => clear H2
-   | H:(Parallelogram ?A ?B ?C ?D), H2 : Parallelogram ?C ?B ?A ?D |- _ => clear H2
-   | H:(Parallelogram ?A ?B ?C ?D), H2 : Parallelogram ?B ?A ?D ?C |- _ => clear H2
-   | H:(Parallelogram ?A ?B ?C ?D), H2 : Parallelogram ?A ?D ?C ?B |- _ => clear H2
+   | H:(平行四边形 ?A ?B ?C ?D), H2 : 平行四边形 ?B ?C ?D ?A |- _ => clear H2
+   | H:(平行四边形 ?A ?B ?C ?D), H2 : 平行四边形 ?C ?D ?A ?B |- _ => clear H2
+   | H:(平行四边形 ?A ?B ?C ?D), H2 : 平行四边形 ?D ?A ?B ?C |- _ => clear H2
+   | H:(平行四边形 ?A ?B ?C ?D), H2 : 平行四边形 ?D ?C ?B ?A |- _ => clear H2
+   | H:(平行四边形 ?A ?B ?C ?D), H2 : 平行四边形 ?C ?B ?A ?D |- _ => clear H2
+   | H:(平行四边形 ?A ?B ?C ?D), H2 : 平行四边形 ?B ?A ?D ?C |- _ => clear H2
+   | H:(平行四边形 ?A ?B ?C ?D), H2 : 平行四边形 ?A ?D ?C ?B |- _ => clear H2
    | H:(Par ?A ?B ?C ?D), H2 : Par ?A ?B ?D ?C |- _ => clear H2
    | H:(Par ?A ?B ?C ?D), H2 : Par ?C ?D ?A ?B |- _ => clear H2
    | H:(Par ?A ?B ?C ?D), H2 : Par ?C ?D ?B ?A |- _ => clear H2
@@ -168,7 +168,7 @@ Ltac tag_hyps :=
     | H : Perp ?A ?B ?C ?D |- _ => apply Perp_Perp_tagged in H
     | H : 严格平行 ?A ?B ?C ?D |- _ => apply 严格平行_严格平行_tagged in H
     | H : Par ?A ?B ?C ?D |- _ => apply Par_Par_tagged in H
-    | H : Parallelogram ?A ?B ?C ?D |- _ => apply Plg_Plg_tagged in H
+    | H : 平行四边形 ?A ?B ?C ?D |- _ => apply Plg_Plg_tagged in H
   end.
 
 Ltac permutation_intro_in_goal :=
@@ -217,7 +217,7 @@ repeat
       not_exist_hyp_perm_ncol4 A B C D;
       assert (h := par_strict_not_cols A B C D H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:Parallelogram_strict ?A ?B ?C ?D |- _ =>
+      | H:严格平行四边形 ?A ?B ?C ?D |- _ =>
       let h := fresh in
       not_exist_hyp_perm_ncol4 A B C D;
       assert (h := plgs_not_col A B C D H);decompose [and] h;clear h;clean_reap_hyps
@@ -782,7 +782,7 @@ Qed.
 
 Lemma plgs_cong :
  forall A B C D,
- Parallelogram_strict A B C D ->
+ 严格平行四边形 A B C D ->
  Cong A B C D /\ Cong A D B C.
 Proof.
 intros A B C D HPara.
@@ -792,7 +792,7 @@ Qed.
 
 Lemma plg_cong :
  forall A B C D,
-  Parallelogram A B C D ->
+  平行四边形 A B C D ->
  Cong A B C D /\ Cong A D B C.
 Proof.
 intros.
@@ -805,11 +805,11 @@ Qed.
 
 Lemma rmb_cong :
  forall A B C D,
-  Rhombus A B C D ->
+  菱形 A B C D ->
   Cong A B B C /\ Cong A B C D /\ Cong A B D A.
 Proof.
 intros.
-unfold Rhombus in H.
+unfold 菱形 in H.
 spliter.
 assert(HH:= plg_to_parallelogram A B C D H).
 assert(HH1:= plg_cong A B C D HH).
@@ -821,12 +821,12 @@ Qed.
 Lemma rmb_per:
  forall A B C D M,
   中点 M A C ->
-  Rhombus A B C D ->
+  菱形 A B C D ->
   Per A M D.
 Proof.
 intros.
 assert(HH:=H0).
-unfold Rhombus in HH.
+unfold 菱形 in HH.
 spliter.
 assert(HH:=H1).
 unfold Plg in HH.
@@ -852,7 +852,7 @@ Lemma per_rmb :
   Plg A B C D ->
   中点 M A C ->
   Per A M B ->
-  Rhombus A B C D.
+  菱形 A B C D.
 Proof.
 intros.
 unfold Per in H1.
@@ -871,7 +871,7 @@ eapply symmetric_point_uniqueness.
 apply H5.
 assumption.
 subst D'.
-unfold Rhombus.
+unfold 菱形.
 split.
 assumption.
 assert(Cong A D B C).
@@ -888,7 +888,7 @@ Lemma perp_rmb :
  forall A B C D,
   Plg A B C D ->
   Perp A C B D ->
-  Rhombus A B C D.
+  菱形 A B C D.
 Proof.
 intros.
 assert(HH:=midpoint_existence A C).
@@ -1001,8 +1001,8 @@ Qed.
 
 Lemma plgs_permut :
  forall A B C D,
-  Parallelogram_strict A B C D ->
-  Parallelogram_strict B C D A.
+  严格平行四边形 A B C D ->
+  严格平行四边形 B C D A.
 Proof.
 intros A B C D HPara.
 destruct HPara as [HTS [HCong HPar]].
@@ -1030,8 +1030,8 @@ Qed.
 
 Lemma plg_permut :
  forall A B C D,
-  Parallelogram A B C D ->
-  Parallelogram B C D A.
+  平行四边形 A B C D ->
+  平行四边形 B C D A.
 Proof.
 intros A B C D HPara.
 elim HPara; clear HPara; intro HPara.
@@ -1046,7 +1046,7 @@ Qed.
 
 Lemma plgs_mid :
  forall A B C D,
-  Parallelogram_strict A B C D ->
+  严格平行四边形 A B C D ->
   exists M, 中点 M A C /\ 中点 M B D.
 Proof.
 intros A B C D HPara.
@@ -1062,7 +1062,7 @@ Qed.
 
 Lemma plg_mid :
  forall A B C D,
-  Parallelogram A B C D ->
+  平行四边形 A B C D ->
   exists M, 中点 M A C /\ 中点 M B D.
 Proof.
 intros A B C D HPara.
@@ -1080,7 +1080,7 @@ Qed.
 
 Lemma plg_mid_2 :
  forall A B C D I,
-  Parallelogram A B C D ->
+  平行四边形 A B C D ->
   中点 I A C ->
   中点 I B D.
 Proof.
@@ -1096,11 +1096,11 @@ Qed.
 
 Lemma plgs_not_comm :
   forall A B C D,
-   Parallelogram_strict A B C D ->
- ~ Parallelogram_strict A B D C /\ ~ Parallelogram_strict B A C D.
+   严格平行四边形 A B C D ->
+ ~ 严格平行四边形 A B D C /\ ~ 严格平行四边形 B A C D.
 Proof.
 intros.
-unfold Parallelogram_strict in *.
+unfold 严格平行四边形 in *.
 split.
 intro.
 spliter.
@@ -1151,11 +1151,11 @@ Qed.
 Lemma plg_not_comm :
  forall A B C D,
  A <> B ->
- Parallelogram A B C D ->
- ~ Parallelogram A B D C /\ ~ Parallelogram B A C D.
+ 平行四边形 A B C D ->
+ ~ 平行四边形 A B D C /\ ~ 平行四边形 B A C D.
 Proof.
 intros.
-unfold Parallelogram.
+unfold 平行四边形.
 induction H0.
 split.
 intro.
@@ -1163,9 +1163,9 @@ induction H1.
 apply plgs_not_comm in H0.
 spliter.
 contradiction.
-unfold Parallelogram_strict in H0.
+unfold 严格平行四边形 in H0.
 spliter.
-unfold Parallelogram_flat in H1.
+unfold 退化平行四边形 in H1.
 spliter.
 apply par_symmetry in H2.
 induction H2.
@@ -1179,19 +1179,19 @@ spliter.
 apply H0.
 Col.
 intro.
-assert(~ Parallelogram_strict A B D C /\ ~ Parallelogram_strict B A C D).
+assert(~ 严格平行四边形 A B D C /\ ~ 严格平行四边形 B A C D).
 apply plgs_not_comm.
 assumption.
 spliter.
 induction H1.
 contradiction.
-unfold Parallelogram_strict in H0.
-unfold Parallelogram_flat in H1.
+unfold 严格平行四边形 in H0.
+unfold 退化平行四边形 in H1.
 spliter.
 unfold TS in H0.
 spliter.
 contradiction.
-assert(~ Parallelogram_flat A B D C /\ ~ Parallelogram_flat B A C D).
+assert(~ 退化平行四边形 A B D C /\ ~ 退化平行四边形 B A C D).
 apply plgf_not_comm.
 assumption.
 assumption.
@@ -1199,8 +1199,8 @@ spliter.
 split.
 intro.
 induction H3.
-unfold Parallelogram_strict in H3.
-unfold Parallelogram_flat in H0.
+unfold 严格平行四边形 in H3.
+unfold 退化平行四边形 in H0.
 spliter.
 unfold TS in H3.
 spliter.
@@ -1212,8 +1212,8 @@ contradiction.
 assumption.
 intro.
 induction H3.
-unfold Parallelogram_strict in H3.
-unfold Parallelogram_flat in H0.
+unfold 严格平行四边形 in H3.
+unfold 退化平行四边形 in H0.
 spliter.
 unfold TS in H3.
 spliter.
@@ -1221,16 +1221,16 @@ contradiction.
 contradiction.
 Qed.
 
-Lemma parallelogram_to_plg : forall A B C D, Parallelogram A B C D -> Plg A B C D.
+Lemma parallelogram_to_plg : forall A B C D, 平行四边形 A B C D -> Plg A B C D.
 Proof.
 intros A B C D HPara.
 destruct (plg_mid A B C D) as [M HM]; Col.
 split; try (exists M; Col).
 elim HPara; clear HPara; intro HPara; try (apply plgs_diff in HPara; spliter; Col);
-unfold Parallelogram_flat in HPara; spliter; Col.
+unfold 退化平行四边形 in HPara; spliter; Col.
 Qed.
 
-Lemma parallelogram_equiv_plg : forall A B C D, Parallelogram A B C D <-> Plg A B C D.
+Lemma parallelogram_equiv_plg : forall A B C D, 平行四边形 A B C D <-> Plg A B C D.
 Proof.
 intros.
 split.
@@ -1238,7 +1238,7 @@ apply parallelogram_to_plg.
 apply plg_to_parallelogram.
 Qed.
 
-Lemma plg_conga : forall A B C D, A <> B /\ A <> C /\ B <> C -> Parallelogram A B C D -> 等角 A B C C D A /\ 等角 B C D D A B.
+Lemma plg_conga : forall A B C D, A <> B /\ A <> C /\ B <> C -> 平行四边形 A B C D -> 等角 A B C C D A /\ 等角 B C D D A B.
 Proof.
 intros.
 assert(Cong A B C D /\ Cong A D B C).
@@ -1263,7 +1263,7 @@ Qed.
 
 Lemma half_plgs :
  forall A B C D P Q M,
-  Parallelogram_strict A B C D ->
+  严格平行四边形 A B C D ->
   中点 P A B ->
   中点 Q C D ->
   中点 M A C ->
@@ -1297,7 +1297,7 @@ apply H1.
 assumption.
 subst Q'.
 assert(HH:=H).
-unfold Parallelogram_strict in HH.
+unfold 严格平行四边形 in HH.
 spliter.
 
 assert(Cong A P D Q).
@@ -1371,7 +1371,7 @@ Col.
 
 assert(HH:=H).
 apply plgs_permut in HH.
-unfold Parallelogram_strict in HH.
+unfold 严格平行四边形 in HH.
 spliter.
 unfold TS in H18.
 assert(~ Col C B D).
@@ -1496,13 +1496,13 @@ Qed.
 
 Lemma plgs_two_sides :
  forall A B C D,
- Parallelogram_strict A B C D ->
+ 严格平行四边形 A B C D ->
  TS A C B D /\ TS B D A C.
 Proof.
 intros.
 assert(HH:= plgs_mid A B C D H).
 ex_and HH M.
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 spliter.
 split.
 assumption.
@@ -1573,7 +1573,7 @@ Qed.
 
 Lemma plgs_par_strict :
  forall A B C D,
-  Parallelogram_strict A B C D ->
+  严格平行四边形 A B C D ->
   严格平行 A B C D /\ 严格平行 A D B C.
 Proof.
 intros A B C D HPara.
@@ -1587,10 +1587,10 @@ Qed.
 
 Lemma plgs_half_plgs_aux :
  forall A B C D P Q,
-  Parallelogram_strict A B C D ->
+  严格平行四边形 A B C D ->
   中点 P A B ->
   中点 Q C D ->
-  Parallelogram_strict A P Q D.
+  严格平行四边形 A P Q D.
 Proof.
 intros.
 assert(HH:= H).
@@ -1651,14 +1651,14 @@ Qed.
 
 Lemma plgs_comm2 :
  forall A B C D,
-  Parallelogram_strict A B C D ->
-  Parallelogram_strict B A D C.
+  严格平行四边形 A B C D ->
+  严格平行四边形 B A D C.
 Proof.
 intros.
 assert(HH:= H).
 apply plgs_two_sides in HH.
 spliter.
-unfold Parallelogram_strict in *.
+unfold 严格平行四边形 in *.
 split.
 assumption.
 spliter.
@@ -1670,11 +1670,11 @@ Qed.
 
 Lemma plgf_comm2 :
  forall A B C D,
-  Parallelogram_flat A B C D ->
-  Parallelogram_flat B A D C.
+  退化平行四边形 A B C D ->
+  退化平行四边形 B A D C.
 Proof.
 intros.
-unfold Parallelogram_flat in *.
+unfold 退化平行四边形 in *.
 spliter.
 repeat split; Col.
 Cong.
@@ -1686,8 +1686,8 @@ Qed.
 
 Lemma plg_comm2 :
  forall A B C D,
-  Parallelogram A B C D ->
-  Parallelogram B A D C.
+  平行四边形 A B C D ->
+  平行四边形 B A D C.
 Proof.
 intros.
 induction H.
@@ -1946,22 +1946,22 @@ Qed.
 
 
 Lemma square_perp_rectangle : forall A B C D,
- Rectangle A B C D ->
+ 长方形 A B C D ->
  Perp A C B D ->
- Square A B C D.
+ 正方形 A B C D.
 Proof.
 intros.
-assert (Rhombus A B C D).
+assert (菱形 A B C D).
 apply perp_rmb.
 apply H. assumption.
-apply Rhombus_Rectangle_Square;auto.
+apply 菱形_长方形_正方形;auto.
 Qed.
 
 Lemma plgs_half_plgs :
  forall A B C D P Q,
-  Parallelogram_strict A B C D ->
+  严格平行四边形 A B C D ->
   中点 P A B -> 中点 Q C D ->
-  Parallelogram_strict A P Q D /\ Parallelogram_strict B P Q C.
+  严格平行四边形 A P Q D /\ 严格平行四边形 B P Q C.
 Proof.
 intros.
 split.
@@ -1981,13 +1981,13 @@ Lemma parallel_2_plg :
   ~ Col A B C ->
   Par A B C D ->
   Par A D B C ->
-  Parallelogram_strict A B C D.
+  严格平行四边形 A B C D.
 Proof.
 intros.
 assert (Cong A B C D /\ Cong B C D A /\
         TS B D A C /\ TS A C B D)
   by (apply l12_19;Par).
-unfold Parallelogram_strict; intuition.
+unfold 严格平行四边形; intuition.
 Qed.
 
 Lemma par_2_plg :
@@ -1995,14 +1995,14 @@ Lemma par_2_plg :
   ~ Col A B C ->
   Par A B C D ->
   Par A D B C ->
-  Parallelogram A B C D.
+  平行四边形 A B C D.
 Proof.
 intros.
 assert (H2 := parallel_2_plg A B C D H H0 H1).
-apply Parallelogram_strict_Parallelogram; assumption.
+apply 严格平行四边形_平行四边形; assumption.
 Qed.
 
-Lemma plg_cong_1 : forall A B C D, Parallelogram A B C D -> Cong A B C D.
+Lemma plg_cong_1 : forall A B C D, 平行四边形 A B C D -> Cong A B C D.
 Proof.
 intros.
 apply plg_cong in H.
@@ -2010,7 +2010,7 @@ spliter.
 assumption.
 Qed.
 
-Lemma plg_cong_2 : forall A B C D, Parallelogram A B C D -> Cong A D B C.
+Lemma plg_cong_2 : forall A B C D, 平行四边形 A B C D -> Cong A D B C.
 Proof.
 intros.
 apply plg_cong in H.
@@ -2018,7 +2018,7 @@ spliter.
 assumption.
 Qed.
 
-Lemma plgs_cong_1 : forall A B C D, Parallelogram_strict A B C D -> Cong A B C D.
+Lemma plgs_cong_1 : forall A B C D, 严格平行四边形 A B C D -> Cong A B C D.
 Proof.
 intros.
 apply plgs_cong in H.
@@ -2026,7 +2026,7 @@ spliter.
 assumption.
 Qed.
 
-Lemma plgs_cong_2 : forall A B C D, Parallelogram_strict A B C D -> Cong A D B C.
+Lemma plgs_cong_2 : forall A B C D, 严格平行四边形 A B C D -> Cong A D B C.
 Proof.
 intros.
 apply plgs_cong in H.
@@ -2036,9 +2036,9 @@ Qed.
 
 Lemma Plg_perm :
   forall A B C D,
-  Parallelogram A B C D ->
-  Parallelogram A B C D /\ Parallelogram B C D A /\ Parallelogram C D A B /\Parallelogram D A B C /\ 
-  Parallelogram A D C B /\ Parallelogram D C B A /\ Parallelogram C B A D /\ Parallelogram B A D C.
+  平行四边形 A B C D ->
+  平行四边形 A B C D /\ 平行四边形 B C D A /\ 平行四边形 C D A B /\平行四边形 D A B C /\ 
+  平行四边形 A D C B /\ 平行四边形 D C B A /\ 平行四边形 C B A D /\ 平行四边形 B A D C.
 Proof.
 intros.
 split; try assumption.
@@ -2054,7 +2054,7 @@ Qed.
 Lemma plg_not_comm_1 :
   forall A B C D : Tpoint,
   A <> B ->
-  Parallelogram A B C D -> ~ Parallelogram A B D C.
+  平行四边形 A B C D -> ~ 平行四边形 A B D C.
 Proof.
 intros.
 assert (HNC := plg_not_comm A B C D H H0); spliter; assumption.
@@ -2063,7 +2063,7 @@ Qed.
 Lemma plg_not_comm_2 :
   forall A B C D : Tpoint,
   A <> B ->
-  Parallelogram A B C D -> ~ Parallelogram B A C D.
+  平行四边形 A B C D -> ~ 平行四边形 B A C D.
 Proof.
 intros.
 assert (HNC := plg_not_comm A B C D H H0); spliter; assumption.
@@ -2121,22 +2121,22 @@ repeat
       not_exist_hyp_perm_cong X1 X2 X1 X3;
       assert (h := midpoint_cong X2 X1 X3 H)
 
-      | H:Parallelogram ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_cong X1 X2 X3 X4;
       assert (h := plg_cong_1 X1 X2 X3 X4 H)
 
-      | H:Parallelogram_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:严格平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_cong X1 X2 X3 X4;
       assert (h := plgs_cong_1 X1 X2 X3 X4 H)
 
-      | H:Parallelogram ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_cong X1 X4 X2 X3;
       assert (h := plg_cong_2 X1 X2 X3 X4 H)
 
-      | H:Parallelogram_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:严格平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_cong X1 X4 X2 X3;
       assert (h := plgs_cong_2 X1 X2 X3 X4 H)
@@ -2153,27 +2153,27 @@ repeat
 
 Ltac assert_congs_perm := assert_congs_1; permutation_intro_in_hyps; assert_congs_2; clean_reap_hyps.
 
-Ltac not_exist_hyp_perm_para A B C D := not_exist_hyp (Parallelogram A B C D); not_exist_hyp (Parallelogram B C D A);
-                                        not_exist_hyp (Parallelogram C D A B); not_exist_hyp (Parallelogram D A B C);
-                                        not_exist_hyp (Parallelogram A D C B); not_exist_hyp (Parallelogram D C B A);
-                                        not_exist_hyp (Parallelogram C B A D); not_exist_hyp (Parallelogram B A D C).
+Ltac not_exist_hyp_perm_para A B C D := not_exist_hyp (平行四边形 A B C D); not_exist_hyp (平行四边形 B C D A);
+                                        not_exist_hyp (平行四边形 C D A B); not_exist_hyp (平行四边形 D A B C);
+                                        not_exist_hyp (平行四边形 A D C B); not_exist_hyp (平行四边形 D C B A);
+                                        not_exist_hyp (平行四边形 C B A D); not_exist_hyp (平行四边形 B A D C).
 
-Ltac not_exist_hyp_perm_para_s A B C D := not_exist_hyp (Parallelogram_strict A B C D);
-                                          not_exist_hyp (Parallelogram_strict B C D A);
-                                          not_exist_hyp (Parallelogram_strict C D A B);
-                                          not_exist_hyp (Parallelogram_strict D A B C);
-                                          not_exist_hyp (Parallelogram_strict A D C B);
-                                          not_exist_hyp (Parallelogram_strict D C B A);
-                                          not_exist_hyp (Parallelogram_strict C B A D);
-                                          not_exist_hyp (Parallelogram_strict B A D C).
+Ltac not_exist_hyp_perm_para_s A B C D := not_exist_hyp (严格平行四边形 A B C D);
+                                          not_exist_hyp (严格平行四边形 B C D A);
+                                          not_exist_hyp (严格平行四边形 C D A B);
+                                          not_exist_hyp (严格平行四边形 D A B C);
+                                          not_exist_hyp (严格平行四边形 A D C B);
+                                          not_exist_hyp (严格平行四边形 D C B A);
+                                          not_exist_hyp (严格平行四边形 C B A D);
+                                          not_exist_hyp (严格平行四边形 B A D C).
 
 Ltac assert_paras_aux :=
 repeat
  match goal with
-      | H:Parallelogram_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:严格平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_para X1 X2 X3 X4;
-      assert (h := Parallelogram_strict_Parallelogram X1 X2 X3 X4 H)
+      assert (h := 严格平行四边形_平行四边形 X1 X2 X3 X4 H)
 
       | H:Plg ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
@@ -2188,15 +2188,15 @@ repeat
 
 Ltac assert_paras_perm := permutation_intro_in_hyps; assert_paras_aux; clean_reap_hyps.
 
-Ltac not_exist_hyp_perm_npara A B C D := not_exist_hyp (~Parallelogram A B C D); not_exist_hyp (~Parallelogram B C D A);
-                                         not_exist_hyp (~Parallelogram C D A B); not_exist_hyp (~Parallelogram D A B C);
-                                         not_exist_hyp (~Parallelogram A D C B); not_exist_hyp (~Parallelogram D C B A);
-                                         not_exist_hyp (~Parallelogram C B A D); not_exist_hyp (~Parallelogram B A D C).
+Ltac not_exist_hyp_perm_npara A B C D := not_exist_hyp (~平行四边形 A B C D); not_exist_hyp (~平行四边形 B C D A);
+                                         not_exist_hyp (~平行四边形 C D A B); not_exist_hyp (~平行四边形 D A B C);
+                                         not_exist_hyp (~平行四边形 A D C B); not_exist_hyp (~平行四边形 D C B A);
+                                         not_exist_hyp (~平行四边形 C B A D); not_exist_hyp (~平行四边形 B A D C).
 
 Ltac assert_nparas :=
  repeat
  match goal with
-      | H:(?X1<>?X2), H2:Parallelogram ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:(?X1<>?X2), H2:平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
       first [ not_exist_hyp_perm_npara X1 X2 X4 X3 | not_exist_hyp_perm_npara X2 X1 X3 X4 ];
       let h1 := fresh in assert (h1 := plg_not_comm_1 X1 X2 X3 X4 H H2);
       let h2 := fresh in assert (h := plg_not_comm_2 X1 X2 X3 X4 H H2)
@@ -2411,7 +2411,7 @@ repeat
       not_exist_hyp4 A B B C D E E F;
       assert (h := sams_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:Parallelogram_strict ?A ?B ?C ?D |- _ =>
+      | H:严格平行四边形 ?A ?B ?C ?D |- _ =>
       let T := fresh in
       not_exist_hyp6 A B B C C D D A A C B D;
        assert (T:= plgs_diff A B C D H);decompose [and] T;clear T;clean_reap_hyps
@@ -2450,13 +2450,13 @@ Section Quadrilateral_inter_dec_2.
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma parallelogram_strict_midpoint : forall A B C D I,
-  Parallelogram_strict A B C D ->
+  严格平行四边形 A B C D ->
   Col I A C ->
   Col I B D ->
   中点 I A C /\ 中点 I B D.
 Proof.
 intros.
-assert (T:=Parallelogram_strict_Parallelogram A B C D H).
+assert (T:=严格平行四边形_平行四边形 A B C D H).
 assert (HpF := plg_mid A B C D T).
 elim HpF; intros I' HI;spliter;clear HpF.
 assert (H01 : Col A C I).
@@ -2466,7 +2466,7 @@ assert (H02 : Col D B I).
 assert (H03 : ~Col A D C).
  apply parallelogram_strict_not_col_3 in H.
  Col.
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 decompose [and] H.
 (* trouver unicité intersection *)
 assert (H8 := two_sides_not_col A C B D H4).
@@ -2499,12 +2499,12 @@ Qed.
 Lemma rmb_perp :
  forall A B C D,
   A <> C -> B <> D ->
-  Rhombus A B C D ->
+  菱形 A B C D ->
   Perp A C B D.
 Proof.
 intros.
 assert(HH:= H1).
-unfold Rhombus in HH.
+unfold 菱形 in HH.
 spliter.
 apply plg_to_parallelogram in H2.
 apply plg_mid in H2.
@@ -2545,10 +2545,10 @@ tauto.
 assumption.
 Qed.
 
-Lemma rect_permut : forall A B C D, Rectangle A B C D -> Rectangle B C D A.
+Lemma rect_permut : forall A B C D, 长方形 A B C D -> 长方形 B C D A.
 Proof.
 intros.
-unfold Rectangle in *.
+unfold 长方形 in *.
 spliter.
 split.
 apply plg_to_parallelogram in H.
@@ -2558,10 +2558,10 @@ assumption.
 Cong.
 Qed.
 
-Lemma rect_comm2 : forall A B C D, Rectangle A B C D -> Rectangle B A D C.
+Lemma rect_comm2 : forall A B C D, 长方形 A B C D -> 长方形 B A D C.
 Proof.
 intros.
-unfold Rectangle in *.
+unfold 长方形 in *.
 spliter.
 apply plg_to_parallelogram in H.
 
@@ -2572,10 +2572,10 @@ assumption.
 Cong.
 Qed.
 
-Lemma rect_per1 : forall A B C D, Rectangle A B C D -> Per B A D.
+Lemma rect_per1 : forall A B C D, 长方形 A B C D -> Per B A D.
 Proof.
 intros.
-unfold Rectangle in H.
+unfold 长方形 in H.
 spliter.
 
 assert(HH:= midpoint_existence A B).
@@ -2605,7 +2605,7 @@ apply l7_2.
 apply H5.
 中点.
 subst C.
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 spliter.
 unfold TS in H.
 spliter.
@@ -2630,7 +2630,7 @@ intro.
 subst B.
 apply l7_3 in H1.
 subst P.
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 spliter.
 unfold TS in H.
 spliter.
@@ -2669,7 +2669,7 @@ assumption.
 apply par_neq1 in H6.
 assumption.
 Cop.
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 
 assert(A = B /\ C = D \/ A = D /\ C = B).
@@ -2687,7 +2687,7 @@ subst D.
 apply l8_5.
 Qed.
 
-Lemma rect_per2 : forall A B C D, Rectangle A B C D -> Per A B C.
+Lemma rect_per2 : forall A B C D, 长方形 A B C D -> Per A B C.
 Proof.
 intros.
 apply rect_comm2 in H.
@@ -2695,7 +2695,7 @@ eapply rect_per1.
 apply H.
 Qed.
 
-Lemma rect_per3 : forall A B C D, Rectangle A B C D -> Per B C D.
+Lemma rect_per3 : forall A B C D, 长方形 A B C D -> Per B C D.
 Proof.
 intros.
 apply rect_permut in H.
@@ -2704,7 +2704,7 @@ eapply rect_per1.
 apply H.
 Qed.
 
-Lemma rect_per4 : forall A B C D, Rectangle A B C D -> Per A D C.
+Lemma rect_per4 : forall A B C D, 长方形 A B C D -> Per A D C.
 Proof.
 intros.
 apply rect_comm2 in H.
@@ -2713,7 +2713,7 @@ apply rect_permut.
 apply H.
 Qed.
 
-Lemma plg_per_rect1 : forall A B C D, Plg A B C D -> Per D A B -> Rectangle A B C D.
+Lemma plg_per_rect1 : forall A B C D, Plg A B C D -> Per D A B -> 长方形 A B C D.
 Proof.
 intros.
 
@@ -2740,7 +2740,7 @@ spliter.
 assert(A <> B).
 intro.
 subst B.
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 spliter.
 unfold TS in H.
 spliter.
@@ -2796,7 +2796,7 @@ apply perp_in_comm in H15.
 apply perp_in_per in H15.
 assumption.
 
-unfold Rectangle.
+unfold 长方形.
 split.
 apply parallelogram_to_plg .
 left.
@@ -2822,13 +2822,13 @@ Cong.
 apply 等长的传递性 with A M; Cong.
 apply 等长的传递性 with B M; Cong.
 
-unfold Rectangle.
+unfold 长方形.
 split.
 apply parallelogram_to_plg.
 right.
 assumption.
 
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 
 assert(D = A \/ B = A).
@@ -2848,7 +2848,7 @@ subst D.
 Cong.
 Qed.
 
-Lemma plg_per_rect2 : forall A B C D, Plg A B C D -> Per C B A -> Rectangle A B C D.
+Lemma plg_per_rect2 : forall A B C D, Plg A B C D -> Per C B A -> 长方形 A B C D.
 Proof.
 intros.
 apply rect_comm2.
@@ -2860,7 +2860,7 @@ assumption.
 assumption.
 Qed.
 
-Lemma plg_per_rect3 : forall A B C D, Plg A B C D -> Per A D C -> Rectangle A B C D.
+Lemma plg_per_rect3 : forall A B C D, Plg A B C D -> Per A D C -> 长方形 A B C D.
 Proof.
 intros.
 apply rect_permut.
@@ -2874,7 +2874,7 @@ apply l8_2.
 assumption.
 Qed.
 
-Lemma plg_per_rect4 : forall A B C D, Plg A B C D -> Per B C D -> Rectangle A B C D.
+Lemma plg_per_rect4 : forall A B C D, Plg A B C D -> Per B C D -> 长方形 A B C D.
 Proof.
 intros.
 apply rect_comm2.
@@ -2886,7 +2886,7 @@ assumption.
 assumption.
 Qed.
 
-Lemma plg_per_rect : forall A B C D, Plg A B C D -> (Per D A B \/ Per C B A \/ Per A D C \/ Per B C D) -> Rectangle A B C D.
+Lemma plg_per_rect : forall A B C D, Plg A B C D -> (Per D A B \/ Per C B A \/ Per A D C \/ Per B C D) -> 长方形 A B C D.
 Proof.
 intros.
 induction H0.
@@ -2898,7 +2898,7 @@ apply plg_per_rect3; assumption.
 apply plg_per_rect4; assumption.
 Qed.
 
-Lemma rect_per : forall A B C D, Rectangle A B C D -> Per B A D /\ Per A B C /\ Per B C D /\ Per A D C.
+Lemma rect_per : forall A B C D, 长方形 A B C D -> Per B A D /\ Per A B C /\ Per B C D /\ Per A D C.
 Proof.
 intros.
 repeat split.
@@ -2908,10 +2908,10 @@ apply (rect_per3 A B C D); assumption.
 apply (rect_per4 A B C D); assumption.
 Qed.
 
-Lemma plgf_rect_id : forall A B C D, Parallelogram_flat A B C D -> Rectangle A B C D -> A = D /\ B = C \/ A = B /\ D = C.
+Lemma plgf_rect_id : forall A B C D, 退化平行四边形 A B C D -> 长方形 A B C D -> A = D /\ B = C \/ A = B /\ D = C.
 Proof.
 intros.
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 assert(Per B A D /\ Per A B C /\ Per B C D /\ Per A D C).
 
@@ -2956,7 +2956,7 @@ Lemma cop_perp3__rect :
   Perp A B B C ->
   Perp B C C D ->
   Perp C D D A ->
-  Rectangle A B C D.
+  长方形 A B C D.
 Proof.
 intros.
 assert (~ Col A B C)
@@ -2967,11 +2967,11 @@ assert (Perp D A A B)
  by (eapply cop_perp3__perp;eauto).
 assert (Par A D B C)
  by (apply (l12_9 A D B C A B); Perp; Cop).
-assert (Parallelogram_strict A B C D)
+assert (严格平行四边形 A B C D)
  by (apply (parallel_2_plg); auto).
 apply plg_per_rect1.
 apply parallelogram_to_plg.
-apply Parallelogram_strict_Parallelogram.
+apply 严格平行四边形_平行四边形.
 assumption.
 Perp.
 Qed.
@@ -2986,7 +2986,7 @@ apply par_right_comm, l12_22_b with P; trivial.
 apply invert_one_side, col_one_side with D; Col.
 Qed.
 
-Lemma plg_par : forall A B C D, A <> B -> B <> C -> Parallelogram A B C D -> Par A B C D /\ Par A D B C.
+Lemma plg_par : forall A B C D, A <> B -> B <> C -> 平行四边形 A B C D -> Par A B C D /\ Par A D B C.
 Proof.
 intros.
 assert(HH:= H1).
@@ -3002,25 +3002,25 @@ apply par_symmetry.
 Par.
 Qed.
 
-Lemma plg_par_1 : forall A B C D, A <> B -> B <> C -> Parallelogram A B C D -> Par A B C D.
+Lemma plg_par_1 : forall A B C D, A <> B -> B <> C -> 平行四边形 A B C D -> Par A B C D.
 Proof.
 intros.
 assert (HPar := plg_par A B C D H H0 H1); spliter; assumption.
 Qed.
 
-Lemma plg_par_2 : forall A B C D, A <> B -> B <> C -> Parallelogram A B C D -> Par A D B C.
+Lemma plg_par_2 : forall A B C D, A <> B -> B <> C -> 平行四边形 A B C D -> Par A D B C.
 Proof.
 intros.
 assert (HPar := plg_par A B C D H H0 H1); spliter; assumption.
 Qed.
 
-Lemma plgs_pars_1: forall A B C D : Tpoint, Parallelogram_strict A B C D -> 严格平行 A B C D.
+Lemma plgs_pars_1: forall A B C D : Tpoint, 严格平行四边形 A B C D -> 严格平行 A B C D.
 Proof.
 intros.
 assert (HPar := plgs_par_strict A B C D H); spliter; assumption.
 Qed.
 
-Lemma plgs_pars_2: forall A B C D : Tpoint, Parallelogram_strict A B C D -> 严格平行 A D B C.
+Lemma plgs_pars_2: forall A B C D : Tpoint, 严格平行四边形 A B C D -> 严格平行 A D B C.
 Proof.
 intros.
 assert (HPar := plgs_par_strict A B C D H); spliter; assumption.
@@ -3051,22 +3051,22 @@ Ltac assert_pars_1 :=
       not_exist_hyp_perm_pars X1 X2 X3 X4;
       assert (h := par_not_col_strict X1 X2 X3 X4 X5 H H2 H3)
 
-      | H: ?X1 <> ?X2, H2:?X2 <> ?X3, H3:Parallelogram ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H: ?X1 <> ?X2, H2:?X2 <> ?X3, H3:平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_par X1 X2 X3 X4;
       assert (h := plg_par_1 X1 X2 X3 X4 H H2 H3)
 
-      | H:Parallelogram_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:严格平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_pars X1 X2 X3 X4;
       assert (h := plgs_pars_1 X1 X2 X3 X4 H)
 
-      | H: ?X1 <> ?X2, H2:?X2 <> ?X3, H3:Parallelogram ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H: ?X1 <> ?X2, H2:?X2 <> ?X3, H3:平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_par X1 X4 X2 X3;
       assert (h := plg_par_2 X1 X2 X3 X4 H H2 H3)
 
-      | H:Parallelogram_strict ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:严格平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_pars X1 X4 X2 X3;
       assert (h := plgs_pars_2 X1 X2 X3 X4 H)
@@ -3218,7 +3218,7 @@ Lemma par_cong_plg_2 :
   forall A B C D,
   Par A B C D ->
   Cong A B C D ->
-  Parallelogram A B C D \/ Parallelogram A B D C.
+  平行四边形 A B C D \/ 平行四边形 A B D C.
 Proof.
 intros.
 assert (HElim : Plg A B C D \/ Plg A B D C)
@@ -3230,7 +3230,7 @@ elim HElim; intro.
   right; apply plg_to_parallelogram; assumption.
 Qed.
 
-Lemma par_cong3_rect : forall A B C D, A <> C \/ B <> D -> Par A B C D -> Cong A B C D -> Cong A D B C -> Cong A C B D -> Rectangle A B C D \/ Rectangle A B D C.
+Lemma par_cong3_rect : forall A B C D, A <> C \/ B <> D -> Par A B C D -> Cong A B C D -> Cong A D B C -> Cong A C B D -> 长方形 A B C D \/ 长方形 A B D C.
 Proof.
 intros.
 unfold Par in H0.
@@ -3241,7 +3241,7 @@ assert(HH:=par_strict_cong_mid1 A B C D H0 H1).
 induction HH.
 spliter.
 left.
-unfold Rectangle.
+unfold 长方形.
 split; auto.
 unfold Plg.
 split; auto.
@@ -3249,7 +3249,7 @@ spliter.
 ex_and H5 M.
 
 right.
-unfold Rectangle.
+unfold 长方形.
 split; auto.
 unfold Plg.
 split; auto.
@@ -3267,13 +3267,13 @@ split; auto.
 
 spliter.
 left.
-unfold Rectangle.
+unfold 长方形.
 split; auto.
 
 apply parallelogram_to_plg.
-unfold Parallelogram.
+unfold 平行四边形.
 right.
-unfold Parallelogram_flat.
+unfold 退化平行四边形.
 
 induction(两点重合的决定性 C D).
 subst D.
@@ -3361,7 +3361,7 @@ assumption.
 exists M.
 split; auto.
 
-assert(Parallelogram A B C D').
+assert(平行四边形 A B C D').
 apply plg_to_parallelogram.
 assumption.
 assert(HH:=plg_par A B C D' H3 H6 H14).
@@ -3501,7 +3501,7 @@ apply out_col in H0.
 ColR.
 Qed.
 
-Lemma plg_uniqueness : forall A B C D D', Parallelogram A B C D -> Parallelogram A B C D' -> D = D'.
+Lemma plg_uniqueness : forall A B C D D', 平行四边形 A B C D -> 平行四边形 A B C D' -> D = D'.
 Proof.
 intros.
 apply plg_mid in H.
@@ -3518,8 +3518,8 @@ apply H1.
 assumption.
 Qed.
 
-Lemma plgs_trans_trivial : forall A B C D B', Parallelogram_strict A B C D -> Parallelogram_strict C D A B' 
-                                             -> Parallelogram A B B' A.
+Lemma plgs_trans_trivial : forall A B C D B', 严格平行四边形 A B C D -> 严格平行四边形 C D A B' 
+                                             -> 平行四边形 A B B' A.
 Proof.
 intros.
 apply plgs_permut in H.
@@ -3547,7 +3547,7 @@ left.
 assumption.
 Qed.
 
-Lemma plgs_pseudo_trans : forall A B C D E F, Parallelogram_strict A B C D -> Parallelogram_strict C D E F -> Parallelogram A B F E.
+Lemma plgs_pseudo_trans : forall A B C D E F, 严格平行四边形 A B C D -> 严格平行四边形 C D E F -> 平行四边形 A B F E.
 Proof.
 intros.
 
@@ -3706,7 +3706,7 @@ split; Col.
 spliter.
 
 right.
-unfold Parallelogram_flat.
+unfold 退化平行四边形.
 repeat split; Cong.
 ColR.
 ColR.
@@ -3804,7 +3804,7 @@ Qed.
 
 
 
-Lemma plgf_plgs_trans : forall A B C D E F, A <> B -> Parallelogram_flat A B C D -> Parallelogram_strict C D E F -> Parallelogram_strict A B F E.
+Lemma plgf_plgs_trans : forall A B C D E F, A <> B -> 退化平行四边形 A B C D -> 严格平行四边形 C D E F -> 严格平行四边形 A B F E.
 Proof.
 intros.
 
@@ -3909,7 +3909,7 @@ induction H21.
 tauto.
 contradiction.
 
-unfold Parallelogram_strict.
+unfold 严格平行四边形.
 spliter.
 split.
 
@@ -3957,7 +3957,7 @@ induction H28.
 tauto.
 
 apply plgs_comm2.
-unfold Parallelogram_strict.
+unfold 严格平行四边形.
 split.
 apply l9_2.
 
@@ -4327,7 +4327,7 @@ Par.
 apply plg_to_parallelogram in H36.
 induction H36.
 assumption.
-unfold Parallelogram_flat in H36.
+unfold 退化平行四边形 in H36.
 spliter.
 
 assert(Col A B E).
@@ -4337,19 +4337,19 @@ apply H13.
 eapply (col3 A B); Col.
 Qed.
 
-Lemma plgf_plgf_plgf: forall A B C D E F, A <> B -> Parallelogram_flat A B C D -> Parallelogram_flat C D E F
-                                          -> Parallelogram_flat A B F E.
+Lemma plgf_plgf_plgf: forall A B C D E F, A <> B -> 退化平行四边形 A B C D -> 退化平行四边形 C D E F
+                                          -> 退化平行四边形 A B F E.
 Proof.
 intros.
 assert(C <> D).
-unfold Parallelogram_flat in H0.
+unfold 退化平行四边形 in H0.
 spliter.
 intro.
 subst D.
 apply 等长的同一性 in H3.
 contradiction.
 assert(E <> F).
-unfold Parallelogram_flat in H1.
+unfold 退化平行四边形 in H1.
 spliter.
 intro.
 subst F.
@@ -4360,14 +4360,14 @@ assert(HH:=plgs_existence C D H2).
 ex_and HH D'.
 ex_and H4 C'.
 
-assert(Parallelogram_strict A B C' D').
+assert(严格平行四边形 A B C' D').
 eapply (plgf_plgs_trans A B C D); auto.
-assert(Parallelogram_strict E F C' D').
+assert(严格平行四边形 E F C' D').
 eapply (plgf_plgs_trans E F C D); auto.
 
 apply plgf_sym.
 assumption.
-assert(Parallelogram A B F E).
+assert(平行四边形 A B F E).
 eapply plgs_pseudo_trans.
 apply H4.
 apply plgs_sym.
@@ -4376,7 +4376,7 @@ induction H7.
 induction H7.
 unfold TS in H7.
 spliter.
-unfold Parallelogram_flat in *.
+unfold 退化平行四边形 in *.
 spliter.
 apply False_ind.
 apply H10.
@@ -4389,13 +4389,13 @@ apply (col3 C D); Col.
 assumption.
 Qed.
 
-Lemma plg_pseudo_trans : forall A B C D E F, Parallelogram A B C D -> Parallelogram C D E F -> Parallelogram A B F E \/ (A = B /\ C = D /\ E = F /\ A = E).
+Lemma plg_pseudo_trans : forall A B C D E F, 平行四边形 A B C D -> 平行四边形 C D E F -> 平行四边形 A B F E \/ (A = B /\ C = D /\ E = F /\ A = E).
 Proof.
 intros.
 induction(两点重合的决定性 A B).
 subst B.
 induction H.
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 spliter.
 unfold TS in H.
 spliter.
@@ -4408,7 +4408,7 @@ spliter.
 assumption.
 subst D.
 induction H0.
-unfold Parallelogram_strict in H0.
+unfold 严格平行四边形 in H0.
 spliter.
 unfold TS in H0.
 spliter.
@@ -4432,7 +4432,7 @@ assert(C <> D).
 intro.
 subst D.
 induction H.
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 spliter.
 unfold TS in H.
 spliter.
@@ -4447,7 +4447,7 @@ assert(E <> F).
 intro.
 subst F.
 induction H0.
-unfold Parallelogram_strict in H0.
+unfold 严格平行四边形 in H0.
 spliter.
 unfold TS in H0.
 spliter.
@@ -4478,20 +4478,20 @@ right.
 apply  (plgf_plgf_plgf A B C D E F); auto.
 Qed.
 
-Lemma Square_Rhombus : forall A B C D,
- Square A B C D -> Rhombus A B C D.
+Lemma 正方形_菱形 : forall A B C D,
+ 正方形 A B C D -> 菱形 A B C D.
 Proof.
 intros.
-unfold Rhombus.
+unfold 菱形.
 split.
-apply Square_Parallelogram in H.
+apply 正方形_平行四边形 in H.
 apply parallelogram_to_plg in H.
 assumption.
-unfold Square in H.
+unfold 正方形 in H.
 tauto.
 Qed.
 
-Lemma plgs_in_angle : forall A B C D, Parallelogram_strict A B C D -> 在角内 D A B C.
+Lemma plgs_in_angle : forall A B C D, 严格平行四边形 A B C D -> 在角内 D A B C.
 Proof.
 intros.
 assert(Plg A B C D).
@@ -4499,7 +4499,7 @@ apply parallelogram_to_plg.
 left.
 assumption.
 
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 unfold Plg in H0.
 spliter.
 ex_and H1 M.
@@ -4566,12 +4566,12 @@ Lemma par_par_cong_cong_parallelogram :
  Cong B C D A ->
  Par B C A D ->
  Par A B C D ->
- Parallelogram A B C D.
+ 平行四边形 A B C D.
 Proof.
 intros.
-assert (Parallelogram A B C D \/ Parallelogram A B D C)
+assert (平行四边形 A B C D \/ 平行四边形 A B D C)
  by (apply par_cong_plg_2; assumption).
-assert (Parallelogram B C A D \/ Parallelogram B C D A)
+assert (平行四边形 B C A D \/ 平行四边形 B C D A)
  by (apply par_cong_plg_2; Cong).
 induction H4.
 assumption.
@@ -4588,25 +4588,25 @@ spliter.
 assumption.
 Qed.
 
-Lemma degenerated_rect_eq : forall A B C, Rectangle A B B C -> A = C.
+Lemma degenerated_rect_eq : forall A B C, 长方形 A B B C -> A = C.
 Proof.
 intros A B C HRect.
-apply Rectangle_Parallelogram in HRect; apply plg_mid in HRect.
+apply 长方形_平行四边形 in HRect; apply plg_mid in HRect.
 destruct HRect as [M [HMid1 HMid2]]; treat_equalities; auto.
 Qed.
 
 Lemma rect_2_rect : forall A B C1 C2 D1 D2,
   A <> B ->
-  Rectangle A B C1 D1 ->
-  Rectangle A B C2 D2 ->
-  Rectangle C1 D1 D2 C2.
+  长方形 A B C1 D1 ->
+  长方形 A B C2 D2 ->
+  长方形 C1 D1 D2 C2.
 Proof.
 intros A B C1 C2 D1 D2 HDiff HRect1 HRect2.
 elim (两点重合的决定性 C1 C2); intro HC1C2; treat_equalities.
 
   {
-  apply Rectangle_Parallelogram in HRect1; apply plg_mid in HRect1.
-  apply Rectangle_Parallelogram in HRect2; apply plg_mid in HRect2.
+  apply 长方形_平行四边形 in HRect1; apply plg_mid in HRect1.
+  apply 长方形_平行四边形 in HRect2; apply plg_mid in HRect2.
   destruct HRect1 as [M [HMid1 HMid2]]; destruct HRect2 as [M' [HMid3 HMid4]].
   treat_equalities; split; Cong; apply parallelogram_to_plg.
   apply plg_trivial; intro; treat_equalities; auto.
@@ -4617,8 +4617,8 @@ elim (两点重合的决定性 C1 C2); intro HC1C2; treat_equalities.
   treat_equalities; [intuition|apply degenerated_rect_eq in HRect1; treat_equalities|
                      apply degenerated_rect_eq in HRect2; treat_equalities|];
   apply rect_comm2; auto; apply rect_comm2; do 2 (apply rect_permut); auto.
-  assert (HPara1 := HRect1); apply Rectangle_Parallelogram in HPara1.
-  assert (HPara2 := HRect2); apply Rectangle_Parallelogram in HPara2.
+  assert (HPara1 := HRect1); apply 长方形_平行四边形 in HPara1.
+  assert (HPara2 := HRect2); apply 长方形_平行四边形 in HPara2.
 
   assert (HNC1 : ~ Col A B C1) by (apply rect_per2 in HRect1; apply per_not_col; auto).
   assert (HNC2 : ~ Col A B C2) by (apply rect_per2 in HRect2; apply per_not_col; auto).
@@ -4626,9 +4626,9 @@ elim (两点重合的决定性 C1 C2); intro HC1C2; treat_equalities.
 
     {
     elim HPara1; clear HPara1; intro HPara1;
-    [|unfold Parallelogram_flat in HPara1; spliter; intuition].
+    [|unfold 退化平行四边形 in HPara1; spliter; intuition].
     elim HPara2; clear HPara2; intro HPara2;
-    [|unfold Parallelogram_flat in HPara2; spliter; intuition].
+    [|unfold 退化平行四边形 in HPara2; spliter; intuition].
     apply parallelogram_to_plg; apply plgs_pseudo_trans with B A;
     apply plgs_comm2; auto; do 2 (apply plgs_permut); auto.
     }
@@ -4656,82 +4656,82 @@ elim (两点重合的决定性 C1 C2); intro HC1C2; treat_equalities.
 Qed.
 
 Lemma ncol123_plg__plgs : forall A B C D,
-  ~ Col A B C -> Parallelogram A B C D -> Parallelogram_strict A B C D.
+  ~ Col A B C -> 平行四边形 A B C D -> 严格平行四边形 A B C D.
 Proof.
 intros A B C D HNC H; induction H; auto.
-exfalso; apply HNC; unfold Parallelogram_flat in *; spliter; Col.
+exfalso; apply HNC; unfold 退化平行四边形 in *; spliter; Col.
 Qed.
 
 Lemma ncol124_plg__plgs : forall A B C D,
-  ~ Col A B D -> Parallelogram A B C D -> Parallelogram_strict A B C D.
+  ~ Col A B D -> 平行四边形 A B C D -> 严格平行四边形 A B C D.
 Proof.
 intros A B C D HNC H; induction H; auto.
-exfalso; apply HNC; unfold Parallelogram_flat in *; spliter; Col.
+exfalso; apply HNC; unfold 退化平行四边形 in *; spliter; Col.
 Qed.
 
 Lemma ncol134_plg__plgs : forall A B C D,
-  ~ Col A C D -> Parallelogram A B C D -> Parallelogram_strict A B C D.
+  ~ Col A C D -> 平行四边形 A B C D -> 严格平行四边形 A B C D.
 Proof.
 intros A B C D HNC H; induction H; auto.
-exfalso; apply HNC; unfold Parallelogram_flat in *; spliter; ColR.
+exfalso; apply HNC; unfold 退化平行四边形 in *; spliter; ColR.
 Qed.
 
 Lemma ncol234_plg__plgs : forall A B C D,
-  ~ Col B C D -> Parallelogram A B C D -> Parallelogram_strict A B C D.
+  ~ Col B C D -> 平行四边形 A B C D -> 严格平行四边形 A B C D.
 Proof.
 intros A B C D HNC H; induction H; auto.
-exfalso; apply HNC; unfold Parallelogram_flat in *; spliter; ColR.
+exfalso; apply HNC; unfold 退化平行四边形 in *; spliter; ColR.
 Qed.
 
 Lemma ncol123_plg__pars1234 : forall A B C D,
-  ~ Col A B C -> Parallelogram A B C D -> 严格平行 A B C D.
+  ~ Col A B C -> 平行四边形 A B C D -> 严格平行 A B C D.
 Proof.
 intros; apply plgs_pars_1; apply ncol123_plg__plgs; auto.
 Qed.
 
 Lemma ncol124_plg__pars1234 : forall A B C D,
-  ~ Col A B D -> Parallelogram A B C D -> 严格平行 A B C D.
+  ~ Col A B D -> 平行四边形 A B C D -> 严格平行 A B C D.
 Proof.
 intros; apply plgs_pars_1; apply ncol124_plg__plgs; auto.
 Qed.
 
 Lemma ncol134_plg__pars1234 : forall A B C D,
-  ~ Col A C D -> Parallelogram A B C D -> 严格平行 A B C D.
+  ~ Col A C D -> 平行四边形 A B C D -> 严格平行 A B C D.
 Proof.
 intros; apply plgs_pars_1; apply ncol134_plg__plgs; auto.
 Qed.
 
 Lemma ncol234_plg__pars1234 : forall A B C D,
-  ~ Col B C D -> Parallelogram A B C D -> 严格平行 A B C D.
+  ~ Col B C D -> 平行四边形 A B C D -> 严格平行 A B C D.
 Proof.
 intros; apply plgs_pars_1; apply ncol234_plg__plgs; auto.
 Qed.
 
 Lemma ncol123_plg__pars1423 : forall A B C D,
-  ~ Col A B C -> Parallelogram A B C D -> 严格平行 A D B C.
+  ~ Col A B C -> 平行四边形 A B C D -> 严格平行 A D B C.
 Proof.
 intros; apply plgs_pars_2; apply ncol123_plg__plgs; auto.
 Qed.
 
 Lemma ncol124_plg__pars1423 : forall A B C D,
-  ~ Col A B D -> Parallelogram A B C D -> 严格平行 A D B C.
+  ~ Col A B D -> 平行四边形 A B C D -> 严格平行 A D B C.
 Proof.
 intros; apply plgs_pars_2; apply ncol124_plg__plgs; auto.
 Qed.
 
 Lemma ncol134_plg__pars1423 : forall A B C D,
-  ~ Col A C D -> Parallelogram A B C D -> 严格平行 A D B C.
+  ~ Col A C D -> 平行四边形 A B C D -> 严格平行 A D B C.
 Proof.
 intros; apply plgs_pars_2; apply ncol134_plg__plgs; auto.
 Qed.
 
 Lemma ncol234_plg__pars1423 : forall A B C D,
-  ~ Col B C D -> Parallelogram A B C D -> 严格平行 A D B C.
+  ~ Col B C D -> 平行四边形 A B C D -> 严格平行 A D B C.
 Proof.
 intros; apply plgs_pars_2; apply ncol234_plg__plgs; auto.
 Qed.
 
-Lemma sac_plg : forall A B C D, Saccheri A B C D -> Parallelogram A B C D.
+Lemma sac_plg : forall A B C D, 萨凯里四边形 A B C D -> 平行四边形 A B C D.
 Proof.
 intros A B C D H.
 assert (T:=sac__pars1234 A B C D H).
@@ -4740,18 +4740,18 @@ assert (V:=sac__par1234 A B C D H).
 apply par_2_plg;eauto using par_strict_not_col_1.
 Qed.
 
-Lemma sac_rectangle : forall A B C D, Saccheri A B C D -> Rectangle A B C D.
+Lemma sac_rectangle : forall A B C D, 萨凯里四边形 A B C D -> 长方形 A B C D.
 Proof.
 intros A B C D H.
-assert (Parallelogram A B C D) by (apply sac_plg;auto).
+assert (平行四边形 A B C D) by (apply sac_plg;auto).
 apply parallelogram_to_plg in H0.
 apply plg_per_rect1.
 assumption.
-unfold Saccheri in H.
+unfold 萨凯里四边形 in H.
 spliter; Perp.
 Qed.
 
-Lemma exists_square : forall A B, A<>B -> exists C D,  Square A B C D.
+Lemma exists_square : forall A B, A<>B -> exists C D,  正方形 A B C D.
 Proof.
 intros.
 destruct (exists_cong_per A B A B) as [C [HC1 HC2]].
@@ -4759,8 +4759,8 @@ assert_diffs.
 destruct (per__ex_saccheri B C A) as [D HSac]; Perp.
 exists C.
 exists D.
-assert (Rectangle B C D A) by (apply sac_rectangle;auto).
-unfold Square;split.
+assert (长方形 B C D A) by (apply sac_rectangle;auto).
+unfold 正方形;split.
 eauto using rect_permut.
 Cong.
 Qed.
@@ -4788,7 +4788,7 @@ Lemma perp3__rect :
   Perp A B B C ->
   Perp B C C D ->
   Perp C D D A ->
-  Rectangle A B C D.
+  长方形 A B C D.
 Proof.
 intros A B C D.
 apply cop_perp3__rect, all_coplanar.

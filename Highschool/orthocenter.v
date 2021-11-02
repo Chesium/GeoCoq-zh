@@ -134,8 +134,8 @@ Lemma diff_not_col_col_par4_mid: forall A B C D E,
   Par A B C E -> Par A E B C -> Par A C B D -> 中点 C D E.
 Proof.
 intros A B C D E HD HNC HC HPar1 HPar2 HPar3 HPar4.
-assert (HPara1 : Parallelogram_strict A B C E) by (apply parallel_2_plg; finish).
-assert (HPara2 : Parallelogram_strict C A B D) by (apply parallel_2_plg; finish).
+assert (HPara1 : 严格平行四边形 A B C E) by (apply parallel_2_plg; finish).
+assert (HPara2 : 严格平行四边形 C A B D) by (apply parallel_2_plg; finish).
 assert_congs_perm.
 apply cong_col_mid; Col; CongR.
 Qed.

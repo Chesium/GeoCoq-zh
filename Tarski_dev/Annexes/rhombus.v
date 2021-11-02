@@ -24,21 +24,21 @@
                     - EXPERIMENTAL: (in quadrilaterals_inter_dec.v)
                         Lemma rmb_cong :
                           forall A B C D,
-                          Rhombus A B C D ->
+                          菱形 A B C D ->
                           Cong A B B C /\ Cong A B C D /\ Cong A B D A.
                         TRY MODIFY CONTEXT ? Tarski_2D_euclidean -> Tarski_2D or 无维度中性塔斯基公理系统_带两点重合决定性
 
    CHANGES: 04 april 2018, RC
-   1) See JNarboux, comments about pull requests Rhombus.
-   2) ADD End Rhombus_Existence_Unicity.
+   1) See JNarboux, comments about pull requests 菱形.
+   2) ADD End 菱形_Existence_Unicity.
    2) MODIFY CONTEXT: Tarski_2D by 无维度中性塔斯基公理系统_带两点重合决定性.
-   3) ADD Existence Plg, Rhombus.
+   3) ADD Existence Plg, 菱形.
 
 *)
 
 Require Export GeoCoq.Tarski_dev.Annexes.perp_bisect.
 
-Section Rhombus_Existence_Unicity.
+Section 菱形_Existence_Unicity.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
@@ -97,7 +97,7 @@ Proof.
   assumption.
 Qed.
 
-Lemma RhombusEx: exists A B C D, Rhombus A B C D.
+Lemma 菱形Ex: exists A B C D, 菱形 A B C D.
 Proof.
   destruct 防降维公理_ex as [A [B [C HNC]]].
   assert (H1 : ~ Col A B C) by auto.
@@ -135,16 +135,16 @@ Proof.
   split.
   assumption.
   Cong.
-  unfold Rhombus.
+  unfold 菱形.
   split.
   assumption.
   Cong.
 Qed.
 
-Lemma RhombusUnicity: forall A B C D E, Rhombus A B C D -> Rhombus A B C E -> D = E.
+Lemma 菱形Unicity: forall A B C D E, 菱形 A B C D -> 菱形 A B C E -> D = E.
 Proof.
   intros.
-  unfold Rhombus in *.
+  unfold 菱形 in *.
   spliter.
   unfold Plg in *.
   spliter.
@@ -235,13 +235,13 @@ Proof.
       tauto.
 Qed.
 
-Lemma RhombusExABC1: forall A B C, A <> C -> Col A B C -> Cong A B B C -> exists D, Rhombus A B C D.
+Lemma 菱形ExABC1: forall A B C, A <> C -> Col A B C -> Cong A B B C -> exists D, 菱形 A B C D.
 Proof.
   intros.
   assert(中点 B A C).
   apply ColCongMid; tauto.
   exists B.
-  unfold Rhombus in *.
+  unfold 菱形 in *.
   split.
   unfold Plg in *.
   split.
@@ -253,15 +253,15 @@ Proof.
   assumption.
 Qed.
 
-Lemma RhombusExABC2: forall A B C, ~Col A B C -> Cong A B B C -> exists D, Rhombus A B C D.
+Lemma 菱形ExABC2: forall A B C, ~Col A B C -> Cong A B B C -> exists D, 菱形 A B C D.
 Proof.
   intros.
   assert(exists D, Plg A B C D).
   apply PlgExABC2;trivial.
   destruct H1 as [D H2].
   exists D.
-  unfold Rhombus in *.
+  unfold 菱形 in *.
   tauto.
 Qed.
 
-End Rhombus_Existence_Unicity.
+End 菱形_Existence_Unicity.

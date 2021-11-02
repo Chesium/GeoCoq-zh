@@ -1040,21 +1040,21 @@ repeat split;
 assumption.
 Qed.
 
-Lemma Parallelogram_strict_Parallelogram :
+Lemma 严格平行四边形_平行四边形 :
  forall A B C D,
-  Parallelogram_strict A B C D -> Parallelogram A B C D.
+  严格平行四边形 A B C D -> 平行四边形 A B C D.
 Proof.
-unfold Parallelogram.
+unfold 平行四边形.
 tauto.
 Qed.
 
 Lemma plgf_permut :
  forall A B C D,
-  Parallelogram_flat A B C D ->
-  Parallelogram_flat B C D A.
+  退化平行四边形 A B C D ->
+  退化平行四边形 B C D A.
 Proof.
 intros.
-unfold Parallelogram_flat in *.
+unfold 退化平行四边形 in *.
 spliter.
 induction(两点重合的决定性 A B).
 subst B.
@@ -1084,8 +1084,8 @@ Qed.
 
 Lemma plgf_sym :
  forall A B C D,
- Parallelogram_flat A B C D ->
- Parallelogram_flat C D A B.
+ 退化平行四边形 A B C D ->
+ 退化平行四边形 C D A B.
 Proof.
 intros.
 apply plgf_permut.
@@ -1095,10 +1095,10 @@ Qed.
 
 Lemma plgf_irreflexive :
  forall A B,
- ~ Parallelogram_flat A B A B.
+ ~ 退化平行四边形 A B A B.
 Proof.
 intros.
-unfold Parallelogram_flat.
+unfold 退化平行四边形.
 intro.
 spliter.
 induction H3; tauto.
@@ -1106,11 +1106,11 @@ Qed.
 
 Lemma plgs_irreflexive :
  forall A B,
-  ~ Parallelogram_strict A B A B.
+  ~ 严格平行四边形 A B A B.
 Proof.
 intros.
 intro.
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 spliter.
 unfold TS in H.
 spliter.
@@ -1120,7 +1120,7 @@ Qed.
 
 Lemma plg_irreflexive :
  forall A B,
- ~ Parallelogram A B A B.
+ ~ 平行四边形 A B A B.
 Proof.
 intros.
 intro.
@@ -1133,11 +1133,11 @@ Qed.
 
 Lemma plgf_mid :
  forall A B C D,
-  Parallelogram_flat A B C D ->
+  退化平行四边形 A B C D ->
   exists M, 中点 M A C /\ 中点 M B D.
 Proof.
 intros.
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 
 induction(两点重合的决定性 A B).
@@ -1312,10 +1312,10 @@ Lemma mid_plgs :
  forall A B C D M,
   ~ Col A B C ->
   中点 M A C -> 中点 M B D ->
-  Parallelogram_strict A B C D.
+  严格平行四边形 A B C D.
 Proof.
 intros.
-unfold Parallelogram_strict.
+unfold 严格平行四边形.
 assert(A <>C).
 intro.
 apply H.
@@ -1383,10 +1383,10 @@ Lemma mid_plgf_aux :
   A <> C ->
   Col A B C ->
   中点 M A C -> 中点 M B D ->
-  Parallelogram_flat A B C D.
+  退化平行四边形 A B C D.
 Proof.
 intros.
-unfold Parallelogram_flat.
+unfold 退化平行四边形.
 induction(两点重合的决定性 B D).
 subst D.
 apply l7_3 in H2.
@@ -1582,7 +1582,7 @@ Lemma mid_plgf :
   (A <> C \/ B <> D ) ->
   Col A B C ->
   中点 M A C -> 中点 M B D ->
-  Parallelogram_flat A B C D.
+  退化平行四边形 A B C D.
 Proof.
 intros.
 induction H.
@@ -1595,7 +1595,7 @@ apply l7_3 in H1.
 subst M.
 unfold 中点 in H2.
 spliter.
-unfold Parallelogram_flat.
+unfold 退化平行四边形.
 repeat split.
 Col.
 apply 中间性转共线 in H1.
@@ -1633,10 +1633,10 @@ Lemma mid_plg :
  forall A B C D M,
  (A <> C \/ B <> D ) ->
  中点 M A C -> 中点 M B D ->
- Parallelogram A B C D.
+ 平行四边形 A B C D.
 Proof.
 intros.
-unfold Parallelogram.
+unfold 平行四边形.
 
 induction(col_dec A B C).
 right.
@@ -1651,7 +1651,7 @@ Lemma mid_plg_1 :
  forall A B C D M,
  A <> C ->
  中点 M A C -> 中点 M B D ->
- Parallelogram A B C D.
+ 平行四边形 A B C D.
 Proof.
 intros.
 apply mid_plg with M; intuition.
@@ -1661,7 +1661,7 @@ Lemma mid_plg_2 :
  forall A B C D M,
  B <> D ->
  中点 M A C -> 中点 M B D ->
- Parallelogram A B C D.
+ 平行四边形 A B C D.
 Proof.
 intros.
 apply mid_plg with M; intuition.
@@ -1727,8 +1727,8 @@ Qed.
 
 Lemma plgf_not_comm :
  forall A B C D, A <> B ->
-  Parallelogram_flat A B C D ->
-  ~ Parallelogram_flat A B D C /\ ~ Parallelogram_flat B A C D.
+  退化平行四边形 A B C D ->
+  ~ 退化平行四边形 A B D C /\ ~ 退化平行四边形 B A C D.
 Proof.
 intros.
 
@@ -1737,7 +1737,7 @@ split.
 intro.
 assert(HH1:=plgf_mid  A B D C H1).
 
-unfold Parallelogram_flat in *.
+unfold 退化平行四边形 in *.
 spliter.
 ex_and HH0 M.
 
@@ -1755,7 +1755,7 @@ subst C.
 induction H5; tauto.
 
 ex_and HH0 M.
-unfold Parallelogram_flat in *.
+unfold 退化平行四边形 in *.
 intro.
 spliter.
 assert(A = B /\ C = D \/ A = D /\ C = B).
@@ -1774,16 +1774,16 @@ Qed.
 
 Lemma plgf_cong :
  forall A B C D,
-  Parallelogram_flat A B C D ->
+  退化平行四边形 A B C D ->
   Cong A B C D /\ Cong A D B C.
 Proof.
 intros.
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 split; Cong.
 Qed.
 
-Lemma plg_to_parallelogram : forall A B C D, Plg A B C D -> Parallelogram A B C D.
+Lemma plg_to_parallelogram : forall A B C D, Plg A B C D -> 平行四边形 A B C D.
 Proof.
 intros.
 unfold Plg in H.
@@ -1797,11 +1797,11 @@ Qed.
 
 Lemma plgs_one_side :
  forall A B C D,
- Parallelogram_strict A B C D ->
+ 严格平行四边形 A B C D ->
  OS A B C D /\ OS C D A B.
 Proof.
 intros.
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 spliter.
 induction H0.
 split.
@@ -1819,10 +1819,10 @@ Col.
 Qed.
 
 Lemma parallelogram_strict_not_col : forall A B C D,
- Parallelogram_strict A B C D ->
+ 严格平行四边形 A B C D ->
  ~ Col A B C.
 Proof.
-unfold Parallelogram_strict.
+unfold 严格平行四边形.
 intros.
 spliter.
 apply two_sides_not_col in H.
@@ -1830,7 +1830,7 @@ Col.
 Qed.
 
 Lemma parallelogram_strict_not_col_2 : forall A B C D,
- Parallelogram_strict A B C D ->
+ 严格平行四边形 A B C D ->
  ~ Col B C D.
 Proof.
 intros.
@@ -1841,17 +1841,17 @@ Col.
 Qed.
 
 Lemma parallelogram_strict_not_col_3 : forall A B C D,
- Parallelogram_strict A B C D ->
+ 严格平行四边形 A B C D ->
  ~ Col C D A.
 Proof.
-unfold Parallelogram_strict, TS.
+unfold 严格平行四边形, TS.
 intros.
 spliter.
 Col.
 Qed.
 
 Lemma parallelogram_strict_not_col_4 : forall A B C D,
- Parallelogram_strict A B C D ->
+ 严格平行四边形 A B C D ->
  ~ Col A B D.
 Proof.
 intros.
@@ -1863,12 +1863,12 @@ Qed.
 
 Lemma plgs__pars :
  forall A B C D,
- Parallelogram_strict A B C D ->
+ 严格平行四边形 A B C D ->
  严格平行 A B C D.
 Proof.
 intros.
 assert (HH := H).
-unfold Parallelogram_strict in HH; spliter.
+unfold 严格平行四边形 in HH; spliter.
 destruct H1; auto; spliter.
 apply parallelogram_strict_not_col_2 in H.
 contradiction.
@@ -1876,18 +1876,18 @@ Qed.
 
 Lemma plgs_sym :
  forall A B C D,
-  Parallelogram_strict A B C D ->
-  Parallelogram_strict C D A B.
+  严格平行四边形 A B C D ->
+  严格平行四边形 C D A B.
 Proof.
-unfold Parallelogram_strict.
+unfold 严格平行四边形.
 intros; spliter.
 repeat (split; finish).
 Qed.
 
 Lemma plg_sym :
  forall A B C D,
-  Parallelogram A B C D ->
-  Parallelogram C D A B.
+  平行四边形 A B C D ->
+  平行四边形 C D A B.
 Proof.
 intros.
 induction H.
@@ -1899,24 +1899,24 @@ apply plgf_sym.
 assumption.
 Qed.
 
-Lemma Rhombus_Plg : forall A B C D, Rhombus A B C D -> Plg A B C D.
+Lemma 菱形_Plg : forall A B C D, 菱形 A B C D -> Plg A B C D.
 Proof.
-unfold Rhombus.
+unfold 菱形.
 tauto.
 Qed.
 
-Lemma Rectangle_Plg : forall A B C D,
-  Rectangle A B C D ->
+Lemma 长方形_Plg : forall A B C D,
+  长方形 A B C D ->
   Plg A B C D.
 Proof.
-unfold Rectangle;tauto.
+unfold 长方形;tauto.
 Qed.
 
-Lemma Rectangle_Parallelogram : forall A B C D,
-  Rectangle A B C D ->
-  Parallelogram A B C D.
+Lemma 长方形_平行四边形 : forall A B C D,
+  长方形 A B C D ->
+  平行四边形 A B C D.
 Proof.
-unfold Rectangle.
+unfold 长方形.
 intros.
 decompose [and] H.
 apply plg_to_parallelogram in H0.
@@ -1927,36 +1927,36 @@ Lemma plg_cong_rectangle :
  forall A B C D,
   Plg A B C D ->
   Cong A C B D ->
-  Rectangle A B C D.
+  长方形 A B C D.
 Proof.
 intros.
-unfold Rectangle.
+unfold 长方形.
 tauto.
 Qed.
 
 (*////////////////////////////////////////////////////////////////*)
 
-Lemma plg_trivial : forall A B, A <> B -> Parallelogram A B B A.
+Lemma plg_trivial : forall A B, A <> B -> 平行四边形 A B B A.
 Proof.
 intros.
 right.
-unfold Parallelogram_flat.
+unfold 退化平行四边形.
 repeat split; Col; Cong.
 Qed.
 
-Lemma plg_trivial1 : forall A B, A <> B -> Parallelogram A A B B.
+Lemma plg_trivial1 : forall A B, A <> B -> 平行四边形 A A B B.
 Proof.
 intros.
 right.
-unfold Parallelogram_flat.
+unfold 退化平行四边形.
 repeat split; Col; Cong.
 Qed.
 
-Lemma col_not_plgs : forall A B C D, Col A B C -> ~Parallelogram_strict A B C D.
+Lemma col_not_plgs : forall A B C D, Col A B C -> ~严格平行四边形 A B C D.
 Proof.
 intros.
 intro.
-unfold Parallelogram_strict in H0.
+unfold 严格平行四边形 in H0.
 spliter.
 unfold TS in H0.
 repeat split.
@@ -1965,7 +1965,7 @@ apply H0.
 Col.
 Qed.
 
-Lemma plg_col_plgf : forall A B C D, Col A B C -> Parallelogram A B C D -> Parallelogram_flat A B C D.
+Lemma plg_col_plgf : forall A B C D, Col A B C -> 平行四边形 A B C D -> 退化平行四边形 A B C D.
 Proof.
 intros.
 induction H0.
@@ -1978,12 +1978,12 @@ Qed.
 
 
 
-Lemma plg_bet1 : forall A B C D, Parallelogram A B C D -> Bet A C B -> Bet D A C.
+Lemma plg_bet1 : forall A B C D, 平行四边形 A B C D -> Bet A C B -> Bet D A C.
 Proof.
 intros.
 
 apply plg_col_plgf in H.
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 apply 中间性的对称性.
 apply (col_cong2_bet1 B).
@@ -1995,32 +1995,32 @@ apply 中间性转共线 in H0.
 Col.
 Qed.
 
-Lemma plgf_trivial1 : forall A B, A <> B -> Parallelogram_flat A B B A.
+Lemma plgf_trivial1 : forall A B, A <> B -> 退化平行四边形 A B B A.
 Proof.
 intros.
 repeat split; Col; Cong.
 Qed.
 
-Lemma plgf_trivial2 : forall A B, A <> B -> Parallelogram_flat A A B B.
+Lemma plgf_trivial2 : forall A B, A <> B -> 退化平行四边形 A A B B.
 Proof.
 intros.
 repeat split; Col; Cong.
 Qed.
 
-Lemma plgf_not_point : forall A B, Parallelogram_flat A A B B -> A <> B.
+Lemma plgf_not_point : forall A B, 退化平行四边形 A A B B -> A <> B.
 Proof.
 intros.
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 intro.
 subst B.
 induction H3; tauto.
 Qed.
 
-Lemma plgf_trivial_neq : forall A C D, Parallelogram_flat A A C D -> C = D /\ A <> C.
+Lemma plgf_trivial_neq : forall A C D, 退化平行四边形 A A C D -> C = D /\ A <> C.
 Proof.
 intros.
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 apply 等长的对称性 in H1.
 apply 等长的同一性 in H1.
@@ -2030,8 +2030,8 @@ reflexivity.
 induction H3; auto.
 Qed.
 
-Lemma plgf_trivial_trans : forall A B C, Parallelogram_flat A A B B -> Parallelogram_flat B B C C 
-                                           -> Parallelogram_flat A A C C \/ A = C.
+Lemma plgf_trivial_trans : forall A B C, 退化平行四边形 A A B B -> 退化平行四边形 B B C C 
+                                           -> 退化平行四边形 A A C C \/ A = C.
 Proof.
 intros.
 
@@ -2039,7 +2039,7 @@ induction(两点重合的决定性 A C).
 right.
 assumption.
 left.
-unfold Parallelogram_flat in *.
+unfold 退化平行四边形 in *.
 spliter.
 repeat split; Col; Cong.
 Qed.
@@ -2047,7 +2047,7 @@ Qed.
 
 (**********************************************************************************************************)
 
-Lemma plgf_trivial : forall A B, A <> B -> Parallelogram_flat A B B A.
+Lemma plgf_trivial : forall A B, A <> B -> 退化平行四边形 A B B A.
 Proof.
 intros.
 repeat split; Col; Cong.
@@ -2055,10 +2055,10 @@ Qed.
 
 
 
-Lemma plgf3_mid : forall A B C, Parallelogram_flat A B A C -> 中点 A B C.
+Lemma plgf3_mid : forall A B C, 退化平行四边形 A B A C -> 中点 A B C.
 Proof.
 intros.
-unfold Parallelogram_flat in H.
+unfold 退化平行四边形 in H.
 spliter.
 
 assert(B=C \/ 中点 A B C).
@@ -2250,7 +2250,7 @@ Qed.
 
 (*******************************************************************************************************)
 
-Lemma plgs_not_col : forall A B C D, Parallelogram_strict A B C D ->
+Lemma plgs_not_col : forall A B C D, 严格平行四边形 A B C D ->
   ~ Col A B C /\ ~ Col B C D /\ ~ Col C D A /\ ~ Col A B D.
 Proof.
 intros.
@@ -2283,7 +2283,7 @@ apply 中间性转共线 in H0.
 ColR.
 Qed.
 
-Lemma plg_existence : forall A B C, A <> B -> exists D, Parallelogram A B C D.
+Lemma plg_existence : forall A B C, A <> B -> exists D, 平行四边形 A B C D.
 Proof.
 intros.
 assert(HH:=midpoint_existence A C).
@@ -2315,12 +2315,12 @@ assumption.
 assumption.
 Qed.
 
-Lemma plgs_diff : forall A B C D, Parallelogram_strict A B C D -> Parallelogram_strict A B C D /\ A <> B /\ B <> C /\ C <> D /\ D <> A /\ A <> C /\ B <> D.
+Lemma plgs_diff : forall A B C D, 严格平行四边形 A B C D -> 严格平行四边形 A B C D /\ A <> B /\ B <> C /\ C <> D /\ D <> A /\ A <> C /\ B <> D.
 Proof.
 intros.
 split.
 assumption.
-unfold Parallelogram_strict in H.
+unfold 严格平行四边形 in H.
 spliter.
 unfold TS in H.
 spliter.
@@ -2555,7 +2555,7 @@ apply one_side_symmetry.
 assumption.
 Qed.
 
-Lemma plgf_bet : forall A B A' B', Parallelogram_flat A B B' A' 
+Lemma plgf_bet : forall A B A' B', 退化平行四边形 A B B' A' 
                                  -> Bet A' B' A /\ Bet B' A B 
                                  \/ Bet A' A B' /\ Bet A B' B
                                  \/ Bet A A' B /\ Bet A' B B'
@@ -2665,7 +2665,7 @@ contradiction.
 assumption.
 Qed.
 
-Lemma plgs_existence : forall A B, A <> B -> exists C, exists D, Parallelogram_strict A B C D.
+Lemma plgs_existence : forall A B, A <> B -> exists C, exists D, 严格平行四边形 A B C D.
 Proof.
 intros.
 
@@ -2677,26 +2677,26 @@ exists C.
 exists D.
 induction H1.
 assumption.
-unfold Parallelogram_flat in H1.
+unfold 退化平行四边形 in H1.
 spliter.
 contradiction.
 Qed.
 
-Lemma Rectangle_not_triv : forall A,
- ~ Rectangle A A A A.
+Lemma 长方形_not_triv : forall A,
+ ~ 长方形 A A A A.
 Proof.
 intros.
-unfold Rectangle.
+unfold 长方形.
 unfold Plg.
 intuition.
 Qed.
 
-Lemma Rectangle_triv : forall A B,
+Lemma 长方形_triv : forall A B,
  A<>B ->
- Rectangle A A B B.
+ 长方形 A A B B.
 Proof.
 intros.
-unfold Rectangle.
+unfold 长方形.
 split;Cong.
 unfold Plg.
 split.
@@ -2707,92 +2707,92 @@ exists x.
 tauto.
 Qed.
 
-Lemma Rectangle_not_triv_2 : forall A B,
- ~ Rectangle A B A B.
+Lemma 长方形_not_triv_2 : forall A B,
+ ~ 长方形 A B A B.
 Proof.
 intros.
-unfold Rectangle.
+unfold 长方形.
 intro.
 spliter.
 unfold Plg in H.
 intuition.
 Qed.
 
-Lemma Square_not_triv : forall A,
- ~ Square A A A A.
+Lemma 正方形_not_triv : forall A,
+ ~ 正方形 A A A A.
 Proof.
 intros.
-unfold Square.
+unfold 正方形.
 intro.
 spliter.
-firstorder using Rectangle_not_triv.
+firstorder using 长方形_not_triv.
 Qed.
 
-Lemma Square_not_triv_2 : forall A B,
- ~ Square A A B B.
+Lemma 正方形_not_triv_2 : forall A B,
+ ~ 正方形 A A B B.
 Proof.
 intros.
-unfold Square.
+unfold 正方形.
 intro.
 spliter.
 treat_equalities.
-firstorder using Rectangle_not_triv.
+firstorder using 长方形_not_triv.
 Qed.
 
-Lemma Square_not_triv_3 : forall A B,
- ~ Square A B A B.
+Lemma 正方形_not_triv_3 : forall A B,
+ ~ 正方形 A B A B.
 Proof.
 intros.
-unfold Square.
+unfold 正方形.
 intro.
 spliter.
-firstorder using Rectangle_not_triv_2.
+firstorder using 长方形_not_triv_2.
 Qed.
 
 
 
-Lemma Square_Rectangle : forall A B C D,
- Square A B C D -> Rectangle A B C D.
+Lemma 正方形_长方形 : forall A B C D,
+ 正方形 A B C D -> 长方形 A B C D.
 Proof.
-unfold Square;tauto.
+unfold 正方形;tauto.
 Qed.
 
-Lemma Square_Parallelogram :  forall A B C D,
- Square A B C D -> Parallelogram A B C D.
+Lemma 正方形_平行四边形 :  forall A B C D,
+ 正方形 A B C D -> 平行四边形 A B C D.
 Proof.
 intros.
-apply Square_Rectangle in H.
-apply Rectangle_Parallelogram in H.
+apply 正方形_长方形 in H.
+apply 长方形_平行四边形 in H.
 assumption.
 Qed.
 
-Lemma Rhombus_Rectangle_Square : forall A B C D,
- Rhombus A B C D ->
- Rectangle A B C D ->
- Square A B C D.
+Lemma 菱形_长方形_正方形 : forall A B C D,
+ 菱形 A B C D ->
+ 长方形 A B C D ->
+ 正方形 A B C D.
 Proof.
 intros.
-unfold Square.
-unfold Rhombus in *.
+unfold 正方形.
+unfold 菱形 in *.
 tauto.
 Qed.
 
 Lemma rhombus_cong_square : forall A B C D,
- Rhombus A B C D ->
+ 菱形 A B C D ->
  Cong A C B D ->
- Square A B C D.
+ 正方形 A B C D.
 Proof.
 intros.
-apply Rhombus_Rectangle_Square.
+apply 菱形_长方形_正方形.
 assumption.
-apply Rhombus_Plg in H.
+apply 菱形_Plg in H.
 apply plg_cong_rectangle;auto.
 Qed.
 
-Lemma Kite_comm : forall A B C D,
- Kite A B C D -> Kite C D A B.
+Lemma 筝形_comm : forall A B C D,
+ 筝形 A B C D -> 筝形 C D A B.
 Proof.
-unfold Kite.
+unfold 筝形.
 tauto.
 Qed.
 

@@ -3857,7 +3857,7 @@ Proof.
   apply coplanar_perm_2, coplanar_trans_1 with E'; Col; Cop.
 Qed.
 
-Lemma sac__coplanar : forall A B C D, Saccheri A B C D -> 共面 A B C D.
+Lemma sac__coplanar : forall A B C D, 萨凯里四边形 A B C D -> 共面 A B C D.
 Proof.
   intros A B C D [_ [_ [_ HOS]]].
   apply os__coplanar in HOS; Cop.

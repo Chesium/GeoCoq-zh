@@ -76,7 +76,7 @@ Lemma sesamath_4ieme_G2_ex35 :
  中点 F A Z ->
  中点 E G Z ->
  中点 R G A ->
- Rectangle F E R A.
+ 长方形 F E R A.
 Proof.
 intros G A Z F E R HnCol HPER HM1 HM2 HM3.
 assert_diffs.
@@ -147,7 +147,7 @@ Lemma sesamath_4ieme_G2_ex36 :
  Col B H C ->
  中点 I A B ->
  中点 J A C ->
- Rhombus A I H J.
+ 菱形 A I H J.
 Proof.
 intros.
 assert_diffs.
@@ -231,7 +231,7 @@ assert_cols.
 assert( ~Col U E A);finish.
 assert (Plg M L N E)
   by (apply (sesamath_4ieme_G2_ex36_aux U E A M L N);finish).
-assert (Parallelogram M L N E)
+assert (平行四边形 M L N E)
   by (apply(plg_to_parallelogram M L N E);finish).
 assert (exists X, 中点 X M N /\ 中点 X L E)
   by (apply plg_mid;finish).
@@ -293,7 +293,7 @@ Bet C R B ->
 中点 N A C ->
 中点 S B R ->
 中点 T R C ->
-Par M S N T /\ Parallelogram M S T N.
+Par M S N T /\ 平行四边形 M S T N.
 Proof.
 intros.
 assert_diffs.
@@ -315,7 +315,7 @@ destruct (两点重合的决定性 R B).
 treat_equalities.
 assert(Plg M N T S)
  by(apply(sesamath_4ieme_G2_ex36_aux A S C M N T);finish).
-assert(Parallelogram M N T S)
+assert(平行四边形 M N T S)
  by(apply(plg_to_parallelogram M N T S);finish).
 apply(Plg_perm M N T S);finish.
 }
@@ -324,7 +324,7 @@ destruct (两点重合的决定性 R C).
 treat_equalities.
 assert(Plg N M S T)
  by(apply(sesamath_4ieme_G2_ex36_aux A T B N M S);finish).
-assert(Parallelogram N M S T)
+assert(平行四边形 N M S T)
  by(apply(plg_to_parallelogram N M S T);finish).
 apply(Plg_perm N M S T);finish.
 }
@@ -426,7 +426,7 @@ is_gravity_center G A B C ->
 中点 J A B ->
 中点 K B G ->
 中点 L C G ->
-Parallelogram I J K L.
+平行四边形 I J K L.
 Proof.
 intros.
 assert_diffs.
@@ -445,7 +445,7 @@ assert(is_gravity_center G C B A)
 assert(中点 G J L)
   by(apply(is_gravity_center_third C B A G L J);finish).
 assert_diffs.
-assert(Parallelogram I L K J)
+assert(平行四边形 I L K J)
   by(apply(varignon.varignon_aux_aux A C G B I L K J);finish).
 apply(Plg_perm I L K J);finish. (* todo improve finish to include permuations of Plg and other quadrilaterals *)
 Qed.
@@ -462,20 +462,20 @@ Justifie ta réponse (ce problème est posé par Euclide dans le Livre III de sa
 Lemma sesamath_4ieme_G2_ex44_1 :
 forall A B C D I J E F,
 
-Parallelogram_strict A B C D ->
+严格平行四边形 A B C D ->
 中点 I A D ->
 中点 J B C ->
 Bet A E C ->
 Bet I E B ->
 Bet A F C ->
 Bet D F J ->
-Parallelogram B J D I.
+平行四边形 B J D I.
 Proof.
 intros.
 assert_diffs.
 assert_cols.
 assert_ncols.
-apply (Parallelogram_strict_Parallelogram A B C D) in H.
+apply (严格平行四边形_平行四边形 A B C D) in H.
 assert(Par A D B C)
   by (apply(plg_par_2 A B C D);finish).
 assert(Cong A D B C)

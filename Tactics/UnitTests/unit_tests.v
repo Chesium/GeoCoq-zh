@@ -379,7 +379,7 @@ assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C D, Parallelogram_strict A B C D ->
+Goal forall A B C D, 严格平行四边形 A B C D ->
   A <> B /\ B <> C /\ C <> D /\ D <> A /\ A <> C /\ B <> D.
 Proof.
 intros.
@@ -459,7 +459,7 @@ assert_ncols.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C D, Parallelogram_strict A B C D ->
+Goal forall A B C D, 严格平行四边形 A B C D ->
   ~ Col A B C /\ ~ Col B C D /\ ~ Col C D A /\ ~ Col A B D.
 Proof.
 intros.
@@ -479,7 +479,7 @@ Section UnitTestsEucl.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
-Goal forall A B C D, Parallelogram A B C D -> Cong A B C D.
+Goal forall A B C D, 平行四边形 A B C D -> Cong A B C D.
 Proof.
 intros.
 assert_congs_perm.

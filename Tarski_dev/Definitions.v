@@ -543,51 +543,51 @@ Inductive 角度在对数刻度上 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpo
                       SAMS D E F D E F -> SumA D E F D E F G H I ->
                       角度在对数刻度上 A B C G H I.
 
-(** Parallelogram *)
+(** 平行四边形 *)
 
-Definition Parallelogram_strict A B A' B' :=
+Definition 严格平行四边形 A B A' B' :=
   TS A A' B B' /\ Par A B A' B' /\ Cong A B A' B'.
 
-Definition Parallelogram_flat A B A' B' :=
+Definition 退化平行四边形 A B A' B' :=
   Col A B A' /\ Col A B B' /\
   Cong A B A' B' /\ Cong A B' A' B /\
   (A <> A' \/ B <> B').
 
-Definition Parallelogram A B A' B' :=
-  Parallelogram_strict A B A' B' \/ Parallelogram_flat A B A' B'.
+Definition 平行四边形 A B A' B' :=
+  严格平行四边形 A B A' B' \/ 退化平行四边形 A B A' B'.
 
 Definition Plg A B C D :=
   (A <> C \/ B <> D) /\ exists M, 中点 M A C /\ 中点 M B D.
 
-(** Rhombus *)
+(** 菱形 *)
 
-Definition Rhombus A B C D := Plg A B C D /\ Cong A B B C.
+Definition 菱形 A B C D := Plg A B C D /\ Cong A B B C.
 
-(** Rectangle *)
+(** 长方形 *)
 
-Definition Rectangle A B C D := Plg A B C D /\ Cong A C B D.
+Definition 长方形 A B C D := Plg A B C D /\ Cong A C B D.
 
-(** Square *)
+(** 正方形 *)
 
-Definition Square A B C D := Rectangle A B C D /\ Cong A B B C.
+Definition 正方形 A B C D := 长方形 A B C D /\ Cong A B B C.
 
-(** Kite *)
+(** 筝形 *)
 
-Definition Kite A B C D := Cong B C C D /\ Cong D A A B.
+Definition 筝形 A B C D := Cong B C C D /\ Cong D A A B.
 
-(** Saccheri *)
+(** 萨凯里四边形 *)
 
-Definition Saccheri A B C D :=
+Definition 萨凯里四边形 A B C D :=
   Per B A D /\ Per A D C /\ Cong A B C D /\ OS A D B C.
 
-(** Lambert *)
+(** Lambert四边形 *)
 
-Definition Lambert A B C D :=
+Definition Lambert四边形 A B C D :=
   A <> B /\ B <> C /\ C <> D /\ A <> D /\ Per B A D /\ Per A D C /\ Per A B C /\ 共面 A B C D.
 
 (** Vector *)
 
-Definition EqV A B C D := Parallelogram A B D C \/ A = B /\ C = D.
+Definition EqV A B C D := 平行四边形 A B D C \/ A = B /\ C = D.
 
 Definition SumV A B C D E F := forall D', EqV C D B D' -> EqV A D' E F.
 

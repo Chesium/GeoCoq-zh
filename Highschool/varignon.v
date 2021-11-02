@@ -21,7 +21,7 @@ Lemma varignon :
   中点 J B C ->
   中点 K C D ->
   中点 L A D ->
-  Parallelogram I J K L.
+  平行四边形 I J K L.
 Proof.
 intros.
 assert_diffs.
@@ -54,7 +54,7 @@ Lemma varignon_aux_aux :
   中点 J B C ->
   中点 K C D ->
   中点 L A D ->
-  Parallelogram I J K L.
+  平行四边形 I J K L.
 Proof.
 intros.
 induction (两点重合的决定性 B D).
@@ -96,7 +96,7 @@ Lemma varignon_aux :
   中点 J B C ->
   中点 K C D ->
   中点 L A D ->
-  Parallelogram I J K L.
+  平行四边形 I J K L.
 Proof.
 intros.
 induction H.
@@ -140,14 +140,14 @@ Lemma varignon' :
   中点 J B C ->
   中点 K C D ->
   中点 L A D ->
-  Parallelogram I J K L.
+  平行四边形 I J K L.
 Proof.
 intros.
 induction (两点重合的决定性 J L).
 subst.
-unfold Parallelogram.
+unfold 平行四边形.
 right.
-unfold Parallelogram_flat.
+unfold 退化平行四边形.
 assert_congs_perm.
 Name X the midpoint of B and D.
 induction (两点重合的决定性 A B).
@@ -212,8 +212,8 @@ apply (triangle_mid_par_cong B C D K X L);auto.
 spliter.
 induction (两点重合的决定性 I K).
   treat_equalities.
-  assert (Parallelogram A D B C) by (apply mid_plg with I;中点).
-  assert (Parallelogram A B D C) by (apply mid_plg with L;中点).
+  assert (平行四边形 A D B C) by (apply mid_plg with I;中点).
+  assert (平行四边形 A B D C) by (apply mid_plg with L;中点).
   exfalso.
   apply Plg_perm in H35.
   apply Plg_perm in H39.

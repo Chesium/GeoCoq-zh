@@ -208,26 +208,26 @@ Definition thales_converse_postulate := forall A B C M,
 Definition existential_thales_postulate :=
   exists A B C M, ~ Col A B C /\ 中点 M A B /\ Cong M A M C /\ Per A C B.
 
-(** The angles of a any Saccheri quadrilateral are right. *)
+(** The angles of a any 萨凯里四边形 quadrilateral are right. *)
 
 Definition postulate_of_right_saccheri_quadrilaterals := forall A B C D,
-  Saccheri A B C D -> Per A B C.
+  萨凯里四边形 A B C D -> Per A B C.
 
-(** There exists a Saccheri quadrilateral whose angles are right. *)
+(** There exists a 萨凯里四边形 quadrilateral whose angles are right. *)
 
 Definition postulate_of_existence_of_a_right_saccheri_quadrilateral :=
-  exists A B C D, Saccheri A B C D /\ Per A B C.
+  exists A B C D, 萨凯里四边形 A B C D /\ Per A B C.
 
-(** The angles of a any Lambert quadrilateral are right, i.e
+(** The angles of a any Lambert四边形 quadrilateral are right, i.e
     if in a quadrilateral three angles are right, so is the fourth. *)
 
 Definition postulate_of_right_lambert_quadrilaterals := forall A B C D,
-  Lambert A B C D -> Per B C D.
+  Lambert四边形 A B C D -> Per B C D.
 
-(** There exists a Lambert quadrilateral whose angles are right. *)
+(** There exists a Lambert四边形 quadrilateral whose angles are right. *)
 
 Definition postulate_of_existence_of_a_right_lambert_quadrilateral :=
-  exists A B C D, Lambert A B C D /\ Per B C D.
+  exists A B C D, Lambert四边形 A B C D /\ Per B C D.
 
 (** For any angle, that, together with itself, make a right angle,
     any point together with its orthogonal projection on one side of the angle

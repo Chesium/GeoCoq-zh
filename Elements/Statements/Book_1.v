@@ -786,7 +786,7 @@ Lemma prop_33 : forall A B C D,
  Cong A C B D /\ Par A C B D.
 Proof.
   intros A B C D HTS HPAR HC.
-  assert (HPara:Parallelogram B A C D) by (left;split;finish).
+  assert (HPara:平行四边形 B A C D) by (left;split;finish).
   destruct (plg_cong B A C D HPara).
   assert_diffs.
   destruct (plg_par B A C D); auto.
@@ -801,7 +801,7 @@ Qed.
 
 Lemma prop_34_1 : forall A B D C,
   A <> B /\ A <> D /\ B <> D ->
-  Parallelogram A B D C -> (等角 A B D D C A /\ 等角 B D C C A B) /\ (Cong A B D C /\ Cong A C B D).
+  平行四边形 A B D C -> (等角 A B D D C A /\ 等角 B D C C A B) /\ (Cong A B D C /\ Cong A C B D).
 Proof.
   intros; split.
   - apply plg_conga; auto.
@@ -809,12 +809,12 @@ Proof.
 Qed.
 
 	    (** * Proposition 35
-       Parallelograms which are on the same base and in the same parallels are equal to one another.
+       平行四边形s which are on the same base and in the same parallels are equal to one another.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container35"></div> # **)
 	  
 	    (** * Proposition 36
-       Parallelograms which are on equal bases and in the same parallels are equal to one another.
+       平行四边形s which are on equal bases and in the same parallels are equal to one another.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container36"></div> # **)
 	  
@@ -871,7 +871,7 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container46"></div> # **)
 
-Lemma prop_46 : forall A B, A<>B -> exists E D, Square A B E D.
+Lemma prop_46 : forall A B, A<>B -> exists E D, 正方形 A B E D.
 Proof.
   exact exists_square.
 Qed.

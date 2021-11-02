@@ -2148,8 +2148,8 @@ Lemma parallelograms_equal_bases :
  B<>C ->
  E<>F ->
  F<>G ->
- Parallelogram A B C D ->
- Parallelogram E F G H ->
+ 平行四边形 A B C D ->
+ 平行四边形 E F G H ->
  Cong B C F G ->
  Col A E H ->
  Col D E H ->

@@ -107,7 +107,7 @@ assert (HF : exists A1 A2 B1 B2,
   apply perp_col2 with A1 A2; auto; ColR.
   }
 destruct HF as [A [D [B [C [HPer1 [HPer2 [HCong [HOS posid]]]]]]]].
-assert (HSac : Saccheri A B C D) by (repeat split; Perp; Cong).
+assert (HSac : 萨凯里四边形 A B C D) by (repeat split; Perp; Cong).
 apply (per_sac__rah A B C D); auto.
 destruct (midpoint_existence B C) as [M HM].
 destruct (midpoint_existence A D) as [N HN].

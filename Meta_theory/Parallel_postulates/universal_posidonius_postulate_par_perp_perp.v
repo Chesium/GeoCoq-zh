@@ -13,7 +13,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma universal_posidonius_postulate__perpendicular_transversal_postulate_aux :
   universal_posidonius_postulate -> forall E F G H R P,
-  Perp E G R P -> 共面 F H P R -> Col E G R -> Saccheri E F H G ->
+  Perp E G R P -> 共面 F H P R -> Col E G R -> 萨凯里四边形 E F H G ->
   Perp F H P R.
 Proof.
 intros HP E F G H R P HPerp HCop HCol HSacc.
@@ -25,8 +25,8 @@ assert (HRAH : postulate_of_right_saccheri_quadrilaterals).
   destruct (midpoint_existence E G) as [M1 HM1].
   destruct (midpoint_existence F H) as [M2 HM2].
   assert (HLamb := mid2_sac__lam6521 _ _ _ _ _ _ HSacc HM2 HM1).
-  unfold Lambert in HLamb; spliter.
-  assert (Saccheri M1 M2 F E).
+  unfold Lambert四边形 in HLamb; spliter.
+  assert (萨凯里四边形 M1 M2 F E).
     {
     repeat split; Perp.
       apply 等长的对称性, 等长的左交换性, HP with E G F H; Col; Par.
@@ -62,7 +62,7 @@ assert (~ Col F H R) by (intro; apply HPar; exists R; split; Col).
 destruct (HP' E G E F P R F H E R F) as [S [HC7 HC8]]; Col; [Perp| |CopR|Cop..|].
   apply HRAH in HSacc; Perp.
 assert (S <> R) by (intro; apply HPar; exists R; subst; split; Col).
-assert (HSacc2 : Saccheri E F S R).
+assert (HSacc2 : 萨凯里四边形 E F S R).
   {
   repeat split.
     apply per_col with G; Perp; Col.
@@ -111,7 +111,7 @@ assert (E <> G).
   assert (Col C D E) by (apply col_cop2_perp2__col with E A B; [Perp..|Col|Cop|Cop]).
   apply HPars; exists E; split; Col.
   }
-assert (Saccheri E C D G).
+assert (萨凯里四边形 E C D G).
   {
   repeat split.
     apply perp_per_1, perp_col0 with A B; Perp.

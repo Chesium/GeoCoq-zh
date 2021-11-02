@@ -145,14 +145,14 @@ Proof.
 trivial.
 Qed.
 
-Definition Plg_tagged A B C D := Parallelogram A B C D.
+Definition Plg_tagged A B C D := 平行四边形 A B C D.
 
-Lemma Plg_Plg_tagged : forall A B C D, Parallelogram A B C D -> Plg_tagged A B C D.
+Lemma Plg_Plg_tagged : forall A B C D, 平行四边形 A B C D -> Plg_tagged A B C D.
 Proof.
 trivial.
 Qed.
 
-Lemma Plg_tagged_Plg : forall A B C D, Plg_tagged A B C D -> Parallelogram A B C D.
+Lemma Plg_tagged_Plg : forall A B C D, Plg_tagged A B C D -> 平行四边形 A B C D.
 Proof.
 trivial.
 Qed.

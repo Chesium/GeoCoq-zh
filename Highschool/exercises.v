@@ -12,7 +12,7 @@ Lemma Per_mid_rectangle : forall A B C I J K,
   中点 I B C ->
   中点 J A C ->
   中点 K A B ->
-  Rectangle A J I K.
+  长方形 A J I K.
 Proof.
 intros.
 assert_diffs.
@@ -31,7 +31,7 @@ elim (两点重合的决定性 A C); intro; apply plg_per_rect.
 
   elim (col_dec A B C); intro; assert_diffs.
 
-    apply parallelogram_to_plg; unfold Parallelogram; right; unfold Parallelogram_flat; repeat split.
+    apply parallelogram_to_plg; unfold 平行四边形; right; unfold 退化平行四边形; repeat split.
     ColR.
     ColR.
     assumption.
@@ -104,7 +104,7 @@ Lemma quadrileral_midpoints:
 Proof.
 intros.
 assert_diffs_by_cases.
-assert (Parallelogram I J K L)
+assert (平行四边形 I J K L)
   by (apply (varignon A B C D I J K L);finish).
 assert (中点 X J L)
   by (perm_apply (plg_mid_2 I J K L X)).

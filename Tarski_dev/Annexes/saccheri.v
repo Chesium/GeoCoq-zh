@@ -4,24 +4,24 @@ Require Export GeoCoq.Tarski_dev.Annexes.suma.
 (** This development is inspired by The Foundations of Geometry and the Non-Euclidean Plane,
     by George E. Martin, chapters 21 and 22 *)
 
-Section Saccheri.
+Section 萨凯里四边形.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma sac_perm : forall A B C D, Saccheri A B C D -> Saccheri D C B A.
+Lemma sac_perm : forall A B C D, 萨凯里四边形 A B C D -> 萨凯里四边形 D C B A.
 Proof.
   intros.
-  unfold Saccheri in *.
+  unfold 萨凯里四边形 in *.
   spliter.
   repeat split; Perp; Cong; Side.
 Qed.
 
 Lemma sac_distincts : forall A B C D,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   A <> B /\ B <> C /\ C <> D /\ A <> D /\ A <> C /\ B <> D.
 Proof.
   intros A B C D HSac.
-  unfold Saccheri in HSac.
+  unfold 萨凯里四边形 in HSac.
   spliter.
   assert(~ Col A D B) by (apply (one_side_not_col123 _ _ _ C); auto).
   assert(~ Col A D C) by (apply (one_side_not_col123 _ _ _ B); Side).
@@ -31,64 +31,64 @@ Proof.
   assert(A=D) by (apply (l8_7 B A D); Perp); auto.
 Qed.
 
-Lemma lam_perm : forall A B C D, Lambert A B C D -> Lambert A D C B.
+Lemma lam_perm : forall A B C D, Lambert四边形 A B C D -> Lambert四边形 A D C B.
 Proof.
   intros.
-  unfold Lambert in *.
+  unfold Lambert四边形 in *.
   spliter.
   repeat split; Perp; Cop.
 Qed.
 
 (** The two following lemmas come from Theorem 21.10 *)
 
-Lemma sac__cong : forall A B C D, Saccheri A B C D -> Cong A C B D.
+Lemma sac__cong : forall A B C D, 萨凯里四边形 A B C D -> Cong A C B D.
 Proof.
   intros A B C D HSac.
   assert(Hdiff := sac_distincts A B C D HSac).
-  unfold Saccheri in HSac.
+  unfold 萨凯里四边形 in HSac.
   spliter.
   assert(HSAS := l11_49 B A D C D A).
   destruct HSAS; Cong; 等角.
 Qed.
 
-Lemma sac__conga : forall A B C D, Saccheri A B C D -> 等角 A B C B C D.
+Lemma sac__conga : forall A B C D, 萨凯里四边形 A B C D -> 等角 A B C B C D.
 Proof.
   intros A B C D HSac.
   assert(Hdiff := sac_distincts A B C D HSac).
   assert(HCong := sac__cong A B C D HSac).
-  unfold Saccheri in HSac.
+  unfold 萨凯里四边形 in HSac.
   spliter.
   assert(HSSS := l11_51 A B C D C B).
   destruct HSSS as [_ []]; Cong; 等角.
 Qed.
 
-Lemma lam__pars1234 : forall A B C D, Lambert A B C D -> 严格平行 A B C D.
+Lemma lam__pars1234 : forall A B C D, Lambert四边形 A B C D -> 严格平行 A B C D.
 Proof.
-  unfold Lambert.
+  unfold Lambert四边形.
   intros A B C D HLam.
   spliter.
   assert (~ Col B A D) by (apply per_not_col; auto).
   apply (col_cop_perp2__pars D A); Perp; Col.
 Qed.
 
-Lemma lam__pars1423 : forall A B C D, Lambert A B C D -> 严格平行 A D B C.
+Lemma lam__pars1423 : forall A B C D, Lambert四边形 A B C D -> 严格平行 A D B C.
 Proof.
   intros; apply par_strict_right_comm, lam__pars1234, lam_perm; assumption.
 Qed.
 
-Lemma lam__par1234 : forall A B C D, Lambert A B C D -> Par A B C D.
+Lemma lam__par1234 : forall A B C D, Lambert四边形 A B C D -> Par A B C D.
 Proof.
   intros A B C D HLam.
   apply par_strict_par, lam__pars1234, HLam.
 Qed.
 
-Lemma lam__par1423 : forall A B C D, Lambert A B C D -> Par A D B C.
+Lemma lam__par1423 : forall A B C D, Lambert四边形 A B C D -> Par A D B C.
 Proof.
   intros A B C D HLam.
   apply par_strict_par, lam__pars1423, HLam.
 Qed.
 
-Lemma lam__os : forall A B C D, Lambert A B C D -> OS A B C D.
+Lemma lam__os : forall A B C D, Lambert四边形 A B C D -> OS A B C D.
 Proof.
   intros A B C D H; apply l12_6, lam__pars1234, H.
 Qed.
@@ -118,14 +118,14 @@ Proof.
   apply (par_strict_not_col_2 A), per2_os__pars; assumption.
 Qed.
 
-Lemma sac__pars1234 : forall A B C D, Saccheri A B C D -> 严格平行 A B C D.
+Lemma sac__pars1234 : forall A B C D, 萨凯里四边形 A B C D -> 严格平行 A B C D.
 Proof.
-  unfold Saccheri.
+  unfold 萨凯里四边形.
   intros A B C D HSac; spliter.
   apply per2_os__pars; assumption.
 Qed.
 
-Lemma sac__par1234 : forall A B C D, Saccheri A B C D -> Par A B C D.
+Lemma sac__par1234 : forall A B C D, 萨凯里四边形 A B C D -> Par A B C D.
 Proof.
   intros A B C D HSac.
   left; apply sac__pars1234, HSac.
@@ -148,7 +148,7 @@ Proof.
   assert_diffs.
   assert(HNCol1 :=  per2_os__ncol123 A B C D HPer1 HPer2 Hos).
   assert(HNCol2 :=  per2_os__ncol234 A B C D HPer1 HPer2 Hos).
-  assert(HSac : Saccheri A B E D).
+  assert(HSac : 萨凯里四边形 A B E D).
   { repeat split; Cong.
     apply (per_col _ _ C); Col.
     apply (one_side_transitivity _ _ _ C); auto.
@@ -213,7 +213,7 @@ Proof.
   - destruct H角度小于 as [H角度小于等于 HN等角].
     apply HN等角.
     apply conga_sym, sac__conga.
-    unfold Saccheri; repeat (split; trivial).
+    unfold 萨凯里四边形; repeat (split; trivial).
 Qed.
 
 Lemma lta123234_os_per2__lt : forall A B C D,
@@ -242,14 +242,14 @@ Qed.
 (** The two following lemmas constitute Theorem 21.11 *)
 
 Lemma mid2_sac__perp_lower : forall A B C D M N,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   中点 M B C -> 中点 N A D ->
   Perp A D M N.
 Proof.
   intros A B C D M N HSac HM HN.
   assert(Hdiff := sac_distincts A B C D HSac).
   assert(HConga := sac__conga A B C D HSac).
-  unfold Saccheri in HSac.
+  unfold 萨凯里四边形 in HSac.
   spliter.
   assert_diffs.
   assert(HSAS := l11_49 M B A M C D).
@@ -263,13 +263,13 @@ Proof.
   split; auto.
 Qed.
 
-Lemma mid2_sac__perp_upper : forall A B C D M N, Saccheri A B C D ->
+Lemma mid2_sac__perp_upper : forall A B C D M N, 萨凯里四边形 A B C D ->
   中点 M B C -> 中点 N A D -> Perp B C M N.
 Proof.
   intros A B C D M N HSac HM HN.
   assert(Hdiff := sac_distincts A B C D HSac).
   assert(HConga := sac__conga A B C D HSac).
-  unfold Saccheri in HSac.
+  unfold 萨凯里四边形 in HSac.
   spliter.
   assert_diffs.
   assert(HSAS := l11_49 N A B N D C).
@@ -290,7 +290,7 @@ Proof.
   split; auto.
 Qed.
 
-Lemma sac__pars1423 : forall A B C D, Saccheri A B C D -> 严格平行 A D B C.
+Lemma sac__pars1423 : forall A B C D, 萨凯里四边形 A B C D -> 严格平行 A D B C.
 Proof.
   intros A B C D HSac.
   assert(HM := midpoint_existence B C).
@@ -299,14 +299,14 @@ Proof.
   destruct HN as [N HN].
   assert(HPerp1 := mid2_sac__perp_lower A B C D M N HSac HM HN).
   assert(HPerp2 := mid2_sac__perp_upper A B C D M N HSac HM HN).
-  unfold Saccheri in HSac.
+  unfold 萨凯里四边形 in HSac.
   spliter.
   apply (col_cop_perp2__pars M N); Col; Cop.
   apply one_side_not_col124 with B.
   apply l9_17 with C; Between.
 Qed.
 
-Lemma sac__par1423 : forall A B C D, Saccheri A B C D -> Par A D B C.
+Lemma sac__par1423 : forall A B C D, 萨凯里四边形 A B C D -> Par A D B C.
 Proof.
   intros A B C D HSac.
   apply par_strict_par, sac__pars1423, HSac.
@@ -315,16 +315,16 @@ Qed.
 (** The four following constitute Theorem 22.3 *)
 
 Lemma mid2_sac__lam6521 : forall A B C D M N,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   中点 M B C -> 中点 N A D ->
-  Lambert N M B A.
+  Lambert四边形 N M B A.
 Proof.
   intros A B C D M N HSac HM HN.
-  unfold Lambert.
+  unfold Lambert四边形.
   assert(Hdiff := sac_distincts A B C D HSac).
   assert(HPerp1 := mid2_sac__perp_lower A B C D M N HSac HM HN).
   assert(HPerp2 := mid2_sac__perp_upper A B C D M N HSac HM HN).
-  unfold Saccheri in HSac.
+  unfold 萨凯里四边形 in HSac.
   spliter.
   assert_diffs.
   repeat split; auto.
@@ -337,22 +337,22 @@ Proof.
 Qed.
 
 Lemma mid2_sac__lam6534 : forall A B C D M N,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   中点 M B C -> 中点 N A D ->
-  Lambert N M C D.
+  Lambert四边形 N M C D.
 Proof.
   intros A B C D M N HSac HM HN.
   apply (mid2_sac__lam6521 _ _ B A); [apply sac_perm|apply l7_2..]; assumption.
 Qed.
 
 Lemma lam6521_mid2__sac : forall A B C D M N,
-  Lambert N M B A ->
+  Lambert四边形 N M B A ->
   中点 M B C -> 中点 N A D ->
-  Saccheri A B C D.
+  萨凯里四边形 A B C D.
 Proof.
   intros A B C D M N HLam HM HN.
   assert (HLam' := HLam).
-  unfold Lambert in HLam'.
+  unfold Lambert四边形 in HLam'.
   spliter.
   assert_diffs.
   assert(Per D A B) by (apply (l8_3 N); Col).
@@ -380,9 +380,9 @@ Proof.
 Qed.
 
 Lemma lam6534_mid2__sac : forall A B C D M N,
-  Lambert N M C D ->
+  Lambert四边形 N M C D ->
   中点 M B C -> 中点 N A D ->
-  Saccheri A B C D.
+  萨凯里四边形 A B C D.
 Proof.
   intros A B C D M N HLam HM HN.
   apply sac_perm.
@@ -392,13 +392,13 @@ Qed.
 (** The six following lemmas constitute Theorem 22.5 *)
 
 Lemma cong_lam__per : forall A B C D,
-  Lambert A B C D ->
+  Lambert四边形 A B C D ->
   Cong A D B C ->
   Per B C D.
 Proof.
   intros A B C D HLam HCong.
   assert (HLam' := HLam).
-  unfold Lambert in HLam'.
+  unfold Lambert四边形 in HLam'.
   spliter.
   apply l8_2, (l11_17 A D C); auto.
   apply sac__conga.
@@ -407,13 +407,13 @@ Proof.
 Qed.
 
 Lemma lam_lt__acute : forall A B C D,
-  Lambert A B C D ->
+  Lambert四边形 A B C D ->
   Lt A D B C ->
   为锐角 B C D.
 Proof.
   intros A B C D HLam HLt.
   assert (HLam' := HLam).
-  unfold Lambert in HLam'.
+  unfold Lambert四边形 in HLam'.
   spliter.
   exists A, D, C.
   split; trivial.
@@ -422,13 +422,13 @@ Proof.
 Qed.
 
 Lemma lam_lt__obtuse : forall A B C D,
-  Lambert A B C D ->
+  Lambert四边形 A B C D ->
   Lt B C A D ->
   为钝角 B C D.
 Proof.
   intros A B C D HLam HLt.
   assert (HLam' := HLam).
-  unfold Lambert in HLam'.
+  unfold Lambert四边形 in HLam'.
   spliter.
   exists A, D, C.
   split; trivial.
@@ -437,13 +437,13 @@ Proof.
 Qed.
 
 Lemma lam_per__cong : forall A B C D,
-  Lambert A B C D ->
+  Lambert四边形 A B C D ->
   Per B C D ->
   Cong A D B C.
 Proof.
   intros A B C D HLam HPer.
   assert (HLam' := HLam).
-  unfold Lambert in HLam'.
+  unfold Lambert四边形 in HLam'.
   spliter.
   destruct (or_lt_cong_gt A D B C) as [Habs|[HCong|Habs]]; trivial;
   exfalso; apply (nlta B C D).
@@ -454,7 +454,7 @@ Proof.
 Qed.
 
 Lemma acute_lam__lt : forall A B C D,
-  Lambert A B C D ->
+  Lambert四边形 A B C D ->
   为锐角 B C D ->
   Lt A D B C.
 Proof.
@@ -471,7 +471,7 @@ Proof.
 Qed.
 
 Lemma lam_obtuse__lt : forall A B C D,
-  Lambert A B C D ->
+  Lambert四边形 A B C D ->
   为钝角 B C D ->
   Lt B C A D.
 Proof.
@@ -489,7 +489,7 @@ Qed.
 (** The three following lemmas constitute Omar Khayyam's Theorem (22.6) *)
 
 Lemma cong_sac__per : forall A B C D,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Cong A D B C <-> Per A B C.
 Proof.
   intros A B C D HSac.
@@ -512,7 +512,7 @@ Proof.
 Qed.
 
 Lemma lt_sac__acute : forall A B C D,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Lt A D B C <-> 为锐角 A B C.
 Proof.
   intros A B C D HSac.
@@ -540,7 +540,7 @@ Proof.
 Qed.
 
 Lemma lt_sac__obtuse : forall A B C D,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Lt B C A D <-> 为钝角 A B C.
 Proof.
   intros A B C D HSac.
@@ -569,7 +569,7 @@ Qed.
 
 
 Lemma t22_7__per : forall A B C D P Q,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B P C -> Bet A Q D ->
   A <> Q -> Q <> D ->
   Per P Q A ->
@@ -592,14 +592,14 @@ Proof.
     subst P.
     apply HQD, (l8_7 C); apply per_col with A; Perp; Col.
   }
-  assert(HSac1 : Saccheri A B P Q).
+  assert(HSac1 : 萨凯里四边形 A B P Q).
   { repeat split; Cong.
     apply (per_col _ _ D); Col.
     Perp.
     apply (col_one_side _ D); Col;
     apply (l9_17 _ _ C); Between.
   }
-  assert(HSac2 : Saccheri D C P Q).
+  assert(HSac2 : 萨凯里四边形 D C P Q).
   { repeat split; auto.
     apply (per_col _ _ A); Col; Perp.
     apply (l8_3 A); Col; Perp.
@@ -620,7 +620,7 @@ Proof.
 Qed.
 
 Lemma t22_7__acute : forall A B C D P Q,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B P C -> Bet A Q D ->
   A <> Q ->
   Per P Q A ->
@@ -680,7 +680,7 @@ Proof.
 Qed.
 
 Lemma t22_7__obtuse : forall A B C D P Q,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B P C -> Bet A Q D ->
   A <> Q ->
   Per P Q A ->
@@ -740,7 +740,7 @@ Proof.
 Qed.
 
 Lemma t22_7__cong : forall A B C D P Q,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B P C -> Bet A Q D ->
   A <> Q ->
   Per P Q A -> Per A B C ->
@@ -764,7 +764,7 @@ Proof.
 Qed.
 
 Lemma t22_7__lt5612 : forall A B C D P Q,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B P C -> Bet A Q D ->
   A <> Q -> Q <> D ->
   Per P Q A -> 为锐角 A B C ->
@@ -789,7 +789,7 @@ Proof.
 Qed.
 
 Lemma t22_7__lt1256 : forall A B C D P Q,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B P C -> Bet A Q D ->
   A <> Q -> Q <> D ->
   Per P Q A -> 为钝角 A B C ->
@@ -814,13 +814,13 @@ Proof.
 Qed.
 
 Lemma t22_8_aux : forall A B C D R S J,
-  Saccheri A B C D -> Bet B C R -> Bet A D S -> D <> S -> Per A S R ->
+  萨凯里四边形 A B C D -> Bet B C R -> Bet A D S -> D <> S -> Per A S R ->
   Out S R J -> Cong S J A B ->
-  C <> R /\ Saccheri A B J S /\ Saccheri D C J S /\ OS S J C B /\ 共面 A B C J.
+  C <> R /\ 萨凯里四边形 A B J S /\ 萨凯里四边形 D C J S /\ OS S J C B /\ 共面 A B C J.
 Proof.
   intros A B C D R S J HSac HR HS HDS HPer HJ1 HJ2.
   assert(HSac' := HSac).
-  unfold Saccheri in HSac'.
+  unfold 萨凯里四边形 in HSac'.
   spliter.
   assert_diffs.
   assert(HPar := sac__pars1423 A B C D HSac).
@@ -833,7 +833,7 @@ Proof.
     assert(~ Col A S R) by (apply per_not_col; auto).
     apply invert_one_side, out_one_side; Col.
   }
-  assert(HSac' : Saccheri D C J S).
+  assert(HSac' : 萨凯里四边形 D C J S).
   { repeat split; auto.
       apply 等长的传递性 with A B; Cong.
     apply one_side_transitivity with R.
@@ -853,7 +853,7 @@ Proof.
 Qed.
 
 Lemma t22_8__per : forall A B C D R S,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B C R -> Bet A D S ->
   D <> S ->
   Per A S R ->
@@ -863,10 +863,10 @@ Proof.
   intros A B C D R S HSac HR HS HDS HPer HCong.
   assert(Hdiff := sac_distincts A B C D HSac).
   assert(HSac' := HSac).
-  unfold Saccheri in HSac'.
+  unfold 萨凯里四边形 in HSac'.
   spliter.
   assert(B <> R) by (intro; treat_equalities; auto).
-  assert(HSac' : Saccheri A B R S).
+  assert(HSac' : 萨凯里四边形 A B R S).
   { destruct (t22_8_aux A B C D R S R) as [_ []]; Cong.
     apply out_trivial; intro; treat_equalities; auto.
   }
@@ -875,7 +875,7 @@ Proof.
 Qed.
 
 Lemma t22_8__acute : forall A B C D R S,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B C R -> Bet A D S ->
   D <> S ->
   Per A S R ->
@@ -936,7 +936,7 @@ Proof.
 Qed.
 
 Lemma t22_8__obtuse : forall A B C D R S,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B C R -> Bet A D S ->
   D <> S ->
   Per A S R ->
@@ -1006,7 +1006,7 @@ Proof.
 Qed.
 
 Lemma t22_8__cong : forall A B C D R S,
-  Saccheri A B C D -> Bet B C R -> Bet A D S ->
+  萨凯里四边形 A B C D -> Bet B C R -> Bet A D S ->
   D <> S -> Per A S R -> Per A B C -> Cong R S A B.
 Proof.
   intros A B C D R S HSac.
@@ -1028,7 +1028,7 @@ Proof.
 Qed.
 
 Lemma t22_8__lt1256 : forall A B C D R S,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B C R -> Bet A D S ->
   D <> S ->
   Per A S R -> 为锐角 A B C ->
@@ -1050,7 +1050,7 @@ Proof.
 Qed.
 
 Lemma t22_8__lt5612 : forall A B C D R S,
-  Saccheri A B C D ->
+  萨凯里四边形 A B C D ->
   Bet B C R -> Bet A D S ->
   D <> S ->
   Per A S R -> 为钝角 A B C ->
@@ -1076,14 +1076,14 @@ Qed.
 
 
 Lemma t22_9_aux : forall N M P Q R S,
-  Lambert N M P Q -> Lambert N M R S ->
+  Lambert四边形 N M P Q -> Lambert四边形 N M R S ->
   Bet M P R -> Bet N Q S ->
   (Per S R M <-> Per Q P M) /\ (为锐角 S R M <-> 为锐角 Q P M).
 Proof.
   intros N M P Q R S HLamP HLamR HR HS.
   destruct(两点重合的决定性 Q S).
   { assert (HPar := lam__pars1234 N M P Q HLamP).
-    unfold Lambert in *.
+    unfold Lambert四边形 in *.
     spliter.
     treat_equalities.
     assert(P = R); [|subst; split; reflexivity].
@@ -1106,8 +1106,8 @@ Proof.
   apply l7_2 in HS'.
   assert(HSacR := lam6534_mid2__sac S' R' R S M N HLamR HR' HS').
   assert(HSacP := lam6534_mid2__sac Q' P' P Q M N HLamP HP' HQ').
-  assert(Cong S' R' R S /\ Cong Q' P' P Q) by (unfold Saccheri in *; spliter; split; auto).
-  unfold Lambert in *.
+  assert(Cong S' R' R S /\ Cong Q' P' P Q) by (unfold 萨凯里四边形 in *; spliter; split; auto).
+  unfold Lambert四边形 in *.
   spliter.
   assert(HCongaR := sac__conga S' R' R S HSacR).
   assert(HCongaQ := sac__conga Q' P' P Q HSacP).
@@ -1160,7 +1160,7 @@ Proof.
 Qed.
 
 Lemma t22_9__per : forall N M P Q R S,
-  Lambert N M P Q -> Lambert N M R S ->
+  Lambert四边形 N M P Q -> Lambert四边形 N M R S ->
   Bet M P R -> Bet N Q S ->
   (Per S R M <-> Per Q P M).
 Proof.
@@ -1169,7 +1169,7 @@ Proof.
 Qed.
 
 Lemma t22_9__acute : forall N M P Q R S,
-  Lambert N M P Q -> Lambert N M R S ->
+  Lambert四边形 N M P Q -> Lambert四边形 N M R S ->
   Bet M P R -> Bet N Q S ->
   (为锐角 S R M <-> 为锐角 Q P M).
 Proof.
@@ -1178,14 +1178,14 @@ Proof.
 Qed.
 
 Lemma t22_9__obtuse : forall N M P Q R S,
-  Lambert N M P Q -> Lambert N M R S ->
+  Lambert四边形 N M P Q -> Lambert四边形 N M R S ->
   Bet M P R -> Bet N Q S ->
   (为钝角 S R M <-> 为钝角 Q P M).
 Proof.
   intros N M P Q R S HLamP HLamR HR HS.
   destruct (t22_9_aux N M P Q R S HLamP HLamR HR HS) as [[][]].
-  unfold Lambert in HLamP.
-  unfold Lambert in HLamR.
+  unfold Lambert四边形 in HLamP.
+  unfold Lambert四边形 in HLamR.
   spliter.
   split; intro.
   - destruct(angle_partition Q P M) as [|[|]]; auto; exfalso; apply (nlta S R M).
@@ -1199,7 +1199,7 @@ Qed.
 (** The two following lemmas come from Theorem 22.4 *)
 
 Lemma cong2_lam2__cong_conga : forall N M P Q N' M' P' Q',
-  Lambert N M P Q -> Lambert N' M' P' Q' ->
+  Lambert四边形 N M P Q -> Lambert四边形 N' M' P' Q' ->
   Cong N Q N' Q' -> Cong P Q P' Q' ->
   Cong N M N' M' /\ 等角 M P Q M' P' Q'.
 Proof.
@@ -1208,7 +1208,7 @@ Proof.
   assert(严格平行 N M P Q) by (apply lam__pars1234, HLam).
   assert(严格平行 N' Q' M' P') by (apply lam__pars1423, HLam').
   assert(严格平行 N' M' P' Q') by (apply lam__pars1234, HLam').
-  unfold Lambert in *.
+  unfold Lambert四边形 in *.
   spliter.
   assert(~ Col N M P) by (apply per_not_col; auto).
   assert(~ Col M N Q) by (apply per_not_col; auto).
@@ -1228,14 +1228,14 @@ Proof.
 Qed.
 
 Lemma cong2_sac2__cong : forall A B C D A' B' C' D',
-  Saccheri A B C D -> Saccheri A' B' C' D' ->
+  萨凯里四边形 A B C D -> 萨凯里四边形 A' B' C' D' ->
   Cong A B A' B' -> Cong A D A' D' ->
   Cong B C B' C'.
 Proof.
   intros A B C D A' B' C' D' HSac HSac' HCongB HCongL.
   assert(Hdiff := sac_distincts A B C D HSac).
   assert(Hdiff' := sac_distincts A' B' C' D' HSac').
-  unfold Saccheri in *.
+  unfold 萨凯里四边形 in *.
   spliter.
   destruct (l11_49 B A D B' A' D') as [HCongD [HConga1 HConga2]]; Cong; 等角.
   destruct (l11_49 B D C B' D' C'); Cong;
@@ -1244,22 +1244,22 @@ Proof.
   repeat (split; 等角); Side.
 Qed.
 
-Lemma sac__perp1214 : forall A B C D, Saccheri A B C D -> Perp A B A D.
+Lemma sac__perp1214 : forall A B C D, 萨凯里四边形 A B C D -> Perp A B A D.
 Proof.
   intros A B C D HSac.
   assert (Hdiff := sac_distincts A B C D HSac).
-  unfold Saccheri in HSac; spliter.
+  unfold 萨凯里四边形 in HSac; spliter.
   apply perp_left_comm, per_perp; auto.
 Qed.
 
-Lemma sac__perp3414 : forall A B C D, Saccheri A B C D -> Perp C D A D.
+Lemma sac__perp3414 : forall A B C D, 萨凯里四边形 A B C D -> Perp C D A D.
 Proof.
   intros A B C D HSac.
   apply perp_comm, (sac__perp1214 _ _ B), sac_perm; trivial.
 Qed.
 
 Lemma cop_sac2__sac : forall A B C D E F,
-  Saccheri A B C D -> Saccheri A B E F -> D<>F -> 共面 A B D F -> Saccheri D C E F.
+  萨凯里四边形 A B C D -> 萨凯里四边形 A B E F -> D<>F -> 共面 A B D F -> 萨凯里四边形 D C E F.
 Proof.
   intros A B C D E F HSac HSac2 HDF HCop.
   assert(HPerp := sac__perp1214 _ _ _ _ HSac); assert(HPerp2 := sac__perp1214 _ _ _ _ HSac2).
@@ -1268,7 +1268,7 @@ Proof.
     apply cop_perp2__col with A B; Perp.
   assert(Hdiff := sac_distincts _ _ _ _ HSac).
   assert(Hdiff2 := sac_distincts _ _ _ _ HSac2).
-  unfold Saccheri in *; spliter; repeat split.
+  unfold 萨凯里四边形 in *; spliter; repeat split.
   - apply perp_per_1, perp_col0 with D A; Col; Perp.
   - apply perp_per_1, perp_sym, perp_col0 with F A; Col; Perp.
   - apply 等长的传递性 with A B; Cong.
@@ -1280,7 +1280,7 @@ Qed.
 (** This comes from Martin's proof in Theorem 22.10 *)
 
 Lemma three_hypotheses_aux : forall A B C D M N A' B' C' D' M' N',
-  Saccheri A B C D -> Saccheri A' B' C' D' ->
+  萨凯里四边形 A B C D -> 萨凯里四边形 A' B' C' D' ->
   中点 M B C -> 中点 M' B' C' -> 中点 N A D -> 中点 N' A' D' ->
   Le M N M' N' ->
   (Per A B C <-> Per A' B' C') /\ (为锐角 A B C <-> 为锐角 A' B' C').
@@ -1315,7 +1315,7 @@ Proof.
   assert(Perp A D H G) by (apply (perp_col1 _ _ _ G0); Perp; Col).
   clear dependent G0.
   assert(HNCol2 : ~ Col M N H).
-  { unfold Lambert in HLam1.
+  { unfold Lambert四边形 in HLam1.
     spliter.
     apply per_not_col; auto.
     apply (per_col _ _ D); auto; ColR.
@@ -1326,7 +1326,7 @@ Proof.
       apply coplanar_perm_5, col_cop__cop with N; Col; Cop.
   }
   assert (HNCol3 : ~ Col M N G).
-  { unfold Lambert in HLam1.
+  { unfold Lambert四边形 in HLam1.
     spliter.
     apply (one_side_not_col123 _ _ _ H).
     apply l12_6.
@@ -1341,7 +1341,7 @@ Proof.
   destruct HL as [L []]; auto.
   assert(HNCol4 : ~ Col M A D).
     apply sac__pars1423 in HSac; apply (par_not_col B C); Par; Col.
-  assert(HLam2 : Lambert N L G H).
+  assert(HLam2 : Lambert四边形 N L G H).
   { assert(Per N H G).
     { apply (l8_3 A); Col.
       apply (perp_per_1); auto.
@@ -1377,7 +1377,7 @@ Proof.
     apply (col_one_side _ H); [ColR..|].
     apply one_side_symmetry, l12_6, lam__pars1423, HLam2.
   }
-  assert(HNCol5 : ~ Col N M C) by (unfold Lambert in HLam1; spliter; apply per_not_col; auto).
+  assert(HNCol5 : ~ Col N M C) by (unfold Lambert四边形 in HLam1; spliter; apply per_not_col; auto).
   assert(HNCol6 : ~ Col N D M) by (apply (par_strict_not_col_1 _ _ _ C); auto).
   assert (共面 M C D A).
     apply pars__coplanar, par_strict_col_par_strict with N; Col; Par.
@@ -1388,7 +1388,7 @@ Proof.
       exists G.
       split; Between.
       apply col_permutation_5.
-      unfold Lambert in *.
+      unfold Lambert四边形 in *.
       spliter.
       apply cop_per2__col with N; Perp.
       apply coplanar_pseudo_trans with A D M; Col; Cop.
@@ -1402,7 +1402,7 @@ Proof.
         repeat split; Col; exists M; Col.
       apply l12_6, (par_strict_col_par_strict _ _ _ D); Par; ColR.
     - apply l12_6, (par_not_col_strict _ _ _ _ L); Col.
-      unfold Lambert in *.
+      unfold Lambert四边形 in *.
       spliter.
       apply (l12_9 _ _ _ _ M N); Perp; [Cop..|].
       apply coplanar_pseudo_trans with A D M; Col; Cop.
@@ -1427,8 +1427,8 @@ Proof.
     apply l12_6; auto.
   }
   assert_diffs.
-  assert(HLam3 : Lambert N M K H).
-  { unfold Lambert in *.
+  assert(HLam3 : Lambert四边形 N M K H).
+  { unfold Lambert四边形 in *.
     spliter.
     repeat split; auto.
       apply (l8_3 L); Col.
@@ -1446,7 +1446,7 @@ Proof.
   { destruct(两点重合的决定性 D H) as [|HDH].
       subst; split; intro; Between.
     assert(HPar : Par C D K H).
-    { unfold Lambert in *.
+    { unfold Lambert四边形 in *.
       spliter.
       apply (l12_9 _ _ _ _ N D); [|Cop..|Perp|].
         apply os__coplanar, par_strict_all_one_side with M; Par; Col.
@@ -1455,7 +1455,7 @@ Proof.
     assert (严格平行 C D K H).
     { destruct HPar; auto.
       exfalso.
-      unfold Lambert in *.
+      unfold Lambert四边形 in *.
       spliter.
       apply HDH.
       apply (l8_18_uniqueness C D N); Col.
@@ -1521,16 +1521,16 @@ Proof.
 Qed.
 
 
-(** Saccheri's three hypotheses *)
+(** 萨凯里四边形's three hypotheses *)
 
-Definition hypothesis_of_right_saccheri_quadrilaterals := forall A B C D, Saccheri A B C D -> Per A B C.
+Definition hypothesis_of_right_saccheri_quadrilaterals := forall A B C D, 萨凯里四边形 A B C D -> Per A B C.
 
-Definition hypothesis_of_acute_saccheri_quadrilaterals := forall A B C D, Saccheri A B C D -> 为锐角 A B C.
+Definition hypothesis_of_acute_saccheri_quadrilaterals := forall A B C D, 萨凯里四边形 A B C D -> 为锐角 A B C.
 
-Definition hypothesis_of_obtuse_saccheri_quadrilaterals := forall A B C D, Saccheri A B C D -> 为钝角 A B C.
+Definition hypothesis_of_obtuse_saccheri_quadrilaterals := forall A B C D, 萨凯里四边形 A B C D -> 为钝角 A B C.
 
 Lemma per_sac__rah : forall A B C D,
-  Saccheri A B C D -> Per A B C -> hypothesis_of_right_saccheri_quadrilaterals.
+  萨凯里四边形 A B C D -> Per A B C -> hypothesis_of_right_saccheri_quadrilaterals.
 Proof.
   intros A B C D HSac HPer A' B' C' D' HSac'.
   assert(HM := midpoint_existence B C).
@@ -1549,7 +1549,7 @@ Proof.
 Qed.
 
 Lemma acute_sac__aah : forall A B C D,
-  Saccheri A B C D -> 为锐角 A B C -> hypothesis_of_acute_saccheri_quadrilaterals.
+  萨凯里四边形 A B C D -> 为锐角 A B C -> hypothesis_of_acute_saccheri_quadrilaterals.
 Proof.
   intros A B C D HSac HPer A' B' C' D' HSac'.
   assert(HM := midpoint_existence B C).
@@ -1568,7 +1568,7 @@ Proof.
 Qed.
 
 Lemma obtuse_sac__oah : forall A B C D,
-  Saccheri A B C D -> 为钝角 A B C -> hypothesis_of_obtuse_saccheri_quadrilaterals.
+  萨凯里四边形 A B C D -> 为钝角 A B C -> hypothesis_of_obtuse_saccheri_quadrilaterals.
 Proof.
   intros A B C D HSac HPer A' B' C' D' HSac'.
   assert(Hdiff := sac_distincts A B C D HSac).
@@ -1592,7 +1592,7 @@ Proof.
 Qed.
 
 Lemma per__ex_saccheri : forall A B D, Per B A D -> A <> B -> A <> D ->
-  exists C, Saccheri A B C D.
+  exists C, 萨凯里四边形 A B C D.
 Proof.
   intros A B D HPer HAB HBD.
   assert (HNCol : ~ Col B A D) by (apply per_not_col; auto).
@@ -1606,7 +1606,7 @@ Proof.
     apply invert_one_side; apply (out_out_one_side _ _ _ C0); Side.
 Qed.
 
-Lemma ex_saccheri : exists A B C D, Saccheri A B C D.
+Lemma ex_saccheri : exists A B C D, 萨凯里四边形 A B C D.
 Proof.
   destruct 防降维公理_ex as [A [D [E]]].
   assert(HNCol : ~ Col A D E) by (unfold Col; assumption).
@@ -1617,7 +1617,7 @@ Proof.
   exists A; exists B; exists C; exists D; trivial.
 Qed.
 
-Lemma ex_lambert : exists A B C D, Lambert A B C D.
+Lemma ex_lambert : exists A B C D, Lambert四边形 A B C D.
 Proof.
   destruct ex_saccheri as [D [C [C' [D' HSac]]]].
   destruct (midpoint_existence D D') as [A HA].
@@ -1691,7 +1691,7 @@ Qed.
 
 
 Lemma lam_per__rah : forall A B C D,
-  Lambert A B C D -> (Per B C D <-> hypothesis_of_right_saccheri_quadrilaterals).
+  Lambert四边形 A B C D -> (Per B C D <-> hypothesis_of_right_saccheri_quadrilaterals).
 Proof.
   intros A B C D HLam.
   assert(HC' := symmetric_point_construction C B).
@@ -1702,20 +1702,20 @@ Proof.
   - intro.
     apply (per_sac__rah D C C' D').
       apply (lam6521_mid2__sac _ _ _ _ B A); auto.
-    unfold Lambert in HLam.
+    unfold Lambert四边形 in HLam.
     spliter.
     apply l8_2.
     apply (l8_3 B); Col.
 
   - intro rah.
-    apply (l8_3 C'); Col ;[|unfold Lambert in HLam; spliter; assert_diffs; auto].
+    apply (l8_3 C'); Col ;[|unfold Lambert四边形 in HLam; spliter; assert_diffs; auto].
     apply l8_2.
     apply (rah _ _ _ D').
     apply (lam6521_mid2__sac _ _ _ _ B A); auto.
 Qed.
 
 Lemma lam_acute__aah : forall A B C D,
-  Lambert A B C D -> (为锐角 B C D <-> hypothesis_of_acute_saccheri_quadrilaterals).
+  Lambert四边形 A B C D -> (为锐角 B C D <-> hypothesis_of_acute_saccheri_quadrilaterals).
 Proof.
   intros A B C D HLam.
   assert(HC' := symmetric_point_construction C B).
@@ -1726,7 +1726,7 @@ Proof.
   - intro.
     apply (acute_sac__aah D C C' D').
       apply (lam6521_mid2__sac _ _ _ _ B A); auto.
-    unfold Lambert in HLam.
+    unfold Lambert四边形 in HLam.
     spliter.
     assert_diffs.
     apply (acute_conga__acute B C D); auto.
@@ -1735,14 +1735,14 @@ Proof.
   - intro aah.
     apply (acute_conga__acute D C C'); auto.
       apply (aah _ _ _ D'); apply (lam6521_mid2__sac _ _ _ _ B A); auto.
-    unfold Lambert in HLam.
+    unfold Lambert四边形 in HLam.
     spliter.
     assert_diffs.
     apply conga_left_comm, out2__conga; [apply bet_out|apply out_trivial]; Between.
 Qed.
 
 Lemma lam_obtuse__oah : forall A B C D,
-  Lambert A B C D -> (为钝角 B C D <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
+  Lambert四边形 A B C D -> (为钝角 B C D <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
 Proof.
   intros A B C D HLam.
   assert(HC' := symmetric_point_construction C B).
@@ -1753,7 +1753,7 @@ Proof.
   - intro.
     apply (obtuse_sac__oah D C C' D').
       apply (lam6521_mid2__sac _ _ _ _ B A); auto.
-    unfold Lambert in HLam.
+    unfold Lambert四边形 in HLam.
     spliter.
     assert_diffs.
     apply (conga_obtuse__obtuse B C D); auto.
@@ -1762,7 +1762,7 @@ Proof.
   - intro oah.
     apply (conga_obtuse__obtuse D C C'); auto.
       apply (oah _ _ _ D'); apply (lam6521_mid2__sac _ _ _ _ B A); auto.
-    unfold Lambert in HLam.
+    unfold Lambert四边形 in HLam.
     spliter.
     assert_diffs.
     apply conga_left_comm, out2__conga; [apply bet_out|apply out_trivial]; Between.
@@ -1770,13 +1770,13 @@ Qed.
 
 
 Lemma t22_11__per : forall A B C D,
-  Saccheri A B C D -> (等角 A B D B D C <-> Per A B C).
+  萨凯里四边形 A B C D -> (等角 A B D B D C <-> Per A B C).
 Proof.
   intros A B C D HSac.
   split.
   - intro.
     apply (cong_sac__per _ _ _ D); auto.
-    unfold Saccheri in HSac.
+    unfold 萨凯里四边形 in HSac.
     spliter.
     assert(HSAS := l11_49 A B D C D B).
     destruct HSAS; Cong; 等角.
@@ -1784,20 +1784,20 @@ Proof.
   - intro HPer.
     apply <- (cong_sac__per A B C D) in HPer; trivial.
     assert(Hdiff := sac_distincts A B C D HSac).
-    unfold Saccheri in HSac.
+    unfold 萨凯里四边形 in HSac.
     spliter.
     assert(HSSS := l11_51 A B D C D B).
     destruct HSSS as [_ []]; Cong; 等角.
 Qed.
 
 Lemma t22_11__acute : forall A B C D,
-  Saccheri A B C D -> (角度小于 A B D B D C <-> 为锐角 A B C).
+  萨凯里四边形 A B C D -> (角度小于 A B D B D C <-> 为锐角 A B C).
 Proof.
   intros A B C D HSac.
   split.
   - intro.
     apply (lt_sac__acute _ _ _ D); auto.
-    unfold Saccheri in HSac.
+    unfold 萨凯里四边形 in HSac.
     spliter.
     apply lt_right_comm.
     apply (t18_18 D _ _ B); Cong.
@@ -1806,7 +1806,7 @@ Proof.
   - intro Hacute.
     apply <- (lt_sac__acute A B C D) in Hacute; trivial.
     assert(Hdiff := sac_distincts A B C D HSac).
-    unfold Saccheri in HSac.
+    unfold 萨凯里四边形 in HSac.
     spliter.
     apply lta_left_comm.
     apply t18_19; Cong.
@@ -1814,13 +1814,13 @@ Proof.
 Qed.
 
 Lemma t22_11__obtuse : forall A B C D,
-  Saccheri A B C D -> (角度小于 B D C A B D <-> 为钝角 A B C).
+  萨凯里四边形 A B C D -> (角度小于 B D C A B D <-> 为钝角 A B C).
 Proof.
   intros A B C D HSac.
   split.
   - intro.
     apply (lt_sac__obtuse _ _ _ D); auto.
-    unfold Saccheri in HSac.
+    unfold 萨凯里四边形 in HSac.
     spliter.
     apply lt_right_comm.
     apply (t18_18 B _ _ D); Cong.
@@ -1829,7 +1829,7 @@ Proof.
   - intro Hobtuse.
     apply <- (lt_sac__obtuse A B C D) in Hobtuse; trivial.
     assert(Hdiff := sac_distincts A B C D HSac).
-    unfold Saccheri in HSac.
+    unfold 萨凯里四边形 in HSac.
     spliter.
     apply lta_left_comm.
     apply t18_19; Cong.
@@ -1847,7 +1847,7 @@ Proof.
   assert(HPars2 := sac__pars1234 B A D C HSac).
   assert(TS C A B D) by (apply l9_31; Side).
   assert_diffs.
-  assert(等角 B C D A B C) by (unfold Saccheri in HSac; spliter; 等角).
+  assert(等角 B C D A B C) by (unfold 萨凯里四边形 in HSac; spliter; 等角).
   split.
   - intro.
     apply (per_sac__rah B A D C); auto.
@@ -1875,7 +1875,7 @@ Proof.
   suma.assert_diffs.
   destruct (per__ex_saccheri B A C) as [D HSac]; auto.
   assert(HSac' := HSac).
-  unfold Saccheri in HSac'.
+  unfold 萨凯里四边形 in HSac'.
   spliter.
   assert_diffs.
   assert(HPars1 := sac__pars1423 B A D C HSac).
@@ -1907,7 +1907,7 @@ Proof.
   suma.assert_diffs.
   destruct (per__ex_saccheri B A C) as [D HSac]; auto.
   assert(HSac' := HSac).
-  unfold Saccheri in HSac'.
+  unfold 萨凯里四边形 in HSac'.
   spliter.
   assert_diffs.
   assert(HPars1 := sac__pars1423 B A D C HSac).
@@ -2290,7 +2290,7 @@ Proof.
 Qed.
 
 
-(** The three following lemmas link Saccheri's three hypotheses
+(** The three following lemmas link 萨凯里四边形's three hypotheses
     with triangles ABC having C on the circle of diameter AB;
     the first one states the equivalence between the Right angle hypothesis and Thales' theorem
  *)
@@ -2371,7 +2371,7 @@ Proof.
   apply sams_chara with B; SumA.
 Qed.
 
-End Saccheri.
+End 萨凯里四边形.
 
 Hint Resolve sac__pars1423 sac__pars1234 sac__par1423 sac__par1234
              lam__pars1234 lam__pars1423 lam__par1234 lam__par1423 : Par.

@@ -132,7 +132,7 @@ assert (Par G A D B)
 show_distinct' D G.
 assert (~ Col G A D)
      by (intro; search_contradiction).
-assert (Parallelogram G A D B)
+assert (平行四边形 G A D B)
      by (apply (par_2_plg G A D B); finish).
 Name Z the intersection of the diagonals (G D)
      and (A B) of the parallelogram H17...
@@ -243,7 +243,7 @@ spliter.
 treat_equalities.
 assert_diffs.
 Name G'' the midpoint of C and G.
-assert (HPar : Parallelogram  C' A' G'' G').
+assert (HPar : 平行四边形  C' A' G'' G').
 apply (varignon' A B C G C' A' G'' G'); finish.
 apply parallelogram_to_plg in HPar.
 destruct HPar as [HDiff [I [HCol1 HCol2]]].
