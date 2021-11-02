@@ -490,8 +490,8 @@ Definition 共圆或共线 A B C D :=
 
 (** C is on the graduation based on [AB] *)
 Inductive Grad : Tpoint -> Tpoint -> Tpoint -> Prop :=
-  | grad_init : forall A B, Grad A B B
-  | grad_stab : forall A B C C',
+  | 线性刻度_初始化 : forall A B, Grad A B B
+  | 线性刻度_步进 : forall A B C C',
                   Grad A B C ->
                   Bet A C C' -> Cong A B C C' ->
                   Grad A B C'.
@@ -499,49 +499,49 @@ Inductive Grad : Tpoint -> Tpoint -> Tpoint -> Prop :=
 Definition Reach A B C D := exists B', Grad A B B' /\ Le C D A B'.
 
 (** There exists n such that AC = n times AB and DF = n times DE *)
-Inductive Grad2 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
+Inductive 在同样的线性刻度上 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
                   Prop :=
-  | grad2_init : forall A B D E, Grad2 A B B D E E
-  | grad2_stab : forall A B C C' D E F F',
-                   Grad2 A B C D E F ->
+  | 双重线性刻度_初始化 : forall A B D E, 在同样的线性刻度上 A B B D E E
+  | 双重线性刻度_步进 : forall A B C C' D E F F',
+                   在同样的线性刻度上 A B C D E F ->
                    Bet A C C' -> Cong A B C C' ->
                    Bet D F F' -> Cong D E F F' ->
-                   Grad2 A B C' D E F'.
+                   在同样的线性刻度上 A B C' D E F'.
 
 (** Graduation based on the powers of 2 *)
-Inductive GradExp : Tpoint -> Tpoint -> Tpoint -> Prop :=
-  | gradexp_init : forall A B, GradExp A B B
-  | gradexp_stab : forall A B C C',
-                     GradExp A B C ->
+Inductive 在对数刻度上 : Tpoint -> Tpoint -> Tpoint -> Prop :=
+  | 对数刻度_初始化 : forall A B, 在对数刻度上 A B B
+  | 对数刻度_步进 : forall A B C C',
+                     在对数刻度上 A B C ->
                      Bet A C C' -> Cong A C C C' ->
-                     GradExp A B C'.
+                     在对数刻度上 A B C'.
 
-Inductive GradExp2 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
+Inductive 在同样的对数刻度上 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
                      Prop :=
-  | gradexp2_init : forall A B D E, GradExp2 A B B D E E
-  | gradexp2_stab : forall A B C C' D E F F',
-                      GradExp2 A B C D E F ->
+  | 双重对数刻度_初始化 : forall A B D E, 在同样的对数刻度上 A B B D E E
+  | 双重对数刻度_步进 : forall A B C C' D E F F',
+                      在同样的对数刻度上 A B C D E F ->
                       Bet A C C' -> Cong A C C C' ->
                       Bet D F F' -> Cong D F F F' ->
-                      GradExp2 A B C' D E F'.
+                      在同样的对数刻度上 A B C' D E F'.
 
 (** There exists n such that the angle DEF is congruent to n times the angle ABC *)
-Inductive GradA : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
+Inductive 角度在线性刻度上 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
                   Prop :=
-  | grada_init : forall A B C D E F, 等角 A B C D E F -> GradA A B C D E F
-  | grada_stab : forall A B C D E F G H I,
-                   GradA A B C D E F ->
+  | 角度线性刻度_初始化 : forall A B C D E F, 等角 A B C D E F -> 角度在线性刻度上 A B C D E F
+  | 角度线性刻度_步进 : forall A B C D E F G H I,
+                   角度在线性刻度上 A B C D E F ->
                    SAMS D E F A B C -> SumA D E F A B C G H I ->
-                   GradA A B C G H I.
+                   角度在线性刻度上 A B C G H I.
 
 (** There exists n such that the angle DEF is congruent to 2^n times the angle ABC *)
-Inductive GradAExp : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
+Inductive 角度在对数刻度上 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpoint ->
                      Prop :=
-  | gradaexp_init : forall A B C D E F, 等角 A B C D E F -> GradAExp A B C D E F
-  | gradaexp_stab : forall A B C D E F G H I,
-                      GradAExp A B C D E F ->
+  | 角度对数刻度_初始化 : forall A B C D E F, 等角 A B C D E F -> 角度在对数刻度上 A B C D E F
+  | 角度对数刻度_步进 : forall A B C D E F G H I,
+                      角度在对数刻度上 A B C D E F ->
                       SAMS D E F D E F -> SumA D E F D E F G H I ->
-                      GradAExp A B C G H I.
+                      角度在对数刻度上 A B C G H I.
 
 (** Parallelogram *)
 

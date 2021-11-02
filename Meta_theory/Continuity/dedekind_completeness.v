@@ -29,7 +29,7 @@ rename C into X, C' into X'; destruct HInd as [C [? []]]; trivial.
 destruct (由一点往一方向构造等长线段 A C A B) as [C' []]; exists C'.
 assert (Col P Q C')
   by (apply (colx A C); Col; apply grad_neq__neq13 with B; auto).
-split; [auto|split; [apply grad_stab with C; Cong|]].
+split; [auto|split; [apply 线性刻度_步进 with C; Cong|]].
 apply (点的唯一构造 fA X fA fB); Cong; [|subst; auto..].
 intro; subst X; assert (A = C) by (apply fInj; auto; congruence).
 subst; apply grad121__eq, fInj in HGrad; auto.
@@ -42,8 +42,8 @@ Lemma extension_gradexp : forall {Tm: 无维度中性塔斯基公理系统}
   {TmEQD : 无维度中性塔斯基公理系统_带两点重合决定性 Tm}
   P Q (f : @Tpoint Tn -> @Tpoint Tm),
   line_extension f P Q ->
-  forall A B X, Col P Q A -> Col P Q B -> GradExp (f A) X (f B) ->
-  exists C, Col P Q C /\ GradExp A C B /\ f C = X.
+  forall A B X, Col P Q A -> Col P Q B -> 在对数刻度上 (f A) X (f B) ->
+  exists C, Col P Q C /\ 在对数刻度上 A C B /\ f C = X.
 Proof.
 intros Tm TmEQD P Q f [HPQ [fInj [fBet fCong]]] A B X HA HB.
 remember (f A) as fA; remember (f B) as fB; rewrite gradexp__gradexpinv.
@@ -189,7 +189,7 @@ cut(forall P Q A B,
       assert (Hdiff : f P <> f Q) by (intro; destruct fPQ as [? []]; Col).
       destruct (reach__grad_min (f P) (f Q) A) as [D [E]]; auto; spliter.
       assert (Bet D A E) by (apply (between_exchange3 (f P)); assumption).
-      exists E; repeat split; [apply grad_stab with D| | |intro; subst E]; auto;
+      exists E; repeat split; [apply 线性刻度_步进 with D| | |intro; subst E]; auto;
       [|apply lt__nle in HLt; apply HLt, le_transitivity with D B; spliter; Le].
       apply l6_13_1; [destruct (两点重合的决定性 A D); [subst D|]|];
       [apply l6_2 with (f P); assert_diffs|apply l6_2 with D|]; eBetween.

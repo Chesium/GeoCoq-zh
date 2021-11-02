@@ -10,7 +10,7 @@ Section Archimedes_for_angles.
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma grada_distincts : forall A B C D E F,
-  GradA A B C D E F ->
+  角度在线性刻度上 A B C D E F ->
   A <> B /\ C <> B /\ D <> E /\ F <> E.
 Proof.
   induction 1.
@@ -19,23 +19,23 @@ Proof.
 Qed.
 
 Lemma conga2_grada__grada : forall A B C D E F A' B' C' D' E' F',
-  GradA A B C D E F ->
+  角度在线性刻度上 A B C D E F ->
   等角 A B C A' B' C' -> 等角 D E F D' E' F' ->
-  GradA A' B' C' D' E' F'.
+  角度在线性刻度上 A' B' C' D' E' F'.
 Proof.
   intros A B C D E F A' B' C' D' E' F' HGA.
   revert A' B' C' D' E' F'.
   induction HGA; intros A' B' C' D' E' F' Hconga1 Hconga2.
-    apply grada_init, conga_trans with D E F; trivial; apply conga_trans with A B C; 等角.
+    apply 角度线性刻度_初始化, conga_trans with D E F; trivial; apply conga_trans with A B C; 等角.
   suma.assert_diffs.
   assert (Hconga3 : 等角 D E F D E F) by 等角.
-  apply grada_stab with D E F.
+  apply 角度线性刻度_步进 with D E F.
     apply (IHHGA A' B' C' D E F); trivial.
     apply (conga2_sams__sams D E F A B C); trivial.
   apply (conga3_suma__suma D E F A B C G H I); trivial.
 Qed.
 
-Lemma grada__lea : forall A B C D E F, GradA A B C D E F -> 角度小于等于 A B C D E F.
+Lemma grada__lea : forall A B C D E F, 角度在线性刻度上 A B C D E F -> 角度小于等于 A B C D E F.
 Proof.
   intros A B C D E F.
   induction 1.
@@ -45,7 +45,7 @@ Proof.
 Qed.
 
 Lemma grada_out__out : forall A B C D E F,
-  Out E D F -> GradA A B C D E F ->
+  Out E D F -> 角度在线性刻度上 A B C D E F ->
   Out B A C.
 Proof.
   intros A B C D E F Hout HGA.
@@ -54,9 +54,9 @@ Proof.
 Qed.
 
 Lemma grada2_sams_suma__grada : forall A B C D E F G H I K L M,
-  GradA A B C D E F -> GradA A B C G H I ->
+  角度在线性刻度上 A B C D E F -> 角度在线性刻度上 A B C G H I ->
   SAMS D E F G H I -> SumA D E F G H I K L M ->
-  GradA A B C K L M.
+  角度在线性刻度上 A B C K L M.
 Proof.
   intros A B C D E F G H I K L M HGA1 HGA2 HIsi.
   revert K L M.
@@ -66,7 +66,7 @@ Proof.
     suma.assert_diffs.
     apply (conga2_sams__sams D E F G H I D E F A B C) in HIsi; 等角.
     apply (conga3_suma__suma D E F G H I K L M D E F A B C K L M) in HSuma; 等角.
-    apply grada_stab with D E F; trivial.
+    apply 角度线性刻度_步进 with D E F; trivial.
   }
   assert (Hd1 := sams_distincts D0 E0 F0 A B C H0); assert (Hd2 := sams_distincts D E F G H I HIsi); spliter.
   destruct (ex_suma D E F D0 E0 F0) as [K [L [M HSuma]]]; auto.
@@ -74,17 +74,17 @@ Proof.
   assert (HIsi2 : SAMS D E F D0 E0 F0).
     apply sams_lea2__sams with D E F G H I; Lea.
     apply sams_suma__lea123789 with A B C; trivial.
-  apply grada_stab with K L M.
+  apply 角度线性刻度_步进 with K L M.
     apply IHHGA2; trivial.
     apply sams_assoc_2 with D E F D0 E0 F0 G H I; trivial.
   apply suma_assoc_2 with D E F D0 E0 F0 G H I; trivial.
 Qed.
 
 Lemma gradaexp__grada : forall A B C D E F,
-  GradAExp A B C D E F -> GradA A B C D E F.
+  角度在对数刻度上 A B C D E F -> 角度在线性刻度上 A B C D E F.
 Proof.
   intros A B C.
-  induction 1; [apply grada_init | apply grada2_sams_suma__grada with D E F D E F]; trivial.
+  induction 1; [apply 角度线性刻度_初始化 | apply grada2_sams_suma__grada with D E F D E F]; trivial.
 Qed.
 
 Lemma acute_archi_aux : forall O A B C D E,
@@ -142,7 +142,7 @@ Qed.
 
 Lemma acute_archi_aux1 : forall O A0 A1 B P Q R,
   Per O A0 B -> B <> A0 -> Bet A0 A1 B ->
-  GradA A0 O A1 P Q R -> A0 <> A1 ->
+  角度在线性刻度上 A0 O A1 P Q R -> A0 <> A1 ->
   角度小于等于 A0 O B P Q R \/ exists A, Bet A0 A1 A /\ Bet A0 A B /\ 等角 P Q R A0 O A.
 Proof.
   intros O A0 A1 B P Q R HPer HBA0 HBet HGA HA0A1.
@@ -192,7 +192,7 @@ Qed.
 Lemma acute_archi_aux2 : forall O A0 A1 B C,
   Per O A0 B -> O <> A0 -> B <> A0 ->
   Bet A0 A1 B -> A0 <> A1 -> Grad A0 A1 C ->
-  exists P, exists Q, exists R, GradA A0 O A1 P Q R /\ (角度小于等于 A0 O B P Q R \/
+  exists P, exists Q, exists R, 角度在线性刻度上 A0 O A1 P Q R /\ (角度小于等于 A0 O B P Q R \/
   exists A', Bet A0 A1 A' /\ Bet A0 A' B /\ 等角 P Q R A0 O A' /\ Le A0 C A0 A' /\
   exists A, Bet A0 A A' /\ 等角 A O A' A0 O A1 /\ Le A0 A1 A A').
 Proof.
@@ -201,7 +201,7 @@ Proof.
   assert (HNCol1 : ~ Col A0 O A1) by (intro; apply HNCol; ColR).
   assert_diffs.
   induction HG; rename A into A0; rename B0 into A1.
-    exists A0; exists O; exists A1; split; [apply grada_init; 等角|].
+    exists A0; exists O; exists A1; split; [apply 角度线性刻度_初始化; 等角|].
     right; exists A1; repeat (split; 等角); Between; Le.
     exists A0; repeat (split; 等角); Between; Le.
   destruct IHHG as [P [Q [R [HGA HUn]]]]; auto.
@@ -224,7 +224,7 @@ Proof.
   }
   assert_diffs.
   destruct (ex_suma P Q R A0 O A1) as [P' [Q' [R' HSuma]]]; auto.
-  assert (HGA' : GradA A0 O A1 P' Q' R') by (apply grada_stab with P Q R; trivial).
+  assert (HGA' : 角度在线性刻度上 A0 O A1 P' Q' R') by (apply 角度线性刻度_步进 with P Q R; trivial).
   exists P'; exists Q'; exists R'; split; trivial.
   destruct (acute_archi_aux1 O A0 A1 B P' Q' R') as [HLea|HA'']; auto.
   right; destruct HA'' as [A'' [HBet1'' [HBet2'' HConga'']]].
@@ -276,20 +276,20 @@ Lemma archi_in_acute_angles :
   archimedes_axiom ->
   forall A B C D E F,
     ~ Col A B C -> 为锐角 D E F ->
-    exists P Q R, GradA A B C P Q R /\ 角度小于等于 D E F P Q R.
+    exists P Q R, 角度在线性刻度上 A B C P Q R /\ 角度小于等于 D E F P Q R.
 Proof.
   intros archi A B C D E F HNCol H为锐角.
   assert_diffs.
   elim (col_dec D E F).
   { intro HCol; exists A; exists B; exists C; split.
-      apply grada_init; 等角.
+      apply 角度线性刻度_初始化; 等角.
     apply l11_31_1; auto; apply not_bet_out; trivial.
     intro HBet; apply (nlta D E F), acute_obtuse__lta; trivial.
     apply bet__obtuse; auto.
   }
   intro HNCol1.
   elim (lea_total D E F A B C); auto; intro HLea.
-    exists A; exists B; exists C; split; trivial; apply grada_init; 等角.
+    exists A; exists B; exists C; split; trivial; apply 角度线性刻度_初始化; 等角.
   destruct (l8_18_existence D E F) as [D0 [HD0 HD0']]; trivial.
   assert (HOut : Out E D0 D) by (apply acute_col_perp__out with F; Col; Perp; apply acute_sym; trivial).
   assert_diffs.
@@ -331,8 +331,8 @@ Qed.
 
 Lemma angles_archi_aux :
   forall A B C D E F G H I,
-    GradA A B C D E F -> GradA A B C G H I -> ~ SAMS D E F G H I ->
-    exists P Q R, GradA A B C P Q R /\ ~ SAMS P Q R A B C.
+    角度在线性刻度上 A B C D E F -> 角度在线性刻度上 A B C G H I -> ~ SAMS D E F G H I ->
+    exists P Q R, 角度在线性刻度上 A B C P Q R /\ ~ SAMS P Q R A B C.
 Proof.
   intros A B C D E F G H I HGA1 HGA2.
   induction HGA2.
@@ -353,7 +353,7 @@ Lemma angles_archi_aux1 :
   archimedes_axiom ->
   forall A B C D E F,
     ~ Col A B C -> ~ Bet D E F ->
-    exists P Q R, GradA A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ SAMS P Q R A B C).
+    exists P Q R, 角度在线性刻度上 A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ SAMS P Q R A B C).
 Proof.
   intros archi A B C D E F HNCol HNBet.
   assert (Hdiff : D <> E /\ F <> E) by (split; intro; subst E; Between); spliter.
@@ -396,7 +396,7 @@ Lemma archi_in_angles :
   archimedes_axiom ->
   forall A B C D E F,
     ~ Col A B C -> D <> E -> F <> E ->
-    exists P Q R, GradA A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ SAMS P Q R A B C).
+    exists P Q R, 角度在线性刻度上 A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ SAMS P Q R A B C).
 Proof.
   intros archi A B C D E F HNCol HDE HFE.
   elim (bet_dec D E F); [|apply angles_archi_aux1; trivial].
@@ -412,7 +412,7 @@ Proof.
   assert_diffs.
   destruct (ex_suma P1 Q1 R1 A B C) as [P [Q [R HSuma]]]; auto.
   exists P; exists Q; exists R; split.
-    apply grada_stab with P1 Q1 R1; trivial.
+    apply 角度线性刻度_步进 with P1 Q1 R1; trivial.
   suma.assert_diffs.
   left; apply l11_31_2; auto.
   apply (bet_lea__bet A B A0); trivial.
@@ -427,7 +427,7 @@ Lemma archi__grada_destruction :
   archimedes_axiom ->
   forall A B C,
     ~ Col A B C ->
-    exists P Q R, GradA A B C P Q R /\ ~ SAMS P Q R A B C.
+    exists P Q R, 角度在线性刻度上 A B C P Q R /\ ~ SAMS P Q R A B C.
 Proof.
   intros archi A B C HNCol.
   destruct (由一点往一方向构造等长线段 A B A B) as [A0 [HBet HCong]].
@@ -443,20 +443,20 @@ Qed.
 
 
 Lemma gradaexp_destruction_aux : forall A B C P Q R,
-  GradA A B C P Q R ->
-  exists S T U, GradAExp A B C S T U /\ (为钝角 S T U \/ 角度小于等于 P Q R S T U).
+  角度在线性刻度上 A B C P Q R ->
+  exists S T U, 角度在对数刻度上 A B C S T U /\ (为钝角 S T U \/ 角度小于等于 P Q R S T U).
 Proof.
   intros A B C.
   induction 1.
-    assert_diffs; exists D; exists E; exists F; split; [apply gradaexp_init|right]; Lea.
-  destruct IHGradA as [P [Q [R [HGAE HUn]]]].
+    assert_diffs; exists D; exists E; exists F; split; [apply 角度对数刻度_初始化|right]; Lea.
+  destruct IH角度在线性刻度上 as [P [Q [R [HGAE HUn]]]].
   assert (Hd := HGAE); apply gradaexp__grada, grada_distincts in Hd; spliter.
   destruct (sams_dec P Q R P Q R) as [HIsi|HNIsi].
   { destruct HUn as [Habs|HLea].
       absurd (SAMS P Q R P Q R); trivial; apply obtuse__nsams, Habs.
     destruct (ex_suma P Q R P Q R) as [S [T [U HSuma]]]; auto.
     exists S; exists T; exists U; split.
-      apply gradaexp_stab with P Q R; trivial.
+      apply 角度对数刻度_步进 with P Q R; trivial.
     right; apply sams_lea2_suma2__lea with D E F A B C P Q R P Q R; trivial.
     apply grada__lea, gradaexp__grada, HGAE.
   }
@@ -469,7 +469,7 @@ Lemma archi__gradaexp_destruction :
   archimedes_axiom ->
   forall A B C,
     ~ Col A B C ->
-    exists P Q R, GradAExp A B C P Q R /\ 为钝角 P Q R.
+    exists P Q R, 角度在对数刻度上 A B C P Q R /\ 为钝角 P Q R.
 Proof.
   intros archi A B C HNCol.
   destruct (archi__grada_destruction archi A B C HNCol) as [D [E [F [HGA HNIsi]]]].

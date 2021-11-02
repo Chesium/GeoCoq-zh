@@ -14,11 +14,11 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma t22_18_aux1 : forall A0 A1 E0 E1 D1 D,
   Bet A0 D1 A1 -> Cong E0 E1 A1 D1 ->
   Grad A0 D1 D ->
-  exists A E, Grad2 A0 A1 A E0 E1 E /\ Cong E0 E A D /\ Bet A0 D A.
+  exists A E, 在同样的线性刻度上 A0 A1 A E0 E1 E /\ Cong E0 E A D /\ Bet A0 D A.
 Proof.
   intros A0 A1 E0 E1 D1 D HBet HCong HG.
   induction HG.
-    exists A1; exists E1; repeat split; auto; apply grad2_init.
+    exists A1; exists E1; repeat split; auto; apply 双重线性刻度_初始化.
   rename A into A0.
   rename B into C1.
   destruct IHHG as [A [E [HG2 [HCong2 HBet2]]]]; auto.
@@ -47,7 +47,7 @@ Proof.
     destruct(l5_12_a C A A'); eBetween.
   }
   repeat split; auto.
-    apply grad2_stab with A E; Cong.
+    apply 双重线性刻度_步进 with A E; Cong.
   assert (HD : Le E0 E1 A A').
     apply (l5_6 E0 E1 A1 A0); Cong; exists C1; split; Between.
   destruct HD as [D [HBet6 HCong6]].
@@ -63,7 +63,7 @@ Qed.
 (** For every n, B0Bn is lower than or equal to n times B0B1 *)
 Lemma t22_18_aux2 : forall A0 A1 B0 B1 A B E,
   Saccheri A0 B0 B1 A1 ->
-  Grad2 A0 A1 A B0 B1 E -> Saccheri A0 B0 B A -> Le B0 B B0 E.
+  在同样的线性刻度上 A0 A1 A B0 B1 E -> Saccheri A0 B0 B A -> Le B0 B B0 E.
 Proof.
   intros A0 A1 B0 B1 A B E HSac1 HG.
   revert B.
@@ -297,7 +297,7 @@ Lemma t22_24_aux :
   ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B0 B00 C0 B C E,
     ~ Col A B0 C0 -> Perp A C0 B0 C0 -> B0 = B00 ->
-    GradExp2 A B0 B B00 C0 E -> Perp A C0 B C -> Col A C0 C ->
+    在同样的对数刻度上 A B0 B B00 C0 E -> Perp A C0 B C -> Col A C0 C ->
     Le B0 E B C.
 Proof.
   intros HNob A B0 B00 C0 B C E HNCol HPerp0 Heq HGE.
@@ -334,19 +334,19 @@ Qed.
 
 (** For every n, it is possible to get Bn and Cn *)
 Lemma t22_24_aux1 : forall A B0 C0 E,
-  ~ Col A B0 C0 -> Perp A C0 B0 C0 -> GradExp B0 C0 E ->
-  exists B C, GradExp2 A B0 B B0 C0 E /\ Perp A C0 B C /\ Col A C0 C.
+  ~ Col A B0 C0 -> Perp A C0 B0 C0 -> 在对数刻度上 B0 C0 E ->
+  exists B C, 在同样的对数刻度上 A B0 B B0 C0 E /\ Perp A C0 B C /\ Col A C0 C.
 Proof.
   intros A B0 C0 E HNCol HPerp0 HGE.
   induction HGE; rename A0 into B0; rename B into C0.
-    exists B0; exists C0; repeat (split; Col); apply gradexp2_init.
+    exists B0; exists C0; repeat (split; Col); apply 双重对数刻度_初始化.
   rename C into E; rename C' into E'.
   destruct IHHGE as [B [C [HGE2 [HPerp HCol]]]]; trivial.
   destruct (由一点往一方向构造等长线段 A B A B) as [B' [HBet HCong]].
   exists B'.
   destruct (l8_18_existence A C0 B') as [C' [HCol' HPerp']].
     apply gradexp2__gradexp123, gradexp__grad, grad__bet in HGE2; intro; assert_diffs; apply HNCol; ColR. 
-  exists C'; repeat (split; trivial); apply gradexp2_stab with B E; Cong.
+  exists C'; repeat (split; trivial); apply 双重对数刻度_步进 with B E; Cong.
 Qed.
 
 Lemma t22_24 : archimedes_axiom -> aristotle_s_axiom.

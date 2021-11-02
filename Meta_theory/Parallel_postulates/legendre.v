@@ -217,7 +217,7 @@ Lemma legendre_aux2 :
        在角内 T B A C ->
        exists X Y : Tpoint, Out A B X /\ Out A C Y /\ Bet X T Y) ->
     forall P Q R S T U,
-      Defect A B C P Q R -> GradAExp P Q R S T U ->
+      Defect A B C P Q R -> 角度在对数刻度上 P Q R S T U ->
       exists B' C' P' Q' R',
         (Out A B B' /\ Out A C C' /\
          Defect A B' C' P' Q' R' /\ 角度小于等于 S T U P' Q' R').
@@ -227,7 +227,7 @@ Proof.
     exists B; exists C; exists P; exists Q; exists R; assert_diffs.
     repeat (split; [Out|]); Lea.
   rename D into S; rename E into T; rename F into U.
-  destruct IHGradAExp as [B' [C' [P' [Q' [R' [HOutB [HOutC [HDef' HLea]]]]]]]]; trivial.
+  destruct IH角度在对数刻度上 as [B' [C' [P' [Q' [R' [HOutB [HOutC [HDef' HLea]]]]]]]]; trivial.
   destruct (legendre_aux1 A B C B' C') as [D' [HInangle [HConga [HCong HTS]]]]; trivial.
   assert (HNCol' : ~ Col A B' C') by (destruct HTS; Col).
   destruct (legendre D' HInangle) as [B'' [C'' [HOutB' [HOutC' HBet]]]].

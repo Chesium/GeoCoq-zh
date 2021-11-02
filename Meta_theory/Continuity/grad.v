@@ -58,21 +58,21 @@ Proof.
 Qed.
 
 Lemma bet_cong2_grad__grad2 : forall A B C D E F,
-  Grad A B C -> Bet D E F -> Cong A B D E -> Cong B C E F -> Grad2 A B C D E F.
+  Grad A B C -> Bet D E F -> Cong A B D E -> Cong B C E F -> 在同样的线性刻度上 A B C D E F.
 Proof.
   intros A B C D E F HGrad.
   destruct (两点重合的决定性 D E).
   { intros; treat_equalities.
     apply grad112__eq in HGrad.
-    treat_equalities; apply grad2_init.
+    treat_equalities; apply 双重线性刻度_初始化.
   }
   revert F.
   induction HGrad.
-    intros; treat_equalities; apply grad2_init.
+    intros; treat_equalities; apply 双重线性刻度_初始化.
   intros F' HBet HCong1 HCong2.
   destruct (由一点往一方向构造等长线段 D E B C) as [F []].
   destruct (两点重合的决定性 E F).
-    treat_equalities; apply grad2_stab with B E; trivial; [apply grad2_init|CongR].
+    treat_equalities; apply 双重线性刻度_步进 with B E; trivial; [apply 双重线性刻度_初始化|CongR].
   assert (Bet B C C').
     apply grad__bet in HGrad; apply between_exchange3 with A; assumption.
   assert (Bet E F F').
@@ -80,27 +80,27 @@ Proof.
     assert_diffs.
     apply l6_2 with D; Between.
   }
-  apply grad2_stab with C F; Cong.
+  apply 双重线性刻度_步进 with C F; Cong.
     apply outer_transitivity_between2 with E; trivial.
   apply 等长的传递性 with A B; Cong.
   apply 等长的传递性 with C C'; trivial.
   apply l4_3_1 with B E; Cong.
 Qed.
 
-Lemma grad2__grad123 : forall A B C D E F, Grad2 A B C D E F -> Grad A B C.
+Lemma grad2__grad123 : forall A B C D E F, 在同样的线性刻度上 A B C D E F -> Grad A B C.
 Proof.
   intros A B C D E F.
   induction 1.
-    apply grad_init.
-    apply (grad_stab _ _ C); auto.
+    apply 线性刻度_初始化.
+    apply (线性刻度_步进 _ _ C); auto.
 Qed.
 
-Lemma grad2__grad456 : forall A B C D E F, Grad2 A B C D E F -> Grad D E F.
+Lemma grad2__grad456 : forall A B C D E F, 在同样的线性刻度上 A B C D E F -> Grad D E F.
 Proof.
   intros A B C D E F.
   induction 1.
-    apply grad_init.
-    apply (grad_stab _ _ F); auto.
+    apply 线性刻度_初始化.
+    apply (线性刻度_步进 _ _ F); auto.
 Qed.
 
 Lemma grad_sum : forall A B C D E,
@@ -117,7 +117,7 @@ Proof.
   intro HAB.
   revert E.
   induction HGD.
-    intro E; apply grad_stab; trivial.
+    intro E; apply 线性刻度_步进; trivial.
   rename C0 into D; rename C' into D'.
   intros E' HBet' HCong'.
   destruct(由一点往一方向构造等长线段 A C A D) as [E [HBet HCong]].
@@ -129,20 +129,20 @@ Proof.
     apply (l5_6 A D A D'); Cong.
     apply bet__le1213; trivial.
   }
-  apply grad_stab with E; auto with cong; eBetween.
+  apply 线性刻度_步进 with E; auto with cong; eBetween.
   apply 等长的传递性 with D D'; auto.
   apply l4_3_1 with A C; Cong.
 Qed.
 
-Lemma gradexp__grad : forall A B C, GradExp A B C -> Grad A B C.
+Lemma gradexp__grad : forall A B C, 在对数刻度上 A B C -> Grad A B C.
 Proof.
   induction 1.
-    apply grad_init.
+    apply 线性刻度_初始化.
   apply grad_sum with C C; auto.
 Qed.
 
 Lemma gradexp_le__reach : forall A B C D B',
-  GradExp A B B' -> Le C D A B' ->
+  在对数刻度上 A B B' -> Le C D A B' ->
   Reach A B C D.
 Proof.
   intros A B C D B' HGE HLe.
@@ -152,22 +152,22 @@ Qed.
 
 Lemma grad__ex_gradexp_le : forall A B C,
   Grad A B C ->
-  exists D, GradExp A B D /\ Le A C A D.
+  exists D, 在对数刻度上 A B D /\ Le A C A D.
 Proof.
   intros A B C.
   induction 1.
-    exists B; split; Le; apply gradexp_init.
+    exists B; split; Le; apply 对数刻度_初始化.
   destruct IHGrad as [D [HGE HLe]].
   destruct (由一点往一方向构造等长线段 A D A D) as [D' [HBet HCong]].
   exists D'; split.
-    apply gradexp_stab with D; Cong.
+    apply 对数刻度_步进 with D; Cong.
   apply bet2_le2__le1346 with C D; Le.
   apply gradexp__grad, grad__bet in HGE.
   apply l5_6 with A B A D; Cong; Le.
 Qed.
 
 Lemma reach__ex_gradexp_le : forall A B C D, Reach A B C D ->
-  exists B', GradExp A B B' /\ Le C D A B'.
+  exists B', 在对数刻度上 A B B' /\ Le C D A B'.
 Proof.
   intros A B C D HR.
   destruct HR as [B0 [HG HLe]].
@@ -177,40 +177,40 @@ Proof.
 Qed.
 
 Lemma gradexp2__gradexp123 : forall A B C D E F,
-  GradExp2 A B C D E F ->
-  GradExp A B C.
+  在同样的对数刻度上 A B C D E F ->
+  在对数刻度上 A B C.
 Proof.
   intros A B C D E F.
   induction 1.
-    apply gradexp_init.
-  apply (gradexp_stab _ _ C); auto.
+    apply 对数刻度_初始化.
+  apply (对数刻度_步进 _ _ C); auto.
 Qed.
 
 Lemma gradexp2__gradexp456 : forall A B C D E F,
-  GradExp2 A B C D E F ->
-  GradExp D E F.
+  在同样的对数刻度上 A B C D E F ->
+  在对数刻度上 D E F.
 Proof.
   intros A B C D E F.
   induction 1.
-    apply gradexp_init.
-  apply (gradexp_stab _ _ F); auto.
+    apply 对数刻度_初始化.
+  apply (对数刻度_步进 _ _ F); auto.
 Qed.
 
 
-Inductive GradExpInv : Tpoint -> Tpoint -> Tpoint -> Prop :=
-    gradexpinv_init : forall A B, GradExpInv A B B
-  | gradexpinv_stab : forall A B B' C, Bet A B' B -> Cong A B' B' B -> GradExpInv A B C ->
-                    GradExpInv A B' C.
+Inductive 在对数刻度上Inv : Tpoint -> Tpoint -> Tpoint -> Prop :=
+    gradexpinv_init : forall A B, 在对数刻度上Inv A B B
+  | gradexpinv_stab : forall A B B' C, Bet A B' B -> Cong A B' B' B -> 在对数刻度上Inv A B C ->
+                    在对数刻度上Inv A B' C.
 
-Lemma gradexp_clos_trans : forall A B C, GradExp A B C <->
+Lemma gradexp_clos_trans : forall A B C, 在对数刻度上 A B C <->
   clos_refl_trans_n1 Tpoint (fun X Y => 中点 X A Y) B C.
 Proof.
   intros; split; induction 1; try constructor.
     apply Relation_Operators.rtn1_trans with C; [split|]; assumption.
-    apply gradexp_stab with y; Between; Cong.
+    apply 对数刻度_步进 with y; Between; Cong.
 Qed.
 
-Lemma gradexpinv_clos_trans : forall A B C, GradExpInv A B C <->
+Lemma gradexpinv_clos_trans : forall A B C, 在对数刻度上Inv A B C <->
   clos_refl_trans_1n Tpoint (fun X Y => 中点 X A Y) B C.
 Proof.
   intros; split; induction 1; try constructor.
@@ -218,7 +218,7 @@ Proof.
     apply gradexpinv_stab with y; Between; Cong.
 Qed.
 
-Lemma gradexp__gradexpinv : forall A B C, GradExp A B C <-> GradExpInv A B C.
+Lemma gradexp__gradexpinv : forall A B C, 在对数刻度上 A B C <-> 在对数刻度上Inv A B C.
 Proof.
   intros.
   rewrite gradexp_clos_trans, gradexpinv_clos_trans.
@@ -247,12 +247,12 @@ Proof.
     destruct (由一点往一方向构造等长线段 A C' A B) as [C'' []].
     assert_diffs.
     exists C', C''; repeat split; Cong.
-    apply grad_stab with C; assumption.
+    apply 线性刻度_步进 with C; assumption.
   - exists C, C'; repeat split; assumption.
 Qed.
 
 Lemma reach__ex_gradexp_lt : forall A B P Q, A <> B -> Reach P Q A B ->
-  exists C, GradExp A C B /\ Lt A C P Q.
+  exists C, 在对数刻度上 A C B /\ Lt A C P Q.
 Proof.
   intros A B P Q HAB HReach.
   apply reach__ex_gradexp_le in HReach.
@@ -275,7 +275,7 @@ Proof.
     apply le_mid2__le12 with B R'; [|split|]; trivial.
   exists C; split; trivial.
   destruct HM.
-  apply gradexp_stab with M; trivial.
+  apply 对数刻度_步进 with M; trivial.
 Qed.
 
 End Grad.

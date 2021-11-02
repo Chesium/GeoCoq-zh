@@ -11,7 +11,7 @@ Proof.
   destruct (两点重合的决定性 C D).
     subst; exists B.
     split; Le.
-    apply grad_init.
+    apply 线性刻度_初始化.
   destruct (由一点往一方向构造等长线段_3 A B C D) as [E [HOut HCong]]; auto.
   destruct (Haux A B E HOut) as [B' [HGrad HLe]]; trivial.
   exists B'.
@@ -48,7 +48,7 @@ Proof.
   }
   destruct HX as [X HX].
   assert_diffs.
-  assert (HGrad := grad_init A B).
+  assert (HGrad := 线性刻度_初始化 A B).
   assert (HBet : Bet B X C) by (apply HX; [right|]; split; Out; exists B; split; Le).
   assert (Out A B X) by (apply out_bet_out_1 with C; auto).
   destruct HOut as [_ [_ [HBet2|HBet2]]]; [|exfalso; apply HNReach; exists B; split; Le].
@@ -87,7 +87,7 @@ Proof.
     destruct HReach as [B' [HGrad' HLe]].
     destruct (由一点往一方向构造等长线段 A B' A B) as [B1' [HBet' HCong']].
     apply HAbs; exists B1'; split.
-      apply grad_stab with B'; Cong.
+      apply 线性刻度_步进 with B'; Cong.
     apply bet2_le2__le1346 with X0 B'; Le; Between.
     apply cong__le, 等长的传递性 with A B; Cong.
 
@@ -103,7 +103,7 @@ Proof.
     destruct HReach as [B' [HGrad' HLe]].
     destruct (由一点往一方向构造等长线段 A B' A B) as [B1' [HBet' HCong']].
     exists B1'; split.
-      apply grad_stab with B'; Cong.
+      apply 线性刻度_步进 with B'; Cong.
     apply bet2_le2__le1346 with X B'; Le.
     apply cong__le, 等长的传递性 with A B; Cong.
 Qed.
@@ -134,7 +134,7 @@ Proof.
   }
   destruct HX as [X HX].
   assert_diffs.
-  assert (HGrad := grad_init A B).
+  assert (HGrad := 线性刻度_初始化 A B).
   assert (HBet : Bet B X C).
   { apply HX; split; trivial.
       apply out_trivial; auto.
@@ -179,7 +179,7 @@ Proof.
     destruct HReach as [B' [HGrad' HLe]].
     destruct (由一点往一方向构造等长线段 A B' A B) as [B1' [HBet' HCong']].
     apply HAbs; exists B1'; split.
-      apply grad_stab with B'; Cong.
+      apply 线性刻度_步进 with B'; Cong.
     apply bet2_le2__le1346 with X0 B'; Le; Between.
     apply cong__le, 等长的传递性 with A B; Cong.
 
@@ -198,7 +198,7 @@ Proof.
     destruct (由一点往一方向构造等长线段 A B' A B) as [B1' [HBet' HCong']].
     intro HAbs; apply HAbs.
     exists B1'; split.
-      apply grad_stab with B'; Cong.
+      apply 线性刻度_步进 with B'; Cong.
     apply bet2_le2__le1346 with X B'; Le.
     apply cong__le, 等长的传递性 with A B; Cong.
 Qed.

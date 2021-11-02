@@ -309,12 +309,12 @@ Proof.
   clear HLe.
   revert S S' HeqS' HS HBet.
   induction HGrad; intros; subst.
-  { exists R; split; [apply grad_init|].
+  { exists R; split; [apply 线性刻度_初始化|].
     apply bet__le1213, (line_extension_reverse_bet f P Q); Col.
   }
   rename C into C0'.
   destruct (两点重合的决定性 Q S).
-    subst; exists R; split; [apply grad_init|apply le_trivial].
+    subst; exists R; split; [apply 线性刻度_初始化|apply le_trivial].
   assert (Hd : Bet (f Q) (f S) C0' \/ Bet (f Q) C0' (f S)).
   { destruct (两点重合的决定性 C0' (f Q)); [subst; Between|].
     apply l6_7 with C'.
@@ -343,7 +343,7 @@ Proof.
   clear IHHGrad.
   destruct HC0 as [C0 []].
   destruct (由一点往一方向构造等长线段 Q C0 Q R) as [C []].
-  exists C; split; [apply grad_stab with C0; Cong|].
+  exists C; split; [apply 线性刻度_步进 with C0; Cong|].
   apply bet__le1213.
   destruct (两点重合的决定性 Q S0).
   { subst S0; assert (R = S) by (apply (between_cong_3 P Q); Cong).
