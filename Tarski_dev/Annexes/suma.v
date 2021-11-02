@@ -4,7 +4,7 @@ Section Suma_1.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma suma_distincts : forall A B C D E F G H I, SumA A B C D E F G H I ->
+Lemma suma_distincts : forall A B C D E F G H I, 和角 A B C D E F G H I ->
    A<>B /\ B<>C /\ D<>E /\ E<>F /\ G<>H /\ H<>I.
 Proof.
   intros A B C D E F G H I Hsuma.
@@ -14,7 +14,7 @@ Proof.
   repeat split; auto.
 Qed.
 
-Lemma trisuma_distincts : forall A B C D E F, TriSumA A B C D E F ->
+Lemma trisuma_distincts : forall A B C D E F, 三角形内角和 A B C D E F ->
   A <> B /\ B <> C /\ A <> C /\ D <> E /\ E <> F.
 Proof.
   intros A B C D E F HTri.
@@ -25,7 +25,7 @@ Proof.
 Qed.
 
 Lemma ex_suma : forall A B C D E F, A<>B -> B<>C -> D<>E -> E<>F ->
-   exists G H I, SumA A B C D E F G H I.
+   exists G H I, 和角 A B C D E F G H I.
 Proof.
   intros A B C D E F HAB HBC HDE HEF.
   exists A.
@@ -76,7 +76,7 @@ Qed.
 (** Unicity of the sum. *)
 
 Lemma suma2__conga : forall A B C D E F G H I G' H' I',
-   SumA A B C D E F G H I -> SumA A B C D E F G' H' I' -> 等角 G H I G' H' I'.
+   和角 A B C D E F G H I -> 和角 A B C D E F G' H' I' -> 等角 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I G' H' I' Hsuma Hsuma'.
   destruct Hsuma as [J [HJ1 [HJ2 [HJ3 HCop]]]].
@@ -120,7 +120,7 @@ Qed.
 
 (** Commutativity of the sum. *)
 
-Lemma suma_sym : forall A B C D E F G H I, SumA A B C D E F G H I -> SumA D E F A B C G H I.
+Lemma suma_sym : forall A B C D E F G H I, 和角 A B C D E F G H I -> 和角 D E F A B C G H I.
 Proof.
   intros A B C D E F G H I Hsuma.
   destruct Hsuma as [J [HCongaBCJ [HNOne [HCongaABJ HCop]]]].
@@ -197,17 +197,17 @@ Proof.
   split; 等角.
 Qed.
 
-(** 等角 preserves SumA. *)
+(** 等角 preserves 和角. *)
 
 Lemma conga3_suma__suma : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   SumA A B C D E F G H I ->
+   和角 A B C D E F G H I ->
    等角 A B C A' B' C' ->
    等角 D E F D' E' F' ->
    等角 G H I G' H' I' ->
-   SumA A' B' C' D' E' F' G' H' I'.
+   和角 A' B' C' D' E' F' G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I' Hsuma HCongaB HCongaE HCongaH.
-  assert (Hsuma' : SumA D' E' F' A B C G' H' I').
+  assert (Hsuma' : 和角 D' E' F' A B C G' H' I').
   { apply suma_sym.
     destruct Hsuma as [J [HJ1 [HJ2 [HJ3 HCop]]]].
     exists J.
@@ -225,11 +225,11 @@ Proof.
   repeat (split; trivial).
 Qed.
 
-(** Out preserves SumA. *)
+(** Out preserves 和角. *)
 
 Lemma out6_suma__suma : forall A B C D E F G H I A' C' D' F' G' I',
-   SumA A B C D E F G H I -> Out B A A' -> Out B C C' -> Out E D D' ->
-   Out E F F' -> Out H G G' -> Out H I I' -> SumA A' B C' D' E F' G' H I'.
+   和角 A B C D E F G H I -> Out B A A' -> Out B C C' -> Out E D D' ->
+   Out E F F' -> Out H G G' -> Out H I I' -> 和角 A' B C' D' E F' G' H I'.
 Proof.
   intros.
   assert_diffs.
@@ -238,7 +238,7 @@ Qed.
 
 (** ABC + 0 =  ABC (two lemmas) *)
 
-Lemma out546_suma__conga : forall A B C D E F G H I, SumA A B C D E F G H I ->
+Lemma out546_suma__conga : forall A B C D E F G H I, 和角 A B C D E F G H I ->
    Out E D F -> 等角 A B C G H I.
 Proof.
   intros A B C D E F G H I Hsuma Hout.
@@ -253,7 +253,7 @@ Proof.
   split; Cop; 等角.
 Qed.
 
-Lemma out546__suma : forall A B C D E F, A <> B -> B <> C -> Out E D F -> SumA A B C D E F A B C.
+Lemma out546__suma : forall A B C D E F, A <> B -> B <> C -> Out E D F -> 和角 A B C D E F A B C.
 Proof.
   intros A B C D E F HAB HBC Hout.
   assert_diffs.
@@ -264,7 +264,7 @@ Qed.
 
 (** 0 + DEF = DEF (two lemmas) *)
 
-Lemma out213_suma__conga : forall A B C D E F G H I, SumA A B C D E F G H I ->
+Lemma out213_suma__conga : forall A B C D E F G H I, 和角 A B C D E F G H I ->
    Out B A C -> 等角 D E F G H I.
 Proof.
   intros A B C D E F G H I Hsuma Hout.
@@ -272,7 +272,7 @@ Proof.
   apply suma_sym; auto.
 Qed.
 
-Lemma out213__suma : forall A B C D E F, D <> E -> E <> F -> Out B A C -> SumA A B C D E F D E F.
+Lemma out213__suma : forall A B C D E F, D <> E -> E <> F -> Out B A C -> 和角 A B C D E F D E F.
 Proof.
   intros; apply suma_sym, out546__suma; auto.
 Qed.
@@ -280,7 +280,7 @@ Qed.
 (** Some permutation properties:*)
 
 Lemma suma_left_comm : forall A B C D E F G H I,
-   SumA A B C D E F G H I -> SumA C B A D E F G H I.
+   和角 A B C D E F G H I -> 和角 C B A D E F G H I.
 Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := suma_distincts A B C D E F G H I Hsuma).
@@ -289,7 +289,7 @@ Proof.
 Qed.
 
 Lemma suma_middle_comm : forall A B C D E F G H I,
-   SumA A B C D E F G H I -> SumA A B C F E D G H I.
+   和角 A B C D E F G H I -> 和角 A B C F E D G H I.
 Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := suma_distincts A B C D E F G H I Hsuma).
@@ -298,7 +298,7 @@ Proof.
 Qed.
 
 Lemma suma_right_comm : forall A B C D E F G H I,
-   SumA A B C D E F G H I -> SumA A B C D E F I H G.
+   和角 A B C D E F G H I -> 和角 A B C D E F I H G.
 Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := suma_distincts A B C D E F G H I Hsuma).
@@ -307,7 +307,7 @@ Proof.
 Qed.
 
 Lemma suma_comm : forall A B C D E F G H I,
-   SumA A B C D E F G H I -> SumA C B A F E D I H G.
+   和角 A B C D E F G H I -> 和角 C B A F E D I H G.
 Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := suma_distincts A B C D E F G H I Hsuma).
@@ -317,7 +317,7 @@ Qed.
 
 (** Basic cases of sum *)
 
-Lemma ts__suma : forall A B C D, TS A B C D -> SumA C B A A B D C B D.
+Lemma ts__suma : forall A B C D, TS A B C D -> 和角 C B A A B D C B D.
 Proof.
   intros A B C D HTS.
   exists D.
@@ -327,13 +327,13 @@ Proof.
   split; 等角; Cop.
 Qed.
 
-Lemma ts__suma_1 : forall A B C D, TS A B C D -> SumA C A B B A D C A D.
+Lemma ts__suma_1 : forall A B C D, TS A B C D -> 和角 C A B B A D C A D.
 Proof.
   intros A B C D HTS.
   apply ts__suma, invert_two_sides, HTS.
 Qed.
 
-Lemma inangle__suma : forall A B C P, 在角内 P A B C -> SumA A B P P B C A B C.
+Lemma inangle__suma : forall A B C P, 在角内 P A B C -> 和角 A B P P B C A B C.
 Proof.
   intros A B C P HInangle.
   assert (Hcopy := HInangle); destruct Hcopy as [HAB [HCB [HPB _]]].
@@ -348,17 +348,17 @@ Proof.
 Qed.
 
 Lemma bet__suma : forall A B C P, A <> B -> B <> C -> P <> B -> Bet A B C ->
-  SumA A B P P B C A B C.
+  和角 A B P P B C A B C.
 Proof.
   intros A B C P HAB HBC HPB HBet.
   apply inangle__suma; Side.
 Qed.
 
 
-(** Characterization of SAMS using 角度小于等于. *)
+(** Characterization of 角度之和小于平角 using 角度小于等于. *)
 
 Lemma sams_chara : forall A B C D E F A', A<>B -> A'<>B -> Bet A B A' ->
-   (SAMS A B C D E F <-> 角度小于等于 D E F C B A').
+   (角度之和小于平角 A B C D E F <-> 角度小于等于 D E F C B A').
 Proof.
   intros A B C D E F A' HAB HA'B HABA'.
   split.
@@ -508,7 +508,7 @@ Proof.
     apply (col_preserves_two_sides A B); Col.
 Qed.
 
-Lemma sams_distincts : forall A B C D E F, SAMS A B C D E F ->
+Lemma sams_distincts : forall A B C D E F, 角度之和小于平角 A B C D E F ->
    A<>B /\ B<>C /\ D<>E /\ E<>F.
 Proof.
   intros A B C D E F Hisi.
@@ -518,8 +518,8 @@ Proof.
   repeat split; auto.
 Qed.
 
-Lemma sams_sym : forall A B C D E F, SAMS A B C D E F ->
-   SAMS D E F A B C.
+Lemma sams_sym : forall A B C D E F, 角度之和小于平角 A B C D E F ->
+   角度之和小于平角 D E F A B C.
 Proof.
   intros A B C D E F Hisi.
   assert(A<>B/\B<>C/\D<>E/\E<>F) by (apply sams_distincts; auto).
@@ -536,8 +536,8 @@ Proof.
   apply (sams_chara A); Between.
 Qed.
 
-Lemma sams_right_comm : forall A B C D E F, SAMS A B C D E F ->
-   SAMS A B C F E D.
+Lemma sams_right_comm : forall A B C D E F, 角度之和小于平角 A B C D E F ->
+   角度之和小于平角 A B C F E D.
 Proof.
   intros A B C D E F Hisi.
   destruct Hisi as [HAB [HUn [J [HJ1 [HJ2 HJ3]]]]].
@@ -553,8 +553,8 @@ Proof.
   split; auto.
 Qed.
 
-Lemma sams_left_comm : forall A B C D E F, SAMS A B C D E F ->
-   SAMS C B A D E F.
+Lemma sams_left_comm : forall A B C D E F, 角度之和小于平角 A B C D E F ->
+   角度之和小于平角 C B A D E F.
 Proof.
   intros.
   apply sams_sym.
@@ -563,8 +563,8 @@ Proof.
   assumption.
 Qed.
 
-Lemma sams_comm : forall A B C D E F, SAMS A B C D E F ->
-   SAMS C B A F E D.
+Lemma sams_comm : forall A B C D E F, 角度之和小于平角 A B C D E F ->
+   角度之和小于平角 C B A F E D.
 Proof.
   intros.
   apply sams_left_comm.
@@ -574,7 +574,7 @@ Qed.
 
 Lemma conga2_sams__sams : forall A B C D E F A' B' C' D' E' F',
    等角 A B C A' B' C' -> 等角 D E F D' E' F' ->
-   SAMS A B C D E F -> SAMS A' B' C' D' E' F'.
+   角度之和小于平角 A B C D E F -> 角度之和小于平角 A' B' C' D' E' F'.
 Proof.
   intros A B C D E F A' B' C' D' E' F' HCongaB HCongaE Hisi.
   assert(HA0 : exists A0, 中点 B A A0) by apply symmetric_point_construction.
@@ -588,7 +588,7 @@ Proof.
   apply (l11_13 A B C A'); Between.
 Qed.
 
-Lemma out546__sams : forall A B C D E F, A <> B -> B <> C -> Out E D F -> SAMS A B C D E F.
+Lemma out546__sams : forall A B C D E F, A <> B -> B <> C -> Out E D F -> 角度之和小于平角 A B C D E F.
 Proof.
   intros A B C D E F HAB HBC HOut.
   destruct (由一点往一方向构造等长线段 A B A B) as [A' [HBet HCong]].
@@ -597,13 +597,13 @@ Proof.
   apply l11_31_1; auto.
 Qed.
 
-Lemma out213__sams : forall A B C D E F, D <> E -> E <> F -> Out B A C -> SAMS A B C D E F.
+Lemma out213__sams : forall A B C D E F, D <> E -> E <> F -> Out B A C -> 角度之和小于平角 A B C D E F.
 Proof.
   intros; apply sams_sym, out546__sams; trivial.
 Qed.
 
-Lemma bet_suma__sams : forall A B C D E F G H I, SumA A B C D E F G H I -> Bet G H I ->
-  SAMS A B C D E F.
+Lemma bet_suma__sams : forall A B C D E F G H I, 和角 A B C D E F G H I -> Bet G H I ->
+  角度之和小于平角 A B C D E F.
 Proof.
   intros A B C D E F G H I HSuma HBet.
   destruct HSuma as [A' [HConga1 [HNOS [HCop HConga2]]]].
@@ -620,7 +620,7 @@ Proof.
     intros [_ [HNCol _]]; apply HNCol; Col.
 Qed.
 
-Lemma bet__sams : forall A B C P, A <> B -> B <> C -> P <> B -> Bet A B C -> SAMS A B P P B C.
+Lemma bet__sams : forall A B C P, A <> B -> B <> C -> P <> B -> Bet A B C -> 角度之和小于平角 A B P P B C.
 Proof.
   intros A B C P HAB HBC HPB HBet.
   apply bet_suma__sams with A B C.
@@ -628,7 +628,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma suppa__sams : forall A B C D E F, SuppA A B C D E F -> SAMS A B C D E F.
+Lemma suppa__sams : forall A B C D E F, 互为补角 A B C D E F -> 角度之和小于平角 A B C D E F.
 Proof.
   intros A B C D E F [HAB [A' [HBet HCong]]].
   assert_diffs.
@@ -636,7 +636,7 @@ Proof.
   apply bet__sams; auto.
 Qed.
 
-Lemma os_ts__sams : forall A B C P, TS B P A C -> OS A B P C -> SAMS A B P P B C.
+Lemma os_ts__sams : forall A B C P, TS B P A C -> OS A B P C -> 角度之和小于平角 A B P P B C.
 Proof.
   intros A B C P HTS HOS.
   assert_diffs.
@@ -647,14 +647,14 @@ Proof.
   repeat split; Side; Cop.
 Qed.
 
-Lemma os2__sams : forall A B C P, OS A B P C -> OS C B P A -> SAMS A B P P B C.
+Lemma os2__sams : forall A B C P, OS A B P C -> OS C B P A -> 角度之和小于平角 A B P P B C.
 Proof.
   intros A B C P HOS1 HOS2.
   apply os_ts__sams; trivial.
   apply l9_31; Side.
 Qed.
 
-Lemma inangle__sams : forall A B C P, 在角内 P A B C -> SAMS A B P P B C.
+Lemma inangle__sams : forall A B C P, 在角内 P A B C -> 角度之和小于平角 A B P P B C.
 Proof.
   intros A B C P HIn.
   assert_diffs.
@@ -810,15 +810,15 @@ repeat
       not_exist_hyp4 A B A C B C U V;
       assert (h := orth_distincts A B C U V H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:SumA ?A ?B ?C ?D ?E ?F ?G ?I ?J |- _ =>
+      | H:和角 ?A ?B ?C ?D ?E ?F ?G ?I ?J |- _ =>
       let h := fresh in
       not_exist_hyp6 A B B C D E E F G I I J;
       assert (h := suma_distincts A B C D E F G I J H);decompose [and] h;clear h;clean_reap_hyps
-      | H: TriSumA ?A ?B ?C ?D ?E ?F |- _ =>
+      | H: 三角形内角和 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp5 A B B C A C D E E F;
       assert (h := trisuma_distincts A B C D E F H);decompose [and] h;clear h; clean_reap_hyps
-      | H:SAMS ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:角度之和小于平角 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
       assert (h := sams_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
@@ -843,7 +843,7 @@ repeat
       let h := fresh in
       not_exist_hyp2 A B B C;
       assert (h := obtuse_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
-      | H:SuppA ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:互为补角 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
       assert (h := suppa_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
@@ -854,7 +854,7 @@ Hint Resolve suma_sym suma_left_comm suma_middle_comm suma_right_comm
              sams_right_comm sams_comm sams_left_comm sams_sym
              out213__sams out546__sams bet__sams suppa__sams inangle__sams : suma.
 
-Ltac SumA := auto with suma.
+Ltac 和角 := auto with suma.
 
 Section Suma_2.
 
@@ -862,8 +862,8 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** ABC <= ABC + DEF. *)
 
-Lemma sams_suma__lea123789 : forall A B C D E F G H I, SumA A B C D E F G H I ->
-   SAMS A B C D E F -> 角度小于等于 A B C G H I.
+Lemma sams_suma__lea123789 : forall A B C D E F G H I, 和角 A B C D E F G H I ->
+   角度之和小于平角 A B C D E F -> 角度小于等于 A B C G H I.
 Proof.
   intros A B C D E F G H I Hsuma Hisi.
   assert_diffs.
@@ -957,18 +957,18 @@ Qed.
 
 (** DEF <= ABC + DEF. *)
 
-Lemma sams_suma__lea456789 : forall A B C D E F G H I, SumA A B C D E F G H I ->
-   SAMS A B C D E F -> 角度小于等于 D E F G H I.
+Lemma sams_suma__lea456789 : forall A B C D E F G H I, 和角 A B C D E F G H I ->
+   角度之和小于平角 A B C D E F -> 角度小于等于 D E F G H I.
 Proof.
   intros A B C D E F G H I Hsuma Hisi.
-  apply (sams_suma__lea123789 D E F A B C G H I); SumA.
+  apply (sams_suma__lea123789 D E F A B C G H I); 和角.
 Qed.
 
-(** 角度小于等于 preserves SAMS. *)
+(** 角度小于等于 preserves 角度之和小于平角. *)
 
 Lemma sams_lea2__sams : forall A B C D E F A' B' C' D' E' F',
-   SAMS A' B' C' D' E' F' -> 角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' ->
-   SAMS A B C D E F.
+   角度之和小于平角 A' B' C' D' E' F' -> 角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' ->
+   角度之和小于平角 A B C D E F.
 Proof.
   intros A B C D E F A' B' C' D' E' F' Hisi HleaB HleaE.
   assert(HA0 : exists A0, 中点 B A A0) by apply symmetric_point_construction.
@@ -985,8 +985,8 @@ Proof.
 Qed.
 
 Lemma sams_lea456_suma2__lea : forall A B C D E F G H I D' E' F' G' H' I',
-   角度小于等于 D E F D' E' F' -> SAMS A B C D' E' F' -> SumA A B C D E F G H I ->
-   SumA A B C D' E' F' G' H' I' -> 角度小于等于 G H I G' H' I'.
+   角度小于等于 D E F D' E' F' -> 角度之和小于平角 A B C D' E' F' -> 和角 A B C D E F G H I ->
+   和角 A B C D' E' F' G' H' I' -> 角度小于等于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I D' E' F' G' H' I' Hlea Hisi' Hsuma Hsuma'.
   assert_diffs.
@@ -1080,19 +1080,19 @@ Proof.
 Qed.
 
 Lemma sams_lea123_suma2__lea : forall A B C D E F G H I A' B' C' G' H' I',
-   角度小于等于 A B C A' B' C' -> SAMS A' B' C' D E F -> SumA A B C D E F G H I ->
-   SumA A' B' C' D E F G' H' I' -> 角度小于等于 G H I G' H' I'.
+   角度小于等于 A B C A' B' C' -> 角度之和小于平角 A' B' C' D E F -> 和角 A B C D E F G H I ->
+   和角 A' B' C' D E F G' H' I' -> 角度小于等于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C'.
   intros.
-  apply (sams_lea456_suma2__lea D E F A B C _ _ _ A' B' C'); SumA.
+  apply (sams_lea456_suma2__lea D E F A B C _ _ _ A' B' C'); 和角.
 Qed.
 
-(** SumA preserves 角度小于等于. *)
+(** 和角 preserves 角度小于等于. *)
 
 Lemma sams_lea2_suma2__lea : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于等于 G H I G' H' I'.
+   角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> 角度之和小于平角 A' B' C' D' E' F' ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于等于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I' HleaB HleaD Hisi' Hsuma Hsuma'.
   assert_diffs.
@@ -1107,8 +1107,8 @@ Qed.
 (** Unicity of the difference of angles. *)
 
 Lemma sams2_suma2__conga456 : forall A B C D E F D' E' F' G H I,
-   SAMS A B C D E F -> SAMS A B C D' E' F' ->
-   SumA A B C D E F G H I -> SumA A B C D' E' F' G H I ->
+   角度之和小于平角 A B C D E F -> 角度之和小于平角 A B C D' E' F' ->
+   和角 A B C D E F G H I -> 和角 A B C D' E' F' G H I ->
    等角 D E F D' E' F'.
 Proof.
   intros A B C D E F D' E' F' G H I Hisi Hisi' Hsuma Hsuma'.
@@ -1154,18 +1154,18 @@ Qed.
 (** Unicity of the difference on the left. *)
 
 Lemma sams2_suma2__conga123 : forall A B C A' B' C' D E F G H I,
-   SAMS A B C D E F -> SAMS A' B' C' D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D E F G H I ->
+   角度之和小于平角 A B C D E F -> 角度之和小于平角 A' B' C' D E F ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D E F G H I ->
    等角 A B C A' B' C'.
 Proof.
   intros A B C A' B' C' D E F G H I Hisi Hisi' Hsuma Hsuma'.
-  apply (sams2_suma2__conga456 D E F _ _ _ _ _ _ G H I); SumA.
+  apply (sams2_suma2__conga456 D E F _ _ _ _ _ _ G H I); 和角.
 Qed.
 
 Lemma suma_assoc_1 : forall A B C D E F G H I K L M A' B' C' D' E' F',
-   SAMS A B C D E F -> SAMS D E F G H I ->
-   SumA A B C D E F A' B' C' -> SumA D E F G H I D' E' F' ->
-   SumA A' B' C' G H I K L M -> SumA A B C D' E' F' K L M.
+   角度之和小于平角 A B C D E F -> 角度之和小于平角 D E F G H I ->
+   和角 A B C D E F A' B' C' -> 和角 D E F G H I D' E' F' ->
+   和角 A' B' C' G H I K L M -> 和角 A B C D' E' F' K L M.
 Proof.
   intros A B C D E F G H I K L M A' B' C' D' E' F' HisiBE HisiEH HsBE HsEH HsB'H.
   assert(HA0 : exists A0, 中点 B A A0) by apply symmetric_point_construction.
@@ -1184,7 +1184,7 @@ Proof.
     }
     intro HBout.
     apply not_bet_out in HBout; auto.
-    assert(Hexsuma : exists K0 L0 M0, SumA A B C D' E' F' K0 L0 M0) by (apply ex_suma; auto).
+    assert(Hexsuma : exists K0 L0 M0, 和角 A B C D' E' F' K0 L0 M0) by (apply ex_suma; auto).
     destruct Hexsuma as [K0 [L0 [M0]]].
     apply (conga3_suma__suma A B C D' E' F' K0 L0 M0); try (apply conga_refl); auto.
     apply (conga_trans _ _ _ D' E' F').
@@ -1246,12 +1246,12 @@ Proof.
           apply (conga3_suma__suma A' B' C' G H I K L M); [等角..| |等角].
           apply conga_sym.
           apply (conga_trans _ _ _ D0 E F).
-          - apply (sams2_suma2__conga123 _ _ _ _ _ _ D E F A' B' C'); [SumA..|].
+          - apply (sams2_suma2__conga123 _ _ _ _ _ _ D E F A' B' C'); [和角..|].
             apply suma_sym.
             exists D0.
             repeat (split; 等角); Side; Cop.
           - apply (sams2_suma2__conga456 D E F _ _ _ _ _ _ D' E' F'); auto.
-              SumA.
+              和角.
             exists D0.
             repeat (split; 等角); Side; Cop.
         }
@@ -1267,10 +1267,10 @@ Proof.
       intro HNColE'.
       assert(等角 D E F C B A0).
       { apply (sams2_suma2__conga456 A B C _ _ _ _ _ _ A' B' C'); auto.
-          SumA.
-        apply (conga3_suma__suma A B C C B A0 A B A0); [SumA|等角..].
+          和角.
+        apply (conga3_suma__suma A B C C B A0 A B A0); [和角|等角..].
       }
-      assert(HJ : SAMS C B A0 G H I) by (apply (conga2_sams__sams D E F G H I); try (apply conga_refl); auto).
+      assert(HJ : 角度之和小于平角 C B A0 G H I) by (apply (conga2_sams__sams D E F G H I); try (apply conga_refl); auto).
       destruct HJ as [_ [_ [J]]].
       destruct HisiEH as [_ [_ [F1]]].
       spliter.
@@ -1351,9 +1351,9 @@ Proof.
       apply (conga3_suma__suma A B C1 C1 B C0 A B C0); [|等角| |等角].
         apply ts__suma, invert_two_sides, (l9_8_2 _ _ C); auto.
       apply (sams2_suma2__conga456 C B C1 _ _ _ _ _ _ C B C0).
-        SumA.
+        和角.
         apply (conga2_sams__sams D E F G H I); 等角.
-        SumA.
+        和角.
         apply (conga3_suma__suma D E F G H I D' E' F'); 等角.
     }
     intro HE'out.
@@ -1367,7 +1367,7 @@ Proof.
   }
   intro HNColE'.
   clear dependent D0.
-  assert(HJ : SAMS C B C1 G H I) by (apply (conga2_sams__sams D E F G H I); 等角).
+  assert(HJ : 角度之和小于平角 C B C1 G H I) by (apply (conga2_sams__sams D E F G H I); 等角).
   destruct HJ as [_ [_ [J]]].
   destruct HisiEH as [_ [_ [F1 HF1]]].
   spliter.
@@ -1409,22 +1409,22 @@ Proof.
 Qed.
 
 Lemma suma_assoc_2 : forall A B C D E F G H I K L M A' B' C' D' E' F',
-   SAMS A B C D E F -> SAMS D E F G H I ->
-   SumA A B C D E F A' B' C' -> SumA D E F G H I D' E' F' ->
-   SumA A B C D' E' F' K L M -> SumA A' B' C' G H I K L M.
+   角度之和小于平角 A B C D E F -> 角度之和小于平角 D E F G H I ->
+   和角 A B C D E F A' B' C' -> 和角 D E F G H I D' E' F' ->
+   和角 A B C D' E' F' K L M -> 和角 A' B' C' G H I K L M.
 Proof.
   intros A B C D E F G H I K L M A' B' C' D' E' F'.
   intros.
   apply suma_sym.
-  apply (suma_assoc_1 G H I D E F A B C K L M D' E' F'); SumA.
+  apply (suma_assoc_1 G H I D E F A B C K L M D' E' F'); 和角.
 Qed.
 
 (** Associativity of the sum of angles. *)
 
 Lemma suma_assoc : forall A B C D E F G H I K L M A' B' C' D' E' F',
-   SAMS A B C D E F -> SAMS D E F G H I ->
-   SumA A B C D E F A' B' C' -> SumA D E F G H I D' E' F' ->
-   (SumA A' B' C' G H I K L M <-> SumA A B C D' E' F' K L M).
+   角度之和小于平角 A B C D E F -> 角度之和小于平角 D E F G H I ->
+   和角 A B C D E F A' B' C' -> 和角 D E F G H I D' E' F' ->
+   (和角 A' B' C' G H I K L M <-> 和角 A B C D' E' F' K L M).
 Proof.
   intros A B C D E F G H I K L M A' B' C' D' E' F'.
   intros.
@@ -1434,9 +1434,9 @@ Proof.
 Qed.
 
 Lemma sams_assoc_1 : forall A B C D E F G H I A' B' C' D' E' F',
-   SAMS A B C D E F -> SAMS D E F G H I ->
-   SumA A B C D E F A' B' C' -> SumA D E F G H I D' E' F' ->
-   SAMS A' B' C' G H I -> SAMS A B C D' E' F'.
+   角度之和小于平角 A B C D E F -> 角度之和小于平角 D E F G H I ->
+   和角 A B C D E F A' B' C' -> 和角 D E F G H I D' E' F' ->
+   角度之和小于平角 A' B' C' G H I -> 角度之和小于平角 A B C D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' Hsams1 Hsams2 Hs1 Hs2 Hsams1'.
   assert_diffs.
@@ -1567,20 +1567,20 @@ Proof.
 Qed.
 
 Lemma sams_assoc_2 : forall A B C D E F G H I A' B' C' D' E' F',
-   SAMS A B C D E F -> SAMS D E F G H I ->
-   SumA A B C D E F A' B' C' -> SumA D E F G H I D' E' F' ->
-   SAMS A B C D' E' F' -> SAMS A' B' C' G H I.
+   角度之和小于平角 A B C D E F -> 角度之和小于平角 D E F G H I ->
+   和角 A B C D E F A' B' C' -> 和角 D E F G H I D' E' F' ->
+   角度之和小于平角 A B C D' E' F' -> 角度之和小于平角 A' B' C' G H I.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F'.
   intros.
   apply sams_sym.
-  apply (sams_assoc_1 G H I D E F A B C D' E' F'); SumA.
+  apply (sams_assoc_1 G H I D E F A B C D' E' F'); 和角.
 Qed.
 
 Lemma sams_assoc : forall A B C D E F G H I A' B' C' D' E' F',
-   SAMS A B C D E F -> SAMS D E F G H I ->
-   SumA A B C D E F A' B' C' -> SumA D E F G H I D' E' F' ->
-   (SAMS A' B' C' G H I <-> SAMS A B C D' E' F').
+   角度之和小于平角 A B C D E F -> 角度之和小于平角 D E F G H I ->
+   和角 A B C D E F A' B' C' -> 和角 D E F G H I D' E' F' ->
+   (角度之和小于平角 A' B' C' G H I <-> 角度之和小于平角 A B C D' E' F').
 Proof.
   intros A B C D E F.
   split.
@@ -1588,7 +1588,7 @@ Proof.
   apply (sams_assoc_2 _ _ _ D E F); auto.
 Qed.
 
-Lemma sams_nos__nts : forall A B C J, SAMS A B C C B J -> ~ OS B C A J ->
+Lemma sams_nos__nts : forall A B C J, 角度之和小于平角 A B C C B J -> ~ OS B C A J ->
   ~ TS A B C J.
 Proof.
   intros A B C J HIsi HNOS HTS.
@@ -1612,7 +1612,7 @@ Proof.
 Qed.
 
 Lemma conga_sams_nos__nts : forall A B C D E F J,
-  SAMS A B C D E F -> 等角 C B J D E F -> ~ OS B C A J -> ~ TS A B C J.
+  角度之和小于平角 A B C D E F -> 等角 C B J D E F -> ~ OS B C A J -> ~ TS A B C J.
 Proof.
   intros A B C D E F J HIsi HConga.
   apply sams_nos__nts.
@@ -1624,8 +1624,8 @@ Qed.
 (** If B <= B', E <= E' and B + E = B' + E', then B = B' and E = E' *)
 
 Lemma sams_lea2_suma2__conga123 : forall A B C D E F G H I A' B' C' D' E' F',
-   角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G H I -> 等角 A B C A' B' C'.
+   角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> 角度之和小于平角 A' B' C' D' E' F' ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G H I -> 等角 A B C A' B' C'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' HleaB HleaE Hisi' Hsuma Hsuma'.
   assert_diffs.
@@ -1642,17 +1642,17 @@ Proof.
 Qed.
 
 Lemma sams_lea2_suma2__conga456 : forall A B C D E F G H I A' B' C' D' E' F',
-   角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G H I -> 等角 D E F D' E' F'.
+   角度小于等于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> 角度之和小于平角 A' B' C' D' E' F' ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G H I -> 等角 D E F D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F'.
   intros.
-  apply (sams_lea2_suma2__conga123 _ _ _ A B C G H I _ _ _ A' B' C'); SumA.
+  apply (sams_lea2_suma2__conga123 _ _ _ A B C G H I _ _ _ A' B' C'); 和角.
 Qed.
 
 (** If B + E = E, then B = 0 *)
 
-Lemma sams_suma__out213 : forall A B C D E F, SumA A B C D E F D E F -> SAMS A B C D E F -> Out B A C.
+Lemma sams_suma__out213 : forall A B C D E F, 和角 A B C D E F D E F -> 角度之和小于平角 A B C D E F -> Out B A C.
 Proof.
   intros A B C D E F HSuma HIsi.
   assert_diffs.
@@ -1663,7 +1663,7 @@ Proof.
   apply col123__nos; Col.
 Qed.
 
-Lemma sams_suma__out546 : forall A B C D E F, SumA A B C D E F A B C -> SAMS A B C D E F -> Out E D F.
+Lemma sams_suma__out546 : forall A B C D E F, 和角 A B C D E F A B C -> 角度之和小于平角 A B C D E F -> Out E D F.
 Proof.
   intros A B C D E F HSuma HIsi.
   apply sams_suma__out213 with A B C.
@@ -1674,8 +1674,8 @@ Qed.
 (** If B < B' and E <= E', then B + E < B' + E' *)
 
 Lemma sams_lea_lta123_suma2__lta : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 G H I G' H' I'.
+   角度小于 A B C A' B' C' -> 角度小于等于 D E F D' E' F' -> 角度之和小于平角 A' B' C' D' E' F' ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I' HltaB HleaE Hisi' Hsuma Hsuma'.
   assert_diffs.
@@ -1689,17 +1689,17 @@ Proof.
 Qed.
 
 Lemma sams_lea_lta456_suma2__lta : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于等于 A B C A' B' C' -> 角度小于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 G H I G' H' I'.
+   角度小于等于 A B C A' B' C' -> 角度小于 D E F D' E' F' -> 角度之和小于平角 A' B' C' D' E' F' ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
-  apply (sams_lea_lta123_suma2__lta D E F A B C _ _ _ D' E' F' A' B' C'); SumA.
+  apply (sams_lea_lta123_suma2__lta D E F A B C _ _ _ D' E' F' A' B' C'); 和角.
 Qed.
 
 Lemma sams_lta2_suma2__lta : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于 A B C A' B' C' -> 角度小于 D E F D' E' F' -> SAMS A' B' C' D' E' F' ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 G H I G' H' I'.
+   角度小于 A B C A' B' C' -> 角度小于 D E F D' E' F' -> 角度之和小于平角 A' B' C' D' E' F' ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于 G H I G' H' I'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1710,8 +1710,8 @@ Qed.
 (** If E >= E' and B + E <= B' + E', then B <= B' *)
 
 Lemma sams_lea2_suma2__lea123 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于等于 D' E' F' D E F -> 角度小于等于 G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于等于 A B C A' B' C'.
+   角度小于等于 D' E' F' D E F -> 角度小于等于 G H I G' H' I' -> 角度之和小于平角 A B C D E F ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于等于 A B C A' B' C'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1725,8 +1725,8 @@ Proof.
 Qed.
 
 Lemma sams_lea2_suma2__lea456 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于等于 A' B' C' A B C -> 角度小于等于 G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于等于 D E F D' E' F'.
+   角度小于等于 A' B' C' A B C -> 角度小于等于 G H I G' H' I' -> 角度之和小于平角 A B C D E F ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于等于 D E F D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1737,8 +1737,8 @@ Qed.
 (** If E > E' and B + E <= B' + E', then B < B' *)
 
 Lemma sams_lea_lta456_suma2__lta123 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于 D' E' F' D E F -> 角度小于等于 G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 A B C A' B' C'.
+   角度小于 D' E' F' D E F -> 角度小于等于 G H I G' H' I' -> 角度之和小于平角 A B C D E F ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于 A B C A' B' C'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1752,8 +1752,8 @@ Proof.
 Qed.
 
 Lemma sams_lea_lta123_suma2__lta456 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于 A' B' C' A B C -> 角度小于等于 G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 D E F D' E' F'.
+   角度小于 A' B' C' A B C -> 角度小于等于 G H I G' H' I' -> 角度之和小于平角 A B C D E F ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于 D E F D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1764,8 +1764,8 @@ Qed.
 (** If E >= E' and B + E < B' + E', then B < B' *)
 
 Lemma sams_lea_lta789_suma2__lta123 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于等于 D' E' F' D E F -> 角度小于 G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 A B C A' B' C'.
+   角度小于等于 D' E' F' D E F -> 角度小于 G H I G' H' I' -> 角度之和小于平角 A B C D E F ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于 A B C A' B' C'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1779,8 +1779,8 @@ Proof.
 Qed.
 
 Lemma sams_lea_lta789_suma2__lta456 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于等于 A' B' C' A B C -> 角度小于 G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 D E F D' E' F'.
+   角度小于等于 A' B' C' A B C -> 角度小于 G H I G' H' I' -> 角度之和小于平角 A B C D E F ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于 D E F D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1789,8 +1789,8 @@ Proof.
 Qed.
 
 Lemma sams_lta2_suma2__lta123 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于 D' E' F' D E F -> 角度小于 G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 A B C A' B' C'.
+   角度小于 D' E' F' D E F -> 角度小于 G H I G' H' I' -> 角度之和小于平角 A B C D E F ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于 A B C A' B' C'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1799,8 +1799,8 @@ Proof.
 Qed.
 
 Lemma sams_lta2_suma2__lta456 : forall A B C D E F G H I A' B' C' D' E' F' G' H' I',
-   角度小于 A' B' C' A B C -> 角度小于 G H I G' H' I' -> SAMS A B C D E F ->
-   SumA A B C D E F G H I -> SumA A' B' C' D' E' F' G' H' I' -> 角度小于 D E F D' E' F'.
+   角度小于 A' B' C' A B C -> 角度小于 G H I G' H' I' -> 角度之和小于平角 A B C D E F ->
+   和角 A B C D E F G H I -> 和角 A' B' C' D' E' F' G' H' I' -> 角度小于 D E F D' E' F'.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' G' H' I'.
   intros.
@@ -1810,7 +1810,7 @@ Qed.
 
 (** The sum of two angles of a triangle is less than a straight angle (three lemmas) *)
 
-Lemma sams123231 : forall A B C, A <> B -> A <> C -> B <> C -> SAMS A B C B C A.
+Lemma sams123231 : forall A B C, A <> B -> A <> C -> B <> C -> 角度之和小于平角 A B C B C A.
 Proof.
   intros A B C.
   intros.
@@ -1836,7 +1836,7 @@ Proof.
   apply l11_41_aux; Col; Between.
 Qed.
 
-Lemma col_suma__col : forall A B C D E F, Col D E F -> SumA A B C B C A D E F -> Col A B C.
+Lemma col_suma__col : forall A B C D E F, Col D E F -> 和角 A B C B C A D E F -> Col A B C.
 Proof.
   intros A B C D E F HCol HSuma.
   destruct (col_dec A B C) as [|HNCol]; [trivial|].
@@ -1849,7 +1849,7 @@ Proof.
     [|destruct Hlta as [Hlea HNConga]; apply HNConga; 等角].
     assert (TS B C A P).
       apply bet__ts; Col.
-    apply (sams_lea_lta456_suma2__lta A B C B C A _ _ _ A B C C B P); [Lea| |SumA..].
+    apply (sams_lea_lta456_suma2__lta A B C B C A _ _ _ A B C C B P); [Lea| |和角..].
     apply l11_41_aux; Col.
 
   - assert_diffs.
@@ -1862,7 +1862,7 @@ Proof.
     apply sams123231; auto.
 Qed.
 
-Lemma ncol_suma__ncol : forall A B C D E F, ~ Col A B C -> SumA A B C B C A D E F -> ~ Col D E F.
+Lemma ncol_suma__ncol : forall A B C D E F, ~ Col A B C -> 和角 A B C B C A D E F -> ~ Col D E F.
 Proof.
   intros A B C D E F HNCol HSuma HCol.
   apply HNCol, col_suma__col with D E F; assumption.
@@ -1874,7 +1874,7 @@ Qed.
  *)
 
 Lemma per2_suma__bet : forall A B C D E F G H I, Per A B C -> Per D E F ->
-   SumA A B C D E F G H I -> Bet G H I.
+   和角 A B C D E F G H I -> Bet G H I.
 Proof.
   intros A B C D E F G H I HB HE HSuma.
   destruct HSuma as [A1 [HConga1 [HNos [HCop HConga2]]]].
@@ -1889,7 +1889,7 @@ Qed.
 Lemma bet_per2__suma : forall A B C D E F G H I,
    A <> B -> B <> C -> D <> E -> E <> F -> G <> H -> H <> I ->
    Per A B C -> Per D E F ->
-   Bet G H I -> SumA A B C D E F G H I.
+   Bet G H I -> 和角 A B C D E F G H I.
 Proof.
   intros A B C D E F G H I H1 H2 H3 H4 H5 H6 HB HE HBet.
   destruct (ex_suma A B C D E F) as [G' [H' [I' HSuma]]]; auto.
@@ -1900,7 +1900,7 @@ Proof.
 Qed.
 
 Lemma per2__sams : forall A B C D E F, A <> B -> B <> C -> D <> E -> E <> F ->
-  Per A B C -> Per D E F -> SAMS A B C D E F.
+  Per A B C -> Per D E F -> 角度之和小于平角 A B C D E F.
 Proof.
   intros A B C D E F HAB HBC HDE HEF HPerB HPerE.
   destruct (ex_suma A B C D E F) as [G [H [I]]]; auto.
@@ -1910,7 +1910,7 @@ Qed.
 (** If 90+x=180 then x=90. *)
 
 Lemma bet_per_suma__per456 : forall A B C D E F G H I, Per A B C -> Bet G H I ->
-   SumA A B C D E F G H I -> Per D E F.
+   和角 A B C D E F G H I -> Per D E F.
 Proof.
   intros A B C D E F G H I HPer HBet HSuma.
   assert(HA1 := symmetric_point_construction A B).
@@ -1947,15 +1947,15 @@ Qed.
 (** If x+90=180 then x=90. *)
 
 Lemma bet_per_suma__per123 : forall A B C D E F G H I, Per D E F -> Bet G H I ->
-   SumA A B C D E F G H I -> Per A B C.
+   和角 A B C D E F G H I -> Per A B C.
 Proof.
   intros A B C D E F G H I HPer HBet HSuma.
-  apply (bet_per_suma__per456 D E F _ _ _ G H I); SumA.
+  apply (bet_per_suma__per456 D E F _ _ _ G H I); 和角.
 Qed.
 
 (** If x+x=180 then x=90. *)
 
-Lemma bet_suma__per : forall A B C D E F, Bet D E F -> SumA A B C A B C D E F ->
+Lemma bet_suma__per : forall A B C D E F, Bet D E F -> 和角 A B C A B C D E F ->
    Per A B C.
 Proof.
   intros A B C D E F HBet HSuma.
@@ -1968,7 +1968,7 @@ Qed.
 
 (** If x<90 then x+x<180 (two lemmas). *)
 
-Lemma acute__sams : forall A B C, 为锐角 A B C -> SAMS A B C A B C.
+Lemma acute__sams : forall A B C, 为锐角 A B C -> 角度之和小于平角 A B C A B C.
 Proof.
   intros A B C Hacute.
   assert(HA' := symmetric_point_construction A B).
@@ -1980,7 +1980,7 @@ Proof.
   apply (acute_bet__obtuse A); Between.
 Qed.
 
-Lemma acute_suma__nbet : forall A B C D E F, 为锐角 A B C -> SumA A B C A B C D E F -> ~ Bet D E F.
+Lemma acute_suma__nbet : forall A B C D E F, 为锐角 A B C -> 和角 A B C A B C D E F -> ~ Bet D E F.
 Proof.
   intros A B C D E F Hacute HSuma.
   assert_diffs.
@@ -1992,9 +1992,9 @@ Qed.
 
 (** If x<90 and y<90 then x+y<180 (two lemmas). *)
 
-Lemma acute2__sams : forall A B C D E F, 为锐角 A B C -> 为锐角 D E F -> SAMS A B C D E F.
+Lemma acute2__sams : forall A B C D E F, 为锐角 A B C -> 为锐角 D E F -> 角度之和小于平角 A B C D E F.
 Proof.
-  assert (Haux : forall A B C D E F, 为锐角 A B C -> 角度小于等于 D E F A B C -> SAMS A B C D E F).
+  assert (Haux : forall A B C D E F, 为锐角 A B C -> 角度小于等于 D E F A B C -> 角度之和小于平角 A B C D E F).
   { intros A B C D E F H为锐角 HLea.
     apply sams_lea2__sams with A B C A B C.
       apply acute__sams, H为锐角.
@@ -2003,13 +2003,13 @@ Proof.
   }
   intros A B C D E F H为锐角1 H为锐角2.
   assert_diffs.
-  destruct (lea_total A B C D E F); SumA.
+  destruct (lea_total A B C D E F); 和角.
 Qed.
 
 Lemma acute2_suma__nbet : forall A B C D E F G H I,
-  为锐角 A B C -> 为锐角 D E F -> SumA A B C D E F G H I -> ~ Bet G H I.
+  为锐角 A B C -> 为锐角 D E F -> 和角 A B C D E F G H I -> ~ Bet G H I.
 Proof.
-  assert (Haux : forall A B C D E F G H I, 为锐角 A B C -> 角度小于等于 D E F A B C -> SumA A B C D E F G H I ->
+  assert (Haux : forall A B C D E F G H I, 为锐角 A B C -> 角度小于等于 D E F A B C -> 和角 A B C D E F G H I ->
     ~ Bet G H I).
   { intros A B C D E F G H I H为锐角 HLea HSuma HBet.
     assert_diffs.
@@ -2030,7 +2030,7 @@ Qed.
 (** If x<90 then x+90<180 (two lemmas) *)
 
 Lemma acute_per__sams : forall A B C D E F, A <> B -> B <> C ->
-  Per A B C -> 为锐角 D E F -> SAMS A B C D E F.
+  Per A B C -> 为锐角 D E F -> 角度之和小于平角 A B C D E F.
 Proof.
   intros A B C D E F HAB HBC HPer H为锐角.
   apply sams_lea2__sams with A B C A B C.
@@ -2040,7 +2040,7 @@ Proof.
 Qed.
 
 Lemma acute_per_suma__nbet : forall A B C D E F G H I, A <> B -> B <> C ->
-  Per A B C -> 为锐角 D E F -> SumA A B C D E F G H I -> ~ Bet G H I.
+  Per A B C -> 为锐角 D E F -> 和角 A B C D E F G H I -> ~ Bet G H I.
 Proof.
   intros A B C D E F G H I HAB HBC HPer H为锐角 HSuma HBet.
   assert_diffs.
@@ -2052,7 +2052,7 @@ Qed.
 
 (** If x>90 then x+x>180. *)
 
-Lemma obtuse__nsams : forall A B C, 为钝角 A B C -> ~ SAMS A B C A B C.
+Lemma obtuse__nsams : forall A B C, 为钝角 A B C -> ~ 角度之和小于平角 A B C A B C.
 Proof.
   intros A B C Hobtuse.
   assert(HA' := symmetric_point_construction A B).
@@ -2069,8 +2069,8 @@ Qed.
 
 (** If x+x<180 then x<90. *)
 
-Lemma nbet_sams_suma__acute : forall A B C D E F, ~ Bet D E F -> SAMS A B C A B C ->
-   SumA A B C A B C D E F -> 为锐角 A B C.
+Lemma nbet_sams_suma__acute : forall A B C D E F, ~ Bet D E F -> 角度之和小于平角 A B C A B C ->
+   和角 A B C A B C D E F -> 为锐角 A B C.
 Proof.
   intros A B C D E F HNBet HIsi HSuma.
   assert_diffs.
@@ -2080,13 +2080,13 @@ Proof.
   destruct HUn.
   - apply HNBet.
     apply (per2_suma__bet A B C A B C); auto.
-  - assert(~ SAMS A B C A B C); auto.
+  - assert(~ 角度之和小于平角 A B C A B C); auto.
     apply obtuse__nsams; auto.
 Qed.
 
 (** If x+x>180 then x>90. *)
 
-Lemma nsams__obtuse : forall A B C, A <> B -> B <> C -> ~ SAMS A B C A B C -> 为钝角 A B C.
+Lemma nsams__obtuse : forall A B C, A <> B -> B <> C -> ~ 角度之和小于平角 A B C A B C -> 为钝角 A B C.
 Proof.
   intros A B C HAB HBC HNIsi.
   elim(angle_partition A B C); auto.
@@ -2119,8 +2119,8 @@ Qed.
 (** If doubling two acute angles makes the same result, then these angles are congruent *)
 
 Lemma sams2_suma2__conga : forall A B C D E F A' B' C',
-  SAMS A B C A B C -> SumA A B C A B C D E F ->
-  SAMS A' B' C' A' B' C' -> SumA A' B' C' A' B' C' D E F ->
+  角度之和小于平角 A B C A B C -> 和角 A B C A B C D E F ->
+  角度之和小于平角 A' B' C' A' B' C' -> 和角 A' B' C' A' B' C' D E F ->
   等角 A B C A' B' C'.
 Proof.
   intros A B C D E F A' B' C' HIsi HSuma HIsi' HSuma'.
@@ -2130,8 +2130,8 @@ Proof.
 Qed.
 
 Lemma acute2_suma2__conga : forall A B C D E F A' B' C',
-  为锐角 A B C -> SumA A B C A B C D E F ->
-  为锐角 A' B' C' -> SumA A' B' C' A' B' C' D E F ->
+  为锐角 A B C -> 和角 A B C A B C D E F ->
+  为锐角 A' B' C' -> 和角 A' B' C' A' B' C' D E F ->
   等角 A B C A' B' C'.
 Proof.
   intros A B C D E F A' B' C' HB HSuma HB'.
@@ -2141,7 +2141,7 @@ Qed.
 (** Sum of two straight angles is a null angle *)
 
 Lemma bet2_suma__out : forall A B C D E F G H I, Bet A B C -> Bet D E F ->
-  SumA A B C D E F G H I -> Out H G I.
+  和角 A B C D E F G H I -> Out H G I.
 Proof.
   intros A B C D E F G H I HBet1 HBet2 HSuma.
   assert_diffs.
@@ -2155,7 +2155,7 @@ Qed.
 (** Sum of two degenerate angles is degenerate *)
 
 Lemma col2_suma__col : forall A B C D E F G H I, Col A B C -> Col D E F ->
-  SumA A B C D E F G H I -> Col G H I.
+  和角 A B C D E F G H I -> Col G H I.
 Proof.
   intros A B C D E F G H I HCol1 HCol2 HSuma.
   destruct (bet_dec A B C).
@@ -2172,7 +2172,7 @@ Qed.
 (** The sum of two supplementary angles is a flat angle (two lemmas) *)
 
 Lemma suma_suppa__bet : forall A B C D E F G H I,
-  SuppA A B C D E F -> SumA A B C D E F G H I -> Bet G H I.
+  互为补角 A B C D E F -> 和角 A B C D E F G H I -> Bet G H I.
 Proof.
   intros A B C D E F G H I [_ [A' [HBet HCong]]] [A'' [HConga1 [HNOS [HCop HConga2]]]].
   apply (bet_conga__bet A B A''); trivial.
@@ -2192,7 +2192,7 @@ Proof.
 Qed.
 
 Lemma bet_suppa__suma : forall A B C D E F G H I, G <> H -> H <> I ->
-  SuppA A B C D E F -> Bet G H I -> SumA A B C D E F G H I.
+  互为补角 A B C D E F -> Bet G H I -> 和角 A B C D E F G H I.
 Proof.
   intros A B C D E F G H I; intros.
   assert_diffs.
@@ -2206,7 +2206,7 @@ Qed.
 (** If the sum of two angles is a flat angle, then they are supplementary *)
 
 Lemma bet_suma__suppa : forall A B C D E F G H I,
-  SumA A B C D E F G H I -> Bet G H I -> SuppA A B C D E F.
+  和角 A B C D E F G H I -> Bet G H I -> 互为补角 A B C D E F.
 Proof.
   intros A B C D E F G H I [A' [HConga1 [_ [_ HConga2]]]] HBet.
   assert_diffs.
@@ -2219,7 +2219,7 @@ Qed.
 (** The sum of two angles is equal to the sum of their two supplementary angles *)
 
 Lemma bet2_suma__suma : forall A B C D E F G H I A' D', A' <> B -> D' <> E ->
-  Bet A B A' -> Bet D E D' -> SumA A B C D E F G H I -> SumA A' B C D' E F G H I.
+  Bet A B A' -> Bet D E D' -> 和角 A B C D E F G H I -> 和角 A' B C D' E F G H I.
 Proof.
   intros A B C D E F G H I A' D' HBA' HED' HBetA HBetD [J [HJ1 [HJ2 [HJ3 HJ4]]]]; spliter.
   destruct (由一点往一方向构造等长线段 C B B C) as [C' []].
@@ -2234,8 +2234,8 @@ Proof.
 Qed.
 
 Lemma suma_suppa2__suma : forall A B C D E F G H I A' B' C' D' E' F',
-  SuppA A B C A' B' C' -> SuppA D E F D' E' F' -> SumA A B C D E F G H I ->
-  SumA A' B' C' D' E' F' G H I.
+  互为补角 A B C A' B' C' -> 互为补角 D E F D' E' F' -> 和角 A B C D E F G H I ->
+  和角 A' B' C' D' E' F' G H I.
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' [_ [A0 []]] [_ [D0 []]] HSuma.
   assert_diffs.
@@ -2246,8 +2246,8 @@ Qed.
 (** If doubling two obtuse angles makes the same result, then these angles are congruent *)
 
 Lemma suma2_obtuse2__conga : forall A B C D E F A' B' C',
-  为钝角 A B C -> SumA A B C A B C D E F ->
-  为钝角 A' B' C' -> SumA A' B' C' A' B' C' D E F ->
+  为钝角 A B C -> 和角 A B C A B C D E F ->
+  为钝角 A' B' C' -> 和角 A' B' C' A' B' C' D E F ->
   等角 A B C A' B' C'.
 Proof.
   intros A B C D E F A' B' C' HB HSuma HB' HSuma'.
@@ -2265,12 +2265,12 @@ Qed.
 (** If doubling two angles makes the same result, then they are either congruent or supplementary *)
 
 Lemma bet_suma2__or_conga : forall A B C D E F A' B' C' A0, A0 <> B ->
-  Bet A B A0 -> SumA A B C A B C D E F -> SumA A' B' C' A' B' C' D E F ->
+  Bet A B A0 -> 和角 A B C A B C D E F -> 和角 A' B' C' A' B' C' D E F ->
   等角 A B C A' B' C' \/ 等角 A0 B C A' B' C'.
 Proof.
   intros A B C D E F A' B' C' A0 HBA0 HBet HSuma.
   revert A' B' C'.
-  assert (Haux : forall A' B' C', 为锐角 A' B' C' -> SumA A' B' C' A' B' C' D E F ->
+  assert (Haux : forall A' B' C', 为锐角 A' B' C' -> 和角 A' B' C' A' B' C' D E F ->
     等角 A B C A' B' C' \/ 等角 A0 B C A' B' C').
   { intros A' B' C' H为锐角' HSuma'.
     assert_diffs.
@@ -2298,8 +2298,8 @@ Proof.
 Qed.
 
 Lemma suma2__or_conga_suppa : forall A B C A' B' C' D E F ,
-  SumA A B C A B C D E F -> SumA A' B' C' A' B' C' D E F ->
-  等角 A B C A' B' C' \/ SuppA A B C A' B' C'.
+  和角 A B C A B C D E F -> 和角 A' B' C' A' B' C' D E F ->
+  等角 A B C A' B' C' \/ 互为补角 A B C A' B' C'.
 Proof.
   intros A B C A' B' C' D E F HSuma HSuma'.
   destruct (由一点往一方向构造等长线段 A B A B) as [A0 []].
@@ -2314,7 +2314,7 @@ Qed.
 (** Basic properties about the sum of the angles of a triangle *)
 
 Lemma ex_trisuma : forall A B C, A <> B -> B <> C -> A <> C ->
-  exists D E F, TriSumA A B C D E F.
+  exists D E F, 三角形内角和 A B C D E F.
 Proof.
   intros A B C HAB HBC HAC.
   destruct (ex_suma A B C B C A) as [G [H [I HSuma1]]]; auto.
@@ -2324,7 +2324,7 @@ Proof.
   split; assumption.
 Qed.
 
-Lemma trisuma_perm_231 : forall A B C D E F, TriSumA A B C D E F -> TriSumA B C A D E F.
+Lemma trisuma_perm_231 : forall A B C D E F, 三角形内角和 A B C D E F -> 三角形内角和 B C A D E F.
 Proof.
   intros A B C D E F HT.
   destruct HT as [A1 [B1 [C1 [HT1 HT2]]]].
@@ -2339,14 +2339,14 @@ Proof.
   apply (suma_assoc A B C B C A C A B D E F A1 B1 C1 B2 C2 A2); try (apply sams123231); auto.
 Qed.
 
-Lemma trisuma_perm_312 : forall A B C D E F, TriSumA A B C D E F -> TriSumA C A B D E F.
+Lemma trisuma_perm_312 : forall A B C D E F, 三角形内角和 A B C D E F -> 三角形内角和 C A B D E F.
 Proof.
   intros.
   do 2 apply trisuma_perm_231.
   assumption.
 Qed.
 
-Lemma trisuma_perm_321 : forall A B C D E F, TriSumA A B C D E F -> TriSumA C B A D E F.
+Lemma trisuma_perm_321 : forall A B C D E F, 三角形内角和 A B C D E F -> 三角形内角和 C B A D E F.
 Proof.
   intros A B C D E F HT.
   destruct HT as [A1 [B1 [C1 [HT1 HT2]]]].
@@ -2358,12 +2358,12 @@ Proof.
   exists A2.
   exists B2.
   split.
-  SumA.
+  和角.
   apply suma_middle_comm.
   apply (suma_assoc C A B A B C B C A D E F C2 A2 B2 A1 B1 C1); try (apply sams123231); auto.
 Qed.
 
-Lemma trisuma_perm_213 : forall A B C D E F, TriSumA A B C D E F -> TriSumA B A C D E F.
+Lemma trisuma_perm_213 : forall A B C D E F, 三角形内角和 A B C D E F -> 三角形内角和 B A C D E F.
 Proof.
   intros.
   apply trisuma_perm_321.
@@ -2371,7 +2371,7 @@ Proof.
   assumption.
 Qed.
 
-Lemma trisuma_perm_132 : forall A B C D E F, TriSumA A B C D E F -> TriSumA A C B D E F.
+Lemma trisuma_perm_132 : forall A B C D E F, 三角形内角和 A B C D E F -> 三角形内角和 A C B D E F.
 Proof.
   intros.
   apply trisuma_perm_321.
@@ -2380,7 +2380,7 @@ Proof.
 Qed.
 
 Lemma conga_trisuma__trisuma : forall A B C D E F D' E' F',
-  TriSumA A B C D E F -> 等角 D E F D' E' F' -> TriSumA A B C D' E' F'.
+  三角形内角和 A B C D E F -> 等角 D E F D' E' F' -> 三角形内角和 A B C D' E' F'.
 Proof.
   intros A B C D E F D' E' F' HTri HConga.
   destruct HTri as [G [H [I [HSuma1 HSuma2]]]].
@@ -2389,7 +2389,7 @@ Proof.
 Qed.
 
 Lemma trisuma2__conga : forall A B C D E F D' E' F',
-  TriSumA A B C D E F -> TriSumA A B C D' E' F' -> 等角 D E F D' E' F'.
+  三角形内角和 A B C D E F -> 三角形内角和 A B C D' E' F' -> 等角 D E F D' E' F'.
 Proof.
   intros A B C D E F D' E' F' HTri HTri'.
   destruct HTri as [G [H [I [HSuma1 HSuma2]]]].
@@ -2400,9 +2400,9 @@ Proof.
   apply (suma2__conga A B C B C A); trivial.
 Qed.
 
-Lemma conga3_trisuma__trisuma : forall A B C D E F A' B' C', TriSumA A B C D E F ->
+Lemma conga3_trisuma__trisuma : forall A B C D E F A' B' C', 三角形内角和 A B C D E F ->
   等角 A B C A' B' C' -> 等角 B C A B' C' A' -> 等角 C A B C' A' B' ->
-  TriSumA A' B' C' D E F.
+  三角形内角和 A' B' C' D E F.
 Proof.
   intros A B C D E F A' B' C' HTri HCongaB HCongaC HCongaA.
   destruct HTri as [G [H [I [HSuma HSuma']]]].
@@ -2412,7 +2412,7 @@ Qed.
 
 (** The sum of the angles of a degenerate triangle is a straight angle *)
 
-Lemma col_trisuma__bet : forall A B C P Q R, Col A B C -> TriSumA A B C P Q R -> Bet P Q R.
+Lemma col_trisuma__bet : forall A B C P Q R, Col A B C -> 三角形内角和 A B C P Q R -> Bet P Q R.
 Proof.
   intros A B C P Q R HCol HTri.
   destruct HTri as [D [E [F []]]].
@@ -2434,7 +2434,7 @@ Qed.
 
 (** Decidability properties *)
 
-Lemma suma_dec : forall A B C D E F G H I, SumA A B C D E F G H I \/ ~ SumA A B C D E F G H I.
+Lemma suma_dec : forall A B C D E F G H I, 和角 A B C D E F G H I \/ ~ 和角 A B C D E F G H I.
 Proof.
   intros A B C D E F G H I.
   destruct(两点重合的决定性 A B).
@@ -2453,7 +2453,7 @@ Proof.
   apply HN等角, (suma2__conga A B C D E F); auto.
 Qed.
 
-Lemma sams_dec : forall A B C D E F, SAMS A B C D E F \/ ~ SAMS A B C D E F.
+Lemma sams_dec : forall A B C D E F, 角度之和小于平角 A B C D E F \/ ~ 角度之和小于平角 A B C D E F.
 Proof.
   intros A B C D E F.
   destruct(两点重合的决定性 A B).
@@ -2468,7 +2468,7 @@ Proof.
   apply HNlea, (sams_chara A); Between.
 Qed.
 
-Lemma trisuma_dec : forall A B C P Q R, TriSumA A B C P Q R \/ ~ TriSumA A B C P Q R.
+Lemma trisuma_dec : forall A B C P Q R, 三角形内角和 A B C P Q R \/ ~ 三角形内角和 A B C P Q R.
 Proof.
   intros A B C P Q R.
   destruct(两点重合的决定性 A B).

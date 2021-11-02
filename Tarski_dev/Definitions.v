@@ -387,40 +387,40 @@ Definition SumS A B C D E F := exists P Q R,
 
 Definition Perp_bisect P Q A B := 严格对称 A B P Q /\ A <> B.
 
-Definition Perp_bisect_bis P Q A B :=
+Definition 中垂线_另一定义 P Q A B :=
   exists I, 垂直于 I P Q A B /\ 中点 I A B.
 
-Definition Is_on_perp_bisect P A B := Cong A P P B.
+Definition 在中垂线上 P A B := Cong A P P B.
 
 (** Definition of the sum of angles.
-    SumA A B C D E F G H I means that ABC + DEF = GHI. *)
+    和角 A B C D E F G H I means that ABC + DEF = GHI. *)
 
-Definition SumA A B C D E F G H I :=
+Definition 和角 A B C D E F G H I :=
   exists J, 等角 C B J D E F /\ ~ OS B C A J /\ 共面 A B C J /\ 等角 A B J G H I.
 
-(** The SAMS predicate describes the fact that the sum of the two angles is "at most straight" *)
+(** The 角度之和小于平角 predicate describes the fact that the sum of the two angles is "at most straight" *)
 
-Definition SAMS A B C D E F :=
+Definition 角度之和小于平角 A B C D E F :=
   A <> B /\ (Out E D F \/ ~ Bet A B C) /\
   exists J, 等角 C B J D E F /\ ~ OS B C A J /\ ~ TS A B C J /\ 共面 A B C J.
 
 (** Supplementary angles *)
 
-Definition SuppA A B C D E F :=
+Definition 互为补角 A B C D E F :=
   A <> B /\ exists A', Bet A B A' /\ 等角 D E F C B A'.
 
 (** Definition of the sum of the interior angles of a triangle.
-    TriSumA A B C D E F means that the sum of the angles of the triangle ABC
+    三角形内角和 A B C D E F means that the sum of the angles of the triangle ABC
     is equal to the angle DEF *)
 
-Definition TriSumA A B C D E F :=
-  exists G H I, SumA A B C B C A G H I /\ SumA G H I C A B D E F.
+Definition 三角形内角和 A B C D E F :=
+  exists G H I, 和角 A B C B C A G H I /\ 和角 G H I C A B D E F.
 
 (** The difference between a straight angle and the sum of the angles of the triangle ABC.
     It is a non-oriented angle, so we can't discriminate between positive and negative difference *)
 
-Definition Defect A B C D E F := exists G H I,
-  TriSumA A B C G H I /\ SuppA G H I D E F.
+Definition 三角形内角和与平角之差 A B C D E F := exists G H I,
+  三角形内角和 A B C G H I /\ 互为补角 G H I D E F.
 
 (** P is on the circle of center A going through B *)
 
@@ -531,7 +531,7 @@ Inductive 角度在线性刻度上 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpo
   | 角度线性刻度_初始化 : forall A B C D E F, 等角 A B C D E F -> 角度在线性刻度上 A B C D E F
   | 角度线性刻度_步进 : forall A B C D E F G H I,
                    角度在线性刻度上 A B C D E F ->
-                   SAMS D E F A B C -> SumA D E F A B C G H I ->
+                   角度之和小于平角 D E F A B C -> 和角 D E F A B C G H I ->
                    角度在线性刻度上 A B C G H I.
 
 (** There exists n such that the angle DEF is congruent to 2^n times the angle ABC *)
@@ -540,7 +540,7 @@ Inductive 角度在对数刻度上 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpo
   | 角度对数刻度_初始化 : forall A B C D E F, 等角 A B C D E F -> 角度在对数刻度上 A B C D E F
   | 角度对数刻度_步进 : forall A B C D E F G H I,
                       角度在对数刻度上 A B C D E F ->
-                      SAMS D E F D E F -> SumA D E F D E F G H I ->
+                      角度之和小于平角 D E F D E F -> 和角 D E F D E F G H I ->
                       角度在对数刻度上 A B C G H I.
 
 (** 平行四边形 *)

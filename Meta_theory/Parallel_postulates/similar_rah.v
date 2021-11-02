@@ -52,7 +52,7 @@ Proof.
       apply out_one_side; Col; apply bet_out; Between.
   }
   assert(Bet A H C) by (apply out2__bet; apply l6_6; auto).
-  assert(SAMS B G H H C B).
+  assert(角度之和小于平角 B G H H C B).
   { apply (sams_chara _ _ _ _ _ _ A); Between.
     apply (l11_30 B C A A B C); auto; apply conga_right_comm; auto.
     apply out2__conga; [apply out_trivial|]; auto.
@@ -61,8 +61,8 @@ Proof.
     apply (l11_10 A G H A B C); try (apply out_trivial); 等角; apply bet_out; Between.
   assert(等角 G H A B C H).
     apply (l11_10 G H A B C A); try (apply out_trivial); 等角.
-  assert(SAMS B G H C B G) by (apply (conga2_sams__sams B G H H G A); 等角; SumA).
-  assert(SAMS C H G B C H) by (apply (conga2_sams__sams C H G G H A); 等角; SumA).
+  assert(角度之和小于平角 B G H C B G) by (apply (conga2_sams__sams B G H H G A); 等角; 和角).
+  assert(角度之和小于平角 C H G B C H) by (apply (conga2_sams__sams C H G G H A); 等角; 和角).
   destruct(ex_suma B C G C G B) as [I [J [K]]]; auto.
   destruct(ex_suma H C G C G H) as [L [M [N]]]; auto.
   suma.assert_diffs.
@@ -70,33 +70,33 @@ Proof.
   destruct(ex_suma L M N G H C) as [R [S [T]]]; auto.
   destruct(ex_suma I J K L M N) as [U [V [W]]]; auto.
   suma.assert_diffs.
-  assert(HInter : SAMS I J K L M N /\ SumA H G B B C H U V W).
+  assert(HInter : 角度之和小于平角 I J K L M N /\ 和角 H G B B C H U V W).
   { assert(TS G C B H).
     { apply invert_two_sides, l9_31; Side.
       apply (col_one_side _ A); Col.
       apply invert_one_side; apply out_one_side; try (apply l6_6); Col.
     }
-    assert(SAMS H G B B C G).
-    { apply (sams_lea2__sams _ _ _ _ _ _ H G B B C H); try (apply lea_refl); SumA.
+    assert(角度之和小于平角 H G B B C G).
+    { apply (sams_lea2__sams _ _ _ _ _ _ H G B B C H); try (apply lea_refl); 和角.
       apply inangle__lea.
       apply os_ts__inangle; Side.
     }
     destruct(ex_suma B C G H G B) as [X [Y [Z]]]; auto.
-    assert(SumA B G C C G H H G B) by SumA.
-    assert(SAMS B G C C G H).
+    assert(和角 B G C C G H H G B) by 和角.
+    assert(角度之和小于平角 B G C C G H).
     { apply os_ts__sams; trivial.
       apply (col_one_side _ A); Col.
       apply invert_one_side, out_one_side; Col.
     }
-    assert(SAMS I J K C G H) by (apply (sams_assoc B C G C G B _ _ _ _ _ _ H G B); SumA).
-    assert(SumA I J K C G H X Y Z) by (apply (suma_assoc B C G C G B _ _ _ _ _ _ _ _ _ H G B); SumA).
-    assert(SAMS B C G H C G) by (apply sams_right_comm, os_ts__sams; Side).
-    assert(SumA B C G H C G H C B) by SumA.
+    assert(角度之和小于平角 I J K C G H) by (apply (sams_assoc B C G C G B _ _ _ _ _ _ H G B); 和角).
+    assert(和角 I J K C G H X Y Z) by (apply (suma_assoc B C G C G B _ _ _ _ _ _ _ _ _ H G B); 和角).
+    assert(角度之和小于平角 B C G H C G) by (apply sams_right_comm, os_ts__sams; Side).
+    assert(和角 B C G H C G H C B) by 和角.
     split.
-    - assert(SAMS X Y Z H C G) by (apply (sams_assoc H G B B C G _ _ _ _ _ _ H C B); SumA).
-      apply (sams_assoc _ _ _ C G H H C G X Y Z); SumA.
-    - assert(SumA X Y Z H C G U V W) by (apply (suma_assoc I J K C G H _ _ _ _ _ _ _ _ _ L M N); SumA).
-      apply (suma_assoc _ _ _ B C G H C G _ _ _ X Y Z); SumA.
+    - assert(角度之和小于平角 X Y Z H C G) by (apply (sams_assoc H G B B C G _ _ _ _ _ _ H C B); 和角).
+      apply (sams_assoc _ _ _ C G H H C G X Y Z); 和角.
+    - assert(和角 X Y Z H C G U V W) by (apply (suma_assoc I J K C G H _ _ _ _ _ _ _ _ _ L M N); 和角).
+      apply (suma_assoc _ _ _ B C G H C G _ _ _ X Y Z); 和角.
   }
   destruct HInter.
 
@@ -104,27 +104,27 @@ Proof.
   - intro aah.
     exfalso.
     apply(nlta U V W).
-    apply (sams_lta2_suma2__lta I J K L M N _ _ _ H G B B C H); SumA.
+    apply (sams_lta2_suma2__lta I J K L M N _ _ _ H G B B C H); 和角.
     { destruct (t22_14__sams_nbet aah C G B I J K O P Q) as [HIsi HNBet]; Col.
       apply (sams_lea_lta789_suma2__lta123 _ _ _ G B C O P Q _ _ _ G B C A G B); Lea.
         split; Lea; intro; apply HNBet; apply (bet_conga__bet A G B); 等角.
-        apply (conga3_suma__suma B G H H G A A G B); 等角; SumA.
+        apply (conga3_suma__suma B G H H G A A G B); 等角; 和角.
     }
     destruct (t22_14__sams_nbet aah C G H L M N R S T) as [HIsi HNBet]; Col.
     apply (sams_lea_lta789_suma2__lta123 _ _ _ G H C R S T _ _ _ G H C A H C); Lea.
       split; Lea; intro; apply HNBet; apply (bet_conga__bet A H C); 等角.
-      apply (conga3_suma__suma A H G G H C A H C); 等角; SumA.
+      apply (conga3_suma__suma A H G G H C A H C); 等角; 和角.
 
   - intro HUn.
     destruct HUn as [|oah]; auto.
     exfalso.
     apply(nlta U V W).
-    apply (sams_lta2_suma2__lta H G B B C H _ _ _ I J K L M N); SumA; apply nlea__lta; auto; intro.
+    apply (sams_lta2_suma2__lta H G B B C H _ _ _ I J K L M N); 和角; apply nlea__lta; auto; intro.
     { apply (t22_14__nsams oah C G B I J K); Col.
-      apply (sams_lea2__sams _ _ _ _ _ _ H G B G B C); Lea; SumA.
+      apply (sams_lea2__sams _ _ _ _ _ _ H G B G B C); Lea; 和角.
     }
     apply (t22_14__nsams oah C G H L M N); Col.
-    apply (sams_lea2__sams _ _ _ _ _ _ B C H G H C); Lea; SumA.
+    apply (sams_lea2__sams _ _ _ _ _ _ B C H G H C); Lea; 和角.
 Qed.
 
 Lemma similar__rah : postulate_of_existence_of_similar_triangles -> postulate_of_right_saccheri_quadrilaterals.

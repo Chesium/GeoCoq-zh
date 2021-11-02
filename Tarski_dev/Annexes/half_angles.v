@@ -16,13 +16,13 @@ Proof.
   repeat split; auto.
 Qed.
 
-Lemma halfa__suma : forall P A O B, HalfA P A O B -> SumA A O P A O P A O B.
+Lemma halfa__suma : forall P A O B, HalfA P A O B -> 和角 A O P A O P A O B.
 Proof.
   unfold HalfA.
   intros P A O B H.
   spliter.
   assert_diffs.
-  apply (conga3_suma__suma A O P B O P A O B); [SumA|等角..].
+  apply (conga3_suma__suma A O P B O P A O B); [和角|等角..].
 Qed.
 
 Lemma halfa_exists : forall A O B, ~ Bet A O B -> exists P, HalfA P A O B.
@@ -203,13 +203,13 @@ Proof.
   apply l6_6, halfa1123__out, halfa_sym, HHalf.
 Qed.
 
-Lemma halfa__sams : forall P A O B, HalfA P A O B -> SAMS A O P A O P.
+Lemma halfa__sams : forall P A O B, HalfA P A O B -> 角度之和小于平角 A O P A O P.
 Proof.
   unfold HalfA.
   intros P A O B H.
   spliter.
   assert_diffs.
-  apply (conga2_sams__sams A O P P O B); [等角..|SumA].
+  apply (conga2_sams__sams A O P P O B); [等角..|和角].
 Qed.
 
 Lemma halfa__acute : forall P A O B, HalfA P A O B -> 为锐角 A O P.
@@ -454,7 +454,7 @@ Qed.
 
 
 Lemma ghalfa__suma : forall A' O' B' A O B, gHalfA A' O' B' A O B ->
-  SumA A' O' B' A' O' B' A O B.
+  和角 A' O' B' A' O' B' A O B.
 Proof.
   intros A' O' B' A O B [P [HHalf HConga]].
   assert (Hd := HHalf).
@@ -473,7 +473,7 @@ Proof.
 Qed.
 
 Lemma ghalfa_chara : forall A' O' B' A O B,
-  gHalfA A' O' B' A O B <-> (为锐角 A' O' B' /\ SumA A' O' B' A' O' B' A O B).
+  gHalfA A' O' B' A O B <-> (为锐角 A' O' B' /\ 和角 A' O' B' A' O' B' A O B).
 Proof.
   intros A' O' B' A O B.
   split.
@@ -482,7 +482,7 @@ Proof.
   destruct (halfa_exists A O B) as [P HP].
     apply (acute_suma__nbet A' O' B'); assumption.
   exists P; split; [assumption|].
-  apply sams2_suma2__conga with A O B; [SumA..| |].
+  apply sams2_suma2__conga with A O B; [和角..| |].
     eapply halfa__sams, HP.
     apply halfa__suma, HP.
 Qed.
@@ -491,7 +491,7 @@ Lemma ghalfa__out : forall A O B, gHalfA A O B A O B -> Out O A B.
 Proof.
   intros A O B HHalf.
   rewrite ghalfa_chara in HHalf; spliter.
-  apply (sams_suma__out546 A O B); SumA.
+  apply (sams_suma__out546 A O B); 和角.
 Qed.
 
 Lemma ghalfa_preserves_lta : forall A B C X Y Z A' B' C' X' Y' Z',
@@ -580,7 +580,7 @@ Qed.
 
 Lemma suma_preserves_ghalfa : forall A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z',
   为锐角 X Y Z ->
-  SumA A B C D E F X Y Z -> SumA A' B' C' D' E' F' X' Y' Z' ->
+  和角 A B C D E F X Y Z -> 和角 A' B' C' D' E' F' X' Y' Z' ->
   gHalfA A B C A' B' C' -> gHalfA D E F D' E' F' ->
   gHalfA X Y Z X' Y' Z'.
 Proof.
@@ -590,17 +590,17 @@ Proof.
   split; [apply H为锐角|].
   assert_diffs.
   destruct (ex_suma A' B' C' D E F) as [G [H [I]]]; auto.
-  assert (SumA A B C X Y Z G H I) by (apply suma_assoc_1 with A B C D E F A' B' C'; SumA).
-  apply suma_assoc_1 with A B C D E F G H I; [SumA..|].
-  apply suma_assoc_2 with A' B' C' D E F D' E' F'; [|SumA..].
-  apply sams_assoc_2 with A B C A B C X Y Z; SumA.
+  assert (和角 A B C X Y Z G H I) by (apply suma_assoc_1 with A B C D E F A' B' C'; 和角).
+  apply suma_assoc_1 with A B C D E F G H I; [和角..|].
+  apply suma_assoc_2 with A' B' C' D E F D' E' F'; [|和角..].
+  apply sams_assoc_2 with A B C A B C X Y Z; 和角.
 Qed.
 
 (** Given two angles a and b, a/2 - b/2 = (a-b)/2 *)
 
 Lemma acute_ghalfa2_sams_suma2__ghalfa456 : forall A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z',
-  SAMS A' B' C' D' E' F' -> 为锐角 D E F ->
-  SumA A B C D E F X Y Z -> SumA A' B' C' D' E' F' X' Y' Z' ->
+  角度之和小于平角 A' B' C' D' E' F' -> 为锐角 D E F ->
+  和角 A B C D E F X Y Z -> 和角 A' B' C' D' E' F' X' Y' Z' ->
   gHalfA A B C A' B' C' -> gHalfA X Y Z X' Y' Z' ->
   gHalfA D E F D' E' F'.
 Proof.
@@ -612,21 +612,21 @@ Proof.
   destruct (ex_suma D E F D E F) as [D'' [E'' [F'' HSuma3]]]; auto.
   apply (conga3_suma__suma D E F D E F D'' E'' F''); try apply conga_refl; auto.
   destruct (ex_suma A' B' C' D E F) as [G [H [I]]]; auto.
-  assert (SumA A B C X Y Z G H I) by (apply suma_assoc_1 with A B C D E F A' B' C'; SumA).
-  assert (SAMS A' B' C' D E F) by (apply sams_assoc_2 with A B C A B C X Y Z; SumA).
+  assert (和角 A B C X Y Z G H I) by (apply suma_assoc_1 with A B C D E F A' B' C'; 和角).
+  assert (角度之和小于平角 A' B' C' D E F) by (apply sams_assoc_2 with A B C A B C X Y Z; 和角).
   apply sams2_suma2__conga456 with A' B' C' X' Y' Z'; trivial; clear dependent D'; clear dependent E'.
-    apply sams_assoc_1 with D E F D E F G H I; [..|apply sams_assoc_2 with X Y Z A B C X Y Z]; SumA.
-    apply suma_assoc_1 with D E F D E F G H I; [..|apply suma_assoc_2 with X Y Z A B C X Y Z]; SumA.
+    apply sams_assoc_1 with D E F D E F G H I; [..|apply sams_assoc_2 with X Y Z A B C X Y Z]; 和角.
+    apply suma_assoc_1 with D E F D E F G H I; [..|apply suma_assoc_2 with X Y Z A B C X Y Z]; 和角.
 Qed.
 
 Lemma acute_ghalfa2_sams_suma2__ghalfa123 : forall A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z',
-  SAMS A' B' C' D' E' F' -> 为锐角 A B C ->
-  SumA A B C D E F X Y Z -> SumA A' B' C' D' E' F' X' Y' Z' ->
+  角度之和小于平角 A' B' C' D' E' F' -> 为锐角 A B C ->
+  和角 A B C D E F X Y Z -> 和角 A' B' C' D' E' F' X' Y' Z' ->
   gHalfA D E F D' E' F' -> gHalfA X Y Z X' Y' Z' ->
   gHalfA A B C A' B' C'.
 Proof.
   intros A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z' HSams H为锐角 HSuma HSuma' HHalf1 HHalf2.
-  apply acute_ghalfa2_sams_suma2__ghalfa456 with D E F X Y Z D' E' F' X' Y' Z'; SumA.
+  apply acute_ghalfa2_sams_suma2__ghalfa456 with D E F X Y Z D' E' F' X' Y' Z'; 和角.
 Qed.
 
 End HalfAngle.

@@ -10,7 +10,7 @@ Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 (** The sum of the angles of a triangle is the flat angle. *)
 
-Lemma trisuma__bet : forall A B C D E F, TriSumA A B C D E F -> Bet D E F.
+Lemma trisuma__bet : forall A B C D E F, 三角形内角和 A B C D E F -> Bet D E F.
 Proof.
   apply alternate_interior__triangle.
   unfold alternate_interior_angles_postulate.
@@ -18,7 +18,7 @@ Proof.
 Qed.
 
 Lemma bet__trisuma : forall A B C D E F, Bet D E F -> A <> B -> B <> C -> A <> C -> D <> E -> E <> F ->
-  TriSumA A B C D E F.
+  三角形内角和 A B C D E F.
 Proof.
   intros A B C D E F HBet; intros.
   destruct (ex_trisuma A B C) as [P [Q [R HTri]]]; auto.
@@ -40,11 +40,11 @@ Proof.
   unfold hypothesis_of_right_saccheri_quadrilaterals; apply right_saccheris.
 Qed.
 
-Lemma suma123231__sams : forall A B C D E F, SumA A B C B C A D E F -> SAMS D E F C A B.
+Lemma suma123231__sams : forall A B C D E F, 和角 A B C B C A D E F -> 角度之和小于平角 D E F C A B.
 Proof. exact (t22_20 not_obtuse_saccheris). Qed.
 
 Lemma bet_suma__suma : forall A B C D E F G H I, G <> H -> H <> I ->
-  Bet G H I -> SumA A B C B C A D E F -> SumA D E F C A B G H I.
+  Bet G H I -> 和角 A B C B C A D E F -> 和角 D E F C A B G H I.
 Proof.
   intros A B C D E F G H I HGH HHI HBet HSuma.
   suma.assert_diffs.
@@ -53,7 +53,7 @@ Proof.
   apply (suma2__conga A B C B C A); assumption.
 Qed.
 
-Lemma suma__suppa : forall A B C D E F, SumA A B C B C A D E F -> SuppA D E F C A B.
+Lemma suma__suppa : forall A B C D E F, 和角 A B C B C A D E F -> 互为补角 D E F C A B.
 Proof.
   intros A B C D E F HSuma.
   suma.assert_diffs.
@@ -63,7 +63,7 @@ Proof.
 Qed.
 
 Lemma high_school_exterior_angle_theorem : forall A B C B', A <> B -> B <> C -> A <> C -> A <> B' ->
-  Bet B A B' -> SumA A B C B C A C A B'.
+  Bet B A B' -> 和角 A B C B C A C A B'.
 Proof.
   intros A B C B'; intros.
   destruct (ex_suma A B C B C A) as [D [E [F HSuma]]]; auto.
@@ -279,7 +279,7 @@ Qed.
 
 Lemma diam_onc2_ts__suppa : forall O P A B C C',
   在圆上 A O P -> 在圆上 B O P -> 直径 C C' O P -> TS A B C C' ->
-  SuppA A C B A C' B.
+  互为补角 A C B A C' B.
 Proof.
   intros O P A B C C' HA HB [HBet [HC HC']] HTS.
   suma.assert_diffs.
@@ -288,11 +288,11 @@ Proof.
   assert (C <> C') by (intro; treat_equalities; auto).
   assert (HNColA : ~ Col C C' A) by (apply (onc3__ncol O P); auto).
   assert (HNColB : ~ Col C C' B) by (apply (onc3__ncol O P); auto).
-  assert (HSumaA : SumA A C C' C C' A C A C') by (apply cong_mid__suma with O; auto).
-  assert (HSumaB : SumA B C C' C C' B C B C') by (apply cong_mid__suma with O; auto).
+  assert (HSumaA : 和角 A C C' C C' A C A C') by (apply cong_mid__suma with O; auto).
+  assert (HSumaB : 和角 B C C' C C' B C B C') by (apply cong_mid__suma with O; auto).
   assert (Per C A C') by (apply thales_theorem with O; auto).
   assert (Per C B C') by (apply thales_theorem with O; auto).
-  assert (HSuma : SumA C A C' C B C' C O C') by (suma.assert_diffs; apply bet_per2__suma; auto).
+  assert (HSuma : 和角 C A C' C B C' C O C') by (suma.assert_diffs; apply bet_per2__suma; auto).
   apply bet_suma__suppa with C O C'; trivial.
   destruct (ex_suma C A C' C' C B) as [D [E [F HSuma1]]]; auto.
   assert (HTS2 : TS C C' A B) by (apply (chord_intersection O P); assumption).
@@ -321,19 +321,19 @@ Proof.
       apply out_trivial; auto.
       apply cong__acute; auto.
   }
-  assert (HSuma2 : SumA A C B A C' C D E F).
-    apply suma_sym, suma_assoc_1 with A C C' C' C B C A C'; SumA.
-  assert (HSAMS : SAMS A C B A C' C).
-    apply sams_sym, sams_assoc_1 with A C C' C' C B C A C'; SumA.
-  apply suma_assoc_1 with A C' C C C' B D E F; [SumA..|].
-  apply suma_assoc_2 with C A C' B C C' C B C'; SumA.
+  assert (HSuma2 : 和角 A C B A C' C D E F).
+    apply suma_sym, suma_assoc_1 with A C C' C' C B C A C'; 和角.
+  assert (H角度之和小于平角 : 角度之和小于平角 A C B A C' C).
+    apply sams_sym, sams_assoc_1 with A C C' C' C B C A C'; 和角.
+  apply suma_assoc_1 with A C' C C C' B D E F; [和角..|].
+  apply suma_assoc_2 with C A C' B C C' C B C'; 和角.
 Qed.
 
 (** In a circle the angle at the centre is double of the angle at the circumference. *)
 
 Lemma inscribed_angle_1 : forall O P A B C, A <> B -> B <> C -> A <> C ->
   在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 共面 A B C O ->
-  SumA A C B A C B A O B.
+  和角 A C B A C B A O B.
 Proof.
   intros O P A B C HAB HBC HAC HA HB HC HCop.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
@@ -345,7 +345,7 @@ Proof.
   destruct (cop__one_or_two_sides A B O C); Col; Cop.
   - destruct (chord_completion O P C O) as [C' []]; Circle.
     assert (TS A B C' C) by (apply l9_2, bet_ts__ts with O; Side).
-    assert (SuppA A C' B A C B).
+    assert (互为补角 A C' B A C B).
       apply (diam_onc2_ts__suppa O P); [..|repeat split|]; Between.
     apply (suma_suppa2__suma A C' B A C' B); trivial.
     apply ghalfa__suma, inscribed_angle with P; trivial.
@@ -360,7 +360,7 @@ Lemma cop2_onc4__or_conga_suppa : forall O P A B C C',
   A <> B -> B <> C -> A <> C -> B <> C' -> A <> C' ->
   在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 在圆上 C' O P ->
   共面 A B C O -> 共面 A B C' O ->
-  等角 A C B A C' B \/ SuppA A C B A C' B.
+  等角 A C B A C' B \/ 互为补角 A C B A C' B.
 Proof.
   intros O P A B C C'; intros.
   apply suma2__or_conga_suppa with A O B; trivial; apply inscribed_angle_1 with P; assumption.
@@ -414,12 +414,12 @@ Qed.
 Lemma cop_onc4_ts__suppa : forall O P A B C C',
   在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 在圆上 C' O P ->
   TS A B C C' -> 共面 A B C O ->
-  SuppA A C B A C' B.
+  互为补角 A C B A C' B.
 Proof.
   intros O P A B C C' HA HB.
   revert C C'.
   assert (Haux : forall C C', 在圆上 C O P -> 在圆上 C' O P -> TS A B C C' -> OS A B O C ->
-    SuppA A C B A C' B).
+    互为补角 A C B A C' B).
   { intros C C' HC HC' HTS HOS.
     suma.assert_diffs.
     assert (~ Col C A B) by (destruct HTS; assumption).
@@ -511,7 +511,7 @@ Qed.
 
 Lemma cop2_onc4_suppa__ts : forall O P A B C D, ~ Col A B O ->
   在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P -> 在圆上 D O P ->
-  共面 A B O C -> 共面 A B O D -> SuppA A C B A D B ->
+  共面 A B O C -> 共面 A B O D -> 互为补角 A C B A D B ->
   TS A B C D.
 Proof.
   intros O P A B C D HNCol HA HB HC HD HCopC HCopD HSuppa.
@@ -664,10 +664,10 @@ Qed.
     then A, B, C and D are concyclic. *)
 
 Lemma suppa_ts__concyclic : forall A B C D,
-  TS A B C D -> SuppA A C B A D B -> 共圆 A B C D.
+  TS A B C D -> 互为补角 A C B A D B -> 共圆 A B C D.
 Proof.
   intros A B.
-  assert (Haux : forall C D, TS A B C D -> 为钝角 A C B -> SuppA A C B A D B -> 共圆 A B C D).
+  assert (Haux : forall C D, TS A B C D -> 为钝角 A C B -> 互为补角 A C B A D B -> 共圆 A B C D).
   { intros C D HTS H为钝角 HSuppa.
     split.
       apply ts__coplanar, HTS.
@@ -707,7 +707,7 @@ Qed.
     then the two other angles are also supplementary. *)
 
 Lemma suppa_ts2__suppa : forall A B C D,
-  TS A C B D -> TS B D A C -> SuppA A B C A D C -> SuppA B A D B C D.
+  TS A C B D -> TS B D A C -> 互为补角 A B C A D C -> 互为补角 B A D B C D.
 Proof.
   intros A B C D HTS1 HTS2 HSuppa.
   assert (HCon : 共圆 A C B D) by (apply suppa_ts__concyclic; trivial).

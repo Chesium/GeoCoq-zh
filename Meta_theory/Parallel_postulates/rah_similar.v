@@ -46,8 +46,8 @@ Proof.
     {
     split; [|split; auto].
     apply (sams2_suma2__conga456 C A B _ _ _ _ _ _ B C A).
-      SumA.
-      apply (conga2_sams__sams C' A B' A B' C'); 等角; SumA.
+      和角.
+      apply (conga2_sams__sams C' A B' A B' C'); 等角; 和角.
       apply t22_12__rah; Perp.
       apply (conga3_suma__suma C' A B' A B' C' B' C' A); 等角; apply t22_12__rah; auto.
     }

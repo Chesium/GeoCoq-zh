@@ -146,14 +146,14 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
         apply cong3_conga; auto.
         repeat split; Cong.
         }
-      assert (HSumA : SumA A B D C B D A B C).
+      assert (H和角 : 和角 A B D C B D A B C).
         {
         exists C; repeat (split; 等角); [|Cop].
         apply l9_9.
         repeat split; [apply per_not_col; auto..|].
         exists D; split; [Col|Between].
         }
-      assert (HC := per2_suma__bet _ _ _ _ _ _ _ _ _ HPer1 HPer2 HSumA).
+      assert (HC := per2_suma__bet _ _ _ _ _ _ _ _ _ HPer1 HPer2 H和角).
       apply HNC; Col.
       }
     }

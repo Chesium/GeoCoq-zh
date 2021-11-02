@@ -8,14 +8,14 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma lemma_angleaddition : 
    forall A B C D E F P Q R a b c d e f p q r, 
-   SumA A B C D E F P Q R -> 等角 A B C a b c -> 等角 D E F d e f -> SumA a b c d e f p q r ->
+   和角 A B C D E F P Q R -> 等角 A B C a b c -> 等角 D E F d e f -> 和角 a b c d e f p q r ->
    等角 P Q R p q r.
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists S, (等角 A B C P Q S /\ 等角 D E F S Q R /\ BetS P S R)) by (conclude_def SumA );destruct Tf as [S];spliter.
+assert (Tf:exists S, (等角 A B C P Q S /\ 等角 D E F S Q R /\ BetS P S R)) by (conclude_def 和角 );destruct Tf as [S];spliter.
 let Tf:=fresh in
-assert (Tf:exists s, (等角 a b c p q s /\ 等角 d e f s q r /\ BetS p s r)) by (conclude_def SumA );destruct Tf as [s];spliter.
+assert (Tf:exists s, (等角 a b c p q s /\ 等角 d e f s q r /\ BetS p s r)) by (conclude_def 和角 );destruct Tf as [s];spliter.
 assert (nCol P Q S) by (conclude lemma_equalanglesNC).
 assert (nCol S Q R) by (conclude lemma_equalanglesNC).
 assert (neq Q P) by (forward_using lemma_NCdistinct).

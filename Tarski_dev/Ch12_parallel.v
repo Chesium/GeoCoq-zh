@@ -380,7 +380,7 @@ repeat
       let h := fresh in
       not_exist_hyp2 A B B C;
       assert (h := obtuse_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
-      | H:SuppA ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:互为补角 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
       assert (h := suppa_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps

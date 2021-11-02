@@ -103,7 +103,7 @@ cut (forall A B C P T,
     assert (~ Col C B J).
       apply (ncol_conga_ncol D E F); 等角; apply per_not_col; auto.
     apply invert_one_side, one_side_symmetry, cop_nts__os; Col.
-    apply conga_sams_nos__nts with A B C; SumA.
+    apply conga_sams_nos__nts with A B C; 和角.
   }
   destruct (rabp C B J P Q') as [Y [_ [HY1 [HY2 _]]]]; trivial.
     apply (l11_17 D E F); 等角.

@@ -24,7 +24,7 @@ cut (forall A B C P T,
   assert_diffs.
   assert (HNCol1 : ~ Col A B C) by (apply per_not_col; auto).
   assert (HNCol2 : ~ Col P0 B A).
-  { assert (SumA P0 B A P0 B A A B C) by (apply (conga3_suma__suma A B P0 P0 B C A B C); 等角; SumA).
+  { assert (和角 P0 B A P0 B A A B C) by (apply (conga3_suma__suma A B P0 P0 B C A B C); 等角; 和角).
     intro; apply HNCol1, (col2_suma__col P0 B A P0 B A); assumption.
   }
   assert (HXY : exists X Y, Out B A X /\ Out B C Y /\ Col X T Y).
@@ -80,8 +80,8 @@ cut (forall A B C P T,
   intros A B C P T HPer HInangle HPT HConga HPerP HCop.
   assert_diffs.
   assert (HIn : 在角内 P A B C) by (apply conga_cop_inangle_per2__inangle with T; assumption).
-  assert (HSumA : SumA P B A P B A A B C).
-    apply (conga3_suma__suma A B P P B C A B C); 等角; SumA.
+  assert (H和角 : 和角 P B A P B A A B C).
+    apply (conga3_suma__suma A B P P B C A B C); 等角; 和角.
   assert (H为锐角 : 为锐角 P B A) by (apply acute_sym, conga_inangle_per__acute with C; assumption).
   assert (HOut : Out B P P) by (apply out_trivial; auto).
   assert (~ Col A B C) by (apply per_not_col; auto).

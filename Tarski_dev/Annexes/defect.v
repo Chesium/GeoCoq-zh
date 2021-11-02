@@ -1,11 +1,11 @@
 Require Export GeoCoq.Tarski_dev.Annexes.saccheri.
 
-Section Defect.
+Section 三角形内角和与平角之差.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma defect_distincts : forall A B C D E F,
-  Defect A B C D E F ->
+  三角形内角和与平角之差 A B C D E F ->
   A <> B /\ B <> C /\ A <> C /\ D <> E /\ E <> F.
 Proof.
   intros A B C D E F HDef.
@@ -15,7 +15,7 @@ Proof.
 Qed.
 
 Lemma ex_defect : forall A B C,
-  A <> B -> B <> C -> A <> C -> exists D E F, Defect A B C D E F.
+  A <> B -> B <> C -> A <> C -> exists D E F, 三角形内角和与平角之差 A B C D E F.
 Proof.
   intros A B C HAB HBC HAC.
   destruct (ex_trisuma A B C) as [G [H [I HTri]]]; auto.
@@ -26,8 +26,8 @@ Proof.
 Qed.
 
 Lemma conga_defect__defect : forall A B C D E F D' E' F',
-  Defect A B C D E F -> 等角 D E F D' E' F' ->
-  Defect A B C D' E' F'.
+  三角形内角和与平角之差 A B C D E F -> 等角 D E F D' E' F' ->
+  三角形内角和与平角之差 A B C D' E' F'.
 Proof.
   intros A B C D E F D' E' F' HDef HConga.
   destruct HDef as [G [H [I [HTri HSuppa]]]].
@@ -38,7 +38,7 @@ Proof.
 Qed.
 
 Lemma defect2__conga : forall A B C D E F D' E' F',
-  Defect A B C D E F -> Defect A B C D' E' F' ->
+  三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 A B C D' E' F' ->
   等角 D E F D' E' F'.
 Proof.
   intros A B C D E F D' E' F' HDef HDef'.
@@ -51,7 +51,7 @@ Proof.
 Qed.
 
 Lemma defect_perm_231 : forall A B C D E F,
-  Defect A B C D E F -> Defect B C A D E F.
+  三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 B C A D E F.
 Proof.
   intros A B C D E F HDef.
   destruct HDef as [G [H [I [HTri HSuppa]]]].
@@ -61,14 +61,14 @@ Proof.
 Qed.
 
 Lemma defect_perm_312 : forall A B C D E F,
-  Defect A B C D E F -> Defect C A B D E F.
+  三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 C A B D E F.
 Proof.
   intros.
   do 2 apply defect_perm_231; trivial.
 Qed.
 
 Lemma defect_perm_321 : forall A B C D E F,
-  Defect A B C D E F -> Defect C B A D E F.
+  三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 C B A D E F.
 Proof.
   intros A B C D E F HDef.
   destruct HDef as [G [H [I [HTri HSuppa]]]].
@@ -78,23 +78,23 @@ Proof.
 Qed.
 
 Lemma defect_perm_213 : forall A B C D E F,
-  Defect A B C D E F -> Defect B A C D E F.
+  三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 B A C D E F.
 Proof.
   intros.
   apply defect_perm_321, defect_perm_312; trivial.
 Qed.
 
 Lemma defect_perm_132 : forall A B C D E F,
-  Defect A B C D E F -> Defect A C B D E F.
+  三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 A C B D E F.
 Proof.
   intros.
   apply defect_perm_321, defect_perm_231; trivial.
 Qed.
 
 Lemma conga3_defect__defect : forall A B C D E F A' B' C',
-  Defect A B C D E F ->
+  三角形内角和与平角之差 A B C D E F ->
   等角 A B C A' B' C' -> 等角 B C A B' C' A' -> 等角 C A B C' A' B' ->
-  Defect A' B' C' D E F.
+  三角形内角和与平角之差 A' B' C' D E F.
 Proof.
   intros A B C D E F A' B' C' HDef HCongaB HCongaC HCongaA.
   destruct HDef as [G [H [I [HTri HSuppa]]]].
@@ -104,7 +104,7 @@ Proof.
 Qed.
 
 Lemma col_defect__out : forall A B C D E F,
-  Col A B C -> Defect A B C D E F -> Out E D F.
+  Col A B C -> 三角形内角和与平角之差 A B C D E F -> Out E D F.
 Proof.
   intros A B C D E F HCol HDef.
   destruct HDef as [G [H [I [HTri HSuppa]]]].
@@ -114,7 +114,7 @@ Qed.
 
 Lemma rah_defect__out :
   hypothesis_of_right_saccheri_quadrilaterals ->
-  forall A B C D E F, Defect A B C D E F -> Out E D F.
+  forall A B C D E F, 三角形内角和与平角之差 A B C D E F -> Out E D F.
 Proof.
   intros rah A B C D E F HDef.
   destruct HDef as [G [H [I [HTri HSuppa]]]].
@@ -123,7 +123,7 @@ Proof.
 Qed.
 
 Lemma defect_ncol_out__rah : forall A B C D E F,
-  ~ Col A B C -> Defect A B C D E F -> Out E D F ->
+  ~ Col A B C -> 三角形内角和与平角之差 A B C D E F -> Out E D F ->
   hypothesis_of_right_saccheri_quadrilaterals.
 Proof.
   intros A B C D E F HNCol HDef HOut.
@@ -140,9 +140,9 @@ Qed.
 Lemma t22_16_1 :
   ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C C1 D E F G H I K L M,
-    Bet A C1 C -> Defect A B C1 D E F -> Defect B C1 C G H I ->
-    SumA D E F G H I K L M ->
-    SAMS D E F G H I /\ Defect A B C K L M.
+    Bet A C1 C -> 三角形内角和与平角之差 A B C1 D E F -> 三角形内角和与平角之差 B C1 C G H I ->
+    和角 D E F G H I K L M ->
+    角度之和小于平角 D E F G H I /\ 三角形内角和与平角之差 A B C K L M.
 Proof.
   intros noah A B C C1 D E F G H I K L M HBet HDefA HDefC HSuma.
   assert (HDA := defect_distincts A B C1 D E F HDefA).
@@ -150,24 +150,24 @@ Proof.
   spliter; clean.
   apply defect_perm_321 in HDefA.
   destruct HDefA as [P [Q [R [HTri HSuppa]]]].
-  assert (HSuma1 : SumA P Q R D E F A C1 C) by SumA.
+  assert (HSuma1 : 和角 P Q R D E F A C1 C) by 和角.
   destruct HTri as [S [T [U [HSuma2 HSuma3]]]].
-  assert (HInter : SumA S T U D E F B C1 C /\ SAMS S T U D E F).
+  assert (HInter : 和角 S T U D E F B C1 C /\ 角度之和小于平角 S T U D E F).
   { suma.assert_diffs.
-    assert (HSuma4 : SumA B C1 C A C1 B A C1 C) by SumA.
+    assert (HSuma4 : 和角 B C1 C A C1 B A C1 C) by 和角.
     destruct (ex_suma A C1 B D E F) as [V [W [X HSuma5]]]; auto.
-    assert (HIsi : SAMS P Q R D E F) by (apply suppa__sams; trivial).
-    assert (HIsi1 : SAMS S T U A C1 B) by (apply (t22_20 noah), HSuma2).
-    assert (HIsi2 : SAMS A C1 B D E F).
+    assert (HIsi : 角度之和小于平角 P Q R D E F) by (apply suppa__sams; trivial).
+    assert (HIsi1 : 角度之和小于平角 S T U A C1 B) by (apply (t22_20 noah), HSuma2).
+    assert (HIsi2 : 角度之和小于平角 A C1 B D E F).
     { apply sams_lea2__sams with P Q R D E F; Lea.
       apply (sams_suma__lea456789 S T U); trivial.
     }
-    assert (HSuma6 : SumA S T U V W X A C1 C) by (apply suma_assoc_1 with A C1 B D E F P Q R; trivial).
-    assert (HIsi3 : SAMS S T U D E F).
-      apply sams_lea2__sams with P Q R D E F; Lea; apply sams_suma__lea123789 with A C1 B; SumA.
+    assert (HSuma6 : 和角 S T U V W X A C1 C) by (apply suma_assoc_1 with A C1 B D E F P Q R; trivial).
+    assert (HIsi3 : 角度之和小于平角 S T U D E F).
+      apply sams_lea2__sams with P Q R D E F; Lea; apply sams_suma__lea123789 with A C1 B; 和角.
     split; trivial.
     destruct (ex_suma S T U D E F) as [B' [C1' [C' HSuma']]]; auto.
-    assert (HSuma7 : SumA B' C1' C' A C1 B A C1 C) by (apply suma_assoc_2 with S T U D E F V W X; SumA).
+    assert (HSuma7 : 和角 B' C1' C' A C1 B A C1 C) by (apply suma_assoc_2 with S T U D E F V W X; 和角).
     apply (conga3_suma__suma S T U D E F B' C1' C'); try (apply conga_refl); auto.
     apply (suppa2__conga456 A C1 B).
       apply suppa_sym, bet_suma__suppa with A C1 C; assumption.
@@ -178,11 +178,11 @@ Proof.
   destruct HInter as [HSuma3 HIsi3].
   apply defect_perm_231 in HDefC.
   destruct HDefC as [P [Q [R [HTri HSuppa]]]].
-  assert (HSuma1 : SumA P Q R G H I A C1 C) by SumA.
+  assert (HSuma1 : 和角 P Q R G H I A C1 C) by 和角.
   destruct HTri as [V [W [X [HSuma4 HSuma5]]]].
-  assert (HIsi1 : SAMS P Q R G H I) by (apply bet_suma__sams with A C1 C; trivial).
-  assert (HIsi5 : SAMS V W X B C1 C) by (apply (t22_20 noah), HSuma4).
-  assert (HIsi : SAMS D E F G H I).
+  assert (HIsi1 : 角度之和小于平角 P Q R G H I) by (apply bet_suma__sams with A C1 C; trivial).
+  assert (HIsi5 : 角度之和小于平角 V W X B C1 C) by (apply (t22_20 noah), HSuma4).
+  assert (HIsi : 角度之和小于平角 D E F G H I).
   { apply sams_lea2__sams with P Q R G H I; Lea.
     apply lea_trans with B C1 C.
       apply (sams_suma__lea456789 S T U); trivial.
@@ -192,12 +192,12 @@ Proof.
 
   suma.assert_diffs.
   destruct (ex_suma V W X S T U) as [A' [B' [C' HSuma6]]]; auto.
-  assert (HIsi6 : SAMS V W X S T U).
+  assert (HIsi6 : 角度之和小于平角 V W X S T U).
   { apply sams_lea2__sams with V W X B C1 C; Lea.
     apply sams_suma__lea123789 with D E F; trivial.
   }
-  assert (HSuma7 : SumA A' B' C' D E F P Q R) by (apply suma_assoc_2 with V W X S T U B C1 C; trivial).
-  assert (HSuma8 : SumA A' B' C' K L M A C1 C).
+  assert (HSuma7 : 和角 A' B' C' D E F P Q R) by (apply suma_assoc_2 with V W X S T U B C1 C; trivial).
+  assert (HSuma8 : 和角 A' B' C' K L M A C1 C).
   { apply suma_assoc_1 with D E F G H I P Q R; trivial.
     apply sams_assoc_2 with V W X S T U B C1 C; trivial.
   }
@@ -207,9 +207,9 @@ Proof.
   clear dependent K; clear dependent L; clear dependent P; clear dependent Q; clear F I M R.
 
   destruct (ex_suma V W X C1 B A) as [D [E [F HSuma]]]; auto.
-  assert (HIsi : SAMS V W X C1 B A).
+  assert (HIsi : 角度之和小于平角 V W X C1 B A).
   { apply sams_lea2__sams with V W X S T U; Lea.
-    apply sams_suma__lea123789 with B A C1; SumA.
+    apply sams_suma__lea123789 with B A C1; 和角.
   }
   suma.assert_diffs.
   apply trisuma_perm_132.
@@ -220,19 +220,19 @@ Proof.
     apply (conga3_suma__suma C1 C B C B A D E F); 等角.
     assert (H在角内 : 在角内 C1 C B A).
       repeat split; auto; exists C1; split; Between; right; apply out_trivial; auto.
-    apply suma_assoc_1 with C B C1 C1 B A V W X; SumA.
+    apply suma_assoc_1 with C B C1 C1 B A V W X; 和角.
   - assert (HConga : 等角 B A C B A C1).
       apply out2__conga; [apply out_trivial|apply bet_out]; auto.
     apply (conga3_suma__suma D E F B A C1 A' B' C'); 等角.
-    apply suma_assoc_2 with V W X C1 B A S T U; SumA.
+    apply suma_assoc_2 with V W X C1 B A S T U; 和角.
 Qed.
 
 Lemma t22_16_1bis :
   ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C C1 D E F G H I K L M,
     Bet A C1 C ->
-    Defect A B C1 D E F -> Defect B C1 C G H I -> Defect A B C K L M ->
-    SAMS D E F G H I /\ SumA D E F G H I K L M.
+    三角形内角和与平角之差 A B C1 D E F -> 三角形内角和与平角之差 B C1 C G H I -> 三角形内角和与平角之差 A B C K L M ->
+    角度之和小于平角 D E F G H I /\ 和角 D E F G H I K L M.
 Proof.
   intros noah A B C C1 D E F G H I K L M HBet HDefA HDefB HDef.
   assert (Hd := defect_distincts A B C1 D E F HDefA).
@@ -249,10 +249,10 @@ Qed.
 Lemma t22_16_2aux :
   ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R,
-    Defect A B C D1 D2 D3 -> Defect A B D C1 C2 C3 ->
-    Defect A D C B1 B2 B3 -> Defect C B D A1 A2 A3 ->
-    Bet A O C -> Bet B O D -> Col A B C -> SumA D1 D2 D3 B1 B2 B3 P Q R ->
-    SAMS C1 C2 C3 A1 A2 A3 /\ SumA C1 C2 C3 A1 A2 A3 P Q R.
+    三角形内角和与平角之差 A B C D1 D2 D3 -> 三角形内角和与平角之差 A B D C1 C2 C3 ->
+    三角形内角和与平角之差 A D C B1 B2 B3 -> 三角形内角和与平角之差 C B D A1 A2 A3 ->
+    Bet A O C -> Bet B O D -> Col A B C -> 和角 D1 D2 D3 B1 B2 B3 P Q R ->
+    角度之和小于平角 C1 C2 C3 A1 A2 A3 /\ 和角 C1 C2 C3 A1 A2 A3 P Q R.
 Proof.
   intros noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R
     HDefD HDefC HDefB HDefA HBet HBet2 HCol HSuma.
@@ -267,7 +267,7 @@ Proof.
     apply col_defect__out in HDefA; trivial.
     apply col_defect__out in HDefB; trivial.
     apply col_defect__out in HDefC; trivial.
-    split; [SumA|].
+    split; [和角|].
     apply (conga3_suma__suma D1 D2 D3 B1 B2 B3 P Q R); try (apply conga_refl); auto;
     apply l11_21_b; trivial.
   }
@@ -284,10 +284,10 @@ Qed.
 Lemma t22_16_2aux1 :
   ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R,
-    Defect A B C D1 D2 D3 -> Defect A B D C1 C2 C3 ->
-    Defect A D C B1 B2 B3 -> Defect C B D A1 A2 A3 ->
-    Bet A O C -> Bet B O D -> Col A B D -> SumA D1 D2 D3 B1 B2 B3 P Q R ->
-    SAMS C1 C2 C3 A1 A2 A3 /\ SumA C1 C2 C3 A1 A2 A3 P Q R.
+    三角形内角和与平角之差 A B C D1 D2 D3 -> 三角形内角和与平角之差 A B D C1 C2 C3 ->
+    三角形内角和与平角之差 A D C B1 B2 B3 -> 三角形内角和与平角之差 C B D A1 A2 A3 ->
+    Bet A O C -> Bet B O D -> Col A B D -> 和角 D1 D2 D3 B1 B2 B3 P Q R ->
+    角度之和小于平角 C1 C2 C3 A1 A2 A3 /\ 和角 C1 C2 C3 A1 A2 A3 P Q R.
 Proof.
   intros noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R
     HDefD HDefC HDefB HDefA HBet HBet2 HCol HSuma.
@@ -295,8 +295,8 @@ Proof.
   assert (Hd' := defect_distincts C B D A1 A2 A3 HDefA).
   spliter; suma.assert_diffs.
   assert (HOut : Out C2 C1 C3) by (apply (col_defect__out A B D); trivial).
-  split; [SumA|].
-  assert (HSuma1 : SumA C1 C2 C3 A1 A2 A3 A1 A2 A3) by (apply out213__suma; auto).
+  split; [和角|].
+  assert (HSuma1 : 和角 C1 C2 C3 A1 A2 A3 A1 A2 A3) by (apply out213__suma; auto).
   apply (conga3_suma__suma C1 C2 C3 A1 A2 A3 A1 A2 A3); try (apply conga_refl); auto.
   apply (suma2__conga D1 D2 D3 B1 B2 B3); trivial.
   destruct (t22_16_2aux noah B A D C B1 B2 B3 A1 A2 A3 D1 D2 D3 C1 C2 C3 O A1 A2 A3); Col;
@@ -308,11 +308,11 @@ Qed.
 Lemma t22_16_2 :
   ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R,
-    Defect A B C D1 D2 D3 -> Defect A B D C1 C2 C3 ->
-    Defect A D C B1 B2 B3 -> Defect C B D A1 A2 A3 ->
+    三角形内角和与平角之差 A B C D1 D2 D3 -> 三角形内角和与平角之差 A B D C1 C2 C3 ->
+    三角形内角和与平角之差 A D C B1 B2 B3 -> 三角形内角和与平角之差 C B D A1 A2 A3 ->
     Bet A O C -> Bet B O D ->
-    SAMS D1 D2 D3 B1 B2 B3 -> SumA D1 D2 D3 B1 B2 B3 P Q R ->
-    SAMS C1 C2 C3 A1 A2 A3 /\ SumA C1 C2 C3 A1 A2 A3 P Q R.
+    角度之和小于平角 D1 D2 D3 B1 B2 B3 -> 和角 D1 D2 D3 B1 B2 B3 P Q R ->
+    角度之和小于平角 C1 C2 C3 A1 A2 A3 /\ 和角 C1 C2 C3 A1 A2 A3 P Q R.
 Proof.
   intros noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R
     HDefD HDefC HDefB HDefA HBet HBet2 HIsi HSuma.
@@ -323,12 +323,12 @@ Proof.
   destruct (col_dec A B C) as [HCol|HNCol].
     apply (t22_16_2aux noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O); trivial.
   destruct (col_dec A D C) as [HCol1|HNCol1].
-    apply (t22_16_2aux noah A D C B A1 A2 A3 D1 D2 D3 C1 C2 C3 B1 B2 B3 O); Between; SumA;
+    apply (t22_16_2aux noah A D C B A1 A2 A3 D1 D2 D3 C1 C2 C3 B1 B2 B3 O); Between; 和角;
     apply defect_perm_132; trivial.
   destruct (col_dec A B D) as [HCol2|HNCol2].
     apply (t22_16_2aux1 noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O); trivial.
   destruct (col_dec C B D) as [HCol3|HNCol3].
-    destruct (t22_16_2aux1 noah C B A D C1 C2 C3 B1 B2 B3 A1 A2 A3 D1 D2 D3 O P Q R); Between; SumA;
+    destruct (t22_16_2aux1 noah C B A D C1 C2 C3 B1 B2 B3 A1 A2 A3 D1 D2 D3 O P Q R); Between; 和角;
     apply defect_perm_321; trivial.
   assert (Hdiff : O <> A /\ O <> B /\ O <> C /\ O <> D).
     assert_cols; repeat split; intro; subst O; Col.
@@ -352,19 +352,19 @@ Proof.
   suma.assert_diffs.
 
   destruct (ex_suma D1 D2 D3 S3 T3 U3) as [V [W [X HSuma1]]]; auto.
-  assert (HIsi1 : SAMS D1 D2 D3 S3 T3 U3).
+  assert (HIsi1 : 角度之和小于平角 D1 D2 D3 S3 T3 U3).
     apply sams_lea2__sams with D1 D2 D3 B1 B2 B3; Lea; apply (sams_suma__lea456789 S4 T4 U4); trivial.
-  assert (HSuma2 : SumA V W X S4 T4 U4 P Q R).
-    apply suma_assoc_2 with D1 D2 D3 S3 T3 U3 B1 B2 B3; SumA.
-  assert (HIsi2 : SAMS V W X S4 T4 U4).
-    apply sams_assoc_2 with D1 D2 D3 S3 T3 U3 B1 B2 B3; SumA.
-  assert (HSuma3 : SumA A1 A2 A3 S1 T1 U1 V W X).
-    apply suma_assoc_2 with S3 T3 U3 S2 T2 U2 D1 D2 D3; SumA.
-  assert (HIsi3 : SAMS A1 A2 A3 S1 T1 U1).
-    apply sams_assoc_2 with S3 T3 U3 S2 T2 U2 D1 D2 D3; SumA.
+  assert (HSuma2 : 和角 V W X S4 T4 U4 P Q R).
+    apply suma_assoc_2 with D1 D2 D3 S3 T3 U3 B1 B2 B3; 和角.
+  assert (HIsi2 : 角度之和小于平角 V W X S4 T4 U4).
+    apply sams_assoc_2 with D1 D2 D3 S3 T3 U3 B1 B2 B3; 和角.
+  assert (HSuma3 : 和角 A1 A2 A3 S1 T1 U1 V W X).
+    apply suma_assoc_2 with S3 T3 U3 S2 T2 U2 D1 D2 D3; 和角.
+  assert (HIsi3 : 角度之和小于平角 A1 A2 A3 S1 T1 U1).
+    apply sams_assoc_2 with S3 T3 U3 S2 T2 U2 D1 D2 D3; 和角.
   split.
-    apply sams_assoc_2 with S4 T4 U4 S1 T1 U1 V W X; SumA.
-  apply suma_assoc_2 with S4 T4 U4 S1 T1 U1 V W X; SumA.
+    apply sams_assoc_2 with S4 T4 U4 S1 T1 U1 V W X; 和角.
+  apply suma_assoc_2 with S4 T4 U4 S1 T1 U1 V W X; 和角.
 Qed.
 
-End Defect.
+End 三角形内角和与平角之差.

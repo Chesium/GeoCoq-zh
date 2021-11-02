@@ -2358,7 +2358,7 @@ repeat
       let h := fresh in
       not_exist_hyp2 A B B C;
       assert (h := obtuse_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
-      | H:SuppA ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:互为补角 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
       assert (h := suppa_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
@@ -2396,17 +2396,17 @@ repeat
        assert (T:= out_distinct A B C H);
        decompose [and] T;clear T;clean_reap_hyps
 
-      | H:SumA ?A ?B ?C ?D ?E ?F ?G ?I ?J |- _ =>
+      | H:和角 ?A ?B ?C ?D ?E ?F ?G ?I ?J |- _ =>
       let h := fresh in
       not_exist_hyp6 A B B C D E E F G I I J;
       assert (h := suma_distincts A B C D E F G I J H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:TriSumA ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:三角形内角和 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp5 A B B C A C D E E F;
       assert (h := trisuma_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:SAMS ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:角度之和小于平角 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
       assert (h := sams_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps

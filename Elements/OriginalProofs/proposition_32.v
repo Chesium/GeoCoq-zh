@@ -10,7 +10,7 @@ Context `{Ax:euclidean_euclidean}.
 Lemma proposition_32 : 
    forall A B C D, 
    Triangle A B C -> BetS B C D ->
-   SumA C A B A B C A C D.
+   和角 C A B A B C A C D.
 Proof.
 intros.
 assert (nCol A B C) by (conclude_def Triangle ).
@@ -212,7 +212,7 @@ assert (nCol R C D) by (conclude lemma_NChelper).
 assert (nCol D C R) by (forward_using lemma_NCorder).
 assert (等角 D C R R C D) by (conclude lemma_ABCequalsCBA).
 assert (等角 A B C R C D) by (conclude lemma_equalanglestransitive).
-assert (SumA C A B A B C A C D) by (conclude_def SumA ).
+assert (和角 C A B A B C A C D) by (conclude_def 和角 ).
 close.
 Qed.
 

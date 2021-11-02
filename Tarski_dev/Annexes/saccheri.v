@@ -609,7 +609,7 @@ Proof.
   }
   apply (bet_suma__per _ _ _ B P C); auto.
   assert (P <> Q) by (intro; treat_equalities; auto).
-  apply (conga3_suma__suma B P Q Q P C B P C); [SumA|..|等角].
+  apply (conga3_suma__suma B P Q Q P C B P C); [和角|..|等角].
   - apply (l11_10 B P Q A B P); Out.
     apply conga_sym, sac__conga, HSac1.
 
@@ -912,7 +912,7 @@ Proof.
     apply invert_one_side, out_one_side; [Col|Out].
   }
   assert (HNCol2 : ~ Col J B C) by (apply two_sides_not_col with S; auto).
-  apply (sams_lta2_suma2__lta A B J J B C _ _ _ D C J J C R); [..|SumA].
+  apply (sams_lta2_suma2__lta A B J J B C _ _ _ D C J J C R); [..|和角].
   - apply (conga_preserves_lta S J B S J C); 等角.
     split.
       apply inangle__lea; Side.
@@ -994,7 +994,7 @@ Proof.
     apply two_sides_not_col in HTS.
     apply out_one_side; Out; Col.
 
-  - SumA.
+  - 和角.
 
   - exists A.
     repeat (split; 等角); [|Cop].
@@ -1839,7 +1839,7 @@ Qed.
 
 Lemma t22_12__rah : forall A B C,
   A <> B -> B <> C -> Per A B C ->
-  (SumA B C A C A B A B C <-> hypothesis_of_right_saccheri_quadrilaterals).
+  (和角 B C A C A B A B C <-> hypothesis_of_right_saccheri_quadrilaterals).
 Proof.
   intros A B C HAB HBC HPer.
   destruct (per__ex_saccheri B A C) as [D HSac]; auto.
@@ -1868,7 +1868,7 @@ Proof.
 Qed.
 
 Lemma t22_12__aah : forall A B C P Q R,
-  Per A B C -> SumA B C A C A B P Q R ->
+  Per A B C -> 和角 B C A C A B P Q R ->
   (为锐角 P Q R <-> hypothesis_of_acute_saccheri_quadrilaterals).
 Proof.
   intros A B C P Q R HPer HSuma.
@@ -1887,7 +1887,7 @@ Proof.
     apply (acute_sac__aah B A D C); auto.
     apply (t22_11__acute _ _ _ C); auto.
     apply lta_left_comm.
-    apply (sams_lea_lta789_suma2__lta456 B C A _ _ _ P Q R B C A _ _ _ B C D); Lea; SumA.
+    apply (sams_lea_lta789_suma2__lta456 B C A _ _ _ P Q R B C A _ _ _ B C D); Lea; 和角.
 
   - intro aah.
     exists B, C, D.
@@ -1896,11 +1896,11 @@ Proof.
       apply lea_refl; auto.
       apply lta_left_comm; apply t22_11__acute; try (apply (aah _ _ _ C)); auto.
       apply os_ts__sams; Side.
-      SumA.
+      和角.
 Qed.
 
 Lemma t22_12__oah : forall A B C P Q R,
-  Per A B C -> SumA B C A C A B P Q R ->
+  Per A B C -> 和角 B C A C A B P Q R ->
   (为钝角 P Q R <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
 Proof.
   intros A B C P Q R HPer HSuma.
@@ -1919,13 +1919,13 @@ Proof.
     apply (obtuse_sac__oah B A D C); auto.
     apply (t22_11__obtuse _ _ _ C); auto.
     apply lta_right_comm.
-    apply (sams_lea_lta789_suma2__lta456 B C A _ _ _ B C D B C A _ _ _ P Q R); Lea; [|SumA].
+    apply (sams_lea_lta789_suma2__lta456 B C A _ _ _ B C D B C A _ _ _ P Q R); Lea; [|和角].
     apply os_ts__sams; Side.
 
   - intro oah.
     exists B, C, D.
     split; trivial.
-    apply (sams_lea_lta456_suma2__lta B C A A C D _ _ _ B C A C A B); SumA.
+    apply (sams_lea_lta456_suma2__lta B C A A C D _ _ _ B C A C A B); 和角.
       apply lea_refl; auto.
       apply lta_right_comm; apply t22_11__obtuse; try (apply (oah _ _ _ C)); auto.
 Qed.
@@ -1952,7 +1952,7 @@ Qed.
 
 Lemma t22_14__bet_aux : forall A B C P Q R,
   hypothesis_of_right_saccheri_quadrilaterals ->
-  ~ Col A B C -> TriSumA A B C P Q R -> 为锐角 A B C -> 为锐角 A C B -> Bet P Q R.
+  ~ Col A B C -> 三角形内角和 A B C P Q R -> 为锐角 A B C -> 为锐角 A C B -> Bet P Q R.
 Proof.
   intros A B C P Q R rah HNCol HTri HacuteB HacuteC.
   apply trisuma_perm_312 in HTri.
@@ -1962,14 +1962,14 @@ Proof.
 
   apply (bet_conga__bet B A' C); auto.
   apply (suma2__conga D E F B C A); auto.
-  apply (suma_assoc B A' A C A A' _ _ _ _ _ _ _ _ _ A A' C); [..|SumA].
-    apply (conga2_sams__sams C A' A A' A C); 等角; SumA.
-    apply (conga2_sams__sams A' A C A C A'); 等角; SumA.
+  apply (suma_assoc B A' A C A A' _ _ _ _ _ _ _ _ _ A A' C); [..|和角].
+    apply (conga2_sams__sams C A' A A' A C); 等角; 和角.
+    apply (conga2_sams__sams A' A C A C A'); 等角; 和角.
     { apply suma_sym, (suma_assoc _ _ _ A' A B A B C _ _ _ C A B); auto.
       - apply os_ts__sams; Side.
         apply out_one_side; [Col|Out].
-      - apply (conga2_sams__sams A' A B A B A'); 等角; SumA.
-      - SumA.
+      - apply (conga2_sams__sams A' A B A B A'); 等角; 和角.
+      - 和角.
       - apply (conga3_suma__suma A' A B A B A' B A' A); 等角; apply t22_12__rah; auto.
     }
   apply (conga3_suma__suma A' A C A C A' C A' A); 等角; apply t22_12__rah; auto.
@@ -1981,7 +1981,7 @@ Qed.
 
 Lemma t22_14__bet :
   hypothesis_of_right_saccheri_quadrilaterals ->
-  forall A B C P Q R, TriSumA A B C P Q R -> Bet P Q R.
+  forall A B C P Q R, 三角形内角和 A B C P Q R -> Bet P Q R.
 Proof.
   intros rah A B C P Q R HTri.
   elim(col_dec A B C).
@@ -2004,9 +2004,9 @@ Qed.
 Lemma t22_14__sams_nbet_aux : forall A B C D E F P Q R,
   hypothesis_of_acute_saccheri_quadrilaterals ->
   ~ Col A B C ->
-  SumA C A B A B C D E F -> SumA D E F B C A P Q R ->
+  和角 C A B A B C D E F -> 和角 D E F B C A P Q R ->
   为锐角 A B C -> 为锐角 A C B ->
-  SAMS D E F B C A /\ ~ Bet P Q R.
+  角度之和小于平角 D E F B C A /\ ~ Bet P Q R.
 Proof.
   intros A B C D E F P Q R aah HNCol HSuma1 HSuma2 HacuteB HacuteC.
   destruct (t22_14_aux A B C) as [A']; [assumption..|spliter].
@@ -2020,13 +2020,13 @@ Proof.
   { assert(HSuma4 := ex_suma A' A B A B C).
     destruct HSuma4 as [V [W [X HSuma4]]]; auto.
     suma.assert_diffs.
-    apply (sams_lea_lta456_suma2__lta C A A' V W X _ _ _ C A A' B A' A); [Lea|..|SumA].
+    apply (sams_lea_lta456_suma2__lta C A A' V W X _ _ _ C A A' B A' A); [Lea|..|和角].
       apply (acute_per__lta); auto; apply (t22_12__aah B A' A); auto; apply (conga3_suma__suma A' A B A B C V W X); 等角.
-      apply (conga2_sams__sams C A A' A A' C); SumA; 等角.
+      apply (conga2_sams__sams C A A' A A' C); 和角; 等角.
     apply (suma_assoc _ _ _ A' A B A B C _ _ _ C A B); auto.
     - apply os_ts__sams; Side.
       apply out_one_side; [Col|Out].
-    - apply (conga2_sams__sams A' A B A B A'); SumA; 等角.
+    - apply (conga2_sams__sams A' A B A B A'); 和角; 等角.
     - exists B; repeat (split; 等角); Side.
       exists C; left; split; Col.
   }
@@ -2035,20 +2035,20 @@ Proof.
   suma.assert_diffs.
   assert(角度小于 J K L A A' C).
     apply (acute_per__lta); Perp; apply (t22_12__aah C A' A); auto; apply (conga3_suma__suma C A A' B C A J K L); 等角.
-  assert(SAMS G H I B C A).
+  assert(角度之和小于平角 G H I B C A).
   { apply (sams_assoc B A' A C A A' _ _ _ _ _ _ J K L); auto.
-      apply (conga2_sams__sams C A' A A' A C); SumA; 等角.
-      apply (conga2_sams__sams A' A C A C A'); SumA; 等角.
+      apply (conga2_sams__sams C A' A A' A C); 和角; 等角.
+      apply (conga2_sams__sams A' A C A C A'); 和角; 等角.
       apply (sams_chara _ _ _ _ _ _ C); Lea.
   }
   assert(HSuma5 := ex_suma G H I B C A).
   destruct HSuma5 as [S [T [U HSuma5]]]; auto.
   suma.assert_diffs.
   assert(角度小于 S T U B A' C).
-  { apply (sams_lea_lta456_suma2__lta B A' A J K L _ _ _ B A' A A A' C); [Lea..|SumA| |SumA].
+  { apply (sams_lea_lta456_suma2__lta B A' A J K L _ _ _ B A' A A A' C); [Lea..|和角| |和角].
     apply (suma_assoc _ _ _ C A A' B C A _ _ _ G H I); auto;
       [apply (conga2_sams__sams C A' A A' A C)|apply (conga2_sams__sams A' A C A C A')];
-      SumA; 等角.
+      和角; 等角.
   }
 
   split.
@@ -2067,8 +2067,8 @@ Qed.
 Lemma t22_14__sams_nbet :
   hypothesis_of_acute_saccheri_quadrilaterals ->
   forall A B C D E F P Q R, ~ Col A B C ->
-  SumA C A B A B C D E F -> SumA D E F B C A P Q R ->
-  SAMS D E F B C A /\ ~ Bet P Q R.
+  和角 C A B A B C D E F -> 和角 D E F B C A P Q R ->
+  角度之和小于平角 D E F B C A /\ ~ Bet P Q R.
 Proof.
   intros aah A B C D E F P Q R HNCol HSuma1 HSuma2.
   assert_diffs.
@@ -2082,20 +2082,20 @@ Proof.
     suma.assert_diffs.
     assert(HInter := t22_14__sams_nbet_aux C A B G H I P Q R).
     destruct HInter as [HIsi HNBet]; Col.
-      apply (suma_assoc B C A C A B _ _ _ _ _ _ _ _ _ D E F); SumA.
+      apply (suma_assoc B C A C A B _ _ _ _ _ _ _ _ _ D E F); 和角.
     split; auto.
-    apply sams_sym; apply (sams_assoc _ _ _ C A B A B C G H I); SumA.
+    apply sams_sym; apply (sams_assoc _ _ _ C A B A B C G H I); 和角.
 
   - destruct (l11_43 B A C); auto.
     assert(HInter := t22_14__sams_nbet_aux B A C D E F P Q R).
-    destruct HInter as [HIsi HNBet]; Col; SumA.
+    destruct HInter as [HIsi HNBet]; Col; 和角.
 Qed.
 
 Lemma t22_14__nsams_aux : forall A B C D E F,
   hypothesis_of_obtuse_saccheri_quadrilaterals ->
   ~ Col A B C ->
-  SumA C A B A B C D E F -> 为锐角 A B C -> 为锐角 A C B ->
-  ~ SAMS D E F B C A.
+  和角 C A B A B C D E F -> 为锐角 A B C -> 为锐角 A C B ->
+  ~ 角度之和小于平角 D E F B C A.
 Proof.
   intros A B C D E F oah HNCol HSuma1 HacuteB HacuteC HIsi.
   destruct (t22_14_aux A B C) as [A']; [assumption..|spliter].
@@ -2112,16 +2112,16 @@ Proof.
   { assert(HSuma4 := ex_suma A' A B A B C).
     destruct HSuma4 as [V [W [X HSuma4]]]; auto.
     suma.assert_diffs.
-    assert(SAMS C A A' A' A B).
+    assert(角度之和小于平角 C A A' A' A B).
     { apply os_ts__sams; Side.
       apply out_one_side; [Col|Out].
     }
-    assert(SAMS A' A B A B C) by (apply (conga2_sams__sams A' A B A B A'); SumA; 等角).
-    assert(SumA C A A' A' A B C A B) by (exists B; repeat (split; 等角); Side; Cop).
+    assert(角度之和小于平角 A' A B A B C) by (apply (conga2_sams__sams A' A B A B A'); 和角; 等角).
+    assert(和角 C A A' A' A B C A B) by (exists B; repeat (split; 等角); Side; Cop).
     apply (sams_lea_lta456_suma2__lta C A A' B A' A _ _ _ C A A' V W X); Lea.
       apply (obtuse_per__lta); auto; apply (t22_12__oah B A' A); auto; apply (conga3_suma__suma A' A B A B C V W X); 等角.
-      apply (sams_assoc _ _ _ A' A B A B C C A B); SumA.
-      SumA.
+      apply (sams_assoc _ _ _ A' A B A B C C A B); 和角.
+      和角.
       apply (suma_assoc _ _ _ A' A B A B C _ _ _ C A B); auto.
   }
   assert(HSuma4 := ex_suma C A A' B C A).
@@ -2136,14 +2136,14 @@ Proof.
   - apply (sams_lea_lta456_suma2__lta B A' A A A' C _ _ _ B A' A J K L); Lea;
     [|exists C; repeat (split; 等角); Side; Cop].
     apply (sams_assoc _ _ _ C A A' B C A G H I); auto.
-      apply (conga2_sams__sams C A' A C A A'); SumA; 等角.
-      apply (conga2_sams__sams C A A' A' C A); SumA; 等角.
+      apply (conga2_sams__sams C A' A C A A'); 和角; 等角.
+      apply (conga2_sams__sams C A A' A' C A); 和角; 等角.
     apply (sams_lea2__sams _ _ _ _ _ _ D E F B C A); Lea.
 
   - apply (sams_lea_lta123_suma2__lta G H I B C A _ _ _ D E F B C A); Lea.
     apply (suma_assoc B A' A C A A' _ _ _ _ _ _ _ _ _ J K L); auto.
-      apply (conga2_sams__sams C A' A C A A'); SumA; 等角.
-      apply (conga2_sams__sams C A A' A' C A); SumA; 等角.
+      apply (conga2_sams__sams C A' A C A A'); 和角; 等角.
+      apply (conga2_sams__sams C A A' A' C A); 和角; 等角.
 Qed.
 
 (** Under the 为钝角 angle hypothesis,
@@ -2153,8 +2153,8 @@ Qed.
 Lemma t22_14__nsams :
   hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C D E F, ~ Col A B C ->
-  SumA C A B A B C D E F ->
-  ~ SAMS D E F B C A.
+  和角 C A B A B C D E F ->
+  ~ 角度之和小于平角 D E F B C A.
 Proof.
   intros oah A B C D E F HNCol HSuma1.
   assert_diffs.
@@ -2172,17 +2172,17 @@ Proof.
     suma.assert_diffs.
     assert(HNIsi := t22_14__nsams_aux C A B G H I).
     intro HIsi.
-    absurd(SAMS G H I A B C).
+    absurd(角度之和小于平角 G H I A B C).
       apply HNIsi; Col.
-      apply (sams_assoc B C A C A B _ _ _ _ _ _ D E F); SumA.
+      apply (sams_assoc B C A C A B _ _ _ _ _ _ D E F); 和角.
 
   - intro.
     assert (HInter := l11_43 B A C).
     destruct HInter; Col.
     intro.
-    absurd(SAMS D E F A C B).
-      apply (t22_14__nsams_aux B A C D E F); Col; SumA.
-      SumA.
+    absurd(角度之和小于平角 D E F A C B).
+      apply (t22_14__nsams_aux B A C D E F); Col; 和角.
+      和角.
 Qed.
 
 
@@ -2191,7 +2191,7 @@ Qed.
  *)
 
 Lemma t22_14__rah : forall A B C P Q R,
-  ~ Col A B C -> TriSumA A B C P Q R -> Bet P Q R -> hypothesis_of_right_saccheri_quadrilaterals.
+  ~ Col A B C -> 三角形内角和 A B C P Q R -> Bet P Q R -> hypothesis_of_right_saccheri_quadrilaterals.
 Proof.
   intros A B C P Q R HNCol HTri HBet.
   apply trisuma_perm_312 in HTri.
@@ -2215,8 +2215,8 @@ Qed.
  *)
 
 Lemma t22_14__aah : forall A B C D E F P Q R,
-  SumA C A B A B C D E F -> SumA D E F B C A P Q R ->
-  SAMS D E F B C A ->
+  和角 C A B A B C D E F -> 和角 D E F B C A P Q R ->
+  角度之和小于平角 D E F B C A ->
   ~ Bet P Q R ->
   hypothesis_of_acute_saccheri_quadrilaterals.
 Proof.
@@ -2234,7 +2234,7 @@ Proof.
       exists D, E, F.
       split; auto.
     }
-    absurd(SAMS D E F B C A); auto.
+    absurd(角度之和小于平角 D E F B C A); auto.
     apply t22_14__nsams; auto.
 Qed.
 
@@ -2243,7 +2243,7 @@ Qed.
  *)
 
 Lemma t22_14__oah : forall A B C D E F,
-  SumA C A B A B C D E F -> ~ SAMS D E F B C A -> hypothesis_of_obtuse_saccheri_quadrilaterals.
+  和角 C A B A B C D E F -> ~ 角度之和小于平角 D E F B C A -> hypothesis_of_obtuse_saccheri_quadrilaterals.
 Proof.
   intros A B C D E F HSuma1 HNIsi.
   suma.assert_diffs.
@@ -2252,7 +2252,7 @@ Proof.
     apply HNIsi.
     destruct(bet_dec A B C).
     - apply out546__sams; Out.
-    - apply (conga2_sams__sams C A B B C A); try (apply conga_refl); SumA.
+    - apply (conga2_sams__sams C A B B C A); try (apply conga_refl); 和角.
       apply (out546_suma__conga _ _ _ A B C); auto.
       apply not_bet_out; auto.
   }
@@ -2271,7 +2271,7 @@ Qed.
 Lemma cong_mid__suma : forall A B C M,
   ~ Col A B C ->
   中点 M A B -> Cong M A M C ->
-  SumA C A B A B C A C B.
+  和角 C A B A B C A C B.
 Proof.
   intros A B C M HNCol HM HCong.
   assert_diffs.
@@ -2302,7 +2302,7 @@ Lemma t22_17__rah : forall A B C M,
 Proof.
   intros A B C M HNCol HM HCong.
   assert_diffs.
-  assert(SumA C A B A B C A C B) by (apply (cong_mid__suma _ _ _ M); auto).
+  assert(和角 C A B A B C A C B) by (apply (cong_mid__suma _ _ _ M); auto).
   assert(HSuma := ex_suma A C B B C A).
   destruct HSuma as [P [Q [R]]]; auto.
   split; intro HR.
@@ -2310,7 +2310,7 @@ Proof.
       exists A; exists C; exists B; auto.
       apply (per2_suma__bet A C B B C A); Perp.
 
-  - apply (bet_suma__per _ _ _ P Q R); SumA.
+  - apply (bet_suma__per _ _ _ P Q R); 和角.
     apply (t22_14__bet HR C A B).
     exists A, C, B; auto.
 Qed.
@@ -2322,16 +2322,16 @@ Lemma t22_17__oah : forall A B C M,
 Proof.
   intros A B C M HNCol HM HCong.
   assert_diffs.
-  assert(SumA C A B A B C A C B) by (apply (cong_mid__suma _ _ _ M); auto).
+  assert(和角 C A B A B C A C B) by (apply (cong_mid__suma _ _ _ M); auto).
   assert(HSuma := ex_suma A C B B C A).
   destruct HSuma as [P [Q [R]]]; auto.
   split; intro HO.
-  - apply (t22_14__oah A B C B C A); Col; SumA.
+  - apply (t22_14__oah A B C B C A); Col; 和角.
     apply obtuse__nsams; apply obtuse_sym; auto.
 
   - apply obtuse_sym.
     apply nsams__obtuse; auto.
-    apply (t22_14__nsams HO A B C); Col; SumA.
+    apply (t22_14__nsams HO A B C); Col; 和角.
 Qed.
 
 Lemma t22_17__aah : forall A B C M,
@@ -2353,7 +2353,7 @@ Proof.
 Qed.
 
 Lemma t22_20 : ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
-  forall A B C D E F, SumA A B C B C A D E F -> SAMS D E F C A B.
+  forall A B C D E F, 和角 A B C B C A D E F -> 角度之和小于平角 D E F C A B.
 Proof.
   intros noah A B C D E F HS.
   destruct(sams_dec D E F C A B); trivial.
@@ -2362,13 +2362,13 @@ Proof.
 Qed.
 
 Lemma absolute_exterior_angle_theorem : ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
-  forall A B C D E F B', Bet B A B' -> A <> B' -> SumA A B C B C A D E F ->
+  forall A B C D E F B', Bet B A B' -> A <> B' -> 和角 A B C B C A D E F ->
   角度小于等于 D E F C A B'.
 Proof.
   intros noah A B C D E F B' HBet HAB' HSuma.
   assert (HIsi := t22_20 noah A B C D E F HSuma).
   assert_diffs.
-  apply sams_chara with B; SumA.
+  apply sams_chara with B; 和角.
 Qed.
 
 End 萨凯里四边形.

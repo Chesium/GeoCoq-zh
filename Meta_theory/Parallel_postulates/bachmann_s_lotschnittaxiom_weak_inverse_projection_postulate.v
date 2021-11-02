@@ -68,7 +68,7 @@ apply col_one_side_out with A.
   apply col_permutation_1, intersection_with_image_gen with P Q P' Q'; Col.
 apply invert_one_side, one_side_transitivity with P'.
 - apply cop_nts__os; Col; Cop.
-  apply (conga_sams_nos__nts A B C A B C P'); SumA.
+  apply (conga_sams_nos__nts A B C A B C P'); 和角.
   apply l9_9, l9_5 with P B; Col.
 - apply l12_6, par_strict_col_par_strict with Q'; Col.
     intro; subst; apply HNCol5; Col.

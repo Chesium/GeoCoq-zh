@@ -12,7 +12,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 Lemma proposition_17 : 
    forall A B C, 
    Triangle A B C ->
-   exists X Y Z, SumA A B C B C A X Y Z.
+   exists X Y Z, 和角 A B C B C A X Y Z.
 Proof.
 intros.
 assert (nCol A B C) by (conclude_def Triangle ).
@@ -115,7 +115,7 @@ assert (Out C B B) by (conclude lemma_ray4).
 assert (等角 B C A B C F) by (conclude lemma_equalangleshelper).
 assert (等角 B C F F C B) by (conclude lemma_ABCequalsCBA).
 assert (等角 B C A F C B) by (conclude lemma_equalanglestransitive).
-assert (SumA A B C B C A E C B) by (conclude_def SumA ).
+assert (和角 A B C B C A E C B) by (conclude_def 和角 ).
 close.
 Qed.
 

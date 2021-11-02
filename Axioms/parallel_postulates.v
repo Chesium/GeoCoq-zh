@@ -42,7 +42,7 @@ Definition playfair_s_postulate := forall A1 A2 B1 B2 C1 C2 P,
     because defining angle measure requires some continuity axioms. *)
 
 Definition triangle_postulate := forall A B C D E F,
-  TriSumA A B C D E F -> Bet D E F.
+  三角形内角和 A B C D E F -> Bet D E F.
 
 (** A figure with three right angles is closed. *)
 
@@ -74,7 +74,7 @@ Definition alternate_interior_angles_postulate := forall A B C D,
 (** The consecutive interior angles between two parallel lines are supplementary. *)
 
 Definition consecutive_interior_angles_postulate := forall A B C D,
-  OS B C A D -> Par A B C D -> SuppA A B C B C D.
+  OS B C A D -> Par A B C D -> 互为补角 A B C B C D.
 
 (** If two lines are parallel, every perpendicular to one of the lines is perpendicular to the other. *) 
 
@@ -158,7 +158,7 @@ Definition strong_parallel_postulate :=  forall P Q R S T U,
     the two straight lines meet if produced indefinitely. *)
 
 Definition alternative_strong_parallel_postulate := forall A B C D P Q R,
-  OS B C A D -> SumA A B C B C D P Q R -> ~ Bet P Q R ->
+  OS B C A D -> 和角 A B C B C D P Q R -> ~ Bet P Q R ->
   exists Y, Col B A Y /\ Col C D Y.
 
 (** If a straight line falling on two straight lines
@@ -167,13 +167,13 @@ Definition alternative_strong_parallel_postulate := forall A B C D P Q R,
     meet on that side on which are the angles less than the two right angles. *)
 
 Definition euclid_s_parallel_postulate := forall A B C D P Q R,
-  OS B C A D -> SAMS A B C B C D -> SumA A B C B C D P Q R -> ~ Bet P Q R ->
+  OS B C A D -> 角度之和小于平角 A B C B C D -> 和角 A B C B C D P Q R -> ~ Bet P Q R ->
   exists Y, Out B A Y /\ Out C D Y.
 
 (** There exists a triangle whose sum of angles is equal to the flat angle. *)
 
 Definition postulate_of_existence_of_a_triangle_whose_angles_sum_to_two_rights :=
-  exists A B C D E F, ~ Col A B C /\ TriSumA A B C D E F /\ Bet D E F.
+  exists A B C D E F, ~ Col A B C /\ 三角形内角和 A B C D E F /\ Bet D E F.
 
 (** There exists two lines which are everywhere equidistant. *)
 
@@ -234,7 +234,7 @@ Definition postulate_of_existence_of_a_right_lambert_quadrilateral :=
     form a line which intersects the other side. *)
 
 Definition weak_inverse_projection_postulate := forall A B C D E F P Q,
-  为锐角 A B C -> Per D E F -> SumA A B C A B C D E F ->
+  为锐角 A B C -> Per D E F -> 和角 A B C A B C D E F ->
   Out B A P -> P <> Q -> Per B P Q -> 共面 A B C Q ->
   exists Y, Out B C Y /\ Col P Q Y.
 

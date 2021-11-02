@@ -55,7 +55,7 @@ Qed.
 
 Lemma grada2_sams_suma__grada : forall A B C D E F G H I K L M,
   角度在线性刻度上 A B C D E F -> 角度在线性刻度上 A B C G H I ->
-  SAMS D E F G H I -> SumA D E F G H I K L M ->
+  角度之和小于平角 D E F G H I -> 和角 D E F G H I K L M ->
   角度在线性刻度上 A B C K L M.
 Proof.
   intros A B C D E F G H I K L M HGA1 HGA2 HIsi.
@@ -71,7 +71,7 @@ Proof.
   assert (Hd1 := sams_distincts D0 E0 F0 A B C H0); assert (Hd2 := sams_distincts D E F G H I HIsi); spliter.
   destruct (ex_suma D E F D0 E0 F0) as [K [L [M HSuma]]]; auto.
   intros K0 L0 M0 HSuma2.
-  assert (HIsi2 : SAMS D E F D0 E0 F0).
+  assert (HIsi2 : 角度之和小于平角 D E F D0 E0 F0).
     apply sams_lea2__sams with D E F G H I; Lea.
     apply sams_suma__lea123789 with A B C; trivial.
   apply 角度线性刻度_步进 with K L M.
@@ -209,7 +209,7 @@ Proof.
     exists P; exists Q; exists R; split; trivial; left; trivial.
   destruct HA' as [A' [HBet1' [HBet2' [HConga' [HLe' HA]]]]].
   destruct HA as [A [HBet1 [HConga HLe]]].
-  assert (HIsi : SAMS P Q R A0 O A1).
+  assert (HIsi : 角度之和小于平角 P Q R A0 O A1).
   { apply sams_lea2__sams with A0 O B A0 O B.
     - apply acute__sams, l11_43_aux; Col.
     - apply (l11_30 A0 O A' A0 O B); 等角.
@@ -234,7 +234,7 @@ Proof.
   { intro HCol; apply HNCol1.
     elim (两点重合的决定性 A' A''); intro; [|ColR].
     treat_equalities.
-    assert (HSuma2 : SumA A0 O A' A0 O A1 A0 O A').
+    assert (HSuma2 : 和角 A0 O A' A0 O A1 A0 O A').
       apply (conga3_suma__suma P Q R A0 O A1 P' Q' R'); 等角.
     apply sams_suma__out546 in HSuma2; Col.
     apply (conga2_sams__sams P Q R A0 O A1); 等角.
@@ -331,8 +331,8 @@ Qed.
 
 Lemma angles_archi_aux :
   forall A B C D E F G H I,
-    角度在线性刻度上 A B C D E F -> 角度在线性刻度上 A B C G H I -> ~ SAMS D E F G H I ->
-    exists P Q R, 角度在线性刻度上 A B C P Q R /\ ~ SAMS P Q R A B C.
+    角度在线性刻度上 A B C D E F -> 角度在线性刻度上 A B C G H I -> ~ 角度之和小于平角 D E F G H I ->
+    exists P Q R, 角度在线性刻度上 A B C P Q R /\ ~ 角度之和小于平角 P Q R A B C.
 Proof.
   intros A B C D E F G H I HGA1 HGA2.
   induction HGA2.
@@ -353,7 +353,7 @@ Lemma angles_archi_aux1 :
   archimedes_axiom ->
   forall A B C D E F,
     ~ Col A B C -> ~ Bet D E F ->
-    exists P Q R, 角度在线性刻度上 A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ SAMS P Q R A B C).
+    exists P Q R, 角度在线性刻度上 A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ 角度之和小于平角 P Q R A B C).
 Proof.
   intros archi A B C D E F HNCol HNBet.
   assert (Hdiff : D <> E /\ F <> E) by (split; intro; subst E; Between); spliter.
@@ -367,7 +367,7 @@ Proof.
     apply l9_9, invert_two_sides, in_angle_two_sides; Col.
     apply 共线否定排列BCA, (ncol_conga_ncol D E F1); 等角.
   }
-  assert (HSuma : SumA D E F1 D E F1 D E F) by (assert_diffs; exists F; repeat (split; 等角); Cop).
+  assert (HSuma : 和角 D E F1 D E F1 D E F) by (assert_diffs; exists F; repeat (split; 等角); Cop).
   destruct (archi_in_acute_angles archi A B C D E F1) as [P1 [Q1 [R1 [HGA HLea]]]]; trivial.
   { apply nbet_sams_suma__acute with D E F; trivial.
     assert_diffs; split; trivial; split.
@@ -396,7 +396,7 @@ Lemma archi_in_angles :
   archimedes_axiom ->
   forall A B C D E F,
     ~ Col A B C -> D <> E -> F <> E ->
-    exists P Q R, 角度在线性刻度上 A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ SAMS P Q R A B C).
+    exists P Q R, 角度在线性刻度上 A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ 角度之和小于平角 P Q R A B C).
 Proof.
   intros archi A B C D E F HNCol HDE HFE.
   elim (bet_dec D E F); [|apply angles_archi_aux1; trivial].
@@ -427,7 +427,7 @@ Lemma archi__grada_destruction :
   archimedes_axiom ->
   forall A B C,
     ~ Col A B C ->
-    exists P Q R, 角度在线性刻度上 A B C P Q R /\ ~ SAMS P Q R A B C.
+    exists P Q R, 角度在线性刻度上 A B C P Q R /\ ~ 角度之和小于平角 P Q R A B C.
 Proof.
   intros archi A B C HNCol.
   destruct (由一点往一方向构造等长线段 A B A B) as [A0 [HBet HCong]].
@@ -453,7 +453,7 @@ Proof.
   assert (Hd := HGAE); apply gradaexp__grada, grada_distincts in Hd; spliter.
   destruct (sams_dec P Q R P Q R) as [HIsi|HNIsi].
   { destruct HUn as [Habs|HLea].
-      absurd (SAMS P Q R P Q R); trivial; apply obtuse__nsams, Habs.
+      absurd (角度之和小于平角 P Q R P Q R); trivial; apply obtuse__nsams, Habs.
     destruct (ex_suma P Q R P Q R) as [S [T [U HSuma]]]; auto.
     exists S; exists T; exists U; split.
       apply 角度对数刻度_步进 with P Q R; trivial.

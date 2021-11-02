@@ -187,7 +187,7 @@ Lemma PlgExABC2: forall A B C, ~Col A B C -> Cong A B B C -> exists D, Plg A B C
 Proof.
   intros A B C HC H.
   unfold Plg in *.
-  assert(Is_on_perp_bisect B A C). exact H.
+  assert(在中垂线上 B A C). exact H.
   destruct (midpoint_existence A B) as [X H1].
   destruct (l10_2_existence A C B) as [D H3].
   unfold 对称 in H3.

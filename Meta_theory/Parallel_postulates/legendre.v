@@ -27,8 +27,8 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Theorem stronger_legendre_s_first_theorem :
   aristotle_s_axiom ->
   forall A B C D E F,
-    SumA C A B A B C D E F ->
-    SAMS D E F B C A.
+    和角 C A B A B C D E F ->
+    角度之和小于平角 D E F B C A.
 Proof.
   intros ari A B C D E F.
   apply (t22_20 (aristotle__obtuse_case_elimination ari)).
@@ -37,8 +37,8 @@ Qed.
 Theorem legendre_s_first_theorem :
   archimedes_axiom ->
   forall A B C D E F,
-    SumA C A B A B C D E F ->
-    SAMS D E F B C A.
+    和角 C A B A B C D E F ->
+    角度之和小于平角 D E F B C A.
 Proof.
   intros archi A B C D E F.
   apply (t22_20 (archi__obtuse_case_elimination archi)).
@@ -85,8 +85,8 @@ Lemma legendre_aux :
   forall A B C D B1 C1 P Q R S T U V W X,
     ~ Col A B C -> 等角 A C B C B D ->
     Cong A C B D -> TS B C A D -> Out A B B1 -> Out A C C1 -> Bet B1 D C1 ->
-    Defect A B C P Q R -> Defect A B1 C1 S T U -> SumA P Q R P Q R V W X ->
-    SAMS P Q R P Q R /\ 角度小于等于 V W X S T U.
+    三角形内角和与平角之差 A B C P Q R -> 三角形内角和与平角之差 A B1 C1 S T U -> 和角 P Q R P Q R V W X ->
+    角度之和小于平角 P Q R P Q R /\ 角度小于等于 V W X S T U.
 Proof.
   intros noah A B C D B1 C1 P Q R S T U V W X HNCol HConga HCong HTS HOutB HOutC HBet HDef HDef1 HSuma.
   destruct (l11_49 A C B D B C) as [HCong1 [HConga1 HConga2]]; 等角; Cong.
@@ -155,19 +155,19 @@ Proof.
   destruct (t22_16_1bis noah A C B1 B P Q R M N O G H I) as [HIsi5 HSuma5]; trivial.
     apply defect_perm_132, HDef.
     apply defect_perm_132, HDef2.
-  assert (HIsi1 : SAMS G H I A' B' C').
+  assert (HIsi1 : 角度之和小于平角 G H I A' B' C').
     apply sams_lea2__sams with G H I J K L; Lea.
     apply sams_suma__lea123789 with D' E' F'; trivial.
-  assert (HIsi2 : SAMS M N O A' B' C').
+  assert (HIsi2 : 角度之和小于平角 M N O A' B' C').
     apply sams_lea2__sams with G H I A' B' C'; Lea.
     apply sams_suma__lea456789 with P Q R; trivial.
-  assert (HSuma6 : SumA G' H' I' D' E' F' S T U).
+  assert (HSuma6 : 和角 G' H' I' D' E' F' S T U).
     apply suma_assoc_2 with G H I A' B' C' J K L; trivial.
-  assert (HIsi6 : SAMS G' H' I' D' E' F').
+  assert (HIsi6 : 角度之和小于平角 G' H' I' D' E' F').
     apply sams_assoc_2 with G H I A' B' C' J K L; trivial.
-  assert (HSuma7 : SumA P Q R J' K' L' G' H' I').
+  assert (HSuma7 : 和角 P Q R J' K' L' G' H' I').
     apply suma_assoc_1 with M N O A' B' C' G H I; trivial.
-  assert (HIsi7 : SAMS P Q R J' K' L').
+  assert (HIsi7 : 角度之和小于平角 P Q R J' K' L').
     apply sams_assoc_1 with M N O A' B' C' G H I; trivial.
   destruct (t22_16_2 noah C B B1 D M' N' O' A' B' C' P Q R M N O Z J' K' L') as [HIsi8 HSuma8]; trivial.
     apply defect_perm_231, (conga3_defect__defect A B C); 等角.
@@ -217,10 +217,10 @@ Lemma legendre_aux2 :
        在角内 T B A C ->
        exists X Y : Tpoint, Out A B X /\ Out A C Y /\ Bet X T Y) ->
     forall P Q R S T U,
-      Defect A B C P Q R -> 角度在对数刻度上 P Q R S T U ->
+      三角形内角和与平角之差 A B C P Q R -> 角度在对数刻度上 P Q R S T U ->
       exists B' C' P' Q' R',
         (Out A B B' /\ Out A C C' /\
-         Defect A B' C' P' Q' R' /\ 角度小于等于 S T U P' Q' R').
+         三角形内角和与平角之差 A B' C' P' Q' R' /\ 角度小于等于 S T U P' Q' R').
 Proof.
   intros noah A B C HNCol H为锐角 legendre P Q R S T U HDef.
   induction 1; rename A0 into P; rename B0 into Q; rename C0 into R.

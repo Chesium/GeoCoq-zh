@@ -34,7 +34,7 @@ Proof.
   assert(HA' : 在角内 A C B E).
   { apply lea_in_angle; auto.
     - apply (l11_30 A B C B C D').
-        apply (sams_chara D); Between; SumA.
+        apply (sams_chara D); Between; 和角.
         apply conga_pseudo_refl; auto.
       apply (l11_10 M C D' M B E); Out.
 
@@ -62,7 +62,7 @@ Proof.
     apply (bet_conga__bet D' C D); Between.
     apply (suma2__conga A B C B C D); auto.
     apply l6_6 in Hout.
-    apply (conga3_suma__suma D' C B B C D D' C D); try (apply conga_refl); SumA.
+    apply (conga3_suma__suma D' C B B C D D' C D); try (apply conga_refl); 和角.
     apply (l11_10 D' C M E B M); Out; 等角.
   }
   unfold BetS in HY.

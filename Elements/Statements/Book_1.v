@@ -355,7 +355,7 @@ Qed.
 
 Lemma prop_13 : forall A B C D P Q R, A <> B -> B <> C -> B <> D -> Bet C B D ->
   P <> Q -> Q <> R -> Per P Q R ->
-  SumA C B A A B D C B D /\ SumA P Q R P Q R C B D.
+  和角 C B A A B D C B D /\ 和角 P Q R P Q R C B D.
 Proof.
   intros.
   split.
@@ -373,7 +373,7 @@ Qed.
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container14"></div> # **)
 
 Lemma prop_14 : forall A B C D P Q R S T U, TS A B C D -> Per P Q R ->
-  SumA A B C A B D S T U -> SumA P Q R P Q R S T U -> Bet C B D.
+  和角 A B C A B D S T U -> 和角 P Q R P Q R S T U -> Bet C B D.
 Proof.
   intros A B C D P Q R S T U HTS HP HSuma1 HSuma2.
   apply (bet_conga__bet S T U).
@@ -418,12 +418,12 @@ Qed.
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container17"></div> # **)
 
       (** Here, the fact that the two angles are less than two right angles is described with
-          the SAMS predicate, which means that they have a "sum at most straight", and the fact that
+          the 角度之和小于平角 predicate, which means that they have a "sum at most straight", and the fact that
           their sum is not a straight line.
         *)
 
-Lemma prop_17 : forall A B C P Q R, ~ Col A B C -> SumA A B C B C A P Q R -> 
-  SAMS A B C B C A /\ ~ Bet P Q R.
+Lemma prop_17 : forall A B C P Q R, ~ Col A B C -> 和角 A B C B C A P Q R -> 
+  角度之和小于平角 A B C B C A /\ ~ Bet P Q R.
 Proof.
   intros A B C P Q R HNCol HSuma.
   split.
@@ -645,10 +645,10 @@ Proof.
   apply l12_22_b.
 Qed.
 
-Lemma prop_28_2 : forall A C G H P Q R, OS G H A C -> SumA A G H G H C P Q R -> Bet P Q R ->
+Lemma prop_28_2 : forall A C G H P Q R, OS G H A C -> 和角 A G H G H C P Q R -> Bet P Q R ->
   Par A G C H.
 Proof.
-  intros A C G H P Q R HOS HSumA HBet.
+  intros A C G H P Q R HOS H和角 HBet.
   destruct (由一点往一方向构造等长线段 C H C H) as [D [HBet1 HCong]].
   apply par_comm.
   assert_diffs.
@@ -697,7 +697,7 @@ Proof.
   apply l12_22_a.
 Qed.
 
-Lemma prop_29_3 : forall A C G H P Q R, OS G H A C -> Par A G H C -> SumA A G H G H C P Q R ->
+Lemma prop_29_3 : forall A C G H P Q R, OS G H A C -> Par A G H C -> 和角 A G H G H C P Q R ->
   Bet P Q R.
 Proof.
   intros A C G H P Q R HOS HPar.
@@ -749,7 +749,7 @@ Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container32"></div> # **)
 
-Lemma prop_32_1 : forall A B C D E F, TriSumA A B C D E F -> Bet D E F.
+Lemma prop_32_1 : forall A B C D E F, 三角形内角和 A B C D E F -> Bet D E F.
 Proof.
   apply alternate_interior__triangle.
   unfold alternate_interior_angles_postulate.
@@ -757,16 +757,16 @@ Proof.
 Qed.
 
 Lemma prop_32_2 : forall A B C D, A <> B -> B <> C -> A <> C -> Bet B C D -> C <> D ->
-  SumA C A B A B C A C D.
+  和角 C A B A B C A C D.
 Proof.
   intros A B C D HAB HBC HAC HBet HAD.
   destruct (ex_trisuma C A B) as [P [Q [R HTri]]]; auto.
   assert (Bet P Q R) by (apply (prop_32_1 C A B), HTri).
-  destruct HTri as [S [T [U [HSuma1 HSumA2]]]].
+  destruct HTri as [S [T [U [HSuma1 H和角2]]]].
   apply conga3_suma__suma with C A B A B C S T U; try (apply conga_refl); auto.
   assert_diffs.
   assert (H等角 : 等角 B C D P Q R) by (apply conga_line; auto).
-  assert (HSumA' : SumA A C D B C A P Q R).
+  assert (H和角' : 和角 A C D B C A P Q R).
     apply conga3_suma__suma with A C D B C A B C D; 等角.
     apply suma_sym, bet__suma; auto.
   apply sams2_suma2__conga123 with B C A P Q R; trivial;

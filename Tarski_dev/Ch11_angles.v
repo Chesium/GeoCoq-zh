@@ -10410,7 +10410,7 @@ contradiction.
 Qed.
 
 
-Lemma bet__suppa : forall A B C A', A <> B -> B <> C -> B <> A' -> Bet A B A' -> SuppA A B C C B A'.
+Lemma bet__suppa : forall A B C A', A <> B -> B <> C -> B <> A' -> Bet A B A' -> 互为补角 A B C C B A'.
 Proof.
 intros.
 split; auto.
@@ -10419,7 +10419,7 @@ split; trivial.
 apply conga_refl; auto.
 Qed.
 
-Lemma ex_suppa : forall A B C, A <> B -> B <> C -> exists D E F, SuppA A B C D E F.
+Lemma ex_suppa : forall A B C, A <> B -> B <> C -> exists D E F, 互为补角 A B C D E F.
 Proof.
 intros.
 destruct (由一点往一方向构造等长线段 A B A B) as [A' []].
@@ -10428,19 +10428,19 @@ apply bet__suppa; auto.
 intro; treat_equalities; auto.
 Qed.
 
-Lemma suppa_distincts : forall A B C D E F, SuppA A B C D E F ->
+Lemma suppa_distincts : forall A B C D E F, 互为补角 A B C D E F ->
   A <> B /\ B <> C /\ D <> E /\ E <> F.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 ex_and H0 A'.
 apply conga_distinct in H1; spliter.
 repeat split; auto.
 Qed.
 
-Lemma suppa_right_comm : forall A B C D E F, SuppA A B C D E F -> SuppA A B C F E D.
+Lemma suppa_right_comm : forall A B C D E F, 互为补角 A B C D E F -> 互为补角 A B C F E D.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 split; auto.
 ex_and H0 A'.
@@ -10449,9 +10449,9 @@ split; auto.
 apply conga_left_comm, H1.
 Qed.
 
-Lemma suppa_left_comm : forall A B C D E F, SuppA A B C D E F -> SuppA C B A D E F.
+Lemma suppa_left_comm : forall A B C D E F, 互为补角 A B C D E F -> 互为补角 C B A D E F.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 ex_and H0 A'.
 apply conga_distinct in H1.
@@ -10465,15 +10465,15 @@ assert_diffs.
 apply conga_left_comm, l11_14; Between.
 Qed.
 
-Lemma suppa_comm : forall A B C D E F, SuppA A B C D E F -> SuppA C B A F E D.
+Lemma suppa_comm : forall A B C D E F, 互为补角 A B C D E F -> 互为补角 C B A F E D.
 Proof.
 intros.
 apply suppa_left_comm, suppa_right_comm, H.
 Qed.
 
-Lemma suppa_sym : forall A B C D E F, SuppA A B C D E F -> SuppA D E F A B C.
+Lemma suppa_sym : forall A B C D E F, 互为补角 A B C D E F -> 互为补角 D E F A B C.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 ex_and H0 A'.
 apply conga_distinct in H1; spliter.
@@ -10487,13 +10487,13 @@ apply conga_sym, conga_right_comm, H1.
 Qed.
 
 Lemma conga2_suppa__suppa : forall A B C D E F A' B' C' D' E' F',
-  等角 A B C A' B' C' -> 等角 D E F D' E' F' -> SuppA A B C D E F ->
-  SuppA A' B' C' D' E' F'.
+  等角 A B C A' B' C' -> 等角 D E F D' E' F' -> 互为补角 A B C D E F ->
+  互为补角 A' B' C' D' E' F'.
 Proof.
 intros.
-assert (SuppA A B C D' E' F').
+assert (互为补角 A B C D' E' F').
 {
-  unfold SuppA in *; spliter.
+  unfold 互为补角 in *; spliter.
   split; auto.
   ex_and H2 A0.
   exists A0.
@@ -10502,7 +10502,7 @@ assert (SuppA A B C D' E' F').
 }
 apply suppa_sym.
 apply suppa_sym in H2.
-unfold SuppA in H2; spliter.
+unfold 互为补角 in H2; spliter.
 split; auto.
 ex_and H3 D0.
 exists D0.
@@ -10511,9 +10511,9 @@ apply conga_trans with A B C; [apply conga_sym|]; assumption.
 Qed.
 
 Lemma suppa2__conga456 : forall A B C D E F D' E' F',
-  SuppA A B C D E F -> SuppA A B C D' E' F' -> 等角 D E F D' E' F'.
+  互为补角 A B C D E F -> 互为补角 A B C D' E' F' -> 等角 D E F D' E' F'.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 ex_and H2 A'.
 ex_and H1 A''.
@@ -10528,14 +10528,14 @@ apply out2__conga.
 Qed.
 
 Lemma suppa2__conga123 : forall A B C D E F A' B' C',
-  SuppA A B C D E F -> SuppA A' B' C' D E F -> 等角 A B C A' B' C'.
+  互为补角 A B C D E F -> 互为补角 A' B' C' D E F -> 等角 A B C A' B' C'.
 Proof.
 intros.
 apply (suppa2__conga456 D E F); apply suppa_sym; assumption.
 Qed.
 
 Lemma bet_out__suppa : forall A B C D E F, A <> B -> B <> C ->
-  Bet A B C -> Out E D F -> SuppA A B C D E F.
+  Bet A B C -> Out E D F -> 互为补角 A B C D E F.
 Proof.
 intros.
 split; auto.
@@ -10546,7 +10546,7 @@ apply out_trivial; auto.
 Qed.
 
 Lemma bet_suppa__out : forall A B C D E F,
-  Bet A B C -> SuppA A B C D E F -> Out E D F.
+  Bet A B C -> 互为补角 A B C D E F -> Out E D F.
 Proof.
 intros.
 assert (Hd := H0).
@@ -10561,7 +10561,7 @@ apply conga_refl; auto.
 Qed.
 
 Lemma out_suppa__bet : forall A B C D E F,
-  Out B A C -> SuppA A B C D E F -> Bet D E F.
+  Out B A C -> 互为补角 A B C D E F -> Bet D E F.
 Proof.
 intros.
 destruct (由一点往一方向构造等长线段 A B A B) as [B' []].
@@ -10572,9 +10572,9 @@ apply suppa_sym, bet_out__suppa; auto.
 Qed.
 
 Lemma per_suppa__per : forall A B C D E F,
-  Per A B C -> SuppA A B C D E F -> Per D E F.
+  Per A B C -> 互为补角 A B C D E F -> Per D E F.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 ex_and H1 A'.
 apply (l11_17 C B A'); [|apply conga_sym, H2].
@@ -10583,7 +10583,7 @@ apply per_col with A; Perp; Col.
 Qed.
 
 Lemma per2__suppa : forall A B C D E F, A <> B -> B <> C -> D <> E -> E <> F ->
-  Per A B C -> Per D E F -> SuppA A B C D E F.
+  Per A B C -> Per D E F -> 互为补角 A B C D E F.
 Proof.
 intros.
 destruct (ex_suppa A B C) as [D' [E' [F']]]; auto.
@@ -10594,9 +10594,9 @@ apply l11_16; auto.
 apply (per_suppa__per A B C); assumption.
 Qed.
 
-Lemma suppa__per : forall A B C, SuppA A B C A B C -> Per A B C.
+Lemma suppa__per : forall A B C, 互为补角 A B C A B C -> Per A B C.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 ex_and H0 A'.
 apply l8_2, l11_18_2 with A'; trivial.
@@ -10604,9 +10604,9 @@ apply conga_left_comm, H1.
 Qed.
 
 Lemma acute_suppa__obtuse : forall A B C D E F,
-  为锐角 A B C -> SuppA A B C D E F -> 为钝角 D E F.
+  为锐角 A B C -> 互为补角 A B C D E F -> 为钝角 D E F.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 ex_and H1 A'.
 apply (conga_obtuse__obtuse C B A'); [|apply conga_sym, H2].
@@ -10615,9 +10615,9 @@ apply obtuse_sym, (acute_bet__obtuse A); auto.
 Qed.
 
 Lemma obtuse_suppa__acute : forall A B C D E F,
-  为钝角 A B C -> SuppA A B C D E F -> 为锐角 D E F.
+  为钝角 A B C -> 互为补角 A B C D E F -> 为锐角 D E F.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 ex_and H1 A'.
 apply (acute_conga__acute C B A'); [|apply conga_sym, H2].
@@ -10626,10 +10626,10 @@ apply acute_sym, (bet_obtuse__acute A); auto.
 Qed.
 
 Lemma lea_suppa2__lea : forall A B C D E F A' B' C' D' E' F',
-  SuppA A B C A' B' C' -> SuppA D E F D' E' F' -> 角度小于等于 A B C D E F ->
+  互为补角 A B C A' B' C' -> 互为补角 D E F D' E' F' -> 角度小于等于 A B C D E F ->
   角度小于等于 D' E' F' A' B' C'.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 ex_and H3 A0.
 ex_and H2 D0.
@@ -10641,10 +10641,10 @@ apply lea_comm, l11_36 with D A; Between.
 Qed.
 
 Lemma lta_suppa2__lta : forall A B C D E F A' B' C' D' E' F',
-  SuppA A B C A' B' C' -> SuppA D E F D' E' F' -> 角度小于 A B C D E F ->
+  互为补角 A B C A' B' C' -> 互为补角 D E F D' E' F' -> 角度小于 A B C D E F ->
   角度小于 D' E' F' A' B' C'.
 Proof.
-unfold SuppA.
+unfold 互为补角.
 intros; spliter.
 ex_and H3 A0.
 ex_and H2 D0.
@@ -10655,7 +10655,7 @@ spliter.
 apply lta_comm, bet2_lta__lta with A D; Between.
 Qed.
 
-Lemma suppa_dec : forall A B C D E F, SuppA A B C D E F \/ ~ SuppA A B C D E F.
+Lemma suppa_dec : forall A B C D E F, 互为补角 A B C D E F \/ ~ 互为补角 A B C D E F.
 Proof.
 intros.
 induction (两点重合的决定性 A B).
@@ -10823,7 +10823,7 @@ repeat
       let h := fresh in
       not_exist_hyp2 A B B C;
       assert (h := obtuse_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
-      | H:SuppA ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:互为补角 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
       assert (h := suppa_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps

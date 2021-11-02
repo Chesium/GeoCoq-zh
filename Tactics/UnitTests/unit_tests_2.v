@@ -86,7 +86,7 @@ assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C D E F, SuppA A B C D E F -> A <> B /\ B <> C /\ D <> E /\ E <> F.
+Goal forall A B C D E F, 互为补角 A B C D E F -> A <> B /\ B <> C /\ D <> E /\ E <> F.
 Proof.
 intros.
 assert_diffs.
@@ -155,7 +155,7 @@ auto.
 Qed.
 
 
-Goal forall A B C D E F G H I, SumA A B C D E F G H I ->
+Goal forall A B C D E F G H I, 和角 A B C D E F G H I ->
  A <> B /\ B <> C /\ D <> E /\ E <> F /\ G <> H /\ H <> I.
 Proof.
 intros.
@@ -163,7 +163,7 @@ assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C D E F, TriSumA A B C D E F ->
+Goal forall A B C D E F, 三角形内角和 A B C D E F ->
  A <> B /\ B <> C /\ A <> C /\ D <> E /\ E <> F.
 Proof.
 intros.
@@ -171,7 +171,7 @@ assert_diffs.
 repeat split; assumption.
 Qed.
 
-Goal forall A B C D E F, SAMS A B C D E F -> A <> B /\ B <> C /\ D <> E /\ E <> F.
+Goal forall A B C D E F, 角度之和小于平角 A B C D E F -> A <> B /\ B <> C /\ D <> E /\ E <> F.
 Proof.
 intros.
 assert_diffs.

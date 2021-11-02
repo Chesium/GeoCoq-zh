@@ -43,13 +43,13 @@ assert (Per P Q R).
   apply perp_per_2, perp_col2 with A1 A2; Col;
   apply perp_sym, perp_col2 with B1 B2; Col; Perp.
   }
-assert (HSuma : SumA P Q M P Q M P Q R).
-  assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; 等角; SumA.
+assert (HSuma : 和角 P Q M P Q M P Q R).
+  assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; 等角; 和角.
 assert (H为锐角 : 为锐角 P Q M).
 { apply nbet_sams_suma__acute with P Q R; auto.
     intro; apply HNC; Col.
   assert (角度小于等于 P Q M P Q R) by Lea.
-  apply sams_lea2__sams with P Q R P Q R; SumA.
+  apply sams_lea2__sams with P Q R P Q R; 和角.
 }
 assert (HC3 : exists C3, Col C1 C2 C3 /\ OS P Q R C3).
 { destruct (diff_col_ex3 C1 C2 P) as [C0]; Col; spliter.
@@ -80,8 +80,8 @@ intros HCol1 HCol2 HCol3 HCol4 HCol5 HCol6 HCop1 HCop2 HCop3 HCop4.
 assert (HNC : ~ Col P Q R).
   apply per_not_col; auto; apply perp_per_1, (perp_col4 A1 A2 B1 B2); auto.
 destruct (angle_bisector P Q R) as [M [HM1 HM2]]; auto.
-assert (HSuma : SumA P Q M P Q M P Q R).
-  assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; 等角; SumA.
+assert (HSuma : 和角 P Q M P Q M P Q R).
+  assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; 等角; 和角.
 assert (H为锐角 : 为锐角 P Q M).
   {
   apply nbet_sams_suma__acute with P Q R; auto.
@@ -89,7 +89,7 @@ assert (H为锐角 : 为锐角 P Q M).
   assert (角度小于等于 P Q M P Q R) by Lea.
   assert (Per P Q R)
     by (apply perp_per_2, perp_col2 with A1 A2; Col; apply perp_sym, perp_col2 with B1 B2; Col; Perp).
-  apply sams_lea2__sams with P Q R P Q R; SumA.
+  apply sams_lea2__sams with P Q R P Q R; 和角.
   }
 destruct (weak_inverse_projection_postulate__bachmann_s_lotschnittaxiom_aux
     hrap A1 A2 B1 B2 C1 C2 Q P R M) as [HParB [S [HS1 HS2]]]; Col.

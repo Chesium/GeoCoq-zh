@@ -66,7 +66,7 @@ assert (eq C C) by (conclude cn_equalityreflexive).
 assert (Out B C C) by (conclude lemma_ray4).
 assert (等角 A B C A B C) by (conclude lemma_equalanglesreflexive).
 assert (等角 A B C a B C) by (conclude lemma_equalangleshelper).
-assert (SumA F B A A B C F B C) by (conclude_def SumA ).
+assert (和角 F B A A B C F B C) by (conclude_def 和角 ).
 let Tf:=fresh in
 assert (Tf:exists c, (BetS D c A /\ Col C B c /\ nCol C B D)) by (conclude_def TS );destruct Tf as [c];spliter.
 assert (PG B C E D) by (conclude lemma_squareparallelogram).
@@ -123,7 +123,7 @@ assert (等角 D B C D B C) by (conclude lemma_equalanglesreflexive).
 assert (neq B D) by (conclude lemma_inequalitysymmetric).
 assert (Out B D D) by (conclude lemma_ray4).
 assert (等角 D B C D B c) by (conclude lemma_equalangleshelper).
-assert (SumA D B C C B A D B A) by (conclude_def SumA ).
+assert (和角 D B C C B A D B A) by (conclude_def 和角 ).
 assert (等角 F B A D B C) by (conclude lemma_Euclid4).
 assert (等角 A B C C B A) by (conclude lemma_ABCequalsCBA).
 assert (等角 F B C D B A) by (conclude lemma_angleaddition).

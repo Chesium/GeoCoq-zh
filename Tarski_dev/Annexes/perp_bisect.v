@@ -5,9 +5,9 @@ Section PerpBisect_1.
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma perp_bisect_equiv_def :
-  forall P Q A B, Perp_bisect P Q A B <-> Perp_bisect_bis P Q A B.
+  forall P Q A B, Perp_bisect P Q A B <-> 中垂线_另一定义 P Q A B.
 Proof.
-intros; unfold Perp_bisect; unfold Perp_bisect_bis; unfold 严格对称; split.
+intros; unfold Perp_bisect; unfold 中垂线_另一定义; unfold 严格对称; split.
 
   {
   intro H; destruct H as [[[X [HMid HCol]] HPerp] HDiff].
@@ -33,7 +33,7 @@ Proof.
 intros.
 apply perp_bisect_equiv_def in H.
 apply perp_bisect_equiv_def.
-unfold Perp_bisect_bis in *.
+unfold 中垂线_另一定义 in *.
 elim H;intros.
 exists x.
 intuition; Perp.
@@ -47,7 +47,7 @@ Proof.
 intros.
 apply perp_bisect_equiv_def in H.
 apply perp_bisect_equiv_def.
-unfold Perp_bisect_bis in *.
+unfold 中垂线_另一定义 in *.
 elim H;intros.
 exists x.
 intuition; Perp.
@@ -70,7 +70,7 @@ Lemma perp_bisect_perp :
 Proof.
 intros.
 apply perp_bisect_equiv_def in H.
-unfold Perp_bisect_bis in *.
+unfold 中垂线_另一定义 in *.
 decompose [and ex] H;clear H.
 unfold Perp.
 exists x.
@@ -92,7 +92,7 @@ Lemma perp_bisect_cong_1 :
 Proof.
 intros.
 apply perp_bisect_equiv_def in H.
-unfold Perp_bisect_bis in *.
+unfold 中垂线_另一定义 in *.
 elim H;intros I;intros;clear H.
 decompose [and] H0;clear H0.
 assert (Cong P A P B).
@@ -108,7 +108,7 @@ Lemma perp_bisect_cong_2 :
 Proof.
 intros.
 apply perp_bisect_equiv_def in H.
-unfold Perp_bisect_bis in *.
+unfold 中垂线_另一定义 in *.
 elim H;intros I;intros;clear H.
 decompose [and] H0;clear H0.
 assert (Cong Q A Q B).
@@ -157,7 +157,7 @@ Lemma cong_cop_perp_bisect :
 Proof.
 intros.
 apply perp_bisect_equiv_def.
-unfold Perp_bisect_bis.
+unfold 中垂线_另一定义.
 elim (midpoint_existence A B).
 intros I HI.
 exists I.
@@ -217,14 +217,14 @@ intros.
 apply cong_cop_perp_bisect; Cong; Cop.
 Qed.
 
-Lemma perp_bisect_is_on_perp_bisect :
+Lemma perp_bisect_在中垂线上 :
  forall A B C P,
-  Is_on_perp_bisect P A B ->
-  Is_on_perp_bisect P B C ->
-  Is_on_perp_bisect P A C.
+  在中垂线上 P A B ->
+  在中垂线上 P B C ->
+  在中垂线上 P A C.
 Proof.
 intros.
-unfold Is_on_perp_bisect in *.
+unfold 在中垂线上 in *.
 CongR.
 Qed.
 
@@ -234,7 +234,7 @@ Lemma perp_mid_perp_bisect : forall A B C D,
 Proof.
 intros.
 apply perp_bisect_equiv_def.
-unfold Perp_bisect_bis in *.
+unfold 中垂线_另一定义 in *.
 exists C.
 split; auto.
 apply l8_14_2_1b_bis; Col.

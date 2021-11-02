@@ -33,7 +33,7 @@ Proof.
   assert(OS P C Q R).
     apply l12_6, par_strict_col_par_strict with A; Par; Col.
   destruct (ex_suma B' P R P R Q) as [D [E [F Hsuma1]]]; auto.
-  assert(Htri : TriSumA R Q P D E F).
+  assert(Htri : 三角形内角和 R Q P D E F).
   { exists B', P, R; split; auto.
     apply (conga3_suma__suma B' P Q Q P R B' P R); try (apply conga_refl; auto).
     - exists R.
@@ -51,8 +51,8 @@ Proof.
   { apply (par_not_col Q A); Col.
     apply par_strict_col_par_strict with B; Col.
   }
-  assert(Hsuma3 : SumA B' P R R P B B' P B) by (apply bet__suma; Between).
-  assert(Hsams3 : SAMS B' P R R P B) by (apply bet__sams; Between).
+  assert(Hsuma3 : 和角 B' P R R P B B' P B) by (apply bet__suma; Between).
+  assert(Hsams3 : 角度之和小于平角 B' P R R P B) by (apply bet__sams; Between).
   assert(角度小于等于 C P B R P B).
   { apply lea_comm, inangle__lea, os_ts__inangle.
     - apply l9_2, (l9_8_2 _ _ Q); trivial.
