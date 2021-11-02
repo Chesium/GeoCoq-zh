@@ -16,7 +16,7 @@ Lemma impossible_case_5 : forall P Q R S U I,
   False.
 Proof.
 intros P Q R S U I HQUR HNC HNC' HPar HSQI HPUI.
-apply BetSEq in HQUR.
+apply 严格中间性的等价 in HQUR.
 apply par_symmetry in HPar.
 apply (par_not_col_strict Q S P R P) in HPar; Col.
 assert (HOS : OS Q S R U).
@@ -43,7 +43,7 @@ Lemma impossible_case_6 : forall P Q R S U I,
   False.
 Proof.
 intros P Q R S U I HQUR HNC HPar HSQI HPUI.
-apply BetSEq in HQUR.
+apply 严格中间性的等价 in HQUR.
 apply 中间性的对称性 in HPUI.
 destruct (帕施公理 S U I Q P HSQI HPUI) as [J [HBet1 HBet2]].
 assert (HParS : 严格平行 P S Q U).
@@ -66,7 +66,7 @@ Lemma impossible_case_7 : forall P Q R S U I,
   False.
 Proof.
 intros P Q R S U I HQUR HNC HNC' HPar1 HPar2 HPUI HSQI.
-apply BetSEq in HQUR.
+apply 严格中间性的等价 in HQUR.
 revert HPUI.
 apply one_side_not_col124 with Q.
 apply l9_17 with S; [|assumption].
@@ -94,7 +94,7 @@ Lemma impossible_case_8 : forall P Q R S U I,
   False.
 Proof.
 intros P Q R S U I HQUR HNC HPar1 HPar2 HPUI HSQI.
-apply BetSEq in HQUR.
+apply 严格中间性的等价 in HQUR.
 destruct HQUR as [HQUR [HQU [HQR HUR]]].
 assert (H : 严格平行 P S Q U)
   by (apply par_strict_col_par_strict with R; Col; apply par_not_col_strict with Q; Col; Par).
@@ -200,7 +200,7 @@ elim HBetS; clear HBetS; intro HBetS.
       unfold BetS in *; spliter; apply H1; ColR.
       }
     clear HX; rename H into HX.
-    apply BetSEq in HBetS; destruct HBetS as [HB''TX [HB''T [HB''X HBTX]]].
+    apply 严格中间性的等价 in HBetS; destruct HBetS as [HB''TX [HB''T [HB''X HBTX]]].
     exists B', B'', MB, X.
     split.
       unfold BetS in HX; spliter; eBetween.

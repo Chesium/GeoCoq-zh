@@ -8,7 +8,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma triangle__existential_triangle : triangle_postulate -> postulate_of_existence_of_a_triangle_whose_angles_sum_to_two_rights.
 Proof.
   intro triangle.
-  destruct 防降维公理_ex as [A [B [C]]].
+  destruct 防降维公理_老版本 as [A [B [C]]].
   assert(~ Col A B C) by (unfold Col; assumption).
   assert_diffs.
   destruct (ex_trisuma A B C) as [D [E [F]]]; auto.

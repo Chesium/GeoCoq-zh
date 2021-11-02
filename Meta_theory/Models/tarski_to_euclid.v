@@ -667,9 +667,9 @@ split.
  split;auto.
  destruct H2.
  exfalso;apply H7.
- apply outer_transitivity_between2 with X; Between.
+ apply 中间性的外传递性1 with X; Between.
  exfalso;apply H7.
- apply (between_exchange3 X); auto.
+ apply (中间性的交换传递性1 X); auto.
  split.
   destruct K as [p q].
   destruct p.

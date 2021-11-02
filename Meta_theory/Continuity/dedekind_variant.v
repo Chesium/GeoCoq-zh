@@ -20,7 +20,7 @@ Proof.
   destruct (classic (exists C, Beta C)) as [[C HC]|HN];
     [|exists A; intros X Y HX HY; exfalso; apply HN; exists Y; apply HY].
   destruct (classic (exists P, Alpha P /\ Beta P)) as [[P []]|HNconj].
-    exists P; intros; apply (between_exchange3 A); auto.
+    exists P; intros; apply (中间性的交换传递性1 A); auto.
   destruct (classic (exists X, Alpha X /\ X <> A)) as [HAlpha|HN];
     [|exists A; intros X Y HX HY;
       destruct (两点重合的决定性 X A); [subst; Between|exfalso; apply HN; exists X; split; assumption]].
@@ -47,7 +47,7 @@ Proof.
       apply out_trivial; intro; subst; auto.
     intros [X [HX HACX]].
     apply HNconj; exists C.
-    assert (C = X) by (apply (between_equality_2 A); auto).
+    assert (C = X) by (apply (双中间性推出点重合2 A); auto).
     subst; split; assumption.
   - intros P HP.
     destruct (classic (exists X : Tpoint, Alpha X /\ Bet A P X)); [left; right|right; split]; auto.
@@ -57,11 +57,11 @@ Proof.
     destruct HX' as [|[X [HX HAX'X]]]; [contradiction|].
     assert (HOut : Out A X' Y').
       assert (Bet A X C) by (apply Hcut; assumption).
-      assert (A <> X) by (apply bet_neq21__neq with X'; assumption).
+      assert (A <> X) by (apply 中间性_BA不等推AC不等 with X'; assumption).
       apply l6_7 with X; [|apply l6_7 with C]; Out.
     assert (HOut' : Out Y' A X').
       apply not_bet_out; Col.
-      intro; apply HN; exists X; split; [|apply between_exchange4 with X']; assumption.
+      intro; apply HN; exists X; split; [|apply 中间性的交换传递性2 with X']; assumption.
     split.
       apply out2__bet; assumption.
     destruct HOut' as [_ []]; auto.

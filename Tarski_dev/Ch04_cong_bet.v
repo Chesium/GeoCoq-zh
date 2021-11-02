@@ -21,7 +21,7 @@ induction (两点重合的决定性 A C).
 treat_equalities;assumption.
 
 assert (exists E, Bet A C E /\ C <> E)
- by apply point_construction_different.
+ by apply 构造满足中间性的不重合点.
 ex_and H6 E.
 prolong A' C' E' C E.
 
@@ -63,7 +63,7 @@ intros.
 unfold 三角形全等.
 
 assert (exists D', Bet C' A' D' /\ A' <> D')
- by (apply point_construction_different).
+ by (apply 构造满足中间性的不重合点).
 ex_and H1 x'.
 prolong x' A' B' A B.
 prolong x' B' C'' B C.

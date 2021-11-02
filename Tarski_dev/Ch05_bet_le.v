@@ -14,8 +14,8 @@ Proof.
     prolong A D' B'' D B.
     assert (Cong B C' B'' C).
       apply (两组连续三点分段等则全体等 B D C' B'' D' C).
-        apply between_exchange3 with A; Between.
-        apply between_inner_transitivity with A; Between.
+        apply 中间性的交换传递性1 with A; Between.
+        apply 中间性的内传递性1 with A; Between.
         Cong.
       apply 等长的传递性 with C D; Cong.
     assert (Cong B B' B'' B).
@@ -26,28 +26,28 @@ Proof.
         assert (Bet A B C'); [|eBetween].
         induction (两点重合的决定性 B D); [treat_equalities; auto|].
         apply 中间性的对称性.
-        apply outer_transitivity_between2 with D; eBetween.
+        apply 中间性的外传递性1 with D; eBetween.
         }
 
         {
         induction (两点重合的决定性 C D'); [treat_equalities; eBetween|].
-        apply outer_transitivity_between2 with D'; eBetween.
+        apply 中间性的外传递性1 with D'; eBetween.
         }
       }
     assert(B'' =  B').
       apply (点的唯一构造 A B B B''); Cong.
-        apply between_exchange4 with D'; Between;
-        apply between_exchange4 with C; Between.
-      apply between_exchange4 with C'; Between;
-      apply between_exchange4 with D; Between.
+        apply 中间性的交换传递性2 with D'; Between;
+        apply 中间性的交换传递性2 with C; Between.
+      apply 中间性的交换传递性2 with C'; Between;
+      apply 中间性的交换传递性2 with D; Between.
     subst B''.
-    assert (Bet B C D') by (apply between_exchange3 with A; assumption).
+    assert (Bet B C D') by (apply 中间性的交换传递性1 with A; assumption).
     assert (五线段形式 B C D' C' B' C' D C).
       repeat split; Cong.
-        left; apply between_exchange3 with A; Between.
+        left; apply 中间性的交换传递性1 with A; Between.
         apply (两组连续三点分段等则全体等 B C D' B' C' D); Cong.
           apply 中间性的对称性.
-          apply between_exchange3 with A; assumption.
+          apply 中间性的交换传递性1 with A; assumption.
         apply 等长的传递性 with C D; Cong.
       apply 等长的传递性 with C D; Cong.
     induction (两点重合的决定性 B C).
@@ -69,7 +69,7 @@ Proof.
     assert (五线段形式 D' C R P P C E D').
       repeat split; Col; Cong.
       apply 两组连续三点分段等则全体等 with C C; Cong.
-      apply between_inner_transitivity with C'; Between.
+      apply 中间性的内传递性1 with C'; Between.
     assert (Cong R P E D') by (eauto using l4_16).
     assert (Cong R Q E D).
       eapply 等长的传递性.
@@ -94,11 +94,11 @@ Proof.
     assert (Cong B' P B' Q).
       apply (l4_17 C D'); Cong.
       left.
-      apply between_exchange3 with A; assumption.
+      apply 中间性的交换传递性1 with A; assumption.
     assert (Cong C' P C' Q).
       assert (Bet B C' B').
-        apply between_exchange3 with A; try assumption.
-        apply between_exchange4 with D; try assumption.
+        apply 中间性的交换传递性1 with A; try assumption.
+        apply 中间性的交换传递性2 with D; try assumption.
       eapply l4_17 with B B'; Cong; Col.
       intro; treat_equalities; auto.
     assert (Cong P P P Q).
@@ -134,7 +134,7 @@ Lemma l5_3 : forall A B C D,
  Bet A B D -> Bet A C D -> Bet A B C \/ Bet A C B.
 Proof.
     intros.
-    assert (exists P, Bet D A P /\ A<>P) by  (apply point_construction_different).
+    assert (exists P, Bet D A P /\ A<>P) by  (apply 构造满足中间性的不重合点).
     ex_and H1 P.
     assert (Bet P A B) by eBetween.
     assert (Bet P A C) by eBetween.
@@ -145,10 +145,10 @@ Lemma bet3__bet : forall A B C D E, Bet A B E -> Bet A D E -> Bet B C D -> Bet A
 Proof.
     intros.
     destruct (l5_3 A B D E H H0).
-      apply between_exchange4 with D; trivial.
-      apply between_exchange2 with B; assumption.
-    apply between_exchange4 with B; trivial.
-    apply between_exchange2 with D; Between.
+      apply 中间性的交换传递性2 with D; trivial.
+      apply 中间性的内传递性2 with B; assumption.
+    apply 中间性的交换传递性2 with B; trivial.
+    apply 中间性的内传递性2 with D; Between.
 Qed.
 
 Lemma le_bet : forall A B C D, Le C D A B -> exists X, Bet A X B /\ Cong A X C D.
@@ -228,7 +228,7 @@ Proof.
     intros.
     assert (Bet A B C).
     eapply l4_6 with A C B; unfold 三角形全等; repeat split; Cong.
-    eapply between_equality; eBetween.
+    eapply 双中间性推出点重合; eBetween.
 Qed.
 
 Lemma cong3_symmetry : forall A B C A' B' C' : Tpoint , 三角形全等 A B C A' B' C' -> 三角形全等 A' B' C' A B C.
@@ -267,7 +267,7 @@ Proof.
     assert (Bet C Y T) by eBetween.
     assert (Y=T) by (eapply between_cong;eauto).
     subst Y.
-    assert (T=D) by (eapply between_equality;eBetween).
+    assert (T=D) by (eapply 双中间性推出点重合;eBetween).
     subst T.
     Cong.
 Qed.

@@ -24,7 +24,7 @@ Proof.
 exact (Build_Gupta_inspired_variant_of_无维度中性塔斯基公理系统_带两点重合决定性
   Tpoint Bet Cong 两点重合的决定性
   等长的伪自反性 等长的内传递性' 等长的同一性
-  由一点往一方向构造等长线段 五线段公理_等价SAS 中间性的对称性 between_inner_transitivity 帕施公理'
+  由一点往一方向构造等长线段 五线段公理_等价SAS 中间性的对称性 中间性的内传递性1 帕施公理'
   PA PB PC 防降维公理).
 Defined.
 

@@ -205,7 +205,7 @@ Proof.
       unfold Q_Cong in HH.
       ex_and HH X.
       ex_and H1 Y.
-      assert(HH:= another_point A).
+      assert(HH:= 每个点均有不同点 A).
       ex_and HH P.
       assert(HP:= H2 X Y).
       destruct HP.
@@ -322,7 +322,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma ex_points_lg_not_col : forall l P, Q_Cong l -> ~ 零长谓词 l -> exists A, exists B, l A B /\ ~Col A B P.
 Proof.
     intros.
-    assert(HH:=another_point P).
+    assert(HH:=每个点均有不同点 P).
     ex_elim HH A.
     assert(HH:= not_col_exists P A H1).
     ex_elim HH Q.

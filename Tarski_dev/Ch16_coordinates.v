@@ -27,7 +27,7 @@ Qed.
 (** Lemma 16.4 in dimension 2. *)
 Lemma exists_grid : exists O E E' S U1 U2, ~ Col O E E' /\ Cs O E S U1 U2.
 Proof.
-destruct 防降维公理_ex as [O [I [X HNC]]].
+destruct 防降维公理_老版本 as [O [I [X HNC]]].
 assert (H : ~ Col O I X) by auto; clear HNC; rename H into HNC.
 assert_diffs; destruct (ex_per_cong I O O X O I) as [J HJ]; Col; spliter.
 exists O; exists I; exists X; exists O; exists I; exists J.

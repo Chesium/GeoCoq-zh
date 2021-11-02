@@ -460,7 +460,7 @@ Proof.
       { apply not_bet_out; auto.
         intro HEBet.
         apply HNColB'.
-        apply 中间性转共线; apply 中间性的对称性.
+        apply 中间性蕴含共线; apply 中间性的对称性.
         apply (bet_lea__bet D E F); auto.
       }
       split.
@@ -685,19 +685,19 @@ repeat
       | H:(~Bet ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
       not_exist_hyp2 X1 X2 X2 X3;
-      assert (h := not_bet_distincts X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 非中间性则任两点不重合 X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq12__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_AB不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq21__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_BA不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?B <> ?C |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq23__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_BC不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?C <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq32__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_CB不等推AC不等 A B C H H2);clean_reap_hyps
 
       | H:Cong ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
@@ -1017,7 +1017,7 @@ Proof.
   clear HE'Nout.
   elim(col_dec D E F).
   { intro HColE.
-    assert(~ Bet D E F) by (intro; apply HNColE'; apply 中间性转共线; apply (bet_lea__bet D E F); auto).
+    assert(~ Bet D E F) by (intro; apply HNColE'; apply 中间性蕴含共线; apply (bet_lea__bet D E F); auto).
     apply (l11_30 A B C G' H' I'); try (apply conga_refl); auto.
     apply (sams_suma__lea123789 _ _ _ D' E' F'); auto.
     apply (out546_suma__conga _ _ _ D E F); auto.
@@ -1824,7 +1824,7 @@ Proof.
     { intro HCBet.
       apply conga__lea.
       apply conga_line; Between.
-      apply (between_exchange3 A); Between.
+      apply (中间性的交换传递性1 A); Between.
     }
     intro.
     apply l11_31_1; auto.
@@ -1933,7 +1933,7 @@ Proof.
     destruct Habs as [_ [Habs]].
     apply Habs.
     apply col_permutation_2.
-    apply 中间性转共线.
+    apply 中间性蕴含共线.
     apply (bet_conga__bet G H I); 等角.
 
   - assert(HSuma' := ex_suma A B C A B C).

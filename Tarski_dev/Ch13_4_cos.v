@@ -181,7 +181,7 @@ Proof.
         contradiction.
         unfold 中点 in H3; assert(HH:= midpoint_col).
         spliter.
-        apply 中间性转共线 in H3.
+        apply 中间性蕴含共线 in H3.
         Col.
         auto.
       unfold 中点 in H3.
@@ -714,7 +714,7 @@ Proof.
     assert(Bet A' B' X).
       apply (bet_conga__bet A B C); auto.
     apply conga_line; auto.
-    apply (between_exchange4 _ _ X); auto.
+    apply (中间性的交换传递性2 _ _ X); auto.
 Qed.
 
 Lemma acute_comp_not_acute : forall A B C D, Bet A B C -> 为锐角 A B D -> ~ 为锐角 C B D.
@@ -769,7 +769,7 @@ Proof.
       apply 中间性的同一律 in H.
       contradiction.
     assert(Col A C B).
-      apply 中间性转共线 in H.
+      apply 中间性蕴含共线 in H.
       Col.
     assert(HP:= l10_15 A C B D H16 H2).
     ex_and HP P.
@@ -809,7 +809,7 @@ Proof.
           auto.
           apply perp_left_comm.
           auto.
-        apply 中间性转共线 in H.
+        apply 中间性蕴含共线 in H.
         Col.
       apply perp_in_comm.
       apply perp_perp_in.

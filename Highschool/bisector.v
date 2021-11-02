@@ -87,7 +87,7 @@ right.
 apply (bet_out B x2 I).
 intro.
 elim HNCOL;ColR.
-apply between_exchange4 with x1; Between.
+apply 中间性的交换传递性2 with x1; Between.
 assumption.
 Qed.
 

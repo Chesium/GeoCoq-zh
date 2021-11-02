@@ -41,7 +41,7 @@ Qed.
 
 End T4_1.
 
-Hint Resolve 中间性转共线 col_permutation_1 col_permutation_2
+Hint Resolve 中间性蕴含共线 col_permutation_1 col_permutation_2
 col_permutation_3 col_permutation_4 col_permutation_5 : col.
 
 Ltac Col := auto 3 with col.
@@ -225,7 +225,7 @@ Proof.
     induction (两点重合的决定性 A B).
       treat_equalities; reflexivity.
     apply (l4_18 A B); Cong.
-    auto using 中间性转共线 with col.
+    auto using 中间性蕴含共线 with col.
 Qed.
 
 Lemma not_col_distincts : forall A B C ,

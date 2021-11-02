@@ -13,7 +13,7 @@ Qed.
 
 Lemma grad__col : forall A B C, Grad A B C -> Col A B C.
 Proof.
-  intros; apply 中间性转共线, grad__bet; assumption.
+  intros; apply 中间性蕴含共线, grad__bet; assumption.
 Qed.
 
 Lemma grad_neq__neq13 : forall A B C, Grad A B C -> A <> B -> A <> C.
@@ -74,14 +74,14 @@ Proof.
   destruct (两点重合的决定性 E F).
     treat_equalities; apply 双重线性刻度_步进 with B E; trivial; [apply 双重线性刻度_初始化|CongR].
   assert (Bet B C C').
-    apply grad__bet in HGrad; apply between_exchange3 with A; assumption.
+    apply grad__bet in HGrad; apply 中间性的交换传递性1 with A; assumption.
   assert (Bet E F F').
   { apply cong_preserves_bet with B C C'; Cong.
     assert_diffs.
     apply l6_2 with D; Between.
   }
   apply 双重线性刻度_步进 with C F; Cong.
-    apply outer_transitivity_between2 with E; trivial.
+    apply 中间性的外传递性1 with E; trivial.
   apply 等长的传递性 with A B; Cong.
   apply 等长的传递性 with C C'; trivial.
   apply l4_3_1 with B E; Cong.
@@ -236,7 +236,7 @@ Proof.
     [|apply l6_7 with B; [apply l6_6|]; apply bet_out; auto; apply grad__bet, HD1].
   revert dependent C.
   induction HD1.
-    intros; assert (B = C) by (apply between_equality with A; Between); subst C.
+    intros; assert (B = C) by (apply 双中间性推出点重合 with A; Between); subst C.
     destruct (由一点往一方向构造等长线段 A B A B) as [C []].
     assert_diffs.
     exists B, C; repeat split; Between; Cong; constructor.

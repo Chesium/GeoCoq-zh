@@ -159,10 +159,10 @@ Proof.
   destruct HSumS1 as [P [Q [R [HBet [HCong1 [HCong2 HCong3]]]]]].
   destruct (由一点往一方向构造等长线段 P R E F) as [S [HS1 HS2]].
   exists P, Q, S; repeat split; trivial.
-  - apply between_exchange4 with R; trivial.
+  - apply 中间性的交换传递性2 with R; trivial.
   - apply (sums2__cong56 C D E F); trivial.
     exists Q, R, S; repeat split; Cong.
-    apply between_exchange3 with P; trivial.
+    apply 中间性的交换传递性1 with P; trivial.
   - apply (sums2__cong56 G H E F); trivial.
     exists P, R, S; repeat split; Cong.
 Qed.

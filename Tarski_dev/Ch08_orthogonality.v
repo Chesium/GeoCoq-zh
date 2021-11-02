@@ -20,7 +20,7 @@ Ltac assert_cols :=
 repeat
  match goal with
       | H:Bet ?X1 ?X2 ?X3 |- _ =>
-     not_exist_hyp_perm_col X1 X2 X3;assert (Col X1 X2 X3) by (apply 中间性转共线;apply H)
+     not_exist_hyp_perm_col X1 X2 X3;assert (Col X1 X2 X3) by (apply 中间性蕴含共线;apply H)
 
       | H:中点 ?X1 ?X2 ?X3 |- _ =>
      not_exist_hyp_perm_col X1 X2 X3;let N := fresh in assert (N := midpoint_col X2 X1 X3 H)
@@ -67,19 +67,19 @@ repeat
       | H:(~Bet ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
       not_exist_hyp2 X1 X2 X2 X3;
-      assert (h := not_bet_distincts X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 非中间性则任两点不重合 X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq12__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_AB不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq21__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_BA不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?B <> ?C |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq23__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_BC不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?C <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq32__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_CB不等推AC不等 A B C H H2);clean_reap_hyps
 
       | H:Cong ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
@@ -174,16 +174,16 @@ repeat
    | H : 中点 ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
    | H : 中点 ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?A ?C |- _ =>
-     let T := fresh in assert (T : A=B) by (apply (between_equality A B C); Between);
+     let T := fresh in assert (T : A=B) by (apply (双中间性推出点重合 A B C); Between);
                        smart_subst A
    | H : Bet ?A ?B ?C, H2 : Bet ?A ?C ?B |- _ =>
-     let T := fresh in assert (T : B=C) by (apply (between_equality_2 A B C); Between);
+     let T := fresh in assert (T : B=C) by (apply (双中间性推出点重合2 A B C); Between);
                        smart_subst B
    | H : Bet ?A ?B ?C, H2 : Bet ?C ?A ?B |- _ =>
-     let T := fresh in assert (T : A=B) by (apply (between_equality A B C); Between);
+     let T := fresh in assert (T : A=B) by (apply (双中间性推出点重合 A B C); Between);
                        smart_subst A
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?C ?A |- _ =>
-     let T := fresh in assert (T : B=C) by (apply (between_equality_2 A B C); Between);
+     let T := fresh in assert (T : B=C) by (apply (双中间性推出点重合2 A B C); Between);
                        smart_subst A
    | H : 中点 ?P ?A ?P1, H2 : 中点 ?P ?A ?P2 |- _ =>
      let T := fresh in assert (T := symmetric_point_uniqueness A P P1 P2 H H2); smart_subst P1
@@ -281,7 +281,7 @@ repeat
       apply  中间性的同一律 in H; smart_subst'
    | H:(中点 ?X ?Y ?Y) |- _ => apply l7_3 in H; smart_subst'
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?A ?C |- _ =>
-     let T := fresh in not_exist_hyp (A=B); assert (T : between_equality A B C H H2); smart_subst'
+     let T := fresh in not_exist_hyp (A=B); assert (T : 双中间性推出点重合 A B C H H2); smart_subst'
    | H : 中点 ?P ?A ?P1, H2 : 中点 ?P ?A ?P2 |- _ =>
      let T := fresh in not_exist_hyp (P1=P2); assert (T : symmetric_point_uniqueness A P P1 P2 H H2); smart_subst'
    | H : 中点 ?A ?P ?X, H2 : 中点 ?A ?Q ?X |- _ =>
@@ -1758,7 +1758,7 @@ Proof.
     subst Q''.
     assert (hy:Bet Z Y X).
       apply (l7_22 Q C Q' C' Y Z X);Cong.
-      assert (T:=outer_transitivity_between2 C P Y Q).
+      assert (T:=中间性的外传递性1 C P Y Q).
       assert_bets.
       apply 中间性的对称性.
       apply T;Between.
@@ -1789,10 +1789,10 @@ Proof.
       unfold 中点 in *.
       spliter.
       apply H.
-      assert (Bet B Y Z) by (apply outer_transitivity_between2 with A;auto).
+      assert (Bet B Y Z) by (apply 中间性的外传递性1 with A;auto).
       apply 中间性的对称性 in H3.
       assert (Y = P).
-        eapply between_equality.
+        eapply 双中间性推出点重合.
           apply H3.
         assumption.
       treat_equalities.
@@ -1828,7 +1828,7 @@ Proof.
       repeat split;Between;Cong.
       unfold 外五线段形式, 中点 in *.
       spliter.
-      eapply outer_transitivity_between with P;Between;Cong.
+      eapply 中间性的外传递性2 with P;Between;Cong.
     assert (Cong C Z C' Z) by (eauto using 五线段公理_等价SAS_with_def).
     assert (Col Z Y X) by Col.
     show_distinct Y Z. intuition.
@@ -1940,7 +1940,7 @@ Proof.
         assumption.
       assumption.
     assert (exists T, Bet P T C /\ Bet A T X).
-      eapply l3_17.
+      eapply l3_17_三中间性推交点存在性.
         apply midpoint_bet.
         apply l7_2.
         apply H5.

@@ -147,16 +147,16 @@ repeat
    | H : 在圆上或圆外 ?A ?A ?B |- _ =>
       apply le_zero in H;smart_subst B
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?A ?C |- _ =>
-     let T := fresh in assert (T : A=B) by (apply (between_equality A B C); Between);
+     let T := fresh in assert (T : A=B) by (apply (双中间性推出点重合 A B C); Between);
                        smart_subst A
    | H : Bet ?A ?B ?C, H2 : Bet ?A ?C ?B |- _ =>
-     let T := fresh in assert (T : B=C) by (apply (between_equality_2 A B C); Between);
+     let T := fresh in assert (T : B=C) by (apply (双中间性推出点重合2 A B C); Between);
                        smart_subst B
    | H : Bet ?A ?B ?C, H2 : Bet ?C ?A ?B |- _ =>
-     let T := fresh in assert (T : A=B) by (apply (between_equality A B C); Between);
+     let T := fresh in assert (T : A=B) by (apply (双中间性推出点重合 A B C); Between);
                        smart_subst A
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?C ?A |- _ =>
-     let T := fresh in assert (T : B=C) by (apply (between_equality_2 A B C); Between);
+     let T := fresh in assert (T : B=C) by (apply (双中间性推出点重合2 A B C); Between);
                        smart_subst A
    | H : 中点 ?P ?A ?P1, H2 : 中点 ?P ?A ?P2 |- _ =>
      let T := fresh in assert (T := symmetric_point_uniqueness A P P1 P2 H H2); smart_subst P1
@@ -323,7 +323,7 @@ Proof.
 intros.
 induction(两点重合的决定性 O P).
 subst P.
-assert(HH:=another_point O).
+assert(HH:=每个点均有不同点 O).
 ex_and HH Q.
 exists Q.
 unfold 在圆外.
@@ -549,7 +549,7 @@ Proof.
 intros O P U V W HUV HCol HUOn HVOn HWOn.
 destruct (两点重合的决定性 W U); auto.
 right.
-apply between_equality with U; apply col_inc_onc2__bet with O P; Col; Circle.
+apply 双中间性推出点重合 with U; apply col_inc_onc2__bet with O P; Col; Circle.
 Qed.
 
 (** The midpoint of a chord is strictly inside the circle. *)
@@ -1549,7 +1549,7 @@ apply(per2__col A B O X); Perp.
 unfold 中点 in *.
 spliter.
 assert(Col B X D).
-apply 中间性转共线; auto.
+apply 中间性蕴含共线; auto.
 assert(Col A X C).
 ColR.
 

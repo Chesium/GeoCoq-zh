@@ -38,7 +38,7 @@ Proof.
       intro; treat_equalities; Between.
     intro.
     elim(两点重合的决定性 A' C).
-      intro; subst A'; assert (A=C) by (apply (between_equality _ _ A0); Between); treat_equalities; Between.
+      intro; subst A'; assert (A=C) by (apply (双中间性推出点重合 _ _ A0); Between); treat_equalities; Between.
     intro.
     apply l6_13_1.
       destruct (l6_2 C' A' A0 C); Between.
@@ -174,7 +174,7 @@ Proof.
       apply (le_transitivity _ _ A0 B'').
         apply (triangle_inequality_2 _ B0 _ _ B0'); Cong.
       apply (bet2_le2__le1346 _ B0' _ _ B0'); Le.
-        apply (outer_transitivity_between _ _ B'); auto.
+        apply (中间性的外传递性2 _ _ B'); auto.
         intro; treat_equalities; apply sac_distincts in HSac2; spliter; auto.
       apply (l5_6 B0 A B0' A'); Cong.
       apply (triangle_inequality_2 _ B _ _ B'); Cong.
@@ -184,7 +184,7 @@ Proof.
     destruct HLe3 as [Q' [Hbet9 Hcong9]].
     assert (HBet10 : Bet A0 B0' A').
       apply sac_distincts in HSac2; spliter; assert_diffs.
-      apply (outer_transitivity_between _ _ B'); Between.
+      apply (中间性的外传递性2 _ _ B'); Between.
     apply (le1234_lt__lt _ _ A0 Q').
       apply (bet2_le2__le1245 _ _ A' _ _ A); eBetween.
       apply cong__le; apply (等长的传递性 _ _ B0 B); Cong.

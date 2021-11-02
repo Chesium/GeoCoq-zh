@@ -45,7 +45,7 @@ Proof.
           assumption.
         apply 中间性的对称性.
         assumption.
-      apply (outer_transitivity_between O A B C); auto.
+      apply (中间性的外传递性2 O A B C); auto.
     assert(Bet B A C).
       apply 中间性的对称性.
       apply(plg_bet1 A O B C).
@@ -53,7 +53,7 @@ Proof.
         assumption.
       apply 中间性的对称性.
       assumption.
-    apply (outer_transitivity_between2 O B A C); auto.
+    apply (中间性的外传递性1 O B A C); auto.
 Qed.
 
 Lemma l14_36_b : forall O E E' A B C,
@@ -236,7 +236,7 @@ Proof.
         apply(project_preserves_bet O E E' A O B' E' O AB A); auto.
       induction H17.
         left.
-        apply(between_exchange4 _ _ A); auto.
+        apply(中间性的交换传递性2 _ _ A); auto.
       apply(l5_3 O AB E A); auto.
     assert(Bet O E' B').
       apply(project_preserves_bet O E' E E' O E B O E' B'); auto.
@@ -247,7 +247,7 @@ Proof.
         apply(l5_1 O A E AB); auto.
       tauto.
     right.
-    apply (between_exchange4 O E A AB); auto.
+    apply (中间性的交换传递性2 O E A AB); auto.
 Qed.
 
 Lemma pos_not_neg : forall O E A, Ps O E A -> ~Ng O E A.
@@ -260,9 +260,9 @@ Proof.
     spliter.
     induction H4.
       apply H.
-      apply (between_equality _ _ E); Between.
+      apply (双中间性推出点重合 _ _ E); Between.
     apply H1.
-    apply (between_equality _ _ A); Between.
+    apply (双中间性推出点重合 _ _ A); Between.
 Qed.
 
 Lemma neg_not_pos : forall O E A, Ng O E A -> ~Ps O E A.
@@ -275,9 +275,9 @@ Proof.
     spliter.
     induction H2.
       apply H0.
-      apply (between_equality _ _ E); Between.
+      apply (双中间性推出点重合 _ _ E); Between.
     apply H1.
-    apply (between_equality _ _ A); Between.
+    apply (双中间性推出点重合 _ _ A); Between.
 Qed.
 
 Lemma opp_pos_neg : forall O E E' A MA, Ps O E A ->  Opp O E E' A MA -> Ng O E MA.
@@ -295,8 +295,8 @@ Proof.
       apply 等长的同一性 in H2.
       contradiction.
     induction H4.
-      apply(outer_transitivity_between MA O A E); Between.
-    apply(between_inner_transitivity MA O E A); Between.
+      apply(中间性的外传递性2 MA O A E); Between.
+    apply(中间性的内传递性1 MA O E A); Between.
 Qed.
 
 Lemma opp_neg_pos : forall O E E' A MA, Ng O E A ->  Opp O E E' A MA -> Ps O E MA.
@@ -386,9 +386,9 @@ Proof.
       assumption.
       auto.
     induction H7.
-      apply(outer_transitivity_between mA O A E); Between.
+      apply(中间性的外传递性2 mA O A E); Between.
     apply 中间性的对称性.
-    apply(between_exchange3 A E O mA); Between.
+    apply(中间性的交换传递性1 A E O mA); Between.
 Qed.
 
 Lemma diff_pos_diff_neg : forall O E E' A B AmB BmA,
@@ -413,9 +413,9 @@ Proof.
     clean_duplicated_hyps.
     induction H4.
       apply H.
-      apply (between_equality _  _ E); Between.
+      apply (双中间性推出点重合 _  _ E); Between.
     apply H3.
-    apply (between_equality _  _ A); Between.
+    apply (双中间性推出点重合 _  _ A); Between.
 Qed.
 
 Lemma leP_asym : forall O E E' A B, LeP O E E' A B -> LeP O E E' B A -> A = B.
@@ -754,11 +754,11 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
              try destruct HCMB as [HBet1 HBet2])).
 
     {
-    exfalso; apply HDiff3; apply between_equality with C; Between.
+    exfalso; apply HDiff3; apply 双中间性推出点重合 with C; Between.
     }
 
     {
-    exfalso; apply HDiff2; apply between_equality with O; Between.
+    exfalso; apply HDiff2; apply 双中间性推出点重合 with O; Between.
     }
 
     {
@@ -793,13 +793,13 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
     destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
     elim (两点重合的决定性 A BMA); intro HDiff6; treat_equalities;
     [apply l14_36_a in HBMA; try apply out_trivial; auto;
-     apply HDiff3; apply between_equality with O; Between|].
+     apply HDiff3; apply 双中间性推出点重合 with O; Between|].
     apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
     do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                try destruct HBMA as [HBet1 HBet2])).
 
       {
-      apply HDiff2; apply between_equality with A; Between.
+      apply HDiff2; apply 双中间性推出点重合 with A; Between.
       }
 
       {
@@ -810,13 +810,13 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
       }
 
       {
-      apply HDiff3; apply between_equality with O; Between.
-      apply 中间性的对称性; apply outer_transitivity_between2 with BMA; auto.
+      apply HDiff3; apply 双中间性推出点重合 with O; Between.
+      apply 中间性的对称性; apply 中间性的外传递性1 with BMA; auto.
       }
 
       {
-      apply HDiff3; apply between_equality with O; Between.
-      apply outer_transitivity_between2 with BMA; Between.
+      apply HDiff3; apply 双中间性推出点重合 with O; Between.
+      apply 中间性的外传递性1 with BMA; Between.
       }
     }
 
@@ -855,20 +855,20 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
             {
             assert (HBet6 : Bet O B C) by eBetween.
-            exfalso; apply HDiff5; apply between_equality with C; Between.
+            exfalso; apply HDiff5; apply 双中间性推出点重合 with C; Between.
             }
 
             {
             destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
             elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
             [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-             apply HDiff3; apply between_equality with O; Between|].
+             apply HDiff3; apply 双中间性推出点重合 with O; Between|].
             apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
             do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                        try destruct HBMA as [HBet6 HBet7])).
 
               {
-              exfalso; apply HDiff5; apply between_equality with A; Between.
+              exfalso; apply HDiff5; apply 双中间性推出点重合 with A; Between.
               }
 
               {
@@ -877,46 +877,46 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
                 {
                 assert (HBet9 : Bet E O B)
-                  by (apply outer_transitivity_between2 with BMA; Between).
-                exfalso; apply HDiff5; apply between_equality with E; Between.
+                  by (apply 中间性的外传递性1 with BMA; Between).
+                exfalso; apply HDiff5; apply 双中间性推出点重合 with E; Between.
                 }
 
                 {
                 assert (HBet9 : Bet E O B) by eBetween.
-                exfalso; apply HDiff5; apply between_equality with E; Between.
+                exfalso; apply HDiff5; apply 双中间性推出点重合 with E; Between.
                 }
               }
 
               {
               assert (HBet8 : Bet O A B)
-                by (apply outer_transitivity_between2 with BMA; Between).
-              exfalso; apply HDiff3; apply between_equality with O; Between.
+                by (apply 中间性的外传递性1 with BMA; Between).
+              exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
               }
 
               {
               assert (HBet8 : Bet O A B) by eBetween.
-              exfalso; apply HDiff3; apply between_equality with O; Between.
+              exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
               }
             }
           }
 
           {
           assert (HBet5 : Bet O B C) by eBetween.
-          exfalso; apply HDiff5; apply between_equality with C; Between.
+          exfalso; apply HDiff5; apply 双中间性推出点重合 with C; Between.
           }
 
           {
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
           elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-           apply HDiff3; apply between_equality with O; eBetween|].
+           apply HDiff3; apply 双中间性推出点重合 with O; eBetween|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
           do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                      try destruct HBMA as [HBet5 HBet6])).
 
             {
             assert (HBet7 : Bet O B A) by eBetween.
-            exfalso; apply HDiff5; apply between_equality with A; Between.
+            exfalso; apply HDiff5; apply 双中间性推出点重合 with A; Between.
             }
 
             {
@@ -925,26 +925,26 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
               {
               elim (l5_3 O B BMA E); Between; intro HBet8; exfalso;
-              [apply HDiff5; apply between_equality with BMA|
-               apply HDiff8; apply between_equality with B]; Between.
+              [apply HDiff5; apply 双中间性推出点重合 with BMA|
+               apply HDiff8; apply 双中间性推出点重合 with B]; Between.
               }
 
               {
               assert (HBet8 : Bet O B BMA) by eBetween.
-              exfalso; apply HDiff5; apply between_equality with BMA; Between.
+              exfalso; apply HDiff5; apply 双中间性推出点重合 with BMA; Between.
               }
             }
 
             {
             assert (HBet7 : Bet O A B) by eBetween.
             assert (HBet8 : Bet O B A) by eBetween.
-            exfalso; apply HDiff3; apply between_equality with O; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
             }
 
             {
             assert (HBet7 : Bet O A B) by eBetween.
             assert (HBet8 : Bet O B A) by eBetween.
-            exfalso; apply HDiff3; apply between_equality with O; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
             }
           }
 
@@ -952,14 +952,14 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
           elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-           apply HDiff3; apply between_equality with O; eBetween|].
+           apply HDiff3; apply 双中间性推出点重合 with O; eBetween|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
           do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                      try destruct HBMA as [HBet5 HBet6])).
 
             {
             assert (HBet7 : Bet A O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with A; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with A; Between.
             }
 
             {
@@ -968,25 +968,25 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
               {
               assert (HBet8 : Bet BMA O E) by eBetween.
-              exfalso; apply HDiff8; apply between_equality with E; Between.
+              exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
               }
 
               {
               assert (HBet8 : Bet BMA O E) by eBetween.
-              exfalso; apply HDiff1; apply between_equality with BMA; Between.
+              exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
               }
             }
 
             {
             assert (HBet7 : Bet O A B) by eBetween.
             assert (HBet8 : Bet B A C) by eBetween.
-            exfalso; apply HDiff3; apply between_equality with C; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with C; Between.
             }
 
             {
             assert (HBet7 : Bet O A B) by eBetween.
             assert (HBet8 : Bet B A C) by eBetween.
-            exfalso; apply HDiff3; apply between_equality with C; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with C; Between.
             }
           }
         }
@@ -997,7 +997,7 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
         destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
         elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
         [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-         apply HDiff3; apply between_equality with O; eBetween|].
+         apply HDiff3; apply 双中间性推出点重合 with O; eBetween|].
         apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
         do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                    try destruct HBMA as [HBet3 HBet4])).
@@ -1011,22 +1011,22 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
           }
 
@@ -1039,22 +1039,22 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
           }
 
@@ -1086,20 +1086,20 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
             {
             assert (HBet6 : Bet O B C) by eBetween.
-            exfalso; apply HDiff2; apply between_equality with O; Between.
+            exfalso; apply HDiff2; apply 双中间性推出点重合 with O; Between.
             }
 
             {
             destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
             elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
             [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-             apply HDiff3; apply between_equality with O; Between|].
+             apply HDiff3; apply 双中间性推出点重合 with O; Between|].
             apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
             do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                        try destruct HBMA as [HBet6 HBet7])).
 
               {
-              exfalso; apply HDiff5; apply between_equality with A; Between.
+              exfalso; apply HDiff5; apply 双中间性推出点重合 with A; Between.
               }
 
               {
@@ -1108,46 +1108,46 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
                 {
                 assert (HBet9 : Bet E O B)
-                  by (apply outer_transitivity_between2 with BMA; Between).
-                exfalso; apply HDiff5; apply between_equality with E; Between.
+                  by (apply 中间性的外传递性1 with BMA; Between).
+                exfalso; apply HDiff5; apply 双中间性推出点重合 with E; Between.
                 }
 
                 {
                 assert (HBet9 : Bet E O B) by eBetween.
-                exfalso; apply HDiff5; apply between_equality with E; Between.
+                exfalso; apply HDiff5; apply 双中间性推出点重合 with E; Between.
                 }
               }
 
               {
               assert (HBet8 : Bet O A B)
-                by (apply outer_transitivity_between2 with BMA; Between).
-              exfalso; apply HDiff3; apply between_equality with O; Between.
+                by (apply 中间性的外传递性1 with BMA; Between).
+              exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
               }
 
               {
               assert (HBet8 : Bet O A B) by eBetween.
-              exfalso; apply HDiff3; apply between_equality with O; Between.
+              exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
               }
             }
           }
 
           {
           assert (HBet5 : Bet O B C) by eBetween.
-          exfalso; apply HDiff2; apply between_equality with O; Between.
+          exfalso; apply HDiff2; apply 双中间性推出点重合 with O; Between.
           }
 
           {
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
           elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-           apply HDiff3; apply between_equality with O; eBetween|].
+           apply HDiff3; apply 双中间性推出点重合 with O; eBetween|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
           do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                      try destruct HBMA as [HBet5 HBet6])).
 
             {
             assert (HBet7 : Bet O B A) by eBetween.
-            exfalso; apply HDiff5; apply between_equality with A; Between.
+            exfalso; apply HDiff5; apply 双中间性推出点重合 with A; Between.
             }
 
             {
@@ -1156,26 +1156,26 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
               {
               elim (l5_3 O B BMA E); Between; intro HBet8; exfalso;
-              [apply HDiff5; apply between_equality with BMA|
-               apply HDiff8; apply between_equality with B]; Between.
+              [apply HDiff5; apply 双中间性推出点重合 with BMA|
+               apply HDiff8; apply 双中间性推出点重合 with B]; Between.
               }
 
               {
               assert (HBet8 : Bet O B BMA) by eBetween.
-              exfalso; apply HDiff5; apply between_equality with BMA; Between.
+              exfalso; apply HDiff5; apply 双中间性推出点重合 with BMA; Between.
               }
             }
 
             {
             assert (HBet7 : Bet O A B) by eBetween.
             assert (HBet8 : Bet O B A) by eBetween.
-            exfalso; apply HDiff3; apply between_equality with O; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
             }
 
             {
             assert (HBet7 : Bet O A B) by eBetween.
             assert (HBet8 : Bet O B A) by eBetween.
-            exfalso; apply HDiff3; apply between_equality with O; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
             }
           }
 
@@ -1183,14 +1183,14 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
           elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-           apply HDiff3; apply between_equality with O; eBetween|].
+           apply HDiff3; apply 双中间性推出点重合 with O; eBetween|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
           do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                      try destruct HBMA as [HBet5 HBet6])).
 
             {
             assert (HBet7 : Bet A O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with A; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with A; Between.
             }
 
             {
@@ -1199,25 +1199,25 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
               {
               assert (HBet8 : Bet BMA O E) by eBetween.
-              exfalso; apply HDiff8; apply between_equality with E; Between.
+              exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
               }
 
               {
               assert (HBet8 : Bet BMA O E) by eBetween.
-              exfalso; apply HDiff1; apply between_equality with BMA; Between.
+              exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
               }
             }
 
             {
             assert (HBet7 : Bet O A B) by eBetween.
             assert (HBet8 : Bet B A C) by eBetween.
-            exfalso; apply HDiff3; apply between_equality with C; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with C; Between.
             }
 
             {
             assert (HBet7 : Bet O A B) by eBetween.
             assert (HBet8 : Bet B A C) by eBetween.
-            exfalso; apply HDiff3; apply between_equality with C; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with C; Between.
             }
           }
         }
@@ -1228,7 +1228,7 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
         destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
         elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
         [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-         apply HDiff3; apply between_equality with O; eBetween|].
+         apply HDiff3; apply 双中间性推出点重合 with O; eBetween|].
         apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
         do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                    try destruct HBMA as [HBet3 HBet4])).
@@ -1242,22 +1242,22 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
           }
 
@@ -1270,22 +1270,22 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet8 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
           }
 
@@ -1323,13 +1323,13 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
             destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
             elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
             [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-             apply HDiff3; apply between_equality with O; Between|].
+             apply HDiff3; apply 双中间性推出点重合 with O; Between|].
             apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
             do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                        try destruct HBMA as [HBet6 HBet7])).
 
               {
-              exfalso; apply HDiff5; apply between_equality with A; Between.
+              exfalso; apply HDiff5; apply 双中间性推出点重合 with A; Between.
               }
 
               {
@@ -1338,25 +1338,25 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
                 {
                 assert (HBet9 : Bet E O B)
-                  by (apply outer_transitivity_between2 with BMA; Between).
-                exfalso; apply HDiff5; apply between_equality with E; Between.
+                  by (apply 中间性的外传递性1 with BMA; Between).
+                exfalso; apply HDiff5; apply 双中间性推出点重合 with E; Between.
                 }
 
                 {
                 assert (HBet9 : Bet E O B) by eBetween.
-                exfalso; apply HDiff5; apply between_equality with E; Between.
+                exfalso; apply HDiff5; apply 双中间性推出点重合 with E; Between.
                 }
               }
 
               {
               assert (HBet8 : Bet O A B)
-                by (apply outer_transitivity_between2 with BMA; Between).
-              exfalso; apply HDiff3; apply between_equality with O; Between.
+                by (apply 中间性的外传递性1 with BMA; Between).
+              exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
               }
 
               {
               assert (HBet8 : Bet O A B) by eBetween.
-              exfalso; apply HDiff3; apply between_equality with O; Between.
+              exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
               }
             }
           }
@@ -1369,14 +1369,14 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
           elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-           apply HDiff3; apply between_equality with O; eBetween|].
+           apply HDiff3; apply 双中间性推出点重合 with O; eBetween|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
           do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                      try destruct HBMA as [HBet5 HBet6])).
 
             {
             assert (HBet7 : Bet O B A) by eBetween.
-            exfalso; apply HDiff5; apply between_equality with A; Between.
+            exfalso; apply HDiff5; apply 双中间性推出点重合 with A; Between.
             }
 
             {
@@ -1385,26 +1385,26 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
               {
               elim (l5_3 O B BMA E); Between; intro HBet8; exfalso;
-              [apply HDiff5; apply between_equality with BMA|
-               apply HDiff8; apply between_equality with B]; Between.
+              [apply HDiff5; apply 双中间性推出点重合 with BMA|
+               apply HDiff8; apply 双中间性推出点重合 with B]; Between.
               }
 
               {
               assert (HBet8 : Bet O B BMA) by eBetween.
-              exfalso; apply HDiff5; apply between_equality with BMA; Between.
+              exfalso; apply HDiff5; apply 双中间性推出点重合 with BMA; Between.
               }
             }
 
             {
             assert (HBet7 : Bet O A B) by eBetween.
             assert (HBet8 : Bet O B A) by eBetween.
-            exfalso; apply HDiff3; apply between_equality with O; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
             }
 
             {
             assert (HBet7 : Bet O A B) by eBetween.
             assert (HBet8 : Bet O B A) by eBetween.
-            exfalso; apply HDiff3; apply between_equality with O; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
             }
           }
 
@@ -1424,7 +1424,7 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
         destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
         elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
         [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-         apply HDiff4; apply between_equality with B; eBetween|].
+         apply HDiff4; apply 双中间性推出点重合 with B; eBetween|].
         apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
         do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                    try destruct HBMA as [HBet4 HBet5])).
@@ -1438,22 +1438,22 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
           }
 
@@ -1466,22 +1466,22 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
           }
 
@@ -1526,7 +1526,7 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
         destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
         elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
         [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
-         apply HDiff4; apply between_equality with B; eBetween|].
+         apply HDiff4; apply 双中间性推出点重合 with B; eBetween|].
         apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
         do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                    try destruct HBMA as [HBet4 HBet5])).
@@ -1540,22 +1540,22 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
           }
 
@@ -1568,22 +1568,22 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff8; apply between_equality with E; Between.
+            exfalso; apply HDiff8; apply 双中间性推出点重合 with E; Between.
             }
 
             {
             assert (HBet9 : Bet BMA O E) by eBetween.
-            exfalso; apply HDiff1; apply between_equality with BMA; Between.
+            exfalso; apply HDiff1; apply 双中间性推出点重合 with BMA; Between.
             }
           }
 
@@ -1614,7 +1614,7 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
         destruct HPsB as [H [H' HElim]]; clear H; clear H'.
         elim HElim; clear HElim; intro HBet4;
         assert (HBet5 : Bet O B C) by eBetween;
-        exfalso; apply HDiff5; apply between_equality with C; Between.
+        exfalso; apply HDiff5; apply 双中间性推出点重合 with C; Between.
         }
 
         {
@@ -1622,7 +1622,7 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
         destruct HPsB as [H [H' HElim]]; clear H; clear H'.
         elim HElim; clear HElim; intro HBet4;
         assert (HBet5 : Bet O B C) by eBetween;
-        exfalso; apply HDiff2; apply between_equality with O; Between.
+        exfalso; apply HDiff2; apply 双中间性推出点重合 with O; Between.
         }
 
         {
@@ -1664,34 +1664,34 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
           elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [destruct HPsBMA as [H [H' HElim]]; clear H; clear H';
            elim HElim; clear HElim; intro HBet6; exfalso;
-           [apply HDiff4; apply between_equality with E|
-            apply HDiff1; apply between_equality with A]; Between|].
+           [apply HDiff4; apply 双中间性推出点重合 with E|
+            apply HDiff1; apply 双中间性推出点重合 with A]; Between|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
           do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                      try destruct HBMA as [HBet6 HBet7])).
 
             {
-            exfalso; apply HDiff4; apply between_equality with B; Between.
+            exfalso; apply HDiff4; apply 双中间性推出点重合 with B; Between.
             }
 
             {
-            exfalso; apply HDiff3; apply between_equality with O; Between.
-            }
-
-            {
-            assert (HBet8 : Bet E O BMA) by eBetween.
-            destruct HPsBMA as [HDiff8 [H' HElim]]; clear H'.
-            exfalso; elim HElim; clear HElim; intro HBet9;
-            [apply HDiff8; apply between_equality with E|
-             apply HDiff1; apply between_equality with BMA]; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
             }
 
             {
             assert (HBet8 : Bet E O BMA) by eBetween.
             destruct HPsBMA as [HDiff8 [H' HElim]]; clear H'.
             exfalso; elim HElim; clear HElim; intro HBet9;
-            [apply HDiff8; apply between_equality with E|
-             apply HDiff1; apply between_equality with BMA]; Between.
+            [apply HDiff8; apply 双中间性推出点重合 with E|
+             apply HDiff1; apply 双中间性推出点重合 with BMA]; Between.
+            }
+
+            {
+            assert (HBet8 : Bet E O BMA) by eBetween.
+            destruct HPsBMA as [HDiff8 [H' HElim]]; clear H'.
+            exfalso; elim HElim; clear HElim; intro HBet9;
+            [apply HDiff8; apply 双中间性推出点重合 with E|
+             apply HDiff1; apply 双中间性推出点重合 with BMA]; Between.
             }
           }
 
@@ -1704,11 +1704,11 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
           elim (l5_2 O B A C); Between; intro HBet7.
 
             {
-            exfalso; apply HDiff3; apply between_equality with C; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with C; Between.
             }
 
             {
-            exfalso; apply HDiff2; apply between_equality with A; Between.
+            exfalso; apply HDiff2; apply 双中间性推出点重合 with A; Between.
             }
           }
         }
@@ -1723,34 +1723,34 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
           elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [destruct HPsBMA as [H [H' HElim]]; clear H; clear H';
            elim HElim; clear HElim; intro HBet6; exfalso;
-           [apply HDiff4; apply between_equality with E|
-            apply HDiff1; apply between_equality with A]; Between|].
+           [apply HDiff4; apply 双中间性推出点重合 with E|
+            apply HDiff1; apply 双中间性推出点重合 with A]; Between|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
           do 3 (try (elim HBMA; clear HBMA; intro HBMA;
                      try destruct HBMA as [HBet6 HBet7])).
 
             {
-            exfalso; apply HDiff4; apply between_equality with B; Between.
+            exfalso; apply HDiff4; apply 双中间性推出点重合 with B; Between.
             }
 
             {
-            exfalso; apply HDiff3; apply between_equality with O; Between.
-            }
-
-            {
-            assert (HBet8 : Bet E O BMA) by eBetween.
-            destruct HPsBMA as [HDiff8 [H' HElim]]; clear H'.
-            exfalso; elim HElim; clear HElim; intro HBet9;
-            [apply HDiff8; apply between_equality with E|
-             apply HDiff1; apply between_equality with BMA]; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with O; Between.
             }
 
             {
             assert (HBet8 : Bet E O BMA) by eBetween.
             destruct HPsBMA as [HDiff8 [H' HElim]]; clear H'.
             exfalso; elim HElim; clear HElim; intro HBet9;
-            [apply HDiff8; apply between_equality with E|
-             apply HDiff1; apply between_equality with BMA]; Between.
+            [apply HDiff8; apply 双中间性推出点重合 with E|
+             apply HDiff1; apply 双中间性推出点重合 with BMA]; Between.
+            }
+
+            {
+            assert (HBet8 : Bet E O BMA) by eBetween.
+            destruct HPsBMA as [HDiff8 [H' HElim]]; clear H'.
+            exfalso; elim HElim; clear HElim; intro HBet9;
+            [apply HDiff8; apply 双中间性推出点重合 with E|
+             apply HDiff1; apply 双中间性推出点重合 with BMA]; Between.
             }
           }
 
@@ -1764,11 +1764,11 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
           elim (l5_2 O B A C); Between; intro HBet7.
 
             {
-            exfalso; apply HDiff3; apply between_equality with C; Between.
+            exfalso; apply HDiff3; apply 双中间性推出点重合 with C; Between.
             }
 
             {
-            exfalso; apply HDiff2; apply between_equality with A; Between.
+            exfalso; apply HDiff2; apply 双中间性推出点重合 with A; Between.
             }
           }
         }

@@ -172,7 +172,7 @@ cut(forall P Q A B,
         {
         destruct (HX Q P A B) as [X]; [..|exists X; repeat split; intuition];
         [apply line_extension_symmetry|Between|apply lt_left_comm, HLt|..];
-        [auto| |apply outer_transitivity_between2 with (f P)]; Between.
+        [auto| |apply 中间性的外传递性1 with (f P)]; Between.
         }
       }
 
@@ -188,7 +188,7 @@ cut(forall P Q A B,
        exists X; spliter; subst; auto|].
       assert (Hdiff : f P <> f Q) by (intro; destruct fPQ as [? []]; Col).
       destruct (reach__grad_min (f P) (f Q) A) as [D [E]]; auto; spliter.
-      assert (Bet D A E) by (apply (between_exchange3 (f P)); assumption).
+      assert (Bet D A E) by (apply (中间性的交换传递性1 (f P)); assumption).
       exists E; repeat split; [apply 线性刻度_步进 with D| | |intro; subst E]; auto;
       [|apply lt__nle in HLt; apply HLt, le_transitivity with D B; spliter; Le].
       apply l6_13_1; [destruct (两点重合的决定性 A D); [subst D|]|];
@@ -248,17 +248,17 @@ Proof.
     destruct (extension_image_density P Q f archi fLineExt A (f B)) as [X [HX1 [HX2 [HX3 Habs]]]]; auto.
       apply (pres_bet_line__col f P Q); Col.
     destruct (l5_3 (f P) A (f B) (f R)); auto; [apply fBet; Col|apply Habs..].
-    * apply between_equality with (f P).
+    * apply 双中间性推出点重合 with (f P).
         apply 中间性的对称性, fBet, HB; try split; Col; Between.
-        apply between_inner_transitivity with (f B); assumption.
+        apply 中间性的内传递性1 with (f B); assumption.
       clear dependent R; eBetween.
-    * apply between_equality with (f P).
+    * apply 双中间性推出点重合 with (f P).
         clear dependent R; eBetween.
-      apply between_exchange3 with (f R); [|apply bet3__bet with A (f B); eBetween].
+      apply 中间性的交换传递性1 with (f R); [|apply bet3__bet with A (f B); eBetween].
       apply 中间性的对称性, fBet; Col.
       apply HB; split; Col.
       split; trivial.
-      apply between_exchange2 with (f B); Between.
+      apply 中间性的内传递性2 with (f B); Between.
 Qed.
 
 End Completeness.

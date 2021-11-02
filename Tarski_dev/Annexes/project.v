@@ -441,13 +441,13 @@ ex_and H29 QQ.
 
 assert(QQ=Q').
 assert(Col P' QQ R').
-apply 中间性转共线.
+apply 中间性蕴含共线.
 assumption.
 eapply (l6_21 Q Q' P' R'); Col.
 
 intro.
 subst R'.
-apply between_equality in H30.
+apply 双中间性推出点重合 in H30.
 subst QQ.
 contradiction.
 Between.
@@ -478,13 +478,13 @@ ex_and H24 QQ.
 
 assert(QQ=Q').
 assert(Col P' QQ R).
-apply 中间性转共线.
+apply 中间性蕴含共线.
 assumption.
 eapply (l6_21 Q Q' P' R); Col.
 
 intro.
 subst R.
-apply between_equality in H25.
+apply 双中间性推出点重合 in H25.
 subst QQ.
 contradiction.
 Between.
@@ -585,13 +585,13 @@ ex_and H30 QQ.
 assert(QQ=Q).
 
 assert(Col P' QQ R').
-apply 中间性转共线.
+apply 中间性蕴含共线.
 assumption.
 eapply (l6_21 Qx Qy P' R'); Col.
 
 intro.
 subst R'.
-apply between_equality in H31.
+apply 双中间性推出点重合 in H31.
 subst QQ.
 contradiction.
 Between.
@@ -613,7 +613,7 @@ ColR.
 assert(Col B Q R).
 ColR.
 
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 apply (col3 Q R); Col.
 subst P'.
 
@@ -660,13 +660,13 @@ ex_and H25 QQ.
 
 assert(QQ=Q').
 assert(Col P QQ R').
-apply 中间性转共线.
+apply 中间性蕴含共线.
 assumption.
 eapply (l6_21 Q Q' P R'); Col.
 
 intro.
 subst P.
-apply between_equality in H26.
+apply 双中间性推出点重合 in H26.
 subst QQ.
 contradiction.
 Between.
@@ -706,7 +706,7 @@ spliter.
 assert(R = R').
 
 eapply (l6_21 P Q R R'); Col.
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 Col.
 intro.
 assert(~Col A B R).
@@ -826,7 +826,7 @@ tauto.
 
 assert(Col A C C'').
 ColR.
-apply 中间性转共线 in H17.
+apply 中间性蕴含共线 in H17.
 apply (col3 C C''); Col.
 
 induction H16.
@@ -847,8 +847,8 @@ assert(TS A C A'' B).
 repeat split; Col.
 intro.
 apply H.
-apply 中间性转共线 in H16.
-apply 中间性转共线 in H17.
+apply 中间性蕴含共线 in H16.
+apply 中间性蕴含共线 in H17.
 eapply (col3 A A''); Col.
 exists A.
 split; Col.
@@ -876,15 +876,15 @@ spliter.
 ex_and H30 T.
 apply H24.
 exists T.
-apply 中间性转共线 in H31.
+apply 中间性蕴含共线 in H31.
 split; Col.
 
 assert(TS A'' C'' A B).
 repeat split; Col.
 intro.
 apply H.
-apply 中间性转共线 in H16.
-apply 中间性转共线 in H17.
+apply 中间性蕴含共线 in H16.
+apply 中间性蕴含共线 in H17.
 
 assert(Col A'' C'' B).
 ColR.
@@ -893,8 +893,8 @@ ColR.
 eapply (col3 A'' C''); Col.
 
 intro.
-apply 中间性转共线 in H16.
-apply 中间性转共线 in H17.
+apply 中间性蕴含共线 in H16.
+apply 中间性蕴含共线 in H17.
 apply H.
 
 assert(Col B C A'').
@@ -910,8 +910,8 @@ intro.
 apply H.
 
 
-apply 中间性转共线 in H16.
-apply 中间性转共线 in H17.
+apply 中间性蕴含共线 in H16.
+apply 中间性蕴含共线 in H17.
 assert(Col A'' B C).
 ColR.
 apply (col3 A'' B); Col.
@@ -934,7 +934,7 @@ spliter.
 ex_and H30 T.
 apply H24.
 exists T.
-apply 中间性转共线 in H31.
+apply 中间性蕴含共线 in H31.
 split; Col.
 
 induction H17.
@@ -955,7 +955,7 @@ contradiction.
 
 assert(Col C A A'').
 ColR.
-apply 中间性转共线 in H16.
+apply 中间性蕴含共线 in H16.
 apply (col3 A A''); Col.
 
 
@@ -971,8 +971,8 @@ assert(TS A C C'' B).
 repeat split; Col.
 intro.
 apply H.
-apply 中间性转共线 in H16.
-apply 中间性转共线 in H17.
+apply 中间性蕴含共线 in H16.
+apply 中间性蕴含共线 in H17.
 eapply (col3 C C''); Col.
 exists C.
 split; Col.
@@ -999,7 +999,7 @@ spliter.
 ex_and H30 T.
 apply H24.
 exists T.
-apply 中间性转共线 in H31.
+apply 中间性蕴含共线 in H31.
 split; Col.
 
 induction H16.
@@ -1033,7 +1033,7 @@ contradiction.
 
 assert(Col C A A'').
 ColR.
-apply 中间性转共线 in H16.
+apply 中间性蕴含共线 in H16.
 apply (col3 A A''); Col.
 
 apply False_ind.
@@ -1049,8 +1049,8 @@ assert(TS A'' C'' C B).
 repeat split; Col.
 intro.
 apply H.
-apply 中间性转共线 in H16.
-apply 中间性转共线 in H17.
+apply 中间性蕴含共线 in H16.
+apply 中间性蕴含共线 in H17.
 
 assert(Col A'' C'' B).
 ColR.
@@ -1059,8 +1059,8 @@ ColR.
 eapply (col3 A'' C''); Col.
 
 intro.
-apply 中间性转共线 in H16.
-apply 中间性转共线 in H17.
+apply 中间性蕴含共线 in H16.
+apply 中间性蕴含共线 in H17.
 apply H.
 
 assert(Col B C A'').
@@ -1076,8 +1076,8 @@ left.
 intro.
 apply H.
 
-apply 中间性转共线 in H16.
-apply 中间性转共线 in H17.
+apply 中间性蕴含共线 in H16.
+apply 中间性蕴含共线 in H17.
 assert(Col C B A'').
 ColR.
 apply (col3 A'' B); Col.
@@ -1101,7 +1101,7 @@ spliter.
 ex_and H30 T.
 apply H24.
 exists T.
-apply 中间性转共线 in H31.
+apply 中间性蕴含共线 in H31.
 split; Col.
 
 induction H16.

@@ -205,7 +205,7 @@ unfold Out in H3.
 spliter.
 induction H17.
 left.
-apply (between_exchange4 O P CD E); Between.
+apply (中间性的交换传递性2 O P CD E); Between.
 apply (l5_3 O P E CD); Between.
 subst CD.
 apply 中间性的同一律 in H.
@@ -370,7 +370,7 @@ apply (l6_7 O AB E CD); auto.
 apply l6_6.
 assumption.
 apply out_col in H3.
-apply 中间性转共线 in H9.
+apply 中间性蕴含共线 in H9.
 apply col_permutation_2.
 
 apply (col_transitivity_1 _ CD); Col.
@@ -388,7 +388,7 @@ apply l6_6.
 assumption.
 assert(Bet AB O CD).
 
-eapply (outer_transitivity_between _ _ M); Between.
+eapply (中间性的外传递性2 _ _ M); Between.
 intro.
 subst M.
 apply 等长的同一性 in H6.
@@ -398,13 +398,13 @@ unfold Out in H18.
 spliter.
 induction H22.
 assert(AB = O).
-apply(between_equality _ _ CD); Between.
+apply(双中间性推出点重合 _ _ CD); Between.
 subst AB.
 Between.
 assert(Bet CD O CD).
-apply (between_exchange3 AB); Between.
+apply (中间性的交换传递性1 AB); Between.
 assert(O = CD).
-apply between_equality in H23.
+apply 双中间性推出点重合 in H23.
 contradiction.
 Between.
 tauto.
@@ -506,13 +506,13 @@ unfold Out in H16.
 spliter.
 induction H18.
 assert(AB = O).
-eapply (between_equality _ _ AB'); Between.
+eapply (双中间性推出点重合 _ _ AB'); Between.
 subst AB.
 apply 等长的对称性 in H11.
 apply 等长的同一性 in H11.
 auto.
 assert(AB' = O).
-eapply (between_equality _ _ AB); Between.
+eapply (双中间性推出点重合 _ _ AB); Between.
 subst AB'.
 apply 等长的同一性 in H11.
 auto.
@@ -1895,7 +1895,7 @@ subst N.
 apply HN.
 unfold 中点 in H24.
 spliter.
-apply 中间性转共线 in H24.
+apply 中间性蕴含共线 in H24.
 apply out_col in H31.
 apply out_col in H27.
 eapply (col_transitivity_1 _ D1').
@@ -1985,7 +1985,7 @@ Col.
 Col.
 unfold 中点 in H24.
 spliter.
-apply 中间性转共线 in H24.
+apply 中间性蕴含共线 in H24.
 Col.
 Col.
 }
@@ -2470,7 +2470,7 @@ apply perp_not_col in H30.
 apply H30.
 unfold 中点 in H7.
 spliter.
-apply 中间性转共线 in H7.
+apply 中间性蕴含共线 in H7.
 ColR.
 apply perp_distinct in H30.
 tauto.
@@ -2517,7 +2517,7 @@ tauto.
 Perp.
 unfold 中点 in H24.
 spliter.
-apply 中间性转共线 in H24.
+apply 中间性蕴含共线 in H24.
 Col.
 apply perp_sym.
 apply(perp_col O N D1 D1' M).
@@ -2528,7 +2528,7 @@ induction H30.
 apply (perp_col C1 M O M C1'); Col; Perp.
 unfold 中点 in H7.
 spliter.
-apply 中间性转共线 in H7.
+apply 中间性蕴含共线 in H7.
 Col.
 apply perp_distinct in H30.
 tauto.
@@ -2656,7 +2656,7 @@ subst M.
 apply False_ind.
 unfold 中点 in H7.
 spliter.
-apply 中间性转共线 in H7.
+apply 中间性蕴含共线 in H7.
 Col.
 
 right.

@@ -744,7 +744,7 @@ apply (l6_21 A B C B); Col.
 subst T.
 apply H22.
 exists D.
-apply 中间性转共线 in H14.
+apply 中间性蕴含共线 in H14.
 split; Col.
 
 induction(col_dec C D T).
@@ -754,7 +754,7 @@ apply (l6_21 C D B C); Col.
 subst T.
 apply H22.
 exists A.
-apply 中间性转共线 in H14.
+apply 中间性蕴含共线 in H14.
 split; Col.
 
 induction H13.
@@ -879,10 +879,10 @@ induction H10.
 unfold Out in H.
 spliter.
 induction H13.
-apply (between_inner_transitivity _ _ _ D').
+apply (中间性的内传递性1 _ _ _ D').
 apply H10.
 auto.
-apply (outer_transitivity_between _ _ D').
+apply (中间性的外传递性2 _ _ D').
 apply H10.
 auto.
 auto.
@@ -893,7 +893,7 @@ spliter.
 exists A.
 split.
 Between.
-apply (outer_transitivity_between _ _ D'); Between.
+apply (中间性的外传递性2 _ _ D'); Between.
 
 induction H7.
 spliter.
@@ -901,7 +901,7 @@ exists A.
 split.
 Between.
 apply 中间性的对称性.
-apply (outer_transitivity_between _ _ D'); Between.
+apply (中间性的外传递性2 _ _ D'); Between.
 
 induction H7.
 spliter.
@@ -913,12 +913,12 @@ induction H10.
 assert(Bet C B D \/ Bet C D B).
 apply (l5_3 _ _ _ D'); auto.
 induction H11.
-apply (outer_transitivity_between _ _ B); Between.
-apply (between_inner_transitivity _ _ _ B).
+apply (中间性的外传递性2 _ _ B); Between.
+apply (中间性的内传递性1 _ _ _ B).
 apply H7.
 auto.
-apply (outer_transitivity_between _ _ B); Between.
-apply (between_exchange4 _ _ D').
+apply (中间性的外传递性2 _ _ B); Between.
+apply (中间性的交换传递性2 _ _ D').
 apply H8.
 auto.
 Between.
@@ -930,14 +930,14 @@ unfold Out in H.
 spliter.
 induction H10.
 assert(Bet B C D).
-apply (between_inner_transitivity _ _ _ D').
+apply (中间性的内传递性1 _ _ _ D').
 apply H8.
 assumption.
 eBetween.
 
-apply (outer_transitivity_between _ _ C).
+apply (中间性的外传递性2 _ _ C).
 apply H7.
-apply (outer_transitivity_between _ _ D' ).
+apply (中间性的外传递性2 _ _ D' ).
 apply H8.
 auto.
 auto.
@@ -1022,7 +1022,7 @@ subst M.
 apply False_ind.
 apply H.
 exists C.
-apply 中间性转共线 in H1.
+apply 中间性蕴含共线 in H1.
 split; Col.
 
 induction (两点重合的决定性 B D').
@@ -1073,7 +1073,7 @@ apply H11.
 ColR.
 exists M.
 split.
-apply 中间性转共线 in H1.
+apply 中间性蕴含共线 in H1.
 Col.
 auto.
 
@@ -1177,20 +1177,20 @@ unfold Out in H.
 spliter.
 induction H8.
 apply H.
-apply (between_equality _ _ D');
+apply (双中间性推出点重合 _ _ D');
 Between.
 apply H7.
-apply (between_equality _ _ A);
+apply (双中间性推出点重合 _ _ A);
 Between.
 induction H.
 spliter.
 induction H8.
 left.
-apply (between_inner_transitivity _ _ _ D').
+apply (中间性的内传递性1 _ _ _ D').
 apply H5.
 apply H8.
 left.
-apply (outer_transitivity_between _ _  D').
+apply (中间性的外传递性2 _ _  D').
 apply H5.
 auto.
 auto.
@@ -1333,7 +1333,7 @@ spliter.
 apply H.
 exists C.
 split; Col.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 Col.
 apply plgs_par_strict in H1.
 spliter.
@@ -1427,7 +1427,7 @@ apply H.
 exists B.
 split.
 Col.
-apply 中间性转共线 in H2.
+apply 中间性蕴含共线 in H2.
 ColR.
 
 assert(HH1:=plgs_one_side B C C' B' H6).
@@ -1572,7 +1572,7 @@ Col.
 assert(Par A B' P Q).
 apply plg_par in H8; auto.
 spliter.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 
 apply (par_col_par_2 _ B); auto.
 apply plg_par in H4; auto.
@@ -1595,7 +1595,7 @@ spliter.
 apply False_ind.
 unfold 退化平行四边形 in *.
 spliter.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 assert(Col B' P' Q).
 ColR.
 
@@ -1715,7 +1715,7 @@ spliter.
 
 assert(Par A B C' D).
 apply (par_col_par_2 _ B'); auto.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 Col.
 
 assert(Col C' C D /\ Col D C D).
@@ -1735,7 +1735,7 @@ unfold 退化平行四边形 in H11.
 spliter.
 apply plgs_par_strict in H10.
 spliter.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 apply H10.
 assert(Col A B C').
 ColR.
@@ -1747,7 +1747,7 @@ unfold 退化平行四边形 in H10.
 spliter.
 apply plgs_par_strict in H11.
 spliter.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 apply H11.
 assert(Col A B' C).
 ColR.
@@ -2095,7 +2095,7 @@ auto.
 induction H13.
 assumption.
 tauto.
-apply (between_exchange4 _ _ F').
+apply (中间性的交换传递性2 _ _ F').
 apply H10.
 auto.
 
@@ -2185,7 +2185,7 @@ induction H13.
 auto.
 tauto.
 right.
-apply (between_exchange4 _ _ F').
+apply (中间性的交换传递性2 _ _ F').
 apply H13.
 auto.
 tauto.
@@ -2256,7 +2256,7 @@ apply plgs_par_strict in H5.
 spliter.
 apply H5.
 exists D.
-apply 中间性转共线 in H4.
+apply 中间性蕴含共线 in H4.
 split; Col.
 assumption.
 
@@ -2314,7 +2314,7 @@ apply plgs_par_strict in H6.
 spliter.
 apply H6.
 exists D.
-apply 中间性转共线 in H4.
+apply 中间性蕴含共线 in H4.
 split; Col.
 assumption.
 
@@ -2331,7 +2331,7 @@ spliter.
 apply False_ind.
 
 apply H3.
-apply (between_equality _ _ D).
+apply (双中间性推出点重合 _ _ D).
 apply 中间性的对称性.
 apply H13.
 assumption.
@@ -2339,7 +2339,7 @@ induction H12.
 spliter.
 
 assert(D = D').
-apply (between_equality _ _ C).
+apply (双中间性推出点重合 _ _ C).
 Between.
 Between.
 subst D'.
@@ -2414,7 +2414,7 @@ induction H2.
 
 assert(Bet B A B).
 spliter.
-apply (outer_transitivity_between2 _ C').
+apply (中间性的外传递性1 _ C').
 Between.
 auto.
 induction H7.
@@ -2427,7 +2427,7 @@ induction H2.
 
 assert(Bet B A B).
 spliter.
-apply (outer_transitivity_between _ _ C').
+apply (中间性的外传递性2 _ _ C').
 apply H2.
 auto.
 induction H7.
@@ -2701,12 +2701,12 @@ unfold 中点 in H0.
 unfold Out in H.
 spliter.
 induction H3.
-apply (between_equality _ _ C).
+apply (双中间性推出点重合 _ _ C).
 apply H0.
 assumption.
 apply False_ind.
 apply H2.
-apply (between_equality _ _ A).
+apply (双中间性推出点重合 _ _ A).
 Between.
 assumption.
 Qed.

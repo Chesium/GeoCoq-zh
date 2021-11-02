@@ -153,7 +153,7 @@ subst TT.
 assert(T = T').
 apply H9.
 split; auto.
-apply 中间性转共线 in H7.
+apply 中间性蕴含共线 in H7.
 
 assert(Col A X T); ColR.
 subst T'.
@@ -244,7 +244,7 @@ apply perp_left_comm.
 eapply (perp_col A B O R R); auto.
 unfold 中点 in *.
 spliter.
-apply 中间性转共线 in H8.
+apply 中间性蕴含共线 in H8.
 ColR.
 assert(垂直于 R T R R O).
 apply perp_in_comm.
@@ -275,7 +275,7 @@ apply 等长的传递性 with O T; Cong.
 assert(在圆外 T' O P).
 unfold 中点 in *.
 spliter.
-apply 中间性转共线 in H12.
+apply 中间性蕴含共线 in H12.
 apply (tangent_out A B O P T T'); auto.
 ColR.
 unfold 在圆外 in *.

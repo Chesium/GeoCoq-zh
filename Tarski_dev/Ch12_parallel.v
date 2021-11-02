@@ -244,19 +244,19 @@ repeat
       | H:(~Bet ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
       not_exist_hyp2 X1 X2 X2 X3;
-      assert (h := not_bet_distincts X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 非中间性则任两点不重合 X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq12__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_AB不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq21__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_BA不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?B <> ?C |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq23__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_BC不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?C <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq32__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_CB不等推AC不等 A B C H H2);clean_reap_hyps
 
       | H:Cong ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
@@ -1283,7 +1283,7 @@ Proof.
           apply AAB型共线.
         unfold 中点 in H1.
         spliter.
-        apply 中间性转共线.
+        apply 中间性蕴含共线.
         assumption.
       induction(两点重合的决定性 B P).
         subst P.
@@ -1298,7 +1298,7 @@ Proof.
           auto.
           unfold 中点 in H0.
           spliter.
-          apply 中间性转共线 in H0 .
+          apply 中间性蕴含共线 in H0 .
           Col.
         apply ABA型共线.
       assert(HH0 := H0).
@@ -1306,8 +1306,8 @@ Proof.
       unfold 中点 in H0.
       unfold 中点 in H1.
       spliter.
-      apply 中间性转共线 in H1.
-      apply 中间性转共线 in H0.
+      apply 中间性蕴含共线 in H1.
+      apply 中间性蕴含共线 in H0.
       assert(Col B C P).
         eapply col_permutation_1.
         eapply (col_transitivity_1 _ A).
@@ -1383,7 +1383,7 @@ Proof.
         eapply per_col.
           apply H.
           assumption.
-        apply 中间性转共线 in H6.
+        apply 中间性蕴含共线 in H6.
         Col.
       ex_and H3 B''.
       assert(B' = B'').
@@ -1417,7 +1417,7 @@ Proof.
           apply H14.
         unfold 中点 in H0.
         spliter.
-        apply 中间性转共线 in H0.
+        apply 中间性蕴含共线 in H0.
         Col.
         intro.
         treat_equalities.
@@ -1517,7 +1517,7 @@ Proof.
             auto.
             apply perp_left_comm.
             apply H17.
-          apply 中间性转共线 in H7.
+          apply 中间性蕴含共线 in H7.
           Col.
         Col.
       apply perp_distinct in H17.
@@ -1751,7 +1751,7 @@ Proof.
           Col.
       exists T.
       split.
-        apply 中间性转共线 in H8.
+        apply 中间性蕴含共线 in H8.
         Col.
       induction H6.
         assert(HH:= outer_pasch C D T A B (中间性的对称性 _ _ _ H8) (中间性的对称性 _ _ _ H6)).
@@ -1886,7 +1886,7 @@ Proof.
         Cong.
         Cong.
         Col.
-      apply 中间性转共线 in H15.
+      apply 中间性蕴含共线 in H15.
       Col.
     spliter.
     assert(Par A B C D').
@@ -1953,7 +1953,7 @@ Proof.
               treat_equalities.
               unfold 等角 in H3.
               tauto.
-              apply 中间性转共线 in H1.
+              apply 中间性蕴含共线 in H1.
               Col.
             Col.
           exists A.
@@ -1963,13 +1963,13 @@ Proof.
         apply l9_2.
         apply l9_8_2 with B.
           apply col_two_sides with P.
-            apply 中间性转共线 in H1.
+            apply 中间性蕴含共线 in H1.
             Col.
             assumption.
           apply invert_two_sides.
           apply H10.
         apply col_one_side with P.
-          apply 中间性转共线 in H1.
+          apply 中间性蕴含共线 in H1.
           Col.
           auto.
         apply invert_one_side.
@@ -1989,7 +1989,7 @@ Proof.
       auto.
       apply par_symmetry.
       apply H9.
-    apply 中间性转共线 in H1.
+    apply 中间性蕴含共线 in H1.
     Col.
 Qed.
 
@@ -2021,7 +2021,7 @@ Proof.
     apply par_symmetry.
     apply l12_22_aux with P; auto.
       apply (col_one_side _ A).
-        apply 中间性转共线 in H4.
+        apply 中间性蕴含共线 in H4.
         Col.
         auto.
       apply one_side_symmetry.
@@ -2136,7 +2136,7 @@ Proof.
       apply inangle__lea, (in_angle_trans2 A); trivial.
       apply os_ts__inangle; trivial.
       apply invert_one_side, inangle_one_side with C; Col.
-      intro; apply HNCol1, 中间性转共线, bet_in_angle_bet with T; trivial.
+      intro; apply HNCol1, 中间性蕴含共线, bet_in_angle_bet with T; trivial.
       apply col_two_sides_bet with P'; Col.
     - apply lea_left_comm, inangle__lea.
       destruct (col_dec B A T).
@@ -2250,7 +2250,7 @@ Proof.
       eapply (col_per_perp _ _ _ C) in H12; auto.
         apply perp_right_comm.
         assumption.
-      apply 中间性转共线 in H11.
+      apply 中间性蕴含共线 in H11.
       Col.
     assert(B <> T).
       intro.
@@ -2292,7 +2292,7 @@ Proof.
       apply is_midpoint_id in H15.
       apply H10.
       auto.
-    apply 中间性转共线 in H6.
+    apply 中间性蕴含共线 in H6.
     Col.
 Qed.
 

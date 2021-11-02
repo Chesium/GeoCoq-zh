@@ -260,7 +260,7 @@ Lemma image_preserves_col : forall A B C A' B' C' X Y,
 Proof.
     intros.
     destruct H2 as [HBet|[HBet|HBet]]; [|apply col_permutation_2|apply col_permutation_1];
-    apply 中间性转共线; eapply image_preserves_bet; eauto.
+    apply 中间性蕴含共线; eapply image_preserves_bet; eauto.
 Qed.
 
 Lemma image_gen_preserves_col : forall A B C A' B' C' X Y,
@@ -270,7 +270,7 @@ Lemma image_gen_preserves_col : forall A B C A' B' C' X Y,
 Proof.
     intros.
     destruct H2 as [HBet|[HBet|HBet]]; [|apply col_permutation_2|apply col_permutation_1];
-    apply 中间性转共线; eapply image_gen_preserves_bet; eauto.
+    apply 中间性蕴含共线; eapply image_gen_preserves_bet; eauto.
 Qed.
 
 Lemma image_gen_preserves_ncol : forall A B C A' B' C' X Y,
@@ -865,7 +865,7 @@ Lemma hilbert_s_version_of_pasch : forall A B C P Q, 共面 A B C P ->
   exists X, Col P Q X /\ (BetS A X C \/ BetS B X C).
 Proof.
 intros A B C P Q HCop HNC1 HNC2 HAQB.
-rewrite BetSEq in HAQB; spliter.
+rewrite 严格中间性的等价 in HAQB; spliter.
 destruct (hilbert_s_version_of_pasch_aux C A B Q P) as [X [HPQX HBetS]]; Cop.
 exists X; split; Col; unfold BetS.
 induction HBetS; spliter; repeat split; Between.

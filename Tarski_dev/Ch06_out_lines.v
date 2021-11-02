@@ -85,11 +85,11 @@ Proof.
     spliter.
     repeat split; try assumption.
     induction H1.
-      assert(exists C, Bet A P C /\ P <> C) by (apply point_construction_different).
+      assert(exists C, Bet A P C /\ P <> C) by (apply 构造满足中间性的不重合点).
       ex_and H2 C.
       exists C.
       repeat split; eBetween.
-    assert(exists C, Bet B P C /\ P <> C) by (apply point_construction_different).
+    assert(exists C, Bet B P C /\ P <> C) by (apply 构造满足中间性的不重合点).
     ex_and H2 C.
     exists C.
     repeat split;eBetween.
@@ -113,9 +113,9 @@ Proof.
     unfold Col.
     induction H1; split.
       Between.
-      intro; apply H; eapply between_equality;eauto.
+      intro; apply H; eapply 双中间性推出点重合;eauto.
       right; left; assumption.
-    intro; apply H0; eapply between_equality; eBetween.
+    intro; apply H0; eapply 双中间性推出点重合; eBetween.
 Qed.
 
 Lemma l6_4_2 : forall A B P, Col A P B /\ ~ Bet A P B -> Out P A B.
@@ -159,7 +159,7 @@ Proof.
     spliter.
     repeat split; try assumption.
     induction H4; induction H2.
-      left; eapply between_exchange4; eauto.
+      left; eapply 中间性的交换传递性2; eauto.
       eapply l5_3; eauto.
       eapply (l5_1 P B); auto.
     right; eBetween.
@@ -172,14 +172,14 @@ Proof.
     unfold Out in *.
     spliter.
     induction H5; induction H3.
-      assert(Bet A' B C) by (apply outer_transitivity_between2 with A; Between).
-      apply outer_transitivity_between with C; auto.
-      assert(Bet A' B C) by (apply outer_transitivity_between2 with A; Between).
-      apply between_inner_transitivity with C; assumption.
-      assert(Bet A' B C) by (apply between_exchange3 with A; Between).
-      apply outer_transitivity_between with C; auto.
-    assert(Bet A' B C) by (apply between_exchange3 with A; Between).
-    eapply between_inner_transitivity with C; assumption.
+      assert(Bet A' B C) by (apply 中间性的外传递性1 with A; Between).
+      apply 中间性的外传递性2 with C; auto.
+      assert(Bet A' B C) by (apply 中间性的外传递性1 with A; Between).
+      apply 中间性的内传递性1 with C; assumption.
+      assert(Bet A' B C) by (apply 中间性的交换传递性1 with A; Between).
+      apply 中间性的外传递性2 with C; auto.
+    assert(Bet A' B C) by (apply 中间性的交换传递性1 with A; Between).
+    eapply 中间性的内传递性1 with C; assumption.
 Qed.
 
 Lemma out2_bet_out : forall A B C X P,
@@ -190,25 +190,25 @@ Proof.
     spliter.
     induction H5; induction H3.
       repeat split; try assumption.
-        left; eapply between_exchange4 with X; try assumption.
-        apply between_inner_transitivity with C; assumption.
+        left; eapply 中间性的交换传递性2 with X; try assumption.
+        apply 中间性的内传递性1 with C; assumption.
       apply l5_1 with X; try auto.
-      apply between_exchange2 with A; assumption.
+      apply 中间性的内传递性2 with A; assumption.
       repeat split; try assumption.
         apply l5_3 with X; try assumption.
-        apply between_inner_transitivity with C; assumption.
-      right; apply between_exchange4 with X; try assumption.
-      apply between_exchange2 with A; assumption.
+        apply 中间性的内传递性1 with C; assumption.
+      right; apply 中间性的交换传递性2 with X; try assumption.
+      apply 中间性的内传递性2 with A; assumption.
       repeat split; try assumption.
         apply l5_1 with X; try auto.
-        apply between_exchange2 with C; Between.
-      left; apply between_exchange4 with X; try assumption.
-      apply between_inner_transitivity with A; Between.
+        apply 中间性的内传递性2 with C; Between.
+      left; apply 中间性的交换传递性2 with X; try assumption.
+      apply 中间性的内传递性1 with A; Between.
     repeat split; try assumption.
-      right; apply between_exchange4 with X; try assumption.
-      apply between_exchange2 with C; Between.
+      right; apply 中间性的交换传递性2 with X; try assumption.
+      apply 中间性的内传递性2 with C; Between.
     apply l5_3 with X; try assumption.
-    apply between_inner_transitivity with A; Between.
+    apply 中间性的内传递性1 with A; Between.
 Qed.
 
 Lemma l6_11_uniqueness : forall A B C R X Y,
@@ -360,7 +360,7 @@ Lemma not_col_exists : forall A B,
  A<>B -> exists C, ~ Col A B C.
 Proof.
     intros.
-    assert (T:=防降维公理_ex).
+    assert (T:=防降维公理_老版本).
     induction T.
     induction H0.
     induction H0.
@@ -467,8 +467,8 @@ Proof.
   assert(B0 <> C0) by (intro; subst C0; assert(B = C); auto; apply (等长的反向同一性 B0); auto).
   exists C0.
   split; [|apply (两组连续三点分段等则全体等 _ B _ _ B0); Cong].
-  apply (outer_transitivity_between2 _ B0); auto.
-  assert(Bet B0 B' C') by (apply 中间性的对称性; apply (between_inner_transitivity _ _ _ A'); Between).
+  apply (中间性的外传递性1 _ B0); auto.
+  assert(Bet B0 B' C') by (apply 中间性的对称性; apply (中间性的内传递性1 _ _ _ A'); Between).
   apply l6_13_1.
   - elim(两点重合的决定性 B0 B').
     { intro.
@@ -630,12 +630,12 @@ Proof.
     spliter.
     induction H2.
       assert ( A = B).
-        eapply between_equality.
+        eapply 双中间性推出点重合.
           apply H.
         assumption.
       contradiction.
     assert(C = B).
-      eapply between_equality.
+      eapply 双中间性推出点重合.
         apply 中间性的对称性.
         apply H.
       assumption.
@@ -655,13 +655,13 @@ Proof.
       spliter.
       induction H4.
         assert( A = B).
-          eapply between_equality.
+          eapply 双中间性推出点重合.
             apply H1.
           assumption.
         contradiction.
       assert(C = B).
         apply(中间性的对称性) in H4.
-        eapply between_equality.
+        eapply 双中间性推出点重合.
           apply 中间性的对称性.
           apply H1.
         apply 中间性的对称性.
@@ -741,7 +741,7 @@ Proof.
       repeat split; try assumption.
       induction H5.
         left.
-        eapply between_exchange4.
+        eapply 中间性的交换传递性2.
           apply H2.
         assumption.
       eapply l5_3.
@@ -754,18 +754,18 @@ Proof.
       assumption.
     induction H6.
       assert(Bet A B C').
-        eapply between_exchange4.
+        eapply 中间性的交换传递性2.
           apply H2.
         assumption.
       eapply l5_3.
         apply H7.
       assumption.
     assert(Bet B' C' C).
-      eapply between_exchange3.
+      eapply 中间性的交换传递性1.
         apply H3.
       assumption.
     assert(Bet A B' C).
-      eapply outer_transitivity_between.
+      eapply 中间性的外传递性2.
         apply H3.
         assumption.
       assumption.
@@ -778,7 +778,7 @@ Lemma bet2__out : forall A B C B', A <> B -> A <> B' -> Bet A B C -> Bet A B' C 
 Proof.
     intros.
     apply bet2_out_out with C C; auto.
-    apply bet_neq12__neq in H1; auto.
+    apply 中间性_AB不等推AC不等 in H1; auto.
     apply out_trivial; auto.
 Qed.
 
@@ -798,11 +798,11 @@ Proof.
       assumption.
     induction H3.
       left.
-      eapply between_inner_transitivity.
+      eapply 中间性的内传递性1.
         apply H3.
       assumption.
     right.
-    eapply between_exchange2.
+    eapply 中间性的内传递性2.
       apply H3.
     apply 中间性的对称性.
     assumption.
@@ -844,7 +844,7 @@ Lemma diff_col_ex : forall A B, exists C, A <> C /\ B <> C /\ Col A B C.
 Proof.
     intros.
     assert (exists C, Bet A B C /\ B <> C).
-      apply point_construction_different.
+      apply 构造满足中间性的不重合点.
     ex_and H C.
     exists C.
     split.
@@ -867,7 +867,7 @@ Proof.
     induction (两点重合的决定性 A B).
       induction (两点重合的决定性 B C).
         assert (exists D, Bet B C D /\ C <> D).
-          apply point_construction_different.
+          apply 构造满足中间性的不重合点.
         ex_and H2 D.
         exists D.
         repeat split.
@@ -884,7 +884,7 @@ Proof.
         subst C.
         assumption.
       assert (exists D, Bet B C D /\ C <> D).
-        apply point_construction_different.
+        apply 构造满足中间性的不重合点.
       ex_and H2 D.
       exists D.
       repeat split.
@@ -892,7 +892,7 @@ Proof.
         subst D.
         apply 中间性的对称性 in H.
         apply H1.
-        eapply between_equality.
+        eapply 双中间性推出点重合.
           apply H2.
         apply H.
         intro.
@@ -905,7 +905,7 @@ Proof.
         assumption.
       unfold Col.
       left.
-      eapply outer_transitivity_between.
+      eapply 中间性的外传递性2.
         apply H.
         apply H2.
       assumption.
@@ -922,14 +922,14 @@ Proof.
         assumption.
       apply diff_col_ex.
     assert (exists D, Bet B C D /\ C <> D).
-      apply point_construction_different.
+      apply 构造满足中间性的不重合点.
     ex_and H2 D.
     exists D.
     repeat split.
       intro.
       subst D.
       assert (B = C).
-        eapply between_equality.
+        eapply 双中间性推出点重合.
           apply H2.
         apply 中间性的对称性.
         assumption.
@@ -944,7 +944,7 @@ Proof.
       assumption.
     unfold Col.
     left.
-    eapply outer_transitivity_between.
+    eapply 中间性的外传递性2.
       apply H.
       assumption.
     assumption.

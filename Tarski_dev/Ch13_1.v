@@ -60,7 +60,7 @@ Lemma per23_preserves_bet : forall A B C B' C', Bet A B C -> A <> B' -> A <> C' 
 Proof.
 intros.
 assert(HC:Col A B C).
-apply 中间性转共线 in H; Col.
+apply 中间性蕴含共线 in H; Col.
 
 induction(两点重合的决定性 B B').
 subst B'.
@@ -161,7 +161,7 @@ unfold TS in H16.
 spliter.
 ex_and H18 T.
 assert(T = B').
-apply 中间性转共线 in H19.
+apply 中间性蕴含共线 in H19.
 apply (l6_21 B B' A B'); Col.
 ColR.
 subst T.
@@ -179,7 +179,7 @@ intros.
 induction(两点重合的决定性 B B').
 subst B'.
 assert(Col A C' C).
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 ColR.
 assert(A = C' \/ C = C').
 apply(l8_9 A C' C); auto.
@@ -221,14 +221,14 @@ subst C.
 apply 中间性的同一律 in H.
 contradiction.
 assert(Col A B' B).
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 ColR.
 assert(A = B' \/ B = B').
 apply(l8_9 A B' B); auto.
 induction H8;contradiction.
 
 assert(Perp A B' C' C).
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 apply(perp_col _ C'); Col.
 
 assert( Par B' B C' C).
@@ -310,7 +310,7 @@ Lemma per13_preserves_bet : forall A B C A' C', Bet A B C -> B <> A' -> B <> C' 
 Proof.
 intros.
 assert(Col A B C).
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 Col.
 
 induction(两点重合的决定性 A A').
@@ -437,7 +437,7 @@ induction H22.
 Between.
 apply False_ind.
 apply H18.
-apply (between_equality _ _ B); Between.
+apply (双中间性推出点重合 _ _ B); Between.
 spliter.
 
 induction(两点重合的决定性 A C).
@@ -458,7 +458,7 @@ Lemma per13_preserves_bet_inv : forall A B C A' C', Bet A' B C' -> B <> A' -> B 
 Proof.
 intros.
 assert(Col A' B C').
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 Col.
 
 induction(两点重合的决定性 A A').
@@ -590,7 +590,7 @@ induction H22.
 Between.
 apply False_ind.
 apply H18.
-apply (between_equality _ _ B); Between.
+apply (双中间性推出点重合 _ _ B); Between.
 
 (****************************)
 
@@ -631,11 +631,11 @@ subst A'.
 induction(两点重合的决定性 B B').
 subst B'.
 assert(Col O C C').
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 ColR.
 
 assert(C = C').
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 assert(O = C' \/ C = C').
 apply(l8_9 O C' C H5); Col.
 induction H10.
@@ -662,7 +662,7 @@ intro.
 subst C'.
 clean_trivial_hyps.
 apply H12.
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 ColR.
 
 assert(Perp B B' O A).
@@ -687,7 +687,7 @@ tauto.
 apply perp_sym.
 apply perp_right_comm.
 apply(perp_col O C' C' C A); auto.
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 ColR.
 
 assert(Par B B' C C').
@@ -769,7 +769,7 @@ subst C'.
 assert( ~ Col O A' A).
 apply(per_not_col O A' A ); auto.
 apply H13.
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 ColR.
 
 assert(Perp A A' O A').
@@ -875,7 +875,7 @@ intro.
 subst C'.
 apply H17.
 exists A.
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 split; Col.
 intro.
 subst C'.
@@ -895,7 +895,7 @@ subst A'.
 clean_trivial_hyps.
 apply H17.
 exists C.
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 split; Col.
 intro.
 subst C'.
@@ -913,7 +913,7 @@ intro.
 subst A'.
 apply H17.
 exists C.
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 split; Col.
 auto.
 induction H23.
@@ -922,7 +922,7 @@ Between.
 
 apply False_ind.
 apply H22.
-apply (between_equality _ _ B); Between.
+apply (双中间性推出点重合 _ _ B); Between.
 
 (***************************)
 
@@ -974,13 +974,13 @@ induction H26; induction H24.
 assumption.
 apply False_ind.
 apply H21.
-apply(between_equality _ _ A'); Between.
+apply(双中间性推出点重合 _ _ A'); Between.
 apply False_ind.
 apply H10.
-apply(between_equality _ _ C'); Between.
+apply(双中间性推出点重合 _ _ C'); Between.
 apply False_ind.
 apply H25.
-apply(between_equality _ _ B); Between.
+apply(双中间性推出点重合 _ _ B); Between.
 spliter.
 
 
@@ -995,7 +995,7 @@ subst C.
 apply 中间性的同一律 in H.
 subst B.
 tauto.
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 ColR.
 
 (********************************)
@@ -1150,16 +1150,16 @@ subst C.
 Between.
 
 assert(Col O A B').
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 ColR.
 assert(Col O B' C').
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 ColR.
 
 induction(两点重合的决定性 B B').
 subst B'.
 assert(Col O C C').
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 ColR.
 assert(C = C').
 apply(per_col_eq C C' O); Col; Perp.
@@ -1232,7 +1232,7 @@ apply 中间性的同一律 in H21.
 subst T.
 contradiction.
 intro.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 apply H19.
 ColR.
 subst T.
@@ -1363,14 +1363,14 @@ induction H23; induction H21.
 assumption.
 assumption.
 assert(A = C).
-apply (between_equality A C B); auto.
+apply (双中间性推出点重合 A C B); auto.
 subst C.
 apply False_ind.
 apply H13.
 exists A.
 split; Col.
 assert(B = C).
-apply (between_equality B C A); Between.
+apply (双中间性推出点重合 B C A); Between.
 subst C.
 Between.
 
@@ -1382,7 +1382,7 @@ apply perp_in_comm in H5.
 apply perp_in_perp_bis in H5.
 induction H5.
 apply (perp_col _ B'); Col; Perp.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 ColR.
 apply perp_distinct in H5.
 tauto.
@@ -1569,9 +1569,9 @@ intro.
 apply HC.
 unfold 中点 in *.
 spliter.
-apply 中间性转共线 in H2.
-apply 中间性转共线 in H4.
-apply 中间性转共线 in H6.
+apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线 in H4.
+apply 中间性蕴含共线 in H6.
 ColR.
 
 assert(HH:= l8_18_existence P Q C H1).
@@ -1626,13 +1626,13 @@ Perp.
 assert(Cl1: Col A' C' Q).
 unfold 中点 in H4.
 spliter.
-apply 中间性转共线 in H4.
+apply 中间性蕴含共线 in H4.
 Col.
 
 assert(Cl2: Col B' C' P).
 unfold 中点 in H5.
 spliter.
-apply 中间性转共线 in H5.
+apply 中间性蕴含共线 in H5.
 Col.
 
 assert(NE0: P <> Q).
@@ -1715,7 +1715,7 @@ apply perp_in_comm in H3.
 apply perp_in_per in H3.
 unfold 中点 in MAC.
 spliter.
-apply 中间性转共线 in H2.
+apply 中间性蕴含共线 in H2.
 apply (per_col P A' C A); Col.
 apply l8_2.
 apply (per_col A A' Q P); Perp.
@@ -1734,7 +1734,7 @@ apply perp_in_comm in H3.
 apply perp_in_per in H3.
 unfold 中点 in MBC.
 spliter.
-apply 中间性转共线 in H2.
+apply 中间性蕴含共线 in H2.
 apply (per_col Q B' C B); Col.
 apply l8_2.
 apply (per_col B B' P Q); Perp.
@@ -1930,7 +1930,7 @@ apply HC; Col.
 assert(Col R A B).
 unfold 中点 in MAB.
 spliter.
-apply 中间性转共线 in H31.
+apply 中间性蕴含共线 in H31.
 Col.
 
 assert(X <> R).
@@ -1961,7 +1961,7 @@ exists R.
 
 unfold 中点 in H14.
 spliter.
-apply 中间性转共线 in H14.
+apply 中间性蕴含共线 in H14.
 split; Col.
 spliter.
 apply NC1.
@@ -2306,7 +2306,7 @@ unfold TS.
 repeat split; auto.
 intro.
 assert(A = P).
-apply 中间性转共线 in H5.
+apply 中间性蕴含共线 in H5.
 apply (l6_21 A B C D); Col.
 subst P.
 apply H6.
@@ -2314,7 +2314,7 @@ apply(per2_col_eq A C D B); Perp.
 Col.
 intro.
 assert(B = P).
-apply 中间性转共线 in H5.
+apply 中间性蕴含共线 in H5.
 apply (l6_21 A B C D); Col.
 subst P.
 apply H6.
@@ -2474,8 +2474,8 @@ Proof.
     ex_and H19 T1.
     ex_and H8 T.
     assert(T = T1).
-      apply 中间性转共线 in H20.
-      apply 中间性转共线 in H21.
+      apply 中间性蕴含共线 in H20.
+      apply 中间性蕴含共线 in H21.
       assert_diffs.
       apply (l6_21 A B C D); Col.
     subst T1.
@@ -2534,7 +2534,7 @@ spliter.
    apply perp_in_perp_bis in H3.
 unfold 中点 in H2.
 spliter.
-apply 中间性转共线 in H2.
+apply 中间性蕴含共线 in H2.
 assert(X <> Y).
 apply perp_distinct in H4.
 tauto.
@@ -2555,7 +2555,7 @@ assert(P = B).
 apply (l6_21 A B C P); Col.
 unfold 中点 in H0.
 spliter.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 Col.
 intro.
 subst P.
@@ -2582,7 +2582,7 @@ assert(P = B).
 apply (l6_21 A B C P); Col.
 unfold 中点 in H0.
 spliter.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 Col.
 intro.
 subst P.
@@ -2768,7 +2768,7 @@ Proof.
       subst E''.
       apply False_ind.
       apply H15.
-      apply 中间性转共线 in H25.
+      apply 中间性蕴含共线 in H25.
       Col.
     assert(等角 B A C D A E'').
       apply (l11_10 B A C D A E'); try apply out_trivial; auto.
@@ -2820,7 +2820,7 @@ Proof.
     assert(~ Col E'' A B).
       intro.
       apply H29.
-      apply 中间性转共线 in H25.
+      apply 中间性蕴含共线 in H25.
       apply (l6_21 A B C D); Col.
     assert(等角 C A E'' D A B).
       apply (l11_22 C A E'' B D A B E'').
@@ -2837,11 +2837,11 @@ Proof.
               auto.
               intro.
               apply H15.
-              apply 中间性转共线 in H25.
+              apply 中间性蕴含共线 in H25.
               apply col_permutation_1.
               eapply (col_transitivity_1 _ E''); Col.
               intro.
-              apply 中间性转共线 in H25.
+              apply 中间性蕴含共线 in H25.
               apply H15.
               apply col_permutation_2.
               eapply (col_transitivity_1 _ E''); Col.
@@ -2855,7 +2855,7 @@ Proof.
               apply H29.
               apply (l6_21 A B C D);Col.
               eapply (col_transitivity_1 _ T); Col.
-              apply 中间性转共线 in H25.
+              apply 中间性蕴含共线 in H25.
               Col.
               intro.
               apply H15.
@@ -2900,7 +2900,7 @@ Proof.
             apply col_permutation_2.
             apply(col_transitivity_1 _ T); Col.
             intro.
-            apply 中间性转共线 in H25.
+            apply 中间性蕴含共线 in H25.
             apply H15.
             apply col_permutation_1.
             eapply (col_transitivity_1 _ E''); Col.
@@ -3002,7 +3002,7 @@ Proof.
             Col.
             intro.
             apply H5.
-            apply 中间性转共线 in H35.
+            apply 中间性蕴含共线 in H35.
             assert(C <> C').
               intro.
               subst C'.
@@ -3044,7 +3044,7 @@ Proof.
             Col.
             intro.
             apply H6.
-            apply 中间性转共线 in H37.
+            apply 中间性蕴含共线 in H37.
             assert(D <> D').
               intro.
               subst D'.
@@ -3098,8 +3098,8 @@ Proof.
     assert(~ Col C' D' B).
       intro.
       apply H16.
-      apply 中间性转共线 in H35.
-      apply  中间性转共线 in H37.
+      apply 中间性蕴含共线 in H35.
+      apply  中间性蕴含共线 in H37.
       assert(Col C' B D).
         ColR.
       ColR.
@@ -3120,12 +3120,12 @@ Proof.
         auto.
         intro.
         apply H15.
-        apply 中间性转共线 in H25.
+        apply 中间性蕴含共线 in H25.
         apply col_permutation_2.
         eapply (col_transitivity_1 _ E''); Col.
         intro.
         apply H15.
-        apply 中间性转共线 in H25.
+        apply 中间性蕴含共线 in H25.
         apply col_permutation_1.
         eapply (col_transitivity_1 _ E''); Col.
       exists E''.
@@ -3185,7 +3185,7 @@ Proof.
             apply col_permutation_1.
             eapply col_transitivity_1.
               apply H55.
-              apply 中间性转共线 in H35.
+              apply 中间性蕴含共线 in H35.
               Col.
             Col.
           apply l9_9 in H53.
@@ -3670,7 +3670,7 @@ apply H1.
 Col.
 
 assert(Col B O C).
-apply 中间性转共线.
+apply 中间性蕴含共线.
 Between.
 
 induction(两点重合的决定性 B C).
@@ -3855,7 +3855,7 @@ Perp.
 induction(两点重合的决定性 C' B0).
 subst B0.
 assert(B' = C0).
-apply 中间性转共线 in H24.
+apply 中间性蕴含共线 in H24.
 apply (l6_21 C' O C C0); Col.
 assert(Par C B' C C0).
 apply(l12_9 C B' C C0 X Y); Perp; Cop.
@@ -4230,7 +4230,7 @@ intros.
 assert(HPO:=perp_out_acute).
 assert(HBO:=acute_bet__obtuse).
 assert(Col A B C').
-apply 中间性转共线 in H1.
+apply 中间性蕴含共线 in H1.
 Col.
 assert(为锐角 C' B C).
 apply (HPO _ _ _ C').

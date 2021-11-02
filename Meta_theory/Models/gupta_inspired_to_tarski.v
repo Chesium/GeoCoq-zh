@@ -392,7 +392,7 @@ do 2 (try (elim HCol; clear HCol; intro HCol)); rename HCol into HBet3.
 
       {
       exists B; exists C; do 2 (split; Between).
-      apply outer_transitivity_between2 with A; eBetween.
+      apply 中间性的外传递性1 with A; eBetween.
       intro; treat_equalities; intuition.
       }
     }
@@ -408,7 +408,7 @@ do 2 (try (elim HCol; clear HCol; intro HCol)); rename HCol into HBet3.
 
       {
       exists B; exists C; do 2 (split; Between).
-      apply outer_transitivity_between with A; eBetween;
+      apply 中间性的外传递性2 with A; eBetween;
       try (intro; treat_equalities; intuition).
       }
     }

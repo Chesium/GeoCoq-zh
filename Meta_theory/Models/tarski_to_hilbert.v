@@ -191,7 +191,7 @@ subst B.
 elim (两点重合的决定性 A C); intro.
 subst C.
 assert (exists B, A<>B).
-eapply another_point.
+eapply 每个点均有不同点.
 DecompEx H0 B.
 exists (Lin A B H1).
 unfold IncidentL;intuition.
@@ -437,7 +437,7 @@ intros.
 intro;
 spliter.
 assert (B=C) by
- (apply (between_equality B C A);Between).
+ (apply (双中间性推出点重合 B C A);Between).
 solve [intuition].
 Qed.
 
@@ -530,7 +530,7 @@ Proof.
   intros A B C D HCop.
   destruct (两点重合的决定性 A B) as [|HAB]; [destruct (两点重合的决定性 A C);
     [destruct (两点重合的决定性 A D)|]|].
-  - destruct (another_point D) as [E].
+  - destruct (每个点均有不同点 D) as [E].
     destruct (cop_plane_aux D E E E) as [p []]; Cop.
     subst; exists p; repeat split; assumption.
   - destruct (cop_plane_aux A D B C) as [p]; Cop.
@@ -745,10 +745,10 @@ decompose [and] H1;clear H1.
 clear H8.
 destruct H7.
 assert (A = x).
-eapply between_equality;eauto.
+eapply 双中间性推出点重合;eauto.
 intuition.
 assert (A = C).
-eapply between_equality;eauto.
+eapply 双中间性推出点重合;eauto.
 apply 中间性的对称性.
 auto.
 intuition.
@@ -790,14 +790,14 @@ split.
 unfold Between_H.
 repeat split.
 apply 中间性的对称性.
-eapply between_exchange4.
+eapply 中间性的交换传递性2.
 apply H3.
 assumption.
 intro.
 treat_equalities.
 (*
 apply 中间性的对称性 in H.
-apply between_equality in H.
+apply 双中间性推出点重合 in H.
 treat_equalities.
 *)
 tauto.
@@ -842,7 +842,7 @@ assumption.
 unfold Between_H.
 repeat split.
 
-eapply between_exchange4.
+eapply 中间性的交换传递性2.
 apply 中间性的对称性.
 apply H3.
 apply 中间性的对称性.

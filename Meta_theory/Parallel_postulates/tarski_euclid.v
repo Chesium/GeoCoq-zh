@@ -53,7 +53,7 @@ assert (HTS : TS Q S P Y).
     treat_equalities.
     assert (Q = U).
       {
-      apply BetSEq in HPTQ; apply BetSEq in HRTS; apply BetSEq in HQUR;
+      apply 严格中间性的等价 in HPTQ; apply 严格中间性的等价 in HRTS; apply 严格中间性的等价 in HQUR;
       spliter; apply l6_21 with Q P R Q; Col.
       apply par_strict_not_col_2 with S; Par.
       }
@@ -86,7 +86,7 @@ assert (HPUI : BetS P U I).
       assert (HFalse : OS Q S P U).
         {
         apply one_side_transitivity with R; [Side|].
-        apply BetSEq in HPTQ; apply BetSEq in HRTS; apply BetSEq in HQUR;
+        apply 严格中间性的等价 in HPTQ; apply 严格中间性的等价 in HRTS; apply 严格中间性的等价 in HQUR;
         spliter; apply l9_19 with Q; Col.
         split; [Out|].
         apply par_strict_not_col_1 with P; Par.
@@ -122,7 +122,7 @@ assert (HPUI : BetS P U I).
 
     {
     apply par_strict_not_col_3 in HPar;
-    apply BetSEq in HPTQ; apply BetSEq in HRTS; apply BetSEq in HQUR; spliter.
+    apply 严格中间性的等价 in HPTQ; apply 严格中间性的等价 in HRTS; apply 严格中间性的等价 in HQUR; spliter.
     split; intro; treat_equalities; [apply HPar; Col|].
     assert (Q = U).
       {
@@ -147,7 +147,7 @@ assert (HTS : TS Q R S I).
     {
     apply l12_6.
     apply par_not_col_strict with P; Col; [|intro; apply par_strict_not_col_3 in HPar; Col].
-    apply BetSEq in HPTQ; apply BetSEq in HRTS; apply BetSEq in HQUR; spliter;
+    apply 严格中间性的等价 in HPTQ; apply 严格中间性的等价 in HRTS; apply 严格中间性的等价 in HQUR; spliter;
     apply l12_17 with T; try split; Cong; Between.
     }
   }

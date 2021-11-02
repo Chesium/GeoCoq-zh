@@ -38,8 +38,8 @@ split.
 unfold Ar2.
 repeat split;auto.
 destruct HC1.
-auto using 中间性转共线 .
-apply 中间性转共线 in H3. Col.
+auto using 中间性蕴含共线 .
+apply 中间性蕴含共线 in H3. Col.
 right.
 exists B'.
 split.
@@ -53,8 +53,8 @@ assert (Perp O B O B').
  intuition.
  Perp.
  destruct HB1.
- apply 中间性转共线 in H6. Col.
- apply 中间性转共线 in H6. Col.
+ apply 中间性蕴含共线 in H6. Col.
+ apply 中间性蕴含共线 in H6. Col.
  Perp.
  split.
  Cong.

@@ -32,7 +32,7 @@ Proof.
   destruct HCol as [|[HBet'|HBet']]; trivial;
   [assert (B = C)|assert (A = B)]; try (subst B; Between);
   apply fInj; trivial;
-  [apply between_equality with (f A)|apply between_equality with (f C)]; Between.
+  [apply 双中间性推出点重合 with (f A)|apply 双中间性推出点重合 with (f C)]; Between.
 Qed.
 
 Lemma pres_bet_line__col : forall {Tm: 无维度中性塔斯基公理系统}
@@ -324,19 +324,19 @@ Proof.
   destruct Hd; [apply IHHGrad with (f S); trivial|].
   assert (HS0 : exists S0, Bet Q S0 S /\ Cong S S0 Q R).
   { apply segment_reverse, (line_extension_reverse_bet f P Q); Col.
-    apply between_exchange4 with C0'; Between.
+    apply 中间性的交换传递性2 with C0'; Between.
   }
   destruct HS0 as [S0 []].
   assert (S <> S0) by (intro; treat_equalities; auto).
   assert (HC0 : Reach Q R Q S0).
-  { assert (Bet P Q S0) by (apply between_inner_transitivity with S; assumption).
+  { assert (Bet P Q S0) by (apply 中间性的内传递性1 with S; assumption).
     apply IHHGrad with (f S0); trivial.
-    apply between_inner_transitivity with (f S); Col.
+    apply 中间性的内传递性1 with (f S); Col.
     destruct (两点重合的决定性 C0' (f S)); [subst; Between|].
     apply 中间性的对称性, l6_13_1.
       apply bet2__out with (f Q); try apply 中间性的对称性; Col.
     apply (l5_6 (f S) C0' C0' C').
-      apply le_left_comm, bet__le1213, (between_exchange3 (f Q)); assumption.
+      apply le_left_comm, bet__le1213, (中间性的交换传递性1 (f Q)); assumption.
       Cong.
       apply 等长的对称性, 等长的传递性 with (f Q) (f R); Col.
   }
@@ -347,7 +347,7 @@ Proof.
   apply bet__le1213.
   destruct (两点重合的决定性 Q S0).
   { subst S0; assert (R = S) by (apply (between_cong_3 P Q); Cong).
-    treat_equalities; apply between_exchange4 with C0; Between.
+    treat_equalities; apply 中间性的交换传递性2 with C0; Between.
   }
   assert (Bet Q S0 C0).
   { apply l6_13_1; trivial.
@@ -356,12 +356,12 @@ Proof.
       apply l6_2 with P; Between.
       apply bet_out; Between.
   }
-  apply outer_transitivity_between2 with S0; auto.
-  assert (Bet Q S0 C) by (apply between_exchange4 with C0; assumption).
+  apply 中间性的外传递性1 with S0; auto.
+  assert (Bet Q S0 C) by (apply 中间性的交换传递性2 with C0; assumption).
   apply l6_13_1.
     apply l6_2 with Q; Between; intro; treat_equalities; auto.
   apply le_right_comm; exists C0; split.
-    apply between_inner_transitivity with Q; Between.
+    apply 中间性的内传递性1 with Q; Between.
     apply 等长的传递性 with  Q R; Cong.
 Qed.
 

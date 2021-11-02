@@ -103,7 +103,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
   }
 
   {
-  destruct 防降维公理_ex as [C [E [D H]]].
+  destruct 防降维公理_老版本 as [C [E [D H]]].
   assert (HNC : ~ Col C E D) by auto; clear H.
   destruct (l8_18_existence D E C) as [B [HC1 HPerp]]; Col.
   assert (HF : exists F, Col D E F /\ B <> F).

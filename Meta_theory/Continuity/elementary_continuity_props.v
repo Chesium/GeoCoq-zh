@@ -139,7 +139,7 @@ Proof.
   apply (Hcc A B C D P P'); trivial.
   destruct (le_cases A P' A B); trivial.
   assert (P' = Q).
-  { apply between_equality with Q'.
+  { apply 双中间性推出点重合 with Q'.
       eBetween.
     assert_diffs.
     apply (col_inc_onc2__bet A B); trivial; ColR.

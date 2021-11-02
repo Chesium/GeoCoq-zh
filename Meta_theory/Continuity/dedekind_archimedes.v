@@ -68,12 +68,12 @@ Proof.
       destruct (le_cases X B X X0) as [HLe|HLe].
       - apply HNReach0; exists B; split; trivial.
         exists X0; split; Cong.
-        apply between_inner_transitivity with X; Between.
+        apply 中间性的内传递性1 with X; Between.
         apply 中间性的对称性, l6_13_1; trivial.
         apply l6_6; trivial.
       - absurd (X = X0).
           assert_diffs; auto.
-        apply between_equality with B.
+        apply 双中间性推出点重合 with B.
           apply l6_13_1; trivial.
         apply 中间性的对称性, HX; [right|]; split; trivial.
           apply out_trivial; auto.
@@ -160,12 +160,12 @@ Proof.
       destruct (le_cases X B X X0) as [HLe|HLe].
       - apply HNReach0; exists B; split; trivial.
         exists X0; split; Cong.
-        apply between_inner_transitivity with X; Between.
+        apply 中间性的内传递性1 with X; Between.
         apply 中间性的对称性, l6_13_1; trivial.
         apply l6_6; trivial.
       - absurd (X = X0).
           assert_diffs; auto.
-        apply between_equality with B.
+        apply 双中间性推出点重合 with B.
           apply l6_13_1; trivial.
         apply 中间性的对称性, HX; split; trivial.
           apply out_trivial; auto.

@@ -66,7 +66,7 @@ Lemma nested_aux2 : forall A B n m An Am Bn,
 Proof.
   intros A B n m An Am Bn HAB Hcomp HAn HAm HBn.
   destruct (nested__ex_right A B m HAB) as [Bm].
-  apply outer_transitivity_between with Bm.
+  apply 中间性的外传递性2 with Bm.
     apply (nested_aux1 A B n m); assumption.
     apply 中间性的对称性, (nested_aux1 B A n m); auto using nested_sym.
     eapply nested__diff0; eassumption.
@@ -82,9 +82,9 @@ Proof.
   destruct (nested__ex_right A B n1 HAB) as [Bn1].
   assert (Bet An An1 Bn1) by (apply (nested_aux1 A B n n1); assumption).
   destruct (nat_total_order n1 m) as [Hlt1|Hlt1]; auto.
-  - apply between_inner_transitivity with Bn1; trivial.
+  - apply 中间性的内传递性1 with Bn1; trivial.
     apply 中间性的对称性, (nested_aux2 B A n1 m); assumption.
-  - apply outer_transitivity_between with Bn1; trivial.
+  - apply 中间性的外传递性2 with Bn1; trivial.
       apply 中间性的对称性, (nested_aux1 B A m n1); assumption.
       apply (nested__diff0 A B HAB n1); assumption.
 Qed.
@@ -94,13 +94,13 @@ Proof.
   intros A B n m An Bm HAB HAn HBm.
   destruct (Nat.lt_trichotomy n m) as [Hlt|[Heq|Hlt]].
   - destruct (nested__ex_left A B m HAB) as [Am].
-    apply bet_neq23__neq with Am.
+    apply 中间性_BC不等推AC不等 with Am.
       apply (nested__bet A B n m m); eassumption.
       eapply nested__diff0; eassumption.
   - subst; eapply nested__diff0; eassumption.
   - destruct (nested__ex_right A B n HAB) as [Bn].
     apply nested_sym in HAB.
-    apply not_eq_sym, bet_neq23__neq with Bn.
+    apply not_eq_sym, 中间性_BC不等推AC不等 with Bn.
       apply (nested__bet B A m n n); assumption.
       eapply nested__diff0; eassumption.
 Qed.
@@ -120,7 +120,7 @@ Proof.
     destruct (Nat.eq_0_gt_0_cases n); [|apply HX; exists n; auto].
     subst.
     destruct (nested__ex_left A B 1 HAB) as [A1].
-    apply between_exchange2 with A1.
+    apply 中间性的内传递性2 with A1.
       apply (nested_aux2 A B 0 1); auto.
       apply HX; [exists 1; split| exists 0]; auto.
 Qed.

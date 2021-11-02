@@ -23,7 +23,7 @@ Class intuitionistic_无维度中性塔斯基公理系统 := {
     IT A B C -> IT A' B' C' -> A <> B -> ICong C D C' D';
  I中间性的同一律 : forall A B, ~ IBet A B A;
  I中间性的对称性 : forall A B C, IBet A B C -> IBet C B A;
- Ibetween_inner_transitivity : forall A B C D, IBet A B D -> IBet B C D -> IBet A B C;
+ I中间性的内传递性1 : forall A B C D, IBet A B D -> IBet B C D -> IBet A B C;
  I帕施公理 : forall A B C P Q,
    IBet A P C -> IBet B Q C -> ~ ICol A B C ->
    exists x, IBet P x B /\ IBet Q x A;

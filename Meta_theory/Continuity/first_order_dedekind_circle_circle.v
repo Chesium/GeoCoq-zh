@@ -267,7 +267,7 @@ Proof.
     destruct HX as [_ [_ [_ [X [HX1 [HX2|HX2]]]]]].
       subst; apply HNCol2; Col.
     assert (X = R).
-      apply between_equality with Q; trivial.
+      apply 双中间性推出点重合 with Q; trivial.
       apply HR; split; [eBetween|..]; Between.
       exists X0; repeat (split; Circle).
     subst; apply HNCol4; ColR.
@@ -355,7 +355,7 @@ Proof.
     destruct HY as [_ [_ [_ [Y [HY1 [HY2|HY2]]]]]].
       subst; apply HNCol2; Col.
     assert (Y = R).
-      apply between_equality with P; apply 中间性的对称性; trivial.
+      apply 双中间性推出点重合 with P; apply 中间性的对称性; trivial.
       apply HR; split; [Between..| |]; [eBetween|].
       exists Y0; repeat (split; Circle).
     subst; apply HNCol4; ColR.

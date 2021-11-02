@@ -57,7 +57,7 @@ Lemma suma__suppa : forall A B C D E F, SumA A B C B C A D E F -> SuppA D E F C 
 Proof.
   intros A B C D E F HSuma.
   suma.assert_diffs.
-  destruct (point_construction_different A B) as [A' []].
+  destruct (构造满足中间性的不重合点 A B) as [A' []].
   apply bet_suma__suppa with A B A'; trivial.
   apply bet_suma__suma; auto.
 Qed.

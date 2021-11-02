@@ -97,7 +97,7 @@ Proof.
       apply cong_cong_half_1 with Y B0; [|split|]; assumption.
   }
   intros X Y HX HY.
-  apply (between_exchange3 A).
+  apply (中间性的交换传递性1 A).
   - clear Y HY.
     destruct (l5_3 A X B C).
       apply Hcut; assumption.
@@ -110,7 +110,7 @@ Proof.
     destruct (Hcut X Yn); [eauto..|].
     apply (lt__nle Xn Yn X B HLt).
     apply le_transitivity with B Yn.
-      apply le_left_comm, bet__le1213, (between_exchange3 A); assumption.
+      apply le_left_comm, bet__le1213, (中间性的交换传递性1 A); assumption.
       apply bet__le2313, (HB n); assumption.
 
   - clear X HX.
@@ -133,7 +133,7 @@ Proof.
     destruct (Hcut Xn Y); [eauto..|].
     apply (lt__nle Xn Yn Y B HLt).
     apply le_transitivity with Xn B.
-      apply bet__le2313, (between_exchange3 A); assumption.
+      apply bet__le2313, (中间性的交换传递性1 A); assumption.
       apply bet__le1213, (HB n); assumption.
 Qed.
 

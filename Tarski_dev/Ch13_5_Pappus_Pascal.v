@@ -450,7 +450,7 @@ Lemma per13_preserves_bet_inv : forall A B C A' C', Bet A' B C' -> B <> A' -> B 
 Proof.
 intros.
 assert(Col A' B C').
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H.
 Col.
 
 induction(两点重合的决定性 A A').
@@ -582,7 +582,7 @@ induction H22.
 Between.
 apply False_ind.
 apply H18.
-apply (between_equality _ _ B); Between.
+apply (双中间性推出点重合 _ _ B); Between.
 
 (****************************)
 
@@ -639,16 +639,16 @@ Proof.
 
       assert(Bet B' O C').
         apply(perp2_preserves_bet13 O B C B' C'); auto.
-          apply outer_transitivity_between with A; Between.
+          apply 中间性的外传递性2 with A; Between.
           intro.
           apply H.
           ColR.
-        apply 中间性的对称性, outer_transitivity_between with C'; auto.
+        apply 中间性的对称性, 中间性的外传递性2 with C'; auto.
 
     (***************)
     induction H15.
       assert(Bet C O B).
-        apply (between_exchange3 A); assumption.
+        apply (中间性的交换传递性1 A); assumption.
       assert(Bet O A' C').
         apply(perp2_preserves_bet23 O C A A' C'); Between.
         intro.
@@ -660,10 +660,10 @@ ColR.
           intro.
           apply H.
 ColR.
-apply (between_exchange3 C'); Between.
+apply (中间性的交换传递性1 C'); Between.
     induction H15.
       assert(Bet A O C).
-        apply between_inner_transitivity with B; assumption.
+        apply 中间性的内传递性1 with B; assumption.
       assert(Bet O B' C').
         apply(perp2_preserves_bet23 O C B B' C'); Between.
           intro.
@@ -677,9 +677,9 @@ Between.
           intro.
           apply H.
 ColR.
-apply between_inner_transitivity with C'; Between.
+apply 中间性的内传递性1 with C'; Between.
     assert(Bet A O C).
-      apply outer_transitivity_between with B; auto.
+      apply 中间性的外传递性2 with B; auto.
     assert(Bet O C' B').
       apply(perp2_preserves_bet23 O B C C' B'); Col.
       intro.
@@ -691,7 +691,7 @@ Between.
         intro.
         apply H.
 ColR.
-    apply outer_transitivity_between with C'; Between.
+    apply 中间性的外传递性2 with C'; Between.
 Qed.
 
 Lemma l13_10_aux4 : forall A B C A' B' C' O,
@@ -758,7 +758,7 @@ ColR.
     induction H15.
       assert(Bet B' O C').
         assert(Bet C O B).
-        apply outer_transitivity_between with A; auto.
+        apply 中间性的外传递性2 with A; auto.
         apply(perp2_preserves_bet13 O B C B' C'); Between.
           intro.
           apply H.
@@ -779,7 +779,7 @@ apply(l5_2 C' O A' B'); Between.
 
     induction H15.
       assert(Bet O C B).
-apply between_exchange4 with A; assumption.
+apply 中间性的交换传递性2 with A; assumption.
       assert(Bet O B' C').
         apply(perp2_preserves_bet23 O C B B' C'); Col.
           intro.
@@ -798,7 +798,7 @@ apply(l5_3 O A' B' C'); auto.
 
     induction H15.
       assert(Bet O A C).
-apply between_inner_transitivity with B; assumption.
+apply 中间性的内传递性1 with B; assumption.
       assert(Bet O C' A').
         apply(perp2_preserves_bet23 O A C C' A'); auto.
 ColR.
@@ -808,7 +808,7 @@ ColR.
         apply perp2_sym.
         auto.
       assert(Bet O C B).
-apply between_exchange2 with A; assumption.
+apply 中间性的内传递性2 with A; assumption.
       assert(Bet O B' C').
         apply(perp2_preserves_bet23 O C B B' C'); auto.
           intro.
@@ -818,12 +818,12 @@ ColR.
         auto.
 repeat split; auto.
 right.
-apply between_exchange4 with C'; assumption.
+apply 中间性的交换传递性2 with C'; assumption.
 
     assert(Bet O A C).
-apply outer_transitivity_between with B; auto.
+apply 中间性的外传递性2 with B; auto.
     assert( Bet O B C).
-apply between_exchange2 with A; assumption.
+apply 中间性的内传递性2 with A; assumption.
 
     assert(Bet O C' B').
       apply(perp2_preserves_bet23  O B C C' B'); Col.

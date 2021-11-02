@@ -63,7 +63,7 @@ Proof.
   apply 等长的内传递性 with C D;assumption.
 Qed.
 
-Lemma 防降维公理_ex :
+Lemma 防降维公理_老版本 :
   exists A B C, ~ (Bet A B C \/ Bet B C A \/ Bet C A B).
 Proof.
 exists PA.

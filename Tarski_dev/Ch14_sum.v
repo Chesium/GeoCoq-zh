@@ -506,7 +506,7 @@ Proof.
     apply sump_to_sum.
     unfold Sump.
     repeat split.
-      apply 中间性转共线 in H1.
+      apply 中间性蕴含共线 in H1.
       apply (col_transitivity_1 _ A);Col.
       Col.
     assert(E <> E' /\ O <> E').
@@ -584,7 +584,7 @@ Proof.
           exists E.
           split; Col.
           apply col_permutation_1.
-          apply 中间性转共线 in H1.
+          apply 中间性蕴含共线 in H1.
           apply(col_transitivity_1 _ A); Col.
         apply NC.
         tauto.

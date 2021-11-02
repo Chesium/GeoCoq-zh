@@ -142,7 +142,7 @@ elim (bet_dec A B C); intro HBet.
   right; intro HT; apply HBet; apply T_Bet in HT; assumption.
 Qed.
 
-Lemma between_inner_transitivity_B : forall A B C D : Tpoint, BetH A B D -> BetH B C D -> BetH A B C.
+Lemma 中间性的内传递性1_B : forall A B C D : Tpoint, BetH A B D -> BetH B C D -> BetH A B C.
 Proof.
 intros A B C D HBet1 HBet2.
 unfold BetH.
@@ -150,7 +150,7 @@ repeat split.
 
   apply BetH_Bet in HBet1.
   apply BetH_Bet in HBet2.
-  apply between_inner_transitivity with D; assumption.
+  apply 中间性的内传递性1 with D; assumption.
 
   unfold BetH in HBet1.
   spliter; assumption.
@@ -337,7 +337,7 @@ exact (Build_intuitionistic_无维度中性塔斯基公理系统
  五线段公理_等价SAS_B
  中间性的同一律_B
  中间性的对称性_B
- between_inner_transitivity_B
+ 中间性的内传递性1_B
  帕施公理_B
  PA PB PC
  防降维公理_B).

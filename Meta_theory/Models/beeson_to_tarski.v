@@ -145,7 +145,7 @@ exists A.
 split.
 apply I中间性的对称性 in H1.
 induction H.
-assert (T:=Ibetween_inner_transitivity B A P C H1 H).
+assert (T:=I中间性的内传递性1 B A P C H1 H).
 unfold BetT.
 left.
 apply I中间性的对称性;auto.
@@ -178,12 +178,12 @@ split.
 apply BetT_symmetry.
 left.
 
-apply Ibetween_inner_transitivity with A.
+apply I中间性的内传递性1 with A.
 apply I中间性的对称性;auto.
 apply I中间性的对称性;auto.
 apply BetT_symmetry.
 left.
-apply Ibetween_inner_transitivity with B.
+apply I中间性的内传递性1 with B.
 assumption.
 apply I中间性的对称性;auto.
 induction H0;subst;intuition.
@@ -199,7 +199,7 @@ unfold BetT;auto.
 
 left.
 apply I中间性的对称性.
-apply Ibetween_inner_transitivity with C.
+apply I中间性的内传递性1 with C.
 unfold IT in H1.
 apply not_and_or in H1.
 induction H1.
@@ -304,7 +304,7 @@ spliter.
 intuition.
 Qed.
 
-Lemma another_point : forall A, exists B:ITpoint, A<>B.
+Lemma 每个点均有不同点 : forall A, exists B:ITpoint, A<>B.
 Proof.
 intros.
 assert (T:=I防降维公理).
@@ -328,7 +328,7 @@ Proof.
 intros.
 induction (eq_dec A B).
 subst.
-elim (another_point B);intros.
+elim (每个点均有不同点 B);intros.
 elim (I由一点往一方向构造等长线段 x B C D);intros.
 exists x0.
 split.

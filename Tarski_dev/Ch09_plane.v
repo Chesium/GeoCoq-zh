@@ -48,19 +48,19 @@ repeat
       | H:(~Bet ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
       not_exist_hyp2 X1 X2 X2 X3;
-      assert (h := not_bet_distincts X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 非中间性则任两点不重合 X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq12__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_AB不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq21__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_BA不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?B <> ?C |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq23__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_BC不等推AC不等 A B C H H2);clean_reap_hyps
       | H:Bet ?A ?B ?C, H2 : ?C <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= bet_neq32__neq A B C H H2);clean_reap_hyps
+        assert (T:= 中间性_CB不等推AC不等 A B C H H2);clean_reap_hyps
 
       | H:Cong ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
@@ -507,7 +507,7 @@ Proof.
             apply l7_3_2.
           induction H12.
             assert (Bet U M C).
-              eapply between_exchange3.
+              eapply 中间性的交换传递性1.
                 apply 中间性的对称性.
                 apply H12.
               assumption.
@@ -519,7 +519,7 @@ Proof.
             apply midpoint_bet.
             assumption.
           assert (Bet U M C).
-            eapply outer_transitivity_between2.
+            eapply 中间性的外传递性1.
               apply 中间性的对称性.
               apply H12.
               assumption.
@@ -550,14 +550,14 @@ Proof.
         spliter.
         assert (Bet A M C').
           induction H12.
-            eapply outer_transitivity_between.
+            eapply 中间性的外传递性2.
               apply H9.
               assumption.
             intro.
             apply H10.
             subst C.
             reflexivity.
-          eapply between_inner_transitivity.
+          eapply 中间性的内传递性1.
             apply H9.
           assumption.
         eapply l5_2.
@@ -697,7 +697,7 @@ Proof.
         apply l7_2.
         apply H13.
         apply H6.
-      eapply between_exchange4.
+      eapply 中间性的交换传递性2.
         apply H.
       apply H16.
     unfold Out.
@@ -727,7 +727,7 @@ Proof.
         assumption.
       assumption.
     left.
-    eapply between_exchange4.
+    eapply 中间性的交换传递性2.
       eapply l7_15.
         apply l7_2.
         apply H12.
@@ -919,7 +919,7 @@ Proof.
       induction (两点重合的决定性 R T).
         subst T.
         clear H9 H3.
-        apply (out_out_two_sides P Q A C U V R); auto using l6_6, 中间性转共线 with col.
+        apply (out_out_two_sides P Q A C U V R); auto using l6_6, 中间性蕴含共线 with col.
       assert (Perp R T A R) by (eapply perp_col2  with P Q;Col).
       apply perp_perp_in in H12.
       apply perp_in_comm in H12.
@@ -1241,7 +1241,7 @@ Proof.
         exists A.
         split.
           Between.
-        eapply between_exchange4 with C;Between.
+        eapply 中间性的交换传递性2 with C;Between.
       assert (Out Q P C) by (apply l6_4_2;auto).
       exists B.
       split.
@@ -1249,8 +1249,8 @@ Proof.
       unfold Out in H3.
       spliter.
       induction H5.
-        apply between_exchange3 with C;Between.
-      apply outer_transitivity_between2 with C;Between.
+        apply 中间性的交换传递性1 with C;Between.
+      apply 中间性的外传递性1 with C;Between.
     induction (两点重合的决定性 B Q).
       subst Q;exists B;Between.
     show_distinct A P.
@@ -1407,7 +1407,7 @@ Proof.
         unfold Col in H21.
         induction H21.
           right.
-          eapply between_exchange3.
+          eapply 中间性的交换传递性1.
             apply 中间性的对称性.
             apply H16.
           apply 中间性的对称性.
@@ -1425,13 +1425,13 @@ Proof.
             assumption.
           induction H22.
             assert (D = B).
-              eapply between_equality.
+              eapply 双中间性推出点重合.
                 apply H22.
               apply H21.
             subst D.
             absurde.
           assert (D = A).
-            eapply between_equality.
+            eapply 双中间性推出点重合.
               apply H22.
             apply 中间性的对称性.
             assumption.
@@ -1742,7 +1742,7 @@ Proof.
     ex_and H8 X.
     ex_and H5 Y.
     assert (exists T,  Bet B T D /\ Bet X T Y).
-      eapply l3_17.
+      eapply l3_17_三中间性推交点存在性.
         apply H9.
         apply H10.
       assumption.
@@ -2104,13 +2104,13 @@ Proof.
       spliter.
       induction H5.
         apply 中间性的对称性.
-        eapply outer_transitivity_between.
+        eapply 中间性的外传递性2.
           apply 中间性的对称性.
           apply H2.
           assumption.
         auto.
       apply 中间性的对称性.
-      eapply between_inner_transitivity.
+      eapply 中间性的内传递性1.
         apply 中间性的对称性.
         apply H2; spliter.
       assumption.
@@ -2209,7 +2209,7 @@ Proof.
             apply col_permutation_4.
             assumption.
           apply col_permutation_1.
-          apply 中间性转共线.
+          apply 中间性蕴含共线.
           assumption.
         exists A.
         split.
@@ -2231,10 +2231,10 @@ Proof.
       eapply (col_transitivity_1 _ Z').
         auto.
         apply col_permutation_1.
-        apply 中间性转共线.
+        apply 中间性蕴含共线.
         assumption.
       apply col_permutation_1.
-      apply 中间性转共线.
+      apply 中间性蕴含共线.
       assumption.
     assert(OS Y A Z' T).
       eapply out_one_side.
@@ -2244,7 +2244,7 @@ Proof.
         apply col_permutation_2.
         eapply (col_transitivity_1 _ Z').
           auto.
-          apply 中间性转共线 in H6.
+          apply 中间性蕴含共线 in H6.
           apply col_permutation_1.
           assumption.
         apply col_permutation_1.
@@ -2272,7 +2272,7 @@ Proof.
             apply AAB型共线.
             apply col_permutation_4.
             assumption.
-          apply 中间性转共线 in H6.
+          apply 中间性蕴含共线 in H6.
           apply col_permutation_5.
           assumption.
         apply l6_6.
@@ -2280,14 +2280,14 @@ Proof.
           intro.
           subst T.
           apply H11.
-          apply 中间性转共线.
+          apply 中间性蕴含共线.
           assumption.
         apply 中间性的对称性.
         assumption.
       assert(OS A Z Y T).
         apply invert_one_side.
         eapply (col_one_side _ Z').
-          apply 中间性转共线 in H6.
+          apply 中间性蕴含共线 in H6.
           apply col_permutation_5.
           assumption.
           auto.
@@ -2302,7 +2302,7 @@ Proof.
             assumption.
             apply col_permutation_1.
             assumption.
-          apply 中间性转共线 in H6.
+          apply 中间性蕴含共线 in H6.
           apply col_permutation_4.
           assumption.
           unfold OS in H17.
@@ -2442,7 +2442,7 @@ Proof.
       exists P.
       split; Col.
     assert(TS A B T C').
-      apply 中间性转共线 in H4.
+      apply 中间性蕴含共线 in H4.
       eapply (out_out_two_sides _ _ T C _ _ P); Col.
         apply l9_2.
         assumption.
@@ -2595,7 +2595,7 @@ Proof.
         intro.
         subst T.
         assert(A = X).
-          eapply between_equality.
+          eapply 双中间性推出点重合.
             apply H.
           assumption.
         subst X.
@@ -2610,11 +2610,11 @@ Proof.
         apply 中间性的同一律 in H3.
         subst X.
         contradiction.
-        apply 中间性转共线 in H.
+        apply 中间性蕴含共线 in H.
         apply col_permutation_3.
         assumption.
       apply col_permutation_2.
-      apply 中间性转共线.
+      apply 中间性蕴含共线.
       assumption.
     induction H.
       unfold TS in H0.
@@ -2628,10 +2628,10 @@ Proof.
           subst X.
           contradiction.
           apply col_permutation_4.
-          apply 中间性转共线.
+          apply 中间性蕴含共线.
           assumption.
         apply col_permutation_2.
-        apply 中间性转共线.
+        apply 中间性蕴含共线.
         assumption.
       apply False_ind.
       apply H1.
@@ -2640,7 +2640,7 @@ Proof.
         intro.
         subst T.
         assert(A = Y).
-          eapply between_equality.
+          eapply 双中间性推出点重合.
             apply 中间性的对称性.
             apply H.
           apply 中间性的对称性.
@@ -2813,9 +2813,9 @@ contradiction.
 Perp.
 induction H7.
 
-apply 中间性转共线 in H7.
+apply 中间性蕴含共线 in H7.
 Col.
-apply 中间性转共线 in H7.
+apply 中间性蕴含共线 in H7.
 Col.
 
 repeat split;auto.
@@ -3445,7 +3445,7 @@ Lemma ex_diff_cop : forall A B C D, exists E,
 Proof.
   intros A B C D.
   destruct (两点重合的决定性 A D); [destruct (两点重合的决定性 B D); subst|].
-  - destruct (another_point D) as [E]; exists E; split; Cop.
+  - destruct (每个点均有不同点 D) as [E]; exists E; split; Cop.
   - exists B; split; Cop.
   - exists A; split; Cop.
 Qed.

@@ -91,7 +91,7 @@ Qed.
 
 Lemma PlgEx: exists A B C D, Plg A B C D.
 Proof.
-  destruct two_distinct_points as [A [B H]].
+  destruct 存在不重合的点 as [A [B H]].
   exists A, A, B, B.
   apply PlgAABB.
   assumption.
@@ -99,7 +99,7 @@ Qed.
 
 Lemma 菱形Ex: exists A B C D, 菱形 A B C D.
 Proof.
-  destruct 防降维公理_ex as [A [B [C HNC]]].
+  destruct 防降维公理_老版本 as [A [B [C HNC]]].
   assert (H1 : ~ Col A B C) by auto.
   clear HNC.
   assert_diffs.

@@ -42,10 +42,10 @@ unfold 中点 in HH1.
 spliter.
 
 assert(Col M A A').
-apply 中间性转共线 in H6.
+apply 中间性蕴含共线 in H6.
 Col.
 assert(Col M B B').
-apply 中间性转共线 in H4.
+apply 中间性蕴含共线 in H4.
 Col.
 
 induction(两点重合的决定性 B B').
@@ -184,7 +184,7 @@ assumption.
 assumption.
 apply cong__le; CongR.
 
-apply (between_exchange3 D); auto.
+apply (中间性的交换传递性1 D); auto.
 apply l6_13_1; auto.
 Qed.
 
@@ -316,9 +316,9 @@ apply 等长的同一性 in H2.
 contradiction.
 
 assert(Col A B' C').
-apply 中间性转共线 in H0.
-apply 中间性转共线 in H1.
-apply 中间性转共线 in H.
+apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线 in H.
 ColR.
 induction H8.
 assumption.
@@ -332,7 +332,7 @@ apply HH0.
 assumption.
 
 assert(B = C).
-eapply between_equality.
+eapply 双中间性推出点重合.
 apply 中间性的对称性.
 apply H9.
 Between.
@@ -347,7 +347,7 @@ apply ABB中间性.
 (***********************************)
 
 assert(Bet A B' C).
-eapply between_exchange4.
+eapply 中间性的交换传递性2.
 apply H0.
 assumption.
 
@@ -568,20 +568,20 @@ split.
 
 assert(Bet B M B').
 
-apply between_exchange4 with A'.
+apply 中间性的交换传递性2 with A'.
 Between.
 assumption.
 
 assert(Bet A M B').
-eapply between_exchange2.
+eapply 中间性的内传递性2.
 apply H10.
 assumption.
 assert(Cong A M B' M).
 eapply (两组连续三点分段等则全体等 A  B _  _ A').
-eapply between_inner_transitivity.
+eapply 中间性的内传递性1.
 apply H10.
 assumption.
-eapply between_inner_transitivity.
+eapply 中间性的内传递性1.
 apply 中间性的对称性.
 apply H4.
 
@@ -610,18 +610,18 @@ spliter.
 split.
 
 assert(Bet A' M B).
-eapply between_exchange2.
+eapply 中间性的内传递性2.
 apply H4.
 Between.
 assert(Bet M B A).
-eapply between_exchange3.
+eapply 中间性的交换传递性1.
 
 apply 中间性的对称性.
 apply H12.
 Between.
 
 assert(Bet A' M A).
-eapply outer_transitivity_between.
+eapply 中间性的外传递性2.
 apply H14.
 assumption.
 intro.
@@ -632,7 +632,7 @@ assert(Cong A M A' M).
 eapply 两组连续三点分段等则全体等.
 apply 中间性的对称性.
 apply H15.
-eapply between_inner_transitivity.
+eapply 中间性的内传递性1.
 apply H4.
 Between.
 assumption.
@@ -660,23 +660,23 @@ spliter.
 
 split.
 assert(Bet B M A).
-eapply between_exchange4.
+eapply 中间性的交换传递性2.
 apply 中间性的对称性.
 apply H13.
 assumption.
 
 assert(Bet B' B M).
-eapply between_inner_transitivity.
+eapply 中间性的内传递性1.
 apply 中间性的对称性.
 apply H10.
 assumption.
 
 assert(Bet M A' A).
-apply (between_exchange3 B).
+apply (中间性的交换传递性1 B).
 Between.
 assumption.
 assert(Bet B' M A').
-eapply outer_transitivity_between2.
+eapply 中间性的外传递性1.
 apply H16.
 Between.
 intro.
@@ -685,7 +685,7 @@ apply l7_2 in H12.
 apply is_midpoint_id in H12.
 auto.
 assert(Bet B' M A).
-eapply outer_transitivity_between.
+eapply 中间性的外传递性2.
 apply H18.
 assumption.
 intro.
@@ -739,17 +739,17 @@ left.
 split.
 
 assert(Bet A' M B').
-eapply between_exchange2.
+eapply 中间性的内传递性2.
 apply 中间性的对称性.
 apply H11.
 assumption.
 
 assert(Bet M B' A).
-eapply between_exchange3.
+eapply 中间性的交换传递性1.
 apply H13.
 assumption.
 assert(Bet A' M A).
-eapply outer_transitivity_between.
+eapply 中间性的外传递性2.
 apply H15.
 assumption.
 intro.
@@ -760,7 +760,7 @@ subst B'.
 tauto.
 
 assert(Bet A M B).
-eapply outer_transitivity_between2.
+eapply 中间性的外传递性1.
 apply 中间性的对称性.
 apply H16.
 Between.
@@ -794,18 +794,18 @@ split.
 assumption.
 
 assert(Bet A' A M).
-eapply between_inner_transitivity.
+eapply 中间性的内传递性1.
 apply 中间性的对称性.
 apply H3.
 assumption.
 
 assert(Bet A M B).
-eapply between_exchange4.
+eapply 中间性的交换传递性2.
 apply H11.
 Between.
 
 assert(Bet A' M B).
-eapply outer_transitivity_between2.
+eapply 中间性的外传递性1.
 apply H14.
 assumption.
 intro.
@@ -817,7 +817,7 @@ assert(Cong B M A' M).
 eapply l4_3.
 apply 中间性的对称性.
 apply H15.
-eapply between_exchange2.
+eapply 中间性的内传递性2.
 apply 中间性的对称性.
 apply H3.
 assumption.
@@ -831,7 +831,7 @@ Cong.
 induction H9.
 
 assert(Bet B' B A').
-eapply outer_transitivity_between2.
+eapply 中间性的外传递性1.
 apply H10.
 assumption.
 assumption.
@@ -858,12 +858,12 @@ split.
 assumption.
 
 assert(Bet B A' M).
-eapply between_inner_transitivity.
+eapply 中间性的内传递性1.
 apply H9.
 Between.
 
 assert(Bet B M A).
-eapply outer_transitivity_between2.
+eapply 中间性的外传递性1.
 apply H14.
 Between.
 intro.
@@ -874,7 +874,7 @@ subst A'.
 tauto.
 
 assert(Bet B M B').
-eapply between_exchange4.
+eapply 中间性的交换传递性2.
 apply H15.
 Between.
 
@@ -883,10 +883,10 @@ eapply l4_3.
 apply H15.
 
 assert(Bet B' A A').
-eapply between_inner_transitivity.
+eapply 中间性的内传递性1.
 apply H10.
 Between.
-eapply between_exchange2.
+eapply 中间性的内传递性2.
 apply H17.
 assumption.
 Cong.
@@ -914,18 +914,18 @@ split.
 assumption.
 
 assert(Bet B M B').
-eapply between_exchange2.
+eapply 中间性的内传递性2.
 apply 中间性的对称性.
 apply H10.
 assumption.
 assert(Bet A' B' M).
-eapply between_inner_transitivity.
+eapply 中间性的内传递性1.
 apply 中间性的对称性.
 apply H11.
 Between.
 
 assert(Bet A' M B).
-eapply outer_transitivity_between2.
+eapply 中间性的外传递性1.
 apply H16.
 Between.
 intro.
@@ -939,7 +939,7 @@ assert(Cong M A' M B).
 eapply 两组连续三点分段等则全体等.
 apply 中间性的对称性.
 apply H16.
-eapply between_exchange3.
+eapply 中间性的交换传递性1.
 apply 中间性的对称性.
 apply H13.
 assumption.
@@ -961,17 +961,17 @@ split.
 assumption.
 
 assert(Bet B A M).
-eapply between_inner_transitivity.
+eapply 中间性的内传递性1.
 apply 中间性的对称性.
 apply H9.
 assumption.
 assert(Bet B' M A).
-eapply between_exchange2.
+eapply 中间性的内传递性2.
 apply 中间性的对称性.
 apply H11.
 Between.
 assert(Bet B' M B).
-eapply outer_transitivity_between.
+eapply 中间性的外传递性2.
 apply H16.
 Between.
 intro.
@@ -980,7 +980,7 @@ apply is_midpoint_id in H12.
 contradiction.
 assert(Cong B' M B M).
 eapply 两组连续三点分段等则全体等.
-eapply between_inner_transitivity.
+eapply 中间性的内传递性1.
 apply 中间性的对称性.
 apply H11.
 Between.
@@ -1198,7 +1198,7 @@ spliter.
 eapply (col_transitivity_1 _ D).
 assumption.
 Col.
-apply 中间性转共线 in H8.
+apply 中间性蕴含共线 in H8.
 Col.
 
 assert(B <> M).
@@ -1329,7 +1329,7 @@ apply l7_3 in H1.
 subst M.
 unfold 中点 in H0.
 spliter.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 contradiction.
 
 assert(M <> D).
@@ -1353,8 +1353,8 @@ Col.
 intro.
 unfold 中点 in *.
 spliter.
-apply 中间性转共线 in H0.
-apply 中间性转共线 in H1.
+apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线 in H1.
 apply H.
 assert(Col M A D).
 ColR.
@@ -1365,7 +1365,7 @@ exists M.
 unfold 中点 in *.
 spliter.
 split.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 Col.
 apply H1.
 apply (l12_17 _ _ _ _ M).
@@ -1400,8 +1400,8 @@ Cong.
 assert(Col A B M).
 unfold 中点 in *.
 spliter.
-apply 中间性转共线 in H1.
-apply 中间性转共线 in H2.
+apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线 in H2.
 ColR.
 assert(M <> B).
 intro.
@@ -1428,9 +1428,9 @@ repeat split.
 Col.
 unfold 中点 in *.
 spliter.
-apply 中间性转共线 in H2.
-apply 中间性转共线 in H1.
-apply 中间性转共线 in H4.
+apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线 in H4.
 ColR.
 
 eapply l4_3.
@@ -1480,9 +1480,9 @@ unfold 中点 in *.
 spliter.
 repeat split.
 assumption.
-apply 中间性转共线 in H4.
-apply 中间性转共线 in H1.
-apply 中间性转共线 in H2.
+apply 中间性蕴含共线 in H4.
+apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线 in H2.
 ColR.
 eapply (两组连续三点分段等则全体等 _ M _ _ M _).
 Between.
@@ -1514,9 +1514,9 @@ unfold 中点 in *.
 spliter.
 repeat split.
 assumption.
-apply 中间性转共线 in H4.
-apply 中间性转共线 in H1.
-apply 中间性转共线 in H2.
+apply 中间性蕴含共线 in H4.
+apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线 in H2.
 ColR.
 
 eapply (两组连续三点分段等则全体等 _ M _ _ M _).
@@ -1548,9 +1548,9 @@ repeat split.
 Col.
 unfold 中点 in *.
 spliter.
-apply 中间性转共线 in H2.
-apply 中间性转共线 in H1.
-apply 中间性转共线 in H4.
+apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线 in H4.
 ColR.
 apply 等长的交换性.
 eapply l4_3.
@@ -1598,7 +1598,7 @@ spliter.
 unfold 退化平行四边形.
 repeat split.
 Col.
-apply 中间性转共线 in H1.
+apply 中间性蕴含共线 in H1.
 Col.
 Cong.
 Cong.
@@ -1609,8 +1609,8 @@ eapply (mid_plgf_aux C D A B M).
 auto.
 unfold 中点 in *.
 spliter.
-apply 中间性转共线 in H1.
-apply 中间性转共线 in H2.
+apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线 in H2.
 
 assert( M <> C).
 intro.
@@ -1704,8 +1704,8 @@ assert(A = C \/ 中点 M A C).
 apply l7_20.
 unfold 中点 in *.
 spliter.
-apply 中间性转共线 in H0.
-apply 中间性转共线 in H4.
+apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线 in H4.
 ColR.
 Cong.
 induction H5.
@@ -1991,7 +1991,7 @@ Col.
 Between.
 Cong.
 Cong.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 Col.
 Qed.
 
@@ -2279,7 +2279,7 @@ subst B'.
 apply 等长的同一性 in H2.
 subst B.
 tauto.
-apply 中间性转共线 in H0.
+apply 中间性蕴含共线 in H0.
 ColR.
 Qed.
 
@@ -2300,7 +2300,7 @@ subst C.
 apply l7_3 in H0.
 subst M.
 right.
-apply 中间性转共线 in H1.
+apply 中间性蕴含共线 in H1.
 repeat split; Col; Cong.
 right.
 intro.
@@ -2405,7 +2405,7 @@ intro.
 apply H4.
 unfold 中点 in H1.
 spliter.
-apply 中间性转共线 in H1.
+apply 中间性蕴含共线 in H1.
 
 assert(Col M A' X).
 ColR.
@@ -2427,7 +2427,7 @@ intro.
 apply H5.
 unfold 中点 in H2.
 spliter.
-apply 中间性转共线 in H2.
+apply 中间性蕴含共线 in H2.
 
 assert(Col M B' X).
 ColR.
@@ -2508,7 +2508,7 @@ intro.
 apply H4.
 unfold 中点 in H1.
 spliter.
-apply 中间性转共线 in H1.
+apply 中间性蕴含共线 in H1.
 
 assert(Col M A' X).
 ColR.
@@ -2530,7 +2530,7 @@ intro.
 apply H5.
 unfold 中点 in H2.
 spliter.
-apply 中间性转共线 in H2.
+apply 中间性蕴含共线 in H2.
 
 assert(Col M B' X).
 ColR.
@@ -2607,7 +2607,7 @@ Cong.
 induction H.
 
 assert(Bet A' B B').
-eapply (outer_transitivity_between2 _ A); auto.
+eapply (中间性的外传递性1 _ A); auto.
 
 assert(B = B' /\ A' = A).
 apply(bet_cong_eq A' A B B' H0 H8).
@@ -2621,7 +2621,7 @@ induction H.
 
 right;left.
 split;auto.
-eapply (between_inner_transitivity _ _ _ B);
+eapply (中间性的内传递性1 _ _ _ B);
 Between.
 Between.
 
@@ -2645,13 +2645,13 @@ induction H9.
 Between.
 
 assert(Bet B' A' B).
-eapply (outer_transitivity_between _ _ A).
+eapply (中间性的外传递性2 _ _ A).
 Between.
 assumption.
 auto.
 
 assert(Bet B A' B').
-eapply (outer_transitivity_between2 _ A).
+eapply (中间性的外传递性1 _ A).
 Between.
 assumption.
 assumption.

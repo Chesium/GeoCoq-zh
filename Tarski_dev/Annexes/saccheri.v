@@ -1111,10 +1111,10 @@ Proof.
   spliter.
   assert(HCongaR := sac__conga S' R' R S HSacR).
   assert(HCongaQ := sac__conga Q' P' P Q HSacP).
-  assert(Bet P' P R) by (apply (outer_transitivity_between2 _ M); Between).
-  assert(Bet Q' Q S) by (apply (outer_transitivity_between2 _ N); Between).
-  assert(Bet R' P R) by (apply (between_exchange2 _ M); Between).
-  assert(Bet S' Q S) by (apply (between_exchange2 _ N); Between).
+  assert(Bet P' P R) by (apply (中间性的外传递性1 _ M); Between).
+  assert(Bet Q' Q S) by (apply (中间性的外传递性1 _ N); Between).
+  assert(Bet R' P R) by (apply (中间性的内传递性2 _ M); Between).
+  assert(Bet S' Q S) by (apply (中间性的内传递性2 _ N); Between).
   assert_diffs.
   assert(Per Q' S R) by (apply (l8_3 N); auto; ColR).
   assert(Per S' Q P) by (apply (l8_3 N); auto; ColR).
@@ -1608,7 +1608,7 @@ Qed.
 
 Lemma ex_saccheri : exists A B C D, 萨凯里四边形 A B C D.
 Proof.
-  destruct 防降维公理_ex as [A [D [E]]].
+  destruct 防降维公理_老版本 as [A [D [E]]].
   assert(HNCol : ~ Col A D E) by (unfold Col; assumption).
   destruct (l10_15 A D A E) as [B []]; Col.
   assert(~ Col A D B) by (apply (one_side_not_col123 _ _ _ E); Side).
