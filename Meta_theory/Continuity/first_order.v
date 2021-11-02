@@ -5,7 +5,7 @@ Require Import Logic.ChoiceFacts.
 
 Section first_order.
 
-Context `{Tn:Tarski_neutral_dimensionless}.
+Context `{Tn:无维度中性塔斯基公理系统}.
 
 (** Dedekind's axiom of continuity implies the Tarski's axiom schema of continuity *)
 

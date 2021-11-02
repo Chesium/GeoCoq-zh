@@ -291,13 +291,13 @@ Implicit Types (a b c d : (@ Vector R n)).
 
 Definition cong a b c d := (b - a) *m (b - a)^T == (d - c) *m (d - c)^T.
 
-Lemma cong_pseudo_reflexivity a b : cong a b b a.
+Lemma 等长的伪自反性 a b : cong a b b a.
 Proof. by rewrite /cong -opprB linearN mulmxN mulNmx opprK. Qed.
 
-Lemma cong_identity a b c : cong a b c c -> a = b.
+Lemma 等长的同一性 a b c : cong a b c c -> a = b.
 Proof. by rewrite /cong subrr linear0 mulmx0 quad_eq0 subr_eq0 => /eqP ->. Qed.
 
-Lemma cong_inner_transitivity a b c d e f :
+Lemma 等长的内传递性 a b c d e f :
    cong a b e f -> cong c d e f -> cong a b c d.
 Proof. by rewrite /cong => /eqP -> /eqP ->. Qed.
 
@@ -538,7 +538,7 @@ rewrite /bet /betE. case: (a =P b)=>[-> /eqP|? ?]; first by rewrite eqxx.
 case: (b =P c)=> [-> /eqP|? ?]; by rewrite ?eqxx andFb !orFb.
 Qed.
 
-Lemma inner_pasch' a b c p q (k1 := betR a p c) (k2 := betR b q c) :
+Lemma 帕施公理' a b c p q (k1 := betR a p c) (k2 := betR b q c) :
   a <> p -> p <> c -> b <> q -> q <> c ->
   bet a p c -> bet b q c ->
   exists x, bet p x b /\ bet q x a.
@@ -555,18 +555,18 @@ rewrite  -scalerDr addrBDB addrCA addr_eq0 addrA -scalerDr addrBDB -[b-q]opprB.
 by rewrite P1 P2 -scalerN opprB !scalerA [k2*_]mulrC -scalerDr addrBDB scaleNr.
 Qed.
 
-Lemma inner_pasch a b c p q :
+Lemma 帕施公理 a b c p q :
   bet a p c -> bet b q c ->
   a <> p -> p <> c -> b <> q -> q <> c ->
   ~ (bet a b c \/ bet b c a \/ bet c a b) ->
   exists x, bet p x b /\ bet q x a.
-Proof. by move=> ? ? ? ? ? ? ? ; apply inner_pasch' with c. Qed.
+Proof. by move=> ? ? ? ? ? ? ? ; apply 帕施公理' with c. Qed.
 
-Lemma bet_col a b c:
+Lemma 中间性转共线 a b c:
     bet a b c -> (bet a b c \/ bet b c a \/ bet c a b).
 Proof. by auto. Qed.
 
-Lemma bet_colF a b c :
+Lemma 中间性转共线F a b c :
   bet a b c -> ~ (bet b a c \/ bet a c b \/ bet c b a) -> False.
 Proof.
 by move=>/bet_symmetry bet nbet; exfalso; apply nbet; rewrite bet; right; right.
@@ -606,7 +606,7 @@ Lemma euclid a b c d t (k1 := betR a d t) (k2 := betR b d c) :
   ~ (bet a b c \/ bet b c a \/ bet c a b) ->
   exists x y, bet a b x /\ bet a c y /\ bet x t y.
 Proof.
-move=> /orP[/betEP[[->->]|->|->] b2 _ _ H|]; try solve[by apply bet_colF in H];
+move=> /orP[/betEP[[->->]|->|->] b2 _ _ H|]; try solve[by apply 中间性转共线F in H];
 [exists b,c|move=> b1 b2 _ _ _]; by [rewrite !bet_axx|move: b2; apply euclid'].
 Qed.
 
@@ -617,7 +617,7 @@ by rewrite mulNmx [X in -X]dotC -mulNmx 2?opprB eq_sym.
 Qed.
 
 Lemma cong_eq a b c : cong a b c c -> a = b.
-Proof. apply cong_identity. Qed.
+Proof. apply 等长的同一性. Qed.
 
 Lemma cong_eq' a b c : cong a a b c -> b = c.
 Proof.
@@ -653,7 +653,7 @@ rewrite -[a-b]opprB -[a'-b']opprB !scalerN -(betS_ratio b2) -(betS_ratio b1).
 by rewrite !mulNmx dotC [X in _ == -X]dotC !mulNmx c2.
 Qed.
 
-Lemma five_segment a a' b b' c c' d d' :
+Lemma 五线段公理_等价SAS a a' b b' c c' d d' :
   cong a b a' b' -> cong b c b' c' -> cong a d a' d' -> cong b d b' d' ->
   bet a b c -> bet a' b' c' -> a <> b -> cong c d c' d'.
 Proof.
@@ -667,7 +667,7 @@ rewrite (betS_ratio b1) (betS_ratio b2) -!scalemxAl -!scalerAr !cosine_rule'.
 by rewrite (bet_cong_ratio_eq b1 b2) /cong ?c1 ?c2 ?c3 ?c4.
 Qed.
 
-Lemma point_equality_decidability a b : a = b \/ ~ a = b.
+Lemma 两点要么重合要么不重合 a b : a = b \/ ~ a = b.
 Proof. by case: (a =P b); tauto. Qed.
 
 End TarskiGe1.
@@ -1003,7 +1003,7 @@ rewrite !addrBDD !mulrnAl !mulrnAr -!mulrnA -mulrnDl mulrn_eq0 muln_eq0 /=.
 by rewrite addr_eq0=> /eqP E; rewrite -E addrC subrr.
 Qed.
 
-Lemma upper_dim_dgc_aux0 (p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
+Lemma 防升维公理_dgc_aux0 (p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
   p 0 0 - m 0 0 == 0 -> p <> q ->
   (m 0 0 - p 0 0 == 0) && (m 0 1 - p 0 1 != 0).
 Proof.
@@ -1015,7 +1015,7 @@ rewrite E1 E2 subrr eqxx /= -NE -opprB -(cong_perp_aux2 _ p) -/m NE subrr addr0.
 by rewrite oppr_eq0 eqxx.
 Qed.
 
-Lemma upper_dim_dgc_aux1 (p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
+Lemma 防升维公理_dgc_aux1 (p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
   p 0 1 - m 0 1 == 0 -> p <> q ->
   (m 0 1 - p 0 1 == 0) && (m 0 0 - p 0 0 != 0).
 Proof.
@@ -1027,7 +1027,7 @@ rewrite E1 E2 subrr eqxx /= -NE -opprB -(cong_perp_aux2 _ p) -/m NE subrr addr0.
 by rewrite oppr_eq0 eqxx.
 Qed.
 
-Lemma upper_dim_dgc1_aux (a p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
+Lemma 防升维公理_dgc1_aux (a p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
   m 0 0 - p 0 0 = 0 -> m 0 1 - p 0 1 != 0 ->
   cong a p a q ->
   m 0 1 = a 0 1.
@@ -1041,18 +1041,18 @@ rewrite -mulNrn -mulNr opprB -mulNrn -mulNr opprB -mulrnDr  mulrn_eq0 mulf_eq0.
 by rewrite /= subr_eq0 => /orP [/eqP->//|/eqP H]; move: NE; rewrite H eqxx.
 Qed.
 
-Lemma upper_dim_dgc1 (a b c p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
+Lemma 防升维公理_dgc1 (a b c p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
   p 0 0 - m 0 0 == 0 -> p <> q ->
   cong a p a q -> cong b p b q -> cong c p c q ->
   (a 0 0 - b 0 0) * (b 0 1 - c 0 1) == (a 0 1 - b 0 1) * (b 0 0 - c 0 0).
 Proof.
-move=> E F; move: E F (upper_dim_dgc_aux0 E F); rewrite -/m=> _ _.
-move=> /andP[/eqP ? ?] C1 C2 C3; apply upper_dim_dgc1_aux in C1=> //.
-apply upper_dim_dgc1_aux in C2=> //; apply upper_dim_dgc1_aux in C3=> //.
+move=> E F; move: E F (防升维公理_dgc_aux0 E F); rewrite -/m=> _ _.
+move=> /andP[/eqP ? ?] C1 C2 C3; apply 防升维公理_dgc1_aux in C1=> //.
+apply 防升维公理_dgc1_aux in C2=> //; apply 防升维公理_dgc1_aux in C3=> //.
 by rewrite -C1 -C2 -C3 subrr mulr0 mul0r.
 Qed.
 
-Lemma upper_dim_dgc2_aux (a p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
+Lemma 防升维公理_dgc2_aux (a p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
   m 0 1 - p 0 1 = 0 -> m 0 0 - p 0 0 != 0 ->
   cong a p a q ->
   m 0 0 = a 0 0.
@@ -1067,18 +1067,18 @@ rewrite mulf_eq0 /= subr_eq0 => /orP [/eqP->//|/eqP H].
 by move: NE; rewrite H eqxx.
 Qed.
 
-Lemma upper_dim_dgc2 (a b c p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
+Lemma 防升维公理_dgc2 (a b c p q : 'rV[R]_(2)) (m := (1 / (1 + 1)) *: (p + q)) :
   m 0 1 - p 0 1 == 0 -> p <> q ->
   cong a p a q -> cong b p b q -> cong c p c q ->
   (a 0 0 - b 0 0) * (b 0 1 - c 0 1) == (a 0 1 - b 0 1) * (b 0 0 - c 0 0).
 Proof.
-rewrite subr_eq0 eq_sym -subr_eq0=> E F; move: E F (upper_dim_dgc_aux1 E F).
-rewrite -/m=> _ _ /andP[/eqP ? ?] C1 C2 C3; apply upper_dim_dgc2_aux in C1=> //.
-apply upper_dim_dgc2_aux in C2=> //; apply upper_dim_dgc2_aux in C3=> //.
+rewrite subr_eq0 eq_sym -subr_eq0=> E F; move: E F (防升维公理_dgc_aux1 E F).
+rewrite -/m=> _ _ /andP[/eqP ? ?] C1 C2 C3; apply 防升维公理_dgc2_aux in C1=> //.
+apply 防升维公理_dgc2_aux in C2=> //; apply 防升维公理_dgc2_aux in C3=> //.
 by rewrite -C1 -C2 -C3 subrr mul0r mulr0.
 Qed.
 
-Lemma upper_dim_aux (a b m : 'rV[R]_(2)) (c0 c1: R) :
+Lemma 防升维公理_aux (a b m : 'rV[R]_(2)) (c0 c1: R) :
   c0 * (m 0 0 - a 0 0) + c1 * (m 0 1 - a 0 1) = 0 ->
   c0 * (m 0 0 - b 0 0) + c1 * (m 0 1 - b 0 1) = 0 ->
   c0 * (b 0 0 - a 0 0) = - c1 * (b 0 1 - a 0 1).
@@ -1088,21 +1088,21 @@ move=> /eqP E1 /eqP E2; apply /eqP; rewrite -(addrBBB (m 0 0)) eq_sym.
 by rewrite -(addrBBB (m 0 1)) mulrBr eq_sym mulrBr -E1 -E2.
 Qed.
 
-Lemma upper_dim a b c p q :
+Lemma 防升维公理 a b c p q :
   p <> q -> a <> b -> a <> c -> b <> c ->
   cong a p a q -> cong b p b q -> cong c p c q ->
   (bet a b c \/ bet b c a \/ bet c a b).
 Proof.
 move=> ? _ _ _ H1 H2 H3; apply col_2D.
 move: (cong_perp H1) (cong_perp H2) (cong_perp H3); set m := (1/(1+1)) *: (p+q).
-move=> HP1 HP2 HP3; move: (upper_dim_aux HP2 HP1) (upper_dim_aux HP3 HP2).
+move=> HP1 HP2 HP3; move: (防升维公理_aux HP2 HP1) (防升维公理_aux HP3 HP2).
 rewrite opprB; set mp0 := p 0 0 - m 0 0; set pm1 := m 0 1 - p 0 1.
 set ba0 := a 0 0 - b 0 0; set ba1 := a 0 1 - b 0 1; set cb0 := b 0 0 - c 0 0;
 set cb1 := b 0 1 - c 0 1; move=> E1 E2.
 have: (mp0 * pm1 * (ba0 * cb1) == mp0 * pm1 * (ba1 * cb0)).
   by apply /eqP; rewrite mulrACA E1 -E2 -mulrACA [pm1* mp0]mulrC.
 rewrite -subr_eq0 -mulrBr mulf_eq0 subr_eq0 mulf_eq0=> /orP[/orP[C1|C2]|->//];
-by [apply upper_dim_dgc1 with p q|apply upper_dim_dgc2 with p q].
+by [apply 防升维公理_dgc1 with p q|apply 防升维公理_dgc2 with p q].
 Qed.
 
 Definition row2 {R : ringType} (a b : R) : 'rV[R]_2 :=
@@ -1159,7 +1159,7 @@ rewrite /betR /ratio a_eq0 sub0r; case: pickP => /= [x|/all_v_neq0 H].
 by exfalso; apply H; rewrite /b /c vector2_eq !mxE subr0 oner_eq0 andbC.
 Qed.
 
-Lemma lower_dim : ~ (bet a b c \/ bet b c a \/ bet c a b).
+Lemma 防降维公理 : ~ (bet a b c \/ bet b c a \/ bet c a b).
 Proof.
 move=> H; move: H; rewrite /bet /betE ab_neq bc_neq ca_neq /=.
 rewrite /betS betR_abc betR_bca; elim (betR_cab)=> [->|->]; rewrite !ltxx ltr01;
@@ -1177,7 +1177,7 @@ Implicit Types (a b c d : 'rV[R]_(n.+1)).
 
 Definition normv (x : 'rV[R]_(n.+1)) : R := Num.sqrt ((x *m x^T) 0 0).
 
-Lemma segment_construction a b c d :
+Lemma 由一点往一方向构造等长线段 a b c d :
     exists e, bet a b e /\ cong b e c d.
 Proof.
 have [->|neq_ba] := eqVneq b a; [|move: neq_ba; rewrite -subr_eq0=> neq_ba].
@@ -1205,36 +1205,36 @@ Variable R : rcfType.
 Definition point := (@Vector R 1).
 
 Global Instance Rcf_to_GI_PED :
-  Gupta_inspired_variant_of_Tarski_neutral_dimensionless_with_decidable_point_equality.
+  Gupta_inspired_variant_of_无维度中性塔斯基公理系统_带两点重合决定性.
 Proof.
 exact
-(Build_Gupta_inspired_variant_of_Tarski_neutral_dimensionless_with_decidable_point_equality
-   point (@bet R 1) (@cong R 1) (@point_equality_decidability R 1)
-   (@cong_pseudo_reflexivity R 1) (@cong_inner_transitivity R 1)
-   (@cong_identity R 1)
-   (@segment_construction R 1) (@five_segment R 1)
-   (@bet_symmetry R 1) (@bet_inner_transitivity R 1) (@inner_pasch R 1)
+(Build_Gupta_inspired_variant_of_无维度中性塔斯基公理系统_带两点重合决定性
+   point (@bet R 1) (@cong R 1) (@两点要么重合要么不重合 R 1)
+   (@等长的伪自反性 R 1) (@等长的内传递性 R 1)
+   (@等长的同一性 R 1)
+   (@由一点往一方向构造等长线段 R 1) (@五线段公理_等价SAS R 1)
+   (@bet_symmetry R 1) (@bet_inner_transitivity R 1) (@帕施公理 R 1)
    (@a R) (@b R) (@c R)
-   (@lower_dim R)).
+   (@防降维公理 R)).
 Defined.
 
-Global Instance Rcf_to_T : Tarski_neutral_dimensionless.
+Global Instance Rcf_to_T : 无维度中性塔斯基公理系统.
 Proof. apply GI_to_T. Defined.
 
 Global Instance Rcf_to_T_PED :
-  Tarski_neutral_dimensionless_with_decidable_point_equality Rcf_to_T.
-Proof. split; exact (@point_equality_decidability R 1). Defined.
+  无维度中性塔斯基公理系统_带两点重合决定性 Rcf_to_T.
+Proof. split; exact (@两点要么重合要么不重合 R 1). Defined.
 
 Global Instance Rcf_to_GI2D : Gupta_inspired_variant_of_Tarski_2D Rcf_to_GI_PED.
-Proof. split; exact (@upper_dim R). Defined.
+Proof. split; exact (@防升维公理 R). Defined.
 
 Global Instance Rcf_to_T2D : Tarski_2D Rcf_to_T_PED.
-Proof. split; exact upper_dimT. Defined.
+Proof. split; exact 防升维公理T. Defined.
 
-Global Instance Rcf_to_GI_euclidean : Gupta_inspired_variant_of_Tarski_euclidean Rcf_to_GI_PED.
+Global Instance Rcf_to_GI_euclidean : Gupta_inspired_variant_of_塔斯基公理系统_欧几里得几何 Rcf_to_GI_PED.
 Proof. split; exact (@euclid R 1). Defined.
 
-Global Instance Rcf_to_T_euclidean : Tarski_euclidean Rcf_to_T_PED.
+Global Instance Rcf_to_T_euclidean : 塔斯基公理系统_欧几里得几何 Rcf_to_T_PED.
 Proof. split; exact euclidT. Defined.
 
 Implicit Types (a b c d p q : point).

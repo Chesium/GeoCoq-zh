@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Annexes.suma.
 
 Section original_euclid_original_spp.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma original_euclid__original_spp : euclid_s_parallel_postulate -> alternative_strong_parallel_postulate.
 Proof.

@@ -76,7 +76,7 @@ Ltac CopR :=
 
 Section Euler_line.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 (**
 <applet name="ggbApplet" code="geogebra.GeoGebraApplet" archive="geogebra.jar"
@@ -108,9 +108,9 @@ Lemma concyclic_not_col_or_eq_aux :
   forall A B C D, Concyclic A B C D -> A = B \/ A = C \/ B = C \/ ~ Col A B C.
 Proof.
 intros A B C D HC.
-elim (eq_dec_points A B); intro HAB; Col.
-elim (eq_dec_points A C); intro HAC; Col.
-elim (eq_dec_points B C); intro HBC; Col5.
+elim (两点重合的决定性 A B); intro HAB; Col.
+elim (两点重合的决定性 A C); intro HAC; Col.
+elim (两点重合的决定性 B C); intro HBC; Col5.
 right; right; right; intro HCol.
 destruct HC as [HCop [O [HCong1 [HCong2 HCong3]]]].
 assert (H := midpoint_existence A B); destruct H as [M1 HMid1].
@@ -158,11 +158,11 @@ Proof.
 intros A B C A' H.
 assert (H' := H); apply concyclic_perm_1 in H; apply concyclic_perm_3 in H'.
 apply concyclic_not_col_or_eq_aux in H; apply concyclic_not_col_or_eq_aux in H'.
-elim (eq_dec_points A' C); intro; try tauto.
-elim (eq_dec_points A' B); intro; try tauto.
-elim (eq_dec_points A B); intro; try tauto.
-elim (eq_dec_points A C); intro; try tauto.
-elim (eq_dec_points A A'); intro; try tauto.
+elim (两点重合的决定性 A' C); intro; try tauto.
+elim (两点重合的决定性 A' B); intro; try tauto.
+elim (两点重合的决定性 A B); intro; try tauto.
+elim (两点重合的决定性 A C); intro; try tauto.
+elim (两点重合的决定性 A A'); intro; try tauto.
 do 3 (elim H; clear H; intro H; try tauto); Col.
 do 3 (elim H'; clear H'; intro H'; try tauto); Col.
 Qed.
@@ -226,10 +226,10 @@ assert (Col G A' A)
 
 unfold is_orthocenter in *; spliter.
 
-elim (eq_dec_points O G); intro; treat_equalities; Col;
-elim (eq_dec_points O H); intro; treat_equalities; Col.
+elim (两点重合的决定性 O G); intro; treat_equalities; Col;
+elim (两点重合的决定性 O H); intro; treat_equalities; Col.
 
-elim (eq_dec_points O A'); intro; treat_equalities.
+elim (两点重合的决定性 O A'); intro; treat_equalities.
 
 assert (Col A H O) by (apply cop_perp2__col with B C; Col; Cop; apply perp_bisect_perp; Col).
 apply is_gravity_center_coplanar in H1.
@@ -254,7 +254,7 @@ assert_diffs.
 assert (Concyclic A B C A').
  unfold Concyclic.
  split.
- destruct (eq_dec_points A O).
+ destruct (两点重合的决定性 A O).
   treat_equalities; Cop.
  apply coplanar_perm_12, col_cop__cop with O; Col; Cop.
  exists O.
@@ -274,7 +274,7 @@ decompose [or] T;clear T;try contradiction.
    assert (Per A C B).
     apply midpoint_thales with O;finish.
     unfold is_circumcenter in *;spliter.
-    apply cong_transitivity with O B;finish.
+    apply 等长的传递性 with O B;finish.
 
    apply (Euler_line_special_case A C B G H O);finish.
    apply is_gravity_center_perm_1; assumption.
@@ -310,7 +310,7 @@ assert (Per A C A').
  {
  apply midpoint_thales with O;finish.
  unfold is_circumcenter in *;spliter;finish.
- apply cong_transitivity with B O;finish.
+ apply 等长的传递性 with B O;finish.
  }
 
 assert (Perp A' C C A) by (apply per_perp;finish).
@@ -356,7 +356,7 @@ induction (col_dec B H C).
      show_distinct A'' O; treat_equalities.
      apply H27; apply perp_per_1; assert_diffs; Perp.
      assert (Perp_bisect O A'' B C) by (apply circumcenter_perp with A; Col).
-     elim (eq_dec_points A A''); intro; treat_equalities.
+     elim (两点重合的决定性 A A''); intro; treat_equalities.
      eauto using perp_bisect_cong_2 with cong.
      assert (Perp_bisect A'' A B C).
      apply perp_mid_perp_bisect; Col.

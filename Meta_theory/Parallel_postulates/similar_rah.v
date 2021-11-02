@@ -4,7 +4,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section similar_rah.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (**
 This is an adaptation of the proof of Martin's Theorem 23.6.
@@ -18,9 +18,9 @@ Lemma similar__rah_aux : forall A B C D E F,
 Proof.
   intros A B C D E F HNCol HCongaB HCongaC HCongaA Hlea Hlt.
   assert_diffs.
-  destruct (segment_construction_3 A B D E) as [G []]; auto.
+  destruct (由一点往一方向构造等长线段_3 A B D E) as [G []]; auto.
   rename H into HFD.
-  destruct (segment_construction_3 A C D F) as [H []]; auto.
+  destruct (由一点往一方向构造等长线段_3 A C D F) as [H []]; auto.
   apply (cong2_lt__lt _ _ _ _ A G A B) in Hlt; Cong.
   assert(Bet A G B) by (apply (l6_13_1); Le; apply l6_6; auto).
   assert(B <> G) by (intro; subst; destruct Hlt; Cong).

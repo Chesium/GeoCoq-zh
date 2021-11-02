@@ -3,7 +3,7 @@ Require Export GeoCoq.Tarski_dev.Ch14_order.
 Section T15.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 (** Lemma 15.2 *)
 (** Cong corresponds to length equality.*)
@@ -62,7 +62,7 @@ Proof.
 intros.
 unfold Length in *.
 spliter.
-apply cong_transitivity with O AB;Cong.
+apply 等长的传递性 with O AB;Cong.
 Qed.
 
 Lemma length_eq_cong_2 : forall O E E' A B C D AB,
@@ -72,7 +72,7 @@ intros.
 unfold Length in *.
 spliter.
 repeat split;try assumption.
-apply cong_transitivity with A B;Cong.
+apply 等长的传递性 with A B;Cong.
 Qed.
 
 Lemma ltP_pos : forall O E E' A, LtP O E E' O A  -> Ps O E A.
@@ -134,7 +134,7 @@ apply diff_A_O; auto.
 subst Q.
 clean_duplicated_hyps.
 
-induction(eq_dec_points AB CD).
+induction(两点重合的决定性 AB CD).
 right.
 assumption.
 left.
@@ -168,7 +168,7 @@ exists AB'.
 split; auto.
 
 apply diff_sum in H1.
-induction (eq_dec_points AB O).
+induction (两点重合的决定性 AB O).
 subst AB.
 unfold Ps in H2.
 unfold Out in H2.
@@ -192,8 +192,8 @@ repeat split.
 intro.
 subst P.
 assert(AB=CD).
-apply cong_symmetry in H13.
-apply (cong_identity _ _ O); Cong.
+apply 等长的对称性 in H13.
+apply (等长的同一性 _ _ O); Cong.
 subst CD.
 tauto.
 intro.
@@ -208,7 +208,7 @@ left.
 apply (between_exchange4 O P CD E); Between.
 apply (l5_3 O P E CD); Between.
 subst CD.
-apply between_identity in H.
+apply 中间性的同一律 in H.
 subst AB.
 right; auto.
 subst AB.
@@ -244,9 +244,9 @@ induction H3.
 
 apply (l14_36_a O E E' AB X CD); auto.
 subst AB.
-apply between_trivial2.
+apply AAB中间性.
 subst CD.
-apply between_trivial.
+apply ABB中间性.
 Qed.
 
 Lemma length_Ar2 : forall O E E' A B AB,
@@ -288,7 +288,7 @@ unfold Midpoint in H11.
 spliter.
 
 assert(Cong A B C M).
-apply (cong_transitivity _ _ C M'); Cong.
+apply (等长的传递性 _ _ C M'); Cong.
 
 apply(le_transitivity _ _ C M).
 unfold Le.
@@ -301,7 +301,7 @@ exists AB.
 split; Cong.
 
 apply(l5_6 O AB O CD C M C D); Cong.
-apply (cong_transitivity _ _ A B); Cong.
+apply (等长的传递性 _ _ A B); Cong.
 Qed.
 
 Lemma length_leP_le_2 : forall O E E' A B C D AB CD,
@@ -316,18 +316,18 @@ unfold Length in *.
 spliter.
 apply bet_leP; try assumption.
 
-induction(eq_dec_points O CD).
+induction(两点重合的决定性 O CD).
 subst CD.
-apply cong_symmetry in H4.
-apply cong_identity in H4.
+apply 等长的对称性 in H4.
+apply 等长的同一性 in H4.
 subst D.
 unfold Le in H1.
 ex_and H1 X.
-apply between_identity in H1.
+apply 中间性的同一律 in H1.
 subst X.
-apply cong_identity in H4.
+apply 等长的同一性 in H4.
 subst B.
-apply cong_identity in H7.
+apply 等长的同一性 in H7.
 subst AB.
 Between.
 assert(Le O AB O CD).
@@ -353,11 +353,11 @@ apply sum_cong in H6; auto.
 apply sum_cong in H3; auto.
 unfold Parallelogram_flat in *.
 spliter.
-apply cong_symmetry in H19.
-apply cong_identity in H19.
+apply 等长的对称性 in H19.
+apply 等长的同一性 in H19.
 subst Y.
-apply cong_symmetry in H23.
-apply cong_identity in H23.
+apply 等长的对称性 in H23.
+apply 等长的同一性 in H23.
 subst X.
 clean_trivial_hyps.
 
@@ -370,7 +370,7 @@ apply (l6_7 O AB E CD); auto.
 apply l6_6.
 assumption.
 apply out_col in H3.
-apply bet_col in H9.
+apply 中间性转共线 in H9.
 apply col_permutation_2.
 
 apply (col_transitivity_1 _ CD); Col.
@@ -391,7 +391,7 @@ assert(Bet AB O CD).
 eapply (outer_transitivity_between _ _ M); Between.
 intro.
 subst M.
-apply cong_identity in H6.
+apply 等长的同一性 in H6.
 subst AB.
 tauto.
 unfold Out in H18.
@@ -443,7 +443,7 @@ spliter.
 assumption.
 unfold Ar2 in H0.
 spliter.
-induction (eq_dec_points A O).
+induction (两点重合的决定性 A O).
 subst A.
 assert(B = C).
 apply (sum_uniqueness O E E' O B); auto.
@@ -470,7 +470,7 @@ eapply (length_Ar2 O E E' A B AB'); assumption.
 unfold Length in *.
 spliter.
 assert(Cong O AB O AB').
-apply cong_transitivity with A B; Cong.
+apply 等长的传递性 with A B; Cong.
 assert(AB = AB' \/ Midpoint O AB AB').
 apply(l7_20 O AB AB').
 ColR.
@@ -508,30 +508,30 @@ induction H18.
 assert(AB = O).
 eapply (between_equality _ _ AB'); Between.
 subst AB.
-apply cong_symmetry in H11.
-apply cong_identity in H11.
+apply 等长的对称性 in H11.
+apply 等长的同一性 in H11.
 auto.
 assert(AB' = O).
 eapply (between_equality _ _ AB); Between.
 subst AB'.
-apply cong_identity in H11.
+apply 等长的同一性 in H11.
 auto.
 subst AB.
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 auto.
 subst AB'.
-apply cong_identity in H9.
+apply 等长的同一性 in H9.
 auto.
 subst AB'.
-apply cong_identity in H9.
+apply 等长的同一性 in H9.
 auto.
 subst AB'.
-apply cong_identity in H9.
+apply 等长的同一性 in H9.
 auto.
 subst AB.
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 auto.
 subst AB.
 subst AB'.
@@ -560,8 +560,8 @@ apply diff_sum in H2.
 apply sum_cong in H2.
 unfold Parallelogram_flat in H2.
 spliter.
-apply cong_symmetry in H6.
-apply cong_identity in H6.
+apply 等长的对称性 in H6.
+apply 等长的同一性 in H6.
 subst X.
 assumption.
 unfold Sum in H2.
@@ -711,8 +711,8 @@ assumption.
 assert(HH:= l15_3 O E E' AB BC AC' H17).
 
 assert(Cong O AC' A C).
-apply(l2_11 O AB AC' A B C); Cong.
-apply cong_transitivity with O BC; Cong.
+apply(两组连续三点分段等则全体等 O AB AC' A B C); Cong.
+apply 等长的传递性 with O BC; Cong.
 
 assert(HP:= sum_pos_pos O E E' AB BC AC' H13 H14 H17).
 assert(AC = AC').
@@ -730,14 +730,14 @@ assumption.
 (* Case AC = O *)
 
 subst AC.
-apply cong_symmetry in H6.
-apply cong_identity in H6.
+apply 等长的对称性 in H6.
+apply 等长的同一性 in H6.
 subst C.
-apply between_identity in H0.
+apply 中间性的同一律 in H0.
 subst B.
-apply cong_identity in H12.
+apply 等长的同一性 in H12.
 subst AB.
-apply cong_identity in H9.
+apply 等长的同一性 in H9.
 subst BC.
 unfold LtP in H8.
 ex_and H8 X.
@@ -761,11 +761,11 @@ tauto.
 (* BC = O *)
 
 subst BC.
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst C.
 assert(Cong O AB O AC).
-apply cong_transitivity with A B; Cong.
+apply 等长的传递性 with A B; Cong.
 unfold LtP in H11.
 ex_and H11 X.
 apply diff_sum in H9.
@@ -819,13 +819,13 @@ Col.
 
 subst AC.
 subst BC.
-apply cong_symmetry in H6.
-apply cong_identity in H6.
+apply 等长的对称性 in H6.
+apply 等长的同一性 in H6.
 subst C.
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst B.
-apply cong_identity in H12.
+apply 等长的同一性 in H12.
 subst AB.
 left.
 apply sum_O_O.
@@ -839,8 +839,8 @@ tauto.
 (* Case AB = O *)
 
 subst AB.
-apply cong_symmetry in H12.
-apply cong_identity in H12.
+apply 等长的对称性 in H12.
+apply 等长的同一性 in H12.
 subst B.
 
 assert(BC = AC).
@@ -898,13 +898,13 @@ Col.
 
 subst AC.
 subst AB.
-apply cong_symmetry in H12.
-apply cong_identity in H12.
+apply 等长的对称性 in H12.
+apply 等长的同一性 in H12.
 subst B.
-apply cong_symmetry in H6.
-apply cong_identity in H6.
+apply 等长的对称性 in H6.
+apply 等长的同一性 in H6.
 subst C.
-apply cong_identity in H9.
+apply 等长的同一性 in H9.
 subst BC.
 left.
 apply sum_O_O.
@@ -919,13 +919,13 @@ tauto.
 
 subst AB.
 subst BC.
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst C.
-apply cong_symmetry in H12.
-apply cong_identity in H12.
+apply 等长的对称性 in H12.
+apply 等长的同一性 in H12.
 subst B.
-apply cong_identity in H6.
+apply 等长的同一性 in H6.
 subst AC.
 left.
 apply sum_O_O.
@@ -1034,8 +1034,8 @@ assumption.
 assert(HH:= l15_3 O E E' AB BC AC' H17).
 
 assert(Cong O AC' A C).
-apply(l2_11 O AB AC' A B C); Cong.
-apply cong_transitivity with O BC; Cong.
+apply(两组连续三点分段等则全体等 O AB AC' A B C); Cong.
+apply 等长的传递性 with O BC; Cong.
 
 assert(HP:= sum_pos_pos O E E' AB BC AC' H13 H14 H17).
 assert(AC = AC').
@@ -1052,14 +1052,14 @@ assumption.
 (* Case AC = O *)
 
 subst AC.
-apply cong_symmetry in H6.
-apply cong_identity in H6.
+apply 等长的对称性 in H6.
+apply 等长的同一性 in H6.
 subst C.
-apply between_identity in H0.
+apply 中间性的同一律 in H0.
 subst B.
-apply cong_identity in H12.
+apply 等长的同一性 in H12.
 subst AB.
-apply cong_identity in H9.
+apply 等长的同一性 in H9.
 subst BC.
 unfold LtP in H8.
 ex_and H8 X.
@@ -1083,11 +1083,11 @@ tauto.
 (* BC = O *)
 
 subst BC.
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst C.
 assert(Cong O AB O AC).
-apply cong_transitivity with A B; Cong.
+apply 等长的传递性 with A B; Cong.
 unfold LtP in H11.
 ex_and H11 X.
 apply diff_sum in H9.
@@ -1140,13 +1140,13 @@ Col.
 
 subst AC.
 subst BC.
-apply cong_symmetry in H6.
-apply cong_identity in H6.
+apply 等长的对称性 in H6.
+apply 等长的同一性 in H6.
 subst C.
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst B.
-apply cong_identity in H12.
+apply 等长的同一性 in H12.
 subst AB.
 apply sum_O_O.
 unfold LtP in H11.
@@ -1159,8 +1159,8 @@ tauto.
 (* Case AB = O *)
 
 subst AB.
-apply cong_symmetry in H12.
-apply cong_identity in H12.
+apply 等长的对称性 in H12.
+apply 等长的同一性 in H12.
 subst B.
 
 assert(BC = AC).
@@ -1217,13 +1217,13 @@ Col.
 
 subst AC.
 subst AB.
-apply cong_symmetry in H12.
-apply cong_identity in H12.
+apply 等长的对称性 in H12.
+apply 等长的同一性 in H12.
 subst B.
-apply cong_symmetry in H6.
-apply cong_identity in H6.
+apply 等长的对称性 in H6.
+apply 等长的同一性 in H6.
 subst C.
-apply cong_identity in H9.
+apply 等长的同一性 in H9.
 subst BC.
 apply sum_O_O.
 unfold LtP in H8.
@@ -1237,13 +1237,13 @@ tauto.
 
 subst AB.
 subst BC.
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst C.
-apply cong_symmetry in H12.
-apply cong_identity in H12.
+apply 等长的对称性 in H12.
+apply 等长的同一性 in H12.
 subst B.
-apply cong_identity in H6.
+apply 等长的同一性 in H6.
 subst AC.
 apply sum_O_O.
 unfold LtP in H5.
@@ -1259,13 +1259,13 @@ subst AB.
 subst AC.
 subst BC.
 
-apply cong_symmetry in H12.
-apply cong_identity in H12.
+apply 等长的对称性 in H12.
+apply 等长的同一性 in H12.
 subst B.
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst C.
-apply cong_identity in H6.
+apply 等长的同一性 in H6.
 induction HH0; tauto.
 Qed.
 
@@ -1315,16 +1315,16 @@ assumption.
 apply l6_6.
 assumption.
 subst CD.
-apply cong_symmetry in H5.
-apply cong_identity in H5.
+apply 等长的对称性 in H5.
+apply 等长的同一性 in H5.
 contradiction.
 subst AB.
-apply cong_symmetry in H8.
-apply cong_identity in H8.
+apply 等长的对称性 in H8.
+apply 等长的同一性 in H8.
 contradiction.
 subst CD.
-apply cong_symmetry in H5.
-apply cong_identity in H5.
+apply 等长的对称性 in H5.
+apply 等长的同一性 in H5.
 contradiction.
 Qed.
 
@@ -1333,7 +1333,7 @@ Lemma image_preserves_bet1 : forall X Y A B C A' B' C',
   Bet A' B' C'.
 Proof.
 intros.
-induction(eq_dec_points X Y).
+induction(两点重合的决定性 X Y).
 subst Y.
 unfold Reflect in *.
 induction H0.
@@ -1556,11 +1556,11 @@ contradiction.
 tauto.
 induction H8.
 
-induction(eq_dec_points P B).
+induction(两点重合的决定性 P B).
 subst B.
 apply length_cong in H5.
-apply cong_symmetry in H5.
-apply cong_identity in H5.
+apply 等长的对称性 in H5.
+apply 等长的同一性 in H5.
 subst B1.
 unfold Pj in H3.
 induction H3.
@@ -1575,8 +1575,8 @@ apply H2.
 ColR.
 subst D.
 apply length_cong in H7.
-apply cong_symmetry in H7.
-apply cong_identity in H7.
+apply 等长的对称性 in H7.
+apply 等长的同一性 in H7.
 subst D1.
 assert (AD = O).
 apply (prod_uniqueness O E E' A1 O).
@@ -1605,7 +1605,7 @@ unfold Ar2 in H6.
 tauto.
 subst C1; Col.
 
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 {
 subst B.
 induction H3.
@@ -1655,10 +1655,10 @@ apply length_Ar2 in Hl0.
 induction Hl0.
 spliter.
 intro.
-induction(eq_dec_points A1 O).
+induction(两点重合的决定性 A1 O).
 subst A1.
-apply cong_symmetry in H22.
-apply cong_identity in H22.
+apply 等长的对称性 in H22.
+apply 等长的同一性 in H22.
 subst A.
 apply H2.
 Col.
@@ -1666,8 +1666,8 @@ apply H5.
 ColR.
 subst A1.
 intro.
-apply cong_symmetry in H22.
-apply cong_identity in H22.
+apply 等长的对称性 in H22.
+apply 等长的同一性 in H22.
 subst A.
 apply H2.
 Col.
@@ -1723,12 +1723,12 @@ assert(Out O C1 D1).
 apply (length_out O E E' P C P D).
 intro.
 subst C.
-apply cong_identity in H16.
+apply 等长的同一性 in H16.
 subst C1.
 apply H2; Col.
 intro.
 subst D.
-apply cong_identity in H13.
+apply 等长的同一性 in H13.
 subst D1.
 assert(AD=O).
 {
@@ -1761,12 +1761,12 @@ assert(Out O A1 C1).
 apply (length_out O E E' P A P C).
 intro.
 subst A.
-apply cong_identity in H22.
+apply 等长的同一性 in H22.
 subst A1.
 apply H2; Col.
 intro.
 subst C.
-apply cong_identity in H16.
+apply 等长的同一性 in H16.
 subst C1.
 unfold Out in H27.
 tauto.
@@ -1799,7 +1799,7 @@ split.
 assumption.
 unfold Cong_3 in H4.
 spliter.
-apply (cong_transitivity _ _ P C); Cong.
+apply (等长的传递性 _ _ P C); Cong.
 }
 
 apply per_perp_in in H30; auto.
@@ -1867,8 +1867,8 @@ apply col_permutation_2.
 apply (col_transitivity_1 _ N).
 intro.
 subst N.
-apply cong_symmetry in H13.
-apply cong_identity in H13.
+apply 等长的对称性 in H13.
+apply 等长的同一性 in H13.
 subst D.
 unfold Pj in H3.
 induction H3.
@@ -1895,13 +1895,13 @@ subst N.
 apply HN.
 unfold Midpoint in H24.
 spliter.
-apply bet_col in H24.
+apply 中间性转共线 in H24.
 apply out_col in H31.
 apply out_col in H27.
 eapply (col_transitivity_1 _ D1').
 intro.
 subst D1'.
-apply cong_identity in H32.
+apply 等长的同一性 in H32.
 subst D1.
 treat_equalities.
 induction H3.
@@ -1985,7 +1985,7 @@ Col.
 Col.
 unfold Midpoint in H24.
 spliter.
-apply bet_col in H24.
+apply 中间性转共线 in H24.
 Col.
 Col.
 }
@@ -2470,7 +2470,7 @@ apply perp_not_col in H30.
 apply H30.
 unfold Midpoint in H7.
 spliter.
-apply bet_col in H7.
+apply 中间性转共线 in H7.
 ColR.
 apply perp_distinct in H30.
 tauto.
@@ -2517,7 +2517,7 @@ tauto.
 Perp.
 unfold Midpoint in H24.
 spliter.
-apply bet_col in H24.
+apply 中间性转共线 in H24.
 Col.
 apply perp_sym.
 apply(perp_col O N D1 D1' M).
@@ -2528,7 +2528,7 @@ induction H30.
 apply (perp_col C1 M O M C1'); Col; Perp.
 unfold Midpoint in H7.
 spliter.
-apply bet_col in H7.
+apply 中间性转共线 in H7.
 Col.
 apply perp_distinct in H30.
 tauto.
@@ -2554,7 +2554,7 @@ assert((D1' <> B1 -> CongA O D1' B1 P D B /\ CongA O B1 D1' P B D)).
 {
 apply (l11_49 D1' O B1 D P B).
 assumption.
-apply (cong_transitivity _ _ O D1); Cong.
+apply (等长的传递性 _ _ O D1); Cong.
 assumption.
 }
 
@@ -2656,7 +2656,7 @@ subst M.
 apply False_ind.
 unfold Midpoint in H7.
 spliter.
-apply bet_col in H7.
+apply 中间性转共线 in H7.
 Col.
 
 right.
@@ -2685,12 +2685,12 @@ intro.
 subst E.
 apply H.
 Col.
-assert(HH:= segment_construction_2 E O A B NEO).
+assert(HH:= 由一点往一方向构造等长线段_2 E O A B NEO).
 ex_and HH AB.
 exists AB.
 unfold Length.
 assert(AB = O \/ Out O E AB).
-induction(eq_dec_points AB O).
+induction(两点重合的决定性 AB O).
 left; assumption.
 right.
 repeat split; auto.
@@ -2725,7 +2725,7 @@ Lemma l15_7 : forall O E E' A B C H AB AC AH AC2,
 Proof.
 intros.
 
-induction(eq_dec_points AB O).
+induction(两点重合的决定性 AB O).
 subst AB.
 assert(A = B).
 apply (length_id_1 O E E'); assumption.
@@ -2748,7 +2748,7 @@ subst AB.
 tauto.
 spliter.
 
-induction(eq_dec_points H A).
+induction(两点重合的决定性 H A).
 subst H.
 assert(AH=O).
 apply (length_uniqueness O E E' A A); auto.
@@ -2782,26 +2782,26 @@ apply perp_in_right_comm in H2.
 apply perp_in_id in H2.
 contradiction.
 
-assert(HH:= segment_construction_2 H A A C H9).
+assert(HH:= 由一点往一方向构造等长线段_2 H A A C H9).
 ex_and HH C'.
 assert(Out A H C').
 unfold Out.
 repeat split; auto.
 intro.
 subst C'.
-apply cong_symmetry in H12.
-apply cong_identity in H12.
+apply 等长的对称性 in H12.
+apply 等长的同一性 in H12.
 subst C.
 tauto.
 
-assert(HH:= segment_construction_2 C A A H H10).
+assert(HH:= 由一点往一方向构造等长线段_2 C A A H H10).
 ex_and HH H'.
 assert(Out A C H').
 repeat split;auto.
 intro.
 subst H'.
-apply cong_symmetry in H15.
-apply cong_identity in H15.
+apply 等长的对称性 in H15.
+apply 等长的同一性 in H15.
 subst H.
 tauto.
 
@@ -3122,7 +3122,7 @@ Lemma is_length_exists : forall O E E' X Y,
   ~ Col O E E' -> exists XY, Is_length O E E' X Y XY.
 Proof.
 intros O E E' X Y HNC.
-elim (eq_dec_points X Y); intro HXY;
+elim (两点重合的决定性 X Y); intro HXY;
 [treat_equalities; exists O; left; apply length_id_2; assert_diffs; auto|
 destruct (length_existence O E E' X Y) as [XY HLength]; Col; exists XY; left; auto].
 Qed.
@@ -3133,7 +3133,7 @@ Lemma lt_to_ltp : forall O E E' A B L C D M, Length O E E' A B L -> Length O E E
               -> Lt A B C D -> LtP O E E' L M.
 Proof.
 intros.
-induction(eq_dec_points L M).
+induction(两点重合的决定性 L M).
 {
   subst M.
   apply length_cong in H0.
@@ -3551,7 +3551,7 @@ Qed.
 Lemma sign_dec : forall O E A, Col O E A -> O <> E -> A = O \/ Ps O E A \/ Ng O E A.
 Proof.
 intros.
-induction(eq_dec_points A O).
+induction(两点重合的决定性 A O).
 left; auto.
 assert(HH:= third_point O E A H).
 
@@ -3939,7 +3939,7 @@ Qed.
 Lemma sum_preserves_lep : forall O E E' A B C AC BC, LeP O E E' A B -> Sum O E E' A C AC -> Sum O E E' B C BC -> LeP O E E' AC BC.
 Proof.
 intros.
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 {
   subst B.
   assert(HH:=sum_uniqueness O E E' A C  AC BC H0 H1).
@@ -4285,7 +4285,7 @@ assert(~Col O E E').
   unfold Ar2 in H5; tauto.
 }
 
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 {
   treat_equalities.
   assert(Length O E E' A A O).
@@ -4492,7 +4492,7 @@ Qed.
 Lemma length_pos_or_null : forall O E E' A B AB, Length O E E' A B AB -> Ps O E AB \/ A = B.
 Proof.
 intros.
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 {
   right; auto.
 }
@@ -4511,7 +4511,7 @@ Qed.
 Lemma not_neg_pos : forall O E A, E <> O -> Col O E A -> ~Ng O E A -> Ps O E A \/ A = O.
 Proof.
 intros.
-induction(eq_dec_points A O).
+induction(两点重合的决定性 A O).
 {
   right; auto.
 }
@@ -4543,7 +4543,7 @@ assert(Col O E A /\ Col O E B /\ O <> E /\ ~Col O E E').
 spliter.
 assert(Ps O E A \/ A = O).
 {
-  induction(eq_dec_points A O).
+  induction(两点重合的决定性 A O).
   {
     right; auto.
   }
@@ -4561,7 +4561,7 @@ assert(Ps O E A \/ A = O).
 }
 assert(Ps O E B\/ B = O).
 {
-  induction(eq_dec_points B O).
+  induction(两点重合的决定性 B O).
   {
     right; auto.
   }
@@ -4709,7 +4709,7 @@ assert(Diff O E E' C C O).
 assert(HH:= diff_of_squares O E E' A B C C O ApB AmB PP H H0 H10 H5 H6 H9).
 treat_equalities.
 assert(HH:= prod_null O E E' ApB AmB H9).
-induction (eq_dec_points A O).
+induction (两点重合的决定性 A O).
 {
   subst A.
   apply prod_O_l_eq in H.
@@ -4723,7 +4723,7 @@ induction (eq_dec_points A O).
     intro.
     subst E; Col.
   }
-  induction (eq_dec_points B O).
+  induction (两点重合的决定性 B O).
   {
     subst B.
     apply prod_O_l_eq in H0.
@@ -4821,7 +4821,7 @@ Lemma inter_circle_per : forall P Q A T M, Cong P A Q A
 
 Proof.
 intros.
-assert(HH:=lower_dim).
+assert(HH:=防降维公理).
 set(O:=PA) in *.
 set(E:=PB) in *.
 set(E':=PC) in *.
@@ -4832,7 +4832,7 @@ unfold Col in H4.
 tauto.
 clear HH.
 
-induction(eq_dec_points P T).
+induction(两点重合的决定性 P T).
 {
   subst T.
   auto.
@@ -4909,14 +4909,14 @@ induction(eq_dec_points P T).
     apply (sum_uniqueness O E E' PT2 TM2); auto.
   }
   subst SS'.
-  induction(eq_dec_points T M).
+  induction(两点重合的决定性 T M).
   {
     subst T.
     apply le_trivial.
   }
   
   {
-    induction(eq_dec_points P M).
+    induction(两点重合的决定性 P M).
     {
       subst M.
 
@@ -4994,7 +4994,7 @@ induction(eq_dec_points P T).
       apply sum_comm in H33; auto.
       apply sum_comm in H20; auto.
       assert(HH:=sum_preserves_lep_rev O E E' TM2 TA2 PT2 PM2 AP2 H33 H20 H30).
-      induction(eq_dec_points TA TM).
+      induction(两点重合的决定性 TA TM).
       {
         treat_equalities.
         assert(Cong T M T A).
@@ -5054,7 +5054,7 @@ Lemma inter_circle_obtuse : forall P Q A T M, Cong P A Q A
 
 Proof.
 intros.
-assert(HH:=lower_dim).
+assert(HH:=防降维公理).
 set(O:=PA) in *.
 set(E:=PB) in *.
 set(E':=PC) in *.
@@ -5065,7 +5065,7 @@ unfold Col in H4.
 tauto.
 clear HH.
 
-induction(eq_dec_points P T).
+induction(两点重合的决定性 P T).
 {
   subst T.
   auto.
@@ -5134,13 +5134,13 @@ induction(eq_dec_points P T).
     apply(pythagoras_obtuse_or_per O E E' P M T PT TM PM PT2 TM2 PM2 SS'); auto.
     apply length_sym; auto.
   }
-  induction(eq_dec_points T M).
+  induction(两点重合的决定性 T M).
   {
     subst M.
     apply le_trivial.
   }
   {
-    induction(eq_dec_points P M).
+    induction(两点重合的决定性 P M).
     {
       subst M.
       assert(HH:= length_id_2 O E E' P HX).
@@ -5162,14 +5162,14 @@ induction(eq_dec_points P T).
         intro.
         subst PT.
         apply length_cong in H14.
-        apply cong_identity in H14.
+        apply 等长的同一性 in H14.
         contradiction.
 
         apply (square_pos O E E' TM); auto.
         intro.
         subst TM.
         apply length_cong in H28.
-        apply cong_identity in H28.
+        apply 等长的同一性 in H28.
         contradiction.
       }
       unfold LeP in Pyth1.
@@ -5245,7 +5245,7 @@ induction(eq_dec_points P T).
 
     assert(LeP  O E E' TM TA).
     {
-      induction(eq_dec_points TM TA).
+      induction(两点重合的决定性 TM TA).
       {
         subst TM.
         apply leP_refl.
@@ -5287,7 +5287,7 @@ Lemma circle_projp_between : forall P Q A T, Cong P A Q A
 Proof.
 intros.
 
-induction(eq_dec_points P T).
+induction(两点重合的决定性 P T).
 {
   subst T; Between.
 }
@@ -5383,18 +5383,18 @@ Lemma inter_circle : forall P Q A T M, Cong P A Q A
 Proof.
 intros.
 assert(HH:= circle_projp_between P Q A T H H2).
-induction(eq_dec_points T M).
+induction(两点重合的决定性 T M).
   {
     subst M.
     apply le_trivial.
   }
   {
-    induction(eq_dec_points P T).
+    induction(两点重合的决定性 P T).
     {
       treat_equalities; auto.
     }
     assert(HA:= angle_partition P T M H4 H3).
-    induction(eq_dec_points Q T).
+    induction(两点重合的决定性 Q T).
     {
       treat_equalities; auto.
     }
@@ -5444,7 +5444,7 @@ induction H1.
 {
   spliter.
 
-  induction(eq_dec_points P T).
+  induction(两点重合的决定性 P T).
   {
     subst T.
     assert(Lt Q P Q A /\ Lt A P Q A).
@@ -5479,10 +5479,10 @@ induction H1.
 {
   spliter.
   subst T.
-  induction(eq_dec_points P A).
+  induction(两点重合的决定性 P A).
   subst P.
-  apply cong_symmetry in H.
-  apply cong_identity in H.
+  apply 等长的对称性 in H.
+  apply 等长的同一性 in H.
   subst Q.
   tauto.
   apply lt1123; auto.

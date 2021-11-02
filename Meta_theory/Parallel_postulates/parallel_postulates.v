@@ -54,7 +54,7 @@ Require Import Rtauto.
 
 Section Euclid.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Theorem equivalent_postulates_without_decidability_of_intersection_of_lines :
   all_equiv
@@ -620,7 +620,7 @@ End Euclid.
 
 Section Euclidean.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma inter_dec : forall A B C D,
   (exists I, Col I A B /\ Col I C D) \/ ~ (exists I, Col I A B /\ Col I C D).

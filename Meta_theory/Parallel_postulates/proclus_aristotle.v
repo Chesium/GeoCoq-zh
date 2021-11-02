@@ -8,14 +8,14 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section proclus_aristotle.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma proclus__aristotle : proclus_postulate -> aristotle_s_axiom.
 Proof.
   intros proclus P Q A B C HNCol Hacute.
   assert(HD0 := l10_15 B A B C).
   destruct HD0 as [D0 []]; Col.
-  assert(HD := segment_construction B D0 P Q).
+  assert(HD := 由一点往一方向构造等长线段 B D0 P Q).
   destruct HD as [D []].
   assert(HNCol1 : ~ Col B A D0) by (apply perp_not_col; auto).
   assert_diffs.
@@ -127,9 +127,9 @@ Proof.
   - intro.
     absurd(D0=B); auto.
     apply (between_cong D B D0); Between.
-    apply (cong_transitivity _ _ P Q).
+    apply (等长的传递性 _ _ P Q).
       Cong.
-    apply (cong_transitivity _ _ X Y); Cong.
+    apply (等长的传递性 _ _ X Y); Cong.
 Qed.
 
 End proclus_aristotle.

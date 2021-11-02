@@ -3,19 +3,19 @@ Require Import GeoCoq.Axioms.tarski_axioms.
 
 Section Proof_of_eq_stability_in_IT.
 
-Context `{BTn:intuitionistic_Tarski_neutral_dimensionless}.
+Context `{BTn:intuitionistic_无维度中性塔斯基公理系统}.
 
 Lemma cong_stability_eq_stability : forall A B : ITpoint, ~ A <> B -> A = B.
 Proof.
 intros A B HAB.
-apply Icong_identity with A.
+apply I等长的同一性 with A.
 apply Cong_stability.
 intro HNCong.
 apply HAB.
 intro HEq.
 subst.
 apply HNCong.
-apply Icong_pseudo_reflexivity.
+apply I等长的伪自反性.
 Qed.
 
 End Proof_of_eq_stability_in_IT.
@@ -24,7 +24,7 @@ Require Import Classical.
 
 Section Intuitionistic_Tarski_to_Tarski.
 
-Context `{BTn:intuitionistic_Tarski_neutral_dimensionless}.
+Context `{BTn:intuitionistic_无维度中性塔斯基公理系统}.
 
 Lemma col_dec : forall A B C, ICol A B C \/ ~ ICol A B C.
 Proof.
@@ -45,7 +45,7 @@ Proof.
 intros.
 unfold BetT in H.
 decompose [or] H.
-apply Ibetween_identity in H0.
+apply I中间性的同一律 in H0.
 elim H0.
 assumption.
 intuition.
@@ -65,7 +65,7 @@ intros.
 unfold BetT in *.
 intuition.
 left.
-apply Ibetween_symmetry.
+apply I中间性的对称性.
 assumption.
 Qed.
 
@@ -74,7 +74,7 @@ Proof.
 intros.
 unfold BetT in *.
 intuition.
-apply Ibetween_identity in H0.
+apply I中间性的同一律 in H0.
 elim H0.
 Qed.
 
@@ -143,16 +143,16 @@ intuition.
 apply NNPP in H1.
 exists A.
 split.
-apply Ibetween_symmetry in H1.
+apply I中间性的对称性 in H1.
 induction H.
 assert (T:=Ibetween_inner_transitivity B A P C H1 H).
 unfold BetT.
 left.
-apply Ibetween_symmetry;auto.
+apply I中间性的对称性;auto.
 induction H;subst.
 unfold BetT;auto.
 left.
-apply Ibetween_symmetry;auto.
+apply I中间性的对称性;auto.
 unfold BetT;auto.
 apply not_and_or in H1.
 induction H1.
@@ -179,13 +179,13 @@ apply BetT_symmetry.
 left.
 
 apply Ibetween_inner_transitivity with A.
-apply Ibetween_symmetry;auto.
-apply Ibetween_symmetry;auto.
+apply I中间性的对称性;auto.
+apply I中间性的对称性;auto.
 apply BetT_symmetry.
 left.
 apply Ibetween_inner_transitivity with B.
 assumption.
-apply Ibetween_symmetry;auto.
+apply I中间性的对称性;auto.
 induction H0;subst;intuition.
 induction H;subst;intuition.
 induction H;subst;intuition.
@@ -198,7 +198,7 @@ split.
 unfold BetT;auto.
 
 left.
-apply Ibetween_symmetry.
+apply I中间性的对称性.
 apply Ibetween_inner_transitivity with C.
 unfold IT in H1.
 apply not_and_or in H1.
@@ -232,7 +232,7 @@ unfold BetT in *.
 decompose [or] H;clear H.
 decompose [or] H0;clear H0.
 
-elim (Iinner_pasch A B C P Q H2 H H1).
+elim (I帕施公理 A B C P Q H2 H H1).
 intros.
 spliter.
 exists x.
@@ -247,7 +247,7 @@ exists P.
 split.
 auto.
 left.
-apply Ibetween_symmetry.
+apply I中间性的对称性.
 auto.
 subst.
 exists P;auto.
@@ -256,7 +256,7 @@ decompose [or] H0;clear H0.
 exists Q.
 split.
 left.
-apply Ibetween_symmetry.
+apply I中间性的对称性.
 auto.
 auto.
 subst.
@@ -265,7 +265,7 @@ subst.
 exists C;auto.
 Qed.
 
-Lemma five_segment:
+Lemma 五线段公理_等价SAS:
  forall A A' B B' C C' D D' : ITpoint,
         ICong A B A' B' ->
         ICong B C B' C' ->
@@ -274,7 +274,7 @@ Lemma five_segment:
         BetT A B C -> BetT A' B' C' -> A <> B -> ICong C D C' D'.
 Proof.
 intros.
-apply Ifive_segment with A A' B B' ;try assumption.
+apply I五线段公理_等价SAS with A A' B B' ;try assumption.
 unfold IT.
 intro.
 spliter.
@@ -307,7 +307,7 @@ Qed.
 Lemma another_point : forall A, exists B:ITpoint, A<>B.
 Proof.
 intros.
-assert (T:=Ilower_dim).
+assert (T:=I防降维公理).
 elim (eq_dec A beeson_s_axioms.PA);intro.
 subst.
 elim (eq_dec beeson_s_axioms.PA beeson_s_axioms.PB);intro.
@@ -321,7 +321,7 @@ exists beeson_s_axioms.PA.
 assumption.
 Qed.
 
-Lemma segment_construction :
+Lemma 由一点往一方向构造等长线段 :
  forall A B C D : ITpoint,
         exists E : ITpoint, BetT A B E /\ ICong B E C D.
 Proof.
@@ -329,14 +329,14 @@ intros.
 induction (eq_dec A B).
 subst.
 elim (another_point B);intros.
-elim (Isegment_construction x B C D);intros.
+elim (I由一点往一方向构造等长线段 x B C D);intros.
 exists x0.
 split.
 unfold BetT.
 intuition.
 intuition.
 intuition.
-elim (Isegment_construction A B C D H).
+elim (I由一点往一方向构造等长线段 A B C D H).
 intros.
 exists x.
 spliter.
@@ -346,35 +346,35 @@ unfold BetT.
 tauto.
 Qed.
 
-Lemma lower_dim :
+Lemma 防降维公理 :
   ~ (BetT beeson_s_axioms.PA beeson_s_axioms.PB beeson_s_axioms.PC \/ 
      BetT beeson_s_axioms.PB beeson_s_axioms.PC beeson_s_axioms.PA \/ 
      BetT beeson_s_axioms.PC beeson_s_axioms.PA beeson_s_axioms.PB).
 Proof.
-assert (T:=Ilower_dim).
+assert (T:=I防降维公理).
 unfold BetT in *.
 unfold ICol in  *.
 unfold IT in *.
-firstorder using Ibetween_symmetry.
+firstorder using I中间性的对称性.
 Qed.
 
-Lemma eq_dec_points_from_classic : forall A B : ITpoint, A = B \/ A <> B.
+Lemma 两点重合的决定性_from_classic : forall A B : ITpoint, A = B \/ A <> B.
 Proof.
 intros.
 apply classic.
 Qed.
 
-Instance IT_to_T : Tarski_neutral_dimensionless.
+Instance IT_to_T : 无维度中性塔斯基公理系统.
 exact
-(Build_Tarski_neutral_dimensionless
+(Build_无维度中性塔斯基公理系统
    ITpoint BetT ICong
-   Icong_pseudo_reflexivity Icong_inner_transitivity Icong_identity
-   segment_construction five_segment
-   bet_id pasch beeson_s_axioms.PA beeson_s_axioms.PB beeson_s_axioms.PC lower_dim).
+   I等长的伪自反性 I等长的内传递性 I等长的同一性
+   由一点往一方向构造等长线段 五线段公理_等价SAS
+   bet_id pasch beeson_s_axioms.PA beeson_s_axioms.PB beeson_s_axioms.PC 防降维公理).
 Defined.
 
 Instance IT_to_T_PED :
-  Tarski_neutral_dimensionless_with_decidable_point_equality IT_to_T.
-Proof. split; apply eq_dec_points_from_classic. Defined.
+  无维度中性塔斯基公理系统_带两点重合决定性 IT_to_T.
+Proof. split; apply 两点重合的决定性_from_classic. Defined.
 
 End Intuitionistic_Tarski_to_Tarski.

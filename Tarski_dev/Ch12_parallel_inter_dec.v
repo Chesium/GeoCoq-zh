@@ -3,7 +3,7 @@ Require Export GeoCoq.Meta_theory.Parallel_postulates.par_trans_NID.
 
 Section T13.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma cop_npars__inter_exists :
  forall A1 B1 A2 B2,
@@ -11,11 +11,11 @@ Lemma cop_npars__inter_exists :
   exists X, Col X A1 B1 /\ Col X A2 B2.
 Proof.
 intros.
-induction (eq_dec_points A1 B1).
+induction (两点重合的决定性 A1 B1).
   subst.
   exists A2.
   Col.
-induction (eq_dec_points A2 B2).
+induction (两点重合的决定性 A2 B2).
   subst.
   exists A1.
   Col.
@@ -226,7 +226,7 @@ Proof.
     assert(Col C D D').
       apply par_id; assumption.
     assert(Cong C D C D').
-      apply (cong_transitivity _ _ A B); Cong.
+      apply (等长的传递性 _ _ A B); Cong.
     assert(D = D' \/ Midpoint C D D').
       apply l7_20; Col.
     induction H14.
@@ -320,13 +320,13 @@ Proof.
       apply col_one_side with A; Col; Side.
     }
     intros A B C D P HAP HBet HOS HPar.
-    destruct (eq_dec_points A C).
+    destruct (两点重合的决定性 A C).
     { subst C.
       apply out2__conga; [|apply out_trivial; auto].
       apply col_one_side_out with P; Side.
       apply par_id; Par.
     }
-    destruct (segment_construction B A B A) as [B' []].
+    destruct (由一点往一方向构造等长线段 B A B A) as [B' []].
     assert_diffs.
     apply conga_trans with B' A C.
       apply l11_14; auto.
@@ -388,7 +388,7 @@ Proof.
         assert(C0 = B0).
           apply (l7_17 A B).
               split.
-              apply between_symmetry.
+              apply 中间性的对称性.
               assumption.
               Cong.
           assumption.
@@ -396,7 +396,7 @@ Proof.
         Col.
         apply H0.
       split.
-        apply between_symmetry.
+        apply 中间性的对称性.
         assumption.
       Cong.
     assert(Par A C' B C).
@@ -407,14 +407,14 @@ Proof.
           eapply l7_17.
             apply H0.
           split.
-            apply between_symmetry.
+            apply 中间性的对称性.
             assumption.
           Cong.
         treat_equalities.
         Col.
         apply H2.
       split.
-        apply between_symmetry.
+        apply 中间性的对称性.
         assumption.
       Cong.
     assert(Par A B' A C').
@@ -554,7 +554,7 @@ End T13.
 Section T13_2D.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma not_par_strict_inter_exists :
  forall A1 B1 A2 B2,

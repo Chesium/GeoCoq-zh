@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch13_1.
 
 Section alternate_interior_angles_playfair_bis.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma alternate_interior__playfair_aux : alternate_interior_angles_postulate ->
    forall A1 A2 B1 B2 C1 C2 P,
@@ -12,7 +12,7 @@ Lemma alternate_interior__playfair_aux : alternate_interior_angles_postulate ->
    Col C1 B1 B2. (** "half" of playfair_bis *)
 Proof.
   intros aip A1 A2 B1 B2 C1 C2 P HPerp2 HNC1 HPB HCop HParAC HPC.
-  elim(eq_dec_points P C1).
+  elim(两点重合的决定性 P C1).
     intro; subst C1; auto.
   intro.
   assert(HParAB : Par_strict A1 A2 B1 B2)
@@ -37,7 +37,7 @@ Proof.
         apply (par_strict_col_par_strict _ _ _ C2); Col).
   assert_diffs.
   assert(HB3 : exists B3, Col B1 B2 B3 /\ B3 <> P).
-  { elim(eq_dec_points B1 P).
+  { elim(两点重合的决定性 B1 P).
     intro; subst B1; exists B2; Col.
     intro; exists B1; Col.
   }

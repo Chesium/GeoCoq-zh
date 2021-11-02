@@ -6,7 +6,7 @@ Require Export GeoCoq.Tarski_dev.Annexes.suma.
 
 Section Saccheri.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma sac_perm : forall A B C D, Saccheri A B C D -> Saccheri D C B A.
 Proof.
@@ -371,7 +371,7 @@ Proof.
   repeat split; auto.
   - Perp.
   - apply (image_spec_preserves_per D A B _ _ _ M N); auto.
-  - apply cong_left_commutativity.
+  - apply 等长的左交换性.
     apply (l10_10_spec M N); auto.
   - apply (col_one_side _ N); Col.
     apply l12_6.
@@ -504,10 +504,10 @@ Proof.
   - intro HCong.
     apply (per_col _ _ M); Col.
     apply l8_2, (cong_lam__per N); auto.
-    apply cong_commutativity; apply (cong_cong_half_1 _ _ D _ _ C); auto.
+    apply 等长的交换性; apply (cong_cong_half_1 _ _ D _ _ C); auto.
   - intro HPer.
     apply cong_mid2__cong with N M; trivial.
-    apply cong_commutativity, lam_per__cong; trivial.
+    apply 等长的交换性, lam_per__cong; trivial.
     apply l8_2, per_col with C; Col.
 Qed.
 
@@ -603,7 +603,7 @@ Proof.
   { repeat split; auto.
     apply (per_col _ _ A); Col; Perp.
     apply (l8_3 A); Col; Perp.
-    apply (cong_transitivity _ _ A B); Cong.
+    apply (等长的传递性 _ _ A B); Cong.
     apply (col_one_side _ A); Col.
     apply (l9_17 _ _ B); Between; Side.
   }
@@ -835,7 +835,7 @@ Proof.
   }
   assert(HSac' : Saccheri D C J S).
   { repeat split; auto.
-      apply cong_transitivity with A B; Cong.
+      apply 等长的传递性 with A B; Cong.
     apply one_side_transitivity with R.
       apply col_one_side with A; Col; apply par_strict_one_side with B; Par; Col.
     apply per_not_col in HPer2; auto; apply invert_one_side, out_one_side; Col.
@@ -1081,7 +1081,7 @@ Lemma t22_9_aux : forall N M P Q R S,
   (Per S R M <-> Per Q P M) /\ (Acute S R M <-> Acute Q P M).
 Proof.
   intros N M P Q R S HLamP HLamR HR HS.
-  destruct(eq_dec_points Q S).
+  destruct(两点重合的决定性 Q S).
   { assert (HPar := lam__pars1234 N M P Q HLamP).
     unfold Lambert in *.
     spliter.
@@ -1123,9 +1123,9 @@ Proof.
   - apply (per_col _ _ P'); Col.
     apply (l11_17 Q' P' P); CongA.
     apply (t22_8__per _ _ _ Q R S); auto.
-    apply cong_symmetry.
-    apply (cong_transitivity _ _ S' R'); auto.
-    apply (cong_transitivity _ _ P Q); auto.
+    apply 等长的对称性.
+    apply (等长的传递性 _ _ S' R'); auto.
+    apply (等长的传递性 _ _ P Q); auto.
     apply (t22_7__cong _ _ R S); Perp.
     apply (l11_17 S R R'); CongA.
     apply (per_col _ _ M); Col.
@@ -1133,9 +1133,9 @@ Proof.
   - apply (per_col _ _ R'); Col.
     apply (l11_17 S' R' R); CongA.
     apply (t22_7__per _ _ _ S P Q); Perp.
-    apply cong_symmetry.
-    apply (cong_transitivity _ _ Q' P'); auto.
-    apply (cong_transitivity _ _ R S); auto.
+    apply 等长的对称性.
+    apply (等长的传递性 _ _ Q' P'); auto.
+    apply (等长的传递性 _ _ R S); auto.
     apply (t22_8__cong _ _ P Q); auto.
     apply (l11_17 Q P P'); CongA.
     apply (per_col _ _ M); Col.
@@ -1239,7 +1239,7 @@ Proof.
   spliter.
   destruct (l11_49 B A D B' A' D') as [HCongD [HConga1 HConga2]]; Cong; CongA.
   destruct (l11_49 B D C B' D' C'); Cong;
-  [|apply (cong_transitivity _ _ A B); Cong; apply (cong_transitivity _ _ A' B'); Cong].
+  [|apply (等长的传递性 _ _ A B); Cong; apply (等长的传递性 _ _ A' B'); Cong].
   apply (l11_22b _ _ _ A _ _ _ A').
   repeat (split; CongA); Side.
 Qed.
@@ -1271,7 +1271,7 @@ Proof.
   unfold Saccheri in *; spliter; repeat split.
   - apply perp_per_1, perp_col0 with D A; Col; Perp.
   - apply perp_per_1, perp_sym, perp_col0 with F A; Col; Perp.
-  - apply cong_transitivity with A B; Cong.
+  - apply 等长的传递性 with A B; Cong.
   - apply one_side_transitivity with B.
       apply col_one_side with A; Col; Side.
     apply invert_one_side, col_one_side with A; Col; Side.
@@ -1294,13 +1294,13 @@ Proof.
   assert(HNCol1 : ~ Col C D A) by (apply (par_strict_not_col_3 _ B), sac__pars1234, HSac).
   assert_diffs.
   rename H into HA'B'.
-  assert(HH := segment_construction_3 N D N' D').
+  assert(HH := 由一点往一方向构造等长线段_3 N D N' D').
   destruct HH as [H []]; auto.
   assert(Col A D H) by ColR.
   assert(G0 := l10_15 A D H C).
   destruct G0 as [G0 []]; Col.
   assert_diffs.
-  assert(HG := segment_construction_3 H G0 C' D').
+  assert(HG := 由一点往一方向构造等长线段_3 H G0 C' D').
   destruct HG as [G []]; auto.
   assert_diffs.
   assert(OS N D C G).
@@ -1382,7 +1382,7 @@ Proof.
   assert (Coplanar M C D A).
     apply pars__coplanar, par_strict_col_par_strict with N; Col; Par.
   assert(HK : exists K, Col K M C /\ Bet G K H).
-  { elim(eq_dec_points L M).
+  { elim(两点重合的决定性 L M).
     { intro.
       subst L.
       exists G.
@@ -1443,7 +1443,7 @@ Proof.
     apply conga_right_comm, (cong2_lam2__cong_conga N' _ _ _ N); Cong.
   }
   assert((Bet M C K -> Bet N D H) /\ (Bet M K C -> Bet N H D)).
-  { destruct(eq_dec_points D H) as [|HDH].
+  { destruct(两点重合的决定性 D H) as [|HDH].
       subst; split; intro; Between.
     assert(HPar : Par C D K H).
     { unfold Lambert in *.
@@ -1464,7 +1464,7 @@ Proof.
       apply (perp_col _ H); auto; [|ColR].
       apply perp_left_comm, (perp_col _ G); Perp; ColR.
     }
-    split; intro; apply between_symmetry, not_out_bet; Col; intro.
+    split; intro; apply 中间性的对称性, not_out_bet; Col; intro.
     - assert(Out C K M); [|assert(Habs := l6_4_1 K M C); destruct Habs; Between].
       apply (col_one_side_out _ D); Col.
       apply (one_side_transitivity _ _ _ N); [|Side].
@@ -1599,7 +1599,7 @@ Proof.
   destruct (l10_15 A D D B) as [C0 []]; Col.
   assert(~ Col A D C0) by (apply (one_side_not_col123 _ _ _ B); Side).
   assert_diffs.
-  destruct (segment_construction_3 D C0 A B) as [C []]; auto.
+  destruct (由一点往一方向构造等长线段_3 D C0 A B) as [C []]; auto.
   exists C.
   repeat split; Cong.
     apply (per_col _ _ C0); Col; Perp.
@@ -1608,7 +1608,7 @@ Qed.
 
 Lemma ex_saccheri : exists A B C D, Saccheri A B C D.
 Proof.
-  destruct lower_dim_ex as [A [D [E]]].
+  destruct 防降维公理_ex as [A [D [E]]].
   assert(HNCol : ~ Col A D E) by (unfold Col; assumption).
   destruct (l10_15 A D A E) as [B []]; Col.
   assert(~ Col A D B) by (apply (one_side_not_col123 _ _ _ E); Side).
@@ -2277,7 +2277,7 @@ Proof.
   assert_diffs.
   assert(CongA A B C M C B).
   { apply (l11_10 M B C M C B); Out.
-    apply l11_44_1_a; auto; apply (cong_transitivity _ _ M A); Cong.
+    apply l11_44_1_a; auto; apply (等长的传递性 _ _ M A); Cong.
   }
   assert(CongA B A C M C A).
   { apply (l11_10 M A C M C A); Out.

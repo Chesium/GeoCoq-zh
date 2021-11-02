@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Annexes.circles.
 
 Section Dedekind_circle_circle.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** This proof is inspired by Franz Rothe's proof of Theorem 8.5 in Several topics from geometry *)
 
@@ -20,12 +20,12 @@ Proof.
   exists Z : Tpoint, OnCircle Z A B /\ OnCircle Z C D).
   - intros Haux' A B C D P Q HPOn HQOn HPIn HQOut.
     assert (HQ' : exists Q', OnCircle Q' C D /\ OutCircle Q' A B /\ Col Q' A C).
-    { destruct (segment_construction A C C D) as [Q' []].
+    { destruct (由一点往一方向构造等长线段 A C C D) as [Q' []].
       exists Q'.
       repeat split; Col.
       apply le_transitivity with A Q; trivial.
       apply triangle_inequality with C; trivial.
-      apply cong_transitivity with C D; Cong.
+      apply 等长的传递性 with C D; Cong.
     }
     clear dependent Q.
     destruct HQ' as [Q [HQOn [HQOut HCol]]].
@@ -39,7 +39,7 @@ Proof.
     { intro; subst C.
       apply (not_and_lt A B A P); split; trivial.
       apply (cong2_lt__lt A B A Q); Cong.
-      apply cong_transitivity with A D; Cong.
+      apply 等长的传递性 with A D; Cong.
     }
     assert (C <> D).
       intro; treat_equalities; apply (not_and_lt A C A B); split; trivial.
@@ -63,10 +63,10 @@ Proof.
     destruct (l10_2_existence A C P) as [P' HP'].
     assert_diffs.
     apply Haux with P' Q; trivial.
-      apply cong_transitivity with C P; trivial.
-      apply cong_commutativity, (is_image_col_cong A C); Col.
+      apply 等长的传递性 with C P; trivial.
+      apply 等长的交换性, (is_image_col_cong A C); Col.
       apply cong2_lt__lt with A P A B; Cong.
-      apply cong_symmetry, cong_commutativity, (is_image_col_cong A C); Col.
+      apply 等长的对称性, 等长的交换性, (is_image_col_cong A C); Col.
     left.
     exists P; split; Side.
     apply l10_14; auto.
@@ -82,7 +82,7 @@ Proof.
   { intro; subst C.
     apply (not_and_lt A B A P); split; trivial.
     apply (cong2_lt__lt A B A Q); Cong.
-    apply cong_transitivity with A D; Cong.
+    apply 等长的传递性 with A D; Cong.
   }
   assert (P <> Q) by (intro; apply (not_and_lt A P A B); subst; split; trivial).
   assert (C <> D) by (intro; treat_equalities; auto).
@@ -107,7 +107,7 @@ Proof.
   assert (HLta : LtA A C P A C Q).
   { apply t18_19; Cong.
       intro; treat_equalities; auto.
-      apply cong_transitivity with C D; Cong.
+      apply 等长的传递性 with C D; Cong.
       apply lt_comm, lt_transitivity with A B; trivial.
   }
   assert (HNCol1 : ~ Col P Q C).
@@ -124,7 +124,7 @@ Proof.
     OnCircle X0 C D -> Out C X X0 -> OnCircle Y0 C D -> Out C Y Y0 -> Bet P X Y -> Lt A X0 A Y0).
   { intros X Y X0 Y0; intros.
     apply t18_18 with C C; Cong.
-      apply cong_transitivity with C D; Cong.
+      apply 等长的传递性 with C D; Cong.
     apply lta_comm, (conga_preserves_lta A C X A C Y).
       apply out2__conga; [apply out_trivial|apply l6_6]; auto.
       apply out2__conga; [apply out_trivial|apply l6_6]; auto.
@@ -143,7 +143,7 @@ Proof.
         apply not_bet_out; Col.
         intro; apply (lta__nlea A C P A C Q); Lea.
       - apply in_angle_line; auto.
-        apply between_symmetry, not_out_bet; Col.
+        apply 中间性的对称性, not_out_bet; Col.
         intro; apply (lta__nlea A C P A C Q); trivial.
         apply l11_31_1; auto.
     }
@@ -164,7 +164,7 @@ Proof.
     exists P.
     intros X Y [HX [X0]] [HY [Y0]].
     destruct (l5_3 P X Y Q); trivial.
-    destruct (eq_dec_points X Y).
+    destruct (两点重合的决定性 X Y).
       subst; Between.
     exfalso.
     spliter.
@@ -193,7 +193,7 @@ Proof.
     }
     assert (HNCol2 : ~ Col C Q R) by (intro; apply HNCol1; ColR).
     assert (HT : exists T, OnCircle T A B /\ Bet A Z T).
-    { destruct (eq_dec_points Z A).
+    { destruct (两点重合的决定性 Z A).
         subst; exists B; split; Circle; Between.
       destruct (onc_exists A B Z) as [T [HT1 HT2]]; auto.
       exists T; split; trivial.
@@ -210,7 +210,7 @@ Proof.
     assert (HLt : Lt C X0 C I).
     { destruct (l11_46 I Z C) as [_ HLt]; auto.
         apply (cong2_lt__lt Z C I C); trivial.
-          apply cong_transitivity with C D; Cong.
+          apply 等长的传递性 with C D; Cong.
           Cong.
     }
     assert (X0 <> I) by (intro; apply (nlt C I); subst; assumption).
@@ -222,7 +222,7 @@ Proof.
       apply acute_bet__obtuse with C; auto.
         apply l6_13_1; [apply l6_6|]; Le.
       assert_diffs; apply cong__acute; auto.
-      apply cong_transitivity with C D; Cong.
+      apply 等长的传递性 with C D; Cong.
     }
 
     assert (HX0In : InCircleS X0 A B).
@@ -231,7 +231,7 @@ Proof.
       assert (HMT : M <> T).
       { intro.
         apply (nlt Z M).
-        apply (cong2_lt__lt X0 Z I Z); trivial; [|subst M; apply cong_transitivity with T Z]; Cong.
+        apply (cong2_lt__lt X0 Z I Z); trivial; [|subst M; apply 等长的传递性 with T Z]; Cong.
       }
       apply le1234_lt__lt with A M.
       - apply triangle_inequality with Z; Cong; eBetween.
@@ -246,12 +246,12 @@ Proof.
     { apply l11_25 with X0 Z Q; try (apply out_trivial); auto.
       apply lea_in_angle.
       - apply t18_19; auto.
-          apply cong_transitivity with C D; Cong.
+          apply 等长的传递性 with C D; Cong.
           Cong.
         apply le3456_lt__lt with I Z; trivial.
         apply (l5_6 T Z Q Z); Cong.
         assert (HLe : Le A T A Q) by (apply (l5_6 A B A Q); Cong; Le).
-        destruct (eq_dec_points A Z).
+        destruct (两点重合的决定性 A Z).
           subst; Le.
         destruct (l5_5_1 A T A Q) as [M [HM1 HM2]]; trivial.
         assert (Bet A Z M) by eBetween.
@@ -297,7 +297,7 @@ Proof.
     assert (HLt : Lt C Y0 C I).
     { destruct (l11_46 I Z C) as [_ HLt]; auto.
         apply (cong2_lt__lt Z C I C); trivial.
-          apply cong_transitivity with C D; Cong.
+          apply 等长的传递性 with C D; Cong.
           Cong.
     }
     assert (Y0 <> I) by (intro; apply (nlt C I); subst; assumption).
@@ -309,7 +309,7 @@ Proof.
       apply acute_bet__obtuse with C; auto.
         apply l6_13_1; [apply l6_6|]; Le.
       assert_diffs; apply cong__acute; auto.
-      apply cong_transitivity with C D; Cong.
+      apply 等长的传递性 with C D; Cong.
     }
 
     assert (HY0OutC : OutCircleS Y0 A B).
@@ -318,7 +318,7 @@ Proof.
       assert (HTM : T <> M).
       { intro.
         apply (nlt Z M).
-        apply (cong2_lt__lt Y0 Z I Z); trivial; [|subst M; apply cong_transitivity with T Z]; Cong.
+        apply (cong2_lt__lt Y0 Z I Z); trivial; [|subst M; apply 等长的传递性 with T Z]; Cong.
       }
       apply le3456_lt__lt with A M.
       - apply (cong2_lt__lt A T A M); Cong.
@@ -334,14 +334,14 @@ Proof.
     { apply l11_25 with Y0 P Z; try (apply out_trivial); auto.
       apply l11_24, lea_in_angle.
       - apply t18_19; auto.
-          apply cong_transitivity with C D; Cong.
+          apply 等长的传递性 with C D; Cong.
           Cong.
         apply le3456_lt__lt with I Z; trivial.
         apply (l5_6 T Z P Z); Cong.
         destruct (le_bet A T A P) as [M [HM1 HM2]].
           apply (l5_6 A P A B); Cong; Le.
         assert (Bet A M Z) by eBetween.
-        destruct (eq_dec_points M A).
+        destruct (两点重合的决定性 M A).
           treat_equalities; Le.
         apply le_transitivity with M Z.
           apply bet__le2313; eBetween.
@@ -355,7 +355,7 @@ Proof.
     destruct HY as [_ [_ [_ [Y [HY1 [HY2|HY2]]]]]].
       subst; apply HNCol2; Col.
     assert (Y = R).
-      apply between_equality with P; apply between_symmetry; trivial.
+      apply between_equality with P; apply 中间性的对称性; trivial.
       apply HR; split; [Between..| |]; [eBetween|].
       exists Y0; repeat (split; Circle).
     subst; apply HNCol4; ColR.

@@ -7,7 +7,7 @@ Require Import GeoCoq.Meta_theory.Continuity.grad.
 
 Section Archimedes.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 
 (** For every m, there exists n such that A0Dm = A0An - E0En = n(A0A1 - E0E1) (m=n) *)
@@ -22,8 +22,8 @@ Proof.
   rename A into A0.
   rename B into C1.
   destruct IHHG as [A [E [HG2 [HCong2 HBet2]]]]; auto.
-  destruct (segment_construction A0 A A0 A1) as [A' [HBet3 HCong3]].
-  destruct (segment_construction E0 E E0 E1) as [E' [HBet4 HCong4]].
+  destruct (由一点往一方向构造等长线段 A0 A A0 A1) as [A' [HBet3 HCong3]].
+  destruct (由一点往一方向构造等长线段 E0 E E0 E1) as [E' [HBet4 HCong4]].
   exists A'; exists E'.
   assert(HBet5 : Bet A0 C' A').
   { assert(HBet5 : Bet A0 C A') by eBetween.
@@ -31,13 +31,13 @@ Proof.
     apply grad2__grad123 in HG2.
     apply grad__bet in HG.
     apply grad__bet in HG2.
-    elim(eq_dec_points A0 C).
+    elim(两点重合的决定性 A0 C).
       intro; treat_equalities; Between.
     intro.
-    elim(eq_dec_points C C').
+    elim(两点重合的决定性 C C').
       intro; treat_equalities; Between.
     intro.
-    elim(eq_dec_points A' C).
+    elim(两点重合的决定性 A' C).
       intro; subst A'; assert (A=C) by (apply (between_equality _ _ A0); Between); treat_equalities; Between.
     intro.
     apply l6_13_1.
@@ -51,13 +51,13 @@ Proof.
   assert (HD : Le E0 E1 A A').
     apply (l5_6 E0 E1 A1 A0); Cong; exists C1; split; Between.
   destruct HD as [D [HBet6 HCong6]].
-  apply (cong_transitivity _ _ C D).
-    apply (l2_11 _ E _ _ A); Cong; eBetween; apply cong_transitivity with E0 E1; trivial.
+  apply (等长的传递性 _ _ C D).
+    apply (两组连续三点分段等则全体等 _ E _ _ A); Cong; eBetween; apply 等长的传递性 with E0 E1; trivial.
   assert (Bet C D A') by eBetween.
   apply (l4_3 _ _ A' _ _ C); Cong; eBetween.
-  apply (cong_transitivity _ _ A0 C1); Cong.
-  apply cong_left_commutativity; apply (l4_3 _ _ A _ _ A1); Between; Cong.
-  apply cong_transitivity with E0 E1; Cong.
+  apply (等长的传递性 _ _ A0 C1); Cong.
+  apply 等长的左交换性; apply (l4_3 _ _ A _ _ A1); Between; Cong.
+  apply 等长的传递性 with E0 E1; Cong.
 Qed.
 
 (** For every n, B0Bn is lower than or equal to n times B0B1 *)
@@ -82,7 +82,7 @@ Proof.
   intros B' HSac'.
   assert (A0 <> A).
   { intro; treat_equalities.
-    assert (A0 = A1) by (apply between_identity, grad__bet, (grad2__grad123 _ _ _ B0 B1 E); auto).
+    assert (A0 = A1) by (apply 中间性的同一律, grad__bet, (grad2__grad123 _ _ _ B0 B1 E); auto).
     treat_equalities.
     apply sac_distincts in HSac1; spliter; auto.
   }
@@ -110,15 +110,15 @@ Proof.
   assert (HLe := HSac).
   apply IHHG in HLe; auto.
   clear IHHG.
-  destruct (segment_construction B0 B E E') as [C [HBet HCong]].
+  destruct (由一点往一方向构造等长线段 B0 B E E') as [C [HBet HCong]].
   assert (Cong B0 B1 B B').
     apply (cong2_sac2__cong A0 B0 B1 A1 A _ _ A'); auto; [|unfold Saccheri in *; spliter; Cong].
     apply cop_sac2__sac with A0 B0; Cop.
     intro; treat_equalities; apply sac_distincts in HSac1; spliter; auto.
   apply (le_transitivity _ _ B0 C).
     apply (triangle_inequality B0 B B' C); trivial.
-    apply cong_transitivity with E E'; Cong.
-    apply cong_transitivity with B0 B1; Cong.
+    apply 等长的传递性 with E E'; Cong.
+    apply 等长的传递性 with B0 B1; Cong.
   apply (bet2_le2__le1346 _ B _ _ E); Le.
 Qed.
 
@@ -130,8 +130,8 @@ Proof.
   intro Hlt.
   destruct Hlt as [Hle HNcong].
   destruct Hle as [D1 [Hbet Hcong]].
-  destruct (segment_construction A0 D1 A0 B0) as [C0 [Hbet2 Hcong2]].
-  destruct (segment_construction A0 C0 A0 B0) as [C [Hbet3 Hcong3]].
+  destruct (由一点往一方向构造等长线段 A0 D1 A0 B0) as [C0 [Hbet2 Hcong2]].
+  destruct (由一点往一方向构造等长线段 A0 C0 A0 B0) as [C [Hbet3 Hcong3]].
   assert(H : forall D, Grad A0 D1 D -> Lt A0 D A0 C).
   { intros D HG.
     destruct (t22_18_aux1 A0 A1 B0 B1 D1 D) as [A [E [HG2 [Hcong4 Hbet4]]]]; Between.
@@ -167,10 +167,10 @@ Proof.
     clear dependent D; clear dependent E.
     destruct (l6_11_existence A0 A0 B0 A) as [B0' [HOut2 Hcong4]];
       try (assert_diffs; intro; treat_equalities; auto).
-    destruct (segment_construction A0 B0' B0 B) as [B' [Hbet7 Hcong7]].
-    destruct (segment_construction B0' B' B A) as [A' [Hbet8 Hcong8]].
+    destruct (由一点往一方向构造等长线段 A0 B0' B0 B) as [B' [Hbet7 Hcong7]].
+    destruct (由一点往一方向构造等长线段 B0' B' B A) as [A' [Hbet8 Hcong8]].
     assert (Le A0 A A0 A'). (** A0A' = A0B0 + B0B + BA *)
-    { destruct (segment_construction A0 B0' B0 A) as [B'' [Hbet9 Hcong9]].
+    { destruct (由一点往一方向构造等长线段 A0 B0' B0 A) as [B'' [Hbet9 Hcong9]].
       apply (le_transitivity _ _ A0 B'').
         apply (triangle_inequality_2 _ B0 _ _ B0'); Cong.
       apply (bet2_le2__le1346 _ B0' _ _ B0'); Le.
@@ -187,11 +187,11 @@ Proof.
       apply (outer_transitivity_between _ _ B'); Between.
     apply (le1234_lt__lt _ _ A0 Q').
       apply (bet2_le2__le1245 _ _ A' _ _ A); eBetween.
-      apply cong__le; apply (cong_transitivity _ _ B0 B); Cong.
+      apply cong__le; apply (等长的传递性 _ _ B0 B); Cong.
     assert (Cong B0' Q' A0 B0).
-    { apply (cong_transitivity _ _ A B); Cong.
-      apply (cong_transitivity _ _ A' B'); Cong.
-      assert(Hcong10 : Cong B0' B' A' Q') by (apply (cong_transitivity _ _ B0 B); auto).
+    { apply (等长的传递性 _ _ A B); Cong.
+      apply (等长的传递性 _ _ A' B'); Cong.
+      assert(Hcong10 : Cong B0' B' A' Q') by (apply (等长的传递性 _ _ B0 B); auto).
       elim(bet_dec B0' Q' B').
         intro; apply (l4_3 _ _ B' _ _ Q'); Cong; eBetween.
       intro HNBet.
@@ -203,13 +203,13 @@ Proof.
       assert (Hbet11 : Bet B0' B' Q').
         apply out2__bet; auto.
         apply not_bet_out; Col.
-      apply (l2_11 _ B' _ _ Q'); Cong; eBetween.
+      apply (两组连续三点分段等则全体等 _ B' _ _ Q'); Cong; eBetween.
     }
     assert (Hbet10 : Bet A0 D1 C) by eBetween.
     apply (cong2_lt__lt D1 C A0 C); Cong; [split|].
       destruct (l5_12_a A0 D1 C); auto.
       intro; assert (D1 = A0) by (apply (between_cong C); Between; Cong); treat_equalities; Cong.
-    apply (l2_11 _ C0 _ _ B0'); eBetween; apply cong_transitivity with A0 B0; Cong.
+    apply (两组连续三点分段等则全体等 _ C0 _ _ B0'); eBetween; apply 等长的传递性 with A0 B0; Cong.
   }
   unfold archimedes_axiom in *.
   specialize Harchi with A0 D1 A0 C.
@@ -287,7 +287,7 @@ Proof.
   - split; apply lt__le; [apply (cong2_lt__lt N C B L); Cong | ].
       apply lta_os_per2__lt; Perp; Side; apply lta_left_comm, acute_per__lta; auto.
     apply lt_left_comm, lta_os_per2__lt; Side; apply acute_per__lta; auto.
-  - split; apply cong__le; [apply cong_transitivity with B L; trivial | apply cong_left_commutativity];
+  - split; apply cong__le; [apply 等长的传递性 with B L; trivial | apply 等长的左交换性];
     apply conga_per2_os__cong; Perp; Side; apply l11_16; Perp.
 Qed.
 
@@ -342,7 +342,7 @@ Proof.
     exists B0; exists C0; repeat (split; Col); apply gradexp2_init.
   rename C into E; rename C' into E'.
   destruct IHHGE as [B [C [HGE2 [HPerp HCol]]]]; trivial.
-  destruct (segment_construction A B A B) as [B' [HBet HCong]].
+  destruct (由一点往一方向构造等长线段 A B A B) as [B' [HBet HCong]].
   exists B'.
   destruct (l8_18_existence A C0 B') as [C' [HCol' HPerp']].
     apply gradexp2__gradexp123, gradexp__grad, grad__bet in HGE2; intro; assert_diffs; apply HNCol; ColR. 
@@ -356,7 +356,7 @@ Proof.
   assert (HAC0 : A <> C0) by (intro; subst C0; apply (acute_not_per D A B0); Perp).
   assert (HNCol0 : ~ Col A B0 C0) by (intro; apply HNCol; ColR).
   assert (HPerp0 := perp_col A D B0 C0 C0 HAC0 HPerpD HColD).
-  elim (eq_dec_points P Q); intro HPQ.
+  elim (两点重合的决定性 P Q); intro HPQ.
   { subst Q; exists C0; exists B0; split; assert_diffs.
       apply l6_6, acute_col_perp__out with B0; trivial; apply acute_sym; trivial.
     split.
@@ -364,7 +364,7 @@ Proof.
     repeat split; Perp; Le.
     intro; treat_equalities; auto.
   }
-  destruct (segment_construction P Q P Q) as [Q' [HBetQ HCongQ]].
+  destruct (由一点往一方向构造等长线段 P Q P Q) as [Q' [HBetQ HCongQ]].
   destruct (reach__ex_gradexp_le B0 C0 P Q') as [E [HGE HLe]].
     assert_diffs; apply Harchi; trivial.
   destruct (t22_24_aux1 A B0 C0 E) as [B [C [HGE2 [HPerp HCol]]]]; trivial.

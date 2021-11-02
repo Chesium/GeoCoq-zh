@@ -3,7 +3,7 @@ Require Export GeoCoq.Tarski_dev.Ch14_sum.
 Section T14_prod.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma prod_to_prodp : forall O E E' A B C, Prod O E E' A B C -> Prodp O E E' A B C.
 Proof.
@@ -36,7 +36,7 @@ Proof.
       subst E'.
       contradiction.
       intro.
-      induction(eq_dec_points O A).
+      induction(两点重合的决定性 O A).
         subst A.
         induction H8.
           apply H8.
@@ -216,7 +216,7 @@ Proof.
     repeat split; Col.
     assert(HH:=(grid_not_par O E E' H)).
     spliter.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       exists O.
       repeat split; try (apply pj_trivial).
@@ -404,7 +404,7 @@ Proof.
     unfold Prod in H.
     spliter.
     ex_and H0 B'.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       right.
       assumption.
     left.
@@ -470,14 +470,14 @@ Proof.
     assert(HH:=grid_not_par O E E' H ).
     spliter.
     ex_and H1 B'.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       assert(Prod O E E' A O O).
         apply(prod_0_r); Col.
       assert(HH:= prod_uniqueness O E E' A O C O HP H13).
       subst C.
       apply prod_0_r; Col.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(Prod O E E' O B O).
         apply(prod_0_l); Col.
@@ -532,7 +532,7 @@ Proof.
       apply H.
       ColR.
     clear H12.
-    induction(eq_dec_points B E).
+    induction(两点重合的决定性 B E).
       subst B.
       assert(B'' = E'').
         induction H21.
@@ -596,7 +596,7 @@ Proof.
         split; Col.
       apply H.
       ColR.
-    induction(eq_dec_points A E).
+    induction(两点重合的决定性 A E).
       subst A.
       assert(Prod O E E' E B B).
         apply prod_1_l; Col.
@@ -612,7 +612,7 @@ Proof.
       apply par_symmetry.
       apply(par_col_par _ _ _ B); Par.
       Col.
-    induction(eq_dec_points E' E'').
+    induction(两点重合的决定性 E' E'').
       subst E''.
       assert(Par B B' B B'').
         apply (par_trans _ _ E E'); Par.
@@ -769,7 +769,7 @@ Proof.
     spliter.
     unfold Ar1 in H0.
     spliter.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(A' = O).
         eapply (pj_uniqueness O E E' O); Col.
@@ -791,7 +791,7 @@ Proof.
         ColR.
       subst C'.
       apply prod_0_l; Col.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       assert(B' = O).
         apply (pj_uniqueness O E E' O); Col.
@@ -813,11 +813,11 @@ Proof.
         ColR.
       subst C'.
       apply prod_0_r; Col.
-    induction(eq_dec_points C O).
+    induction(两点重合的决定性 C O).
       subst C.
       apply prod_null in H.
       induction H; contradiction.
-    induction(eq_dec_points A' O).
+    induction(两点重合的决定性 A' O).
       subst A'.
       apply False_ind.
       induction H1.
@@ -829,7 +829,7 @@ Proof.
         apply H4.
         ColR.
       contradiction.
-    induction(eq_dec_points B' O).
+    induction(两点重合的决定性 B' O).
       subst B'.
       apply False_ind.
       induction H2.
@@ -841,7 +841,7 @@ Proof.
         apply H4.
         ColR.
       contradiction.
-    induction(eq_dec_points C' O).
+    induction(两点重合的决定性 C' O).
       subst C'.
       apply False_ind.
       induction H3.
@@ -922,7 +922,7 @@ Proof.
     unfold Ar2 in *.
     spliter.
     clean_duplicated_hyps.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(HH:=prod_0_l O E E' B H2 H12).
       assert(AB = O).
@@ -933,7 +933,7 @@ Proof.
         apply(prod_uniqueness O E E' O BC); assumption.
       subst ABC.
       apply prod_0_l; assumption.
-    induction(eq_dec_points B  O).
+    induction(两点重合的决定性 B  O).
       subst B.
       assert(HH:=prod_0_r O E E' A H2  H11).
       assert(AB = O).
@@ -947,7 +947,7 @@ Proof.
         apply(prod_uniqueness O E E' A O); assumption.
       subst ABC.
       apply prod_0_l; assumption.
-    induction(eq_dec_points C O).
+    induction(两点重合的决定性 C O).
       subst C.
       assert(HH:=prod_0_r O E E' B H2  H12).
       assert(BC = O).
@@ -1093,7 +1093,7 @@ Proof.
     unfold Ar2 in *.
     spliter.
     clean_duplicated_hyps.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(HH:=prod_0_l O E E' B H2 H12).
       assert(AB = O).
@@ -1104,7 +1104,7 @@ Proof.
         apply(prod_uniqueness O E E' O C); assumption.
       subst ABC.
       apply prod_0_l; assumption.
-    induction(eq_dec_points B  O).
+    induction(两点重合的决定性 B  O).
       subst B.
       assert(HH:=prod_0_l O E E' C H2  H9).
       assert(BC = O).
@@ -1118,7 +1118,7 @@ Proof.
         apply(prod_uniqueness O E E' O C); assumption.
       subst ABC.
       apply prod_0_r; assumption.
-    induction(eq_dec_points C O).
+    induction(两点重合的决定性 C O).
       subst C.
       assert(HH:=prod_0_r O E E' B H2  H12).
       assert(ABC=O).
@@ -1282,21 +1282,21 @@ Proof.
       tauto.
     unfold Ar2 in H0.
     spliter.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(HH:=prod_0_l O E E' B H0 H2).
       assert(C = O).
         apply(prod_uniqueness O E E' O B); auto.
       subst C.
       eapply (prod_0_r O E E'); Col.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       assert(HH:=prod_0_r O E E' A H0 H1).
       assert(C = O).
         apply(prod_uniqueness O E E' A O); auto.
       subst C.
       apply (prod_0_l O E E'); Col.
-    induction(eq_dec_points C O).
+    induction(两点重合的决定性 C O).
       subst C.
       apply prod_null in H.
       induction H;  contradiction.
@@ -1407,7 +1407,7 @@ Proof.
     unfold Ar2 in *.
     spliter.
     clean_duplicated_hyps.
-    induction(eq_dec_points A' O).
+    induction(两点重合的决定性 A' O).
       subst A'.
       assert(C = O).
         assert(HH:= prod_0_l O E E' B H0 H8).
@@ -1463,7 +1463,7 @@ Proof.
       apply par_distincts in H11.
       tauto.
     subst B'.
-    induction(eq_dec_points C O).
+    induction(两点重合的决定性 C O).
       subst C.
       apply prod_null in HP1.
       apply prod_null in HP2.
@@ -1520,7 +1520,7 @@ Proof.
       apply(proj_preserves_sum O E E' B C D B' C' D'); auto.
       repeat split; Col.
     (* case A = O) *)
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(HH1:= prod_0_l O E E' B H11 H13).
       assert( AB = O).
@@ -1579,7 +1579,7 @@ Proof.
     spliter.
     clear H0.
     assert(HH:= prod_1_l O E E' B H H2).
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       right; assumption.
     left.
     apply (prod_uniquenessA O E E' A E B B H0); assumption.
@@ -1686,7 +1686,7 @@ Lemma change_grid_prod1 : forall O E E' B C O' A' B' C',
   Prod O' E' E A' B' C'.
 Proof.
     intros.
-    induction (eq_dec_points B O).
+    induction (两点重合的决定性 B O).
       subst B.
       apply prod_comm.
       unfold Ar1 in *.
@@ -1696,7 +1696,7 @@ Proof.
         repeat split; Col.
       apply prod_comm.
       assumption.
-    induction(eq_dec_points C O).
+    induction(两点重合的决定性 C O).
       subst C.
       apply prod_null in H6.
       induction H6.
@@ -1795,10 +1795,10 @@ Lemma change_grid_prod : forall O E E' A B C O' A' B' C',
   Prod O' E' E A' B' C'.
 Proof.
     intros.
-    induction (eq_dec_points A O).
+    induction (两点重合的决定性 A O).
       subst A.
       apply(change_grid_prod_l_O O E E' B C O' A' B' C'); auto.
-    induction (eq_dec_points B O).
+    induction (两点重合的决定性 B O).
       subst B.
       apply prod_comm.
       unfold Ar1 in *.
@@ -1808,11 +1808,11 @@ Proof.
         repeat split; Col.
       apply prod_comm.
       assumption.
-    induction(eq_dec_points C O).
+    induction(两点重合的决定性 C O).
       subst C.
       apply prod_null in H6.
       induction H6;contradiction.
-    induction(eq_dec_points A E).
+    induction(两点重合的决定性 A E).
       subst A.
       apply (change_grid_prod1 O E E' B C); auto.
     rename H10 into ANE.
@@ -1828,7 +1828,7 @@ Proof.
     assert(E''<> O).
       intro.
       subst E''.
-      apply between_identity in H10.
+      apply 中间性的同一律 in H10.
       subst O'.
       apply H.
       exists O.
@@ -1837,7 +1837,7 @@ Proof.
       intro.
       apply H.
       exists O'.
-      apply bet_col in H10.
+      apply 中间性转共线 in H10.
       split; Col.
       ColR.
     assert(HH:= prod_y_axis_change O E E' E'' A B C  HP H19).
@@ -2412,7 +2412,7 @@ Proof.
     spliter.
     unfold Ar2_4 in H.
     spliter.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(HH:= prod_0_l O E E' B H H4).
       assert(X=O).
@@ -2429,7 +2429,7 @@ Proof.
       assert(HG:=grid_not_par O E E' H).
       spliter.
       ColR.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       assert(HH:= prod_0_r O E E' A H H3).
       assert(X=O).
@@ -2446,7 +2446,7 @@ Proof.
       assert(HG:=grid_not_par O E E' H).
       spliter.
       ColR.
-    induction(eq_dec_points D O).
+    induction(两点重合的决定性 D O).
       subst D.
       assert(HH:= prod_0_r O E E' C H H5).
       assert(X=O).
@@ -2630,7 +2630,7 @@ Proof.
     spliter.
     assert(HG:= grid_not_par O E E' H).
     spliter.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(D = O).
         apply(prod_O_l_eq O C E' B); auto.
@@ -2639,7 +2639,7 @@ Proof.
       split.
         apply(prod_0_l O E E' B); Col.
       apply(prod_0_r O E E' C); Col.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       assert(D = O).
         apply(prod_O_r_eq O C E' A); auto.
@@ -2648,7 +2648,7 @@ Proof.
       split.
         apply(prod_0_r O E E' A); Col.
       apply(prod_0_r O E E' C); Col.
-    induction(eq_dec_points D O).
+    induction(两点重合的决定性 D O).
       subst D.
       exists O.
       apply prod_null in H1.
@@ -2835,7 +2835,7 @@ Proof.
     spliter.
     assert(HG:= grid_not_par O E E' H).
     spliter.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(X = O).
         apply(prod_O_l_eq O E E' B); assumption.
@@ -2868,7 +2868,7 @@ Proof.
         apply H.
         ColR.
       ColR.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       assert(X = O).
         apply(prod_O_r_eq O E E' A); assumption.
@@ -2901,7 +2901,7 @@ Proof.
         apply H.
         ColR.
       ColR.
-    induction(eq_dec_points C O).
+    induction(两点重合的决定性 C O).
       subst C.
       assert(X = O).
         apply(prod_O_l_eq O E E' D); assumption.
@@ -2934,7 +2934,7 @@ Proof.
         apply H.
         ColR.
       ColR.
-    induction(eq_dec_points D O).
+    induction(两点重合的决定性 D O).
       subst D.
       assert(X = O).
         apply(prod_O_r_eq O E E' C); assumption.

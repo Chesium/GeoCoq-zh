@@ -4,7 +4,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section playfair_universal_posidonius_postulate.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma playfair__universal_posidonius_postulate : playfair_s_postulate -> universal_posidonius_postulate.
 Proof.
@@ -20,12 +20,12 @@ assert (HCong : forall A3 B3,
                   Cong A3 B3 A1' B1);
 [|assert (HCong1 := HCong A3 B3 HC1 HC2 HPerp1);
   assert (HCong2 := HCong A4 B4 HC3 HC4 HPerp2);
-  apply cong_transitivity with A1' B1; Cong].
+  apply 等长的传递性 with A1' B1; Cong].
 clear HC1; clear HC2; clear HC3; clear HC4; clear HPerp1; clear HPerp2;
 clear A3; clear A4; clear B3; clear B4; intros A3 B3 HC1 HC2 HPerp1;
 rename HC5 into HC3; rename HPerp3 into HPerp2.
-destruct (segment_construction_2 B3 A3 A1' B1) as [B3' [HC4 HCong]];
-[assert_diffs; auto|]; elim (eq_dec_points A1' A3); intro HD; treat_equalities.
+destruct (由一点往一方向构造等长线段_2 B3 A3 A1' B1) as [B3' [HC4 HCong]];
+[assert_diffs; auto|]; elim (两点重合的决定性 A1' A3); intro HD; treat_equalities.
   {
   assert (HC1 : Col A1' B1 B3).
     apply cop_perp2__col with A1 A2; Perp.
@@ -33,7 +33,7 @@ destruct (segment_construction_2 B3 A3 A1' B1) as [B3' [HC4 HCong]];
     apply par__coplanar, HPar.
   assert (B1 = B3); treat_equalities; Cong.
   assert_diffs; apply l6_21 with B1 B2 A1' B1; Col.
-  elim (eq_dec_points A1' A1); intro HD1.
+  elim (两点重合的决定性 A1' A1); intro HD1.
    treat_equalities; apply par_strict_not_col_1 with A2;
    apply par_strict_col2_par_strict with A1' A2; Col; Par.
    apply par_strict_not_col_1 with A1;
@@ -50,7 +50,7 @@ destruct (segment_construction_2 B3 A3 A1' B1) as [B3' [HC4 HCong]];
     apply one_side_transitivity with B3.
 
       {
-      elim (eq_dec_points B1 B3); intro HD';
+      elim (两点重合的决定性 B1 B3); intro HD';
       [treat_equalities; apply one_side_reflexivity; apply par_strict_not_col_1 in HParS;
        intro; apply HParS; ColR|].
       apply (col2_os__os A1 A2); Col.

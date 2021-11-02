@@ -4,7 +4,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section par_perp_perp_TCP.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma inter_dec_plus_par_perp_perp_imply_triangle_circumscription :
   decidability_of_intersection ->
@@ -23,7 +23,7 @@ elim HInter; clear HInter; intro HInter.
 
     exists CC; split.
 
-      elim (eq_dec_points CC C1); intro HEq; try subst.
+      elim (两点重合的决定性 CC C1); intro HEq; try subst.
 
         apply perp_bisect_cong_1 with C2; assumption.
 
@@ -40,7 +40,7 @@ elim HInter; clear HInter; intro HInter.
 
       split.
 
-        elim (eq_dec_points CC B1); intro HEq; try subst.
+        elim (两点重合的决定性 CC B1); intro HEq; try subst.
 
           apply perp_bisect_cong_1 with B2; assumption.
 

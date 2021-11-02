@@ -2,7 +2,7 @@ Require Export GeoCoq.Tarski_dev.Ch04_col.
 
 Section T5.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma l5_1 : forall A B C D,
   A <> B -> Bet A B C -> Bet A B D -> Bet A C D \/ Bet A D C.
@@ -13,29 +13,29 @@ Proof.
     prolong A C' B' C B.
     prolong A D' B'' D B.
     assert (Cong B C' B'' C).
-      apply (l2_11 B D C' B'' D' C).
+      apply (两组连续三点分段等则全体等 B D C' B'' D' C).
         apply between_exchange3 with A; Between.
         apply between_inner_transitivity with A; Between.
         Cong.
-      apply cong_transitivity with C D; Cong.
+      apply 等长的传递性 with C D; Cong.
     assert (Cong B B' B'' B).
       {
-      apply (l2_11 B C' B' B'' C B); Cong.
+      apply (两组连续三点分段等则全体等 B C' B' B'' C B); Cong.
 
         {
         assert (Bet A B C'); [|eBetween].
-        induction (eq_dec_points B D); [treat_equalities; auto|].
-        apply between_symmetry.
+        induction (两点重合的决定性 B D); [treat_equalities; auto|].
+        apply 中间性的对称性.
         apply outer_transitivity_between2 with D; eBetween.
         }
 
         {
-        induction (eq_dec_points C D'); [treat_equalities; eBetween|].
+        induction (两点重合的决定性 C D'); [treat_equalities; eBetween|].
         apply outer_transitivity_between2 with D'; eBetween.
         }
       }
     assert(B'' =  B').
-      apply (construction_uniqueness A B B B''); Cong.
+      apply (点的唯一构造 A B B B''); Cong.
         apply between_exchange4 with D'; Between;
         apply between_exchange4 with C; Between.
       apply between_exchange4 with C'; Between;
@@ -45,21 +45,21 @@ Proof.
     assert (FSC B C D' C' B' C' D C).
       repeat split; Cong.
         left; apply between_exchange3 with A; Between.
-        apply (l2_11 B C D' B' C' D); Cong.
-          apply between_symmetry.
+        apply (两组连续三点分段等则全体等 B C D' B' C' D); Cong.
+          apply 中间性的对称性.
           apply between_exchange3 with A; assumption.
-        apply cong_transitivity with C D; Cong.
-      apply cong_transitivity with C D; Cong.
-    induction (eq_dec_points B C).
+        apply 等长的传递性 with C D; Cong.
+      apply 等长的传递性 with C D; Cong.
+    induction (两点重合的决定性 B C).
       subst C; auto.
     assert (Cong D' C' D C) by (eapply l4_16; try apply H13; assumption).
-    assert (exists E, Bet C E C' /\ Bet D E D') by (apply inner_pasch with A; Between).
+    assert (exists E, Bet C E C' /\ Bet D E D') by (apply 帕施公理 with A; Between).
     ex_and H16 E.
-    assert (IFSC D E D' C D E D' C') by (unfold IFSC; repeat split; Cong; apply cong_transitivity with C D; Cong).
-    assert (IFSC C E C' D C E C' D') by (unfold IFSC; repeat split; Cong; apply cong_transitivity with C D; Cong).
+    assert (IFSC D E D' C D E D' C') by (unfold IFSC; repeat split; Cong; apply 等长的传递性 with C D; Cong).
+    assert (IFSC C E C' D C E C' D') by (unfold IFSC; repeat split; Cong; apply 等长的传递性 with C D; Cong).
     assert (Cong E C E C') by (eapply l4_2; try apply H18; auto).
     assert (Cong E D E D') by (eapply l4_2; try apply H19; auto).
-    induction (eq_dec_points C C').
+    induction (两点重合的决定性 C C').
       subst C'; right; assumption.
     show_distinct C D'.
       auto.
@@ -68,24 +68,24 @@ Proof.
     prolong P R Q R P.
     assert (FSC D' C R P P C E D').
       repeat split; Col; Cong.
-      apply l2_11 with C C; Cong.
+      apply 两组连续三点分段等则全体等 with C C; Cong.
       apply between_inner_transitivity with C'; Between.
     assert (Cong R P E D') by (eauto using l4_16).
     assert (Cong R Q E D).
-      eapply cong_transitivity.
-        apply cong_transitivity with R P; Cong.
-      apply cong_transitivity with E D'; Cong.
+      eapply 等长的传递性.
+        apply 等长的传递性 with R P; Cong.
+      apply 等长的传递性 with E D'; Cong.
     assert (FSC D' E D C P R Q C).
       repeat split; Col; Cong.
-      eapply (l2_11 D' E D P R Q); Between; Cong.
+      eapply (两组连续三点分段等则全体等 D' E D P R Q); Between; Cong.
     assert (Cong D C Q C).
-      induction (eq_dec_points D' E).
+      induction (两点重合的决定性 D' E).
         unfold IFSC, Cong_3 in *; spliter; treat_equalities; Cong.
       apply l4_16 with D' E P R; assumption.
     assert (Cong C P C Q).
       unfold FSC, Cong_3 in *; spliter.
-      apply cong_transitivity with C D; Cong.
-      apply cong_transitivity with C D'; Cong.
+      apply 等长的传递性 with C D; Cong.
+      apply 等长的传递性 with C D'; Cong.
     show_distinct R C.
       auto.
     assert (Cong D' P D' Q) by (apply (l4_17 R C); unfold Col; Between; Cong).
@@ -117,7 +117,7 @@ Proof.
     right; eBetween.
 Qed.
 
-Lemma segment_construction_2 :
+Lemma 由一点往一方向构造等长线段_2 :
   forall A Q B C, A <> Q -> exists X, (Bet Q A X \/ Bet Q X A) /\ Cong Q X B C.
 Proof.
     intros.
@@ -169,7 +169,7 @@ Proof.
     exists x.
     split.
       assumption.
-    eapply l2_11;eauto.
+    eapply 两组连续三点分段等则全体等;eauto.
 Qed.
 
 Lemma l5_5_2 : forall A B C D,
@@ -197,8 +197,8 @@ Proof.
     split.
       assumption.
     unfold Cong_3 in *; spliter.
-    apply cong_transitivity with A B; Cong.
-    apply cong_transitivity with C y; assumption.
+    apply 等长的传递性 with A B; Cong.
+    apply 等长的传递性 with C y; assumption.
 Qed.
 
 Lemma le_reflexivity : forall A B, Le A B A B.
@@ -220,7 +220,7 @@ Proof.
     exists P.
     split.
       eBetween.
-    unfold Cong_3 in H4; spliter; apply cong_transitivity with C y; Cong.
+    unfold Cong_3 in H4; spliter; apply 等长的传递性 with C y; Cong.
 Qed.
 
 Lemma between_cong : forall A B C, Bet A C B -> Cong A C A B -> C = B.
@@ -276,14 +276,14 @@ Lemma cong_dec : forall A B C D,
   Cong A B C D \/ ~ Cong A B C D.
 Proof.
     intros.
-    elim (eq_dec_points A B); intro; subst; elim (eq_dec_points C D); intro; subst.
+    elim (两点重合的决定性 A B); intro; subst; elim (两点重合的决定性 C D); intro; subst.
     left; Cong.
-    right; intro; apply H; apply cong_identity with B; Cong.
-    right; intro; apply H; apply cong_identity with D; Cong.
-    elim (segment_construction_2 B A C D).
+    right; intro; apply H; apply 等长的同一性 with B; Cong.
+    right; intro; apply H; apply 等长的同一性 with D; Cong.
+    elim (由一点往一方向构造等长线段_2 B A C D).
     intros D' HD'.
     spliter.
-    elim (eq_dec_points B D');intro.
+    elim (两点重合的决定性 B D');intro.
     subst; left; assumption.
     right; intro.
     assert (Cong A D' A B) by CongR.
@@ -298,11 +298,11 @@ Qed.
 Lemma bet_dec : forall A B C, Bet A B C  \/  ~ Bet A B C.
 Proof.
     intros.
-    elim (segment_construction A B B C); intros C' HC'.
+    elim (由一点往一方向构造等长线段 A B B C); intros C' HC'.
     spliter.
-    elim (eq_dec_points C C'); intro.
+    elim (两点重合的决定性 C C'); intro.
     subst; tauto.
-    elim (eq_dec_points A B);intro.
+    elim (两点重合的决定性 A B);intro.
     left; subst; Between.
     right; intro; apply H1; apply between_cong_3 with A B; Cong.
 Qed.
@@ -326,9 +326,9 @@ Qed.
 Lemma le_cases : forall A B C D, Le A B C D \/ Le C D A B.
 Proof.
     intros.
-    induction(eq_dec_points A B).
+    induction(两点重合的决定性 A B).
       subst B; left; apply le_trivial.
-    assert (exists X : Tpoint, (Bet A B X \/ Bet A X B) /\ Cong A X C D) by (eapply (segment_construction_2 B A C D);auto).
+    assert (exists X : Tpoint, (Bet A B X \/ Bet A X B) /\ Cong A X C D) by (eapply (由一点往一方向构造等长线段_2 B A C D);auto).
     ex_and H0 X.
     induction H0.
       left; apply l5_5_2; exists X; split; assumption.
@@ -454,7 +454,7 @@ Proof.
       assumption.
     intro.
     apply H0.
-    apply cong_right_commutativity.
+    apply 等长的右交换性.
     assumption.
 Qed.
 
@@ -467,11 +467,11 @@ Proof.
       unfold Le in *.
       ex_and H P.
       exists P.
-      apply cong_left_commutativity in H1.
+      apply 等长的左交换性 in H1.
       split; assumption.
     intro.
     apply H0.
-    apply cong_left_commutativity.
+    apply 等长的左交换性.
     assumption.
 Qed.
 
@@ -516,8 +516,8 @@ Proof.
   apply (l5_6 A B C D); auto.
   intro.
   apply HNCong.
-  apply (cong_transitivity _ _ A' B'); auto.
-  apply (cong_transitivity _ _ C' D'); Cong.
+  apply (等长的传递性 _ _ A' B'); auto.
+  apply (等长的传递性 _ _ C' D'); Cong.
 Qed.
 
 Lemma fourth_point : forall A B C P, A <> B -> B <> C -> Col A B P -> Bet A B C ->
@@ -556,14 +556,14 @@ Proof.
       unfold Le.
       exists B; split.
         assumption.
-      apply cong_reflexivity.
+      apply 等长的自反性.
     apply le_comm.
     unfold Le.
     exists B.
     split.
-      apply between_symmetry.
+      apply 中间性的对称性.
       assumption.
-    apply cong_reflexivity.
+    apply 等长的自反性.
 Qed.
 
 Lemma bet__le1213 : forall A B C, Bet A B C -> Le A B A C.
@@ -610,15 +610,15 @@ Proof.
         assumption.
       assert(C = B).
         eapply between_cong.
-          apply between_symmetry.
+          apply 中间性的对称性.
           apply H.
-        apply cong_symmetry.
+        apply 等长的对称性.
         assumption.
       subst B.
-      apply between_trivial.
+      apply ABB中间性.
     assert(Le B A B C /\ Le A C B C).
       apply l5_12_a.
-        apply between_symmetry.
+        apply 中间性的对称性.
         assumption.
     spliter.
     assert(Cong B C A C).
@@ -628,12 +628,12 @@ Proof.
     assert(A = B).
       eapply between_cong.
         apply H.
-      apply cong_symmetry.
-      apply cong_commutativity.
+      apply 等长的对称性.
+      apply 等长的交换性.
       assumption.
     subst A.
-    apply between_symmetry.
-    apply between_trivial.
+    apply 中间性的对称性.
+    apply ABB中间性.
 Qed.
 
 Lemma bet_le_eq : forall A B C, Bet A B C -> Le A C B C -> A = B.
@@ -643,9 +643,9 @@ Proof.
       eapply l5_5_2.
       exists A.
       split.
-        apply between_symmetry.
+        apply 中间性的对称性.
         assumption.
-      apply cong_reflexivity.
+      apply 等长的自反性.
     assert(Cong A C B C).
       apply le_anti_symmetry.
         assumption.
@@ -653,10 +653,10 @@ Proof.
       assumption.
     apply sym_equal.
     eapply between_cong.
-      apply between_symmetry.
+      apply 中间性的对称性.
       apply H.
-    apply cong_commutativity.
-    apply cong_symmetry.
+    apply 等长的交换性.
+    apply 等长的对称性.
     assumption.
 Qed.
 
@@ -681,7 +681,7 @@ Proof.
       assumption.
     intro.
     apply H0.
-    apply cong_symmetry.
+    apply 等长的对称性.
     assumption.
 Qed.
 
@@ -797,21 +797,21 @@ Qed.
 Lemma bet2_le2__le : forall O o A B a b, Bet a o b -> Bet A O B -> Le o a O A -> Le o b O B -> Le a b A B.
 Proof.
 intros.
-induction(eq_dec_points A O).
+induction(两点重合的决定性 A O).
 treat_equalities; auto.
 assert (o=a). 
 apply le_zero with A;auto.
 subst;auto.
-induction(eq_dec_points B O).
+induction(两点重合的决定性 B O).
 treat_equalities;auto.
 assert (o=b). 
 apply le_zero with B;auto.
 subst;auto using le_left_comm, le_right_comm.
 
 
-assert(HH:= segment_construction A O b o).
+assert(HH:= 由一点往一方向构造等长线段 A O b o).
 ex_and HH b'.
-assert(HH:= segment_construction B O a o).
+assert(HH:= 由一点往一方向构造等长线段 B O a o).
 ex_and HH a'.
 
 unfold Le in H1.
@@ -819,7 +819,7 @@ ex_and H1 a''.
 
 assert(a' = a'').
 {
-  apply(construction_uniqueness B O a o a' a'' H4);
+  apply(点的唯一构造 B O a o a' a'' H4);
   eBetween.
   Cong.
 }
@@ -837,7 +837,7 @@ ex_and H2 b''.
 
 assert(b' = b'').
 {
-  apply(construction_uniqueness A O b o b' b'' H3);
+  apply(点的唯一构造 A O b o b' b'' H3);
   eBetween.
   Cong.
 }
@@ -857,7 +857,7 @@ assert(Le a' b' A B).
 }
 
 apply(l5_6 a' b' A B a b A B); Cong.
-apply (l2_11 a' O b' a o b);
+apply (两组连续三点分段等则全体等 a' O b' a o b);
 eBetween; Cong.
 Qed.
 

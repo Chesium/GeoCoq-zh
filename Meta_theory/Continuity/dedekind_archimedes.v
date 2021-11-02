@@ -3,16 +3,16 @@ Require Import GeoCoq.Tarski_dev.Ch07_midpoint.
 
 Section Dedekind_archimedes.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma archimedes_aux : (forall A B C, Out A B C -> Reach A B A C) -> archimedes_axiom.
 Proof.
   intros Haux A B C D HAB.
-  destruct (eq_dec_points C D).
+  destruct (两点重合的决定性 C D).
     subst; exists B.
     split; Le.
     apply grad_init.
-  destruct (segment_construction_3 A B C D) as [E [HOut HCong]]; auto.
+  destruct (由一点往一方向构造等长线段_3 A B C D) as [E [HOut HCong]]; auto.
   destruct (Haux A B E HOut) as [B' [HGrad HLe]]; trivial.
   exists B'.
   split; trivial.
@@ -69,13 +69,13 @@ Proof.
       - apply HNReach0; exists B; split; trivial.
         exists X0; split; Cong.
         apply between_inner_transitivity with X; Between.
-        apply between_symmetry, l6_13_1; trivial.
+        apply 中间性的对称性, l6_13_1; trivial.
         apply l6_6; trivial.
       - absurd (X = X0).
           assert_diffs; auto.
         apply between_equality with B.
           apply l6_13_1; trivial.
-        apply between_symmetry, HX; [right|]; split; trivial.
+        apply 中间性的对称性, HX; [right|]; split; trivial.
           apply out_trivial; auto.
           exists B; split; Le.
         apply l6_7 with X; trivial.
@@ -85,27 +85,27 @@ Proof.
     }
     intro HReach.
     destruct HReach as [B' [HGrad' HLe]].
-    destruct (segment_construction A B' A B) as [B1' [HBet' HCong']].
+    destruct (由一点往一方向构造等长线段 A B' A B) as [B1' [HBet' HCong']].
     apply HAbs; exists B1'; split.
       apply grad_stab with B'; Cong.
     apply bet2_le2__le1346 with X0 B'; Le; Between.
-    apply cong__le, cong_transitivity with A B; Cong.
+    apply cong__le, 等长的传递性 with A B; Cong.
 
   - intro HReach.
-    destruct (segment_construction_3 X C A B) as [X1 [HOut' HCong]]; auto.
+    destruct (由一点往一方向构造等长线段_3 X C A B) as [X1 [HOut' HCong]]; auto.
       intro; subst; contradiction.
     assert (HBet1 : Bet A X X1).
-      apply between_symmetry, bet_out__bet with C; eBetween.
+      apply 中间性的对称性, bet_out__bet with C; eBetween.
     apply (not_bet_and_out X1 X C).
     split; [|apply l6_6; trivial].
     apply HX; [right|]; split; trivial; [| |apply bet_out; auto].
       assert_diffs; apply l6_7 with X; Out.
     destruct HReach as [B' [HGrad' HLe]].
-    destruct (segment_construction A B' A B) as [B1' [HBet' HCong']].
+    destruct (由一点往一方向构造等长线段 A B' A B) as [B1' [HBet' HCong']].
     exists B1'; split.
       apply grad_stab with B'; Cong.
     apply bet2_le2__le1346 with X B'; Le.
-    apply cong__le, cong_transitivity with A B; Cong.
+    apply cong__le, 等长的传递性 with A B; Cong.
 Qed.
 
 (*
@@ -146,7 +146,7 @@ Proof.
   absurd (~ Reach A B A X).
 
   - intro HAbs.
-    destruct (eq_dec_points X B).
+    destruct (两点重合的决定性 X B).
       subst; apply HAbs; exists B; split; Le.
     destruct (le_cases X A A B) as [HLe|HLe].
       apply HAbs; exists B; split; Le.
@@ -161,13 +161,13 @@ Proof.
       - apply HNReach0; exists B; split; trivial.
         exists X0; split; Cong.
         apply between_inner_transitivity with X; Between.
-        apply between_symmetry, l6_13_1; trivial.
+        apply 中间性的对称性, l6_13_1; trivial.
         apply l6_6; trivial.
       - absurd (X = X0).
           assert_diffs; auto.
         apply between_equality with B.
           apply l6_13_1; trivial.
-        apply between_symmetry, HX; split; trivial.
+        apply 中间性的对称性, HX; split; trivial.
           apply out_trivial; auto.
           intro HN; apply HN; exists B; split; Le.
         apply l6_7 with X; trivial.
@@ -177,17 +177,17 @@ Proof.
     }
     intro HReach.
     destruct HReach as [B' [HGrad' HLe]].
-    destruct (segment_construction A B' A B) as [B1' [HBet' HCong']].
+    destruct (由一点往一方向构造等长线段 A B' A B) as [B1' [HBet' HCong']].
     apply HAbs; exists B1'; split.
       apply grad_stab with B'; Cong.
     apply bet2_le2__le1346 with X0 B'; Le; Between.
-    apply cong__le, cong_transitivity with A B; Cong.
+    apply cong__le, 等长的传递性 with A B; Cong.
 
   - intro HReach.
-    destruct (segment_construction_3 X C A B) as [X1 [HOut' HCong]]; auto.
+    destruct (由一点往一方向构造等长线段_3 X C A B) as [X1 [HOut' HCong]]; auto.
       intro; subst; contradiction.
     assert (HBet1 : Bet A X X1).
-      apply between_symmetry, bet_out__bet with C; eBetween.
+      apply 中间性的对称性, bet_out__bet with C; eBetween.
     apply (not_bet_and_out X1 X C).
     split; [|apply l6_6; trivial].
     apply HX; split; trivial; [| |apply bet_out; auto].
@@ -195,12 +195,12 @@ Proof.
       assert_diffs; apply bet_out; auto.
     }
     destruct HReach as [B' [HGrad' HLe]].
-    destruct (segment_construction A B' A B) as [B1' [HBet' HCong']].
+    destruct (由一点往一方向构造等长线段 A B' A B) as [B1' [HBet' HCong']].
     intro HAbs; apply HAbs.
     exists B1'; split.
       apply grad_stab with B'; Cong.
     apply bet2_le2__le1346 with X B'; Le.
-    apply cong__le, cong_transitivity with A B; Cong.
+    apply cong__le, 等长的传递性 with A B; Cong.
 Qed.
 *)
 

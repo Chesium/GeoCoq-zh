@@ -4,7 +4,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section weak_inverse_projection_postulate_weak_tarski_s_parallel_postulate.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** Formalization of a proof from Bachmann's article "Zur Parallelenfrage" *)
 
@@ -60,8 +60,8 @@ cut (forall A B C P T,
   assert (HNCol3 : ~ Col A B Y) by (intro; apply HNCol1; ColR).
   assert (X <> Y) by (intro; subst; apply HNCol3; Col).
   exists X, Y; repeat (split; [assumption|]).
-  destruct (eq_dec_points T X) as [|HTX]; [subst; Between|].
-  destruct (eq_dec_points T Y) as [|HTY]; [subst; Between|].
+  destruct (两点重合的决定性 T X) as [|HTX]; [subst; Between|].
+  destruct (两点重合的决定性 T Y) as [|HTY]; [subst; Between|].
   apply out2__bet.
   - apply col_one_side_out with B; trivial.
     apply invert_one_side, col_one_side with A; Col.

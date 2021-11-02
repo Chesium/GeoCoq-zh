@@ -3,12 +3,12 @@ Require Import GeoCoq.Tarski_dev.Annexes.saccheri.
 
 Section rah_similar.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma rah__similar : postulate_of_right_saccheri_quadrilaterals -> postulate_of_existence_of_similar_triangles.
 Proof.
   intro rah.
-  destruct lower_dim_ex as [A [B0 [C]]].
+  destruct 防降维公理_ex as [A [B0 [C]]].
   assert(~ Col A B0 C) by (unfold Col; assumption).
   destruct (l10_15 C A C B0) as [B []]; Col.
   assert(HNCol1 : ~ Col C A B) by (apply (one_side_not_col123 _ _ _ B0); Side).

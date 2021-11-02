@@ -3,7 +3,7 @@ Require Export GeoCoq.Tarski_dev.Ch12_parallel_inter_dec.
 Section Orientation.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Definition proj := fun  T A B P => A <> B /\ (~Col A B T /\ Perp A B T P /\ Col A B P \/ Col A B T /\ P = T).
 
@@ -37,14 +37,14 @@ induction H1.
 spliter.
 repeat split.
 
-induction (eq_dec_points A P).
+induction (两点重合的决定性 A P).
 treat_equalities.
 apply l8_5.
 
 apply perp_in_per.
 eauto with perp.
 
-induction (eq_dec_points B P).
+induction (两点重合的决定性 B P).
 treat_equalities.
 
 apply l8_5.
@@ -137,7 +137,7 @@ ColR.
 assert(Col T P B).
 ColR.
 
-induction(eq_dec_points A P).
+induction(两点重合的决定性 A P).
 subst P.
 assert(T=A \/ B=A).
 apply l8_9; auto.
@@ -155,7 +155,7 @@ tauto.
 
 left.
 
-induction (eq_dec_points A P).
+induction (两点重合的决定性 A P).
 
 subst P.
 
@@ -328,8 +328,8 @@ ex_and H3 T.
 assert(A <> T).
 intro.
 subst T.
-apply cong_symmetry in H4.
-apply cong_identity in H4.
+apply 等长的对称性 in H4.
+apply 等长的同一性 in H4.
 contradiction.
 
 assert(Perp T A A B).
@@ -405,8 +405,8 @@ ColR.
 assert(A <> C').
 intro.
 subst C'.
-apply cong_symmetry in H13.
-apply cong_identity in H13.
+apply 等长的对称性 in H13.
+apply 等长的同一性 in H13.
 contradiction.
 
 assert(TS A B PY C').
@@ -414,7 +414,7 @@ unfold TS.
 repeat split; auto.
 intro.
 apply H21.
-apply bet_col in H12.
+apply 中间性转共线 in H12.
 ColR.
 exists A.
 split.
@@ -469,16 +469,16 @@ Col.
 
 apply out_trivial.
 auto.
-apply cong_reflexivity.
+apply 等长的自反性.
 apply l7_3_2.
 unfold Midpoint.
-apply cong_symmetry in H11.
+apply 等长的对称性 in H11.
 split;auto.
 unfold Midpoint.
-apply cong_symmetry in H13.
+apply 等长的对称性 in H13.
 split;auto.
 unfold Midpoint.
-apply cong_symmetry in H11.
+apply 等长的对称性 in H11.
 split;auto.
 
 clear H1 HH.
@@ -488,7 +488,7 @@ unfold TS.
 repeat split; auto.
 intro.
 apply H21.
-apply bet_col in H12.
+apply 中间性转共线 in H12.
 ColR.
 exists A.
 induction H24.
@@ -684,7 +684,7 @@ intros.
 induction (col_dec B A A').
 left.
 assumption.
-induction(eq_dec_points B B').
+induction(两点重合的决定性 B B').
 subst B'.
 right.
 apply one_side_reflexivity.
@@ -818,7 +818,7 @@ apply col_permutation_1.
 eapply proj_col.
 apply H2.
 
-induction(eq_dec_points P A').
+induction(两点重合的决定性 P A').
 subst P.
 
 assert(Perp A' B' A A').
@@ -909,7 +909,7 @@ Qed.
 Lemma col_proj_col : forall A B A' B' P Q, A <> A' -> Col A B A' -> proj A P Q A' -> proj B P Q B' -> Col A B B'.
 Proof.
 intros.
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
 Col.
 unfold proj in *.
@@ -946,7 +946,7 @@ right.
 split.
 assumption.
 
-induction(eq_dec_points A' P).
+induction(两点重合的决定性 A' P).
 subst P.
 assert(Perp_at A' A' Q A A').
 eapply perp_perp_in.
@@ -965,7 +965,7 @@ assert(Perp_at A' A' P A A').
 eapply perp_perp_in.
 Perp.
 
-induction(eq_dec_points B P).
+induction(两点重合的决定性 B P).
 subst P.
 
 assert(Perp B Q A B).
@@ -1118,7 +1118,7 @@ intros.
 assert(HH0:= not_col_exists P Q H).
 ex_and HH0 X.
 
-induction(eq_dec_points A' P).
+induction(两点重合的决定性 A' P).
 subst P.
 
 assert(Q <> A').
@@ -1136,8 +1136,8 @@ exists A.
 split.
 intro.
 subst A'.
-apply cong_symmetry in H5.
-apply cong_identity in H5.
+apply 等长的对称性 in H5.
+apply 等长的同一性 in H5.
 contradiction.
 eapply per_proj; auto.
 apply l8_5.
@@ -1148,8 +1148,8 @@ exists A.
 split.
 intro.
 subst A'.
-apply cong_symmetry in H4.
-apply cong_identity in H4.
+apply 等长的对称性 in H4.
+apply 等长的同一性 in H4.
 contradiction.
 apply per_proj; auto.
 apply per_col with P.
@@ -1164,7 +1164,7 @@ Lemma proj_perp_id : forall A B C A' B' P Q, A <> C -> Col A B C ->
 Proof.
 intros.
 
-induction(eq_dec_points A A').
+induction(两点重合的决定性 A A').
 subst A'.
 
 apply proj_id with C B P Q; Col.
@@ -1219,26 +1219,26 @@ Lemma proj_preserves_bet1 : forall A B C B' C' P Q, Bet A B C ->
                                                          Bet A B' C'.
 Proof.
 intros.
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
 assert(A = B').
 eapply proj_uniqueness.
 apply H0.
 assumption.
 subst B'.
-apply between_trivial2.
-induction(eq_dec_points B C).
+apply AAB中间性.
+induction(两点重合的决定性 B C).
 subst C.
 assert(B' = C').
 eapply proj_uniqueness.
 apply H1.
 assumption.
 subst C'.
-apply between_trivial.
+apply ABB中间性.
 assert(A <> C).
 intro.
 subst C.
-apply between_identity in H.
+apply 中间性的同一律 in H.
 contradiction.
 
 assert(P <> Q).
@@ -1255,10 +1255,10 @@ eapply proj_col.
 apply H2.
 
 assert(Col A B C).
-eapply bet_col.
+eapply 中间性转共线.
 assumption.
 
-induction(eq_dec_points B B').
+induction(两点重合的决定性 B B').
 subst B'.
 
 assert(C = C').
@@ -1267,7 +1267,7 @@ apply (proj3_id A B C C' P Q); Col.
 subst C'.
 assumption.
 
-induction (eq_dec_points A C').
+induction (两点重合的决定性 A C').
 subst C'.
 
 assert(Col P A B').
@@ -1284,9 +1284,9 @@ assumption.
 subst B'.
 apply l7_3_2.
 
-induction(eq_dec_points B' C').
+induction(两点重合的决定性 B' C').
 subst C'.
-apply between_trivial.
+apply ABB中间性.
 
 assert(HH:= proj_not_eq_not_col B C B' C' P Q H13 H11 H1 H2).
 
@@ -1358,29 +1358,29 @@ Proof.
 intros.
 
 
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
 assert(A' = B').
 eapply proj_uniqueness.
 apply H0.
 assumption.
 subst B'.
-apply between_trivial2.
-induction(eq_dec_points B C).
+apply AAB中间性.
+induction(两点重合的决定性 B C).
 subst C.
 assert(B' = C').
 eapply proj_uniqueness.
 apply H1.
 assumption.
 subst C'.
-apply between_trivial.
+apply ABB中间性.
 assert(A <> C).
 intro.
 subst C.
-apply between_identity in H.
+apply 中间性的同一律 in H.
 contradiction.
 
-induction (eq_dec_points A' C').
+induction (两点重合的决定性 A' C').
 subst C'.
 
 assert(A' = B').
@@ -1402,10 +1402,10 @@ eapply proj_col.
 apply H2.
 
 assert(Col A B C).
-eapply bet_col.
+eapply 中间性转共线.
 assumption.
 
-induction (eq_dec_points A A').
+induction (两点重合的决定性 A A').
 subst A'.
 eapply (proj_preserves_bet1 A B C _ _ P Q); assumption.
 
@@ -1417,7 +1417,7 @@ apply H0.
 Col.
 assumption.
 
-induction (eq_dec_points B B').
+induction (两点重合的决定性 B B').
 subst B.
 
 assert(C <> C').
@@ -1453,7 +1453,7 @@ assert(B' = A').
 apply H19.
 Col.
 subst B'.
-apply between_trivial2.
+apply AAB中间性.
 
 assert(HH:= proj_one_side B C B' C' P Q H16 H17 H2).
 induction HH.
@@ -1462,7 +1462,7 @@ assert(B' = C').
 apply H21.
 Col.
 subst B'.
-apply between_trivial.
+apply ABB中间性.
 
 (*********************************************)
 
@@ -1527,10 +1527,10 @@ apply (proj3_col A C B A' C' B' P Q); auto.
 subst BB.
 Between.
 
-induction(eq_dec_points C C').
+induction(两点重合的决定性 C C').
 subst C'.
 
-apply between_symmetry.
+apply 中间性的对称性.
 eapply (proj_preserves_bet1 C B A _ _ P Q); try assumption.
 Between.
 
@@ -1546,7 +1546,7 @@ assert(B' = A').
 apply H17.
 Col.
 subst B'.
-apply between_trivial2.
+apply AAB中间性.
 
 assert(HH:= proj_one_side B C B' C' P Q H14 H1 H2).
 induction HH.
@@ -1555,7 +1555,7 @@ assert(B' = C').
 apply H19.
 Col.
 subst B'.
-apply between_trivial.
+apply ABB中间性.
 
 assert(HH:=proj_diff_not_col_inv B A B' A' P Q H14 H1 H0).
 destruct HH.
@@ -1669,7 +1669,7 @@ assumption.
 left.
 induction H16.
 eapply between_exchange3.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H16.
 assumption.
 induction H16.
@@ -1715,7 +1715,7 @@ assert(proj C A C1 C0).
 eapply proj_col_proj.
 apply H5.
 auto.
-apply bet_col in H16.
+apply 中间性转共线 in H16.
 Col.
 
 assert( HH:=proj_one_side B C A C0 A C1).
@@ -1823,12 +1823,12 @@ apply midpoint_bet.
 assumption.
 Qed.
 
-Lemma cong_identity_inv : forall A B C, A <> B -> ~Cong A B C C.
+Lemma 等长的同一性_inv : forall A B C, A <> B -> ~Cong A B C C.
 Proof.
 intros.
 intro.
 apply H.
-eapply cong_identity.
+eapply 等长的同一性.
 apply H0.
 Qed.
 
@@ -1842,9 +1842,9 @@ assert(Cong A' B' A B).
 eapply l7_13.
 apply H0.
 assumption.
-apply cong_symmetry in H4.
+apply 等长的对称性 in H4.
 subst B'.
-apply cong_identity in H4.
+apply 等长的同一性 in H4.
 assumption.
 
 assert(HH0:= H0).
@@ -1854,13 +1854,13 @@ unfold Midpoint in HH1.
 spliter.
 
 assert(Col M A A').
-apply bet_col in H6.
+apply 中间性转共线 in H6.
 Col.
 assert(Col M B B').
-apply bet_col in H4.
+apply 中间性转共线 in H4.
 Col.
 
-induction(eq_dec_points B B').
+induction(两点重合的决定性 B B').
 subst B'.
 apply l7_3 in H1.
 subst M.
@@ -1881,10 +1881,10 @@ apply H.
 Col.
 Col.
 
-induction(eq_dec_points A M).
+induction(两点重合的决定性 A M).
 subst M.
-apply cong_symmetry in H7.
-apply cong_identity in H7.
+apply 等长的对称性 in H7.
+apply 等长的同一性 in H7.
 subst A'.
 Col.
 
@@ -1895,7 +1895,7 @@ Col.
 repeat split;
 Col.
 
-induction(eq_dec_points A B').
+induction(两点重合的决定性 A B').
 subst B'.
 assert(A'=B).
 eapply l7_9; [|apply H1].
@@ -1917,9 +1917,9 @@ assert(Cong A' B' A B).
 eapply l7_13.
 apply H0.
 assumption.
-apply cong_symmetry in H3.
+apply 等长的对称性 in H3.
 subst B'.
-apply cong_identity in H3.
+apply 等长的同一性 in H3.
 assumption.
 
 induction(col_dec A B B').
@@ -1937,10 +1937,10 @@ unfold Midpoint in HH1.
 spliter.
 
 assert(Col M A A').
-apply bet_col in H6.
+apply 中间性转共线 in H6.
 Col.
 assert(Col M B B').
-apply bet_col in H4.
+apply 中间性转共线 in H4.
 Col.
 
 unfold Par.
@@ -1960,7 +1960,7 @@ apply H1.
 unfold Midpoint.
 split.
 assumption.
-apply cong_left_commutativity.
+apply 等长的左交换性.
 Cong.
 
 assert(Col B' X X').
@@ -1968,34 +1968,34 @@ eapply (col_transitivity_1 _ A').
 auto.
 Col.
 Col.
-induction(eq_dec_points X X').
+induction(两点重合的决定性 X X').
 subst X'.
-apply between_identity in H12.
+apply 中间性的同一律 in H12.
 subst X.
 
 apply H3.
-induction(eq_dec_points B M).
+induction(两点重合的决定性 B M).
 subst M.
-apply cong_symmetry in H5.
-apply cong_identity in H5.
+apply 等长的对称性 in H5.
+apply 等长的同一性 in H5.
 subst B'.
 Col.
 apply col_permutation_2.
 apply (col_transitivity_1 _ M); Col.
 
 assert(Col X M B').
-apply bet_col in H12.
+apply 中间性转共线 in H12.
 apply (col_transitivity_1 _ X'); Col.
 
 assert(Col X' M B').
-apply bet_col in H12.
+apply 中间性转共线 in H12.
 apply (col_transitivity_1 _ X); Col.
 
 assert(Col M B X).
 apply col_transitivity_1 with B'.
 intro.
 subst B'.
-apply cong_identity in H5.
+apply 等长的同一性 in H5.
 subst B.
 apply H3.
 Col.
@@ -2007,7 +2007,7 @@ apply col_transitivity_1 with B.
 intro.
 subst X.
 assert(Cong M X' M B').
-eapply cong_transitivity.
+eapply 等长的传递性.
 apply H13.
 Cong.
 assert (HH:=l7_20 M X' B' H18 H20).
@@ -2018,16 +2018,16 @@ apply col_permutation_2.
 apply (col_transitivity_1 _ M).
 intro.
 subst M.
-apply cong_identity in H13.
+apply 等长的同一性 in H13.
 contradiction.
 Col.
 Col.
 
 assert(Col M B A').
 ColR.
-induction(eq_dec_points M A').
+induction(两点重合的决定性 M A').
 subst A'.
-apply cong_identity in H7.
+apply 等长的同一性 in H7.
 subst A.
 Col.
 ColR.
@@ -2043,7 +2043,7 @@ apply H3.
 apply (col3 X M).
 intro.
 subst X.
-apply cong_identity in H13.
+apply 等长的同一性 in H13.
 subst X'.
 tauto.
 Col.
@@ -2091,17 +2091,17 @@ Qed.
 Lemma le_right_comm : forall A B C D, Le A B C D -> Le A B D C.
 Proof.
 intros.
-induction(eq_dec_points D C).
+induction(两点重合的决定性 D C).
 subst D.
 apply le_zero in H.
 subst B.
 eapply le_trivial.
 
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
 apply le_trivial.
 
-assert(HH:=segment_construction_3 D C A B H0 H1).
+assert(HH:=由一点往一方向构造等长线段_3 D C A B H0 H1).
 ex_and HH P'.
 unfold Out in H2.
 spliter.
@@ -2119,7 +2119,7 @@ auto.
 unfold Le.
 exists C.
 split.
-apply between_trivial.
+apply ABB中间性.
 Cong.
 unfold Le.
 exists P'.
@@ -2152,15 +2152,15 @@ eapply between_exchange4.
 apply H.
 assumption.
 
-apply l2_11 with B P.
+apply 两组连续三点分段等则全体等 with B P.
 apply H6.
 eapply between_exchange4.
 apply H1.
 assumption.
 assumption.
-apply cong_left_commutativity.
-eapply l2_11 with C B'.
-apply between_symmetry.
+apply 等长的左交换性.
+eapply 两组连续三点分段等则全体等 with C B'.
+apply 中间性的对称性.
 eapply between_exchange3.
 apply H.
 assumption.
@@ -2177,9 +2177,9 @@ Proof.
 intros.
 apply le_comm.
 eapply le_cong_le.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H0.
 apply le_comm.
 assumption.
@@ -2207,7 +2207,7 @@ assumption.
 assumption.
 assumption.
 
-induction (eq_dec_points B' Y).
+induction (两点重合的决定性 B' Y).
 subst Y.
 
 assert(Le A' B' A' C').
@@ -2215,7 +2215,7 @@ unfold Le.
 exists B'.
 split.
 assumption.
-apply cong_reflexivity.
+apply 等长的自反性.
 eapply le_transitivity.
 apply H7.
 assumption.
@@ -2234,7 +2234,7 @@ unfold Le.
 exists Y.
 split.
 assumption.
-apply cong_reflexivity.
+apply 等长的自反性.
 Qed.
 
 
@@ -2248,7 +2248,7 @@ unfold Le.
 exists B'.
 split.
 assumption.
-apply cong_reflexivity.
+apply 等长的自反性.
 assert (Le B' B C' C).
 eapply l5_6.
 apply H4.
@@ -2261,12 +2261,12 @@ apply H0.
 assumption.
 assumption.
 
-induction (eq_dec_points A B').
+induction (两点重合的决定性 A B').
 subst B'.
-apply cong_symmetry in H3.
-apply cong_identity in H3.
+apply 等长的对称性 in H3.
+apply 等长的同一性 in H3.
 subst B.
-apply between_trivial2.
+apply AAB中间性.
 
 assert( A <> C').
 intro.
@@ -2277,12 +2277,12 @@ contradiction.
 assert(A <> B).
 intro.
 subst B.
-apply between_identity in H.
+apply 中间性的同一律 in H.
 contradiction.
 assert(A <> C).
 intro.
 subst C.
-apply between_identity in H0.
+apply 中间性的同一律 in H0.
 contradiction.
 
 assert(Out A B C).
@@ -2330,40 +2330,40 @@ unfold Midpoint in H0.
 unfold Midpoint in H1.
 spliter.
 
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
-apply between_identity in H0.
+apply 中间性的同一律 in H0.
 subst B'.
-apply between_trivial2.
+apply AAB中间性.
 assert(A <> C).
 intro.
 subst C.
-apply between_identity in H1.
+apply 中间性的同一律 in H1.
 subst C'.
-apply between_identity in H.
+apply 中间性的同一律 in H.
 contradiction.
 assert(A <> B').
 intro.
 subst B'.
-apply cong_symmetry in H3.
-apply cong_identity in H3.
+apply 等长的对称性 in H3.
+apply 等长的同一性 in H3.
 contradiction.
 assert(A <> C').
 intro.
 subst C'.
-apply cong_symmetry in H2.
-apply cong_identity in H2.
+apply 等长的对称性 in H2.
+apply 等长的同一性 in H2.
 contradiction.
 
 assert(Col A B' C').
-apply bet_col in H0.
-apply bet_col in H1.
-apply bet_col in H.
+apply 中间性转共线 in H0.
+apply 中间性转共线 in H1.
+apply 中间性转共线 in H.
 ColR.
 induction H8.
 assumption.
 induction H8.
-apply between_symmetry in H8.
+apply 中间性的对称性 in H8.
 
 assert(Bet A C B).
 eapply bet_double_bet.
@@ -2373,7 +2373,7 @@ assumption.
 
 assert(B = C).
 eapply between_equality.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H9.
 Between.
 subst C.
@@ -2382,7 +2382,7 @@ eapply l7_17.
 apply HH0.
 assumption.
 subst C'.
-apply between_trivial.
+apply ABB中间性.
 
 (***********************************)
 
@@ -2399,7 +2399,7 @@ apply H9.
 assumption.
 eapply l6_4_1 in H10.
 spliter.
-apply between_symmetry in H8.
+apply 中间性的对称性 in H8.
 contradiction.
 Qed.
 
@@ -2488,17 +2488,17 @@ left.
 assert(B <> B').
 intro.
 subst B'.
-apply between_identity in H8.
+apply 中间性的同一律 in H8.
 subst M.
 apply H2.
 exists B.
 split; Col.
 
-induction (eq_dec_points B M).
+induction (两点重合的决定性 B M).
 subst M.
 contradiction.
 
-induction (eq_dec_points B' M).
+induction (两点重合的决定性 B' M).
 subst M.
 apply False_ind.
 apply H6.
@@ -2517,7 +2517,7 @@ subst M.
 apply H2.
 exists B'.
 split.
-apply bet_col in H8.
+apply 中间性转共线 in H8.
 Col.
 Col.
 
@@ -2526,7 +2526,7 @@ intro.
 subst M.
 apply H2.
 exists B.
-apply bet_col in H8.
+apply 中间性转共线 in H8.
 split.
 Col.
 Col.
@@ -2549,7 +2549,7 @@ assert(~ Col B A A').
 intro.
 apply H8.
 
-apply bet_col in H10.
+apply 中间性转共线 in H10.
 assert(Col B' A M).
 eapply (col_transitivity_1 _ B).
 auto.
@@ -2582,8 +2582,8 @@ apply H15.
 apply l7_2.
 assumption.
 assert(Cong A' B' A' B'').
-eapply cong_transitivity.
-apply cong_symmetry.
+eapply 等长的传递性.
+apply 等长的对称性.
 apply H0.
 assumption.
 
@@ -2621,7 +2621,7 @@ split.
 
 unfold Midpoint in H15.
 spliter.
-apply bet_col in H15.
+apply 中间性转共线 in H15.
 Col.
 assumption.
 
@@ -2746,8 +2746,8 @@ apply l7_2.
 apply H6.
 assumption.
 assert(Cong A' B' A' B'').
-eapply cong_transitivity.
-apply cong_symmetry.
+eapply 等长的传递性.
+apply 等长的对称性.
 apply H0.
 Cong.
 assert(B' = B'' \/ Midpoint A' B' B'').
@@ -2779,14 +2779,14 @@ split; Col.
 Col.
 unfold Midpoint in H1.
 spliter.
-apply bet_col in H1.
+apply 中间性转共线 in H1.
 Col.
 Col.
 unfold Out.
 repeat split.
 intro.
 subst X.
-apply cong_identity in H5.
+apply 等长的同一性 in H5.
 subst B''.
 unfold Par_strict in H8.
 spliter.
@@ -2849,7 +2849,7 @@ split; Col.
 Col.
 unfold Midpoint in H1.
 spliter.
-apply bet_col in H1.
+apply 中间性转共线 in H1.
 Col.
 apply col_trivial_2;assumption.
 unfold Out.
@@ -2881,7 +2881,7 @@ contradiction.
 
 spliter.
 
-induction (eq_dec_points A A').
+induction (两点重合的决定性 A A').
 subst A'.
 assert(B = B' \/ Midpoint A B B').
 eapply l7_20; auto.
@@ -2901,7 +2901,7 @@ split.
 apply l7_3_2.
 assumption.
 
-induction (eq_dec_points B B').
+induction (两点重合的决定性 B B').
 subst B'.
 assert(A = A' \/ Midpoint B A A').
 eapply l7_20.
@@ -2923,7 +2923,7 @@ split.
 assumption.
 apply l7_3_2.
 
-induction (eq_dec_points A B').
+induction (两点重合的决定性 A B').
 subst B'.
 assert(B = A' \/ Midpoint A B A').
 eapply l7_20.
@@ -2945,7 +2945,7 @@ split.
 apply l7_3_2.
 assumption.
 
-induction (eq_dec_points A' B).
+induction (两点重合的决定性 A' B).
 subst A'.
 assert(A = B' \/ Midpoint B A B').
 eapply l7_20.
@@ -2992,12 +2992,12 @@ eapply between_exchange2.
 apply H9.
 assumption.
 assert(Cong A M B' M).
-eapply (l2_11 A  B _  _ A').
+eapply (两组连续三点分段等则全体等 A  B _  _ A').
 eapply between_inner_transitivity.
 apply H9.
 assumption.
 eapply between_inner_transitivity.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H3.
 unfold Midpoint in H10.
 spliter.
@@ -3005,7 +3005,7 @@ assumption.
 Cong.
 unfold Midpoint in H10.
 spliter.
-apply cong_left_commutativity.
+apply 等长的左交换性.
 Cong.
 unfold Midpoint.
 split.
@@ -3032,7 +3032,7 @@ assert(Bet M B A).
 eapply between_exchange3.
 unfold Midpoint in H10.
 spliter.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H10.
 Between.
 assert(Bet A' M A).
@@ -3044,8 +3044,8 @@ subst M.
 apply is_midpoint_id in H10.
 contradiction.
 assert(Cong A M A' M).
-eapply l2_11.
-apply between_symmetry.
+eapply 两组连续三点分段等则全体等.
+apply 中间性的对称性.
 apply H12.
 eapply between_inner_transitivity.
 apply H3.
@@ -3079,13 +3079,13 @@ assert(Bet B M A).
 eapply between_exchange4.
 unfold Midpoint in H11.
 spliter.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H11.
 assumption.
 
 assert(Bet B' B M).
 eapply between_inner_transitivity.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H9.
 assumption.
 
@@ -3116,7 +3116,7 @@ tauto.
 
 assert(Cong A M B' M).
 eapply l4_3.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H12.
 apply H15.
 Cong.
@@ -3157,7 +3157,7 @@ split.
 
 assert(Bet A' M B').
 eapply between_exchange2.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H10.
 unfold Midpoint in H11.
 spliter.
@@ -3182,7 +3182,7 @@ contradiction.
 
 assert(Bet A M B).
 eapply outer_transitivity_between2.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H13.
 unfold Midpoint in H11.
 spliter.
@@ -3217,7 +3217,7 @@ assumption.
 
 assert(Bet A' A M).
 eapply between_inner_transitivity.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H2.
 unfold Midpoint in H10.
 spliter.
@@ -3241,10 +3241,10 @@ contradiction.
 
 assert(Cong B M A' M).
 eapply l4_3.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H12.
 eapply between_exchange2.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H2.
 unfold Midpoint in H10.
 spliter.
@@ -3348,14 +3348,14 @@ assumption.
 
 assert(Bet B M B').
 eapply between_exchange2.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H9.
 unfold Midpoint in H11.
 spliter.
 Between.
 assert(Bet A' B' M).
 eapply between_inner_transitivity.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H10.
 unfold Midpoint in H11.
 spliter.
@@ -3373,13 +3373,13 @@ subst B'.
 tauto.
 
 assert(Cong M A' M B).
-eapply l2_11.
-apply between_symmetry.
+eapply 两组连续三点分段等则全体等.
+apply 中间性的对称性.
 apply H13.
 eapply between_exchange3.
 unfold Midpoint in H11.
 spliter.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H11.
 assumption.
 unfold Midpoint in H11.
@@ -3401,14 +3401,14 @@ assumption.
 
 assert(Bet B A M).
 eapply between_inner_transitivity.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H8.
 unfold Midpoint in H11.
 spliter.
 Between.
 assert(Bet B' M A).
 eapply between_exchange2.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H10.
 unfold Midpoint in H11.
 spliter.
@@ -3422,9 +3422,9 @@ subst M.
 apply is_midpoint_id in H11.
 contradiction.
 assert(Cong B' M B M).
-eapply l2_11.
+eapply 两组连续三点分段等则全体等.
 eapply between_inner_transitivity.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H10.
 unfold Midpoint in H11.
 spliter.
@@ -3450,7 +3450,7 @@ Lemma per_preserves_bet_aux1 : forall P Q A B C B' C', P <> Q -> Bet A B C ->
 Proof.
 intros.
 
-induction(eq_dec_points B B').
+induction(两点重合的决定性 B B').
 subst B'.
 
 assert(Col A B C').
@@ -3465,16 +3465,16 @@ auto.
 Col.
 Col.
 
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
-apply between_trivial2.
+apply AAB中间性.
 
 assert(Col P Q C).
 eapply col3.
 apply H12.
 Col.
 Col.
-apply bet_col.
+apply 中间性转共线.
 assumption.
 
 assert(Col P C' C).
@@ -3497,15 +3497,15 @@ assumption.
 
 (* A=A' et B<>B' *)
 
-induction(eq_dec_points A C).
+induction(两点重合的决定性 A C).
 subst C.
-apply between_identity in H0.
+apply 中间性的同一律 in H0.
 subst B.
 assert(B'=C').
 apply per_id with A P; auto.
 apply (col_transitivity_1 _ Q); auto.
 subst C'.
-apply between_trivial.
+apply ABB中间性.
 
 assert(C <> C').
 intro.
@@ -3532,9 +3532,9 @@ subst B'.
 tauto.
 auto.
 
-induction (eq_dec_points A B').
+induction (两点重合的决定性 A B').
 subst B'.
-apply between_trivial2.
+apply AAB中间性.
 
 assert(A <> B).
 intro.
@@ -3561,7 +3561,7 @@ auto.
 apply H13.
 Col.
 Col.
-apply bet_col.
+apply 中间性转共线.
 apply H0.
 Col.
 subst C.
@@ -3569,7 +3569,7 @@ subst C.
 assert(B'=C').
 apply per_id with B P; ColR.
 subst C'.
-apply between_trivial.
+apply ABB中间性.
 
 
 assert(Perp B' B' B' P \/ Perp B B' B' P).
@@ -3626,7 +3626,7 @@ assert(Per B B' A).
 eapply (per_col _ _ P); try auto.
 ColR.
 
-induction(eq_dec_points A C').
+induction(两点重合的决定性 A C').
 subst C'.
 
 assert(TS B B' A C).
@@ -3706,7 +3706,7 @@ Lemma per_preserves_bet_aux2 : forall P Q A B C A' C', P <> Q -> Bet A B C ->
 Proof.
 intros.
 
-induction (eq_dec_points A A').
+induction (两点重合的决定性 A A').
 subst A'.
 
 assert(Col A B C').
@@ -3721,16 +3721,16 @@ auto.
 Col.
 Col.
 
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
-apply between_trivial2.
+apply AAB中间性.
 
 assert(Col P Q C).
 eapply col3.
 apply H12.
 Col.
 Col.
-apply bet_col.
+apply 中间性转共线.
 assumption.
 
 assert(Col P C' C).
@@ -3752,9 +3752,9 @@ subst C'.
 assumption.
 
 
-induction(eq_dec_points A C).
+induction(两点重合的决定性 A C).
 subst C.
-apply between_identity in H0.
+apply 中间性的同一律 in H0.
 subst B.
 apply False_ind.
 apply H9.
@@ -3780,7 +3780,7 @@ intro.
 subst B.
 contradiction.
 
-induction (eq_dec_points C C').
+induction (两点重合的决定性 C C').
 subst C'.
 assert(Col A' B C).
 eapply (col3 P Q ); assumption.
@@ -3796,9 +3796,9 @@ Col.
 Col.
 Col.
 subst C.
-apply between_trivial.
+apply ABB中间性.
 
-induction(eq_dec_points A' C').
+induction(两点重合的决定性 A' C').
 subst C'.
 
 assert(Per  A A' B).
@@ -3808,7 +3808,7 @@ apply per_col with P; ColR.
 
 eapply l8_6 in H14.
 subst B.
-apply between_trivial.
+apply ABB中间性.
 apply H15.
 Between.
 
@@ -3824,8 +3824,8 @@ eapply perp_in_perp_bis.
 apply per_perp_in.
 intro.
 subst T.
-apply cong_symmetry in H16.
-apply cong_identity in H16.
+apply 等长的对称性 in H16.
+apply 等长的同一性 in H16.
 contradiction.
 auto.
 auto.
@@ -4012,41 +4012,41 @@ Lemma per_preserves_bet : forall P Q A B C A' B' C', P <> Q -> Bet A B C ->
 Proof.
 intros.
 
-induction(eq_dec_points A A').
+induction(两点重合的决定性 A A').
 subst A'.
 eapply (per_preserves_bet_aux1 P Q A B C B' C'); assumption.
 
-induction(eq_dec_points B B').
+induction(两点重合的决定性 B B').
 subst B'.
 eapply (per_preserves_bet_aux2 P Q A B C A' C'); assumption.
 
-induction(eq_dec_points C C').
+induction(两点重合的决定性 C C').
 subst C'.
 assert(HH:=(per_preserves_bet_aux1 P Q C B A B' A')).
-apply between_symmetry.
+apply 中间性的对称性.
 apply HH; try assumption.
 Between.
 
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
 subst B.
 assert(A'=B').
 eapply (per_id A _ _ P); try auto.
 ColR.
 subst B'.
-apply between_trivial2.
+apply AAB中间性.
 
-induction (eq_dec_points C B).
+induction (两点重合的决定性 C B).
 subst B.
 assert(C'=B').
 eapply (per_id C _ _ P); try auto.
 ColR.
 subst B'.
-apply between_trivial.
+apply ABB中间性.
 
 assert(A <> C).
 intro.
 subst C.
-apply between_identity in H0.
+apply 中间性的同一律 in H0.
 contradiction.
 
 assert(Perp B' B' B' P \/ Perp B B' B' P).
@@ -4108,10 +4108,10 @@ auto.
 (**************************************************************************************************)
 
 assert(Col A B C).
-apply bet_col.
+apply 中间性转共线.
 assumption.
 
-induction(eq_dec_points A' C').
+induction(两点重合的决定性 A' C').
 subst C'.
 
 assert(Col A C A').
@@ -4153,7 +4153,7 @@ apply l8_2.
 assumption.
 ColR.
 subst B'.
-apply between_trivial.
+apply ABB中间性.
 
 (************************************* General case *********************************)
 
@@ -4336,7 +4336,7 @@ assumption.
 assumption.
 apply l6_6.
 assumption.
-apply cong_reflexivity.
+apply 等长的自反性.
 subst B2.
 apply l7_3 in H7.
 subst M.
@@ -4367,7 +4367,7 @@ apply H1.
 apply perp_sym.
 Perp.
 
-induction (eq_dec_points P C).
+induction (两点重合的决定性 P C).
 subst P.
 
 apply l8_9 in H4.
@@ -4407,7 +4407,7 @@ Lemma out_preserves_eqo : forall A B P B' P', ~Col A B P -> Out A B B' -> Out A 
 Proof.
 intros.
 
-induction (eq_dec_points P P').
+induction (两点重合的决定性 P P').
 subst P'.
 apply out_preserves_eqo1.
 assumption.
@@ -4451,7 +4451,7 @@ assumption.
 assumption.
 apply l6_6.
 assumption.
-apply cong_reflexivity.
+apply 等长的自反性.
 subst B2.
 
 apply l7_3 in H9.
@@ -4484,7 +4484,7 @@ apply H3.
 apply perp_comm.
 Perp.
 
-induction(eq_dec_points P C).
+induction(两点重合的决定性 P C).
 subst P.
 assert(P'=C1).
 
@@ -4505,12 +4505,12 @@ unfold Out in H1.
 spliter.
 induction H17.
 eapply between_exchange3.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H17.
 apply midpoint_bet.
 assumption.
 eapply outer_transitivity_between2.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H17.
 apply midpoint_bet.
 assumption.
@@ -4550,7 +4550,7 @@ apply per_col with A; Col.
 apply per_col with A; ColR.
 ColR.
 eapply between_exchange3.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H25.
 apply midpoint_bet.
 assumption.
@@ -4562,7 +4562,7 @@ apply l8_5.
 apply per_col with A; ColR.
 ColR.
 apply per_col with A; ColR.
-apply between_symmetry.
+apply 中间性的对称性.
 apply outer_transitivity_between with C1; Between.
 Qed.
 
@@ -4578,7 +4578,7 @@ assert(P <> Q).
 apply perp_not_eq_2 in H4.
 assumption.
 
-induction (eq_dec_points C C').
+induction (两点重合的决定性 C C').
 subst C'.
 apply one_side_reflexivity.
 intro.
@@ -4636,7 +4636,7 @@ intros.
 apply l7_3 in H6.
 subst M.
 
-induction(eq_dec_points C C1).
+induction(两点重合的决定性 C C1).
 subst C1.
 left.
 apply midpoint_bet.
@@ -4744,7 +4744,7 @@ spliter.
 assert(C'=A).
 eapply (l6_21 A B C1 A); Col.
 subst C'.
-apply cong_identity in H29.
+apply 等长的同一性 in H29.
 subst C1.
 tauto.
 exists A.
@@ -4765,7 +4765,7 @@ assumption.
 Col.
 unfold Midpoint in H8.
 spliter.
-apply bet_col in H8.
+apply 中间性转共线 in H8.
 Col.
 
 unfold TS in H29.
@@ -4775,7 +4775,7 @@ assert(AA=A).
 apply (l6_21 A B C' C); Col.
 intro.
 subst C'.
-apply between_identity in H33.
+apply 中间性的同一律 in H33.
 subst AA.
 apply H31.
 assumption.

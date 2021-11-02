@@ -14,11 +14,11 @@
                     - What about rhombus in non-euclidean geometry case ?
       04 april 2018 - MOVE all "Plg"'s lemma in quadrialterals.v 
                        (after modify context Tarski_2D by 
-                          Tarski_neutral_dimensionless_with_decidable_point_equality 
+                          无维度中性塔斯基公理系统_带两点重合决定性 
                           in quadrilaterals.v) ?
                     - MOVE all "rhombus"'s lemma in quadrilaterals.v
                        (after modify context Tarski_2D by 
-                          Tarski_neutral_dimensionless_with_decidable_point_equality 
+                          无维度中性塔斯基公理系统_带两点重合决定性 
                           in quadrilaterals.v) ?
                     - DELETE rhombus.v
                     - EXPERIMENTAL: (in quadrilaterals_inter_dec.v)
@@ -26,12 +26,12 @@
                           forall A B C D,
                           Rhombus A B C D ->
                           Cong A B B C /\ Cong A B C D /\ Cong A B D A.
-                        TRY MODIFY CONTEXT ? Tarski_2D_euclidean -> Tarski_2D or Tarski_neutral_dimensionless_with_decidable_point_equality
+                        TRY MODIFY CONTEXT ? Tarski_2D_euclidean -> Tarski_2D or 无维度中性塔斯基公理系统_带两点重合决定性
 
    CHANGES: 04 april 2018, RC
    1) See JNarboux, comments about pull requests Rhombus.
    2) ADD End Rhombus_Existence_Unicity.
-   2) MODIFY CONTEXT: Tarski_2D by Tarski_neutral_dimensionless_with_decidable_point_equality.
+   2) MODIFY CONTEXT: Tarski_2D by 无维度中性塔斯基公理系统_带两点重合决定性.
    3) ADD Existence Plg, Rhombus.
 
 *)
@@ -40,7 +40,7 @@ Require Export GeoCoq.Tarski_dev.Annexes.perp_bisect.
 
 Section Rhombus_Existence_Unicity.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma PlgLeft: forall A B C D, Plg A B C D -> (A <> C \/ B <> D).
 Proof.
@@ -99,7 +99,7 @@ Qed.
 
 Lemma RhombusEx: exists A B C D, Rhombus A B C D.
 Proof.
-  destruct lower_dim_ex as [A [B [C HNC]]].
+  destruct 防降维公理_ex as [A [B [C HNC]]].
   assert (H1 : ~ Col A B C) by auto.
   clear HNC.
   assert_diffs.
@@ -118,7 +118,7 @@ Proof.
   assert(H10 := H).
   unfold Midpoint in H10.
   spliter.
-  assert (exists x, Bet C1 M x /\ Cong M x C1 M) by (apply segment_construction).
+  assert (exists x, Bet C1 M x /\ Cong M x C1 M) by (apply 由一点往一方向构造等长线段).
   ex_and H8 x.
   exists A.
   exists C1.
@@ -192,7 +192,7 @@ Proof.
   destruct (l10_2_existence A C B) as [D H3].
   unfold Reflect in H3.
   unfold ReflectL in H3.
-  induction (eq_dec_points A C).
+  induction (两点重合的决定性 A C).
   case H3.
     - intros. tauto.
     - intros.
@@ -201,7 +201,7 @@ Proof.
       destruct (symmetric_point_construction B Y) as [E H6].
       exists E.
       assert(B <> E).
-      induction (eq_dec_points B E).
+      induction (两点重合的决定性 B E).
       subst E.
       assert(Y = B).
       apply l7_3. exact H6.
@@ -219,7 +219,7 @@ Proof.
       destruct (symmetric_point_construction B Y) as [E H8].
       exists E.
       assert(B <> E).
-      induction (eq_dec_points B E).
+      induction (两点重合的决定性 B E).
       subst E.
       assert(Y = B).
       apply l7_3. exact H8.

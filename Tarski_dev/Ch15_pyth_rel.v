@@ -3,7 +3,7 @@ Require Export GeoCoq.Tarski_dev.Ch16_coordinates.
 Section PythagoreanFun.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma Ps_Col : forall O E A, Ps O E A -> Col O E A.
 Proof.
@@ -18,7 +18,7 @@ Lemma PythRel_exists : forall O E E', ~ Col O E  E' -> forall A B,
 Proof.
 intros.
 assert_diffs.
-destruct (eq_dec_points O B).
+destruct (两点重合的决定性 O B).
 - subst.
  exists A.
  unfold PythRel.
@@ -28,9 +28,9 @@ destruct (eq_dec_points O B).
 -
 destruct (perp_exists O E O) as [X HX].
 auto.
-destruct (segment_construction_2 X O O B) as [B' [HB1 HB2]].
+destruct (由一点往一方向构造等长线段_2 X O O B) as [B' [HB1 HB2]].
 assert_diffs;auto.
-destruct (segment_construction_2 E O A B') as [C [HC1 HC2]].
+destruct (由一点往一方向构造等长线段_2 E O A B') as [C [HC1 HC2]].
 auto.
 exists C.
 unfold PythRel.
@@ -38,8 +38,8 @@ split.
 unfold Ar2.
 repeat split;auto.
 destruct HC1.
-auto using bet_col .
-apply bet_col in H3. Col.
+auto using 中间性转共线 .
+apply 中间性转共线 in H3. Col.
 right.
 exists B'.
 split.
@@ -53,8 +53,8 @@ assert (Perp O B O B').
  intuition.
  Perp.
  destruct HB1.
- apply bet_col in H6. Col.
- apply bet_col in H6. Col.
+ apply 中间性转共线 in H6. Col.
+ apply 中间性转共线 in H6. Col.
  Perp.
  split.
  Cong.
@@ -157,10 +157,10 @@ apply perp_perp_in.
 Perp.
 ColR.
 
-induction(eq_dec_points A O).
+induction(两点重合的决定性 A O).
 subst A.
 assert(Cong O B O C).
-apply cong_transitivity with O B'; Cong.
+apply 等长的传递性 with O B'; Cong.
 assert(B = C \/ Midpoint O B C).
 apply l7_20; auto.
 ColR.
@@ -252,8 +252,8 @@ repeat split; auto.
 intro.
 subst C.
 
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst B'.
 apply perp_right_comm in H3.
 apply perp_not_col in H3.
@@ -284,7 +284,7 @@ Col.
 apply opp_midpoint in H16.
 unfold Midpoint in H16.
 spliter.
-apply cong_transitivity with O C; Cong.
+apply 等长的传递性 with O C; Cong.
 
 unfold Length.
 repeat split; Cong.
@@ -324,7 +324,7 @@ repeat split; auto.
 intro.
 subst B.
 
-apply cong_identity in H8.
+apply 等长的同一性 in H8.
 subst B'.
 apply perp_distinct in H3.
 tauto.
@@ -375,7 +375,7 @@ Col.
 apply opp_midpoint in H16.
 unfold Midpoint in H16.
 spliter.
-apply cong_transitivity with O B; Cong.
+apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' B OB B2 H16 H1).
 
 (****** A>0 ********* B<0 ********** C<0 ********)
@@ -391,8 +391,8 @@ repeat split; auto.
 intro.
 subst C.
 
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst B'.
 apply perp_right_comm in H3.
 apply perp_not_col in H3.
@@ -416,7 +416,7 @@ repeat split; auto.
 intro.
 subst B.
 
-apply cong_identity in H8.
+apply 等长的同一性 in H8.
 subst B'.
 apply perp_distinct in H3.
 tauto.
@@ -444,7 +444,7 @@ Col.
 apply opp_midpoint in H16.
 unfold Midpoint in H16.
 spliter.
-apply cong_transitivity with O C; Cong.
+apply 等长的传递性 with O C; Cong.
 
 unfold Length.
 repeat split; Cong.
@@ -471,7 +471,7 @@ Col.
 apply opp_midpoint in H19.
 unfold Midpoint in H19.
 spliter.
-apply cong_transitivity with O B; Cong.
+apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' B OB B2 H19 H1).
 apply(opp_same_square O E E' C OC C2 H16 H2).
 
@@ -528,7 +528,7 @@ unfold Out.
 repeat split; auto.
 intro.
 subst OA.
-apply cong_identity in H18.
+apply 等长的同一性 in H18.
 contradiction.
 induction HP.
 right; auto.
@@ -568,8 +568,8 @@ repeat split; auto.
 intro.
 subst C.
 
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst B'.
 apply perp_right_comm in H3.
 apply perp_not_col in H3.
@@ -617,7 +617,7 @@ Col.
 apply opp_midpoint in H16.
 unfold Midpoint in H16.
 spliter.
-apply cong_transitivity with O C; Cong.
+apply 等长的传递性 with O C; Cong.
 
 unfold Length.
 repeat split; auto.
@@ -638,7 +638,7 @@ unfold Out.
 repeat split; auto.
 intro.
 subst OA.
-apply cong_identity in H21.
+apply 等长的同一性 in H21.
 contradiction.
 induction HP.
 right; auto.
@@ -676,7 +676,7 @@ repeat split; auto.
 intro.
 subst B.
 
-apply cong_identity in H8.
+apply 等长的同一性 in H8.
 subst B'.
 apply perp_distinct in H3.
 tauto.
@@ -736,7 +736,7 @@ unfold Out.
 repeat split; auto.
 intro.
 subst OA.
-apply cong_identity in H21.
+apply 等长的同一性 in H21.
 contradiction.
 induction HP.
 right; auto.
@@ -760,7 +760,7 @@ Col.
 apply opp_midpoint in H16.
 unfold Midpoint in H16.
 spliter.
-apply cong_transitivity with O B; Cong.
+apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' A OA A2 H19 H0).
 apply(opp_same_square O E E' B OB B2 H16 H1).
 
@@ -778,8 +778,8 @@ repeat split; auto.
 intro.
 subst C.
 
-apply cong_symmetry in H9.
-apply cong_identity in H9.
+apply 等长的对称性 in H9.
+apply 等长的同一性 in H9.
 subst B'.
 apply perp_right_comm in H3.
 apply perp_not_col in H3.
@@ -820,7 +820,7 @@ repeat split; auto.
 intro.
 subst B.
 
-apply cong_identity in H8.
+apply 等长的同一性 in H8.
 subst B'.
 apply perp_distinct in H3.
 tauto.
@@ -849,7 +849,7 @@ Col.
 apply opp_midpoint in H16.
 unfold Midpoint in H16.
 spliter.
-apply cong_transitivity with O C; Cong.
+apply 等长的传递性 with O C; Cong.
 
 unfold Length.
 repeat split; auto.
@@ -870,7 +870,7 @@ unfold Out.
 repeat split; auto.
 intro.
 subst OA.
-apply cong_identity in H24.
+apply 等长的同一性 in H24.
 contradiction.
 induction HP.
 right; auto.
@@ -894,7 +894,7 @@ Col.
 apply opp_midpoint in H22.
 unfold Midpoint in H22.
 spliter.
-apply cong_transitivity with O B; Cong.
+apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' A OA A2 H19 H0).
 apply(opp_same_square O E E' B OB B2 H22 H1).
 apply(opp_same_square O E E' C OC C2 H16 H2).
@@ -968,7 +968,7 @@ tauto.
 ex_and H0 B1.
 ex_and H2 B2.
 assert(Cong O B1 O B2).
-apply cong_transitivity with O B; Cong.
+apply 等长的传递性 with O B; Cong.
 
 assert (O <> E).
 intro.
@@ -986,7 +986,7 @@ clean_duplicated_hyps.
 clean_trivial_hyps.
 
 assert(Cong O C2 O C1).
-apply cong_transitivity with A B1; Cong.
+apply 等长的传递性 with A B1; Cong.
 
 assert(C1 = C2 \/ Midpoint O C1 C2).
 apply l7_20.
@@ -1010,15 +1010,15 @@ tauto.
 subst C1.
 unfold Midpoint in H5.
 spliter.
-apply cong_symmetry in H5.
-apply (cong_identity O C2 O);auto.
+apply 等长的对称性 in H5.
+apply (等长的同一性 O C2 O);auto.
 
-induction(eq_dec_points A O).
+induction(两点重合的决定性 A O).
 subst A.
 
 assert(Cong O C1 O C2).
-apply cong_transitivity with O B2; trivial.
-apply cong_transitivity with O B1; Cong.
+apply 等长的传递性 with O B2; trivial.
+apply 等长的传递性 with O B1; Cong.
 assert(C1 = C2 \/ Midpoint O C1 C2).
 apply l7_20; eCol.
 
@@ -1038,8 +1038,8 @@ apply l6_4_1 in H15; auto.
 tauto.
 
 subst C1.
-apply cong_symmetry in H5.
-apply (cong_identity O C2 O);auto.
+apply 等长的对称性 in H5.
+apply (等长的同一性 O C2 O);auto.
 Cong.
 
 assert(Per A O B1).
@@ -1059,8 +1059,8 @@ apply (symmetric_point_uniqueness B1 O); auto.
 subst B2'.
 
 assert(Cong O C1 O C2).
-apply cong_transitivity with A B2; trivial.
-apply cong_transitivity with A B1; Cong.
+apply 等长的传递性 with A B2; trivial.
+apply 等长的传递性 with A B1; Cong.
 
 assert(C1 = C2 \/ Midpoint O C1 C2).
 apply l7_20.
@@ -1083,8 +1083,8 @@ apply l6_4_1 in H18; auto.
 tauto.
 
 subst C1.
-apply cong_symmetry in H17.
-apply (cong_identity O C2 O);auto.
+apply 等长的对称性 in H17.
+apply (等长的同一性 O C2 O);auto.
 Qed.
 
 

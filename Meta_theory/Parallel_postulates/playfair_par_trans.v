@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section playfair_par_trans.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** This is Legendre theorem XXV http://gallica.bnf.fr/ark:/12148/bpt6k202689z/f29.image *)
 

@@ -5,7 +5,7 @@ Require Import Classical.
 
 Section Dedekind_variant.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma dedekind_equiv : dedekind_s_axiom <-> dedekind_variant.
 Proof.
@@ -23,7 +23,7 @@ Proof.
     exists P; intros; apply (between_exchange3 A); auto.
   destruct (classic (exists X, Alpha X /\ X <> A)) as [HAlpha|HN];
     [|exists A; intros X Y HX HY;
-      destruct (eq_dec_points X A); [subst; Between|exfalso; apply HN; exists X; split; assumption]].
+      destruct (两点重合的决定性 X A); [subst; Between|exfalso; apply HN; exists X; split; assumption]].
   pose (Alpha' := fun X' => X' = A \/ exists X, Alpha X /\ Bet A X' X).
   pose (Beta' := fun Y' => Out A Y' C /\ ~ exists X, Alpha X /\ Bet A Y' X).
   cut (exists B, forall X Y, Alpha' X -> Beta' Y -> Bet X B Y).
@@ -52,7 +52,7 @@ Proof.
   - intros P HP.
     destruct (classic (exists X : Tpoint, Alpha X /\ Bet A P X)); [left; right|right; split]; auto.
   - intros X' Y' HX' [HY' HN].
-    destruct (eq_dec_points X' A).
+    destruct (两点重合的决定性 X' A).
       subst; split; [Between|destruct HY'; auto].
     destruct HX' as [|[X [HX HAX'X]]]; [contradiction|].
     assert (HOut : Out A X' Y').

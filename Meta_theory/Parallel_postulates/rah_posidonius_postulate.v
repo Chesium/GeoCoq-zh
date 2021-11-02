@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Annexes.saccheri.
 
 Section rah_posidonius.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma rah__posidonius_aux : postulate_of_right_saccheri_quadrilaterals ->
   forall A1 A2 A3 B1 B2 B3,
@@ -16,7 +16,7 @@ Proof.
   assert(Hdiff := sac_distincts A1 B1 B2 A2 HSac).
   spliter.
   assert_diffs.
-  elim(eq_dec_points A1 A3).
+  elim(两点重合的决定性 A1 A3).
   { intro.
     subst A3.
     assert(B1 = B3); [|subst; Cong].
@@ -26,7 +26,7 @@ Proof.
       apply col_cop__cop with B2; Cop.
   }
   intro.
-  destruct(segment_construction_3 A3 B3 A1 B1) as [B'3 []]; auto.
+  destruct(由一点往一方向构造等长线段_3 A3 B3 A1 B1) as [B'3 []]; auto.
   assert_diffs.
   assert(B3 = B'3); [|subst; assumption].
   assert(Par_strict B1 B2 A1 A3).
@@ -78,7 +78,7 @@ split; [intro; treat_equalities; apply l8_7 in HPer1; intuition|split; [Cop|]].
 intros A3 A4 B3 B4 HC1 HC2 HPerp1 HC3 HC4 HPerp2.
 assert (HCong1 := rah__posidonius_aux HP A1 A2 A3 B1 B2 B3).
 assert (HCong2 := rah__posidonius_aux HP A1 A2 A4 B1 B2 B4).
-apply cong_inner_transitivity with A1 B1; apply cong_symmetry;
+apply 等长的内传递性 with A1 B1; apply 等长的对称性;
 [apply HCong1|apply HCong2]; Cong; apply l8_2; auto.
 Qed.
 

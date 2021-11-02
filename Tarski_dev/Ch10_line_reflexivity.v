@@ -68,7 +68,7 @@ Ltac CopR :=
 
 Section T10.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Goal forall A B C D, ~ Coplanar D C B A -> ~ Coplanar A B C D.
 Proof.
 intros.
@@ -208,7 +208,7 @@ Lemma l10_2_uniqueness : forall A B P P1 P2,
  Reflect P1 P A B -> Reflect P2 P A B -> P1=P2.
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       subst.
       unfold Reflect in *.
       induction H.
@@ -259,7 +259,7 @@ Proof.
         apply midpoint_bet.
         apply l7_2.
         assumption.
-      induction (eq_dec_points X A).
+      induction (两点重合的决定性 X A).
         subst X.
         assert (~ Col A B P /\ Per P A B).
           eapply l8_16_1.
@@ -326,7 +326,7 @@ Proof.
         assumption.
       apply l7_3 in H.
       subst X.
-      induction (eq_dec_points Y A).
+      induction (两点重合的决定性 Y A).
         subst Y.
         assert (~ Col A B P /\ Per P A B).
           eapply l8_16_1.
@@ -369,7 +369,7 @@ Proof.
         assumption.
       apply l7_3 in H0.
       subst Y.
-      induction (eq_dec_points X A).
+      induction (两点重合的决定性 X A).
         subst X.
         assert (~ Col A B P /\ Per P A B).
           eapply l8_16_1.
@@ -453,7 +453,7 @@ Lemma l10_2_existence : forall A B P,
  exists P', Reflect P' P A B.
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       subst B.
       unfold Reflect.
       elim (symmetric_point_construction P A).
@@ -491,7 +491,7 @@ Qed.
 Lemma l10_4 : forall A B P P', Reflect P P' A B -> Reflect P' P A B.
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       subst B.
       unfold Reflect in *.
       elim H;intros.
@@ -511,7 +511,7 @@ Lemma l10_5 : forall A B P P' P'',
  Reflect P'' P' A B -> P=P''.
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       unfold Reflect in *.
       subst.
       induction H.
@@ -537,7 +537,7 @@ Qed.
 Lemma l10_6_uniqueness : forall A B P P1 P2, Reflect P P1 A B -> Reflect P P2 A B -> P1 = P2.
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       subst.
       unfold Reflect in *.
       induction H.
@@ -607,7 +607,7 @@ Qed.
 Lemma l10_8 : forall A B P, Reflect P P A B -> Col P A B.
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       subst;Col.
     unfold Reflect in H.
     unfold ReflectL in H.
@@ -642,7 +642,7 @@ Proof.
       assert (HH:= H2).
       apply perp_distinct in HH.
       spliter.
-      induction (eq_dec_points M0 X).
+      induction (两点重合的决定性 M0 X).
         subst X.
         unfold Midpoint in *.
         spliter.
@@ -679,10 +679,10 @@ Proof.
         apply l7_2.
         assumption.
       subst P0.
-      apply cong_commutativity.
+      apply 等长的交换性.
       assumption.
     subst P'.
-    apply cong_reflexivity.
+    apply 等长的自反性.
 Qed.
 
 Lemma is_image_spec_col_cong : forall A B P P' X,
@@ -696,7 +696,7 @@ Proof.
       assert (HH:= H1).
       apply perp_distinct in HH.
       spliter.
-      induction (eq_dec_points M0 X).
+      induction (两点重合的决定性 M0 X).
         subst X.
         unfold Midpoint in *.
         spliter.
@@ -754,7 +754,7 @@ Proof.
         spliter.
         split; assumption.
       spliter.
-      induction (eq_dec_points A X).
+      induction (两点重合的决定性 A X).
         subst X.
         assert (Perp A B T' A).
           apply perp_sym.
@@ -784,7 +784,7 @@ Proof.
         apply is_midpoint_id in H1.
         subst T'.
         absurde.
-      induction (eq_dec_points B X).
+      induction (两点重合的决定性 B X).
         subst X.
         assert (Perp A B T' B).
           apply perp_sym.
@@ -940,7 +940,7 @@ Proof.
         split.
           apply l7_2.
           apply H7.
-        induction (eq_dec_points X Y).
+        induction (两点重合的决定性 X Y).
           subst Y.
           assumption.
         assert_diffs.
@@ -953,12 +953,12 @@ Proof.
           assumption.
         unfold Midpoint in *.
         spliter.
-        eapply cong_transitivity.
-          apply cong_symmetry.
+        eapply 等长的传递性.
+          apply 等长的对称性.
           apply H14.
-        apply cong_symmetry.
-        eapply cong_transitivity.
-          apply cong_symmetry.
+        apply 等长的对称性.
+        eapply 等长的传递性.
+          apply 等长的对称性.
           apply H13.
         eapply is_image_col_cong.
           apply H.
@@ -967,7 +967,7 @@ Proof.
             assumption.
           apply HH1.
         assumption.
-      induction (eq_dec_points X Y).
+      induction (两点重合的决定性 X Y).
         subst Y.
         apply l7_3 in H6.
         subst X.
@@ -1034,7 +1034,7 @@ Proof.
             spliter.
             absurde.
             apply perp_sym.
-            induction (eq_dec_points A M).
+            induction (两点重合的决定性 A M).
               subst A.
               apply perp_left_comm.
               eapply (perp_col _ M).
@@ -1043,7 +1043,7 @@ Proof.
                 eapply (perp_col _ Y).
                   assumption.
                   assumption.
-                induction (eq_dec_points M X).
+                induction (两点重合的决定性 M X).
                   subst X.
                   apply is_midpoint_id in H6.
                   subst M.
@@ -1058,13 +1058,13 @@ Proof.
                 apply col_permutation_5.
                 assumption.
               apply col_trivial_2.
-            induction (eq_dec_points B M).
+            induction (两点重合的决定性 B M).
               subst M.
               apply perp_left_comm.
               apply (perp_col _ Y).
                 auto.
                 assumption.
-              induction (eq_dec_points B X).
+              induction (两点重合的决定性 B X).
                 subst X.
                 apply is_midpoint_id in H6.
                 subst Y.
@@ -1089,7 +1089,7 @@ Proof.
                   apply H.
                   assumption.
                 assumption.
-              induction (eq_dec_points M X).
+              induction (两点重合的决定性 M X).
                 subst X.
                 apply is_midpoint_id in H6.
                 contradiction.
@@ -1141,7 +1141,7 @@ Proof.
       exists Q.
       split.
         apply l7_3_2.
-      induction (eq_dec_points M X).
+      induction (两点重合的决定性 M X).
         subst X.
         assert(M=Q).
           apply is_midpoint_id.
@@ -1217,7 +1217,7 @@ Proof.
             assumption.
           assert (M'=M).
             apply (l6_21 A B P P'); Col.
-              induction (eq_dec_points A M').
+              induction (两点重合的决定性 A M').
                 subst M'.
                 assert (~ Col A B P /\ Per P A B).
                   eapply l8_16_1.
@@ -1348,7 +1348,7 @@ Qed.
 Lemma image_triv : forall A B, Reflect A A A B.
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       right; split; Midpoint.
     left; split.
       auto.
@@ -1358,11 +1358,11 @@ Qed.
 Lemma cong_midpoint__image : forall A B X Y, Cong A X A Y -> Midpoint B X Y -> Reflect Y X A B.
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       right; subst; split; auto.
     left; repeat split; auto.
       exists B; split; Col.
-    induction(eq_dec_points X Y).
+    induction(两点重合的决定性 X Y).
       right.
       assumption.
     left.
@@ -1410,9 +1410,9 @@ Lemma is_image_spec_dec :
   forall A B C D, ReflectL A B C D \/ ~ ReflectL A B C D.
 Proof.
     intros.
-    elim (eq_dec_points C D); intro HCD.
+    elim (两点重合的决定性 C D); intro HCD.
       subst.
-      elim (eq_dec_points A B); intro HAB.
+      elim (两点重合的决定性 A B); intro HAB.
         subst.
         left.
         apply image_spec_triv.
@@ -1425,7 +1425,7 @@ Proof.
         intuition.
       intuition.
     elim (l10_6_existence_spec C D A HCD); intros B' HB'.
-    elim (eq_dec_points B B'); intro HBB'.
+    elim (两点重合的决定性 B B'); intro HBB'.
       subst.
       tauto.
     right.
@@ -1454,7 +1454,7 @@ Proof.
         apply is_midpoint_id in H1.
         subst P'.
         absurde.
-      induction (eq_dec_points A M0).
+      induction (两点重合的决定性 A M0).
         subst A.
         assert (Perp M0 B P M0).
           apply perp_sym.
@@ -1513,7 +1513,7 @@ Proof.
         apply midpoint_bet.
         apply l7_2.
         assumption.
-      induction (eq_dec_points B M0).
+      induction (两点重合的决定性 B M0).
         subst B.
         assert (Perp M0 A P M0).
           apply perp_sym.
@@ -1656,7 +1656,7 @@ Proof.
       apply col_permutation_1.
       assumption.
     ex_elim H2 X.
-    induction (eq_dec_points A C).
+    induction (两点重合的决定性 A C).
       subst C.
       assert (exists Q, exists T, Perp A B Q A /\ Col A B T /\ Bet X T Q).
         apply l8_21.
@@ -1682,7 +1682,7 @@ Proof.
       split.
         apply col_permutation_2.
         assumption.
-      apply between_symmetry.
+      apply 中间性的对称性.
       assumption.
     assert (exists Q, exists T, Perp C A Q C /\ Col C A T /\ Bet X T Q).
       apply l8_21.
@@ -1722,7 +1722,7 @@ Proof.
         assumption.
       apply col_permutation_4.
       assumption.
-    apply between_symmetry.
+    apply 中间性的对称性.
     assumption.
 Qed.
 
@@ -1733,9 +1733,9 @@ Proof.
     intros A B C D X Y HAB HXY HCol HNCol.
     destruct (l10_15 A B C D) as [Q [HQ1 HQ2]]; trivial.
     assert_diffs.
-    destruct (segment_construction_3 C Q X Y) as [P [HP1 HP2]]; auto.
+    destruct (由一点往一方向构造等长线段_3 C Q X Y) as [P [HP1 HP2]]; auto.
     exists P; repeat split; Cong.
-    - destruct (eq_dec_points A C).
+    - destruct (两点重合的决定性 A C).
         subst; Perp.
       apply perp_per_1.
       apply perp_col1 with B; auto.
@@ -1746,12 +1746,12 @@ Qed.
 Lemma exists_cong_per : forall A B X Y, exists C, Per A B C /\ Cong B C X Y.
 Proof.
 intros.
-destruct (eq_dec_points A B).
+destruct (两点重合的决定性 A B).
 subst.
-destruct (segment_construction X B X Y).
+destruct (由一点往一方向构造等长线段 X B X Y).
 exists x;split;spliter;Perp.
 destruct (not_col_exists A B H) as [P HP].
-destruct (eq_dec_points X Y).
+destruct (两点重合的决定性 X Y).
 subst;exists B;split;[Perp|Cong].
 destruct (ex_per_cong A B B P X Y); Col.
 spliter.

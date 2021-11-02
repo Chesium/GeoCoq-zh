@@ -6,7 +6,7 @@ Require Import GeoCoq.Tarski_dev.Ch13_1.
 
 Section bachmann_s_lotschnittaxiom_legendre_s_parallel_postulate.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma bachmann_s_lotschnittaxiom__legendre_s_parallel_postulate :
   bachmann_s_lotschnittaxiom -> legendre_s_parallel_postulate.
@@ -57,7 +57,7 @@ cut (exists A B C, ~ Col A B C /\ Acute A B C /\ forall P Q,
       Cop.
     exists X, Y; repeat (split; [assumption|]).
     elim H; clear H; intro H; auto.
-    elim (eq_dec_points T Y); intro HTY.
+    elim (两点重合的决定性 T Y); intro HTY.
       subst; Between.
     assert (HACT : ~ Col B C T).
       {
@@ -103,16 +103,16 @@ cut (exists A B C, ~ Col A B C /\ Acute A B C /\ forall P Q,
   }
 
   {
-  destruct lower_dim_ex as [C [E [D H]]].
+  destruct 防降维公理_ex as [C [E [D H]]].
   assert (HNC : ~ Col C E D) by auto; clear H.
   destruct (l8_18_existence D E C) as [B [HC1 HPerp]]; Col.
   assert (HF : exists F, Col D E F /\ B <> F).
     {
-    assert_diffs; elim (eq_dec_points B E); intro;
+    assert_diffs; elim (两点重合的决定性 B E); intro;
     [exists D|exists E]; subst; split; Col.
     }
   destruct HF as [F [HC2 HNE]].
-  destruct (segment_construction_2 F B B C) as [A [Hd HCong1]]; auto.
+  destruct (由一点往一方向构造等长线段_2 F B B C) as [A [Hd HCong1]]; auto.
   assert (HC3 : Col D E A)
     by (assert (Col A B F) by (induction Hd; Col); ColR).
   clear Hd.
@@ -194,7 +194,7 @@ cut (exists A B C, ~ Col A B C /\ Acute A B C /\ forall P Q,
     exists I; split; Col; apply l6_4_2; split.
 
       {
-      elim (eq_dec_points D I); intro HNE3; [treat_equalities; Col|].
+      elim (两点重合的决定性 D I); intro HNE3; [treat_equalities; Col|].
       assert (Coplanar A B C I) by (apply col_cop2__cop with P Q; Cop).
       assert_diffs.
       apply cop_perp2__col with A C;

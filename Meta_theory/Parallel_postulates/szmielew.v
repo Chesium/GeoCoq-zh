@@ -3,7 +3,7 @@ Require Export GeoCoq.Meta_theory.Parallel_postulates.parallel_postulates.
 
 Section Szmielew.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Definition hyperbolic_plane_postulate := forall A1 A2 P,
   ~ Col A1 A2 P -> exists B1 B2 C1 C2,

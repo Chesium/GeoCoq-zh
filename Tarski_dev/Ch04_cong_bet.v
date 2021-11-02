@@ -8,7 +8,7 @@ Ltac CongR :=
 
 Section T3.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma l4_2 : forall A B C D A' B' C' D', IFSC A B C D A' B' C' D' -> Cong B D B' D'.
 Proof.
@@ -16,7 +16,7 @@ unfold IFSC.
 intros.
 spliter.
 
-induction (eq_dec_points A C).
+induction (两点重合的决定性 A C).
 
 treat_equalities;assumption.
 
@@ -27,11 +27,11 @@ prolong A' C' E' C E.
 
 assert  (Cong E D E' D')
  by (
-  apply (five_segment_with_def A C E D A' C' E' D');[
+  apply (五线段公理_等价SAS_with_def A C E D A' C' E' D');[
   unfold OFSC;  repeat split;Cong|
   assumption]).
 
-apply (five_segment_with_def E C B D E' C' B' D').
+apply (五线段公理_等价SAS_with_def E C B D E' C' B' D').
 unfold OFSC.
 repeat split; try solve [eBetween| Cong ].
 auto.
@@ -41,7 +41,7 @@ Lemma l4_3 : forall A B C A' B' C',
   Bet A B C -> Bet A' B' C' -> Cong A C A' C' -> Cong B C B' C' -> Cong A B A' B'.
 Proof.
 intros.
-apply cong_commutativity.
+apply 等长的交换性.
 apply (l4_2 A B C A A' B' C' A').
 unfold IFSC.
 repeat split;Cong.
@@ -51,7 +51,7 @@ Lemma l4_3_1 : forall A B C A' B' C',
  Bet A B C -> Bet A' B' C' -> Cong A B A' B' -> Cong A C A' C' -> Cong B C B' C'.
 Proof.
     intros.
-    apply cong_commutativity.
+    apply 等长的交换性.
     eapply l4_3;eBetween;Cong.
 Qed.
 
@@ -71,12 +71,12 @@ prolong x' B' C'' B C.
 assert (Bet A' B' C'') by eBetween.
 
 assert (C'' = C').
-eapply (construction_uniqueness x' A' ).
+eapply (点的唯一构造 x' A' ).
 
 auto.
 eBetween.
 
-apply (l2_11 A' B' C'' A B C);Between.
+apply (两组连续三点分段等则全体等 A' B' C'' A B C);Between.
 
 eBetween.
 Cong.
@@ -97,8 +97,8 @@ unfold Cong_3 in *;spliter.
 
 assert (Cong_3 A' x C' A' B' C').
   unfold Cong_3;repeat split; Cong.
-  apply cong_transitivity with A B; Cong.
-  apply cong_transitivity with B C; Cong.
+  apply 等长的传递性 with A B; Cong.
+  apply 等长的传递性 with B C; Cong.
 unfold Cong_3 in H7;spliter.
 
 assert (IFSC A' x C' x  A' x C' B')

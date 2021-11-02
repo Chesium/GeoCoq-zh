@@ -5,7 +5,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section existential_playfair_rah.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma existential_playfair__rah :
   existential_playfair_s_postulate ->
@@ -15,7 +15,7 @@ intro HP; destruct HP as [A1 [A2 [P [HNC1 HP]]]].
 destruct (l8_18_existence A1 A2 P) as [Q [HCcol1 HPerp1]]; Col.
 assert (HA3 : exists A3, Col A1 A2 A3 /\ A3 <> Q).
 {
-  destruct (eq_dec_points A1 Q).
+  destruct (两点重合的决定性 A1 Q).
     subst; exists A2; assert_diffs; split; Col.
     exists A1; split; Col.
 }

@@ -3,7 +3,7 @@ Require Import GeoCoq.Utils.all_equiv.
 
 Section Equivalence_between_decidability_properties_of_basic_relations.
 
-Context `{Tn:Tarski_neutral_dimensionless}.
+Context `{Tn:无维度中性塔斯基公理系统}.
 
 Lemma cong_dec_eq_dec :
   (forall A B C D, Cong A B C D \/ ~ Cong A B C D) ->
@@ -11,9 +11,9 @@ Lemma cong_dec_eq_dec :
 Proof.
     intros H A B.
     elim (H A B A A); intro HCong.
-      left; apply cong_identity with A; assumption.
+      left; apply 等长的同一性 with A; assumption.
     right; intro; subst; apply HCong.
-    apply cong_pseudo_reflexivity.
+    apply 等长的伪自反性.
 Qed.
 
 Lemma eq_dec_cong_dec :
@@ -21,7 +21,7 @@ Lemma eq_dec_cong_dec :
   (forall A B C D, Cong A B C D \/ ~ Cong A B C D).
 Proof.
 intro eq_dec.
-apply (@cong_dec Tn (Build_Tarski_neutral_dimensionless_with_decidable_point_equality Tn eq_dec)).
+apply (@cong_dec Tn (Build_无维度中性塔斯基公理系统_带两点重合决定性 Tn eq_dec)).
 Qed.
 
 Lemma bet_dec_eq_dec :
@@ -30,8 +30,8 @@ Lemma bet_dec_eq_dec :
 Proof.
 intros.
 induction (H A B A).
-left; apply between_identity; assumption.
-right; intro; subst; apply H0;  apply between_trivial.
+left; apply 中间性的同一律; assumption.
+right; intro; subst; apply H0;  apply ABB中间性.
 Qed.
 
 Lemma eq_dec_bet_dec :
@@ -39,7 +39,7 @@ Lemma eq_dec_bet_dec :
   (forall A B C, Bet A B C \/ ~ Bet A B C).
 Proof.
 intro eq_dec.
-apply (@bet_dec Tn (Build_Tarski_neutral_dimensionless_with_decidable_point_equality Tn eq_dec)).
+apply (@bet_dec Tn (Build_无维度中性塔斯基公理系统_带两点重合决定性 Tn eq_dec)).
 Qed.
 
 Definition decidability_of_equality_of_points := forall A B:Tpoint, A=B \/ A<>B.

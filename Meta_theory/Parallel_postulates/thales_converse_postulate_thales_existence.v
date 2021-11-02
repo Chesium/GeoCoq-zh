@@ -3,12 +3,12 @@ Require Import GeoCoq.Tarski_dev.Ch10_line_reflexivity.
 
 Section thales_converse_postulate_thales_existence.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma thales_converse_postulate__thales_existence : thales_converse_postulate -> existential_thales_postulate.
 Proof.
   intro thales.
-  destruct lower_dim_ex as [C [A [B0]]].
+  destruct 防降维公理_ex as [C [A [B0]]].
   assert(HNCol : ~ Col C A B0) by (unfold Col; assumption).
   destruct (l10_15 C A C B0) as [B []]; Col.
   assert(~ Col C A B) by (apply (one_side_not_col123 _ _ _ B0); Side).

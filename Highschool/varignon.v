@@ -2,7 +2,7 @@ Require Export GeoCoq.Tarski_dev.Annexes.midpoint_theorems.
 
 Section Varignon.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 (** This is the usual proof presented in classroom based on
 the midpoint theorem but this proof suffers from two problems.
@@ -57,7 +57,7 @@ Lemma varignon_aux_aux :
   Parallelogram I J K L.
 Proof.
 intros.
-induction (eq_dec_points B D).
+induction (两点重合的决定性 B D).
 treat_equalities.
 apply plg_trivial.
 intro;treat_equalities;intuition.
@@ -72,7 +72,7 @@ spliter.
 assert (Par I L J K)
   by (eapply par_trans with B D;finish).
 assert (Cong I L J K)
-  by (eapply cong_transitivity with B X;finish).
+  by (eapply 等长的传递性 with B X;finish).
 
 Name X' the midpoint of A and C.
 assert (Par A C J I /\ Cong A X' J I)
@@ -83,7 +83,7 @@ spliter.
 assert (Par I J K L)
   by (eapply par_trans with A C;finish).
 assert (Cong I J K L)
-   by (eapply cong_transitivity with A X';finish).
+   by (eapply 等长的传递性 with A X';finish).
 apply par_par_cong_cong_parallelogram;finish.
 Qed.
 
@@ -102,7 +102,7 @@ intros.
 induction H.
 eauto using varignon_aux_aux.
 
-induction (eq_dec_points A C).
+induction (两点重合的决定性 A C).
 treat_equalities.
 apply plg_trivial1.
 intro;treat_equalities;intuition.
@@ -118,7 +118,7 @@ spliter.
 assert (Par I L J K)
   by (eapply par_trans with B D;finish).
 assert (Cong I L J K)
-  by (eapply cong_transitivity with B X;finish).
+  by (eapply 等长的传递性 with B X;finish).
 
 Name X' the midpoint of A and C.
 assert (Par A C J I /\ Cong A X' J I)
@@ -129,7 +129,7 @@ spliter.
 assert (Par I J K L)
   by (eapply par_trans with A C;finish).
 assert (Cong I J K L)
-   by (eapply cong_transitivity with A X';finish).
+   by (eapply 等长的传递性 with A X';finish).
 apply par_par_cong_cong_parallelogram;finish.
 Qed.
 
@@ -143,20 +143,20 @@ Lemma varignon' :
   Parallelogram I J K L.
 Proof.
 intros.
-induction (eq_dec_points J L).
+induction (两点重合的决定性 J L).
 subst.
 unfold Parallelogram.
 right.
 unfold Parallelogram_flat.
 assert_congs_perm.
 Name X the midpoint of B and D.
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
  treat_equalities.
  assert_cols.
  repeat split;Cong;Col; intuition.
-induction (eq_dec_points A D).
+induction (两点重合的决定性 A D).
  treat_equalities.
- induction (eq_dec_points X K).
+ induction (两点重合的决定性 X K).
   treat_equalities.
   intuition.
  assert_cols.
@@ -180,7 +180,7 @@ induction (eq_dec_points A D).
  auto.
  auto.
  left;auto.
-induction (eq_dec_points B D).
+induction (两点重合的决定性 B D).
  treat_equalities. intuition.
 assert (Midpoint L I K).
 assert (Par A B L X /\
@@ -191,11 +191,11 @@ assert (Par A B L X /\
        Cong A L X I /\ Cong D L X I /\ Cong B X L I /\ Cong D X L I).
 apply (triangle_mid_par_cong A B D X L I);auto.
 spliter.
-induction (eq_dec_points C D).
+induction (两点重合的决定性 C D).
  treat_equalities.
  intuition.
 assert_diffs.
-induction (eq_dec_points B C).
+induction (两点重合的决定性 B C).
  treat_equalities.
  assert_cols.
  apply cong_col_mid.
@@ -210,7 +210,7 @@ assert (Par B C X K /\
        Cong B X K L /\ Cong D X K L /\ Cong C K X L /\ Cong D K X L).
 apply (triangle_mid_par_cong B C D K X L);auto.
 spliter.
-induction (eq_dec_points I K).
+induction (两点重合的决定性 I K).
   treat_equalities.
   assert (Parallelogram A D B C) by (apply mid_plg with I;Midpoint).
   assert (Parallelogram A B D C) by (apply mid_plg with L;Midpoint).

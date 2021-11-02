@@ -7,30 +7,30 @@ Require Import GeoCoq.Tarski_dev.Ch08_orthogonality.
 
 Section Completeness.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** If there exists n such that (f A) X = n times (f A) (f B),
     then X belongs to the image of the line extension f *)
 
-Lemma extension_grad : forall {Tm: Tarski_neutral_dimensionless}
-  {TmEQD : Tarski_neutral_dimensionless_with_decidable_point_equality Tm}
+Lemma extension_grad : forall {Tm: 无维度中性塔斯基公理系统}
+  {TmEQD : 无维度中性塔斯基公理系统_带两点重合决定性 Tm}
   P Q (f : @Tpoint Tn -> @Tpoint Tm),
   line_extension f P Q ->
   forall A B X, Col P Q A -> Col P Q B -> Grad (f A) (f B) X ->
   exists C, Col P Q C /\ Grad A B C /\ f C = X.
 Proof.
 intros Tm TmEQD P Q f [HPQ [fInj [fBet fCong]]] A B X HA HB HGrad.
-elim (eq_dec_points A B); [intro; subst; apply grad112__eq in HGrad; subst|];
+elim (两点重合的决定性 A B); [intro; subst; apply grad112__eq in HGrad; subst|];
 [exists B; repeat split; [auto|constructor]|intro HAB].
 remember (f A) as fA; remember (f B) as fB.
 induction HGrad as [|fA fB C C' ? HInd ? ?];
 [exists B; repeat split; [auto|constructor|auto]|].
 rename C into X, C' into X'; destruct HInd as [C [? []]]; trivial.
-destruct (segment_construction A C A B) as [C' []]; exists C'.
+destruct (由一点往一方向构造等长线段 A C A B) as [C' []]; exists C'.
 assert (Col P Q C')
   by (apply (colx A C); Col; apply grad_neq__neq13 with B; auto).
 split; [auto|split; [apply grad_stab with C; Cong|]].
-apply (construction_uniqueness fA X fA fB); Cong; [|subst; auto..].
+apply (点的唯一构造 fA X fA fB); Cong; [|subst; auto..].
 intro; subst X; assert (A = C) by (apply fInj; auto; congruence).
 subst; apply grad121__eq, fInj in HGrad; auto.
 Qed.
@@ -38,8 +38,8 @@ Qed.
 (** If there exists n such that (f A) X = (f A) (f B) divided by 2^n,
     then X belongs to the image of the line extension f *)
 
-Lemma extension_gradexp : forall {Tm: Tarski_neutral_dimensionless}
-  {TmEQD : Tarski_neutral_dimensionless_with_decidable_point_equality Tm}
+Lemma extension_gradexp : forall {Tm: 无维度中性塔斯基公理系统}
+  {TmEQD : 无维度中性塔斯基公理系统_带两点重合决定性 Tm}
   P Q (f : @Tpoint Tn -> @Tpoint Tm),
   line_extension f P Q ->
   forall A B X, Col P Q A -> Col P Q B -> GradExp (f A) X (f B) ->
@@ -52,7 +52,7 @@ intro HI; induction HI as [|fA fB C C' ? ? ? HInd];
 rename C into X, C' into X'; destruct HInd as [C [? []]]; auto.
 destruct (midpoint_existence A C) as [C' []]; exists C'.
 assert (Col P Q C')
-  by (destruct (eq_dec_points A C); [treat_equalities|apply (colx A C)]; Col).
+  by (destruct (两点重合的决定性 A C); [treat_equalities|apply (colx A C)]; Col).
 split; [auto|split; [|apply l7_17 with fA fB; split; subst; auto]].
 rewrite gradexp__gradexpinv; apply gradexpinv_stab with C; auto.
 rewrite <- gradexp__gradexpinv; assumption.
@@ -60,8 +60,8 @@ Qed.
 
 (** Given a line extension f to a line l in an Archimedean space, the image of f is dense in l *)
 
-Lemma extension_image_density : forall {Tm: Tarski_neutral_dimensionless}
-  {TmEQD : Tarski_neutral_dimensionless_with_decidable_point_equality Tm}
+Lemma extension_image_density : forall {Tm: 无维度中性塔斯基公理系统}
+  {TmEQD : 无维度中性塔斯基公理系统_带两点重合决定性 Tm}
   P Q (f : @Tpoint Tn -> @Tpoint Tm),
   @archimedes_axiom Tm ->
   line_extension f P Q ->
@@ -104,15 +104,15 @@ cut(forall P Q A B,
   (* Either we can conclude using HH which is a corrolary of the auxilliary
      statement or Bet A (f P) B holds in which case we are done *)
   destruct HE as [|[|]]; [apply HH; Between..|].
-  destruct (eq_dec_points (f P) A); [subst; apply HH; Between|].
-  destruct (eq_dec_points (f P) B); [subst; apply HH; Between|].
+  destruct (两点重合的决定性 (f P) A); [subst; apply HH; Between|].
+  destruct (两点重合的决定性 (f P) B); [subst; apply HH; Between|].
   exists P; repeat split; finish.
   }
 
   {
   intros P Q A B fPQ HColA HColB HAB HLt HBet.
   assert (Hf' := fPQ); destruct Hf' as [HPQ [fInj [fBet fCong]]].
-  destruct (eq_dec_points (f P) A); [treat_equalities|].
+  destruct (两点重合的决定性 (f P) A); [treat_equalities|].
 
     {
     assert (f P <> f Q) by (intro; apply HPQ, fInj; Col).
@@ -120,7 +120,7 @@ cut(forall P Q A B,
        a desired point or (f Q) and B are on the same side of (f P) and then
        Q is such a point since these three points are collinear *)
     destruct (or_bet_out (f Q) (f P) B) as [HBet|[HOut|]]; [..|exfalso; Col];
-    [destruct (segment_construction Q P P Q) as [Q' []]; exists Q'|exists Q];
+    [destruct (由一点往一方向构造等长线段 Q P P Q) as [Q' []]; exists Q'|exists Q];
     [assert (f Q' <> f P) by (intro; cut (P = Q'); assert_diffs; finish)|];
     repeat split; Col; [| |apply l6_13_1; Le|];
     [|intro; subst; destruct HLt; intuition..].
@@ -148,10 +148,10 @@ cut(forall P Q A B,
         {
         (* In which case either A = (f Q) and then the symmetric of P wrt Q is
            a desired point or A <> (f Q) and then Q is such a point *)
-        destruct (eq_dec_points (f Q) A); [treat_equalities|exists Q].
+        destruct (两点重合的决定性 (f Q) A); [treat_equalities|exists Q].
 
           {
-          destruct (segment_construction P Q P Q) as [Q' []]; exists Q'.
+          destruct (由一点往一方向构造等长线段 P Q P Q) as [Q' []]; exists Q'.
           assert (Bet (f P) (f Q) (f Q')) by (apply fBet; Col).
           assert (Cong (f Q) (f Q') (f P) (f Q)) by (apply fCong; Col).
           assert (f Q <> f Q') by (assert_diffs; auto).
@@ -191,7 +191,7 @@ cut(forall P Q A B,
       assert (Bet D A E) by (apply (between_exchange3 (f P)); assumption).
       exists E; repeat split; [apply grad_stab with D| | |intro; subst E]; auto;
       [|apply lt__nle in HLt; apply HLt, le_transitivity with D B; spliter; Le].
-      apply l6_13_1; [destruct (eq_dec_points A D); [subst D|]|];
+      apply l6_13_1; [destruct (两点重合的决定性 A D); [subst D|]|];
       [apply l6_2 with (f P); assert_diffs|apply l6_2 with D|]; eBetween.
       apply le_transitivity with D E; Le.
       apply le_transitivity with (f P) (f Q); Le.
@@ -203,10 +203,10 @@ Qed.
 Lemma dedekind_variant__completeness : dedekind_variant -> line_completeness.
 Proof.
   intros dedekind Tm Tm2 P Q f archi fLineExt A HA.
-  destruct (eq_dec_points (f P) A).
+  destruct (两点重合的决定性 (f P) A).
     subst; exists P; split; Col.
   assert (HR : exists R, Col P Q R /\ Bet (f P) A (f R)).
-  { destruct (segment_construction (f P) A (f P) A) as [A1 []].
+  { destruct (由一点往一方向构造等长线段 (f P) A (f P) A) as [A1 []].
     assert_diffs.
     destruct (extension_image_density P Q f archi fLineExt A A1) as [R [HR1 [HR2 []]]]; Col.
       apply col_transitivity_1 with A; Col.
@@ -219,7 +219,7 @@ Proof.
   - split; assumption.
   - intros Z HZ.
     assert (Col P Q Z) by (assert_diffs; apply col_transitivity_1 with R; Col).
-    destruct (eq_dec_points (f Z) A).
+    destruct (两点重合的决定性 (f Z) A).
       subst; right; split; Between.
     assert (HOut : Out (f P) (f Z) A).
     { apply l6_7 with (f R); [|Out].
@@ -241,7 +241,7 @@ Proof.
       apply HB; split; Col; Between.
     assert (Col P Q B).
       apply col_transitivity_1 with R; Col; intro; treat_equalities; auto.
-    destruct (eq_dec_points (f B) A); [split; assumption|].
+    destruct (两点重合的决定性 (f B) A); [split; assumption|].
     exfalso.
     assert (Hf := fLineExt).
     destruct Hf as [HPQ [finj [fBet fCong]]].
@@ -249,13 +249,13 @@ Proof.
       apply (pres_bet_line__col f P Q); Col.
     destruct (l5_3 (f P) A (f B) (f R)); auto; [apply fBet; Col|apply Habs..].
     * apply between_equality with (f P).
-        apply between_symmetry, fBet, HB; try split; Col; Between.
+        apply 中间性的对称性, fBet, HB; try split; Col; Between.
         apply between_inner_transitivity with (f B); assumption.
       clear dependent R; eBetween.
     * apply between_equality with (f P).
         clear dependent R; eBetween.
       apply between_exchange3 with (f R); [|apply bet3__bet with A (f B); eBetween].
-      apply between_symmetry, fBet; Col.
+      apply 中间性的对称性, fBet; Col.
       apply HB; split; Col.
       split; trivial.
       apply between_exchange2 with (f B); Between.

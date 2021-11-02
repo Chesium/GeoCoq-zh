@@ -2,7 +2,7 @@ Require Export GeoCoq.Tarski_dev.Ch11_angles.
 
 Section Suma_1.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma suma_distincts : forall A B C D E F G H I, SumA A B C D E F G H I ->
    A<>B /\ B<>C /\ D<>E /\ E<>F /\ G<>H /\ H<>I.
@@ -401,7 +401,7 @@ Proof.
     repeat split; auto.
     exists X.
     split; auto.
-    elim (eq_dec_points B X); auto.
+    elim (两点重合的决定性 B X); auto.
     intro HBX.
     right.
     apply (col_one_side_out B A X C); Col.
@@ -460,7 +460,7 @@ Proof.
       { apply not_bet_out; auto.
         intro HEBet.
         apply HNColB'.
-        apply bet_col; apply between_symmetry.
+        apply 中间性转共线; apply 中间性的对称性.
         apply (bet_lea__bet D E F); auto.
       }
       split.
@@ -591,7 +591,7 @@ Qed.
 Lemma out546__sams : forall A B C D E F, A <> B -> B <> C -> Out E D F -> SAMS A B C D E F.
 Proof.
   intros A B C D E F HAB HBC HOut.
-  destruct (segment_construction A B A B) as [A' [HBet HCong]].
+  destruct (由一点往一方向构造等长线段 A B A B) as [A' [HBet HCong]].
   assert_diffs.
   apply sams_chara with A'; auto.
   apply l11_31_1; auto.
@@ -701,16 +701,16 @@ repeat
 
       | H:Cong ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= cong_diff A B C D H2 H);clean_reap_hyps
+        assert (T:= 与不同点等长之点不同 A B C D H2 H);clean_reap_hyps
       | H:Cong ?A ?B ?C ?D, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= cong_diff_2 A B C D H2 H);clean_reap_hyps
+        assert (T:= 与不同点等长之点不同_2 A B C D H2 H);clean_reap_hyps
       | H:Cong ?A ?B ?C ?D, H2 : ?C <> ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm A B);
-        assert (T:= cong_diff_3 A B C D H2 H);clean_reap_hyps
+        assert (T:= 与不同点等长之点不同_3 A B C D H2 H);clean_reap_hyps
       | H:Cong ?A ?B ?C ?D, H2 : ?D <> ?C |-_ =>
       let T:= fresh in (not_exist_hyp_comm A B);
-        assert (T:= cong_diff_4 A B C D H2 H);clean_reap_hyps
+        assert (T:= 与不同点等长之点不同_4 A B C D H2 H);clean_reap_hyps
 
       | H:Le ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
@@ -858,7 +858,7 @@ Ltac SumA := auto with suma.
 
 Section Suma_2.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** ABC <= ABC + DEF. *)
 
@@ -1017,7 +1017,7 @@ Proof.
   clear HE'Nout.
   elim(col_dec D E F).
   { intro HColE.
-    assert(~ Bet D E F) by (intro; apply HNColE'; apply bet_col; apply (bet_lea__bet D E F); auto).
+    assert(~ Bet D E F) by (intro; apply HNColE'; apply 中间性转共线; apply (bet_lea__bet D E F); auto).
     apply (l11_30 A B C G' H' I'); try (apply conga_refl); auto.
     apply (sams_suma__lea123789 _ _ _ D' E' F'); auto.
     apply (out546_suma__conga _ _ _ D E F); auto.
@@ -1933,7 +1933,7 @@ Proof.
     destruct Habs as [_ [Habs]].
     apply Habs.
     apply col_permutation_2.
-    apply bet_col.
+    apply 中间性转共线.
     apply (bet_conga__bet G H I); CongA.
 
   - assert(HSuma' := ex_suma A B C A B C).
@@ -2177,7 +2177,7 @@ Proof.
   intros A B C D E F G H I [_ [A' [HBet HCong]]] [A'' [HConga1 [HNOS [HCop HConga2]]]].
   apply (bet_conga__bet A B A''); trivial.
   assert_diffs.
-  apply between_symmetry, l6_2 with A'; Between.
+  apply 中间性的对称性, l6_2 with A'; Between.
   destruct (conga_cop__or_out_ts C B A' A'') as [|HTS]; auto.
     apply coplanar_perm_3, col_cop__cop with A; Col; Cop.
     apply conga_trans with D E F; CongA.
@@ -2222,7 +2222,7 @@ Lemma bet2_suma__suma : forall A B C D E F G H I A' D', A' <> B -> D' <> E ->
   Bet A B A' -> Bet D E D' -> SumA A B C D E F G H I -> SumA A' B C D' E F G H I.
 Proof.
   intros A B C D E F G H I A' D' HBA' HED' HBetA HBetD [J [HJ1 [HJ2 [HJ3 HJ4]]]]; spliter.
-  destruct (segment_construction C B B C) as [C' []].
+  destruct (由一点往一方向构造等长线段 C B B C) as [C' []].
   assert_diffs.
   apply (conga3_suma__suma A B C' D' E F G H I); [|apply l11_14; Between|CongA..].
   exists J.
@@ -2251,8 +2251,8 @@ Lemma suma2_obtuse2__conga : forall A B C D E F A' B' C',
   CongA A B C A' B' C'.
 Proof.
   intros A B C D E F A' B' C' HB HSuma HB' HSuma'.
-  destruct (segment_construction A B A B) as [A0 []].
-  destruct (segment_construction A' B' A' B') as [A0' []].
+  destruct (由一点往一方向构造等长线段 A B A B) as [A0 []].
+  destruct (由一点往一方向构造等长线段 A' B' A' B') as [A0' []].
   assert_diffs.
   apply l11_13 with A0 A0'; Between.
   apply acute2_suma2__conga with D E F.
@@ -2288,7 +2288,7 @@ Proof.
   - left.
     apply l11_16; auto.
     apply bet_suma__per with D E F; [apply (per2_suma__bet A' B' C' A' B' C')|]; assumption.
-  - destruct (segment_construction A' B' A' B') as [A0' []].
+  - destruct (由一点往一方向构造等长线段 A' B' A' B') as [A0' []].
     assert_diffs.
     destruct (Haux A0' B' C').
       apply (bet_obtuse__acute A'); auto.
@@ -2302,7 +2302,7 @@ Lemma suma2__or_conga_suppa : forall A B C A' B' C' D E F ,
   CongA A B C A' B' C' \/ SuppA A B C A' B' C'.
 Proof.
   intros A B C A' B' C' D E F HSuma HSuma'.
-  destruct (segment_construction A B A B) as [A0 []].
+  destruct (由一点往一方向构造等长线段 A B A B) as [A0 []].
   assert_diffs.
   destruct (bet_suma2__or_conga A B C D E F A' B' C' A0); auto.
   right.
@@ -2437,13 +2437,13 @@ Qed.
 Lemma suma_dec : forall A B C D E F G H I, SumA A B C D E F G H I \/ ~ SumA A B C D E F G H I.
 Proof.
   intros A B C D E F G H I.
-  destruct(eq_dec_points A B).
+  destruct(两点重合的决定性 A B).
     subst; right; intro; assert_diffs; auto.
-  destruct(eq_dec_points C B).
+  destruct(两点重合的决定性 C B).
     subst; right; intro; assert_diffs; auto.
-  destruct(eq_dec_points D E).
+  destruct(两点重合的决定性 D E).
     subst; right; intro; assert_diffs; auto.
-  destruct(eq_dec_points F E).
+  destruct(两点重合的决定性 F E).
     subst; right; intro; assert_diffs; auto.
   destruct (ex_suma A B C D E F) as [G' [H' [I']]]; auto.
   destruct(conga_dec G H I G' H' I') as [|HNCongA].
@@ -2456,7 +2456,7 @@ Qed.
 Lemma sams_dec : forall A B C D E F, SAMS A B C D E F \/ ~ SAMS A B C D E F.
 Proof.
   intros A B C D E F.
-  destruct(eq_dec_points A B).
+  destruct(两点重合的决定性 A B).
     subst; right; intro; assert_diffs; auto.
   assert(HA' := symmetric_point_construction A B).
   destruct HA' as [A'].
@@ -2471,11 +2471,11 @@ Qed.
 Lemma trisuma_dec : forall A B C P Q R, TriSumA A B C P Q R \/ ~ TriSumA A B C P Q R.
 Proof.
   intros A B C P Q R.
-  destruct(eq_dec_points A B).
+  destruct(两点重合的决定性 A B).
     subst; right; intros [D [E [F []]]]; assert_diffs; auto.
-  destruct(eq_dec_points B C).
+  destruct(两点重合的决定性 B C).
     subst; right; intros [D [E [F []]]]; assert_diffs; auto.
-  destruct(eq_dec_points A C).
+  destruct(两点重合的决定性 A C).
     subst; right; intros [D [E [F []]]]; assert_diffs; auto.
   destruct (ex_trisuma A B C) as [D [E [F]]]; auto.
   destruct (conga_dec D E F P Q R) as [|HNCong].

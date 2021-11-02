@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section tarski_euclid.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma tarski_s_euclid_implies_euclid_5 :
   tarski_s_parallel_postulate ->
@@ -13,7 +13,7 @@ intros HT P Q R S T U HPTQ HRTS HQUR HNC HCong1 HCong2.
 destruct (symmetric_point_construction R P) as [V HMid].
 assert (Hc1 : Bet V P R) by (unfold Midpoint in *; spliter; Between).
 assert (Hc2 : Bet Q U R) by (unfold BetS in *; spliter; Between).
-destruct (inner_pasch V Q R P U) as [W [HPWQ HUWV]]; Col; clear Hc1; clear Hc2.
+destruct (帕施公理 V Q R P U) as [W [HPWQ HUWV]]; Col; clear Hc1; clear Hc2.
 assert (HPW : P <> W).
   {
   intro; treat_equalities.

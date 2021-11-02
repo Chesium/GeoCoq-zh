@@ -40,7 +40,7 @@ Class euclidean_neutral :=
    forall A B, ~ neq A B -> eq A B;
   axiom_circle_center_radius :
    forall A B C J P, CI J A B C -> OnCirc P J -> Cong A P B C;
-  axiom_lower_dim : nCol PA PB PC;
+  axiom_防降维公理 : nCol PA PB PC;
   axiom_betweennessidentity :
    forall A B, ~ BetS A B A;
   axiom_betweennesssymmetry :

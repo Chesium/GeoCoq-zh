@@ -4,13 +4,13 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section consecutive_interior_angles_alternate_interior_angles.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma consecutive_interior__alternate_interior :
    consecutive_interior_angles_postulate -> alternate_interior_angles_postulate.
 Proof.
   intros cia A B C D Hts HPar.
-  destruct (segment_construction D C C D) as [D' []].
+  destruct (由一点往一方向构造等长线段 D C C D) as [D' []].
   apply suppa2__conga123 with A C D'.
   - apply cia; [|assert_diffs; apply par_left_comm, par_col_par with D; Col].
     exists D; split; trivial.

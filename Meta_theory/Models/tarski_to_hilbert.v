@@ -3,14 +3,14 @@ Require Import GeoCoq.Axioms.hilbert_axioms.
 Require Import GeoCoq.Axioms.parallel_postulates.
 Require Import GeoCoq.Meta_theory.Parallel_postulates.tarski_playfair.
 Require Import GeoCoq.Meta_theory.Parallel_postulates.SPP_ID.
-Require Import GeoCoq.Meta_theory.Dimension_axioms.upper_dim_3.
+Require Import GeoCoq.Meta_theory.Dimension_axioms.三维防升维公理.
 Require Import GeoCoq.Meta_theory.Parallel_postulates.parallel_postulates.
 
 Require Export GeoCoq.Utils.triples.
 
 Section T.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** We need a notion of line. *)
 
@@ -49,7 +49,7 @@ replace (P1 (Lin A B H)) with A; trivial.
 replace (P2 (Lin A B H)) with B; trivial.
 split;intro.
 assert (T:=Cond l).
-elim (eq_dec_points X B); intro.
+elim (两点重合的决定性 X B); intro.
 subst X.
 auto.
 assert (Col (P1 l) A B).
@@ -186,9 +186,9 @@ Lemma cols_coincide_2 : forall A B C, Col A B C -> Col_H A B C.
 Proof.
 intros.
 unfold Col_H.
-elim (eq_dec_points A B); intro.
+elim (两点重合的决定性 A B); intro.
 subst B.
-elim (eq_dec_points A C); intro.
+elim (两点重合的决定性 A C); intro.
 subst C.
 assert (exists B, A<>B).
 eapply another_point.
@@ -217,9 +217,9 @@ Qed.
 
 (** There exists three non collinear points. *)
 
-Lemma lower_dim' : PA <> PB /\ PB <> PC /\ PA <> PC /\ ~ Col_H PA PB PC.
+Lemma 防降维公理' : PA <> PB /\ PB <> PC /\ PA <> PC /\ ~ Col_H PA PB PC.
 Proof.
-assert (HNCol : ~ Col PA PB PC) by (apply lower_dim).
+assert (HNCol : ~ Col PA PB PC) by (apply 防降维公理).
 assert_diffs.
 apply ncols_coincide in HNCol.
 repeat split; auto.
@@ -528,8 +528,8 @@ Lemma cop_plane : forall A B C D, Coplanar A B C D ->
   exists p, IncidentP A p /\ IncidentP B p /\ IncidentP C p /\ IncidentP D p.
 Proof.
   intros A B C D HCop.
-  destruct (eq_dec_points A B) as [|HAB]; [destruct (eq_dec_points A C);
-    [destruct (eq_dec_points A D)|]|].
+  destruct (两点重合的决定性 A B) as [|HAB]; [destruct (两点重合的决定性 A C);
+    [destruct (两点重合的决定性 A D)|]|].
   - destruct (another_point D) as [E].
     destruct (cop_plane_aux D E E E) as [p []]; Cop.
     subst; exists p; repeat split; assumption.
@@ -609,7 +609,7 @@ intros.
 spliter.
 induction H1.
 
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
 right; right.
 split; auto.
 left.
@@ -617,7 +617,7 @@ unfold Between_H.
 repeat split; auto.
 
 
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
 right; right.
 split; auto.
 right; left.
@@ -689,7 +689,7 @@ repeat split; try assumption.
 eapply l5_2.
 apply H18.
 assumption.
-apply between_symmetry.
+apply 中间性的对称性.
 assumption.
 
 split.
@@ -703,7 +703,7 @@ unfold Out.
 repeat split; try assumption.
 eapply l5_2.
 apply H20.
-apply between_symmetry.
+apply 中间性的对称性.
 assumption.
 assumption.
 eapply col3.
@@ -749,7 +749,7 @@ eapply between_equality;eauto.
 intuition.
 assert (A = C).
 eapply between_equality;eauto.
-apply between_symmetry.
+apply 中间性的对称性.
 auto.
 intuition.
 Cong.
@@ -767,12 +767,12 @@ intros.
 apply cols_coincide_1 in H.
 unfold disjoint in H0.
 
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
 subst  B.
-apply between_trivial2.
-induction (eq_dec_points B C).
+apply AAB中间性.
+induction (两点重合的决定性 B C).
 subst  C.
-apply between_trivial.
+apply ABB中间性.
 
 unfold Col in H.
 induction H.
@@ -789,20 +789,20 @@ spliter.
 split.
 unfold Between_H.
 repeat split.
-apply between_symmetry.
+apply 中间性的对称性.
 eapply between_exchange4.
 apply H3.
 assumption.
 intro.
 treat_equalities.
 (*
-apply between_symmetry in H.
+apply 中间性的对称性 in H.
 apply between_equality in H.
 treat_equalities.
 *)
 tauto.
 (*
-apply between_symmetry.
+apply 中间性的对称性.
 assumption.
 *)
 intro.
@@ -843,9 +843,9 @@ unfold Between_H.
 repeat split.
 
 eapply between_exchange4.
-apply between_symmetry.
+apply 中间性的对称性.
 apply H3.
-apply between_symmetry.
+apply 中间性的对称性.
 assumption.
 intro.
 treat_equalities.
@@ -872,7 +872,7 @@ assert(Bet A' B' C').
 eapply col_disjoint_bet.
 assumption.
 assumption.
-eapply l2_11;eauto.
+eapply 两组连续三点分段等则全体等;eauto.
 Qed.
 
 Lemma exists_not_incident : forall A B : Tpoint, forall  HH : A <> B , exists C, ~ IncidentL C (Lin A B HH).
@@ -931,7 +931,7 @@ subst T.
 contradiction.
 intro.
 subst P.
-apply between_identity in H5.
+apply 中间性的同一律 in H5.
 subst T.
 contradiction.
 ex_and H2 T.
@@ -946,7 +946,7 @@ subst T.
 contradiction.
 intro.
 subst P.
-apply between_identity in H5.
+apply 中间性的同一律 in H5.
 subst T.
 contradiction.
 Qed.
@@ -1018,7 +1018,7 @@ subst B.
 auto.
 subst B.
 left.
-apply between_trivial.
+apply ABB中间性.
 Qed.
 
 (** The 2D version of the fourth congruence axiom **)
@@ -1188,17 +1188,17 @@ End T.
 
 Section Tarski_neutral_to_Hilbert_neutral.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Instance Hilbert_neutral_follows_from_Tarski_neutral : Hilbert_neutral_dimensionless.
 Proof.
 exact (Build_Hilbert_neutral_dimensionless Tpoint Line Plane EqL EqL_Equiv EqP EqP_Equiv IncidentL
        IncidentP axiom_Incid_morphism axiom_Incid_dec axiom_Incidp_morphism axiom_Incidp_dec
-       eq_dec_points axiom_line_existence axiom_line_uniqueness axiom_two_points_on_line PA
-       PB PC lower_dim' axiom_plane_existence axiom_one_point_on_plane axiom_plane_uniqueness
+       两点重合的决定性 axiom_line_existence axiom_line_uniqueness axiom_two_points_on_line PA
+       PB PC 防降维公理' axiom_plane_existence axiom_one_point_on_plane axiom_plane_uniqueness
        axiom_line_on_plane Between_H axiom_between_diff axiom_between_col axiom_between_comm
-       axiom_between_out axiom_between_only_one axiom_pasch Cong cong_right_commutativity
-       axiom_hcong_1_existence cong_inner_transitivity
+       axiom_between_out axiom_between_only_one axiom_pasch Cong 等长的右交换性
+       axiom_hcong_1_existence 等长的内传递性
         axiom_hcong_3 CongA axiom_conga_refl axiom_conga_comm
        axiom_conga_permlr axiom_congaH_outH_congaH axiom_hcong_4_existence
        axiom_hcong_4_uniqueness axiom_cong_5').
@@ -1224,17 +1224,17 @@ Section Tarski_neutral_3D_to_Hilbert_neutral_3D.
 
 Context `{T3D:Tarski_3D}.
 
-Lemma lower_dim_3' : {A : Tpoint & {B : Tpoint & {C : Tpoint & {D |
+Lemma 三维防降维公理' : {A : Tpoint & {B : Tpoint & {C : Tpoint & {D |
   ~ exists p, IncidentP A p /\ IncidentP B p /\ IncidentP C p /\ IncidentP D p}}}}.
 Proof.
 exists S1, S2, S3, S4.
 intros [p]; spliter.
-apply tarski_axioms.lower_dim_3, plane_cop with p; assumption.
+apply tarski_axioms.三维防降维公理, plane_cop with p; assumption.
 Qed.
 
 Instance Hilbert_3D_follows_from_Tarski_3D : Hilbert_neutral_3D Hilbert_neutral_follows_from_Tarski_neutral.
 Proof.
-destruct lower_dim_3' as [A [B [C [D n]]]].
+destruct 三维防降维公理' as [A [B [C [D n]]]].
 exists A B C D; [|assumption].
 clear A B C D n.
 intros A p q HAp HAq.
@@ -1242,18 +1242,18 @@ destruct p as [P1 P2 P3 HP].
 destruct q as [Q1 Q2 Q3 HQ].
 unfold IncidP in *; simpl in *; unfold IncidentP in *; simpl in *.
 assert (pi : plane_intersection_axiom).
-cut upper_dim_3_axiom.
-apply upper_dim_3_equivalent_axioms; simpl; tauto.
-unfold upper_dim_3_axiom.
-apply upper_dim_3.
+cut 三维防升维公理_axiom.
+apply 三维防升维公理_equivalent_axioms; simpl; tauto.
+unfold 三维防升维公理_axiom.
+apply 三维防升维公理.
 apply pi; assumption.
 Defined.
 
 End Tarski_neutral_3D_to_Hilbert_neutral_3D.
 
-Section Tarski_Euclidean_to_Hilbert_Euclidean.
+Section 塔斯基公理系统_欧几里得几何_to_Hilbert_Euclidean.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 (** * Group Parallels *)
 
@@ -1290,15 +1290,15 @@ apply axiom_line_uniqueness with C' D';
 unfold IncidentL;simpl;Col.
 Qed.
 
-Instance Hilbert_euclidean_follows_from_Tarski_euclidean :
+Instance Hilbert_euclidean_follows_from_塔斯基公理系统_欧几里得几何 :
   Hilbert_euclidean Hilbert_neutral_follows_from_Tarski_neutral.
 Proof.
 split.
 apply axiom_euclid_uniqueness.
 Defined.
 
-Instance Hilbert_euclidean_ID_follows_from_Tarski_euclidean :
-  Hilbert_euclidean_ID Hilbert_euclidean_follows_from_Tarski_euclidean.
+Instance Hilbert_euclidean_ID_follows_from_塔斯基公理系统_欧几里得几何 :
+  Hilbert_euclidean_ID Hilbert_euclidean_follows_from_塔斯基公理系统_欧几里得几何.
 Proof.
 split.
 intros l m.
@@ -1314,4 +1314,4 @@ simpl; unfold IncidentL; simpl.
 apply ID.
 Defined.
 
-End Tarski_Euclidean_to_Hilbert_Euclidean.
+End 塔斯基公理系统_欧几里得几何_to_Hilbert_Euclidean.

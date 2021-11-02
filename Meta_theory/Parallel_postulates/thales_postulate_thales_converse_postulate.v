@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch11_angles.
 
 Section thales_postulate_thales_converse_postulate.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** This comes from the proof of Martin's Theorem 23.7 (N -> O) *)
 
@@ -14,9 +14,9 @@ Proof.
     destruct (l8_9 A C B); Col; subst; Cong.
   assert_diffs.
   assert(M <> C) by (intro; subst; apply HNCol; Col).
-  destruct (segment_construction_3 M C M A) as [C' [HC' HCong]]; auto.
-  apply cong_symmetry in HCong.
-  elim(eq_dec_points C C').
+  destruct (由一点往一方向构造等长线段_3 M C M A) as [C' [HC' HCong]]; auto.
+  apply 等长的对称性 in HCong.
+  elim(两点重合的决定性 C C').
     intro; subst; assumption.
   intro.
   exfalso.

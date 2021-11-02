@@ -3,7 +3,7 @@ Require Export GeoCoq.Axioms.continuity_axioms.
 
 Section Tangency.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** Euclid Book III, Prop 11 and Prop 12
  We do not need to distinguish between internal or external tangency. *)
@@ -20,7 +20,7 @@ intros.
 
 unfold TangentCC in *.
 
-induction(eq_dec_points A C).
+induction(两点重合的决定性 A C).
 subst C.
 Col.
 
@@ -42,10 +42,10 @@ split; auto.
 subst x.
 assert(OnCircle Y A B).
 unfold OnCircle in *.
-apply cong_transitivity with A X; Cong.
+apply 等长的传递性 with A X; Cong.
 assert(OnCircle Y C D).
 unfold OnCircle in *.
-apply cong_transitivity with C X; Cong.
+apply 等长的传递性 with C X; Cong.
 assert(X = Y).
 apply H.
 split; auto.
@@ -97,9 +97,9 @@ Lemma diam_not_tangent : forall O P A B,
 Proof.
 intros O P A B HOP HCol HTan.
 destruct HTan as [Q [[HQCol HQOn] HQUnique]].
-destruct(eq_dec_points A B).
+destruct(两点重合的决定性 A B).
   subst B.
-  destruct (segment_construction Q O O P) as [Q' [HQ'1 HQ'2]].
+  destruct (由一点往一方向构造等长线段 Q O O P) as [Q' [HQ'1 HQ'2]].
   assert (HQQ' : Q <> Q') by (intro; treat_equalities; auto).
   apply HQQ', HQUnique; split; Col.
 destruct (diff_col_ex3 A B O) as [C [HOC [HAC [HBC HColC]]]]; Col.
@@ -120,7 +120,7 @@ intros.
 unfold TangentAt in *.
 spliter.
 
-induction(eq_dec_points O P).
+induction(两点重合的决定性 O P).
 subst P.
 unfold OutCircleS.
 unfold Lt.
@@ -130,9 +130,9 @@ apply le_trivial.
 intro.
 unfold OnCircle in *.
 assert(T = O).
-apply cong_identity with O; Cong.
+apply 等长的同一性 with O; Cong.
 assert(X = O).
-apply cong_identity with O; Cong.
+apply 等长的同一性 with O; Cong.
 subst O.
 contradiction.
 
@@ -153,11 +153,11 @@ subst TT.
 assert(T = T').
 apply H9.
 split; auto.
-apply bet_col in H7.
+apply 中间性转共线 in H7.
 
 assert(Col A X T); ColR.
 subst T'.
-apply between_identity in H7.
+apply 中间性的同一律 in H7.
 subst X.
 tauto.
 
@@ -190,14 +190,14 @@ contradiction.
 assert(HH:= l8_18_existence A B O H4).
 ex_and HH R.
 
-induction(eq_dec_points T R).
+induction(两点重合的决定性 T R).
 subst R.
 auto.
 
 assert(HH:= (symmetric_point_construction T R)).
 ex_and HH T'.
 
-induction(eq_dec_points A R).
+induction(两点重合的决定性 A R).
 subst A.
 assert(Perp T R R O).
 apply perp_comm.
@@ -224,7 +224,7 @@ apply l7_3; auto.
 
 assert(OnCircle T' O P).
 unfold OnCircle in *.
-apply cong_transitivity with O T; Cong.
+apply 等长的传递性 with O T; Cong.
 
 assert(OutCircleS T' O P).
 apply (tangent_out R B O P T T'); ColR.
@@ -244,7 +244,7 @@ apply perp_left_comm.
 eapply (perp_col A B O R R); auto.
 unfold Midpoint in *.
 spliter.
-apply bet_col in H8.
+apply 中间性转共线 in H8.
 ColR.
 assert(Perp_at R T R R O).
 apply perp_in_comm.
@@ -270,12 +270,12 @@ apply l7_3; auto.
 
 assert(OnCircle T' O P).
 unfold OnCircle in *.
-apply cong_transitivity with O T; Cong.
+apply 等长的传递性 with O T; Cong.
 
 assert(OutCircleS T' O P).
 unfold Midpoint in *.
 spliter.
-apply bet_col in H12.
+apply 中间性转共线 in H12.
 apply (tangent_out A B O P T T'); auto.
 ColR.
 unfold OutCircleS in *.
@@ -311,7 +311,7 @@ assert(Col A B T).
 apply perp_in_col in H1.
 tauto.
 
-induction(eq_dec_points T x').
+induction(两点重合的决定性 T x').
 auto.
 apply False_ind.
 
@@ -338,7 +338,7 @@ unfold OnCircle in *.
 unfold Lt in H10.
 spliter.
 apply H12.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 
 intros.
 assert(HT:=H0).
@@ -387,7 +387,7 @@ assert(TangentAt A B O P Q).
 unfold TangentAt.
 repeat split; Col.
 
-induction(eq_dec_points X Q).
+induction(两点重合的决定性 X Q).
 left; auto;
 
 unfold Tangent in H1.
@@ -409,7 +409,7 @@ intros.
 assert(HT:= (tangency_chara2 A B O P Q H0 H1)); auto.
 apply HT.
 intros.
-induction(eq_dec_points X Q).
+induction(两点重合的决定性 X Q).
 left; auto.
 right.
 assert(OutCircle X O P).
@@ -455,7 +455,7 @@ assert(TangentAt A B O P Q).
 unfold TangentAt.
 repeat split; Col.
 
-induction(eq_dec_points X Q).
+induction(两点重合的决定性 X Q).
 subst X.
 unfold TangentAt in *.
 spliter.
@@ -487,13 +487,13 @@ subst C.
 apply H.
 unfold EqC.
 unfold OnCircle in *.
-assert(Cong A B A D) by (apply cong_transitivity with A P; Cong).
+assert(Cong A B A D) by (apply 等长的传递性 with A P; Cong).
 intro.
 split.
 intro.
-apply cong_transitivity with A B; Cong.
+apply 等长的传递性 with A B; Cong.
 intro.
-apply cong_transitivity with A D; Cong.
+apply 等长的传递性 with A D; Cong.
 Qed.
 
 (** Euclid Book III Prop 6 
@@ -512,7 +512,7 @@ ex_and H0 T.
 intro.
 subst C.
 unfold OnCircle in *.
-assert(Cong A B A D) by (apply cong_transitivity with A T; Cong).
+assert(Cong A B A D) by (apply 等长的传递性 with A T; Cong).
 assert(T = B).
 apply(H1 B); Cong.
 subst T.
@@ -522,7 +522,7 @@ unfold Midpoint in *.
 spliter.
 assert(B = B').
   apply(H1 B'); split; Cong.
-  apply cong_transitivity with A B; Cong.
+  apply 等长的传递性 with A B; Cong.
 subst B'.
 treat_equalities; tauto.
 Qed.
@@ -541,7 +541,7 @@ Lemma tangent_construction : forall O P X, segment_circle -> OutCircle X O P
                                                   -> exists Y, Tangent X Y O P.
 Proof.
 intros.
-induction(eq_dec_points O P).
+induction(两点重合的决定性 O P).
 subst P.
 exists O.
 unfold Tangent.
@@ -622,7 +622,7 @@ unfold Midpoint in *.
 spliter.
 assert(exists X0 : Tpoint, (Bet U R X0 \/ Bet U X0 R) /\ Cong U X0 W X).
 {
-  apply(segment_construction_2 R U W X).
+  apply(由一点往一方向构造等长线段_2 R U W X).
   apply perp_distinct in H8.
   spliter.
   auto.
@@ -689,7 +689,7 @@ assert(Bet O V Y).
 }
 
 assert(Cong O X O Y) by Cong.
-assert(Cong O U O V) by (apply cong_transitivity with O P; Cong).
+assert(Cong O U O V) by (apply 等长的传递性 with O P; Cong).
 
 
 assert(CongA X O V Y O U).
@@ -775,8 +775,8 @@ apply (l4_18 A C).
 apply interccat__neq in H.
 auto.
 assumption.
-apply cong_transitivity with A B; Cong.
-apply cong_transitivity with C D; Cong.
+apply 等长的传递性 with A B; Cong.
+apply 等长的传递性 with C D; Cong.
 Qed.
 
 (** Euclid Book III Prop 10
@@ -790,7 +790,7 @@ intros.
 assert(HIC := H).
 unfold InterCCAt in H.
 spliter.
-induction (eq_dec_points Z Q).
+induction (两点重合的决定性 Z Q).
   right; auto.
 left.
 assert(HH:=midpoint_existence Q P).
@@ -805,14 +805,14 @@ ex_and HH N.
 
 assert(Per A N Q).
 apply(mid_onc2__per A Z Q Z).
-apply cong_transitivity with A B; Cong.
+apply 等长的传递性 with A B; Cong.
 Circle.
 Midpoint.
 
 
 assert(Per C N Q).
 apply(mid_onc2__per C Z Q Z).
-apply cong_transitivity with C D; Cong.
+apply 等长的传递性 with C D; Cong.
 Circle.
 Midpoint.
 
@@ -837,7 +837,7 @@ Col.
 assert_diffs;auto.
 
 assert(Perp A C Q P).
-induction(eq_dec_points A M).
+induction(两点重合的决定性 A M).
 subst M.
 apply per_perp_in in H12; auto.
 apply perp_in_comm in H12.
@@ -863,7 +863,7 @@ assert(Col Q N Z).
 ColR.
 
 assert(Perp A C Q Z).
-induction(eq_dec_points A N).
+induction(两点重合的决定性 A N).
 subst N.
 apply per_perp_in in H15; auto.
 apply perp_in_comm in H15.

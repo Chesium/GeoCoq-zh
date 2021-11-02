@@ -2,7 +2,7 @@ Require Export GeoCoq.Tarski_dev.Ch04_cong_bet.
 
 Section T4_1.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma col_permutation_1 : forall A B C,Col A B C -> Col B C A.
 Proof.
@@ -41,7 +41,7 @@ Qed.
 
 End T4_1.
 
-Hint Resolve bet_col col_permutation_1 col_permutation_2
+Hint Resolve 中间性转共线 col_permutation_1 col_permutation_2
 col_permutation_3 col_permutation_4 col_permutation_5 : col.
 
 Ltac Col := auto 3 with col.
@@ -49,7 +49,7 @@ Ltac Col5 := auto with col.
 
 Section T4_2.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma not_col_permutation_1 :
  forall (A B C : Tpoint), ~ Col A B C -> ~ Col B C A.
@@ -103,7 +103,7 @@ not_col_permutation_3 not_col_permutation_4 not_col_permutation_5 : col.
 
 Section T4_3.
 
-Context `{Tn:Tarski_neutral_dimensionless}.
+Context `{Tn:无维度中性塔斯基公理系统}.
 
 (** This lemma is used by tactics for trying several permutations. *)
 Lemma Col_cases :
@@ -153,7 +153,7 @@ Hint Immediate col_trivial_1 col_trivial_2 col_trivial_3: col.
 
 Section T4_4.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma l4_13 : forall A B C A' B' C',
  Col A B C -> Cong_3 A B C A' B' C' -> Col A' B' C'.
@@ -172,7 +172,7 @@ Proof.
     intuition.
       prolong A' B' C' B C.
       exists C'.
-      assert (Cong A C A' C') by (eapply l2_11;eCong).
+      assert (Cong A C A' C') by (eapply 两组连续三点分段等则全体等;eCong).
       unfold Cong_3;intuition.
       assert (exists C', Bet A' C' B' /\ Cong_3 A C B A' C' B') by (eapply l4_5;Between).
       ex_and H1 C'.
@@ -180,7 +180,7 @@ Proof.
       auto with cong3.
     prolong B' A' C' A C.
     exists C'.
-    assert (Cong B C B' C') by (eapply l2_11;eBetween;Cong).
+    assert (Cong B C B' C') by (eapply 两组连续三点分段等则全体等;eBetween;Cong).
     unfold Cong_3;intuition.
 Qed.
 
@@ -194,12 +194,12 @@ Proof.
       assert (Bet A' B' C') by (eapply l4_6;eauto).
       unfold Cong_3 in *; spliter.
       assert(OFSC A B C D A' B' C' D') by (unfold OFSC;repeat split; assumption).
-      eapply five_segment_with_def; eauto.
+      eapply 五线段公理_等价SAS_with_def; eauto.
       assert(Bet B' C' A') by (apply (l4_6 B C A B' C' A'); Cong;auto with cong3).
       apply (l4_2 B C A D B' C' A' D').
       unfold IFSC; unfold Cong_3 in *; spliter; repeat split;Between;Cong.
     assert (Bet C' A' B') by (eapply (l4_6 C A B C' A' B'); auto with cong3).
-    eapply (five_segment_with_def B A C D B' A'); unfold OFSC; unfold Cong_3 in *; spliter; repeat split; Between; Cong.
+    eapply (五线段公理_等价SAS_with_def B A C D B' A'); unfold OFSC; unfold Cong_3 in *; spliter; repeat split; Between; Cong.
 Qed.
 
 Lemma l4_17 : forall A B C P Q,
@@ -214,7 +214,7 @@ Lemma l4_18 : forall A B C C',
   A<>B -> Col A B C -> Cong A C A C' -> Cong B C B C' -> C=C'.
 Proof.
     intros.
-    apply cong_identity with C.
+    apply 等长的同一性 with C.
     apply (l4_17 A B); Cong.
 Qed.
 
@@ -222,10 +222,10 @@ Lemma l4_19 : forall A B C C',
  Bet A C B -> Cong A C A C' -> Cong B C B C' -> C=C'.
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       treat_equalities; reflexivity.
     apply (l4_18 A B); Cong.
-    auto using bet_col with col.
+    auto using 中间性转共线 with col.
 Qed.
 
 Lemma not_col_distincts : forall A B C ,
@@ -263,8 +263,8 @@ intros A B C A' B' C1 C2 HAB HCol HCong1 HCong2.
 apply l4_18 with A' B'; try apply l4_13 with A B C; Col;
 unfold Cong_3 in *; spliter.
   intro; treat_equalities; intuition.
-  apply cong_transitivity with A C; Cong.
-  apply cong_transitivity with B C; Cong.
+  apply 等长的传递性 with A C; Cong.
+  apply 等长的传递性 with B C; Cong.
 Qed.
 
 End T4_4.

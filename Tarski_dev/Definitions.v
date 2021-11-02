@@ -2,7 +2,7 @@ Require Export GeoCoq.Axioms.tarski_axioms.
 
 Section Definitions.
 
-Context `{Tn:Tarski_neutral_dimensionless}.
+Context `{Tn:无维度中性塔斯基公理系统}.
 
 (** Definition 2.10. *)
 (* 八点形成外五线段形式，即五线段公理除去A≠B外 *)

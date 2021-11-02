@@ -2,7 +2,7 @@ Require Import GeoCoq.Tarski_dev.Annexes.suma.
 
 Section UnitTests.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Goal forall A B C D E F G H:Tpoint, A<>B -> B<>A -> C<>D -> D<>C ->
  E<>F -> F<>E -> G<>H -> H<>G -> True.

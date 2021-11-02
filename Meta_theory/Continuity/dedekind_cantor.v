@@ -4,7 +4,7 @@ Require Import Arith.
 
 Section Dedekind_cantor.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma nested__diff0 : forall A B,
   Nested A B -> forall n An Bn, A n An -> B n Bn -> An <> Bn.
@@ -68,7 +68,7 @@ Proof.
   destruct (nested__ex_right A B m HAB) as [Bm].
   apply outer_transitivity_between with Bm.
     apply (nested_aux1 A B n m); assumption.
-    apply between_symmetry, (nested_aux1 B A n m); auto using nested_sym.
+    apply 中间性的对称性, (nested_aux1 B A n m); auto using nested_sym.
     eapply nested__diff0; eassumption.
 Qed.
 
@@ -83,9 +83,9 @@ Proof.
   assert (Bet An An1 Bn1) by (apply (nested_aux1 A B n n1); assumption).
   destruct (nat_total_order n1 m) as [Hlt1|Hlt1]; auto.
   - apply between_inner_transitivity with Bn1; trivial.
-    apply between_symmetry, (nested_aux2 B A n1 m); assumption.
+    apply 中间性的对称性, (nested_aux2 B A n1 m); assumption.
   - apply outer_transitivity_between with Bn1; trivial.
-      apply between_symmetry, (nested_aux1 B A m n1); assumption.
+      apply 中间性的对称性, (nested_aux1 B A m n1); assumption.
       apply (nested__diff0 A B HAB n1); assumption.
 Qed.
 

@@ -7,7 +7,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section Archimedes_for_angles.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma grada_distincts : forall A B C D E F,
   GradA A B C D E F ->
@@ -96,7 +96,7 @@ Proof.
   assert_diffs.
   assert (HNCol1 : ~ Col O A B) by (apply per_not_col; auto).
   assert (HNCol2 : ~ Col O A D).
-    assert_cols; intro; elim (eq_dec_points A C); intro; [treat_equalities|]; apply HNCol1; ColR.
+    assert_cols; intro; elim (两点重合的决定性 A C); intro; [treat_equalities|]; apply HNCol1; ColR.
   destruct (angle_construction_1 A D O O D E) as [P [HP1 HP2]]; Col.
     intro; apply HNCol2; ColR.
   assert (HAcute : Acute A D O).
@@ -123,7 +123,7 @@ Proof.
     apply conga_trans with A D O; trivial.
   apply (cong2_lt__lt D F D E); Cong.
   assert (HNCol4 : ~ Col E D F).
-  { intro; elim (eq_dec_points E F); intro; [|apply HNCol3; ColR].
+  { intro; elim (两点重合的决定性 E F); intro; [|apply HNCol3; ColR].
     treat_equalities.
     apply (acute_not_per A D O); trivial.
     apply l8_2, per_col with C; Col.
@@ -170,7 +170,7 @@ Proof.
   assert (Hconga1 : CongA P Q R A0 O A).
     apply l11_10 with P R A0 C; trivial; apply out_trivial; auto.
   repeat (split; trivial).
-  elim (eq_dec_points A1 A).
+  elim (两点重合的决定性 A1 A).
     intro; subst A; Between.
   intro HAA1.
   apply (ncol_conga_ncol P Q R A0 O A) in HNCol2; trivial.
@@ -184,7 +184,7 @@ Proof.
   destruct HInangle as [_ [_ [_ [X [HX1 HUn]]]]].
   destruct HUn as [HX2|HX2].
     subst X; exfalso; Col.
-  elim (eq_dec_points X A1); intro.
+  elim (两点重合的决定性 X A1); intro.
     subst X; trivial.
   exfalso; apply HNCol2; ColR.
 Qed.
@@ -232,7 +232,7 @@ Proof.
   assert (HNCol3 : ~ Col A0 O A') by (intro; assert_diffs; apply HNCol; ColR).
   assert (HNCol4 : ~ Col A' O A'').
   { intro HCol; apply HNCol1.
-    elim (eq_dec_points A' A''); intro; [|ColR].
+    elim (两点重合的决定性 A' A''); intro; [|ColR].
     treat_equalities.
     assert (HSuma2 : SumA A0 O A' A0 O A1 A0 O A').
       apply (conga3_suma__suma P Q R A0 O A1 P' Q' R'); CongA.
@@ -310,7 +310,7 @@ Proof.
   assert_diffs.
   assert (D0 <> D1) by (intro; subst D1; apply HOS; Col).
   clear dependent D1'.
-  destruct (segment_construction D0 F D0 F) as [F' [HF'1 HF'2]].
+  destruct (由一点往一方向构造等长线段 D0 F D0 F) as [F' [HF'1 HF'2]].
   destruct (archi D0 D1 D0 F') as [G [HG1 HG2]]; auto.
   destruct (acute_archi_aux2 E D0 D1 F G) as [P [Q [R [HGA HUn]]]]; auto.
   exists P; exists Q; exists R; split.
@@ -401,7 +401,7 @@ Proof.
   intros archi A B C D E F HNCol HDE HFE.
   elim (bet_dec D E F); [|apply angles_archi_aux1; trivial].
   intro HBet1.
-  destruct (segment_construction A B A B) as [A0 [HBet HCong]].
+  destruct (由一点往一方向构造等长线段 A B A B) as [A0 [HBet HCong]].
   assert_diffs.
   assert (HNCol1 : ~ Col A0 B C) by (intro; apply HNCol; ColR).
   destruct (angles_archi_aux1 archi A B C C B A0) as [P1 [Q1 [R1 [HGA HUn]]]]; Between.
@@ -430,7 +430,7 @@ Lemma archi__grada_destruction :
     exists P Q R, GradA A B C P Q R /\ ~ SAMS P Q R A B C.
 Proof.
   intros archi A B C HNCol.
-  destruct (segment_construction A B A B) as [A0 [HBet HCong]].
+  destruct (由一点往一方向构造等长线段 A B A B) as [A0 [HBet HCong]].
   assert_diffs.
   destruct (archi_in_angles archi A B C A B A0) as [P [Q [R [HGA HUn]]]]; auto.
   exists P; exists Q; exists R; split; auto.

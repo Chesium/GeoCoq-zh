@@ -5,7 +5,7 @@ Require Import GeoCoq.Tarski_dev.Ch11_angles.
 
 Section bachmann_s_lotschnittaxiom_weak_triangle_circumscription_principle.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma bachmann_s_lotschnittaxiom__weak_triangle_circumscription_principle :
   bachmann_s_lotschnittaxiom -> weak_triangle_circumscription_principle.

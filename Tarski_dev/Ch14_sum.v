@@ -3,21 +3,21 @@ Require Export GeoCoq.Tarski_dev.Ch13_6_Desargues_Hessenberg.
 Section T14_sum.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma Pj_exists : forall A B C,
  exists D, Pj A B C D.
 Proof.
     intros.
     unfold Pj in *.
-    elim (eq_dec_points A B);intro.
+    elim (两点重合的决定性 A B);intro.
       subst.
       exists C.
       tauto.
     assert (T:=parallel_existence A B C H).
     decompose [and ex] T;clear T.
     exists x0.
-    induction (eq_dec_points C x0).
+    induction (两点重合的决定性 C x0).
       tauto.
     eauto using par_col2_par with col.
 Qed.
@@ -145,7 +145,7 @@ Proof.
       tauto.
       unfold Proj in H1.
       tauto.
-      induction(eq_dec_points A' C').
+      induction(两点重合的决定性 A' C').
         tauto.
       left.
       unfold Proj in H3.
@@ -239,7 +239,7 @@ Proof.
       subst E'.
       apply NC.
       Col.
-    induction(eq_dec_points O A).
+    induction(两点重合的决定性 O A).
       subst A.
       exists B.
       unfold Sum.
@@ -253,7 +253,7 @@ Proof.
         right.
         auto.
         Col.
-        induction(eq_dec_points O B).
+        induction(两点重合的决定性 O B).
           right; auto.
         left.
         right.
@@ -280,7 +280,7 @@ Proof.
       apply project_col in H5.
       apply NC.
       apply (col_transitivity_1 _ A); Col.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       exists A.
       unfold Sum.
@@ -489,7 +489,7 @@ Lemma opp_exists : forall A,
 Proof.
     intros.
     assert(NC:= grid_ok).
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       exists O.
       unfold Opp.
@@ -506,7 +506,7 @@ Proof.
     apply sump_to_sum.
     unfold Sump.
     repeat split.
-      apply bet_col in H1.
+      apply 中间性转共线 in H1.
       apply (col_transitivity_1 _ A);Col.
       Col.
     assert(E <> E' /\ O <> E').
@@ -584,13 +584,13 @@ Proof.
           exists E.
           split; Col.
           apply col_permutation_1.
-          apply bet_col in H1.
+          apply 中间性转共线 in H1.
           apply(col_transitivity_1 _ A); Col.
         apply NC.
         tauto.
       subst MA.
-      apply cong_symmetry in H2.
-      apply cong_identity in H2.
+      apply 等长的对称性 in H2.
+      apply 等长的同一性 in H2.
       contradiction.
     assert(Plg A C' A' O).
       apply pars_par_plg.
@@ -653,7 +653,7 @@ Proof.
       left.
       intro.
       subst MA.
-      apply between_identity in H1.
+      apply 中间性的同一律 in H1.
       contradiction.
     apply plg_to_parallelogram in H20.
     apply plg_permut in H20.
@@ -664,8 +664,8 @@ Proof.
         auto.
       spliter.
       subst MA.
-      apply cong_symmetry in H2.
-      apply cong_identity in H2.
+      apply 等长的对称性 in H2.
+      apply 等长的同一性 in H2.
       contradiction.
     apply plg_par in H22.
       spliter.
@@ -686,8 +686,8 @@ Proof.
         tauto.
       unfold Parallelogram_flat in H20.
       spliter.
-      apply cong_symmetry in H24.
-      apply cong_identity in H24.
+      apply 等长的对称性 in H24.
+      apply 等长的同一性 in H24.
       subst A.
       tauto.
     intro.
@@ -705,7 +705,7 @@ Proof.
     apply (col_transitivity_1 _ A'); Col.
     intro.
     subst A'.
-    apply cong_identity in H24.
+    apply 等长的同一性 in H24.
     subst A.
     tauto.
 Qed.
@@ -790,7 +790,7 @@ Proof.
     assert(O <> E' /\ E <> E').
       split; intro; subst E'; apply grid_ok; Col.
     spliter.
-    induction (eq_dec_points A O).
+    induction (两点重合的决定性 A O).
       exists O.
       exists O.
       repeat split;  Col; unfold Pj ; try auto.
@@ -846,7 +846,7 @@ Qed.
 Lemma sum_O_B : forall B, Col O E B -> Sum O E E' O B B.
 Proof.
     intros.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       apply sum_O_O.
     unfold Sum.
@@ -948,7 +948,7 @@ Proof.
     spliter.
     assert(Col A' O E).
       apply (col_transitivity_1 _ C'); Col.
-    induction(eq_dec_points A' O).
+    induction(两点重合的决定性 A' O).
       subst A'.
       clean_trivial_hyps.
       induction H8.
@@ -1113,7 +1113,7 @@ Proof.
       contradiction.
     split.
       auto.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       tauto.
     left.
     induction H3.
@@ -1162,7 +1162,7 @@ Proof.
     ex_and H1 C'.
     assert(HH:= grid_not_par).
     spliter.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       unfold Pj in *.
       unfold Ar2 in H.
@@ -1194,7 +1194,7 @@ Proof.
           exists O.
           split; Col.
         spliter.
-        induction(eq_dec_points B O).
+        induction(两点重合的决定性 B O).
           auto.
         apply False_ind.
         apply grid_ok.
@@ -1203,7 +1203,7 @@ Proof.
     assert(A' <> O /\ (Par_strict O E A' C' \/ B = O)).
       apply(sum_par_strict A B A A' C');auto.
     spliter.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       auto.
     induction H13.
       unfold Pj in *.
@@ -1255,7 +1255,7 @@ Proof.
       apply par_distincts in H3.
       tauto.
     subst C'.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       auto.
     assert(A' <> O /\ (Par_strict O E A' B \/ B = O)).
       apply(sum_par_strict A B B A' B);auto.
@@ -1286,7 +1286,7 @@ Qed.
 Lemma sum_uniquenessB : forall A X Y C, Sum O E E' A X C -> Sum O E E' A Y C -> X = Y.
 Proof.
     intros.
-    induction (eq_dec_points A O).
+    induction (两点重合的决定性 A O).
       subst A.
       assert(X = C).
         apply(sum_O_B_eq X C H).
@@ -1316,7 +1316,7 @@ Proof.
       apply(sum_par_strict A Y C A'' C''); auto.
     spliter.
     unfold Pj in *.
-    induction(eq_dec_points X O).
+    induction(两点重合的决定性 X O).
       subst X.
       assert(HH:=sum_A_O A H7).
       assert(C = A).
@@ -1450,7 +1450,7 @@ Qed.
 Lemma sum_uniquenessA : forall B X Y C, Sum O E E' X B C -> Sum O E E' Y B C -> X = Y.
 Proof.
     intros.
-    induction (eq_dec_points B O).
+    induction (两点重合的决定性 B O).
       subst B.
       assert(X = C).
         apply(sum_A_O_eq X C H).
@@ -1475,7 +1475,7 @@ Proof.
     ex_and H14 C'.
     clean_duplicated_hyps.
     unfold Pj in *.
-    induction(eq_dec_points X O).
+    induction(两点重合的决定性 X O).
       subst X.
       assert(HH:=sum_O_B B H8).
       assert(B = C).
@@ -1483,7 +1483,7 @@ Proof.
       subst C.
       apply sym_equal.
       apply (sum_A_B_B Y B); auto.
-    induction(eq_dec_points Y O).
+    induction(两点重合的决定性 Y O).
       subst Y.
       assert(HH:=sum_O_B B H8).
       assert(B = C).
@@ -1686,7 +1686,7 @@ Proof.
     unfold Ar2 in H.
     assert(HH:= grid_not_par).
     spliter.
-    induction(eq_dec_points O B).
+    induction(两点重合的决定性 O B).
       subst B.
       assert(HH:=sum_A_O A H12).
       assert(HP:=sum_uniqueness A O C A HS HH).
@@ -1727,7 +1727,7 @@ Proof.
         apply (par_col_par _ _ _ A); Col; Par.
       subst A.
       induction H0; tauto.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(HH:=sum_O_B B H13 ).
       assert(HP:=sum_uniqueness O B C B HS HH).
@@ -1829,7 +1829,7 @@ Qed.
 Lemma sum_cong : forall A B C, Sum O E E' A B C -> (A <> O \/ B <> O) -> Parallelogram_flat O A C B.
 Proof.
     intros.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(HP:= (sum_O_B_eq B C H)).
       subst C.
@@ -1886,7 +1886,7 @@ Qed.
 Lemma sum_comm : forall A B C, Sum O E E' A B C -> Sum O E E' B A C.
 Proof.
     intros.
-    induction (eq_dec_points B O).
+    induction (两点重合的决定性 B O).
       subst B.
       assert(Col O E A).
         unfold Sum in H.
@@ -1901,7 +1901,7 @@ Proof.
       subst C.
       apply sum_O_B.
       auto.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(Col O E B).
         unfold Sum in H.
@@ -2089,20 +2089,20 @@ Proof.
     intros A B C.
     intro Hor.
     intros.
-    induction (eq_dec_points A O).
+    induction (两点重合的决定性 A O).
       subst A.
       unfold Ar2 in H.
       spliter.
-      apply cong_symmetry in H0.
-      apply cong_identity in H0.
+      apply 等长的对称性 in H0.
+      apply 等长的同一性 in H0.
       subst C.
       apply sum_O_B; Col.
-    induction (eq_dec_points B O).
+    induction (两点重合的决定性 B O).
       subst B.
       unfold Ar2 in H.
       spliter.
-      apply cong_symmetry in H1.
-      apply cong_identity in H1.
+      apply 等长的对称性 in H1.
+      apply 等长的同一性 in H1.
       subst C.
       apply sum_A_O; Col.
     unfold Sum.
@@ -2265,7 +2265,7 @@ Proof.
       contradiction.
       intro.
       subst C.
-      apply cong_identity in H1.
+      apply 等长的同一性 in H1.
       subst B.
       tauto.
     intro.
@@ -2298,7 +2298,7 @@ intros.
 apply sum_cong2.
 assumption.
 destruct H.
-elim (eq_dec_points A O); intro.
+elim (两点重合的决定性 A O); intro.
 subst.
 right.
 intro.
@@ -2329,7 +2329,7 @@ Proof.
     unfold Opp in *.
     apply sum_comm in H.
     apply sum_comm in H0.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(HH:=sum_uniquenessB O MA1 MA2 O H H0).
       assumption.
@@ -2369,8 +2369,8 @@ Proof.
                 Col.
               unfold Parallelogram_flat in H6.
               spliter.
-              apply cong_symmetry in H9.
-              apply cong_identity in H9.
+              apply 等长的对称性 in H9.
+              apply 等长的同一性 in H9.
               auto.
             spliter.
             subst MA1.
@@ -2389,7 +2389,7 @@ Proof.
             tauto.
           unfold Parallelogram_flat in H0.
           spliter.
-          apply cong_identity in H6.
+          apply 等长的同一性 in H6.
           auto.
         spliter.
         contradiction.
@@ -2403,7 +2403,7 @@ Lemma pj_uniqueness : forall O E E' A A' A'', ~Col O E E' -> Col O E A -> Col O 
 Proof.
     intros.
     unfold Pj in *.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(HH:= grid_not_par O E E' H).
       spliter.
@@ -2498,7 +2498,7 @@ Proof.
     assert(HH:= grid_not_par O E E' H4).
     unfold Ar1 in H0.
     spliter.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       unfold Pj in H1.
       induction H1.
@@ -2514,7 +2514,7 @@ Proof.
         apply (pj_uniqueness O E E' B); Col.
       subst C'.
       apply sum_O_B; Col.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       unfold Pj in H2.
       induction H2.
@@ -2660,21 +2660,21 @@ Proof.
     clear H4.
     spliter.
     clean_duplicated_hyps.
-    induction (eq_dec_points A O).
+    induction (两点重合的决定性 A O).
       subst A.
       assert(HH:= sum_O_B_eq O E E' H B AB HS1).
       subst AB.
       assert(HH:= sum_O_B_eq O E E' H BC ABC HS3).
       subst BC.
       auto.
-    induction (eq_dec_points B O).
+    induction (两点重合的决定性 B O).
       subst B.
       assert(HH:= sum_A_O_eq O E E' H A AB HS1).
       subst AB.
       assert(HH:= sum_O_B_eq O E E' H C BC HS2).
       subst BC.
       auto.
-    induction (eq_dec_points C O).
+    induction (两点重合的决定性 C O).
       subst C.
       assert(HH:= sum_A_O_eq O E E' H B BC HS2).
       subst BC.
@@ -2921,12 +2921,12 @@ Proof.
     spliter.
     assert(HH:=grid_not_par O E E' H1).
     spliter.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       apply sum_O_B_eq in H; Col.
       subst C.
       apply sum_O_B; Col.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       apply sum_A_O_eq in H; Col.
       subst C.
@@ -3045,7 +3045,7 @@ Lemma sum_x_axis_unit_change :
  Sum O U E' A B C.
 Proof.
     intros.
-    induction (eq_dec_points U E).
+    induction (两点重合的决定性 U E).
       subst U.
       assumption.
     assert(HS:= H).
@@ -3063,13 +3063,13 @@ Proof.
       ColR.
     assert(HH:=grid_not_par O U E' H13).
     spliter.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       apply sum_O_B_eq in H; Col.
       subst C.
       apply sum_O_B; Col.
       ColR.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       apply sum_A_O_eq in H; Col.
       subst C.
@@ -3275,7 +3275,7 @@ Lemma change_grid_sum :
   Sum O' E' E A' B' C'.
 Proof.
     intros.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       apply(change_grid_sum_0 O E E' O B C); auto.
     assert(HS:= H6).
@@ -3295,7 +3295,7 @@ Proof.
     assert(HG:=grid_not_par O' E' E H28).
     spliter.
     clean_duplicated_hyps.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       apply sum_comm; Col.
       apply sum_comm in HS; Col.
@@ -3436,7 +3436,7 @@ Qed.
 Lemma double_null_null : forall O E E' A, Sum O E E' A A O -> A = O.
 Proof.
     intros.
-    induction (eq_dec_points A O).
+    induction (两点重合的决定性 A O).
       assumption.
     assert(HS:= H).
     unfold Sum in H.
@@ -3649,9 +3649,9 @@ Proof.
     clear H1.
     unfold Midpoint in H0.
     spliter.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       subst B.
-      apply between_identity in H0.
+      apply 中间性的同一律 in H0.
       subst A.
       apply opp0; auto.
     unfold Opp.
@@ -3680,7 +3680,7 @@ Proof.
     spliter.
     clean_duplicated_hyps.
     clear H8.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(B = S).
         apply (sum_uniqueness O E E' O B); auto.
@@ -3691,7 +3691,7 @@ Proof.
         apply sum_A_O; auto.
       subst mA.
       apply sum_A_O; auto.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       assert(A = S).
         apply (sum_uniqueness O E E' A O); auto.
@@ -3738,7 +3738,7 @@ assert(Ar2 O E E' S A B).
 apply diff_ar2; auto.
 unfold Ar2 in H0.
 spliter.
-induction(eq_dec_points A O).
+induction(两点重合的决定性 A O).
 subst A.
 assert(HH:=diff_A_O O E E' S H0 H1).
 assert(S = B).
@@ -3755,7 +3755,7 @@ apply H4.
 apply (opp_uniqueness O E E' H0 O); auto.
 apply opp_comm; auto.
 unfold Opp in H.
-induction(eq_dec_points S O).
+induction(两点重合的决定性 S O).
 subst S.
 assert(mA = B).
 apply (sum_O_B_eq O E E'); auto.
@@ -3813,14 +3813,14 @@ Proof.
     clean_duplicated_hyps.
     apply diff_sum in H.
     apply diff_sum in H0.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(BmA = B).
         apply(sum_O_B_eq O E E'); auto.
       subst BmA.
       unfold Opp.
       assumption.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       assert(AmB = A).
         apply(sum_O_B_eq O E E'); auto.
@@ -3891,7 +3891,7 @@ Qed.
 Lemma plg_to_sum : forall O E E' A B C, Ar2 O E E' A B C ->Parallelogram_flat O A C B -> Sum O E E' A B C.
 Proof.
     intros.
-    induction(eq_dec_points A B).
+    induction(两点重合的决定性 A B).
       subst B.
       unfold Parallelogram_flat in H0.
       spliter.
@@ -3929,13 +3929,13 @@ Proof.
     spliter.
     unfold Ar2 in H.
     spliter.
-    induction (eq_dec_points A O).
+    induction (两点重合的决定性 A O).
       subst A.
       assert(HH:= sum_A_O_eq O E E' H MA O HS).
       subst MA.
       unfold Midpoint.
       split; Cong.
-      apply between_trivial.
+      apply ABB中间性.
     assert(Parallelogram_flat O MA O A).
       apply(sum_cong O E E' H MA A O HS).
       tauto.
@@ -3959,7 +3959,7 @@ Proof.
     unfold Ar2 in H1.
     spliter.
     apply diff_sum in H0.
-    induction(eq_dec_points A O).
+    induction(两点重合的决定性 A O).
       subst A.
       assert(dBA = B).
         apply(sum_O_B_eq O E E'); auto.
@@ -3972,7 +3972,7 @@ Proof.
       subst E.
       apply H1.
       Col.
-    induction(eq_dec_points B O).
+    induction(两点重合的决定性 B O).
       subst B.
       assert(Opp O E E' dBA A).
         unfold Opp.

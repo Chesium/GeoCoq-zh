@@ -4,7 +4,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section SPP_tarski.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma impossible_case_5 : forall P Q R S U I,
   BetS Q U R ->
@@ -44,8 +44,8 @@ Lemma impossible_case_6 : forall P Q R S U I,
 Proof.
 intros P Q R S U I HQUR HNC HPar HSQI HPUI.
 apply BetSEq in HQUR.
-apply between_symmetry in HPUI.
-destruct (inner_pasch S U I Q P HSQI HPUI) as [J [HBet1 HBet2]].
+apply 中间性的对称性 in HPUI.
+destruct (帕施公理 S U I Q P HSQI HPUI) as [J [HBet1 HBet2]].
 assert (HParS : Par_strict P S Q U).
   {
   spliter.
@@ -71,7 +71,7 @@ revert HPUI.
 apply one_side_not_col124 with Q.
 apply l9_17 with S; [|assumption].
 destruct HQUR as [HQUR HDiff].
-apply between_symmetry in HQUR.
+apply 中间性的对称性 in HQUR.
 exists R; split.
   spliter; apply l9_2, invert_two_sides, bet__ts; Col.
 apply l9_31.
@@ -98,12 +98,12 @@ apply BetSEq in HQUR.
 destruct HQUR as [HQUR [HQU [HQR HUR]]].
 assert (H : Par_strict P S Q U)
   by (apply par_strict_col_par_strict with R; Col; apply par_not_col_strict with Q; Col; Par).
-apply between_symmetry in HSQI.
+apply 中间性的对称性 in HSQI.
 elim HPUI; clear HPUI; intro HPUI.
 
   {
   apply H.
-  destruct (inner_pasch P Q I U S HPUI HSQI) as [J [HQJU HPJS]]; exists J.
+  destruct (帕施公理 P Q I U S HPUI HSQI) as [J [HQJU HPJS]]; exists J.
   split; Col.
   }
 
@@ -148,8 +148,8 @@ intros HSPP A B D T HAB HAD HAT HBD HBT HDT HABT HADT.
 destruct (symmetric_point_construction D B) as [B' HB'].
 destruct (midpoint_distinct_2 B D B' HBD HB') as [HB'D HBB'].
 destruct HB' as [HBDB' HCong1].
-apply between_symmetry in HADT.
-apply between_symmetry in HBDB'.
+apply 中间性的对称性 in HADT.
+apply 中间性的对称性 in HBDB'.
 destruct (midpoint_existence B T) as [MB HMB].
 destruct (midpoint_distinct_1 MB B T HBT HMB) as [HBMB HMBT].
 destruct HMB as [HBMBT HCong2].
@@ -259,9 +259,9 @@ elim (col_dec X T Y); intro HXTY.
   {
   clear dependent MB; clear dependent B'; clear dependent B''.
   assert (HAXY : ~ Col A X Y) by (intro; apply HABC; ColR).
-  apply between_symmetry in HACY.
+  apply 中间性的对称性 in HACY.
   assert (HU := outer_pasch Y B C A D HACY HBDC); destruct HU as [U [HYUB HADU]].
-  apply between_symmetry in HABX.
+  apply 中间性的对称性 in HABX.
   assert (HV := outer_pasch X Y B A U HABX HYUB); destruct HV as [V [HXVY HAUV]].
   assert (HEq : T = V) by (apply (l6_21 X Y A D); ColR).
   subst; assumption.

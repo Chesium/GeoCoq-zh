@@ -11,7 +11,7 @@ Ltac anga_instance_o a A B P C :=
 
 Section Cosinus.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (************************************* cos *****************************)
 
@@ -43,7 +43,7 @@ Proof.
       split; auto.
     assert(Len X2 Y2 ld).
       split; auto.
-    induction(eq_dec_points Z1 Y1).
+    induction(两点重合的决定性 Z1 Y1).
       subst Z1.
       assert(Out X2 Y2 Z2).
         apply (eq_conga_out Y1 X1); auto.
@@ -108,7 +108,7 @@ Proof.
         tauto.
       contradiction.
     apply conga_comm in H16.
-    apply cong_commutativity in H13.
+    apply 等长的交换性 in H13.
     assert(HH:=l11_50_2 Z1 X1 Y1 Z2 X2 Y2 H26 H25 H16 H13).
     spliter.
     apply ex_eql.
@@ -181,17 +181,17 @@ Proof.
         contradiction.
         unfold Midpoint in H3; assert(HH:= midpoint_col).
         spliter.
-        apply bet_col in H3.
+        apply 中间性转共线 in H3.
         Col.
         auto.
       unfold Midpoint in H3.
       spliter.
-      eapply cong_transitivity.
-        apply cong_symmetry.
-        apply cong_commutativity.
+      eapply 等长的传递性.
+        apply 等长的对称性.
+        apply 等长的交换性.
         apply H11.
-      eapply cong_transitivity.
-        apply cong_commutativity.
+      eapply 等长的传递性.
+        apply 等长的交换性.
         apply H7.
       Cong.
     subst C.
@@ -238,7 +238,7 @@ Require Import Morphisms.
 
 Section Cosinus2.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma perp_out__acute : forall A B C C', Perp A B C C' -> Col A B C' -> (Acute A B C <-> Out B A C').
 Proof.
@@ -633,9 +633,9 @@ Proof.
     apply H11 in H8.
     apply H9 in H5.
     assert(Cong B A P P).
-      apply (cong_transitivity _ _ X Y); Cong.
+      apply (等长的传递性 _ _ X Y); Cong.
     assert(A = B).
-      eapply (cong_identity _ _ P).
+      eapply (等长的同一性 _ _ P).
       Cong.
     assert(HH:=anga_distincts a A B C H3 H7).
     spliter.
@@ -702,7 +702,7 @@ Proof.
     assert(A <> C).
       intro.
       subst C.
-      apply between_identity in H.
+      apply 中间性的同一律 in H.
       contradiction.
     induction H7.
       subst X.
@@ -766,10 +766,10 @@ Proof.
     assert(A <> C).
       intro.
       subst C.
-      apply between_identity in H.
+      apply 中间性的同一律 in H.
       contradiction.
     assert(Col A C B).
-      apply bet_col in H.
+      apply 中间性转共线 in H.
       Col.
     assert(HP:= l10_15 A C B D H16 H2).
     ex_and HP P.
@@ -809,7 +809,7 @@ Proof.
           auto.
           apply perp_left_comm.
           auto.
-        apply bet_col in H.
+        apply 中间性转共线 in H.
         Col.
       apply perp_in_comm.
       apply perp_perp_in.
@@ -828,7 +828,7 @@ Lemma lcos_per : forall A B C lp l a, Q_CongA_Acute a -> Q_Cong l -> Q_Cong lp -
   Lcos lp l a -> l A C -> lp A B -> a B A C -> Per A B C.
 Proof.
     intros.
-    induction(eq_dec_points B C).
+    induction(两点重合的决定性 B C).
       subst C.
       apply l8_5.
     unfold Lcos in H2.
@@ -848,7 +848,7 @@ Proof.
       intro.
       subst C0.
       apply H6.
-      apply (cong_identity _ _ B0).
+      apply (等长的同一性 _ _ B0).
       Cong.
     apply H17 in H18.
     spliter.
@@ -1047,7 +1047,7 @@ Proof.
           spliter.
           ex_and H32 T.
           assert(C=T).
-            apply between_identity.
+            apply 中间性的同一律.
             auto.
           subst T.
           contradiction.
@@ -1379,7 +1379,7 @@ apply (lg_cong l); auto.
 assert(CongA B1 A1 C1 B2 A2 C2).
 apply (anga_conga a); auto.
 
-induction(eq_dec_points C1 B1).
+induction(两点重合的决定性 C1 B1).
 subst C1.
 
 assert(EqL l l1).

@@ -2,7 +2,7 @@ Require Export GeoCoq.Tarski_dev.Annexes.saccheri.
 
 Section Defect.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma defect_distincts : forall A B C D E F,
   Defect A B C D E F ->

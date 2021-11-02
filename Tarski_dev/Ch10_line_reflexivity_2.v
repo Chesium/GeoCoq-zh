@@ -1,9 +1,9 @@
-Require Import GeoCoq.Meta_theory.Dimension_axioms.upper_dim_2.
+Require Import GeoCoq.Meta_theory.Dimension_axioms.防升维公理_2.
 Require Export GeoCoq.Tarski_dev.Ch10_line_reflexivity.
 
 Section T10_1.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma cop__cong_on_bissect : forall A B M P X,
  Coplanar A B X P -> Midpoint M A B -> Perp_at M A B P M -> Cong X A X B ->
@@ -44,7 +44,7 @@ Proof.
     spliter.
     induction H4.
       induction H6.
-        induction (eq_dec_points A M).
+        induction (两点重合的决定性 A M).
           subst M.
           assert (Per B A P).
             unfold Per.
@@ -52,7 +52,7 @@ Proof.
             split.
               apply l7_2.
               assumption.
-            apply cong_commutativity.
+            apply 等长的交换性.
             eapply is_image_spec_col_cong with A B;Col.
           assert (Per B A Q).
             unfold Per.
@@ -60,7 +60,7 @@ Proof.
             split.
               apply l7_2.
               assumption.
-            apply cong_commutativity.
+            apply 等长的交换性.
             eapply is_image_spec_col_cong with A B;Col.
           apply col_permutation_2.
 
@@ -79,7 +79,7 @@ Proof.
           split.
             apply l7_2.
             assumption.
-          apply cong_commutativity.
+          apply 等长的交换性.
           eapply is_image_spec_col_cong.
             apply H2.
           Col.
@@ -89,7 +89,7 @@ Proof.
           split.
             apply l7_2.
             assumption.
-          apply cong_commutativity.
+          apply 等长的交换性.
           eapply is_image_spec_col_cong.
             apply H3.
           apply col_trivial_3.
@@ -117,7 +117,7 @@ Lemma l10_10_spec : forall A B P Q P' Q',
  Cong P Q P' Q'.
 Proof.
     intros.
-    destruct (eq_dec_points A B).
+    destruct (两点重合的决定性 A B).
       subst B.
       assert (P' = P) by (apply (image_spec__eq A); assumption).
       assert (Q' = Q) by (apply (image_spec__eq A); assumption).
@@ -133,7 +133,7 @@ Proof.
       apply midpoint_existence.
     ex_elim H6 Z.
     assert (Col A B Z).
-      induction (eq_dec_points X Y).
+      induction (两点重合的决定性 X Y).
         subst Y.
         apply l7_3 in H7.
         subst X.
@@ -141,7 +141,7 @@ Proof.
       ColR.
     double P Z R.
     double P' Z R'.
-    apply cong_commutativity.
+    apply 等长的交换性.
     induction H3.
       induction H2.
         assert (ReflectL R R' A B).
@@ -169,13 +169,13 @@ Proof.
         assert (Cong Q' R' Q R) by (apply (l7_13 Y); assumption).
         assert (Cong P' Z P Z) by (apply (is_image_spec_col_cong A B); assumption).
         assert (Cong Q' Z Q Z) by (apply (is_image_spec_col_cong A B); assumption).
-        apply cong_commutativity, (five_segment R R' Z Z); Cong; Between.
-          apply cong_transitivity with P Z; [|apply cong_transitivity with P' Z]; Cong.
+        apply 等长的交换性, (五线段公理_等价SAS R R' Z Z); Cong; Between.
+          apply 等长的传递性 with P Z; [|apply 等长的传递性 with P' Z]; Cong.
           intro; treat_equalities; contradiction.
       subst Q'.
       apply l7_3 in H0.
       subst Q.
-      apply cong_commutativity.
+      apply 等长的交换性.
       eapply is_image_spec_col_cong.
         apply l10_4_spec.
         apply HH0.
@@ -194,7 +194,7 @@ Lemma l10_10 : forall A B P Q P' Q',
  Cong P Q P' Q'.
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       subst.
       unfold Reflect in *.
       induction H.
@@ -212,7 +212,7 @@ Lemma image_preserves_bet : forall A B C A' B' C' X Y,
   Bet A' B' C'.
 Proof.
     intros.
-    destruct (eq_dec_points X Y).
+    destruct (两点重合的决定性 X Y).
       subst Y.
       apply image_spec__eq in H.
       apply image_spec__eq in H0.
@@ -243,7 +243,7 @@ Lemma image_gen_preserves_bet : forall A B C A' B' C' X Y,
   Bet A' B' C'.
 Proof.
     intros.
-    destruct (eq_dec_points X Y).
+    destruct (两点重合的决定性 X Y).
       subst Y.
       apply image__midpoint in H.
       apply image__midpoint in H0.
@@ -260,7 +260,7 @@ Lemma image_preserves_col : forall A B C A' B' C' X Y,
 Proof.
     intros.
     destruct H2 as [HBet|[HBet|HBet]]; [|apply col_permutation_2|apply col_permutation_1];
-    apply bet_col; eapply image_preserves_bet; eauto.
+    apply 中间性转共线; eapply image_preserves_bet; eauto.
 Qed.
 
 Lemma image_gen_preserves_col : forall A B C A' B' C' X Y,
@@ -270,7 +270,7 @@ Lemma image_gen_preserves_col : forall A B C A' B' C' X Y,
 Proof.
     intros.
     destruct H2 as [HBet|[HBet|HBet]]; [|apply col_permutation_2|apply col_permutation_1];
-    apply bet_col; eapply image_gen_preserves_bet; eauto.
+    apply 中间性转共线; eapply image_gen_preserves_bet; eauto.
 Qed.
 
 Lemma image_gen_preserves_ncol : forall A B C A' B' C' X Y,
@@ -328,11 +328,11 @@ Proof.
         apply H.
         apply H1.
         apply H2.
-    eapply cong_transitivity.
+    eapply 等长的传递性.
       eapply l10_10_spec.
         apply H0.
       apply H.
-    eapply cong_transitivity.
+    eapply 等长的传递性.
       apply H3.
     eapply l10_10_spec.
       apply l10_4_spec.
@@ -348,7 +348,7 @@ Lemma image_spec_preserves_per : forall A B C A' B' C' X Y,
  Per A' B' C'.
 Proof.
     intros.
-    induction (eq_dec_points X Y).
+    induction (两点重合的决定性 X Y).
       subst Y.
       apply image_spec__eq in H.
       apply image_spec__eq in H0.
@@ -367,11 +367,11 @@ Proof.
         apply H1.
         apply H6.
       assumption.
-    eapply cong_transitivity.
+    eapply 等长的传递性.
       eapply l10_10_spec.
         apply H.
       apply H1.
-    eapply cong_transitivity.
+    eapply 等长的传递性.
       unfold Per in H2.
       ex_and H2 C2.
       assert (C2=C1).
@@ -393,7 +393,7 @@ Lemma image_preserves_per : forall A B C A' B' C' X Y,
  Per A' B' C'.
 Proof.
     intros.
-    induction (eq_dec_points X Y).
+    induction (两点重合的决定性 X Y).
     - induction H; induction H0; induction H1; spliter; [contradiction..|].
       treat_equalities.
       apply midpoint_preserves_per with A B C X; [|apply l7_2..]; assumption.
@@ -407,9 +407,9 @@ Lemma l10_12 : forall A B C A' B' C',
  Cong A C A' C'.
 Proof.
     intros.
-    induction (eq_dec_points B C).
+    induction (两点重合的决定性 B C).
       treat_equalities;auto.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       treat_equalities;auto.
     assert (exists X, Midpoint X B B').
       apply midpoint_existence.
@@ -422,9 +422,9 @@ Proof.
       by (eauto using l8_10).
     unfold Cong_3 in H8.
     spliter.
-    assert(Cong A B A1 B) by (apply cong_transitivity with A' B'; trivial).
-    assert(Cong B C B C1) by (apply cong_transitivity with B' C'; trivial).
-    apply cong_transitivity with A1 C1; Cong.
+    assert(Cong A B A1 B) by (apply 等长的传递性 with A' B'; trivial).
+    assert(Cong B C B C1) by (apply 等长的传递性 with B' C'; trivial).
+    apply 等长的传递性 with A1 C1; Cong.
     clear dependent A'; clear dependent B'; clear dependent C'; clear X.
 
     assert(exists Y, Midpoint Y C C1)
@@ -438,7 +438,7 @@ Proof.
       eapply l10_10.
         apply H0.
       assumption.
-    apply cong_transitivity with A2 C; Cong.
+    apply 等长的传递性 with A2 C; Cong.
     assert (Reflect B B B Y) by apply image_triv.
     assert (Per A2 B C).
       eapply (image_preserves_per A1 B C1 A2 B C).
@@ -447,8 +447,8 @@ Proof.
         assumption.
       assumption.
     assert (Cong A B A2 B).
-      apply cong_transitivity with A1 B; trivial.
-      apply cong_symmetry, l10_10 with B Y; assumption.
+      apply 等长的传递性 with A1 B; trivial.
+      apply 等长的对称性, l10_10 with B Y; assumption.
     clear dependent A1; clear dependent C1; clear dependent Y.
 
     assert (exists Z, Midpoint Z A A2).
@@ -460,12 +460,12 @@ Proof.
     assert (Cong A2 C A2 C0) by (apply per_double_cong with B; assumption).
     assert (Reflect C0 C B Z).
       apply is_image_rev, cong_midpoint__image; trivial.
-      induction (eq_dec_points A A2).
+      induction (两点重合的决定性 A A2).
         treat_equalities; assumption.
       apply (l4_17 A A2); Col.
     assert (Cong A C A2 C0).
       apply l10_10 with B Z; assumption.
-    apply cong_transitivity with A2 C0; Cong.
+    apply 等长的传递性 with A2 C0; Cong.
 Qed.
 
 Lemma l10_16 : forall A B C A' B' P,
@@ -473,9 +473,9 @@ Lemma l10_16 : forall A B C A' B' P,
  exists C', Cong_3 A B C A' B' C' /\ OS  A' B' P C' .
 Proof.
     intros.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       subst B.
-      apply cong_symmetry in H1.
+      apply 等长的对称性 in H1.
       apply False_ind.
       apply H.
       apply col_trivial_1.
@@ -510,12 +510,12 @@ Proof.
     unfold Cong_3 in *.
     spliter.
     assert (Cong A C A' C').
-      induction(eq_dec_points A X).
+      induction(两点重合的决定性 A X).
         subst X.
-        apply cong_symmetry in H10.
-        apply cong_identity in H10.
+        apply 等长的对称性 in H10.
+        apply 等长的同一性 in H10.
         subst X'.
-        apply cong_symmetry.
+        apply 等长的对称性.
         assumption.
       apply l10_12 with X X'.
         apply perp_in_per.
@@ -532,14 +532,14 @@ Proof.
           eapply perp_col.
             intro assumption.
             subst X'.
-            apply cong_identity in H10.
+            apply 等长的同一性 in H10.
             contradiction.
             apply perp_sym.
             eapply perp_col.
               intro.
               subst X'.
-              apply cong_symmetry in H9.
-              apply cong_identity in H9.
+              apply 等长的对称性 in H9.
+              apply 等长的同一性 in H9.
               subst X.
               apply perp_distinct in H4.
               spliter.
@@ -557,15 +557,15 @@ Proof.
           apply col_trivial_3.
         apply col_trivial_1.
         assumption.
-      apply cong_symmetry.
+      apply 等长的对称性.
       assumption.
     assert (Cong B C B' C').
-      induction(eq_dec_points B X).
+      induction(两点重合的决定性 B X).
         subst X.
-        apply cong_symmetry in H11.
-        apply cong_identity in H11.
+        apply 等长的对称性 in H11.
+        apply 等长的同一性 in H11.
         subst X'.
-        apply cong_symmetry.
+        apply 等长的对称性.
         assumption.
       apply l10_12 with X X'.
         apply perp_in_per.
@@ -583,14 +583,14 @@ Proof.
           eapply perp_col.
             intro assumption.
             subst X'.
-            apply cong_identity in H11.
+            apply 等长的同一性 in H11.
             contradiction.
             apply perp_sym.
             eapply perp_col.
               intro.
               subst X'.
-              apply cong_symmetry in H9.
-              apply cong_identity in H9.
+              apply 等长的对称性 in H9.
+              apply 等长的同一性 in H9.
               subst X.
               apply perp_distinct in H4.
               spliter.
@@ -609,7 +609,7 @@ Proof.
           apply col_trivial_3.
         apply col_trivial_1.
         assumption.
-      apply cong_symmetry.
+      apply 等长的对称性.
       assumption.
     repeat split.
       assumption.
@@ -625,7 +625,7 @@ Proof.
       apply col_permutation_1.
       apply out_col.
       assumption.
-    apply cong_symmetry in H1.
+    apply 等长的对称性 in H1.
     destruct H14.
     spliter.
     assert (OS A' B' C' Q).
@@ -639,9 +639,9 @@ Proof.
       unfold Cong_3.
       repeat split.
         assumption.
-        apply cong_symmetry.
+        apply 等长的对称性.
         assumption.
-      apply cong_symmetry.
+      apply 等长的对称性.
       assumption.
     eapply one_side_transitivity.
       apply H7.
@@ -661,7 +661,7 @@ Proof.
       spliter.
       ex_and H3 M.
       induction H4.
-        induction(eq_dec_points A M).
+        induction(两点重合的决定性 A M).
           subst M.
           assert (Perp P A A B).
             eapply perp_col.
@@ -731,7 +731,7 @@ Proof.
           split.
             apply l7_2.
             assumption.
-          apply cong_commutativity.
+          apply 等长的交换性.
           assumption.
         apply l8_2 in H7.
         assert (Col A X M).
@@ -945,14 +945,14 @@ Context `{T2D:Tarski_2D}.
 
 Lemma all_coplanar : forall A B C D, Coplanar A B C D.
 Proof.
-apply upper_dim_implies_all_coplanar;
-unfold upper_dim_axiom; apply upper_dim.
+apply 防升维公理_implies_all_coplanar;
+unfold 防升维公理_axiom; apply 防升维公理.
 Qed.
 
 Lemma per2__col : forall A B C X, Per A X C -> X <> C -> Per B X C -> Col A B X.
 Proof.
-apply upper_dim_implies_per2__col;
-unfold upper_dim_axiom; apply upper_dim.
+apply 防升维公理_implies_per2__col;
+unfold 防升维公理_axiom; apply 防升维公理.
 Qed.
 
 Lemma perp2__col : forall X Y Z A B,

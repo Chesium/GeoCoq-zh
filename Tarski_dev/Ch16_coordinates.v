@@ -3,7 +3,7 @@ Require Export GeoCoq.Tarski_dev.Ch15_lengths.
 Section T16.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma grid_exchange_axes : forall O E S U1 U2,
   Cs O E S U1 U2 -> Cs O E S U2 U1.
@@ -27,7 +27,7 @@ Qed.
 (** Lemma 16.4 in dimension 2. *)
 Lemma exists_grid : exists O E E' S U1 U2, ~ Col O E E' /\ Cs O E S U1 U2.
 Proof.
-destruct lower_dim_ex as [O [I [X HNC]]].
+destruct 防降维公理_ex as [O [I [X HNC]]].
 assert (H : ~ Col O I X) by auto; clear HNC; rename H into HNC.
 assert_diffs; destruct (ex_per_cong I O O X O I) as [J HJ]; Col; spliter.
 exists O; exists I; exists X; exists O; exists I; exists J.
@@ -36,7 +36,7 @@ Qed.
 
 Lemma exists_grid_spec : exists S U1 U2, Cs PA PB S U1 U2.
 Proof.
-assert (~ Col PA PB PC) by (apply lower_dim).
+assert (~ Col PA PB PC) by (apply 防降维公理).
 assert_diffs.
 destruct (ex_per_cong PB PA PA PC PA PB) as [J HJ]; Col; spliter.
 exists PA; exists PB; exists J.
@@ -130,7 +130,7 @@ Lemma point_of_coordinates : forall O E S U1 U2 X Y,
   Cs O E S U1 U2 -> Col O E X -> Col O E Y -> exists P, Cd O E S U1 U2 P X Y.
 Proof.
 intros O E S U1 U2 X Y HCs HCol1 HCol2.
-elim (eq_dec_points O X); intro HOX; elim (eq_dec_points O Y); intro HOY;
+elim (两点重合的决定性 O X); intro HOX; elim (两点重合的决定性 O Y); intro HOY;
 treat_equalities; [exists S; apply point_of_coordinates_origin|
                    destruct (point_of_coordinates_on_an_axis O E S U2 U1 Y) as [P HP];
                    try apply grid_exchange_axes;
@@ -161,12 +161,12 @@ split; [exists PX|exists PY]; split; Cong.
   apply l6_21 with S U1 U2 S; Col;
   [destruct HCs as [H' [H'' [H''' HPer]]]; apply perp_not_col;
    assert_diffs; apply per_perp in HPer; Perp|
-  |apply l4_13 with E O Y; try apply cong_3_swap; Col].
+  |apply l4_13 with E O Y; try apply 三角形全等的BAC交换性; Col].
   assert (HPar : Par S U1 PY PY')
     by (apply l12_9_2D with P PX'; Perp).
   elim HPar; clear HPar; intro HParS; [|spliter; ColR].
   exfalso; apply HParS; exists P; split; Col.
-  apply l4_13 with X O E; try (apply cong_3_swap; apply cong_3_swap_2); Col.
+  apply l4_13 with X O E; try (apply 三角形全等的BAC交换性; apply 三角形全等的ACB交换性); Col.
   }
 
   {
@@ -178,12 +178,12 @@ split; [exists PX|exists PY]; split; Cong.
   apply l6_21 with S U2 U1 S; Col;
   [destruct HCs as [H' [H'' [H''' HPer]]]; apply perp_not_col;
    assert_diffs; apply per_perp in HPer; Perp|
-  |apply l4_13 with E O X; try apply cong_3_swap; Col].
+  |apply l4_13 with E O X; try apply 三角形全等的BAC交换性; Col].
   assert (HPar : Par S U2 PX PX')
     by (apply l12_9_2D with P PY'; Perp).
   elim HPar; clear HPar; intro HParS; [|spliter; ColR].
   exfalso; apply HParS; exists P; split; Col.
-  apply l4_13 with Y O E; try (apply cong_3_swap; apply cong_3_swap_2); Col.
+  apply l4_13 with Y O E; try (apply 三角形全等的BAC交换性; apply 三角形全等的ACB交换性); Col.
   }
 Qed.
 
@@ -209,7 +209,7 @@ split; intro; spliter; treat_equalities.
   clear H'; destruct HPY2 as [H HCong4]; clear H.
   unfold Cs in HCs; spliter.
   split; apply l4_18 with O E; Col;
-  unfold Cong_3 in *; spliter; eapply cong_transitivity; eCong.
+  unfold Cong_3 in *; spliter; eapply 等长的传递性; eCong.
   }
 
   {
@@ -220,26 +220,26 @@ split; intro; spliter; treat_equalities.
     destruct HPX1 as [[H HElim] H0]; unfold Cs in HCs; unfold Cong_3 in *;
     spliter; assert_diffs; apply l4_18 with S U1; auto.
     induction HElim; spliter; treat_equalities; Col.
-    apply cong_transitivity with O X1; Cong.
-    apply cong_transitivity with E X1; Cong.
+    apply 等长的传递性 with O X1; Cong.
+    apply 等长的传递性 with E X1; Cong.
     }
   assert (PY = PY2); treat_equalities.
     {
     destruct HPY1 as [[H HElim] H0]; unfold Cs in HCs; unfold Cong_3 in *;
     spliter; assert_diffs; apply l4_18 with S U2; auto.
     induction HElim; spliter; treat_equalities; Col.
-    apply cong_transitivity with O Y1; Cong.
-    apply cong_transitivity with E Y1; Cong.
+    apply 等长的传递性 with O Y1; Cong.
+    apply 等长的传递性 with E Y1; Cong.
     }
   destruct HPX1 as [HProjp1 H]; clear H; destruct HPX2 as [HProjp2 H]; clear H;
   destruct HPY1 as [HProjp3 H]; clear H; destruct HPY2 as [HProjp4 H]; clear H.
   assert (HCol1 : Col PX P1 P2) by (apply projp2_col with S U1; auto).
   assert (HCol2 : Col PY P1 P2) by (apply projp2_col with S U2; auto).
-  elim (eq_dec_points P1 P2); intro HP1P2; treat_equalities; auto; exfalso.
+  elim (两点重合的决定性 P1 P2); intro HP1P2; treat_equalities; auto; exfalso.
   assert (HPar : Par S U1 S U2).
     {
-    elim (eq_dec_points P1 PX); intro HP1PX;
-    elim (eq_dec_points P1 PY); intro HP1PY; treat_equalities.
+    elim (两点重合的决定性 P1 PX); intro HP1PX;
+    elim (两点重合的决定性 P1 PY); intro HP1PY; treat_equalities.
 
       {
       destruct HProjp2 as [H H1]; clear H; elim H1; clear H1; intro H1;
@@ -305,7 +305,7 @@ assert (HCol3 : Col O E XMY).
 assert (HCong1 := HXMY); apply diff_sum in HCong1; apply l15_3 in HCong1.
 elim HXY; clear HXY; intro HXY; [|spliter; intuition].
 destruct HXY as [H [HCol4 [HLe2 HCong2]]].
-elim (l7_20 O XY XMY); [auto|intro HMid; clear H|ColR|apply cong_transitivity with X Y; Cong].
+elim (l7_20 O XY XMY); [auto|intro HMid; clear H|ColR|apply 等长的传递性 with X Y; Cong].
 elim HLe1; clear HLe1; intro HLt1; [clear HCong1|treat_equalities; auto].
 elim HLe2; clear HLe2; intro HLt2; [clear HCong2|treat_equalities; auto].
 exfalso; apply not_pos_and_neg with O E XMY;
@@ -398,8 +398,8 @@ elim H1; clear H1; intro H1; elim H2; clear H2; intro H2;
 destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
 
   {
-  elim (eq_dec_points S PX'); intro HDiff1;
-  elim (eq_dec_points S QX'); intro HDiff2; treat_equalities.
+  elim (两点重合的决定性 S PX'); intro HDiff1;
+  elim (两点重合的决定性 S QX'); intro HDiff2; treat_equalities.
 
     {
     exfalso; unfold Cong_3 in *; spliter; treat_equalities.
@@ -432,7 +432,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       }
     apply Rectangle_Plg in H; apply plg_to_parallelogram in H;
     apply plg_cong_2 in H.
-    unfold Cong_3 in HCong3; spliter; apply cong_transitivity with S QX'; Cong.
+    unfold Cong_3 in HCong3; spliter; apply 等长的传递性 with S QX'; Cong.
     }
 
     {
@@ -454,11 +454,11 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       }
     apply Rectangle_Plg in H; apply plg_to_parallelogram in H;
     apply plg_cong_2 in H.
-    unfold Cong_3 in HCong1; spliter; apply cong_transitivity with S PX'; Cong.
+    unfold Cong_3 in HCong1; spliter; apply 等长的传递性 with S PX'; Cong.
     }
 
     {
-    elim (eq_dec_points S PY'); intro HDiff3; treat_equalities.
+    elim (两点重合的决定性 S PY'); intro HDiff3; treat_equalities.
 
       {
       assert (HNC' := HPerp3); apply perp_not_col2 in HNC'.
@@ -542,7 +542,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       apply Rectangle_Parallelogram in HRect3; apply plg_cong_2 in HRect3.
       assert_diffs;
       apply cong_3_2_cong_4 with O E PX QX S U1 PX' QX' in HCong1; Col.
-      unfold Cong_4 in HCong1; spliter; apply cong_transitivity with PX' QX'; Cong.
+      unfold Cong_4 in HCong1; spliter; apply 等长的传递性 with PX' QX'; Cong.
       }
     }
   }
@@ -604,9 +604,9 @@ destruct (point_of_coordinates O E S U1 U2 PX QY) as [R HCd3]; Col.
 elim HPQ; clear HPQ; intro HPQ; [|spliter; treat_equalities; exfalso; Col].
 elim HPXQX; clear HPXQX; intro HPXQX; [|spliter; treat_equalities; exfalso; Col].
 elim HPYQY; clear HPYQY; intro HPYQY; [|spliter; treat_equalities; exfalso; Col].
-elim (eq_dec_points P R); intro HPR; [assert (HPR' := HPR);
+elim (两点重合的决定性 P R); intro HPR; [assert (HPR' := HPR);
 rewrite eq_points_coordinates in HPR; [|apply HCd1|apply HCd3]|];
-elim (eq_dec_points Q R); intro HQR; [assert (HQR' := HQR);
+elim (两点重合的决定性 Q R); intro HQR; [assert (HQR' := HQR);
 rewrite eq_points_coordinates in HQR; [|apply HCd2|apply HCd3]| |assert (HQR' := HQR);
 rewrite eq_points_coordinates in HQR; [|apply HCd2|apply HCd3]|];
 apply sum_comm; Col; apply pythagoras with P Q R PYQY PXQX PQ; auto; try intro;
@@ -748,8 +748,8 @@ split; [intro HCong|intro; treat_equalities].
     unfold Is_length, Length in *;
     induction HLengthAB; [|spliter; treat_equalities; exfalso; apply HNC; Col];
     induction HLengthCD; [|spliter; treat_equalities; exfalso; apply HNC; Col].
-    spliter; apply cong_transitivity with A B; trivial.
-    apply cong_transitivity with C D; Cong.
+    spliter; apply 等长的传递性 with A B; trivial.
+    apply 等长的传递性 with C D; Cong.
     }
   clear HLengthAB; clear HLengthCD; clear HCong; rename H into HCong.
   assert (H : Col O AB CD) by ColR.
@@ -783,8 +783,8 @@ split; [intro HCong|intro; treat_equalities].
   [apply length_eq_cong_1 with O E E' AB; auto|].
   unfold Length, LeP, LtP in *; spliter; apply opp_midpoint in HOpp.
   unfold Midpoint in *; spliter.
-  apply cong_transitivity with O CD; trivial.
-  apply cong_transitivity with O AB; Cong.
+  apply 等长的传递性 with O CD; trivial.
+  apply 等长的传递性 with O AB; Cong.
   }
 Qed.
 
@@ -801,7 +801,7 @@ destruct HAX' as [H [H' [HAX' H'']]]; clear H; clear H'; clear H''.
 destruct HAX' as [AX' [HProjpAX' HCongAX']].
 assert (HA : Projp AX' A A1 A2).
   {
-  split; auto; induction (eq_dec_points A AX');
+  split; auto; induction (两点重合的决定性 A AX');
   [treat_equalities; right|left; split]; Col.
   apply par_perp__perp with S U1; auto.
   destruct HProjpAX' as [Hclear HAX']; clear Hclear.
@@ -878,7 +878,7 @@ destruct HAX' as [H [H' [HAX' H'']]]; clear H; clear H'; clear H''.
 destruct HAX' as [AX' [HProjpAX' HCongAX']].
 assert (HA : Projp AX' A A1 A2).
   {
-  split; auto; induction (eq_dec_points A AX');
+  split; auto; induction (两点重合的决定性 A AX');
   [treat_equalities; right|left; split]; Col.
   apply par_perp__perp with S U1; auto.
   destruct HProjpAX' as [Hclear HAX']; clear Hclear.
@@ -895,7 +895,7 @@ destruct (exists_projp A1 A2 CX') as [CX'' HCX'']; auto.
 elim (col_dec A B BX''); intro HABBX''.
 
   {
-  elim (eq_dec_points A BX''); intro HABX''; treat_equalities.
+  elim (两点重合的决定性 A BX''); intro HABX''; treat_equalities.
 
     {
     assert (AX' = BX').
@@ -980,7 +980,7 @@ elim (col_dec A B BX''); intro HABBX''.
           apply col_2_par_projp2_cong with S U1 A1 A2; auto;
           [apply projp_col with A|apply projp_col with B]; auto.
           }
-        apply cong_transitivity with AX' BX'; Cong.
+        apply 等长的传递性 with AX' BX'; Cong.
         }
       assert (LAB = BXMAX)
         by (apply l16_9_1 with O E E' BX AX; Col; left; auto).
@@ -1006,7 +1006,7 @@ elim (col_dec A B BX''); intro HABBX''.
           apply col_2_par_projp2_cong with S U1 A1 A2; auto;
           [apply projp_col with A|apply projp_col with C]; auto.
           }
-        apply cong_transitivity with AX' CX'; Cong.
+        apply 等长的传递性 with AX' CX'; Cong.
         }
       assert (LAC = CXMAX)
         by (apply l16_9_1 with O E E' CX AX; Col; left; auto).
@@ -1038,7 +1038,7 @@ elim (col_dec A B BX''); intro HABBX''.
           apply col_2_par_projp2_cong with S U1 A1 A2; auto;
           [apply projp_col with A|apply projp_col with B]; auto.
           }
-        apply cong_transitivity with AX' BX'; Cong.
+        apply 等长的传递性 with AX' BX'; Cong.
         }
       destruct (diff_exists O E E' AX BX) as [AXMBX HAXMBX]; Col.
       assert (LAB = AXMBX)
@@ -1065,7 +1065,7 @@ elim (col_dec A B BX''); intro HABBX''.
           apply col_2_par_projp2_cong with S U1 A1 A2; auto;
           [apply projp_col with A|apply projp_col with C]; auto.
           }
-        apply cong_transitivity with AX' CX'; Cong.
+        apply 等长的传递性 with AX' CX'; Cong.
         }
       destruct (diff_exists O E E' AX CX) as [AXMCX HAXMCX]; Col.
       assert (LAC = AXMCX)
@@ -1290,7 +1290,7 @@ elim (col_dec A B BX''); intro HABBX''.
         apply col_2_par_projp2_cong with S U1 A1 A2; auto;
         [apply projp_col with A|apply projp_col with B]; auto.
         }
-      apply cong_transitivity with AX' BX'; Cong.
+      apply 等长的传递性 with AX' BX'; Cong.
       }
     assert (ABX'' = BXMAX)
       by (apply l16_9_1 with O E E' BX AX; Col; left; auto).
@@ -1315,7 +1315,7 @@ elim (col_dec A B BX''); intro HABBX''.
         apply col_2_par_projp2_cong with S U1 A1 A2; auto;
         [apply projp_col with A|apply projp_col with C]; auto.
         }
-      apply cong_transitivity with AX' CX'; Cong.
+      apply 等长的传递性 with AX' CX'; Cong.
       }
     assert (ACX'' = CXMAX)
       by (apply l16_9_1 with O E E' CX AX; Col; left; auto).
@@ -1336,7 +1336,7 @@ elim (col_dec A B BX''); intro HABBX''.
         apply col_2_par_projp2_cong with S U1 A1 A2; auto;
         [apply projp_col with A|apply projp_col with B]; auto.
         }
-      apply cong_transitivity with AX' BX'; Cong.
+      apply 等长的传递性 with AX' BX'; Cong.
       }
     destruct (diff_exists O E E' AX BX) as [AXMBX HAXMBX]; Col.
     assert (ABX'' = AXMBX)
@@ -1362,7 +1362,7 @@ elim (col_dec A B BX''); intro HABBX''.
         apply col_2_par_projp2_cong with S U1 A1 A2; auto;
         [apply projp_col with A|apply projp_col with C]; auto.
         }
-      apply cong_transitivity with AX' CX'; Cong.
+      apply 等长的传递性 with AX' CX'; Cong.
       }
     destruct (diff_exists O E E' AX CX) as [AXMCX HAXMCX]; Col.
     assert (ACX'' = AXMCX)
@@ -1417,7 +1417,7 @@ assert (HColCYMAY : Col O E CYMAY)
 split; [intro HBet|intro HT].
 
   {
-  elim (eq_dec_points A B); intro HDiff1; treat_equalities.
+  elim (两点重合的决定性 A B); intro HDiff1; treat_equalities.
 
     {
     assert (AX = BX /\ AY = BY)
@@ -1434,8 +1434,8 @@ split; [intro HBet|intro HT].
     }
 
     {
-    elim (eq_dec_points A C); intro HDiff2; treat_equalities; [intuition|].
-    elim (eq_dec_points B C); intro HDiff3; treat_equalities.
+    elim (两点重合的决定性 A C); intro HDiff2; treat_equalities; [intuition|].
+    elim (两点重合的决定性 B C); intro HDiff3; treat_equalities.
 
       {
       assert (BX = CX /\ BY = CY)
@@ -1513,7 +1513,7 @@ split; [intro HBet|intro HT].
     assert_diffs; repeat split; Cong.
     }
   destruct HB as [B [HBet HAB]].
-  elim (eq_dec_points A C); intro HDiff2; treat_equalities.
+  elim (两点重合的决定性 A C); intro HDiff2; treat_equalities.
 
     {
     assert (AX = CX /\ AY = CY)
@@ -1541,8 +1541,8 @@ split; [intro HBet|intro HT].
     assert (HCdB : exists BX, exists BY, Cd O E S U1 U2 B BX BY)
       by (apply coordinates_of_point; unfold Cd in *; spliter; auto).
     destruct HCdB as [BX [BY HCdB]].
-    elim (eq_dec_points A B); intro HDiff1; treat_equalities;
-    try (elim (eq_dec_points B C); intro HDiff3; treat_equalities).
+    elim (两点重合的决定性 A B); intro HDiff1; treat_equalities;
+    try (elim (两点重合的决定性 B C); intro HDiff3; treat_equalities).
 
       {
       assert (AX = BX /\ AY = BY)
@@ -1552,7 +1552,7 @@ split; [intro HBet|intro HT].
         apply length_uniqueness with O E E' A A; auto; apply length_id_2;
         assert_diffs; auto.
         }
-      elim (eq_dec_points O T); intro HOT; treat_equalities.
+      elim (两点重合的决定性 O T); intro HOT; treat_equalities.
 
         {
         assert (O = B'XMAX)
@@ -1648,7 +1648,7 @@ assert (HColAX : Col O E AX)
   by (apply l4_13 with S U1 PXA; Cong; apply projp_col with A; auto).
 eapply col_cong_3_cong_3_eq in HCongB; [| | |apply HCongA]; treat_equalities; auto.
 eapply col_cong_3_cong_3_eq in HCongC; [| | |apply HCongA]; treat_equalities; auto.
-clear HCongA; elim (eq_dec_points A PXA); intro HDiff2; treat_equalities;
+clear HCongA; elim (两点重合的决定性 A PXA); intro HDiff2; treat_equalities;
 [apply projp2_col with S U1; auto|].
 eapply projp2_col in HProjpB; [|apply HProjpA].
 eapply projp2_col in HProjpC; [|apply HProjpA].
@@ -1718,8 +1718,8 @@ assert (HColYProd : Col O E YProd) by (unfold Prod, Ar2 in *; spliter; Col).
 split; intro HCol; treat_equalities.
 
   {
-  elim (eq_dec_points A B); intro HDiff1; elim (eq_dec_points A C); intro HDiff2;
-  elim (eq_dec_points B C); intro HDiff3; treat_equalities;
+  elim (两点重合的决定性 A B); intro HDiff1; elim (两点重合的决定性 A C); intro HDiff2;
+  elim (两点重合的决定性 B C); intro HDiff3; treat_equalities;
   [|intuition|intuition| |intuition| | |].
 
     {
@@ -1964,13 +1964,13 @@ split; intro HCol; treat_equalities.
   }
 
   {
-  elim (eq_dec_points O AXMBX); intro HDiff1;
+  elim (两点重合的决定性 O AXMBX); intro HDiff1;
   treat_equalities; try apply diff_null_eq in HAXMBX;
-  elim (eq_dec_points O AYMBY); intro HDiff2;
+  elim (两点重合的决定性 O AYMBY); intro HDiff2;
   treat_equalities; try apply diff_null_eq in HAYMBY;
-  elim (eq_dec_points O BXMCX); intro HDiff3;
+  elim (两点重合的决定性 O BXMCX); intro HDiff3;
   treat_equalities; try apply diff_null_eq in HBXMCX;
-  elim (eq_dec_points O BYMCY); intro HDiff4;
+  elim (两点重合的决定性 O BYMCY); intro HDiff4;
   treat_equalities; try apply diff_null_eq in HBYMCY; treat_equalities.
 
     {
@@ -2129,7 +2129,7 @@ split; intro HCol; treat_equalities.
         {
         apply prod_assoc1 with L2 IBC E; auto; try apply prod_1_r; Col.
         }
-      elim (eq_dec_points O L2); intro HDiff7; treat_equalities.
+      elim (两点重合的决定性 O L2); intro HDiff7; treat_equalities.
 
         {
         assert (O = T)
@@ -2285,7 +2285,7 @@ split; intro HCol; treat_equalities.
         {
         apply prod_assoc1 with L1 IAC E; auto; try apply prod_1_r; Col.
         }
-      elim (eq_dec_points O L1); intro HDiff7; treat_equalities.
+      elim (两点重合的决定性 O L1); intro HDiff7; treat_equalities.
 
         {
         apply length_id in HL1; spliter; treat_equalities.
@@ -2401,7 +2401,7 @@ split; intro HCol; treat_equalities.
         {
         apply prod_assoc1 with L3 IAB E; auto; try apply prod_1_r; Col.
         }
-      elim (eq_dec_points O L3); intro HDiff7; treat_equalities.
+      elim (两点重合的决定性 O L3); intro HDiff7; treat_equalities.
 
         {
         apply length_id in HL3; spliter; treat_equalities.

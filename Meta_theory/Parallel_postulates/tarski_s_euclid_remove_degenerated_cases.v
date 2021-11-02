@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch06_out_lines.
 
 Section tarski_s_euclid_remove_degenerated_cases.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma tarski_s_euclid_remove_degenerated_cases :
   (forall A B C D T,
@@ -28,23 +28,23 @@ Lemma tarski_s_euclid_remove_degenerated_cases :
   A <> D -> exists x y : Tpoint, Bet A B x /\ Bet A C y /\ Bet x T y.
 Proof.
 intro HGC; intros A B C D T HADT HBDC HAD.
-elim (eq_dec_points A B); intro HAB.
+elim (两点重合的决定性 A B); intro HAB.
 subst; exists T; exists C; Between.
-elim (eq_dec_points A C); intro HAC.
+elim (两点重合的决定性 A C); intro HAC.
 subst; exists B; exists T; Between.
-elim (eq_dec_points A T); intro HAT.
+elim (两点重合的决定性 A T); intro HAT.
 exfalso; apply HAD; treat_equalities; reflexivity.
-elim (eq_dec_points B C); intro HBC.
+elim (两点重合的决定性 B C); intro HBC.
 treat_equalities; exists T; exists T; Between.
-elim (eq_dec_points B D); intro HBD.
+elim (两点重合的决定性 B D); intro HBD.
 subst; exists T; exists C; Between.
-elim (eq_dec_points B T); intro HBT.
+elim (两点重合的决定性 B T); intro HBT.
 subst; exists T; exists C; Between.
-elim (eq_dec_points C D); intro HCD.
+elim (两点重合的决定性 C D); intro HCD.
 subst; exists B; exists T; Between.
-elim (eq_dec_points C T); intro HCT.
+elim (两点重合的决定性 C T); intro HCT.
 subst; exists B; exists T; Between.
-elim (eq_dec_points D T); intro HDT.
+elim (两点重合的决定性 D T); intro HDT.
 subst; exists B; exists C; Between.
 elim (col_dec A B C); intro HABC.
 

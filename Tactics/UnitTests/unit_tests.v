@@ -2,7 +2,7 @@ Require Import GeoCoq.Tarski_dev.Annexes.quadrilaterals_inter_dec.
 
 Section UnitTests.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Goal forall A B I, A <> B -> Midpoint I A B -> I <> A /\ I <> B.
 Proof.
@@ -477,7 +477,7 @@ End UnitTests.
 
 Section UnitTestsEucl.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Goal forall A B C D, Parallelogram A B C D -> Cong A B C D.
 Proof.

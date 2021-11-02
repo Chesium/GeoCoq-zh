@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section SPP_ID.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma strong_parallel_postulate_implies_inter_dec :
   strong_parallel_postulate ->
@@ -11,7 +11,7 @@ Lemma strong_parallel_postulate_implies_inter_dec :
 Proof.
 intros HSPP S Q P U.
 elim (col_dec P Q S); intro HPQS; [left; exists P; Col|].
-elim (eq_dec_points P U); intro HPU; treat_equalities; [left; exists Q; Col|].
+elim (两点重合的决定性 P U); intro HPU; treat_equalities; [left; exists Q; Col|].
 assert (H := midpoint_existence P Q); destruct H as [T [HPTQ HCong1]].
 assert (H := symmetric_point_construction S T); destruct H as [R [HRTS HCong2]].
 elim (col_dec P R U); intro HPRU.

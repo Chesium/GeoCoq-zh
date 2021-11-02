@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Definitions.
 
 Section playfair_existential_playfair.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma playfair__existential_playfair :
   playfair_s_postulate ->
@@ -11,7 +11,7 @@ Lemma playfair__existential_playfair :
 Proof.
 intro HF.
 exists PA, PB, PC.
-split; [apply lower_dim|]; intros; apply HF with PA PB PC; assumption.
+split; [apply 防降维公理|]; intros; apply HF with PA PB PC; assumption.
 Qed.
 
 End playfair_existential_playfair.

@@ -9,7 +9,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section universal_posidonius_postulate_perpendicular_transversal_postulate.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma universal_posidonius_postulate__perpendicular_transversal_postulate_aux :
   universal_posidonius_postulate -> forall E F G H R P,
@@ -29,13 +29,13 @@ assert (HRAH : postulate_of_right_saccheri_quadrilaterals).
   assert (Saccheri M1 M2 F E).
     {
     repeat split; Perp.
-      apply cong_symmetry, cong_left_commutativity, HP with E G F H; Col; Par.
+      apply 等长的对称性, 等长的左交换性, HP with E G F H; Col; Par.
       apply perp_col2 with E M1; Perp; Col.
     apply l12_6, (par_strict_col4__par_strict E G F H); Col.
     }
   apply per_sac__rah with M1 M2 F E; auto.
   }
-destruct (eq_dec_points E R) as [|HER].
+destruct (两点重合的决定性 E R) as [|HER].
   {
   subst R.
   assert (Col F P E) by (apply (cop_per2__col G); Perp; CopR).
@@ -67,7 +67,7 @@ assert (HSacc2 : Saccheri E F S R).
   repeat split.
     apply per_col with G; Perp; Col.
     apply perp_per_1; apply (perp_col4 E G R P); Col.
-    apply cong_right_commutativity, HP with E G F H; Col; Par.
+    apply 等长的右交换性, HP with E G F H; Col; Par.
     apply perp_sym, perp_col with P; Perp; Col.
   apply l12_6, par_strict_col_par_strict with H; Col;
   [|apply par_strict_symmetry, par_strict_col_par_strict with G; Col; Par].
@@ -116,7 +116,7 @@ assert (Saccheri E C D G).
   repeat split.
     apply perp_per_1, perp_col0 with A B; Perp.
     apply perp_per_1, perp_col2 with A B; Perp.
-    apply cong_right_commutativity, HP with A B C D; Perp; Col.
+    apply 等长的右交换性, HP with A B C D; Perp; Col.
   apply l12_6, par_strict_symmetry, par_strict_col2_par_strict with A B; Par.
   }
 assert (P <> Q) by (apply perp_distinct in HPerp; apply HPerp).

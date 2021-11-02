@@ -8,7 +8,7 @@ Import circles.
 
 Section Elementary_Continuity_Props.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (**    All these properties are known to be equivalent in an arbitrary Hilbert plane (Tarski_2D)
   as shown by Strommer, but we don't have formalized the proof yet.
@@ -27,22 +27,22 @@ Proof.
   unfold segment_circle, one_point_line_circle.
   split.
   - intros Hsc A B U V P HCol HUV HBet.
-    destruct (eq_dec_points A B).
+    destruct (两点重合的决定性 A B).
       unfold InCircle, OnCircle in *.
       treat_equalities.
       exists A; Cong.
     assert (HPIn : InCircle P A B) by (apply bet__le1213; assumption).
     destruct (diff_col_ex3 U V P) as [W [HUW [HVW [HPW HCol2]]]]; trivial.
-    destruct (eq_dec_points A P).
+    destruct (两点重合的决定性 A P).
     { subst P.
-      destruct (segment_construction W A A B) as [Q [HQ1 HQ2]].
+      destruct (由一点往一方向构造等长线段 W A A B) as [Q [HQ1 HQ2]].
       destruct (Hsc A B A Q) as [Z [HZ1 HZ2]]; trivial.
         apply cong__le; Cong.
       exists Z; split; trivial.
       ColR.
     }
-    destruct (segment_construction W P P A) as [Q0 [HQ01 HQ02]].
-    destruct (segment_construction P Q0 A B) as [Q [HQ1 HQ2]].
+    destruct (由一点往一方向构造等长线段 W P P A) as [Q0 [HQ01 HQ02]].
+    destruct (由一点往一方向构造等长线段 P Q0 A B) as [Q [HQ1 HQ2]].
     destruct (Hsc A B P Q) as [Z [HZ1 HZ2]]; trivial.
       apply (l5_6 Q Q0 Q A); Cong.
       apply (triangle_reverse_inequality P); Cong.
@@ -52,15 +52,15 @@ Proof.
     ColR.
 
   - intros Hoplc A B P Q HPIn HQOut.
-    destruct (eq_dec_points A B).
+    destruct (两点重合的决定性 A B).
       unfold InCircle in HPIn; treat_equalities.
       exists A; split; Between; Circle.
-    destruct (eq_dec_points P Q).
+    destruct (两点重合的决定性 P Q).
       subst Q; exists P; split; Between; Circle.
     destruct (cong_dec A B A Q) as [HCong|HNCong].
       exists Q; split; Between; Circle.
     assert (HB' : exists B', Cong A B A B' /\ Bet A P B').
-    { destruct (eq_dec_points A P).
+    { destruct (两点重合的决定性 A P).
         subst; exists B; split; Cong; Between.
       destruct (l6_11_existence A A B P) as [B' [HOut HCong]]; auto.
       exists B'; split; Cong.
@@ -70,7 +70,7 @@ Proof.
     }
     destruct HB' as [B' [HCong HBet]].
     destruct (Hoplc A B' P Q P) as [Z1 [HCol1 HZ1]]; Col.
-    assert (HZ1On: OnCircle Z1 A B) by (apply cong_transitivity with A B'; Cong).
+    assert (HZ1On: OnCircle Z1 A B) by (apply 等长的传递性 with A B'; Cong).
     clear dependent B'.
     destruct (or_bet_out P Z1 Q) as [HBet|[HOut|HNCol]];
       [exists Z1; auto| |exfalso; apply HNCol; Col].
@@ -94,7 +94,7 @@ Proof.
   unfold one_point_line_circle, two_points_line_circle.
   split.
   - intros Hoplc A B U V P HCol HUV HBet.
-    destruct (eq_dec_points P B) as [Heq|HPB].
+    destruct (两点重合的决定性 P B) as [Heq|HPB].
       subst P; exists B, B; repeat split; Circle; Between.
     destruct (Hoplc A B U V P HCol HUV HBet) as [Z1 [HZ1Col HZ1On]].
     exists Z1.
@@ -125,14 +125,14 @@ Proof.
     destruct HP' as [P' [HBet2 HCong2]].
     destruct (cc A Q' C P' Q P) as [Z []]; Cong.
     exists Z; split.
-      apply cong_transitivity with A Q; [apply cong_transitivity with A Q'|]; Cong.
-      apply cong_transitivity with C P; [apply cong_transitivity with C P'|]; Cong.
+      apply 等长的传递性 with A Q; [apply 等长的传递性 with A Q'|]; Cong.
+      apply 等长的传递性 with C P; [apply 等长的传递性 with C P'|]; Cong.
 Qed.
 
 Lemma circle_circle__circle_circle_bis : circle_circle -> circle_circle_bis.
 Proof.
   intros Hcc A B C D P Q HPOn HPIn HQOn HQIn.
-  destruct (eq_dec_points P Q).
+  destruct (两点重合的决定性 P Q).
     subst Q; exists P; split; assumption.
   destruct (chord_completion C D P Q) as [P' [HP'On HBetQ]]; trivial.
   destruct (chord_completion A B Q P) as [Q' [HQ'On HBetP]]; trivial.
@@ -158,10 +158,10 @@ Proof.
   { intros A B U V P HCol HUV HBet HNPer.
     destruct (col_dec U V B) as [|HNCol].
       exists B; split; Circle.
-    destruct (eq_dec_points A P).
+    destruct (两点重合的决定性 A P).
       subst P.
       destruct (diff_col_ex3 U V A) as [W [HUW [HVW [HPW HCol2]]]]; trivial.
-      destruct (segment_construction W A A B) as [Z [HZ1 HZ2]].
+      destruct (由一点往一方向构造等长线段 W A A B) as [Z [HZ1 HZ2]].
       exists Z; split; trivial; ColR.
     destruct (l10_6_existence U V A) as [C HC].
     destruct (l10_6_existence U V B) as [D HD].
@@ -182,13 +182,13 @@ Proof.
     - intro; treat_equalities.
       assert (Col A U V) by (apply l10_8, HC).
       apply HNCol; ColR.
-    - apply cong_transitivity with A B; trivial.
-      apply cong_transitivity with C D; Cong.
-      apply cong_symmetry, l10_10 with U V; assumption.
+    - apply 等长的传递性 with A B; trivial.
+      apply 等长的传递性 with C D; Cong.
+      apply 等长的对称性, l10_10 with U V; assumption.
     - apply coplanar_perm_2.
       apply coplanar_trans_1 with C; Cop.
       intro.
-      destruct (eq_dec_points A C).
+      destruct (两点重合的决定性 A C).
         subst C.
         assert (Col A U V) by (apply l10_8, HC).
         apply HNCol; ColR.
@@ -197,7 +197,7 @@ Proof.
         apply is_image_is_image_spec; auto.
       destruct Habs as [_ [|]]; auto.
       apply HNPer.
-      destruct (eq_dec_points A U).
+      destruct (两点重合的决定性 A U).
         subst; Perp.
       apply perp_per_2, perp_left_comm, perp_col with C; Perp; Col.
   }
@@ -215,14 +215,14 @@ Proof.
   split.
   { intros Hcc A B C D P Q.
     intros.
-    destruct (eq_dec_points A C).
+    destruct (两点重合的决定性 A C).
     subst C.
       exists P; exists P.
       assert (Cong A B A D).
         apply le_anti_symmetry.
         apply (l5_6 A B A Q); Cong.
         apply (l5_6 A P A B); Cong.
-      assert (Cong A P A B) by (apply cong_transitivity with A D; Cong).
+      assert (Cong A P A B) by (apply 等长的传递性 with A D; Cong).
       repeat split; trivial.
       intro Habs.
       destruct Habs.
@@ -241,11 +241,11 @@ Proof.
     - apply (lt__nle A B A Q); trivial.
       apply l5_6 with A Q A Z1; Cong.
       apply triangle_inequality with C; trivial.
-      apply cong_transitivity with C D; Cong.
+      apply 等长的传递性 with C D; Cong.
     - apply (lt__nle A P A B); trivial.
       apply l5_6 with A Z1 A P; Cong.
       apply triangle_reverse_inequality with C; trivial.
-      apply cong_transitivity with C D; Cong.
+      apply 等长的传递性 with C D; Cong.
     - assert (HCol := l10_8 A C Z1 HZ2); Col.
   }
   intros Hcct A B C D P Q.
@@ -276,7 +276,7 @@ Proof.
       exists C1; split; Cong.
     intro HCong.
     apply HC1E1, between_cong with A; trivial.
-    apply cong_transitivity with C D; trivial.
+    apply 等长的传递性 with C D; trivial.
   - assert (Bet A C2 E1) by eBetween.
     assert (Bet B C2 E1) by (assert_diffs; apply l6_2 with A; auto; apply bet_out; Between).
     apply (le__nlt E F E' F'); trivial.
@@ -291,11 +291,11 @@ Lemma circle_circle_bis__euclid_22 : circle_circle_bis -> euclid_s_prop_1_22.
 Proof.
   intros Hcc A B C D E F A' B' C' D' E' F' HSum1 HSum2 HSum3 HLe1 HLe2 HLe3.
   exists A, B.
-  destruct (eq_dec_points A B); [|destruct (eq_dec_points C D)]; [| |destruct (eq_dec_points E F)].
-  - destruct (segment_construction_0 C D A) as [P HCong].
+  destruct (两点重合的决定性 A B); [|destruct (两点重合的决定性 C D)]; [| |destruct (两点重合的决定性 E F)].
+  - destruct (由一点往一方向构造等长线段_0 C D A) as [P HCong].
     exists P; repeat split; Cong.
     subst B.
-    apply cong_transitivity with C D; trivial.
+    apply 等长的传递性 with C D; trivial.
     apply le_anti_symmetry.
       apply (l5_6 C D C' D'); Cong; apply (sums2__cong56 A A E F); Sums.
       apply (l5_6 E F E' F'); Cong; apply (sums2__cong56 A A C D); Sums.
@@ -307,24 +307,24 @@ Proof.
     apply le_anti_symmetry.
       apply (l5_6 A B A' B'); Cong; apply (sums2__cong56 C D E E); Sums.
       apply (l5_6 C D C' D'); Cong; apply (sums2__cong56 A B E E); Sums.
-  - destruct (segment_construction_3 A B C D) as [C1 [HC1 HC1']]; auto.
-    destruct (segment_construction_3 B A E F) as [E1 [HE1 HE1']]; auto.
-    destruct (segment_construction B A C D) as [C2 [HC2 HC2']].
-    destruct (segment_construction A B E F) as [E2 [HE2 HE2']].
+  - destruct (由一点往一方向构造等长线段_3 A B C D) as [C1 [HC1 HC1']]; auto.
+    destruct (由一点往一方向构造等长线段_3 B A E F) as [E1 [HE1 HE1']]; auto.
+    destruct (由一点往一方向构造等长线段 B A C D) as [C2 [HC2 HC2']].
+    destruct (由一点往一方向构造等长线段 A B E F) as [E2 [HE2 HE2']].
     assert (Bet C1 E1 C2) by (apply (euclid_22_aux A B C D E F A' B' E' F'); trivial).
     assert (Bet E1 C1 E2) by (apply (euclid_22_aux B A E F C D B' A' C' D'); Sums; Le).
     destruct (Hcc A C1 B E1 E1 C1) as [Z [HZ1 HZ2]]; Circle.
-      apply bet_inc2__inc with C1 C2; Circle; apply onc__inc, cong_transitivity with C D; Cong.
-      apply bet_inc2__inc with E1 E2; Circle; apply onc__inc, cong_transitivity with E F; Cong.
+      apply bet_inc2__inc with C1 C2; Circle; apply onc__inc, 等长的传递性 with C D; Cong.
+      apply bet_inc2__inc with E1 E2; Circle; apply onc__inc, 等长的传递性 with E F; Cong.
     exists Z; repeat split; Cong.
-      apply cong_transitivity with A C1; Cong.
-      apply cong_transitivity with B E1; Cong.
+      apply 等长的传递性 with A C1; Cong.
+      apply 等长的传递性 with B E1; Cong.
 Qed.
 
 Lemma triangle_inequality1 : forall A B C D E, SumS A B B C D E -> Le A C D E.
 Proof.
   intros A B C D E HSum.
-  destruct (segment_construction A B B C) as [D' [HBet HCong]].
+  destruct (由一点往一方向构造等长线段 A B B C) as [D' [HBet HCong]].
   apply (l5_6 A C A D'); Cong.
     apply triangle_inequality with B; Cong.
   apply (sums2__cong56 A B B C); trivial.
@@ -351,14 +351,14 @@ Proof.
         apply triangle_inequality1 with P; trivial.
       apply le2_sums2__le with A P P C A B C D; Le.
   }
-  destruct (eq_dec_points A C).
+  destruct (两点重合的决定性 A C).
   { subst C.
     exists B; split; Circle.
     apply le_anti_symmetry.
       apply le_transitivity with A Q; Le.
       apply le_transitivity with A P; Le.
   }
-  destruct (eq_dec_points A B).
+  destruct (两点重合的决定性 A B).
   { subst B.
     exists P; split; trivial.
     apply inc_eq in HPIn; subst; Circle.
@@ -368,7 +368,7 @@ Proof.
   assert (HZ0 : exists Z0, CongA Y X Z C A Z0 /\ Cong X Z A Z0).
   { destruct (angle_construction_3 Y X Z C A) as [Z']; auto.
     assert_diffs.
-    destruct (segment_construction_3 A Z' X Z) as [Z0 []]; auto.
+    destruct (由一点往一方向构造等长线段_3 A Z' X Z) as [Z0 []]; auto.
     exists Z0; split; Cong.
     apply l11_10 with Y Z C Z'; [|apply out_trivial..|apply l6_6]; auto.
   }
@@ -376,8 +376,8 @@ Proof.
   exists Z0.
   destruct (l11_49 Y X Z C A Z0); trivial.
   split.
-    apply cong_transitivity with X Z; Cong.
-    apply cong_transitivity with Y Z; Cong.
+    apply 等长的传递性 with X Z; Cong.
+    apply 等长的传递性 with Y Z; Cong.
 Qed.
 
 Theorem equivalent_variants_of_circle_circle :

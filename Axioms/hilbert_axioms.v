@@ -18,7 +18,7 @@ Class Hilbert_neutral_dimensionless :=
  IncidP_morphism :
    forall M p q, IncidP M p -> EqP p q -> IncidP M q;
  IncidP_dec : forall M p, IncidP M p \/ ~ IncidP M p;
- eq_dec_pointsH : forall A B : Point, A=B \/ ~ A=B;
+ 两点重合的决定性H : forall A B : Point, A=B \/ ~ A=B;
 
  (** Group I Incidence *)
  line_existence :
@@ -36,7 +36,7 @@ Class Hilbert_neutral_dimensionless :=
  PP : Point;
  PQ : Point;
  PR : Point;
- lower_dim_2 : PP <> PQ /\ PQ <> PR /\ PP <> PR /\ ~ ColH PP PQ PR;
+ 防降维公理_2 : PP <> PQ /\ PQ <> PR /\ PP <> PR /\ ~ ColH PP PQ PR;
  plane_existence :
    forall A B C, ~ ColH A B C -> exists p, IncidP A p /\ IncidP B p /\ IncidP C p;
  one_point_on_plane :
@@ -73,7 +73,7 @@ Class Hilbert_neutral_dimensionless :=
 
  (** Group III Congruence *)
  CongH : Point -> Point -> Point -> Point -> Prop;
- cong_permr : forall A B C D, CongH A B C D -> CongH A B D C;
+ 等长的等价排列r : forall A B C D, CongH A B C D -> CongH A B D C;
  outH :=
    fun P A B => BetH P A B \/ BetH P B A \/ (P <> A /\ A = B);
  cong_existence :
@@ -142,7 +142,7 @@ Class Hilbert_neutral_3D `(Hi : Hilbert_neutral_dimensionless) :=
  HS2 : Point;
  HS3 : Point;
  HS4 : Point;
- lower_dim_3 : ~ exists p, IncidP HS1 p /\ IncidP HS2 p /\ IncidP HS3 p /\ IncidP HS4 p
+ 三维防降维公理 : ~ exists p, IncidP HS1 p /\ IncidP HS2 p /\ IncidP HS3 p /\ IncidP HS4 p
 }.
 
 Class Hilbert_euclidean `(Hi : Hilbert_neutral_dimensionless) :=

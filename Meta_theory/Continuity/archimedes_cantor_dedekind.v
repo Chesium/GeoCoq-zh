@@ -4,7 +4,7 @@ Require Import GeoCoq.Tarski_dev.Ch08_orthogonality.
 
 Section Archimedes_cantor_dedekind.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Inductive cX A C (Alpha Beta : Tpoint -> Prop) : nat -> Tpoint -> Prop :=
 | cX_init : cX A C Alpha Beta O A
@@ -35,7 +35,7 @@ Proof.
   { intros X Y M HX HY HM.
     destruct (Hcut X C HX HC).
     apply l6_7 with Y; trivial.
-    destruct (eq_dec_points A X).
+    destruct (两点重合的决定性 A X).
       subst; assert_diffs; apply l6_7 with Y; Out.
     apply out_bet_out_2 with X; [|Between].
     apply l6_7 with C; Out.
@@ -92,7 +92,7 @@ Proof.
     destruct (midpoint_existence X Y) as [M HM].
     destruct (Hdis M); [apply (Haux X Y); eauto|..].
     - exists M, Y; repeat split; [apply cX_other with X Y|apply cY_same with X M|]; auto.
-      apply cong_left_commutativity, cong_cong_half_1 with X B0; [|split|Cong]; Midpoint.
+      apply 等长的左交换性, cong_cong_half_1 with X B0; [|split|Cong]; Midpoint.
     - exists X, M; repeat split; [apply cX_same with Y M|apply cY_other with X Y|]; auto.
       apply cong_cong_half_1 with Y B0; [|split|]; assumption.
   }
@@ -103,8 +103,8 @@ Proof.
       apply Hcut; assumption.
       apply (HB O); constructor.
       assumption.
-    destruct (eq_dec_points X B) as [|HXB]; [subst; Between|].
-    destruct (eq_dec_points X A); [subst; Between|].
+    destruct (两点重合的决定性 X B) as [|HXB]; [subst; Between|].
+    destruct (两点重合的决定性 X A); [subst; Between|].
     exfalso.
     destruct (Hdecr X HXB) as [n [Xn [Yn [HXn [HYn HLt]]]]].
     destruct (Hcut X Yn); [eauto..|].
@@ -114,7 +114,7 @@ Proof.
       apply bet__le2313, (HB n); assumption.
 
   - clear X HX.
-    destruct (eq_dec_points A B) as [|HAB]; [subst; Between|].
+    destruct (两点重合的决定性 A B) as [|HAB]; [subst; Between|].
     assert (HOut : Out A B Y).
     { apply l6_7 with C.
         apply bet_out, (HB O); [auto|constructor..].
@@ -127,7 +127,7 @@ Proof.
       apply l6_7 with Xn; Out.
     }
     destruct HOut as [_ [_ [|]]]; trivial.
-    destruct (eq_dec_points Y B) as [|HYB]; [subst; Between|].
+    destruct (两点重合的决定性 Y B) as [|HYB]; [subst; Between|].
     exfalso.
     destruct (Hdecr Y HYB) as [n [Xn [Yn [HXn [HYn HLt]]]]].
     destruct (Hcut Xn Y); [eauto..|].

@@ -4,7 +4,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section Bisector.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** Existence of the interior bisector of an angle. *)
 
@@ -26,7 +26,7 @@ destruct (perp_exists B A C) as [E HPerp].
 intro HEQAC.
 subst.
 elim HAB.
-apply (between_identity C B); auto.
+apply (中间性的同一律 C B); auto.
 exists E.
 split.
 assert_diffs.
@@ -40,10 +40,10 @@ assert (Per E B C) by (apply (perp_per_2 B E C);Perp).
 assert (CongA E B A E B C) by (assert_diffs;apply (l11_16 E B A E B C);auto).
 CongA.
 (*case 3: ~ Col A B C. *)
-destruct (segment_construction B A B C ) as [C'[ HC'1 HC'2]].
-destruct (segment_construction B C B A ) as [A' [HA'1 HA'2]].
+destruct (由一点往一方向构造等长线段 B A B C ) as [C'[ HC'1 HC'2]].
+destruct (由一点往一方向构造等长线段 B C B A ) as [A' [HA'1 HA'2]].
 destruct (midpoint_existence A' C') as [I HI].
-assert (Cong B C' A' B) by (apply l2_11 with A C;Cong;Between).
+assert (Cong B C' A' B) by (apply 两组连续三点分段等则全体等 with A C;Cong;Between).
 assert_diffs.
 assert (CongA A' C' B C' A' B).
  {
@@ -73,15 +73,15 @@ assert (CongA A B I I B C).
 split.
 unfold InAngle.
 repeat split; auto.
-destruct (inner_pasch A' B C' I A) as [x1 HIN1].
+destruct (帕施公理 A' B C' I A) as [x1 HIN1].
 apply (midpoint_bet A' I C');auto.
 Between.
 destruct HIN1 as [HIN11 HIN12].
-destruct (inner_pasch A B A' x1 C) as [x2 HIN2];auto.
+destruct (帕施公理 A B A' x1 C) as [x2 HIN2];auto.
 exists x2.
 destruct HIN2 as [HIN21 HIN22].
 split.
-apply (Bet_cases A x2 C).
+apply (中间性的各排列情况 A x2 C).
 right;auto.
 right.
 apply (bet_out B x2 I).
@@ -219,7 +219,7 @@ end.
 
 Section Bisector_2.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma equality_foot_out_out : forall A B C I H1 H2, 
  ~ Col A B C -> InAngle I A B C ->

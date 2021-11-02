@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch13_1.
 
 Section inverse_projection_postulate_proclus_bis.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma inverse_projection_postulate__proclus_bis :
   inverse_projection_postulate -> alternative_proclus_postulate.
@@ -38,7 +38,7 @@ Proof.
   assert(HNCol4 : ~ Col P C0 Q0) by (intro; apply HNCol1; ColR).
   assert_diffs.
   assert(HC1 : exists C1, Col C D C1 /\ C1 <> C0).
-  { elim(eq_dec_points C C0).
+  { elim(两点重合的决定性 C C0).
       intro; subst C0; exists D; split; Col.
       intro; exists C; split; Col.
   }

@@ -4,7 +4,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section posidonius_postulate_rah.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma posidonius_postulate__rah : posidonius_postulate -> postulate_of_right_saccheri_quadrilaterals.
 Proof.
@@ -118,7 +118,7 @@ spliter.
 assert_diffs.
 apply (t22_7__per _ _ _ D M N); Between.
   apply perp_per_1, (perp_col1 _ _ _ D); Col; Perp.
-apply cong_left_commutativity, posid; Col; Perp.
+apply 等长的左交换性, posid; Col; Perp.
 Qed.
 
 End posidonius_postulate_rah.

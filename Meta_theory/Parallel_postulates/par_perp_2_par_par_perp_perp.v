@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section par_perp_2_par_par_perp_perp.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma par_perp_2_par_implies_par_perp_perp :
   postulate_of_parallelism_of_perpendicular_transversals ->

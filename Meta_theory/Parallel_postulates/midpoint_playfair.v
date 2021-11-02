@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section midpoint_playfair.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma midpoint_converse_postulate_implies_playfair :
   midpoint_converse_postulate ->
@@ -23,7 +23,7 @@ elim HPar1; clear HPar1; intro HPar1; elim HPar2; clear HPar2; intro HPar2.
             exists B3, Col B1 B2 B3 /\ BetS A2 B3 X /\ Par_strict A1 A2 P B3).
       {
       intros Haux B1 B2 HCol1 HPar1.
-      elim (eq_dec_points P B1); auto.
+      elim (两点重合的决定性 P B1); auto.
       intro.
       assert (P <> B2) by (intro; subst; assert_diffs; auto).
       destruct (Haux B2 B1) as [B3 []]; Par; Col.

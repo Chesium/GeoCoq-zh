@@ -41,7 +41,7 @@ Ltac scnf :=
 Section T17.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Definition O := PA.
 Definition E := PB.
@@ -49,7 +49,7 @@ Definition E' := PC.
 
 Lemma ncolOEE' : ~ Col O E E'.
 Proof.
-exact lower_dim.
+exact 防降维公理.
 Qed.
 
 Lemma sum_col: forall A B C, Sum O E E' A B C -> Col O E C.
@@ -145,7 +145,7 @@ repeat split; auto.
 apply opp_midpoint in H.
 unfold Midpoint in H.
 spliter.
-apply cong_transitivity with O0 C; Cong.
+apply 等长的传递性 with O0 C; Cong.
 Qed.
 
 Lemma pythrel_null : forall O E E' A B, PythRel O E E' A B O -> A = O /\ B = O.
@@ -160,12 +160,12 @@ split; auto.
 apply opp_midpoint in H1.
 unfold Midpoint in H1.
 spliter.
-apply cong_identity in H2.
+apply 等长的同一性 in H2.
 split; auto.
 
 ex_and H0 B'.
-apply cong_symmetry in H2.
-apply cong_identity in H2.
+apply 等长的对称性 in H2.
+apply 等长的同一性 in H2.
 subst B'.
 unfold Ar2 in H.
 spliter.
@@ -197,8 +197,8 @@ subst B.
 apply opp_midpoint in H5.
 unfold Midpoint in H5.
 spliter.
-apply cong_symmetry in H5.
-apply cong_identity in H5.
+apply 等长的对称性 in H5.
+apply 等长的同一性 in H5.
 subst C.
 tauto.
 ex_and H1 B'.
@@ -220,8 +220,8 @@ auto.
 apply opp_midpoint in H1.
 unfold Midpoint in H1.
 spliter.
-apply cong_symmetry in H2.
-apply cong_identity in H2.
+apply 等长的对称性 in H2.
+apply 等长的同一性 in H2.
 auto.
 ex_and H0 B'.
 apply perp_distinct in H0.
@@ -249,7 +249,7 @@ left.
 unfold Ps.
 apply l6_6; auto.
 
-induction(eq_dec_points C O).
+induction(两点重合的决定性 C O).
 subst C.
 exists O.
 split.
@@ -272,7 +272,7 @@ repeat split.
 intro.
 
 subst C'.
-apply cong_identity in H5.
+apply 等长的同一性 in H5.
 contradiction.
 intro.
 rewrite H6 in *.
@@ -327,14 +327,14 @@ Definition inv O E E' A MA :=
 Lemma inv_exists_with_notation : forall A,
   Col O E A -> exists B, inv O E E' A B.
 Proof.
-intros; induction (eq_dec_points A O); [subst; exists O; right; auto|].
+intros; induction (两点重合的决定性 A O); [subst; exists O; right; auto|].
 destruct (inv_exists O E E' A) as [IA HIA]; try (exists IA; left); auto.
 apply ncolOEE'.
 Qed.
 
 Lemma inv_col : forall A B, inv O E E' A B -> Col O E B.
 Proof.
-intros A B H; elim (eq_dec_points A O); intro HNEq;
+intros A B H; elim (两点重合的决定性 A O); intro HNEq;
 [induction H; spliter;[subst; intuition|treat_equalities; Col]|].
 try (subst;Col).
 elim H; clear H; intro H; [clear HNEq|spliter; subst; intuition].
@@ -344,7 +344,7 @@ Qed.
 Lemma inv_uniqueness : forall A B1 B2,
   inv O E E' A B1 -> inv O E E' A B2 -> B1 = B2.
 Proof.
-intros A B1 B2 HB1 HB2; elim (eq_dec_points A O); intro HNEq;
+intros A B1 B2 HB1 HB2; elim (两点重合的决定性 A O); intro HNEq;
 [induction HB1; induction HB2; spliter; treat_equalities; intuition|].
 subst;auto.
 elim HB1; clear HB1; intro HB1; [clear HNEq|spliter; subst; intuition].
@@ -398,7 +398,7 @@ End T17.
 Section T18.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Variable SS U1 U2 : Tpoint.
 Variable orthonormal_grid : Cs O E SS U1 U2.
@@ -426,7 +426,7 @@ Lemma eq_dec_F : forall A B, EqF A B \/ ~ EqF A B.
 Proof.
 intros; unfold EqF; simpl.
 destruct A as [A HA]; destruct B as [B HB]; simpl.
-exact (eq_dec_points A B).
+exact (两点重合的决定性 A B).
 Qed.
 
 Lemma neg_and_eqF : forall A B C D,
@@ -1026,7 +1026,7 @@ intros A B; rewrite characterization_of_equality_F; unfold EqF.
 elim (coordinates_of_point_F A); intros [[Ax HAx] [Ay HAy]] _.
 elim (coordinates_of_point_F B); intros [[Bx HBx] [By HBy]] _.
 simpl; split; intro; spliter; [|intuition].
-destruct (eq_dec_points Ax Bx); destruct (eq_dec_points Ay By); intuition.
+destruct (两点重合的决定性 Ax Bx); destruct (两点重合的决定性 Ay By); intuition.
 Qed.
 
 Lemma characterization_of_equality_F_aux : forall Ax Ay Bx By,
@@ -1064,8 +1064,8 @@ split; intro H; [|apply eq_sym in H]; spliter; try split; treat_equalities.
   }
 
   {
-  elim (eq_dec_points Ax Bx); intro Hx; [assumption|exfalso].
-  apply (O_not_positive O E); elim (eq_dec_points O AyMBy); intro Hy.
+  elim (两点重合的决定性 Ax Bx); intro Hx; [assumption|exfalso].
+  apply (O_not_positive O E); elim (两点重合的决定性 O AyMBy); intro Hy.
 
     {
     treat_equalities; apply prod_O_l_eq in HABy; subst.
@@ -1083,8 +1083,8 @@ split; intro H; [|apply eq_sym in H]; spliter; try split; treat_equalities.
   }
 
   {
-  subst; elim (eq_dec_points Ay By); intro Hy; [assumption|exfalso].
-  apply (O_not_positive O E); elim (eq_dec_points O AxMBx); intro Hx.
+  subst; elim (两点重合的决定性 Ay By); intro Hy; [assumption|exfalso].
+  apply (O_not_positive O E); elim (两点重合的决定性 O AxMBx); intro Hx.
 
     {
     treat_equalities; apply prod_O_l_eq in HABx; subst.
@@ -1139,7 +1139,7 @@ Lemma characterization_of_midpoint_F : forall A B I,
   let (Ix, Iy) := Ic in
   Ix * 2 - (Ax + Bx) =F= 0 /\ Iy * 2 - (Ay + By) =F= 0.
 Proof.
-intros; elim (eq_dec_points A B); intro HAB.
+intros; elim (两点重合的决定性 A B); intro HAB.
 
   {
   split; intro HMid; treat_equalities.
@@ -1780,7 +1780,7 @@ split;auto.
 nsatz.
 Qed.
 
-Lemma AM_lower_dim :
+Lemma AM_防降维公理 :
  exists A B C, ~ AM_Col A B C.
 Proof.
 exists O. exists E. exists E'.
@@ -1865,14 +1865,14 @@ Lemma AM_Perp_AM_Perp_AM_Par : forall A B C D U V,
 Proof.
 intros A B C D U V.
 intros.
-destruct (eq_dec_points A B).
+destruct (两点重合的决定性 A B).
 subst.
 unfold AM_Par, twice_signed_area4.
 rewrite twice_signed_area_AAB.
 rewrite twice_signed_area_ABA.
 ring.
 assert (Perp A B C D) by (apply Perp_AM_Perp;auto).
-destruct (eq_dec_points U V).
+destruct (两点重合的决定性 U V).
 subst.
 unfold AM_Par, twice_signed_area4.
 rewrite twice_signed_area_perm.
@@ -1914,10 +1914,10 @@ Lemma AM_perp_AM_Par_AM_perp : forall A B C D U V,
 Proof.
 intros A B C D U V.
 intros.
-destruct (eq_dec_points C D).
+destruct (两点重合的决定性 C D).
 subst.
 apply AM_Perp_triv1.
-destruct (eq_dec_points U V).
+destruct (两点重合的决定性 U V).
 subst.
 apply AM_Perp_triv2.
 assert (Perp A B C D) by (apply Perp_AM_Perp;auto).

@@ -24,16 +24,16 @@
 
      in: Section Tarski83_to_Makarios_variant
          ------------------------------------
-     REMOVE: cong_reflexivity, cong_symmetry, cong_left_commutativity.
-     MODIFY: five_segment'.
+     REMOVE: 等长的自反性, 等长的对称性, 等长的左交换性.
+     MODIFY: 五线段公理_等价SAS'.
 
      in: Section Makarios_variant_to_Tarski83
          ------------------------------------
-     REMOVE: between_symmetry, Mcong_left_commutativity.
+     REMOVE: 中间性的对称性, M等长的左交换性.
      ADD: LmCoghGrab, cong_pre_pseudo_reflexivity.
-     MODIFY: cong_pseudo_reflexivity (Minner_pasch &
-                  Mbetween_identity are not used to
-                  prove cong_pseudo_reflexivity)
+     MODIFY: 等长的伪自反性 (M帕施公理 &
+                  M中间性的同一律 are not used to
+                  prove 等长的伪自反性)
 *)
 
 Require Import GeoCoq.Axioms.tarski_axioms.
@@ -44,9 +44,9 @@ Require Import GeoCoq.Axioms.makarios_variant_axioms.
 
 Section Tarski83_to_Makarios_variant.
 
-Context `{TnEQD:Tarski_neutral_dimensionless}.
+Context `{TnEQD:无维度中性塔斯基公理系统}.
 
-Lemma five_segment' : forall A A' B B' C C' D D',
+Lemma 五线段公理_等价SAS' : forall A A' B B' C C' D D',
   Cong A B A' B' ->
   Cong B C B' C' ->
   Cong A D A' D' ->
@@ -57,33 +57,33 @@ Proof.
   intros.
   assert(Cong C D C' D').
   intros.
-  eapply five_segment with A A' B B';assumption.
+  eapply 五线段公理_等价SAS with A A' B B';assumption.
   assert(Cong C D D C).
-  eapply cong_pseudo_reflexivity;eauto.
-  apply cong_inner_transitivity with C D;assumption.
+  eapply 等长的伪自反性;eauto.
+  apply 等长的内传递性 with C D;assumption.
 Qed.
 
-Lemma lower_dim_ex :
+Lemma 防降维公理_ex :
   exists A B C, ~ (Bet A B C \/ Bet B C A \/ Bet C A B).
 Proof.
 exists PA.
 exists PB.
 exists PC.
-apply lower_dim.
+apply 防降维公理.
 Qed.
 
-Instance Makarios_Variant_follows_from_Tarski : Tarski_neutral_dimensionless_variant.
+Instance Makarios_Variant_follows_from_Tarski : 无维度中性塔斯基公理系统_variant.
 Proof.
-exact (Build_Tarski_neutral_dimensionless_variant
+exact (Build_无维度中性塔斯基公理系统_variant
  Tpoint Bet Cong
- cong_identity
- cong_inner_transitivity
- segment_construction
- five_segment'
- between_identity
- inner_pasch
+ 等长的同一性
+ 等长的内传递性
+ 由一点往一方向构造等长线段
+ 五线段公理_等价SAS'
+ 中间性的同一律
+ 帕施公理
  PA PB PC
- lower_dim).
+ 防降维公理).
 Qed.
 
 End Tarski83_to_Makarios_variant.

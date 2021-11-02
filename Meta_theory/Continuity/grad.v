@@ -3,7 +3,7 @@ Require Import Relations.
 
 Section Grad.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma grad__bet : forall A B C, Grad A B C -> Bet A B C.
 Proof.
@@ -13,7 +13,7 @@ Qed.
 
 Lemma grad__col : forall A B C, Grad A B C -> Col A B C.
 Proof.
-  intros; apply bet_col, grad__bet; assumption.
+  intros; apply 中间性转共线, grad__bet; assumption.
 Qed.
 
 Lemma grad_neq__neq13 : forall A B C, Grad A B C -> A <> B -> A <> C.
@@ -21,7 +21,7 @@ Proof.
   intros A B C HG HAB Heq.
   subst C.
   apply HAB.
-  apply between_identity, grad__bet; trivial.
+  apply 中间性的同一律, grad__bet; trivial.
 Qed.
 
 Lemma grad_neq__neq12 : forall A B C, Grad A B C -> A <> C -> A <> B.
@@ -47,7 +47,7 @@ Qed.
 Lemma grad121__eq : forall A B, Grad A B A -> A = B.
 Proof.
   intros A B HG.
-  apply between_identity, grad__bet; trivial.
+  apply 中间性的同一律, grad__bet; trivial.
 Qed.
 
 Lemma grad__le : forall A B C, Grad A B C -> Le A B A C.
@@ -61,7 +61,7 @@ Lemma bet_cong2_grad__grad2 : forall A B C D E F,
   Grad A B C -> Bet D E F -> Cong A B D E -> Cong B C E F -> Grad2 A B C D E F.
 Proof.
   intros A B C D E F HGrad.
-  destruct (eq_dec_points D E).
+  destruct (两点重合的决定性 D E).
   { intros; treat_equalities.
     apply grad112__eq in HGrad.
     treat_equalities; apply grad2_init.
@@ -70,8 +70,8 @@ Proof.
   induction HGrad.
     intros; treat_equalities; apply grad2_init.
   intros F' HBet HCong1 HCong2.
-  destruct (segment_construction D E B C) as [F []].
-  destruct (eq_dec_points E F).
+  destruct (由一点往一方向构造等长线段 D E B C) as [F []].
+  destruct (两点重合的决定性 E F).
     treat_equalities; apply grad2_stab with B E; trivial; [apply grad2_init|CongR].
   assert (Bet B C C').
     apply grad__bet in HGrad; apply between_exchange3 with A; assumption.
@@ -82,8 +82,8 @@ Proof.
   }
   apply grad2_stab with C F; Cong.
     apply outer_transitivity_between2 with E; trivial.
-  apply cong_transitivity with A B; Cong.
-  apply cong_transitivity with C C'; trivial.
+  apply 等长的传递性 with A B; Cong.
+  apply 等长的传递性 with C C'; trivial.
   apply l4_3_1 with B E; Cong.
 Qed.
 
@@ -108,7 +108,7 @@ Lemma grad_sum : forall A B C D E,
   Grad A B E.
 Proof.
   intros A B C D E HGC HGD.
-  elim (eq_dec_points A B).
+  elim (两点重合的决定性 A B).
   { intros; subst B.
     assert(A = C) by (apply grad112__eq; trivial).
     assert(A = D) by (apply grad112__eq; trivial).
@@ -120,7 +120,7 @@ Proof.
     intro E; apply grad_stab; trivial.
   rename C0 into D; rename C' into D'.
   intros E' HBet' HCong'.
-  destruct(segment_construction A C A D) as [E [HBet HCong]].
+  destruct(由一点往一方向构造等长线段 A C A D) as [E [HBet HCong]].
   assert (HBet1 : Bet A B C) by (apply grad__bet; trivial).
   assert (HBet2 : Bet A B D) by (apply grad__bet; trivial).
   assert(HBet3 : Bet C E E').
@@ -130,7 +130,7 @@ Proof.
     apply bet__le1213; trivial.
   }
   apply grad_stab with E; auto with cong; eBetween.
-  apply cong_transitivity with D D'; auto.
+  apply 等长的传递性 with D D'; auto.
   apply l4_3_1 with A C; Cong.
 Qed.
 
@@ -158,7 +158,7 @@ Proof.
   induction 1.
     exists B; split; Le; apply gradexp_init.
   destruct IHGrad as [D [HGE HLe]].
-  destruct (segment_construction A D A D) as [D' [HBet HCong]].
+  destruct (由一点往一方向构造等长线段 A D A D) as [D' [HBet HCong]].
   exists D'; split.
     apply gradexp_stab with D; Cong.
   apply bet2_le2__le1346 with C D; Le.
@@ -237,14 +237,14 @@ Proof.
   revert dependent C.
   induction HD1.
     intros; assert (B = C) by (apply between_equality with A; Between); subst C.
-    destruct (segment_construction A B A B) as [C []].
+    destruct (由一点往一方向构造等长线段 A B A B) as [C []].
     assert_diffs.
     exists B, C; repeat split; Between; Cong; constructor.
   intros; destruct (l5_3 A C0 C C'); trivial.
     apply IHHD1; assumption.
-  destruct (eq_dec_points C' C0).
+  destruct (两点重合的决定性 C' C0).
   - subst C0.
-    destruct (segment_construction A C' A B) as [C'' []].
+    destruct (由一点往一方向构造等长线段 A C' A B) as [C'' []].
     assert_diffs.
     exists C', C''; repeat split; Cong.
     apply grad_stab with C; assumption.

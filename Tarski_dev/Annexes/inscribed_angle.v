@@ -6,7 +6,7 @@ Import circles.
 
 Section Inscribed_angle.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 (** The sum of the angles of a triangle is the flat angle. *)
 
@@ -100,7 +100,7 @@ Proof.
   assert (M = O); [|subst; apply HM].
   suma.assert_diffs.
   apply (cong4_cop2__eq A C B); Cong; [|Cop..].
-  apply cong_commutativity, thales_converse_theorem with B; assumption.
+  apply 等长的交换性, thales_converse_theorem with B; assumption.
 Qed.
 
 Lemma bet_cong__ghalfa : forall A B C B', A <> B -> B <> C -> A <> B' ->
@@ -188,7 +188,7 @@ Lemma inscribed_angle_aux : forall O P A B C,
   gHalfA A C B A O B.
 Proof.
   intros O P A B C HA HB HC HOS HTS.
-  destruct (segment_construction C O O P) as [C' []].
+  destruct (由一点往一方向构造等长线段 C O O P) as [C' []].
   suma.assert_diffs.
   assert (O <> C') by (intro; treat_equalities; auto).
   assert (HCong := (onc2__cong O P)).
@@ -339,7 +339,7 @@ Proof.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
   destruct (col_dec A B O).
   { assert (Midpoint O A B) by (apply col_onc2__mid with P; auto).
-    assert (Per A C B) by (apply thales_theorem with O; auto; apply cong_transitivity with O P; Cong).
+    assert (Per A C B) by (apply thales_theorem with O; auto; apply 等长的传递性 with O P; Cong).
     suma.assert_diffs; apply bet_per2__suma; Between.
   }
   destruct (cop__one_or_two_sides A B O C); Col; Cop.
@@ -395,7 +395,7 @@ Proof.
   destruct (col_dec A B O).
   { suma.assert_diffs.
     assert (Midpoint O A B) by (apply col_onc2__mid with P; auto).
-    apply l11_16; auto; apply thales_theorem with O; Col; apply cong_transitivity with O P; Cong.
+    apply l11_16; auto; apply thales_theorem with O; Col; apply 等长的传递性 with O P; Cong.
   }
   destruct (cop__one_or_two_sides A B O C); Col; Cop.
   - suma.assert_diffs; destruct (cop2_onc4__or_conga_suppa O P A B C C') as [|Habs]; auto.
@@ -549,7 +549,7 @@ Lemma conga_cop_onc6_os__eqc : forall A B C D O P O' P',
 Proof.
   intros A B C D O P O' P' HA HB HC HCop HA' HB' HD' HCop' HOS HConga.
   apply eqc_chara.
-  assert (O = O'); [|split; trivial; subst O'; apply cong_transitivity with O A; Cong].
+  assert (O = O'); [|split; trivial; subst O'; apply 等长的传递性 with O A; Cong].
   assert (HNCol : ~ Col A B C) by (apply one_side_not_col123 with D, HOS).
   assert (HCong := onc2__cong O P).
   assert (HCong' := onc2__cong O' P').
@@ -595,7 +595,7 @@ Proof.
     apply coplanar_trans_1 with C; Col; [Cop|].
     apply coplanar_perm_12, coplanar_trans_1 with D; Col; Cop.
   }
-  destruct (eq_dec_points C1 D1).
+  destruct (两点重合的决定性 C1 D1).
   { subst D1.
     suma.assert_diffs.
     apply (cong4_cop2__eq A B C1); Cong; exists M; left; split; Col.
@@ -699,7 +699,7 @@ Proof.
   exists M, A.
   destruct HTS as [HNCol1 [HNCol2 _]].
   unfold OnCircle; repeat split; [Cong..| |];
-    apply cong_symmetry, thales_converse_theorem with B; auto.
+    apply 等长的对称性, thales_converse_theorem with B; auto.
   apply (per_suppa__per A C B); assumption.
 Qed.
 
@@ -722,7 +722,7 @@ End Inscribed_angle.
 Section Inscribed_angle_2.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma chord_par_diam : forall O P A B C C' A' U,
  O <> P -> ~Col A B C' -> Diam C C' O P -> Midpoint A' A C' -> OnCircle A O P -> OnCircle B O P ->
@@ -785,7 +785,7 @@ assert(Col O O' A').
   Col.
 }
 
-induction(eq_dec_points O O').
+induction(两点重合的决定性 O O').
 treat_equalities.
 apply(symmetric_point_uniqueness C' O); Midpoint.
 split; [Between|CongR].

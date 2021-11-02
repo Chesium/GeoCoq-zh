@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section tarski_playfair.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma tarski_s_euclid_implies_playfair :
  tarski_s_parallel_postulate ->
@@ -50,7 +50,7 @@ elim (line_dec B1 B2 C1 C2); intro HLine.
   double C' P C.
   unfold Midpoint in H14.
   spliter.
-  assert(HD : exists D, Bet B D C /\ Bet P D A1) by (apply inner_pasch with C'; Between).
+  assert(HD : exists D, Bet B D C /\ Bet P D A1) by (apply 帕施公理 with C'; Between).
   ex_and HD D.
   assert(C' <> P) by (intro; subst C'; contradiction).
   assert (Par A1 A2 C' P) by (apply par_col2_par with C1 C2; Col).

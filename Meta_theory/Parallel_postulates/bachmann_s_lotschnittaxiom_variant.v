@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section bachmann_s_lotschnittaxiom_variant.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma bachmann_s_lotschnittaxiom_aux : bachmann_s_lotschnittaxiom <->
   forall A1 A2 B1 B2 C1 C2 D1 D2 IAB IAC IBD, IAB <> IAC -> IAB <> IBD ->
@@ -55,9 +55,9 @@ Proof.
     split; ColR.
 
   - intros lotschnitt P Q R P1 R1 HPQ HQR HPerQ HPerP HPerR HCop1 HCop2.
-    destruct (eq_dec_points P P1).
+    destruct (两点重合的决定性 P P1).
       subst; exists R; Col.
-    destruct (eq_dec_points R R1).
+    destruct (两点重合的决定性 R R1).
       subst; exists P; Col.
     destruct (lotschnitt P Q Q R P P1 R R1 Q P R) as [S [HS1 HS2]]; Col; Perp; Cop.
     exists S; split; assumption.

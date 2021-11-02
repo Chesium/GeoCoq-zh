@@ -9,7 +9,7 @@ Import euclidean_axioms.
 
 Section Tarski_neutral_to_Euclid_neutral.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 
 Definition Tcircle : Type := Tpoint*Tpoint*Tpoint %type.
@@ -94,9 +94,9 @@ End Tarski_neutral_to_Euclid_neutral.
 
 Section circle_continuity.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma bet_cases : forall B C D1 D2,
+Lemma 中间性的各排列情况 : forall B C D1 D2,
  C<>B ->
  Definitions.BetS D1 B D2 ->
  Definitions.BetS D1 C D2 ->
@@ -138,7 +138,7 @@ unfold InCirc in *.
 unfold two_points_line_circle in H.
 
 destruct H1 as [D1 [D2 [HBetS [HCongA [HCongB HBetSB]]]]].
-destruct (eq_dec_points B C).
+destruct (两点重合的决定性 B C).
 subst.
 assert (HColD: Definitions.Col A C C)
    by (unfold Definitions.Col;Between).
@@ -151,7 +151,7 @@ assert (C<>D2)
 repeat split;try assumption; try (intro; treat_equalities; auto); unfold OnCirc;CongR.
 
 assert (TwoCases:Definitions.BetS D1 B C \/ Definitions.BetS C B D2)
- by (apply bet_cases;auto).
+ by (apply 中间性的各排列情况;auto).
 destruct TwoCases.
 - assert (HColD: Definitions.Col A B B)
    by (unfold Definitions.Col;Between).
@@ -254,10 +254,10 @@ assert (OnCircle Q D Q) by CongR.
 assert (InCircle P C D1).
 {
  unfold InCircle.
- destruct (eq_dec_points C P).
+ destruct (两点重合的决定性 C P).
  subst. apply le_trivial.
  assert (TwoCases:Definitions.BetS D1 P C \/ Definitions.BetS C P D2)
-  by (apply bet_cases;auto).
+  by (apply 中间性的各排列情况;auto).
  destruct TwoCases.
  exists P.
  split; Cong; unfold Definitions.BetS in *;spliter; Between.
@@ -265,7 +265,7 @@ assert (InCircle P C D1).
  exists P.
  split; Cong; unfold Definitions.BetS in *;spliter; auto.
  Cong.
- apply cong_transitivity with R S; Cong.
+ apply 等长的传递性 with R S; Cong.
 }
 assert (OutCircle Q C D1).
 {
@@ -283,23 +283,23 @@ End circle_continuity.
 
 Section Neutral.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Global Instance Euclid_neutral_follows_from_Tarski_neutral : euclidean_neutral.
 Proof.
 eapply (Build_euclidean_neutral Tpoint Tcircle tarski_axioms.Cong Tarski_dev.Definitions.BetS (* InCirc OnCirc OutCirc*) tarski_axioms.PA tarski_axioms.PB tarski_axioms.PC CI).
-- intros;apply cong_transitivity with P Q;Cong.
+- intros;apply 等长的传递性 with P Q;Cong.
 - intro;Cong.
 - intro;Cong.
-- intros;apply (l2_11 A B C a b c); unfold Definitions.BetS in *;intuition.
+- intros;apply (两组连续三点分段等则全体等 A B C a b c); unfold Definitions.BetS in *;intuition.
 - intros.
-  destruct (eq_dec_points A B);intuition.
+  destruct (两点重合的决定性 A B);intuition.
 - intros.
   decompose [ex and] H0.
   unfold CI in *.
   spliter.
   congruence.
-- assert (T:=lower_dim).
+- assert (T:=防降维公理).
   split.
   intro H;rewrite H in *;apply T;Between.
   split.
@@ -319,18 +319,18 @@ intros;spliter;try assumption;eBetween.
 intros;spliter .
 assert (Bet A B C \/ Bet A C B) by (apply l5_3 with D;auto).
 assert (~ (Bet A C B /\ A <> C /\ B <> C)) by intuition.
-assert (T3:=eq_dec_points A B).
-assert (T4:=eq_dec_points A C).
-assert (T5:=eq_dec_points B C).
+assert (T3:=两点重合的决定性 A B).
+assert (T4:=两点重合的决定性 A C).
+assert (T5:=两点重合的决定性 B C).
 tauto.
 - intros;intro;treat_equalities;auto.
 - intros.
 assert (tarski_axioms.Cong C D c d)
- by (apply (five_segment A a B b C c D d);
+ by (apply (五线段公理_等价SAS A a B b C c D d);
 unfold Definitions.BetS in *;spliter;auto).
 Cong.
 - intros;unfold Definitions.BetS in *;spliter.
-  destruct (inner_pasch A B C P Q H H0) as [X [HXa HXb]].
+  destruct (帕施公理 A B C P Q H H0) as [X [HXa HXb]].
   exists X.
   assert_diffs.
   assert (~ Bet A C B) by tauto.
@@ -370,7 +370,7 @@ Cong.
   intro;treat_equalities;assert_cols;
   assert (HCol:Definitions.Col A Q B) by ColR;
   unfold Definitions.Col in HCol;tauto.
-- intros. destruct (segment_construction A B A B) as [X [HXa HXb]].
+- intros. destruct (由一点往一方向构造等长线段 A B A B) as [X [HXa HXb]].
   exists X; unfold Definitions.BetS;assert_diffs;auto.
 - intros.
   unfold CI;exists (A,A,B);auto.
@@ -381,7 +381,7 @@ End Neutral.
 
 Section RulerAndCompass.
 
-Context `{TRC:Tarski_ruler_and_compass}.
+Context `{TRC:塔斯基公理系统_尺规作图}.
 
 Lemma BetS_BetS : forall A B C,
  Definitions.BetS A B C <-> BetS A B C.
@@ -400,11 +400,11 @@ simpl.
 unfold Definitions.BetS,eq.
 split.
 intros.
-destruct (eq_dec_points A B).
+destruct (两点重合的决定性 A B).
 left;auto.
-destruct (eq_dec_points A C).
+destruct (两点重合的决定性 A C).
 right;left;auto.
-destruct (eq_dec_points B C).
+destruct (两点重合的决定性 B C).
 right;right;left;auto.
 decompose [or] H.
 right;right;right;right;left;auto.
@@ -455,7 +455,7 @@ unfold euclidean_axioms.CI in *;simpl in *.
 unfold CI in *.
 spliter.
 inversion H;subst.
-destruct (eq_dec_points C0 V).
+destruct (两点重合的决定性 C0 V).
 subst.
 destruct (symmetric_point_construction W V) as [X0 HX].
 exists X0.
@@ -467,7 +467,7 @@ unfold Definitions.BetS;Between.
 split;Cong.
 split;Cong.
 unfold Definitions.BetS;Between.
-destruct (segment_construction_3 C0 V V W H1 H0) as [X0 [HX0 HX1]].
+destruct (由一点往一方向构造等长线段_3 C0 V V W H1 H0) as [X0 [HX0 HX1]].
 destruct (symmetric_point_construction X0 C0) as [Y0 HY0].
 exists X0.
 exists Y0.
@@ -475,7 +475,7 @@ assert_bets.
 assert_diffs.
 unfold Definitions.BetS;split;auto.
 split.
-apply cong_transitivity with C0 X0; Cong.
+apply 等长的传递性 with C0 X0; Cong.
 split.
 auto.
 split;auto.
@@ -488,7 +488,7 @@ assert (C0 <> A).
   unfold Definitions.BetS in *;intuition.
  }
 
-destruct (segment_construction_3 C0 A V W H4 H3) as [X0 [HX0 HX1]].
+destruct (由一点往一方向构造等长线段_3 C0 A V W H4 H3) as [X0 [HX0 HX1]].
 assert (A <> X0).
  {
   intro.
@@ -515,7 +515,7 @@ exists Y0.
 assert_diffs.
 split;unfold Definitions.BetS;Between.
 split.
-apply cong_transitivity with C0 X0; Cong.
+apply 等长的传递性 with C0 X0; Cong.
 split.
 Cong.
 split;auto.
@@ -581,7 +581,7 @@ Proof.
 intros.
 
 unfold InCirc.
-destruct (eq_dec_points U V).
+destruct (两点重合的决定性 U V).
 subst.
 exists W.
 destruct (symmetric_point_construction W V) as [Y HY].
@@ -589,7 +589,7 @@ exists Y.
 assert_diffs.
 unfold Definitions.BetS.
 repeat split;Between;Cong.
-destruct (segment_construction_3 U V V W H0 H) as [X HX].
+destruct (由一点往一方向构造等长线段_3 U V V W H0 H) as [X HX].
 destruct (symmetric_point_construction X U) as [Y HY].
 spliter.
 assert_diffs.
@@ -598,13 +598,13 @@ exists X. exists Y.
 split.
 unfold Definitions.BetS;auto.
 split.
-apply cong_transitivity with U X; Cong.
+apply 等长的传递性 with U X; Cong.
 split.
 Cong.
 unfold Definitions.BetS;auto.
 Qed.
 
-Global Instance Euclid_neutral_ruler_compass_follows_from_Tarski_ruler_and_compass :
+Global Instance Euclid_neutral_ruler_compass_follows_from_塔斯基公理系统_尺规作图 :
   euclidean_neutral_ruler_compass Euclid_neutral_follows_from_Tarski_neutral.
 Proof.
 assert (cc : circle_circle).
@@ -720,8 +720,8 @@ End RulerAndCompass.
 
 Section Euclidean.
 
-Context `{TRC:Tarski_ruler_and_compass}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TRC:塔斯基公理系统_尺规作图}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma Euclid5 :
    forall a p q r s t,
@@ -755,8 +755,8 @@ destruct T3 as [X HX].
 exists X;spliter;auto.
 Qed.
 
-Global Instance Euclid_follows_from_Tarski_euclidean :
- euclidean_euclidean Euclid_neutral_ruler_compass_follows_from_Tarski_ruler_and_compass.
+Global Instance Euclid_follows_from_塔斯基公理系统_欧几里得几何 :
+ euclidean_euclidean Euclid_neutral_ruler_compass_follows_from_塔斯基公理系统_尺规作图.
 Proof.
 intros.
 split.

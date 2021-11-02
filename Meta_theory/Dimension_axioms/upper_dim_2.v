@@ -1,29 +1,29 @@
 Require Export GeoCoq.Tarski_dev.Ch09_plane.
 
-Section Upper_dim.
+Section 防升维公理.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Definition upper_dim_axiom := forall A B C P Q : Tpoint,
+Definition 防升维公理_axiom := forall A B C P Q : Tpoint,
   P <> Q -> Cong A P A Q -> Cong B P B Q -> Cong C P C Q ->
   (Bet A B C \/ Bet B C A \/ Bet C A B).
 
 Definition all_coplanar_axiom := forall A B C D, Coplanar A B C D.
 
-Lemma upper_dim_implies_per2__col :
-  upper_dim_axiom ->
+Lemma 防升维公理_implies_per2__col :
+  防升维公理_axiom ->
   (forall A B C X, Per A X C -> X <> C -> Per B X C -> Col A B X).
 Proof.
 intros HUD A B C X HPer1 HDiff HPer2.
 destruct HPer1 as [C' HPer1].
 destruct HPer2 as [C'' HPer2].
 assert (C' = C'') by (apply symmetric_point_uniqueness with C X; spliter; auto); treat_equalities.
-unfold upper_dim_axiom in HUD.
+unfold 防升维公理_axiom in HUD.
 spliter; assert_diffs; unfold Midpoint in *; spliter; apply HUD with C C'; Cong.
 Qed.
 
-Lemma upper_dim_implies_col_perp2__col :
-  upper_dim_axiom ->
+Lemma 防升维公理_implies_col_perp2__col :
+  防升维公理_axiom ->
   (forall A B X Y P,
    Col A B P ->
    Perp A B X P ->
@@ -34,7 +34,7 @@ intro HUP; intros.
 assert (P <> A).
 eapply perp_not_eq_1.
 apply H1.
-eapply upper_dim_implies_per2__col; auto.
+eapply 防升维公理_implies_per2__col; auto.
 apply perp_in_per.
 apply perp_in_sym.
 apply perp_perp_in.
@@ -50,8 +50,8 @@ apply H0.
 assumption.
 Qed.
 
-Lemma upper_dim_implies_perp2__col :
-  upper_dim_axiom ->
+Lemma 防升维公理_implies_perp2__col :
+  防升维公理_axiom ->
   (forall X Y Z A B,
    Perp X Y A B ->
    Perp X Z A B ->
@@ -59,7 +59,7 @@ Lemma upper_dim_implies_perp2__col :
 Proof.
 intro HUP; intros.
 induction(col_dec A B X).
-  induction(eq_dec_points X A).
+  induction(两点重合的决定性 X A).
     subst A.
     assert(X <> B).
       apply perp_distinct in H.
@@ -74,7 +74,7 @@ induction(col_dec A B X).
     apply perp_in_comm in H0.
     apply perp_in_per in H0.
     apply col_permutation_2.
-    eapply (upper_dim_implies_per2__col).
+    eapply (防升维公理_implies_per2__col).
       assumption.
       apply H.
       assumption.
@@ -92,7 +92,7 @@ induction(col_dec A B X).
       apply H0.
     assumption.
   apply col_permutation_2.
-  apply upper_dim_implies_per2__col with A.
+  apply 防升维公理_implies_per2__col with A.
     assumption.
     apply perp_in_per.
     apply perp_in_comm.
@@ -156,8 +156,8 @@ eapply (col_transitivity_1 _ Y0).
 Col.
 Qed.
 
-Lemma upper_dim_implies_not_two_sides_one_side_aux :
-  upper_dim_axiom ->
+Lemma 防升维公理_implies_not_two_sides_one_side_aux :
+  防升维公理_axiom ->
   (forall A B X Y PX,
    A <> B -> PX <> A ->
    Perp A B X PX ->
@@ -173,7 +173,7 @@ apply l8_21.
 assumption.
 ex_elim H6 P.
 ex_and H7 T.
-assert(HH:= upper_dim_implies_col_perp2__col HUD A B X P PX H2 H1 H6).
+assert(HH:= 防升维公理_implies_col_perp2__col HUD A B X P PX H2 H1 H6).
 assert(~Col P A B).
 apply perp_not_col in H6.
 intro.
@@ -191,7 +191,7 @@ exists T.
 split.
 apply col_permutation_2.
 assumption.
-apply between_symmetry.
+apply 中间性的对称性.
 assumption.
 assert(X <> PX).
 apply perp_not_eq_2 in H1.
@@ -212,7 +212,7 @@ ColR.
 exists PX.
 split.
 apply col_trivial_1.
-apply between_symmetry.
+apply 中间性的对称性.
 assumption.
 eapply l9_8_1.
 apply l9_2.
@@ -242,8 +242,8 @@ apply col_permutation_1 in HH.
 contradiction.
 Qed.
 
-Lemma upper_dim_implies_not_two_sides_one_side :
-  upper_dim_axiom ->
+Lemma 防升维公理_implies_not_two_sides_one_side :
+  防升维公理_axiom ->
   (forall A B X Y,
    ~ Col X A B ->
    ~ Col Y A B ->
@@ -259,10 +259,10 @@ Proof.
       apply col_permutation_2.
       assumption.
     ex_and H3 PX.
-    induction(eq_dec_points PX A).
+    induction(两点重合的决定性 PX A).
       subst PX.
       apply invert_one_side.
-      eapply (upper_dim_implies_not_two_sides_one_side_aux HUD _ _ _ _ A); auto.
+      eapply (防升维公理_implies_not_two_sides_one_side_aux HUD _ _ _ _ A); auto.
         apply perp_left_comm.
         assumption.
         Col.
@@ -276,11 +276,11 @@ Proof.
       apply H1.
       apply invert_two_sides.
       assumption.
-    apply (upper_dim_implies_not_two_sides_one_side_aux HUD _ _ _ _ PX); auto.
+    apply (防升维公理_implies_not_two_sides_one_side_aux HUD _ _ _ _ PX); auto.
 Qed.
 
-Lemma upper_dim_implies_not_one_side_two_sides :
-  upper_dim_axiom ->
+Lemma 防升维公理_implies_not_one_side_two_sides :
+  防升维公理_axiom ->
   (forall A B X Y,
    ~ Col X A B ->
    ~ Col Y A B ->
@@ -291,12 +291,12 @@ Proof.
     intros.
     induction(two_sides_dec A B X Y).
       assumption.
-    apply upper_dim_implies_not_two_sides_one_side in H2; try assumption.
+    apply 防升维公理_implies_not_two_sides_one_side in H2; try assumption.
     contradiction.
 Qed.
 
-Lemma upper_dim_implies_one_or_two_sides :
-  upper_dim_axiom ->
+Lemma 防升维公理_implies_one_or_two_sides :
+  防升维公理_axiom ->
   (forall A B X Y,
    ~ Col X A B ->
    ~ Col Y A B ->
@@ -307,30 +307,30 @@ induction(two_sides_dec A B X Y).
 left.
 assumption.
 right.
-apply upper_dim_implies_not_two_sides_one_side in H1; try assumption.
+apply 防升维公理_implies_not_two_sides_one_side in H1; try assumption.
 Qed.
 
-Lemma upper_dim_implies_all_coplanar : upper_dim_axiom -> all_coplanar_axiom.
+Lemma 防升维公理_implies_all_coplanar : 防升维公理_axiom -> all_coplanar_axiom.
 Proof.
 intro HUD; unfold all_coplanar_axiom; intros.
 elim (col_dec A B C); Cop; intro HABC.
 elim (col_dec A B D); Cop; intro HABD.
 elim (col_dec A C D); Cop; intro HACD.
-elim (upper_dim_implies_one_or_two_sides HUD A B C D); Col; [apply ts__coplanar|apply os__coplanar].
+elim (防升维公理_implies_one_or_two_sides HUD A B C D); Col; [apply ts__coplanar|apply os__coplanar].
 Qed.
 
-Lemma all_coplanar_implies_upper_dim : all_coplanar_axiom -> upper_dim_axiom.
+Lemma all_coplanar_implies_防升维公理 : all_coplanar_axiom -> 防升维公理_axiom.
 Proof.
 intros HAC A B C P Q.
 apply cong3_cop2__col; apply HAC.
 Qed.
 
-Lemma all_coplanar_upper_dim : all_coplanar_axiom <-> upper_dim_axiom.
+Lemma all_coplanar_防升维公理 : all_coplanar_axiom <-> 防升维公理_axiom.
 Proof.
-split; [apply all_coplanar_implies_upper_dim|apply upper_dim_implies_all_coplanar].
+split; [apply all_coplanar_implies_防升维公理|apply 防升维公理_implies_all_coplanar].
 Qed.
 
-Lemma upper_dim_stab : ~ ~ upper_dim_axiom -> upper_dim_axiom.
+Lemma 防升维公理_stab : ~ ~ 防升维公理_axiom -> 防升维公理_axiom.
 Proof.
   intros nnupper A B C P Q HPQ H1 H2 H3.
   destruct (col_dec A B C) as [|HNCol]; auto.
@@ -341,4 +341,4 @@ Proof.
   apply upper with P Q; auto.
 Qed.
 
-End Upper_dim.
+End 防升维公理.

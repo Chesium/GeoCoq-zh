@@ -2,7 +2,7 @@ Require Export GeoCoq.Highschool.circumcenter.
 
 Section Concyclic.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Definition Concyclic A B C D := Coplanar A B C D /\ exists O, Cong O A O B /\ Cong O A O C /\ Cong O A O D.
 

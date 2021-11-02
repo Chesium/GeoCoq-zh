@@ -4,7 +4,7 @@ Ltac assert_all := treat_equalities; assert_cols_perm; assert_diffs; assert_cong
 
 Section TriangleMidpointsTheorems.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma col_permut132 : forall A B C, Col A B C -> Col A C B.
 Proof. exact col_permutation_5. Qed.
@@ -80,7 +80,7 @@ assert_diffs.
 assert (Parallelogram_strict A P C x) by (apply mid_plgs with Q;auto).
 assert_all.
 assert_pars_perm.
-assert (Cong A x B P) by (apply cong_transitivity with P C; Cong).
+assert (Cong A x B P) by (apply 等长的传递性 with P C; Cong).
 assert (Par A x B P) by (apply par_col2_par with P C; Col).
 assert (HElim : Parallelogram A x B P \/ Parallelogram A x P B) by (apply par_cong_plg_2; assumption).
 
@@ -187,18 +187,18 @@ Lemma triangle_mid_par_flat_cong_aux : forall A B C P Q R,
 Proof.
 intros.
 
-elim (eq_dec_points A C); intro.
+elim (两点重合的决定性 A C); intro.
 
   assert_all.
   split; Cong.
   perm_apply col_par.
 
-elim (eq_dec_points B C); intro.
+elim (两点重合的决定性 B C); intro.
   assert_all.
   split; Cong.
   perm_apply col_par.
 
-elim (eq_dec_points A P); intro.
+elim (两点重合的决定性 A P); intro.
   assert_all.
   assert (Col A B Q) by ColR.
   split.
@@ -208,14 +208,14 @@ elim (eq_dec_points A P); intro.
 
 Name x the symmetric of P wrt Q.
 
-elim (eq_dec_points P x); intro.
+elim (两点重合的决定性 P x); intro.
   treat_equalities; intuition.
 
 assert_cols.
 assert (Parallelogram A P C x) by (apply mid_plg_1 with Q;auto).
 assert_all.
 assert_pars_perm.
-assert (Cong A x B P) by (apply cong_transitivity with P C; Cong).
+assert (Cong A x B P) by (apply 等长的传递性 with P C; Cong).
 assert (Par A x B P) by (apply par_col2_par with P C; Col; Par).
 
 assert (HElim : Parallelogram A x B P \/ Parallelogram A x P B) by (apply par_cong_plg_2; assumption).

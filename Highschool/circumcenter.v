@@ -3,7 +3,7 @@ Require Export GeoCoq.Highschool.exercises.
 
 Section Circumcenter.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Definition is_circumcenter G A B C := Cong A G B G /\ Cong B G C G /\ Coplanar G A B C.
 
@@ -30,7 +30,7 @@ Proof.
 unfold is_circumcenter.
 intros.
 spliter.
-repeat split;eauto using cong_transitivity with cong;Cop.
+repeat split;eauto using 等长的传递性 with cong;Cop.
 Qed.
 
 Lemma is_circumcenter_cases :
@@ -159,7 +159,7 @@ Ltac CopR :=
 
 Section Circumcenter2 .
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 (**
 #
@@ -296,7 +296,7 @@ elim (col_dec A B C); intro HABC.
 
   {
   Name C' the midpoint of A and B.
-  elim (eq_dec_points O C'); intro HOC'; elim (eq_dec_points O' C'); intro HO'C';
+  elim (两点重合的决定性 O C'); intro HOC'; elim (两点重合的决定性 O' C'); intro HO'C';
   treat_equalities; Col.
 
     {
@@ -460,7 +460,7 @@ elim (col_dec A B C); intro HABC.
 
     {
     Name B' the midpoint of A and C.
-    elim (eq_dec_points O B'); intro HOB'; elim (eq_dec_points O' B'); intro HO'B';
+    elim (两点重合的决定性 O B'); intro HOB'; elim (两点重合的决定性 O' B'); intro HO'B';
     treat_equalities; Col.
 
       {
@@ -589,7 +589,7 @@ elim (col_dec A B C); intro HABC.
 
       {
       Name A' the midpoint of B and C.
-      elim (eq_dec_points O A'); intro HOA'; elim (eq_dec_points O' A'); intro HO'A';
+      elim (两点重合的决定性 O A'); intro HOA'; elim (两点重合的决定性 O' A'); intro HO'A';
       treat_equalities; Col.
         {
         assert (HPer : Per C A B).
@@ -721,7 +721,7 @@ End Circumcenter2.
 
 Section Circumcenter3.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma midpoint_thales_reci_circum :
   forall A B C O: Tpoint,

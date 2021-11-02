@@ -2,7 +2,7 @@ Require Import GeoCoq.Tarski_dev.Ch08_orthogonality.
 
 Section Coplanar.
 
-Context `{Tn:Tarski_neutral_dimensionless}.
+Context `{Tn:无维度中性塔斯基公理系统}.
 
 Lemma coplanar_perm_1 : forall A B C D,
   Coplanar A B C D -> Coplanar A B D C.

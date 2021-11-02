@@ -3,7 +3,7 @@ Require Export GeoCoq.Tarski_dev.Annexes.perp_bisect.
 
 Section Triangles.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Section ABC.
 
@@ -116,7 +116,7 @@ Lemma equilateral_cong:
   Cong A B B C /\ Cong B C C A /\ Cong C A A B.
 Proof.
 unfold equilateral;intros;intuition Cong.
-assert (T:=cong_transitivity A B B C C A H0 H1).
+assert (T:=等长的传递性 A B B C C A H0 H1).
 Cong.
 Qed.
 
@@ -209,11 +209,11 @@ intros.
 unfold equilateral_strict, equilateral in H.
 decompose [and] H;clear H.
 repeat split;Cong.
-eauto using cong_diff.
-eapply cong_diff.
-assert (T:=cong_transitivity A B B C C A H2 H3).
+eauto using 与不同点等长之点不同.
+eapply 与不同点等长之点不同.
+assert (T:=等长的传递性 A B B C C A H2 H3).
 apply H1.
-assert (T:=cong_transitivity A B B C C A H2 H3).
+assert (T:=等长的传递性 A B B C C A H2 H3).
 Cong.
 Qed.
 

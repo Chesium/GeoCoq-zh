@@ -148,7 +148,7 @@ Require Export GeoCoq.Tarski_dev.Ch16_coordinates_with_functions.
 Section Book_1_prop_1_euclidean.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma prop_1_euclidean :
   forall A B, exists C, Cong A B A C /\ Cong A B B C.
@@ -161,7 +161,7 @@ End Book_1_prop_1_euclidean.
 
 Section Book_1_prop_1_circle_circle.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma prop_1_circle_circle : circle_circle ->
   forall A B, exists C, Cong A B A C /\ Cong A B B C.
@@ -183,7 +183,7 @@ Section Book_1_part_2.
       which needs Circle/Circle intersection axiom.
   *)
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 	    (** * Proposition 2
        To place at a given point (as an extremity) a straight line equal to a given straight line.
        *)
@@ -193,7 +193,7 @@ Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
 Lemma prop_2 : forall A B C, exists L, Cong A L B C.
 Proof.
   intros.
-  apply segment_construction_0.
+  apply 由一点往一方向构造等长线段_0.
 Qed.
 
 
@@ -478,7 +478,7 @@ Qed.
 Lemma prop_20 : forall A B C P Q, ~ Bet B A C -> SumS A B A C P Q -> Lt B C P Q.
 Proof.
   intros A B C P Q HNBet HSum.
-  destruct (segment_construction B A A C) as [D [HBet HCong]].
+  destruct (由一点往一方向构造等长线段 B A A C) as [D [HBet HCong]].
   apply (cong2_lt__lt B C B D); Cong.
     apply triangle_strict_inequality with A; Cong.
   apply (sums2__cong56 A B A C); trivial.
@@ -649,7 +649,7 @@ Lemma prop_28_2 : forall A C G H P Q R, OS G H A C -> SumA A G H G H C P Q R -> 
   Par A G C H.
 Proof.
   intros A C G H P Q R HOS HSumA HBet.
-  destruct (segment_construction C H C H) as [D [HBet1 HCong]].
+  destruct (由一点往一方向构造等长线段 C H C H) as [D [HBet1 HCong]].
   apply par_comm.
   assert_diffs.
   apply par_col_par with D; Col.
@@ -674,7 +674,7 @@ Section Book_1_part_3.
 
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 	    (** * Proposition 29
        A straight line falling on parallel straight lines makes
@@ -728,7 +728,7 @@ Section Book_1_part_4.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container31"></div> # **)
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma prop_31 : forall A B C, B <> C -> exists E, Par B C A E.
 Proof.
@@ -741,7 +741,7 @@ End Book_1_part_4.
 Section Book_1_part_5.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 	    (** * Proposition 32
        In any triangle, if one of the sides be produced,
        the exterior angle is equal to the two interior and opposite angles,

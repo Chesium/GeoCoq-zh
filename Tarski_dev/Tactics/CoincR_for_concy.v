@@ -6,7 +6,7 @@ Require Import GeoCoq.Tactics.Coinc.CoincR.
 
 Section CoincR_for_concyclic.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Definition ss_ok_for_concy ss interp :=
   @ss_ok Tarski_is_a_Arity_for_concy
@@ -124,7 +124,7 @@ Ltac Concy_refl Tpoint Col Concyclic_gen :=
 (*
 Section Test.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Goal forall P24 P23 P22 P21 P20 P19 P18 P17 P16 P15 P14 P13 P12 P11 P10 P9 P8 P7 P6 P5 P4 P3 P2 P1 P0,
   Coplanar P1 P0 P2 P12 -> Coplanar P8 P2 P0 P1 -> ~ Col P18 P20 P19 ->

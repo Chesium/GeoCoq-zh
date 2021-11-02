@@ -1,6 +1,6 @@
 Require Export GeoCoq.Axioms.tarski_axioms.
 
-Section segment_construction_independent.
+Section 由一点往一方向构造等长线段_independent.
 
 Inductive Point :=
  P0.
@@ -9,36 +9,36 @@ Definition Bet (A B C : Point) := False.
 
 Definition Cong (A B C D : Point) := True.
 
-Lemma between_identity : forall A B, Bet A B A -> A=B.
+Lemma 中间性的同一律 : forall A B, Bet A B A -> A=B.
 Proof.
 unfold Bet; tauto.
 Qed.
 
 
-Lemma cong_pseudo_reflexivity : forall A B, Cong A B B A.
+Lemma 等长的伪自反性 : forall A B, Cong A B B A.
 Proof.
 unfold Cong; tauto.
 Qed.
 
-Lemma cong_identity : forall A B C, Cong A B C C -> A = B.
+Lemma 等长的同一性 : forall A B C, Cong A B C C -> A = B.
 Proof.
 destruct A; destruct B; reflexivity.
 Qed.
 
-Lemma cong_inner_transitivity : forall A B C D E F,
+Lemma 等长的内传递性 : forall A B C D E F,
   Cong A B C D -> Cong A B E F -> Cong C D E F.
 Proof.
 unfold Cong; tauto.
 Qed.
 
-Lemma inner_pasch : forall A B C P Q,
+Lemma 帕施公理 : forall A B C P Q,
   Bet A P C -> Bet B Q C ->
   exists x, Bet P x B /\ Bet Q x A.
 Proof.
 unfold Bet; tauto.
 Qed.
 
-Lemma five_segment : forall A A' B B' C C' D D',
+Lemma 五线段公理_等价SAS : forall A A' B B' C C' D D',
   Cong A B A' B' ->
   Cong B C B' C' ->
   Cong A D A' D' ->
@@ -48,7 +48,7 @@ Proof.
 unfold Bet, Cong; tauto.
 Qed.
 
-Lemma not_segment_construction : ~ (forall A B C D,
+Lemma not_由一点往一方向构造等长线段 : ~ (forall A B C D,
   exists E, Bet A B E /\ Cong B E C D).
 Proof.
 intro.
@@ -58,7 +58,7 @@ destruct T.
 tauto.
 Qed.
 
-Lemma lower_dim : exists A, exists B, exists C, ~ (Bet A B C \/ Bet B C A \/ Bet C A B).
+Lemma 防降维公理 : exists A, exists B, exists C, ~ (Bet A B C \/ Bet B C A \/ Bet C A B).
 Proof.
 exists P0.
 exists P0.
@@ -66,7 +66,7 @@ exists P0.
 unfold Bet;tauto.
 Qed.
 
-Lemma upper_dim : forall A B C P Q ,
+Lemma 防升维公理 : forall A B C P Q ,
   P <> Q -> Cong A P A Q -> Cong B P B Q -> Cong C P C Q ->
   (Bet A B C \/ Bet B C A \/ Bet C A B).
 Proof.
@@ -84,4 +84,4 @@ exists P0.
 unfold Cong;tauto.
 Qed.
 
-End segment_construction_independent.
+End 由一点往一方向构造等长线段_independent.

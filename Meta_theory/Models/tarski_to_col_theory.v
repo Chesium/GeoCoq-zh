@@ -5,7 +5,7 @@ Require Import GeoCoq.Tactics.Coinc.tactics_axioms.
 
 Section Tarski_is_a_Col_theory.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Global Instance Tarski_is_a_Col_theory : (Col_theory Tpoint Col).
 Proof.

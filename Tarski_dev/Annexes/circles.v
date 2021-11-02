@@ -2,7 +2,7 @@ Require Export GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section Circle.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma inc112 : forall A B,
  InCircle A A B.
@@ -112,7 +112,7 @@ Lemma onc2__cong : forall O P A B, OnCircle A O P -> OnCircle B O P -> Cong O A 
 Proof.
 unfold OnCircle.
 intros O P A B H1 H2.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 Qed.
 
 End Circle.
@@ -128,20 +128,20 @@ treat_equalities_aux;
 repeat
   match goal with
    | H : Cong ?X3 ?X3 ?X1 ?X2 |- _ =>
-      apply cong_symmetry in H; apply cong_identity in H; smart_subst X2
+      apply 等长的对称性 in H; apply 等长的同一性 in H; smart_subst X2
    | H : Cong ?X1 ?X2 ?X3 ?X3 |- _ =>
-      apply cong_identity in H;smart_subst X2
+      apply 等长的同一性 in H;smart_subst X2
    | H : Bet ?X1 ?X2 ?X1 |- _ =>
-      apply between_identity in H;smart_subst X2
+      apply 中间性的同一律 in H;smart_subst X2
    | H : Le ?X1 ?X2 ?X3 ?X3 |- _ =>
       apply le_zero in H;smart_subst X2
    | H : Midpoint ?X ?Y ?Y |- _ => apply l7_3 in H; smart_subst Y
    | H : Midpoint ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
    | H : Midpoint ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
    | H : OnCircle ?A ?A ?B |- _ =>
-      apply cong_reverse_identity in H;smart_subst B
+      apply 等长的反向同一性 in H;smart_subst B
    | H : OnCircle ?B ?A ?A |- _ =>
-      apply cong_identity in H;smart_subst B
+      apply 等长的同一性 in H;smart_subst B
    | H : InCircle ?B ?A ?A |- _ =>
       apply le_zero in H;smart_subst B
    | H : OutCircle ?A ?A ?B |- _ =>
@@ -178,7 +178,7 @@ Ltac CongR :=
 Section Circle_2.
 
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** If a point is strictly inside a segment of a disk, it is strictly inside the circle. *)
 
@@ -200,9 +200,9 @@ Lemma bet_incs2__incs : forall O P U V X,
  InCircleS X O P.
 Proof.
 intros O P U V X HBet HUIn HVIn.
-destruct (eq_dec_points X U).
+destruct (两点重合的决定性 X U).
   subst; assumption.
-destruct (eq_dec_points X V).
+destruct (两点重合的决定性 X V).
   subst; assumption.
 apply bet_inc2__incs with U V; Circle.
 Qed.
@@ -215,9 +215,9 @@ Lemma bet_inc2__inc : forall A B U V P, InCircle U A B -> InCircle V A B -> Bet 
   InCircle P A B.
 Proof.
   intros A B U V P HU HV HBet.
-  destruct (eq_dec_points P U).
+  destruct (两点重合的决定性 P U).
     subst P; assumption.
-  destruct (eq_dec_points P V).
+  destruct (两点重合的决定性 P V).
     subst P; assumption.
   apply incs__inc, bet_inc2__incs with U V; assumption.
 Qed.
@@ -229,8 +229,8 @@ Lemma col_inc_onc2__bet : forall A B U V P, U <> V -> OnCircle U A B -> OnCircle
   Col U V P -> InCircle P A B -> Bet U P V.
 Proof.
   intros A B U V P HUV HU HV HCol HIn.
-  destruct (eq_dec_points P U); [subst; Between|].
-  destruct (eq_dec_points P V); [subst; Between|].
+  destruct (两点重合的决定性 P U); [subst; Between|].
+  destruct (两点重合的决定性 P V); [subst; Between|].
   assert (Cong A U A V) by (apply (onc2__cong A B); assumption).
   apply out2__bet; apply not_bet_out; Col; intro.
   - apply (bet_le__lt P V A U); Cong.
@@ -274,7 +274,7 @@ Proof.
   intros A B U V HUV HU HV HCol.
   split.
     apply (col_inc_onc2__bet A B); Circle.
-    apply cong_transitivity with A B; Cong.
+    apply 等长的传递性 with A B; Cong.
 Qed.
 
 (** Given a point U on a circle and a point P inside the circle, there is a point V such as
@@ -284,7 +284,7 @@ Lemma chord_completion : forall A B U P, OnCircle U A B -> InCircle P A B ->
   exists V, OnCircle V A B /\ Bet U P V.
 Proof.
   intros A B U P HOn HIn.
-  destruct (eq_dec_points U A).
+  destruct (两点重合的决定性 U A).
     unfold OnCircle, InCircle in *|-.
     treat_equalities; exists U; split; Circle; Between.
   assert (HA' : exists A', U <> A' /\ Col U P A' /\ Per A A' U).
@@ -310,7 +310,7 @@ Proof.
   assert (HCong := per_double_cong A A' U V HPer HV).
   assert (HVOn : OnCircle V A B).
     unfold OnCircle in *.
-    apply cong_transitivity with A U; Cong.
+    apply 等长的传递性 with A U; Cong.
   exists V; split; trivial.
   apply (col_inc_onc2__bet A B); trivial.
   ColR.
@@ -321,7 +321,7 @@ Qed.
 Lemma outcs_exists : forall O P, exists Q, OutCircleS Q O P.
 Proof.
 intros.
-induction(eq_dec_points O P).
+induction(两点重合的决定性 O P).
 subst P.
 assert(HH:=another_point O).
 ex_and HH Q.
@@ -329,7 +329,7 @@ exists Q.
 unfold OutCircleS.
 apply lt1123;auto.
 
-assert(HH:=segment_construction O P O P).
+assert(HH:=由一点往一方向构造等长线段 O P O P).
 ex_and HH Q.
 exists Q.
 split.
@@ -346,7 +346,7 @@ Qed.
 Lemma outcs_exists1 : forall O P X, X <> O -> exists Q, Out O X Q /\ OutCircleS Q O P.
 Proof.
 intros O P X HOX.
-destruct (segment_construction O X O P) as [Q [HQ1 HQ2]].
+destruct (由一点往一方向构造等长线段 O X O P) as [Q [HQ1 HQ2]].
 exists Q; split.
   apply bet_out; auto.
 split.
@@ -356,7 +356,7 @@ split.
 - intro.
   apply HOX.
   apply between_cong with Q; Between.
-  apply cong_transitivity with O P; Cong.
+  apply 等长的传递性 with O P; Cong.
 Qed.
 
 (** Given a circle there is a point which is strictly inside. *)
@@ -375,7 +375,7 @@ Lemma incs_exists1 : forall O P X, X <> O -> P <> O -> exists Q, Out O X Q /\ In
 Proof.
 intros O P X HOX HOP.
 destruct (midpoint_existence O P) as [M HM].
-destruct (segment_construction_3 O X O M) as [Q [HQ1 HQ2]]; auto.
+destruct (由一点往一方向构造等长线段_3 O X O M) as [Q [HQ1 HQ2]]; auto.
   intro; treat_equalities; auto.
 exists Q; split; auto.
 apply (cong2_lt__lt O M O P); Cong.
@@ -387,7 +387,7 @@ Qed.
 Lemma onc_exists : forall O P X,  X <> O -> O <> P -> exists Q, OnCircle Q O P /\ Out O X Q.
 Proof.
 intros.
-assert(HH:=segment_construction_2 X O O P H).
+assert(HH:=由一点往一方向构造等长线段_2 X O O P H).
 ex_and HH Q.
 exists Q.
 split.
@@ -407,21 +407,21 @@ Lemma diam_points : forall O P X, exists Q1 Q2,
   Bet Q1 O Q2 /\ Col Q1 Q2 X /\ OnCircle Q1 O P /\ OnCircle Q2 O P.
 Proof.
 intros O P X.
-destruct (eq_dec_points X O).
+destruct (两点重合的决定性 X O).
   subst X.
-  destruct (segment_construction P O O P) as [P' [HP'1 HP'2]].
+  destruct (由一点往一方向构造等长线段 P O O P) as [P' [HP'1 HP'2]].
   exists P, P'; repeat split; Col; Circle.
-destruct (eq_dec_points O P).
+destruct (两点重合的决定性 O P).
   subst P.
   exists O, O; repeat split; finish.
 assert(HH:= onc_exists O P X H H0).
 ex_and HH Q1.
-assert(HH:= segment_construction Q1 O O Q1).
+assert(HH:= 由一点往一方向构造等长线段 Q1 O O Q1).
 ex_and HH Q2.
 exists Q1, Q2.
 repeat split; Col.
 ColR.
-apply cong_transitivity with O Q1; Cong.
+apply 等长的传递性 with O Q1; Cong.
 Qed.
 
 (** The symmetric of a point on a circle relative to the center is also on the circle. *)
@@ -430,7 +430,7 @@ Lemma symmetric_oncircle : forall X Y O P,
  Midpoint O X Y -> OnCircle X O P -> OnCircle Y O P.
 Proof.
 intros.
-apply cong_transitivity with O X; Cong.
+apply 等长的传递性 with O X; Cong.
 Qed.
 
 
@@ -445,7 +445,7 @@ unfold Per.
 exists V.
 unfold OnCircle in *.
 split; trivial.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 Qed.
 
 (** Euclid Book III Prop 3 (two lemmas).
@@ -512,13 +512,13 @@ Proof.
     apply out_one_side_1 with X; [apply one_side_not_col124 with P| |apply l6_6]; trivial.
   clear dependent Z0.
   repeat split; auto.
-  - apply cong_transitivity with A I; trivial.
-    destruct (eq_dec_points A X).
+  - apply 等长的传递性 with A I; trivial.
+    destruct (两点重合的决定性 A X).
       subst; assumption.
     apply l10_12 with X X; Cong; [apply perp_per_2|apply perp_per_1];
       apply perp_left_comm, perp_col with C; auto.
-  - apply cong_transitivity with C I; trivial.
-    destruct (eq_dec_points C X).
+  - apply 等长的传递性 with C I; trivial.
+    destruct (两点重合的决定性 C X).
       subst; assumption.
     apply l10_12 with X X; Cong; [apply perp_per_2|apply perp_per_1];
       apply perp_left_comm, perp_col with A; Perp; Col.
@@ -547,7 +547,7 @@ Lemma line_circle_two_points : forall O P U V W,
  W = U \/ W = V.
 Proof.
 intros O P U V W HUV HCol HUOn HVOn HWOn.
-destruct (eq_dec_points W U); auto.
+destruct (两点重合的决定性 W U); auto.
 right.
 apply between_equality with U; apply col_inc_onc2__bet with O P; Col; Circle.
 Qed.
@@ -580,12 +580,12 @@ Lemma inc__radius : forall O P X, InCircle X O P ->
   exists Y, OnCircle Y O P /\ Bet O X Y.
 Proof.
   intros O P X HIn.
-  destruct (eq_dec_points O P).
+  destruct (两点重合的决定性 O P).
     unfold InCircle in HIn; treat_equalities.
     exists O; split; Circle; Between.
-  destruct (eq_dec_points O X).
+  destruct (两点重合的决定性 O X).
     subst; exists P; split; Circle; Between.
-  destruct (segment_construction_3 O X O P) as [Y [HY1 HY2]]; auto.
+  destruct (由一点往一方向构造等长线段_3 O X O P) as [Y [HY1 HY2]]; auto.
   exists Y; split; auto.
   apply l6_13_1; trivial.
   apply (l5_6 O X O P); Cong.
@@ -647,19 +647,19 @@ Lemma cong_chord_cong_center : forall O P A B C D M N,
 Proof.
 intros.
 assert(Cong M B N D).
-apply cong_commutativity.
+apply 等长的交换性.
 eapply (cong_cong_half_1 _ _ A _ _ C); Midpoint.
 Cong.
 unfold Midpoint in *.
 unfold OnCircle in *.
 spliter.
-apply cong_commutativity.
-apply cong_symmetry.
+apply 等长的交换性.
+apply 等长的对称性.
 apply(l4_2 A M B O C N D O).
 unfold IFSC.
 repeat split; Cong.
-apply (cong_transitivity _ _ O P); Cong.
-apply (cong_transitivity _ _ O P); Cong.
+apply (等长的传递性 _ _ O P); Cong.
+apply (等长的传递性 _ _ O P); Cong.
 Qed.
 
 (** variant *)
@@ -695,7 +695,7 @@ assert(Cong X O Y O).
   {
     apply(is_image_spec_col_cong A B X Y O H3);Col.
   }
-apply cong_transitivity with O X; Cong.
+apply 等长的传递性 with O X; Cong.
 Qed.
 
 
@@ -714,7 +714,7 @@ unfold OnCircle in *.
 unfold Diam in *.
 spliter.
 apply(triangle_inequality_2 U O V A O B); trivial;
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 Qed.
 
 Lemma chord_lt_diam : forall O P A B U V, 
@@ -733,7 +733,7 @@ ex_and HP O'.
 unfold Midpoint in *.
 spliter.
 unfold OnCircle in *.
-assert(Cong O A O B) by (apply cong_transitivity with O P; Cong).
+assert(Cong O A O B) by (apply 等长的传递性 with O P; Cong).
 assert(Cong A O U O').
 apply(cong_cong_half_1 A O B U O' V); unfold Midpoint; try split; Cong.
 assert(Cong B O V O').
@@ -741,7 +741,7 @@ apply(cong_cong_half_2 A O B U O' V); unfold Midpoint; try split; Cong.
 apply(l4_13 O A B).
 Col.
 unfold Cong_3.
-repeat split; Cong; apply cong_transitivity with O P; Cong.
+repeat split; Cong; apply 等长的传递性 with O P; Cong.
 Qed.
 
 
@@ -752,7 +752,7 @@ unfold InCircle in *.
 unfold Diam in *.
 spliter.
 unfold OnCircle in *.
-assert(HH:= segment_construction U O O V).
+assert(HH:= 由一点往一方向构造等长线段 U O O V).
 ex_and HH W.
 assert(Le U V U W).
 {
@@ -776,22 +776,22 @@ intros.
 unfold Diam in *.
 spliter.
 unfold OnCircle in *.
-induction(eq_dec_points O P).
+induction(两点重合的决定性 O P).
 treat_equalities.
 left; auto.
 
-induction(eq_dec_points X B).
+induction(两点重合的决定性 X B).
 right; auto.
 left.
 assert_diffs.
-assert(Cong O A O X) by (apply cong_transitivity with O P; Cong).
+assert(Cong O A O X) by (apply 等长的传递性 with O P; Cong).
 assert(Col A O X) by ColR.
 assert(HH:= l7_20 O A X H11 H10).
 induction HH.
 auto.
 assert(Midpoint O A B).
 unfold Midpoint; split; trivial.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 apply False_ind.
 apply H5.
 apply (symmetric_point_uniqueness A O ); auto.
@@ -803,11 +803,11 @@ intros.
 unfold Diam in*.
 spliter.
 unfold OnCircle in *.
-assert(Cong O X O A) by (apply cong_transitivity with O P; Cong).
-induction(eq_dec_points P O).
+assert(Cong O X O A) by (apply 等长的传递性 with O P; Cong).
+induction(两点重合的决定性 P O).
 treat_equalities.
 apply le_reflexivity.
-induction(eq_dec_points T O).
+induction(两点重合的决定性 T O).
 subst T.
 apply cong__le;Cong.
 assert_diffs.
@@ -839,7 +839,7 @@ unfold OnCircle in *.
 assert_diffs.
 assert(Bet O A T \/ Bet O T A).
 apply(l5_2 B O A T); Between.
-assert (Cong O A O X) by (apply cong_transitivity with O P; Cong).
+assert (Cong O A O X) by (apply 等长的传递性 with O P; Cong).
 induction H13.
 assert(Bet O X T).
 {
@@ -873,7 +873,7 @@ spliter.
 unfold OnCircle in *.
 apply(triangle_inequality T O X A).
 Between.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 Qed.
 
 
@@ -901,13 +901,13 @@ assert(Bet T O X).
 {
   apply(l4_6 T O A T O X); auto.
   repeat split.
-    apply cong_reflexivity.
+    apply 等长的自反性.
     assumption.
-    apply cong_transitivity with O P; Cong.
+    apply 等长的传递性 with O P; Cong.
 }
 apply H1.
 apply(between_cong_3 T O); trivial.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 Qed.
 
 
@@ -920,7 +920,7 @@ spliter.
 unfold OnCircle in *.
 unfold InCircleS in *.
 
-induction(eq_dec_points O P).
+induction(两点重合的决定性 O P).
 treat_equalities.
 unfold Lt in H0.
 spliter.
@@ -932,7 +932,7 @@ apply H0; Cong.
 assert(Lt A O A B /\ Lt B O A B).
 {
   assert (Midpoint O A B).
-    split; [assumption|apply cong_transitivity with O P; Cong].
+    split; [assumption|apply 等长的传递性 with O P; Cong].
   split.
   apply(mid__lt ); assert_diffs;auto.
   assert (Lt B O B A) by (assert_diffs; apply mid__lt; Midpoint).
@@ -940,7 +940,7 @@ assert(Lt A O A B /\ Lt B O A B).
 }
 spliter.
 
-induction(eq_dec_points O U).
+induction(两点重合的决定性 O U).
 treat_equalities.
 spliter.
 assert(Lt O V O A).
@@ -950,7 +950,7 @@ assert(Lt O V O A).
 apply (lt_transitivity O V O A A B); auto.
 apply lt_left_comm; auto.
 
-assert(HH:=segment_construction U O O V).
+assert(HH:=由一点往一方向构造等长线段 U O O V).
 ex_and HH V'.
 
 assert(Le U V U V').
@@ -975,12 +975,12 @@ spliter.
 unfold OnCircle in *.
 unfold InCircleS in *.
 
-assert(HH:=segment_construction V O O U).
+assert(HH:=由一点往一方向构造等长线段 V O O U).
 ex_and HH U'.
 assert(Lt V U' A B).
 {
   apply(bet2_lt_le__lt O O A B V U' H4 H).
-  apply cong_transitivity with O P; Cong.
+  apply 等长的传递性 with O P; Cong.
   apply(cong2_lt__lt O U O P); Cong.
 }
 assert(Le V U V U').
@@ -994,7 +994,7 @@ Qed.
 Lemma diam_cong_incs__outcs : forall O P A B U V, Diam A B O P -> Cong A B U V -> InCircleS U O P -> OutCircleS V O P.
 Proof.
 intros.
-induction(eq_dec_points O P).
+induction(两点重合的决定性 O P).
 treat_equalities.
 unfold InCircleS in H1.
 
@@ -1028,17 +1028,17 @@ intros.
 unfold Diam in *.
 spliter.
 unfold OnCircle in *.
-induction(eq_dec_points O P).
+induction(两点重合的决定性 O P).
 treat_equalities; auto.
 assert(Bet A O X).
 {
   apply(l4_6 A O B A O X); auto.
   repeat split; Cong.
-  apply cong_transitivity with O P; Cong.
+  apply 等长的传递性 with O P; Cong.
 }
 assert_diffs.
 apply(between_cong_3 A O); auto.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 Qed.
 
 Lemma onc3__ncol : forall O P A B C,
@@ -1097,7 +1097,7 @@ Proof.
 intros.
 unfold Diam.
 split; Circle.
-assert(Cong O A O B) by (apply cong_transitivity with O P; Cong).
+assert(Cong O A O B) by (apply 等长的传递性 with O P; Cong).
 assert(A = B \/ Midpoint O A B) by (apply(l7_20 O A B); Col).
 induction H4.
 contradiction.
@@ -1113,7 +1113,7 @@ unfold Midpoint.
 unfold OnCircle in *.
 split.
   assumption.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 Qed.
 
 Lemma diam_sym : forall O P A B, Diam A B O P -> Diam B A O P.
@@ -1182,7 +1182,7 @@ Lemma cop_mid_onc2_perp__col : forall O P A B X Y, A <> B -> OnCircle A O P -> O
   Midpoint X A B -> Perp X Y A B -> Coplanar O A B Y -> Col X Y O.
 Proof.
   intros O P A B X Y HAB HAOn HBOn HX HPerp HCop.
-  destruct (eq_dec_points O X).
+  destruct (两点重合的决定性 O X).
     subst; Col.
   apply cop_perp2__col with A B; Cop.
   apply perp_left_comm, mid_onc2__perp with P; auto.
@@ -1216,7 +1216,7 @@ Proof.
   destruct (col_dec M1 P1 M2); [apply (l6_21 M2 P2 M1 P1)|apply (l6_21 M1 P1 M2 P2)]; Col.
   intro.
   apply HBC.
-  destruct (eq_dec_points M1 M2).
+  destruct (两点重合的决定性 M1 M2).
     apply (symmetric_point_uniqueness A M1); subst; trivial.
   apply l10_2_uniqueness_spec with M1 P1 A.
     split; Perp; exists M1; Col.
@@ -1245,7 +1245,7 @@ Lemma tree_points_onc_cop2 : forall O P Q, O <> P -> exists A B C,
   Coplanar A B C O /\ Coplanar A B C Q.
 Proof.
   intros O P Q HOP.
-  destruct (eq_dec_points O Q).
+  destruct (两点重合的决定性 O Q).
     subst Q.
     destruct (tree_points_onc_cop O P HOP) as [A [B [C]]]; spliter.
     exists A, B, C; repeat split; auto.
@@ -1309,12 +1309,12 @@ Proof.
   - intro Heq.
     unfold EqC in Heq.
     assert (C = A).
-    { destruct (eq_dec_points A B) as [|Hd].
+    { destruct (两点重合的决定性 A B) as [|Hd].
       - subst B.
         unfold OnCircle in Heq.
         assert (Cong A D A A) by (rewrite Heq; Cong).
         treat_equalities.
-        destruct (segment_construction A C A C) as [A' []].
+        destruct (由一点往一方向构造等长线段 A C A C) as [A' []].
         assert (Cong A A' A A) by (rewrite Heq; Cong).
         treat_equalities; auto.
       - destruct (tree_points_onc_cop2 A B C Hd) as [B0 [B1 [B2]]].
@@ -1329,7 +1329,7 @@ Proof.
   - intros [].
     subst C.
     intro X.
-    split; intro; [apply cong_transitivity with A B|apply cong_transitivity with A D]; Cong.
+    split; intro; [apply 等长的传递性 with A B|apply 等长的传递性 with A D]; Cong.
 Qed.
 
 (** Two circles are distinct if and only if there is a point
@@ -1342,7 +1342,7 @@ Proof.
   intros A B C D HAB.
   split.
   { intro Hneq.
-    destruct (eq_dec_points C A) as [|HCA].
+    destruct (两点重合的决定性 C A) as [|HCA].
     { destruct (cong_dec A B C D) as [|HNCong].
         exfalso; apply Hneq, eqc_chara; split; auto.
         subst C; exists B; split; Circle.
@@ -1351,7 +1351,7 @@ Proof.
     destruct (cong_dec C B0 C D); [destruct (cong_dec C B1 C D);[destruct (cong_dec C B2 C D)|]|].
     - exfalso.
       apply HCA.
-      apply cong2_cop2_onc3__eq with B B0 B1 B2; auto; apply cong_transitivity with C D; Cong.
+      apply cong2_cop2_onc3__eq with B B0 B1 B2; auto; apply 等长的传递性 with C D; Cong.
     - exists B2; auto.
     - exists B1; auto.
     - exists B0; auto.
@@ -1398,7 +1398,7 @@ Proof.
   split.
     assumption.
   subst O'.
-  apply cong_transitivity with O A; Cong.
+  apply 等长的传递性 with O A; Cong.
 Qed.
 
 (** If four coplanar points belong to a same sphere, then they belong to a same circle.
@@ -1542,18 +1542,18 @@ intros.
 assert(HH:=mid_onc2__per O P A C X H0 H2 H4).
 assert(HP:=mid_onc2__per O P B D X H1 H3 H5).
 
-induction(eq_dec_points X O).
+induction(两点重合的决定性 X O).
 auto.
 assert(Col A B X).
 apply(per2__col A B O X); Perp.
 unfold Midpoint in *.
 spliter.
 assert(Col B X D).
-apply bet_col; auto.
+apply 中间性转共线; auto.
 assert(Col A X C).
 ColR.
 
-induction(eq_dec_points A X).
+induction(两点重合的决定性 A X).
 subst X.
 treat_equalities.
 assert(OutCircleS D O P).
@@ -1628,7 +1628,7 @@ Lemma cong_onc3_cases : forall O P A X Y,
 Proof.
 intros.
 unfold OnCircle in *.
-induction(eq_dec_points X Y).
+induction(两点重合的决定性 X Y).
 left; auto.
 right.
 assert(HH:= midpoint_existence X Y).
@@ -1660,7 +1660,7 @@ left.
 unfold Midpoint in *.
 spliter.
 
-induction(eq_dec_points M O).
+induction(两点重合的决定性 M O).
 subst M.
 apply per_perp_in in H6.
 apply perp_in_comm in H6.
@@ -1696,11 +1696,11 @@ Lemma bet_cong_onc3_cases : forall O P A X Y T,
 Proof.
 intros.
 unfold OnCircle in *.
-induction(eq_dec_points O P).
+induction(两点重合的决定性 O P).
 treat_equalities.
 left; auto.
 
-induction(eq_dec_points T X).
+induction(两点重合的决定性 T X).
 treat_equalities.
 left; auto.
 
@@ -1709,7 +1709,7 @@ assert(CongA T O X T O Y /\ CongA O T X O T Y /\ CongA T X O T Y O).
   apply(l11_51 O T X O T Y); Cong.
     intro.
     treat_equalities; tauto.
-  apply cong_transitivity with O P; Cong.
+  apply 等长的传递性 with O P; Cong.
 }
 spliter.
 assert(Out T A O).
@@ -1739,14 +1739,14 @@ assert(HD:=H).
 unfold Diam in H.
 spliter.
 unfold OnCircle in *.
-induction(eq_dec_points O P).
+induction(两点重合的决定性 O P).
 subst P.
 treat_equalities; auto.
 apply le_reflexivity.
 
-induction(eq_dec_points O T).
+induction(两点重合的决定性 O T).
 treat_equalities.
-apply cong__le, cong_transitivity with O P; Cong.
+apply cong__le, 等长的传递性 with O P; Cong.
 
 induction(cong_dec A X A Y).
 assert(X = Y \/ ReflectL X Y O A).
@@ -1757,8 +1757,8 @@ induction H9.
 treat_equalities.
 apply le_reflexivity.
 apply cong__le.
-apply cong_symmetry.
-apply cong_commutativity.
+apply 等长的对称性.
+apply 等长的交换性.
 apply(is_image_spec_col_cong O A X Y T); auto.
 unfold Diam in *.
 spliter.
@@ -1779,7 +1779,7 @@ assert(LeA Y O T X O T).
 
 assert(Lt T Y T X).
 {
-  assert(Cong O X O Y) by (apply cong_transitivity with O P; Cong).
+  assert(Cong O X O Y) by (apply 等长的传递性 with O P; Cong).
   apply(t18_18 O T X O T Y); Cong.
   unfold LtA.
   split; auto.
@@ -1807,7 +1807,7 @@ Lemma Prop_7_8_uniqueness : forall O P A X Y Z T, T <> O -> X <> Y ->
   Z = X \/ Z = Y.
 Proof.
 intros.
-induction(eq_dec_points O P).
+induction(两点重合的决定性 O P).
 unfold OnCircle in *.
 treat_equalities.
 auto.
@@ -1822,7 +1822,7 @@ assert(X = Z \/ ReflectL X Z O A).
 assert(Y = Z \/ ReflectL Y Z O A).
 {
   apply(bet_cong_onc3_cases O P A Y Z T); auto.
-  apply cong_transitivity with T X; Cong.
+  apply 等长的传递性 with T X; Cong.
 }
 induction H9.
 contradiction.
@@ -1944,7 +1944,7 @@ assert(Col O X M)
 assert(Col O X N)
  by (apply(onc2_mid_cong_col O P C D N X); auto).
 
-induction(eq_dec_points O X).
+induction(两点重合的决定性 O X).
 - auto.
 - assert(Col O M N) by eCol.
 
@@ -1961,7 +1961,7 @@ induction(col_dec O A B).
 assert(A = B \/ Midpoint O A B).
 unfold OnCircle in *.
 apply l7_20; Col.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 induction H15.
 contradiction.
 assert(M = O).
@@ -1972,7 +1972,7 @@ induction(col_dec O C D).
 assert(C = D \/ Midpoint O C D).
 unfold OnCircle in *.
 apply l7_20; Col.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 induction H16.
 contradiction.
 apply (l7_17 C D); auto.
@@ -1988,7 +1988,7 @@ induction(col_dec O A B).
 assert(A = B \/ Midpoint O A B).
 unfold OnCircle in *.
 apply l7_20; Col.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 induction H17.
 contradiction.
 assert(M = O).
@@ -2007,7 +2007,7 @@ induction(col_dec O C D).
 assert(C = D \/ Midpoint O C D).
 unfold OnCircle in *.
 apply l7_20; Col.
-apply cong_transitivity with O P; Cong.
+apply 等长的传递性 with O P; Cong.
 induction H17.
 contradiction.
 apply (l7_17 C D); auto.

@@ -2,7 +2,7 @@ Require Export GeoCoq.Tarski_dev.Ch10_line_reflexivity_2.
 
 Section PerpBisect_1.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma perp_bisect_equiv_def :
   forall P Q A B, Perp_bisect P Q A B <-> Perp_bisect_bis P Q A B.
@@ -83,7 +83,7 @@ Hint Resolve perp_bisect_perp : perp.
 
 Section PerpBisect_2.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma perp_bisect_cong_1 :
  forall P Q A B,
@@ -123,7 +123,7 @@ Hint Resolve perp_bisect_cong_1 perp_bisect_cong_2 : cong.
 
 Section PerpBisect_3.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma perp_bisect_cong2 :
  forall P Q A B,
@@ -144,7 +144,7 @@ Lemma perp_bisect_cong :
  Cong A O C O.
 Proof.
 intros.
-apply (cong_transitivity A O B O C O); assumption.
+apply (等长的传递性 A O B O C O); assumption.
 Qed.
 
 Lemma cong_cop_perp_bisect :
@@ -177,7 +177,7 @@ spliter.
 treat_equalities.
 intuition.
 
-induction(eq_dec_points P I).
+induction(两点重合的决定性 P I).
 subst.
 eapply l8_13_2;Col.
 exists Q. exists B;repeat split;Col.
@@ -254,7 +254,7 @@ destruct HPerp as [F [HPerp [HBet HCong3]]].
 assert (HDE : D <> E) by (assert_diffs; auto).
 assert (HCol := HPerp); apply perp_in_col in HCol; destruct HCol as [HCol Hc]; clear Hc.
 apply l8_14_2_1a in HPerp.
-elim (eq_dec_points A C); intro; try (subst; Col).
+elim (两点重合的决定性 A C); intro; try (subst; Col).
 apply cop_perp2__col with D E; Perp; Cop.
 apply perp_bisect_perp; apply cong_cop_perp_bisect; Cong.
 Qed.

@@ -2,7 +2,7 @@ Require Import GeoCoq.Tarski_dev.Annexes.quadrilaterals.
 
 Section Tagged_predicates.
 
-Context `{Tn:Tarski_neutral_dimensionless}.
+Context `{Tn:无维度中性塔斯基公理系统}.
 
 Definition Diff_tagged (A B: Tpoint) := A <> B.
 

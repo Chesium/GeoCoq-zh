@@ -4,7 +4,7 @@ Require Export GeoCoq.Tarski_dev.Ch13_2_length.
 
 Section Angles_1.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (************************************* angle *****************************)
 
@@ -56,7 +56,7 @@ Ltac ang_instance a A B C :=
 
 Section Angles_2.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma ang_conga : forall a A B C A' B' C', Q_CongA a -> a A B C -> a A' B' C' -> CongA A B C A' B' C'.
 Proof.
@@ -344,7 +344,7 @@ Require Import Setoid.
 
 Section Angles_3.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma anga_conga : forall a A B C A' B' C', Q_CongA_Acute a -> a A B C -> a A' B' C' -> CongA A B C A' B' C'.
 Proof.
@@ -637,7 +637,7 @@ Proof.
       apply conga_refl; auto.
     assert(HH :=not_col_exists A B H0).
     ex_and HH P.
-    induction(eq_dec_points A0 C0).
+    induction(两点重合的决定性 A0 C0).
       subst C0.
       exists A.
       assert(HH:= (H2 A B A)).
@@ -662,7 +662,7 @@ Ltac ang_instance1 a A B C :=
 
 Section Angles_4.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma ang_sym : forall a A B C, Q_CongA a -> a A B C -> a C B A.
 Proof.
@@ -712,10 +712,10 @@ Proof.
       assert(Cong A1 B1 A B).
         apply H15.
         auto.
-      apply cong_identity in H17.
+      apply 等长的同一性 in H17.
         subst B1.
-        apply cong_symmetry in H19.
-        apply cong_identity in H19.
+        apply 等长的对称性 in H19.
+        apply 等长的同一性 in H19.
         contradiction.
       auto.
     auto.
@@ -795,10 +795,10 @@ Proof.
     assert(Cong A1 B1 A B).
       apply H14.
       auto.
-    apply cong_identity in H17.
+    apply 等长的同一性 in H17.
     subst B1.
-    apply cong_symmetry in H18.
-    apply cong_identity in H18.
+    apply 等长的对称性 in H18.
+    apply 等长的同一性 in H18.
     contradiction.
 Qed.
 
@@ -904,7 +904,7 @@ Ltac anga_instance1 a A B C :=
 
 Section Angles_5.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma null_anga_null_anga' : forall a, Q_CongA_Null_Acute a <-> is_null_anga' a.
 Proof.
@@ -1232,14 +1232,14 @@ Proof.
       spliter.
       ex_and H8 P.
       assert(HH:= lg_cong la A B P P H H2 H9).
-      apply cong_identity in HH.
+      apply 等长的同一性 in HH.
       contradiction.
     intro.
     unfold Q_Cong_Null in H7.
     spliter.
     ex_and H8 P.
     assert(HH:= lg_cong lc C B P P H0 H3 H9).
-    apply cong_identity in HH.
+    apply 等长的同一性 in HH.
     contradiction.
 Qed.
 

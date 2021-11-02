@@ -4,13 +4,13 @@ Require Export GeoCoq.Tarski_dev.Annexes.quadrilaterals_inter_dec.
 
 Section Vectors.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma eqv_refl : forall A B, EqV A B A B.
 Proof.
 intros.
 unfold EqV.
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
 right.
 split; auto.
 left.
@@ -50,7 +50,7 @@ tauto.
 spliter.
 subst D.
 subst F.
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
 right.
 tauto.
 left.
@@ -101,7 +101,7 @@ Qed.
 Lemma vector_construction : forall A B C, exists D, EqV A B C D.
 Proof.
 intros.
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
 exists C.
 right.
 tauto.
@@ -112,13 +112,13 @@ exists D.
 left.
 apply (mid_plg _ _ _ _ M).
 
-induction(eq_dec_points A D).
+induction(两点重合的决定性 A D).
 subst D.
 right.
 intro.
 subst C.
 apply l7_3 in H0.
-apply between_identity in H1.
+apply 中间性的同一律 in H1.
 subst M.
 contradiction.
 left.
@@ -127,7 +127,7 @@ split; Cong.
 assumption.
 Qed.
 
-Lemma vector_construction_uniqueness :
+Lemma vector_点的唯一构造 :
  forall A B C D D',
  EqV A B C D ->
  EqV A B C D' ->
@@ -223,7 +223,7 @@ Lemma eqv_permut :
   EqV A C B D.
 Proof.
 intros.
-induction (eq_dec_points A C).
+induction (两点重合的决定性 A C).
 subst C.
 assert(B = D).
 apply (vector_uniqueness A).
@@ -267,7 +267,7 @@ spliter.
 repeat split; Col.
 intro.
 subst D.
-apply cong_identity in H2.
+apply 等长的同一性 in H2.
 contradiction.
 ColR.
 ColR.
@@ -379,7 +379,7 @@ Lemma mid_eqv :
 Proof.
 intros.
 unfold EqV.
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
 apply is_midpoint_id in H.
 subst C.
@@ -420,7 +420,7 @@ assert(EqV A D B D'0).
 apply eqv_permut.
 assumption.
 
-induction (eq_dec_points A D'0).
+induction (两点重合的决定性 A D'0).
 subst D'0.
 
 apply eqv_comm in H1.
@@ -582,7 +582,7 @@ ex_and H D'.
 unfold SumV.
 intros.
 assert(D'= D'0).
-apply (vector_construction_uniqueness C D B).
+apply (vector_点的唯一构造 C D B).
 apply eqv_sym.
 apply H.
 assumption.
@@ -600,7 +600,7 @@ exists F.
 unfold SumV.
 intros.
 assert(D' = F).
-apply (vector_construction_uniqueness C D B); auto.
+apply (vector_点的唯一构造 C D B); auto.
 subst D'.
 apply eqv_refl.
 Qed.
@@ -626,7 +626,7 @@ Qed.
 Lemma same_dir_refl : forall A B, Same_dir A B A B.
 intros.
 unfold Same_dir.
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
 left.
 tauto.
 right.
@@ -744,7 +744,7 @@ apply (l6_21 A B C B); Col.
 subst T.
 apply H22.
 exists D.
-apply bet_col in H14.
+apply 中间性转共线 in H14.
 split; Col.
 
 induction(col_dec C D T).
@@ -754,7 +754,7 @@ apply (l6_21 C D B C); Col.
 subst T.
 apply H22.
 exists A.
-apply bet_col in H14.
+apply 中间性转共线 in H14.
 split; Col.
 
 induction H13.
@@ -845,7 +845,7 @@ split; Between.
 
 assert(HH:= plgf_bet A B C D' H0).
 
-induction (eq_dec_points A D').
+induction (两点重合的决定性 A D').
 subst D'.
 unfold Parallelogram_flat in H0.
 spliter.
@@ -862,7 +862,7 @@ Between.
 apply midpoint_bet.
 assumption.
 
-induction (eq_dec_points B C).
+induction (两点重合的决定性 B C).
 subst C.
 unfold Parallelogram_flat in H0.
 spliter.
@@ -900,7 +900,7 @@ spliter.
 exists A.
 split.
 Between.
-apply between_symmetry.
+apply 中间性的对称性.
 apply (outer_transitivity_between _ _ D'); Between.
 
 induction H7.
@@ -1022,10 +1022,10 @@ subst M.
 apply False_ind.
 apply H.
 exists C.
-apply bet_col in H1.
+apply 中间性转共线 in H1.
 split; Col.
 
-induction (eq_dec_points B D').
+induction (两点重合的决定性 B D').
 subst D'.
 assert( A = C).
 apply (vector_uniqueness B).
@@ -1073,7 +1073,7 @@ apply H11.
 ColR.
 exists M.
 split.
-apply bet_col in H1.
+apply 中间性转共线 in H1.
 Col.
 auto.
 
@@ -1168,8 +1168,8 @@ unfold Out.
 repeat split.
 intro.
 subst B.
-apply cong_symmetry in H6.
-apply cong_identity in H6.
+apply 等长的对称性 in H6.
+apply 等长的同一性 in H6.
 induction H4; tauto.
 intro.
 subst C.
@@ -1333,7 +1333,7 @@ spliter.
 apply H.
 exists C.
 split; Col.
-apply bet_col in H0.
+apply 中间性转共线 in H0.
 Col.
 apply plgs_par_strict in H1.
 spliter.
@@ -1408,7 +1408,7 @@ apply plgs_permut.
 apply plgs_sym.
 assumption.
 
-induction (eq_dec_points C C').
+induction (两点重合的决定性 C C').
 subst C'.
 Between.
 
@@ -1427,7 +1427,7 @@ apply H.
 exists B.
 split.
 Col.
-apply bet_col in H2.
+apply 中间性转共线 in H2.
 ColR.
 
 assert(HH1:=plgs_one_side B C C' B' H6).
@@ -1497,7 +1497,7 @@ Lemma plgf_plgf_bet :
  Bet D C C'.
 Proof.
 intros.
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
 subst B.
 assert(C = D /\ A <> C).
 apply plgf_trivial_neq.
@@ -1535,7 +1535,7 @@ assumption.
 assert(A <> B').
 intro.
 subst B'.
-apply between_identity in H0.
+apply 中间性的同一律 in H0.
 contradiction.
 
 assert(HH:=vector_construction A B' Q).
@@ -1572,7 +1572,7 @@ Col.
 assert(Par A B' P Q).
 apply plg_par in H8; auto.
 spliter.
-apply bet_col in H0.
+apply 中间性转共线 in H0.
 
 apply (par_col_par_2 _ B); auto.
 apply plg_par in H4; auto.
@@ -1595,7 +1595,7 @@ spliter.
 apply False_ind.
 unfold Parallelogram_flat in *.
 spliter.
-apply bet_col in H0.
+apply 中间性转共线 in H0.
 assert(Col B' P' Q).
 ColR.
 
@@ -1640,7 +1640,7 @@ Lemma plg_plg_bet :
 Proof.
 intros.
 
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
 induction H.
 apply False_ind.
@@ -1654,7 +1654,7 @@ spliter.
 subst D.
 Between.
 
-induction (eq_dec_points B C).
+induction (两点重合的决定性 B C).
 subst C.
 induction H.
 apply False_ind.
@@ -1679,7 +1679,7 @@ Between.
 assert(A <> B').
 intro.
 subst B'.
-apply between_identity in H0.
+apply 中间性的同一律 in H0.
 contradiction.
 
 assert(B' <> C').
@@ -1715,7 +1715,7 @@ spliter.
 
 assert(Par A B C' D).
 apply (par_col_par_2 _ B'); auto.
-apply bet_col in H0.
+apply 中间性转共线 in H0.
 Col.
 
 assert(Col C' C D /\ Col D C D).
@@ -1735,7 +1735,7 @@ unfold Parallelogram_flat in H11.
 spliter.
 apply plgs_par_strict in H10.
 spliter.
-apply bet_col in H0.
+apply 中间性转共线 in H0.
 apply H10.
 assert(Col A B C').
 ColR.
@@ -1747,7 +1747,7 @@ unfold Parallelogram_flat in H10.
 spliter.
 apply plgs_par_strict in H11.
 spliter.
-apply bet_col in H0.
+apply 中间性转共线 in H0.
 apply H11.
 assert(Col A B' C).
 ColR.
@@ -1819,7 +1819,7 @@ exists B'.
 split; Col.
 unfold Parallelogram_flat in H11.
 spliter.
-apply cong_identity in H15.
+apply 等长的同一性 in H15.
 subst Q.
 apply H9.
 Col.
@@ -1951,7 +1951,7 @@ Qed.
 Lemma same_dir_sym : forall A B C D, Same_dir A B C D -> Same_dir C D A B.
 intros.
 
-induction (eq_dec_points A B).
+induction (两点重合的决定性 A B).
 subst B.
 apply same_dir_null in H.
 subst D.
@@ -2041,7 +2041,7 @@ ex_and H0 F'.
 right.
 
 
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
 apply null_vector in H1.
 subst D'.
@@ -2256,7 +2256,7 @@ apply plgs_par_strict in H5.
 spliter.
 apply H5.
 exists D.
-apply bet_col in H4.
+apply 中间性转共线 in H4.
 split; Col.
 assumption.
 
@@ -2293,7 +2293,7 @@ auto.
 
 induction H0; induction H2;try tauto.
 
-induction(eq_dec_points C C').
+induction(两点重合的决定性 C C').
 subst C'.
 left.
 Between.
@@ -2314,7 +2314,7 @@ apply plgs_par_strict in H6.
 spliter.
 apply H6.
 exists D.
-apply bet_col in H4.
+apply 中间性转共线 in H4.
 split; Col.
 assumption.
 
@@ -2332,7 +2332,7 @@ apply False_ind.
 
 apply H3.
 apply (between_equality _ _ D).
-apply between_symmetry.
+apply 中间性的对称性.
 apply H13.
 assumption.
 induction H12.
@@ -2344,7 +2344,7 @@ Between.
 Between.
 subst D'.
 
-apply cong_identity in H10.
+apply 等长的同一性 in H10.
 contradiction.
 
 induction H12.
@@ -2371,7 +2371,7 @@ unfold Out.
 repeat split.
 intro.
 subst C.
-apply between_identity in H1.
+apply 中间性的同一律 in H1.
 tauto.
 auto.
 right.
@@ -2407,7 +2407,7 @@ repeat split.
 auto.
 intro.
 subst C'.
-apply cong_identity in H5.
+apply 等长的同一性 in H5.
 contradiction.
 
 induction H2.
@@ -2420,7 +2420,7 @@ auto.
 induction H7.
 auto.
 tauto.
-apply between_identity in H8.
+apply 中间性的同一律 in H8.
 subst B.
 tauto.
 induction H2.
@@ -2433,7 +2433,7 @@ auto.
 induction H7.
 auto.
 tauto.
-apply between_identity in H8.
+apply 中间性的同一律 in H8.
 subst B.
 tauto.
 
@@ -2467,7 +2467,7 @@ Qed.
 Lemma plg_opp_dir : forall A B C D, Parallelogram A B C D -> Same_dir A B D C.
 intros.
 
-induction(eq_dec_points A B).
+induction(两点重合的决定性 A B).
 subst B.
 induction H.
 apply False_ind.
@@ -2504,8 +2504,8 @@ Proof.
 intros.
 unfold Same_dir.
 unfold EqV.
-elim (eq_dec_points A B); intro HAB;
-elim (eq_dec_points C D); intro HCD; try tauto.
+elim (两点重合的决定性 A B); intro HAB;
+elim (两点重合的决定性 C D); intro HCD; try tauto.
 
   right; intro HFalse.
   elim HFalse; clear HFalse; intro HFalse.
@@ -2580,7 +2580,7 @@ exists C'.
 split; trivial.
 unfold EqV in H1.
 
-induction (eq_dec_points B C').
+induction (两点重合的决定性 B C').
 subst C'.
 induction H1.
 
@@ -2761,7 +2761,7 @@ Qed.
 Lemma vector_same_dir_cong : forall A B C D, A <> B -> C <> D -> exists X, exists Y, Same_dir A B X Y /\ Cong X Y C D.
 intros.
 exists A.
-assert(HH:=segment_construction_3 A B C D H H0).
+assert(HH:=由一点往一方向构造等长线段_3 A B C D H H0).
 ex_and HH P.
 exists P.
 split; auto.

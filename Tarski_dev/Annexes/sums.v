@@ -2,14 +2,14 @@ Require Export GeoCoq.Tarski_dev.Ch06_out_lines.
 
 Section Sums.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** Existence of the sum *)
 
 Lemma ex_sums : forall A B C D, exists E F, SumS A B C D E F.
 Proof.
   intros A B C D.
-  destruct (segment_construction A B C D) as [R [HR1 HR2]].
+  destruct (由一点往一方向构造等长线段 A B C D) as [R [HR1 HR2]].
   exists A, R, A, B, R.
   repeat split; Cong.
 Qed.
@@ -32,11 +32,11 @@ Proof.
   intros A B C D E F E' F' HSumS HSumS'.
   destruct HSumS as [P [Q [R [HBet [HCong1 [HCong2 HCong3]]]]]].
   destruct HSumS' as [P' [Q' [R' [HBet' [HCong1' [HCong2' HCong3']]]]]].
-  apply cong_transitivity with P R; Cong.
-  apply cong_transitivity with P' R'; trivial.
-  apply l2_11 with Q Q'; trivial.
-  apply cong_transitivity with A B; Cong.
-  apply cong_transitivity with C D; Cong.
+  apply 等长的传递性 with P R; Cong.
+  apply 等长的传递性 with P' R'; trivial.
+  apply 两组连续三点分段等则全体等 with Q Q'; trivial.
+  apply 等长的传递性 with A B; Cong.
+  apply 等长的传递性 with C D; Cong.
 Qed.
 
 (** Unicity of the difference of segments. *)
@@ -47,11 +47,11 @@ Proof.
   intros A B C D E F A' B' HSumS HSumS'.
   destruct HSumS as [P [Q [R [HBet [HCong1 [HCong2 HCong3]]]]]].
   destruct HSumS' as [P' [Q' [R' [HBet' [HCong1' [HCong2' HCong3']]]]]].
-  apply cong_transitivity with P Q; Cong.
-  apply cong_transitivity with P' Q'; trivial.
+  apply 等长的传递性 with P Q; Cong.
+  apply 等长的传递性 with P' Q'; trivial.
   apply l4_3 with R R'; trivial.
-  apply cong_transitivity with E F; Cong.
-  apply cong_transitivity with C D; Cong.
+  apply 等长的传递性 with E F; Cong.
+  apply 等长的传递性 with C D; Cong.
 Qed.
 
 (** Unicity of the difference of segments on the right. *)
@@ -71,7 +71,7 @@ Lemma cong3_sums__sums : forall A B C D E F A' B' C' D' E' F',
 Proof.
   intros A B C D E F A' B' C' D' E' F' HCong1 HCong2 HCong3 HSumS.
   destruct HSumS as [P [Q [R [HBet [HCong4 [HCong5 HCong6]]]]]].
-  exists P, Q, R; repeat split; trivial; eapply cong_transitivity; eauto.
+  exists P, Q, R; repeat split; trivial; eapply 等长的传递性; eauto.
 Qed.
 
 (** The degenerate segments represent the additive identity *)
@@ -93,7 +93,7 @@ Qed.
 Lemma sums__eq34 : forall A B C D, SumS A B C D A B -> C = D.
 Proof.
   intros A B C D HSum.
-  apply cong_identity with C.
+  apply 等长的同一性 with C.
   apply sums2__cong34 with A B A B; trivial.
   apply sums123312.
 Qed.
@@ -113,7 +113,7 @@ Qed.
 Lemma sums__eq12 : forall A B C D, SumS A B C D C D -> A = B.
 Proof.
   intros A B C D HSum.
-  apply cong_identity with A.
+  apply 等长的同一性 with A.
   apply sums2__cong12 with C D C D; trivial.
   apply sums112323.
 Qed.
@@ -157,7 +157,7 @@ Lemma sums_assoc_1 : forall A B C D E F G H I J K L,
 Proof.
   intros A B C D E F G H I J K L HSumS1 HSumS2 HSumS3.
   destruct HSumS1 as [P [Q [R [HBet [HCong1 [HCong2 HCong3]]]]]].
-  destruct (segment_construction P R E F) as [S [HS1 HS2]].
+  destruct (由一点往一方向构造等长线段 P R E F) as [S [HS1 HS2]].
   exists P, Q, S; repeat split; trivial.
   - apply between_exchange4 with R; trivial.
   - apply (sums2__cong56 C D E F); trivial.

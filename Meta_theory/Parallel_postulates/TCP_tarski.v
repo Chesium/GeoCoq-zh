@@ -5,7 +5,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section TCP_tarski.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma impossible_case_1 :
   forall A B C x y,
@@ -16,8 +16,8 @@ Lemma impossible_case_1 :
 Proof.
 intros A B C x y.
 intros HABx HACy HPar.
-apply between_symmetry in HABx.
-assert (HI := inner_pasch x C A B y HABx HACy); destruct HI as [I [HBCI HIxy]].
+apply 中间性的对称性 in HABx.
+assert (HI := 帕施公理 x C A B y HABx HACy); destruct HI as [I [HBCI HIxy]].
 apply HPar; exists I; split; Col.
 Qed.
 
@@ -274,7 +274,7 @@ assert (Col A B x).
   apply cong_cop2_perp_bisect_col with Y Z1; trivial.
     apply coplanar_pseudo_trans with B C T; assumption.
     apply coplanar_pseudo_trans with B C T; assumption.
-    apply cong_transitivity with X x; Cong.
+    apply 等长的传递性 with X x; Cong.
   repeat split; Perp.
   exists M1; repeat split; Between; Cong.
   }
@@ -321,7 +321,7 @@ assert (Hy := triangle_circumscription_implies_tarski_s_euclid_aux1 A C B D T X 
 destruct Hy as [y [HACy [Hy1 Hy2]]]; [Between; Col; Perp..|]; exists y.
 assert (HxTy : Col x T y).
   {
-  elim (eq_dec_points T x); intro; [|elim (eq_dec_points T y); intro]; [subst; Col..|].
+  elim (两点重合的决定性 T x); intro; [|elim (两点重合的决定性 T y); intro]; [subst; Col..|].
   assert_diffs.
   apply col_permutation_4, cop_perp2__col with X Y;
     [|apply perp_bisect_perp, cong_cop_perp_bisect; Cong; Cop..].
@@ -378,17 +378,17 @@ cut (forall B C, A <> B -> A <> C -> B <> C -> B <> D -> C <> D -> ~ Col A B C -
                  exists x y : Tpoint, Bet A B x /\ Bet A C y /\ Bet x T y).
   {
   intros Haux B C HAB HAC HBC HBD HCD HABC HBDC HBCT HBCY HPerp.
-  elim (eq_dec_points B Y); auto.
+  elim (两点重合的决定性 B Y); auto.
   intro HBY.
-  elim (eq_dec_points C Y); intro HCY.
+  elim (两点重合的决定性 C Y); intro HCY.
     subst; exfalso; apply HBC; reflexivity.
-  apply between_symmetry in HBDC.
+  apply 中间性的对称性 in HBDC.
   apply perp_left_comm in HPerp.
   destruct (Haux C B) as [y [x [HACy [HABx HxTy]]]]; Col.
   exists x, y; repeat split; Between.
   }
 intros B C HAB HAC HBC HBD HCD HABC HBDC HBCT HBCY HPerp HBY.
-elim (eq_dec_points C Y); intro HCY.
+elim (两点重合的决定性 C Y); intro HCY.
 
   {
   treat_equalities.

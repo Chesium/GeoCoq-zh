@@ -5,7 +5,7 @@ Require Import GeoCoq.Tarski_dev.Ch13_1.
 
 Section triangle_playfair_bis.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma legendre_aux :
   greenberg_s_axiom ->
@@ -101,7 +101,7 @@ Proof.
   assert_diffs.
   assert(Hos : OS B1 B2 Q C1).
   { apply (one_side_transitivity _ _ _ A1).
-    - destruct (eq_dec_points A1 Q).
+    - destruct (两点重合的决定性 A1 Q).
         subst A1; apply one_side_reflexivity; auto; apply (par_strict_not_col_2 A2); Par.
       apply l12_6, par_strict_right_comm, (par_strict_col_par_strict _ _ _ A2); Col; Par.
     - apply cop_nts__os; Col; [|apply (par_strict_not_col_2 A2); Par].

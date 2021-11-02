@@ -3,7 +3,7 @@ Require Export GeoCoq.Highschool.varignon.
 
 Section Exercises.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma Per_mid_rectangle : forall A B C I J K,
   A <> B ->
@@ -17,7 +17,7 @@ Proof.
 intros.
 assert_diffs.
 assert_cols.
-elim (eq_dec_points A C); intro; apply plg_per_rect.
+elim (两点重合的决定性 A C); intro; apply plg_per_rect.
 
   treat_equalities.
   assert (HM : exists M : Tpoint, Midpoint M J I) by (apply midpoint_existence); decompose [ex] HM; repeat split; intuition; exists x; intuition.
@@ -88,7 +88,7 @@ C'est une appliquette Java créée avec GeoGebra ( www.geogebra.org) - Il semble
 
 Ltac assert_diffs_by_cases :=
  repeat match goal with
- | A: Tpoint, B: Tpoint |- _ => not_exist_hyp_comm A B;induction (eq_dec_points A B);[treat_equalities;solve [finish|trivial] |idtac]
+ | A: Tpoint, B: Tpoint |- _ => not_exist_hyp_comm A B;induction (两点重合的决定性 A B);[treat_equalities;solve [finish|trivial] |idtac]
 end.
 
 Lemma quadrileral_midpoints:

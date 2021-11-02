@@ -2,7 +2,7 @@ Require Export GeoCoq.Tarski_dev.Annexes.suma.
 
 Section HalfAngle.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 
 Definition HalfA P A O B := ~ Bet A O B /\ InAngle P A O B /\ CongA A O P B O P.
@@ -112,7 +112,7 @@ Proof.
     { intro.
       subst M.
       absurd (Bet A O B); trivial.
-      apply between_symmetry, l6_2 with A'; Between.
+      apply 中间性的对称性, l6_2 with A'; Between.
     }
     apply l11_25 with M A A'; [|apply out_trivial|apply l6_6|apply out_trivial]; auto.
     repeat split; auto.
@@ -148,7 +148,7 @@ Proof.
     split.
       Between.
       right; apply out_trivial; auto.
-  - destruct (eq_dec_points A A').
+  - destruct (两点重合的决定性 A A').
       subst; apply conga_refl; auto.
     assert_diffs.
     destruct (l11_51 O A M O A' M); Cong.

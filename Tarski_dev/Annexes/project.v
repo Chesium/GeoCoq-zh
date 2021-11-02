@@ -5,7 +5,7 @@ Require Export GeoCoq.Tarski_dev.Annexes.vectors.
 Section Projections.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma project_id : forall A B X Y P P', Proj P P' A B X Y -> Col A B P -> P = P'.
 Proof.
@@ -17,7 +17,7 @@ induction H4.
 apply False_ind.
 apply H2.
 
-induction(eq_dec_points P' A).
+induction(两点重合的决定性 P' A).
 subst P'.
 eapply  (par_col_par_2 _ P); Col.
 Par.
@@ -132,7 +132,7 @@ subst Q'.
 apply False_ind.
 apply H4.
 
-induction(eq_dec_points A P).
+induction(两点重合的决定性 A P).
 subst P.
 
 eapply (par_col_par_2 _ Q); Col.
@@ -260,7 +260,7 @@ assumption.
 intro.
 Par.
 Col.
-induction (eq_dec_points P P').
+induction (两点重合的决定性 P P').
 tauto.
 left.
 apply par_symmetry.
@@ -281,7 +281,7 @@ Lemma project_col_eq : forall P Q P' Q' A B X Y,
  P' = Q'.
 Proof.
 intros.
-induction(eq_dec_points P Q).
+induction(两点重合的决定性 P Q).
 subst Q.
 eapply project_uniqueness.
 apply H1.
@@ -337,7 +337,7 @@ clean_duplicated_hyps.
 assert(Col P' Q' R').
 apply (col3 A B); Col.
 
-induction(eq_dec_points P Q).
+induction(两点重合的决定性 P Q).
 assert(P' = Q').
 subst Q.
 eapply project_uniqueness.
@@ -346,7 +346,7 @@ assumption.
 subst Q'.
 Between.
 
-induction (eq_dec_points R Q).
+induction (两点重合的决定性 R Q).
 assert(R'=Q').
 subst Q.
 eapply project_uniqueness.
@@ -355,10 +355,10 @@ assumption.
 subst Q'.
 Between.
 
-induction(eq_dec_points P' Q').
+induction(两点重合的决定性 P' Q').
 subst Q'.
 Between.
-induction(eq_dec_points R' Q').
+induction(两点重合的决定性 R' Q').
 subst Q'.
 Between.
 
@@ -441,7 +441,7 @@ ex_and H29 QQ.
 
 assert(QQ=Q').
 assert(Col P' QQ R').
-apply bet_col.
+apply 中间性转共线.
 assumption.
 eapply (l6_21 Q Q' P' R'); Col.
 
@@ -478,7 +478,7 @@ ex_and H24 QQ.
 
 assert(QQ=Q').
 assert(Col P' QQ R).
-apply bet_col.
+apply 中间性转共线.
 assumption.
 eapply (l6_21 Q Q' P' R); Col.
 
@@ -510,7 +510,7 @@ assumption.
 spliter.
 assert(P' = Q).
 
-induction(eq_dec_points Qx Q).
+induction(两点重合的决定性 Qx Q).
 subst Qx.
 
 eapply(project_col_eq P Qy P' Q A B X Y); Col.
@@ -539,7 +539,7 @@ assumption.
 spliter.
 assert(R' = Q).
 
-induction(eq_dec_points Qx Q).
+induction(两点重合的决定性 Qx Q).
 subst Qx.
 
 eapply(project_col_eq R Qy R' Q A B X Y); Col.
@@ -585,7 +585,7 @@ ex_and H30 QQ.
 assert(QQ=Q).
 
 assert(Col P' QQ R').
-apply bet_col.
+apply 中间性转共线.
 assumption.
 eapply (l6_21 Qx Qy P' R'); Col.
 
@@ -613,7 +613,7 @@ ColR.
 assert(Col B Q R).
 ColR.
 
-apply bet_col in H.
+apply 中间性转共线 in H.
 apply (col3 Q R); Col.
 subst P'.
 
@@ -660,7 +660,7 @@ ex_and H25 QQ.
 
 assert(QQ=Q').
 assert(Col P QQ R').
-apply bet_col.
+apply 中间性转共线.
 assumption.
 eapply (l6_21 Q Q' P R'); Col.
 
@@ -693,7 +693,7 @@ apply H19.
 eapply (col3 P R); Col.
 intro.
 subst R.
-apply between_identity in H.
+apply 中间性的同一律 in H.
 contradiction.
 subst Q'.
 assumption.
@@ -706,7 +706,7 @@ spliter.
 assert(R = R').
 
 eapply (l6_21 P Q R R'); Col.
-apply bet_col in H.
+apply 中间性转共线 in H.
 Col.
 intro.
 assert(~Col A B R).
@@ -820,13 +820,13 @@ apply H.
 assert(C <> C'').
 intro.
 subst C''.
-apply between_identity in H17.
+apply 中间性的同一律 in H17.
 subst C.
 tauto.
 
 assert(Col A C C'').
 ColR.
-apply bet_col in H17.
+apply 中间性转共线 in H17.
 apply (col3 C C''); Col.
 
 induction H16.
@@ -835,7 +835,7 @@ apply(l11_14 A B C A'' C''); Between.
 
 apply False_ind.
 
-induction (eq_dec_points A A'').
+induction (两点重合的决定性 A A'').
 subst A''.
 apply H24.
 exists A.
@@ -847,8 +847,8 @@ assert(TS A C A'' B).
 repeat split; Col.
 intro.
 apply H.
-apply bet_col in H16.
-apply bet_col in H17.
+apply 中间性转共线 in H16.
+apply 中间性转共线 in H17.
 eapply (col3 A A''); Col.
 exists A.
 split; Col.
@@ -860,7 +860,7 @@ unfold Out.
 repeat split; auto.
 intro.
 subst C''.
-apply between_identity in H17.
+apply 中间性的同一律 in H17.
 subst C.
 tauto.
 left.
@@ -876,15 +876,15 @@ spliter.
 ex_and H30 T.
 apply H24.
 exists T.
-apply bet_col in H31.
+apply 中间性转共线 in H31.
 split; Col.
 
 assert(TS A'' C'' A B).
 repeat split; Col.
 intro.
 apply H.
-apply bet_col in H16.
-apply bet_col in H17.
+apply 中间性转共线 in H16.
+apply 中间性转共线 in H17.
 
 assert(Col A'' C'' B).
 ColR.
@@ -893,8 +893,8 @@ ColR.
 eapply (col3 A'' C''); Col.
 
 intro.
-apply bet_col in H16.
-apply bet_col in H17.
+apply 中间性转共线 in H16.
+apply 中间性转共线 in H17.
 apply H.
 
 assert(Col B C A'').
@@ -910,8 +910,8 @@ intro.
 apply H.
 
 
-apply bet_col in H16.
-apply bet_col in H17.
+apply 中间性转共线 in H16.
+apply 中间性转共线 in H17.
 assert(Col A'' B C).
 ColR.
 apply (col3 A'' B); Col.
@@ -934,7 +934,7 @@ spliter.
 ex_and H30 T.
 apply H24.
 exists T.
-apply bet_col in H31.
+apply 中间性转共线 in H31.
 split; Col.
 
 induction H17.
@@ -950,18 +950,18 @@ apply H.
 assert(A <> A'').
 intro.
 subst A''.
-apply between_identity in H16.
+apply 中间性的同一律 in H16.
 contradiction.
 
 assert(Col C A A'').
 ColR.
-apply bet_col in H16.
+apply 中间性转共线 in H16.
 apply (col3 A A''); Col.
 
 
 apply False_ind.
 
-induction (eq_dec_points C C'').
+induction (两点重合的决定性 C C'').
 subst C''.
 apply H24.
 exists C.
@@ -971,8 +971,8 @@ assert(TS A C C'' B).
 repeat split; Col.
 intro.
 apply H.
-apply bet_col in H16.
-apply bet_col in H17.
+apply 中间性转共线 in H16.
+apply 中间性转共线 in H17.
 eapply (col3 C C''); Col.
 exists C.
 split; Col.
@@ -984,7 +984,7 @@ unfold Out.
 repeat split; auto.
 intro.
 subst A''.
-apply between_identity in H16.
+apply 中间性的同一律 in H16.
 contradiction.
 left.
 Between.
@@ -999,7 +999,7 @@ spliter.
 ex_and H30 T.
 apply H24.
 exists T.
-apply bet_col in H31.
+apply 中间性转共线 in H31.
 split; Col.
 
 induction H16.
@@ -1028,17 +1028,17 @@ apply H.
 assert(A <> A'').
 intro.
 subst A''.
-apply between_identity in H16.
+apply 中间性的同一律 in H16.
 contradiction.
 
 assert(Col C A A'').
 ColR.
-apply bet_col in H16.
+apply 中间性转共线 in H16.
 apply (col3 A A''); Col.
 
 apply False_ind.
 
-induction (eq_dec_points C C'').
+induction (两点重合的决定性 C C'').
 subst C''.
 apply H24.
 exists C.
@@ -1049,8 +1049,8 @@ assert(TS A'' C'' C B).
 repeat split; Col.
 intro.
 apply H.
-apply bet_col in H16.
-apply bet_col in H17.
+apply 中间性转共线 in H16.
+apply 中间性转共线 in H17.
 
 assert(Col A'' C'' B).
 ColR.
@@ -1059,8 +1059,8 @@ ColR.
 eapply (col3 A'' C''); Col.
 
 intro.
-apply bet_col in H16.
-apply bet_col in H17.
+apply 中间性转共线 in H16.
+apply 中间性转共线 in H17.
 apply H.
 
 assert(Col B C A'').
@@ -1076,8 +1076,8 @@ left.
 intro.
 apply H.
 
-apply bet_col in H16.
-apply bet_col in H17.
+apply 中间性转共线 in H16.
+apply 中间性转共线 in H17.
 assert(Col C B A'').
 ColR.
 apply (col3 A'' B); Col.
@@ -1101,7 +1101,7 @@ spliter.
 ex_and H30 T.
 apply H24.
 exists T.
-apply bet_col in H31.
+apply 中间性转共线 in H31.
 split; Col.
 
 induction H16.
@@ -1275,7 +1275,7 @@ Proof.
 intros.
 spliter.
 
-induction(eq_dec_points P Q).
+induction(两点重合的决定性 P Q).
 subst Q.
 apply null_vector in H.
 subst S.
@@ -1301,7 +1301,7 @@ assert(EqV P R Q S).
 apply eqv_permut.
 assumption.
 
-induction(eq_dec_points P R).
+induction(两点重合的决定性 P R).
 subst R.
 apply null_vector in H6.
 subst S.
@@ -1363,12 +1363,12 @@ spliter.
 repeat split; Col.
 apply eqv_permut in H.
 
-induction(eq_dec_points S Q').
+induction(两点重合的决定性 S Q').
 right.
 assumption.
 left.
 
-induction(eq_dec_points P R).
+induction(两点重合的决定性 P R).
 subst R.
 apply null_vector in H.
 subst S.
@@ -1483,7 +1483,7 @@ Lemma project_preserves_eqv :
 Proof.
 intros.
 
-induction (eq_dec_points P Q).
+induction (两点重合的决定性 P Q).
 subst Q.
 apply null_vector in H.
 subst S.
@@ -1716,7 +1716,7 @@ assert(EqV Q'' Q' S'' S').
 unfold EqV.
 left.
 
-induction(eq_dec_points Q' S').
+induction(两点重合的决定性 Q' S').
 subst S'.
 
 assert(P' = R').
@@ -1735,7 +1735,7 @@ apply plg_trivial.
 auto.
 
 
-induction(eq_dec_points P' R').
+induction(两点重合的决定性 P' R').
 subst R'.
 apply null_vector in  HP3.
 subst S''.
@@ -1858,7 +1858,7 @@ unfold Projp in H.
 spliter.
 induction H0.
 spliter.
-induction(eq_dec_points P' A).
+induction(两点重合的决定性 P' A).
 subst P'.
 right.
 apply perp_not_eq_1 in H1.
@@ -1868,7 +1868,7 @@ assumption.
 spliter.
 
 subst P'.
-induction(eq_dec_points P A).
+induction(两点重合的决定性 P A).
 subst P.
 right.
 assumption.
@@ -2365,9 +2365,9 @@ intros A A' B B' L11 L12 L21 L22 HColA' HColB' HPar HProjpA HProjpB.
 elim HPar; clear HPar; intro HPar.
 
   {
-  elim (eq_dec_points A' B'); intro HDiffA'B'; treat_equalities;
+  elim (两点重合的决定性 A' B'); intro HDiffA'B'; treat_equalities;
   [assert (A = B) by (apply projp_id with A' L21 L22; auto); treat_equalities; Cong|].
-  elim (eq_dec_points A B); intro HDiffAB; treat_equalities.
+  elim (两点重合的决定性 A B); intro HDiffAB; treat_equalities.
 
     {
     assert (HCol : Col A A' B') by (apply projp2_col with L21 L22; auto).

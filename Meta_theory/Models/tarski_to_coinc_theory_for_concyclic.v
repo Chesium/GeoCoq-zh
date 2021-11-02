@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Annexes.inscribed_angle.
 
 Section Tarski_is_a_Coinc_theory_for_concyclic.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Definition not_col : arity Tpoint 3 := fun A B C : Tpoint => ~ Col A B C.
 

@@ -5,7 +5,7 @@ Require Export GeoCoq.Tarski_dev.Annexes.project.
 
 Section Pappus_Pascal.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma l13_10_aux1 : forall O A B P Q la lb lp lq,
  Col O A B -> Col O P Q -> Perp O P P A -> Perp O Q Q B ->
@@ -97,7 +97,7 @@ Perp.
       induction H.
         assert(Bet P Q O).
 
-apply between_symmetry.
+apply 中间性的对称性.
 apply(per23_preserves_bet O B A Q P); Between.
 Col.
 
@@ -323,10 +323,10 @@ Proof.
       apply (lg_cong lp); auto.
     assert(HH:= lcos_lg_not_null lp la a H).
     spliter.
-    induction(eq_dec_points A P).
+    induction(两点重合的决定性 A P).
       subst A.
       assert(Cong O' A' O' P').
-        apply (cong_transitivity _ _ O P); Cong.
+        apply (等长的传递性 _ _ O P); Cong.
       assert(A' = P').
         induction(col_dec A' P' O').
           assert(A' = P' \/ O' = P').
@@ -334,7 +334,7 @@ Proof.
           induction H16.
             auto.
           subst P'.
-          eapply (cong_identity _  O' O'); Cong.
+          eapply (等长的同一性 _  O' O'); Cong.
         assert(Lt P' A' A' O' /\ Lt P' O' A' O').
           assert_diffs; apply(l11_46 A' P' O'); auto.
         spliter.
@@ -393,7 +393,7 @@ Proof.
       intro.
       subst A'.
       assert(Cong O P O A).
-        apply (cong_transitivity _ _ O' P'); Cong.
+        apply (等长的传递性 _ _ O' P'); Cong.
       assert(Lt P A A O /\ Lt P O A O).
         assert_diffs; apply(l11_46 A P O); auto.
       spliter.
@@ -450,10 +450,10 @@ Lemma per13_preserves_bet_inv : forall A B C A' C', Bet A' B C' -> B <> A' -> B 
 Proof.
 intros.
 assert(Col A' B C').
-apply bet_col in H.
+apply 中间性转共线 in H.
 Col.
 
-induction(eq_dec_points A A').
+induction(两点重合的决定性 A A').
 subst A'.
 assert(Col B C' C).
 ColR.
@@ -591,7 +591,7 @@ assert(Perp A' C' A A').
 apply (perp_col _ B); Perp.
 intro.
 subst C'.
-apply between_identity in H.
+apply 中间性的同一律 in H.
 subst A'.
 apply perp_distinct in H9.
 tauto.
@@ -643,7 +643,7 @@ Proof.
           intro.
           apply H.
           ColR.
-        apply between_symmetry, outer_transitivity_between with C'; auto.
+        apply 中间性的对称性, outer_transitivity_between with C'; auto.
 
     (***************)
     induction H15.
@@ -712,7 +712,7 @@ Proof.
       Col.
     assert(Col O A C).
     ColR.
-    induction(eq_dec_points A B).
+    induction(两点重合的决定性 A B).
       subst B.
     assert (HH : Par C A' C B').
       assert(~ Col A C' O).
@@ -994,7 +994,7 @@ Proof.
             eapply (col_transitivity_1 _ C); Col.
           eapply (col_transitivity_1 _ C'); Col.
         assert(exists a, Q_CongA_Acute a /\ Lcos ll lb a /\ Lcos ll' lc a).
-          induction(eq_dec_points B L).
+          induction(两点重合的决定性 B L).
             subst L.
             assert(C = L').
               eapply (l6_21 O B B' L'); Col.
@@ -1032,7 +1032,7 @@ Proof.
           Perp.
         ex_and H52 l'.
         assert(exists a, Q_CongA_Acute a /\ Lcos ll lc' a /\ Lcos ll' lb' a).
-          induction(eq_dec_points C' L).
+          induction(两点重合的决定性 C' L).
             subst L.
             assert(B' = L').
               eapply (l6_21 O C' C L'); Col.
@@ -1071,7 +1071,7 @@ Proof.
           Perp.
         ex_and H55 l.
         assert(exists a, Q_CongA_Acute a /\ Lcos lm lc a /\ Lcos lm' la a).
-          induction (eq_dec_points C M).
+          induction (两点重合的决定性 C M).
             subst M.
             assert(A = M').
               eapply (l6_21 O C C' M'); Col.
@@ -1109,7 +1109,7 @@ Proof.
           Perp.
         ex_and H58 m'.
         assert(exists a, Q_CongA_Acute a /\ Lcos lm la' a /\ Lcos lm' lc' a).
-          induction(eq_dec_points A' M).
+          induction(两点重合的决定性 A' M).
             subst M.
             assert(C' = M').
               eapply (l6_21 O A' A M'); Col.
@@ -1160,7 +1160,7 @@ Proof.
               Col.
               apply perp_not_eq_2 in H25.
               auto.
-            induction(eq_dec_points A N).
+            induction(两点重合的决定性 A N).
               subst N.
               apply acute_trivial.
               intro.
@@ -1186,7 +1186,7 @@ Proof.
           exists N.
           exists A.
           repeat split; auto.
-            induction(eq_dec_points A N).
+            induction(两点重合的决定性 A N).
               subst N.
               apply l8_2.
               apply l8_5.
@@ -1209,7 +1209,7 @@ Proof.
               Col.
               apply perp_not_eq_2 in H25.
               auto.
-            induction(eq_dec_points B' N).
+            induction(两点重合的决定性 B' N).
               subst N.
               apply acute_trivial.
               auto.
@@ -1232,7 +1232,7 @@ Proof.
           exists N.
           exists B'.
           repeat split; auto.
-            induction(eq_dec_points B' N).
+            induction(两点重合的决定性 B' N).
               subst N.
               apply l8_2.
               apply l8_5.
@@ -1273,7 +1273,7 @@ Proof.
           spliter.
           ex_and H74 X.
           apply H0.
-          eapply (cong_identity _ _ X).
+          eapply (等长的同一性 _ _ X).
           apply (lg_cong lb); auto.
           apply (lg_sym lb); auto.
         ex_and H73 bn'.
@@ -1284,7 +1284,7 @@ Proof.
           spliter.
           ex_and H75 X.
           apply H48.
-          apply (cong_identity _ _ X).
+          apply (等长的同一性 _ _ X).
           apply (lg_cong ll); auto.
         ex_and H73 bl'n'.
         assert(exists lp, Lcos lp bn' l').
@@ -1409,7 +1409,7 @@ Proof.
 (*************** we prove : n' A O N  ********************)
         assert(n' A O N).
           apply(lcos_per_anga _ _ _ la ln); auto.
-          induction(eq_dec_points A N).
+          induction(两点重合的决定性 A N).
             subst N.
             apply l8_2.
             apply l8_5.
@@ -1421,7 +1421,7 @@ Proof.
 (*************** we prove : n B O N  ********************)
         assert(n B' O N).
           apply(lcos_per_anga _ _ _ lb' ln); auto.
-          induction(eq_dec_points B' N).
+          induction(两点重合的决定性 B' N).
             subst N.
             apply l8_2.
             apply l8_5.
@@ -1471,7 +1471,7 @@ Proof.
               apply(l11_13 N' O B' B' O N' N A' ); Between.
                 apply conga_left_comm.
                 apply conga_refl; auto.
-                apply between_symmetry.
+                apply 中间性的对称性.
                 apply(l13_10_aux3 A B C A' B' C' O); auto.
               intro.
               subst A'.
@@ -1483,7 +1483,7 @@ Proof.
 (*************** we prove (Perp O N B A')  ********************) 
           apply (perp_col _ N'); Col.
           apply cop_per2__perp; auto.
-          induction(eq_dec_points N' B).
+          induction(两点重合的决定性 N' B).
             right.
             subst N'.
             auto.
@@ -1535,7 +1535,7 @@ Proof.
               intro.
               subst A'.
               contradiction.
-            induction(eq_dec_points N' B).
+            induction(两点重合的决定性 N' B).
               subst N'.
               right.
               intro.
@@ -1569,7 +1569,7 @@ End Pappus_Pascal.
 
 Section Pappus_Pascal_2.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma cop_par__perp2 : forall A B C D P, Coplanar A B C P -> Par A B C D -> Perp2 A B C D P.
 Proof.
@@ -1639,7 +1639,7 @@ Proof.
       apply H9.
       exists A'.
       split; Col.
-    induction(eq_dec_points A C).
+    induction(两点重合的决定性 A C).
       subst C.
       induction H6.
         apply False_ind.
@@ -1689,7 +1689,7 @@ Proof.
         auto.
       apply par_right_comm.
       auto.
-    induction(eq_dec_points B C).
+    induction(两点重合的决定性 B C).
       subst C.
       assert(B' = C').
         eapply (l6_21 B C' A' C').
@@ -1746,13 +1746,13 @@ Proof.
       split.
         assert(Col X O B).
           ColR.
-        induction(eq_dec_points O B).
+        induction(两点重合的决定性 O B).
           subst O.
           ColR.
         ColR.
       assert(Col X O' B').
         ColR.
-      induction(eq_dec_points O' B').
+      induction(两点重合的决定性 O' B').
         subst O'.
         ColR.
       ColR.
@@ -1784,7 +1784,7 @@ Proof.
         assumption.
       assumption.
     apply par_right_comm.
-    induction(eq_dec_points A B).
+    induction(两点重合的决定性 A B).
       subst B.
       assert(B' = A').
         eapply (symmetric_point_uniqueness A M); auto.

@@ -22,7 +22,7 @@ Require Export GeoCoq.Tarski_dev.Annexes.defect.
 
 Section Legendre.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Theorem stronger_legendre_s_first_theorem :
   aristotle_s_axiom ->

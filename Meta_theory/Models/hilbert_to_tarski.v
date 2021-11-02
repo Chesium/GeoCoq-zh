@@ -5,7 +5,7 @@ Require Import GeoCoq.Axioms.gupta_inspired_variant_axioms.
 Require Import GeoCoq.Meta_theory.Models.gupta_inspired_to_tarski.
 Require Import GeoCoq.Tactics.Coinc.tactics_axioms.
 Require Import GeoCoq.Tactics.Coinc.ColR.
-Require Import GeoCoq.Meta_theory.Dimension_axioms.upper_dim_3.
+Require Import GeoCoq.Meta_theory.Dimension_axioms.三维防升维公理.
 Require Import GeoCoq.Meta_theory.Parallel_postulates.parallel_postulates.
 Require Import GeoCoq.Axioms.hilbert_axioms.
 
@@ -50,7 +50,7 @@ elim (cong_existence A B A B l); auto; intros B' H2.
 spliter.
 apply cong_pseudo_transitivity with A B'.
 assumption.
-apply cong_permr.
+apply 等长的等价排列r.
 assumption.
 Qed.
 
@@ -149,9 +149,9 @@ Qed.
 Lemma other_point_exists : forall A: Point, exists B, A <> B.
 Proof.
 intros.
-assert (T:=lower_dim_2).
+assert (T:=防降维公理_2).
 destruct T.
-induction(eq_dec_pointsH A PP).
+induction(两点重合的决定性H A PP).
 subst A.
 exists PQ.
 intuition.
@@ -172,7 +172,7 @@ Qed.
 Lemma colH_trivial112 : forall A B, ColH A A B.
 Proof.
 intros.
-destruct (eq_dec_pointsH A B).
+destruct (两点重合的决定性H A B).
 subst.
 apply colH_trivial111.
 assert (H1:= line_existence A B H).
@@ -184,7 +184,7 @@ Qed.
 Lemma colH_trivial122 : forall A B, ColH A B B.
 Proof.
 intros.
-destruct (eq_dec_pointsH A B).
+destruct (两点重合的决定性H A B).
 subst.
 apply colH_trivial111.
 assert (H1:= line_existence A B H).
@@ -196,7 +196,7 @@ Qed.
 Lemma colH_trivial121 : forall A B, ColH A B A.
 Proof.
 intros.
-destruct (eq_dec_pointsH A B).
+destruct (两点重合的决定性H A B).
 subst.
 apply colH_trivial111.
 assert (H1:= line_existence A B H).
@@ -228,7 +228,7 @@ end.
 Lemma colH_dec : forall A B C, ColH A B C \/ ~ ColH A B C.
 Proof.
 intros.
-induction(eq_dec_pointsH A B).
+induction(两点重合的决定性H A B).
 subst B.
 left.
 apply colH_trivial112.
@@ -263,7 +263,7 @@ Proof.
 exact (Build_Col_theory Point ColH colH_trivial112 colH_permut_231 colH_permut_132 colH_trans).
 Defined.
 
-Lemma bet_colH : forall A B C, Bet A B C -> ColH A B C.
+Lemma 中间性转共线H : forall A B C, Bet A B C -> ColH A B C.
 Proof.
 intros.
 unfold Bet in H.
@@ -280,7 +280,7 @@ End Hilbert_2D_to_Tarski_2D.
 
 Hint Resolve colH_trivial121 colH_trivial122 colH_trivial112 colH_trivial111 colH_permut_231
              colH_permut_312 colH_permut_321 colH_permut_213 colH_permut_132 colH_permut_231
-             between_col bet_colH : col.
+             between_col 中间性转共线H : col.
 
 Ltac Col := auto 3 with col.
 
@@ -320,7 +320,7 @@ Context `{Hi:Hilbert_neutral_dimensionless}.
 Lemma ncolH_exists : forall A B, A <> B -> exists C, ~ColH A B C.
 Proof.
 intros.
-assert (HH:= lower_dim_2).
+assert (HH:= 防降维公理_2).
 destruct HH.
 destruct H1.
 destruct H2.
@@ -365,7 +365,7 @@ intros A B A' B' X Y HD.
 intros.
 assert(A <> B).
 intro;subst B;apply H; Col.
-induction(eq_dec_pointsH X Y).
+induction(两点重合的决定性H X Y).
 assumption.
 apply False_ind.
 apply H.
@@ -393,12 +393,12 @@ col_line H15 l00.
 lines_eq l l00.
 assumption.
 
-induction(eq_dec_pointsH A' P).
+induction(两点重合的决定性H A' P).
 subst P.
 
 eapply(inter_uniquenessH A B A' B'); auto.
 
-induction(eq_dec_pointsH P B').
+induction(两点重合的决定性H P B').
 subst P.
 eapply(inter_uniquenessH A B B' A'); auto.
 apply colH_permut_213.
@@ -454,7 +454,7 @@ spliter.
 apply (line_on_plane A B l); assumption.
 Qed.
 
-Lemma inner_pasch_aux : forall A B C P Q,
+Lemma 帕施公理_aux : forall A B C P Q,
                             ~ ColH B C P -> Bet A P C -> Bet B Q C ->
       exists X, Bet P X B /\ Bet Q X A.
 Proof.
@@ -462,7 +462,7 @@ unfold Bet.
 intros.
 induction H0; induction H1.
 
-elim (eq_dec_pointsH Q A);intros HQA.
+elim (两点重合的决定性H Q A);intros HQA.
 subst.
 exfalso.
 apply H.
@@ -472,7 +472,7 @@ ColHR.
 
 line Q A l HQA.
 
-induction(eq_dec_pointsH P A).
+induction(两点重合的决定性H P A).
 subst P.
 exists A.
 split; unfold Bet.
@@ -481,7 +481,7 @@ auto.
 right; right.
 auto.
 
-induction(eq_dec_pointsH Q C).
+induction(两点重合的决定性H Q C).
 subst Q.
 exists P.
 split;
@@ -503,7 +503,7 @@ assert(ColH P C Q).
 eapply (colH_trans A P); Col.
 eapply (colH_trans Q C); Col.
 
-induction(eq_dec_pointsH B Q).
+induction(两点重合的决定性H B Q).
 subst Q.
 exists B.
 
@@ -512,7 +512,7 @@ split;
 right; auto.
 left; auto.
 
-induction(eq_dec_pointsH A C).
+induction(两点重合的决定性H A C).
 subst C.
 apply False_ind.
 apply betH_distincts in H0.
@@ -569,7 +569,7 @@ split.
 left.
 apply between_comm.
 assumption.
-induction(eq_dec_pointsH A X).
+induction(两点重合的决定性H A X).
 subst X.
 right; right; auto.
 assert(A <> Q).
@@ -856,7 +856,7 @@ apply HE.
 apply (colH_trans B C); Col.
 
 assert(exists X : Point, Bet B X F /\ Bet E X A).
-apply(inner_pasch_aux A F C B E H13).
+apply(帕施公理_aux A F C B E H13).
 unfold Bet.
 left; assumption.
 unfold Bet.
@@ -1164,7 +1164,7 @@ ex_and HF F.
 apply betH_expand in H9.
 spliter.
 
-elim (eq_dec_pointsH C F).
+elim (两点重合的决定性H C F).
 intros HCF.
 subst.
 exfalso.
@@ -1384,8 +1384,8 @@ intros A B l M HAB HInM.
 assert (H : exists P, IncidL P l /\ M <> P).
   {
   destruct (two_points_on_line l) as [P1 [P2 [HP2 [HP1 HP1P2]]]].
-  elim (eq_dec_pointsH M P1); intro HMP1; try subst P1; [exists P2; auto|].
-  elim (eq_dec_pointsH M P2); intro HMP2; try subst P2; exists P1; auto.
+  elim (两点重合的决定性H M P1); intro HMP1; try subst P1; [exists P2; auto|].
+  elim (两点重合的决定性H M P2); intro HMP2; try subst P2; exists P1; auto.
   }
 destruct H as [P [HInP HMP]].
 destruct (between_out P M) as [P' HP']; auto.
@@ -1421,7 +1421,7 @@ assumption.
 Qed.
 
 
-(****************** between_identity ************************)
+(****************** 中间性的同一律 ************************)
 
 Lemma bet_identity : forall A B, Bet A B A -> A = B.
 Proof.
@@ -1456,10 +1456,10 @@ Qed.
 Lemma point3_online_exists : forall A B l, IncidL A l -> IncidL B l -> exists C, IncidL C l  /\ C <> A /\ C <> B.
 Proof.
 intros.
-induction(eq_dec_pointsH A B).
+induction(两点重合的决定性H A B).
 subst B.
 two_points l A0 B0.
-induction(eq_dec_pointsH A A0).
+induction(两点重合的决定性H A A0).
 subst A0.
 exists B0.
 split; auto.
@@ -1485,9 +1485,9 @@ apply betH_colH in H.
 tauto.
 Qed.
 
-(***************************** cong_identity ***********************)
+(***************************** 等长的同一性 ***********************)
 
-Lemma cong_identity : forall A B C , Cong A B C C -> A = B.
+Lemma 等长的同一性 : forall A B C , Cong A B C C -> A = B.
 Proof.
 intros.
 unfold Cong in H.
@@ -1497,9 +1497,9 @@ tauto.
 tauto.
 Qed.
 
-(************************ cong_inner_transitivity ****************************)
+(************************ 等长的内传递性 ****************************)
 
-Lemma cong_inner_transitivity : forall A B C D E F, Cong A B C D -> Cong A B E F -> Cong C D E F.
+Lemma 等长的内传递性 : forall A B C D E F, Cong A B C D -> Cong A B E F -> Cong C D E F.
 Proof.
 intros.
 unfold Cong in *.
@@ -1525,7 +1525,7 @@ assert(HH:= two_points_on_line l).
 destruct HH as [X HH].
 destruct HH as [Y HH].
 spliter.
-induction(eq_dec_pointsH A X).
+induction(两点重合的决定性H A X).
 exists Y.
 subst X.
 split; auto.
@@ -1627,7 +1627,7 @@ Col.
 auto.
 Qed.
 
-Lemma construction_uniqueness : forall A B D E,
+Lemma 点的唯一构造 : forall A B D E,
   BetH A B D -> BetH A B E -> CongH B D B E -> D = E.
 Proof.
 intros A B D E HBet1 HBet2 HCong.
@@ -1801,7 +1801,7 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
 
   {
   destruct HCut3 as [_ [_ [I [HI3 HBet2]]]].
-  elim (eq_dec_pointsH A I); intro HD7; [subst; right; right; auto|].
+  elim (两点重合的决定性H A I); intro HD7; [subst; right; right; auto|].
   assert (I = A); [|subst; right; right; auto].
   apply betH_expand in HBet2; spliter.
   assert (ColH A D I) by (exists lAD; auto).
@@ -1810,7 +1810,7 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
 
   {
   destruct HCut3 as [_ [_ [I [HI3 HBet2]]]].
-  elim (eq_dec_pointsH A I); intro HD7; [subst; right; right; auto|].
+  elim (两点重合的决定性H A I); intro HD7; [subst; right; right; auto|].
   assert (I = A); [|subst; right; right; auto].
   apply betH_expand in HBet2; spliter.
   assert (ColH A D I) by (exists lAD; auto).
@@ -1819,7 +1819,7 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
 
   {
   destruct HCut4 as [_ [_ [I [HI3 HBet2]]]].
-  elim (eq_dec_pointsH C I); intro HD7; [subst; right; left; auto|].
+  elim (两点重合的决定性H C I); intro HD7; [subst; right; left; auto|].
   assert (I = C); [|subst; right; left; auto].
   apply betH_expand in HBet2; spliter.
   assert (ColH C D I) by (exists lCD; auto).
@@ -2432,11 +2432,11 @@ spliter.
 contradiction.
 Qed.
 
-Lemma segment_construction : forall A B C D,
+Lemma 由一点往一方向构造等长线段 : forall A B C D,
     exists E, Bet A B E /\ Cong B E C D.
 Proof.
 intros.
-induction(eq_dec_pointsH C D).
+induction(两点重合的决定性H C D).
 subst D.
 exists B.
 split.
@@ -2445,7 +2445,7 @@ tauto.
 unfold Cong.
 right; tauto.
 
-destruct (eq_dec_pointsH A B) as [HAB|HAB].
+destruct (两点重合的决定性H A B) as [HAB|HAB].
 - subst.
   elim (other_point_exists B);intros A HBA.
   line B A l HBA.
@@ -2470,7 +2470,7 @@ spliter.
 assert(ColH A F F').
 line_col A F F'.
 
-induction(eq_dec_pointsH A F).
+induction(两点重合的决定性H A F).
 subst F.
 exists F'.
 split.
@@ -2478,7 +2478,7 @@ left; auto.
 left.
 repeat split; auto.
 
-induction (eq_dec_pointsH A F').
+induction (两点重合的决定性H A F').
 subst F'.
 exists F.
 split.
@@ -2509,7 +2509,7 @@ Bet.
 left.
 repeat split; auto.
 
-induction(eq_dec_pointsH A B).
+induction(两点重合的决定性H A B).
 subst B.
 exists F.
 split.
@@ -2557,9 +2557,9 @@ apply between_comm in H4.
 tauto.
 Qed.
 
-Lemma lower_dim_e : exists A, exists B, exists C, ~ (Bet A B C \/ Bet B C A \/ Bet C A B).
+Lemma 防降维公理_e : exists A, exists B, exists C, ~ (Bet A B C \/ Bet B C A \/ Bet C A B).
 Proof.
-assert(HH:=lower_dim_2).
+assert(HH:=防降维公理_2).
 spliter.
 exists PP.
 exists PQ.
@@ -2586,7 +2586,7 @@ Proof.
 intros.
 assert(HH:=colH_dec A B C).
 induction HH.
-induction(eq_dec_pointsH A B).
+induction(两点重合的决定性H A B).
 subst B.
 right.
 intro.
@@ -2598,7 +2598,7 @@ induction H0.
 apply betH_distincts in H0.
 tauto.
 tauto.
-induction(eq_dec_pointsH A C).
+induction(两点重合的决定性H A C).
 subst C.
 right.
 intro.
@@ -2612,7 +2612,7 @@ tauto.
 spliter.
 subst B.
 tauto.
-induction(eq_dec_pointsH B C).
+induction(两点重合的决定性H B C).
 subst C.
 left.
 right; right.
@@ -2669,7 +2669,7 @@ split; auto.
 line_col A B P'.
 apply betH_expand in H5.
 spliter.
-induction (eq_dec_pointsH B  P').
+induction (两点重合的决定性H B  P').
 subst P'.
 right; right.
 split; auto.
@@ -2681,7 +2681,7 @@ induction H9.
 right; left.
 Bet.
 apply False_ind.
-induction(eq_dec_pointsH B P).
+induction(两点重合的决定性H B P).
 subst P.
 apply H8.
 right; right; auto.
@@ -2700,12 +2700,12 @@ Definition Para := fun l m =>
 Definition ParaP := fun A B C D =>
     forall l m, IncidL A l -> IncidL B l -> IncidL C m -> IncidL D m -> Para l m.
 
-Lemma segment_constructionH : forall A B C D : Point,
+Lemma 由一点往一方向构造等长线段H : forall A B C D : Point,
  A <> B -> C <> D -> exists E : Point, BetH A B E /\ CongH B E C D.
 Proof.
 Proof.
 intros.
-assert(HH:= segment_construction A B C D).
+assert(HH:= 由一点往一方向构造等长线段 A B C D).
 ex_and HH E.
 induction H1.
 induction H2.
@@ -2980,7 +2980,7 @@ Lemma cut_same_side_cut : forall P X Y l, cut l P X -> same_side X Y l -> cut l 
 Proof.
 intros.
 assert(HC := same_side_not_cut X Y l H0).
-induction(eq_dec_pointsH X Y).
+induction(两点重合的决定性H X Y).
 subst Y.
 assumption.
 assert(HH0:=H).
@@ -3160,7 +3160,7 @@ destruct H5 as [P].
 apply between_comm in H5.
 assert(HB:BetH P A C).
 eapply (betH_trans2 _ _ B); auto.
-apply construction_uniqueness with P A; auto.
+apply 点的唯一构造 with P A; auto.
 Qed.
 
 Lemma congH_permlr : forall A B C D, A<>B -> C<>D -> CongH A B C D -> CongH B A D C.
@@ -3206,7 +3206,7 @@ apply between_comm in H3.
 apply betH_expand in H2.
 spliter.
 
-assert(HH:=segment_constructionH B C B C H8 H8).
+assert(HH:=由一点往一方向构造等长线段H B C B C H8 H8).
 ex_and HH B''.
 
 apply betH_expand in H3.
@@ -3222,7 +3222,7 @@ assert(CongH A B'' A' B').
      apply(colH_trans B C); Col.
      apply bet_disjoint; auto.
      apply bet_disjoint; auto.
-     apply(cong_pseudo_transitivity C B); auto using congH_sym, congH_perml, cong_permr.
+     apply(cong_pseudo_transitivity C B); auto using congH_sym, congH_perml, 等长的等价排列r.
    }
 
 assert(CongH A B'' A B).
@@ -3247,7 +3247,7 @@ spliter.
 clean_duplicated_hyps.
 assert(exists E : Point, BetH C A E /\ CongH A E A B).
    {
-      apply(segment_constructionH C A A B); auto.
+      apply(由一点往一方向构造等长线段H C A A B); auto.
    }
 ex_and H8 B''.
 apply betH_expand in H8.
@@ -3257,7 +3257,7 @@ assert(CongH C B'' C' B').
      apply(addition C A B'' C' A' B'); auto.
      apply bet_disjoint; auto.
      apply bet_disjoint; auto.
-     apply cong_permr, congH_perml; auto.
+     apply 等长的等价排列r, congH_perml; auto.
      apply (cong_pseudo_transitivity A B); auto using congH_sym.
    }
 
@@ -3277,7 +3277,7 @@ exfalso.
 apply H23.
 apply betH_distincts in H3; spliter.
 apply (cong_pseudo_transitivity C' B'); apply congH_sym; auto.
-apply cong_permr, congH_perml; auto.
+apply 等长的等价排列r, congH_perml; auto.
 Qed.
 
 Lemma betH_congH3_outH_betH : forall A B C A' B' C',
@@ -3290,7 +3290,7 @@ unfold outH in *.
 induction H0.
 assumption.
 induction H0.
-assert(HH:=segment_constructionH A' B' B C).
+assert(HH:=由一点往一方向构造等长线段H A' B' B C).
 ex_and HH C''.
 apply betH_expand in H7.
 spliter.
@@ -3341,7 +3341,7 @@ intros.
 apply betH_expand in H.
 apply betH_expand in H0.
 spliter.
-elim (segment_constructionH A' B' B C H3 H8).
+elim (由一点往一方向构造等长线段H A' B' B C H3 H8).
 intros C1 [HC1 HC2].
 assert (CongH A C A' C1).
 assert(HD := betH_distincts _ _ _ HC1); spliter.
@@ -3356,7 +3356,7 @@ assert (BetH X' A' C1).
  apply (betH_trans2 X' A' B' C1);auto using between_comm.
 assert (C'=C1).
  {
- apply construction_uniqueness with X' A'; auto.
+ apply 点的唯一构造 with X' A'; auto.
  apply (betH_trans2 X' A' B' C'); auto using between_comm.
  apply cong_pseudo_transitivity with A C; auto using congH_sym.
  }
@@ -3419,7 +3419,7 @@ assert (U:=ncolH_distincts A' B' C' H0).
 spliter.
 elim (out_construction B' C' B C H8 H5).
 intros D' [HD1 HD2].
-destruct (eq_dec_pointsH B' D').
+destruct (两点重合的决定性H B' D').
  {
  subst.
  unfold outH in HD2.
@@ -3742,10 +3742,10 @@ Proof.
 intros A B X Y p HNC1 HNC2 HAp HBp HXp HYp; assert (HD1 : X <> Y) by (intro; subst; Col).
 line X Y l HD1; destruct (cut_exists A l) as [C HC1];
 [intro; apply HNC1; exists l; auto|].
-elim (eq_dec_pointsH A B); [intro; subst; right; apply same_side_prime_refl;
+elim (两点重合的决定性H A B); [intro; subst; right; apply same_side_prime_refl;
                             intro; apply HNC1; Col|intro HD2].
 assert (HD3 : A <> C) by (apply cut_distinct with l; auto).
-elim (eq_dec_pointsH B C).
+elim (两点重合的决定性H B C).
 
   {
   intro; subst; left; split; auto; intro m; intros.
@@ -3946,12 +3946,12 @@ apply cut_comm; apply cut_same_side_cut with Z'.
     destruct (same_side_prime_not_colH _ _ _ _ HOS1) as [HNC1 _].
     apply same_side_comm; apply out_same_side with O; auto;
     [intro; apply HNC1; exists l; auto|].
-    elim (eq_dec_pointsH X X'); intro HD2; [subst; apply outH_trivial; auto|].
+    elim (两点重合的决定性H X X'); intro HD2; [subst; apply outH_trivial; auto|].
     destruct (same_side_prime_not_colH _ _ _ _ HOS2) as [_ HNC2].
     assert (HD3 := betH_distincts _ _ _ HZ'); spliter.
     assert (HC2 := between_col _ _ _ HZ').
     assert (HC3 := between_col _ _ _ HBet).
-    elim (eq_dec_pointsH O X'); intro HD3; [subst; exfalso; apply HNC2; ColHR|].
+    elim (两点重合的决定性H O X'); intro HD3; [subst; exfalso; apply HNC2; ColHR|].
     assert (HC4 := HC); apply between_one in HC; auto.
     elim HC; clear HC; intro HC; [left; auto|].
     elim HC; clear HC; intro HFalse; [right; left; apply between_comm; auto|].
@@ -4033,7 +4033,7 @@ assert (th15_aux : forall H K O L H' K' O' L',
       assert (outH O I H).
         {
         assert (HE : ColH O I H) by (exists l; auto).
-        elim (eq_dec_pointsH H I); intro HD3;
+        elim (两点重合的决定性H H I); intro HD3;
         [subst; apply outH_trivial; auto|].
         apply between_one in HE; auto;
         elim HE; clear HE; intro HE; [left; auto|].
@@ -4127,7 +4127,7 @@ assert (th15_aux : forall H K O L H' K' O' L',
       apply between_comm; assert (K <> L) by (intro; subst; Col).
       apply outH_expand in Hout5; apply betH_expand in HBet1; spliter.
       apply betH_congH3_outH_betH with L I K; try apply between_comm;
-        try apply cong_permr, congH_perml; auto.
+        try apply 等长的等价排列r, congH_perml; auto.
       }
     assert (HT : CongaH K O I K'' O' I' /\ CongaH K I O K'' I' O' /\
                  CongH O I O' I').
@@ -4137,8 +4137,8 @@ assert (th15_aux : forall H K O L H' K' O' L',
       apply betH_expand in HBet1; apply betH_expand in HBet2; spliter.
       assert (CongH I' K'' I K)
         by (apply soustraction_betH with L'' L;
-            try apply between_comm; auto using congH_sym, cong_permr, congH_perml).
-      apply th12; auto using congH_sym, cong_permr, congH_perml;
+            try apply between_comm; auto using congH_sym, 等长的等价排列r, congH_perml).
+      apply th12; auto using congH_sym, 等长的等价排列r, congH_perml;
       try apply conga_out_conga with O L O' L''; try (intro; apply HNC3; ColHR);
       try (intro; apply HNC4; ColHR); try apply outH_trivial; try (right; left); auto.
       }
@@ -4587,7 +4587,7 @@ assert(A' <> B').
 
 assert(exists E : Point, BetH A' B' E /\ CongH B' E B C).
    {
-      apply(segment_constructionH A' B' B C); auto.
+      apply(由一点往一方向构造等长线段H A' B' B C); auto.
    }
 ex_and H16 C''.
 
@@ -4715,14 +4715,14 @@ Lemma cong_preserves_col_stronger : forall A B C A' B' C',
   ColH A' B' C'.
 Proof.
 intros A B C A' B' C' HD1 HD2 HD3 HCol HCong1 HCong2 HCong3.
-elim (eq_dec_pointsH A' B'); intro HD4; subst; Col.
-elim (eq_dec_pointsH A' C'); intro HD5; subst; Col.
-elim (eq_dec_pointsH B' C'); intro HD6; subst; Col.
+elim (两点重合的决定性H A' B'); intro HD4; subst; Col.
+elim (两点重合的决定性H A' C'); intro HD5; subst; Col.
+elim (两点重合的决定性H B' C'); intro HD6; subst; Col.
 apply between_one in HCol; auto;
 elim HCol; clear HCol; intro HColH; try (elim HColH; clear HColH; intro HBet);
 try (rename HCol into HBet); [|apply colH_permut_312|apply colH_permut_231];
 [apply cong_preserves_col with A B C|apply cong_preserves_col with B C A|
- apply cong_preserves_col with C A B]; Bet; apply cong_permr, congH_perml; auto.
+ apply cong_preserves_col with C A B]; Bet; apply 等长的等价排列r, congH_perml; auto.
 Qed.
 
 Lemma betH_congH2__False : forall A B C A' B' C',
@@ -4735,7 +4735,7 @@ intros.
 apply betH_expand in H.
 apply betH_expand in H0.
 spliter.
-elim (segment_constructionH A' B' B C);auto.
+elim (由一点往一方向构造等长线段H A' B' B C);auto.
 intros C0 [HA HB].
 assert (CongH A' C0 A C)
   by (apply addition_betH with B' B;auto using congH_sym).
@@ -4766,10 +4766,10 @@ assert (HElim : outH A' B' C' \/ BetH B' A' C').
   }
 elim HElim; clear HElim; intro;[apply betH_congH3_outH_betH with A B C; auto|].
 exfalso; apply betH_congH2__False with C B A C' B' A';
-try apply between_comm; apply betH_expand in HBet1; spliter; auto using cong_permr, congH_perml.
+try apply between_comm; apply betH_expand in HBet1; spliter; auto using 等长的等价排列r, congH_perml.
 Qed.
 
-Lemma axiom_five_segmentsH:
+Lemma axiom_五线段公理_等价SASsH:
     forall A A' B B' C C' D D', A<>D -> A'<>D' -> B<>D -> B'<>D' -> C<>D -> C'<>D' ->
     CongH A B A' B' ->
     CongH B C B' C' ->
@@ -4869,7 +4869,7 @@ induction (colH_dec A B D).
   unfold outH;intuition idtac.
 Qed.
 
-Lemma five_segment :
+Lemma 五线段公理_等价SAS :
  forall A A' B B' C C' D D' : Point,
    Cong A B A' B' ->
    Cong B C B' C' ->
@@ -4884,10 +4884,10 @@ decompose [or and] H3; clear H3.
    apply betH_expand in H3;spliter.
    unfold Cong in *.
    decompose [or and] H; decompose [or and] H0;
-   decompose [or and] H1; decompose [or and] H2; subst; auto using cong_permr, congH_permlr.
+   decompose [or and] H1; decompose [or and] H2; subst; auto using 等长的等价排列r, congH_permlr.
    clean_duplicated_hyps.
    clear H H0 H1 H2.
-   destruct (eq_dec_pointsH C D).
+   destruct (两点重合的决定性H C D).
    subst.
    right.
    split;auto.
@@ -4897,7 +4897,7 @@ decompose [or and] H3; clear H3.
        apply cong_preserves_bet with A' B' C';auto using congH_refl.
          apply cong_pseudo_transitivity with A D;auto.
         apply addition with B B';auto using bet_disjoint.
-    apply construction_uniqueness with A' B';try assumption.
+    apply 点的唯一构造 with A' B';try assumption.
    left.
    assert (C'<>D').
      intro;subst.
@@ -4907,9 +4907,9 @@ decompose [or and] H3; clear H3.
     assert (BetH A B D).
     apply  cong_preserves_bet with A' B' D';auto using congH_refl, congH_sym.
     apply H.
-    apply construction_uniqueness with A B; auto using congH_sym, congH_refl.
+    apply 点的唯一构造 with A B; auto using congH_sym, congH_refl.
    repeat split;auto.
-    apply axiom_five_segmentsH with A A' B B';auto.
+    apply axiom_五线段公理_等价SASsH with A A' B B';auto.
    left;split;auto.
     apply addition with B B'.
     Col.
@@ -4921,15 +4921,15 @@ decompose [or and] H3; clear H3.
    contradiction.
    subst.
     exfalso;apply H5.
-    apply cong_identity with B';auto.
+    apply 等长的同一性 with B';auto.
    subst.
     assert (B=C).
-    apply cong_identity with C';auto.
+    apply 等长的同一性 with C';auto.
     subst;auto.
 - contradiction.
 - subst.
 assert (B'=C').
-apply cong_identity with C.
+apply 等长的同一性 with C.
 apply cong_sym;auto.
 subst.
 assumption.
@@ -4956,19 +4956,19 @@ exfalso.
 apply (between_diff D C D); trivial.
 Qed.
 
-Lemma cong_transitivity :
+Lemma 等长的传递性 :
  forall A B C D E F : Point, Cong A B E F -> Cong C D E F -> Cong A B C D.
 Proof.
 intros.
-apply cong_inner_transitivity with E F; auto using cong_sym.
+apply 等长的内传递性 with E F; auto using cong_sym.
 Qed.
 
-Lemma cong_permT :
+Lemma 等长的等价排列T :
  forall A B : Point, Cong A B B A.
 Proof.
 intros.
 unfold Cong.
-induction (eq_dec_pointsH A B).
+induction (两点重合的决定性H A B).
 subst;auto.
 left;auto using congH_perm.
 Qed.
@@ -4985,15 +4985,15 @@ Lemma pasch_general_case:
   exists x : Point, Bet P x B /\ Bet Q x A.
 Proof.
 intros.
-induction (eq_dec_pointsH A B).
+induction (两点重合的决定性H A B).
 - subst.
   unfold Bet in *;intuition.
-- induction (eq_dec_pointsH B C).
+- induction (两点重合的决定性H B C).
   subst;unfold Bet in *;intuition.
-  induction (eq_dec_pointsH A C).
+  induction (两点重合的决定性H A C).
   subst;unfold Bet in *;intuition.
-  apply inner_pasch_aux with C;auto.
-  apply bet_colH in H.
+  apply 帕施公理_aux with C;auto.
+  apply 中间性转共线H in H.
 intro.
 assert (ColH A B C).
 apply colH_trans with P C;Col.
@@ -5003,10 +5003,10 @@ unfold Bet.
 intuition (auto using between_comm).
 Qed.
 
-Lemma lower_dim_l : ~ (Bet PP PQ PR \/ Bet PQ PR PP \/ Bet PR PP PQ).
+Lemma 防降维公理_l : ~ (Bet PP PQ PR \/ Bet PQ PR PP \/ Bet PR PP PQ).
 Proof.
 intro.
-apply lower_dim_2.
+apply 防降维公理_2.
 induction H; unfold Bet in H; induction H.
 apply between_col in H; Col.
 induction H; rewrite H; Col.
@@ -5021,11 +5021,11 @@ Qed.
 Lemma ColH_bets : forall A B C, ColH A B C -> Bet A B C \/ Bet B C A \/ Bet C A B.
 Proof.
 intros.
-induction (eq_dec_pointsH A B).
+induction (两点重合的决定性H A B).
  subst;unfold Bet;auto.
-induction (eq_dec_pointsH B C).
+induction (两点重合的决定性H B C).
  subst;unfold Bet;auto.
-induction (eq_dec_pointsH A C).
+induction (两点重合的决定性H A C).
  subst;unfold Bet;auto.
 apply between_one in H;try assumption.
 unfold Bet.
@@ -5033,24 +5033,24 @@ decompose [or] H;auto using between_comm.
 Qed.
 
 Global Instance Gupta_inspired_variant_neutral_dimensionless_follows_from_Hilbert :
-  Gupta_inspired_variant_of_Tarski_neutral_dimensionless_with_decidable_point_equality.
+  Gupta_inspired_variant_of_无维度中性塔斯基公理系统_带两点重合决定性.
 Proof.
-exact (Build_Gupta_inspired_variant_of_Tarski_neutral_dimensionless_with_decidable_point_equality
-       Point Bet Cong eq_dec_pointsH cong_permT cong_transitivity cong_identity
-       segment_construction five_segment
-       bet_comm bet_trans pasch_general_case PP PQ PR lower_dim_l).
+exact (Build_Gupta_inspired_variant_of_无维度中性塔斯基公理系统_带两点重合决定性
+       Point Bet Cong 两点重合的决定性H 等长的等价排列T 等长的传递性 等长的同一性
+       由一点往一方向构造等长线段 五线段公理_等价SAS
+       bet_comm bet_trans pasch_general_case PP PQ PR 防降维公理_l).
 Defined.
 
-Global Instance H_to_T : Tarski_neutral_dimensionless.
+Global Instance H_to_T : 无维度中性塔斯基公理系统.
 Proof.
 apply GI_to_T.
 Defined.
 
 Global Instance H_to_T_PED :
-  Tarski_neutral_dimensionless_with_decidable_point_equality H_to_T.
+  无维度中性塔斯基公理系统_带两点重合决定性 H_to_T.
 Proof.
 split.
-apply eq_dec_pointsH.
+apply 两点重合的决定性H.
 Defined.
 
 
@@ -5058,7 +5058,7 @@ Lemma col_colh : forall A B C, Col A B C <-> ColH A B C.
 Proof.
 unfold Col.
 intros A B C; split; intro HCol.
-destruct HCol as [H|[H|H]]; apply bet_colH in H; Col.
+destruct HCol as [H|[H|H]]; apply 中间性转共线H in H; Col.
 apply ColH_bets, HCol.
 Qed.
 
@@ -5128,7 +5128,7 @@ destruct HM as [M HM].
 destruct (midpoint_distinct_1 M A B HAB HM).
 destruct HM.
 assert (HM : ColH A B M) by Col.
-destruct (eq_dec_pointsH D M) as [|HDM].
+destruct (两点重合的决定性H D M) as [|HDM].
   exists D; subst; left; split; Col.
 destruct (line_existence D M HDM) as [l []].
 destruct (IncidL_dec A l).
@@ -5199,7 +5199,7 @@ Ltac not_on_line A B X :=  try match goal with |H : A <> B |- _
 
 Hint Resolve betH_trans0 betH_trans1 betH2_out out2_out : bet.
 
-Hint Resolve congH_sym congH_perm congH_perml cong_permr congH_refl
+Hint Resolve congH_sym congH_perm congH_perml 等长的等价排列r congH_refl
      cong_pseudo_transitivity congH_perms: cong.
 
 Ltac Cong := eauto 3 with cong.
@@ -5215,10 +5215,10 @@ Proof.
 intros A B X Y HNC1 HNC2; assert (HD1 : X <> Y) by (intro; subst; Col).
 line X Y l HD1; destruct (cut_exists A l) as [C HC1];
 [intro; apply HNC1; exists l; auto|].
-elim (eq_dec_pointsH A B); [intro; subst; right; apply same_side_prime_refl;
+elim (两点重合的决定性H A B); [intro; subst; right; apply same_side_prime_refl;
                             intro; apply HNC1; Col|intro HD2].
 assert (HD3 : A <> C) by (apply cut_distinct with l; auto).
-elim (eq_dec_pointsH B C).
+elim (两点重合的决定性H B C).
 
   {
   intro; subst; left; split; auto; intro m; intros.
@@ -5260,7 +5260,7 @@ elim (eq_dec_pointsH B C).
 Qed.
 
 
-Lemma col_upper_dim : forall A B C P Q,
+Lemma col_防升维公理 : forall A B C P Q,
   ColH A P Q -> P <> Q -> A <> B -> A <> C -> B <> C ->
   A <> P -> A <> Q -> B <> P -> B <> Q -> C <> P -> C <> Q ->
   CongH A P A Q -> CongH B P B Q -> CongH C P C Q ->
@@ -5329,7 +5329,7 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
     destruct (th12 B I P B I Q) as [_ [_ ]]; Cong;
     try (intro; apply HNC1; ColHR).
     }
-  elim (eq_dec_pointsH A I); intro HD13; [subst; right; right; unfold Bet; Bet|].
+  elim (两点重合的决定性H A I); intro HD13; [subst; right; right; unfold Bet; Bet|].
   assert (HBet'' : ColH I P Q); Col; clear HC'.
   apply congH_colH_betH in HBet''; auto.
   elim (betH2_out P A I Q); auto; intro HF; exfalso.
@@ -5411,7 +5411,7 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
           apply betH_expand in HBet'; apply betH_expand in HBet''; spliter.
           destruct (th12 C P I C Q I) as [_ [_ ]]; Cong; try (intro; apply HNC1; ColHR).
           }
-        elim (eq_dec_pointsH A I); intro HD13; [subst; right; left; unfold Bet; Bet|].
+        elim (两点重合的决定性H A I); intro HD13; [subst; right; left; unfold Bet; Bet|].
         assert (HBet''' : ColH I P Q)
           by (apply betH_expand in HBet'; spliter; Col).
         apply congH_colH_betH in HBet''';
@@ -5448,7 +5448,7 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
           apply betH_expand in HBet'; apply betH_expand in HBet''; spliter.
           destruct (th12 B P I B Q I) as [_ [_ ]]; Cong; try (intro; apply HNC1; ColHR).
           }
-        elim (eq_dec_pointsH A I); intro HD13; [subst; left; unfold Bet; Bet|].
+        elim (两点重合的决定性H A I); intro HD13; [subst; left; unfold Bet; Bet|].
         assert (HBet''' : ColH I P Q)
           by (apply betH_expand in HBet'; spliter; Col).
         apply congH_colH_betH in HBet''';
@@ -5480,7 +5480,7 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
   }
 Qed.
 
-Lemma TS_upper_dim : forall A B C P Q,
+Lemma TS_防升维公理 : forall A B C P Q,
   cut' A B P Q -> P <> Q -> A <> B -> A <> C -> B <> C ->
   A <> P -> A <> Q -> B <> P -> B <> Q -> C <> P -> C <> Q ->
   CongH A P A Q -> CongH B P B Q -> CongH C P C Q ->
@@ -5489,8 +5489,8 @@ Proof.
 intros A B C P Q HCut HD1 HD2 HD3 HD4 HD5 HD6 HD7 HD8 HD9 HD10.
 intros HCong1 HCong2 HCong3; destruct HCut as [_ HCut]; line P Q l HD1.
 assert (HC : cut l A B); [apply HCut; auto|clear HCut; rename HC into HCut].
-elim (colH_dec A P Q); intro HNC1; [elim (col_upper_dim A B C P Q); auto|].
-elim (colH_dec B P Q); intro HNC2; [destruct (col_upper_dim B C A P Q) as [|[|]]; auto|].
+elim (colH_dec A P Q); intro HNC1; [elim (col_防升维公理 A B C P Q); auto|].
+elim (colH_dec B P Q); intro HNC2; [destruct (col_防升维公理 B C A P Q) as [|[|]]; auto|].
 destruct HCut as [HNI1 [HNI2 [I [HI HBet]]]].
 assert (HC' : ColH P Q I) by (exists l; auto).
 assert (HD11 : P <> I).
@@ -5518,12 +5518,12 @@ assert (HCong4 : CongH I P I Q).
   }
 assert (HC : ColH A B C).
   {
-  elim (eq_dec_pointsH C I); intro HD13; subst;
+  elim (两点重合的决定性H C I); intro HD13; subst;
   try solve[apply between_col in HBet; Col].
   assert (HC : ColH A C I); [|apply betH_expand in HBet; spliter; ColHR].
   apply betH_expand in HBet; spliter.
-  elim (col_upper_dim I A C P Q); Col; intro HE;
-  elim HE; clear HE; intro HE; apply bet_colH in HE; Col.
+  elim (col_防升维公理 I A C P Q); Col; intro HE;
+  elim HE; clear HE; intro HE; apply 中间性转共线H in HE; Col.
   }
 apply between_one in HC; Bet; unfold Bet.
 elim HC; clear HC; intro HC; [|elim HC; clear HC; intro HC]; auto.
@@ -5535,7 +5535,7 @@ Proof.
 intros A B X Y [HD H]; split; auto; intros l HI1 HI2; apply cut_comm; auto.
 Qed.
 
-Lemma TS_upper_dim_bis : forall A B C P Q I,
+Lemma TS_防升维公理_bis : forall A B C P Q I,
   BetH P I Q -> BetH I B A -> P <> Q -> A <> B -> A <> C -> B <> C ->
   A <> P -> A <> Q -> B <> P -> B <> Q -> C <> P -> C <> Q ->
   CongH A P A Q -> CongH B P B Q -> CongH C P C Q ->
@@ -5543,8 +5543,8 @@ Lemma TS_upper_dim_bis : forall A B C P Q I,
 Proof.
 intros A B C P Q I HBet1 HBet2 HD1 HD2 HD3 HD4 HD5 HD6 HD7 HD8 HD9 HD10.
 intros HCong1 HCong2 HCong3.
-elim (colH_dec A P Q); intro HNC1; [elim (col_upper_dim A B C P Q); auto|].
-elim (colH_dec B P Q); intro HNC2; [destruct (col_upper_dim B C A P Q) as [|[|]]; auto|].
+elim (colH_dec A P Q); intro HNC1; [elim (col_防升维公理 A B C P Q); auto|].
+elim (colH_dec B P Q); intro HNC2; [destruct (col_防升维公理 B C A P Q) as [|[|]]; auto|].
 assert (HConga : CongaH P B I Q B I).
   {
   apply th14 with A A; Bet; apply betH_expand in HBet1;
@@ -5566,20 +5566,20 @@ assert (HC : ColH A B C).
   assert (HC1 : ColH A B I).
     {
     apply betH_expand in HBet1; apply betH_expand in HBet2; spliter.
-    elim (col_upper_dim I A B P Q); Col.
+    elim (col_防升维公理 I A B P Q); Col.
     }
-  elim (eq_dec_pointsH C I); intro HD11; subst; Col.
+  elim (两点重合的决定性H C I); intro HD11; subst; Col.
   assert (HC2 : ColH A C I); [|apply betH_expand in HBet2; spliter; ColHR].
   apply betH_expand in HBet1; apply betH_expand in HBet2; spliter.
-  elim (col_upper_dim I A C P Q); Col; intro HE;
-  elim HE; clear HE; intro HE; apply bet_colH in HE; Col.
+  elim (col_防升维公理 I A C P Q); Col; intro HE;
+  elim HE; clear HE; intro HE; apply 中间性转共线H in HE; Col.
   }
 apply between_one in HC; Bet; unfold Bet.
 elim HC; clear HC; intro HC; [|elim HC; clear HC; intro HC]; auto.
 apply between_comm in HC; auto.
 Qed.
 
-Lemma upper_dim : forall A B C P Q,
+Lemma 防升维公理 : forall A B C P Q,
   P <> Q -> A <> B -> A <> C -> B <> C ->
   Cong A P A Q -> Cong B P B Q -> Cong C P C Q ->
   (Bet A B C \/ Bet B C A \/ Bet C A B).
@@ -5591,13 +5591,13 @@ elim HCong3; clear HCong3; intro HCong3; [|spliter; repeat subst; intuition].
 destruct HCong1 as [HCong1 [HD5 HD6]].
 destruct HCong2 as [HCong2 [HD7 HD8]].
 destruct HCong3 as [HCong3 [HD9 HD10]].
-elim (colH_dec A P Q); intro HNC1; [elim (col_upper_dim A B C P Q); auto|].
-elim (colH_dec B P Q); intro HNC2; [destruct (col_upper_dim B C A P Q) as [|[|]]; auto|].
-elim (colH_dec C P Q); intro HNC3; [destruct (col_upper_dim C A B P Q) as [|[|]]; auto|].
+elim (colH_dec A P Q); intro HNC1; [elim (col_防升维公理 A B C P Q); auto|].
+elim (colH_dec B P Q); intro HNC2; [destruct (col_防升维公理 B C A P Q) as [|[|]]; auto|].
+elim (colH_dec C P Q); intro HNC3; [destruct (col_防升维公理 C A B P Q) as [|[|]]; auto|].
 elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS1;
-[elim (TS_upper_dim A B C P Q); auto|].
+[elim (TS_防升维公理 A B C P Q); auto|].
 elim (plane_separation_2D _ _ _ _ HNC1 HNC3); intro HS2;
-[destruct (TS_upper_dim C A B P Q) as [|[|]]; try apply cut'_comm; auto|].
+[destruct (TS_防升维公理 C A B P Q) as [|[|]]; try apply cut'_comm; auto|].
 assert (HNC4 : ~ ColH P A B).
   {
   intro HC1; assert (H : ColH B P A) by Col; assert (HC2 : ColH A B Q)
@@ -5643,7 +5643,7 @@ elim (plane_separation_2D _ _ _ _ HNC4 HNC5); intro HS3.
 
     {
     elim HBet2; clear HBet2; intro HBet2;
-    [elim (TS_upper_dim_bis A B C P Q I)|elim (TS_upper_dim_bis B A C P Q I)];
+    [elim (TS_防升维公理_bis A B C P Q I)|elim (TS_防升维公理_bis B A C P Q I)];
     auto; intro HE; [|elim HE; clear HE; intro HE]; apply bet_comm in HE; auto.
     }
   }
@@ -5661,13 +5661,13 @@ Global Instance H2D_to_T2D : Tarski_2D H_to_T_PED.
 Proof.
 split.
 intros.
-elim (point_equality_decidability A B); intro;
+elim (两点要么重合要么不重合 A B); intro;
 [unfold tarski_axioms.Bet; simpl; subst; unfold Bet; auto|].
-elim (point_equality_decidability A C); intro;
+elim (两点要么重合要么不重合 A C); intro;
 [unfold tarski_axioms.Bet; simpl; subst; unfold Bet; auto|].
-elim (point_equality_decidability B C); intro;
+elim (两点要么重合要么不重合 B C); intro;
 [unfold tarski_axioms.Bet; simpl; subst; unfold Bet; auto|].
-apply upper_dim with P Q; auto.
+apply 防升维公理 with P Q; auto.
 Defined.
 
 End HilbertContext_2D.
@@ -5676,15 +5676,15 @@ Section HilbertContext_3D.
 
 Context `{H3D : Hilbert_neutral_3D}.
 
-Lemma tarski_upper_dim : forall A B C P Q R, P <> Q -> Q <> R -> P <> R ->
+Lemma tarski_防升维公理 : forall A B C P Q R, P <> Q -> Q <> R -> P <> R ->
   Cong A P A Q -> Cong B P B Q -> Cong C P C Q ->
   Cong A P A R -> Cong B P B R -> Cong C P C R ->
   (Bet A B C \/ Bet B C A \/ Bet C A B).
 Proof.
-cut upper_dim_3_axiom.
-unfold upper_dim_3_axiom; auto.
+cut 三维防升维公理_axiom.
+unfold 三维防升维公理_axiom; auto.
 cut plane_intersection_axiom.
-apply upper_dim_3_equivalent_axioms; simpl; tauto.
+apply 三维防升维公理_equivalent_axioms; simpl; tauto.
 intros A B C D E F P HP1 HP2.
 apply coplanar_plane in HP1.
 apply coplanar_plane in HP2.
@@ -5703,9 +5703,9 @@ Global Instance Tarski_3D_follows_from_Hilbert_3D : (Tarski_3D H_to_T_PED).
 Proof.
 exists HS1 HS2 HS3 HS4.
 intro HX.
-apply lower_dim_3.
+apply 三维防降维公理.
 apply coplanar_plane; auto.
-apply tarski_upper_dim.
+apply tarski_防升维公理.
 Defined.
 
 End HilbertContext_3D.
@@ -5717,7 +5717,7 @@ Section Hilbert_euclidean.
 Context `{Hi:Hilbert_euclidean}.
 
 Lemma Col__ColH : forall A B C, Col A B C -> ColH A B C.
-Proof. intros A B C [HBet|[HBet|HBet]]; apply bet_colH in HBet; Col. Qed.
+Proof. intros A B C [HBet|[HBet|HBet]]; apply 中间性转共线H in HBet; Col. Qed.
 
 Lemma ColH__Col : forall A B C, ColH A B C -> Col A B C.
 Proof. intros A B C HCol; apply ColH_bets in HCol; auto. Qed.
@@ -5817,8 +5817,8 @@ Lemma decidability_of_intersectionH :
   parallel_postulates.decidability_of_intersection.
 Proof.
 intros A B C D.
-elim (eq_dec_pointsH A B); intro HAB; subst; [left; exists C; Col|].
-elim (eq_dec_pointsH C D); intro HCD; subst; [left; exists A; Col|].
+elim (两点重合的决定性H A B); intro HAB; subst; [left; exists C; Col|].
+elim (两点重合的决定性H C D); intro HCD; subst; [left; exists A; Col|].
 destruct (line_existence A B) as [l [Hl1 Hl2]]; auto.
 destruct (line_existence C D) as [m [Hm1 Hm2]]; auto.
 elim (hilbert_axioms.decidability_of_intersection l m).
@@ -5844,7 +5844,7 @@ assert (H := equivalent_postulates_with_decidability_of_intersection_of_lines).
 apply (H decidability_of_intersectionH); simpl; tauto.
 Qed.
 
-Global Instance H_euclidean_to_T_euclidean : Tarski_euclidean H_to_T_PED.
+Global Instance H_euclidean_to_T_euclidean : 塔斯基公理系统_欧几里得几何 H_to_T_PED.
 Proof. split; apply tarski_s_euclid. Qed.
 
 End Hilbert_euclidean_ID.

@@ -3,7 +3,7 @@ Require Export GeoCoq.Tarski_dev.Ch14_prod.
 Section Order.
 
 Context `{T2D:Tarski_2D}.
-Context `{TE:@Tarski_euclidean Tn TnEQD}.
+Context `{TE:@塔斯基公理系统_欧几里得几何 Tn TnEQD}.
 
 Lemma l14_36_a : forall O E E' A B C,
  Sum O E E' A B C -> Out O A B -> Bet O A C.
@@ -21,7 +21,7 @@ Proof.
     assert(Parallelogram O A C B).
       right.
       auto.
-    induction(eq_dec_points A B).
+    induction(两点重合的决定性 A B).
       subst B.
       unfold Parallelogram_flat in H7.
       spliter.
@@ -40,18 +40,18 @@ Proof.
       apply plg_permut in H8.
       apply plg_permut in H8.
       assert(Bet A B C).
-        apply between_symmetry.
+        apply 中间性的对称性.
         apply(plg_bet1 B O A C).
           assumption.
-        apply between_symmetry.
+        apply 中间性的对称性.
         assumption.
       apply (outer_transitivity_between O A B C); auto.
     assert(Bet B A C).
-      apply between_symmetry.
+      apply 中间性的对称性.
       apply(plg_bet1 A O B C).
         apply plg_comm2.
         assumption.
-      apply between_symmetry.
+      apply 中间性的对称性.
       assumption.
     apply (outer_transitivity_between2 O B A C); auto.
 Qed.
@@ -67,7 +67,7 @@ Proof.
     split.
       intro.
       subst C.
-      apply between_identity in HH.
+      apply 中间性的同一律 in HH.
       subst A.
       tauto.
     intro.
@@ -99,7 +99,7 @@ Lemma pos_null_neg : forall O E E' A MA,
 Proof.
     intros.
     unfold Opp in H.
-    induction (eq_dec_points A O).
+    induction (两点重合的决定性 A O).
       right; left; auto.
     assert(HS:= H).
     unfold Sum in H.
@@ -140,13 +140,13 @@ Proof.
       unfold Out.
       repeat split; Col.
       left.
-      apply between_symmetry.
+      apply 中间性的对称性.
       auto.
     apply False_ind.
     apply H17.
     unfold Out.
     repeat split; auto.
-    apply between_symmetry in H16.
+    apply 中间性的对称性 in H16.
     assert(HH:= l5_2 MA O A E H18 H16 H2).
     tauto.
 Qed.
@@ -292,7 +292,7 @@ Proof.
     repeat split; auto.
       intro.
       subst MA.
-      apply cong_identity in H2.
+      apply 等长的同一性 in H2.
       contradiction.
     induction H4.
       apply(outer_transitivity_between MA O A E); Between.
@@ -312,7 +312,7 @@ Proof.
     repeat split; auto.
       intro.
       subst MA.
-      apply cong_identity in H2.
+      apply 等长的同一性 in H2.
       contradiction.
     apply (l5_2 A O E MA); auto.
 Qed.
@@ -382,12 +382,12 @@ Proof.
       intro.
       subst mA.
       apply H.
-      apply cong_identity in H5.
+      apply 等长的同一性 in H5.
       assumption.
       auto.
     induction H7.
       apply(outer_transitivity_between mA O A E); Between.
-    apply between_symmetry.
+    apply 中间性的对称性.
     apply(between_exchange3 A E O mA); Between.
 Qed.
 
@@ -572,7 +572,7 @@ Lemma ps_le : forall O E E' X,
   ~ Col O E E' -> Bet O X E \/ Bet O E X -> LeP O E E' O X.
 Proof.
 intros O E E' X HNC HBet.
-elim (eq_dec_points O X); intro HOX; [right; auto|left].
+elim (两点重合的决定性 O X); intro HOX; [right; auto|left].
 exists X; split; [apply diff_A_O; induction HBet; Col|].
 assert_diffs; repeat (split; Col).
 Qed.
@@ -590,7 +590,7 @@ Lemma col_2_le_or_ge : forall O E E' A B,
 Proof.
 intros O E E' A B HNC HColA HColB.
 assert (HDiff1 : O <> E) by (assert_diffs; auto).
-elim (eq_dec_points A B); intro HDiff2; treat_equalities; [left; right; auto|].
+elim (两点重合的决定性 A B); intro HDiff2; treat_equalities; [left; right; auto|].
 destruct (diff_exists O E E' B A) as [D HD]; Col.
 assert (HColD : Col O E D) by (apply diff_ar2 in HD; unfold Ar2 in *; spliter; Col).
 assert (HDiff3 : O <> D)
@@ -730,7 +730,7 @@ intros O E E' A B C HBet HLt.
 assert (HNC : ~ Col O E E')
   by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
 assert (HDiff1 : O <> E) by (assert_diffs; auto).
-elim (eq_dec_points B C); intro HDiff2; [right; auto|].
+elim (两点重合的决定性 B C); intro HDiff2; [right; auto|].
 assert (HDiff3 : A <> B) by (apply ltP_neq with O E E'; auto).
 assert (HColA : Col O E A)
   by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
@@ -738,8 +738,8 @@ assert (HColB : Col O E B)
   by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
 assert (HColC : Col O E C) by ColR.
 destruct (diff_exists O E E' C B) as [CMB HCMB]; Col.
-elim (eq_dec_points O A); intro HDiff4; elim (eq_dec_points O B); intro HDiff5;
-elim (eq_dec_points O C); intro HDiff6; treat_equalities;
+elim (两点重合的决定性 O A); intro HDiff4; elim (两点重合的决定性 O B); intro HDiff5;
+elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 [intuition|intuition|intuition| |right; auto| | |].
 
   {
@@ -791,7 +791,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
     {
     destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-    elim (eq_dec_points A BMA); intro HDiff6; treat_equalities;
+    elim (两点重合的决定性 A BMA); intro HDiff6; treat_equalities;
     [apply l14_36_a in HBMA; try apply out_trivial; auto;
      apply HDiff3; apply between_equality with O; Between|].
     apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -811,7 +811,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
       {
       apply HDiff3; apply between_equality with O; Between.
-      apply between_symmetry; apply outer_transitivity_between2 with BMA; auto.
+      apply 中间性的对称性; apply outer_transitivity_between2 with BMA; auto.
       }
 
       {
@@ -860,7 +860,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
             {
             destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-            elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+            elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
             [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
              apply HDiff3; apply between_equality with O; Between|].
             apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -907,7 +907,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
           {
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-          elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+          elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
            apply HDiff3; apply between_equality with O; eBetween|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -950,7 +950,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
           {
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-          elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+          elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
            apply HDiff3; apply between_equality with O; eBetween|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -995,7 +995,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
         exfalso; apply neg_not_pos in HNgB; apply HNgB; clear HNgB.
         do 2 (split; auto).
         destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-        elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+        elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
         [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
          apply HDiff3; apply between_equality with O; eBetween|].
         apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -1091,7 +1091,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
             {
             destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-            elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+            elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
             [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
              apply HDiff3; apply between_equality with O; Between|].
             apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -1138,7 +1138,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
           {
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-          elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+          elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
            apply HDiff3; apply between_equality with O; eBetween|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -1181,7 +1181,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
           {
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-          elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+          elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
            apply HDiff3; apply between_equality with O; eBetween|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -1226,7 +1226,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
         exfalso; apply neg_not_pos in HNgB; apply HNgB; clear HNgB.
         do 2 (split; auto).
         destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-        elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+        elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
         [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
          apply HDiff3; apply between_equality with O; eBetween|].
         apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -1321,7 +1321,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
             {
             destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-            elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+            elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
             [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
              apply HDiff3; apply between_equality with O; Between|].
             apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -1367,7 +1367,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
           {
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-          elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+          elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
            apply HDiff3; apply between_equality with O; eBetween|].
           apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -1422,7 +1422,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
         exfalso; apply neg_not_pos in HNgB; apply HNgB; clear HNgB.
         do 2 (split; auto).
         destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-        elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+        elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
         [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
          apply HDiff4; apply between_equality with B; eBetween|].
         apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -1524,7 +1524,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
         exfalso; apply neg_not_pos in HNgB; apply HNgB; clear HNgB.
         do 2 (split; auto).
         destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-        elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+        elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
         [apply l14_36_a in HBMA; try apply out_trivial; auto; exfalso;
          apply HDiff4; apply between_equality with B; eBetween|].
         apply sum_cong in HBMA; Col; apply plgf_bet in HBMA.
@@ -1661,7 +1661,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
           {
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-          elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+          elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [destruct HPsBMA as [H [H' HElim]]; clear H; clear H';
            elim HElim; clear HElim; intro HBet6; exfalso;
            [apply HDiff4; apply between_equality with E|
@@ -1698,7 +1698,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
           {
           assert (HBet6 : Bet O B C).
             {
-            elim (eq_dec_points B CMB); intro HDiff7; treat_equalities; [|eBetween].
+            elim (两点重合的决定性 B CMB); intro HDiff7; treat_equalities; [|eBetween].
             apply l14_36_a in HCMB'; try apply out_trivial; auto.
             }
           elim (l5_2 O B A C); Between; intro HBet7.
@@ -1720,7 +1720,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
 
           {
           destruct HLt as [BMA [HBMA HPsBMA]]; apply diff_sum in HBMA.
-          elim (eq_dec_points A BMA); intro HDiff7; treat_equalities;
+          elim (两点重合的决定性 A BMA); intro HDiff7; treat_equalities;
           [destruct HPsBMA as [H [H' HElim]]; clear H; clear H';
            elim HElim; clear HElim; intro HBet6; exfalso;
            [apply HDiff4; apply between_equality with E|
@@ -1757,7 +1757,7 @@ elim (eq_dec_points O C); intro HDiff6; treat_equalities;
           {
           assert (HBet6 : Bet O B C).
             {
-            elim (eq_dec_points B CMB); intro HDiff7; treat_equalities; [|eBetween].
+            elim (两点重合的决定性 B CMB); intro HDiff7; treat_equalities; [|eBetween].
             apply l14_36_a in HCMB'; try apply out_trivial; auto.
             }
 
@@ -1791,7 +1791,7 @@ Proof.
 intros O E E' A B C HBet HLt.
 assert (HNC : ~ Col O E E')
   by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
-elim (eq_dec_points B C); intro HDiff2; [right; auto|].
+elim (两点重合的决定性 B C); intro HDiff2; [right; auto|].
 assert (HDiff3 : B <> A) by (apply ltP_neq with O E E'; auto).
 assert (HColA : Col O E A)
   by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).

@@ -3,7 +3,7 @@ Require Export GeoCoq.Tarski_dev.Ch13_1.
 
 Section Length_1.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** Pappus Desargues *)
 
@@ -35,7 +35,7 @@ Proof.
     destruct HH.
     apply H3 in H0.
     apply H5 in H1.
-    apply cong_transitivity with X Y; Cong.
+    apply 等长的传递性 with X Y; Cong.
 Qed.
 
 Lemma lg_cong_lg : forall l A B C D, Q_Cong l -> l A B -> Cong A B C D -> l C D.
@@ -49,7 +49,7 @@ Proof.
     destruct HP.
     destruct HQ.
     apply H4.
-    eapply cong_transitivity.
+    eapply 等长的传递性.
       apply H3.
       assumption.
     assumption.
@@ -86,7 +86,7 @@ Ltac lg_instance l A B :=
 
 Section Length_2.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma is_len_cong : forall A B C D l, Len A B l -> Len C D l -> Cong A B C D.
 Proof.
@@ -112,7 +112,7 @@ Proof.
     destruct HH1.
     apply H3 in H1.
     apply H4.
-    apply cong_transitivity with A B; trivial.
+    apply 等长的传递性 with A B; trivial.
 Qed.
 
 Lemma not_cong_is_len : forall A B C D l , ~(Cong A B C D) -> Len A B l -> ~(l C D).
@@ -150,10 +150,10 @@ Proof.
     destruct HH.
     apply H4 in H3.
     apply H1.
-    apply cong_symmetry in  H3.
-    apply cong_reverse_identity in H3.
+    apply 等长的对称性 in  H3.
+    apply 等长的反向同一性 in H3.
     subst Y.
-    apply cong_trivial_identity.
+    apply 等长的平凡同一性.
 Qed.
 
 Lemma lg_null_trivial : forall l A, Q_Cong l -> l A A -> Q_Cong_Null l.
@@ -173,7 +173,7 @@ Proof.
     unfold Q_Cong in H.
     ex_and H A.
     ex_and H0 B.
-    induction(eq_dec_points A B).
+    induction(两点重合的决定性 A B).
       subst B.
       left.
       unfold Q_Cong_Null.
@@ -190,7 +190,7 @@ Proof.
     apply H0.
     assert(Cong A B P P).
       apply H; auto.
-    apply cong_identity in H2.
+    apply 等长的同一性 in H2.
     auto.
 Qed.
 
@@ -211,7 +211,7 @@ Proof.
       destruct HP.
       assert(l X Y).
         apply H3.
-        apply cong_reflexivity.
+        apply 等长的自反性.
       assert(X <> Y).
         intro.
         subst Y.
@@ -221,7 +221,7 @@ Proof.
           auto.
         exists X.
         auto.
-      assert(HH:= segment_construction_3 A P X Y H1 H6).
+      assert(HH:= 由一点往一方向构造等长线段_3 A P X Y H1 H6).
       ex_and HH B.
       exists B.
       assert(HH:= H2 A B).
@@ -245,7 +245,7 @@ Proof.
     destruct HP.
     assert(l X Y).
       apply H2.
-      apply cong_reflexivity.
+      apply 等长的自反性.
     assert(X <> Y).
       intro.
       subst Y.
@@ -255,7 +255,7 @@ Proof.
         auto.
       exists X.
       auto.
-    assert(HH:= segment_construction_3 A P X Y H H6).
+    assert(HH:= 由一点往一方向构造等长线段_3 A P X Y H H6).
     ex_and HH B.
     exists B.
     split.
@@ -278,7 +278,7 @@ Proof.
     destruct HP.
     assert(l X Y).
       apply H0.
-      apply cong_reflexivity.
+      apply 等长的自反性.
     prolong A M B X Y.
     exists B.
     split; auto.
@@ -317,7 +317,7 @@ Tactic Notation "soit" ident(B) "sur" "la" "demie" "droite" ident(A) ident(P) "/
 
 Section Length_3.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma ex_points_lg_not_col : forall l P, Q_Cong l -> ~ Q_Cong_Null l -> exists A, exists B, l A B /\ ~Col A B P.
 Proof.
@@ -376,7 +376,7 @@ Require Import Setoid.
 
 Section Length_4.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Notation "l1 =l= l2" := (EqL l1 l2) (at level 80, right associativity).
 
@@ -513,8 +513,8 @@ apply H9 in H1.
 apply H11 in H2.
 destruct HH.
 apply H13 in H3.
-apply cong_transitivity with A B; trivial.
-apply cong_transitivity with A1 B1; Cong.
+apply 等长的传递性 with A B; trivial.
+apply 等长的传递性 with A1 B1; Cong.
 
 intro.
 assert(HH:= H4 A0 B0).
@@ -529,8 +529,8 @@ apply H9 in H1.
 apply H11 in H2.
 destruct HP.
 apply H13 in H3.
-apply cong_transitivity with A2 B2; trivial.
-apply cong_transitivity with A B; Cong.
+apply 等长的传递性 with A2 B2; trivial.
+apply 等长的传递性 with A B; Cong.
 Qed.
 
 

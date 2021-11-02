@@ -2,7 +2,7 @@ Require Export GeoCoq.Highschool.circumcenter.
 
 Section Orthocenter.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 (**
 Orthocenter
@@ -170,17 +170,17 @@ assert (Midpoint B D F) by (apply diff_not_col_col_par4_mid with A C; finish).
 assert (Midpoint C D E) by (apply diff_not_col_col_par4_mid with A B; finish).
 
 assert_diffs.
-elim (eq_dec_points A O); intro.
+elim (两点重合的决定性 A O); intro.
 
   treat_equalities; apply col_permutation_4; apply cop_perp2__col with A B...
   apply perp_right_comm; apply perp_col1 with B1...
 
-elim (eq_dec_points B O); intro.
+elim (两点重合的决定性 B O); intro.
 
   treat_equalities; apply col_permutation_4; apply cop_perp2__col with A B...
   apply perp_col1 with A1...
 
-elim (eq_dec_points C O); intro.
+elim (两点重合的决定性 C O); intro.
 
   subst; Col.
 
@@ -300,7 +300,7 @@ unfold is_orthocenter in *.
 spliter.
 assert (Perp_at H B C A H).
 apply l8_14_2_1b_bis;finish.
-induction (eq_dec_points B H).
+induction (两点重合的决定性 B H).
 subst;auto.
 assert (Perp A H B H)
  by (apply (perp_col1 A H B C H);finish).

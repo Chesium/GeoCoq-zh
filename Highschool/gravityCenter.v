@@ -3,7 +3,7 @@ Require Export GeoCoq.Highschool.varignon.
 
 Section GravityCenter.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 (**
 Center of gravity
@@ -40,7 +40,7 @@ forall A B C I J,
 Proof with finish.
 intros.
 assert_bets.
-elim (inner_pasch A B C J I)...
+elim (帕施公理 A B C J I)...
 intro G;intros.
 exists G.
 spliter;assert_cols;split...
@@ -517,7 +517,7 @@ apply is_gravity_center_perm in H0;intuition.
 Qed.
 
 End GravityCenter.
-(* If we prove it with "Context `{Tn:Tarski_neutral_dimensionless}." we do not get the warning
+(* If we prove it with "Context `{Tn:无维度中性塔斯基公理系统}." we do not get the warning
 "the hint: eapply @is_gravity_center_perm_1 will only be used by eauto".
 There must be a bug with the handling of bases of hints. *)
 Hint Resolve is_gravity_center_coplanar : cop.
@@ -539,8 +539,8 @@ Ltac permutation_intro_in_goal :=
  | |- Midpoint ?A ?B ?C => apply Mid_cases
  | |- ~ Col ?A ?B ?C => apply NCol_cases
  | |- Col ?A ?B ?C => apply Col_cases
- | |- Bet ?A ?B ?C => apply Bet_cases
- | |- Cong ?A ?B ?C ?D => apply Cong_cases
+ | |- Bet ?A ?B ?C => apply 中间性的各排列情况
+ | |- Cong ?A ?B ?C ?D => apply 等长的各排列情况
  | |- is_gravity_center ?G ?A ?B ?C => apply is_gravity_center_cases
  end.
 

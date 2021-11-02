@@ -56,7 +56,7 @@ http://mep-outils.sesamath.net/manuel_numerique/index.php?ouvrage=ms4_2011&page_
 
 Section Exercices.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 
 (**
@@ -310,7 +310,7 @@ assumption.
 assert(Par C B N M)
  by (perm_apply (triangle_mid_par B C A N M);finish).
 
-destruct (eq_dec_points R B).
+destruct (两点重合的决定性 R B).
 {
 treat_equalities.
 assert(Plg M N T S)
@@ -319,7 +319,7 @@ assert(Parallelogram M N T S)
  by(apply(plg_to_parallelogram M N T S);finish).
 apply(Plg_perm M N T S);finish.
 }
-destruct (eq_dec_points R C).
+destruct (两点重合的决定性 R C).
 {
 treat_equalities.
 assert(Plg N M S T)
@@ -516,9 +516,9 @@ assert(Par B A I x /\ Cong B x0 I x)
 spliter.
 
 assert(Cong A x0 I x)
-  by(apply(cong_transitivity A x0 x0 B I x);finish).
+  by(apply(等长的传递性 A x0 x0 B I x);finish).
 assert( Cong I x J x)
-  by(apply(cong_transitivity I x A x0 J x);finish).
+  by(apply(等长的传递性 I x A x0 J x);finish).
 assert(Midpoint x I J)
   by(apply(l7_20_bis x I J);finish).
 apply (mid_plg B J D I x);finish.
@@ -561,7 +561,7 @@ split.
 assert(Midpoint K C I).
   (apply(triangle_par_mid C A I J K);finish).
 finish.
-destruct (eq_dec_points I M).
+destruct (两点重合的决定性 I M).
 {
 treat_equalities.
 intuition.
@@ -623,7 +623,7 @@ assert( Par A A' B x)
   by(apply(par_trans A A' B B' B x);finish).
 assert_diffs.
 assert(x=B'\/x<>B')
-  by(apply(eq_dec_points x B');finish).
+  by(apply(两点重合的决定性 x B');finish).
 destruct H14.
 destruct H14.
 assert(Col A C' A')

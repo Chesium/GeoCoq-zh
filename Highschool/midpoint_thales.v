@@ -3,7 +3,7 @@
 Require Export GeoCoq.Tarski_dev.Annexes.midpoint_theorems.
 Section T_42.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma midpoint_thales : forall O A B C : Tpoint,
    ~ Col A B C ->

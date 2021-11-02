@@ -4,7 +4,7 @@ Ltac eCol := eauto with col.
 
 Section T6_1.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma bet_out : forall A B C, B <> A -> Bet A B C -> Out A B C.
 Proof.
@@ -24,7 +24,7 @@ Lemma out_dec : forall P A B, Out P A B \/ ~ Out P A B.
 Proof.
     intros.
     unfold Out.
-    elim (bet_dec P A B);intro; elim (bet_dec P B A);intro; elim (eq_dec_points A P);intro; elim (eq_dec_points B P);intro; tauto.
+    elim (bet_dec P A B);intro; elim (bet_dec P B A);intro; elim (两点重合的决定性 A P);intro; elim (两点重合的决定性 B P);intro; tauto.
 Qed.
 
 Lemma out_diff1 : forall A B C, Out A B C -> B <> A.
@@ -73,7 +73,7 @@ Qed.
 Lemma bet_out__bet : forall A B C P, Bet A P C -> Out P A B -> Bet B P C.
 Proof.
     intros A B C P HBet HOut.
-    destruct (eq_dec_points C P).
+    destruct (两点重合的决定性 C P).
       subst; Between.
     apply (l6_2 A); trivial; destruct HOut as [HPA [HPB]]; auto.
 Qed.
@@ -126,9 +126,9 @@ Proof.
     unfold Out.
     induction H.
       contradiction.
-    induction (eq_dec_points A P).
+    induction (两点重合的决定性 A P).
       subst P; intuition.
-    induction (eq_dec_points B P).
+    induction (两点重合的决定性 B P).
       subst P; intuition.
     induction H; repeat split; Between.
 Qed.
@@ -237,13 +237,13 @@ Lemma l6_11_existence : forall A B C R,
   R<>A -> B<>C -> exists X, Out A X R /\ Cong A X B C.
 Proof.
     intros.
-    assert (exists X : Tpoint, (Bet A R X \/ Bet A X R) /\ Cong A X B C) by (apply (segment_construction_2);assumption).
+    assert (exists X : Tpoint, (Bet A R X \/ Bet A X R) /\ Cong A X B C) by (apply (由一点往一方向构造等长线段_2);assumption).
     ex_and H1 X.
     exists X.
     unfold Out;repeat split; try intro;treat_equalities;intuition.
 Qed.
 
-Lemma segment_construction_3 : forall A B X Y, A <> B -> X <> Y -> exists C, Out A B C /\ Cong A C X Y.
+Lemma 由一点往一方向构造等长线段_3 : forall A B X Y, A <> B -> X <> Y -> exists C, Out A B C /\ Cong A C X Y.
 Proof.
     intros.
     destruct (l6_11_existence A X Y B) as [C [HC1 HC2]]; auto.
@@ -281,7 +281,7 @@ Qed.
 Lemma l6_16_1 : forall P Q S X, P<>Q -> Col S P Q -> Col X P Q -> Col X P S.
 Proof.
     intros.
-    destruct (eq_dec_points S P).
+    destruct (两点重合的决定性 S P).
       subst; Col.
     assert((Bet P S X \/ Bet P X S) -> (Bet P S X \/ Bet S X P)) by (intro; induction H3; Between).
     unfold Col.
@@ -300,7 +300,7 @@ Lemma col_transitivity_1 : forall P Q A B,
   P<>Q -> Col P Q A -> Col P Q B -> Col P A B.
 Proof.
     intros.
-    induction (eq_dec_points A P).
+    induction (两点重合的决定性 A P).
       subst; unfold Col; Between.
     assert (T:=l6_16_1 P Q A B).
     apply col_permutation_1; apply T; Col.
@@ -319,20 +319,20 @@ Lemma l6_21 : forall A B C D P Q,
   ~ Col A B C -> C<>D -> Col A B P -> Col A B Q -> Col C D P -> Col C D Q -> P=Q.
 Proof.
     intros.
-    elim (eq_dec_points P Q); intro; try assumption.
+    elim (两点重合的决定性 P Q); intro; try assumption.
     cut False.
       intro; intuition.
     apply not_col_distincts in H.
     spliter.
     assert (Col C P Q) by (apply col_transitivity_1 with D; Col).
     assert (Col Q B C).
-      induction (eq_dec_points Q A).
+      induction (两点重合的决定性 Q A).
         subst; apply col_transitivity_1 with P; Col.
       apply col_transitivity_1 with P; Col; apply col_permutation_1, col_transitivity_1 with A; Col.
     assert (Col A B C).
-      induction (eq_dec_points Q A).
+      induction (两点重合的决定性 Q A).
         subst Q; assumption.
-      induction (eq_dec_points Q B).
+      induction (两点重合的决定性 Q B).
         subst; apply col_permutation_2; apply col_transitivity_1 with P; Col.
       apply col_permutation_2; apply col_transitivity_1 with Q; Col.
     contradiction.
@@ -353,21 +353,21 @@ Hint Resolve col_transitivity_1 col_transitivity_2 out_col : col.
 
 Section T6_2.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** This is l6_25 of Tarski *)
 Lemma not_col_exists : forall A B,
  A<>B -> exists C, ~ Col A B C.
 Proof.
     intros.
-    assert (T:=lower_dim_ex).
+    assert (T:=防降维公理_ex).
     induction T.
     induction H0.
     induction H0.
     induction (col_dec A B x).
       induction(col_dec A B x0).
         induction(col_dec A B x1).
-          induction (eq_dec_points A x).
+          induction (两点重合的决定性 A x).
             assert (~(Col x x0 x1)) by (unfold Col; auto).
             treat_equalities; eCol.
           assert (Col A x x0)  by eCol.
@@ -385,11 +385,11 @@ Lemma t2_8 : forall A B C D E : Tpoint,
  Bet A B C -> Bet D B E -> Cong A B D B -> Cong B C B E -> Cong A E C D.
 Proof.
     intros.
-    induction (eq_dec_points A B); try (treat_equalities; Cong).
+    induction (两点重合的决定性 A B); try (treat_equalities; Cong).
     assert (Cong A B D B -> Cong B C B E -> Cong A D D A -> Cong B D B A -> Bet A B C -> Bet D B E -> A <> B -> Cong C D E A).
-      apply five_segment.
-    apply cong_symmetry.
-    apply cong_right_commutativity.
+      apply 五线段公理_等价SAS.
+    apply 等长的对称性.
+    apply 等长的右交换性.
     apply H4; Cong; Between.
 Qed.
 *)
@@ -401,7 +401,7 @@ Lemma col3 : forall X Y A B C,
 Proof.
     intros.
     assert (Col X A B) by (apply col_transitivity_1 with Y; assumption).
-    induction(eq_dec_points C X).
+    induction(两点重合的决定性 C X).
       subst X; apply col_permutation_1; assumption.
     apply col_permutation_1.
     apply col_transitivity_1 with X; try assumption.
@@ -414,7 +414,7 @@ Qed.
 Lemma colx : forall A B C X Y, A <> B -> Col X Y A -> Col X Y B -> Col A B C -> Col X Y C.
 Proof.
     intros.
-    destruct (eq_dec_points X Y).
+    destruct (两点重合的决定性 X Y).
       subst; Col.
     apply (col3 A B); auto; apply col_permutation_1.
       apply col_transitivity_1 with Y; Col.
@@ -441,7 +441,7 @@ Lemma bet2_le2__le1346 : forall A B C A' B' C', Bet A B C -> Bet A' B' C' -> Le
 Proof.
   intros A B C A' B' C' HBet HBet' HleAB HleBC.
 
-  elim(eq_dec_points A B).
+  elim(两点重合的决定性 A B).
   { intro.
     subst B.
     apply (le_transitivity _ _ B' C'); auto.
@@ -450,7 +450,7 @@ Proof.
     split; Between; Cong.
   }
   intro.
-  elim(eq_dec_points B C).
+  elim(两点重合的决定性 B C).
   { intro.
     subst C.
     apply (le_transitivity _ _ A' B'); auto.
@@ -461,16 +461,16 @@ Proof.
   assert(A' <> B') by (intro; subst B'; assert(A = B); auto; apply (le_zero _ _ A'); auto).
   assert(B' <> C') by (intro; subst C'; assert(B = C); auto; apply (le_zero _ _ B'); auto).
   destruct HleAB as [B0 []].
-  assert(A' <> B0) by (intro; subst B0; assert(A = B); auto; apply (cong_reverse_identity A'); Cong).
-  assert(HC0 := segment_construction A' B0 B C).
+  assert(A' <> B0) by (intro; subst B0; assert(A = B); auto; apply (等长的反向同一性 A'); Cong).
+  assert(HC0 := 由一点往一方向构造等长线段 A' B0 B C).
   destruct HC0 as [C0 []].
-  assert(B0 <> C0) by (intro; subst C0; assert(B = C); auto; apply (cong_reverse_identity B0); auto).
+  assert(B0 <> C0) by (intro; subst C0; assert(B = C); auto; apply (等长的反向同一性 B0); auto).
   exists C0.
-  split; [|apply (l2_11 _ B _ _ B0); Cong].
+  split; [|apply (两组连续三点分段等则全体等 _ B _ _ B0); Cong].
   apply (outer_transitivity_between2 _ B0); auto.
-  assert(Bet B0 B' C') by (apply between_symmetry; apply (between_inner_transitivity _ _ _ A'); Between).
+  assert(Bet B0 B' C') by (apply 中间性的对称性; apply (between_inner_transitivity _ _ _ A'); Between).
   apply l6_13_1.
-  - elim(eq_dec_points B0 B').
+  - elim(两点重合的决定性 B0 B').
     { intro.
       subst.
       apply (l6_2 _ _ A'); Between.
@@ -490,7 +490,7 @@ Lemma bet2_le2__le2356 : forall A B C A' B' C', Bet A B C -> Bet A' B' C' ->
   Le A B A' B' -> Le A' C' A C -> Le B' C' B C.
 Proof.
   intros A B C A' B' C' HBet HBet' HLe1 HLe2.
-  elim(eq_dec_points A B).
+  elim(两点重合的决定性 A B).
   { intro; treat_equalities.
     apply (le_transitivity _ _ A' C'); auto.
     destruct (l5_12_a A' B' C'); auto.
@@ -510,7 +510,7 @@ Proof.
   apply (l5_6 B0 C0 B C); Cong; [apply (le_transitivity _ _ B C0)|].
     destruct (l5_12_a B B0 C0); eBetween.
     destruct (l5_12_a B C0 C); eBetween.
-    apply cong_commutativity; apply (l4_3 _ _ A _ _ A'); Between; Cong.
+    apply 等长的交换性; apply (l4_3 _ _ A _ _ A'); Between; Cong.
 Qed.
 
 Lemma bet2_le2__le1245 : forall A B C A' B' C', Bet A B C -> Bet A' B' C' ->
@@ -568,11 +568,11 @@ Proof.
     induction H4.
       assert (Bet E D D0).
         apply (cong_preserves_bet B A A0); assumption.
-      apply cong_commutativity.
+      apply 等长的交换性.
       eapply l4_3.
-        apply between_symmetry.
+        apply 中间性的对称性.
         apply H4.
-        apply between_symmetry.
+        apply 中间性的对称性.
         apply H5.
         Cong.
       Cong.
@@ -587,10 +587,10 @@ Lemma not_out_bet : forall A B C, Col A B C -> ~ Out B A C -> Bet A B C.
 Proof.
     intros.
     unfold Out in H0.
-    induction (eq_dec_points A B).
+    induction (两点重合的决定性 A B).
       subst.
       Between.
-    induction (eq_dec_points B C).
+    induction (两点重合的决定性 B C).
       subst.
       Between.
     unfold Col in *.
@@ -636,7 +636,7 @@ Proof.
       contradiction.
     assert(C = B).
       eapply between_equality.
-        apply between_symmetry.
+        apply 中间性的对称性.
         apply H.
       assumption.
     contradiction.
@@ -660,11 +660,11 @@ Proof.
           assumption.
         contradiction.
       assert(C = B).
-        apply(between_symmetry) in H4.
+        apply(中间性的对称性) in H4.
         eapply between_equality.
-          apply between_symmetry.
+          apply 中间性的对称性.
           apply H1.
-        apply between_symmetry.
+        apply 中间性的对称性.
         assumption.
       contradiction.
     destruct H0.
@@ -724,7 +724,7 @@ Proof.
         assumption.
         unfold Out in *.
         spliter.
-      apply between_symmetry.
+      apply 中间性的对称性.
       assumption.
     apply col_permutation_4.
     apply out_col.
@@ -734,7 +734,7 @@ Qed.
 Lemma bet2_out_out : forall A B C B' C', B <> A -> B' <> A -> Out A C C' -> Bet A B C -> Bet A B' C' -> Out A B B'.
 Proof.
     intros.
-    induction(eq_dec_points B' C').
+    induction(两点重合的决定性 B' C').
       subst C'.
       unfold Out in *.
       spliter.
@@ -786,7 +786,7 @@ Lemma out_bet_out_1 : forall A B C P,
  Out P A C -> Bet A B C -> Out P A B.
 Proof.
     intros.
-    induction (eq_dec_points B P).
+    induction (两点重合的决定性 B P).
       subst P.
       apply False_ind.
       apply (not_bet_and_out A B C).
@@ -804,7 +804,7 @@ Proof.
     right.
     eapply between_exchange2.
       apply H3.
-    apply between_symmetry.
+    apply 中间性的对称性.
     assumption.
 Qed.
 
@@ -816,7 +816,7 @@ Proof.
     eapply out_bet_out_1.
       apply l6_6.
       apply H.
-    apply between_symmetry.
+    apply 中间性的对称性.
     assumption.
 Qed.
 
@@ -831,12 +831,12 @@ Qed.
 Lemma segment_reverse : forall A B C, Bet A B C -> exists B', Bet A B' C /\ Cong C B' A B.
 Proof.
   intros.
-  destruct (eq_dec_points A B).
+  destruct (两点重合的决定性 A B).
     subst B; exists C; finish.
-  destruct (segment_construction_3 C A A B) as [B' []]; auto.
+  destruct (由一点往一方向构造等长线段_3 C A A B) as [B' []]; auto.
     intro; treat_equalities; auto.
   exists B'; split; trivial.
-  apply between_symmetry, (cong_preserves_bet A B C); Cong.
+  apply 中间性的对称性, (cong_preserves_bet A B C); Cong.
   apply l6_6; assumption.
 Qed.
 
@@ -849,7 +849,7 @@ Proof.
     exists C.
     split.
       intro.
-      induction (eq_dec_points A B).
+      induction (两点重合的决定性 A B).
         subst B.
         subst C.
         intuition.
@@ -864,8 +864,8 @@ Lemma diff_bet_ex3 : forall A B C,
  exists D, A <> D /\ B <> D /\ C <> D /\ Col A B D.
 Proof.
     intros.
-    induction (eq_dec_points A B).
-      induction (eq_dec_points B C).
+    induction (两点重合的决定性 A B).
+      induction (两点重合的决定性 B C).
         assert (exists D, Bet B C D /\ C <> D).
           apply point_construction_different.
         ex_and H2 D.
@@ -890,7 +890,7 @@ Proof.
       repeat split.
         intro.
         subst D.
-        apply between_symmetry in H.
+        apply 中间性的对称性 in H.
         apply H1.
         eapply between_equality.
           apply H2.
@@ -898,7 +898,7 @@ Proof.
         intro.
         subst D.
         subst A.
-        apply between_identity in H2.
+        apply 中间性的同一律 in H2.
         apply H3.
         subst B.
         reflexivity.
@@ -909,7 +909,7 @@ Proof.
         apply H.
         apply H2.
       assumption.
-    induction (eq_dec_points B C).
+    induction (两点重合的决定性 B C).
       subst C.
       cut(exists D : Tpoint, A <> D /\ B <> D /\ Col A B D).
         intro.
@@ -931,13 +931,13 @@ Proof.
       assert (B = C).
         eapply between_equality.
           apply H2.
-        apply between_symmetry.
+        apply 中间性的对称性.
         assumption.
       apply H1.
       assumption.
       intro.
       subst D.
-      apply between_identity in H2.
+      apply 中间性的同一律 in H2.
       subst C.
       apply H1.
       reflexivity.
@@ -963,7 +963,7 @@ Proof.
       assumption.
     induction H.
       assert (HH:=H).
-      induction (eq_dec_points B C).
+      induction (两点重合的决定性 B C).
         subst C.
         assert (exists C, A <> C /\ B <> C /\ Col A B C).
           apply (diff_col_ex).
@@ -981,7 +981,7 @@ Proof.
       unfold Col.
       left.
       assumption.
-    induction (eq_dec_points A C).
+    induction (两点重合的决定性 A C).
       subst C.
       assert (exists C, A <> C /\ B <> C /\ Col A B C).
         apply (diff_col_ex).
@@ -1000,7 +1000,7 @@ Proof.
       assumption.
     unfold Col.
     right;right.
-    apply between_symmetry.
+    apply 中间性的对称性.
     assumption.
 Qed.
 

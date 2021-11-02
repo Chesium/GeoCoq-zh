@@ -99,9 +99,9 @@ conclude lemma_congruencetransitive.
 Qed.
 
 
-Instance Tarski_follows_Euclid: Tarski_neutral_dimensionless.
+Instance Tarski_follows_Euclid: 无维度中性塔斯基公理系统.
 Proof.
-eapply (Build_Tarski_neutral_dimensionless Point Bet TCong) with (PA:=PA) (PB:=PB) (PC:=PC).
+eapply (Build_无维度中性塔斯基公理系统 Point Bet TCong) with (PA:=PA) (PB:=PB) (PC:=PC).
 - intros.
   unfold TCong.
   left; apply cn_equalityreverse.
@@ -272,7 +272,7 @@ eapply (Build_Tarski_neutral_dimensionless Point Bet TCong) with (PA:=PA) (PB:=P
   subst;exists Q;split.
   auto using Bet_sym.
   unfold Bet;auto.
-- assert (T:=axiom_lower_dim).
+- assert (T:=axiom_防降维公理).
   unfold nCol,Bet,neq,eq in *.
   intro;spliter.
   decompose [or] H;try

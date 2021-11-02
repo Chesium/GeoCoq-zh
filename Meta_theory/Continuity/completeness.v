@@ -1,20 +1,20 @@
 Require Import GeoCoq.Axioms.continuity_axioms.
-Require Import GeoCoq.Meta_theory.Dimension_axioms.upper_dim_2.
-Require Import GeoCoq.Meta_theory.Dimension_axioms.upper_dim_3.
+Require Import GeoCoq.Meta_theory.Dimension_axioms.防升维公理_2.
+Require Import GeoCoq.Meta_theory.Dimension_axioms.三维防升维公理.
 Require Import GeoCoq.Meta_theory.Continuity.grad.
 
 Section Extension.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma line_extension_symmetry : forall {Tm : Tarski_neutral_dimensionless}
+Lemma line_extension_symmetry : forall {Tm : 无维度中性塔斯基公理系统}
   (f : @Tpoint Tn -> @Tpoint Tm) P Q, line_extension f P Q -> line_extension f Q P.
 Proof.
   intros Tm f P Q [HPQ [fInj [fBet fCong]]].
   repeat split; auto; intro; intros; [apply fInj|apply fBet|apply fCong]; Col.
 Qed.
 
-Lemma line_extension_stability : forall {Tm: Tarski_neutral_dimensionless}
+Lemma line_extension_stability : forall {Tm: 无维度中性塔斯基公理系统}
   (f : @Tpoint Tn -> @Tpoint Tm) P Q R,
   Col P Q R -> P <> R -> line_extension f P Q -> line_extension f P R.
 Proof.
@@ -23,7 +23,7 @@ Proof.
     [apply fInj|apply fBet|apply fCong]; trivial; apply col_transitivity_1 with R; Col.
 Qed.
 
-Lemma line_extension_reverse_bet : forall {Tm: Tarski_neutral_dimensionless}
+Lemma line_extension_reverse_bet : forall {Tm: 无维度中性塔斯基公理系统}
   (f : @Tpoint Tn -> @Tpoint Tm) P Q, line_extension f P Q ->
   forall A B C, Col P Q A -> Col P Q B -> Col P Q C -> Bet (f A) (f B) (f C) -> Bet A B C.
 Proof.
@@ -35,7 +35,7 @@ Proof.
   [apply between_equality with (f A)|apply between_equality with (f C)]; Between.
 Qed.
 
-Lemma pres_bet_line__col : forall {Tm: Tarski_neutral_dimensionless}
+Lemma pres_bet_line__col : forall {Tm: 无维度中性塔斯基公理系统}
   (f : @Tpoint Tn -> @Tpoint Tm) P Q, P <> Q -> pres_bet_line f P Q ->
   forall A B C, Col P Q A -> Col P Q B -> Col P Q C -> Col (f A) (f B) (f C).
 Proof.
@@ -43,7 +43,7 @@ Proof.
   destruct (col3 P Q A B C) as [HBet|[HBet|HBet]]; trivial; apply fBet in HBet; Col.
 Qed.
 
-Lemma col2_diff_inj_line__diff : forall {Tm: Tarski_neutral_dimensionless}
+Lemma col2_diff_inj_line__diff : forall {Tm: 无维度中性塔斯基公理系统}
   (f : @Tpoint Tn -> @Tpoint Tm) P Q, inj_line f P Q ->
   forall A B, Col P Q A -> Col P Q B -> A <> B -> f A <> f B.
 Proof.
@@ -51,7 +51,7 @@ Proof.
   apply HAB, finj; assumption.
 Qed.
 
-Lemma extension__line_extension : forall {Tm: Tarski_neutral_dimensionless}
+Lemma extension__line_extension : forall {Tm: 无维度中性塔斯基公理系统}
   (f : @Tpoint Tn -> @Tpoint Tm) P Q,
   P <> Q -> extension f -> line_extension f P Q.
 Proof.
@@ -60,23 +60,23 @@ Proof.
   repeat split; auto.
 Qed.
 
-Lemma extension_reverse_bet : forall {Tm: Tarski_neutral_dimensionless}
-  {Tm2 : Tarski_neutral_dimensionless_with_decidable_point_equality Tm}
+Lemma extension_reverse_bet : forall {Tm: 无维度中性塔斯基公理系统}
+  {Tm2 : 无维度中性塔斯基公理系统_带两点重合决定性 Tm}
   (f : @Tpoint Tn -> @Tpoint Tm),
   extension f ->
   forall A B C, Bet (f A) (f B) (f C) -> Bet A B C.
 Proof.
   intros Tm Tm2 f [finj [fBet fCong]] A B C HBet.
-  destruct (eq_dec_points (f A) (f B)) as [Heq|].
+  destruct (两点重合的决定性 (f A) (f B)) as [Heq|].
     apply finj in Heq; subst; Between.
-  destruct (segment_construction A B B C) as [D [HD1 HD2]].
+  destruct (由一点往一方向构造等长线段 A B B C) as [D [HD1 HD2]].
   assert (C = D); [|subst; auto].
   apply finj.
   apply between_cong_3 with (f A) (f B); Cong.
 Qed.
 
-Lemma extension_reverse_col : forall {Tm: Tarski_neutral_dimensionless}
-  {Tm2 : Tarski_neutral_dimensionless_with_decidable_point_equality Tm}
+Lemma extension_reverse_col : forall {Tm: 无维度中性塔斯基公理系统}
+  {Tm2 : 无维度中性塔斯基公理系统_带两点重合决定性 Tm}
   (f : @Tpoint Tn -> @Tpoint Tm),
   extension f ->
   forall A B C, Col (f A) (f B) (f C) -> Col A B C.
@@ -95,11 +95,11 @@ End Extension.
 
 Section Completeness.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma line_completeness_aux : line_completeness ->
-  forall (Tm: Tarski_neutral_dimensionless)
-  (Tm2 : Tarski_neutral_dimensionless_with_decidable_point_equality Tm)
+  forall (Tm: 无维度中性塔斯基公理系统)
+  (Tm2 : 无维度中性塔斯基公理系统_带两点重合决定性 Tm)
   (f : @Tpoint Tn -> @Tpoint Tm),
   @archimedes_axiom Tm ->
   extension f ->
@@ -154,7 +154,7 @@ Lemma line_completeness__completeness_for_planes : line_completeness -> complete
 Proof.
   intros lc Tm Tm2 M f archi fext A.
   assert (HB : exists B, Coplanar PA PB PC B /\ f B = A).
-    apply line_completeness_aux; trivial; [exact lower_dim|apply all_coplanar].
+    apply line_completeness_aux; trivial; [exact 防降维公理|apply all_coplanar].
   destruct HB as [B []].
   exists B; assumption.
 Qed.
@@ -170,9 +170,9 @@ Proof.
   destruct (col_dec (f P) (f Q) A).
     apply (Haux R), line_completeness_aux; Cop.
   assert (pi : plane_intersection_axiom).
-  { cut upper_dim_3_axiom.
-      apply upper_dim_3_equivalent_axioms; simpl; tauto.
-    unfold upper_dim_3_axiom; exact upper_dim_3.
+  { cut 三维防升维公理_axiom.
+      apply 三维防升维公理_equivalent_axioms; simpl; tauto.
+    unfold 三维防升维公理_axiom; exact 三维防升维公理.
   }
   destruct (pi (f P) (f Q) A (f P) (f R) (f S) (f P)) as [X [HX1 [HX2 HX3]]]; Cop.
   assert (HY : exists Y, Coplanar P R S Y /\ f Y = X).
@@ -194,68 +194,68 @@ End Completeness.
 
 Section Dimension.
 
-Context `{Tn:Tarski_neutral_dimensionless}.
+Context `{Tn:无维度中性塔斯基公理系统}.
 
-Lemma extension_to_plane__plane : forall {Tm: Tarski_neutral_dimensionless}
-  {Tm2 : Tarski_neutral_dimensionless_with_decidable_point_equality Tm}
+Lemma extension_to_plane__plane : forall {Tm: 无维度中性塔斯基公理系统}
+  {Tm2 : 无维度中性塔斯基公理系统_带两点重合决定性 Tm}
   {M : Tarski_2D Tm2}
   (f : @Tpoint Tn -> @Tpoint Tm),
   extension f ->
-  @upper_dim_axiom Tn.
+  @防升维公理_axiom Tn.
 Proof.
   intros Tm Tm2 M f fext A B C P Q HPQ H1 H2 H3.
   apply (extension_reverse_col f); trivial.
   unfold extension, inj, pres_cong in fext; spliter.
-  unfold Col; apply upper_dim with (f P) (f Q); auto.
+  unfold Col; apply 防升维公理 with (f P) (f Q); auto.
 Qed.
 
-Lemma nupper_dim__completeness_for_planes : ~ upper_dim_axiom -> completeness_for_planes.
+Lemma n防升维公理__completeness_for_planes : ~ 防升维公理_axiom -> completeness_for_planes.
 Proof.
   intros lowerdim Tm Tm2 M f archi fext A.
   exfalso; apply lowerdim.
   apply extension_to_plane__plane with f; trivial.
 Qed.
 
-Lemma extension_to_3d__upper_dim_3 : forall {Tm: Tarski_neutral_dimensionless}
-  {Tm2 : Tarski_neutral_dimensionless_with_decidable_point_equality Tm}
+Lemma extension_to_3d__三维防升维公理 : forall {Tm: 无维度中性塔斯基公理系统}
+  {Tm2 : 无维度中性塔斯基公理系统_带两点重合决定性 Tm}
   {M : Tarski_3D Tm2}
   (f : @Tpoint Tn -> @Tpoint Tm),
   extension f ->
-  @upper_dim_3_axiom Tn.
+  @三维防升维公理_axiom Tn.
 Proof.
   intros Tm Tm2 M f fext A B C P Q R; intros.
   apply (extension_reverse_col f); trivial.
   unfold extension, inj, pres_cong in fext; spliter.
-  unfold Col; apply upper_dim_3 with (f P) (f Q) (f R); auto.
+  unfold Col; apply 三维防升维公理 with (f P) (f Q) (f R); auto.
 Qed.
 
-Lemma nupper_dim_3__completeness_for_3d_spaces : ~ upper_dim_3_axiom -> completeness_for_3d_spaces.
+Lemma n三维防升维公理__completeness_for_3d_spaces : ~ 三维防升维公理_axiom -> completeness_for_3d_spaces.
 Proof.
   intros lowerdim Tm Tm2 M f archi fext A.
   exfalso; apply lowerdim.
-  apply extension_to_3d__upper_dim_3 with f; trivial.
+  apply extension_to_3d__三维防升维公理 with f; trivial.
 Qed.
 
 End Dimension.
 
 Section Dimension'.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma ncompleteness_for_planes__upper_dim : ~ completeness_for_planes -> upper_dim_axiom.
+Lemma ncompleteness_for_planes__防升维公理 : ~ completeness_for_planes -> 防升维公理_axiom.
 Proof.
   intro nc.
-  apply upper_dim_stab.
+  apply 防升维公理_stab.
   intro nupper.
-  apply nc, (nupper_dim__completeness_for_planes nupper).
+  apply nc, (n防升维公理__completeness_for_planes nupper).
 Qed.
 
-Lemma ncompleteness_for_3d_spaces__upper_dim_3 : ~ completeness_for_3d_spaces -> upper_dim_3_axiom.
+Lemma ncompleteness_for_3d_spaces__三维防升维公理 : ~ completeness_for_3d_spaces -> 三维防升维公理_axiom.
 Proof.
   intro nc.
-  apply upper_dim_3_stab.
+  apply 三维防升维公理_stab.
   intro nupper.
-  apply nc, (nupper_dim_3__completeness_for_3d_spaces nupper).
+  apply nc, (n三维防升维公理__completeness_for_3d_spaces nupper).
 Qed.
 
 End Dimension'.
@@ -265,14 +265,14 @@ End Dimension'.
 
 Section Archimedes.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma archimedes_aux : forall P Q,
   (forall R S, Bet P Q R -> Bet P Q S -> Q <> R -> Reach Q R Q S) -> archimedes_axiom.
 Proof.
   intros P Q Haux A B C D HAB.
-  destruct (segment_construction P Q A B) as [R []].
-  destruct (segment_construction P Q C D) as [S []].
+  destruct (由一点往一方向构造等长线段 P Q A B) as [R []].
+  destruct (由一点往一方向构造等长线段 P Q C D) as [S []].
   destruct (Haux R S) as [R' [HGrad HLe]]; Col.
     intro; treat_equalities; auto.
   assert (Bet Q R R') by (apply grad__bet, HGrad).
@@ -300,7 +300,7 @@ Proof.
   destruct (archi Q' R' Q' S') as [R0' [HGrad HLe]].
     subst; intro; apply HQR, finj; Col.
   assert (HBet : Bet Q' S' R0').
-  { destruct (eq_dec_points Q S); [subst; Between|].
+  { destruct (两点重合的决定性 Q S); [subst; Between|].
     apply l6_13_1; trivial.
     apply l6_7 with R'; subst.
       apply l6_2 with (f P); Col; apply fBet; Between; Col.
@@ -313,10 +313,10 @@ Proof.
     apply bet__le1213, (line_extension_reverse_bet f P Q); Col.
   }
   rename C into C0'.
-  destruct (eq_dec_points Q S).
+  destruct (两点重合的决定性 Q S).
     subst; exists R; split; [apply grad_init|apply le_trivial].
   assert (Hd : Bet (f Q) (f S) C0' \/ Bet (f Q) C0' (f S)).
-  { destruct (eq_dec_points C0' (f Q)); [subst; Between|].
+  { destruct (两点重合的决定性 C0' (f Q)); [subst; Between|].
     apply l6_7 with C'.
       apply bet_out; Col.
     apply l6_6, bet_out; Col.
@@ -332,20 +332,20 @@ Proof.
   { assert (Bet P Q S0) by (apply between_inner_transitivity with S; assumption).
     apply IHHGrad with (f S0); trivial.
     apply between_inner_transitivity with (f S); Col.
-    destruct (eq_dec_points C0' (f S)); [subst; Between|].
-    apply between_symmetry, l6_13_1.
-      apply bet2__out with (f Q); try apply between_symmetry; Col.
+    destruct (两点重合的决定性 C0' (f S)); [subst; Between|].
+    apply 中间性的对称性, l6_13_1.
+      apply bet2__out with (f Q); try apply 中间性的对称性; Col.
     apply (l5_6 (f S) C0' C0' C').
       apply le_left_comm, bet__le1213, (between_exchange3 (f Q)); assumption.
       Cong.
-      apply cong_symmetry, cong_transitivity with (f Q) (f R); Col.
+      apply 等长的对称性, 等长的传递性 with (f Q) (f R); Col.
   }
   clear IHHGrad.
   destruct HC0 as [C0 []].
-  destruct (segment_construction Q C0 Q R) as [C []].
+  destruct (由一点往一方向构造等长线段 Q C0 Q R) as [C []].
   exists C; split; [apply grad_stab with C0; Cong|].
   apply bet__le1213.
-  destruct (eq_dec_points Q S0).
+  destruct (两点重合的决定性 Q S0).
   { subst S0; assert (R = S) by (apply (between_cong_3 P Q); Cong).
     treat_equalities; apply between_exchange4 with C0; Between.
   }
@@ -362,7 +362,7 @@ Proof.
     apply l6_2 with Q; Between; intro; treat_equalities; auto.
   apply le_right_comm; exists C0; split.
     apply between_inner_transitivity with Q; Between.
-    apply cong_transitivity with  Q R; Cong.
+    apply 等长的传递性 with  Q R; Cong.
 Qed.
 
 End Archimedes.

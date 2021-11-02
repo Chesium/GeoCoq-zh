@@ -1,16 +1,16 @@
 Require Export GeoCoq.Tarski_dev.Ch11_angles.
 Require Import GeoCoq.Utils.all_equiv.
 
-Section Upper_dim_3.
+Section 三维防升维公理.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** In this file, we prove that all the following properties are equivalent. *)
 
 (** If three points A, B and C are equidistant to three distinct points P, Q and R,
     then A, B and C are collinear. *)
 
-Definition upper_dim_3_axiom := forall A B C P Q R,
+Definition 三维防升维公理_axiom := forall A B C P Q R,
   P <> Q -> Q <> R -> P <> R ->
   Cong A P A Q -> Cong B P B Q -> Cong C P C Q ->
   Cong A P A R -> Cong B P B R -> Cong C P C R ->
@@ -43,7 +43,7 @@ Definition orthonormal_family_axiom := forall S U1' U1 U2 U3 U4,
      Cong U2 U3 U1' U2 /\ Cong U2 U4 U1' U2 /\ Cong U3 U4 U1' U2).
 
 
-Lemma upper_dim_3_stab : ~ ~ upper_dim_3_axiom -> upper_dim_3_axiom.
+Lemma 三维防升维公理_stab : ~ ~ 三维防升维公理_axiom -> 三维防升维公理_axiom.
 Proof.
   intros nnupper A B C P Q R; intros.
   destruct (col_dec A B C) as [|HNCol]; auto.
@@ -54,7 +54,7 @@ Proof.
   apply upper with P Q R; auto.
 Qed.
 
-Lemma median_planes_implies_upper_dim : median_planes_axiom -> upper_dim_3_axiom.
+Lemma median_planes_implies_防升维公理 : median_planes_axiom -> 三维防升维公理_axiom.
 Proof.
   intros mp A B C P Q R HPQ HQR HPR; intros.
   destruct (col_dec A B C); trivial.
@@ -92,7 +92,7 @@ Proof.
   - intros up A B X P Q HNCol HAXP HAXQ HBXP HBXQ.
     destruct (col_dec A B X) as [|HNCol1]; [assumption|].
     exfalso.
-    destruct (segment_construction P X P X) as [P' []].
+    destruct (由一点往一方向构造等长线段 P X P X) as [P' []].
     assert_diffs.
     destruct (ex_per_cong P X X Q P' X) as [Q']; Col; spliter.
     assert (HAXQ' : Per Q' X A) by (apply (l11_60 P Q X); Perp; Cop).
@@ -100,7 +100,7 @@ Proof.
     assert (HNCol' : ~ Col P X Q') by (apply one_side_not_col123 with Q; assumption).
     clear dependent Q.
     rename Q' into Q.
-    destruct (segment_construction A X P' X) as [A' []].
+    destruct (由一点往一方向构造等长线段 A X P' X) as [A' []].
     assert (HAXP' : Per P X A') by (assert_diffs; apply per_col with A; Perp; Col).
     assert (HAXQ : Per Q X A') by (assert_diffs; apply per_col with A; Perp; Col).
     assert (HNCol : ~ Col A' B X) by (intro; apply HNCol1; ColR).
@@ -114,9 +114,9 @@ Proof.
     rename B' into B.
     assert (HCong : Cong Q P Q P') by (apply per_double_cong with X; [|split]; Cong).
     apply (up X P' P Q A B); repeat split; [Cong..| | | | |];
-      (apply cong_transitivity with P Q; [|Cong]);
+      (apply 等长的传递性 with P Q; [|Cong]);
       apply l10_12 with X X; Perp;
-      apply cong_transitivity with P' X; Cong.
+      apply 等长的传递性 with P' X; Cong.
   - intros p4col S U1' U1 U2 U3 U4 H; spliter.
     assert (HMid : Midpoint S U1 U1') by (split; Cong).
     assert (HPer21 : Per U2 S U1) by (exists U1'; split; Cong).
@@ -128,11 +128,11 @@ Proof.
       apply (l8_10 U2 S U1); trivial; repeat split; CongR.
 Qed.
 
-Lemma upper_dim_implies_orthonormal_family_axiom : upper_dim_3_axiom -> orthonormal_family_axiom.
+Lemma 防升维公理_implies_orthonormal_family_axiom : 三维防升维公理_axiom -> orthonormal_family_axiom.
 Proof.
   rewrite orthonormal_family_aux.
   intros up A B X P Q HNCol HAXP HAXQ HBXP HBXQ.
-  destruct (segment_construction Q X X P) as [Q' []].
+  destruct (由一点往一方向构造等长线段 Q X X P) as [Q' []].
   assert (HNCol' : ~ Col P Q' X) by (intro; apply HNCol; ColR).
   assert (HAXQ' : Per A X Q') by (assert_diffs; apply per_col with Q; Col).
   assert (HBXQ' : Per B X Q') by (assert_diffs; apply per_col with Q; Col).
@@ -273,20 +273,20 @@ Proof.
   exists M; split; Between; Cop.
 Qed.
 
-Theorem upper_dim_3_equivalent_axioms : all_equiv (upper_dim_3_axiom::
+Theorem 三维防升维公理_equivalent_axioms : all_equiv (三维防升维公理_axiom::
                                                    orthonormal_family_axiom::
                                                    space_separation_axiom::
                                                    plane_intersection_axiom::
                                                    median_planes_axiom::
                                                    nil).
 Proof.
-  assert (H := upper_dim_implies_orthonormal_family_axiom).
+  assert (H := 防升维公理_implies_orthonormal_family_axiom).
   assert (I := orthonormal_family_axiom_implies_space_separation).
   assert (J := space_separation_implies_plane_intersection).
   assert (K := plane_intersection_implies_space_separation).
   assert (L := space_separation_implies_median_planes).
-  assert (M := median_planes_implies_upper_dim).
+  assert (M := median_planes_implies_防升维公理).
   apply all_equiv__equiv; unfold all_equiv'; simpl; repeat split; tauto.
 Qed.
 
-End Upper_dim_3.
+End 三维防升维公理.

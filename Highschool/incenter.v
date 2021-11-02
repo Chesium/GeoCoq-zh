@@ -3,7 +3,7 @@ Require Export GeoCoq.Tarski_dev.Ch13_1.
 
 Section InCenter.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 
 Definition is_incenter I A B C :=
@@ -25,7 +25,7 @@ destruct HAINANGLE as [HABA [HACA [HAIAA HAEXI]]].
 destruct HAEXI as [XA [HXABET HXAO]].
 destruct HBEXI as [XB [HXBBET HXBO]].
 assert (HXEXISTS : exists X : Tpoint, Bet XB X B /\ Bet XA X A).
-apply (inner_pasch A B C XB XA);assumption.
+apply (帕施公理 A B C XB XA);assumption.
 destruct HXEXISTS as [X [HXBET1 HXBET2]].
 destruct HXAO as [HXAEQ | HXAOUT].
 subst.
@@ -61,7 +61,7 @@ assert (CongA A B X X B C).
 assert (Coplanar C A B X) by (exists XB; left; split; Col).
 assert (Cong X HB X HC) by (apply (bisector_perp_equality C A B X HB HC);Col;Perp;CongA).
 assert (Cong X HC X HA) by (apply (bisector_perp_equality A B C X HC HA);Col;Cop).
-assert (Cong X HB X HA) by (apply (cong_transitivity X HB X HC X HA);auto).
+assert (Cong X HB X HA) by (apply (等长的传递性 X HB X HC X HA);auto).
 assert (CongA A C X X C B).
 { 
  apply (perp_equality_bisector A C B X HB HA);Col;Perp.

@@ -3,13 +3,13 @@ Require Import GeoCoq.Tarski_dev.Annexes.saccheri.
 
 Section Aristotle.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma aristotle__greenberg : aristotle_s_axiom -> greenberg_s_axiom.
 Proof.
   intros aristotle P Q R A B C.
   intros HNColB HABCacute HQRdiff HQright.
-  elim (eq_dec_points P Q); intro HPQdiff.
+  elim (两点重合的决定性 P Q); intro HPQdiff.
   { treat_equalities.
     assert_diffs.
     exists R.
@@ -77,7 +77,7 @@ Proof.
     }
     destruct HInter as [HCong _].
     apply HNcong.
-    apply (cong_transitivity P Q T Q); Cong.
+    apply (等长的传递性 P Q T Q); Cong.
 Qed.
 
 
@@ -87,28 +87,28 @@ Lemma greenberg__aristotle : greenberg_s_axiom -> aristotle_s_axiom.
 Proof.
 intros HG P Q A B C HNC HAcute.
 destruct (l10_15 A B B C) as [D' [HPerp1 HOS1]]; Col.
-elim (eq_dec_points P Q); intro HPQ; treat_equalities.
+elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
 
   {
   destruct (l8_18_existence A B C) as [X [HCol HPerp]]; Col; exists X, C.
   split; [apply l6_6, acute_col_perp__out with C; try apply acute_sym; finish|].
   split; [apply out_trivial; assert_diffs; auto|].
   split; [|apply lt1123; assert_diffs; auto].
-  elim (eq_dec_points X B); intro HBX; treat_equalities; Perp.
+  elim (两点重合的决定性 X B); intro HBX; treat_equalities; Perp.
   apply perp_per_1, perp_col2 with A B; Col.
   }
 
   {
-  destruct (segment_construction_3 B D' P Q) as [P' [HOut1 HCong1]];
+  destruct (由一点往一方向构造等长线段_3 B D' P Q) as [P' [HOut1 HCong1]];
   try solve [assert_diffs; auto].
   destruct (HG P' B A A B C) as [C' HC']; Col; try solve [assert_diffs; auto];
   [apply perp_per_2,  perp_col2 with D' B; finish; assert_diffs; auto|].
   destruct HC' as [HLtA HOut2].
   destruct (l10_15 B C' C' C) as [D'' [HPerp2 HOS2]]; Col;
   try (intro H; apply HNC; assert_diffs; assert_cols; ColR).
-  destruct (segment_construction_3 C' D'' P Q) as [P'' [HOut3 HCong2]];
+  destruct (由一点往一方向构造等长线段_3 C' D'' P Q) as [P'' [HOut3 HCong2]];
   try solve [assert_diffs; auto].
-  destruct (segment_construction_3 B C B P'') as [Z [HOut4 HCong3]];
+  destruct (由一点往一方向构造等长线段_3 B C B P'') as [Z [HOut4 HCong3]];
   try (intro; treat_equalities; assert_cols; Col);
   [elim (perp_not_col2 _ _ _ _ HPerp2); intro HF; apply HF; Col|].
   destruct (l8_18_existence A B Z) as [Z' [HCol HPerp3]];
@@ -262,8 +262,8 @@ Proof.
   destruct HLtA as [HLeA HNCongA].
   assert (HInAngle : InAngle A' Q P C').
     apply lea_in_angle; Side; apply lea_right_comm; trivial.
-  destruct (segment_construction C' P C' P) as [C [HC1 HC2]].
-  destruct (segment_construction A' P A' P) as [A [HA1 HA2]].
+  destruct (由一点往一方向构造等长线段 C' P C' P) as [C [HC1 HC2]].
+  destruct (由一点往一方向构造等长线段 A' P A' P) as [A [HA1 HA2]].
   assert_diffs.
   assert (HInAngle1 : InAngle C A P Q).
     apply in_angle_reverse with A'; auto.

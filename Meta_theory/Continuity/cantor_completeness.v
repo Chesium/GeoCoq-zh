@@ -6,7 +6,7 @@ Require Import GeoCoq.Meta_theory.Continuity.archimedes_cantor_dedekind.
 
 Section Cantor_completeness.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma cantor__completeness : (archimedes_axiom \/ ~ archimedes_axiom) -> cantor_s_axiom ->
   line_completeness.

@@ -2,7 +2,7 @@ Require Import GeoCoq.Tarski_dev.Definitions.
 
 Section Continuity_Defs.
 
-Context `{Tn:Tarski_neutral_dimensionless}.
+Context `{Tn:无维度中性塔斯基公理系统}.
 
 (** In this file, we introduce elementary continuity properties.
     These properties are different variant to assert that the intersection
@@ -154,7 +154,7 @@ End Continuity_Defs.
 
 Section Completeness.
 
-Context `{Tn:Tarski_neutral_dimensionless}.
+Context `{Tn:无维度中性塔斯基公理系统}.
 
 (** These are formalizations of Hilbert's axiom of completeness:
     "To a system of points, straight lines, and planes,
@@ -169,25 +169,25 @@ Context `{Tn:Tarski_neutral_dimensionless}.
 
 Definition inj {T1 T2:Type} (f:T1->T2) := forall A B, f A = f B -> A = B.
 
-Definition pres_bet {Tm: Tarski_neutral_dimensionless}
+Definition pres_bet {Tm: 无维度中性塔斯基公理系统}
   (f : @Tpoint Tn -> @Tpoint Tm) := forall A B C, Bet A B C -> Bet (f A) (f B) (f C).
 
-Definition pres_cong {Tm: Tarski_neutral_dimensionless}
+Definition pres_cong {Tm: 无维度中性塔斯基公理系统}
   (f : @Tpoint Tn -> @Tpoint Tm) := forall A B C D, Cong A B C D -> Cong (f A) (f B) (f C) (f D).
 
-Definition extension {Tm: Tarski_neutral_dimensionless} f := inj f /\ pres_bet f /\ pres_cong f.
+Definition extension {Tm: 无维度中性塔斯基公理系统} f := inj f /\ pres_bet f /\ pres_cong f.
 
 
-Definition completeness_for_planes := forall (Tm: Tarski_neutral_dimensionless)
-  (Tm2 : Tarski_neutral_dimensionless_with_decidable_point_equality Tm)
+Definition completeness_for_planes := forall (Tm: 无维度中性塔斯基公理系统)
+  (Tm2 : 无维度中性塔斯基公理系统_带两点重合决定性 Tm)
   (M : Tarski_2D Tm2)
   (f : @Tpoint Tn -> @Tpoint Tm),
   @archimedes_axiom Tm ->
   extension f ->
   forall A, exists B, f B = A.
 
-Definition completeness_for_3d_spaces := forall (Tm: Tarski_neutral_dimensionless)
-  (Tm2 : Tarski_neutral_dimensionless_with_decidable_point_equality Tm)
+Definition completeness_for_3d_spaces := forall (Tm: 无维度中性塔斯基公理系统)
+  (Tm2 : 无维度中性塔斯基公理系统_带两点重合决定性 Tm)
   (M : Tarski_3D Tm2)
   (f : @Tpoint Tn -> @Tpoint Tm),
   @archimedes_axiom Tm ->
@@ -204,21 +204,21 @@ Definition completeness_for_3d_spaces := forall (Tm: Tarski_neutral_dimensionles
 Definition inj_line {T:Type} (f:Tpoint->T) P Q := forall A B, Col P Q A -> Col P Q B ->
   f A = f B -> A = B.
 
-Definition pres_bet_line {Tm: Tarski_neutral_dimensionless}
+Definition pres_bet_line {Tm: 无维度中性塔斯基公理系统}
   (f : @Tpoint Tn -> @Tpoint Tm) P Q := forall A B C, Col P Q A -> Col P Q B -> Col P Q C ->
   Bet A B C -> Bet (f A) (f B) (f C).
 
-Definition pres_cong_line {Tm: Tarski_neutral_dimensionless}
+Definition pres_cong_line {Tm: 无维度中性塔斯基公理系统}
   (f : @Tpoint Tn -> @Tpoint Tm) P Q := forall A B C D,
   Col P Q A -> Col P Q B -> Col P Q C -> Col P Q D ->
   Cong A B C D -> Cong (f A) (f B) (f C) (f D).
 
-Definition line_extension {Tm: Tarski_neutral_dimensionless} f P Q :=
+Definition line_extension {Tm: 无维度中性塔斯基公理系统} f P Q :=
   P <> Q /\ inj_line f P Q /\ pres_bet_line f P Q /\ pres_cong_line f P Q.
 
 
-Definition line_completeness := forall (Tm: Tarski_neutral_dimensionless)
-  (Tm2 : Tarski_neutral_dimensionless_with_decidable_point_equality Tm)
+Definition line_completeness := forall (Tm: 无维度中性塔斯基公理系统)
+  (Tm2 : 无维度中性塔斯基公理系统_带两点重合决定性 Tm)
   P Q
   (f : @Tpoint Tn -> @Tpoint Tm),
   @archimedes_axiom Tm ->

@@ -2,7 +2,7 @@ Require Import GeoCoq.Tarski_dev.Definitions.
 
 Section Euclid_def.
 
-Context `{Tn:Tarski_neutral_dimensionless}.
+Context `{Tn:无维度中性塔斯基公理系统}.
 
 (** First some statements needed for equivalence proofs
 between different versions of the parallel postulate. *)

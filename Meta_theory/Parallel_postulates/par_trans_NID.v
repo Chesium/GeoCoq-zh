@@ -3,7 +3,7 @@ Require Import GeoCoq.Tarski_dev.Ch12_parallel.
 
 Section par_trans_NID.
 
-Context `{TnEQD:Tarski_neutral_dimensionless_with_decidable_point_equality}.
+Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Lemma par_dec_NID : decidability_of_parallelism <-> decidability_of_not_intersection.
 Proof.
@@ -12,17 +12,17 @@ split; intros Hdec A B C D; destruct (cop_dec A B C D) as [|HNCop].
   * left; unfold Par_strict in HParS; spliter; assumption.
   * right; intro Habs; apply Habs; exists B; spliter; Col.
   * right; intro Habs.
-    destruct (eq_dec_points A B).
+    destruct (两点重合的决定性 A B).
       apply Habs; exists C; subst; split; Col.
-    destruct (eq_dec_points C D).
+    destruct (两点重合的决定性 C D).
       apply Habs; exists A; subst; split; Col.
     apply HNPar; left; unfold Par_strict; repeat split; assumption.
 
 - left; intros [I []]; apply HNCop; exists I; left; split; Col.
 
-- destruct (eq_dec_points A B).
+- destruct (两点重合的决定性 A B).
     right; subst; intro; assert_diffs; auto.
-  destruct (eq_dec_points C D).
+  destruct (两点重合的决定性 C D).
     right; subst; intro; assert_diffs; auto.
   destruct (col_dec A C D).
 
@@ -49,9 +49,9 @@ Lemma par_trans__par_dec :
   decidability_of_parallelism.
 Proof.
 intros HTP A B C D.
-elim (eq_dec_points A B); intro HAB;
+elim (两点重合的决定性 A B); intro HAB;
 [treat_equalities; right; intro; assert_diffs; auto|].
-elim (eq_dec_points C D); intro HCD;
+elim (两点重合的决定性 C D); intro HCD;
 [treat_equalities; right; intro; assert_diffs; auto|].
 destruct (parallel_existence1 A B C HAB) as [D' HPar].
 elim (col_dec C D D'); intro HCol;

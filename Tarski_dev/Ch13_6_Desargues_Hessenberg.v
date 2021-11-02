@@ -4,7 +4,7 @@ Require Export GeoCoq.Tarski_dev.Ch13_5_Pappus_Pascal.
 
 Section Desargues_Hessenberg.
 
-Context `{TE:Tarski_euclidean}.
+Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma l13_15_1 : forall A B C A' B' C' O,
   ~ Col A B C -> ~ Par O B A C -> Coplanar O B A C ->
@@ -179,7 +179,7 @@ Proof.
       apply(par_col_par_2 _ B); Col.
       apply par_symmetry.
       apply par_left_comm.
-      induction(eq_dec_points X L).
+      induction(两点重合的决定性 X L).
         subst X.
         apply (par_col_par_2 _ Y); Col.
         Par.
@@ -220,7 +220,7 @@ Proof.
       subst L.
       clean_trivial_hyps.
       apply H13.
-      induction(eq_dec_points A' X).
+      induction(两点重合的决定性 A' X).
         subst X.
         assert(Par A' A O B).
           apply (par_col_par_2 _ Y); Col.
@@ -520,7 +520,7 @@ Proof.
         subst P.
         apply H16.
         ColR.
-      induction(eq_dec_points C'  L).
+      induction(两点重合的决定性 C'  L).
         subst L.
         assert(C' = M).
           induction (col_dec O X C).
@@ -553,7 +553,7 @@ Proof.
         apply H23.
         apply col_permutation_1.
         apply (col_transitivity_1 _ L); Col.
-      induction (eq_dec_points L M).
+      induction (两点重合的决定性 L M).
         subst L.
         assert(C' = M).
           apply (l6_21 O C A' C'); Col.
@@ -798,7 +798,7 @@ Proof.
         apply (col_transitivity_1 _ B'); Col.
       contradiction.
     assert(Par B' C'' B C ).
-      induction(eq_dec_points B' X).
+      induction(两点重合的决定性 B' X).
         subst X.
         apply (par_col_par_2 _ Y).
           auto.
@@ -1223,7 +1223,7 @@ Proof.
         apply not_col_permutation_1, par_not_col with B' C'; Par; Col.
       assert(HH:=cop_npar__inter_exists C P B' C' H9 H8).
       ex_and HH C''.
-      induction(eq_dec_points B' C'').
+      induction(两点重合的决定性 B' C'').
         subst C''.
         apply False_ind.
         induction H6.
@@ -1529,7 +1529,7 @@ Lemma l13_19 : forall A B C D A' B' C' D' O, ~Col O A B
                                           -> Par C D C' D'.
 Proof.
     intros.
-    induction (eq_dec_points A A').
+    induction (两点重合的决定性 A A').
       subst A'.
       assert(B = B').
         apply(l6_21 A B O B); Col.
@@ -1572,7 +1572,7 @@ Proof.
       subst D.
       apply H.
       apply (col_transitivity_1 _ C); Col.
-    induction(eq_dec_points A C).
+    induction(两点重合的决定性 A C).
       subst C.
       assert(A' = C').
         assert(Par A' B' B' C').
@@ -1590,7 +1590,7 @@ Proof.
         apply (col_transitivity_1 _ C'); Col.
       subst C'.
       auto.
-    induction(eq_dec_points A' C').
+    induction(两点重合的决定性 A' C').
       subst C'.
       assert(A = C).
         assert(Par A B B C).
@@ -1701,7 +1701,7 @@ Proof.
     ex_and HH E'.
     assert(~Col A D E).
       intro.
-      induction (eq_dec_points A E).
+      induction (两点重合的决定性 A E).
         subst E.
         apply H13.
         apply (l6_21 X A D A); Col.
@@ -2030,7 +2030,7 @@ Lemma l13_19_par : forall A B C D A' B' C' D' X Y,
  Par C D C' D'.
 Proof.
     intros.
-    induction(eq_dec_points A C).
+    induction(两点重合的决定性 A C).
       subst C.
       assert(Par A' B' B' C').
         apply(par_trans _ _ A B); Par.
@@ -2048,7 +2048,7 @@ Proof.
         split; Col.
       subst C'.
       Par.
-    induction(eq_dec_points B D).
+    induction(两点重合的决定性 B D).
       subst D.
       assert(Par A' B' A' D').
         apply(par_trans _ _ A B); Par.
@@ -2066,7 +2066,7 @@ Proof.
         split; Col.
       subst D'.
       Par.
-    induction(eq_dec_points A A').
+    induction(两点重合的决定性 A A').
       subst A'.
       induction H14.
         apply False_ind.
