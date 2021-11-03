@@ -126,7 +126,7 @@ Proof.
   apply (cong3_sums__sums A B C D E F); Cong.
 Qed.
 
-Lemma sums_middle_comm : forall A B C D E F, SumS A B C D E F -> SumS A B D C E F.
+Lemma sums_midd长度小于等于的交换性 : forall A B C D E F, SumS A B C D E F -> SumS A B D C E F.
 Proof.
   intros; apply sums_sym, sums_left_comm, sums_sym; trivial.
 Qed.
@@ -139,7 +139,7 @@ Qed.
 
 Lemma sums_comm : forall A B C D E F, SumS A B C D E F -> SumS B A D C F E.
 Proof.
-  intros; apply sums_left_comm, sums_middle_comm, sums_right_comm; trivial.
+  intros; apply sums_left_comm, sums_midd长度小于等于的交换性, sums_right_comm; trivial.
 Qed.
 
 (** Basic case of sum *)
@@ -193,7 +193,7 @@ Lemma sums__le1256 : forall A B C D E F, SumS A B C D E F -> Le A B E F.
 Proof.
   intros A B C D E F HSumS.
   destruct HSumS as [P [Q [R [HBet [HCong1 [HCong2 HCong3]]]]]].
-  apply (l5_6 P Q P R); trivial.
+  apply (l5_6_等长保持小于等于关系 P Q P R); trivial.
   exists Q; Cong.
 Qed.
 
@@ -210,7 +210,7 @@ Qed.
 Lemma eq_sums__eq : forall A B C D E, SumS A B C D E E -> A = B /\ C = D.
 Proof.
   intros A B C D E HSumS.
-  split; apply le_zero with E; [apply sums__le1256 with C D|apply (sums__le3456 A B)]; assumption.
+  split; apply AB小于等于CC推出A与B重合 with E; [apply sums__le1256 with C D|apply (sums__le3456 A B)]; assumption.
 Qed.
 
 Lemma sums_diff_1 : forall A B C D E F, A <> B -> SumS A B C D E F -> E <> F.
@@ -238,10 +238,10 @@ Proof.
   intros A B C D E F A' B' C' D' E' F' HLe1 HLe2 HSumS HSumS'.
   destruct HSumS as [P [Q [R [HBet [HCong1 [HCong2 HCong3]]]]]].
   destruct HSumS' as [P' [Q' [R' [HBet' [HCong1' [HCong2' HCong3']]]]]].
-  apply (l5_6 P R P' R'); trivial.
+  apply (l5_6_等长保持小于等于关系 P R P' R'); trivial.
   apply bet2_le2__le1346 with Q Q'; trivial.
-  apply (l5_6 A B A' B'); Cong.
-  apply (l5_6 C D C' D'); Cong.
+  apply (l5_6_等长保持小于等于关系 A B A' B'); Cong.
+  apply (l5_6_等长保持小于等于关系 C D C' D'); Cong.
 Qed.
 
 (** If AB <= A'B', CD <= C'D' and AB + CD = A'B' + C'D', then AB = A'B' and CD = C'D' *)
@@ -254,7 +254,7 @@ Proof.
   apply sums2__cong12 with C D E F; trivial.
   destruct (ex_sums A' B' C D) as [E' [F' HSum1]].
   apply (cong3_sums__sums A' B' C D E' F'); Cong.
-  apply le_anti_symmetry.
+  apply 长度小于等于的反对称性.
     apply le2_sums2__le with A' B' C D A' B' C' D'; Le.
     apply le2_sums2__le with A B C D A' B' C D; Le.
 Qed.
@@ -306,8 +306,8 @@ Lemma le2_sums2__le12 : forall A B C D E F A' B' C' D' E' F',
   Le A B A' B'.
 Proof.
   intros A B C D E F A' B' C' D' E' F' HLe1 HLe2 HSum HSum'.
-  apply nlt__le; intro HLt.
-  apply le__nlt in HLe2; apply HLe2.
+  apply 不小于推出反向小于等于; intro HLt.
+  apply 长度小于等于推出反向不小于 in HLe2; apply HLe2.
   apply le_lt12_sums2__lt with A' B' C' D' A B C D; trivial.
 Qed.
 
@@ -326,8 +326,8 @@ Lemma le_lt34_sums2__lt12 : forall A B C D E F A' B' C' D' E' F',
   Lt A B A' B'.
 Proof.
   intros A B C D E F A' B' C' D' E' F' HLt HLe HSum HSum'.
-  apply nle__lt; intro HLe1.
-  apply le__nlt in HLe; apply HLe.
+  apply 不小于等于推出反向小于; intro HLe1.
+  apply 长度小于等于推出反向不小于 in HLe; apply HLe.
   apply le_lt34_sums2__lt with A' B' C' D' A B C D; trivial.
 Qed.
 
@@ -346,8 +346,8 @@ Lemma le_lt56_sums2__lt12 : forall A B C D E F A' B' C' D' E' F',
   Lt A B A' B'.
 Proof.
   intros A B C D E F A' B' C' D' E' F' HLe HLt HSum HSum'.
-  apply nle__lt; intro HLe1.
-  apply lt__nle in HLt; apply HLt.
+  apply 不小于等于推出反向小于; intro HLe1.
+  apply 小于推出反向不小于等于 in HLt; apply HLt.
   apply le2_sums2__le with A' B' C' D' A B C D; trivial.
 Qed.
 
@@ -377,7 +377,7 @@ Qed.
 
 End Sums.
 
-Hint Resolve sums_sym sums_left_comm sums_middle_comm sums_right_comm
+Hint Resolve sums_sym sums_left_comm sums_midd长度小于等于的交换性 sums_right_comm
              sums_comm sums112323 sums123312 bet__sums : sums.
 
 Ltac Sums := auto 4 with sums.

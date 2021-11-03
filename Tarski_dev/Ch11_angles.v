@@ -461,7 +461,7 @@ Proof.
     }
     assert (三角形全等 A0 B C0 A1 B' C1)
       by (repeat split; Cong).
-    apply cong3_symmetry in H28.
+    apply 三角形全等的对称性 in H28.
     assert (等角 A0 B C0 A'' B'' C'')
       by (eauto using cong3_conga2).
     apply l11_10 with A0 C0 A'' C''; Out.
@@ -1646,7 +1646,7 @@ Lemma angle_construction_2 : forall A B C A' B' P,
 Proof.
     intros.
     spliter.
-    induction (col_dec A B C).
+    induction (共线的决定性 A B C).
       induction (out_dec B A C).
         exists A'.
         split.
@@ -1753,7 +1753,7 @@ Lemma l11_19 : forall A B P1 P2,
   Out B P1 P2.
 Proof.
     intros.
-    induction (col_dec A B P1).
+    induction (共线的决定性 A B P1).
       induction (l8_9 A B P1 H H2).
         subst.
         unfold OS in *.
@@ -1767,7 +1767,7 @@ Proof.
       spliter.
       assert (Col B A B) by Col.
       intuition.
-    induction (col_dec A B P2).
+    induction (共线的决定性 A B P2).
       induction (l8_9 A B P2 H0 ).
         subst.
         unfold OS in *.
@@ -1853,7 +1853,7 @@ Proof.
         apply H3.
         assumption.
       auto.
-    induction (col_dec C' B' P').
+    induction (共线的决定性 C' B' P').
       unfold TS in H7.
       spliter.
       apply False_ind.
@@ -1951,7 +1951,7 @@ Proof.
         auto.
       assumption.
       assumption.
-    induction(bet_dec P B T).
+    induction(中间性的决定性 P B T).
       assert(exists T'', Col B' P' T'' /\ (Out B' P' T'' <-> Out B P T) /\ Cong B' T'' B T).
         prolong P' B' T'' B T.
         exists T''.
@@ -2778,7 +2778,7 @@ Lemma l11_25 : forall P A B C A' C' P',
  在角内 P' A' B C'.
 Proof.
     intros.
-    induction (bet_dec A B C).
+    induction (中间性的决定性 A B C).
       repeat split.
         unfold Out in H0.
         spliter.
@@ -3362,10 +3362,10 @@ Lemma angle_construction_4 :
   exists C', 等角 A B C A' B' C' /\ 共面 A' B' C' P.
 Proof.
     intros.
-    destruct (col_dec A' B' P).
+    destruct (共线的决定性 A' B' P).
       destruct (angle_construction_3 A B C A' B') as [C']; auto.
       exists C'; split; Cop.
-    destruct (col_dec A B C).
+    destruct (共线的决定性 A B C).
       destruct (angle_construction_3 A B C A' B') as [C']; auto.
       exists C'; split; auto.
       exists C'; left; split; Col.
@@ -5066,8 +5066,8 @@ Lemma lea_asym : forall A B C D E F,
  角度小于等于 A B C D E F -> 角度小于等于 D E F A B C -> 等角 A B C D E F.
 Proof.
     intros.
-    induction (col_dec A B C).
-      induction (bet_dec A B C).
+    induction (共线的决定性 A B C).
+      induction (中间性的决定性 A B C).
         apply lea_distincts in H0; spliter.
         apply conga_line; auto.
         ex_and H P.
@@ -5388,7 +5388,7 @@ Proof.
     assert (Hd := H1).
     apply inangle_distincts in Hd.
     spliter.
-    induction (col_dec B A C).
+    induction (共线的决定性 B A C).
       assert(HH:=or_bet_out C B A).
       induction HH.
         assert(Bet A B D).
@@ -5435,7 +5435,7 @@ Proof.
       apply H6.
       apply 等价共线CAB.
       assumption.
-    induction (col_dec B D C).
+    induction (共线的决定性 B D C).
       assert(HH:=or_bet_out C B D).
       induction HH.
         assert(OS A B C D).
@@ -6075,7 +6075,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma not_and_lta : forall A B C D E F, ~ (角度小于 A B C D E F /\ 角度小于 D E F A B C).
+Lemma 两长度不可能互相小于对方a : forall A B C D E F, ~ (角度小于 A B C D E F /\ 角度小于 D E F A B C).
 Proof.
     intros.
     intro.
@@ -6145,7 +6145,7 @@ Proof.
         spliter.
         assumption.
       assumption.
-    apply (not_and_lta A1 B1 C1 A2 B2 C2).
+    apply (两长度不可能互相小于对方a A1 B1 C1 A2 B2 C2).
     split; assumption.
 Qed.
 
@@ -6235,7 +6235,7 @@ Qed.
 Lemma l11_43_aux : forall A B C, A <> B -> A <> C -> (Per B A C \/ 为钝角 B A C) -> 为锐角 A B C.
 Proof.
     intros.
-    induction (col_dec A B C).
+    induction (共线的决定性 A B C).
       induction H1.
         exfalso.
         apply (per_not_col B A C); Col.
@@ -6466,7 +6466,7 @@ Proof.
         apply conga_sym.
         apply H4.
       assumption.
-    apply (not_and_lta A' B' C' D E F).
+    apply (两长度不可能互相小于对方a A' B' C' D E F).
     split; assumption.
 Qed.
 
@@ -6511,7 +6511,7 @@ Proof.
         apply H3.
       apply conga_sym.
       assumption.
-    apply (not_and_lta A' B' C' D E F).
+    apply (两长度不可能互相小于对方a A' B' C' D E F).
     split; assumption.
 Qed.
 
@@ -6673,7 +6673,7 @@ Proof.
     decompose [ex and] H3; clear H3.
     assert (exists F' : Tpoint, Bet E F F' /\ Cong F F' B C) by (apply 由一点往一方向构造等长线段).
     decompose [ex and] H3; clear H3.
-    induction (cong_dec x x0 x1 x2).
+    induction (等长的决定性 x x0 x1 x2).
       left.
       unfold 等角.
       repeat split; try assumption.
@@ -6711,7 +6711,7 @@ Lemma nlta : forall A B C, ~ 角度小于 A B C A B C.
 Proof.
   intros A B C.
   intro.
-  apply (not_and_lta A B C A B C).
+  apply (两长度不可能互相小于对方a A B C A B C).
   split; assumption.
 Qed.
 
@@ -6740,7 +6740,7 @@ Proof.
     intros.
     apply 不共线则不重合 in H.
     spliter.
-    assert(HH:= or_lt_cong_gt B A B C).
+    assert(HH:= 两长度必大于小于或等于 B A B C).
     induction HH.
       apply l11_44_2_a in H4.
         apply lta_not_conga in H4.
@@ -6764,16 +6764,16 @@ Qed.
 Lemma l11_44_2_b : forall A B C, 角度小于 B A C B C A -> Lt B C B A.
 Proof.
     intros.
-    induction (col_dec A B C).
+    induction (共线的决定性 A B C).
       assert (Hd := H).
       apply lta_distincts in Hd; spliter; clean_reap_hyps.
       apply col_lta__bet in H; Col; Le.
     apply 不共线则不重合 in H0.
     spliter.
-    assert(HH:= or_lt_cong_gt B A B C).
+    assert(HH:= 两长度必大于小于或等于 B A B C).
     induction HH.
       apply l11_44_2_a in H4.
-        assert(HH:= not_and_lta B A C B C A).
+        assert(HH:= 两长度不可能互相小于对方a B A C B C A).
         exfalso.
         apply HH.
         split; assumption.
@@ -6799,12 +6799,12 @@ Qed.
 Lemma l11_44_2bis : forall A B C, ~ Col A B C -> (角度小于等于 B A C B C A <-> Le B C B A).
 Proof.
     intros; split; intro.
-      apply nlt__le.
+      apply 不小于推出反向小于等于.
       intro.
       apply (lea__nlta B A C B C A).
         assumption.
       apply l11_44_2; Col.
-    induction (cong_dec B C B A).
+    induction (等长的决定性 B C B A).
       apply conga__lea.
       apply l11_44_1; Cong.
     apply lta__lea.
@@ -6816,7 +6816,7 @@ Qed.
 Lemma l11_46 : forall A B C, A <> B -> B <> C -> (Per A B C \/ 为钝角 A B C) -> Lt B A A C /\ Lt B C A C.
 Proof.
     intros.
-    induction (col_dec A B C).
+    induction (共线的决定性 A B C).
       induction H1.
         exfalso.
         apply (per_not_col A B C); auto.
@@ -6831,7 +6831,7 @@ Proof.
     apply l11_43 in H1; auto.
       spliter.
       split.
-        apply lt_left_comm.
+        apply 长度小于的左交换性.
         apply l11_44_2_b.
         unfold 为锐角 in H3.
         ex_and H3 A'.
@@ -6862,8 +6862,8 @@ Proof.
           apply l11_16; auto.
           apply conga_refl; auto.
         assumption.
-      apply lt_left_comm.
-      apply lt_right_comm.
+      apply 长度小于的左交换性.
+      apply 长度小于的右交换性.
       apply l11_44_2_b.
       unfold 为锐角 in H1.
       ex_and H1 A'.
@@ -6915,7 +6915,7 @@ Proof.
     assert(Perp C H A B).
       eapply l8_14_2_1a.
       apply HH1.
-    induction (col_dec A C B).
+    induction (共线的决定性 A C B).
       assert(A <> H).
         intro.
         subst H.
@@ -6980,14 +6980,14 @@ Proof.
       spliter.
       apply l5_12_b.
         Col.
-        eapply le_transitivity.
-          apply le_left_comm.
+        eapply 长度小于等于的传递性.
+          apply 长度小于等于的左交换性.
           apply H15.
-        apply le_left_comm.
+        apply 长度小于等于的左交换性.
         assumption.
-      eapply le_transitivity.
+      eapply 长度小于等于的传递性.
         apply H17.
-      apply le_left_comm.
+      apply 长度小于等于的左交换性.
       assumption.
     split;auto.
 Qed.
@@ -7357,7 +7357,7 @@ Proof.
     apply conga_distinct in H.
     spliter.
     assert(Cong B A B' A').
-      induction(col_dec A B C).
+      induction(共线的决定性 A B C).
         unfold Col in H7.
         induction H7.
           assert(Bet A' B' C').
@@ -7382,7 +7382,7 @@ Proof.
           spliter.
           induction H10.
             assert(Le B' C' A' C').
-              eapply l5_6.
+              eapply l5_6_等长保持小于等于关系.
               repeat split.
                 apply H2.
                 assumption.
@@ -7509,7 +7509,7 @@ Proof.
           spliter.
           unfold Lt.
           split.
-            eapply l5_6.
+            eapply l5_6_等长保持小于等于关系.
               apply H31.
               Cong.
             Cong.
@@ -7523,16 +7523,16 @@ Proof.
         unfold Lt in H32.
         spliter.
         assert(Le C A C B).
-          eapply l5_6.
+          eapply l5_6_等长保持小于等于关系.
           repeat split.
             apply H32.
             apply 等长的交换性.
             assumption.
           Cong.
         assert(Cong C A C B).
-          apply le_anti_symmetry.
+          apply 长度小于等于的反对称性.
             assumption.
-          apply le_comm.
+          apply 长度小于等于的交换性.
           assumption.
         apply False_ind.
         apply H33.
@@ -7597,7 +7597,7 @@ Proof.
         spliter.
         unfold Lt.
         split.
-          eapply l5_6.
+          eapply l5_6_等长保持小于等于关系.
             apply H32.
             Cong.
           Cong.
@@ -7610,16 +7610,16 @@ Proof.
       unfold Lt in H33.
       spliter.
       assert(Le C A C B).
-        eapply l5_6.
+        eapply l5_6_等长保持小于等于关系.
         repeat split.
           apply H32.
           apply 等长的交换性.
           assumption.
         Cong.
       assert(Cong C A C B).
-        apply le_anti_symmetry.
+        apply 长度小于等于的反对称性.
           assumption.
-        apply le_comm.
+        apply 长度小于等于的交换性.
         assumption.
       apply False_ind.
       apply H34.
@@ -7641,7 +7641,7 @@ Proof.
         auto.
         intro.
         subst C.
-        apply le_zero in H2.
+        apply AB小于等于CC推出A与B重合 in H2.
         subst B.
         absurde.
       auto with cong3.
@@ -7649,7 +7649,7 @@ Proof.
       auto.
       intro.
       subst C.
-      apply le_zero in H2.
+      apply AB小于等于CC推出A与B重合 in H2.
       subst B.
       absurde.
     auto with cong3.
@@ -7815,7 +7815,7 @@ Proof.
     spliter.
     unfold Lt.
     split.
-      eapply l5_6.
+      eapply l5_6_等长保持小于等于关系.
         apply H17.
         Cong.
       apply 等长的伪自反性.
@@ -7840,7 +7840,7 @@ forall A B C A' B' C',
 Proof.
 intros.
 apply (l11_52 A B C A' B' C'); auto.
-destruct (col_dec A B C).
+destruct (共线的决定性 A B C).
   apply bet__le2313, col_obtuse__bet; assumption.
 assert_diffs; apply l11_46; auto.
 Qed.
@@ -7912,14 +7912,14 @@ destruct (两点重合的决定性 A B).
   treat_equalities; auto.
 destruct (两点重合的决定性 B C).
   subst C.
-  apply (cong2_lt__lt B' A' C' A'); Cong.
+  apply (等长保持小于关系 B' A' C' A'); Cong.
   assert_diffs.
   apply l11_46; Perp.
 destruct H2 as [[C0 []] HNCong].
 assert_diffs.
 assert (Per A' B' C0) by (apply per_col with C'; Col).
-apply (cong2_lt__lt A' C0 A' C'); [|apply l10_12 with B' B|]; Cong.
-apply lt_comm.
+apply (等长保持小于关系 A' C0 A' C'); [|apply l10_12 with B' B|]; Cong.
+apply 长度小于的交换性.
 destruct (l11_53 C' C0 B' A'); Between.
 intro; subst; auto.
 Qed.
@@ -7933,10 +7933,10 @@ forall A B C A' B' C',
        Le A C A' C'.
 Proof.
 intros.
-destruct (cong_dec B C B' C').
-  apply cong__le, l10_12 with B B'; assumption.
+destruct (等长的决定性 B C B' C').
+  apply 等长则小于等于, l10_12 with B B'; assumption.
 assert (Lt B C B' C') by (split; assumption).
-apply lt__le, cong_lt_per2__lt with B B'; assumption.
+apply 长度小于蕴含小于等于, cong_lt_per2__lt with B B'; assumption.
 Qed.
 
 Lemma lt2_per2__lt :
@@ -7950,18 +7950,18 @@ Proof.
 intros.
 destruct (两点重合的决定性 B C).
   subst C.
-  apply lt_transitivity with A' B'; auto.
+  apply 长度小于的传递性 with A' B'; auto.
   assert_diffs.
-  apply lt_comm, l11_46; Perp.
-apply lt_comm in H1.
+  apply 长度小于的交换性, l11_46; Perp.
+apply 长度小于的交换性 in H1.
 assert (HC0 := H2).
 destruct HC0 as [[C0 []] HNCong].
 assert (Per A' B' C0).
   assert_diffs; apply per_col with C'; Col.
-apply lt_transitivity with A' C0.
-  apply lt_comm, cong_lt_per2__lt with B B'; Cong; Perp.
+apply 长度小于的传递性 with A' C0.
+  apply 长度小于的交换性, cong_lt_per2__lt with B B'; Cong; Perp.
 apply cong_lt_per2__lt with B' B'; Cong.
-apply (cong2_lt__lt B C B' C'); Cong.
+apply (等长保持小于关系 B C B' C'); Cong.
 Qed.
 
 Lemma le_lt_per2__lt :
@@ -7973,7 +7973,7 @@ forall A B C A' B' C',
        Lt A C A' C'.
 Proof.
 intros.
-destruct (cong_dec A B A' B').
+destruct (等长的决定性 A B A' B').
   apply cong_lt_per2__lt with B B'; assumption.
 assert (Lt A B A' B') by (split; assumption).
 apply lt2_per2__lt with B B'; assumption.
@@ -7988,8 +7988,8 @@ forall A B C A' B' C',
        Le A C A' C'.
 Proof.
 intros.
-destruct (cong_dec B C B' C').
-  apply le_comm, cong_le_per2__le with B B'; Perp; Le; Cong.
+destruct (等长的决定性 B C B' C').
+  apply 长度小于等于的交换性, cong_le_per2__le with B B'; Perp; Le; Cong.
 assert (Lt B C B' C') by (split; assumption).
 apply le_lt_per2__lt with B B'; assumption.
 Qed.
@@ -8003,7 +8003,7 @@ forall A B C A' B' C',
        Lt B' C' B C.
 Proof.
 intros.
-apply nle__lt.
+apply 不小于等于推出反向小于.
 intro.
 destruct (le_lt_per2__lt C B A C' B' A'); Perp; Le; Cong.
 Qed.
@@ -8536,7 +8536,7 @@ Proof.
   assert (Haux : forall U V, U <> V -> ~ 共面 A B C U -> Orth A B C U V \/ ~ Orth A B C U V).
   { intros U V HUV HU.
     destruct (l11_62_existence_bis A B C U HU) as [X HX].
-    destruct (col_dec U V X).
+    destruct (共线的决定性 U V X).
       left; apply col_orth__orth with X; Col; apply orth_symmetry; exists X; apply HX.
     right; intros [Y HY].
     assert (X = Y).
@@ -8548,7 +8548,7 @@ Proof.
     subst; destruct HY; spliter; Col.
   }
   intros U V HUV.
-  destruct (col_dec A B C).
+  destruct (共线的决定性 A B C).
     unfold Orth, 垂直平面于; right; intros [X []]; spliter; auto.
   destruct (cop_dec A B C U); [|auto].
   destruct (cop_dec A B C V).
@@ -8563,7 +8563,7 @@ Proof.
   intros A B C U V X.
   destruct (orth_dec A B C U V) as [|HNOrth]; [|right; intro HX; apply HNOrth; exists X; apply HX].
   destruct (cop_dec A B C X); [|unfold 垂直平面于; right; intro; spliter; auto].
-  destruct (col_dec U V X) as [HCol|]; [|unfold 垂直平面于; right; intro; spliter; auto].
+  destruct (共线的决定性 U V X) as [HCol|]; [|unfold 垂直平面于; right; intro; spliter; auto].
   left; apply col_cop_orth__orth_at; assumption.
 Qed.
 
@@ -8581,7 +8581,7 @@ Proof.
   assert (HQ1 := HQ).
   apply orth_at_chara in HQ1; spliter.
   destruct (两点重合的决定性 P Q).
-  { subst Q; clear HQ; destruct (bet_dec X P Y) as [|HNBet].
+  { subst Q; clear HQ; destruct (中间性的决定性 X P Y) as [|HNBet].
       left; repeat split; trivial; exists P; split; trivial.
     right; intro HQ; apply HNBet.
     destruct HQ as [_ [_ [Q [HQ HBet]]]].
@@ -8826,9 +8826,9 @@ Proof.
   intros A B C A' HBet HA'B Hacute.
   assert(Hd := acute_distincts A B C Hacute).
   destruct Hd.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro.
-    elim(bet_dec A B C).
+    elim(中间性的决定性 A B C).
     - intro.
       exfalso.
       apply (nlta A B C).
@@ -8885,9 +8885,9 @@ Proof.
   intros A B C A' HBet HA'B Hobtuse.
   assert(Hd := obtuse_distincts A B C Hobtuse).
   spliter.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro.
-    elim(bet_dec A B C).
+    elim(中间性的决定性 A B C).
     - intro.
       apply out__acute.
       apply (l6_2 _ _ A); Between.
@@ -8953,9 +8953,9 @@ Proof.
     elim(两点重合的决定性 P B).
       intro; subst; right; unfold 在角内; intro; spliter; auto.
     intro.
-    elim(col_dec A B C).
+    elim(共线的决定性 A B C).
     { intro HColB.
-      elim(bet_dec A B C).
+      elim(中间性的决定性 A B C).
       { intro HBBet.
         left.
         repeat split; auto.
@@ -9001,7 +9001,7 @@ Proof.
       apply l6_6; auto.
     }
     intro HNts.
-    elim(col_dec B A P).
+    elim(共线的决定性 B A P).
     { intro.
       elim(out_dec B A P).
       { intro.
@@ -9019,7 +9019,7 @@ Proof.
       destruct HUn; auto.
     }
     intro.
-    elim(col_dec B C P).
+    elim(共线的决定性 B C P).
     { intro.
       elim(out_dec B C P).
       { intro.
@@ -9064,12 +9064,12 @@ Proof.
   elim(两点重合的决定性 E F).
     intro; right; intro Hlea; apply lea_distincts in Hlea; spliter; auto.
   intro.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro.
     elim(out_dec B A C).
       intro; left; apply l11_31_1; auto.
     intro.
-    elim(bet_dec D E F).
+    elim(中间性的决定性 D E F).
       intro; left; apply l11_31_2; auto.
     intro HENBet.
     right.
@@ -9079,9 +9079,9 @@ Proof.
     apply not_out_bet; auto.
   }
   intro HNColB.
-  elim(col_dec D E F).
+  elim(共线的决定性 D E F).
   { intro.
-    elim(bet_dec D E F).
+    elim(中间性的决定性 D E F).
       intro; left; apply l11_31_2; auto.
     intro.
     right.
@@ -9134,14 +9134,14 @@ Lemma lea_total : forall A B C D E F, A <> B -> B <> C -> D <> E -> E <> F ->
    角度小于等于 A B C D E F \/ 角度小于等于 D E F A B C.
 Proof.
   intros A B C D E F HAB HBC HDE HEF.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro.
     elim(out_dec B A C).
     - intro; left; apply l11_31_1; auto.
     - intro; right; apply l11_31_2; auto; apply not_out_bet; auto.
   }
   intro.
-  elim(col_dec D E F).
+  elim(共线的决定性 D E F).
   { intro.
     elim(out_dec E D F).
     - intro; right; apply l11_31_1; auto.
@@ -9284,7 +9284,7 @@ Qed.
 Lemma conga__acute : forall A B C, 等角 A B C A C B -> 为锐角 A B C.
 Proof.
   intros A B C H等角.
-  destruct (col_dec A B C).
+  destruct (共线的决定性 A B C).
   { apply out__acute, not_bet_out; trivial.
     intro.
     absurd (B = C).
@@ -9349,15 +9349,15 @@ Lemma triangle_strict_inequality : forall A B C D, Bet A B D -> Cong B C B D -> 
    Lt A C A D.
 Proof.
   intros A B C D HBet HCong HNBet.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro.
     assert_diffs.
     apply not_bet_out in HNBet; Col.
     destruct HNBet as [_ [_ [HBAC|HBCA]]].
     - split.
-      { apply (le_transitivity _ _ B C).
-        apply le_comm; exists A; split; Between; Cong.
-        apply (l5_6 D B D A); Cong; exists B; split; Between; Cong.
+      { apply (长度小于等于的传递性 _ _ B C).
+        apply 长度小于等于的交换性; exists A; split; Between; Cong.
+        apply (l5_6_等长保持小于等于关系 D B D A); Cong; exists B; split; Between; Cong.
       }
       intro.
       assert(A = B); auto.
@@ -9408,7 +9408,7 @@ Qed.
 Lemma triangle_inequality : forall A B C D, Bet A B D -> Cong B C B D -> Le A C A D.
 Proof.
   intros A B C D HCong HBet.
-  elim(bet_dec A B C).
+  elim(中间性的决定性 A B C).
   - intro.
     elim(两点重合的决定性 A B).
       intro; subst; Le.
@@ -9428,7 +9428,7 @@ Lemma triangle_strict_inequality_2 : forall A B C A' B' C',
 Proof.
   intros A B C A' B' C' HBet H等角 HCongB HNBet.
   destruct (由一点往一方向构造等长线段 A B B C) as [D [HBetD HCongD]].
-  apply (cong2_lt__lt A C A D); Cong.
+  apply (等长保持小于关系 A C A D); Cong.
     apply (triangle_strict_inequality _ B); Cong.
   apply (两组连续三点分段等则全体等 _ B _ _ B'); Cong.
   apply 等长的传递性 with B C; trivial.
@@ -9440,7 +9440,7 @@ Lemma triangle_inequality_2 : forall A B C A' B' C',
 Proof.
   intros A B C A' B' C' HBet H等角 HCongB.
   destruct (由一点往一方向构造等长线段 A B B C) as [D [HBetD HCongD]].
-  apply (l5_6 A C A D); Cong.
+  apply (l5_6_等长保持小于等于关系 A C A D); Cong.
     apply (triangle_inequality _ B); Cong.
   apply (两组连续三点分段等则全体等 _ B _ _ B'); Cong.
   apply 等长的传递性 with B C; trivial.
@@ -9455,7 +9455,7 @@ Lemma triangle_strict_reverse_inequality : forall A B C D,
   Out A B D -> Cong A C A D -> ~ Out A B C -> Lt B D B C.
 Proof.
   intros A B C D HABD HCong HNout.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro.
     assert_diffs.
     apply not_out_bet in HNout; Col.
@@ -9463,9 +9463,9 @@ Proof.
     assert(C <> D) by (intro; treat_equalities; auto).
     split.
     { destruct HABD as [_ [_ [HABD|HADB]]].
-      - apply (le_transitivity _ _ A D).
-          apply le_comm; exists B; split; Between; Cong.
-        apply (l5_6 C A C B); Cong.
+      - apply (长度小于等于的传递性 _ _ A D).
+          apply 长度小于等于的交换性; exists B; split; Between; Cong.
+        apply (l5_6_等长保持小于等于关系 C A C B); Cong.
         exists A; split; Between; Cong.
       - exists D.
         split; Cong.
@@ -9592,10 +9592,10 @@ Lemma bet_le__lt : forall A B C D, Bet A D B -> A <> D -> D <> B -> Le A C B C -
 Proof.
   intros A B C D HBet HAD HBD Hle.
   assert(HAB : B <> A) by (intro; treat_equalities; auto).
-  apply lt_comm.
-  elim(col_dec A B C).
+  apply 长度小于的交换性.
+  elim(共线的决定性 A B C).
   { intro.
-    elim(bet_dec C D B).
+    elim(中间性的决定性 C D B).
     { intro.
       split.
       exists D; Cong.
@@ -9613,7 +9613,7 @@ Proof.
     { intro.
       apply HAB.
       apply (between_cong C); Between.
-      apply le_anti_symmetry; Le.
+      apply 长度小于等于的反对称性; Le.
     }
     assert(B <> C) by (intro; subst; Between).
     assert (Bet B C A).
@@ -9624,9 +9624,9 @@ Proof.
     assert(Bet C C' B).
     { apply l6_13_1.
       apply (l6_2 _ _ A); Between.
-      apply (l5_6 A C B C); Cong.
+      apply (l5_6_等长保持小于等于关系 A C B C); Cong.
     }
-    apply (le3456_lt__lt _ _ C A); [|exists C'; split; Cong].
+    apply (长度小于_小于等于_传递性 _ _ C A); [|exists C'; split; Cong].
     split.
     exists D; Cong.
     intro.
@@ -9725,7 +9725,7 @@ Proof.
   assert_diffs.
   assert(HSAS := l11_49 C A B F D G).
   destruct HSAS as [HCongBC _]; Cong.
-  apply (cong2_lt__lt F E F G); Cong.
+  apply (等长保持小于关系 F E F G); Cong.
   apply (conga_preserves_lta _ _ _ _ _ _ F D E F D G) in Hlta; try (apply conga_refl); auto.
   assert(Cong D G D E) by (apply (等长的传递性 _ _ A B); auto).
   clear dependent A.
@@ -9756,9 +9756,9 @@ Proof.
   assert(H <> F) by (intro; subst; apply HNCol2; Col).
   assert(H <> G) by (intro; subst; Col5).
   assert(Hlt : Lt D H D E).
-  { apply (cong2_lt__lt H D G D); Cong.
+  { apply (等长保持小于关系 H D G D); Cong.
     apply (bet_le__lt F); auto.
-    apply (l5_6 D F D E); Cong.
+    apply (l5_6_等长保持小于等于关系 D F D E); Cong.
   }
   destruct Hlt.
   assert(H <> E) by (intro; subst; Cong).
@@ -9809,13 +9809,13 @@ Proof.
   assert (Hd := Hlta).
   apply lta_distincts in Hd.
   spliter.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro.
-    elim(bet_dec B A C).
+    elim(中间性的决定性 B A C).
     - intro.
       assert(HC' := 由一点往一方向构造等长线段 E D A C).
       destruct HC' as [C' []].
-      apply (cong2_lt__lt E F E C'); Cong; [|apply (两组连续三点分段等则全体等 _ D _ _ A); Cong].
+      apply (等长保持小于关系 E F E C'); Cong; [|apply (两组连续三点分段等则全体等 _ D _ _ A); Cong].
       apply (triangle_strict_inequality _ D); auto.
       apply (等长的传递性 _ _ A C); Cong.
       intro.
@@ -9831,9 +9831,9 @@ Proof.
       apply not_bet_out; Col; Between.
   }
   intro.
-  elim(col_dec D E F).
+  elim(共线的决定性 D E F).
   { intro.
-    elim(bet_dec F D E).
+    elim(中间性的决定性 F D E).
     - intro.
       exfalso.
       apply (nlta F D E).
@@ -9844,7 +9844,7 @@ Proof.
       apply not_bet_out in HNBet; Col.
       assert(HF' := 由一点往一方向构造等长线段_3 A B A C).
       destruct HF' as [F' []]; auto.
-      apply (cong2_lt__lt B F' B C); Cong.
+      apply (等长保持小于关系 B F' B C); Cong.
       { apply (triangle_strict_reverse_inequality A); Cong.
         intro.
         destruct Hlta as [_ HNConga].
@@ -9857,7 +9857,7 @@ Proof.
       apply (等长的传递性 _ _ A C); auto.
   }
   intro.
-  elim(le_cases D F D E); intro; [|apply lt_comm; apply lta_comm in Hlta];
+  elim(长度小于等于的决定性 D F D E); intro; [|apply 长度小于的交换性; apply lta_comm in Hlta];
   apply (t18_18_aux A _ _ D); Cong; Col.
 Qed.
 
@@ -9877,7 +9877,7 @@ Proof.
     destruct HSAS; Cong.
 
   - intro.
-    apply (not_and_lt E F B C).
+    apply (两长度不可能互相小于对方 E F B C).
     split; auto.
     apply (t18_18 D _ _ A); Cong.
     split; auto.
@@ -9946,9 +9946,9 @@ Lemma angle_bisector : forall A B C, A <> B -> C <> B ->
   exists P, 在角内 P A B C /\ 等角 P B A P B C.
 Proof.
   intros A B C HAB HCB.
-  elim (col_dec A B C).
+  elim (共线的决定性 A B C).
   { intro HCol.
-    elim (bet_dec A B C).
+    elim (中间性的决定性 A B C).
     - intro HBet; destruct (not_col_exists A B) as [Q HNCol]; trivial.
       destruct (l10_15 A B B Q) as [P [HPerp HOS]]; Col.
       assert_diffs; exists P; split.
@@ -9996,7 +9996,7 @@ Proof.
     apply l11_16; auto;
     apply perp_per_1, perp_left_comm, perp_col with A; Col;
     [apply perp_col1 with P'|apply perp_col1 with P]; Col; Perp.
-  destruct (bet_dec A' B A) as [HBBet|HBOut].
+  destruct (中间性的决定性 A' B A) as [HBBet|HBOut].
     apply l11_13 with A' A'; assumption.
   apply not_bet_out in HBOut; Col.
   assert_diffs.
@@ -10051,7 +10051,7 @@ Proof.
   - intro; apply HNOut.
     apply l6_2 with A'; auto.
     apply 中间性的对称性, l6_2 with C'; try (apply l6_6); Between.
-  - destruct (col_dec A B C).
+  - destruct (共线的决定性 A B C).
       exists C'; left; split; ColR.
     apply coplanar_pseudo_trans with A B C; Cop.
   - apply conga_comm, l11_13 with A C; auto; apply conga_comm; assumption.
@@ -10091,7 +10091,7 @@ Lemma col_conga__conga : forall A B C P P', 等角 P B A P B C -> Col B P P' -> 
   等角 P' B A P' B C.
 Proof.
   intros A B C P P' HConga HCol HBP'.
-  destruct (bet_dec P B P') as [HBet|HNBet].
+  destruct (中间性的决定性 P B P') as [HBet|HNBet].
     apply l11_13 with P P; auto.
   apply not_bet_out in HNBet; Col.
   apply l6_6 in HNBet.
@@ -10113,7 +10113,7 @@ Proof.
       apply inangle3123; auto.
     exists A; split; Col; apply inangle1123; auto.
   }
-  destruct (col_dec B P Q) as [HCol|HNCol1].
+  destruct (共线的决定性 B P Q) as [HCol|HNCol1].
   { destruct (由一点往一方向构造等长线段 B P B P) as [R [HR1 HR2]].
     exists R.
     assert_diffs; split; [|split; ColR].
@@ -10121,11 +10121,11 @@ Proof.
     apply l6_6, bet_out; auto.
   }
   assert_diffs.
-  destruct (col_dec A B C) as [HCol|HNCol2].
+  destruct (共线的决定性 A B C) as [HCol|HNCol2].
     exists Q; split; Col.
     apply in_angle_line; auto.
     apply not_out_bet; assumption.
-  destruct (col_dec B C P) as [HCol|HNCol3].
+  destruct (共线的决定性 B C P) as [HCol|HNCol3].
   - assert (HNCol3 : ~ Col B A P) by (intro; apply HNCol2; ColR).
     destruct (cop_not_par_same_side B P Q P P A) as [Q0 [HCol1 HOS]]; Col.
       apply coplanar_perm_16, col_cop__cop with C; Cop.
@@ -10136,7 +10136,7 @@ Proof.
       apply in_angle_trans with P; trivial.
     }
     assert (HR : exists R, Bet P R Q0 /\ Col P Q R /\ Col B A R).
-    { destruct (col_dec B A Q0).
+    { destruct (共线的决定性 B A Q0).
         exists Q0; split; Between; Col.
       assert_diffs.
       destruct (cop_nos__ts B A P Q0) as [_ [_ [R [HCol' HBet]]]]; Col; Cop.
@@ -10161,7 +10161,7 @@ Proof.
       apply l11_24, HIn.
     }
     assert (HR : exists R, Bet P R Q0 /\ Col P Q R /\ Col B C R).
-    { destruct (col_dec B C Q0).
+    { destruct (共线的决定性 B C Q0).
         exists Q0; split; Between; Col.
       assert_diffs.
       destruct (cop_nos__ts B C P Q0) as [_ [_ [R [HCol' HBet]]]]; Col; Cop.
@@ -10186,10 +10186,10 @@ Proof.
   assert (Hd := inangle_distincts A B C P HP);
   assert (Hd' := inangle_distincts A B C Q HQ);
   spliter; clean.
-  destruct (col_dec A B C).
+  destruct (共线的决定性 A B C).
     assert (Out B A C) by (apply not_bet_out; assumption).
     apply l6_7 with A; [apply l6_6|]; apply in_angle_out with C; auto.
-  destruct (col_dec B A P) as [HCol1|HNCol1].
+  destruct (共线的决定性 B A P) as [HCol1|HNCol1].
     apply l6_7 with A; [apply l6_6|]; apply col_in_angle_out with C; ColR.
   apply col_one_side_out with A; trivial.
   apply one_side_transitivity with C; [|apply one_side_symmetry];
@@ -10206,35 +10206,35 @@ Proof.
   assert (Hd := inangle_distincts A B C P HP);
   assert (Hd' := inangle_distincts A B C Q HQ);
   spliter; clean.
-  destruct (col_dec A B C) as [HCol|HNCol].
-  { destruct (bet_dec A B C).
+  destruct (共线的决定性 A B C) as [HCol|HNCol].
+  { destruct (中间性的决定性 A B C).
       apply l11_31_2; auto.
     apply l11_31_1; auto.
     assert (Out B A C) by (apply not_bet_out; assumption).
     apply l6_7 with A; [apply l6_6|]; apply in_angle_out with C; auto.
   }
-  destruct (col_dec B P Q) as [HCol1|HNCol1].
+  destruct (共线的决定性 B P Q) as [HCol1|HNCol1].
     apply l11_31_1; auto; apply col_inangle2__out with A C; auto.
     intro; apply HNCol; Col.
-  destruct (col_dec B A P) as [HCol2|HNCol2].
+  destruct (共线的决定性 B A P) as [HCol2|HNCol2].
   { assert (Out B A P) by (apply col_in_angle_out with C; auto; intro; apply HNCol; Col).
     exists Q; split; trivial.
     apply out2__conga; [|apply out_trivial]; auto.
   }
-  destruct (col_dec B C P) as [HCol3|HNCol3].
+  destruct (共线的决定性 B C P) as [HCol3|HNCol3].
   { assert (Out B C P).
       apply col_in_angle_out with A; auto; intro; apply HNCol; Col.
     apply lea_right_comm.
     exists Q; split; trivial.
     apply out2__conga; [|apply out_trivial]; auto.
   }
-  destruct (col_dec B A Q) as [HCol4|HNCol4].
+  destruct (共线的决定性 B A Q) as [HCol4|HNCol4].
   { assert (Out B A Q) by (apply col_in_angle_out with C; auto; intro; apply HNCol; Col).
     apply lea_left_comm.
     exists P; split; trivial.
     apply out2__conga; [|apply out_trivial]; auto.
   }
-  destruct (col_dec B C Q) as [HCol5|HNCol5].
+  destruct (共线的决定性 B C Q) as [HCol5|HNCol5].
   { assert (Out B C Q).
       apply col_in_angle_out with A; auto; intro; apply HNCol; Col.
     apply lea_comm.
@@ -10289,16 +10289,16 @@ Proof.
     apply HNCol; ColR.
   assert (HNCol2 : ~ Col P B C) by (apply (ncol_conga_ncol P B A); assumption).
   assert (~ Bet A B C) by (intro; apply HNCol; Col).
-  destruct (col_dec B A Q).
+  destruct (共线的决定性 B A Q).
     assert (Out B A Q) by (apply col_in_angle_out with C; Col).
     apply (acute_conga__acute A B P); trivial.
     apply conga_left_comm, out2__conga; [apply out_trivial|apply l6_6]; auto.
-  destruct (col_dec B C Q).
+  destruct (共线的决定性 B C Q).
     assert (Out B C Q) by (apply col_in_angle_out with A; Between; Col).
     apply (acute_conga__acute A B P); trivial.
     apply conga_left_comm, l11_10 with P A P C; try (apply out_trivial); auto.
     apply l6_6; assumption.
-  destruct (col_dec B P Q).
+  destruct (共线的决定性 B P Q).
     apply out__acute, col_inangle2__out with A C; assumption.
   destruct (cop__one_or_two_sides B P A Q) as [HOS|HTS]; Col.
     apply coplanar_perm_2, coplanar_trans_1 with C; Cop; Col.
@@ -10716,13 +10716,13 @@ repeat
 
       | H:Le ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D H2 H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D H2 H);clean_reap_hyps
       | H:Le ?A ?B ?C ?D, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D (swap_diff B A H2) H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D (swap_diff B A H2) H);clean_reap_hyps
       | H:Lt ?A ?B ?C ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= lt_diff A B C D H);clean_reap_hyps
+        assert (T:= 小于推出不重合 A B C D H);clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
@@ -11030,7 +11030,7 @@ Lemma acute_cop_perp__one_side :
 
 Proof.
 intros.
-induction(col_dec A O P).
+induction(共线的决定性 A O P).
 apply(acute_one_side_aux0); auto.
 assert(~Col A O B).
 {

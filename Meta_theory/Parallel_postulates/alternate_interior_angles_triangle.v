@@ -11,7 +11,7 @@ Lemma alternate_interior__triangle :
   triangle_postulate.
 Proof.
 intros AIA A B C D E F HTrisuma.
-elim (col_dec A B C); [intro; apply (col_trisuma__bet A B C); auto|intro HNCol].
+elim (共线的决定性 A B C); [intro; apply (col_trisuma__bet A B C); auto|intro HNCol].
 destruct(ex_conga_ts B C A C B A) as [B1 [HConga HTS]]; Col.
 assert (HPar : Par A C B B1)
   by (apply par_left_comm, par_symmetry, l12_21_b; Side; 等角).

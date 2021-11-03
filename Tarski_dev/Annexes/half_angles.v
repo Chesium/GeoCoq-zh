@@ -100,7 +100,7 @@ Proof.
     assumption.
   split.
     assumption.
-  destruct (col_dec A O B) as [|HNCol].
+  destruct (共线的决定性 A O B) as [|HNCol].
   { assert (Out O A B). apply not_bet_out; assumption.
     assert (A = A') by (apply (l6_11_uniqueness O O A B); Cong).
     treat_equalities.
@@ -361,7 +361,7 @@ Proof.
   apply cop_halfa_perp__os with A.
     apply halfa_sym; assumption.
     assumption.
-  destruct (col_dec A O P).
+  destruct (共线的决定性 A O P).
   { assert (Col B O P); [|Cop].
     destruct HP as [_ []].
     apply (col_conga_col A O P); assumption.
@@ -378,7 +378,7 @@ Proof.
   intros O A B C A' C' HNCol HC HA' HC'.
   apply halfa_sym in HA'.
   apply halfa_sym in HC'.
-  destruct (col_dec B O C).
+  destruct (共线的决定性 B O C).
   { apply out341__inangle.
       apply halfa_distincts in HA'; spliter; auto.
     apply null_halfa__null with C; assumption.

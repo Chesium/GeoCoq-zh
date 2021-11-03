@@ -61,9 +61,9 @@ Proof.
     split; [|right; apply out_trivial; auto].
     apply l6_13_1.
     apply l6_6; auto.
-    apply (le_transitivity Q P X Y).
-    apply (le_transitivity Q P P Q); Le.
-    apply (cong__le); Cong.
+    apply (长度小于等于的传递性 Q P X Y).
+    apply (长度小于等于的传递性 Q P P Q); Le.
+    apply (等长则小于等于); Cong.
 
   - intro HConga.
     assert (HInter : Cong Q P Q T /\ Cong S P S T /\ 等角 Q P S Q T S).
@@ -93,7 +93,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
   destruct (l8_18_existence A B C) as [X [HCol HPerp]]; Col; exists X, C.
   split; [apply l6_6, acute_col_perp__out with C; try apply acute_sym; finish|].
   split; [apply out_trivial; assert_diffs; auto|].
-  split; [|apply lt1123; assert_diffs; auto].
+  split; [|apply BC不重合则AA小于BC; assert_diffs; auto].
   elim (两点重合的决定性 X B); intro HBX; treat_equalities; Perp.
   apply perp_per_1, perp_col2 with A B; Col.
   }
@@ -120,7 +120,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     }
   exists Z', Z; do 2 (split; finish); split;
   [apply perp_per_1, perp_col2 with A B; assert_diffs; Col|].
-  apply cong2_lt__lt with C' P'' Z' Z; Cong.
+  apply 等长保持小于关系 with C' P'' Z' Z; Cong.
   apply cong_lt_per2__lt_1 with B B; Cong; try (apply perp_per_1);
   [apply perp_col2 with A B|apply perp_col2_bis with C' D''|];
   try solve [assert_diffs; Col; Perp].
@@ -201,7 +201,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
       apply perp_per_1; apply perp_col2 with A B; Col; [|assert_diffs; auto].
     apply perp_sym, perp_col2 with Z Z'; finish.
       }
-    apply (not_and_lta B Z T B T Z); split.
+    apply (两长度不可能互相小于对方a B Z T B T Z); split.
 
       {
       apply acute_obtuse__lta; [|apply obtuse_sym; auto].
@@ -211,7 +211,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
 
       {
       apply l11_44_2_a; [intro; apply HNC; ColR|].
-      apply le1234_lt__lt with B P''; [apply cong__le; finish|].
+      apply 长度小于等于_小于_传递性 with B P''; [apply 等长则小于等于; finish|].
       apply bet__lt1213; assert_diffs; finish.
       }
     }
@@ -290,11 +290,11 @@ Proof.
   }
 
   spliter.
-  apply (not_and_lt P Q X Y).
+  apply (两长度不可能互相小于对方 P Q X Y).
   split; trivial.
   destruct (l8_18_existence P Q Y) as [Z [HZ1 HZ2]].
     intro; assert_diffs; apply HNCol2; ColR.
-  apply lt_transitivity with P Z.
+  apply 长度小于的传递性 with P Z.
 
   - assert (P <> Z).
     { intro; subst Z.

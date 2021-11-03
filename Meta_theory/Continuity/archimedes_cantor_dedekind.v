@@ -82,7 +82,7 @@ Proof.
     cut (exists n X Y, Alpha' n X /\ Beta' n Y /\ Cong X Y A P').
     { intros [n [X [Y [HX [HY]]]]].
       exists n, X, Y; split; [|split]; trivial.
-      apply (cong2_lt__lt A P' P B); Cong.
+      apply (等长保持小于关系 A P' P B); Cong.
     }
     clear P HP HLt.
     rewrite gradexp__gradexpinv in HP'; induction HP'.
@@ -108,9 +108,9 @@ Proof.
     exfalso.
     destruct (Hdecr X HXB) as [n [Xn [Yn [HXn [HYn HLt]]]]].
     destruct (Hcut X Yn); [eauto..|].
-    apply (lt__nle Xn Yn X B HLt).
-    apply le_transitivity with B Yn.
-      apply le_left_comm, bet__le1213, (中间性的交换传递性1 A); assumption.
+    apply (小于推出反向不小于等于 Xn Yn X B HLt).
+    apply 长度小于等于的传递性 with B Yn.
+      apply 长度小于等于的左交换性, bet__le1213, (中间性的交换传递性1 A); assumption.
       apply bet__le2313, (HB n); assumption.
 
   - clear X HX.
@@ -120,7 +120,7 @@ Proof.
         apply bet_out, (HB O); [auto|constructor..].
       destruct (Hdecr A HAB) as [n [Xn [Yn [HXn [HYn HLt]]]]].
       assert (Bet Xn B Yn) by (apply (HB n); assumption).
-      assert (Xn <> A) by (intro; treat_equalities; apply (lt__nle Xn Yn Xn B); Le).
+      assert (Xn <> A) by (intro; treat_equalities; apply (小于推出反向不小于等于 Xn Yn Xn B); Le).
       assert (Alpha Xn) by eauto.
       destruct (Hcut Xn Y); trivial.
       destruct (Hcut Xn C); trivial.
@@ -131,8 +131,8 @@ Proof.
     exfalso.
     destruct (Hdecr Y HYB) as [n [Xn [Yn [HXn [HYn HLt]]]]].
     destruct (Hcut Xn Y); [eauto..|].
-    apply (lt__nle Xn Yn Y B HLt).
-    apply le_transitivity with Xn B.
+    apply (小于推出反向不小于等于 Xn Yn Y B HLt).
+    apply 长度小于等于的传递性 with Xn B.
       apply bet__le2313, (中间性的交换传递性1 A); assumption.
       apply bet__le1213, (HB n); assumption.
 Qed.

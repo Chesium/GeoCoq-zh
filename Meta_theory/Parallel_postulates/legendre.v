@@ -253,7 +253,7 @@ Proof.
   destruct legendre as [B [A [C [HNCol [H为锐角 legendre]]]]].
   assert_diffs.
   destruct (ex_defect A B C) as [P [Q [R HDef]]]; auto.
-  destruct (col_dec P Q R) as [HCol|HNCol1].
+  destruct (共线的决定性 P Q R) as [HCol|HNCol1].
   - apply archi__obtuse_case_elimination in archi.
     apply (defect_ncol_out__rah A B C P Q R); Col.
     apply not_bet_out; Col.

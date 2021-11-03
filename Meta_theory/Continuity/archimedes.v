@@ -42,14 +42,14 @@ Proof.
     intro.
     apply l6_13_1.
       destruct (l6_2 C' A' A0 C); Between.
-    apply (le_transitivity _ _ A A').
-      apply (l5_6 A0 C1 A0 A1); Cong; exists C1; split; Cong.
+    apply (长度小于等于的传递性 _ _ A A').
+      apply (l5_6_等长保持小于等于关系 A0 C1 A0 A1); Cong; exists C1; split; Cong.
     destruct(l5_12_a C A A'); eBetween.
   }
   repeat split; auto.
     apply 双重线性刻度_步进 with A E; Cong.
   assert (HD : Le E0 E1 A A').
-    apply (l5_6 E0 E1 A1 A0); Cong; exists C1; split; Between.
+    apply (l5_6_等长保持小于等于关系 E0 E1 A1 A0); Cong; exists C1; split; Between.
   destruct HD as [D [HBet6 HCong6]].
   apply (等长的传递性 _ _ C D).
     apply (两组连续三点分段等则全体等 _ E _ _ A); Cong; eBetween; apply 等长的传递性 with E0 E1; trivial.
@@ -115,7 +115,7 @@ Proof.
     apply (cong2_sac2__cong A0 B0 B1 A1 A _ _ A'); auto; [|unfold 萨凯里四边形 in *; spliter; Cong].
     apply cop_sac2__sac with A0 B0; Cop.
     intro; treat_equalities; apply sac_distincts in HSac1; spliter; auto.
-  apply (le_transitivity _ _ B0 C).
+  apply (长度小于等于的传递性 _ _ B0 C).
     apply (triangle_inequality B0 B B' C); trivial.
     apply 等长的传递性 with E E'; Cong.
     apply 等长的传递性 with B0 B1; Cong.
@@ -156,14 +156,14 @@ Proof.
     }
     assert(HLe : Le B0 B B0 E) by (apply (t22_18_aux2 A0 A1 B0 B1 A); auto).
     assert (HLe2 : Le B0 B A A0).
-      apply (le_transitivity _ _ B0 E); auto.
-      apply (l5_6 A D A A0); Cong.
+      apply (长度小于等于的传递性 _ _ B0 E); auto.
+      apply (l5_6_等长保持小于等于关系 A D A A0); Cong.
       destruct (l5_12_a A D A0); Between.
     assert (HLe2' := HLe2).
     destruct HLe2' as [Q [Hbet6 Hcong6]].
-    apply (le1234_lt__lt _ _ A0 Q).
+    apply (长度小于等于_小于_传递性 _ _ A0 Q).
       apply (bet2_le2__le1245 _ _ A _ _ A); Between; Le.
-      apply (l5_6 B0 B B0 E); Cong.
+      apply (l5_6_等长保持小于等于关系 B0 B B0 E); Cong.
     clear dependent D; clear dependent E.
     destruct (l6_11_existence A0 A0 B0 A) as [B0' [HOut2 Hcong4]];
       try (assert_diffs; intro; treat_equalities; auto).
@@ -171,28 +171,28 @@ Proof.
     destruct (由一点往一方向构造等长线段 B0' B' B A) as [A' [Hbet8 Hcong8]].
     assert (Le A0 A A0 A'). (** A0A' = A0B0 + B0B + BA *)
     { destruct (由一点往一方向构造等长线段 A0 B0' B0 A) as [B'' [Hbet9 Hcong9]].
-      apply (le_transitivity _ _ A0 B'').
+      apply (长度小于等于的传递性 _ _ A0 B'').
         apply (triangle_inequality_2 _ B0 _ _ B0'); Cong.
       apply (bet2_le2__le1346 _ B0' _ _ B0'); Le.
         apply (中间性的外传递性2 _ _ B'); auto.
         intro; treat_equalities; apply sac_distincts in HSac2; spliter; auto.
-      apply (l5_6 B0 A B0' A'); Cong.
+      apply (l5_6_等长保持小于等于关系 B0 A B0' A'); Cong.
       apply (triangle_inequality_2 _ B _ _ B'); Cong.
     }
     assert (HLe3 : Le B0 B A' B0').
-      apply (l5_6 B0' B' B0' A'); Cong; destruct (l5_12_a B0' B' A'); auto.
+      apply (l5_6_等长保持小于等于关系 B0' B' B0' A'); Cong; destruct (l5_12_a B0' B' A'); auto.
     destruct HLe3 as [Q' [Hbet9 Hcong9]].
     assert (HBet10 : Bet A0 B0' A').
       apply sac_distincts in HSac2; spliter; assert_diffs.
       apply (中间性的外传递性2 _ _ B'); Between.
-    apply (le1234_lt__lt _ _ A0 Q').
+    apply (长度小于等于_小于_传递性 _ _ A0 Q').
       apply (bet2_le2__le1245 _ _ A' _ _ A); eBetween.
-      apply cong__le; apply (等长的传递性 _ _ B0 B); Cong.
+      apply 等长则小于等于; apply (等长的传递性 _ _ B0 B); Cong.
     assert (Cong B0' Q' A0 B0).
     { apply (等长的传递性 _ _ A B); Cong.
       apply (等长的传递性 _ _ A' B'); Cong.
       assert(Hcong10 : Cong B0' B' A' Q') by (apply (等长的传递性 _ _ B0 B); auto).
-      elim(bet_dec B0' Q' B').
+      elim(中间性的决定性 B0' Q' B').
         intro; apply (l4_3 _ _ B' _ _ Q'); Cong; eBetween.
       intro HNBet.
       apply sac_distincts in HSac2; spliter; assert_diffs.
@@ -206,7 +206,7 @@ Proof.
       apply (两组连续三点分段等则全体等 _ B' _ _ Q'); Cong; eBetween.
     }
     assert (Hbet10 : Bet A0 D1 C) by eBetween.
-    apply (cong2_lt__lt D1 C A0 C); Cong; [split|].
+    apply (等长保持小于关系 D1 C A0 C); Cong; [split|].
       destruct (l5_12_a A0 D1 C); auto.
       intro; assert (D1 = A0) by (apply (between_cong C); Between; Cong); treat_equalities; Cong.
     apply (两组连续三点分段等则全体等 _ C0 _ _ B0'); eBetween; apply 等长的传递性 with A0 B0; Cong.
@@ -218,7 +218,7 @@ Proof.
   assert(HLt := HG).
   apply H in HLt.
   apply grad__le in HG.
-  apply (le__nlt A0 C A0 D); auto.
+  apply (长度小于等于推出反向不小于 A0 C A0 D); auto.
 Qed.
 
 Lemma t22_19 :
@@ -228,7 +228,7 @@ Proof.
   intros archi A B C D HSac HObt.
   assert (H := t22_18 archi _ _ _ _ (sac_perm _ _ _ _ HSac)).
   apply H.
-  apply lt_left_comm; apply <- lt_sac__obtuse; auto.
+  apply 长度小于的左交换性; apply <- lt_sac__obtuse; auto.
 Qed.
 
 Lemma archi__obtuse_case_elimination :
@@ -284,10 +284,10 @@ Proof.
   assert (Hos2 : OS N C B L) by (apply lam__os, lam_perm; trivial).
   unfold Lambert四边形 in HLam; spliter.
   destruct (angle_partition L B C) as [H为锐角 | [HPer | H为钝角]]; trivial; [ | | exfalso; auto].
-  - split; apply lt__le; [apply (cong2_lt__lt N C B L); Cong | ].
+  - split; apply 长度小于蕴含小于等于; [apply (等长保持小于关系 N C B L); Cong | ].
       apply lta_os_per2__lt; Perp; Side; apply lta_left_comm, acute_per__lta; auto.
-    apply lt_left_comm, lta_os_per2__lt; Side; apply acute_per__lta; auto.
-  - split; apply cong__le; [apply 等长的传递性 with B L; trivial | apply 等长的左交换性];
+    apply 长度小于的左交换性, lta_os_per2__lt; Side; apply acute_per__lta; auto.
+  - split; apply 等长则小于等于; [apply 等长的传递性 with B L; trivial | apply 等长的左交换性];
     apply conga_per2_os__cong; Perp; Side; apply l11_16; Perp.
 Qed.
 
@@ -312,8 +312,8 @@ Proof.
   assert (HLe : Le B0 E B C) by (apply IHHGE; trivial).
   clear IHHGE.
   destruct (symmetric_point_construction C B) as [D HD].
-  apply le_transitivity with D C.
-    apply bet2_le2__le1346 with E B; Between; apply (l5_6 B0 E B C); auto with cong.
+  apply 长度小于等于的传递性 with D C.
+    apply bet2_le2__le1346 with E B; Between; apply (l5_6_等长保持小于等于关系 B0 E B C); auto with cong.
   assert (HAC : A <> C).
   { intro; subst C; assert_diffs; assert (A = C0); auto.
     apply (l8_18_uniqueness A C0 B0); Col.
@@ -381,13 +381,13 @@ Proof.
     assert_diffs; apply l6_6, acute_col_perp__out with B; [apply acute_sym; trivial|ColR|apply perp_col with C0; Col].
   split; trivial; split.
     apply perp_per_1, perp_left_comm, perp_col with C0; trivial.
-  apply le3456_lt__lt with P Q'.
+  apply 长度小于_小于等于_传递性 with P Q'.
   split.
     apply bet__le1213; trivial.
     intro; assert (Q = Q'); [|treat_equalities; auto].
     apply between_cong with P; assumption.
-  apply le_transitivity with B0 E; trivial.
-  apply le_right_comm.
+  apply 长度小于等于的传递性 with B0 E; trivial.
+  apply 长度小于等于的右交换性.
   apply t22_24_aux with A B0 C0; trivial.
   apply archi__obtuse_case_elimination; assumption.
 Qed.

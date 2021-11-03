@@ -58,7 +58,7 @@ assert (HNCol5 : ~ Col P' P Q).
 assert (HI := HPerp2); destruct HI as [I [_ [_ [HCol1 [HCol2 _]]]]].
 destruct (lotschnitt A B B P' P Q P' Q' B P P') as [Y [HY1 HY2]]; Col; Cop.
   {
-  elim (col_dec B C Q); intro; [|CopR].
+  elim (共线的决定性 B C Q); intro; [|CopR].
   assert (Q = Q'); [|treat_equalities; Cop].
   apply col_image_spec__eq with B C; Col.
   }
@@ -74,7 +74,7 @@ apply invert_one_side, one_side_transitivity with P'.
     intro; subst; apply HNCol5; Col.
   apply par_not_col_strict with P'; Col.
   apply l12_9 with B P'; Perp; Cop.
-  elim (col_dec B C Q); intro; [|CopR].
+  elim (共线的决定性 B C Q); intro; [|CopR].
   assert (Q = Q'); [|treat_equalities; CopR].
   apply col_image_spec__eq with B C; Col.
 Qed.

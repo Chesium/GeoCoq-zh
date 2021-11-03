@@ -290,7 +290,7 @@ spliter.
 assert(Cong A B C M).
 apply (等长的传递性 _ _ C M'); Cong.
 
-apply(le_transitivity _ _ C M).
+apply(长度小于等于的传递性 _ _ C M).
 unfold Le.
 exists M.
 split; Between.
@@ -300,7 +300,7 @@ unfold Le.
 exists AB.
 split; Cong.
 
-apply(l5_6 O AB O CD C M C D); Cong.
+apply(l5_6_等长保持小于等于关系 O AB O CD C M C D); Cong.
 apply (等长的传递性 _ _ A B); Cong.
 Qed.
 
@@ -332,7 +332,7 @@ subst AB.
 Between.
 assert(Le O AB O CD).
 
-apply(l5_6 A B C D O AB O CD); Cong.
+apply(l5_6_等长保持小于等于关系 A B C D O AB O CD); Cong.
 unfold Le in H8.
 ex_and H9 M.
 
@@ -940,7 +940,7 @@ tauto.
 
 
 treat_equalities.
-assert(HH:=col_dec O E E').
+assert(HH:=共线的决定性 O E E').
 induction HH.
 right.
 split.
@@ -1538,7 +1538,7 @@ Lemma thales : forall O E E' P A B C D A1 B1 C1 D1 AD,
   Prodg O E E' C1 B1 AD.
 Proof.
 intros.
-induction(col_dec O E E').
+induction(共线的决定性 O E E').
 unfold Prodg.
 right.
 split.
@@ -2072,7 +2072,7 @@ spliter.
 
 assert(等角 C A P D B P).
 {
-induction(bet_dec C P D).
+induction(中间性的决定性 C P D).
 assert(Bet A P B).
 apply(project_preserves_bet A P A C C P D).
 assumption.
@@ -2366,7 +2366,7 @@ Col.
 
 assert(等角 C P A D P B).
 {
-induction(bet_dec C P D).
+induction(中间性的决定性 C P D).
 
 assert(Bet A P B).
 apply (project_preserves_bet P A C A C P D A P B); auto.
@@ -3036,7 +3036,7 @@ unfold Ar2 in H4 ,H5 ,H6.
 repeat split; tauto.
 spliter.
 
-induction(col_dec A C B).
+induction(共线的决定性 A C B).
 assert(HH:=l8_9 A C B H0 H11).
 induction HH.
 subst C.
@@ -3146,7 +3146,7 @@ induction(两点重合的决定性 L M).
 {
   assert(Le A B C D).
   {
-    apply lt__le; auto.
+    apply 长度小于蕴含小于等于; auto.
   }
   assert(HH:= length_leP_le_2 O E E' A B C D L M H H0 H3).
   unfold LeP in HH.
@@ -3274,7 +3274,7 @@ exists B2mA2.
 split; auto.
 apply (prod_pos_pos O E E' BpA BmA); auto.
 apply (sum_pos_pos O E E' B A); auto.
-apply (lt_diff_ps O E E' B A); auto.
+apply (小于推出不重合_ps O E E' B A); auto.
 Qed.
 
 Lemma square_increase : forall O E E' A B A2 B2, Ar2 O E E' A B A ->  Ps O E A -> Ps O E B 
@@ -4057,7 +4057,7 @@ induction H2.
   {
     apply(t18_18 A B C D E F);auto.
   }
-  apply lt__le.
+  apply 长度小于蕴含小于等于.
   assumption.
 }
 assert(Cong F E C B /\ (F <> E -> 等角 D F E A C B /\ 等角 D E F A B C)).
@@ -4773,15 +4773,15 @@ unfold 中点 in *.
 spliter.
 assert(Le Q M P O).
 {
-  apply (l5_6 Q M Q O Q M  P O H3); Cong.
+  apply (l5_6_等长保持小于等于关系 Q M Q O Q M  P O H3); Cong.
 }
 assert(Le P M O P).
 {
-  apply(l5_6 P M P O P M O P); Cong.
+  apply(l5_6_等长保持小于等于关系 P M P O P M O P); Cong.
 }
 assert(Le Q M O Q).
 {
-  apply(l5_6 Q M Q O Q M O Q); Cong.
+  apply(l5_6_等长保持小于等于关系 Q M Q O Q M O Q); Cong.
 }
 unfold Le in H7.
 unfold Le in H8.
@@ -4802,7 +4802,7 @@ assert(Le A B P Q).
 }
 assert(Cong A B P Q).
 {
-  apply le_anti_symmetry; auto.
+  apply 长度小于等于的反对称性; auto.
 }
 
 assert(B = Q /\ P = A).
@@ -4912,7 +4912,7 @@ induction(两点重合的决定性 P T).
   induction(两点重合的决定性 T M).
   {
     subst T.
-    apply le_trivial.
+    apply AA小于等于CD.
   }
   
   {
@@ -5001,7 +5001,7 @@ induction(两点重合的决定性 P T).
         {
           apply(length_eq_cong_1 O E E' _ _ _ _ TA); auto.
         }
-        apply cong__le; auto.
+        apply 等长则小于等于; auto.
       }
       assert(LtP O E E' TM2 TA2).
       {
@@ -5031,7 +5031,7 @@ induction(两点重合的决定性 P T).
         apply perp_distinct in H6.
         tauto.
       }
-      apply lt__le.
+      apply 长度小于蕴含小于等于.
       apply (ltp_to_lt O E E' T M TM T A TA); auto.
     }
   }
@@ -5043,7 +5043,7 @@ induction(两点重合的决定性 P T).
       apply HH; Col.
     }
     subst M.
-    apply le_reflexivity.
+    apply AB小于等于AB.
   }
 }
 Qed.
@@ -5137,7 +5137,7 @@ induction(两点重合的决定性 P T).
   induction(两点重合的决定性 T M).
   {
     subst M.
-    apply le_trivial.
+    apply AA小于等于CD.
   }
   {
     induction(两点重合的决定性 P M).
@@ -5277,7 +5277,7 @@ induction(两点重合的决定性 P T).
       apply HH; Col.
     }
     subst M.
-    apply le_reflexivity.
+    apply AB小于等于AB.
   }
 }
 Qed.
@@ -5386,7 +5386,7 @@ assert(HH:= circle_projp_between P Q A T H H2).
 induction(两点重合的决定性 T M).
   {
     subst M.
-    apply le_trivial.
+    apply AA小于等于CD.
   }
   {
     induction(两点重合的决定性 P T).
@@ -5472,7 +5472,7 @@ induction H1.
       Perp.
     }
     spliter.
-    apply lt_left_comm.
+    apply 长度小于的左交换性.
     auto.
   }
 }
@@ -5485,7 +5485,7 @@ induction H1.
   apply 等长的同一性 in H.
   subst Q.
   tauto.
-  apply lt1123; auto.
+  apply BC不重合则AA小于BC; auto.
 }
 Qed.
 

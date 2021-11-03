@@ -9,7 +9,7 @@ Lemma playfair_bis__playfair : alternative_playfair_s_postulate -> playfair_s_po
 Proof.
 intros playfair_bis.
 intros A1 A2 B1 B2 C1 C2 P HParAB HPB HParAC HPC.
-elim (col_dec A1 A2 P); [intro HCol; treat_equalities|intro HNC1].
+elim (共线的决定性 A1 A2 P); [intro HCol; treat_equalities|intro HNC1].
 
   {
   elim HParAB; [intros [_ HF]; exfalso; apply HF; exists P; Col|].

@@ -36,7 +36,7 @@ Lemma midpoint_thales_reci :
 Proof.
 intros.
 
-induction (col_dec a b c).
+induction (共线的决定性 a b c).
 
 induction (l8_9 a c b H);
 treat_equalities;assert_congs_perm;try split;finish.

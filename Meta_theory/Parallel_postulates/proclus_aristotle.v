@@ -46,7 +46,7 @@ Proof.
   }
   assert(HNCol2 : ~ Col B C D).
   { intro.
-    elim(bet_dec C B D).
+    elim(中间性的决定性 C B D).
     { intro.
       apply (l9_9 B A C D); auto.
       repeat split; Col.
@@ -119,8 +119,8 @@ Proof.
 
   repeat (split; [assumption|]).
   split.
-  - apply (l5_6 P Q B D); Cong.
-    apply le_right_comm.
+  - apply (l5_6_等长保持小于等于关系 P Q B D); Cong.
+    apply 长度小于等于的右交换性.
     exists D0.
     split; Between; Cong.
 

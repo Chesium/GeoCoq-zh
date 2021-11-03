@@ -28,7 +28,7 @@ cut (forall A B C P T,
     intro; apply HNCol1, (col2_suma__col P0 B A P0 B A); assumption.
   }
   assert (HXY : exists X Y, Out B A X /\ Out B C Y /\ Col X T Y).
-  { destruct (col_dec B P0 T).
+  { destruct (共线的决定性 B P0 T).
     - assert (HT' : exists T', 在角内 T' A B C /\ Perp B T T T').
       { destruct (l10_15 B P0 T A) as [T0 [HPerp HOS]]; Col.
         destruct (cop_inangle__ex_col_inangle A B C T T0) as [T' [HT1 [HT2 HT3]]]; trivial.

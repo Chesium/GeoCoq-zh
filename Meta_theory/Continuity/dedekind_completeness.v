@@ -99,7 +99,7 @@ cut(forall P Q A B,
                exists X, Col P Q X /\ Bet A (f X) B /\ f X <> A /\ f X <> B).
     {
     intros [|]; [destruct (HX P Q' A B) as [X]|destruct (HX P Q' B A) as [X]];
-    Col; [exists X; intuition|apply lt_right_comm, HLt|exists X; intuition].
+    Col; [exists X; intuition|apply 长度小于的右交换性, HLt|exists X; intuition].
     }
   (* Either we can conclude using HH which is a corrolary of the auxilliary
      statement or Bet A (f P) B holds in which case we are done *)
@@ -127,7 +127,7 @@ cut(forall P Q A B,
     assert (Bet (f Q) (f P) (f Q')) by (apply fBet; Col).
     assert (Cong (f P) (f Q') (f P) (f Q)) by (apply fCong; Col).
     apply l6_13_1; [apply l6_2 with (f Q); Between|].
-    apply le_transitivity with (f P) (f Q); Le.
+    apply 长度小于等于的传递性 with (f P) (f Q); Le.
     }
 
     {
@@ -156,14 +156,14 @@ cut(forall P Q A B,
           assert (Cong (f Q) (f Q') (f P) (f Q)) by (apply fCong; Col).
           assert (f Q <> f Q') by (assert_diffs; auto).
           assert (HLt2 : Lt (f Q) (f Q') (f Q) B)
-            by (apply (cong2_lt__lt (f P) (f Q) (f Q) B); Cong).
+            by (apply (等长保持小于关系 (f P) (f Q) (f Q) B); Cong).
           repeat split; Col; [|intro; subst; destruct HLt2; Cong].
           apply l6_13_1; Le; apply l6_2 with (f P); Between.
           }
 
           {
           assert (HLt2 : Lt A (f Q) A B)
-            by (apply le1234_lt__lt with (f P) (f Q); Le).
+            by (apply 长度小于等于_小于_传递性 with (f P) (f Q); Le).
           repeat split; Col; [|intro; subst; destruct HLt2; Cong].
           apply l6_13_1; Le; apply l6_2 with (f P); Between.
           }
@@ -171,7 +171,7 @@ cut(forall P Q A B,
 
         {
         destruct (HX Q P A B) as [X]; [..|exists X; repeat split; intuition];
-        [apply line_extension_symmetry|Between|apply lt_left_comm, HLt|..];
+        [apply line_extension_symmetry|Between|apply 长度小于的左交换性, HLt|..];
         [auto| |apply 中间性的外传递性1 with (f P)]; Between.
         }
       }
@@ -190,11 +190,11 @@ cut(forall P Q A B,
       destruct (reach__grad_min (f P) (f Q) A) as [D [E]]; auto; spliter.
       assert (Bet D A E) by (apply (中间性的交换传递性1 (f P)); assumption).
       exists E; repeat split; [apply 线性刻度_步进 with D| | |intro; subst E]; auto;
-      [|apply lt__nle in HLt; apply HLt, le_transitivity with D B; spliter; Le].
+      [|apply 小于推出反向不小于等于 in HLt; apply HLt, 长度小于等于的传递性 with D B; spliter; Le].
       apply l6_13_1; [destruct (两点重合的决定性 A D); [subst D|]|];
       [apply l6_2 with (f P); assert_diffs|apply l6_2 with D|]; eBetween.
-      apply le_transitivity with D E; Le.
-      apply le_transitivity with (f P) (f Q); Le.
+      apply 长度小于等于的传递性 with D E; Le.
+      apply 长度小于等于的传递性 with (f P) (f Q); Le.
       }
     }
   }

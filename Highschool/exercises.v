@@ -29,7 +29,7 @@ elim (两点重合的决定性 A C); intro; apply plg_per_rect.
   by (apply triangle_mid_par_cong; intuition).
   spliter.
 
-  elim (col_dec A B C); intro; assert_diffs.
+  elim (共线的决定性 A B C); intro; assert_diffs.
 
     apply parallelogram_to_plg; unfold 平行四边形; right; unfold 退化平行四边形; repeat split.
     ColR.

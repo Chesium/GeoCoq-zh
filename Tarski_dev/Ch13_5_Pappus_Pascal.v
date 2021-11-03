@@ -328,7 +328,7 @@ Proof.
       assert(Cong O' A' O' P').
         apply (等长的传递性 _ _ O P); Cong.
       assert(A' = P').
-        induction(col_dec A' P' O').
+        induction(共线的决定性 A' P' O').
           assert(A' = P' \/ O' = P').
             apply l8_9; auto.
           induction H16.
@@ -373,7 +373,7 @@ Proof.
         auto.
       exists O.
       auto.
-    induction(col_dec A P O).
+    induction(共线的决定性 A P O).
       assert (HH:=anga_distincts a P' O' A' H5 H9).
       spliter.
       assert(A' <> P').

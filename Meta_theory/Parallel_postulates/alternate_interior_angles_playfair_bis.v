@@ -49,7 +49,7 @@ Proof.
   apply per_perp; auto.
 
   assert(HA3 : exists A3, Col A1 A2 A3 /\ TS P Q C1 A3).
-  { elim(col_dec P Q A1);
+  { elim(共线的决定性 P Q A1);
     [|intro; apply (cop_not_par_other_side _ _ _ _ Q); Col; clear HNC2; CopR].
     intro.
     assert(HA3 := cop_not_par_other_side P Q A2 A1 Q C1).

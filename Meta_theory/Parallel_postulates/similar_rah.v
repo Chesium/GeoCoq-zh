@@ -21,7 +21,7 @@ Proof.
   destruct (由一点往一方向构造等长线段_3 A B D E) as [G []]; auto.
   rename H into HFD.
   destruct (由一点往一方向构造等长线段_3 A C D F) as [H []]; auto.
-  apply (cong2_lt__lt _ _ _ _ A G A B) in Hlt; Cong.
+  apply (等长保持小于关系 _ _ _ _ A G A B) in Hlt; Cong.
   assert(Bet A G B) by (apply (l6_13_1); Le; apply l6_6; auto).
   assert(B <> G) by (intro; subst; destruct Hlt; Cong).
   assert(HCongaA' : 等角 C A B H A G) by (apply out2__conga; apply l6_6; auto).
@@ -133,7 +133,7 @@ Proof.
   destruct similar as [A [B [C [D [E [F]]]]]].
   spliter.
   assert_diffs.
-  elim (lea_total B C A A B C); auto; intro; [elim (le_cases D E A B)|elim (le_cases D F A C)].
+  elim (lea_total B C A A B C); auto; intro; [elim (长度小于等于的决定性 D E A B)|elim (长度小于等于的决定性 D F A C)].
   - intro.
     apply (similar__rah_aux A B C D E F); auto.
     split; Cong.

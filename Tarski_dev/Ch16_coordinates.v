@@ -67,7 +67,7 @@ Qed.
 Lemma exists_projp : forall A B P, A <> B -> exists P', Projp P P' A B.
 Proof.
 intros A B P HAB.
-elim (col_dec A B P); intro HNC; [exists P; split; Col; right|].
+elim (共线的决定性 A B P); intro HNC; [exists P; split; Col; right|].
 destruct (l8_18_existence A B P HNC) as [P' HP'].
 exists P'; split; Col.
 Qed.
@@ -309,7 +309,7 @@ elim (l7_20 O XY XMY); [auto|intro HMid; clear H|ColR|apply 等长的传递性 w
 elim HLe1; clear HLe1; intro HLt1; [clear HCong1|treat_equalities; auto].
 elim HLe2; clear HLe2; intro HLt2; [clear HCong2|treat_equalities; auto].
 exfalso; apply not_pos_and_neg with O E XMY;
-split; [apply lt_diff_ps with E' X Y; auto|].
+split; [apply 小于推出不重合_ps with E' X Y; auto|].
 apply pos_opp_neg with E' XY; [apply ltP_pos with E'; auto|].
 apply midpoint_opp; repeat (Col; split).
 Qed.
@@ -892,7 +892,7 @@ assert (HCX' := HCdC).
 destruct HCX' as [H [H' [HCX' H'']]]; clear H; clear H'; clear H''.
 destruct HCX' as [CX' [HProjpCX' HCongCX']].
 destruct (exists_projp A1 A2 CX') as [CX'' HCX'']; auto.
-elim (col_dec A B BX''); intro HABBX''.
+elim (共线的决定性 A B BX''); intro HABBX''.
 
   {
   elim (两点重合的决定性 A BX''); intro HABX''; treat_equalities.
@@ -914,7 +914,7 @@ elim (col_dec A B BX''); intro HABBX''.
         assert (HCol' : Col A AX' BX') by (apply projp2_col with A1 A2; auto).
         assert (HParS : 严格平行 S U1 A1 A2); [|clear HLine].
           {
-          elim (col_dec S U1 A1); intro HCol'';
+          elim (共线的决定性 S U1 A1); intro HCol'';
           [apply par_not_col_strict with A2|apply par_not_col_strict with A1];
           Col ; try (intro; apply HLine); Col.
           }

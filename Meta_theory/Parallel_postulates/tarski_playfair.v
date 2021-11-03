@@ -25,7 +25,7 @@ elim (line_dec B1 B2 C1 C2); intro HLine.
 
   assumption.
 
-  assert (HLineNew : ~ Col C1 B1 B2 \/ ~ Col C2 B1 B2) by (induction (col_dec C1 B1 B2); induction (col_dec C2 B1 B2);tauto).
+  assert (HLineNew : ~ Col C1 B1 B2 \/ ~ Col C2 B1 B2) by (induction (共线的决定性 C1 B1 B2); induction (共线的决定性 C2 B1 B2);tauto).
   clear HLine; rename HLineNew into HLine.
   assert(HC' : exists C', Col C1 C2 C' /\ TS B1 B2 A1 C').
     {
@@ -95,7 +95,7 @@ assert( A1 <> A2 /\ B1 <> B2) by (apply par_distinct;auto).
 assert( A1 <> A2 /\ C1 <> C2) by (apply par_distinct;auto).
 spliter.
 clear H4.
-induction(col_dec P A1 A2).
+induction(共线的决定性 P A1 A2).
   (** If P is one line A1A2 then line A1A2=B1B2=C1C2 and we can conclude. *)
   induction H.
 

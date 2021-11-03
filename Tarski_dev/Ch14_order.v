@@ -577,7 +577,7 @@ exists X; split; [apply diff_A_O; induction HBet; Col|].
 assert_diffs; repeat (split; Col).
 Qed.
 
-Lemma lt_diff_ps : forall O E E' X Y XMY,
+Lemma 小于推出不重合_ps : forall O E E' X Y XMY,
   Col O E X -> Col O E Y -> LtP O E E' Y X -> Diff O E E' X Y XMY -> Ps O E XMY.
 Proof.
 intros O E E' X Y XMY HCol1 HCol2 HLt HXMY.
@@ -1869,9 +1869,9 @@ assert (BMC = MCMMB)
   by (apply opp_uniqueness with O E E' MBMMC; auto; apply opp_comm; auto).
 treat_equalities.
 assert (HLt' : LtP O E E' MA MB)
-  by (exists AMB; split; auto; apply lt_diff_ps with E' A B; auto).
+  by (exists AMB; split; auto; apply 小于推出不重合_ps with E' A B; auto).
 assert (HLe : LeP O E E' MB MC) by (apply bet_lt12_le23 with MA; auto).
-left; exists BMC; split; auto; apply lt_diff_ps with E' MC MB; auto.
+left; exists BMC; split; auto; apply 小于推出不重合_ps with E' MC MB; auto.
 elim HLe; clear HLe; intro HFalse; auto; treat_equalities.
 assert (O = BMC)
   by (apply diff_uniqueness with O E E' MB MB; auto; apply diff_null; Col).

@@ -192,7 +192,7 @@ Qed.
 Lemma ABB中间性T : forall A B, BetG A B B.
 Proof. intros A B; destruct (g2_6 A B); auto. Qed.
 
-Lemma bet_decG : forall A B C, BetG A B C \/ ~ BetG A B C.
+Lemma 中间性的决定性G : forall A B C, BetG A B C \/ ~ BetG A B C.
 Proof.
 intros A B C.
 destruct (由一点往一方向构造等长线段G A B B C) as [D [HBet1 HCong]].
@@ -205,10 +205,10 @@ Qed.
 
 Definition ColG A B C := BetG A B C \/ BetG B C A \/ BetG C A B.
 
-Lemma col_decG : forall A B C, ColG A B C \/ ~ ColG A B C.
+Lemma 共线的决定性G : forall A B C, ColG A B C \/ ~ ColG A B C.
 Proof.
-intros A B C; unfold ColG; induction (bet_decG A B C); induction (bet_decG B C A);
-induction (bet_decG C A B); tauto.
+intros A B C; unfold ColG; induction (中间性的决定性G A B C); induction (中间性的决定性G B C A);
+induction (中间性的决定性G C A B); tauto.
 Qed.
 
 Lemma 帕施公理T : forall A B C P Q,
@@ -228,7 +228,7 @@ elim (两点要么重合要么不重合G B Q); intro HDiff3;
 elim (两点要么重合要么不重合G Q C); intro HDiff4;
 [rewrite HDiff4 in *; exists P; split; apply bet_symmetryG;
  try apply ABB中间性T; auto|].
-elim (col_decG A B C); intro HCol; [|apply 帕施公理G with C; auto].
+elim (共线的决定性G A B C); intro HCol; [|apply 帕施公理G with C; auto].
 do 2 (try (elim HCol; clear HCol; intro HCol)); rename HCol into HBet3.
 
   {
@@ -340,7 +340,7 @@ elim (两点重合的决定性 B D); intro HDiff2;
 [treat_equalities; exists T, C; Between|].
 elim (两点重合的决定性 D C); intro HDiff3;
 [treat_equalities; exists B, T; Between|].
-elim (col_dec A B C); intro HCol; [|apply euclidG with D; auto].
+elim (共线的决定性 A B C); intro HCol; [|apply euclidG with D; auto].
 clear HDiff2; clear HDiff3.
 do 2 (try (elim HCol; clear HCol; intro HCol)); rename HCol into HBet3.
 

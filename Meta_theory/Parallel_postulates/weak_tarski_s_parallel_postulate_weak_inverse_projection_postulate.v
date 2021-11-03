@@ -26,13 +26,13 @@ Proof.
   assert (HPerp : Perp B P P T) by (apply per_perp; auto).
   assert (HNCol : ~ Col A B C) by (apply per_not_col; auto).
   assert (HNCol1 : ~ Col B P T) by (apply per_not_col; auto).
-  destruct (col_dec A B T).
+  destruct (共线的决定性 A B T).
     left; exists T; split; Col.
     apply l6_6, acute_col_perp__out_1 with P; Col.
   destruct (tora A B C T) as [U [V [HU [HV HUTV]]]]; trivial.
-  destruct (col_dec P T U) as [HCol|HNCol2].
+  destruct (共线的决定性 P T U) as [HCol|HNCol2].
     left; exists U; split; Col.
-  destruct (col_dec P T V) as [HCol|HNCol3].
+  destruct (共线的决定性 P T V) as [HCol|HNCol3].
     right; exists V; split; Col.
   destruct (cop__one_or_two_sides P T B U) as [HTS|HOS]; Col; [CopR|..].
   - destruct HTS as [_ [_ [X [HX1 HX2]]]].
@@ -75,7 +75,7 @@ cut (forall A B C P T,
     destruct (one_side_dec B C P Q0).
       exists Q0; split; [assert_diffs; auto|split; [Col|Side]].
     assert (HQ' : exists Q', Col P Q Q' /\ Col B C Q').
-    { destruct (col_dec B C Q0).
+    { destruct (共线的决定性 B C Q0).
         exists Q0; Col.
       assert_diffs.
       destruct (cop_nos__ts B C P Q0) as [_ [_ [Q' [HCol' HBet]]]]; Col; Cop.

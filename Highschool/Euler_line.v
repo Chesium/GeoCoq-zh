@@ -212,7 +212,7 @@ Lemma Euler_line :
   Col G H O.
 Proof.
 intros.
-elim (cong_dec A B A C); intro.
+elim (等长的决定性 A B A C); intro.
 
 Name A' the midpoint of B and C.
 Name B' the midpoint of A and C.
@@ -319,7 +319,7 @@ assert (Par B H C A').
  unfold 共圆 in *; spliter.
  apply l12_9 with A C; try CopR; Perp.
 
-induction (col_dec B H C).
+induction (共线的决定性 B H C).
  * assert (H=B \/ H=C) by (apply (orthocenter_col A B C H);finish).
    induction H26.
    + subst H.

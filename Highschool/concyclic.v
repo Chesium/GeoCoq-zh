@@ -10,7 +10,7 @@ Lemma concyclic_aux : forall A B C D, 共圆 A B C D ->
   exists O, Cong O A O B /\ Cong O A O C /\ Cong O A O D /\ 共面 A B C O.
 Proof.
   intros A B C D [HCop [O1]]; spliter.
-  destruct (col_dec A B C).
+  destruct (共线的决定性 A B C).
     exists O1; repeat split; Cop.
   destruct (l11_62_existence A B C O1) as [O []].
   exists O.

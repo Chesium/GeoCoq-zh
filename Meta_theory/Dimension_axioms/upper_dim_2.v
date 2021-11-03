@@ -58,7 +58,7 @@ Lemma 防升维公理_implies_perp2__col :
    Col X Y Z).
 Proof.
 intro HUP; intros.
-induction(col_dec A B X).
+induction(共线的决定性 A B X).
   induction(两点重合的决定性 X A).
     subst A.
     assert(X <> B).
@@ -313,9 +313,9 @@ Qed.
 Lemma 防升维公理_implies_all_coplanar : 防升维公理_axiom -> all_coplanar_axiom.
 Proof.
 intro HUD; unfold all_coplanar_axiom; intros.
-elim (col_dec A B C); Cop; intro HABC.
-elim (col_dec A B D); Cop; intro HABD.
-elim (col_dec A C D); Cop; intro HACD.
+elim (共线的决定性 A B C); Cop; intro HABC.
+elim (共线的决定性 A B D); Cop; intro HABD.
+elim (共线的决定性 A C D); Cop; intro HACD.
 elim (防升维公理_implies_one_or_two_sides HUD A B C D); Col; [apply ts__coplanar|apply os__coplanar].
 Qed.
 
@@ -333,7 +333,7 @@ Qed.
 Lemma 防升维公理_stab : ~ ~ 防升维公理_axiom -> 防升维公理_axiom.
 Proof.
   intros nnupper A B C P Q HPQ H1 H2 H3.
-  destruct (col_dec A B C) as [|HNCol]; auto.
+  destruct (共线的决定性 A B C) as [|HNCol]; auto.
   exfalso.
   apply nnupper.
   intro upper.

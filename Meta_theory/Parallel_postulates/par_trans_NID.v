@@ -24,10 +24,10 @@ split; intros Hdec A B C D; destruct (cop_dec A B C D) as [|HNCop].
     right; subst; intro; assert_diffs; auto.
   destruct (两点重合的决定性 C D).
     right; subst; intro; assert_diffs; auto.
-  destruct (col_dec A C D).
+  destruct (共线的决定性 A C D).
 
   {
-    destruct (col_dec B C D).
+    destruct (共线的决定性 B C D).
       left; right; repeat split; assumption.
     right; intros [[_ Habs]|].
       apply Habs; exists A; split; Col.
@@ -54,7 +54,7 @@ elim (两点重合的决定性 A B); intro HAB;
 elim (两点重合的决定性 C D); intro HCD;
 [treat_equalities; right; intro; assert_diffs; auto|].
 destruct (parallel_existence1 A B C HAB) as [D' HPar].
-elim (col_dec C D D'); intro HCol;
+elim (共线的决定性 C D D'); intro HCol;
 [left; apply par_col_par with D'; Par; Col|
  right; intro; apply HCol, par_id, HTP with A B; Par].
 Qed.
@@ -64,7 +64,7 @@ Lemma col_int : forall A B C,
   Col A B C <-> ~ (~ Bet A B C /\ ~ Bet B C A /\ ~ Bet C A B).
 Proof.
 intros A B C; unfold Col.
-induction (bet_dec A B C); induction (bet_dec B C A); induction (bet_dec C A B);
+induction (中间性的决定性 A B C); induction (中间性的决定性 B C A); induction (中间性的决定性 C A B);
 intuition.
 Qed.
 *)
@@ -106,7 +106,7 @@ Lemma col2_dec : forall A B C D E F,
   (Col A B C /\ Col D E F) \/ ~ (Col A B C /\ Col D E F).
 Proof.
 intros A B C D E F.
-induction (col_dec A B C); induction (col_dec D E F);
+induction (共线的决定性 A B C); induction (共线的决定性 D E F);
 [left; split; assumption|right; intro Hc; induction Hc; auto..].
 Qed.
 
@@ -183,7 +183,7 @@ Lemma playfair_ter__playfair :
   playfair_ter -> playfair_s_postulate.
 Proof.
 intros HP A1 A2 B1 B2 C1 C2 P HPar1 HP1 HPar2 HP2.
-elim (col_dec A1 B1 B2); intro HNC1.
+elim (共线的决定性 A1 B1 B2); intro HNC1.
 
   {
   assert (HA : A1 <> A2) by (assert_diffs; auto).
@@ -195,7 +195,7 @@ elim (col_dec A1 B1 B2); intro HNC1.
   }
 
   {
-  elim (col_dec A1 C1 C2); intro HNC2.
+  elim (共线的决定性 A1 C1 C2); intro HNC2.
 
     {
     assert (HA : A1 <> A2) by (assert_diffs; auto).
@@ -209,7 +209,7 @@ elim (col_dec A1 B1 B2); intro HNC1.
     {
     assert (H : ~ ~ (Col C1 B1 B2 /\ Col C2 B1 B2) ->
                 Col C1 B1 B2 /\ Col C2 B1 B2)
-      by (induction (col_dec C1 B1 B2); induction (col_dec C2 B1 B2); intuition).
+      by (induction (共线的决定性 C1 B1 B2); induction (共线的决定性 C2 B1 B2); intuition).
 
     assert_diffs; apply H; clear H; intro HNC3; apply (HP A1 A2 B1 B2 C1 C2 P); Col;
      try (intros [HC1 HC2]; auto).
@@ -271,7 +271,7 @@ assert (H : playfair_quater <->
                 ~ playfair_quater_qf A1 A2 B1 B2 C1 C2 P)
   by (apply not_ex_forall_not_7). rewrite H in HP; clear H.
 assert (H : Col C1 B1 B2 /\ Col C2 B1 B2 <-> ~ ~ (Col C1 B1 B2 /\ Col C2 B1 B2))
-  by (induction (col_dec C1 B1 B2); induction (col_dec C2 B1 B2); tauto).
+  by (induction (共线的决定性 C1 B1 B2); induction (共线的决定性 C2 B1 B2); tauto).
 apply H; clear H; intro HNC; apply (HP A1 A2 B1 B2 C1 C2 P).
 assert_diffs.
 repeat (split; [assumption|]).

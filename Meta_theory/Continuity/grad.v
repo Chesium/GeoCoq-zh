@@ -126,7 +126,7 @@ Proof.
   assert(HBet3 : Bet C E E').
   { apply l6_13_1.
       assert_diffs; apply l6_2 with A; Between.
-    apply (l5_6 A D A D'); Cong.
+    apply (l5_6_等长保持小于等于关系 A D A D'); Cong.
     apply bet__le1213; trivial.
   }
   apply 线性刻度_步进 with E; auto with cong; eBetween.
@@ -163,7 +163,7 @@ Proof.
     apply 对数刻度_步进 with D; Cong.
   apply bet2_le2__le1346 with C D; Le.
   apply gradexp__grad, grad__bet in HGE.
-  apply l5_6 with A B A D; Cong; Le.
+  apply l5_6_等长保持小于等于关系 with A B A D; Cong; Le.
 Qed.
 
 Lemma reach__ex_gradexp_le : forall A B C D, Reach A B C D ->
@@ -173,7 +173,7 @@ Proof.
   destruct HR as [B0 [HG HLe]].
   destruct (grad__ex_gradexp_le A B B0 HG) as [B' [HG2 HLe2]].
   exists B'; split; trivial.
-  apply le_transitivity with A B0; trivial.
+  apply 长度小于等于的传递性 with A B0; trivial.
 Qed.
 
 Lemma gradexp2__gradexp123 : forall A B C D E F,
@@ -263,7 +263,7 @@ Proof.
     exists C; split.
       rewrite gradexp__gradexpinv.
       apply gradexpinv_stab with B; auto; constructor.
-    apply le3456_lt__lt with A B; trivial.
+    apply 长度小于_小于等于_传递性 with A B; trivial.
     split; Le.
     intro; assert (C = B) by (apply (between_cong A); assumption).
     treat_equalities; auto.

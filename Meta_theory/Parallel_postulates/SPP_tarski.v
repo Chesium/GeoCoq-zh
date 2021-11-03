@@ -254,7 +254,7 @@ as [B' [B'' [MB [X [HABX [HPar' [HBet1 [HBet2 [HCong1 [HCong2 [HBB'D [HB''TX [HB
 destruct (strong_parallel_postulate_implies_tarski_s_euclid_aux HSPP A C D T)
 as [_ [_ [_ [Y [HACY [HPar _]]]]]]; Between.
 exists X; exists Y; repeat (split; [assumption|]).
-elim (col_dec X T Y); intro HXTY.
+elim (共线的决定性 X T Y); intro HXTY.
 
   {
   clear dependent MB; clear dependent B'; clear dependent B''.

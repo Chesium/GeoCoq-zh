@@ -81,7 +81,7 @@ Proof.
         exists A.
         split; Col.
       spliter; Col.
-    induction(col_dec O B C).
+    induction(共线的决定性 O B C).
       right.
       repeat split.
         intro.
@@ -523,7 +523,7 @@ Proof.
       induction(两点重合的决定性 C'  L).
         subst L.
         assert(C' = M).
-          induction (col_dec O X C).
+          induction (共线的决定性 O X C).
             apply (l6_21 O C Y X).
               intro.
               assert(Col O X Y) by ColR.
@@ -1087,7 +1087,7 @@ Proof.
       exists A'.
       split; Col.
     ex_and H6 C''.
-    induction(col_dec O C C').
+    induction(共线的决定性 O C C').
       auto.
     apply False_ind.
     assert(Par C' C'' B C ).
@@ -1354,7 +1354,7 @@ Proof.
       apply H.
       apply 等价共线CAB.
       apply (col_transitivity_1 _ C); Col.
-    induction(col_dec A D E).
+    induction(共线的决定性 A D E).
       assert(B = D).
         apply(l6_21 O B A E); Col.
         intro.
@@ -1438,7 +1438,7 @@ Proof.
         apply(col_transitivity_1 _ E); Col.
       apply(col_transitivity_1 _ B); Col.
     apply par_comm.
-    induction(col_dec B C E).
+    induction(共线的决定性 B C E).
       assert(B = D).
         apply(l6_21 O B C E); Col.
         intro.

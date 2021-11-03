@@ -24,7 +24,7 @@ Lemma out_dec : forall P A B, Out P A B \/ ~ Out P A B.
 Proof.
     intros.
     unfold Out.
-    elim (bet_dec P A B);intro; elim (bet_dec P B A);intro; elim (两点重合的决定性 A P);intro; elim (两点重合的决定性 B P);intro; tauto.
+    elim (中间性的决定性 P A B);intro; elim (中间性的决定性 P B A);intro; elim (两点重合的决定性 A P);intro; elim (两点重合的决定性 B P);intro; tauto.
 Qed.
 
 Lemma out_diff1 : forall A B C, Out A B C -> B <> A.
@@ -364,9 +364,9 @@ Proof.
     induction T.
     induction H0.
     induction H0.
-    induction (col_dec A B x).
-      induction(col_dec A B x0).
-        induction(col_dec A B x1).
+    induction (共线的决定性 A B x).
+      induction(共线的决定性 A B x0).
+        induction(共线的决定性 A B x1).
           induction (两点重合的决定性 A x).
             assert (~(Col x x0 x1)) by (unfold Col; auto).
             treat_equalities; eCol.
@@ -444,8 +444,8 @@ Proof.
   elim(两点重合的决定性 A B).
   { intro.
     subst B.
-    apply (le_transitivity _ _ B' C'); auto.
-    apply le_comm.
+    apply (长度小于等于的传递性 _ _ B' C'); auto.
+    apply 长度小于等于的交换性.
     exists B'.
     split; Between; Cong.
   }
@@ -453,13 +453,13 @@ Proof.
   elim(两点重合的决定性 B C).
   { intro.
     subst C.
-    apply (le_transitivity _ _ A' B'); auto.
+    apply (长度小于等于的传递性 _ _ A' B'); auto.
     exists B'; Cong.
   }
   intro.
 
-  assert(A' <> B') by (intro; subst B'; assert(A = B); auto; apply (le_zero _ _ A'); auto).
-  assert(B' <> C') by (intro; subst C'; assert(B = C); auto; apply (le_zero _ _ B'); auto).
+  assert(A' <> B') by (intro; subst B'; assert(A = B); auto; apply (AB小于等于CC推出A与B重合 _ _ A'); auto).
+  assert(B' <> C') by (intro; subst C'; assert(B = C); auto; apply (AB小于等于CC推出A与B重合 _ _ B'); auto).
   destruct HleAB as [B0 []].
   assert(A' <> B0) by (intro; subst B0; assert(A = B); auto; apply (等长的反向同一性 A'); Cong).
   assert(HC0 := 由一点往一方向构造等长线段 A' B0 B C).
@@ -479,9 +479,9 @@ Proof.
     apply (l6_7 _ _ B').
     apply (l6_2 _ _ A'); Between.
     apply bet_out; auto.
-  - apply (le_transitivity _ _ B' C').
-      apply (l5_6 B C B' C'); Cong.
-      apply le_comm.
+  - apply (长度小于等于的传递性 _ _ B' C').
+      apply (l5_6_等长保持小于等于关系 B C B' C'); Cong.
+      apply 长度小于等于的交换性.
       exists B'.
       split; Between; Cong.
 Qed.
@@ -492,7 +492,7 @@ Proof.
   intros A B C A' B' C' HBet HBet' HLe1 HLe2.
   elim(两点重合的决定性 A B).
   { intro; treat_equalities.
-    apply (le_transitivity _ _ A' C'); auto.
+    apply (长度小于等于的传递性 _ _ A' C'); auto.
     destruct (l5_12_a A' B' C'); auto.
   }
   intro.
@@ -504,10 +504,10 @@ Proof.
   assert (Bet A B0 C0).
   { apply l6_13_1.
       apply (l6_7 _ _ B); [|apply (l6_7 _ _ C)]; [apply l6_6| |apply l6_6]; apply bet_out; auto.
-    apply (l5_6 A' B' A' C'); Cong.
+    apply (l5_6_等长保持小于等于关系 A' B' A' C'); Cong.
     destruct (l5_12_a A' B' C'); auto.
   }
-  apply (l5_6 B0 C0 B C); Cong; [apply (le_transitivity _ _ B C0)|].
+  apply (l5_6_等长保持小于等于关系 B0 C0 B C); Cong; [apply (长度小于等于的传递性 _ _ B C0)|].
     destruct (l5_12_a B B0 C0); eBetween.
     destruct (l5_12_a B C0 C); eBetween.
     apply 等长的交换性; apply (l4_3 _ _ A _ _ A'); Between; Cong.
@@ -517,7 +517,7 @@ Lemma bet2_le2__le1245 : forall A B C A' B' C', Bet A B C -> Bet A' B' C' ->
   Le B C B' C' -> Le A' C' A C -> Le A' B' A B.
 Proof.
   intros A B C A' B' C'; intros.
-  apply le_comm.
+  apply 长度小于等于的交换性.
   apply (bet2_le2__le2356 C _ _ C'); Le; Between.
 Qed.
 
@@ -539,14 +539,14 @@ Proof.
       Cong.
     assert(Le
  E D' E D0).
-      apply (l5_6 B A' B A0); trivial.
+      apply (l5_6_等长保持小于等于关系 B A' B A0); trivial.
       apply l5_5_2.
       exists A0.
       split.
         assumption.
       Cong.
     assert(Cong E D' E D0).
-      apply le_anti_symmetry.
+      apply 长度小于等于的反对称性.
         assumption.
       assumption.
     assert(D0 = D').
@@ -607,7 +607,7 @@ Qed.
 Lemma or_bet_out : forall A B C, Bet A B C \/ Out B A C \/ ~Col A B C.
 Proof.
     intros.
-    destruct (col_dec A B C); auto.
+    destruct (共线的决定性 A B C); auto.
     destruct (out_dec B A C); auto.
     left; apply not_out_bet; trivial.
 Qed.

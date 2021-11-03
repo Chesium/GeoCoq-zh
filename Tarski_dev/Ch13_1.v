@@ -2057,7 +2057,7 @@ Lemma per_lt : forall A B C, A <> B ->  C <> B -> Per A B C -> Lt A B A C /\ Lt 
     assert(Lt B A A C /\ Lt B C A C).
       apply( l11_46 A B C); auto.
     spliter.
-    split; apply lt_left_comm; assumption.
+    split; apply 长度小于的左交换性; assumption.
   Qed.
 
 Lemma cong_perp_conga : forall A B C P,  Cong A B C B -> Perp A C B P -> 等角 A B P C B P /\ TS B P A C.
@@ -2082,7 +2082,7 @@ Proof.
       subst B.
       apply 等长的同一性 in H.
       contradiction.
-    induction(col_dec A B C).
+    induction(共线的决定性 A B C).
       assert(~ Col B A P).
         apply perp_not_col.
         apply perp_comm.
@@ -2197,13 +2197,13 @@ Proof.
         apply perp_in_per.
         assumption.
       spliter.
-      apply le_comm.
+      apply 长度小于等于的交换性.
       unfold Lt in H14.
       spliter.
       assumption.
     spliter.
     split.
-      induction(bet_dec P B T).
+      induction(中间性的决定性 P B T).
         apply conga_comm.
         eapply l11_13; auto.
           apply H16.
@@ -3375,7 +3375,7 @@ Qed.
 Lemma perp2_refl : forall A B P, A <> B -> Perp2 A B A B P.
 Proof.
     intros.
-    induction(col_dec A B P).
+    induction(共线的决定性 A B P).
       assert(HH:=not_col_exists A B H).
       ex_and HH X.
       assert(HH:=l10_15 A B P X  H0 H1).
@@ -3593,13 +3593,13 @@ exists O.
 left.
 split; Col.
 apply (l12_9 _ _ _ _ X Y); Perp.
-induction(col_dec B X Y).
+induction(共线的决定性 B X Y).
 exists A.
 left.
 assert_diffs.
 split; ColR.
 apply coplanar_trans_1 with B; Cop.
-induction(col_dec A X Y).
+induction(共线的决定性 A X Y).
 exists B.
 left.
 assert_diffs.
@@ -3691,13 +3691,13 @@ exists O.
 left.
 split; Col.
 apply (l12_9 _ _ _ _ X Y); Perp.
-induction(col_dec C' X Y).
+induction(共线的决定性 C' X Y).
 exists B'.
 left.
 assert_diffs.
 split; ColR.
 apply coplanar_trans_1 with C'; Cop.
-induction(col_dec B X Y).
+induction(共线的决定性 B X Y).
 exists C.
 left.
 assert_diffs.
@@ -3741,7 +3741,7 @@ assert(X <> Y).
 apply perp_distinct in H13.
 tauto.
 
-induction(col_dec X Y B).
+induction(共线的决定性 X Y B).
 assert(Col X Y C).
 ColR.
 
@@ -4000,7 +4000,7 @@ assert(A <> B /\ C <> D).
 apply perp_distinct in H.
 tauto.
 spliter.
-induction(col_dec A B C).
+induction(共线的决定性 A B C).
 exists C.
 split; Col.
 split; Col.

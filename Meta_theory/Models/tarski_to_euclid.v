@@ -255,13 +255,13 @@ assert (在圆上或圆内 P C D1).
 {
  unfold 在圆上或圆内.
  destruct (两点重合的决定性 C P).
- subst. apply le_trivial.
+ subst. apply AA小于等于CD.
  assert (TwoCases:Definitions.BetS D1 P C \/ Definitions.BetS C P D2)
   by (apply 中间性的各排列情况;auto).
  destruct TwoCases.
  exists P.
  split; Cong; unfold Definitions.BetS in *;spliter; Between.
- apply l5_6 with C P C D2.
+ apply l5_6_等长保持小于等于关系 with C P C D2.
  exists P.
  split; Cong; unfold Definitions.BetS in *;spliter; auto.
  Cong.
@@ -527,11 +527,11 @@ assert (Le C0 X0 C0 A)
  by (apply (bet__le1213);auto).
 assert (HCong: tarski_axioms.Cong C0 X0 C0 X) by CongR.
 assert (Lt C0 X C0 A)
- by (apply (cong2_lt__lt C0 X0 C0 A);finish).
+ by (apply (等长保持小于关系 C0 X0 C0 A);finish).
 assert (Lt C0 Y C0 A)
- by (apply (le3456_lt__lt) with C0 X;auto using lt__le).
+ by (apply (长度小于_小于等于_传递性) with C0 X;auto using 长度小于蕴含小于等于).
 assert (Hc : tarski_axioms.Cong C0 Y C0 A) by Cong.
-apply cong__nlt in Hc.
+apply 等长推出不小于 in Hc.
 intuition.
 Qed.
 
@@ -617,7 +617,7 @@ split.
   apply InCirc_InCirc in H0.
   destruct (circle_line cc A B C K P Q H H0 H1) as [X [Y HXY]].
   spliter.
-  destruct (bet_dec A B Y).
+  destruct (中间性的决定性 A B Y).
   exists X.
   exists Y.
   split.

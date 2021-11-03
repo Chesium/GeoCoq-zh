@@ -16,7 +16,7 @@ Proof.
   destruct (Haux A B E HOut) as [B' [HGrad HLe]]; trivial.
   exists B'.
   split; trivial.
-  apply le_transitivity with A E; Le.
+  apply 长度小于等于的传递性 with A E; Le.
 Qed.
 
 Lemma dedekind_variant__archimedes : (forall A B C D, Reach A B C D \/ ~ Reach A B C D) ->
@@ -44,7 +44,7 @@ Proof.
       apply HQ2.
       destruct HP2 as [B' [HGrad HLe]].
       exists B'; split; trivial.
-      apply le_transitivity with A P; Le.
+      apply 长度小于等于的传递性 with A P; Le.
   }
   destruct HX as [X HX].
   assert_diffs.
@@ -56,7 +56,7 @@ Proof.
 
   - intro HAbs.
     assert (X <> B) by (intro; apply HAbs; exists B; subst; split; Le).
-    destruct (le_cases X A A B) as [HLe|HLe].
+    destruct (长度小于等于的决定性 X A A B) as [HLe|HLe].
       apply HAbs; exists B; split; Le.
     assert (Bet A B X) by (apply l6_13_1; Le).
     destruct HLe as [X0 [HBet1 HCong]].
@@ -65,7 +65,7 @@ Proof.
       assert (HXOut : Out X X0 B).
         apply l6_7 with A; [|apply l6_6]; apply bet_out; Between.
         intro; treat_equalities; auto.
-      destruct (le_cases X B X X0) as [HLe|HLe].
+      destruct (长度小于等于的决定性 X B X X0) as [HLe|HLe].
       - apply HNReach0; exists B; split; trivial.
         exists X0; split; Cong.
         apply 中间性的内传递性1 with X; Between.
@@ -89,7 +89,7 @@ Proof.
     apply HAbs; exists B1'; split.
       apply 线性刻度_步进 with B'; Cong.
     apply bet2_le2__le1346 with X0 B'; Le; Between.
-    apply cong__le, 等长的传递性 with A B; Cong.
+    apply 等长则小于等于, 等长的传递性 with A B; Cong.
 
   - intro HReach.
     destruct (由一点往一方向构造等长线段_3 X C A B) as [X1 [HOut' HCong]]; auto.
@@ -105,7 +105,7 @@ Proof.
     exists B1'; split.
       apply 线性刻度_步进 with B'; Cong.
     apply bet2_le2__le1346 with X B'; Le.
-    apply cong__le, 等长的传递性 with A B; Cong.
+    apply 等长则小于等于, 等长的传递性 with A B; Cong.
 Qed.
 
 (*
@@ -130,7 +130,7 @@ Proof.
     apply HY.
     destruct HX as [B' [HGrad HLe]].
     exists B'; split; trivial.
-    apply le_transitivity with A X; Le.
+    apply 长度小于等于的传递性 with A X; Le.
   }
   destruct HX as [X HX].
   assert_diffs.
@@ -148,7 +148,7 @@ Proof.
   - intro HAbs.
     destruct (两点重合的决定性 X B).
       subst; apply HAbs; exists B; split; Le.
-    destruct (le_cases X A A B) as [HLe|HLe].
+    destruct (长度小于等于的决定性 X A A B) as [HLe|HLe].
       apply HAbs; exists B; split; Le.
     assert (Bet A B X) by (apply l6_13_1; Le).
     destruct HLe as [X0 [HBet1 HCong]].
@@ -157,7 +157,7 @@ Proof.
       assert (HXOut : Out X X0 B).
         apply l6_7 with A; [|apply l6_6]; apply bet_out; Between.
         intro; treat_equalities; auto.
-      destruct (le_cases X B X X0) as [HLe|HLe].
+      destruct (长度小于等于的决定性 X B X X0) as [HLe|HLe].
       - apply HNReach0; exists B; split; trivial.
         exists X0; split; Cong.
         apply 中间性的内传递性1 with X; Between.
@@ -181,7 +181,7 @@ Proof.
     apply HAbs; exists B1'; split.
       apply 线性刻度_步进 with B'; Cong.
     apply bet2_le2__le1346 with X0 B'; Le; Between.
-    apply cong__le, 等长的传递性 with A B; Cong.
+    apply 等长则小于等于, 等长的传递性 with A B; Cong.
 
   - intro HReach.
     destruct (由一点往一方向构造等长线段_3 X C A B) as [X1 [HOut' HCong]]; auto.
@@ -200,7 +200,7 @@ Proof.
     exists B1'; split.
       apply 线性刻度_步进 with B'; Cong.
     apply bet2_le2__le1346 with X B'; Le.
-    apply cong__le, 等长的传递性 with A B; Cong.
+    apply 等长则小于等于, 等长的传递性 with A B; Cong.
 Qed.
 *)
 

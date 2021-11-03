@@ -68,7 +68,7 @@ Lemma alternate_interior__proclus :
 Proof.
   intros greenberg aia.
   intros A B C D P Q HPar HP HQ HCop.
-  elim(col_dec C D P).
+  elim(共线的决定性 C D P).
     intro HConf; exists P; split; Col.
   intro HStrict.
   assert(HParS : 严格平行 A B C D).
@@ -76,7 +76,7 @@ Proof.
     apply par_symmetry, HPar.
   }
   destruct (l8_18_existence C D P) as [C0 []]; auto.
-  destruct (col_dec P Q C0) as [|HNCol1].
+  destruct (共线的决定性 P Q C0) as [|HNCol1].
     exists C0; split; auto.
   assert_diffs.
   assert(HQ1 : exists Q1, Col Q P Q1 /\ OS A B C0 Q1).
@@ -89,7 +89,7 @@ Proof.
   assert(P<>Q1) by (intro; subst; apply one_side_not_col124 in HOS1; apply HOS1, HP).
   assert(~ Col P C0 Q1) by (intro; apply HNCol1; ColR).
   assert(HA1 : exists A1, Col A B A1 /\ OS P C0 Q1 A1).
-  { destruct (col_dec P C0 A).
+  { destruct (共线的决定性 P C0 A).
     - destruct (cop_not_par_same_side P C0 B A P Q1) as [A1 []]; Col.
         intro; apply HParS; exists C0; split; ColR.
        apply coplanar_perm_19, col_cop__cop with A; Col; Cop.

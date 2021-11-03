@@ -26,7 +26,7 @@ Proof.
   clear dependent P2.
 
   assert(P<>Q) by (intro; subst; auto).
-  elim(col_dec P Q C0).
+  elim(共线的决定性 P Q C0).
     intro; exists C0; Col.
   intro HNCol1.
   assert(HNCol2 : ~ Col C0 A B) by (apply (par_not_col C D); auto).
@@ -44,7 +44,7 @@ Proof.
   }
   destruct HC1 as [C1 []].
   assert(HA0 : exists A0, Col A B A0 /\ OS P C0 Q0 A0).
-  { elim(col_dec P C0 A).
+  { elim(共线的决定性 P C0 A).
     - intro.
       assert(~ Col P C0 B) by (intro; apply HNCol2; ColR).
       assert (HA0 := cop_not_par_same_side P C0 B A P Q0).

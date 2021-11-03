@@ -21,7 +21,7 @@ cut (forall C1 C2, P <> C1 -> Par A1 A2 C1 C2 -> Col P C1 C2 -> Col C1 B1 B2 /\ 
   elim (Haux C2 C1); Col; Par.
   }
 intros C1 C2 HDiff HPar2 HCol2.
-elim (col_dec A1 A2 P); intro HCol.
+elim (共线的决定性 A1 A2 P); intro HCol.
 
   {
   elim HPar1; clear HPar1; intro HPar1.

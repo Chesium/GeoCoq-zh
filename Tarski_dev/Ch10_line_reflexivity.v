@@ -81,7 +81,7 @@ Lemma ex_sym : forall A B X, exists Y, (Perp A B X Y \/ X = Y) /\
    (exists M, Col A B M /\ 中点 M X Y).
 Proof.
     intros.
-    induction (col_dec A B X).
+    induction (共线的决定性 A B X).
       exists X.
       split.
         right.
@@ -130,7 +130,7 @@ Lemma ex_sym1 : forall A B X, A<>B -> exists Y, (Perp A B X Y \/ X = Y) /\
  (exists M, Col A B M /\ 中点 M X Y /\ 对称 X Y A B).
 Proof.
     intros.
-    induction (col_dec A B X).
+    induction (共线的决定性 A B X).
       exists X.
       split.
         right.
@@ -411,7 +411,7 @@ Lemma l10_2_existence_spec : forall A B P,
  exists P', 严格对称 P' P A B.
 Proof.
     intros.
-    induction (col_dec A B P).
+    induction (共线的决定性 A B P).
       unfold 严格对称.
       exists P.
       split.

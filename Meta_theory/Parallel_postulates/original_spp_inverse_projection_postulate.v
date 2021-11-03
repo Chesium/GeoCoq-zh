@@ -12,7 +12,7 @@ Proof.
   intros ospp A B C P Q Hacute Hout HPQ HPer HCop.
   assert_diffs.
   assert_cols.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro.
     exists P.
     split; Col.
@@ -21,7 +21,7 @@ Proof.
     intro.
     destruct Hacute as [x [y [z [HPer2 Hlta]]]].
     assert_diffs.
-    assert(HN := not_and_lta A B C x y z).
+    assert(HN := 两长度不可能互相小于对方a A B C x y z).
     apply HN.
     split; auto.
     split.

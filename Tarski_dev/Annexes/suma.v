@@ -30,7 +30,7 @@ Proof.
   intros A B C D E F HAB HBC HDE HEF.
   exists A.
   exists B.
-  elim (col_dec A B C).
+  elim (共线的决定性 A B C).
   { intro HColB.
     destruct (angle_construction_4 D E F C B A) as [J [HConga HCop]]; auto.
     assert_diffs.
@@ -40,9 +40,9 @@ Proof.
     apply (col123__nos); Col.
   }
   intro HNColB.
-  elim (col_dec D E F).
+  elim (共线的决定性 D E F).
   { intro HColE.
-    elim (bet_dec D E F).
+    elim (中间性的决定性 D E F).
     { intro HEBet.
       assert (HJ : exists J, 中点 B C J) by (apply symmetric_point_construction).
       destruct HJ as [J HMid].
@@ -84,9 +84,9 @@ Proof.
   assert_diffs.
   assert (HcongaC : 等角 C B J C B J') by (apply (conga_trans C B J D E F); auto; apply conga_sym; auto).
   assert (HcongaA : 等角 A B J A B J').
-  { elim (col_dec A B C).
+  { elim (共线的决定性 A B C).
     { intro HColB.
-      elim (bet_dec A B C).
+      elim (中间性的决定性 A B C).
       { intro HBBet.
         apply (l11_13 C B J C B J'); Between.
       }
@@ -95,10 +95,10 @@ Proof.
       apply (l11_10 C B J C B J'); try (apply out_trivial); auto.
     }
     intro HNColB.
-    elim (col_dec D E F).
+    elim (共线的决定性 D E F).
     { intro HColE.
       apply out2__conga; [apply out_trivial|]; auto.
-      elim (bet_dec D E F).
+      elim (中间性的决定性 D E F).
       { intro HEBet.
         apply l6_3_2; repeat split; auto.
         exists C.
@@ -125,9 +125,9 @@ Proof.
   intros A B C D E F G H I Hsuma.
   destruct Hsuma as [J [HCongaBCJ [HNOne [HCongaABJ HCop]]]].
   assert_diffs.
-  elim (col_dec A B C).
+  elim (共线的决定性 A B C).
   { intro HColB.
-    elim (bet_dec A B C).
+    elim (中间性的决定性 A B C).
     { intro HBBet.
       assert (HK : exists K, 中点 E F K) by (apply symmetric_point_construction).
       destruct HK as [K [HKBet HCong]].
@@ -154,7 +154,7 @@ Proof.
   }
 
   intro HNColB.
-  elim (col_dec D E F).
+  elim (共线的决定性 D E F).
   { intro HColE.
     assert (HK : exists K, 等角 A B C F E K) by (apply angle_construction_3; auto).
     destruct HK as [K HConga].
@@ -165,7 +165,7 @@ Proof.
       apply col123__nos; Col.
     split; Cop.
     apply (conga_trans D E K A B J); auto.
-    elim (bet_dec D E F).
+    elim (中间性的决定性 D E F).
     { intro HEBet.
       apply conga_sym; apply conga_left_comm.
       apply (l11_13 C B A F); 等角; Between.
@@ -288,7 +288,7 @@ Proof.
   apply (conga3_suma__suma A B C D E F G H I); 等角.
 Qed.
 
-Lemma suma_middle_comm : forall A B C D E F G H I,
+Lemma suma_midd长度小于等于的交换性 : forall A B C D E F G H I,
    和角 A B C D E F G H I -> 和角 A B C F E D G H I.
 Proof.
   intros A B C D E F G H I Hsuma.
@@ -338,10 +338,10 @@ Proof.
   intros A B C P HInangle.
   assert (Hcopy := HInangle); destruct Hcopy as [HAB [HCB [HPB _]]].
   exists C; repeat (split; 等角); Cop.
-  elim (col_dec B P A).
+  elim (共线的决定性 B P A).
     apply col123__nos.
   intro HNCol.
-  elim (col_dec B P C).
+  elim (共线的决定性 B P C).
     apply col124__nos.
   intro HNCol2.
   apply l9_9, invert_two_sides, in_angle_two_sides; Col.
@@ -367,16 +367,16 @@ Proof.
     assert_diffs.
     destruct HUn as [HEOut | HBNBet].
     apply l11_31_1; auto.
-    elim (col_dec A B C).
+    elim (共线的决定性 A B C).
     { intro HColB.
       apply l11_31_2; auto.
       apply (bet_out_out_bet A B A'); try (apply out_trivial); auto.
       apply l6_4_2; auto.
     }
     intro HNColB.
-    elim (col_dec D E F).
+    elim (共线的决定性 D E F).
     { intro HColE.
-      elim (bet_dec D E F).
+      elim (中间性的决定性 D E F).
       { intro HDEF.
         exfalso.
         apply HJ3.
@@ -420,9 +420,9 @@ Proof.
   - intro Hlea.
     assert_diffs.
     split; auto.
-    elim (col_dec A B C).
+    elim (共线的决定性 A B C).
     { intro HColB.
-      elim (bet_dec A B C).
+      elim (中间性的决定性 A B C).
       { intro HBBet.
         assert (HEOut : Out E D F).
         { assert (Out B C A') by (apply (l6_3_2); repeat split; auto; exists A; repeat split; Between).
@@ -454,7 +454,7 @@ Proof.
     }
     intro HNColB.
     assert (HNColB' : ~ Col A' B C) by (intro; apply HNColB; apply (l6_16_1 B A'); Col).
-    elim (col_dec D E F).
+    elim (共线的决定性 D E F).
     { intro HNColE.
       assert (HEOut : Out E D F).
       { apply not_bet_out; auto.
@@ -483,7 +483,7 @@ Proof.
     split; 等角.
     split.
     apply l9_9; apply l9_2; apply invert_two_sides; auto.
-    elim (col_dec A B J).
+    elim (共线的决定性 A B J).
     { intro HColJ.
       split; Cop.
       intro HTwo'.
@@ -610,7 +610,7 @@ Proof.
   apply (bet_conga__bet _ _ _ A B A') in HBet; 等角.
   assert_diffs.
   repeat split; auto.
-  - elim (bet_dec A B C).
+  - elim (中间性的决定性 A B C).
     { intro HBet'; left.
       apply (l11_21_a C B A'); trivial.
       apply l6_2 with A; Between.
@@ -662,9 +662,9 @@ Proof.
     apply bet__sams; auto.
     apply out213__sams; auto; apply in_angle_out with C; assumption.
   assert (~ Bet A B C) by (intro; apply HNCol; Col).
-  destruct (col_dec B A P).
+  destruct (共线的决定性 B A P).
     apply out213__sams; auto; apply col_in_angle_out with C; assumption.
-  destruct (col_dec B C P).
+  destruct (共线的决定性 B C P).
     apply out546__sams; auto; apply l6_6, col_in_angle_out with A; Between; apply l11_24, HIn.
   apply os_ts__sams.
     apply invert_two_sides, in_angle_two_sides; assumption.
@@ -714,13 +714,13 @@ repeat
 
       | H:Le ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D H2 H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D H2 H);clean_reap_hyps
       | H:Le ?A ?B ?C ?D, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D (swap_diff B A H2) H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D (swap_diff B A H2) H);clean_reap_hyps
       | H:Lt ?A ?B ?C ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= lt_diff A B C D H);clean_reap_hyps
+        assert (T:= 小于推出不重合 A B C D H);clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
@@ -849,7 +849,7 @@ repeat
       assert (h := suppa_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
  end.
 
-Hint Resolve suma_sym suma_left_comm suma_middle_comm suma_right_comm
+Hint Resolve suma_sym suma_left_comm suma_midd长度小于等于的交换性 suma_right_comm
              suma_comm ts__suma ts__suma_1 inangle__suma bet__suma
              sams_right_comm sams_comm sams_left_comm sams_sym
              out213__sams out546__sams bet__sams suppa__sams inangle__sams : suma.
@@ -868,9 +868,9 @@ Proof.
   intros A B C D E F G H I Hsuma Hisi.
   assert_diffs.
   spliter.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro HColB.
-    elim(bet_dec A B C).
+    elim(中间性的决定性 A B C).
     { intro HBBet.
       destruct Hisi as [_[[HEout|]]]; try solve[exfalso; auto].
       apply conga__lea.
@@ -881,9 +881,9 @@ Proof.
     apply not_bet_out; auto.
   }
   intro HNColB.
-  elim(col_dec D E F).
+  elim(共线的决定性 D E F).
   { intro HColE.
-    elim(bet_dec D E F).
+    elim(中间性的决定性 D E F).
     { intro HEBet.
       apply sams_sym in Hisi.
       destruct Hisi as [_[[HBout|]]]; try solve[exfalso; auto].
@@ -895,9 +895,9 @@ Proof.
     apply not_bet_out; auto.
   }
   intro HNColE.
-  elim(col_dec G H I).
+  elim(共线的决定性 G H I).
   { intro HColH.
-    elim(bet_dec G H I).
+    elim(中间性的决定性 G H I).
       apply l11_31_2; auto.
     intro HHout.
     apply not_bet_out in HHout; auto.
@@ -998,7 +998,7 @@ Proof.
     apply (out546_suma__conga _ _ _ D' E' F'); auto.
   }
   intro HE'Nout.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro HColB.
     destruct Hisi' as [_ [[HE'out|HBNBet]_]].
     exfalso; auto.
@@ -1006,7 +1006,7 @@ Proof.
     apply (l11_30 D E F D' E' F'); auto; apply (out213_suma__conga A B C); auto.
   }
   intro HNColB.
-  elim(col_dec D' E' F').
+  elim(共线的决定性 D' E' F').
   { intro HColE'.
     apply sams_sym in Hisi'.
     destruct Hisi' as [_ [[HBout|HE'NBet]_]]; exfalso.
@@ -1015,7 +1015,7 @@ Proof.
   }
   intro HNColE'.
   clear HE'Nout.
-  elim(col_dec D E F).
+  elim(共线的决定性 D E F).
   { intro HColE.
     assert(~ Bet D E F) by (intro; apply HNColE'; apply 中间性蕴含共线; apply (bet_lea__bet D E F); auto).
     apply (l11_30 A B C G' H' I'); try (apply conga_refl); auto.
@@ -1024,9 +1024,9 @@ Proof.
     apply not_bet_out; auto.
   }
   intro HNColE.
-  elim(col_dec G' H' I').
+  elim(共线的决定性 G' H' I').
   { intro HColH'.
-    elim(bet_dec G' H' I').
+    elim(中间性的决定性 G' H' I').
     apply l11_31_2; auto.
     intro HH'out.
     apply not_bet_out in HH'out; auto.
@@ -1113,9 +1113,9 @@ Lemma sams2_suma2__conga456 : forall A B C D E F D' E' F' G H I,
 Proof.
   intros A B C D E F D' E' F' G H I Hisi Hisi' Hsuma Hsuma'.
   assert_diffs.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro HColB.
-    elim(bet_dec A B C).
+    elim(中间性的决定性 A B C).
     { intro HBBet.
       destruct Hisi as [_ [[HEout|]_]]; try solve [exfalso; Between].
       destruct Hisi' as [_ [[HE'out|]_]]; try solve [exfalso; Between].
@@ -1173,9 +1173,9 @@ Proof.
   assert(HD0 : exists D0, 中点 E D D0) by apply symmetric_point_construction.
   destruct HD0 as [D0 []].
   assert_diffs.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro HColB.
-    elim(bet_dec A B C).
+    elim(中间性的决定性 A B C).
     { intro HBBet.
       destruct HisiBE as [_ [[HEout | HBNBet] HJ]]; try solve [exfalso; Between].
       apply (conga3_suma__suma A' B' C' G H I K L M); try (apply conga_refl); auto.
@@ -1196,9 +1196,9 @@ Proof.
   }
   intro HNColB.
   assert(~ Col C B A0) by (intro; apply HNColB; apply (l6_16_1 _ A0); Col).
-  elim(col_dec D E F).
+  elim(共线的决定性 D E F).
   { intro HColE.
-    elim(bet_dec D E F).
+    elim(中间性的决定性 D E F).
     { intro HEBet.
       destruct HisiEH as [_ [[HHout | HENBet] HJ]]; try solve [exfalso; Between].
       apply (conga3_suma__suma A B C D E F A' B' C'); try (apply conga_refl); try (apply (out546_suma__conga _ _ _ G H I)); auto.
@@ -1211,9 +1211,9 @@ Proof.
   }
   intro HNColE.
   assert(~ Col F E D0) by (intro; apply HNColE; apply (l6_16_1 _ D0); Col).
-  elim(col_dec G H I).
+  elim(共线的决定性 G H I).
   { intro HColH.
-    elim(bet_dec G H I).
+    elim(中间性的决定性 G H I).
     { intro HHBet.
       apply sams_sym in HisiEH.
       destruct HisiEH as [_ [[HEout | HHNBet] HJ]]; try solve [exfalso; Between].
@@ -1234,13 +1234,13 @@ Proof.
     split; Col; Between.
   }
   assert(TS E F D D0) by (apply bet__ts; Col).
-  elim(col_dec A' B' C').
+  elim(共线的决定性 A' B' C').
   { intro HColB'.
-    elim(bet_dec A' B' C').
+    elim(中间性的决定性 A' B' C').
     { intro HB'Bet.
-      elim(col_dec D' E' F').
+      elim(共线的决定性 D' E' F').
       { intro HColE'.
-        elim(bet_dec D' E' F').
+        elim(中间性的决定性 D' E' F').
         { intro HE'Bet.
           apply suma_sym.
           apply (conga3_suma__suma A' B' C' G H I K L M); [等角..| |等角].
@@ -1334,9 +1334,9 @@ Proof.
     - apply cop_nos__ts; Col; Cop.
       apply (ncol_conga_ncol D E F); 等角.
   }
-  elim(col_dec D' E' F').
+  elim(共线的决定性 D' E' F').
   { intro HColE'.
-    elim(bet_dec D' E' F').
+    elim(中间性的决定性 D' E' F').
     { intro HE'Bet.
       assert(HC0 : exists C0, 中点 B C C0) by apply symmetric_point_construction.
       destruct HC0 as [C0 []].
@@ -1440,7 +1440,7 @@ Lemma sams_assoc_1 : forall A B C D E F G H I A' B' C' D' E' F',
 Proof.
   intros A B C D E F G H I A' B' C' D' E' F' Hsams1 Hsams2 Hs1 Hs2 Hsams1'.
   assert_diffs.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro HColB.
     destruct Hsams1 as [_ [[HEout|HBout]_]].
     - apply (conga2_sams__sams A' B' C' G H I); auto.
@@ -1459,7 +1459,7 @@ Proof.
       apply not_two_sides_id.
   }
   intro HNColB.
-  elim(col_dec D E F).
+  elim(共线的决定性 D E F).
   { intro HColE.
     destruct Hsams2 as [_ [[HHout|HEout]_]].
     - apply (conga2_sams__sams A B C D E F); try (apply conga_refl); auto.
@@ -1471,7 +1471,7 @@ Proof.
       apply (out213_suma__conga D E F); auto.
   }
   intro HNColE.
-  elim(col_dec G H I).
+  elim(共线的决定性 G H I).
   { intro HColH.
     apply sams_sym in Hsams2.
     destruct Hsams2 as [_ [[|HHout] _]].
@@ -1527,7 +1527,7 @@ Proof.
       exists J.
       repeat (split; 等角).
 
-    - elim(col_dec C B J).
+    - elim(共线的决定性 C B J).
       intro; apply col124__nos; Col.
       intro.
       apply l9_9.
@@ -1537,7 +1537,7 @@ Proof.
       apply invert_one_side.
       apply cop_nts__os; Col; Cop.
 
-    - elim(col_dec A B J).
+    - elim(共线的决定性 A B J).
         intro; intro Hts; destruct Hts; spliter; Col.
       intro.
       apply l9_9_bis.
@@ -1818,9 +1818,9 @@ Proof.
   destruct HA' as [A'].
   assert_diffs.
   apply (sams_chara _ _ _ _ _ _ A'); Between.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
   { intro HCol.
-    elim(bet_dec A C B).
+    elim(中间性的决定性 A C B).
     { intro HCBet.
       apply conga__lea.
       apply conga_line; Between.
@@ -1839,9 +1839,9 @@ Qed.
 Lemma col_suma__col : forall A B C D E F, Col D E F -> 和角 A B C B C A D E F -> Col A B C.
 Proof.
   intros A B C D E F HCol HSuma.
-  destruct (col_dec A B C) as [|HNCol]; [trivial|].
+  destruct (共线的决定性 A B C) as [|HNCol]; [trivial|].
   exfalso.
-  destruct (bet_dec D E F).
+  destruct (中间性的决定性 D E F).
   - assert (HP := symmetric_point_construction A B).
     destruct HP as [P []].
     assert_diffs.
@@ -2158,8 +2158,8 @@ Lemma col2_suma__col : forall A B C D E F G H I, Col A B C -> Col D E F ->
   和角 A B C D E F G H I -> Col G H I.
 Proof.
   intros A B C D E F G H I HCol1 HCol2 HSuma.
-  destruct (bet_dec A B C).
-  destruct (bet_dec D E F).
+  destruct (中间性的决定性 A B C).
+  destruct (中间性的决定性 D E F).
   - apply 等价共线BAC, out_col, (bet2_suma__out A B C D E F); assumption.
   - apply (col_conga_col A B C); trivial.
     apply out546_suma__conga with D E F; trivial.
@@ -2359,7 +2359,7 @@ Proof.
   exists B2.
   split.
   和角.
-  apply suma_middle_comm.
+  apply suma_midd长度小于等于的交换性.
   apply (suma_assoc C A B A B C B C A D E F C2 A2 B2 A1 B1 C1); try (apply sams123231); auto.
 Qed.
 

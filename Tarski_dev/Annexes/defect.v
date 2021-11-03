@@ -261,7 +261,7 @@ Proof.
   assert (Hd'' := defect_distincts A B C D1 D2 D3 HDefD).
   spliter; suma.assert_diffs.
   apply col_defect__out in HDefD; trivial.
-  destruct (col_dec A D C) as [HCol1|HNCol].
+  destruct (共线的决定性 A D C) as [HCol1|HNCol].
   { assert (Col C B D) by ColR.
     assert (Col A B D) by ColR.
     apply col_defect__out in HDefA; trivial.
@@ -320,14 +320,14 @@ Proof.
   assert (Hd' := defect_distincts C B D A1 A2 A3 HDefA).
   spliter; suma.assert_diffs.
 
-  destruct (col_dec A B C) as [HCol|HNCol].
+  destruct (共线的决定性 A B C) as [HCol|HNCol].
     apply (t22_16_2aux noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O); trivial.
-  destruct (col_dec A D C) as [HCol1|HNCol1].
+  destruct (共线的决定性 A D C) as [HCol1|HNCol1].
     apply (t22_16_2aux noah A D C B A1 A2 A3 D1 D2 D3 C1 C2 C3 B1 B2 B3 O); Between; 和角;
     apply defect_perm_132; trivial.
-  destruct (col_dec A B D) as [HCol2|HNCol2].
+  destruct (共线的决定性 A B D) as [HCol2|HNCol2].
     apply (t22_16_2aux1 noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O); trivial.
-  destruct (col_dec C B D) as [HCol3|HNCol3].
+  destruct (共线的决定性 C B D) as [HCol3|HNCol3].
     destruct (t22_16_2aux1 noah C B A D C1 C2 C3 B1 B2 B3 A1 A2 A3 D1 D2 D3 O P Q R); Between; 和角;
     apply defect_perm_321; trivial.
   assert (Hdiff : O <> A /\ O <> B /\ O <> C /\ O <> D).

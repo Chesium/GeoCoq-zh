@@ -8,7 +8,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma proclus_bis__proclus : alternative_proclus_postulate -> proclus_postulate.
 Proof.
   intros proclus_bis A B C D P Q HPar HInter HNCol HCop.
-  elim(col_dec C D P).
+  elim(共线的决定性 C D P).
     intro; exists P; Col.
   intro HNCol1.
   apply par_symmetry in HPar.
@@ -18,7 +18,7 @@ Proof.
   assert(HNCol2 : ~ Col C0 A B) by (apply (par_not_col C D); Col).
   assert_diffs.
   assert(HA0 : exists A0, Col A B A0 /\ ~ Col C0 P A0).
-  { elim(col_dec C0 P A).
+  { elim(共线的决定性 C0 P A).
     - intro.
       assert(~ Col C0 P B) by (intro; apply HNCol2; ColR).
       exists B.
@@ -33,7 +33,7 @@ Proof.
   destruct HA' as [A' []]; Col.
   assert_diffs.
   assert (共面 C D P A0) by (apply col2_cop__cop with A B; Col; Cop).
-  elim(col_dec A0 P A').
+  elim(共线的决定性 A0 P A').
   - intro.
     apply (proclus_bis A0 P); Col; [|CopR|intro; apply HNCol; ColR].
     exists C0.

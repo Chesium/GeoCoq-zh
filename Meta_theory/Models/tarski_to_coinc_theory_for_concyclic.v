@@ -29,7 +29,7 @@ Qed.
 Lemma concyclic_gen_1123 : forall A B C, 共圆或共线 A A B C.
 Proof.
 unfold 共圆或共线; simpl; intros A B C.
-elim (col_dec A B C); intro; [right; repeat split; Col|].
+elim (共线的决定性 A B C); intro; [right; repeat split; Col|].
 left.
 split; Cop.
 destruct (triangle_circumscription A B C H) as [O]; spliter.

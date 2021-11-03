@@ -12,7 +12,7 @@ Lemma bisector_existence : forall A B C,  A <> B -> B <> C ->
 exists E,  在角内 E A B C /\ 等角 A B E E B C.
 Proof.
 intros A B C HAB HBC.
-destruct (col_dec A B C) as [HCOL | HNCOL].
+destruct (共线的决定性 A B C) as [HCOL | HNCOL].
 (*case 1: Out B A C*)
 destruct (out_dec B A C) as [HOUT | HNOUT].
 exists C.
@@ -276,7 +276,7 @@ Lemma bisector_perp_equality : forall A B C I H1 H2, 共面 A B C I ->
  等角 A B I I B C ->  Cong I H1 I H2.
 Proof.
 intros A B C I H1 H2 HCOP HCABH HCCBH HPH1 HPH2 HCONGA.
-destruct (col_dec A B C) as [HCOL | HNCOL].
+destruct (共线的决定性 A B C) as [HCOL | HNCOL].
 assert (Perp A B I H2) by (assert_diffs;apply (perp_col2 B C A B I H2);Col).
 assert (H1 = H2).
 { apply (l8_14_2_1b H1 A B I H1 H2);auto.

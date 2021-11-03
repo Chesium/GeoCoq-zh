@@ -8,7 +8,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma cong_stability : forall A B C D, ~ ~ Cong A B C D -> Cong A B C D.
 Proof.
 intros.
-elim (cong_dec A B C D); intro HCong.
+elim (等长的决定性 A B C D); intro HCong.
 
   apply HCong.
 
@@ -21,7 +21,7 @@ Lemma bet_stability : forall A B C, ~ ~ BetH A B C -> BetH A B C.
 Proof.
 intros A B C HNNBet.
 unfold BetH in *.
-elim (bet_dec A B C); intro HBet; elim (两点重合的决定性 A B); intro HAB; elim (两点重合的决定性 B C); intro HBC.
+elim (中间性的决定性 A B C); intro HBet; elim (两点重合的决定性 A B); intro HAB; elim (两点重合的决定性 B C); intro HBC.
 
   subst.
   exfalso.
@@ -106,7 +106,7 @@ Lemma T_Bet : forall A B C, T A B C -> Bet A B C.
 Proof.
 intros A B C HT.
 unfold T in HT.
-elim (bet_dec A B C); intro HBet.
+elim (中间性的决定性 A B C); intro HBet.
 
   assumption.
 
@@ -135,7 +135,7 @@ Qed.
 Lemma T_dec : forall A B C, T A B C \/ ~ T A B C.
 Proof.
 intros A B C.
-elim (bet_dec A B C); intro HBet.
+elim (中间性的决定性 A B C); intro HBet.
 
   left; apply Bet_T; assumption.
 

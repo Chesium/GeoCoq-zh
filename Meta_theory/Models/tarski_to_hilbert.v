@@ -132,7 +132,7 @@ Lemma axiom_Incid_dec : forall P l, IncidentL P l \/ ~IncidentL P l.
 Proof.
 intros.
 unfold IncidentL.
-apply col_dec.
+apply 共线的决定性.
 Qed.
 
 (** There is only one line going through two points. *)
@@ -511,7 +511,7 @@ Lemma cop_plane_aux : forall A B C D, 共面 A B C D -> A <> B ->
   exists p, IncidentP A p /\ IncidentP B p /\ IncidentP C p /\ IncidentP D p.
 Proof.
   intros A B C D HCop HAB.
-  destruct (col_dec A B C) as [|HNCol]; [destruct (col_dec A B D) as [|HNCol]|].
+  destruct (共线的决定性 A B C) as [|HNCol]; [destruct (共线的决定性 A B D) as [|HNCol]|].
   - destruct (not_col_exists A B HAB) as [E HNCol].
     apply ncols_coincide in HNCol.
     exists (Plan A B E HNCol).

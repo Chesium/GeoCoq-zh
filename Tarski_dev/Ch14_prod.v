@@ -630,7 +630,7 @@ Proof.
       subst B''.
       left.
       Par.
-    induction(col_dec E E' E'').
+    induction(共线的决定性 E E' E'').
       assert(~Col E' E'' A).
         intro.
         apply H25.
@@ -686,7 +686,7 @@ Proof.
       apply(l13_15 E E'' E' B B'' B' O ); Par.
         Col.
       apply all_coplanar.
-    induction(col_dec A E' E'').
+    induction(共线的决定性 A E' E'').
       assert(Par B' C E' E'').
         apply (par_col_par _ _ _ A); Par.
         Col.
@@ -734,7 +734,7 @@ Proof.
         apply all_coplanar.
       ColR.
     spliter.
-    induction(col_dec O E' E'').
+    induction(共线的决定性 O E' E'').
       left.
       apply par_comm.
       apply (l13_19 E E' A E'' B B' C B'' O); Col.

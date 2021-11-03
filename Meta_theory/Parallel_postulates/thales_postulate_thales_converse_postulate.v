@@ -10,7 +10,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma thales_postulate__thales_converse_postulate : thales_postulate -> thales_converse_postulate.
 Proof.
   intros thales A B C M HM HPer.
-  destruct (col_dec A B C) as [|HNCol].
+  destruct (共线的决定性 A B C) as [|HNCol].
     destruct (l8_9 A C B); Col; subst; Cong.
   assert_diffs.
   assert(M <> C) by (intro; subst; apply HNCol; Col).

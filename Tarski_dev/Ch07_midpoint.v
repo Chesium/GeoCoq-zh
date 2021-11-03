@@ -46,10 +46,10 @@ repeat
 
       | H:Le ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D H2 H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D H2 H);clean_reap_hyps
       | H:Lt ?A ?B ?C ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= lt_diff A B C D H);clean_reap_hyps
+        assert (T:= 小于推出不重合 A B C D H);clean_reap_hyps
 
       | H:Out ?A ?B ?C |- _ =>
       let T:= fresh in (not_exist_hyp2 A B A C);
@@ -71,7 +71,7 @@ Lemma midpoint_dec :
 Proof.
     intros.
     unfold 中点.
-    elim (bet_dec A I B);intro; elim (cong_dec A I I B);intro; tauto.
+    elim (中间性的决定性 A I B);intro; elim (等长的决定性 A I I B);intro; tauto.
 Qed.
 
 Lemma is_midpoint_id : forall A B, 中点 A A B -> A = B.
@@ -396,7 +396,7 @@ Proof.
     intros.
     induction (两点重合的决定性 A2 C).
       subst C.
-      apply le_zero in H5.
+      apply AB小于等于CC推出A与B重合 in H5.
       subst A2.
       apply 等长的反向同一性 in H1.
       subst B1.
@@ -433,7 +433,7 @@ Proof.
       spliter.
       assumption.
     assert (Le C A1 C x).
-      eapply l5_6.
+      eapply l5_6_等长保持小于等于关系.
       repeat split.
         apply H5.
         apply 等长的自反性.
@@ -451,7 +451,7 @@ Proof.
         assumption.
         intro.
         subst x.
-        apply le_zero in H11.
+        apply AB小于等于CC推出A与B重合 in H11.
         apply H12.
         subst A1.
         reflexivity.
@@ -466,7 +466,7 @@ Proof.
     eauto with 中点.
     *)
     assert (Le C B1 C x0).
-      eapply l5_6.
+      eapply l5_6_等长保持小于等于关系.
         apply H11.
         assumption.
       unfold 中点 in *.
@@ -487,7 +487,7 @@ Proof.
         apply AAB中间性.
       induction (两点重合的决定性 x0 C).
         subst x0.
-        apply le_zero in H13.
+        apply AB小于等于CC推出A与B重合 in H13.
         subst B1.
         apply ABB中间性.
       induction (两点重合的决定性 B2 C).
@@ -495,7 +495,7 @@ Proof.
         apply 等长的对称性 in H2.
         eapply 等长的反向同一性 in H2.
         subst A2.
-        apply le_zero in H5.
+        apply AB小于等于CC推出A与B重合 in H5.
         subst A1.
         apply 等长的反向同一性 in H1.
         subst B1.
@@ -591,7 +591,7 @@ Lemma l7_22 : forall A1 A2 B1 B2 C M1 M2,
 Proof.
     intros.
     assert (Le C A1 C A2 \/ Le C A2 C A1).
-      eapply le_cases.
+      eapply 长度小于等于的决定性.
     induction H5.
       eapply l7_22_aux.
         apply H.
@@ -626,7 +626,7 @@ Lemma l7_25 : forall A B C,
   exists X, 中点 X A B.
 Proof.
     intros.
-    induction(col_dec A B C).
+    induction(共线的决定性 A B C).
       assert(A = B \/ 中点 C A B).
         apply l7_20.
           unfold Col in *.
@@ -1088,7 +1088,7 @@ Proof.
     destruct HM.
     destruct HM'.
     apply (bet2_le2__le1346 _ M _ _ M'); auto.
-    apply (l5_6 A M A' M'); auto.
+    apply (l5_6_等长保持小于等于关系 A M A' M'); auto.
 Qed.
 
 Lemma le_mid2__le12 : forall A M B A' M' B',
@@ -1096,12 +1096,12 @@ Lemma le_mid2__le12 : forall A M B A' M' B',
  Le A B A' B' -> Le A M A' M'.
 Proof.
     intros A M B A' M' B' HM HM' Hle.
-    elim(le_cases A M A' M'); auto.
+    elim(长度小于等于的决定性 A M A' M'); auto.
     intro.
     assert(Le A' B' A B) by (apply (le_mid2__le13 _ M' _ _ M); auto).
-    apply cong__le.
+    apply 等长则小于等于.
     apply (cong_cong_half_1 _ _ B _ _ B'); auto.
-    apply le_anti_symmetry; auto.
+    apply 长度小于等于的反对称性; auto.
 Qed.
 
 Lemma lt_mid2__lt13 : forall A M B A' M' B',
@@ -1377,7 +1377,7 @@ induction(两点重合的决定性 O A).
 treat_equalities.
 unfold Lt in H1.
 spliter.
-apply le_zero in H0.
+apply AB小于等于CC推出A与B重合 in H0.
 treat_equalities.
 apply H1.
 apply 等长的平凡同一性.
@@ -1386,7 +1386,7 @@ induction(两点重合的决定性 O B).
 treat_equalities.
 unfold Lt in H2.
 spliter.
-apply le_zero in H0.
+apply AB小于等于CC推出A与B重合 in H0.
 treat_equalities.
 apply H2.
 apply 等长的平凡同一性.

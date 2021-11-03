@@ -140,7 +140,7 @@ Lemma lt_os_per2__lta : forall A B C D,
   角度小于 B C D A B C.
 Proof.
   intros A B C D HPer1 HPer2 Hos Hlt.
-  apply lt_right_comm in Hlt.
+  apply 长度小于的右交换性 in Hlt.
   destruct Hlt as [[E []] HNCong].
   assert(E<>C) by (intro; subst; auto).
   assert(~ Col A D B) by (apply (one_side_not_col123 _ _ _ C); auto).
@@ -204,10 +204,10 @@ Lemma lta_os_per2__lt : forall A B C D,
   Lt A B C D.
 Proof.
   intros A B C D HPer1 HPer2 Hos H角度小于.
-  destruct (or_lt_cong_gt A B C D) as [Hlt | [Hlt | Hcong]]; trivial; exfalso.
+  destruct (两长度必大于小于或等于 A B C D) as [Hlt | [Hlt | Hcong]]; trivial; exfalso.
   - unfold Gt in Hlt.
-    apply lt_comm in Hlt.
-    apply (not_and_lta B C D A B C).
+    apply 长度小于的交换性 in Hlt.
+    apply (两长度不可能互相小于对方a B C D A B C).
     split; trivial.
     apply lt4321_os_per2__lta; trivial.
   - destruct H角度小于 as [H角度小于等于 HN等角].
@@ -232,10 +232,10 @@ Lemma conga_per2_os__cong : forall A B C D,
   Cong A B C D.
 Proof.
   intros A B C D HPer1 HPer2 Hos H等角.
-  destruct (or_lt_cong_gt A B C D) as [Hlt | [Hlt | Hcong]]; trivial; exfalso.
+  destruct (两长度必大于小于或等于 A B C D) as [Hlt | [Hlt | Hcong]]; trivial; exfalso.
   - destruct (lt_os_per2__lta A B C D); auto.
   - unfold Gt in Hlt.
-    apply lt_comm in Hlt.
+    apply 长度小于的交换性 in Hlt.
     destruct (lt4321_os_per2__lta A B C D); 等角.
 Qed.
 
@@ -417,7 +417,7 @@ Proof.
   spliter.
   exists A, D, C.
   split; trivial.
-  apply lta_left_comm, lt_os_per2__lta; Perp; [|apply lt_right_comm; trivial].
+  apply lta_left_comm, lt_os_per2__lta; Perp; [|apply 长度小于的右交换性; trivial].
   apply one_side_symmetry, l12_6, lam__pars1234, HLam.
 Qed.
 
@@ -432,7 +432,7 @@ Proof.
   spliter.
   exists A, D, C.
   split; trivial.
-  apply lta_left_comm, lt_os_per2__lta; Perp; [|apply lt_right_comm; trivial].
+  apply lta_left_comm, lt_os_per2__lta; Perp; [|apply 长度小于的右交换性; trivial].
   apply invert_one_side, l12_6, lam__pars1234, HLam.
 Qed.
 
@@ -445,7 +445,7 @@ Proof.
   assert (HLam' := HLam).
   unfold Lambert四边形 in HLam'.
   spliter.
-  destruct (or_lt_cong_gt A D B C) as [Habs|[HCong|Habs]]; trivial;
+  destruct (两长度必大于小于或等于 A D B C) as [Habs|[HCong|Habs]]; trivial;
   exfalso; apply (nlta B C D).
   - apply acute_per__lta; trivial.
     apply (lam_lt__acute A); trivial.
@@ -459,7 +459,7 @@ Lemma acute_lam__lt : forall A B C D,
   Lt A D B C.
 Proof.
   intros A B C D HLam H为锐角.
-  destruct (or_lt_cong_gt A D B C) as [|Habs]; trivial.
+  destruct (两长度必大于小于或等于 A D B C) as [|Habs]; trivial.
   exfalso; apply (nlta B C D).
   destruct Habs.
   - apply acute_obtuse__lta; trivial.
@@ -476,7 +476,7 @@ Lemma lam_obtuse__lt : forall A B C D,
   Lt B C A D.
 Proof.
   intros A B C D HLam H为钝角.
-  destruct (or_lt_cong_gt A D B C) as [Habs|[Habs|HLt]]; trivial;
+  destruct (两长度必大于小于或等于 A D B C) as [Habs|[Habs|HLt]]; trivial;
   exfalso; apply (nlta B C D).
   - apply acute_obtuse__lta; trivial.
     apply (lam_lt__acute A); trivial.
@@ -532,10 +532,10 @@ Proof.
   - intro HLt.
     apply (acute_conga__acute M B A); 等角.
     apply (lam_lt__acute N); trivial.
-    apply lt_comm, lt_mid2__lt12 with D C; trivial.
+    apply 长度小于的交换性, lt_mid2__lt12 with D C; trivial.
   - intro H为锐角.
     apply lt_mid2__lt13 with N M; trivial.
-    apply lt_comm, acute_lam__lt; trivial.
+    apply 长度小于的交换性, acute_lam__lt; trivial.
     apply (acute_conga__acute A B C); trivial.
 Qed.
 
@@ -560,10 +560,10 @@ Proof.
   - intro HLt.
     apply (conga_obtuse__obtuse M B A); 等角.
     apply (lam_lt__obtuse N); trivial.
-    apply lt_comm, lt_mid2__lt12 with C D; trivial.
+    apply 长度小于的交换性, lt_mid2__lt12 with C D; trivial.
   - intro H为钝角.
     apply lt_mid2__lt13 with M N; trivial.
-    apply lt_comm, lam_obtuse__lt; trivial.
+    apply 长度小于的交换性, lam_obtuse__lt; trivial.
     apply (conga_obtuse__obtuse A B C); trivial.
 Qed.
 
@@ -670,7 +670,7 @@ Proof.
         apply (per_col _ _ A); Perp; Col.
         apply (l8_3 A); Perp; Col.
         apply (col_one_side _ A); Col; apply (l9_17 _ _ B); Between; Side.
-        apply (cong2_lt__lt P Q A B); Cong.
+        apply (等长保持小于关系 P Q A B); Cong.
   }
   destruct (angle_partition B P Q) as [H为锐角|[HPer|H为钝角]]; auto.
   - apply acute_lea_acute with B P Q; Lea.
@@ -730,7 +730,7 @@ Proof.
         apply (l8_3 A); Col.
         apply invert_one_side, (col_one_side _ A); Col;
         apply one_side_symmetry, (l9_17 _ _ B); Side; Between.
-        apply (cong2_lt__lt A B P Q); Cong.
+        apply (等长保持小于关系 A B P Q); Cong.
   }
   destruct (angle_partition B P Q) as [H为锐角|[HPer|H为钝角]]; auto.
   - apply lea_obtuse_obtuse with C P Q; [|unfold 角度大于等于; Lea].
@@ -749,10 +749,10 @@ Proof.
   intros A B C D P Q HSac HP HQ HAQ HPerQ HPer.
   assert(Hdiff := sac_distincts A B C D HSac).
   spliter.
-  destruct (cong_dec P Q A B); auto.
+  destruct (等长的决定性 P Q A B); auto.
   exfalso.
   apply (nlta A B C).
-  elim(le_cases P Q A B).
+  elim(长度小于等于的决定性 P Q A B).
   - intro.
     apply acute_per__lta; auto.
     apply (t22_7__acute _ _ _ D P Q); auto.
@@ -773,14 +773,14 @@ Proof.
   intros A B C D P Q HSac HP HQ HAQ HQD HPerQ Hacute.
   assert(Hdiff := sac_distincts A B C D HSac).
   spliter.
-  destruct (cong_dec P Q A B).
+  destruct (等长的决定性 P Q A B).
   { exfalso.
     apply (nlta A B C).
     apply acute_per__lta; auto.
     apply (t22_7__per _ _ _ D P Q); auto.
   }
   split; auto.
-  destruct (le_cases P Q A B); auto.
+  destruct (长度小于等于的决定性 P Q A B); auto.
   exfalso.
   apply (nlta A B C).
   apply acute_obtuse__lta; auto.
@@ -798,14 +798,14 @@ Proof.
   intros A B C D P Q HSac HP HQ HAQ HQD HPerQ Hobtuse.
   assert(Hdiff := sac_distincts A B C D HSac).
   spliter.
-  destruct(cong_dec P Q A B).
+  destruct(等长的决定性 P Q A B).
   { exfalso.
     apply (nlta A B C).
     apply obtuse_per__lta; auto.
     apply (t22_7__per _ _ _ D P Q); auto.
   }
   split; Cong.
-  destruct(le_cases P Q A B); auto.
+  destruct(长度小于等于的决定性 P Q A B); auto.
   exfalso.
   apply (nlta A B C).
   apply acute_obtuse__lta; auto.
@@ -886,7 +886,7 @@ Proof.
   assert(Hdiff := sac_distincts A B C D HSac).
   spliter.
   assert(HJ := Hlt).
-  apply lt_right_comm in HJ.
+  apply 长度小于的右交换性 in HJ.
   destruct HJ as [[J []] _].
   assert_diffs.
   assert(J <> R) by (intro; subst J; destruct Hlt; Cong).
@@ -1011,13 +1011,13 @@ Lemma t22_8__cong : forall A B C D R S,
 Proof.
   intros A B C D R S HSac.
   intros.
-  elim(cong_dec R S A B); auto.
+  elim(等长的决定性 R S A B); auto.
   intro.
   assert(Hdiff := sac_distincts A B C D HSac).
   spliter.
   exfalso.
   apply (nlta A B C).
-  destruct(le_cases R S A B).
+  destruct(长度小于等于的决定性 R S A B).
   - apply obtuse_per__lta; auto.
     apply (t22_8__obtuse _ _ _ D R S); auto.
     split; auto.
@@ -1037,12 +1037,12 @@ Proof.
   intros A B C D R S HSac.
   intros.
   assert_diffs.
-  destruct(cong_dec R S A B).
+  destruct(等长的决定性 R S A B).
   { exfalso.
     apply (nlta A B C), acute_per__lta; auto.
     apply (t22_8__per _ _ _ D R S); auto.
   }
-  destruct(le_cases R S A B); [|split; Cong].
+  destruct(长度小于等于的决定性 R S A B); [|split; Cong].
   exfalso.
   apply (nlta A B C), acute_obtuse__lta; auto.
   apply (t22_8__obtuse _ _ _ D R S); auto.
@@ -1059,13 +1059,13 @@ Proof.
   intros A B C D R S HSac.
   intros.
   assert_diffs.
-  destruct(cong_dec R S A B).
+  destruct(等长的决定性 R S A B).
   { exfalso.
     apply (nlta A B C).
     apply obtuse_per__lta; auto.
     apply (t22_8__per _ _ _ D R S); auto.
   }
-  destruct(le_cases R S A B).
+  destruct(长度小于等于的决定性 R S A B).
     split; auto.
   exfalso.
   apply (nlta A B C).
@@ -1142,7 +1142,7 @@ Proof.
 
   - apply (acute_conga__acute Q' P' P).
     { apply (t22_8__acute _ _ _ Q R S); auto.
-      apply (cong2_lt__lt P Q S' R'); Cong.
+      apply (等长保持小于关系 P Q S' R'); Cong.
       apply (t22_7__lt5612 _ _ R S); Perp.
       apply (acute_conga__acute S R M); auto.
       apply (l11_10 S R R' S' R' R); [等角|Out..].
@@ -1151,7 +1151,7 @@ Proof.
 
   - apply (acute_conga__acute S' R' R).
     { apply (t22_7__acute _ _ _ S P Q); Perp.
-      apply (cong2_lt__lt Q' P' R S); Cong.
+      apply (等长保持小于关系 Q' P' R S); Cong.
       apply (t22_8__lt1256 _ _ P Q); auto.
       apply (acute_conga__acute Q P M); auto.
       apply (l11_10 Q P P' Q' P' P); [等角|Out..].
@@ -1370,7 +1370,7 @@ Proof.
   assert(严格平行 N D M C) by (apply lam__pars1423, HLam1).
   assert(Bet N M L).
   { destruct (cong2_lam2__cong_conga N' M' C' D' N L G H); Cong.
-    apply l6_13_1; [|apply (l5_6 M N M' N'); Cong].
+    apply l6_13_1; [|apply (l5_6_等长保持小于等于关系 M N M' N'); Cong].
     apply (col_one_side_out _ D); Col.
     apply (one_side_transitivity _ _ _ G).
       apply (one_side_transitivity _ _ _ C); auto; apply l12_6; auto.
@@ -1541,7 +1541,7 @@ Proof.
   destruct HM' as [M'].
   destruct HN as [N].
   destruct HN' as [N'].
-  elim(le_cases M N M' N');
+  elim(长度小于等于的决定性 M N M' N');
   intro Hle;
   [assert(Haux := three_hypotheses_aux A B C D M N A' B' C' D' M' N')
   |assert(Haux := three_hypotheses_aux A' B' C' D' M' N' A B C D M N)];
@@ -1560,7 +1560,7 @@ Proof.
   destruct HM' as [M'].
   destruct HN as [N].
   destruct HN' as [N'].
-  elim(le_cases M N M' N');
+  elim(长度小于等于的决定性 M N M' N');
   intro Hle;
   [assert(Haux := three_hypotheses_aux A B C D M N A' B' C' D' M' N')
   |assert(Haux := three_hypotheses_aux A' B' C' D' M' N' A B C D M N)];
@@ -1799,7 +1799,7 @@ Proof.
     apply (lt_sac__acute _ _ _ D); auto.
     unfold 萨凯里四边形 in HSac.
     spliter.
-    apply lt_right_comm.
+    apply 长度小于的右交换性.
     apply (t18_18 D _ _ B); Cong.
     apply lta_left_comm; auto.
 
@@ -1810,7 +1810,7 @@ Proof.
     spliter.
     apply lta_left_comm.
     apply t18_19; Cong.
-    apply lt_right_comm; Cong.
+    apply 长度小于的右交换性; Cong.
 Qed.
 
 Lemma t22_11__obtuse : forall A B C D,
@@ -1822,7 +1822,7 @@ Proof.
     apply (lt_sac__obtuse _ _ _ D); auto.
     unfold 萨凯里四边形 in HSac.
     spliter.
-    apply lt_right_comm.
+    apply 长度小于的右交换性.
     apply (t18_18 B _ _ D); Cong.
     apply lta_left_comm; auto.
 
@@ -1833,7 +1833,7 @@ Proof.
     spliter.
     apply lta_left_comm.
     apply t18_19; Cong.
-    apply lt_right_comm; Cong.
+    apply 长度小于的右交换性; Cong.
 Qed.
 
 
@@ -1984,7 +1984,7 @@ Lemma t22_14__bet :
   forall A B C P Q R, 三角形内角和 A B C P Q R -> Bet P Q R.
 Proof.
   intros rah A B C P Q R HTri.
-  elim(col_dec A B C).
+  elim(共线的决定性 A B C).
     intro; apply (col_trisuma__bet A B C); auto.
   intro.
   assert_diffs.
@@ -2228,7 +2228,7 @@ Proof.
     exists D, E, F.
     split; auto.
 
-  - destruct (col_dec A B C).
+  - destruct (共线的决定性 A B C).
     { apply HNBet.
       apply (col_trisuma__bet C A B); Col.
       exists D, E, F.
@@ -2247,10 +2247,10 @@ Lemma t22_14__oah : forall A B C D E F,
 Proof.
   intros A B C D E F HSuma1 HNIsi.
   suma.assert_diffs.
-  destruct(col_dec A B C).
+  destruct(共线的决定性 A B C).
   { exfalso.
     apply HNIsi.
-    destruct(bet_dec A B C).
+    destruct(中间性的决定性 A B C).
     - apply out546__sams; Out.
     - apply (conga2_sams__sams C A B B C A); try (apply conga_refl); 和角.
       apply (out546_suma__conga _ _ _ A B C); auto.

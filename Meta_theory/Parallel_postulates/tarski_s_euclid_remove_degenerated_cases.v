@@ -46,7 +46,7 @@ elim (两点重合的决定性 C T); intro HCT.
 subst; exists B; exists T; Between.
 elim (两点重合的决定性 D T); intro HDT.
 subst; exists B; exists C; Between.
-elim (col_dec A B C); intro HABC.
+elim (共线的决定性 A B C); intro HABC.
 
   {
   elim HABC; clear HABC; intro HABC.

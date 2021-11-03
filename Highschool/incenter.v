@@ -139,7 +139,7 @@ Lemma incenter_dec : forall A B C I, is_incenter I A B C \/ ~ is_incenter I A B 
 Proof.
 intros A B C I.
 unfold is_incenter.
-destruct (col_dec A B C) as [HCOL | HNCOL].
+destruct (共线的决定性 A B C) as [HCOL | HNCOL].
 right.
 intro HCOLIN.
 destruct HCOLIN as [HNCOL [HCONGAA [HCONGAB HCONGAC]]].

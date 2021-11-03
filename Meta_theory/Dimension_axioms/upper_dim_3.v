@@ -46,7 +46,7 @@ Definition orthonormal_family_axiom := forall S U1' U1 U2 U3 U4,
 Lemma 三维防升维公理_stab : ~ ~ 三维防升维公理_axiom -> 三维防升维公理_axiom.
 Proof.
   intros nnupper A B C P Q R; intros.
-  destruct (col_dec A B C) as [|HNCol]; auto.
+  destruct (共线的决定性 A B C) as [|HNCol]; auto.
   exfalso.
   apply nnupper.
   intro upper.
@@ -57,7 +57,7 @@ Qed.
 Lemma median_planes_implies_防升维公理 : median_planes_axiom -> 三维防升维公理_axiom.
 Proof.
   intros mp A B C P Q R HPQ HQR HPR; intros.
-  destruct (col_dec A B C); trivial.
+  destruct (共线的决定性 A B C); trivial.
   exfalso.
   apply HQR.
   destruct (midpoint_existence P Q) as [X].
@@ -77,7 +77,7 @@ Lemma median_planes_aux :
   median_planes_axiom.
 Proof.
   intros Haux A B C D P Q; intros.
-  destruct (col_dec A B C) as [HCop|]; [apply col__coplanar, HCop|].
+  destruct (共线的决定性 A B C) as [HCop|]; [apply col__coplanar, HCop|].
   destruct (midpoint_existence P Q) as [M].
   destruct (ex_ncol_cop2 A B C M) as [A1 [A2 [HCop1 [HCop2 HNCol1]]]].
   assert (Cong A1 P A1 Q) by (apply (l11_60_aux A B C); assumption).
@@ -90,7 +90,7 @@ Lemma orthonormal_family_aux : orthonormal_family_axiom <->
 Proof.
   split.
   - intros up A B X P Q HNCol HAXP HAXQ HBXP HBXQ.
-    destruct (col_dec A B X) as [|HNCol1]; [assumption|].
+    destruct (共线的决定性 A B X) as [|HNCol1]; [assumption|].
     exfalso.
     destruct (由一点往一方向构造等长线段 P X P X) as [P' []].
     assert_diffs.
@@ -218,7 +218,7 @@ Proof.
   destruct (Haux A B C D' E' P) as [Q [HQ1 [HQ2 HPQ]]]; Col.
   exists Q.
   repeat split; auto.
-  destruct (col_dec D E F) as [HCol|]; [apply col__coplanar, HCol|].
+  destruct (共线的决定性 D E F) as [HCol|]; [apply col__coplanar, HCol|].
   apply coplanar_pseudo_trans with D' E' P; Col; apply coplanar_pseudo_trans with D E F; Cop.
 Qed.
 

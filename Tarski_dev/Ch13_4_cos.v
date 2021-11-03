@@ -281,7 +281,7 @@ Proof.
         auto.
         apply conga_refl; auto.
       assumption.
-    assert(HH:=not_and_lta A B C A1 B1 C1).
+    assert(HH:=两长度不可能互相小于对方a A B C A1 B1 C1).
     apply HH.
     split; auto.
 Qed.
@@ -721,7 +721,7 @@ Lemma acute_comp_not_acute : forall A B C D, Bet A B C -> 为锐角 A B D -> ~ �
 Proof.
     intros.
     intro.
-    induction(col_dec A C D).
+    induction(共线的决定性 A C D).
       induction H2.
         assert(Bet A B D).
           eBetween.
@@ -1183,7 +1183,7 @@ Proof.
     intros.
     assert(HH0:=H0).
     assert(HH:= l11_43 P A B).
-    induction(col_dec P A B).
+    induction(共线的决定性 P A B).
       assert(Perp B A A C).
         eapply (perp_col _ P).
           intro.

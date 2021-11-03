@@ -23,41 +23,41 @@ Proof.
     { destruct (由一点往一方向构造等长线段 A C C D) as [Q' []].
       exists Q'.
       repeat split; Col.
-      apply le_transitivity with A Q; trivial.
+      apply 长度小于等于的传递性 with A Q; trivial.
       apply triangle_inequality with C; trivial.
       apply 等长的传递性 with C D; Cong.
     }
     clear dependent Q.
     destruct HQ' as [Q [HQOn [HQOut HCol]]].
-    destruct (cong_dec A P A B).
+    destruct (等长的决定性 A P A B).
       exists P; split; trivial.
-    destruct (cong_dec A B A Q).
+    destruct (等长的决定性 A B A Q).
       exists Q; Circle.
     assert (HPInS : 在圆内 P A B) by (split; trivial).
     assert (HQOutS : 在圆外 Q A B) by (split; trivial).
     assert (A <> C).
     { intro; subst C.
-      apply (not_and_lt A B A P); split; trivial.
-      apply (cong2_lt__lt A B A Q); Cong.
+      apply (两长度不可能互相小于对方 A B A P); split; trivial.
+      apply (等长保持小于关系 A B A Q); Cong.
       apply 等长的传递性 with A D; Cong.
     }
     assert (C <> D).
-      intro; treat_equalities; apply (not_and_lt A C A B); split; trivial.
-    destruct (col_dec P A C); [|apply Haux' with P Q; Cop].
+      intro; treat_equalities; apply (两长度不可能互相小于对方 A C A B); split; trivial.
+    destruct (共线的决定性 P A C); [|apply Haux' with P Q; Cop].
     destruct (exists_cong_per A C C D) as [R [HR1 HR2]].
     assert_diffs.
     apply per_not_col in HR1; auto.
-    destruct (circle_cases A B R) as [HOn|HNOn].
+    destruct (circ长度小于等于的决定性 A B R) as [HOn|HNOn].
       exists R; split; trivial.
     destruct HNOn; [apply Haux' with R Q|apply Haux' with P R]; Col; Cop.
 
   - intros A B C D P Q HPOn HQOn HPIn HQOut HCop HDij.
-    destruct (col_dec P A C) as [HCol|HNCol].
+    destruct (共线的决定性 P A C) as [HCol|HNCol].
     { destruct HDij.
         contradiction.
       apply Haux with P Q; auto.
     }
-    destruct (col_dec Q A C).
+    destruct (共线的决定性 Q A C).
       apply Haux with P Q; auto.
     destruct (cop__one_or_two_sides A C P Q); trivial; [|apply Haux with P Q; auto].
     destruct (l10_2_existence A C P) as [P' HP'].
@@ -65,7 +65,7 @@ Proof.
     apply Haux with P' Q; trivial.
       apply 等长的传递性 with C P; trivial.
       apply 等长的交换性, (is_image_col_cong A C); Col.
-      apply cong2_lt__lt with A P A B; Cong.
+      apply 等长保持小于关系 with A P A B; Cong.
       apply 等长的对称性, 等长的交换性, (is_image_col_cong A C); Col.
     left.
     exists P; split; Side.
@@ -80,11 +80,11 @@ Proof.
   intros A B C D P Q HPOn HQOn HPIn HQOut HDij.
   assert (A <> C).
   { intro; subst C.
-    apply (not_and_lt A B A P); split; trivial.
-    apply (cong2_lt__lt A B A Q); Cong.
+    apply (两长度不可能互相小于对方 A B A P); split; trivial.
+    apply (等长保持小于关系 A B A Q); Cong.
     apply 等长的传递性 with A D; Cong.
   }
-  assert (P <> Q) by (intro; apply (not_and_lt A P A B); subst; split; trivial).
+  assert (P <> Q) by (intro; apply (两长度不可能互相小于对方 A P A B); subst; split; trivial).
   assert (C <> D) by (intro; treat_equalities; auto).
   assert (HOS : forall X Y, Bet P X Q -> Bet P Y Q -> X <> P -> X <> Q -> Y <> P -> Y <> Q -> OS A C X Y).
   { intros X Y; intros.
@@ -108,7 +108,7 @@ Proof.
   { apply t18_19; Cong.
       intro; treat_equalities; auto.
       apply 等长的传递性 with C D; Cong.
-      apply lt_comm, lt_transitivity with A B; trivial.
+      apply 长度小于的交换性, 长度小于的传递性 with A B; trivial.
   }
   assert (HNCol1 : ~ Col P Q C).
   { intro.
@@ -168,9 +168,9 @@ Proof.
       subst; Between.
     exfalso.
     spliter.
-    apply (lt__nle A Y0 A X0).
+    apply (小于推出反向不小于等于 A Y0 A X0).
       apply (Haux Y X); auto.
-    apply le_transitivity with A B; trivial.
+    apply 长度小于等于的传递性 with A B; trivial.
   }
   assert (HP : exists X0, 在圆上 X0 C D /\ Out C P X0 /\ 在圆上或圆内 X0 A B).
     exists P; repeat (split; Circle); apply out_trivial; assert_diffs; auto.
@@ -181,8 +181,8 @@ Proof.
   assert (R <> C) by (intro; subst; apply HNCol1; Col).
   destruct (onc_exists C D R) as [Z [HZ1 HZ2]]; auto.
   exists Z; split; trivial.
-  assert (A <> B) by (apply (lt_diff A P), HPIn).
-  destruct (circle_cases A B Z) as [|[Habs|Habs]]; trivial; exfalso.
+  assert (A <> B) by (apply (小于推出不重合 A P), HPIn).
+  destruct (circ长度小于等于的决定性 A B Z) as [|[Habs|Habs]]; trivial; exfalso.
 
 
   - assert (Q <> R).
@@ -198,7 +198,7 @@ Proof.
       destruct (onc_exists A B Z) as [T [HT1 HT2]]; auto.
       exists T; split; trivial.
       apply l6_13_1; trivial.
-      apply (l5_6 A Z A B); Cong; Le.
+      apply (l5_6_等长保持小于等于关系 A Z A B); Cong; Le.
     }
     destruct HT as [T [HT1 HT2]].
     assert (T <> Z).
@@ -209,7 +209,7 @@ Proof.
     destruct (onc_exists C D I) as [X0 [HX0On HX0Out]]; auto.
     assert (HLt : Lt C X0 C I).
     { destruct (l11_46 I Z C) as [_ HLt]; auto.
-        apply (cong2_lt__lt Z C I C); trivial.
+        apply (等长保持小于关系 Z C I C); trivial.
           apply 等长的传递性 with C D; Cong.
           Cong.
     }
@@ -227,15 +227,15 @@ Proof.
 
     assert (HX0In : 在圆内 X0 A B).
     { destruct (le_bet Z T Z X0) as [M [HM1 HM2]].
-        apply (l5_6 X0 Z I Z); Cong; Le.
+        apply (l5_6_等长保持小于等于关系 X0 Z I Z); Cong; Le.
       assert (HMT : M <> T).
       { intro.
         apply (nlt Z M).
-        apply (cong2_lt__lt X0 Z I Z); trivial; [|subst M; apply 等长的传递性 with T Z]; Cong.
+        apply (等长保持小于关系 X0 Z I Z); trivial; [|subst M; apply 等长的传递性 with T Z]; Cong.
       }
-      apply le1234_lt__lt with A M.
+      apply 长度小于等于_小于_传递性 with A M.
       - apply triangle_inequality with Z; Cong; eBetween.
-      - apply (cong2_lt__lt A M A T); Cong.
+      - apply (等长保持小于关系 A M A T); Cong.
         assert (Bet A M T) by eBetween.
         split; Le.
         intro.
@@ -248,16 +248,16 @@ Proof.
       - apply t18_19; auto.
           apply 等长的传递性 with C D; Cong.
           Cong.
-        apply le3456_lt__lt with I Z; trivial.
-        apply (l5_6 T Z Q Z); Cong.
-        assert (HLe : Le A T A Q) by (apply (l5_6 A B A Q); Cong; Le).
+        apply 长度小于_小于等于_传递性 with I Z; trivial.
+        apply (l5_6_等长保持小于等于关系 T Z Q Z); Cong.
+        assert (HLe : Le A T A Q) by (apply (l5_6_等长保持小于等于关系 A B A Q); Cong; Le).
         destruct (两点重合的决定性 A Z).
           subst; Le.
         destruct (l5_5_1 A T A Q) as [M [HM1 HM2]]; trivial.
         assert (Bet A Z M) by eBetween.
-        apply le_transitivity with M Z.
+        apply 长度小于等于的传递性 with M Z.
           apply bet__le2313; eBetween.
-        apply le_comm, (triangle_reverse_inequality A); Cong.
+        apply 长度小于等于的交换性, (triangle_reverse_inequality A); Cong.
         apply bet_out; auto.
       - apply invert_one_side, col_one_side with R; Col.
         apply one_side_transitivity with I; Side.
@@ -281,11 +281,11 @@ Proof.
     }
     assert (HNCol2 : ~ Col C P R) by (intro; apply HNCol1; ColR).
     destruct (onc_exists A B Z) as [T [HT1 HT2]]; auto.
-      apply (lt_diff A B), lt_right_comm, Habs.
+      apply (小于推出不重合 A B), 长度小于的右交换性, Habs.
     assert (HT3 : Bet A T Z).
     { apply l6_13_1.
         apply l6_6, HT2.
-      apply (l5_6 A B A Z); Cong; Le.
+      apply (l5_6_等长保持小于等于关系 A B A Z); Cong; Le.
     }
     assert (T <> Z).
       intro; subst; apply outcs__ninc in Habs; apply Habs; Circle.
@@ -296,7 +296,7 @@ Proof.
     destruct (onc_exists C D I) as [Y0 [HY0On HY0Out]]; auto.
     assert (HLt : Lt C Y0 C I).
     { destruct (l11_46 I Z C) as [_ HLt]; auto.
-        apply (cong2_lt__lt Z C I C); trivial.
+        apply (等长保持小于关系 Z C I C); trivial.
           apply 等长的传递性 with C D; Cong.
           Cong.
     }
@@ -314,14 +314,14 @@ Proof.
 
     assert (HY0OutC : 在圆外 Y0 A B).
     { destruct (le_bet Z T Z Y0) as [M [HM1 HM2]].
-        apply (l5_6 Y0 Z I Z); Cong; Le.
+        apply (l5_6_等长保持小于等于关系 Y0 Z I Z); Cong; Le.
       assert (HTM : T <> M).
       { intro.
         apply (nlt Z M).
-        apply (cong2_lt__lt Y0 Z I Z); trivial; [|subst M; apply 等长的传递性 with T Z]; Cong.
+        apply (等长保持小于关系 Y0 Z I Z); trivial; [|subst M; apply 等长的传递性 with T Z]; Cong.
       }
-      apply le3456_lt__lt with A M.
-      - apply (cong2_lt__lt A T A M); Cong.
+      apply 长度小于_小于等于_传递性 with A M.
+      - apply (等长保持小于关系 A T A M); Cong.
         assert (Bet A T M) by eBetween.
         split; Le.
         intro.
@@ -336,16 +336,16 @@ Proof.
       - apply t18_19; auto.
           apply 等长的传递性 with C D; Cong.
           Cong.
-        apply le3456_lt__lt with I Z; trivial.
-        apply (l5_6 T Z P Z); Cong.
+        apply 长度小于_小于等于_传递性 with I Z; trivial.
+        apply (l5_6_等长保持小于等于关系 T Z P Z); Cong.
         destruct (le_bet A T A P) as [M [HM1 HM2]].
-          apply (l5_6 A P A B); Cong; Le.
+          apply (l5_6_等长保持小于等于关系 A P A B); Cong; Le.
         assert (Bet A M Z) by eBetween.
         destruct (两点重合的决定性 M A).
           treat_equalities; Le.
-        apply le_transitivity with M Z.
+        apply 长度小于等于的传递性 with M Z.
           apply bet__le2313; eBetween.
-        apply le_comm, (triangle_reverse_inequality A); Cong.
+        apply 长度小于等于的交换性, (triangle_reverse_inequality A); Cong.
         apply l6_6, bet_out; auto.
       - apply invert_one_side, col_one_side with R; Col.
         apply one_side_transitivity with I; Side.

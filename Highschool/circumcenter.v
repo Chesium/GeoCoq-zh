@@ -245,7 +245,7 @@ Lemma is_circumcenter_uniqueness :
   O = O'.
 Proof.
 intros A B C O O' HAB HBC HAC HIC1 HIC2.
-elim (col_dec A B C); intro HABC.
+elim (共线的决定性 A B C); intro HABC.
 
   {
   Name C' the midpoint of A and B.

@@ -184,7 +184,7 @@ Proof.
     unfold 三角形全等 in *;intuition.
 Qed.
 
-Lemma l5_6 : forall A B C D A' B' C' D',
+Lemma l5_6_等长保持小于等于关系 : forall A B C D A' B' C' D',
  Le A B C D -> Cong A B A' B' -> Cong C D C' D' -> Le A' B' C' D'.
 Proof.
     unfold Le.
@@ -201,7 +201,7 @@ Proof.
     apply 等长的传递性 with C y; assumption.
 Qed.
 
-Lemma le_reflexivity : forall A B, Le A B A B.
+Lemma AB小于等于AB : forall A B, Le A B A B.
 Proof.
     unfold Le.
     intros.
@@ -209,7 +209,7 @@ Proof.
     split; Between; Cong.
 Qed.
 
-Lemma le_transitivity : forall A B C D E F, Le A B C D -> Le C D E F -> Le A B E F.
+Lemma 长度小于等于的传递性 : forall A B C D E F, Le A B C D -> Le C D E F -> Le A B E F.
 Proof.
     unfold Le.
     intros.
@@ -231,7 +231,7 @@ Proof.
     eapply 双中间性推出点重合; eBetween.
 Qed.
 
-Lemma cong3_symmetry : forall A B C A' B' C' : Tpoint , 三角形全等 A B C A' B' C' -> 三角形全等 A' B' C' A B C.
+Lemma 三角形全等的对称性 : forall A B C A' B' C' : Tpoint , 三角形全等 A B C A' B' C' -> 三角形全等 A' B' C' A B C.
 Proof.
     unfold 三角形全等.
     intros.
@@ -256,7 +256,7 @@ Proof.
     symmetry; apply between_cong with B; Cong.
 Qed.
 
-Lemma le_anti_symmetry : forall A B C D, Le A B C D -> Le C D A B -> Cong A B C D.
+Lemma 长度小于等于的反对称性 : forall A B C D, Le A B C D -> Le C D A B -> Cong A B C D.
 Proof.
     intros.
     assert (exists T, Bet C D T /\ Cong C T A B) by (apply l5_5_1;assumption).
@@ -272,7 +272,7 @@ Proof.
     Cong.
 Qed.
 
-Lemma cong_dec : forall A B C D,
+Lemma 等长的决定性 : forall A B C D,
   Cong A B C D \/ ~ Cong A B C D.
 Proof.
     intros.
@@ -295,7 +295,7 @@ Proof.
     intuition.
 Qed.
 
-Lemma bet_dec : forall A B C, Bet A B C  \/  ~ Bet A B C.
+Lemma 中间性的决定性 : forall A B C, Bet A B C  \/  ~ Bet A B C.
 Proof.
     intros.
     elim (由一点往一方向构造等长线段 A B B C); intros C' HC'.
@@ -307,15 +307,15 @@ Proof.
     right; intro; apply H1; apply between_cong_3 with A B; Cong.
 Qed.
 
-Lemma col_dec : forall A B C, Col A B C \/ ~ Col A B C.
+Lemma 共线的决定性 : forall A B C, Col A B C \/ ~ Col A B C.
 Proof.
     intros.
     unfold Col.
-    elim (bet_dec A B C); intro; elim (bet_dec B C A); intro; elim (bet_dec C A B); intro; tauto.
+    elim (中间性的决定性 A B C); intro; elim (中间性的决定性 B C A); intro; elim (中间性的决定性 C A B); intro; tauto.
 Qed.
 
 
-Lemma le_trivial : forall A C D, Le A A C D .
+Lemma AA小于等于CD : forall A C D, Le A A C D .
 Proof.
     intros.
     unfold Le.
@@ -323,11 +323,11 @@ Proof.
     split; Between; Cong.
 Qed.
 
-Lemma le_cases : forall A B C D, Le A B C D \/ Le C D A B.
+Lemma 长度小于等于的决定性 : forall A B C D, Le A B C D \/ Le C D A B.
 Proof.
     intros.
     induction(两点重合的决定性 A B).
-      subst B; left; apply le_trivial.
+      subst B; left; apply AA小于等于CD.
     assert (exists X : Tpoint, (Bet A B X \/ Bet A X B) /\ Cong A X C D) by (eapply (由一点往一方向构造等长线段_2 B A C D);auto).
     ex_and H0 X.
     induction H0.
@@ -335,26 +335,26 @@ Proof.
     right; unfold Le; exists X; split; Cong.
 Qed.
 
-Lemma le_zero : forall A B C, Le A B C C -> A=B.
+Lemma AB小于等于CC推出A与B重合 : forall A B C, Le A B C C -> A=B.
 Proof.
     intros.
-    assert (Le C C A B) by apply le_trivial.
-    assert (Cong A B C C) by (apply le_anti_symmetry;assumption).
+    assert (Le C C A B) by apply AA小于等于CD.
+    assert (Cong A B C C) by (apply 长度小于等于的反对称性;assumption).
     treat_equalities;auto.
 Qed.
 
-Lemma le_diff : forall A B C D, A <> B -> Le A B C D -> C <> D.
+Lemma 小于等于推出不重合 : forall A B C D, A <> B -> Le A B C D -> C <> D.
 Proof.
   intros A B C D HAB HLe Heq.
-  subst D; apply HAB, le_zero with C; assumption.
+  subst D; apply HAB, AB小于等于CC推出A与B重合 with C; assumption.
 Qed.
 
-Lemma lt_diff : forall A B C D, Lt A B C D -> C <> D.
+Lemma 小于推出不重合 : forall A B C D, Lt A B C D -> C <> D.
 Proof.
   intros A B C D HLt Heq.
   subst D.
   destruct HLt as [HLe HNCong].
-  assert (A = B) by (apply le_zero with C; assumption).
+  assert (A = B) by (apply AB小于等于CC推出A与B重合 with C; assumption).
   subst B; Cong.
 Qed.
 
@@ -369,14 +369,14 @@ Proof.
     assert(C = D).
       assert(Le A C A D) by (eapply l5_5_2; exists D; split; Cong).
       assert(Le C B C A) by (eapply l5_5_2; exists A; split; Between; Cong).
-      assert(Cong A C A D) by (eapply le_anti_symmetry; try assumption; apply l5_6 with C B C A; Cong).
+      assert(Cong A C A D) by (eapply 长度小于等于的反对称性; try assumption; apply l5_6_等长保持小于等于关系 with C B C A; Cong).
       apply between_cong with A; assumption.
     split; try assumption.
     subst D; apply sym_equal.
     eapply (between_cong C); Between; Cong.
 Qed.
 
-Lemma cong__le : forall A B C D, Cong A B C D -> Le A B C D.
+Lemma 等长则小于等于 : forall A B C D, Cong A B C D -> Le A B C D.
 Proof.
   intros A B C D H.
   exists D.
@@ -385,72 +385,72 @@ Proof.
   Cong.
 Qed.
 
-Lemma cong__le3412 : forall A B C D, Cong A B C D -> Le C D A B.
+Lemma 等长则小于等于_反向 : forall A B C D, Cong A B C D -> Le C D A B.
 Proof.
   intros A B C D HCong.
-  apply cong__le.
+  apply 等长则小于等于.
   Cong.
 Qed.
 
-Lemma le1221 : forall A B, Le A B B A.
+Lemma AB小于等于BA : forall A B, Le A B B A.
 Proof.
   intros A B.
-  apply cong__le; Cong.
+  apply 等长则小于等于; Cong.
 Qed.
 
-Lemma le_left_comm : forall A B C D, Le A B C D -> Le B A C D.
+Lemma 长度小于等于的左交换性 : forall A B C D, Le A B C D -> Le B A C D.
 Proof.
   intros A B C D Hle.
-  apply (le_transitivity _ _ A B); auto.
-  apply le1221; auto.
+  apply (长度小于等于的传递性 _ _ A B); auto.
+  apply AB小于等于BA; auto.
 Qed.
 
-Lemma le_right_comm : forall A B C D, Le A B C D -> Le A B D C.
+Lemma 长度小于等于的右交换性 : forall A B C D, Le A B C D -> Le A B D C.
 Proof.
   intros A B C D Hle.
-  apply (le_transitivity _ _ C D); auto.
-  apply le1221; auto.
+  apply (长度小于等于的传递性 _ _ C D); auto.
+  apply AB小于等于BA; auto.
 Qed.
 
-Lemma le_comm : forall A B C D, Le A B C D -> Le B A D C.
+Lemma 长度小于等于的交换性 : forall A B C D, Le A B C D -> Le B A D C.
 Proof.
   intros.
-  apply le_left_comm.
-  apply le_right_comm.
+  apply 长度小于等于的左交换性.
+  apply 长度小于等于的右交换性.
   assumption.
 Qed.
 
-Lemma ge_left_comm : forall A B C D, Ge A B C D -> Ge B A C D.
+Lemma 长度大于等于的左交换性 : forall A B C D, Ge A B C D -> Ge B A C D.
 Proof.
     intros.
     unfold Ge in *.
-    apply le_right_comm.
+    apply 长度小于等于的右交换性.
     assumption.
 Qed.
 
-Lemma ge_right_comm : forall A B C D, Ge A B C D -> Ge A B D C.
+Lemma 长度大于等于的右交换性 : forall A B C D, Ge A B C D -> Ge A B D C.
 Proof.
     intros.
     unfold Ge in *.
-    apply le_left_comm.
+    apply 长度小于等于的左交换性.
     assumption.
 Qed.
 
-Lemma ge_comm :  forall A B C D, Ge A B C D -> Ge B A D C.
+Lemma 长度大于等于的交换性 :  forall A B C D, Ge A B C D -> Ge B A D C.
 Proof.
     intros.
-    apply ge_left_comm.
-    apply ge_right_comm.
+    apply 长度大于等于的左交换性.
+    apply 长度大于等于的右交换性.
     assumption.
 Qed.
 
-Lemma lt_right_comm : forall A B C D, Lt A B C D -> Lt A B D C.
+Lemma 长度小于的右交换性 : forall A B C D, Lt A B C D -> Lt A B D C.
 Proof.
     intros.
     unfold Lt in *.
     spliter.
     split.
-      apply le_right_comm.
+      apply 长度小于等于的右交换性.
       assumption.
     intro.
     apply H0.
@@ -458,7 +458,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma lt_left_comm : forall A B  C D, Lt A B C D -> Lt B A C D.
+Lemma 长度小于的左交换性 : forall A B  C D, Lt A B C D -> Lt B A C D.
 Proof.
     intros.
     unfold Lt in *.
@@ -475,45 +475,45 @@ Proof.
     assumption.
 Qed.
 
-Lemma lt_comm : forall A B  C D, Lt A B C D -> Lt B A D C.
+Lemma 长度小于的交换性 : forall A B  C D, Lt A B C D -> Lt B A D C.
 Proof.
     intros.
-    apply lt_left_comm.
-    apply lt_right_comm.
+    apply 长度小于的左交换性.
+    apply 长度小于的右交换性.
     assumption.
 Qed.
 
-Lemma gt_left_comm : forall A B C D, Gt A B C D -> Gt B A C D.
-Proof.
-    intros.
-    unfold Gt in *.
-    apply lt_right_comm.
-    assumption.
-Qed.
-
-Lemma gt_right_comm : forall A B C D, Gt A B C D -> Gt A B D C.
+Lemma 长度大于的左交换性 : forall A B C D, Gt A B C D -> Gt B A C D.
 Proof.
     intros.
     unfold Gt in *.
-    apply lt_left_comm.
+    apply 长度小于的右交换性.
     assumption.
 Qed.
 
-Lemma gt_comm : forall A B C D, Gt A B C D -> Gt B A D C.
+Lemma 长度大于的右交换性 : forall A B C D, Gt A B C D -> Gt A B D C.
 Proof.
     intros.
-    apply gt_left_comm.
-    apply gt_right_comm.
+    unfold Gt in *.
+    apply 长度小于的左交换性.
     assumption.
 Qed.
 
-Lemma cong2_lt__lt : forall A B C D A' B' C' D',
+Lemma 长度大于的交换性 : forall A B C D, Gt A B C D -> Gt B A D C.
+Proof.
+    intros.
+    apply 长度大于的左交换性.
+    apply 长度大于的右交换性.
+    assumption.
+Qed.
+
+Lemma 等长保持小于关系 : forall A B C D A' B' C' D',
  Lt A B C D -> Cong A B A' B' -> Cong C D C' D' -> Lt A' B' C' D'.
 Proof.
   intros A B C D A' B' C' D' Hlt HCong1 HCong2.
   destruct Hlt as [Hle HNCong].
   split.
-  apply (l5_6 A B C D); auto.
+  apply (l5_6_等长保持小于等于关系 A B C D); auto.
   intro.
   apply HNCong.
   apply (等长的传递性 _ _ A' B'); auto.
@@ -557,7 +557,7 @@ Proof.
       exists B; split.
         assumption.
       apply 等长的自反性.
-    apply le_comm.
+    apply 长度小于等于的交换性.
     unfold Le.
     exists B.
     split.
@@ -589,7 +589,7 @@ Qed.
 
 Lemma bet__lt2313 : forall A B C, A <> B -> Bet A B C -> Lt B C A C.
 Proof.
-    intros; apply lt_comm, bet__lt1213; Between.
+    intros; apply 长度小于的交换性, bet__lt1213; Between.
 Qed.
 
 Lemma l5_12_b : forall A B C, Col A B C -> Le A B A C -> Le B C A C -> Bet A B C.
@@ -604,9 +604,9 @@ Proof.
           assumption.
       spliter.
       assert(Cong A B A C).
-        apply le_anti_symmetry.
+        apply 长度小于等于的反对称性.
           assumption.
-        apply le_comm.
+        apply 长度小于等于的交换性.
         assumption.
       assert(C = B).
         eapply between_cong.
@@ -622,7 +622,7 @@ Proof.
         assumption.
     spliter.
     assert(Cong B C A C).
-      apply le_anti_symmetry.
+      apply 长度小于等于的反对称性.
         assumption.
       assumption.
     assert(A = B).
@@ -647,9 +647,9 @@ Proof.
         assumption.
       apply 等长的自反性.
     assert(Cong A C B C).
-      apply le_anti_symmetry.
+      apply 长度小于等于的反对称性.
         assumption.
-      apply le_comm.
+      apply 长度小于等于的交换性.
       assumption.
     apply sym_equal.
     eapply between_cong.
@@ -660,18 +660,18 @@ Proof.
     assumption.
 Qed.
 
-Lemma or_lt_cong_gt : forall A B C D, Lt A B C D \/ Gt A B C D \/ Cong A B C D.
+Lemma 两长度必大于小于或等于 : forall A B C D, Lt A B C D \/ Gt A B C D \/ Cong A B C D.
 Proof.
     intros.
-    assert(HH:= le_cases A B C D).
+    assert(HH:= 长度小于等于的决定性 A B C D).
     induction HH.
-      induction(cong_dec A B C D).
+      induction(等长的决定性 A B C D).
         right; right.
         assumption.
       left.
       unfold Lt.
       split; assumption.
-    induction(cong_dec A B C D).
+    induction(等长的决定性 A B C D).
       right; right.
       assumption.
     right; left.
@@ -685,110 +685,110 @@ Proof.
     assumption.
 Qed.
 
-Lemma lt__le : forall A B C D, Lt A B C D -> Le A B C D.
+Lemma 长度小于蕴含小于等于 : forall A B C D, Lt A B C D -> Le A B C D.
 Proof.
     intros A B C D Hlt.
     destruct Hlt.
     assumption.
 Qed.
 
-Lemma le1234_lt__lt : forall A B C D E F, Le A B C D -> Lt C D E F -> Lt A B E F.
+Lemma 长度小于等于_小于_传递性 : forall A B C D E F, Le A B C D -> Lt C D E F -> Lt A B E F.
 Proof.
     intros A B C D E F Hle Hlt.
     destruct Hlt as [Hle' HNCong].
     split.
-      apply (le_transitivity _ _ C D); auto.
+      apply (长度小于等于的传递性 _ _ C D); auto.
     intro.
     apply HNCong.
-    apply le_anti_symmetry; auto.
-    apply (l5_6 A B C D); Cong.
+    apply 长度小于等于的反对称性; auto.
+    apply (l5_6_等长保持小于等于关系 A B C D); Cong.
 Qed.
 
-Lemma le3456_lt__lt : forall A B C D E F, Lt A B C D -> Le C D E F -> Lt A B E F.
+Lemma 长度小于_小于等于_传递性 : forall A B C D E F, Lt A B C D -> Le C D E F -> Lt A B E F.
 Proof.
     intros A B C D E F Hlt Hle.
     destruct Hlt as [Hle' HNCong].
     split.
-      apply (le_transitivity _ _ C D); auto.
+      apply (长度小于等于的传递性 _ _ C D); auto.
     intro.
     apply HNCong.
-    apply le_anti_symmetry; auto.
-    apply (l5_6 C D E F); Cong.
+    apply 长度小于等于的反对称性; auto.
+    apply (l5_6_等长保持小于等于关系 C D E F); Cong.
 Qed.
 
-Lemma lt_transitivity : forall A B C D E F, Lt A B C D -> Lt C D E F -> Lt A B E F.
+Lemma 长度小于的传递性 : forall A B C D E F, Lt A B C D -> Lt C D E F -> Lt A B E F.
 Proof.
     intros A B C D E F HLt1 HLt2.
-    apply le1234_lt__lt with C D; try (apply lt__le); assumption.
+    apply 长度小于等于_小于_传递性 with C D; try (apply 长度小于蕴含小于等于); assumption.
 Qed.
 
-Lemma not_and_lt : forall A B C D, ~ (Lt A B C D /\ Lt C D A B).
+Lemma 两长度不可能互相小于对方 : forall A B C D, ~ (Lt A B C D /\ Lt C D A B).
 Proof.
     intros A B C D.
     intro HInter.
     destruct HInter as [[Hle HNCong] []].
     apply HNCong.
-    apply le_anti_symmetry; assumption.
+    apply 长度小于等于的反对称性; assumption.
 Qed.
 
 Lemma nlt : forall A B, ~ Lt A B A B.
 Proof.
     intros A B Hlt.
-    apply (not_and_lt A B A B).
+    apply (两长度不可能互相小于对方 A B A B).
     split; assumption.
 Qed.
 
-Lemma le__nlt : forall A B C D, Le A B C D -> ~ Lt C D A B.
+Lemma 长度小于等于推出反向不小于 : forall A B C D, Le A B C D -> ~ Lt C D A B.
 Proof.
     intros A B C D HLe HLt.
-    apply (not_and_lt A B C D); split; auto.
+    apply (两长度不可能互相小于对方 A B C D); split; auto.
     split; auto.
     unfold Lt in *; spliter; auto with cong.
 Qed.
 
-Lemma cong__nlt : forall A B C D,
+Lemma 等长推出不小于 : forall A B C D,
  Cong A B C D -> ~ Lt A B C D.
 Proof.
     intros P Q R S H.
-    apply le__nlt.
+    apply 长度小于等于推出反向不小于.
     unfold Le.
     exists Q; split; Cong; Between.
 Qed.
 
-Lemma nlt__le : forall A B C D, ~ Lt A B C D -> Le C D A B.
+Lemma 不小于推出反向小于等于 : forall A B C D, ~ Lt A B C D -> Le C D A B.
 Proof.
     intros A B C D HNLt.
-    destruct (le_cases A B C D); trivial.
-    destruct (cong_dec C D A B).
-      apply cong__le; assumption.
+    destruct (长度小于等于的决定性 A B C D); trivial.
+    destruct (等长的决定性 C D A B).
+      apply 等长则小于等于; assumption.
     exfalso.
     apply HNLt.
     split; Cong.
 Qed.
 
-Lemma lt__nle : forall A B C D, Lt A B C D -> ~ Le C D A B.
+Lemma 小于推出反向不小于等于 : forall A B C D, Lt A B C D -> ~ Le C D A B.
 Proof.
     intros A B C D HLt HLe.
     revert HLt.
-    apply le__nlt; assumption.
+    apply 长度小于等于推出反向不小于; assumption.
 Qed.
 
-Lemma nle__lt : forall A B C D, ~ Le A B C D -> Lt C D A B.
+Lemma 不小于等于推出反向小于 : forall A B C D, ~ Le A B C D -> Lt C D A B.
 Proof.
     intros A B C D HNLe.
-    destruct (le_cases A B C D).
+    destruct (长度小于等于的决定性 A B C D).
       contradiction.
     split; trivial.
     intro.
     apply HNLe.
-    apply cong__le; Cong.
+    apply 等长则小于等于; Cong.
 Qed.
 
-Lemma lt1123 : forall A B C, B<>C -> Lt A A B C.
+Lemma BC不重合则AA小于BC : forall A B C, B<>C -> Lt A A B C.
 Proof.
 intros.
 split.
-apply le_trivial.
+apply AA小于等于CD.
 intro.
 treat_equalities.
 intuition.
@@ -800,13 +800,13 @@ intros.
 induction(两点重合的决定性 A O).
 treat_equalities; auto.
 assert (o=a). 
-apply le_zero with A;auto.
+apply AB小于等于CC推出A与B重合 with A;auto.
 subst;auto.
 induction(两点重合的决定性 B O).
 treat_equalities;auto.
 assert (o=b). 
-apply le_zero with B;auto.
-subst;auto using le_left_comm, le_right_comm.
+apply AB小于等于CC推出A与B重合 with B;auto.
+subst;auto using 长度小于等于的左交换性, 长度小于等于的右交换性.
 
 
 assert(HH:= 由一点往一方向构造等长线段 A O b o).
@@ -853,28 +853,28 @@ assert(Le a' b' a' B).
 
 assert(Le a' b' A B).
 {
-  apply(le_transitivity a' b' a' B A B); auto using le_left_comm, le_right_comm.
+  apply(长度小于等于的传递性 a' b' a' B A B); auto using 长度小于等于的左交换性, 长度小于等于的右交换性.
 }
 
-apply(l5_6 a' b' A B a b A B); Cong.
+apply(l5_6_等长保持小于等于关系 a' b' A B a b A B); Cong.
 apply (两组连续三点分段等则全体等 a' O b' a o b);
 eBetween; Cong.
 Qed.
 
-Lemma Le_cases : forall A B C D, Le A B C D \/ Le B A C D \/ Le A B D C \/ Le B A D C -> Le A B C D.
+Lemma 长度大于等于的各排列情况 : forall A B C D, Le A B C D \/ Le B A C D \/ Le A B D C \/ Le B A D C -> Le A B C D.
 Proof.
-    intros A B C D [|[|[|]]]; [|apply le_left_comm|apply le_right_comm|apply le_comm]; assumption.
+    intros A B C D [|[|[|]]]; [|apply 长度小于等于的左交换性|apply 长度小于等于的右交换性|apply 长度小于等于的交换性]; assumption.
 Qed.
 
-Lemma Lt_cases : forall A B C D, Lt A B C D \/ Lt B A C D \/ Lt A B D C \/ Lt B A D C -> Lt A B C D.
+Lemma 长度大于的各排列情况 : forall A B C D, Lt A B C D \/ Lt B A C D \/ Lt A B D C \/ Lt B A D C -> Lt A B C D.
 Proof.
-    intros A B C D [|[|[|]]]; [|apply lt_left_comm|apply lt_right_comm|apply lt_comm]; assumption.
+    intros A B C D [|[|[|]]]; [|apply 长度小于的左交换性|apply 长度小于的右交换性|apply 长度小于的交换性]; assumption.
 Qed.
 
 End T5.
 
-Hint Resolve le_reflexivity le_anti_symmetry le_trivial le_zero cong__le cong__le3412
-             le1221 le_left_comm le_right_comm le_comm lt__le bet__le1213 bet__le2313
-             lt_left_comm lt_right_comm lt_comm bet__lt1213 bet__lt2313 lt1123 : le.
+Hint Resolve AB小于等于AB 长度小于等于的反对称性 AA小于等于CD AB小于等于CC推出A与B重合 等长则小于等于 等长则小于等于_反向
+             AB小于等于BA 长度小于等于的左交换性 长度小于等于的右交换性 长度小于等于的交换性 长度小于蕴含小于等于 bet__le1213 bet__le2313
+             长度小于的左交换性 长度小于的右交换性 长度小于的交换性 bet__lt1213 bet__lt2313 BC不重合则AA小于BC : le.
 
 Ltac Le := auto with le.

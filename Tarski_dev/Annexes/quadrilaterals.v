@@ -182,7 +182,7 @@ eapply (bet2_le2__le1346 _ A _ _ C).
 eBetween.
 assumption.
 assumption.
-apply cong__le; CongR.
+apply 等长则小于等于; CongR.
 
 apply (中间性的交换传递性1 D); auto.
 apply l6_13_1; auto.
@@ -205,7 +205,7 @@ split.
 assumption.
 apply 等长的自反性.
 assert (Le B' B C' C).
-eapply l5_6.
+eapply l5_6_等长保持小于等于关系.
 apply H4.
 auto.
 auto.
@@ -226,7 +226,7 @@ apply AAB中间性.
 assert( A <> C').
 intro.
 subst C'.
-apply le_zero in H4.
+apply AB小于等于CC推出A与B重合 in H4.
 contradiction.
 
 assert(A <> B).
@@ -1638,7 +1638,7 @@ Proof.
 intros.
 unfold 平行四边形.
 
-induction(col_dec A B C).
+induction(共线的决定性 A B C).
 right.
 apply (mid_plgf _ _ _ _ M);
 assumption.

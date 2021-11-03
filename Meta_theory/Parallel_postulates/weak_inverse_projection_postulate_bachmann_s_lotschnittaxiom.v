@@ -96,9 +96,9 @@ destruct (weak_inverse_projection_postulate__bachmann_s_lotschnittaxiom_aux
 destruct (weak_inverse_projection_postulate__bachmann_s_lotschnittaxiom_aux
     hrap B1 B2 A1 A2 D1 D2 Q R P M) as [HParA [T [HT1 HT2]]]; [trivial..|]; [Perp|Cop..|Col| |等角|].
   apply l11_24, HM1.
-destruct (col_dec C1 C2 T).
+destruct (共线的决定性 C1 C2 T).
   exists T; split; Col.
-destruct (col_dec D1 D2 S).
+destruct (共线的决定性 D1 D2 S).
   exists S; split; Col.
 assert (HOut : Out Q S T) by (apply l6_7 with M; Out).
 clear dependent M.

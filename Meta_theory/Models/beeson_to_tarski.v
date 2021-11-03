@@ -26,7 +26,7 @@ Section Intuitionistic_Tarski_to_Tarski.
 
 Context `{BTn:intuitionistic_无维度中性塔斯基公理系统}.
 
-Lemma col_dec : forall A B C, ICol A B C \/ ~ ICol A B C.
+Lemma 共线的决定性 : forall A B C, ICol A B C \/ ~ ICol A B C.
 Proof.
 intros.
 tauto.
@@ -225,7 +225,7 @@ Lemma pasch : forall A B C P Q : ITpoint,
         BetT B Q C -> exists x : ITpoint, BetT P x B /\ BetT Q x A.
 Proof.
 intros.
-induction (col_dec A B C).
+induction (共线的决定性 A B C).
 eapply pasch_col_case;eauto.
 
 unfold BetT in *.

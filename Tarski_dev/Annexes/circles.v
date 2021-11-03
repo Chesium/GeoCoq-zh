@@ -29,7 +29,7 @@ Proof.
 intros.
 unfold 在圆外.
 unfold 在圆上或圆内 in *.
-apply nle__lt in H; auto.
+apply 不小于等于推出反向小于 in H; auto.
 Qed.
 
 Lemma inc__outc : forall A B P, 在圆上或圆内 P A B <-> 在圆上或圆外 B A P.
@@ -57,7 +57,7 @@ Qed.
 Lemma inc_outc__onc : forall A B P, 在圆上或圆内 P A B -> 在圆上或圆外 P A B -> 在圆上 P A B.
 Proof.
   intros A B P HIn HOut.
-  apply le_anti_symmetry; trivial.
+  apply 长度小于等于的反对称性; trivial.
 Qed.
 
 Lemma incs__inc : forall A B P, 在圆内 P A B -> 在圆上或圆内 P A B.
@@ -75,37 +75,37 @@ Qed.
 Lemma incs__noutc : forall A B P, 在圆内 P A B <-> ~ 在圆上或圆外 P A B.
 Proof.
 intros.
-split; intro; [apply lt__nle|apply nle__lt]; assumption.
+split; intro; [apply 小于推出反向不小于等于|apply 不小于等于推出反向小于]; assumption.
 Qed.
 
 Lemma outcs__ninc : forall A B P, 在圆外 P A B <-> ~ 在圆上或圆内 P A B.
 Proof.
 intros.
-split; intro; [apply lt__nle|apply nle__lt]; assumption.
+split; intro; [apply 小于推出反向不小于等于|apply 不小于等于推出反向小于]; assumption.
 Qed.
 
 Lemma inc__noutcs : forall A B P, 在圆上或圆内 P A B <-> ~ 在圆外 P A B.
 Proof.
 intros.
-split; intro; [apply le__nlt|apply nlt__le]; assumption.
+split; intro; [apply 长度小于等于推出反向不小于|apply 不小于推出反向小于等于]; assumption.
 Qed.
 
 Lemma outc__nincs : forall A B P, 在圆上或圆外 P A B <-> ~ 在圆内 P A B.
 Proof.
 intros.
-split; intro; [apply le__nlt|apply nlt__le]; assumption.
+split; intro; [apply 长度小于等于推出反向不小于|apply 不小于推出反向小于等于]; assumption.
 Qed.
 
 Lemma inc_eq : forall A P, 在圆上或圆内 P A A -> A = P.
 Proof.
 intros A B HIn.
-apply le_zero with A; assumption.
+apply AB小于等于CC推出A与B重合 with A; assumption.
 Qed.
 
 Lemma outc_eq : forall A B, 在圆上或圆外 A A B -> A = B.
 Proof.
 intros A B HOut.
-apply le_zero with A; assumption.
+apply AB小于等于CC推出A与B重合 with A; assumption.
 Qed.
 
 Lemma onc2__cong : forall O P A B, 在圆上 A O P -> 在圆上 B O P -> Cong O A O B.
@@ -134,7 +134,7 @@ repeat
    | H : Bet ?X1 ?X2 ?X1 |- _ =>
       apply 中间性的同一律 in H;smart_subst X2
    | H : Le ?X1 ?X2 ?X3 ?X3 |- _ =>
-      apply le_zero in H;smart_subst X2
+      apply AB小于等于CC推出A与B重合 in H;smart_subst X2
    | H : 中点 ?X ?Y ?Y |- _ => apply l7_3 in H; smart_subst Y
    | H : 中点 ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
    | H : 中点 ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
@@ -143,9 +143,9 @@ repeat
    | H : 在圆上 ?B ?A ?A |- _ =>
       apply 等长的同一性 in H;smart_subst B
    | H : 在圆上或圆内 ?B ?A ?A |- _ =>
-      apply le_zero in H;smart_subst B
+      apply AB小于等于CC推出A与B重合 in H;smart_subst B
    | H : 在圆上或圆外 ?A ?A ?B |- _ =>
-      apply le_zero in H;smart_subst B
+      apply AB小于等于CC推出A与B重合 in H;smart_subst B
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?A ?C |- _ =>
      let T := fresh in assert (T : A=B) by (apply (双中间性推出点重合 A B C); Between);
                        smart_subst A
@@ -188,11 +188,11 @@ Lemma bet_inc2__incs : forall O P U V X,
  在圆内 X O P.
 Proof.
 intros O P U V X HUX HVX HBet HUIn HVIn.
-destruct (le_cases O U O V).
-- apply le3456_lt__lt with O V; trivial.
-  apply lt_comm, (bet_le__lt U); Le.
-- apply le3456_lt__lt with O U; trivial.
-  apply lt_comm, (bet_le__lt V); Between; Le.
+destruct (长度小于等于的决定性 O U O V).
+- apply 长度小于_小于等于_传递性 with O V; trivial.
+  apply 长度小于的交换性, (bet_le__lt U); Le.
+- apply 长度小于_小于等于_传递性 with O U; trivial.
+  apply 长度小于的交换性, (bet_le__lt V); Between; Le.
 Qed.
 
 Lemma bet_incs2__incs : forall O P U V X,
@@ -234,9 +234,9 @@ Proof.
   assert (Cong A U A V) by (apply (onc2__cong A B); assumption).
   apply out2__bet; apply not_bet_out; Col; intro.
   - apply (bet_le__lt P V A U); Cong.
-    apply (l5_6 A P A B); Cong.
+    apply (l5_6_等长保持小于等于关系 A P A B); Cong.
   - apply (bet_le__lt P U A V); Between; Cong.
-    apply (l5_6 A P A B); Cong.
+    apply (l5_6_等长保持小于等于关系 A P A B); Cong.
 Qed.
 
 (** Given two points U and V on a circle, all points of line UV which are outside the segment UV are
@@ -288,7 +288,7 @@ Proof.
     unfold 在圆上, 在圆上或圆内 in *|-.
     treat_equalities; exists U; split; Circle; Between.
   assert (HA' : exists A', U <> A' /\ Col U P A' /\ Per A A' U).
-  { destruct (col_dec U P A) as [HCol|HNCol].
+  { destruct (共线的决定性 U P A) as [HCol|HNCol].
       exists A; split; Col; Perp.
     destruct (l8_18_existence U P A) as [A' [HCol HPerp]]; trivial.
     assert (U <> A').
@@ -296,9 +296,9 @@ Proof.
       assert_diffs.
       destruct (l11_46 P U A) as [_ HLt]; auto.
         left; Perp.
-      apply lt__nle in HLt.
+      apply 小于推出反向不小于等于 in HLt.
       apply HLt.
-      apply (l5_6 A P A B); Cong.
+      apply (l5_6_等长保持小于等于关系 A P A B); Cong.
     }
     exists A'; repeat split; trivial.
     apply l8_2, perp_per_1.
@@ -327,7 +327,7 @@ assert(HH:=每个点均有不同点 O).
 ex_and HH Q.
 exists Q.
 unfold 在圆外.
-apply lt1123;auto.
+apply BC不重合则AA小于BC;auto.
 
 assert(HH:=由一点往一方向构造等长线段 O P O P).
 ex_and HH Q.
@@ -350,7 +350,7 @@ destruct (由一点往一方向构造等长线段 O X O P) as [Q [HQ1 HQ2]].
 exists Q; split.
   apply bet_out; auto.
 split.
-- apply le_comm.
+- apply 长度小于等于的交换性.
   exists X.
   split; Between; Cong.
 - intro.
@@ -365,7 +365,7 @@ Lemma incs_exists : forall O P, O <> P -> exists Q, 在圆内 Q O P.
 Proof.
 intros.
 exists O.
-apply lt1123;auto.
+apply BC不重合则AA小于BC;auto.
 Qed.
 
 (** Given a circle of center O and a ray OX, there is a point on the ray
@@ -378,7 +378,7 @@ destruct (midpoint_existence O P) as [M HM].
 destruct (由一点往一方向构造等长线段_3 O X O M) as [Q [HQ1 HQ2]]; auto.
   intro; treat_equalities; auto.
 exists Q; split; auto.
-apply (cong2_lt__lt O M O P); Cong.
+apply (等长保持小于关系 O M O P); Cong.
 apply mid__lt; auto.
 Qed.
 
@@ -530,10 +530,10 @@ Lemma circle_circle_cop : forall A B C D I P, 在圆上 I A B -> 在圆上 I C D
   exists Z, 在圆上 Z A B /\ 在圆上 Z C D /\ 共面 A C P Z.
 Proof.
   intros A B C D I P HI1 HI2.
-  destruct (col_dec A C P).
+  destruct (共线的决定性 A C P).
     exists I; repeat split; trivial.
     exists P; left; split; Col.
-  destruct (col_dec A C I).
+  destruct (共线的决定性 A C I).
     exists I; repeat split; trivial.
     exists I; left; split; Col.
   destruct (circle_circle_os A B C D I P) as [Z [HZ1 [HZ2 HOS]]]; trivial.
@@ -565,13 +565,13 @@ Qed.
 
 (** A point is either strictly inside, on or strictly outside a circle. *)
 
-Lemma circle_cases : forall O P X,
+Lemma circ长度小于等于的决定性 : forall O P X,
   在圆上 X O P \/ 在圆内 X O P \/ 在圆外 X O P.
 Proof.
 intros O P X.
-destruct (cong_dec O X O P); auto.
+destruct (等长的决定性 O X O P); auto.
 right.
-destruct (le_cases O P O X); [right|left]; split; Cong.
+destruct (长度小于等于的决定性 O P O X); [right|left]; split; Cong.
 Qed.
 
 (** If a point is inside a circle, then it lies on a radius. *)
@@ -588,7 +588,7 @@ Proof.
   destruct (由一点往一方向构造等长线段_3 O X O P) as [Y [HY1 HY2]]; auto.
   exists Y; split; auto.
   apply l6_13_1; trivial.
-  apply (l5_6 O X O P); Cong.
+  apply (l5_6_等长保持小于等于关系 O X O P); Cong.
 Qed.
 
 Lemma inc_onc2_out__eq : forall O P A B C,
@@ -763,10 +763,10 @@ assert(Le U W A B).
 {
   apply(bet2_le2__le O O A B U W); Between.
 
-  apply (l5_6 O U O P O U O A);Cong.
-  apply (l5_6 O V O P O W O B);Cong.
+  apply (l5_6_等长保持小于等于关系 O U O P O U O A);Cong.
+  apply (l5_6_等长保持小于等于关系 O V O P O W O B);Cong.
 }
-apply(le_transitivity U V U W A B); auto.
+apply(长度小于等于的传递性 U V U W A B); auto.
 Qed.
 
 
@@ -806,10 +806,10 @@ unfold 在圆上 in *.
 assert(Cong O X O A) by (apply 等长的传递性 with O P; Cong).
 induction(两点重合的决定性 P O).
 treat_equalities.
-apply le_reflexivity.
+apply AB小于等于AB.
 induction(两点重合的决定性 T O).
 subst T.
-apply cong__le;Cong.
+apply 等长则小于等于;Cong.
 assert_diffs.
 apply(triangle_reverse_inequality O T X A); Cong.
 assert_diffs.
@@ -826,7 +826,7 @@ intros.
 assert(HH:= bet_onc_le_a O P A B T X H H3 H4).
 assert(Lt T A T X \/ Cong T A T X).
 {
-  induction(cong_dec T A T X).
+  induction(等长的决定性 T A T X).
   right; auto.
   left.
   unfold Lt.
@@ -885,7 +885,7 @@ intros.
 assert(HH:= bet_onc_le_b O P A B T X H H2 H3 ).
 assert(Lt T X  T A \/ Cong T A T X).
 {
-  induction(cong_dec T A T X).
+  induction(等长的决定性 T A T X).
   right; auto.
   left.
   unfold Lt.
@@ -924,7 +924,7 @@ induction(两点重合的决定性 O P).
 treat_equalities.
 unfold Lt in H0.
 spliter.
-apply le_zero in H.
+apply AB小于等于CC推出A与B重合 in H.
 treat_equalities.
 apply False_ind.
 apply H0; Cong.
@@ -936,7 +936,7 @@ assert(Lt A O A B /\ Lt B O A B).
   split.
   apply(mid__lt ); assert_diffs;auto.
   assert (Lt B O B A) by (assert_diffs; apply mid__lt; 中点).
-  auto using lt_right_comm.
+  auto using 长度小于的右交换性.
 }
 spliter.
 
@@ -945,10 +945,10 @@ treat_equalities.
 spliter.
 assert(Lt O V O A).
 {
-  apply(cong2_lt__lt O V O P); Cong.
+  apply(等长保持小于关系 O V O P); Cong.
 }
-apply (lt_transitivity O V O A A B); auto.
-apply lt_left_comm; auto.
+apply (长度小于的传递性 O V O A A B); auto.
+apply 长度小于的左交换性; auto.
 
 assert(HH:=由一点往一方向构造等长线段 U O O V).
 ex_and HH V'.
@@ -960,11 +960,11 @@ assert(Le U V U V').
 assert(Lt U V' A B).
 {
   apply(bet2_lt2__lt O O A B U V' H8 H).
-  apply(cong2_lt__lt O U O P O U O A); Cong.
-  apply(cong2_lt__lt O V O P O V' O B); Cong.
+  apply(等长保持小于关系 O U O P O U O A); Cong.
+  apply(等长保持小于关系 O V O P O V' O B); Cong.
 }
 
-apply(le1234_lt__lt U V U V' A B); auto.
+apply(长度小于等于_小于_传递性 U V U V' A B); auto.
 Qed.
 
 Lemma incs_onc_diam__lt : forall O P A B U V, 直径 A B O P -> 在圆内 U O P -> 在圆上 V O P -> Lt U V A B.
@@ -981,14 +981,14 @@ assert(Lt V U' A B).
 {
   apply(bet2_lt_le__lt O O A B V U' H4 H).
   apply 等长的传递性 with O P; Cong.
-  apply(cong2_lt__lt O U O P); Cong.
+  apply(等长保持小于关系 O U O P); Cong.
 }
 assert(Le V U V U').
 {
   apply(triangle_inequality V O U U' H4); Cong.
 }
-apply lt_left_comm.
-apply(le1234_lt__lt V U V U'); auto.
+apply 长度小于的左交换性.
+apply(长度小于等于_小于_传递性 V U V U'); auto.
 Qed.
 
 Lemma diam_cong_incs__outcs : forall O P A B U V, 直径 A B O P -> Cong A B U V -> 在圆内 U O P -> 在圆外 V O P.
@@ -1000,12 +1000,12 @@ unfold 在圆内 in H1.
 
 unfold Lt in H1.
 spliter.
-apply le_zero in H1.
+apply AB小于等于CC推出A与B重合 in H1.
 treat_equalities.
 apply False_ind.
 apply H2; Cong.
 
-assert(HH:= circle_cases O P V).
+assert(HH:= circ长度小于等于的决定性 O P V).
 induction HH.
 assert(Lt U V A B) by  apply(incs_onc_diam__lt O P A B U V H H1 H3).
 unfold Lt in H4.
@@ -1152,7 +1152,7 @@ Lemma bet_chord__diam_or_ncol : forall O P A B T,
   直径 A B O P \/ ~Col O A T /\ ~Col O B T.
 Proof.
 intros.
-induction(col_dec O A B).
+induction(共线的决定性 O A B).
 left.
 apply(center_col__diam); Col.
 right.
@@ -1213,7 +1213,7 @@ Proof.
     apply (cop_mid_onc2_perp__col O P A C); Perp.
     apply coplanar_perm_12, coplanar_trans_1 with B; Cop.
   assert_diffs.
-  destruct (col_dec M1 P1 M2); [apply (l6_21 M2 P2 M1 P1)|apply (l6_21 M1 P1 M2 P2)]; Col.
+  destruct (共线的决定性 M1 P1 M2); [apply (l6_21 M2 P2 M1 P1)|apply (l6_21 M1 P1 M2 P2)]; Col.
   intro.
   apply HBC.
   destruct (两点重合的决定性 M1 M2).
@@ -1343,12 +1343,12 @@ Proof.
   split.
   { intro Hneq.
     destruct (两点重合的决定性 C A) as [|HCA].
-    { destruct (cong_dec A B C D) as [|HNCong].
+    { destruct (等长的决定性 A B C D) as [|HNCong].
         exfalso; apply Hneq, eqc_chara; split; auto.
         subst C; exists B; split; Circle.
     }
     destruct (tree_points_onc_cop2 A B C HAB) as [B0 [B1 [B2]]]; spliter.
-    destruct (cong_dec C B0 C D); [destruct (cong_dec C B1 C D);[destruct (cong_dec C B2 C D)|]|].
+    destruct (等长的决定性 C B0 C D); [destruct (等长的决定性 C B1 C D);[destruct (等长的决定性 C B2 C D)|]|].
     - exfalso.
       apply HCA.
       apply cong2_cop2_onc3__eq with B B0 B1 B2; auto; apply 等长的传递性 with C D; Cong.
@@ -1408,7 +1408,7 @@ Lemma concyclic_aux : forall A B C D, 共圆 A B C D -> exists O P,
   在圆上 A O P /\ 在圆上 B O P /\ 在圆上 C O P /\ 在圆上 D O P /\ 共面 A B C O.
 Proof.
   intros A B C D [HCop [O1 [P1]]]; spliter.
-  destruct (col_dec A B C).
+  destruct (共线的决定性 A B C).
     exists O1, P1; repeat split; Cop.
   destruct (l11_62_existence A B C O1) as [O []].
   exists O, A.
@@ -1742,21 +1742,21 @@ unfold 在圆上 in *.
 induction(两点重合的决定性 O P).
 subst P.
 treat_equalities; auto.
-apply le_reflexivity.
+apply AB小于等于AB.
 
 induction(两点重合的决定性 O T).
 treat_equalities.
-apply cong__le, 等长的传递性 with O P; Cong.
+apply 等长则小于等于, 等长的传递性 with O P; Cong.
 
-induction(cong_dec A X A Y).
+induction(等长的决定性 A X A Y).
 assert(X = Y \/ 严格对称 X Y O A).
 {
   apply(cong_onc3_cases O P A X Y); Circle.
 }
 induction H9.
 treat_equalities.
-apply le_reflexivity.
-apply cong__le.
+apply AB小于等于AB.
+apply 等长则小于等于.
 apply 等长的对称性.
 apply 等长的交换性.
 apply(is_image_spec_col_cong O A X Y T); auto.
@@ -1794,7 +1794,7 @@ assert(Lt T Y T X).
   apply H8.
   apply(cong2_conga_cong A O X A O Y); Cong.
 }
-apply lt__le.
+apply 长度小于蕴含小于等于.
 assumption.
 Qed.
 
@@ -1881,7 +1881,7 @@ Lemma onc3_mid2__ncol : forall O P A B C A' B',
  ~ Col O A' B' \/ A' = O \/ B' = O.
 Proof.
 intros.
-induction(col_dec O A C).
+induction(共线的决定性 O A C).
 assert(A = C \/ 中点 O A C) by (apply l7_20; [Col|CongR]).
 induction H7.
 treat_equalities.
@@ -1890,7 +1890,7 @@ apply H5; Col.
 right; left.
 apply (l7_17 A C); auto.
 
-induction(col_dec O B C).
+induction(共线的决定性 O B C).
 assert(B = C \/ 中点 O B C) by (apply l7_20; [Col|CongR]).
 induction H8.
 treat_equalities.
@@ -1957,7 +1957,7 @@ subst X.
 induction HH2.
 subst N.
 
-induction(col_dec O A B).
+induction(共线的决定性 O A B).
 assert(A = B \/ 中点 O A B).
 unfold 在圆上 in *.
 apply l7_20; Col.
@@ -1968,7 +1968,7 @@ assert(M = O).
 apply (l7_17 A B); auto.
 subst M; tauto.
 
-induction(col_dec O C D).
+induction(共线的决定性 O C D).
 assert(C = D \/ 中点 O C D).
 unfold 在圆上 in *.
 apply l7_20; Col.
@@ -1984,7 +1984,7 @@ apply (l12_9_2D _ _ _ _ O M); Perp.
 
 spliter.
 apply perp_in_perp in H15.
-induction(col_dec O A B).
+induction(共线的决定性 O A B).
 assert(A = B \/ 中点 O A B).
 unfold 在圆上 in *.
 apply l7_20; Col.
@@ -2003,7 +2003,7 @@ induction HH2.
 subst X.
 spliter.
 
-induction(col_dec O C D).
+induction(共线的决定性 O C D).
 assert(C = D \/ 中点 O C D).
 unfold 在圆上 in *.
 apply l7_20; Col.

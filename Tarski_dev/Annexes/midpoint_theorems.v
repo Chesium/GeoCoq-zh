@@ -306,7 +306,7 @@ Lemma triangle_mid_par : forall A B C P Q,
 Proof.
 intros.
 
-elim (col_dec A B C); intro.
+elim (共线的决定性 A B C); intro.
   apply triangle_mid_par_flat with C; auto.
 
   apply par_strict_par; apply triangle_mid_par_strict with C; assumption.
@@ -324,7 +324,7 @@ Lemma triangle_mid_par_cong : forall A B C P Q R,
 Proof.
 intros.
 
-elim (col_dec A B C); intro.
+elim (共线的决定性 A B C); intro.
   apply triangle_mid_par_flat_cong; assumption.
 
   assert (HTMT := triangle_mid_par_strict_cong A B C P Q R H5 H2 H3 H4); spliter.
@@ -342,7 +342,7 @@ Proof.
 intros.
 split.
 perm_apply (triangle_mid_par B C A Q R).
-induction (col_dec A B C).
+induction (共线的决定性 A B C).
  assert (Par C B Q R /\ Cong B P R Q).
   apply (triangle_mid_par_flat_cong_2 C B A R Q P); 中点; Col.
   spliter.

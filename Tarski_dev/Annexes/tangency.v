@@ -126,7 +126,7 @@ unfold 在圆外.
 unfold Lt.
 
 split.
-apply le_trivial.
+apply AA小于等于CD.
 intro.
 unfold 在圆上 in *.
 assert(T = O).
@@ -447,7 +447,7 @@ assert(HH:=(H2 M H9)).
 unfold 在圆内 in *.
 unfold 在圆上或圆外 in *.
 
-apply le__nlt in HH.
+apply 长度小于等于推出反向不小于 in HH.
 contradiction.
 
 intros.
@@ -561,7 +561,7 @@ assert(O <> X).
   intuition.
 }
 
-assert(HH:=circle_cases O P X).
+assert(HH:=circ长度小于等于的决定性 O P X).
 induction HH.
 
 assert(HH:= perp_exists X O X H2).
@@ -576,7 +576,7 @@ split; Circle.
 induction H3.
 unfold 在圆上或圆外 in *.
 unfold 在圆内 in *.
-apply lt__nle in H3; contradiction.
+apply 小于推出反向不小于等于 in H3; contradiction.
 
 
 assert(exists Q : Tpoint, 在圆上 Q O P /\ Out O X Q).
@@ -601,9 +601,9 @@ assert(Bet O U X).
   }
   assert(Lt O U O X).
   {
-    apply(cong2_lt__lt O P O X); Cong.
+    apply(等长保持小于关系 O P O X); Cong.
   }
-  apply le__nlt in H8.
+  apply 长度小于等于推出反向不小于 in H8.
   contradiction.
   assumption.
 }
@@ -635,7 +635,7 @@ assert(在圆内 U O X).
   unfold 在圆内.
   unfold 在圆外 in H3.
   unfold 在圆上 in H4.
-  apply(cong2_lt__lt O P O X); Cong.
+  apply(等长保持小于关系 O P O X); Cong.
 }
 
 assert(在圆外 T O X).
@@ -674,7 +674,7 @@ assert(Bet O V Y).
   unfold 在圆外 in H3.
   assert(Lt O V O Y).
   {
-    apply (cong2_lt__lt O P O X); Cong.
+    apply (等长保持小于关系 O P O X); Cong.
   }
   unfold 在圆上 in *.
   assert(Le O Y O V).
@@ -683,7 +683,7 @@ assert(Bet O V Y).
     exists Y.
     split; Cong.
   }
-  apply le__nlt in H21.
+  apply 长度小于等于推出反向不小于 in H21.
   contradiction.
   assumption.
 }
@@ -818,7 +818,7 @@ Circle.
 
 assert(Col A C M).
 apply cop_per2__col with Q; auto.
-induction(col_dec P Q A).
+induction(共线的决定性 P Q A).
 exists M.
 left.
 split; ColR.

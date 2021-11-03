@@ -447,7 +447,7 @@ Proof.
   - apply lta_left_comm, l11_44_2_a; Col.
   - apply lta_right_comm, l11_44_2_a.
       Col.
-    apply lt_comm; assumption.
+    apply 长度小于的交换性; assumption.
 Qed.
 
 
@@ -464,7 +464,7 @@ Proof.
   - apply l11_44_2_b.
       Col.
     apply lta_left_comm; assumption.
-  - apply lt_comm, l11_44_2_b.
+  - apply 长度小于的交换性, l11_44_2_b.
       Col.
     apply lta_right_comm; assumption.
 Qed.
@@ -479,7 +479,7 @@ Lemma prop_20 : forall A B C P Q, ~ Bet B A C -> SumS A B A C P Q -> Lt B C P Q.
 Proof.
   intros A B C P Q HNBet HSum.
   destruct (由一点往一方向构造等长线段 B A A C) as [D [HBet HCong]].
-  apply (cong2_lt__lt B C B D); Cong.
+  apply (等长保持小于关系 B C B D); Cong.
     apply triangle_strict_inequality with A; Cong.
   apply (sums2__cong56 A B A C); trivial.
   exists B, A, D; repeat split; Cong.
@@ -515,7 +515,7 @@ Proof.
     apply col_one_side_out with A; Col.
     apply invert_one_side, col_one_side with C; Col.
   destruct (ex_sums E B E C) as [P [Q]].
-  apply lt_transitivity with P Q.
+  apply 长度小于的传递性 with P Q.
   - destruct (ex_sums E C E D) as [R [S]].
     apply le_lt34_sums2__lt with D B D C D B R S; Le.
       apply prop_20 with E; Sums.

@@ -49,7 +49,7 @@ exists X.
 split.
   assumption.
 split.
-  induction (col_dec A2 A1 B1).
+  induction (共线的决定性 A2 A1 B1).
     exists B2.
     split.
       Col.

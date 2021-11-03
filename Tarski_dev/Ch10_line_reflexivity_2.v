@@ -803,7 +803,7 @@ Lemma ex_perp_cop : forall A B C P,
  A <> B -> exists Q, Perp A B Q C /\ 共面 A B P Q.
 Proof.
   intros A B C P HAB.
-  destruct (col_dec A B C) as [HCol|HNCol]; [destruct (col_dec A B P) as [|HNCol]|].
+  destruct (共线的决定性 A B C) as [HCol|HNCol]; [destruct (共线的决定性 A B P) as [|HNCol]|].
   - destruct (not_col_exists A B HAB) as [P' HNCol].
     destruct (l10_15 A B C P' HCol HNCol) as [Q []].
     exists Q.

@@ -96,10 +96,10 @@ repeat
 
       | H:Le ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D H2 H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D H2 H);clean_reap_hyps
       | H:Lt ?A ?B ?C ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= lt_diff A B C D H);clean_reap_hyps
+        assert (T:= 小于推出不重合 A B C D H);clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
@@ -169,7 +169,7 @@ repeat
    | H : Bet ?X1 ?X2 ?X1 |- _ =>
       apply 中间性的同一律 in H;smart_subst X2
    | H : Le ?X1 ?X2 ?X3 ?X3 |- _ =>
-      apply le_zero in H;smart_subst X2
+      apply AB小于等于CC推出A与B重合 in H;smart_subst X2
    | H : 中点 ?X ?Y ?Y |- _ => apply l7_3 in H; smart_subst Y
    | H : 中点 ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
    | H : 中点 ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
@@ -338,7 +338,7 @@ Proof.
     intros.
     unfold Per.
     elim (symmetric_point_construction C B);intros C' HC'.
-    elim (cong_dec A C A C');intro.
+    elim (等长的决定性 A C A C');intro.
       left.
       exists C'.
       intuition.
@@ -619,7 +619,7 @@ Lemma perp_in_dec : forall X A B C D, 垂直于 X A B C D \/ ~ 垂直于 X A B C
 Proof.
     intros.
     unfold 垂直于.
-    elim (两点重合的决定性 A B);intro; elim (两点重合的决定性 C D);intro; elim (col_dec X A B);intro; elim (col_dec X C D);intro; try tauto.
+    elim (两点重合的决定性 A B);intro; elim (两点重合的决定性 C D);intro; elim (共线的决定性 X A B);intro; elim (共线的决定性 X C D);intro; try tauto.
     elim (两点重合的决定性 B X);intro; elim (两点重合的决定性 D X);intro;subst;treat_equalities.
       elim (per_dec A X C);intro.
         left;repeat split;Col;intros; apply col_col_per_per with A C;Col.
@@ -1198,7 +1198,7 @@ Qed.
 Lemma perp_not_col2 : forall A B C D, Perp A B C D -> ~ Col A B C \/ ~ Col A B D.
 Proof.
     intros.
-    induction (col_dec A B C).
+    induction (共线的决定性 A B C).
       right.
       assert(垂直于 C A B C D).
         apply l8_14_2_1b_bis; Col.
@@ -1417,7 +1417,7 @@ Lemma cong_perp_or_mid : forall A B M X, A <> B -> 中点 M A B -> Cong A X B X 
  X = M \/ ~Col A B X /\ 垂直于 M X M A B.
 Proof.
 intros.
-induction(col_dec A B X).
+induction(共线的决定性 A B X).
 left.
 assert(A = B \/ 中点 X A B).
 apply l7_20; Col.
@@ -1998,7 +1998,7 @@ Lemma l8_21 : forall A B C,
  A <> B -> exists P, exists T, Perp A B P A /\ Col A B T /\ Bet C T P.
 Proof.
     intros.
-    induction(col_dec A B C).
+    induction(共线的决定性 A B C).
       assert (exists C', ~ Col A B C').
         eapply not_col_exists.
         assumption.
@@ -2322,7 +2322,7 @@ Qed.
 Lemma perp_exists : forall O A B, A <> B -> exists X, Perp O X A B.
 Proof.
     intros.
-    induction(col_dec A B O).
+    induction(共线的决定性 A B O).
       destruct (diff_col_ex3 A B O H0) as [C].
       spliter.
       destruct (l8_21 O C O H3) as [P [T]].
@@ -2366,7 +2366,7 @@ Proof.
         subst X.
         Col.
      ColR.
-     induction(col_dec A B P).
+     induction(共线的决定性 A B P).
       assert (B=A \/ P=A).
         eapply l8_9.
           apply perp_per_1.
@@ -2455,7 +2455,7 @@ Proof.
         intros.
         ex_elim H0 P.
         ex_and H2 T.
-        assert (Le A P B Q \/ Le B Q A P) by (apply le_cases).
+        assert (Le A P B Q \/ Le B Q A P) by (apply 长度小于等于的决定性).
         induction H4.
           apply midpoint_existence_aux with P Q T; Perp.
         assert (exists X : Tpoint, 中点 X B A)
@@ -2619,7 +2619,7 @@ Proof.
       apply perp_distinct in H.
       spliter.
       auto.
-    induction(col_dec A B P).
+    induction(共线的决定性 A B P).
       assert (B=A \/ P=A).
         eapply l8_9.
           apply perp_per_1.

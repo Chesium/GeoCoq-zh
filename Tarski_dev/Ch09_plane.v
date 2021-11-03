@@ -77,13 +77,13 @@ repeat
 
       | H:Le ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D H2 H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D H2 H);clean_reap_hyps
       | H:Le ?A ?B ?C ?D, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D (swap_diff B A H2) H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D (swap_diff B A H2) H);clean_reap_hyps
       | H:Lt ?A ?B ?C ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= lt_diff A B C D H);clean_reap_hyps
+        assert (T:= 小于推出不重合 A B C D H);clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
@@ -762,7 +762,7 @@ Lemma l9_4_1 : forall P Q A C R S M,
 Proof.
     intros.
     assert (Le S C R A \/ Le R A S C).
-      apply le_cases.
+      apply 长度小于等于的决定性.
     induction H6.
       apply (l9_4_1_aux P Q A C R S M); assumption.
     assert((Out R A U <-> Out S C' C) -> (Out R U A <-> Out S C C')).
@@ -1071,7 +1071,7 @@ TS P Q A C -> Col R P Q -> Perp P Q A R -> Col S P Q ->
 Perp P Q C S -> Out R U A -> Out S V C -> TS P Q U V.
 Proof.
     intros.
-    assert(Le S C R A \/ Le R A S C) by (apply le_cases).
+    assert(Le S C R A \/ Le R A S C) by (apply 长度小于等于的决定性).
     induction H6.
       eapply l9_4_2_aux with A C R S;assumption.
     apply l9_2.
@@ -1236,8 +1236,8 @@ Lemma outer_pasch : forall A B C P Q,
  Bet A C P -> Bet B Q C -> exists X, Bet A X B /\ Bet P Q X.
 Proof.
     intros.
-    induction(col_dec P Q C).
-      induction(bet_dec P Q C).
+    induction(共线的决定性 P Q C).
+      induction(中间性的决定性 P Q C).
         exists A.
         split.
           Between.
@@ -1385,7 +1385,7 @@ Proof.
       subst D.
       apply not_two_sides_id in H1.
       assumption.
-    induction (col_dec A B D).
+    induction (共线的决定性 A B D).
       induction (两点重合的决定性 M Y).
         subst M.
         assert (X = Y).
@@ -1768,7 +1768,7 @@ Proof.
       spliter.
       assumption.
     exists T.
-    induction (col_dec A C D).
+    induction (共线的决定性 A C D).
       assert (X = Y).
         apply l6_21 with P Q A D; Col.
           intro.
@@ -2965,9 +2965,9 @@ Proof.
   }
   destruct HT as [HNCol1 [HNCol2 [T []]]].
   assert (C' <> T) by (intro; treat_equalities; auto).
-  destruct (col_dec T B C) as [|HNCol3].
+  destruct (共线的决定性 T B C) as [|HNCol3].
     exists B; left; split; ColR.
-  destruct (bet_dec T B A) as [|HOut].
+  destruct (中间性的决定性 T B A) as [|HOut].
   - apply coplanar_perm_18, ts__coplanar.
     apply l9_8_2 with T.
       repeat split; Col; exists B; split; Col.
@@ -2983,11 +2983,11 @@ Lemma coplanar_trans_1 : forall P Q R A B,
   ~ Col P Q R -> 共面 P Q R A -> 共面 P Q R B -> 共面 Q R A B.
 Proof.
   intros P Q R A B HNCol HCop1 HCop2.
-  destruct (col_dec Q R A).
+  destruct (共线的决定性 Q R A).
     exists A; left; split; Col.
-  destruct (col_dec Q R B).
+  destruct (共线的决定性 Q R B).
     exists B; left; split; Col.
-  destruct (col_dec Q A B).
+  destruct (共线的决定性 Q A B).
     exists Q; left; split; Col.
   assert (HDij : TS Q R A B \/ OS Q R A B).
   { assert (HA : TS Q R P A \/ OS Q R P A) by (apply cop__one_or_two_sides; Col; Cop).
@@ -3004,7 +3004,7 @@ Qed.
 Lemma col_cop__cop : forall A B C D E, 共面 A B C D -> C <> D -> Col C D E -> 共面 A B C E.
 Proof.
   intros A B C D E HCop HCD HCol.
-  destruct (col_dec D A C).
+  destruct (共线的决定性 D A C).
     assert (Col A C E) by (apply l6_16_1 with D; Col); Cop.
   apply coplanar_perm_2, (coplanar_trans_1 D); Cop.
 Qed.
@@ -3031,7 +3031,7 @@ Lemma col_cop2__cop : forall A B C U V P, U <> V ->
   共面 A B C P.
 Proof.
   intros A B C U V P HUV HU HV HCol.
-  destruct (col_dec A B C) as [HCol1|HNCol].
+  destruct (共线的决定性 A B C) as [HCol1|HNCol].
     apply col__coplanar, HCol1.
   revert dependent C.
   revert A B.
@@ -3043,7 +3043,7 @@ Proof.
     apply (coplanar_trans_1 C); Col; Cop.
   }
   intros A B C HU HV HNCol.
-  destruct (col_dec U A B); [destruct (col_dec U A C)|].
+  destruct (共线的决定性 U A B); [destruct (共线的决定性 U A C)|].
   - apply coplanar_perm_12, Haux; Col; Cop.
     intro; apply HNCol; destruct (两点重合的决定性 U A); ColR.
   - apply coplanar_perm_2, Haux; Col; Cop.
@@ -3073,13 +3073,13 @@ assert (Haux : forall P Q R A B C,
   {
   intros P Q R A B C HNC HCop1 HCop2 HCop3.
   assert_diffs.
-  elim (col_dec R Q A); intro HQRA.
+  elim (共线的决定性 R Q A); intro HQRA.
     apply coplanar_perm_18, col_cop__cop with Q; auto.
     apply coplanar_perm_17, (coplanar_trans_1 P); assumption.
   apply coplanar_perm_9, (coplanar_trans_1 Q); [Col|apply (coplanar_trans_1 P); assumption..].
   }
 intros A B C D P Q R HNC HCop1 HCop2 HCop3 HCop4.
-elim (col_dec P Q D); intro HPQD.
+elim (共线的决定性 P Q D); intro HPQD.
   apply col_cop2__cop with P Q; [assert_diffs|apply (Haux Q R)|apply (Haux P R)|]; Col; Cop.
 apply (Haux P Q); [assumption|apply (coplanar_trans_1 R); Col; Cop..].
 Qed.
@@ -3091,7 +3091,7 @@ Lemma l9_30 : forall A B C D E F P X Y Z,
   Col X Y Z.
 Proof.
   intros A B C D E F P X Y Z HNCop HNCol HP HX1 HY1 HZ1 HX2 HY2 HZ2.
-  destruct (col_dec X Y Z); [assumption|].
+  destruct (共线的决定性 X Y Z); [assumption|].
   assert (~ Col A B C) by (apply ncop__ncol with P, HNCop).
   exfalso.
   apply HNCop.
@@ -3119,7 +3119,7 @@ try (intros HCol1 HCol2); try (intro H; destruct H as [HCol1 HCol2]).
     {
     assert (HLe : Le A X B I).
       {
-      apply l5_6 with A X A I; Cong.
+      apply l5_6_等长保持小于等于关系 with A X A I; Cong.
       apply l6_13_2; Col.
       split; try (intro; treat_equalities; Col).
       split; try (intro; treat_equalities; Col); Col.
@@ -3181,7 +3181,7 @@ try (intros HCol1 HCol2); try (intro H; destruct H as [HCol1 HCol2]).
     {
     assert (HLe : Le A Y B I).
       {
-      apply l5_6 with A Y A I; Cong.
+      apply l5_6_等长保持小于等于关系 with A Y A I; Cong.
       apply l6_13_2; Col.
       split; try (intro; treat_equalities; Col).
       split; try (intro; treat_equalities; Col); Col.
@@ -3249,7 +3249,7 @@ Lemma cop_perp2__col : forall X Y Z A B,
  共面 A B Y Z -> Perp X Y A B -> Perp X Z A B -> Col X Y Z.
 Proof.
     intros.
-    induction(col_dec A B X).
+    induction(共线的决定性 A B X).
       induction(两点重合的决定性 X A).
         subst A.
         assert(X <> B).
@@ -3342,9 +3342,9 @@ Qed.
 Lemma two_sides_dec : forall A B C D, TS A B C D \/ ~ TS A B C D.
 Proof.
     intros.
-    destruct (col_dec C A B).
+    destruct (共线的决定性 C A B).
       right; intros []; contradiction.
-    destruct (col_dec D A B) as [|HNCol].
+    destruct (共线的决定性 D A B) as [|HNCol].
       right; intros [HN []]; contradiction.
     destruct (l8_18_existence A B C) as [C0 [HCol1 HPerp1]]; Col.
     destruct (l8_18_existence A B D) as [D0 [HCol2 HPerp2]]; Col.
@@ -3353,7 +3353,7 @@ Proof.
     assert (Col M A B).
       destruct (两点重合的决定性 C0 D0); [treat_equalities; Col|ColR].
     destruct (l6_11_existence D0 C0 C D) as [D' []]; auto.
-    destruct (bet_dec C M D') as [|HNBet].
+    destruct (中间性的决定性 C M D') as [|HNBet].
     { left; apply l9_2, l9_5 with D' D0; Col.
       repeat split; auto.
         intro; apply HNCol; ColR.
@@ -3414,7 +3414,7 @@ Lemma one_side_dec : forall A B C D,
  OS A B C D \/ ~ OS A B C D.
 Proof.
   intros A B C D.
-  destruct (col_dec A B D).
+  destruct (共线的决定性 A B D).
     right; intro Habs; apply (one_side_not_col124 A B C D); assumption.
   destruct (l9_10 A B D) as [D']; Col.
   destruct (two_sides_dec A B C D') as [|HNTS].
@@ -3429,9 +3429,9 @@ Lemma cop_dec : forall A B C D,
  共面 A B C D \/ ~ 共面 A B C D.
 Proof.
   intros A B C D.
-  destruct (col_dec C A B).
+  destruct (共线的决定性 C A B).
     left; exists C; left; split; Col.
-  destruct (col_dec D A B).
+  destruct (共线的决定性 D A B).
     left; exists D; left; split; Col.
   destruct (two_sides_dec A B C D).
     left; apply ts__coplanar; assumption.
@@ -3454,9 +3454,9 @@ Lemma ex_ncol_cop : forall A B C D E, D <> E ->
   exists F, 共面 A B C F /\ ~ Col D E F.
 Proof.
   intros A B C D E HDE.
-  destruct (col_dec A B C) as [|HNCol].
+  destruct (共线的决定性 A B C) as [|HNCol].
     destruct (not_col_exists D E HDE) as [F]; exists F; split; Cop.
-  destruct (col_dec D E A); [destruct (col_dec D E B)|].
+  destruct (共线的决定性 D E A); [destruct (共线的决定性 D E B)|].
   - exists C; split; Cop.
     intro; apply HNCol; ColR.
   - exists B; split; Cop.
@@ -3488,7 +3488,7 @@ Lemma cong3_cop2__col : forall A B C P Q,
   Col A B C.
 Proof.
   intros A B C P Q HP HQ HPQ HA HB HC.
-  destruct (col_dec A B C); [assumption|].
+  destruct (共线的决定性 A B C); [assumption|].
   destruct (midpoint_existence P Q) as [M HMid].
   assert (Per A M P) by (exists Q; Cong).
   assert (Per B M P) by (exists Q; Cong).
@@ -3547,7 +3547,7 @@ Lemma l9_41_2 : forall A B C P Q R, 在平面异侧 A B C P R -> 在平面同侧
 Proof.
   intros A B C P Q R HPR [S [[HP [_ [X []]]] [HQ [HS [Y []]]]]].
   assert (P <> X /\ S <> X /\ Q <> Y /\ S <> Y) by (repeat split; intro; subst; auto); spliter.
-  destruct (col_dec P Q S) as [|HNCol].
+  destruct (共线的决定性 P Q S) as [|HNCol].
   { assert (X = Y) by (assert_diffs; apply (col2_cop2__eq A B C Q S); ColR).
     subst Y.
     apply l9_39 with X P; trivial.
@@ -3680,7 +3680,7 @@ Qed.
 Lemma osp_bet__osp : forall A B C P Q R, 在平面同侧 A B C P R -> Bet P Q R -> 在平面同侧 A B C P Q.
 Proof.
   intros A B C P Q R [S [HPS [HR [_ [Y []]]]]] HBet.
-  destruct (col_dec P R S) as [|HNCol].
+  destruct (共线的决定性 P R S) as [|HNCol].
   { exists S.
     split; [assumption|].
     apply l9_39 with Y P; trivial.
@@ -3824,7 +3824,7 @@ Lemma cop_tsp__ex_cop2 : forall A B C D E P,
   exists Q, 共面 A B C Q /\ 共面 D E P Q /\ P <> Q.
 Proof.
   intros A B C D E P HCop H在平面异侧.
-  destruct (col_dec D E P) as [|HNCol].
+  destruct (共线的决定性 D E P) as [|HNCol].
   { apply tsp_distincts in H在平面异侧; spliter.
     destruct (两点重合的决定性 P A).
       subst; exists B; repeat split; Cop.
@@ -3840,7 +3840,7 @@ Lemma cop_osp__ex_cop2 : forall A B C D E P,
   exists Q, 共面 A B C Q /\ 共面 D E P Q /\ P <> Q.
 Proof.
   intros A B C D E P HCop H在平面同侧.
-  destruct (col_dec D E P) as [|HNCol].
+  destruct (共线的决定性 D E P) as [|HNCol].
   { apply osp_distincts in H在平面同侧; spliter.
     destruct (两点重合的决定性 P A).
       subst; exists B; repeat split; Cop.

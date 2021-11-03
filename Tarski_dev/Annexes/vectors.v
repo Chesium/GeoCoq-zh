@@ -737,7 +737,7 @@ apply False_ind.
 apply H17.
 Col.
 
-induction(col_dec A B T).
+induction(共线的决定性 A B T).
 apply False_ind.
 assert(B = T).
 apply (l6_21 A B C B); Col.
@@ -747,7 +747,7 @@ exists D.
 apply 中间性蕴含共线 in H14.
 split; Col.
 
-induction(col_dec C D T).
+induction(共线的决定性 C D T).
 apply False_ind.
 assert(C = T).
 apply (l6_21 C D B C); Col.

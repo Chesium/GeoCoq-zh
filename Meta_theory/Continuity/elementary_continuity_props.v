@@ -37,14 +37,14 @@ Proof.
     { subst P.
       destruct (由一点往一方向构造等长线段 W A A B) as [Q [HQ1 HQ2]].
       destruct (Hsc A B A Q) as [Z [HZ1 HZ2]]; trivial.
-        apply cong__le; Cong.
+        apply 等长则小于等于; Cong.
       exists Z; split; trivial.
       ColR.
     }
     destruct (由一点往一方向构造等长线段 W P P A) as [Q0 [HQ01 HQ02]].
     destruct (由一点往一方向构造等长线段 P Q0 A B) as [Q [HQ1 HQ2]].
     destruct (Hsc A B P Q) as [Z [HZ1 HZ2]]; trivial.
-      apply (l5_6 Q Q0 Q A); Cong.
+      apply (l5_6_等长保持小于等于关系 Q Q0 Q A); Cong.
       apply (triangle_reverse_inequality P); Cong.
       assert_diffs.
       apply l6_6, bet_out; auto.
@@ -57,7 +57,7 @@ Proof.
       exists A; split; Between; Circle.
     destruct (两点重合的决定性 P Q).
       subst Q; exists P; split; Between; Circle.
-    destruct (cong_dec A B A Q) as [HCong|HNCong].
+    destruct (等长的决定性 A B A Q) as [HCong|HNCong].
       exists Q; split; Between; Circle.
     assert (HB' : exists B', Cong A B A B' /\ Bet A P B').
     { destruct (两点重合的决定性 A P).
@@ -66,7 +66,7 @@ Proof.
       exists B'; split; Cong.
       apply l6_13_1.
         apply l6_6, HOut.
-      apply (l5_6 A P A B); Cong.
+      apply (l5_6_等长保持小于等于关系 A P A B); Cong.
     }
     destruct HB' as [B' [HCong HBet]].
     destruct (Hoplc A B' P Q P) as [Z1 [HCol1 HZ1]]; Col.
@@ -117,10 +117,10 @@ Proof.
   - intros A B C D B' D' HCong1 HCong2 HBet1 HBet2.
     apply cc with D' B'; try apply bet__le1213; trivial.
   - intros A B C D P Q HPOn HPIn HQOn HQIn.
-    assert (HQ' : Le A P A Q) by (apply le_transitivity with A B; Le).
+    assert (HQ' : Le A P A Q) by (apply 长度小于等于的传递性 with A B; Le).
     apply l5_5_1 in HQ'.
     destruct HQ' as [Q' [HBet1 HCong1]].
-    assert (HP' : Le C Q C P) by (apply le_transitivity with C D; Le).
+    assert (HP' : Le C Q C P) by (apply 长度小于等于的传递性 with C D; Le).
     apply l5_5_1 in HP'.
     destruct HP' as [P' [HBet2 HCong2]].
     destruct (cc A Q' C P' Q P) as [Z []]; Cong.
@@ -137,7 +137,7 @@ Proof.
   destruct (chord_completion C D P Q) as [P' [HP'On HBetQ]]; trivial.
   destruct (chord_completion A B Q P) as [Q' [HQ'On HBetP]]; trivial.
   apply (Hcc A B C D P P'); trivial.
-  destruct (le_cases A P' A B); trivial.
+  destruct (长度小于等于的决定性 A P' A B); trivial.
   assert (P' = Q).
   { apply 双中间性推出点重合 with Q'.
       eBetween.
@@ -145,7 +145,7 @@ Proof.
     apply (col_inc_onc2__bet A B); trivial; ColR.
   }
   subst.
-  apply cong__le; Cong.
+  apply 等长则小于等于; Cong.
 Qed.
 
 Lemma circle_circle_bis__one_point_line_circle :
@@ -156,7 +156,7 @@ Proof.
   assert (Haux : forall A B U V P, Col U V P -> U <> V -> Bet A P B -> ~ Per A U V ->
       exists Z : Tpoint, Col U V Z /\ 在圆上 Z A B).
   { intros A B U V P HCol HUV HBet HNPer.
-    destruct (col_dec U V B) as [|HNCol].
+    destruct (共线的决定性 U V B) as [|HNCol].
       exists B; split; Circle.
     destruct (两点重合的决定性 A P).
       subst P.
@@ -219,9 +219,9 @@ Proof.
     subst C.
       exists P; exists P.
       assert (Cong A B A D).
-        apply le_anti_symmetry.
-        apply (l5_6 A B A Q); Cong.
-        apply (l5_6 A P A B); Cong.
+        apply 长度小于等于的反对称性.
+        apply (l5_6_等长保持小于等于关系 A B A Q); Cong.
+        apply (l5_6_等长保持小于等于关系 A P A B); Cong.
       assert (Cong A P A B) by (apply 等长的传递性 with A D; Cong).
       repeat split; trivial.
       intro Habs.
@@ -238,12 +238,12 @@ Proof.
     intro; subst Z2.
     clean.
     destruct (or_bet_out A C Z1) as [HBet|[HOut|HNCol]].
-    - apply (lt__nle A B A Q); trivial.
-      apply l5_6 with A Q A Z1; Cong.
+    - apply (小于推出反向不小于等于 A B A Q); trivial.
+      apply l5_6_等长保持小于等于关系 with A Q A Z1; Cong.
       apply triangle_inequality with C; trivial.
       apply 等长的传递性 with C D; Cong.
-    - apply (lt__nle A P A B); trivial.
-      apply l5_6 with A Z1 A P; Cong.
+    - apply (小于推出反向不小于等于 A P A B); trivial.
+      apply l5_6_等长保持小于等于关系 with A Z1 A P; Cong.
       apply triangle_reverse_inequality with C; trivial.
       apply 等长的传递性 with C D; Cong.
     - assert (HCol := l10_8 A C Z1 HZ2); Col.
@@ -270,7 +270,7 @@ Proof.
       apply out2__bet; trivial.
       apply l6_7 with C1; apply l6_6; trivial.
       assert_diffs; apply bet_out; trivial.
-    apply (le__nlt A B A' B'); trivial.
+    apply (长度小于等于推出反向不小于 A B A' B'); trivial.
     apply le_lt12_sums2__lt with C D E F A E1 E1 B; Sums; Le.
     split.
       exists C1; split; Cong.
@@ -279,8 +279,8 @@ Proof.
     apply 等长的传递性 with C D; trivial.
   - assert (Bet A C2 E1) by eBetween.
     assert (Bet B C2 E1) by (assert_diffs; apply l6_2 with A; auto; apply bet_out; Between).
-    apply (le__nlt E F E' F'); trivial.
-    apply (cong2_lt__lt B C2 B E1); Cong.
+    apply (长度小于等于推出反向不小于 E F E' F'); trivial.
+    apply (等长保持小于关系 B C2 B E1); Cong.
       split; [exists C2; Cong|].
       intro HCong.
       apply HC2E1, between_cong with B; trivial.
@@ -296,17 +296,17 @@ Proof.
     exists P; repeat split; Cong.
     subst B.
     apply 等长的传递性 with C D; trivial.
-    apply le_anti_symmetry.
-      apply (l5_6 C D C' D'); Cong; apply (sums2__cong56 A A E F); Sums.
-      apply (l5_6 E F E' F'); Cong; apply (sums2__cong56 A A C D); Sums.
+    apply 长度小于等于的反对称性.
+      apply (l5_6_等长保持小于等于关系 C D C' D'); Cong; apply (sums2__cong56 A A E F); Sums.
+      apply (l5_6_等长保持小于等于关系 E F E' F'); Cong; apply (sums2__cong56 A A C D); Sums.
   - exists A; treat_equalities; repeat split; Cong.
-    apply le_anti_symmetry.
-      apply (l5_6 A B A' B'); Cong; apply (sums2__cong56 C C E F); Sums.
-      apply (l5_6 E F E' F'); Cong; apply (sums2__cong56 A B C C); Sums.
+    apply 长度小于等于的反对称性.
+      apply (l5_6_等长保持小于等于关系 A B A' B'); Cong; apply (sums2__cong56 C C E F); Sums.
+      apply (l5_6_等长保持小于等于关系 E F E' F'); Cong; apply (sums2__cong56 A B C C); Sums.
   - exists B; treat_equalities; repeat split; Cong.
-    apply le_anti_symmetry.
-      apply (l5_6 A B A' B'); Cong; apply (sums2__cong56 C D E E); Sums.
-      apply (l5_6 C D C' D'); Cong; apply (sums2__cong56 A B E E); Sums.
+    apply 长度小于等于的反对称性.
+      apply (l5_6_等长保持小于等于关系 A B A' B'); Cong; apply (sums2__cong56 C D E E); Sums.
+      apply (l5_6_等长保持小于等于关系 C D C' D'); Cong; apply (sums2__cong56 A B E E); Sums.
   - destruct (由一点往一方向构造等长线段_3 A B C D) as [C1 [HC1 HC1']]; auto.
     destruct (由一点往一方向构造等长线段_3 B A E F) as [E1 [HE1 HE1']]; auto.
     destruct (由一点往一方向构造等长线段 B A C D) as [C2 [HC2 HC2']].
@@ -325,7 +325,7 @@ Lemma triangle_inequality1 : forall A B C D E, SumS A B B C D E -> Le A C D E.
 Proof.
   intros A B C D E HSum.
   destruct (由一点往一方向构造等长线段 A B B C) as [D' [HBet HCong]].
-  apply (l5_6 A C A D'); Cong.
+  apply (l5_6_等长保持小于等于关系 A C A D'); Cong.
     apply triangle_inequality with B; Cong.
   apply (sums2__cong56 A B B C); trivial.
   exists A, B, D'; repeat split; Cong.
@@ -340,23 +340,23 @@ Proof.
     destruct (ex_sums A C A B) as [L3 [R3]].
     apply p22 with L1 R1 L2 R2 L3 R3; trivial.
     - destruct (ex_sums C A A P) as [R [S]].
-      apply le_transitivity with R S.
-        apply (l5_6 C P R S); Cong; apply triangle_inequality1 with A; trivial.
+      apply 长度小于等于的传递性 with R S.
+        apply (l5_6_等长保持小于等于关系 C P R S); Cong; apply triangle_inequality1 with A; trivial.
         apply le2_sums2__le with C A A P A C A B; Le.
-    - apply le_transitivity with A Q; Le.
+    - apply 长度小于等于的传递性 with A Q; Le.
       apply (triangle_inequality1 A C Q).
       apply (cong3_sums__sums A C C D L2 R2); Cong.
     - destruct (ex_sums A P P C) as [R [S]].
-      apply le_transitivity with R S.
+      apply 长度小于等于的传递性 with R S.
         apply triangle_inequality1 with P; trivial.
       apply le2_sums2__le with A P P C A B C D; Le.
   }
   destruct (两点重合的决定性 A C).
   { subst C.
     exists B; split; Circle.
-    apply le_anti_symmetry.
-      apply le_transitivity with A Q; Le.
-      apply le_transitivity with A P; Le.
+    apply 长度小于等于的反对称性.
+      apply 长度小于等于的传递性 with A Q; Le.
+      apply 长度小于等于的传递性 with A P; Le.
   }
   destruct (两点重合的决定性 A B).
   { subst B.

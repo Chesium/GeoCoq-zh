@@ -13,7 +13,7 @@ intros HPPP A B C D P Q HPar HPerp HCop.
 elim HPar; clear HPar; intro HPar;
 [|spliter; apply perp_col2 with A B; auto; ColR].
 assert (HX := HPerp); destruct HX as [X HX].
-elim (col_dec C D X); intro HCDX.
+elim (共线的决定性 C D X); intro HCDX.
 
   exfalso; apply HPar; exists X; unfold 垂直于 in HX; spliter; Col.
 

@@ -85,7 +85,7 @@ Proof.
   assert(HParAB : 严格平行 A1 A2 B1 B2)
     by (apply (col_cop_perp2__pars_bis P); Col).
   apply (par_not_col_strict _ _ _ _ P) in HParAC; Col.
-  elim(col_dec C1 B1 B2); auto.
+  elim(共线的决定性 C1 B1 B2); auto.
   intro HC1NotB.
   exfalso.
   assert(P<>C1) by (intro; subst C1; Col).
@@ -115,7 +115,7 @@ Proof.
   assert(~ Col Q C1 P) by (apply (par_not_col A1 A2); auto; apply par_strict_col_par_strict with C2; Col).
   assert(HQNotB : ~ Col B1 B2 Q) by (apply one_side_not_col123 with C1; auto).
   assert(HB3 : exists B3, Col B1 B2 B3 /\ OS P Q C1 B3).
-  { destruct (col_dec P Q B1);
+  { destruct (共线的决定性 P Q B1);
     [|apply cop_not_par_same_side with P; Col; apply coplanar_perm_12, coplanar_trans_1 with B2; Col; Cop].
     assert (P = B1) by (apply (l6_21 B1 B2 Q P); Col).
     treat_equalities.
@@ -126,7 +126,7 @@ Proof.
   assert(~ Col P Q B3) by (apply (one_side_not_col123 _ _ _ C1); Side).
   assert(HA3 : exists A3, Col A1 A2 A3 /\ OS P Q C1 A3).
   { assert (共面 A1 A2 C1 P) by (apply col_cop__cop with C2; Col; Cop).
-    destruct (col_dec P Q A1);
+    destruct (共线的决定性 P Q A1);
     [|apply cop_not_par_same_side with Q; Col; apply coplanar_perm_5, col_cop__cop with A2; Col; Cop].
     assert (Q = A1) by (apply (l6_21 A1 A2 P Q); Col).
     treat_equalities.

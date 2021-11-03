@@ -10,7 +10,7 @@ Definition proj := fun  T A B P => A <> B /\ (~Col A B T /\ Perp A B T P /\ Col 
 Lemma proj_exists : forall A B T, A <> B -> exists P, proj T A B P.
 Proof.
 intros.
-induction(col_dec A B T).
+induction(共线的决定性 A B T).
 exists T.
 unfold proj.
 split.
@@ -128,7 +128,7 @@ Proof.
 intros.
 unfold proj.
 split; auto.
-induction (col_dec A B T).
+induction (共线的决定性 A B T).
 right.
 split; auto.
 
@@ -681,7 +681,7 @@ Lemma proj_one_side : forall A B A' B' P Q, A <> A' -> proj A P Q A' -> proj B P
 Proof.
 intros.
 
-induction (col_dec B A A').
+induction (共线的决定性 B A A').
 left.
 assumption.
 induction(两点重合的决定性 B B').
@@ -941,7 +941,7 @@ unfold proj in *.
 spliter.
 induction H2;
 spliter; split;auto.
-induction(col_dec P Q B).
+induction(共线的决定性 P Q B).
 right.
 split.
 assumption.
@@ -1922,7 +1922,7 @@ subst B'.
 apply 等长的同一性 in H3.
 assumption.
 
-induction(col_dec A B B').
+induction(共线的决定性 A B B').
 assert(A' <> B' /\ Col A A' B' /\ Col B A' B').
 eapply (midpoint_col _ _ _ _ M); auto.
 
@@ -2077,7 +2077,7 @@ apply H.
 Col.
 Qed.
 
-Lemma le_left_comm : forall A B C D, Le A B C D -> Le B A C D.
+Lemma 长度小于等于的左交换性 : forall A B C D, Le A B C D -> Le B A C D.
 Proof.
 intros.
 unfold Le in *.
@@ -2088,18 +2088,18 @@ assumption.
 Cong.
 Qed.
 
-Lemma le_right_comm : forall A B C D, Le A B C D -> Le A B D C.
+Lemma 长度小于等于的右交换性 : forall A B C D, Le A B C D -> Le A B D C.
 Proof.
 intros.
 induction(两点重合的决定性 D C).
 subst D.
-apply le_zero in H.
+apply AB小于等于CC推出A与B重合 in H.
 subst B.
-eapply le_trivial.
+eapply AA小于等于CD.
 
 induction(两点重合的决定性 A B).
 subst B.
-apply le_trivial.
+apply AA小于等于CD.
 
 assert(HH:=由一点往一方向构造等长线段_3 D C A B H0 H1).
 ex_and HH P'.
@@ -2111,9 +2111,9 @@ assert(Le D C A B).
 eapply l5_5_2.
 exists P'.
 split; auto.
-apply le_left_comm in H6.
+apply 长度小于等于的左交换性 in H6.
 assert(Cong A B C D).
-apply le_anti_symmetry.
+apply 长度小于等于的反对称性.
 auto.
 auto.
 unfold Le.
@@ -2128,11 +2128,11 @@ assumption.
 Cong.
 Qed.
 
-Lemma le_comm : forall A B C D, Le A B C D -> Le B A D C.
+Lemma 长度小于等于的交换性 : forall A B C D, Le A B C D -> Le B A D C.
 Proof.
 intros.
-apply le_left_comm.
-apply le_right_comm.
+apply 长度小于等于的左交换性.
+apply 长度小于等于的右交换性.
 assumption.
 Qed.
 
@@ -2175,13 +2175,13 @@ Qed.
 Lemma cong_le_le : forall A B C A' B' C', Bet A B C -> Bet A' B' C' -> Le B C B' C' -> Cong A B A' B' -> Le A C A' C'.
 Proof.
 intros.
-apply le_comm.
+apply 长度小于等于的交换性.
 eapply le_cong_le.
 apply 中间性的对称性.
 apply H.
 apply 中间性的对称性.
 apply H0.
-apply le_comm.
+apply 长度小于等于的交换性.
 assumption.
 Cong.
 Qed.
@@ -2216,7 +2216,7 @@ exists B'.
 split.
 assumption.
 apply 等长的自反性.
-eapply le_transitivity.
+eapply 长度小于等于的传递性.
 apply H7.
 assumption.
 
@@ -2228,7 +2228,7 @@ apply H0.
 assumption.
 assumption.
 auto.
-eapply le_transitivity.
+eapply 长度小于等于的传递性.
 apply H7.
 unfold Le.
 exists Y.
@@ -2250,7 +2250,7 @@ split.
 assumption.
 apply 等长的自反性.
 assert (Le B' B C' C).
-eapply l5_6.
+eapply l5_6_等长保持小于等于关系.
 apply H4.
 assumption.
 assumption.
@@ -2271,7 +2271,7 @@ apply AAB中间性.
 assert( A <> C').
 intro.
 subst C'.
-apply le_zero in H4.
+apply AB小于等于CC推出A与B重合 in H4.
 contradiction.
 
 assert(A <> B).
@@ -3545,7 +3545,7 @@ ColR.
 assumption.
 auto.
 
-induction(col_dec C B B').
+induction(共线的决定性 C B B').
 assert(C=B).
 
 eapply (l6_21 B B').

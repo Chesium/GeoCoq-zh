@@ -12,7 +12,7 @@ Lemma playfair_implies_par_trans :
 Proof.
   intros HP A1 A2 B1 B2 C1 C2 HAB HBC.
   assert_diffs.
-  destruct (cop_dec A1 A2 C1 B1) as [|HNCop]; [induction (col_dec A1 A2 C1)|].
+  destruct (cop_dec A1 A2 C1 B1) as [|HNCop]; [induction (共线的决定性 A1 A2 C1)|].
 
   - right.
     destruct (HP B1 B2 C1 C2 A1 A2 C1); repeat split; Par; Col.

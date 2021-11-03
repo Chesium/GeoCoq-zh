@@ -19,7 +19,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
   {
   clear bla.
   intros [A [B [C [HNC [H为锐角 HP]]]]]; exists A, B, C; repeat split; Col.
-  intros T H在角内; elim (col_dec A B T); intro HABT.
+  intros T H在角内; elim (共线的决定性 A B T); intro HABT.
 
     {
     assert (HNC' : ~ Col B C T)

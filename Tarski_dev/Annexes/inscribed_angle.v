@@ -141,8 +141,8 @@ Proof.
           apply HOS.
           repeat split; Col.
           exists M; split; Col.
-        - apply (le__nlt O C O M); Le.
-          apply (cong2_lt__lt O M O P); Cong.
+        - apply (长度小于等于推出反向不小于 O C O M); Le.
+          apply (等长保持小于关系 O M O P); Cong.
           apply bet_inc2__incs with A B; Circle; Between.
       }
       assert (Perp O M A B) by (apply mid_onc2__perp with P; auto).
@@ -154,15 +154,15 @@ Proof.
       }
       assert (M <> H) by (intro; subst; apply one_side_not_col124 in HOS1; apply HOS1; Col).
       assert (Per M H C) by (apply perp_per_1, perp_left_comm, perp_col with O; Col).
-      apply lt_transitivity with H C; [|suma.assert_diffs; apply l11_46; auto].
+      apply 长度小于的传递性 with H C; [|suma.assert_diffs; apply l11_46; auto].
       apply cong_lt_per2__lt_1 with O O; Cong.
         apply l8_2, per_col with M; Col; Perp.
         apply perp_per_1, perp_left_comm, perp_col1 with B; Col.
       apply bet__lt1213; auto; apply out2__bet.
         apply (acute_col_perp__out C); [apply acute_sym|..]; Col; Perp.
         apply (l9_19 A B); Col; apply one_side_transitivity with C; assumption.
-    - apply lt_transitivity with O C; [|apply l11_46; auto].
-      apply (cong2_lt__lt M A O A); Cong.
+    - apply 长度小于的传递性 with O C; [|apply l11_46; auto].
+      apply (等长保持小于关系 M A O A); Cong.
       apply l11_46; auto.
       left.
       apply mid_onc2__per with P B; auto.
@@ -256,7 +256,7 @@ Lemma inscribed_angle : forall O P A B C,
 Proof.
   intros O P A B C HA HB HC HOS.
   assert (HCong := (onc2__cong O P)).
-  destruct (col_dec A O C).
+  destruct (共线的决定性 A O C).
   { suma.assert_diffs.
     assert (Bet C O A) by (apply col_inc_onc2__bet with O P; Col; Circle).
     assert (O <> C) by (intro; treat_equalities; auto).
@@ -264,7 +264,7 @@ Proof.
       apply l6_6, bet_out; auto.
     apply bet_cong__ghalfa; auto.
   }
-  destruct (col_dec B O C).
+  destruct (共线的决定性 B O C).
   { suma.assert_diffs.
     assert (Bet C O B) by (apply col_inc_onc2__bet with O P; Col; Circle).
     assert (O <> C) by (intro; treat_equalities; auto).
@@ -337,7 +337,7 @@ Lemma inscribed_angle_1 : forall O P A B C, A <> B -> B <> C -> A <> C ->
 Proof.
   intros O P A B C HAB HBC HAC HA HB HC HCop.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
-  destruct (col_dec A B O).
+  destruct (共线的决定性 A B O).
   { assert (中点 O A B) by (apply col_onc2__mid with P; auto).
     assert (Per A C B) by (apply thales_theorem with O; auto; apply 等长的传递性 with O P; Cong).
     suma.assert_diffs; apply bet_per2__suma; Between.
@@ -392,7 +392,7 @@ Lemma cop_onc4_os__conga : forall O P A B C C',
 Proof.
   intros O P A B C C' HA HB HC HC' HOS HCop.
   assert_ncols.
-  destruct (col_dec A B O).
+  destruct (共线的决定性 A B O).
   { suma.assert_diffs.
     assert (中点 O A B) by (apply col_onc2__mid with P; auto).
     apply l11_16; auto; apply thales_theorem with O; Col; apply 等长的传递性 with O P; Cong.
@@ -434,7 +434,7 @@ Proof.
   }
   intros C C' HC HC' HTS HCop.
   assert (~ Col C A B) by (destruct HTS; assumption).
-  destruct (col_dec A B O).
+  destruct (共线的决定性 A B O).
   { suma.assert_diffs.
     assert (中点 O A B) by (apply col_onc2__mid with P; auto).
     destruct HTS as [_ []].
@@ -553,7 +553,7 @@ Proof.
   assert (HNCol : ~ Col A B C) by (apply one_side_not_col123 with D, HOS).
   assert (HCong := onc2__cong O P).
   assert (HCong' := onc2__cong O' P').
-  destruct (col_dec A B O) as [|HNCol1].
+  destruct (共线的决定性 A B O) as [|HNCol1].
   { suma.assert_diffs.
     assert (中点 O A B) by (apply col_onc2__mid with P; assumption).
     apply (l7_17 A B); trivial.

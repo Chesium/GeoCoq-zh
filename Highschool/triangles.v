@@ -73,7 +73,7 @@ assert (A<>H).
  apply (l11_46 B A C);Col; left;apply perp_per_2;auto.
  spliter.
  unfold isosceles in *.
- apply (cong__nlt A B B C);auto.
+ apply (等长推出不小于 A B B C);auto.
  }
 assert (C<>H).
  {
@@ -83,7 +83,7 @@ assert (C<>H).
  apply (l11_46 B C A);Col; left;apply perp_per_2;finish.
  spliter.
  unfold isosceles in *.
- apply (cong__nlt C B B A);finish.
+ apply (等长推出不小于 C B B A);finish.
  } 
 assert (垂直于 H A C B H)
  by (apply l8_14_2_1b_bis;finish).

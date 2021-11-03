@@ -121,7 +121,7 @@ Proof.
     intro; apply HNCol2; ColR.
     apply (l11_10 D O C D O E); 等角; try (apply out_trivial; auto); apply bet_out; auto.
     apply conga_trans with A D O; trivial.
-  apply (cong2_lt__lt D F D E); Cong.
+  apply (等长保持小于关系 D F D E); Cong.
   assert (HNCol4 : ~ Col E D F).
   { intro; elim (两点重合的决定性 E F); intro; [|apply HNCol3; ColR].
     treat_equalities.
@@ -263,11 +263,11 @@ Proof.
       exists A''; repeat (split; 等角); Cop.
   }
   assert (HLe'' : Le A0 A1 A' A'').
-    apply le_transitivity with A A'; trivial; assert_diffs.
-    apply lt__le, acute_archi_aux with O A0 B; eBetween.
+    apply 长度小于等于的传递性 with A A'; trivial; assert_diffs.
+    apply 长度小于蕴含小于等于, acute_archi_aux with O A0 B; eBetween.
   exists A''; repeat (split; trivial).
     apply bet2_le2__le1346 with C A'; auto.
-    apply (l5_6 A0 A1 A' A''); Cong.
+    apply (l5_6_等长保持小于等于关系 A0 A1 A' A''); Cong.
   exists A'; split; trivial; split; trivial.
   apply conga_trans with A O A'; 等角.
 Qed.
@@ -280,7 +280,7 @@ Lemma archi_in_acute_angles :
 Proof.
   intros archi A B C D E F HNCol H为锐角.
   assert_diffs.
-  elim (col_dec D E F).
+  elim (共线的决定性 D E F).
   { intro HCol; exists A; exists B; exists C; split.
       apply 角度线性刻度_初始化; 等角.
     apply l11_31_1; auto; apply not_bet_out; trivial.
@@ -320,9 +320,9 @@ Proof.
     assert_diffs; apply (l11_30 D0 E F P Q R); 等角.
   exfalso.
   destruct Habs as [A' [HBet2 [HBet3 [HConga3 [HLe HA]]]]].
-  apply (le__nlt D0 F' D0 G); trivial.
-  apply le1234_lt__lt with D0 F.
-    apply le_transitivity with D0 A'; Le.
+  apply (长度小于等于推出反向不小于 D0 F' D0 G); trivial.
+  apply 长度小于等于_小于_传递性 with D0 F.
+    apply 长度小于等于的传递性 with D0 A'; Le.
   split; Le.
   intro HCong.
   assert (F = F') by (apply between_cong with D0; trivial).
@@ -361,7 +361,7 @@ Proof.
   destruct (angle_bisector D E F) as [F1 [HInangle HConga]]; auto.
   assert(HNOS : ~ OS E F1 D F).
   { assert_diffs.
-    elim (col_dec D E F1).
+    elim (共线的决定性 D E F1).
       intros HCol; apply col123__nos; Col.
     intro HNCol1.
     apply l9_9, invert_two_sides, in_angle_two_sides; Col.
@@ -373,10 +373,10 @@ Proof.
     assert_diffs; split; trivial; split.
       right; intro HBet; apply HNBet, bet_in_angle_bet with F1; trivial.
     exists F; repeat (split; 等角); Cop.
-    elim (col_dec D E F1).
+    elim (共线的决定性 D E F1).
       intros HCol HTS; destruct HTS; Col.
     intro HNCol1.
-    elim (col_dec D E F).
+    elim (共线的决定性 D E F).
       intros HCol HTS; destruct HTS as [_ []]; Col.
     intro HNCol2; apply l9_9_bis, in_angle_one_side; Col.
   }
@@ -399,7 +399,7 @@ Lemma archi_in_angles :
     exists P Q R, 角度在线性刻度上 A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ 角度之和小于平角 P Q R A B C).
 Proof.
   intros archi A B C D E F HNCol HDE HFE.
-  elim (bet_dec D E F); [|apply angles_archi_aux1; trivial].
+  elim (中间性的决定性 D E F); [|apply angles_archi_aux1; trivial].
   intro HBet1.
   destruct (由一点往一方向构造等长线段 A B A B) as [A0 [HBet HCong]].
   assert_diffs.

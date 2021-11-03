@@ -184,8 +184,8 @@ Ltac permutation_intro_in_goal :=
  | |- Bet ?A ?B ?C => apply 中间性的各排列情况
  | |- Cong ?A ?B ?C ?D => apply 等长的各排列情况
  | |- Out ?A ?B ?C => apply Out_cases
- | |- Le ?A ?B ?C ?D => apply Le_cases
- | |- Lt ?A ?B ?C ?D => apply Lt_cases
+ | |- Le ?A ?B ?C ?D => apply 长度大于等于的各排列情况
+ | |- Lt ?A ?B ?C ?D => apply 长度大于的各排列情况
  end.
 
 Ltac perm_apply t :=
@@ -234,7 +234,7 @@ repeat
    | H : Bet ?X1 ?X2 ?X1 |- _ =>
       apply 中间性的同一律 in H;smart_subst X2
    | H : Le ?X1 ?X2 ?X3 ?X3 |- _ =>
-      apply le_zero in H;smart_subst X2
+      apply AB小于等于CC推出A与B重合 in H;smart_subst X2
    | H : 中点 ?X ?Y ?Y |- _ => apply l7_3 in H; smart_subst Y
    | H : 中点 ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
    | H : 中点 ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
@@ -2251,13 +2251,13 @@ repeat
 
       | H:Le ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D H2 H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D H2 H);clean_reap_hyps
       | H:Le ?A ?B ?C ?D, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D (swap_diff B A H2) H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D (swap_diff B A H2) H);clean_reap_hyps
       | H:Lt ?A ?B ?C ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= lt_diff A B C D H);clean_reap_hyps
+        assert (T:= 小于推出不重合 A B C D H);clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
@@ -3697,7 +3697,7 @@ apply H18.
 left.
 assumption.
 
-induction(col_dec A E F).
+induction(共线的决定性 A E F).
 induction H30.
 apply False_ind.
 apply H30.

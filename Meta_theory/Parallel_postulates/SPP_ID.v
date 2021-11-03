@@ -10,11 +10,11 @@ Lemma strong_parallel_postulate_implies_inter_dec :
   decidability_of_intersection.
 Proof.
 intros HSPP S Q P U.
-elim (col_dec P Q S); intro HPQS; [left; exists P; Col|].
+elim (共线的决定性 P Q S); intro HPQS; [left; exists P; Col|].
 elim (两点重合的决定性 P U); intro HPU; treat_equalities; [left; exists Q; Col|].
 assert (H := midpoint_existence P Q); destruct H as [T [HPTQ HCong1]].
 assert (H := symmetric_point_construction S T); destruct H as [R [HRTS HCong2]].
-elim (col_dec P R U); intro HPRU.
+elim (共线的决定性 P R U); intro HPRU.
 
   {
   assert (HPar : 严格平行 Q S P U).

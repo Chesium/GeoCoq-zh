@@ -273,13 +273,13 @@ repeat
 
       | H:Le ?A ?B ?C ?D, H2 : ?A <> ?B |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D H2 H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D H2 H);clean_reap_hyps
       | H:Le ?A ?B ?C ?D, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= le_diff A B C D (swap_diff B A H2) H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D (swap_diff B A H2) H);clean_reap_hyps
       | H:Lt ?A ?B ?C ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= lt_diff A B C D H);clean_reap_hyps
+        assert (T:= 小于推出不重合 A B C D H);clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
@@ -543,7 +543,7 @@ Qed.
 Lemma perp_dec : forall A B C D, Perp A B C D \/ ~ Perp A B C D.
 Proof.
     intros.
-    induction (col_dec A B C).
+    induction (共线的决定性 A B C).
       induction (perp_in_dec C A B C D).
         left.
         apply l8_14_2_1a with C;auto.
@@ -563,7 +563,7 @@ Proof.
       intro.
       assert (A <> B /\ D <> D) by (apply perp_distinct;assumption).
       intuition.
-    induction (col_dec P C D).
+    induction (共线的决定性 P C D).
       left.
       assert (A <> B /\ C <> P) by (apply perp_distinct;assumption).
       spliter.
@@ -647,7 +647,7 @@ Proof.
     assert(A1 <> A2 /\ C1 <> C2) by (apply perp_distinct;assumption).
     assert(B1 <> B2 /\ C1 <> C2) by (apply perp_distinct;assumption).
     spliter.
-    induction(col_dec A1 B1 B2).
+    induction(共线的决定性 A1 B1 B2).
       right.
       repeat split; auto.
       apply col_cop2_perp2__col with A1 C1 C2; auto.
@@ -676,7 +676,7 @@ Lemma parallel_existence : forall A B P, A <> B ->
  exists C, exists D, C<>D /\ Par A B C D /\ Col P C D.
 Proof.
     intros.
-    induction(col_dec A B P).
+    induction(共线的决定性 A B P).
       exists A.
       exists B.
       repeat split.
@@ -1105,7 +1105,7 @@ Qed.
 Lemma line_dec : forall B1 B2 C1 C2, (Col C1 B1 B2 /\ Col C2 B1 B2) \/ ~ (Col C1 B1 B2 /\ Col C2 B1 B2).
 Proof.
     intros.
-    induction (col_dec C1 B1 B2); induction (col_dec C2 B1 B2);tauto.
+    induction (共线的决定性 C1 B1 B2); induction (共线的决定性 C2 B1 B2);tauto.
 Qed.
 
 Lemma par_distinct : forall A B C D, Par A B C D -> A <> B /\ C <> D.
@@ -1268,7 +1268,7 @@ Lemma l12_17 : forall A B C D P,
  A <> B -> 中点 P A C -> 中点 P B D -> Par A B C D.
 Proof.
     intros.
-    induction(col_dec A B P).
+    induction(共线的决定性 A B P).
       unfold Par.
       right.
       induction(两点重合的决定性 A P).
@@ -2126,7 +2126,7 @@ Proof.
       assert (Col P' B C) by (apply (col_conga_col P' B A); assumption).
       apply HNCol1; ColR.
     assert (共面 A B T P') by (apply coplanar_trans_1 with C; Cop; Col).
-    destruct (col_dec T B P'); [|assert_diffs; destruct (cop__one_or_two_sides B P' A T); Col; Cop].
+    destruct (共线的决定性 T B P'); [|assert_diffs; destruct (cop__one_or_two_sides B P' A T); Col; Cop].
     - apply l11_31_1; auto.
       apply col_one_side_out with A; Col.
       apply invert_one_side, inangle_one_side with C; Col.
@@ -2139,7 +2139,7 @@ Proof.
       intro; apply HNCol1, 中间性蕴含共线, bet_in_angle_bet with T; trivial.
       apply col_two_sides_bet with P'; Col.
     - apply lea_left_comm, inangle__lea.
-      destruct (col_dec B A T).
+      destruct (共线的决定性 B A T).
         apply out341__inangle; auto.
         apply col_one_side_out with P'; assumption.
       apply os2__inangle; trivial.
@@ -2242,7 +2242,7 @@ Proof.
         assumption.
       apply l9_9 in H.
       contradiction.
-    induction (bet_dec A B C).
+    induction (中间性的决定性 A B C).
       assert(Per P B A).
         apply(l11_18_2 P B A C); auto.
         apply conga_comm.

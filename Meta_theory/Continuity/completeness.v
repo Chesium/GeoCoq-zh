@@ -113,14 +113,14 @@ Proof.
   unfold extension, inj, pres_bet, pres_cong in fext'; spliter.
   destruct (@midpoint_existence Tn TnEQD P Q) as [S HS].
   assert_diffs.
-  destruct (col_dec (f R) (f S) A).
+  destruct (共线的决定性 (f R) (f S) A).
   { assert (HB : exists B, Col R S B /\ f B = A).
       assert (R <> S) by (intro; subst; apply HNCol; Col).
       apply lc; auto.
     destruct HB as [B []].
     exists B; split; [exists S; left; split|]; Col.
   }
-  destruct (col_dec (f P) (f Q) A).
+  destruct (共线的决定性 (f P) (f Q) A).
   { assert (HB : exists B, Col P Q B /\ f B = A) by (apply lc; auto).
     destruct HB as [B []].
     exists B; split; Cop.
@@ -167,7 +167,7 @@ Proof.
   assert (~ Col P Q R) by (apply ncop__ncol with S, HNCop).
   assert (Haux : forall X, (exists B, 共面 P Q X B /\ f B = A) -> exists B, f B = A).
     intros X [B []]; exists B; assumption.
-  destruct (col_dec (f P) (f Q) A).
+  destruct (共线的决定性 (f P) (f Q) A).
     apply (Haux R), line_completeness_aux; Cop.
   assert (pi : plane_intersection_axiom).
   { cut 三维防升维公理_axiom.
@@ -276,13 +276,13 @@ Proof.
   destruct (Haux R S) as [R' [HGrad HLe]]; Col.
     intro; treat_equalities; auto.
   assert (Bet Q R R') by (apply grad__bet, HGrad).
-  assert (HB' : Le A B Q R') by (apply le_transitivity with Q R; Le).
+  assert (HB' : Le A B Q R') by (apply 长度小于等于的传递性 with Q R; Le).
   apply l5_5_1 in HB'.
   destruct HB' as [B' []].
   exists B'; split.
     apply (grad2__grad456 Q R R'), bet_cong2_grad__grad2; trivial.
     apply l4_3_1 with Q A; Cong.
-  apply (l5_6 Q S Q R'); Cong.
+  apply (l5_6_等长保持小于等于关系 Q S Q R'); Cong.
 Qed.
 
 Lemma not_archimedes__line_completeness : ~ archimedes_axiom -> line_completeness.
@@ -314,7 +314,7 @@ Proof.
   }
   rename C into C0'.
   destruct (两点重合的决定性 Q S).
-    subst; exists R; split; [apply 线性刻度_初始化|apply le_trivial].
+    subst; exists R; split; [apply 线性刻度_初始化|apply AA小于等于CD].
   assert (Hd : Bet (f Q) (f S) C0' \/ Bet (f Q) C0' (f S)).
   { destruct (两点重合的决定性 C0' (f Q)); [subst; Between|].
     apply l6_7 with C'.
@@ -335,8 +335,8 @@ Proof.
     destruct (两点重合的决定性 C0' (f S)); [subst; Between|].
     apply 中间性的对称性, l6_13_1.
       apply bet2__out with (f Q); try apply 中间性的对称性; Col.
-    apply (l5_6 (f S) C0' C0' C').
-      apply le_left_comm, bet__le1213, (中间性的交换传递性1 (f Q)); assumption.
+    apply (l5_6_等长保持小于等于关系 (f S) C0' C0' C').
+      apply 长度小于等于的左交换性, bet__le1213, (中间性的交换传递性1 (f Q)); assumption.
       Cong.
       apply 等长的对称性, 等长的传递性 with (f Q) (f R); Col.
   }
@@ -360,7 +360,7 @@ Proof.
   assert (Bet Q S0 C) by (apply 中间性的交换传递性2 with C0; assumption).
   apply l6_13_1.
     apply l6_2 with Q; Between; intro; treat_equalities; auto.
-  apply le_right_comm; exists C0; split.
+  apply 长度小于等于的右交换性; exists C0; split.
     apply 中间性的内传递性1 with Q; Between.
     apply 等长的传递性 with  Q R; Cong.
 Qed.
