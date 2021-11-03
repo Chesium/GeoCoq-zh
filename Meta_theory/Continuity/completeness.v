@@ -1,6 +1,6 @@
 Require Import GeoCoq.Axioms.continuity_axioms.
-Require Import GeoCoq.Meta_theory.Dimension_axioms.防升维公理_2.
-Require Import GeoCoq.Meta_theory.Dimension_axioms.三维防升维公理.
+Require Import GeoCoq.Meta_theory.Dimension_axioms.upper_dim_2.
+Require Import GeoCoq.Meta_theory.Dimension_axioms.upper_dim_3.
 Require Import GeoCoq.Meta_theory.Continuity.grad.
 
 Section Extension.

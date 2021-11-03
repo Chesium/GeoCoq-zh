@@ -5,7 +5,7 @@ Require Import GeoCoq.Axioms.gupta_inspired_variant_axioms.
 Require Import GeoCoq.Meta_theory.Models.gupta_inspired_to_tarski.
 Require Import GeoCoq.Tactics.Coinc.tactics_axioms.
 Require Import GeoCoq.Tactics.Coinc.ColR.
-Require Import GeoCoq.Meta_theory.Dimension_axioms.三维防升维公理.
+Require Import GeoCoq.Meta_theory.Dimension_axioms.upper_dim_3.
 Require Import GeoCoq.Meta_theory.Parallel_postulates.parallel_postulates.
 Require Import GeoCoq.Axioms.hilbert_axioms.
 

@@ -1,4 +1,4 @@
-Require Import GeoCoq.Meta_theory.Dimension_axioms.防升维公理_2.
+Require Import GeoCoq.Meta_theory.Dimension_axioms.upper_dim_2.
 Require Export GeoCoq.Tarski_dev.Ch10_line_reflexivity.
 
 Section T10_1.

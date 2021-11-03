@@ -3,7 +3,7 @@ Require Import GeoCoq.Axioms.hilbert_axioms.
 Require Import GeoCoq.Axioms.parallel_postulates.
 Require Import GeoCoq.Meta_theory.Parallel_postulates.tarski_playfair.
 Require Import GeoCoq.Meta_theory.Parallel_postulates.SPP_ID.
-Require Import GeoCoq.Meta_theory.Dimension_axioms.三维防升维公理.
+Require Import GeoCoq.Meta_theory.Dimension_axioms.upper_dim_3.
 Require Import GeoCoq.Meta_theory.Parallel_postulates.parallel_postulates.
 
 Require Export GeoCoq.Utils.triples.
