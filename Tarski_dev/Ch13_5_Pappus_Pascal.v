@@ -621,9 +621,9 @@ Proof.
       apply H.
       Col.
     assert(Col O A C).
-      apply (col_transitivity_1 _ B); Col.
+      apply (共线的传递性2 _ B); Col.
     assert(Col O A' C').
-      apply (col_transitivity_1 _ B'); Col.
+      apply (共线的传递性2 _ B'); Col.
     assert(Bet C A O \/ Bet A C O \/ Bet O C B \/ Bet O B C).
       apply(fourth_point A O B C); auto.
       ColR.
@@ -738,7 +738,7 @@ Proof.
             split; Col.
           spliter.
           Col.
-        apply (l6_21 O C' C B'); Col.
+        apply (l6_21_两线交点的唯一性 O C' C B'); Col.
           intro.
           apply H.
 ColR.
@@ -765,8 +765,8 @@ ColR.
 ColR.
   (*        assert(Col O A B').
 
-            apply (col_transitivity_1 _ C); Col.
-          apply (col_transitivity_1 _ B'); Col.
+            apply (共线的传递性2 _ C); Col.
+          apply (共线的传递性2 _ B'); Col.
         apply perp2_sym.
         auto.*)
       assert(Bet A' O C').
@@ -919,9 +919,9 @@ Proof.
     assert(HH8:= H8).
     assert(HH9:= H9).
     assert(Col O A C).
-      apply (col_transitivity_1 _ B); Col.
+      apply (共线的传递性2 _ B); Col.
     assert(Col O A' C').
-      apply (col_transitivity_1 _ B'); Col.
+      apply (共线的传递性2 _ B'); Col.
     assert(A <> O).
       intro.
       subst A.
@@ -930,7 +930,7 @@ Proof.
     assert(~ Col A B' O).
       intro.
       apply H.
-      apply (col_transitivity_1 _ B'); Col.
+      apply (共线的传递性2 _ B'); Col.
     apply perp2_perp_in in HH8.
       ex_and HH8 L.
       ex_and H14 L'.
@@ -985,19 +985,19 @@ Proof.
           intro.
           apply H.
           assert(Col O A B').
-            eapply (col_transitivity_1 _ B); Col.
-          eapply (col_transitivity_1 _ B'); Col.
+            eapply (共线的传递性2 _ B); Col.
+          eapply (共线的传递性2 _ B'); Col.
         assert(~ Col O C C').
           intro.
           apply H.
           assert(Col O A C').
-            eapply (col_transitivity_1 _ C); Col.
-          eapply (col_transitivity_1 _ C'); Col.
+            eapply (共线的传递性2 _ C); Col.
+          eapply (共线的传递性2 _ C'); Col.
         assert(exists a, 锐角谓词 a /\ Lcos ll lb a /\ Lcos ll' lc a).
           induction(两点重合的决定性 B L).
             subst L.
             assert(C = L').
-              eapply (l6_21 O B B' L'); Col.
+              eapply (l6_21_两线交点的唯一性 O B B' L'); Col.
               intro.
               subst L'.
               contradiction.
@@ -1022,9 +1022,9 @@ Proof.
             intro.
             subst L'.
             assert(Col O B L).
-              eapply (col_transitivity_1 _ C); Col.
+              eapply (共线的传递性2 _ C); Col.
             apply H52.
-            apply(l6_21 O C C' B B L); Col.
+            apply(l6_21_两线交点的唯一性 O C C' B B L); Col.
             intro.
             subst C'.
             unfold 垂直于 in H17.
@@ -1035,7 +1035,7 @@ Proof.
           induction(两点重合的决定性 C' L).
             subst L.
             assert(B' = L').
-              eapply (l6_21 O C' C L'); Col.
+              eapply (l6_21_两线交点的唯一性 O C' C L'); Col.
               intro.
               subst L'.
               apply H51.
@@ -1061,9 +1061,9 @@ Proof.
             intro.
             subst L'.
             assert(Col O C' L).
-              eapply (col_transitivity_1 _ B'); Col.
+              eapply (共线的传递性2 _ B'); Col.
             apply H55.
-            apply(l6_21 O B' B C' C' L); Col.
+            apply(l6_21_两线交点的唯一性 O B' B C' C' L); Col.
             intro.
             subst C'.
             unfold 垂直于 in H17.
@@ -1074,7 +1074,7 @@ Proof.
           induction (两点重合的决定性 C M).
             subst M.
             assert(A = M').
-              eapply (l6_21 O C C' M'); Col.
+              eapply (l6_21_两线交点的唯一性 O C C' M'); Col.
               intro.
               subst M'.
               contradiction.
@@ -1099,9 +1099,9 @@ Proof.
             intro.
             subst M'.
             assert(Col O C M).
-              eapply (col_transitivity_1 _ A); Col.
+              eapply (共线的传递性2 _ A); Col.
             apply H58.
-            apply(l6_21 O A A' C C M); Col.
+            apply(l6_21_两线交点的唯一性 O A A' C C M); Col.
             intro.
             subst A'.
             unfold 垂直于 in H22.
@@ -1112,7 +1112,7 @@ Proof.
           induction(两点重合的决定性 A' M).
             subst M.
             assert(C' = M').
-              eapply (l6_21 O A' A M'); Col.
+              eapply (l6_21_两线交点的唯一性 O A' A M'); Col.
               intro.
               subst M'.
               apply H.
@@ -1142,9 +1142,9 @@ Proof.
             intro.
             subst M'.
             assert(Col O A' M).
-              eapply (col_transitivity_1 _ C'); Col.
+              eapply (共线的传递性2 _ C'); Col.
             apply H61.
-            apply(l6_21 O C' C A' A' M); Col.
+            apply(l6_21_两线交点的唯一性 O C' C A' A' M); Col.
             intro.
             subst A'.
             unfold 垂直于 in H22.
@@ -1648,13 +1648,13 @@ Proof.
         split; Col.
       spliter.
       assert(A' =  C').
-        eapply (l6_21 A C' O' A'); Col.
+        eapply (l6_21_两线交点的唯一性 A C' O' A'); Col.
         intro.
         apply H9.
         exists A.
         split.
           Col.
-        eapply (col_transitivity_1 _ C').
+        eapply (共线的传递性2 _ C').
           intro.
           subst C'.
           apply H9.
@@ -1673,7 +1673,7 @@ Proof.
         split; Col.
       spliter.
       apply H13.
-      eapply (l6_21 A A' O A); Col.
+      eapply (l6_21_两线交点的唯一性 A A' O A); Col.
     assert(严格平行 A C A' C').
       split.
         Cop.
@@ -1692,7 +1692,7 @@ Proof.
     induction(两点重合的决定性 B C).
       subst C.
       assert(B' = C').
-        eapply (l6_21 B C' A' C').
+        eapply (l6_21_两线交点的唯一性 B C' A' C').
           intro.
           apply H9.
           exists B.
@@ -1721,7 +1721,7 @@ Proof.
         split; Col.
       spliter.
       apply H17.
-      eapply (l6_21 A C B' B).
+      eapply (l6_21_两线交点的唯一性 A C B' B).
         intro.
         induction H6.
           apply H6.

@@ -380,7 +380,7 @@ Proof.
     assert (P=x).
       unfold 五线段形式 in *.
       spliter.
-      apply (l6_21 A C B D); Col.
+      apply (l6_21_两线交点的唯一性 A C B D); Col.
     subst x.
     unfold 三角形全等 in *;spliter.
     split;apply l7_20_bis;Col;Cong.
@@ -783,7 +783,7 @@ Proof.
       subst R.
       clean_duplicated_hyps.
       assert (Col B A C).
-        apply col_transitivity_1 with X; Col.
+        apply 共线的传递性2 with X; Col.
         intro.
         apply 等长的对称性 in H12.
         apply 等长的同一性 in H12.
@@ -803,7 +803,7 @@ Proof.
       apply H0.
       apply 等价共线BAC.
       assumption.
-    eapply (l6_21 A Q B P R R' ).
+    eapply (l6_21_两线交点的唯一性 A Q B P R R' ).
       intro.
       unfold Col in H23.
       induction H23.
@@ -1191,7 +1191,7 @@ apply 等长的对称性 in H0.
 apply 等长的同一性 in H0.
 subst D.
 Col.
-eapply (col3 A B); Col.
+eapply (共线的传递性4 A B); Col.
 
 CongR.
 

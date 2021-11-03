@@ -102,7 +102,7 @@ destruct(两点重合的决定性 A B).
   destruct (由一点往一方向构造等长线段 Q O O P) as [Q' [HQ'1 HQ'2]].
   assert (HQQ' : Q <> Q') by (intro; treat_equalities; auto).
   apply HQQ', HQUnique; split; Col.
-destruct (diff_col_ex3 A B O) as [C [HOC [HAC [HBC HColC]]]]; Col.
+destruct (每组共线三点都有另一共线点 A B O) as [C [HOC [HAC [HBC HColC]]]]; Col.
 destruct (diam_points O P C) as [Q1 [Q2 [HBet [HQ1Q2C [HQ1On HQ2On]]]]].
 assert (HQ1Q2 : Q1 <> Q2).
   intro; treat_equalities; auto.

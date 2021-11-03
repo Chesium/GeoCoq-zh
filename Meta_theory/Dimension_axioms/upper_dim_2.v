@@ -148,7 +148,7 @@ assert(Y0 = Z0).
   apply perp_sym.
   assumption.
 subst Z0.
-eapply (col_transitivity_1 _ Y0).
+eapply (共线的传递性2 _ Y0).
   intro.
   subst Y0.
   contradiction.

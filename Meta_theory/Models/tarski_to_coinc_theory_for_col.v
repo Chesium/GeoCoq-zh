@@ -58,7 +58,7 @@ unfold diff.
 simpl in *.
 intros COL DIFF HCol HDiff.
 destruct HCol as [HCol1 [HCol2 HCol3]].
-apply col3 with (fst DIFF) (snd DIFF); Col.
+apply 共线的传递性4 with (fst DIFF) (snd DIFF); Col.
 Qed.
 
 Global Instance Tarski_is_a_Arity_for_col : Arity.

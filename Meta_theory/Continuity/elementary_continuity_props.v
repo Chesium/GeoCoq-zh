@@ -32,7 +32,7 @@ Proof.
       treat_equalities.
       exists A; Cong.
     assert (HPIn : 在圆上或圆内 P A B) by (apply bet__le1213; assumption).
-    destruct (diff_col_ex3 U V P) as [W [HUW [HVW [HPW HCol2]]]]; trivial.
+    destruct (每组共线三点都有另一共线点 U V P) as [W [HUW [HVW [HPW HCol2]]]]; trivial.
     destruct (两点重合的决定性 A P).
     { subst P.
       destruct (由一点往一方向构造等长线段 W A A B) as [Q [HQ1 HQ2]].
@@ -160,7 +160,7 @@ Proof.
       exists B; split; Circle.
     destruct (两点重合的决定性 A P).
       subst P.
-      destruct (diff_col_ex3 U V A) as [W [HUW [HVW [HPW HCol2]]]]; trivial.
+      destruct (每组共线三点都有另一共线点 U V A) as [W [HUW [HVW [HPW HCol2]]]]; trivial.
       destruct (由一点往一方向构造等长线段 W A A B) as [Z [HZ1 HZ2]].
       exists Z; split; trivial; ColR.
     destruct (l10_6_existence U V A) as [C HC].

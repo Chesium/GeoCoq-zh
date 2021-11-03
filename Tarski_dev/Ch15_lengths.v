@@ -373,7 +373,7 @@ apply out_col in H3.
 apply 中间性蕴含共线 in H9.
 apply 等价共线CAB.
 
-apply (col_transitivity_1 _ CD); Col.
+apply (共线的传递性2 _ CD); Col.
 induction H3.
 subst M.
 assumption.
@@ -1616,7 +1616,7 @@ exists A.
 split; Col.
 spliter.
 assert(C=D).
-apply(l6_21 P C A C); Col.
+apply(l6_21_两线交点的唯一性 P C A C); Col.
 subst D.
 assert(A1=B1).
 apply (length_uniqueness O E E' P A);auto.
@@ -1696,7 +1696,7 @@ unfold TS in H23.
 spliter.
 apply H23.
 apply 等价共线CAB.
-apply (col_transitivity_1 _ C1).
+apply (共线的传递性2 _ C1).
 intro.
 subst C1.
 treat_equalities.
@@ -1864,7 +1864,7 @@ apply False_ind.
 apply H24.
 apply out_col in H27.
 apply 等价共线CAB.
-apply (col_transitivity_1 _ N).
+apply (共线的传递性2 _ N).
 intro.
 subst N.
 apply 等长的对称性 in H13.
@@ -1898,7 +1898,7 @@ spliter.
 apply 中间性蕴含共线 in H24.
 apply out_col in H31.
 apply out_col in H27.
-eapply (col_transitivity_1 _ D1').
+eapply (共线的传递性2 _ D1').
 intro.
 subst D1'.
 apply 等长的同一性 in H32.
@@ -1914,7 +1914,7 @@ apply H2.
 ColR.
 subst B.
 tauto.
-apply(col_transitivity_1 _ D1).
+apply(共线的传递性2 _ D1).
 intro.
 subst D1.
 treat_equalities.
@@ -1941,7 +1941,7 @@ treat_equalities.
 apply HN.
 apply out_col in H31.
 apply out_col in H27.
-apply (col_transitivity_1 _ D1).
+apply (共线的传递性2 _ D1).
 intro.
 subst D1.
 treat_equalities.
@@ -1966,7 +1966,7 @@ apply False_ind.
 apply out_col in H31.
 apply out_col in H27.
 apply HN.
-apply (col_transitivity_1 _ D1).
+apply (共线的传递性2 _ D1).
 intro.
 subst D1.
 treat_equalities.
@@ -2173,7 +2173,7 @@ exists A.
 split; Col.
 spliter.
 apply H3.
-apply (l6_21 P B A C); Col.
+apply (l6_21_两线交点的唯一性 P B A C); Col.
 intro.
 apply H2.
 ColR.

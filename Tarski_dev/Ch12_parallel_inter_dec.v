@@ -89,7 +89,7 @@ Proof.
     induction 1.
     apply (par_not_col A1 A2 B1 B2 X); Col.
     spliter.
-    apply H0, (col3 B1 B2); Col.
+    apply H0, (共线的传递性4 B1 B2); Col.
 Qed.
 
 Lemma l12_16 : forall A1 A2 B1 B2 C1 C2 X,
@@ -163,18 +163,18 @@ Proof.
       apply par_id.
       Par.
     assert(D = D').
-      assert_diffs; apply (l6_21 A D C D); Col.
+      assert_diffs; apply (l6_21_两线交点的唯一性 A D C D); Col.
         intro.
         apply H.
         assert(Col P C D).
           apply 等价共线CAB.
-          apply (col_transitivity_1 _ A); Col.
+          apply (共线的传递性2 _ A); Col.
         assert(Col P C D').
           apply 等价共线CAB.
-          apply (col_transitivity_1 _ D); Col.
+          apply (共线的传递性2 _ D); Col.
         assert(Col P A D').
-          apply (col_transitivity_1 _ C); Col.
-        apply (col3 P D'); Col.
+          apply (共线的传递性2 _ C); Col.
+        apply (共线的传递性4 P D'); Col.
         intro; treat_equalities; Col5.
     subst D'.
     split.
@@ -429,7 +429,7 @@ Proof.
         intro.
         apply H.
         assert_diffs.
-        eapply (col_transitivity_1 _ B0); Col.
+        eapply (共线的传递性2 _ B0); Col.
         apply ABB型共线.
       apply bet_out.
         intro.
@@ -440,7 +440,7 @@ Proof.
       eapply out_one_side_1.
         intro.
         apply H.
-        eapply (col_transitivity_1 _ B0); Col.
+        eapply (共线的传递性2 _ B0); Col.
           intro.
           treat_equalities.
           Col.

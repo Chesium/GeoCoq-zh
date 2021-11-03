@@ -21,14 +21,14 @@ intro hrap.
 intros A1 A2 B1 B2 C1 C2 Q P R M HPerpAB HPerpAC.
 intros HCol1 HCol2 HCol3 HCol4 HCol5 HCop1 HCop2 HNC HM1 HM2.
 assert_diffs.
-assert (HNCol1 : ~ Col A1 A2 R) by (intro; apply HNC, (col3 A1 A2); auto).
-assert (HNCol2 : ~ Col B1 B2 P) by (intro; apply HNC, (col3 B1 B2); auto).
+assert (HNCol1 : ~ Col A1 A2 R) by (intro; apply HNC, (共线的传递性4 A1 A2); auto).
+assert (HNCol2 : ~ Col B1 B2 P) by (intro; apply HNC, (共线的传递性4 B1 B2); auto).
 assert (HPar : 严格平行 B1 B2 C1 C2).
   {
   apply par_not_col_strict with P; Col.
   assert (Col A1 P Q /\ Col A2 P Q /\ Col B1 R Q /\ Col B2 R Q)
-    by (repeat split; [apply col_transitivity_1 with A2|apply (col_transitivity_2 A1)
-                      |apply col_transitivity_1 with B2|apply (col_transitivity_2 B1)]; auto).
+    by (repeat split; [apply 共线的传递性2 with A2|apply (共线的传递性3 A1)
+                      |apply 共线的传递性2 with B2|apply (共线的传递性3 B1)]; auto).
   spliter.
   assert (共面 Q P R A1) by Cop.
   assert (共面 Q P R A2) by Cop.
@@ -52,7 +52,7 @@ assert (H为锐角 : 为锐角 P Q M).
   apply sams_lea2__sams with P Q R P Q R; 和角.
 }
 assert (HC3 : exists C3, Col C1 C2 C3 /\ OS P Q R C3).
-{ destruct (diff_col_ex3 C1 C2 P) as [C0]; Col; spliter.
+{ destruct (每组共线三点都有另一共线点 C1 C2 P) as [C0]; Col; spliter.
   destruct (cop_not_par_same_side P Q C0 P P R) as [C3 []]; Col.
     intro; apply HNCol3; ColR.
     apply coplanar_perm_1, col_cop2__cop with C1 C2; Col; Cop.
@@ -65,7 +65,7 @@ destruct (hrap P Q M P Q R P C3) as [S [HS1 HS2]]; trivial;
 { assert (HP := HPerpAC); destruct HP as [P' [_ [_ [HP1 [HP2 HP3]]]]].
   assert (P = P'); [|treat_equalities; apply HP3; Col].
   elim (perp_not_col2 _ _ _ _ HPerpAC); intro;
-  [apply l6_21 with A1 A2 C1 C2|apply l6_21 with A1 A2 C2 C1]; Col.
+  [apply l6_21_两线交点的唯一性 with A1 A2 C1 C2|apply l6_21_两线交点的唯一性 with A1 A2 C2 C1]; Col.
 }
 exists S; split; [assumption|ColR].
 Qed.

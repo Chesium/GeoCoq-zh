@@ -53,13 +53,13 @@ elim (两点重合的决定性 X B); intro.
 subst X.
 auto.
 assert (Col (P1 l) A B).
-apply col_transitivity_1 with (P2 l); Col.
+apply 共线的传递性2 with (P2 l); Col.
 assert (Col (P2 l) A B).
-apply (col_transitivity_2 (P1 l)); Col.
-apply (col3 A B); Col.
+apply (共线的传递性3 (P1 l)); Col.
+apply (共线的传递性4 A B); Col.
 
 assert (U:=Cond l).
-apply (col3 (P1 l) (P2 l)); Col.
+apply (共线的传递性4 (P1 l) (P2 l)); Col.
 Qed.
 
 (** Our equality is an equivalence relation. *)
@@ -179,7 +179,7 @@ unfold Col_H in H.
 DecompExAnd H l.
 unfold IncidentL in *.
 assert (T:=Cond l).
-apply (col3 (P1 l) (P2 l)); Col.
+apply (共线的传递性4 (P1 l) (P2 l)); Col.
 Qed.
 
 Lemma cols_coincide_2 : forall A B C, Col A B C -> Col_H A B C.
@@ -512,7 +512,7 @@ Lemma cop_plane_aux : forall A B C D, 共面 A B C D -> A <> B ->
 Proof.
   intros A B C D HCop HAB.
   destruct (共线的决定性 A B C) as [|HNCol]; [destruct (共线的决定性 A B D) as [|HNCol]|].
-  - destruct (not_col_exists A B HAB) as [E HNCol].
+  - destruct (两点不重合则存在不共线的点 A B HAB) as [E HNCol].
     apply ncols_coincide in HNCol.
     exists (Plan A B E HNCol).
     unfold IncidentP; simpl; repeat split; Cop.
@@ -706,7 +706,7 @@ apply H20.
 apply 中间性的对称性.
 assumption.
 assumption.
-eapply col3.
+eapply 共线的传递性4.
 apply (Cond l).
 Col.
 Col.
@@ -879,7 +879,7 @@ Lemma exists_not_incident : forall A B : Tpoint, forall  HH : A <> B , exists C,
 Proof.
 intros.
 unfold IncidentL.
-assert(HC:=not_col_exists A B HH).
+assert(HC:=两点不重合则存在不共线的点 A B HH).
 ex_and HC C.
 exists C.
 intro.

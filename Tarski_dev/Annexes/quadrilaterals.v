@@ -57,14 +57,14 @@ Col5.
 assert(Col A A' B').
 
 assert(Col B M A).
-eapply col_transitivity_1.
+eapply 共线的传递性2.
 apply H10.
 Col.
 Col.
 
 assert(Col A M B').
 
-eapply col_transitivity_1.
+eapply 共线的传递性2.
 apply H.
 Col.
 Col.
@@ -76,7 +76,7 @@ apply 等长的同一性 in H7.
 subst A'.
 Col.
 
-eapply col_transitivity_1.
+eapply 共线的传递性2.
 apply H13.
 Col.
 Col.
@@ -1195,7 +1195,7 @@ apply False_ind.
 assert(Col A B M).
 unfold 中点 in *.
 spliter.
-eapply (col_transitivity_1 _ D).
+eapply (共线的传递性2 _ D).
 assumption.
 Col.
 apply 中间性蕴含共线 in H8.
@@ -2413,7 +2413,7 @@ ColR.
 assert(Col M A' Y).
 ColR.
 
-eapply (col3 A' M); Col.
+eapply (共线的传递性4 A' M); Col.
 exists M.
 split.
 Col.
@@ -2435,7 +2435,7 @@ ColR.
 assert(Col M B' Y).
 ColR.
 
-eapply (col3 B' M); Col.
+eapply (共线的传递性4 B' M); Col.
 exists M.
 split.
 Col.
@@ -2516,7 +2516,7 @@ ColR.
 assert(Col M A' Y).
 ColR.
 
-eapply (col3 A' M); Col.
+eapply (共线的传递性4 A' M); Col.
 exists M.
 split.
 Col.
@@ -2538,7 +2538,7 @@ ColR.
 assert(Col M B' Y).
 ColR.
 
-eapply (col3 B' M); Col.
+eapply (共线的传递性4 B' M); Col.
 exists M.
 split.
 Col.
@@ -2669,7 +2669,7 @@ Lemma plgs_existence : forall A B, A <> B -> exists C, exists D, 严格平行四
 Proof.
 intros.
 
-assert(HH:=not_col_exists A B H).
+assert(HH:=两点不重合则存在不共线的点 A B H).
 ex_and HH C.
 assert(HH:=plg_existence A B C H).
 ex_and HH D.

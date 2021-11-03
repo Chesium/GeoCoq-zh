@@ -59,7 +59,7 @@ unfold unique.
 assert_all.
 repeat split...
 intros G' HG'; spliter.
-apply l6_21 with A I B J...
+apply l6_21_两线交点的唯一性 with A I B J...
 intro; search_contradiction.
 show_distinct' B J...
 Qed.
@@ -89,7 +89,7 @@ exists G; unfold unique; unfold is_gravity_center; repeat split...
 exists I;  exists J; do 3 (split; finish).
 intros G' HG'; spliter; decompose [ex and] H8;clear H8.
 assert_all.
-apply l6_21 with A x B x0...
+apply l6_21_两线交点的唯一性 with A x B x0...
 intro;search_contradiction.
 show_distinct' B x0...
 Qed.
@@ -254,7 +254,7 @@ assert (C' <> G'' /\ A' <> G')
   by (elim HDiff; clear HDiff; intro; split; trivial; intro; apply H; ColR).
 spliter.
 assert_diffs.
-apply l6_21 with A G C G; trivial; ColR.
+apply l6_21_两线交点的唯一性 with A G C G; trivial; ColR.
 Qed.
 
 Lemma is_gravity_center_third_reci :

@@ -1138,7 +1138,7 @@ Proof.
       unfold Out in H.
       tauto.
     spliter.
-    assert(HH:= not_col_exists A B H0).
+    assert(HH:= 两点不重合则存在不共线的点 A B H0).
     ex_and HH Q.
     assert(exists P : Tpoint, Perp A B P B /\ OS A B Q P).
       apply(l10_15 A B B Q).

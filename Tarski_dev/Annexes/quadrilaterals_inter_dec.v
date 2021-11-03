@@ -357,7 +357,7 @@ induction H18.
 subst B''.
 
 assert(X = M).
-apply (l6_21 A A' B B'); Col.
+apply (l6_21_两线交点的唯一性 A A' B B'); Col.
 
 intro.
 subst B'.
@@ -373,7 +373,7 @@ repeat split; auto.
 intro.
 apply H4.
 apply 等价共线BCA.
-apply (col_transitivity_1 _ B'').
+apply (共线的传递性2 _ B'').
 assert_diffs.
 auto.
 Col.
@@ -400,7 +400,7 @@ intro.
 apply H4.
 
 apply 等价共线BCA.
-apply (col_transitivity_1 _ B'').
+apply (共线的传递性2 _ B'').
 assert_diffs.
 auto.
 Col.
@@ -494,7 +494,7 @@ eapply (out_one_side_1 _ _ _ _ A).
 intro.
 apply H8.
 apply 等价共线BCA.
-apply (col_transitivity_1 _ X).
+apply (共线的传递性2 _ X).
 intro.
 subst X.
 apply is_midpoint_id in H4.
@@ -539,7 +539,7 @@ eapply (out_one_side_1).
 intro.
 apply H8.
 apply 等价共线BCA.
-eapply (col_transitivity_1 _ X).
+eapply (共线的传递性2 _ X).
 intro.
 subst X.
 apply is_midpoint_id in H4.
@@ -1353,7 +1353,7 @@ assert(OS A D P B).
 eapply out_one_side_1.
 intro.
 assert(Col P B D).
-eapply (col_transitivity_1 _ A).
+eapply (共线的传递性2 _ A).
 intro.
 subst P.
 apply is_midpoint_id in H0.
@@ -1380,7 +1380,7 @@ assumption.
 spliter.
 apply H22.
 apply 等价共线BCA.
-eapply (col_transitivity_1 _ P).
+eapply (共线的传递性2 _ P).
 intro.
 subst P.
 apply H22.
@@ -1422,7 +1422,7 @@ assert(OS A D Q C).
 eapply out_one_side_1.
 intro.
 apply H14.
-eapply (col_transitivity_1 _ Q).
+eapply (共线的传递性2 _ Q).
 intro.
 subst Q.
 apply l7_2 in H1.
@@ -1533,7 +1533,7 @@ ColR.
 
 apply H4.
 apply 等价共线CAB.
-eapply (col_transitivity_1 _ M).
+eapply (共线的传递性2 _ M).
 intro.
 subst M.
 apply is_midpoint_id in H0.
@@ -1552,7 +1552,7 @@ apply 中间性蕴含共线 in H1.
 ColR.
 apply H6.
 apply 等价共线BCA.
-eapply (col_transitivity_1 _ M).
+eapply (共线的传递性2 _ M).
 intro.
 subst M.
 apply l7_2 in H0.
@@ -2490,7 +2490,7 @@ assert (H12 : Col A C I').
  assert (H15 := 中间性蕴含共线 A I' C H14).
  Col.
 apply 共线否定排列ACB in H03.
-assert (H13 := l6_21 A C D B I I' H03 MDB H01 H12 H02 H11).
+assert (H13 := l6_21_两线交点的唯一性 A C D B I I' H03 MDB H01 H12 H02 H11).
 split.
  rewrite H13;assumption.
  subst;assumption.
@@ -3407,7 +3407,7 @@ spliter.
 
 assert(D = D').
 
-eapply (l6_21 A D C D D D'); Col.
+eapply (l6_21_两线交点的唯一性 A D C D D D'); Col.
 intro.
 unfold 严格平行 in H.
 spliter.
@@ -4148,7 +4148,7 @@ assert(Col A B E).
 ColR.
 apply False_ind.
 apply H13.
-eapply (col3 A B); Col.
+eapply (共线的传递性4 A B); Col.
 
 assert(Par A E F B).
 
@@ -4322,7 +4322,7 @@ apply False_ind.
 assert(Col A B E).
 ColR.
 apply H13.
-eapply (col3 A B); Col.
+eapply (共线的传递性4 A B); Col.
 Par.
 apply plg_to_parallelogram in H36.
 induction H36.
@@ -4334,7 +4334,7 @@ assert(Col A B E).
 ColR.
 apply False_ind.
 apply H13.
-eapply (col3 A B); Col.
+eapply (共线的传递性4 A B); Col.
 Qed.
 
 Lemma plgf_plgf_plgf: forall A B C D E F, A <> B -> 退化平行四边形 A B C D -> 退化平行四边形 C D E F
@@ -4385,7 +4385,7 @@ assert(Col C D A).
 ColR.
 assert(Col C D B).
 ColR.
-apply (col3 C D); Col.
+apply (共线的传递性4 C D); Col.
 assumption.
 Qed.
 

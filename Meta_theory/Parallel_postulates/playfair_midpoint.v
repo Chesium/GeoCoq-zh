@@ -16,7 +16,7 @@ assert (X = Q).
   apply triangle_mid_par with C; assumption.
  assert_diffs.
  assert_cols.
- apply l6_21 with A C P Q.
+ apply l6_21_两线交点的唯一性 with A C P Q.
   intro.
   assert (Col A B C) by ColR.
   contradiction.

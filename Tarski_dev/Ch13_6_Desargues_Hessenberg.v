@@ -51,8 +51,8 @@ Proof.
       split.
         Col.
       assert(Col O A B').
-        apply (col_transitivity_1 _ B); Col.
-      apply (col_transitivity_1 _ A); Col.
+        apply (共线的传递性2 _ B); Col.
+      apply (共线的传递性2 _ A); Col.
     assert(~Col O A C).
       intro.
       apply H3.
@@ -60,8 +60,8 @@ Proof.
       split.
         Col.
       assert(Col O A C').
-        apply (col_transitivity_1 _ C); Col.
-      apply (col_transitivity_1 _ A); Col.
+        apply (共线的传递性2 _ C); Col.
+      apply (共线的传递性2 _ A); Col.
     assert(~ Col A' B' C').
       intro.
       apply H.
@@ -93,11 +93,11 @@ Proof.
         apply H15.
         Col.
         assert(Col O B C').
-          apply (col_transitivity_1 _ C); Col.
-        apply (col_transitivity_1 _ O); Col.
+          apply (共线的传递性2 _ C); Col.
+        apply (共线的传递性2 _ O); Col.
       assert(Col O C B').
-        apply (col_transitivity_1 _ B); Col.
-      apply (col_transitivity_1 _ O); Col.
+        apply (共线的传递性2 _ B); Col.
+      apply (共线的传递性2 _ O); Col.
     assert(B' <> O).
       intro.
       subst B'.
@@ -128,8 +128,8 @@ Proof.
       exists O.
       split.
         assert(Col O A' B).
-          apply (col_transitivity_1 _ B'); Col.
-        apply (col_transitivity_1 _ A'); Col.
+          apply (共线的传递性2 _ B'); Col.
+        apply (共线的传递性2 _ A'); Col.
       Col.
     assert(~Col O A' C').
       intro.
@@ -254,7 +254,7 @@ Proof.
         split;Col.
       spliter.
       apply H15.
-      eapply (col_transitivity_1 _ L); Col.
+      eapply (共线的传递性2 _ L); Col.
     assert(~ Par A B L B').
       apply(par_not_par A' B' A B L B').
         left.
@@ -272,7 +272,7 @@ Proof.
       spliter.
       apply False_ind.
       apply H13.
-      apply (col_transitivity_1 _ B'); Col.
+      apply (共线的传递性2 _ B'); Col.
     assert(A <> N).
       intro.
       subst N.
@@ -293,9 +293,9 @@ Proof.
           apply False_ind.
           apply H24.
           assert(Col N A B').
-            eapply (col_transitivity_1 _ L); Col.
+            eapply (共线的传递性2 _ L); Col.
           apply 等价共线CAB.
-          eapply (col_transitivity_1 _ N); Col.
+          eapply (共线的传递性2 _ N); Col.
         apply(l13_14 A O A' A N L N B'); Col.
           Par.
         Par.
@@ -323,7 +323,7 @@ Proof.
         exists L.
         split.
           Col.
-        apply (col_transitivity_1 _ N); Col.
+        apply (共线的传递性2 _ N); Col.
       assert(L <> B').
         intro.
         subst L.
@@ -334,9 +334,9 @@ Proof.
         intro.
         subst P.
         assert(Col A B L).
-          apply (col_transitivity_1 _ N); Col.
+          apply (共线的传递性2 _ N); Col.
         assert(Col L A B').
-          apply (col_transitivity_1 _ N); Col.
+          apply (共线的传递性2 _ N); Col.
         apply H43.
         apply par_symmetry.
         right.
@@ -353,7 +353,7 @@ Proof.
         subst P.
         apply H13.
         apply 等价共线CAB.
-        apply (col_transitivity_1 _ N); Col.
+        apply (共线的传递性2 _ N); Col.
       assert(A' <> P).
         intro.
         subst P.
@@ -370,7 +370,7 @@ Proof.
         intro.
         subst P.
         apply H22.
-        apply (col_transitivity_1 _ A); Col.
+        apply (共线的传递性2 _ A); Col.
       apply(l13_11 O A' A L N B' P); Par; try ColR.
       intro.
       apply H47.
@@ -378,15 +378,15 @@ Proof.
       split.
         Col.
       assert(Col L O N).
-        apply (col_transitivity_1 _ P); Col.
-      apply (col_transitivity_1 _ N); Col.
+        apply (共线的传递性2 _ P); Col.
+      apply (共线的传递性2 _ N); Col.
     (* apply 等价共线CAB.
-    apply (col_transitivity_1 _ A); Col.
+    apply (共线的传递性2 _ A); Col.
     apply 等价共线BCA.
-    apply (col_transitivity_1 _ O); Col.
+    apply (共线的传递性2 _ O); Col.
     Col.
     apply 等价共线CAB.
-    apply (col_transitivity_1 _ L); Col.
+    apply (共线的传递性2 _ L); Col.
     *)
     assert(Par A' C' O N).
       apply (par_col_par_2 _ L).
@@ -431,11 +431,11 @@ Proof.
           split.
             Col.
           apply 等价共线CAB.
-          apply (col_transitivity_1 _ N); Col.
+          apply (共线的传递性2 _ N); Col.
         spliter.
         apply H13.
         apply 等价共线CAB.
-        apply (col_transitivity_1 _ M); Col.
+        apply (共线的传递性2 _ M); Col.
       assert(O <> P).
         intro.
         subst P.
@@ -462,13 +462,13 @@ Proof.
       apply H.
       ColR.
     (* apply 等价共线CAB.
-    apply (col_transitivity_1 _ A); Col.
+    apply (共线的传递性2 _ A); Col.
     apply 等价共线BCA.
-    apply (col_transitivity_1 _ N); Col.
+    apply (共线的传递性2 _ N); Col.
     apply 等价共线CAB.
-    apply (col_transitivity_1 _ O); Col.
+    apply (共线的传递性2 _ O); Col.
     apply 等价共线BCA.
-    apply (col_transitivity_1 _ C); Col.
+    apply (共线的传递性2 _ C); Col.
     *)
     assert(Par N M B' C').
       induction(par_dec N B' O C').
@@ -493,7 +493,7 @@ Proof.
           split.
             Col.
           apply 等价共线CAB.
-          apply(col_transitivity_1 _ C); Col.
+          apply(共线的传递性2 _ C); Col.
         assert(L <> C').
           intro.
           subst C'.
@@ -524,7 +524,7 @@ Proof.
         subst L.
         assert(C' = M).
           induction (共线的决定性 O X C).
-            apply (l6_21 O C Y X).
+            apply (l6_21_两线交点的唯一性 O C Y X).
               intro.
               assert(Col O X Y) by ColR.
               induction H27.
@@ -533,13 +533,13 @@ Proof.
                 split; Col.
               spliter.
               apply H13.
-              apply(col3 X Y); Col.
+              apply(共线的传递性4 X Y); Col.
               auto.
               Col.
               Col.
               Col.
               Col.
-          apply (l6_21 O C X Y); Col.
+          apply (l6_21_两线交点的唯一性 O C X Y); Col.
         subst M.
         right.
         repeat split; auto.
@@ -552,11 +552,11 @@ Proof.
         subst P.
         apply H23.
         apply 等价共线BCA.
-        apply (col_transitivity_1 _ L); Col.
+        apply (共线的传递性2 _ L); Col.
       induction (两点重合的决定性 L M).
         subst L.
         assert(C' = M).
-          apply (l6_21 O C A' C'); Col.
+          apply (l6_21_两线交点的唯一性 O C A' C'); Col.
             intro.
             apply H23.
             ColR.
@@ -580,7 +580,7 @@ Proof.
             apply(l13_11  N B' L  C' M O P); Par.
               intro.
               assert(Col P B' C').
-                apply (col_transitivity_1 _ N).
+                apply (共线的传递性2 _ N).
                   intro.
                   subst N.
                   induction H50.
@@ -593,36 +593,36 @@ Proof.
                   Col.
                 Col.
               assert(Col C' O B' ).
-                apply (col_transitivity_1 _ P).
+                apply (共线的传递性2 _ P).
                   intro.
                   subst P.
                   clean_trivial_hyps.
                   assert(Col B' C' L).
-                    apply (col_transitivity_1 _ N); Col.
+                    apply (共线的传递性2 _ N); Col.
                   apply H15.
                   ColR.
                   Col.
                 Col.
               assert(Col O B C').
-                apply (col_transitivity_1 _ B'); Col.
+                apply (共线的传递性2 _ B'); Col.
               apply H16.
               ColR.
               ColR.
               intro.
               subst M.
               assert(Col B' P L).
-                apply (col_transitivity_1 _ N); Col.
+                apply (共线的传递性2 _ N); Col.
               assert(Col L A B').
                 assert(Col P A L).
-                  apply (col3 X Y); Col.
-                apply (col_transitivity_1 _ P); Col.
+                  apply (共线的传递性4 X Y); Col.
+                apply (共线的传递性2 _ P); Col.
               apply H47.
               exists B'.
               split; Col.
               intro.
               subst P.
               assert(N = B).
-                apply (l6_21 A B O B'); Col.
+                apply (l6_21_两线交点的唯一性 A B O B'); Col.
                   subst N.
                   induction H52.
                     apply H52.
@@ -630,7 +630,7 @@ Proof.
                     split; Col.
                   spliter.
                   assert(B = O).
-                    apply (l6_21 O B' M C); Col.
+                    apply (l6_21_两线交点的唯一性 O B' M C); Col.
                   subst B.
                   induction H61.
                     apply H61.
@@ -726,21 +726,21 @@ Proof.
     assert(~Col O A' B').
       intro.
       assert(Col O A B').
-        apply (col_transitivity_1 _ A'); Col.
+        apply (共线的传递性2 _ A'); Col.
       apply H7.
-      apply (col_transitivity_1 _ B'); Col.
+      apply (共线的传递性2 _ B'); Col.
     assert(~Col O B' C').
       intro.
       assert(Col O B C').
-        apply (col_transitivity_1 _ B'); Col.
+        apply (共线的传递性2 _ B'); Col.
       apply H8.
-      apply (col_transitivity_1 _ C'); Col.
+      apply (共线的传递性2 _ C'); Col.
     assert(~Col O A' C').
       intro.
       assert(Col O A C').
-        apply (col_transitivity_1 _ A'); Col.
+        apply (共线的传递性2 _ A'); Col.
       apply H9.
-      apply (col_transitivity_1 _ C'); Col.
+      apply (共线的传递性2 _ C'); Col.
     assert(A <> A').
       intro.
       subst A'.
@@ -795,7 +795,7 @@ Proof.
       intro.
       subst C''.
       assert(Col O B C).
-        apply (col_transitivity_1 _ B'); Col.
+        apply (共线的传递性2 _ B'); Col.
       contradiction.
     assert(Par B' C'' B C ).
       induction(两点重合的决定性 B' X).
@@ -807,7 +807,7 @@ Proof.
       apply (par_col_par_2 _ X).
         auto.
         apply 等价共线CAB.
-        apply(col_transitivity_1 _ Y); Col.
+        apply(共线的传递性2 _ Y); Col.
       apply par_left_comm.
       apply (par_col_par_2 _ Y); Col.
       Par.
@@ -822,7 +822,7 @@ Proof.
       apply False_ind.
       apply H8.
       apply 等价共线CAB.
-      apply(col_transitivity_1 _ B'); Col.
+      apply(共线的传递性2 _ B'); Col.
     assert(C' <> C'').
       intro.
       subst C''.
@@ -834,7 +834,7 @@ Proof.
         Par.
       Par.
     assert(C' = C'').
-      apply (l6_21 A' C' O C); Col.
+      apply (l6_21_两线交点的唯一性 A' C' O C); Col.
         induction H35.
         apply False_ind.
         apply H35.
@@ -1054,13 +1054,13 @@ Proof.
       exists O.
       split.
         Col.
-      apply(col_transitivity_1 _ A); Col.
+      apply(共线的传递性2 _ A); Col.
         intro.
         subst A.
         apply H0.
         exists B'.
         split; Col.
-      apply(col_transitivity_1 _ B); Col.
+      apply(共线的传递性2 _ B); Col.
       intro.
       subst B.
       apply H0.
@@ -1080,7 +1080,7 @@ Proof.
       exists B'.
       split;Col.
       apply 等价共线CAB.
-      apply (col_transitivity_1 _ O); Col.
+      apply (共线的传递性2 _ O); Col.
       intro.
       subst O.
       apply H0.
@@ -1106,13 +1106,13 @@ Proof.
       apply False_ind.
       apply H8.
       apply 等价共线CAB.
-      apply (col_transitivity_1 _ C'').
+      apply (共线的传递性2 _ C'').
         intro.
         subst C''.
         apply H2.
         exists C.
         split; Col.
-        apply (col_transitivity_1 _ B); Col.
+        apply (共线的传递性2 _ B); Col.
       Col.
     assert(~Col O B C).
       intro.
@@ -1120,7 +1120,7 @@ Proof.
       exists B'.
       split; Col.
       apply 等价共线CAB.
-      apply (col_transitivity_1 _ O); Col.
+      apply (共线的传递性2 _ O); Col.
       intro.
       subst B.
       apply H5.
@@ -1130,7 +1130,7 @@ Proof.
         intro.
         subst B'.
         apply H11.
-        apply(col_transitivity_1 _ C''); Col.
+        apply(共线的传递性2 _ C''); Col.
         intro.
         subst C''.
         apply H0.
@@ -1145,7 +1145,7 @@ Proof.
       apply False_ind.
       apply H11.
       apply 等价共线CAB.
-      apply (col_transitivity_1 _ B'); Col.
+      apply (共线的传递性2 _ B'); Col.
       intro.
       subst B'.
       apply H2.
@@ -1171,7 +1171,7 @@ Proof.
       apply H.
       apply(col_par_par_col A' B' C' A B C H19); left; Par.
     assert( C' = C'').
-      apply(l6_21 A' C' B' C'); Col.
+      apply(l6_21_两线交点的唯一性 A' C' B' C'); Col.
       intro.
       subst C'.
       apply H19.
@@ -1209,7 +1209,7 @@ Proof.
           spliter.
           Col.
         assert(Col C B B').
-          apply (col_transitivity_1 _ P); Col.
+          apply (共线的传递性2 _ P); Col.
         apply False_ind.
         apply H2.
         exists B'.
@@ -1234,7 +1234,7 @@ Proof.
         exists B'.
         split; Col.
         apply 等价共线BCA.
-        apply(col_transitivity_1 _ P); Col.
+        apply(共线的传递性2 _ P); Col.
       assert(Par C C'' B B' ).
         apply (par_col_par_2 _ P); Col.
           intro.
@@ -1284,7 +1284,7 @@ Proof.
           Par.
         Par.
       assert(C' = C'').
-        apply (l6_21 C' A' B' C'); Col.
+        apply (l6_21_两线交点的唯一性 C' A' B' C'); Col.
           intro.
           subst C'.
           apply H15.
@@ -1343,7 +1343,7 @@ Proof.
         split; Col.
       spliter.
       apply H.
-      apply (col_transitivity_1 _ E); Col.
+      apply (共线的传递性2 _ E); Col.
     assert(共面 A' B' O E).
       apply coplanar_pseudo_trans with O A B; Cop.
     assert(HH:= cop_npar__inter_exists A' B' O E H24 H23).
@@ -1353,16 +1353,16 @@ Proof.
       subst E.
       apply H.
       apply 等价共线CAB.
-      apply (col_transitivity_1 _ C); Col.
+      apply (共线的传递性2 _ C); Col.
     induction(共线的决定性 A D E).
       assert(B = D).
-        apply(l6_21 O B A E); Col.
+        apply(l6_21_两线交点的唯一性 O B A E); Col.
         intro.
         subst E.
         apply H.
         assert(Col A O D).
-          apply (col_transitivity_1 _ C); Col.
-        apply (col_transitivity_1 _ D); Col.
+          apply (共线的传递性2 _ C); Col.
+        apply (共线的传递性2 _ D); Col.
       subst D.
       assert(Par A' B' A' D').
         apply (par_trans _ _ A B); Par.
@@ -1373,12 +1373,12 @@ Proof.
         split; Col.
       spliter.
       assert(B' = D').
-        eapply(l6_21 A' B' O B'); Col.
+        eapply(l6_21_两线交点的唯一性 A' B' O B'); Col.
         intro.
         apply H.
-        apply (col_transitivity_1 _ A'); Col.
-        apply (col_transitivity_1 _ B'); Col.
-        apply (col_transitivity_1 _ B); Col.
+        apply (共线的传递性2 _ A'); Col.
+        apply (共线的传递性2 _ B'); Col.
+        apply (共线的传递性2 _ B); Col.
       subst D'.
       Par.
     assert(B <> B').
@@ -1391,7 +1391,7 @@ Proof.
       spliter.
       apply H.
       apply 等价共线CAB.
-      apply (col_transitivity_1 _ A'); Col.
+      apply (共线的传递性2 _ A'); Col.
     assert(Par D E D' E').
       apply (l13_15 A _ _ A' _ _ O); Col.
         exists B; left; split; Col.
@@ -1400,11 +1400,11 @@ Proof.
         spliter.
         apply False_ind.
         assert(Col A' A D).
-          apply (col_transitivity_1 _ D'); Col.
+          apply (共线的传递性2 _ D'); Col.
         assert(Col A O D).
-          apply (col_transitivity_1 _ A'); Col.
+          apply (共线的传递性2 _ A'); Col.
         apply H.
-        apply (col_transitivity_1 _ D); Col.
+        apply (共线的传递性2 _ D); Col.
         assert(Par A E A' E').
           apply(par_col_par_2 _ B); Col.
             intro.
@@ -1416,10 +1416,10 @@ Proof.
             intro.
             subst E'.
             assert(Col O A E).
-              apply(col_transitivity_1 _ A'); Col.
+              apply(共线的传递性2 _ A'); Col.
             apply H.
             apply 等价共线CAB.
-            apply(col_transitivity_1 _ E); Col.
+            apply(共线的传递性2 _ E); Col.
             intro.
             subst E.
             apply H28.
@@ -1430,20 +1430,20 @@ Proof.
         spliter.
         apply False_ind.
         assert(Col A' A E).
-          apply(col_transitivity_1 _ E'); Col.
+          apply(共线的传递性2 _ E'); Col.
         assert(Col A O E).
-          apply(col_transitivity_1 _ A'); Col.
+          apply(共线的传递性2 _ A'); Col.
         apply H.
         apply 等价共线CAB.
-        apply(col_transitivity_1 _ E); Col.
-      apply(col_transitivity_1 _ B); Col.
+        apply(共线的传递性2 _ E); Col.
+      apply(共线的传递性2 _ B); Col.
     apply par_comm.
     induction(共线的决定性 B C E).
       assert(B = D).
-        apply(l6_21 O B C E); Col.
+        apply(l6_21_两线交点的唯一性 O B C E); Col.
         intro.
         apply H.
-        apply (col_transitivity_1 _ C); Col.
+        apply (共线的传递性2 _ C); Col.
       subst D.
       assert(Par A' B' A' D').
         apply (par_trans _ _ A B); Par.
@@ -1454,7 +1454,7 @@ Proof.
         split; Col.
       spliter.
       assert(B' = D').
-        eapply(l6_21 A' B' O B'); Col.
+        eapply(l6_21_两线交点的唯一性 A' B' O B'); Col.
           Col5.
         ColR.
       subst D'.
@@ -1468,8 +1468,8 @@ Proof.
         apply False_ind.
         apply H.
         assert(Col B O C').
-          apply (col_transitivity_1 _ B'); Col.
-        apply (col_transitivity_1 _ C'); Col.
+          apply (共线的传递性2 _ B'); Col.
+        apply (共线的传递性2 _ C'); Col.
         assert(Par B E B' E').
           apply (par_col_par_2 _ A); Col.
             intro.
@@ -1481,10 +1481,10 @@ Proof.
             intro.
             subst E'.
             assert(Col O B E).
-              apply (col_transitivity_1 _ B'); Col.
+              apply (共线的传递性2 _ B'); Col.
             apply H.
             apply 等价共线BCA.
-            apply (col_transitivity_1 _ E); Col.
+            apply (共线的传递性2 _ E); Col.
             intro.
             subst E.
             apply H31.
@@ -1497,23 +1497,23 @@ Proof.
         apply H.
         assert(Col O B' E').
           apply 等价共线CAB.
-          apply (col_transitivity_1 _ B); Col.
+          apply (共线的传递性2 _ B); Col.
         assert(Col B' A' O).
-          apply (col_transitivity_1 _ E'); Col.
-        apply (col_transitivity_1 _ A'); Col.
-        apply (col_transitivity_1 _ B'); Col.
-      apply (col_transitivity_1 _ A); Col.
+          apply (共线的传递性2 _ E'); Col.
+        apply (共线的传递性2 _ A'); Col.
+        apply (共线的传递性2 _ B'); Col.
+      apply (共线的传递性2 _ A); Col.
     apply(par_col_par_2 _ E); Col.
       intro.
       subst D.
       apply H.
-      apply(col_transitivity_1 _ C); Col.
+      apply(共线的传递性2 _ C); Col.
     apply par_symmetry.
     apply(par_col_par_2 _ E'); Col.
       intro.
       subst D'.
       apply H.
-      apply(col_transitivity_1 _ C'); Col.
+      apply(共线的传递性2 _ C'); Col.
       apply (col_par_par_col D E C); Par.
       Col.
     Par.
@@ -1532,7 +1532,7 @@ Proof.
     induction (两点重合的决定性 A A').
       subst A'.
       assert(B = B').
-        apply(l6_21 A B O B); Col.
+        apply(l6_21_两线交点的唯一性 A B O B); Col.
         induction H14.
           apply False_ind.
           apply H14.
@@ -1542,10 +1542,10 @@ Proof.
         Col.
       subst B'.
       assert(D = D').
-        apply(l6_21 A D O B); Col.
+        apply(l6_21_两线交点的唯一性 A D O B); Col.
           intro.
           apply H.
-          apply (col_transitivity_1 _ D); Col.
+          apply (共线的传递性2 _ D); Col.
           induction H15.
             apply False_ind.
             apply H15.
@@ -1555,10 +1555,10 @@ Proof.
           Col.
       subst D'.
       assert(C = C').
-        apply(l6_21 B C O A); Col.
+        apply(l6_21_两线交点的唯一性 B C O A); Col.
           intro.
           apply H.
-          apply (col_transitivity_1 _ C); Col.
+          apply (共线的传递性2 _ C); Col.
           induction H16.
             apply False_ind.
             apply H16.
@@ -1571,7 +1571,7 @@ Proof.
       intro.
       subst D.
       apply H.
-      apply (col_transitivity_1 _ C); Col.
+      apply (共线的传递性2 _ C); Col.
     induction(两点重合的决定性 A C).
       subst C.
       assert(A' = C').
@@ -1583,11 +1583,11 @@ Proof.
           exists B'.
           split; Col.
         spliter.
-        eapply (l6_21 B' C' O A); Col.
+        eapply (l6_21_两线交点的唯一性 B' C' O A); Col.
         intro.
         apply H.
-        apply (col_transitivity_1 _ B'); Col.
-        apply (col_transitivity_1 _ C'); Col.
+        apply (共线的传递性2 _ B'); Col.
+        apply (共线的传递性2 _ C'); Col.
       subst C'.
       auto.
     induction(两点重合的决定性 A' C').
@@ -1601,11 +1601,11 @@ Proof.
           exists B.
           split; Col.
         spliter.
-        eapply (l6_21 B C O A'); Col.
+        eapply (l6_21_两线交点的唯一性 B C O A'); Col.
           intro.
           apply H.
-          apply (col_transitivity_1 _ C); Col.
-          apply (col_transitivity_1 _ A); Col.
+          apply (共线的传递性2 _ C); Col.
+          apply (共线的传递性2 _ A); Col.
       contradiction.
     induction(par_dec C D C' D').
       auto.
@@ -1626,14 +1626,14 @@ Proof.
     apply (l13_19_aux A' B' C' D' A B C D O); Par.
       intro.
       apply H.
-      apply (col_transitivity_1 _ A'); Col.
-      apply (col_transitivity_1 _ B'); Col.
-      apply (col_transitivity_1 _ A); Col.
+      apply (共线的传递性2 _ A'); Col.
+      apply (共线的传递性2 _ B'); Col.
+      apply (共线的传递性2 _ A); Col.
       Col.
-      apply (col_transitivity_1 _ A); Col.
-      apply (col_transitivity_1 _ B); Col.
+      apply (共线的传递性2 _ A); Col.
+      apply (共线的传递性2 _ B); Col.
       Col.
-    apply (col_transitivity_1 _ B); Col.
+    apply (共线的传递性2 _ B); Col.
 Qed.
 
 
@@ -1704,7 +1704,7 @@ Proof.
       induction (两点重合的决定性 A E).
         subst E.
         apply H13.
-        apply (l6_21 X A D A); Col.
+        apply (l6_21_两线交点的唯一性 X A D A); Col.
           intro.
           apply H16.
           exists D.
@@ -1725,12 +1725,12 @@ Proof.
       assert(Col E X A) by ColR.
       assert(Col A C E) by ColR.
       apply H13.
-      apply (l6_21 A E D C); Col.
+      apply (l6_21_两线交点的唯一性 A E D C); Col.
         intro.
         subst D.
         contradiction.
         apply 等价共线CAB.
-        apply (col_transitivity_1  _ E); Col.
+        apply (共线的传递性2  _ E); Col.
         intro.
         subst E.
         clean_trivial_hyps.
@@ -1738,7 +1738,7 @@ Proof.
         exists B.
         split; Col.
         apply 等价共线BCA.
-        apply (col_transitivity_1  _ C); Col.
+        apply (共线的传递性2  _ C); Col.
     assert(Par Y B E Z).
       apply (par_trans _ _ X A); Par.
     assert(严格平行 Y B E Z).
@@ -1749,13 +1749,13 @@ Proof.
       assert(Col E Y B) by ColR.
       assert(Col B D E) by ColR.
       apply H14.
-      apply (l6_21 B E C D); Col.
+      apply (l6_21_两线交点的唯一性 B E C D); Col.
         intro.
         apply H16.
         exists C.
         split; Col.
         apply 等价共线BCA.
-        apply (col_transitivity_1  _ E); Col.
+        apply (共线的传递性2  _ E); Col.
         intro.
         subst E.
         apply H16.
@@ -1763,7 +1763,7 @@ Proof.
         split; Col.
         clean_trivial_hyps.
         apply 等价共线BCA.
-        apply (col_transitivity_1  _ D); Col.
+        apply (共线的传递性2  _ D); Col.
       intro.
       subst D.
       apply H16.
@@ -1773,7 +1773,7 @@ Proof.
     assert(~Col A' D' E').
       intro.
       assert(Col A' B' D').
-        apply (col_transitivity_1  _ E'); Col.
+        apply (共线的传递性2  _ E'); Col.
         intro.
         subst E'.
         apply H31.
@@ -1783,9 +1783,9 @@ Proof.
       exists A'.
       split; Col.
       assert(Col Y B' D').
-        apply (col_transitivity_1  _ B); Col.
+        apply (共线的传递性2  _ B); Col.
       assert(Col B' A' Y).
-        apply (col_transitivity_1  _ D'); Col.
+        apply (共线的传递性2  _ D'); Col.
         intro.
         subst D'.
         assert(Par A D A B).
@@ -1799,9 +1799,9 @@ Proof.
         exists A.
         split; Col.
         apply 等价共线BCA.
-        apply (col_transitivity_1  _ D); Col.
+        apply (共线的传递性2  _ D); Col.
       apply 等价共线CAB.
-      apply (col_transitivity_1  _ B'); Col.
+      apply (共线的传递性2  _ B'); Col.
     assert(~ Col X A B).
       intro.
       apply H16.
@@ -1816,7 +1816,7 @@ Proof.
       intro.
       subst B'.
       apply H15.
-      apply(l6_21 X A B A); Col.
+      apply(l6_21_两线交点的唯一性 X A B A); Col.
         intro.
         subst B.
         apply H35.
@@ -1840,7 +1840,7 @@ Proof.
       exists C.
       split; Col.
       apply 等价共线BCA.
-      apply (col_transitivity_1  _ B'); Col.
+      apply (共线的传递性2  _ B'); Col.
     assert(D <> D').
       intro.
       subst D'.
@@ -1853,7 +1853,7 @@ Proof.
       exists D.
       split; Col.
       apply 等价共线BCA.
-      apply (col_transitivity_1  _ A'); Col.
+      apply (共线的传递性2  _ A'); Col.
     assert(A' <> C').
       intro.
       subst C'.
@@ -1881,7 +1881,7 @@ Proof.
       exists A.
       split; Col.
       apply 等价共线BCA.
-      apply (col_transitivity_1  _ D); Col.
+      apply (共线的传递性2  _ D); Col.
     assert(A <> E).
       intro.
       subst E.
@@ -1916,15 +1916,15 @@ Proof.
       spliter.
       apply False_ind.
       apply H47.
-      apply (l6_21 X A' B' E'); Col.
+      apply (l6_21_两线交点的唯一性 X A' B' E'); Col.
         intro.
         apply H16.
         exists B'.
         split; Col.
         apply 等价共线CAB.
-        apply (col_transitivity_1  _ A'); Col.
+        apply (共线的传递性2  _ A'); Col.
       apply 等价共线CAB.
-      apply (col_transitivity_1  _ A); Col.
+      apply (共线的传递性2  _ A); Col.
     assert(Par D E D' E').
       apply(l13_15_par A D E A' D' E'); Par.
         induction H19.
@@ -1935,14 +1935,14 @@ Proof.
         exists D.
         split; Col.
         apply 等价共线BCA.
-        apply (col_transitivity_1  _ A'); Col.
+        apply (共线的传递性2  _ A'); Col.
         apply 等价共线CAB.
-        apply (col_transitivity_1  _ D'); Col.
+        apply (共线的传递性2  _ D'); Col.
         apply (par_col_par_2 _ X); Col.
         apply par_symmetry.
         apply (par_col_par_2 _ Y); Col.
           apply 等价共线CAB.
-          apply (col_transitivity_1  _ B); Col.
+          apply (共线的传递性2  _ B); Col.
         apply par_comm.
         apply (par_col_par_2 _ B); Col.
         apply (par_trans _ _ E Z); Par.
@@ -1970,11 +1970,11 @@ Proof.
         exists B'.
         split; Col.
         assert(Col X C C').
-          apply (col_transitivity_1  _ A); Col.
+          apply (共线的传递性2  _ A); Col.
         assert(Col C B' X).
-          apply (col_transitivity_1  _ C'); Col.
+          apply (共线的传递性2  _ C'); Col.
         apply 等价共线CAB.
-        apply (col_transitivity_1  _ C); Col.
+        apply (共线的传递性2  _ C); Col.
         assert(Par B E B' E').
           apply (par_col_par_2 _ A); Col.
           apply par_symmetry.
@@ -1992,7 +1992,7 @@ Proof.
         apply par_symmetry.
         apply (par_col_par_2 _ X); Col.
           apply 等价共线CAB.
-          apply (col_transitivity_1  _ A); Col.
+          apply (共线的传递性2  _ A); Col.
         apply par_left_comm.
         apply (par_col_par_2 _ A); Col.
         apply (par_trans _ _ E Z); Par.
@@ -2041,7 +2041,7 @@ Proof.
         split; Col.
       spliter.
       assert(A' = C').
-        apply (l6_21 X A B' A'); Col.
+        apply (l6_21_两线交点的唯一性 X A B' A'); Col.
         intro.
         apply H13.
         exists B'.
@@ -2059,7 +2059,7 @@ Proof.
         split; Col.
       spliter.
       assert(B' = D').
-        apply (l6_21 Y B A' B'); Col.
+        apply (l6_21_两线交点的唯一性 Y B A' B'); Col.
         intro.
         apply H13.
         exists A'.
@@ -2075,7 +2075,7 @@ Proof.
         split; Col.
       spliter.
       assert(B = B').
-        apply (l6_21 Y B A B); Col.
+        apply (l6_21_两线交点的唯一性 Y B A B); Col.
         intro.
         apply H13.
         exists A.
@@ -2088,7 +2088,7 @@ Proof.
           exists B.
           split; Col.
         spliter.
-        apply (l6_21 X A B C); Col.
+        apply (l6_21_两线交点的唯一性 X A B C); Col.
         intro.
         apply H13.
         exists B.
@@ -2101,7 +2101,7 @@ Proof.
           exists A.
           split; Col.
         spliter.
-        apply (l6_21 Y B A D); Col.
+        apply (l6_21_两线交点的唯一性 Y B A D); Col.
         intro.
         apply H13.
         exists A.
@@ -2130,7 +2130,7 @@ Proof.
       intro.
       subst C'.
       apply H17.
-      apply (l6_21 X A B A); Col.
+      apply (l6_21_两线交点的唯一性 X A B A); Col.
         intro.
         apply H13.
         exists B.
@@ -2149,7 +2149,7 @@ Proof.
       subst D'.
       assert(Par A D A B).
         apply(par_trans _ _ A' B'); Par.
-      apply (l6_21 Y B A B); Col.
+      apply (l6_21_两线交点的唯一性 Y B A B); Col.
         intro.
         apply H13.
         exists A.

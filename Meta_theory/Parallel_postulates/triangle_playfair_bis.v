@@ -117,7 +117,7 @@ Proof.
   assert(HB3 : exists B3, Col B1 B2 B3 /\ OS P Q C1 B3).
   { destruct (共线的决定性 P Q B1);
     [|apply cop_not_par_same_side with P; Col; apply coplanar_perm_12, coplanar_trans_1 with B2; Col; Cop].
-    assert (P = B1) by (apply (l6_21 B1 B2 Q P); Col).
+    assert (P = B1) by (apply (l6_21_两线交点的唯一性 B1 B2 Q P); Col).
     treat_equalities.
     destruct (cop_not_par_same_side P Q B2 P P C1) as [B3 []]; Col; Cop.
     exists B3; split; Col.
@@ -128,7 +128,7 @@ Proof.
   { assert (共面 A1 A2 C1 P) by (apply col_cop__cop with C2; Col; Cop).
     destruct (共线的决定性 P Q A1);
     [|apply cop_not_par_same_side with Q; Col; apply coplanar_perm_5, col_cop__cop with A2; Col; Cop].
-    assert (Q = A1) by (apply (l6_21 A1 A2 P Q); Col).
+    assert (Q = A1) by (apply (l6_21_两线交点的唯一性 A1 A2 P Q); Col).
     treat_equalities.
     destruct (cop_not_par_same_side P Q A2 Q Q C1) as [A3 []]; Col; Cop.
     exists A3; split; Col.

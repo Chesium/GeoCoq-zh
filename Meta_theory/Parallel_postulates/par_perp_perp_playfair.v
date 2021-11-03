@@ -63,7 +63,7 @@ elim (共线的决定性 A1 A2 P); intro HCol.
     apply cop_perp2__col with P I; [CopR|assumption|].
     apply perp_left_comm, perp_col with B1; Col; Perp.
     }
-  split; apply (col3 P C1); Col.
+  split; apply (共线的传递性4 P C1); Col.
   }
 Qed.
 

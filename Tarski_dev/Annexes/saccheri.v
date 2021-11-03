@@ -1087,7 +1087,7 @@ Proof.
     spliter.
     treat_equalities.
     assert(P = R); [|subst; split; reflexivity].
-    apply (l6_21 M P Q P); Col.
+    apply (l6_21_两线交点的唯一性 M P Q P); Col.
       apply (par_strict_not_col_2 N), HPar.
     apply 等价共线CAB, cop_per2__col with N; Perp.
     apply coplanar_perm_5, col_cop__cop with M; Col; Cop.

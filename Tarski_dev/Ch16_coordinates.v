@@ -158,7 +158,7 @@ split; [exists PX|exists PY]; split; Cong.
   unfold 垂直于 in *; spliter; apply perp_col0 with PX PX'; Col.
   assert (HPYS : PY <> S) by (unfold 三角形全等 in *; spliter; assert_diffs; auto).
   intro; treat_equalities; apply HPYS.
-  apply l6_21 with S U1 U2 S; Col;
+  apply l6_21_两线交点的唯一性 with S U1 U2 S; Col;
   [destruct HCs as [H' [H'' [H''' HPer]]]; apply perp_not_col;
    assert_diffs; apply per_perp in HPer; Perp|
   |apply 全等于退化的三角形 with E O Y; try apply 三角形全等的BAC交换性; Col].
@@ -175,7 +175,7 @@ split; [exists PX|exists PY]; split; Cong.
   unfold 垂直于 in *; spliter; apply perp_col0 with PY PY'; Col.
   assert (HPXS : PX <> S) by (unfold 三角形全等 in *; spliter; assert_diffs; auto).
   intro; treat_equalities; apply HPXS.
-  apply l6_21 with S U2 U1 S; Col;
+  apply l6_21_两线交点的唯一性 with S U2 U1 S; Col;
   [destruct HCs as [H' [H'' [H''' HPer]]]; apply perp_not_col;
    assert_diffs; apply per_perp in HPer; Perp|
   |apply 全等于退化的三角形 with E O X; try apply 三角形全等的BAC交换性; Col].
@@ -480,7 +480,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       assert (HDiff4 : P <> PY').
         {
         intro; treat_equalities; apply HDiff1.
-        assert_diffs; apply l6_21 with S U1 U2 S; Col.
+        assert_diffs; apply l6_21_两线交点的唯一性 with S U1 U2 S; Col.
         assert (HPar : Par P PX' S U2)
           by (apply l12_9_2D with S U1; Perp).
         elim HPar; clear HPar; intro HPar;
@@ -489,7 +489,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       assert (HDiff5 : Q <> PY').
         {
         intro; treat_equalities; apply HDiff2.
-        assert_diffs; apply l6_21 with S U1 U2 S; Col.
+        assert_diffs; apply l6_21_两线交点的唯一性 with S U1 U2 S; Col.
         assert (HPar : Par Q QX' S U2)
           by (apply l12_9_2D with S U1; Perp).
         elim HPar; clear HPar; intro HPar;
@@ -918,7 +918,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
           [apply par_not_col_strict with A2|apply par_not_col_strict with A1];
           Col ; try (intro; apply HLine); Col.
           }
-        apply l6_21 with S U1 A AX'; Col;
+        apply l6_21_两线交点的唯一性 with S U1 A AX'; Col;
         [| |apply 全等于退化的三角形 with O E AX|apply 全等于退化的三角形 with O E BX]; Col;
         intro; treat_equalities; apply HParS; exists A; split; Col;
         apply 等价共线CAB; apply 全等于退化的三角形 with O E AX; Col.

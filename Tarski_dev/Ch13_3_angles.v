@@ -635,7 +635,7 @@ Proof.
     assert(a A0 B0 C0).
       apply H3.
       apply conga_refl; auto.
-    assert(HH :=not_col_exists A B H0).
+    assert(HH :=两点不重合则存在不共线的点 A B H0).
     ex_and HH P.
     induction(两点重合的决定性 A0 C0).
       subst C0.

@@ -20,7 +20,7 @@ Proof.
   { intro.
     subst A3.
     assert(B1 = B3); [|subst; Cong].
-    apply (l6_21 B1 B2 A1 B1); Col.
+    apply (l6_21_两线交点的唯一性 B1 B2 A1 B1); Col.
       apply 共线否定排列BCA, par_strict_not_col_1 with A2, sac__pars1234, HSac.
       unfold 萨凯里四边形 in HSac; spliter; apply (cop_perp2__col _ _ _ A1 A2); Perp.
       apply col_cop__cop with B2; Cop.
@@ -34,7 +34,7 @@ Proof.
     apply par_strict_symmetry.
     apply sac__pars1423; assumption.
   }
-  apply (l6_21 B1 B2 A3 B3); Col.
+  apply (l6_21_两线交点的唯一性 B1 B2 A3 B3); Col.
     apply (par_strict_not_col_4 _ _ A1); auto.
   apply 等价共线CAB.
   assert (共面 A1 B2 B'3 B1).

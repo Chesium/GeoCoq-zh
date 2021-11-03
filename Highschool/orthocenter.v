@@ -286,7 +286,7 @@ assert (Par C H B C)
  by (apply l12_9 with A B;finish).
 assert (Col B C H)
  by (perm_apply (par_id C B H)).
-apply l6_21 with A B C B;finish.
+apply l6_21_两线交点的唯一性 with A B C B;finish.
 Qed.
 
 Lemma orthocenter_col :
@@ -310,7 +310,7 @@ assert (Col H A C)
   by (perm_apply (par_id A C H)).
 assert (H=C).
 assert_diffs.
-apply l6_21 with B C A C;finish.
+apply l6_21_两线交点的唯一性 with B C A C;finish.
 subst.
 auto.
 Qed.

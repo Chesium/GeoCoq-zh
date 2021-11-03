@@ -1213,7 +1213,7 @@ Proof.
     apply (cop_mid_onc2_perp__col O P A C); Perp.
     apply coplanar_perm_12, coplanar_trans_1 with B; Cop.
   assert_diffs.
-  destruct (共线的决定性 M1 P1 M2); [apply (l6_21 M2 P2 M1 P1)|apply (l6_21 M1 P1 M2 P2)]; Col.
+  destruct (共线的决定性 M1 P1 M2); [apply (l6_21_两线交点的唯一性 M2 P2 M1 P1)|apply (l6_21_两线交点的唯一性 M1 P1 M2 P2)]; Col.
   intro.
   apply HBC.
   destruct (两点重合的决定性 M1 M2).
@@ -1230,7 +1230,7 @@ Lemma tree_points_onc_cop : forall O P, O <> P -> exists A B C,
   A <> B /\ A <> C /\ B <> C /\ 在圆上 A O P /\ 在圆上 B O P /\ 在圆上 C O P /\ 共面 A B C O.
 Proof.
   intros O P HOP.
-  destruct (not_col_exists O P) as [X HNCol]; auto.
+  destruct (两点不重合则存在不共线的点 O P) as [X HNCol]; auto.
   destruct (diam_points O P X) as [B [C [HBet [HCol []]]]].
   exists P, B, C.
   repeat split; Circle.
@@ -1249,7 +1249,7 @@ Proof.
     subst Q.
     destruct (tree_points_onc_cop O P HOP) as [A [B [C]]]; spliter.
     exists A, B, C; repeat split; auto.
-  destruct (not_col_exists O Q) as [X HNCol]; auto.
+  destruct (两点不重合则存在不共线的点 O Q) as [X HNCol]; auto.
   destruct (diam_points O P X) as [B [C [HBet [HCol []]]]].
   destruct (l6_11_existence O O P Q) as [A []]; auto.
   exists A, B, C.

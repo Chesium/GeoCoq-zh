@@ -278,7 +278,7 @@ Proof.
   assert (HNCol := one_side_not_col123 A B C C' HOS).
   assert_diffs.
   destruct (l11_51 A B C A B C') as [H等角A [H等角B H等角C]]; Cong.
-  apply (l6_21 A C B C); Col; apply out_col.
+  apply (l6_21_两线交点的唯一性 A C B C); Col; apply out_col.
     apply (conga_os__out B); Side.
     apply (conga_os__out A); assumption.
 Qed.

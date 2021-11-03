@@ -334,7 +334,7 @@ assert (HPar : 严格平行 B C x y).
   apply par_strict_col_par_strict with T; Col.
   intro; subst y.
   destruct HPerp3 as [_ [HAC _]].
-  assert (A = x) by (apply (l6_21 A B C A); Col).
+  assert (A = x) by (apply (l6_21_两线交点的唯一性 A B C A); Col).
   subst; apply Hx1; exists D; split; Col.
   }
 assert (A <> D) by (intro; subst; apply HABC; Col).
@@ -425,8 +425,8 @@ elim (两点重合的决定性 C Y); intro HCY.
   assert (HZ2 := l10_2_existence A C Y); destruct HZ2 as [Z2 HZ2].
   elim HZ2; clear HZ2; intro HZ2; destruct HZ2 as [Hclear HZ2]; [|contradiction]; clear Hclear.
   destruct HZ2 as [[M2 [[HXM2Z2 HM2XM2Z2] HACM2]] HZ2].
-  assert (HABY : ~ Col A B Y) . (intro; apply HBY; apply l6_21 with A B C B; Col).
-  assert (HACY : ~ Col A C Y) by (intro; apply HCY; apply l6_21 with A C B C; Col).
+  assert (HABY : ~ Col A B Y) . (intro; apply HBY; apply l6_21_两线交点的唯一性 with A B C B; Col).
+  assert (HACY : ~ Col A C Y) by (intro; apply HCY; apply l6_21_两线交点的唯一性 with A C B C; Col).
   elim HZ1; clear HZ1; intro HZ1; [|treat_equalities; contradiction].
   elim HZ2; clear HZ2; intro HZ2; [|treat_equalities; contradiction].
   apply triangle_circumscription_implies_tarski_s_euclid_aux with D X Y Y M1 Z1 M2 Z2; Col.

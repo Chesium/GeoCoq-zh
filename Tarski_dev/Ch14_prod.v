@@ -51,7 +51,7 @@ Proof.
         split; Col.
       spliter.
       apply H.
-      apply (col_transitivity_1 _ A); Col.
+      apply (共线的传递性2 _ A); Col.
     unfold Pj in *.
     induction H2.
       left.
@@ -418,7 +418,7 @@ Proof.
         exists E'.
         split; Col.
       spliter.
-      apply(l6_21 O E B' O); Col.
+      apply(l6_21_两线交点的唯一性 O E B' O); Col.
       intro.
       apply H.
       ColR.
@@ -431,7 +431,7 @@ Proof.
       spliter.
       apply False_ind.
       apply H3.
-      apply (l6_21 O E E' O); Col.
+      apply (l6_21_两线交点的唯一性 O E E' O); Col.
       intro.
       subst E'.
       apply H.
@@ -442,14 +442,14 @@ Proof.
         apply H0.
         exists A.
         split; Col.
-        apply (col3 O E); Col.
+        apply (共线的传递性4 O E); Col.
         intro.
         subst E.
         apply H; Col.
       spliter.
       apply False_ind.
       apply H2.
-      apply (l6_21 O E E' O); Col.
+      apply (l6_21_两线交点的唯一性 O E E' O); Col.
       intro.
       subst E'.
       apply H.
@@ -541,7 +541,7 @@ Proof.
           exists E.
           split; Col.
         spliter.
-        apply(l6_21 O E'' E E''); Col.
+        apply(l6_21_两线交点的唯一性 O E'' E E''); Col.
       subst B''.
       assert(C = A).
         assert(Prod O E E' A E A).
@@ -623,7 +623,7 @@ Proof.
         split; Col.
       spliter.
       assert(B' = B'').
-        apply (l6_21 B B' O E'); Col.
+        apply (l6_21_两线交点的唯一性 B B' O E'); Col.
         intro.
         apply H.
         ColR.
@@ -634,13 +634,13 @@ Proof.
       assert(~Col E' E'' A).
         intro.
         apply H25.
-        apply (l6_21 O E E' E''); Col.
+        apply (l6_21_两线交点的唯一性 O E E' E''); Col.
       assert(B' <> B'').
         intro.
         subst B''.
         apply H27.
         assert_diffs.
-        apply(l6_21 O E' B B'); [|ColR..].
+        apply(l6_21_两线交点的唯一性 O E' B B'); [|ColR..].
         intro.
         apply H.
         ColR.
@@ -676,7 +676,7 @@ Proof.
         spliter.
         apply False_ind.
         apply H31.
-        apply(l6_21 O E' E E');Col.
+        apply(l6_21_两线交点的唯一性 O E' E E');Col.
         ColR.
       left.
       apply(l13_15 E' E'' A B' B'' C O H29); Col.
@@ -748,7 +748,7 @@ Proof.
       Par.
     apply False_ind.
     apply H31.
-    apply (l6_21 O E' E'' E'); Col.
+    apply (l6_21_两线交点的唯一性 O E' E'' E'); Col.
     ColR.
 Qed.
 
@@ -1429,7 +1429,7 @@ Proof.
           exists B.
           split; Col.
         spliter.
-        apply(l6_21 O E' B B'); Col.
+        apply(l6_21_两线交点的唯一性 O E' B B'); Col.
         intro.
         apply H0.
         ColR.
@@ -1455,7 +1455,7 @@ Proof.
         exists E'.
         split; Col.
       spliter.
-      apply(l6_21 O E E' A); Col.
+      apply(l6_21_两线交点的唯一性 O E E' A); Col.
       subst B'.
       apply par_distincts in H6.
       tauto.
@@ -1627,7 +1627,7 @@ Proof.
       split; Col.
     spliter.
     assert(A' = O').
-      apply (l6_21 O O' E' O'); Col.
+      apply (l6_21_两线交点的唯一性 O O' E' O'); Col.
         intro.
         apply H.
         exists O.
@@ -1657,7 +1657,7 @@ Proof.
       split; Col.
     spliter.
     assert(C' = O').
-      apply (l6_21 O O' E' O'); Col.
+      apply (l6_21_两线交点的唯一性 O O' E' O'); Col.
         intro.
         apply H.
         exists O.
@@ -1718,7 +1718,7 @@ Proof.
       apply (prod_uniqueness O E E' E B); auto.
     subst C.
     assert(A' = E').
-      apply(l6_21 E E' O' E'); Col.
+      apply(l6_21_两线交点的唯一性 E E' O' E'); Col.
         intro.
         apply H.
         exists E.
@@ -1741,7 +1741,7 @@ Proof.
       Col.
     subst A'.
     assert(C' = B').
-      apply(l6_21 B' B O' E'); Col.
+      apply(l6_21_两线交点的唯一性 B' B O' E'); Col.
         intro.
         apply H.
         exists B.
@@ -1866,7 +1866,7 @@ Proof.
     ex_and H28 A0.
     ex_and H27 A0'.
     assert(A = A0).
-      apply(l6_21 O E E'' A); Col.
+      apply(l6_21_两线交点的唯一性 O E E'' A); Col.
         intro.
         subst A.
         apply H25.
@@ -1921,7 +1921,7 @@ Proof.
       tauto.
     clear H2 H3 H4 H5.
     assert(A0'=A').
-      apply (l6_21 O' E' A A'); Col.
+      apply (l6_21_两线交点的唯一性 O' E' A A'); Col.
         intro.
         apply H.
         exists A.
@@ -2004,7 +2004,7 @@ Proof.
     ex_and H26 E0.
     ex_and H5 E0'.
     assert(E0 = E).
-      apply (l6_21 E'' E O E); Col.
+      apply (l6_21_两线交点的唯一性 E'' E O E); Col.
       induction H5.
         induction H5.
           apply False_ind.
@@ -2017,7 +2017,7 @@ Proof.
       Col.
     subst E0.
     assert(E0' = E').
-      apply(l6_21 O' E' E E'); Col.
+      apply(l6_21_两线交点的唯一性 O' E' E E'); Col.
         intro.
         apply H.
         exists E.
@@ -2095,7 +2095,7 @@ Proof.
       apply H19.
       ColR.
     assert(B0 = B).
-      apply (l6_21 O E B'' B); Col.
+      apply (l6_21_两线交点的唯一性 O E B'' B); Col.
         intro.
         apply H24.
         ColR.
@@ -2117,7 +2117,7 @@ Proof.
         Col.
     subst B0.
     assert(B0' = B').
-      apply (l6_21 O' E' B B'); Col.
+      apply (l6_21_两线交点的唯一性 O' E' B B'); Col.
         intro.
         apply H.
         exists B.
@@ -2217,7 +2217,7 @@ Proof.
       ColR.
     clear H23.
     assert(C0 = C).
-      apply (l6_21 O E B'' C); Col.
+      apply (l6_21_两线交点的唯一性 O E B'' C); Col.
         intro.
         apply H19.
         ColR.
@@ -2240,7 +2240,7 @@ Proof.
         Col.
     subst C0.
     assert(C0' = C').
-      apply (l6_21 O' E' C C'); Col.
+      apply (l6_21_两线交点的唯一性 O' E' C C'); Col.
         intro.
         apply H.
         exists C.

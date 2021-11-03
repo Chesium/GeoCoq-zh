@@ -67,12 +67,12 @@ cut (forall A B C P T,
     apply invert_one_side, col_one_side with A; Col.
     apply out_out_one_side with C; trivial.
     apply invert_one_side, in_angle_one_side; Col.
-    intro; apply HTX, (l6_21 A B Y X); Col.
+    intro; apply HTX, (l6_21_两线交点的唯一性 A B Y X); Col.
   - apply col_one_side_out with B; Col.
     apply invert_one_side, col_one_side with C; Col.
     apply one_side_symmetry, out_out_one_side with A; trivial.
     apply invert_one_side, in_angle_one_side; [Col| |apply l11_24, H在角内].
-    intro; apply HTY, (l6_21 B C X Y); Col.
+    intro; apply HTY, (l6_21_两线交点的唯一性 B C X Y); Col.
     intro; apply HNCol1; ColR.
   }
 

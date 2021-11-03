@@ -74,7 +74,7 @@ assert (HSacc2 : 萨凯里四边形 E F S R).
   intro; treat_equalities.
   assert (~ Col G E F) by (apply per_not_col; Perp).
   assert (Col E P R) by (apply col_cop2_perp2__col with F E G; Perp; Col; Cop).
-  apply HER, l6_21 with E G F E; ColR.
+  apply HER, l6_21_两线交点的唯一性 with E G F E; ColR.
   }
 assert_diffs.
 apply perp_col with S; Col.
@@ -127,7 +127,7 @@ apply par_distinct in HPar; spliter.
 apply universal_posidonius_postulate__perpendicular_transversal_postulate_aux with E G; trivial.
   apply perp_col2 with A B; Col; apply perp_sym, perp_left_comm, perp_col with Q; Perp.
   apply col_cop__cop with Q; trivial.
-  apply (col3 A B); auto.
+  apply (共线的传递性4 A B); auto.
 Qed.
 
 End universal_posidonius_postulate_perpendicular_transversal_postulate.

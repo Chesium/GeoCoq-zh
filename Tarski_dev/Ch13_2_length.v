@@ -324,7 +324,7 @@ Proof.
     intros.
     assert(HH:=每个点均有不同点 P).
     ex_elim HH A.
-    assert(HH:= not_col_exists P A H1).
+    assert(HH:= 两点不重合则存在不共线的点 P A H1).
     ex_elim HH Q.
     exists A.
     assert(A <> Q).

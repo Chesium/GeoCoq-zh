@@ -43,8 +43,8 @@ Proof.
       }
     assert (HPQ : IAC <> IAB) by (assert_diffs; auto).
     assert (HQR : IAB <> IBD) by (assert_diffs; auto).
-    destruct (diff_col_ex3 C1 C2 IAC) as [P1 [HC1P1 [HC2P1 [HPP1 HCP1]]]]; Col.
-    destruct (diff_col_ex3 D1 D2 IBD) as [R1 [HD1R1 [HD2R1 [HRR1 HDR1]]]]; Col.
+    destruct (每组共线三点都有另一共线点 C1 C2 IAC) as [P1 [HC1P1 [HC2P1 [HPP1 HCP1]]]]; Col.
+    destruct (每组共线三点都有另一共线点 D1 D2 IBD) as [R1 [HD1R1 [HD2R1 [HRR1 HDR1]]]]; Col.
     assert_diffs.
     destruct (bla IAC IAB IBD P1 R1) as [I [HI1 HI2]]; auto.
       apply perp_per_1, (perp_col4 A1 A2 C1 C2); Col.

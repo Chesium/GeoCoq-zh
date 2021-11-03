@@ -740,7 +740,7 @@ Col.
 induction(共线的决定性 A B T).
 apply False_ind.
 assert(B = T).
-apply (l6_21 A B C B); Col.
+apply (l6_21_两线交点的唯一性 A B C B); Col.
 subst T.
 apply H22.
 exists D.
@@ -750,7 +750,7 @@ split; Col.
 induction(共线的决定性 C D T).
 apply False_ind.
 assert(C = T).
-apply (l6_21 C D B C); Col.
+apply (l6_21_两线交点的唯一性 C D B C); Col.
 subst T.
 apply H22.
 exists A.
@@ -1506,7 +1506,7 @@ spliter.
 subst D.
 Between.
 
-assert(HH:=not_col_exists A B H2).
+assert(HH:=两点不重合则存在不共线的点 A B H2).
 ex_and HH P.
 assert(HH:=plg_existence A B P H2).
 ex_and HH Q.
@@ -1776,7 +1776,7 @@ spliter.
 repeat split; auto.
 spliter.
 
-assert(HH:=not_col_exists A B H3).
+assert(HH:=两点不重合则存在不共线的点 A B H3).
 ex_and HH P.
 assert(HH:=plg_existence A B P H3).
 ex_and HH Q.

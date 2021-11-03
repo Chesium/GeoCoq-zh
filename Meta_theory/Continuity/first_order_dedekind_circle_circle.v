@@ -152,7 +152,7 @@ Proof.
     - assert (Col P Q X) by ColR.
       apply coplanar_pseudo_trans with P Q C; [assumption| |Cop..].
       destruct HDij as [|[[]|[]]]; Cop.
-    - absurd (X = Y); trivial; assert_diffs; apply (l6_21 P Q C X); ColR.
+    - absurd (X = Y); trivial; assert_diffs; apply (l6_21_两线交点的唯一性 P Q C X); ColR.
     - apply (HNTS X Y); trivial.
   }
 

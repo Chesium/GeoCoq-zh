@@ -49,12 +49,12 @@ assert (HTS : TS Q S P Y).
     repeat split; [..|exists Q]; Col.
     intro HCol.
     assert (Q = Y)
-      by (apply l6_21 with Q S X Q; try (intro; treat_equalities); Col).
+      by (apply l6_21_两线交点的唯一性 with Q S X Q; try (intro; treat_equalities); Col).
     treat_equalities.
     assert (Q = U).
       {
       apply 严格中间性的等价 in HPTQ; apply 严格中间性的等价 in HRTS; apply 严格中间性的等价 in HQUR;
-      spliter; apply l6_21 with Q P R Q; Col.
+      spliter; apply l6_21_两线交点的唯一性 with Q P R Q; Col.
       apply par_strict_not_col_2 with S; Par.
       }
     treat_equalities; unfold BetS in *; spliter; Col.
@@ -126,7 +126,7 @@ assert (HPUI : BetS P U I).
     split; intro; treat_equalities; [apply HPar; Col|].
     assert (Q = U).
       {
-      apply l6_21 with S Q R Q; Col.
+      apply l6_21_两线交点的唯一性 with S Q R Q; Col.
       intro; apply HNC; ColR.
       }
     treat_equalities; auto.

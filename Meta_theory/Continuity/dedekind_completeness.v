@@ -28,7 +28,7 @@ induction HGrad as [|fA fB C C' ? HInd ? ?];
 rename C into X, C' into X'; destruct HInd as [C [? []]]; trivial.
 destruct (由一点往一方向构造等长线段 A C A B) as [C' []]; exists C'.
 assert (Col P Q C')
-  by (apply (colx A C); Col; apply grad_neq__neq13 with B; auto).
+  by (apply (共线的传递性5 A C); Col; apply grad_neq__neq13 with B; auto).
 split; [auto|split; [apply 线性刻度_步进 with C; Cong|]].
 apply (点的唯一构造 fA X fA fB); Cong; [|subst; auto..].
 intro; subst X; assert (A = C) by (apply fInj; auto; congruence).
@@ -52,7 +52,7 @@ intro HI; induction HI as [|fA fB C C' ? ? ? HInd];
 rename C into X, C' into X'; destruct HInd as [C [? []]]; auto.
 destruct (midpoint_existence A C) as [C' []]; exists C'.
 assert (Col P Q C')
-  by (destruct (两点重合的决定性 A C); [treat_equalities|apply (colx A C)]; Col).
+  by (destruct (两点重合的决定性 A C); [treat_equalities|apply (共线的传递性5 A C)]; Col).
 split; [auto|split; [|apply l7_17 with fA fB; split; subst; auto]].
 rewrite gradexp__gradexpinv; apply gradexpinv_stab with C; auto.
 rewrite <- gradexp__gradexpinv; assumption.
@@ -91,9 +91,9 @@ cut(forall P Q A B,
   assert (fPQ' : line_extension f P Q')
     by (apply line_extension_stability with Q; Col).
   assert (HCols : Col (f P) (f Q') A /\ Col (f P) (f Q') B /\ Col (f P) A B)
-    by (split; [|split]; apply col_transitivity_1 with (f Q); Col).
+    by (split; [|split]; apply 共线的传递性2 with (f Q); Col).
   assert (HColX : forall X, Col P Q' X -> Col P Q X)
-    by (intros; apply col_transitivity_1 with Q'; Col).
+    by (intros; apply 共线的传递性2 with Q'; Col).
   destruct HCols as [HColA' [HColB' HE]].
   assert (HH : Bet (f P) A B \/ Bet (f P) B A ->
                exists X, Col P Q X /\ Bet A (f X) B /\ f X <> A /\ f X <> B).
@@ -209,7 +209,7 @@ Proof.
   { destruct (由一点往一方向构造等长线段 (f P) A (f P) A) as [A1 []].
     assert_diffs.
     destruct (extension_image_density P Q f archi fLineExt A A1) as [R [HR1 [HR2 []]]]; Col.
-      apply col_transitivity_1 with A; Col.
+      apply 共线的传递性2 with A; Col.
     exists R; split; eBetween.
   }
   destruct HR as [R []].
@@ -218,7 +218,7 @@ Proof.
   - repeat split; finish.
   - split; assumption.
   - intros Z HZ.
-    assert (Col P Q Z) by (assert_diffs; apply col_transitivity_1 with R; Col).
+    assert (Col P Q Z) by (assert_diffs; apply 共线的传递性2 with R; Col).
     destruct (两点重合的决定性 (f Z) A).
       subst; right; split; Between.
     assert (HOut : Out (f P) (f Z) A).
@@ -240,7 +240,7 @@ Proof.
     assert (HBet : Bet P B R).
       apply HB; split; Col; Between.
     assert (Col P Q B).
-      apply col_transitivity_1 with R; Col; intro; treat_equalities; auto.
+      apply 共线的传递性2 with R; Col; intro; treat_equalities; auto.
     destruct (两点重合的决定性 (f B) A); [split; assumption|].
     exfalso.
     assert (Hf := fLineExt).

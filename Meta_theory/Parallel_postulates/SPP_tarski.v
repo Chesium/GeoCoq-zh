@@ -263,7 +263,7 @@ elim (共线的决定性 X T Y); intro HXTY.
   assert (HU := outer_pasch Y B C A D HACY HBDC); destruct HU as [U [HYUB HADU]].
   apply 中间性的对称性 in HABX.
   assert (HV := outer_pasch X Y B A U HABX HYUB); destruct HV as [V [HXVY HAUV]].
-  assert (HEq : T = V) by (apply (l6_21 X Y A D); ColR).
+  assert (HEq : T = V) by (apply (l6_21_两线交点的唯一性 X Y A D); ColR).
   subst; assumption.
   }
 

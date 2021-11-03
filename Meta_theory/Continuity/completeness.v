@@ -20,7 +20,7 @@ Lemma line_extension_stability : forall {Tm: 无维度中性塔斯基公理系�
 Proof.
   intros Tm f P Q R HCol HPR [HPQ [fInj [fBet fCong]]].
   repeat split; auto; intro; intros;
-    [apply fInj|apply fBet|apply fCong]; trivial; apply col_transitivity_1 with R; Col.
+    [apply fInj|apply fBet|apply fCong]; trivial; apply 共线的传递性2 with R; Col.
 Qed.
 
 Lemma line_extension_reverse_bet : forall {Tm: 无维度中性塔斯基公理系统}
@@ -28,7 +28,7 @@ Lemma line_extension_reverse_bet : forall {Tm: 无维度中性塔斯基公理系
   forall A B C, Col P Q A -> Col P Q B -> Col P Q C -> Bet (f A) (f B) (f C) -> Bet A B C.
 Proof.
   intros Tm f P Q [HPQ [fInj [fBet fCong]]] A B C HA HB HC HBet.
-  assert (HCol : Col A B C) by (apply (col3 P Q); assumption).
+  assert (HCol : Col A B C) by (apply (共线的传递性4 P Q); assumption).
   destruct HCol as [|[HBet'|HBet']]; trivial;
   [assert (B = C)|assert (A = B)]; try (subst B; Between);
   apply fInj; trivial;
@@ -40,7 +40,7 @@ Lemma pres_bet_line__col : forall {Tm: 无维度中性塔斯基公理系统}
   forall A B C, Col P Q A -> Col P Q B -> Col P Q C -> Col (f A) (f B) (f C).
 Proof.
   intros Tm f P Q HPQ fBet A B C HA HB HC.
-  destruct (col3 P Q A B C) as [HBet|[HBet|HBet]]; trivial; apply fBet in HBet; Col.
+  destruct (共线的传递性4 P Q A B C) as [HBet|[HBet|HBet]]; trivial; apply fBet in HBet; Col.
 Qed.
 
 Lemma col2_diff_inj_line__diff : forall {Tm: 无维度中性塔斯基公理系统}
@@ -142,7 +142,7 @@ Proof.
     assert (Bet P S Q) by Between.
     assert (Bet (f P) (f S) (f Q)) by auto.
     destruct HX2 as [[HBet []]|[HBet []]];
-      [|apply 等价共线BAC]; apply (col_transitivity_2 (f S)); Col.
+      [|apply 等价共线BAC]; apply (共线的传递性3 (f S)); Col.
   }
   assert (HB : exists B, Col S Y B /\ f B = A) by (apply lc; Col).
   destruct HB as [B []].

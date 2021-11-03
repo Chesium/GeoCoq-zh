@@ -96,7 +96,7 @@ elim (共线的决定性 A B C); intro HABC.
     }
   }
   {
-  assert (~ Col B C T) by (intro; apply HABC, 等价共线CAB, (colx D T); Col).
+  assert (~ Col B C T) by (intro; apply HABC, 等价共线CAB, (共线的传递性5 D T); Col).
   apply HGC with D; assumption.
   }
 Qed.

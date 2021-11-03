@@ -9,7 +9,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 Global Instance Tarski_is_a_Col_theory : (Col_theory Tpoint Col).
 Proof.
-exact (Build_Col_theory Tpoint Col AAB型共线 等价共线BCA 等价共线ACB col3).
+exact (Build_Col_theory Tpoint Col AAB型共线 等价共线BCA 等价共线ACB 共线的传递性4).
 Defined.
 
 End Tarski_is_a_Col_theory.

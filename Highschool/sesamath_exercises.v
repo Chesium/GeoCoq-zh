@@ -627,7 +627,7 @@ assert(x=B'\/x<>B')
 destruct H14.
 destruct H14.
 assert(Col A C' A')
-  by(apply(l6_16_1 C' x A' A);finish;Par).
+  by(apply(共线的传递性1 C' x A' A);finish;Par).
 destruct H0.
 assert(Col A A' C');finish.
 assert(Par B x B' B);finish.

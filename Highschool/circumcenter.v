@@ -354,7 +354,7 @@ elim (共线的决定性 A B C); intro HABC.
       apply cong_mid_perp_bisect; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
-    apply l6_21 with O A' B' O'; Col.
+    apply l6_21_两线交点的唯一性 with O A' B' O'; Col.
 
       {
       assert (HRect : 长方形 C B' O A').
@@ -434,7 +434,7 @@ elim (共线的决定性 A B C); intro HABC.
       apply cong_mid_perp_bisect; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
-    apply l6_21 with O' A' B' O; Col.
+    apply l6_21_两线交点的唯一性 with O' A' B' O; Col.
 
       {
       assert (HRect : 长方形 C B' O' A').
@@ -501,7 +501,7 @@ elim (共线的决定性 A B C); intro HABC.
         unfold is_circumcenter in *; spliter.
         apply cong_mid_perp_bisect; Cong.
         }
-      apply l6_21 with O A' C' O'; Col.
+      apply l6_21_两线交点的唯一性 with O A' C' O'; Col.
 
         {
         assert (HRect : 长方形 B A' O C').
@@ -563,7 +563,7 @@ elim (共线的决定性 A B C); intro HABC.
         unfold is_circumcenter in *; spliter.
         apply cong_mid_perp_bisect; Cong.
         }
-      apply l6_21 with O' A' C' O; Col.
+      apply l6_21_两线交点的唯一性 with O' A' C' O; Col.
 
         {
         assert (HRect : 长方形 B A' O' C').
@@ -612,7 +612,7 @@ elim (共线的决定性 A B C); intro HABC.
           unfold is_circumcenter in *; spliter.
           apply cong_mid_perp_bisect; Cong.
           }
-        apply l6_21 with O B' C' O'; Col.
+        apply l6_21_两线交点的唯一性 with O B' C' O'; Col.
 
           {
           assert (HRect : 长方形 A B' O C').
@@ -655,7 +655,7 @@ elim (共线的决定性 A B C); intro HABC.
           {
           unfold is_circumcenter in *; spliter; apply cong_mid_perp_bisect; Cong.
           }
-        apply l6_21 with O' B' C' O; Col.
+        apply l6_21_两线交点的唯一性 with O' B' C' O; Col.
 
           {
           assert (HRect : 长方形 A B' O' C').
@@ -690,7 +690,7 @@ elim (共线的决定性 A B C); intro HABC.
           apply circumcenter_perp_all; auto.
           }
         destruct H as [HPer3 [HPer4 Hc]]; clear Hc.
-        apply l6_21 with O A' B' O; Col.
+        apply l6_21_两线交点的唯一性 with O A' B' O; Col.
 
           {
           intro HOA'B'; assert (HPar : 严格平行 A C C B).

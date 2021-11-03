@@ -271,7 +271,7 @@ Proof.
     apply (conga3_suma__suma D1 D2 D3 B1 B2 B3 P Q R); try (apply conga_refl); auto;
     apply l11_21_b; trivial.
   }
-  assert (B = O) by (apply (l6_21 A C D B); Col).
+  assert (B = O) by (apply (l6_21_两线交点的唯一性 A C D B); Col).
   subst O.
   apply out213_suma__conga in HSuma; trivial.
   destruct (t22_16_1bis noah A D C B C1 C2 C3 A1 A2 A3 B1 B2 B3) as [HIsi HSuma1]; trivial.

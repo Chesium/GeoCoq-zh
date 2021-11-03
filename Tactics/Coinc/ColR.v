@@ -425,7 +425,7 @@ apply (let P interp ss sp newss :=
       apply S.inter_spec in Hmemsnds.
       destruct Hmemsnds as [Hsss1 Hsss2].
       unfold auxset in *.
-      apply CTcol3 with (interp (fstpp(x))) (interp (sndpp(x))); try assumption.
+      apply CT共线的传递性4 with (interp (fstpp(x))) (interp (sndpp(x))); try assumption.
 
         apply SWP.Dec.F.mem_2 in Hmemp1.
         apply SWP.Dec.F.union_1 in Hmemp1.

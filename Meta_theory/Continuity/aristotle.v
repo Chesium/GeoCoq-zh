@@ -216,7 +216,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
       }
     }
   apply par_symmetry in HPar; apply (par_not_col_strict _ _ _ _ T) in HPar; Col;
-  [|intro; apply HTP'', l6_21 with C' P'' B T; Col;
+  [|intro; apply HTP'', l6_21_两线交点的唯一性 with C' P'' B T; Col;
     [|intro; treat_equalities; apply HNC; ColR];
     elim (perp_not_col2 _ _ _ _ HPerp2); Col;
     intros HF ?; apply HF; ColR].

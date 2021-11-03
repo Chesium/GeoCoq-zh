@@ -382,7 +382,7 @@ Proof.
         apply HJ3.
         assert (HCBJ : Bet C B J) by (apply (bet_conga__bet D E F); 等角).
         repeat split; Col.
-          intro; apply HNColB; apply (l6_16_1 B J C A); Col.
+          intro; apply HNColB; apply (共线的传递性1 B J C A); Col.
         exists B.
         split; Col; Between.
       }
@@ -408,13 +408,13 @@ Proof.
     apply invert_one_side.
     apply (one_side_transitivity A B X J).
     { apply out_one_side.
-      left; intro; apply HNColB; apply (l6_16_1 B X); Col.
+      left; intro; apply HNColB; apply (共线的传递性1 B X); Col.
       assert (HAX : A<>X) by (intro; treat_equalities; Col).
       apply bet_out; auto.
     }
     apply one_side_symmetry.
     apply cop_nts__os; Col; Cop.
-    intro; apply HNColB; apply (l6_16_1 B X); Col; apply (col_transitivity_2 J); Col.
+    intro; apply HNColB; apply (共线的传递性1 B X); Col; apply (共线的传递性3 J); Col.
     intro; treat_equalities; auto.
 
   - intro Hlea.
@@ -453,7 +453,7 @@ Proof.
       intro HTwo; destruct HTwo as [HBA [HNCol _]]; Col.
     }
     intro HNColB.
-    assert (HNColB' : ~ Col A' B C) by (intro; apply HNColB; apply (l6_16_1 B A'); Col).
+    assert (HNColB' : ~ Col A' B C) by (intro; apply HNColB; apply (共线的传递性1 B A'); Col).
     elim (共线的决定性 D E F).
     { intro HNColE.
       assert (HEOut : Out E D F).
@@ -495,7 +495,7 @@ Proof.
     { apply l9_9_bis.
       apply one_side_symmetry.
       apply (in_angle_one_side); auto.
-      intro; apply HNColJ; apply (l6_16_1 B A'); Col.
+      intro; apply HNColJ; apply (共线的传递性1 B A'); Col.
       apply l11_24.
       destruct Hlea as [K [H在角内 HCongaK]].
       apply (conga_preserves_in_angle C B A' K C B A' J); 等角.
@@ -941,7 +941,7 @@ Proof.
   assert(HNColX : ~Col X A B).
   { intro.
     apply HNColJ2.
-    apply 等价共线BCA; apply (col_transitivity_1 A X); Col.
+    apply 等价共线BCA; apply (共线的传递性2 A X); Col.
     intro; subst X; Col.
   }
   assert_diffs.
@@ -1195,7 +1195,7 @@ Proof.
     apply (out213_suma__conga A B C); auto.
   }
   intro HNColB.
-  assert(~ Col C B A0) by (intro; apply HNColB; apply (l6_16_1 _ A0); Col).
+  assert(~ Col C B A0) by (intro; apply HNColB; apply (共线的传递性1 _ A0); Col).
   elim(共线的决定性 D E F).
   { intro HColE.
     elim(中间性的决定性 D E F).
@@ -1210,7 +1210,7 @@ Proof.
     apply (out213_suma__conga D E F); auto.
   }
   intro HNColE.
-  assert(~ Col F E D0) by (intro; apply HNColE; apply (l6_16_1 _ D0); Col).
+  assert(~ Col F E D0) by (intro; apply HNColE; apply (共线的传递性1 _ D0); Col).
   elim(共线的决定性 G H I).
   { intro HColH.
     elim(中间性的决定性 G H I).

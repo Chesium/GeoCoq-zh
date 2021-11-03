@@ -40,7 +40,7 @@ assert (HPar2 : Par P Q R S) by (apply l12_9 with A1 A2; Perp; Cop).
 assert (HNC3 : ~ Col P Q R) by (apply perp_not_col; Perp).
 assert (HNC4 : 严格平行 P Q R S) by (apply par_not_col_strict with R; Col).
 apply par_strict_not_col_3 in HNC4.
-destruct (l8_18_existence R S P) as [R' [HCcol3 HPerp4]]; Col.
+destruct (l8_18_existence R S P) as [R' [HC共线的传递性4 HPerp4]]; Col.
 assert (HPar3 : Par A1 A2 P R').
 {
   assert_diffs.
@@ -51,7 +51,7 @@ assert (HPar3 : Par A1 A2 P R').
     exists R'; left; split; Col.
 }
 destruct (HP P R P R') as [_ HCol4]; Col.
-assert (R = R') by (assert_diffs; apply l6_21 with P R S R; Col).
+assert (R = R') by (assert_diffs; apply l6_21_两线交点的唯一性 with P R S R; Col).
 assert (HPs : 严格平行 P Q R S) by (apply par_not_col_strict with R; Col).
 treat_equalities; rewrite <- (lam_per__rah P Q S R).
 

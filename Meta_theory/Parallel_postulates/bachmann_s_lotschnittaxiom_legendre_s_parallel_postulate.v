@@ -61,7 +61,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       subst; Between.
     assert (HACT : ~ Col B C T).
       {
-      assert_diffs; intro; apply HTY, l6_21 with B C X T; Col.
+      assert_diffs; intro; apply HTY, l6_21_两线交点的唯一性 with B C X T; Col.
         intro; apply HNC; ColR.
         right; assumption.
       }

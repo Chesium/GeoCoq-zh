@@ -23,11 +23,11 @@ Proof. exact 等价共线CBA. Qed.
 
 Lemma col123_124__col134 : forall P Q A B,
   P <> Q -> Col P Q A -> Col P Q B -> Col P A B.
-Proof. exact col_transitivity_1. Qed.
+Proof. exact 共线的传递性2. Qed.
 
 Lemma col123_124__col234 : forall P Q A B,
   P <> Q -> Col P Q A -> Col P Q B -> Col Q A B.
-Proof. exact col_transitivity_2. Qed.
+Proof. exact 共线的传递性3. Qed.
 
 Lemma triangle_mid_par_strict : forall A B C P Q,
  ~Col A B C ->

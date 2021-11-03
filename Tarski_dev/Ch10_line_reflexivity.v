@@ -777,7 +777,7 @@ Proof.
           apply perp_sym.
           assumption.
         assert (A = T).
-          apply l6_21 with A T' B T; Col.
+          apply l6_21_两线交点的唯一性 with A T' B T; Col.
           intro; treat_equalities; Col.
         subst A.
         apply l7_2 in H1.
@@ -807,7 +807,7 @@ Proof.
           apply perp_sym.
           assumption.
         assert (B = T).
-          eapply l6_21.
+          eapply l6_21_两线交点的唯一性.
             apply H8.
             apply H4.
             apply ABA型共线.
@@ -845,7 +845,7 @@ Proof.
           apply H9.
         assumption.
       assert (X = T).
-        eapply l6_21.
+        eapply l6_21_两线交点的唯一性.
           apply H10.
           apply H6.
           apply ABA型共线.
@@ -985,7 +985,7 @@ Proof.
             absurde.
             apply perp_sym.
             apply H4.
-          eapply (col_transitivity_2 M).
+          eapply (共线的传递性3 M).
             intro.
             subst P'.
             apply is_midpoint_id in H1.
@@ -1001,7 +1001,7 @@ Proof.
           apply midpoint_bet.
           apply l7_2.
           assumption.
-        eapply (col_transitivity_2 M).
+        eapply (共线的传递性3 M).
           intro.
           subst Q'.
           apply l7_2 in H7.
@@ -1048,7 +1048,7 @@ Proof.
                   apply is_midpoint_id in H6.
                   subst M.
                   apply AAB型共线.
-                eapply (col_transitivity_1 _ X).
+                eapply (共线的传递性2 _ X).
                   assumption.
                   unfold Col.
                   right; right.
@@ -1069,7 +1069,7 @@ Proof.
                 apply is_midpoint_id in H6.
                 subst Y.
                 absurde.
-              eapply col_transitivity_1.
+              eapply 共线的传递性2.
                 apply H13.
                 unfold Col.
                 right; right.
@@ -1085,7 +1085,7 @@ Proof.
                 auto.
                 assumption.
               assert(Col B X M).
-                eapply col_transitivity_2.
+                eapply 共线的传递性3.
                   apply H.
                   assumption.
                 assumption.
@@ -1095,7 +1095,7 @@ Proof.
                 contradiction.
               assert(Col B Y M).
                 apply 等价共线BCA.
-                eapply (col_transitivity_2  X).
+                eapply (共线的传递性3  X).
                   auto.
                   apply 等价共线BCA.
                   assumption.
@@ -1103,7 +1103,7 @@ Proof.
                 left.
                 apply midpoint_bet.
                 assumption.
-              eapply (col_transitivity_1 _ B).
+              eapply (共线的传递性2 _ B).
                 auto.
                 apply 等价共线CAB.
                 assumption.
@@ -1216,7 +1216,7 @@ Proof.
             apply midpoint_bet.
             assumption.
           assert (M'=M).
-            apply (l6_21 A B P P'); Col.
+            apply (l6_21_两线交点的唯一性 A B P P'); Col.
               induction (两点重合的决定性 A M').
                 subst M'.
                 assert (~ Col A B P /\ Per P A B).
@@ -1494,7 +1494,7 @@ Proof.
           intro.
           apply H9.
           apply 等价共线CAB.
-          eapply (col_transitivity_1 _ P').
+          eapply (共线的传递性2 _ P').
             intro.
             subst P'.
             apply is_midpoint_id in H1.
@@ -1545,7 +1545,7 @@ Proof.
           assumption.
           intro.
           assert (Col M0 A P).
-            eapply (col_transitivity_1 _ P').
+            eapply (共线的传递性2 _ P').
               intro.
               subst P'.
               apply is_midpoint_id in H1.
@@ -1590,7 +1590,7 @@ Proof.
         intro.
         apply H8.
         apply 等价共线BCA.
-        eapply col_transitivity_1.
+        eapply 共线的传递性2.
           apply perp_distinct in H2.
           spliter.
           apply H2.
@@ -1623,7 +1623,7 @@ Proof.
         intro.
         apply H8.
         apply 等价共线BCA.
-        eapply col_transitivity_1.
+        eapply 共线的传递性2.
           apply perp_distinct in H2.
           spliter.
           apply H2.
@@ -1705,7 +1705,7 @@ Proof.
       intro.
       apply H4.
       apply 等价共线CAB.
-      eapply col_transitivity_1.
+      eapply 共线的传递性2.
         apply H1.
         apply 等价共线BCA.
         assumption.
@@ -1716,7 +1716,7 @@ Proof.
     exists T.
     split.
       apply 等价共线CAB.
-      eapply col_transitivity_1.
+      eapply 共线的传递性2.
         apply H2.
         apply 等价共线ACB.
         assumption.
@@ -1750,7 +1750,7 @@ destruct (两点重合的决定性 A B).
 subst.
 destruct (由一点往一方向构造等长线段 X B X Y).
 exists x;split;spliter;Perp.
-destruct (not_col_exists A B H) as [P HP].
+destruct (两点不重合则存在不共线的点 A B H) as [P HP].
 destruct (两点重合的决定性 X Y).
 subst;exists B;split;[Perp|Cong].
 destruct (ex_per_cong A B B P X Y); Col.

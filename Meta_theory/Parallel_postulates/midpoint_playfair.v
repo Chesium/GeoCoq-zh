@@ -46,7 +46,7 @@ elim HPar1; clear HPar1; intro HPar1; elim HPar2; clear HPar2; intro HPar2.
         }
 
         {
-        intro; apply HPB1, l6_21 with A1 P B1 P; Col; [|ColR].
+        intro; apply HPB1, l6_21_两线交点的唯一性 with A1 P B1 P; Col; [|ColR].
         apply par_strict_not_col_2 with A2.
         apply par_strict_comm, par_strict_col_par_strict with B2; Col.
         }

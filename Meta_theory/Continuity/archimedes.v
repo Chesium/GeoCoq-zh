@@ -257,7 +257,7 @@ Proof.
   repeat split; Cong.
   - intro; treat_equalities; apply HNCol; ColR.
   - intro; treat_equalities; apply H6.
-    apply (l6_21 A M N M); Col.
+    apply (l6_21_两线交点的唯一性 A M N M); Col.
     apply 等价共线CBA, cop_per2__col with A; Col; Cop.
   - apply per_col with A; Col.
     apply l8_2, per_col with M; Col; Perp.

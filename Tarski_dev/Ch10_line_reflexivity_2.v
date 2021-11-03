@@ -292,7 +292,7 @@ Proof.
     intros.
     destruct (l10_6_existence X Y I) as [I0 HI0]; trivial.
     assert (I' = I0); [|subst; assumption].
-    apply (l6_21 A' B' C' D'); trivial.
+    apply (l6_21_两线交点的唯一性 A' B' C' D'); trivial.
       apply image_gen_preserves_ncol with A B C X Y; assumption.
       intro; subst D'; apply H4, l10_2_uniqueness with X Y C'; assumption.
       apply image_gen_preserves_col with A B I X Y; assumption.
@@ -747,7 +747,7 @@ Proof.
             assumption.
             assumption.
           assumption.
-        eapply col_transitivity_1.
+        eapply 共线的传递性2.
           apply H6.
           apply 等价共线ACB.
           assumption.
@@ -804,7 +804,7 @@ Lemma ex_perp_cop : forall A B C P,
 Proof.
   intros A B C P HAB.
   destruct (共线的决定性 A B C) as [HCol|HNCol]; [destruct (共线的决定性 A B P) as [|HNCol]|].
-  - destruct (not_col_exists A B HAB) as [P' HNCol].
+  - destruct (两点不重合则存在不共线的点 A B HAB) as [P' HNCol].
     destruct (l10_15 A B C P' HCol HNCol) as [Q []].
     exists Q.
     split; trivial.
@@ -900,8 +900,8 @@ assert (HX : exists X, Col C D X /\ I <> X) by (exists C; split; try intro; trea
 destruct HX as [X [HCol3 HIX]].
 destruct (symmetric_point_construction X I) as [Y HMid].
 exists X; exists Y; assert_diffs; assert_cols; repeat split; try ColR.
-  intro; apply HIX, l6_21 with A B C D; Col.
-  intro; absurd (I = Y); [auto|apply l6_21 with A B C D; ColR].
+  intro; apply HIX, l6_21_两线交点的唯一性 with A B C D; Col.
+  intro; absurd (I = Y); [auto|apply l6_21_两线交点的唯一性 with A B C D; ColR].
 exists I; unfold 中点 in HMid; spliter; split; Col; Between.
 Qed.
 

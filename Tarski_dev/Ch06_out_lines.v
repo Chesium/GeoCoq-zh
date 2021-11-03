@@ -278,7 +278,7 @@ Proof.
     split; Cong.
 Qed.
 
-Lemma l6_16_1 : forall P Q S X, P<>Q -> Col S P Q -> Col X P Q -> Col X P S.
+Lemma 共线的传递性1 : forall P Q S X, P<>Q -> Col S P Q -> Col X P Q -> Col X P S.
 Proof.
     intros.
     destruct (两点重合的决定性 S P).
@@ -296,26 +296,26 @@ Proof.
     right; apply H3; eapply l5_3; eBetween.
 Qed.
 
-Lemma col_transitivity_1 : forall P Q A B,
+Lemma 共线的传递性2 : forall P Q A B,
   P<>Q -> Col P Q A -> Col P Q B -> Col P A B.
 Proof.
     intros.
     induction (两点重合的决定性 A P).
       subst; unfold Col; Between.
-    assert (T:=l6_16_1 P Q A B).
+    assert (T:=共线的传递性1 P Q A B).
     apply 等价共线BCA; apply T; Col.
 Qed.
 
-Lemma col_transitivity_2 : forall P Q A B,
+Lemma 共线的传递性3 : forall P Q A B,
  P<>Q -> Col P Q A -> Col P Q B -> Col Q A B.
 Proof.
     intros.
-    apply (col_transitivity_1 Q P A B);Col.
+    apply (共线的传递性2 Q P A B);Col.
 Qed.
 
 (** Unicity of intersection *)
 
-Lemma l6_21 : forall A B C D P Q,
+Lemma l6_21_两线交点的唯一性 : forall A B C D P Q,
   ~ Col A B C -> C<>D -> Col A B P -> Col A B Q -> Col C D P -> Col C D Q -> P=Q.
 Proof.
     intros.
@@ -324,39 +324,39 @@ Proof.
       intro; intuition.
     apply 不共线则不重合 in H.
     spliter.
-    assert (Col C P Q) by (apply col_transitivity_1 with D; Col).
+    assert (Col C P Q) by (apply 共线的传递性2 with D; Col).
     assert (Col Q B C).
       induction (两点重合的决定性 Q A).
-        subst; apply col_transitivity_1 with P; Col.
-      apply col_transitivity_1 with P; Col; apply 等价共线BCA, col_transitivity_1 with A; Col.
+        subst; apply 共线的传递性2 with P; Col.
+      apply 共线的传递性2 with P; Col; apply 等价共线BCA, 共线的传递性2 with A; Col.
     assert (Col A B C).
       induction (两点重合的决定性 Q A).
         subst Q; assumption.
       induction (两点重合的决定性 Q B).
-        subst; apply 等价共线CAB; apply col_transitivity_1 with P; Col.
-      apply 等价共线CAB; apply col_transitivity_1 with Q; Col.
+        subst; apply 等价共线CAB; apply 共线的传递性2 with P; Col.
+      apply 等价共线CAB; apply 共线的传递性2 with Q; Col.
     contradiction.
 Qed.
-
+(* 无用？ *)
 Lemma col2__eq : forall A B X Y,
   Col A X Y -> Col B X Y -> ~ Col A X B ->
   X = Y.
 Proof.
     intros.
-    apply l6_21 with A X B X; Col.
+    apply l6_21_两线交点的唯一性 with A X B X; Col.
     intro; subst; Col.
 Qed.
 
 End T6_1.
 
-Hint Resolve col_transitivity_1 col_transitivity_2 out_col : col.
+Hint Resolve 共线的传递性2 共线的传递性3 out_col : col.
 
 Section T6_2.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** This is l6_25 of Tarski *)
-Lemma not_col_exists : forall A B,
+Lemma 两点不重合则存在不共线的点 : forall A B,
  A<>B -> exists C, ~ Col A B C.
 Proof.
     intros.
@@ -394,31 +394,31 @@ Proof.
 Qed.
 *)
 
-Lemma col3 : forall X Y A B C,
+Lemma 共线的传递性4 : forall X Y A B C,
  X <> Y ->
  Col X Y A -> Col X Y B -> Col X Y C ->
  Col A B C.
 Proof.
     intros.
-    assert (Col X A B) by (apply col_transitivity_1 with Y; assumption).
+    assert (Col X A B) by (apply 共线的传递性2 with Y; assumption).
     induction(两点重合的决定性 C X).
       subst X; apply 等价共线BCA; assumption.
     apply 等价共线BCA.
-    apply col_transitivity_1 with X; try assumption.
+    apply 共线的传递性2 with X; try assumption.
       apply 等价共线CAB.
-      apply col_transitivity_1 with Y; assumption.
+      apply 共线的传递性2 with Y; assumption.
     apply 等价共线CAB.
-    apply col_transitivity_1 with Y; assumption.
+    apply 共线的传递性2 with Y; assumption.
 Qed.
 
-Lemma colx : forall A B C X Y, A <> B -> Col X Y A -> Col X Y B -> Col A B C -> Col X Y C.
+Lemma 共线的传递性5 : forall A B C X Y, A <> B -> Col X Y A -> Col X Y B -> Col A B C -> Col X Y C.
 Proof.
     intros.
     destruct (两点重合的决定性 X Y).
       subst; Col.
-    apply (col3 A B); auto; apply 等价共线BCA.
-      apply col_transitivity_1 with Y; Col.
-      apply (col_transitivity_2 X); Col.
+    apply (共线的传递性4 A B); auto; apply 等价共线BCA.
+      apply 共线的传递性2 with Y; Col.
+      apply (共线的传递性3 X); Col.
 Qed.
 
 Lemma out2__bet : forall A B C, Out A B C -> Out C A B -> Bet A B C.
@@ -840,7 +840,7 @@ Proof.
   apply l6_6; assumption.
 Qed.
 
-Lemma diff_col_ex : forall A B, exists C, A <> C /\ B <> C /\ Col A B C.
+Lemma 任两点都有不重合的共线点 : forall A B, exists C, A <> C /\ B <> C /\ Col A B C.
 Proof.
     intros.
     assert (exists C, Bet A B C /\ B <> C).
@@ -920,7 +920,7 @@ Proof.
           assumption.
           assumption.
         assumption.
-      apply diff_col_ex.
+      apply 任两点都有不重合的共线点.
     assert (exists D, Bet B C D /\ C <> D).
       apply 构造满足中间性的不重合点.
     ex_and H2 D.
@@ -950,7 +950,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma diff_col_ex3 : forall A B C,
+Lemma 每组共线三点都有另一共线点 : forall A B C,
  Col A B C -> exists D, A <> D /\ B <> D /\ C <> D /\ Col A B D.
 Proof.
     intros.
@@ -966,7 +966,7 @@ Proof.
       induction (两点重合的决定性 B C).
         subst C.
         assert (exists C, A <> C /\ B <> C /\ Col A B C).
-          apply (diff_col_ex).
+          apply (任两点都有不重合的共线点).
         ex_and H0 D.
         exists D.
         repeat split; assumption.
@@ -975,7 +975,7 @@ Proof.
       exists D.
       repeat split; try assumption.
       apply 等价共线CAB.
-      eapply col_transitivity_1.
+      eapply 共线的传递性2.
         apply H0.
         assumption.
       unfold Col.
@@ -984,7 +984,7 @@ Proof.
     induction (两点重合的决定性 A C).
       subst C.
       assert (exists C, A <> C /\ B <> C /\ Col A B C).
-        apply (diff_col_ex).
+        apply (任两点都有不重合的共线点).
       ex_and H0 D.
       exists D.
       repeat split; assumption.
@@ -994,7 +994,7 @@ Proof.
     exists D.
     repeat split; try assumption.
     apply 等价共线ACB.
-    eapply col_transitivity_1.
+    eapply 共线的传递性2.
       apply H0.
       apply 等价共线BAC.
       assumption.

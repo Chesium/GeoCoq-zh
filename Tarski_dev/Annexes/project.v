@@ -97,14 +97,14 @@ clear H19.
 apply par_distincts in H6.
 spliter.
 
-eapply (l6_21 A B P Q); Col.
+eapply (l6_21_两线交点的唯一性 A B P Q); Col.
 intro.
 apply H16.
 apply(project_id A B X Y P P'); Col.
 
 subst Q'.
 
-eapply (l6_21 A B P Q); Col.
+eapply (l6_21_两线交点的唯一性 A B P Q); Col.
 intro.
 apply H16.
 apply(project_id A B X Y P P'); Col.
@@ -121,7 +121,7 @@ spliter.
 clear H17.
 
 subst P'.
-eapply (l6_21 A B Q P); Col.
+eapply (l6_21_两线交点的唯一性 A B Q P); Col.
 intro.
 apply H14.
 apply(project_id A B X Y Q Q'); Col.
@@ -213,7 +213,7 @@ Par.
 spliter.
 clear H3.
 
-apply (l6_21 A B P P'); Col.
+apply (l6_21_两线交点的唯一性 A B P P'); Col.
 intro.
 apply H10.
 eapply project_id.
@@ -335,7 +335,7 @@ spliter.
 clean_duplicated_hyps.
 
 assert(Col P' Q' R').
-apply (col3 A B); Col.
+apply (共线的传递性4 A B); Col.
 
 induction(两点重合的决定性 P Q).
 assert(P' = Q').
@@ -443,7 +443,7 @@ assert(QQ=Q').
 assert(Col P' QQ R').
 apply 中间性蕴含共线.
 assumption.
-eapply (l6_21 Q Q' P' R'); Col.
+eapply (l6_21_两线交点的唯一性 Q Q' P' R'); Col.
 
 intro.
 subst R'.
@@ -480,7 +480,7 @@ assert(QQ=Q').
 assert(Col P' QQ R).
 apply 中间性蕴含共线.
 assumption.
-eapply (l6_21 Q Q' P' R); Col.
+eapply (l6_21_两线交点的唯一性 Q Q' P' R); Col.
 
 intro.
 subst R.
@@ -587,7 +587,7 @@ assert(QQ=Q).
 assert(Col P' QQ R').
 apply 中间性蕴含共线.
 assumption.
-eapply (l6_21 Qx Qy P' R'); Col.
+eapply (l6_21_两线交点的唯一性 Qx Qy P' R'); Col.
 
 intro.
 subst R'.
@@ -614,7 +614,7 @@ assert(Col B Q R).
 ColR.
 
 apply 中间性蕴含共线 in H.
-apply (col3 Q R); Col.
+apply (共线的传递性4 Q R); Col.
 subst P'.
 
 induction H12.
@@ -662,7 +662,7 @@ assert(QQ=Q').
 assert(Col P QQ R').
 apply 中间性蕴含共线.
 assumption.
-eapply (l6_21 Q Q' P R'); Col.
+eapply (l6_21_两线交点的唯一性 Q Q' P R'); Col.
 
 intro.
 subst P.
@@ -678,7 +678,7 @@ apply par_distincts in H10.
 spliter.
 assert(Q' = Q).
 
-eapply (l6_21 P R Q Q'); Col.
+eapply (l6_21_两线交点的唯一性 P R Q Q'); Col.
 assert_cols.
 intro.
 assert(~Col A B Q).
@@ -690,7 +690,7 @@ ColR.
 assert(Col B P R).
 ColR.
 apply H19.
-eapply (col3 P R); Col.
+eapply (共线的传递性4 P R); Col.
 intro.
 subst R.
 apply 中间性的同一律 in H.
@@ -705,7 +705,7 @@ spliter.
 
 assert(R = R').
 
-eapply (l6_21 P Q R R'); Col.
+eapply (l6_21_两线交点的唯一性 P Q R R'); Col.
 apply 中间性蕴含共线 in H.
 Col.
 intro.
@@ -718,7 +718,7 @@ ColR.
 assert(Col B P Q).
 ColR.
 apply H18.
-eapply (col3 P Q); Col.
+eapply (共线的传递性4 P Q); Col.
 contradiction.
 subst R'.
 assumption.
@@ -827,7 +827,7 @@ tauto.
 assert(Col A C C'').
 ColR.
 apply 中间性蕴含共线 in H17.
-apply (col3 C C''); Col.
+apply (共线的传递性4 C C''); Col.
 
 induction H16.
 
@@ -849,7 +849,7 @@ intro.
 apply H.
 apply 中间性蕴含共线 in H16.
 apply 中间性蕴含共线 in H17.
-eapply (col3 A A''); Col.
+eapply (共线的传递性4 A A''); Col.
 exists A.
 split; Col.
 Between.
@@ -890,7 +890,7 @@ assert(Col A'' C'' B).
 ColR.
 assert(Col A'' C'' C).
 ColR.
-eapply (col3 A'' C''); Col.
+eapply (共线的传递性4 A'' C''); Col.
 
 intro.
 apply 中间性蕴含共线 in H16.
@@ -899,7 +899,7 @@ apply H.
 
 assert(Col B C A'').
 ColR.
-apply (col3 B A''); Col.
+apply (共线的传递性4 B A''); Col.
 
 exists A''.
 split; Col.
@@ -914,7 +914,7 @@ apply 中间性蕴含共线 in H16.
 apply 中间性蕴含共线 in H17.
 assert(Col A'' B C).
 ColR.
-apply (col3 A'' B); Col.
+apply (共线的传递性4 A'' B); Col.
 repeat split; auto.
 intro.
 subst.
@@ -956,7 +956,7 @@ contradiction.
 assert(Col C A A'').
 ColR.
 apply 中间性蕴含共线 in H16.
-apply (col3 A A''); Col.
+apply (共线的传递性4 A A''); Col.
 
 
 apply False_ind.
@@ -973,7 +973,7 @@ intro.
 apply H.
 apply 中间性蕴含共线 in H16.
 apply 中间性蕴含共线 in H17.
-eapply (col3 C C''); Col.
+eapply (共线的传递性4 C C''); Col.
 exists C.
 split; Col.
 Between.
@@ -1034,7 +1034,7 @@ contradiction.
 assert(Col C A A'').
 ColR.
 apply 中间性蕴含共线 in H16.
-apply (col3 A A''); Col.
+apply (共线的传递性4 A A''); Col.
 
 apply False_ind.
 
@@ -1056,7 +1056,7 @@ assert(Col A'' C'' B).
 ColR.
 assert(Col A'' C'' A).
 ColR.
-eapply (col3 A'' C''); Col.
+eapply (共线的传递性4 A'' C''); Col.
 
 intro.
 apply 中间性蕴含共线 in H16.
@@ -1065,7 +1065,7 @@ apply H.
 
 assert(Col B C A'').
 ColR.
-apply (col3 B A''); Col.
+apply (共线的传递性4 B A''); Col.
 
 exists C''.
 split; Col.
@@ -1080,7 +1080,7 @@ apply 中间性蕴含共线 in H16.
 apply 中间性蕴含共线 in H17.
 assert(Col C B A'').
 ColR.
-apply (col3 A'' B); Col.
+apply (共线的传递性4 A'' B); Col.
 repeat split; auto.
 
 intro.
@@ -1686,7 +1686,7 @@ assert(Col P' Q' A).
 ColR.
 assert(Col P' Q' B).
 ColR.
-apply (col3 P' Q'); Col.
+apply (共线的传递性4 P' Q'); Col.
 
 assert(三角形全等 P' Q'' Q' R' S'' S').
 eapply cong_conga3_cong3.
@@ -1709,8 +1709,8 @@ unfold Proj in *.
 spliter.
 repeat split; try assumption.
 
-apply (col3 A B); Col.
-apply (col3 A B); Col.
+apply (共线的传递性4 A B); Col.
+apply (共线的传递性4 A B); Col.
 
 assert(EqV Q'' Q' S'' S').
 unfold EqV.
@@ -1781,7 +1781,7 @@ assert(Col Q' S' A).
 ColR.
 assert(Col Q' S' B).
 ColR.
-apply (col3 Q' S'); Col.
+apply (共线的传递性4 Q' S'); Col.
 unfold 三角形全等 in H21.
 spliter.
 Cong.
@@ -1806,7 +1806,7 @@ assert(Col P' R' A).
 ColR.
 assert(Col P' R' B).
 ColR.
-apply (col3 P' R'); Col.
+apply (共线的传递性4 P' R'); Col.
 
 assert(HH:= plgs_par_strict R' P' Q'' S'' H24).
 spliter.
@@ -1818,10 +1818,10 @@ apply par_strict_symmetry.
 apply H25.
 unfold Proj in *.
 spliter.
-apply (col3 A B); Col.
+apply (共线的传递性4 A B); Col.
 unfold Proj in *.
 spliter.
-apply (col3 A B); Col.
+apply (共线的传递性4 A B); Col.
 apply l12_6.
 assumption.
 
@@ -2255,7 +2255,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
   elim (perp_not_col2 A B C D HPerp); intro HNC.
 
     {
-    apply l6_21 with A B C D; Col; try (intro; assert_diffs; intuition).
+    apply l6_21_两线交点的唯一性 with A B C D; Col; try (intro; assert_diffs; intuition).
 
       {
       assert (HPar : Par A B A A')
@@ -2271,7 +2271,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
     }
 
     {
-    apply l6_21 with A B D C; Col; try (intro; assert_diffs; intuition).
+    apply l6_21_两线交点的唯一性 with A B D C; Col; try (intro; assert_diffs; intuition).
 
       {
       assert (HPar : Par A B A A')
@@ -2291,7 +2291,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
   destruct HB' as [HColB H]; treat_equalities.
   apply perp_sym in HPerp; elim (perp_not_col2 C D A B HPerp);
   intro HNC; [|intuition]; destruct HA' as [HColA' HA'].
-  apply l6_21 with C D A B; Col; try (intro; assert_diffs; intuition).
+  apply l6_21_两线交点的唯一性 with C D A B; Col; try (intro; assert_diffs; intuition).
   assert (HPar : Par A B A A')
     by (apply l12_9_2D with C D; Perp).
   elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists A|spliter]; Col.
@@ -2301,7 +2301,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
   destruct HA' as [HColA H]; treat_equalities.
   apply perp_sym in HPerp; elim (perp_not_col2 C D A B HPerp);
   intro HNC; [intuition|]; destruct HB' as [HColB' HB'].
-  apply l6_21 with C D B A; Col; try (intro; assert_diffs; intuition).
+  apply l6_21_两线交点的唯一性 with C D B A; Col; try (intro; assert_diffs; intuition).
   assert (HPar : Par A B B B')
     by (apply l12_9_2D with C D; Perp).
   elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists B|spliter]; Col.
@@ -2333,7 +2333,7 @@ elim HP'; clear HP'; intro HP'; elim HP''; clear HP''; intro HP''.
   elim H; clear H; intro H; [exfalso; apply H; exists P'; Col|].
   destruct H as [HDiff3 [HDiff4 [HCol4 H]]]; clear H.
   elim (perp_not_col2 L11 L12 P' P'' HPerp2); [intro HNC|intuition].
-  apply l6_21 with L11 L12 P' P; Col.
+  apply l6_21_两线交点的唯一性 with L11 L12 P' P; Col.
   }
 
   {
@@ -2341,13 +2341,13 @@ elim HP'; clear HP'; intro HP'; elim HP''; clear HP''; intro HP''.
   assert (HPerp2 : Perp L11 L12 P' P)
     by (apply par_perp__perp with L21 L22; Par; Perp).
   elim (perp_not_col2 L11 L12 P' P HPerp2); [intro HNC|intuition].
-  apply l6_21 with L11 L12 P' P; Col.
+  apply l6_21_两线交点的唯一性 with L11 L12 P' P; Col.
   }
 
   {
   destruct HP' as [HCol2 HPerp1]; destruct HP'' as [HCol3 HPerp2]; treat_equalities.
   elim (perp_not_col2 L11 L12 P P'' HPerp2); [intro HNC|intuition].
-  apply l6_21 with L11 L12 P P''; Col.
+  apply l6_21_两线交点的唯一性 with L11 L12 P P''; Col.
   }
 
   {
@@ -2372,7 +2372,7 @@ elim HPar; clear HPar; intro HPar.
     {
     assert (HCol : Col A A' B') by (apply projp2_col with L21 L22; auto).
     assert (HColA : Col L21 L22 A) by (apply projp_col with A'; auto).
-    exfalso; apply HDiffA'B'; apply l6_21 with L11 L12 A A'; Col; intro;
+    exfalso; apply HDiffA'B'; apply l6_21_两线交点的唯一性 with L11 L12 A A'; Col; intro;
     treat_equalities; apply HPar; exists A; Col.
     }
 

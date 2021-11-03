@@ -32,7 +32,7 @@ destruct (由一点往一方向构造等长线段_2 B3 A3 A1' B1) as [B3' [HC4 H
     assert_diffs; apply col_cop__cop with B2; Col.
     apply par__coplanar, HPar.
   assert (B1 = B3); treat_equalities; Cong.
-  assert_diffs; apply l6_21 with B1 B2 A1' B1; Col.
+  assert_diffs; apply l6_21_两线交点的唯一性 with B1 B2 A1' B1; Col.
   elim (两点重合的决定性 A1' A1); intro HD1.
    treat_equalities; apply par_strict_not_col_1 with A2;
    apply par_strict_col2_par_strict with A1' A2; Col; Par.
@@ -68,7 +68,7 @@ destruct (由一点往一方向构造等长线段_2 B3 A3 A1' B1) as [B3' [HC4 H
   destruct (HP A1 A2 B1 B2 B1 B3' B1) as [_ HC5]; Col;
   [apply par_symmetry; apply par_col2_par with A1' A3; Par; ColR|].
   assert (B3 = B3'); [|subst; Cong].
-  apply l6_21 with B1 B3' A3 B3; Col;
+  apply l6_21_两线交点的唯一性 with B1 B3' A3 B3; Col;
   [apply par_strict_not_col_1 with A1'; Par|ColR|induction HC4; Col].
   }
 Qed.

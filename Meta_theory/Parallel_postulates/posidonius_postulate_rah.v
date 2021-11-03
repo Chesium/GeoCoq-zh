@@ -60,14 +60,14 @@ assert (HF : exists A1 A2 B1 B2,
         apply HNE'''.
         apply perp_sym in HPerp1.
         destruct (perp_not_col2 _ _ _ _ HPerp1);
-        [apply l6_21 with A1 B1 A1' A2'|apply l6_21 with A1 B1 A2' A1']; ColR.
+        [apply l6_21_两线交点的唯一性 with A1 B1 A1' A2'|apply l6_21_两线交点的唯一性 with A1 B1 A2' A1']; ColR.
         }
 
         {
         apply out2__conga; [|Out].
         repeat split; auto.
         left; apply col_two_sides_bet with B3; [ColR|].
-        assert (~ Col A3 B3 B1) by (intro; apply HNE'''; apply l6_21 with A1' A2' B1 B3; Col).
+        assert (~ Col A3 B3 B1) by (intro; apply HNE'''; apply l6_21_两线交点的唯一性 with A1' A2' B1 B3; Col).
         apply l9_2, l9_8_2 with B1.
 
           {

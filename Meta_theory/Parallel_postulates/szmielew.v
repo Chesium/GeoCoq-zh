@@ -17,7 +17,7 @@ Lemma aah__hpp :
 Proof.
   intros aah A1 A2 P HNCol.
   destruct (l8_18_existence A1 A2 P HNCol) as [Q [HCol1 HPerp]].
-  destruct (diff_col_ex3 A1 A2 Q HCol1) as [X [HXA1 [HXA2 [HXQ HCol2]]]].
+  destruct (每组共线三点都有另一共线点 A1 A2 Q HCol1) as [X [HXA1 [HXA2 [HXQ HCol2]]]].
   destruct (symmetric_point_construction X Q) as [Y [HBet HCong]].
   assert_diffs.
   assert (HCol3 : Col A1 A2 Y) by ColR.

@@ -727,7 +727,7 @@ Proof.
       eapply l8_3.
         apply H7.
         assumption.
-      eapply col3.
+      eapply 共线的传递性4.
         apply H.
         Col.
         Col.
@@ -736,7 +736,7 @@ Proof.
       auto.
       apply l8_2.
       assumption.
-    eapply col3.
+    eapply 共线的传递性4.
       apply H0.
       Col.
       Col.
@@ -886,7 +886,7 @@ Proof.
       assumption.
       assumption.
       assumption.
-      eapply col3.
+      eapply 共线的传递性4.
         apply H.
         Col.
         assumption.
@@ -895,10 +895,10 @@ Proof.
     apply l8_2.
     apply H6.
       assert(Col A X Y).
-        eapply col3 with A B;Col.
+        eapply 共线的传递性4 with A B;Col.
       assert (Col B X Y).
-        eapply col3 with A B;Col.
-      eapply col3 with X Y;Col.
+        eapply 共线的传递性4 with A B;Col.
+      eapply 共线的传递性4 with X Y;Col.
     assumption.
 Qed.
 
@@ -1294,7 +1294,7 @@ Proof.
     intros.
     apply H4.
       apply 等价共线CAB.
-      eapply col_transitivity_1.
+      eapply 共线的传递性2.
         intro.
         apply H0.
         apply sym_equal.
@@ -1481,12 +1481,12 @@ Proof.
           eapply l8_14_2_1b.
             apply H4.
             Col.
-          eapply col3 with A B;Col.
+          eapply 共线的传递性4 with A B;Col.
           apply perp_distinct in H1; spliter; auto.
         intuition.
       apply l8_14_2_1b_bis with C X U X; Col.
       assert (Col A X U).
-        eapply (col3 A B);Col.
+        eapply (共线的传递性4 A B);Col.
         apply perp_distinct in H1; spliter; auto.
       eapply perp_col0 with A B;Col.
 Qed.
@@ -1701,7 +1701,7 @@ Proof.
       assumption.
       assumption.
       apply 等价共线CAB.
-      eapply col_transitivity_2.
+      eapply 共线的传递性3.
         intro.
         apply H3.
         apply sym_equal.
@@ -1714,7 +1714,7 @@ Proof.
     apply H7.
       assumption.
     apply 等价共线CAB.
-    eapply col_transitivity_1.
+    eapply 共线的传递性2.
       apply H.
       apply 等价共线ACB.
       assumption.
@@ -1849,7 +1849,7 @@ Proof.
       show_distinct C' Y.
         intuition.
       assert (Col Y C' P ).
-        eapply col_transitivity_1 with C.
+        eapply 共线的传递性2 with C.
           intuition.
           unfold Col.
           right;right.
@@ -2000,7 +2000,7 @@ Proof.
     intros.
     induction(共线的决定性 A B C).
       assert (exists C', ~ Col A B C').
-        eapply not_col_exists.
+        eapply 两点不重合则存在不共线的点.
         assumption.
       ex_elim H1 C'.
       assert ( exists P : Tpoint, (exists T : Tpoint, Perp A B P A /\ Col A B T /\ Bet C' T P)).
@@ -2119,7 +2119,7 @@ Proof.
     assert(~Col X P P').
       intro.
       assert(Col X P A).
-        eapply col3.
+        eapply 共线的传递性4.
           apply H21.
           apply 等价共线BCA.
           assumption.
@@ -2163,12 +2163,12 @@ Proof.
       intro.
       subst M.
       apply H22.
-      eapply col_transitivity_1.
+      eapply 共线的传递性2.
         apply H24.
         unfold Col.
         right; right.
         assumption.
-      eapply col_transitivity_1.
+      eapply 共线的传递性2.
         apply H25.
         unfold Col.
         right;right.
@@ -2181,7 +2181,7 @@ Proof.
       eapply (l8_18_uniqueness A X R).
         intro.
         assert (Col A B R).
-          eapply col_transitivity_1.
+          eapply 共线的传递性2.
             intro.
             apply H13.
             apply sym_equal.
@@ -2196,7 +2196,7 @@ Proof.
         assumption.
         unfold Col.
         left.
-        assumption; eapply col_transitivity_1.
+        assumption; eapply 共线的传递性2.
         apply per_perp in H17.
           apply perp_comm.
           eapply perp_col.
@@ -2211,7 +2211,7 @@ Proof.
         apply (symmetric_point_uniqueness R R R R')  in H18.
           subst R'.
           apply H22.
-          eapply col_transitivity_1.
+          eapply 共线的传递性2.
             apply H25.
             unfold Col.
             right;right.
@@ -2323,7 +2323,7 @@ Lemma perp_exists : forall O A B, A <> B -> exists X, Perp O X A B.
 Proof.
     intros.
     induction(共线的决定性 A B O).
-      destruct (diff_col_ex3 A B O H0) as [C].
+      destruct (每组共线三点都有另一共线点 A B O H0) as [C].
       spliter.
       destruct (l8_21 O C O H3) as [P [T]].
       spliter.
@@ -2602,7 +2602,7 @@ Proof.
         left.
         assumption.
       apply 等价共线BAC.
-      eapply col_transitivity_1.
+      eapply 共线的传递性2.
         intro.
         apply H7.
         apply sym_equal.
@@ -2660,7 +2660,7 @@ Proof.
     assert (~Col A B R).
       intro.
       assert (Col B A Q).
-        eapply col_transitivity_1.
+        eapply 共线的传递性2.
           apply H11.
           apply 等价共线BCA.
           assumption.
