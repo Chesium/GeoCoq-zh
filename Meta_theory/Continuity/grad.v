@@ -259,7 +259,7 @@ Proof.
   destruct HReach as [R [HR1 HR2]].
   generalize dependent B.
   induction HR1; rename A0 into P, B into Q; intros.
-  { destruct (midpoint_existence A B) as [C []].
+  { destruct (中点的存在性 A B) as [C []].
     exists C; split.
       rewrite gradexp__gradexpinv.
       apply gradexpinv_stab with B; auto; constructor.
@@ -269,7 +269,7 @@ Proof.
     treat_equalities; auto.
   }
   rename C into R, C' into R'.
-  destruct (midpoint_existence A B) as [M HM].
+  destruct (中点的存在性 A B) as [M HM].
   assert_diffs.
   destruct (IHHR1 M) as [C []]; auto.
     apply 两中点组全段偏序则半段偏序 with B R'; [|split|]; trivial.

@@ -46,7 +46,7 @@ Proof.
     destruct (共线的决定性 P A C); [|apply Haux' with P Q; Cop].
     destruct (exists_cong_per A C C D) as [R [HR1 HR2]].
     assert_diffs.
-    apply per_not_col in HR1; auto.
+    apply 成直角三点不共线 in HR1; auto.
     destruct (circ长度小于等于的决定性 A B R) as [HOn|HNOn].
       exists R; split; trivial.
     destruct HNOn; [apply Haux' with R Q|apply Haux' with P R]; Col; Cop.
@@ -203,9 +203,9 @@ Proof.
     destruct HT as [T [HT1 HT2]].
     assert (T <> Z).
       intro; subst; apply incs__noutc in Habs; apply Habs; Circle.
-    destruct (ex_per_cong C R Z Q T Z) as [I [HI1 [HI2 HI3]]]; Col.
+    destruct (ex_四点成首末边等长双直角S形则对边等长 C R Z Q T Z) as [I [HI1 [HI2 HI3]]]; Col.
     assert_diffs.
-    assert (HNCol3 : ~ Col I Z C) by (apply per_not_col; auto).
+    assert (HNCol3 : ~ Col I Z C) by (apply 成直角三点不共线; auto).
     destruct (onc_exists C D I) as [X0 [HX0On HX0Out]]; auto.
     assert (HLt : Lt C X0 C I).
     { destruct (l11_46 I Z C) as [_ HLt]; auto.
@@ -289,9 +289,9 @@ Proof.
     }
     assert (T <> Z).
       intro; subst; apply outcs__ninc in Habs; apply Habs; Circle.
-    destruct (ex_per_cong C R Z P T Z) as [I [HI1 [HI2 HI3]]]; Col.
+    destruct (ex_四点成首末边等长双直角S形则对边等长 C R Z P T Z) as [I [HI1 [HI2 HI3]]]; Col.
     assert_diffs.
-    assert (HNCol3 : ~ Col I Z C) by (apply per_not_col; auto).
+    assert (HNCol3 : ~ Col I Z C) by (apply 成直角三点不共线; auto).
 
     destruct (onc_exists C D I) as [Y0 [HY0On HY0Out]]; auto.
     assert (HLt : Lt C Y0 C I).

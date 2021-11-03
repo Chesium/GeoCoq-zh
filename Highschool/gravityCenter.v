@@ -533,9 +533,9 @@ Ltac permutation_intro_in_goal :=
  match goal with
  | |- Par ?A ?B ?C ?D => apply Par_cases
  | |- 严格平行 ?A ?B ?C ?D => apply 严格平行_cases
- | |- Perp ?A ?B ?C ?D => apply Perp_cases
- | |- 垂直于 ?X ?A ?B ?C ?D => apply Perp_in_cases
- | |- Per ?A ?B ?C => apply Per_cases
+ | |- Perp ?A ?B ?C ?D => apply 垂直的各排列情况
+ | |- 垂直于 ?X ?A ?B ?C ?D => apply 垂直于的各排列情况
+ | |- Per ?A ?B ?C => apply 直角的各排列情况
  | |- 中点 ?A ?B ?C => apply 中点的各排列情况
  | |- ~ Col ?A ?B ?C => apply 共线否定的各排列情况
  | |- Col ?A ?B ?C => apply 共线的各排列情况

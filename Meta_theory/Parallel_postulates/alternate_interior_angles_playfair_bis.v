@@ -23,12 +23,12 @@ Proof.
   destruct HQ as [Q [_ [_ [HQP[HQL _]]]]].
   assert(HP' := HPerpBP); auto.
   destruct HP' as [P' HPerpP].
-  assert(P'=P) by (apply (l8_14_2_1b _ P1 P2 B1 B2); Col).
+  assert(P'=P) by (apply (l8_14_2_1b_垂点是交点 _ P1 P2 B1 B2); Col).
   subst P'.
   destruct HPerpP as [_ [_ [HPP _]]].
   assert(P<>Q) by (intro; subst Q; Col).
-  apply (perp_col0 _ _ _ _ P Q) in HPerpAP; Col.
-  apply (perp_col0 _ _ _ _ P Q) in HPerpBP; Col.
+  apply (与垂线共线之线也为垂线1 _ _ _ _ P Q) in HPerpAP; Col.
+  apply (与垂线共线之线也为垂线1 _ _ _ _ P Q) in HPerpBP; Col.
   clear dependent P1.
   clear dependent P2.
 
@@ -44,9 +44,9 @@ Proof.
   destruct HB3 as [B3 []].
   assert(Col P C1 B3); [|ColR].
   assert_diffs.
-  apply (cop_perp2__col _ _ _ P Q); [clear HNC2; CopR| |apply (perp_col2 B1 B2); Col].
-  apply perp_left_comm.
-  apply per_perp; auto.
+  apply (cop_perp2__col _ _ _ P Q); [clear HNC2; CopR| |apply (与垂线共线之线也为垂线2 B1 B2); Col].
+  apply 垂直的左交换性.
+  apply 直角转L形垂直; auto.
 
   assert(HA3 : exists A3, Col A1 A2 A3 /\ TS P Q C1 A3).
   { elim(共线的决定性 P Q A1);
@@ -61,7 +61,7 @@ Proof.
   assert(~ Col A3 P Q) by (destruct Hts as [_ []]; auto).
   assert_diffs.
   apply (l11_17 A3 Q P).
-    apply perp_per_1, (perp_col2 A1 A2); Col.
+    apply L形垂直转直角1, (与垂线共线之线也为垂线2 A1 A2); Col.
   apply conga_sym.
   apply aip; auto.
   apply (par_col4__par C1 C2 A1 A2); Col.

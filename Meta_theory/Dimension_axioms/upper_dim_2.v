@@ -32,19 +32,19 @@ Lemma 防升维公理_implies_col_perp2__col :
 Proof.
 intro HUP; intros.
 assert (P <> A).
-eapply perp_not_eq_1.
+eapply 垂直推出不重合1.
 apply H1.
 eapply 防升维公理_implies_per2__col; auto.
-apply perp_in_per.
-apply perp_in_sym.
-apply perp_perp_in.
+apply L形垂直于转直角.
+apply 垂直于的对称性.
+apply L形垂直转垂直于.
 apply H1.
 assumption.
-apply perp_in_per.
-apply perp_in_sym.
-apply perp_perp_in.
-apply perp_left_comm.
-eapply perp_col.
+apply L形垂直于转直角.
+apply 垂直于的对称性.
+apply L形垂直转垂直于.
+apply 垂直的左交换性.
+eapply 垂线共线点也构成垂直1.
 auto.
 apply H0.
 assumption.
@@ -62,17 +62,17 @@ induction(共线的决定性 A B X).
   induction(两点重合的决定性 X A).
     subst A.
     assert(X <> B).
-      apply perp_distinct in H.
+      apply 垂直推出不重合 in H.
       spliter.
       assumption.
-    apply perp_right_comm in H.
-    apply perp_perp_in in H.
-    apply perp_in_comm in H.
-    apply perp_in_per in H.
-    apply perp_right_comm in H0.
-    apply perp_perp_in in H0.
-    apply perp_in_comm in H0.
-    apply perp_in_per in H0.
+    apply 垂直的右交换性 in H.
+    apply L形垂直转垂直于 in H.
+    apply 垂直于的交换性 in H.
+    apply L形垂直于转直角 in H.
+    apply 垂直的右交换性 in H0.
+    apply L形垂直转垂直于 in H0.
+    apply 垂直于的交换性 in H0.
+    apply L形垂直于转直角 in H0.
     apply 等价共线CAB.
     eapply (防升维公理_implies_per2__col).
       assumption.
@@ -80,37 +80,37 @@ induction(共线的决定性 A B X).
       assumption.
     assumption.
   assert(Perp A X X Y ).
-    eapply perp_col.
+    eapply 垂线共线点也构成垂直1.
       auto.
-      apply perp_sym.
+      apply 垂直的对称性.
       apply H.
     assumption.
   assert(Perp A X X Z).
-    eapply perp_col.
+    eapply 垂线共线点也构成垂直1.
       auto.
-      apply perp_sym.
+      apply 垂直的对称性.
       apply H0.
     assumption.
   apply 等价共线CAB.
   apply 防升维公理_implies_per2__col with A.
     assumption.
-    apply perp_in_per.
-    apply perp_in_comm.
-    apply perp_perp_in.
-    apply perp_sym.
-    eapply perp_col.
+    apply L形垂直于转直角.
+    apply 垂直于的交换性.
+    apply L形垂直转垂直于.
+    apply 垂直的对称性.
+    eapply 垂线共线点也构成垂直1.
       auto.
-      apply perp_sym.
+      apply 垂直的对称性.
       apply H.
     assumption.
     assumption.
-  apply perp_in_per.
-  apply perp_in_comm.
-  apply perp_perp_in.
-  apply perp_sym.
-  eapply perp_col.
+  apply L形垂直于转直角.
+  apply 垂直于的交换性.
+  apply L形垂直转垂直于.
+  apply 垂直的对称性.
+  eapply 垂线共线点也构成垂直1.
     auto.
-    apply perp_sym.
+    apply 垂直的对称性.
     apply H0.
   assumption.
 assert(HH0:=H).
@@ -121,31 +121,31 @@ ex_and H Y0.
 ex_and H0 Z0.
 assert(HH2:=H).
 assert(HH3:=H2).
-apply perp_in_col in H.
-apply perp_in_col in H2.
+apply 垂点是交点 in H.
+apply 垂点是交点 in H2.
 spliter.
 assert(Perp X Y0 A B).
-  eapply perp_col.
+  eapply 垂线共线点也构成垂直1.
     intro.
     subst Y0.
     contradiction.
     apply HH0.
   assumption.
 assert(Perp X Z0 A B).
-  eapply perp_col.
+  eapply 垂线共线点也构成垂直1.
     intro.
     subst Z0.
     contradiction.
     apply HH1.
   assumption.
 assert(Y0 = Z0).
-  eapply l8_18_uniqueness.
+  eapply l8_18_过一点垂线之垂点的唯一性.
     apply H1.
     assumption.
-    apply perp_sym.
+    apply 垂直的对称性.
     assumption.
     assumption.
-  apply perp_sym.
+  apply 垂直的对称性.
   assumption.
 subst Z0.
 eapply (共线的传递性2 _ Y0).
@@ -169,13 +169,13 @@ Lemma 防升维公理_implies_not_two_sides_one_side_aux :
 Proof.
 intro HUD; intros.
 assert(exists P, exists T, Perp PX A P PX /\ Col PX A T /\ Bet Y T P).
-apply l8_21.
+apply 十字上的中间性.
 assumption.
 ex_elim H6 P.
 ex_and H7 T.
 assert(HH:= 防升维公理_implies_col_perp2__col HUD A B X P PX H2 H1 H6).
 assert(~Col P A B).
-apply perp_not_col in H6.
+apply L形垂直推出不共线 in H6.
 intro.
 apply H6.
 ColR.
@@ -194,10 +194,10 @@ assumption.
 apply 中间性的对称性.
 assumption.
 assert(X <> PX).
-apply perp_not_eq_2 in H1.
+apply 垂直推出不重合2 in H1.
 assumption.
 assert(P <> PX).
-apply perp_not_eq_2 in H6.
+apply 垂直推出不重合2 in H6.
 assumption.
 assert(HA:= (or_bet_out X PX P)).
 induction HA.
@@ -253,7 +253,7 @@ Proof.
     intro HUD; intros.
     assert (A <> B) by (intro; subst; Col).
     assert(exists PX, Col A B PX /\ Perp A B X PX).
-      apply l8_18_existence.
+      apply l8_18_过一点垂线之垂点的存在性.
       intro.
       apply H.
       apply 等价共线CAB.
@@ -263,7 +263,7 @@ Proof.
       subst PX.
       apply invert_one_side.
       eapply (防升维公理_implies_not_two_sides_one_side_aux HUD _ _ _ _ A); auto.
-        apply perp_left_comm.
+        apply 垂直的左交换性.
         assumption.
         Col.
         intro.

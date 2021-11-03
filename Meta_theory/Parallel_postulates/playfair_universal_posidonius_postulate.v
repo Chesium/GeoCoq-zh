@@ -11,9 +11,9 @@ Proof.
 intros HP A1 A2 A3 A4 B1 B2 B3 B4 HPar HC1 HC2 HPerp1 HC3 HC4 HPerp2.
 elim HPar; intro HParS; [|destruct HParS as [HD1 [HD2 [HC5 HC6]]];
                            assert_diffs; assert_cols;
-                           elim (perp_not_col2 _ _ _ _ HPerp1);
+                           elim (垂直推出不共线 _ _ _ _ HPerp1);
                            intro HF; exfalso; apply HF; ColR].
-destruct (l8_18_existence A1 A2 B1) as [A1' [HC5 HPerp3]];
+destruct (l8_18_过一点垂线之垂点的存在性 A1 A2 B1) as [A1' [HC5 HPerp3]];
 try apply par_strict_not_col_1 with B2; Par.
 assert (HCong : forall A3 B3,
                   Col A1 A2 A3 -> Col B1 B2 B3 -> Perp A1 A2 A3 B3 ->
@@ -43,10 +43,10 @@ destruct (由一点往一方向构造等长线段_2 B3 A3 A1' B1) as [B3' [HC4 H
   {
   assert (HParS' : 严格平行 A1' A3 B1 B3').
     {
-    apply sac__pars1423; repeat split; [apply perp_per_1..|Cong|].
-      apply perp_col0 with A1 A2; Perp.
+    apply sac__pars1423; repeat split; [apply L形垂直转直角1..|Cong|].
+      apply 与垂线共线之线也为垂线1 with A1 A2; Perp.
       assert_diffs.
-      apply perp_col0 with A3 B3; [apply perp_col0 with A1 A2| |induction HC4|]; Col.
+      apply 与垂线共线之线也为垂线1 with A3 B3; [apply 与垂线共线之线也为垂线1 with A1 A2| |induction HC4|]; Col.
     apply one_side_transitivity with B3.
 
       {
@@ -60,7 +60,7 @@ destruct (由一点往一方向构造等长线段_2 B3 A3 A1' B1) as [B3' [HC4 H
       {
       assert_diffs.
       apply invert_one_side, out_one_side; [|repeat split; auto].
-      elim (perp_not_col2 _ _ _ _ HPerp1); intro HNC; [contradiction|].
+      elim (垂直推出不共线 _ _ _ _ HPerp1); intro HNC; [contradiction|].
       left; intro; apply HNC; ColR.
       }
     }

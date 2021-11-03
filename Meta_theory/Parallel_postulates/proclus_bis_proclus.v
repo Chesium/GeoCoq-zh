@@ -13,7 +13,7 @@ Proof.
   intro HNCol1.
   apply par_symmetry in HPar.
   apply (par_not_col_strict _ _ _ _ P) in HPar; auto.
-  assert(HC0 := l8_18_existence C D P).
+  assert(HC0 := l8_18_过一点垂线之垂点的存在性 C D P).
   destruct HC0 as [C0 []]; auto.
   assert(HNCol2 : ~ Col C0 A B) by (apply (par_not_col C D); Col).
   assert_diffs.
@@ -40,8 +40,8 @@ Proof.
     exists P.
     split; Col.
     split; [|Perp].
-    apply perp_right_comm.
-    apply (perp_col1 _ _ _ A'); Perp; Col.
+    apply 垂直的右交换性.
+    apply (垂线共线点也构成垂直2 _ _ _ A'); Perp; Col.
 
   - intro.
     exfalso.

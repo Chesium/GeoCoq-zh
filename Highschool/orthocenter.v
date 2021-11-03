@@ -146,10 +146,10 @@ Lemma altitude_is_perp_bisect : forall A B C O A1 E F,
 Proof with finish.
 intros.
 apply perp_mid_perp_bisect...
-apply perp_sym.
+apply 垂直的对称性.
 apply cop_par_perp__perp with B C...
 apply par_col_par with A...
-apply perp_col1 with A1...
+apply 垂线共线点也构成垂直2 with A1...
 Qed.
 
 Lemma altitude_intersect:
@@ -173,12 +173,12 @@ assert_diffs.
 elim (两点重合的决定性 A O); intro.
 
   treat_equalities; apply 等价共线BAC; apply cop_perp2__col with A B...
-  apply perp_right_comm; apply perp_col1 with B1...
+  apply 垂直的右交换性; apply 垂线共线点也构成垂直2 with B1...
 
 elim (两点重合的决定性 B O); intro.
 
   treat_equalities; apply 等价共线BAC; apply cop_perp2__col with A B...
-  apply perp_col1 with A1...
+  apply 垂线共线点也构成垂直2 with A1...
 
 elim (两点重合的决定性 C O); intro.
 
@@ -195,7 +195,7 @@ assert (Perp O C D E).
 
 assert (Perp C1 C D E).
 
-  apply perp_sym; apply cop_par_perp__perp with A B...
+  apply 垂直的对称性; apply cop_par_perp__perp with A B...
   apply par_symmetry; apply par_col_par_2 with C...
 
 apply 等价共线CAB; apply cop_perp2__col with D E; Perp.
@@ -276,7 +276,7 @@ Proof.
 intros.
 unfold is_orthocenter in *;spliter.
 assert_diffs.
-assert (Perp A B B C) by (apply per_perp;finish).
+assert (Perp A B B C) by (apply 直角转L形垂直;finish).
 assert (Par A H A B)
  by (apply l12_9 with B C;Cop).
 assert (Col A B H)
@@ -299,11 +299,11 @@ intros.
 unfold is_orthocenter in *.
 spliter.
 assert (垂直于 H B C A H).
-apply l8_14_2_1b_bis;finish.
+apply l8_14_2_1b_bis_交点是垂点;finish.
 induction (两点重合的决定性 B H).
 subst;auto.
 assert (Perp A H B H)
- by (apply (perp_col1 A H B C H);finish).
+ by (apply (垂线共线点也构成垂直2 A H B C H);finish).
 assert (Par A H A C)
   by (apply l12_9 with B H;finish).
 assert (Col H A C)

@@ -150,7 +150,7 @@ destruct (严格中点组推论2 B D B' HBD HB') as [HB'D HBB'].
 destruct HB' as [HBDB' HCong1].
 apply 中间性的对称性 in HADT.
 apply 中间性的对称性 in HBDB'.
-destruct (midpoint_existence B T) as [MB HMB].
+destruct (中点的存在性 B T) as [MB HMB].
 destruct (严格中点组推论1 MB B T HBT HMB) as [HBMB HMBT].
 destruct HMB as [HBMBT HCong2].
 destruct (构造对称点 B' MB) as [B'' HB''].

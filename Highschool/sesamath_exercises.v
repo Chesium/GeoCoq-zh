@@ -96,7 +96,7 @@ assert (严格平行 A R E F)
 assert (Plg F E R A)
   by (apply pars_par_plg;finish).
 assert (Per F A R)
- by (apply col_col_per_per with Z G;finish).
+ by (apply 双共线与一直角推出另一直角 with Z G;finish).
 apply (plg_per_rect);auto.
 Qed.
 
@@ -507,8 +507,8 @@ show_distinct I J.
  assert(~Par A D C B).  (apply(inter_uniqueness_not_par A D C B I);finish).
  assert (Par A D C B);finish.
 }
-destruct (midpoint_existence A B) as  [x0 Hx0].
-destruct (midpoint_existence D C) as  [x1 Hx1].
+destruct (中点的存在性 A B) as  [x0 Hx0].
+destruct (中点的存在性 D C) as  [x1 Hx1].
 assert(Par A B J x /\ Cong A x0 J x)
   by(apply(triangle_mid_par_cong_1 C A B x0 J x);finish).
 assert(Par B A I x /\ Cong B x0 I x)
@@ -608,7 +608,7 @@ Proof.
 intros.
 assert_diffs.
 assert_cols.
-destruct (midpoint_existence A C') as [x Hx].
+destruct (中点的存在性 A C') as [x Hx].
 assert_cols.
 assert(Par B B' A A');finish.
 assert(Par B B' C C')

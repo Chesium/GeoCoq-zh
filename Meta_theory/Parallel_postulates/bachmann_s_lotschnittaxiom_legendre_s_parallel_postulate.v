@@ -24,7 +24,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
     {
     assert (HNC' : ~ Col B C T)
       by (intro; apply HNC; ColR).
-    destruct (l8_18_existence B C T HNC') as [Y [HC HPerp]].
+    destruct (l8_18_过一点垂线之垂点的存在性 B C T HNC') as [Y [HC HPerp]].
     exists T, Y.
     assert (HOut : Out B A T).
       {
@@ -41,7 +41,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
     }
 
     {
-    destruct (l8_18_existence A B T) as [X [HC HPerp]]; Col.
+    destruct (l8_18_过一点垂线之垂点的存在性 A B T) as [X [HC HPerp]]; Col.
     assert (HOut1 : Out B A X).
       {
       apply l6_6, acute_col_perp__out with T; Col; Perp.
@@ -53,7 +53,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
     destruct (HP X T) as [Y [HOut2 H]].
       assumption.
       assert_diffs; auto.
-      assert_diffs; apply perp_per_1, perp_sym, perp_col0 with A B; Col.
+      assert_diffs; apply L形垂直转直角1, 垂直的对称性, 与垂线共线之线也为垂线1 with A B; Col.
       Cop.
     exists X, Y; repeat (split; [assumption|]).
     elim H; clear H; intro H; auto.
@@ -105,7 +105,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
   {
   destruct 防降维公理_老版本 as [C [E [D H]]].
   assert (HNC : ~ Col C E D) by auto; clear H.
-  destruct (l8_18_existence D E C) as [B [HC1 HPerp]]; Col.
+  destruct (l8_18_过一点垂线之垂点的存在性 D E C) as [B [HC1 HPerp]]; Col.
   assert (HF : exists F, Col D E F /\ B <> F).
     {
     assert_diffs; elim (两点重合的决定性 B E); intro;
@@ -117,10 +117,10 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
     by (assert (Col A B F) by (induction Hd; Col); ColR).
   clear Hd.
   assert (HPerp1 : Perp B A C B)
-    by (assert_diffs; apply perp_sym, perp_col0 with D E; Perp).
+    by (assert_diffs; apply 垂直的对称性, 与垂线共线之线也为垂线1 with D E; Perp).
   clear dependent D; clear dependent F; clear E.
-  assert (HNC := perp_not_col _ _ _ HPerp1).
-  destruct (midpoint_existence A C) as [D HD].
+  assert (HNC := L形垂直推出不共线 _ _ _ HPerp1).
+  destruct (中点的存在性 A C) as [D HD].
   exists A, B, D.
   split; [intro; apply HNC; ColR|split].
 
@@ -150,7 +150,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
         {
         exists C; repeat (split; 等角); [|Cop].
         apply l9_9.
-        repeat split; [apply per_not_col; auto..|].
+        repeat split; [apply 成直角三点不共线; auto..|].
         exists D; split; [Col|Between].
         }
       assert (HC := per2_suma__bet _ _ _ _ _ _ _ _ _ HPer1 HPer2 H和角).
@@ -165,8 +165,8 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
     assert (HPerp3 : Perp B A Q P).
       {
       assert_diffs.
-      apply l8_16_2 with B; Col; Perp.
-      apply per_not_col in HPer; auto.
+      apply l8_16_2_共线四点和一直角推另一垂直 with B; Col; Perp.
+      apply 成直角三点不共线 in HPer; auto.
       intro; apply HPer; ColR.
       }
     assert (共面 B Q A C)
@@ -181,7 +181,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       apply l12_6; apply par_strict_col_par_strict with Q; Col.
 
         {
-        intro; treat_equalities; apply (perp_not_col _ _ _ HPerp1).
+        intro; treat_equalities; apply (L形垂直推出不共线 _ _ _ HPerp1).
         destruct (not_strict_par A B P' Q' P) as [HC3 HC4]; [|ColR..].
         apply l12_9 with B C; Perp; Cop.
         }
@@ -201,14 +201,14 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       [Cop|apply perp_bisect_perp, perp_bisect_sym_1, cong_mid_perp_bisect; Cong..].
       assert (HPerp4 : Perp P I B P).
         {
-        apply perp_col0 with A B; [apply perp_col0 with P Q|..]; Col; Perp.
+        apply 与垂线共线之线也为垂线1 with A B; [apply 与垂线共线之线也为垂线1 with P Q|..]; Col; Perp.
         intro; treat_equalities; apply HNC.
         assert (HPar : Par B A P' Q') by (apply l12_9 with B C; Perp; Cop).
         destruct (not_strict_par B A P' Q' P); ColR.
         }
       assert (HPerp5 : Perp P' I B P').
         {
-        apply perp_col0 with B C; [apply perp_col0 with P' Q'|..]; Col; Perp.
+        apply 与垂线共线之线也为垂线1 with B C; [apply 与垂线共线之线也为垂线1 with P' Q'|..]; Col; Perp.
         intro; treat_equalities; apply HNC.
         assert (HPar : Par B C P Q) by (apply l12_9 with B A; Perp; Cop).
         destruct (not_strict_par B C P Q P'); ColR.

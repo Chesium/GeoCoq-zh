@@ -96,7 +96,7 @@ Lemma thales_converse_theorem_1 : forall A B C O, A <> C -> B <> C ->
   Per A C B -> Cong O A O B -> Cong O A O C -> 共面 A B C O -> 中点 O A B.
 Proof.
   intros A B C O HAC HBC HPer HCong1 HCong2 HCop.
-  destruct (midpoint_existence A B) as [M HM].
+  destruct (中点的存在性 A B) as [M HM].
   assert (M = O); [|subst; apply HM].
   suma.assert_diffs.
   apply (cong4_cop2__eq A C B); Cong; [|Cop..].
@@ -123,7 +123,7 @@ Lemma onc3_os__acute : forall O P A B C,
   为锐角 A C B.
 Proof.
   intros O P A B C HA HB HC HOS.
-  destruct (midpoint_existence A B) as [M HM].
+  destruct (中点的存在性 A B) as [M HM].
   assert (HNCol : ~ Col A B C) by (eapply one_side_not_col124, HOS).
   assert (HLt : Lt M A M C).
   { assert (HNCol1 : ~ Col A B O) by (eapply one_side_not_col123, HOS).
@@ -134,7 +134,7 @@ Proof.
     destruct (angle_partition M O C); auto.
     - assert (HMO := H).
       clear H.
-      destruct (l8_18_existence M O C) as [H []].
+      destruct (l8_18_过一点垂线之垂点的存在性 M O C) as [H []].
       { intro.
         destruct (acute_col__out M O C) as [_ [_ [HBet|HBet]]]; auto.
         - apply l9_9_bis in HOS.
@@ -153,11 +153,11 @@ Proof.
           apply coplanar_perm_5, col_cop__cop with A; Col; Cop.
       }
       assert (M <> H) by (intro; subst; apply one_side_not_col124 in HOS1; apply HOS1; Col).
-      assert (Per M H C) by (apply perp_per_1, perp_left_comm, perp_col with O; Col).
+      assert (Per M H C) by (apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with O; Col).
       apply 长度小于的传递性 with H C; [|suma.assert_diffs; apply l11_46; auto].
       apply cong_lt_per2__lt_1 with O O; Cong.
-        apply l8_2, per_col with M; Col; Perp.
-        apply perp_per_1, perp_left_comm, perp_col1 with B; Col.
+        apply 直角的对称性, 直角边共线点也构成直角2 with M; Col; Perp.
+        apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直2 with B; Col.
       apply bet__lt1213; auto; apply out2__bet.
         apply (acute_col_perp__out C); [apply acute_sym|..]; Col; Perp.
         apply (l9_19 A B); Col; apply one_side_transitivity with C; assumption.
@@ -562,7 +562,7 @@ Proof.
     apply thales_theorem with O; auto.
   }
   assert (HNCol' : ~ Col A B D) by (apply one_side_not_col124 with C, HOS).
-  destruct (midpoint_existence A B) as [M HM].
+  destruct (中点的存在性 A B) as [M HM].
   assert (HOS1 : OS A B O O').
   { suma.assert_diffs; destruct (angle_partition A C B) as [H为锐角|[HPer|H为钝角]]; auto.
     - apply one_side_transitivity with C;
@@ -695,7 +695,7 @@ Proof.
     exists O, P.
     spliter; repeat split; trivial.
   }
-  destruct (midpoint_existence A B) as [M].
+  destruct (中点的存在性 A B) as [M].
   exists M, A.
   destruct HTS as [HNCol1 [HNCol2 _]].
   unfold 在圆上; repeat split; [Cong..| |];
@@ -744,15 +744,15 @@ split; Col.
 spliter.
 assert(Perp A U  O U).
 {
-  apply perp_sym in H6.
-  apply (perp_col A B O U U); Col.
+  apply 垂直的对称性 in H6.
+  apply (垂线共线点也构成垂直1 A B O U U); Col.
   intro.
   treat_equalities.
-  apply perp_distinct in H6.
+  apply 垂直推出不重合 in H6.
   tauto.
 }
-apply perp_left_comm in H18.
-apply perp_not_col in H18.
+apply 垂直的左交换性 in H18.
+apply L形垂直推出不共线 in H18.
 apply H18; Col.
 unfold 直径 in H1.
 spliter.
@@ -766,7 +766,7 @@ assert(Par O A' A B).
 {
   apply (l12_9_2D _ _ _ _ O U); Perp.
 }
-assert(HM:=midpoint_existence B C').
+assert(HM:=中点的存在性 B C').
 ex_and HM O'.
 assert(HP:= triangle_mid_par A B C' O' A' H0 H20 H2).
 apply par_strict_par in HP.
@@ -791,7 +791,7 @@ apply(中点组的唯一性1 C' O); 中点.
 split; [Between|CongR].
 
 assert(HQ:= mid_onc2__perp O P B C' O' H23  H10 H4 H17 H20).
-apply(perp_col O A' A C' O') in HH; Col.
+apply(垂线共线点也构成垂直1 O A' A C' O') in HH; Col.
 assert(Par A C' B C').
 {
   apply(l12_9_2D A C' B C' O O'); Perp.

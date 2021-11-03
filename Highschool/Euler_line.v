@@ -113,7 +113,7 @@ elim (两点重合的决定性 A C); intro HAC; Col.
 elim (两点重合的决定性 B C); intro HBC; Col5.
 right; right; right; intro HCol.
 destruct HC as [HCop [O [HCong1 [HCong2 HCong3]]]].
-assert (H := midpoint_existence A B); destruct H as [M1 HMid1].
+assert (H := 中点的存在性 A B); destruct H as [M1 HMid1].
 assert (HOM1 : O <> M1).
   {
   intro; treat_equalities.
@@ -121,7 +121,7 @@ assert (HOM1 : O <> M1).
   try (apply HBC; apply 中点组的唯一性1 with A O; Col);
   assert_cols; ColR.
   }
-assert (H := midpoint_existence A C); destruct H as [M2 HMid2].
+assert (H := 中点的存在性 A C); destruct H as [M2 HMid2].
 assert (HOM2 : O <> M2).
   {
   intro; treat_equalities.
@@ -145,7 +145,7 @@ assert (H严格平行 : 严格平行 O M1 O M2).
   apply l12_9 with A B; try CopR.
     apply coplanar_perm_16, col_cop__cop with C; Col; Cop.
     apply perp_bisect_perp; Col.
-  apply perp_col0 with A C; Col; perm_apply perp_bisect_perp.
+  apply 与垂线共线之线也为垂线1 with A C; Col; perm_apply perp_bisect_perp.
 
   }
 assert (H := not_par_strict_id O M1 M2); Col.
@@ -236,8 +236,8 @@ apply is_gravity_center_coplanar in H1.
 apply 等价共线BCA; apply cop_perp2__col with B C.
 
 CopR.
-apply perp_sym; apply perp_col0 with A O; try apply perp_bisect_perp; Col.
-apply perp_sym; apply perp_col0 with A H; Col.
+apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with A O; try apply perp_bisect_perp; Col.
+apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with A H; Col.
 
 assert (Col A A' H) by (apply cop_perp2__col with B C; Cop; apply perp_bisect_perp; auto).
 assert (Perp_bisect O A' B C) by (assert_diffs; apply circumcenter_perp with A; auto).
@@ -296,7 +296,7 @@ assert (Perp C H A B)
  by (unfold is_orthocenter in *;spliter;finish).
 
 assert (Perp A' B B A)
- by (apply per_perp;finish).
+ by (apply 直角转L形垂直;finish).
 
 assert (Par C H A' B).
  unfold 共圆 in *; spliter.
@@ -313,7 +313,7 @@ assert (Per A C A').
  apply 等长的传递性 with B O;finish.
  }
 
-assert (Perp A' C C A) by (apply per_perp;finish).
+assert (Perp A' C C A) by (apply 直角转L形垂直;finish).
 
 assert (Par B H C A').
  unfold 共圆 in *; spliter.
@@ -339,7 +339,7 @@ induction (共线的决定性 B H C).
 
    destruct T as [I [HI1 HI2]].
 
-   elim (per_dec B A C); intro.
+   elim (直角的决定性 B A C); intro.
 
    apply Euler_line_special_case with B A C;
    try apply is_gravity_center_cases; auto;
@@ -354,13 +354,13 @@ induction (共线的决定性 B H C).
      intro.
      Name A'' the midpoint of B and C.
      show_distinct A'' O; treat_equalities.
-     apply H27; apply perp_per_1; assert_diffs; Perp.
+     apply H27; apply L形垂直转直角1; assert_diffs; Perp.
      assert (Perp_bisect O A'' B C) by (apply circumcenter_perp with A; Col).
      elim (两点重合的决定性 A A''); intro; treat_equalities.
      eauto using perp_bisect_cong_2 with cong.
      assert (Perp_bisect A'' A B C).
      apply perp_mid_perp_bisect; Col.
-     apply perp_sym; apply perp_col0 with O A''; Col;
+     apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with O A''; Col;
      try (apply perp_bisect_perp; assumption); assert_cols; try ColR.
      eauto using perp_bisect_cong_2 with cong.
      }

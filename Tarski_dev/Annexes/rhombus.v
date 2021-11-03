@@ -188,7 +188,7 @@ Proof.
   intros A B C HC H.
   unfold Plg in *.
   assert(在中垂线上 B A C). exact H.
-  destruct (midpoint_existence A B) as [X H1].
+  destruct (中点的存在性 A B) as [X H1].
   destruct (l10_2_existence A C B) as [D H3].
   unfold 对称 in H3.
   unfold 严格对称 in H3.
@@ -197,7 +197,7 @@ Proof.
     - intros. tauto.
     - intros.
       unfold 中点 in H4.
-      destruct (midpoint_existence A C) as [Y H5].
+      destruct (中点的存在性 A C) as [Y H5].
       destruct (构造对称点 B Y) as [E H6].
       exists E.
       assert(B <> E).
@@ -215,7 +215,7 @@ Proof.
       destruct H3;destruct H4;destruct H4.
       destruct H4.
       unfold 中点 in H4.
-      destruct (midpoint_existence A C) as [Y H7].
+      destruct (中点的存在性 A C) as [Y H7].
       destruct (构造对称点 B Y) as [E H8].
       exists E.
       assert(B <> E).

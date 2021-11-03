@@ -16,13 +16,13 @@ Lemma aah__hpp :
   hyperbolic_plane_postulate.
 Proof.
   intros aah A1 A2 P HNCol.
-  destruct (l8_18_existence A1 A2 P HNCol) as [Q [HCol1 HPerp]].
+  destruct (l8_18_过一点垂线之垂点的存在性 A1 A2 P HNCol) as [Q [HCol1 HPerp]].
   destruct (每组共线三点都有另一共线点 A1 A2 Q HCol1) as [X [HXA1 [HXA2 [HXQ HCol2]]]].
   destruct (构造对称点 X Q) as [Y [HBet HCong]].
   assert_diffs.
   assert (HCol3 : Col A1 A2 Y) by ColR.
   assert (HInt : Per P Q X /\ Per P Q Y).
-    split; apply perp_per_1, perp_sym, perp_col2 with A1 A2; Perp.
+    split; apply L形垂直转直角1, 垂直的对称性, 与垂线共线之线也为垂线2 with A1 A2; Perp.
   destruct HInt as [HPer HPer'].
   destruct (per__ex_saccheri Q P X) as [B1 HSac]; auto.
   destruct (per__ex_saccheri Q P Y) as [C1 HSac']; auto.
@@ -41,7 +41,7 @@ Proof.
   assert (B1 <> P) by (apply sac_distincts in HSac; spliter; auto).
   assert (C1 <> P) by (apply sac_distincts in HSac'; spliter; auto).
   assert (HLta : 角度小于 B1 P C1 X Q Y); [|destruct HLta as [_ HNConga]; apply HNConga; 等角].
-  assert (~ Col P Q X) by (apply per_not_col; auto).
+  assert (~ Col P Q X) by (apply 成直角三点不共线; auto).
   assert (HTS : TS Q P X Y) by (apply bet__ts; Col).
   apply sams_lta2_suma2__lta with B1 P Q Q P C1 P Q X P Q Y; 和角.
   - apply acute_per__lta; auto; apply acute_sym, (aah Q P B1 X HSac).

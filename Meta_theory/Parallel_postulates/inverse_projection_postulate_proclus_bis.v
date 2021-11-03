@@ -16,12 +16,12 @@ Proof.
   destruct HC0 as [C0 [_ [_ [HC0P [HC0C _]]]]].
   assert(HP' := HPerpAP); auto.
   destruct HP' as [P' HPerpP].
-  assert(P'=P) by (apply (l8_14_2_1b _ P1 P2 A B); Col).
+  assert(P'=P) by (apply (l8_14_2_1b_垂点是交点 _ P1 P2 A B); Col).
   subst P'.
   destruct HPerpP as [_ [_ [HPP _]]].
   assert(P<>C0) by (intro; subst C0; Col).
-  apply (perp_col0 _ _ _ _ P C0) in HPerpAP; Col.
-  apply (perp_col0 _ _ _ _ P C0) in HPerpCP; Col.
+  apply (与垂线共线之线也为垂线1 _ _ _ _ P C0) in HPerpAP; Col.
+  apply (与垂线共线之线也为垂线1 _ _ _ _ P C0) in HPerpCP; Col.
   clear dependent P1.
   clear dependent P2.
 
@@ -61,9 +61,9 @@ Proof.
   assert_diffs.
 
   assert(HY := ip C0 P Q0 C0 C1).
-  destruct HY as [Y []]; [|Out..|apply (l8_16_1 C D); Col|CopR|exists Y; split; ColR].
+  destruct HY as [Y []]; [|Out..|apply (l8_16_1_共线四点和一垂直推另一直角 C D); Col|CopR|exists Y; split; ColR].
   exists C0, P, A0; split.
-  apply (l8_16_1 A B); Col; Perp.
+  apply (l8_16_1_共线四点和一垂直推另一直角 A B); Col; Perp.
   split.
 
     {

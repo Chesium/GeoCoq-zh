@@ -17,7 +17,7 @@ Proof.
   assert_diffs.
   assert(HNCol2 : ~ Col A C B') by (intro; apply HNCol1; ColR).
   assert(HNCol3 : ~ Col B B' C) by (intro; apply HNCol2; ColR).
-  destruct (l8_18_existence A C B') as [C' []]; auto.
+  destruct (l8_18_过一点垂线之垂点的存在性 A C B') as [C' []]; auto.
   exists A, B, C, A, B', C'.
   assert(严格平行 B C B' C').
     apply (par_not_col_strict _ _ _ _ B'); Col; apply (l12_9 _ _ _ _ A C); Perp; Cop.
@@ -31,7 +31,7 @@ Proof.
       apply l12_6; Par.
   }
   assert(A <> C') by (intro; treat_equalities; auto).
-  assert(Per B' C' A) by (apply perp_per_1, (perp_col1 _ _ _ C); Col; Perp).
+  assert(Per B' C' A) by (apply L形垂直转直角1, (垂线共线点也构成垂直2 _ _ _ C); Col; Perp).
   assert(等角 B C A B' C' A) by (apply l11_16; Perp).
   assert(等角 C A B C' A B').
     apply out2__conga; apply l6_6, bet_out; Between.

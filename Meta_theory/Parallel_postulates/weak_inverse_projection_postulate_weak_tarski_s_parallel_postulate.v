@@ -22,7 +22,7 @@ cut (forall A B C P T,
   assert_diffs.
   destruct (angle_bisector A B C) as [P0 [HIn HConga]]; auto.
   assert_diffs.
-  assert (HNCol1 : ~ Col A B C) by (apply per_not_col; auto).
+  assert (HNCol1 : ~ Col A B C) by (apply 成直角三点不共线; auto).
   assert (HNCol2 : ~ Col P0 B A).
   { assert (和角 P0 B A P0 B A A B C) by (apply (conga3_suma__suma A B P0 P0 B C A B C); 等角; 和角).
     intro; apply HNCol1, (col2_suma__col P0 B A P0 B A); assumption.
@@ -36,22 +36,22 @@ cut (forall A B C P T,
             CopR.
         exists T'; split; trivial.
         assert_diffs.
-        apply perp_col with P0; Col.
-        apply perp_col1 with T0; Perp.
+        apply 垂线共线点也构成垂直1 with P0; Col.
+        apply 垂线共线点也构成垂直2 with T0; Perp.
       }
       destruct HT' as [T' []].
       assert_diffs.
       destruct (rabp A B C T T') as [X [Y]]; Perp; Cop.
         apply col_conga__conga with P0; auto.
       spliter; exists X, Y; repeat (split; [assumption|]); ColR.
-    - destruct (l8_18_existence B P0 T) as [P [HP1 HP2]]; trivial.
+    - destruct (l8_18_过一点垂线之垂点的存在性 B P0 T) as [P [HP1 HP2]]; trivial.
       assert (Out B P P0).
         apply (acute_col_perp__out T); trivial.
         apply acute_sym, conga_inangle2_per__acute with A C; trivial.
       assert_diffs.
       destruct (rabp A B C P T) as [X [Y]]; auto.
         apply col_conga__conga with P0; auto.
-        apply perp_per_1, perp_left_comm, perp_col with P0; auto.
+        apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with P0; auto.
         CopR.
       spliter; exists X, Y; repeat (split; [assumption|]); ColR.
   }
@@ -84,7 +84,7 @@ cut (forall A B C P T,
     apply (conga3_suma__suma A B P P B C A B C); 等角; 和角.
   assert (H为锐角 : 为锐角 P B A) by (apply acute_sym, conga_inangle_per__acute with C; assumption).
   assert (HOut : Out B P P) by (apply out_trivial; auto).
-  assert (~ Col A B C) by (apply per_not_col; auto).
+  assert (~ Col A B C) by (apply 成直角三点不共线; auto).
   destruct (wipp P B A A B C P T) as [X [HX1 HX2]]; trivial; [CopR|].
   destruct (wipp P B C C B A P T) as [Y [HY1 HY2]]; Perp.
     apply (acute_conga__acute P B A); assumption.

@@ -23,9 +23,9 @@ Proof.
     by (apply acute_sym, conga_inangle_per__acute with C; assumption).
   assert (H为锐角' : 为锐角 P B C) by (apply (acute_conga__acute P B A); assumption).
   assert_diffs.
-  assert (HPerp : Perp B P P T) by (apply per_perp; auto).
-  assert (HNCol : ~ Col A B C) by (apply per_not_col; auto).
-  assert (HNCol1 : ~ Col B P T) by (apply per_not_col; auto).
+  assert (HPerp : Perp B P P T) by (apply 直角转L形垂直; auto).
+  assert (HNCol : ~ Col A B C) by (apply 成直角三点不共线; auto).
+  assert (HNCol1 : ~ Col B P T) by (apply 成直角三点不共线; auto).
   destruct (共线的决定性 A B T).
     left; exists T; split; Col.
     apply l6_6, acute_col_perp__out_1 with P; Col.
@@ -60,13 +60,13 @@ cut (forall A B C P T,
   {
   intros rabp A B C D E F P Q H为锐角 HPerE HSuma HOut HPQ HPerP HCop.
   assert (HNCol1 : ~ Col A B C).
-    intro; suma.assert_diffs; apply (per_not_col D E F); auto.
+    intro; suma.assert_diffs; apply (成直角三点不共线 D E F); auto.
     apply (col2_suma__col A B C A B C); assumption.
-  assert (HNCol2 : ~ Col B P Q) by (assert_diffs; apply per_not_col; auto).
+  assert (HNCol2 : ~ Col B P Q) by (assert_diffs; apply 成直角三点不共线; auto).
   assert (H等角 : 等角 A B C P B C).
     assert_diffs; apply out2__conga; [apply l6_6|apply out_trivial]; auto.
   assert (HNCol3 : ~ Col P B C) by (apply (ncol_conga_ncol A B C); assumption).
-  assert (HPerp : Perp B P P Q) by (apply per_perp; assert_diffs; auto).
+  assert (HPerp : Perp B P P Q) by (apply 直角转L形垂直; assert_diffs; auto).
   apply suma_left_comm in HSuma.
   destruct HSuma as [J [HJ1 [HJ2 [HJ3 HJ4]]]].
   assert (HQ' : exists Q', P <> Q' /\ Col P Q Q' /\ 在角内 Q' C B P).
@@ -89,7 +89,7 @@ cut (forall A B C P T,
       assert_diffs; auto.
     apply l6_6, (acute_col_perp__out_1 P); Col.
       apply (acute_conga__acute A B C); assumption.
-    apply perp_col1 with Q; auto.
+    apply 垂线共线点也构成垂直2 with Q; auto.
   }
   destruct HQ' as [Q' [HPQ' [HCol HInangle]]].
   apply l6_6 in HOut.
@@ -101,7 +101,7 @@ cut (forall A B C P T,
       assert (~ Col A B J) by (apply (ncol_conga_ncol A B C); 等角).
       apply cop_nos__ts; Col; Cop.
     assert (~ Col C B J).
-      apply (ncol_conga_ncol D E F); 等角; apply per_not_col; auto.
+      apply (ncol_conga_ncol D E F); 等角; apply 成直角三点不共线; auto.
     apply invert_one_side, one_side_symmetry, cop_nts__os; Col.
     apply conga_sams_nos__nts with A B C; 和角.
   }
@@ -109,14 +109,14 @@ cut (forall A B C P T,
     apply (l11_17 D E F); 等角.
     assert_diffs; apply l11_10 with A C A J; try (apply out_trivial); 等角.
     CopR.
-    apply per_col with Q; auto.
+    apply 直角边共线点也构成直角2 with Q; auto.
   exists Y; split; ColR.
   }
 
   {
   intros A B C P T HPer H在角内 HPT H等角 HCop HPerP.
-  assert (HNOut : ~ Out B A C) by (intro; assert_diffs; apply (per_not_col A B C); Col).
-  assert (HPerp : Perp B P P T) by (assert_diffs; apply per_perp; auto).
+  assert (HNOut : ~ Out B A C) by (intro; assert_diffs; apply (成直角三点不共线 A B C); Col).
+  assert (HPerp : Perp B P P T) by (assert_diffs; apply 直角转L形垂直; auto).
   destruct (weak_tarski_s_parallel_postulate__weak_inverse_projection_postulate_aux wtpp A B C P T) as [[X [HX1 HX2]]|[Y [HY1 HY2]]]; trivial.
   - destruct (构造对称点 X P) as [Y HY].
     assert (X <> Y).
@@ -128,7 +128,7 @@ cut (forall A B C P T,
     { apply conga_cop_out_reflectl__out with A P X; trivial.
       apply l10_4_spec; split.
         exists P; split; Col.
-      left; apply perp_col2_bis with P T; ColR.
+      left; apply 与垂线共线之线也为垂线3 with P T; ColR.
     }
     exists X, Y; repeat (split; [assumption|]); ColR.
   - destruct (构造对称点 Y P) as [X HX].
@@ -141,7 +141,7 @@ cut (forall A B C P T,
     { apply conga_cop_out_reflectl__out with C P Y; Out; [Cop|等角|].
       apply l10_4_spec; split.
         exists P; split; Col.
-      left; apply perp_col2_bis with P T; ColR.
+      left; apply 与垂线共线之线也为垂线3 with P T; ColR.
     }
     exists X, Y; repeat (split; [try assumption|]); ColR.
   }

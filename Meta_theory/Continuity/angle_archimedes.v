@@ -94,13 +94,13 @@ Lemma acute_archi_aux : forall O A B C D E,
 Proof.
   intros O A B C D E HPer HOA HBA HCD HDE HBet1 HBet2 HBet3 H等角.
   assert_diffs.
-  assert (HNCol1 : ~ Col O A B) by (apply per_not_col; auto).
+  assert (HNCol1 : ~ Col O A B) by (apply 成直角三点不共线; auto).
   assert (HNCol2 : ~ Col O A D).
     assert_cols; intro; elim (两点重合的决定性 A C); intro; [treat_equalities|]; apply HNCol1; ColR.
   destruct (angle_construction_1 A D O O D E) as [P [HP1 HP2]]; Col.
     intro; apply HNCol2; ColR.
   assert (H为锐角 : 为锐角 A D O).
-    apply l11_43_aux; Col; left; apply l8_2, per_col with B; auto; ColR.
+    apply l11_43_aux; Col; left; apply 直角的对称性, 直角边共线点也构成直角2 with B; auto; ColR.
   assert (HF : 在角内 P O D E).
   { apply lea_in_angle; Side.
     apply (l11_30 A D O E D O); 等角.
@@ -126,7 +126,7 @@ Proof.
   { intro; elim (两点重合的决定性 E F); intro; [|apply HNCol3; ColR].
     treat_equalities.
     apply (acute_not_per A D O); trivial.
-    apply l8_2, per_col with C; Col.
+    apply 直角的对称性, 直角边共线点也构成直角2 with C; Col.
     exists E; repeat split; Cong.
   }
   assert_diffs.
@@ -147,7 +147,7 @@ Lemma acute_archi_aux1 : forall O A0 A1 B P Q R,
 Proof.
   intros O A0 A1 B P Q R HPer HBA0 HBet HGA HA0A1.
   assert (Hdiff := grada_distincts A0 O A1 P Q R HGA); spliter.
-  assert (HNCol : ~ Col O A0 B) by (apply per_not_col; auto).
+  assert (HNCol : ~ Col O A0 B) by (apply 成直角三点不共线; auto).
   assert_diffs.
   elim (lea_total A0 O B P Q R); auto.
   intro H角度小于等于; right.
@@ -197,7 +197,7 @@ Lemma acute_archi_aux2 : forall O A0 A1 B C,
   exists A, Bet A0 A A' /\ 等角 A O A' A0 O A1 /\ Le A0 A1 A A').
 Proof.
   intros O A0 A1 B E HPer HOA0 HBA0 HBet HA0A1 HG.
-  assert (HNCol : ~ Col O A0 B) by (apply per_not_col; auto).
+  assert (HNCol : ~ Col O A0 B) by (apply 成直角三点不共线; auto).
   assert (HNCol1 : ~ Col A0 O A1) by (intro; apply HNCol; ColR).
   assert_diffs.
   induction HG; rename A into A0; rename B0 into A1.
@@ -290,14 +290,14 @@ Proof.
   intro HNCol1.
   elim (lea_total D E F A B C); auto; intro HLea.
     exists A; exists B; exists C; split; trivial; apply 角度线性刻度_初始化; 等角.
-  destruct (l8_18_existence D E F) as [D0 [HD0 HD0']]; trivial.
+  destruct (l8_18_过一点垂线之垂点的存在性 D E F) as [D0 [HD0 HD0']]; trivial.
   assert (HOut : Out E D0 D) by (apply acute_col_perp__out with F; Col; Perp; apply acute_sym; trivial).
   assert_diffs.
   assert (HConga : 等角 D E F D0 E F) by (apply out2__conga; [|apply out_trivial]; auto).
   apply (acute_conga__acute D E F D0 E F) in H为锐角; trivial.
   apply (l11_30 A B C D E F A B C D0 E F) in HLea; 等角.
   apply (ncol_conga_ncol D E F D0 E F) in HNCol1; trivial.
-  assert (HPer : Per E D0 F) by (apply perp_per_1, perp_left_comm, perp_col with D; Perp; Col).
+  assert (HPer : Per E D0 F) by (apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with D; Perp; Col).
   clear H0 HD0 HD0' HOut H9.
   destruct (angle_construction_1 A B C D0 E F) as [D1' [HConga1 HOS]]; trivial.
   destruct (lea_in_angle D0 E F D1') as [_ [_ [_ [D1 [HBet HUn]]]]]; Side.

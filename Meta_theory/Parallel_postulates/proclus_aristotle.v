@@ -17,13 +17,13 @@ Proof.
   destruct HD0 as [D0 []]; Col.
   assert(HD := 由一点往一方向构造等长线段 B D0 P Q).
   destruct HD as [D []].
-  assert(HNCol1 : ~ Col B A D0) by (apply perp_not_col; auto).
+  assert(HNCol1 : ~ Col B A D0) by (apply L形垂直推出不共线; auto).
   assert_diffs.
   assert(D<>B) by (intro;Between).
   assert(~ Col D B A) by (intro; apply HNCol1; ColR).
   assert(HY0 := l10_15 D B D A).
   destruct HY0 as [Y0 [HPerp HOS]]; Col.
-  assert(Perp B A B D) by (apply (perp_col1 _ _ _ D0); Perp; Col).
+  assert(Perp B A B D) by (apply (垂线共线点也构成垂直2 _ _ _ D0); Perp; Col).
   assert(HPar : Par B A Y0 D).
     {
     apply (l12_9 _ _ _ _ D B); Perp; Cop.
@@ -32,7 +32,7 @@ Proof.
   destruct HY as [Y []]; Col; [CopR|].
   apply (par_not_col_strict _ _ _ _ D) in HPar; Col.
   assert(~ Col Y B A) by (apply (par_not_col Y0 D); Col; Par).
-  assert(HX := l8_18_existence A B Y).
+  assert(HX := l8_18_过一点垂线之垂点的存在性 A B Y).
   destruct HX as [X []]; Col.
   exists X, Y.
 
@@ -42,7 +42,7 @@ Proof.
   }
   assert(Hlta : 角度小于 A B C A B D).
   { apply acute_per__lta; auto.
-    apply perp_per_2; auto.
+    apply L形垂直转直角2; auto.
   }
   assert(HNCol2 : ~ Col B C D).
   { intro.
@@ -89,7 +89,7 @@ Proof.
   assert(Per B X Y).
   { assert (~ Col B D X) by (apply (par_strict_not_col_1 _ _ _ Y); auto).
     assert_diffs.
-    apply perp_per_1, perp_left_comm, (perp_col _ A); Col; Perp.
+    apply L形垂直转直角1, 垂直的左交换性, (垂线共线点也构成垂直1 _ A); Col; Perp.
   }
 
   assert(Cong B D X Y).
@@ -97,7 +97,7 @@ Proof.
     assert(HAAS := l11_50_2 B Y D Y B X).
     destruct HAAS; Cong.
       apply 共线否定排列ACB, (par_strict_not_col_4 _ _ X); auto.
-      apply l11_16; Perp; apply perp_per_2, (perp_col _ Y0); Col; Perp.
+      apply l11_16; Perp; apply L形垂直转直角2, (垂线共线点也构成垂直1 _ Y0); Col; Perp.
     apply conga_comm.
     assert (aia : alternate_interior_angles_postulate).
     { apply playfair__alternate_interior, tarski_s_euclid_implies_playfair.

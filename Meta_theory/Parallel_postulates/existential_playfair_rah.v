@@ -12,7 +12,7 @@ Lemma existential_playfair__rah :
   postulate_of_right_saccheri_quadrilaterals.
 Proof.
 intro HP; destruct HP as [A1 [A2 [P [HNC1 HP]]]].
-destruct (l8_18_existence A1 A2 P) as [Q [HCcol1 HPerp1]]; Col.
+destruct (l8_18_过一点垂线之垂点的存在性 A1 A2 P) as [Q [HCcol1 HPerp1]]; Col.
 assert (HA3 : exists A3, Col A1 A2 A3 /\ A3 <> Q).
 {
   destruct (两点重合的决定性 A1 Q).
@@ -35,12 +35,12 @@ assert (HCop1 : 共面 A1 A2 P R) by (apply par__coplanar, HPar1).
 assert (HNC2 : 严格平行 A1 A2 P R)
   by (apply par_not_col_strict with P; Col).
 apply par_strict_not_col_4 in HNC2.
-destruct (l8_18_existence A1 A2 R) as [S [HCcol2 HPerp3]]; Col.
+destruct (l8_18_过一点垂线之垂点的存在性 A1 A2 R) as [S [HCcol2 HPerp3]]; Col.
 assert (HPar2 : Par P Q R S) by (apply l12_9 with A1 A2; Perp; Cop).
-assert (HNC3 : ~ Col P Q R) by (apply perp_not_col; Perp).
+assert (HNC3 : ~ Col P Q R) by (apply L形垂直推出不共线; Perp).
 assert (HNC4 : 严格平行 P Q R S) by (apply par_not_col_strict with R; Col).
 apply par_strict_not_col_3 in HNC4.
-destruct (l8_18_existence R S P) as [R' [HC共线的传递性4 HPerp4]]; Col.
+destruct (l8_18_过一点垂线之垂点的存在性 R S P) as [R' [HC共线的传递性4 HPerp4]]; Col.
 assert (HPar3 : Par A1 A2 P R').
 {
   assert_diffs.
@@ -56,14 +56,14 @@ assert (HPs : 严格平行 P Q R S) by (apply par_not_col_strict with R; Col).
 treat_equalities; rewrite <- (lam_per__rah P Q S R).
 
   {
-  apply perp_in_per_1 with S S; apply l8_14_2_1b_bis; Col.
-  assert_diffs; apply perp_col2 with A1 A2; Col.
+  apply 垂直于转直角1 with S S; apply l8_14_2_1b_bis_交点是垂点; Col.
+  assert_diffs; apply 与垂线共线之线也为垂线2 with A1 A2; Col.
   }
 
   {
   assert_diffs.
   repeat split; auto; [Perp..| |Cop].
-  apply perp_per_1, perp_left_comm, perp_col0 with A1 A2; Col.
+  apply L形垂直转直角1, 垂直的左交换性, 与垂线共线之线也为垂线1 with A1 A2; Col.
   }
 Qed.
 

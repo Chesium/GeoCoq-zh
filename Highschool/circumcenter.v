@@ -229,9 +229,9 @@ assert (Cong A G B G).
   apply (perp_bisect_cong2 G B' A C).
   assumption.
  CongR.
-apply perp_col1 with C'; Col.
-apply perp_right_comm.
-apply per_perp; auto.
+apply 垂线共线点也构成垂直2 with C'; Col.
+apply 垂直的右交换性.
+apply 直角转L形垂直; auto.
  apply 严格中点组推论1 with B; 中点.
 exists B.
 split; Cong.
@@ -273,7 +273,7 @@ elim (共线的决定性 A B C); intro HABC.
       {
       apply l12_9 with A B; [Cop..| |Cop| |apply perp_bisect_perp; assumption].
         apply col__coplanar; ColR.
-      apply perp_col0 with B C; Perp; Col.
+      apply 与垂线共线之线也为垂线1 with B C; Perp; Col.
       }
 
       {
@@ -317,7 +317,7 @@ elim (共线的决定性 A B C); intro HABC.
       assert (HPar : 严格平行 A B A C).
         {
         apply par_not_col_strict with C; Col.
-        apply l12_9 with B C; [Cop..| |apply perp_right_comm]; apply per_perp; Perp.
+        apply l12_9 with B C; [Cop..| |apply 垂直的右交换性]; apply 直角转L形垂直; Perp.
         }
       assert (HFalse := not_par_strict_id A B C); exfalso; apply HFalse; Col.
       }
@@ -333,7 +333,7 @@ elim (共线的决定性 A B C); intro HABC.
       assert (HPar : 严格平行 B A B C).
         {
         apply par_not_col_strict with C; Col.
-        apply l12_9 with A C; [Cop..| |apply perp_right_comm]; apply per_perp; Perp.
+        apply l12_9 with A C; [Cop..| |apply 垂直的右交换性]; apply 直角转L形垂直; Perp.
         }
       assert (HFalse := not_par_strict_id B A C); exfalso; apply HFalse; Col.
       }
@@ -397,7 +397,7 @@ elim (共线的决定性 A B C); intro HABC.
       assert (HPar : 严格平行 A B A C).
         {
         apply par_not_col_strict with C; Col.
-        apply l12_9 with B C; [Cop..| |apply perp_right_comm]; apply per_perp; Perp.
+        apply l12_9 with B C; [Cop..| |apply 垂直的右交换性]; apply 直角转L形垂直; Perp.
         }
       assert (HFalse := not_par_strict_id A B C); exfalso; apply HFalse; Col.
       }
@@ -413,7 +413,7 @@ elim (共线的决定性 A B C); intro HABC.
       assert (HPar : 严格平行 B A B C).
         {
         apply par_not_col_strict with C; Col.
-        apply l12_9 with A C; [Cop..| |apply perp_right_comm]; apply per_perp; Perp.
+        apply l12_9 with A C; [Cop..| |apply 垂直的右交换性]; apply 直角转L形垂直; Perp.
         }
       assert (HFalse := not_par_strict_id B A C); exfalso; apply HFalse; Col.
       }
@@ -481,7 +481,7 @@ elim (共线的决定性 A B C); intro HABC.
         assert (HPar : 严格平行 A C B C).
           {
           apply par_not_col_strict with B; Col.
-          apply l12_9 with A B; [Cop..|apply perp_left_comm|apply perp_comm]; apply per_perp; Perp.
+          apply l12_9 with A B; [Cop..|apply 垂直的左交换性|apply 垂直的交换性]; apply 直角转L形垂直; Perp.
           }
         assert (HFalse := not_par_strict_id C A B); exfalso; apply HFalse; Par.
         }
@@ -543,7 +543,7 @@ elim (共线的决定性 A B C); intro HABC.
         assert (HPar : 严格平行 A C B C).
           {
           apply par_not_col_strict with B; Col.
-          apply l12_9 with A B; [Cop..|apply perp_left_comm|apply perp_comm]; apply per_perp; Perp.
+          apply l12_9 with A B; [Cop..|apply 垂直的左交换性|apply 垂直的交换性]; apply 直角转L形垂直; Perp.
           }
         assert (HFalse := not_par_strict_id C A B); exfalso; apply HFalse; Par.
         }
@@ -595,7 +595,7 @@ elim (共线的决定性 A B C); intro HABC.
         assert (HPer : Per C A B).
           {
           unfold is_circumcenter in *; spliter.
-          apply l8_2, midpoint_thales with O; Col; Cong.
+          apply 直角的对称性, midpoint_thales with O; Col; Cong.
           }
         assert (H : Perp_bisect O' O B C /\ Perp_bisect O' B' A C /\ Perp_bisect O' C' A B).
           {
@@ -640,7 +640,7 @@ elim (共线的决定性 A B C); intro HABC.
         assert (HPer : Per C A B).
           {
           unfold is_circumcenter in *; spliter.
-          apply l8_2, midpoint_thales with O'; Col; Cong.
+          apply 直角的对称性, midpoint_thales with O'; Col; Cong.
           }
         assert (H : Perp_bisect O O' B C /\ Perp_bisect O B' A C /\ Perp_bisect O C' A B).
           {
@@ -697,7 +697,7 @@ elim (共线的决定性 A B C); intro HABC.
             {
             apply par_not_col_strict with B; Col.
             apply l12_9 with O A'; try CopR.
-              apply perp_col0 with O B'; Col; Perp.
+              apply 与垂线共线之线也为垂线1 with O B'; Col; Perp.
             Perp.
             }
           assert (HFalse := not_par_strict_id C A B); apply HFalse; Par.
@@ -750,7 +750,7 @@ assert (O=O').
 apply is_circumcenter_uniqueness with A B C;finish.
 intro.
 treat_equalities.
-apply l8_8 in H1.
+apply ABA直角则A与B重合 in H1.
 intuition.
 auto using is_circumcenter_perm_1.
 subst;auto.

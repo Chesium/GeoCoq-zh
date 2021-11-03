@@ -12,7 +12,7 @@ Ltac image A B P P':=
 Ltac perp A B C X :=
  match goal with
    | H:(~Col A B C) |- _ =>
-    let T:= fresh in assert (T:= l8_18_existence A B C H);
+    let T:= fresh in assert (T:= l8_18_过一点垂线之垂点的存在性 A B C H);
     ex_and T X
  end.
 
@@ -175,9 +175,9 @@ Ltac permutation_intro_in_goal :=
  match goal with
  | |- Par ?A ?B ?C ?D => apply Par_cases
  | |- 严格平行 ?A ?B ?C ?D => apply 严格平行_cases
- | |- Perp ?A ?B ?C ?D => apply Perp_cases
- | |- 垂直于 ?X ?A ?B ?C ?D => apply Perp_in_cases
- | |- Per ?A ?B ?C => apply Per_cases
+ | |- Perp ?A ?B ?C ?D => apply 垂直的各排列情况
+ | |- 垂直于 ?X ?A ?B ?C ?D => apply 垂直于的各排列情况
+ | |- Per ?A ?B ?C => apply 直角的各排列情况
  | |- 中点 ?A ?B ?C => apply 中点的各排列情况
  | |- ~ Col ?A ?B ?C => apply 共线否定的各排列情况
  | |- Col ?A ?B ?C => apply 共线的各排列情况
@@ -310,7 +310,7 @@ assert(HH:= H).
 unfold 严格平行 in HH.
 spliter.
 
-assert(HH:=(midpoint_existence A A')).
+assert(HH:=(中点的存在性 A A')).
 ex_and HH X.
 
 prolong B X B'' B X.
@@ -426,7 +426,7 @@ assert(HH:= H).
 unfold 严格平行 in HH.
 spliter.
 
-assert(HH:=(midpoint_existence A' B)).
+assert(HH:=(中点的存在性 A' B)).
 ex_and HH X.
 exists X.
 
@@ -570,7 +570,7 @@ Lemma par_strict_cong_mid :
 Proof.
 intros A B A' B' HParS HCong.
 assert (HP:=parallel_uniqueness).
-destruct (midpoint_existence A A') as [M1 HM1].
+destruct (中点的存在性 A A') as [M1 HM1].
 destruct (构造对称点 B M1) as [B'' HB''].
 assert (HCol1 : Col B'' A' B').
   {
@@ -581,7 +581,7 @@ assert (HCol1 : Col B'' A' B').
   }
 assert (HCong1 : Cong A' B' A' B'')
   by (assert (H := l7_13_同中点组两侧等长 M1 A' B'' A B HM1 HB''); eCong).
-destruct (midpoint_existence A B') as [M2 HM2].
+destruct (中点的存在性 A B') as [M2 HM2].
 destruct (构造对称点 B M2) as [A'' HA''].
 assert (HCol2 : Col A'' A' B').
   {
@@ -891,12 +891,12 @@ Lemma perp_rmb :
   菱形 A B C D.
 Proof.
 intros.
-assert(HH:=midpoint_existence A C).
+assert(HH:=中点的存在性 A C).
 ex_and HH M.
 apply (per_rmb A B C D M).
 assumption.
 assumption.
-apply perp_in_per.
+apply L形垂直于转直角.
 unfold Plg in H.
 spliter.
 ex_and H2 M'.
@@ -906,22 +906,22 @@ apply H1.
 assumption.
 subst M'.
 assert(Perp A M B M).
-eapply perp_col.
+eapply 垂线共线点也构成垂直1.
 intro.
 subst M.
 apply A是AB中点则A与B重合 in H1.
 subst C.
-apply perp_not_eq_1 in H0.
+apply 垂直推出不重合1 in H0.
 tauto.
-apply perp_sym.
-eapply perp_col.
+apply 垂直的对称性.
+eapply 垂线共线点也构成垂直1.
 intro.
 subst M.
 apply A是AB中点则A与B重合 in H3.
 subst D.
-apply perp_not_eq_2 in H0.
+apply 垂直推出不重合2 in H0.
 tauto.
-apply perp_sym.
+apply 垂直的对称性.
 apply H0.
 unfold 中点 in H3.
 spliter.
@@ -931,9 +931,9 @@ unfold 中点 in H2.
 spliter.
 apply 中间性蕴含共线1 in H2.
 Col.
-apply perp_left_comm in H4.
-apply perp_perp_in in H4.
-apply perp_in_comm.
+apply 垂直的左交换性 in H4.
+apply L形垂直转垂直于 in H4.
+apply 垂直于的交换性.
 assumption.
 Qed.
 
@@ -1797,7 +1797,7 @@ assert(HH0:=par_distinct B A B' A' H1).
 assert(HH1:=par_distinct B C B' C' H2).
 spliter.
 
-assert(HH:=midpoint_existence B B').
+assert(HH:=中点的存在性 B B').
 ex_and HH M.
 
 prolong A M A'' A M.
@@ -2077,9 +2077,9 @@ Ltac permutation_intro_in_hyps_aux :=
  | H : Plg_tagged ?A ?B ?C ?D |- _ => apply Plg_tagged_Plg in H; apply Plg_perm in H; spliter
  | H : Par_tagged ?A ?B ?C ?D |- _ => apply Par_tagged_Par in H; apply Par_perm in H; spliter
  | H : 严格平行_tagged ?A ?B ?C ?D |- _ => apply 严格平行_tagged_严格平行 in H; apply 严格平行_perm in H; spliter
- | H : Perp_tagged ?A ?B ?C ?D |- _ => apply Perp_tagged_Perp in H; apply Perp_perm in H; spliter
- | H : Perp_in_tagged ?X ?A ?B ?C ?D |- _ => apply Perp_in_tagged_Perp_in in H; apply Perp_in_perm in H; spliter
- | H : Per_tagged ?A ?B ?C |- _ => apply Per_tagged_Per in H; apply Per_perm in H; spliter
+ | H : Perp_tagged ?A ?B ?C ?D |- _ => apply Perp_tagged_Perp in H; apply 垂直的等价排列 in H; spliter
+ | H : Perp_in_tagged ?X ?A ?B ?C ?D |- _ => apply Perp_in_tagged_Perp_in in H; apply 垂直于的等价排列 in H; spliter
+ | H : Per_tagged ?A ?B ?C |- _ => apply Per_tagged_Per in H; apply 直角的等价排列 in H; spliter
  | H : Mid_tagged ?A ?B ?C |- _ => apply Mid_tagged_Mid in H; apply 中点的等价排列 in H; spliter
  | H : NCol_tagged ?A ?B ?C |- _ => apply NCol_tagged_NCol in H; apply 共线否定的等价排列 in H; spliter
  | H : Col_tagged ?A ?B ?C |- _ => apply Col_tagged_Col in H; apply 共线的等价排列 in H; spliter
@@ -2288,24 +2288,24 @@ repeat
 
       | H:Per ?A ?B ?C, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct A B C H H2); clean_reap_hyps
+        assert (T:= 直角一边不重合则另一边不重合1 A B C H H2); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct A B C H (不重合的对称性 B A H2)); clean_reap_hyps
+        assert (T:= 直角一边不重合则另一边不重合1 A B C H (不重合的对称性 B A H2)); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?B<>?C |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct_1 A B C H H2); clean_reap_hyps
+        assert (T:= 直角一边不重合则另一边不重合2 A B C H H2); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?C<>?B |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct_1 A B C H (不重合的对称性 C B H2)); clean_reap_hyps
+        assert (T:= 直角一边不重合则另一边不重合2 A B C H (不重合的对称性 C B H2)); clean_reap_hyps
 
       | H:Perp ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
-       assert (T:= perp_distinct A B C D H);
+       assert (T:= 垂直推出不重合 A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:垂直于 ?X ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
-       assert (T:= perp_in_distinct X A B C D H);
+       assert (T:= 垂直于推出不重合 X A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:Out ?A ?B ?C |- _ =>
       let T:= fresh in (not_exist_hyp2 A B A C);
@@ -2385,11 +2385,11 @@ repeat
        assert (T:= par_distincts A B C D H);decompose [and] T;clear T;clean_reap_hyps
       | H:Perp ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
-       assert (T:= perp_distinct A B C D H);
+       assert (T:= 垂直推出不重合 A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:垂直于 ?X ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
-       assert (T:= perp_in_distinct X A B C D H);
+       assert (T:= 垂直于推出不重合 X A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:Out ?A ?B ?C |- _ =>
       let T:= fresh in (not_exist_hyp2 A B A C);
@@ -2511,22 +2511,22 @@ apply plg_mid in H2.
 ex_and H2 M.
 assert(HH:= H1).
 eapply (rmb_per _ _ _ _ M) in HH.
-apply per_perp_in in HH.
+apply 直角转L形垂直于 in HH.
 
-apply perp_in_perp_bis in HH.
+apply 垂直于转T形垂直 in HH.
 induction HH.
-apply perp_not_eq_1 in H5.
+apply 垂直推出不重合1 in H5.
 tauto.
 unfold 中点 in *.
 spliter.
-eapply perp_col.
+eapply 垂线共线点也构成垂直1.
 assumption.
-apply perp_sym.
-apply perp_left_comm.
-eapply perp_col.
+apply 垂直的对称性.
+apply 垂直的左交换性.
+eapply 垂线共线点也构成垂直1.
 auto.
-apply perp_left_comm.
-apply perp_sym.
+apply 垂直的左交换性.
+apply 垂直的对称性.
 apply H5.
 apply 中间性蕴含共线1 in H4.
 Col.
@@ -2578,9 +2578,9 @@ intros.
 unfold 长方形 in H.
 spliter.
 
-assert(HH:= midpoint_existence A B).
+assert(HH:= 中点的存在性 A B).
 ex_and HH P.
-assert(HH:= midpoint_existence C D).
+assert(HH:= 中点的存在性 C D).
 ex_and HH Q.
 assert(HH:=H).
 unfold Plg in HH.
@@ -2592,7 +2592,7 @@ induction H.
 assert(HH:=half_plgs A B C D P Q M H H1 H2 H4).
 spliter.
 assert(Per A P Q).
-eapply (per_col _  _ M).
+eapply (直角边共线点也构成直角2 _  _ M).
 intro.
 subst M.
 apply A是AB中点则A与B重合 in H7.
@@ -2611,7 +2611,7 @@ unfold TS in H.
 spliter.
 apply H9.
 Col.
-apply l8_2.
+apply 直角的对称性.
 unfold Per.
 exists B.
 split.
@@ -2643,21 +2643,21 @@ subst P.
 apply A是AB中点则A与B重合 in H1.
 contradiction.
 
-apply perp_in_per.
-apply perp_in_comm.
-apply perp_perp_in.
+apply L形垂直于转直角.
+apply 垂直于的交换性.
+apply L形垂直转垂直于.
 
-apply perp_sym.
-apply perp_left_comm.
+apply 垂直的对称性.
+apply 垂直的左交换性.
 eapply cop_par_perp__perp.
 apply H6.
-apply per_perp_in in H9.
-apply perp_in_perp_bis in H9.
+apply 直角转L形垂直于 in H9.
+apply 垂直于转T形垂直 in H9.
 induction H9.
-apply perp_not_eq_1 in H9.
+apply 垂直推出不重合1 in H9.
 tauto.
-apply perp_sym.
-eapply perp_col.
+apply 垂直的对称性.
+eapply 垂线共线点也构成垂直1.
 assumption.
 apply H9.
 unfold 中点 in H1.
@@ -2680,11 +2680,11 @@ assumption.
 induction H10.
 spliter.
 subst B.
-apply l8_2.
-apply l8_5.
+apply 直角的对称性.
+apply 角ABB成直角.
 spliter.
 subst D.
-apply l8_5.
+apply 角ABB成直角.
 Qed.
 
 Lemma rect_per2 : forall A B C D, 长方形 A B C D -> Per A B C.
@@ -2717,9 +2717,9 @@ Lemma plg_per_rect1 : forall A B C D, Plg A B C D -> Per D A B -> 长方形 A B 
 Proof.
 intros.
 
-assert(HH:= midpoint_existence A B).
+assert(HH:= 中点的存在性 A B).
 ex_and HH P.
-assert(HH:= midpoint_existence C D).
+assert(HH:= 中点的存在性 C D).
 ex_and HH Q.
 assert(HH:=H).
 unfold Plg in HH.
@@ -2755,20 +2755,20 @@ contradiction.
 assert(Perp P Q A B).
 apply (cop_par_perp__perp A D P Q A B).
 Par.
-apply per_perp_in in H0.
-apply perp_in_comm in H0.
-apply perp_in_perp_bis in H0.
+apply 直角转L形垂直于 in H0.
+apply 垂直于的交换性 in H0.
+apply 垂直于转T形垂直 in H0.
 induction H0.
-apply perp_right_comm.
+apply 垂直的右交换性.
 assumption.
-apply perp_not_eq_1 in H0.
+apply 垂直推出不重合1 in H0.
 tauto.
 auto.
 assumption.
 Cop.
 
 assert(Perp P M A B).
-eapply perp_col.
+eapply 垂线共线点也构成垂直1.
 intro.
 subst M.
 apply A是AB中点则A与B重合 in H7.
@@ -2780,9 +2780,9 @@ apply 中间性蕴含共线1 in H7.
 Col.
 
 assert(Perp A P P M).
-eapply perp_col.
+eapply 垂线共线点也构成垂直1.
 assumption.
-apply perp_sym.
+apply 垂直的对称性.
 apply H14.
 unfold 中点 in H1.
 spliter.
@@ -2790,10 +2790,10 @@ apply 中间性蕴含共线1 in H1.
 Col.
 
 assert(Per A P M).
-apply perp_comm in H15.
-apply perp_perp_in in H15.
-apply perp_in_comm in H15.
-apply perp_in_per in H15.
+apply 垂直的交换性 in H15.
+apply L形垂直转垂直于 in H15.
+apply 垂直于的交换性 in H15.
+apply L形垂直于转直角 in H15.
 assumption.
 
 unfold 长方形.
@@ -2802,7 +2802,7 @@ apply parallelogram_to_plg .
 left.
 assumption.
 
-apply l8_2 in H16.
+apply 直角的对称性 in H16.
 unfold Per in H16.
 ex_and H16 B'.
 assert(B = B').
@@ -2832,7 +2832,7 @@ unfold 退化平行四边形 in H.
 spliter.
 
 assert(D = A \/ B = A).
-apply (l8_9 D A B).
+apply (l8_9_直角三点共线则必有两点重合 D A B).
 assumption.
 Col.
 induction H10.
@@ -2870,7 +2870,7 @@ apply plg_to_parallelogram in H.
 apply plg_permut.
 apply plg_sym.
 assumption.
-apply l8_2.
+apply 直角的对称性.
 assumption.
 Qed.
 
@@ -2919,7 +2919,7 @@ apply rect_per.
 assumption.
 spliter.
 
-assert(HH:=l8_9 A B C H6 H).
+assert(HH:=l8_9_直角三点共线则必有两点重合 A B C H6 H).
 induction HH.
 right.
 subst B.
@@ -2947,7 +2947,7 @@ assert (Par A B C D)
  by (apply (l12_9 A B C D B C); Perp; Cop).
 assert (Perp A B D A)
  by (apply (cop_par_perp__perp C D A B D A); Perp; Par; Cop).
-auto using perp_sym, perp_left_comm.
+auto using 垂直的对称性, 垂直的左交换性.
 Qed.
 
 Lemma cop_perp3__rect :
@@ -2960,7 +2960,7 @@ Lemma cop_perp3__rect :
 Proof.
 intros.
 assert (~ Col A B C)
- by (assert_diffs; apply per_not_col; Perp).
+ by (assert_diffs; apply 成直角三点不共线; Perp).
 assert (Par A B C D)
  by (apply (l12_9 A B C D B C); Perp; Cop).
 assert (Perp D A A B)
@@ -3340,7 +3340,7 @@ split.
 left.
 assumption.
 
-assert(HH:=midpoint_existence A C).
+assert(HH:=中点的存在性 A C).
 ex_and HH M.
 exists M.
 split.
@@ -4620,8 +4620,8 @@ elim (两点重合的决定性 C1 C2); intro HC1C2; treat_equalities.
   assert (HPara1 := HRect1); apply 长方形_平行四边形 in HPara1.
   assert (HPara2 := HRect2); apply 长方形_平行四边形 in HPara2.
 
-  assert (HNC1 : ~ Col A B C1) by (apply rect_per2 in HRect1; apply per_not_col; auto).
-  assert (HNC2 : ~ Col A B C2) by (apply rect_per2 in HRect2; apply per_not_col; auto).
+  assert (HNC1 : ~ Col A B C1) by (apply rect_per2 in HRect1; apply 成直角三点不共线; auto).
+  assert (HNC2 : ~ Col A B C2) by (apply rect_per2 in HRect2; apply 成直角三点不共线; auto).
   apply plg_per_rect2.
 
     {
@@ -4636,11 +4636,11 @@ elim (两点重合的决定性 C1 C2); intro HC1C2; treat_equalities.
   elim (cop_dec A B C1 C2); intro HCop.
 
     {
-    apply perp_per_1, perp_sym, cop_par_perp__perp with A B; Cop;
+    apply L形垂直转直角1, 垂直的对称性, cop_par_perp__perp with A B; Cop;
     apply plg_par_1 in HPara2; Par; clear HPara1; clear HPara2.
     apply rect_per2 in HRect1; apply rect_per2 in HRect2.
     assert (HCol : Col C1 C2 B) by (apply cop_per2__col with A; Perp; Cop).
-    apply perp_col0 with B C1; Col; apply per_perp in HRect1; Perp.
+    apply 与垂线共线之线也为垂线1 with B C1; Col; apply 直角转L形垂直 in HRect1; Perp.
     }
 
     {

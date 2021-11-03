@@ -333,7 +333,7 @@ Section T8_1.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma per_dec : forall A B C, Per A B C \/ ~ Per A B C.
+Lemma 直角的决定性 : forall A B C, Per A B C \/ ~ Per A B C.
 Proof.
     intros.
     unfold Per.
@@ -350,7 +350,7 @@ Proof.
     intuition.
 Qed.
 
-Lemma l8_2 : forall A B C, Per A B C -> Per C B A.
+Lemma 直角的对称性 : forall A B C, Per A B C -> Per C B A.
 Proof.
     unfold Per.
     intros.
@@ -372,7 +372,7 @@ Qed.
 
 End T8_1.
 
-Hint Resolve l8_2 : perp.
+Hint Resolve 直角的对称性 : perp.
 
 Ltac Perp := auto with perp.
 
@@ -380,7 +380,7 @@ Section T8_2.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma Per_cases :
+Lemma 直角的各排列情况 :
  forall A B C,
  Per A B C \/ Per C B A ->
  Per A B C.
@@ -389,7 +389,7 @@ Proof.
     decompose [or]  H;Perp.
 Qed.
 
-Lemma Per_perm :
+Lemma 直角的等价排列 :
  forall A B C,
  Per A B C ->
  Per A B C /\ Per C B A.
@@ -398,7 +398,7 @@ Proof.
     split; Perp.
 Qed.
 
-Lemma l8_3 : forall A B C A',
+Lemma l8_3_直角边共线点也构成直角1 : forall A B C A',
  Per A B C -> A<>B -> Col B A A' -> Per A' B C.
 Proof.
     unfold Per.
@@ -411,7 +411,7 @@ Proof.
     apply l4_17 with A B; Col; Cong.
 Qed.
 
-Lemma l8_4 : forall A B C C', Per A B C -> 中点 B C C' -> Per A B C'.
+Lemma l8_4_直角端点关于直角顶点对称点也构成直角 : forall A B C C', Per A B C -> 中点 B C C' -> Per A B C'.
 Proof.
     unfold Per.
     intros.
@@ -425,7 +425,7 @@ Proof.
     Cong.
 Qed.
 
-Lemma l8_5 : forall A B, Per A B B.
+Lemma 角ABB成直角 : forall A B, Per A B B.
 Proof.
     unfold Per.
     intros.
@@ -451,7 +451,7 @@ Qed.
 
 End T8_2.
 
-Hint Resolve l8_5 : perp.
+Hint Resolve 角ABB成直角 : perp.
 
 Ltac let_symmetric C P A :=
 let id1:=fresh in (assert (id1:(exists A', 中点 P A A'));
@@ -464,7 +464,7 @@ Section T8_3.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma l8_7 : forall A B C, Per A B C -> Per A C B -> B=C.
+Lemma ABC和ACB均直角则B与C重合 : forall A B C, Per A B C -> Per A C B -> B=C.
 Proof.
     intros.
     unfold Per in H.
@@ -473,8 +473,8 @@ Proof.
     induction (两点重合的决定性 B C).
       assumption.
     assert (Per C' C A).
-      eapply l8_3.
-        eapply l8_2.
+      eapply l8_3_直角边共线点也构成直角1.
+        eapply 直角的对称性.
         apply H0.
         assumption.
       unfold 中点 in H.
@@ -515,50 +515,50 @@ Proof.
     Between.
 Qed.
 
-Lemma l8_8 : forall A B, Per A B A -> A=B.
+Lemma ABA直角则A与B重合 : forall A B, Per A B A -> A=B.
 Proof.
     intros.
-    apply l8_7 with A.
-      apply l8_2.
-      apply l8_5.
+    apply ABC和ACB均直角则B与C重合 with A.
+      apply 直角的对称性.
+      apply 角ABB成直角.
     assumption.
 Qed.
 
-Lemma per_distinct : forall A B C, Per A B C -> A <> B -> A <> C.
+Lemma 直角一边不重合则另一边不重合1 : forall A B C, Per A B C -> A <> B -> A <> C.
 Proof.
     intros.
     intro.
     subst C.
     apply H0.
-    apply (l8_8).
+    apply (ABA直角则A与B重合).
     assumption.
 Qed.
 
-Lemma per_distinct_1 : forall A B C, Per A B C -> B <> C -> A <> C.
+Lemma 直角一边不重合则另一边不重合2 : forall A B C, Per A B C -> B <> C -> A <> C.
 Proof.
     intros.
     intro.
     subst C.
     apply H0.
     apply eq_sym.
-    apply (l8_8).
+    apply (ABA直角则A与B重合).
     assumption.
 Qed.
 
-Lemma l8_9 : forall A B C, Per A B C -> Col A B C -> A=B \/ C=B.
+Lemma l8_9_直角三点共线则必有两点重合 : forall A B C, Per A B C -> Col A B C -> A=B \/ C=B.
 Proof.
     intros.
     elim (两点重合的决定性 A B);intro.
       tauto.
     right.
-    eapply l8_7.
-      eapply l8_2.
-      eapply l8_5.
-    apply l8_3 with A; Col.
+    eapply ABC和ACB均直角则B与C重合.
+      eapply 直角的对称性.
+      eapply 角ABB成直角.
+    apply l8_3_直角边共线点也构成直角1 with A; Col.
 Qed.
 
 
-Lemma l8_10 : forall A B C A' B' C',  Per A B C -> 三角形全等 A B C A' B' C' -> Per A' B' C'.
+Lemma l8_10_直角与全等推出直角 : forall A B C A' B' C',  Per A B C -> 三角形全等 A B C A' B' C' -> Per A' B' C'.
 Proof.
     unfold Per.
     intros.
@@ -601,7 +601,7 @@ Proof.
     Cong.
 Qed.
 
-Lemma col_col_per_per : forall A X C U V,
+Lemma 双共线与一直角推出另一直角 : forall A X C U V,
  A<>X -> C<>X ->
  Col U A X ->
  Col V C X ->
@@ -609,33 +609,33 @@ Lemma col_col_per_per : forall A X C U V,
  Per U X V.
 Proof.
     intros.
-    assert (Per U X C) by (apply (l8_3 A X C U);Col).
-    apply l8_2 in H4.
-    apply l8_2 .
-    apply (l8_3 C X U V);Col.
+    assert (Per U X C) by (apply (l8_3_直角边共线点也构成直角1 A X C U);Col).
+    apply 直角的对称性 in H4.
+    apply 直角的对称性 .
+    apply (l8_3_直角边共线点也构成直角1 C X U V);Col.
 Qed.
 
-Lemma perp_in_dec : forall X A B C D, 垂直于 X A B C D \/ ~ 垂直于 X A B C D.
+Lemma 垂直于的决定性 : forall X A B C D, 垂直于 X A B C D \/ ~ 垂直于 X A B C D.
 Proof.
     intros.
     unfold 垂直于.
     elim (两点重合的决定性 A B);intro; elim (两点重合的决定性 C D);intro; elim (共线的决定性 X A B);intro; elim (共线的决定性 X C D);intro; try tauto.
     elim (两点重合的决定性 B X);intro; elim (两点重合的决定性 D X);intro;subst;treat_equalities.
-      elim (per_dec A X C);intro.
-        left;repeat split;Col;intros; apply col_col_per_per with A C;Col.
+      elim (直角的决定性 A X C);intro.
+        left;repeat split;Col;intros; apply 双共线与一直角推出另一直角 with A C;Col.
       right;intro;spliter;apply H3;apply H8;Col.
-      elim (per_dec A X D);intro.
-        left;repeat split;Col;intros; apply col_col_per_per with A D;ColR.
+      elim (直角的决定性 A X D);intro.
+        left;repeat split;Col;intros; apply 双共线与一直角推出另一直角 with A D;ColR.
       right;intro;spliter;apply H3;apply H9;Col.
-      elim (per_dec B X C);intro.
-        left;repeat split;Col;intros; apply col_col_per_per with B C;ColR.
+      elim (直角的决定性 B X C);intro.
+        left;repeat split;Col;intros; apply 双共线与一直角推出另一直角 with B C;ColR.
       right;intro;spliter;apply H4;apply H9;Col.
-    elim (per_dec B X D);intro.
-      left;repeat split;Col;intros; apply col_col_per_per with B D;ColR.
+    elim (直角的决定性 B X D);intro.
+      left;repeat split;Col;intros; apply 双共线与一直角推出另一直角 with B D;ColR.
     right;intro;spliter;apply H5;apply H10;Col.
 Qed.
 
-Lemma perp_distinct : forall A B C D, Perp A B C D -> A <> B /\ C <> D.
+Lemma 垂直推出不重合 : forall A B C D, Perp A B C D -> A <> B /\ C <> D.
 Proof.
     intros.
     unfold Perp in H.
@@ -644,16 +644,16 @@ Proof.
     tauto.
 Qed.
 
-Lemma l8_12 : forall A B C D X, 垂直于 X A B C D -> 垂直于 X C D A B.
+Lemma l8_12_垂直于的对称性 : forall A B C D X, 垂直于 X A B C D -> 垂直于 X C D A B.
 Proof.
     unfold 垂直于.
     intros.
     spliter.
     repeat split;try assumption.
-    intros;eapply l8_2;eauto.
+    intros;eapply 直角的对称性;eauto.
 Qed.
 
-Lemma per_col : forall A B C D,
+Lemma 直角边共线点也构成直角2 : forall A B C D,
  B <> C -> Per A B C -> Col B C D -> Per A B D.
 Proof.
     unfold Per.
@@ -711,7 +711,7 @@ Proof.
     eauto using 五线段公理_等价SAS_with_def.
 Qed.
 
-Lemma l8_13_2 : forall A B C D X,
+Lemma l8_13_2_两线夹角为直角则两线垂直 : forall A B C D X,
    A <> B -> C <> D -> Col X A B -> Col X C D ->
   (exists U, exists V :Tpoint, Col U A B /\ Col V C D /\ U<>X /\ V<>X /\ Per U X V) ->
   垂直于 X A B C D.
@@ -723,8 +723,8 @@ Proof.
     repeat split;try assumption.
     intros.
     assert (Per V X U0).
-      eapply l8_2.
-      eapply l8_3.
+      eapply 直角的对称性.
+      eapply l8_3_直角边共线点也构成直角1.
         apply H7.
         assumption.
       eapply 共线的传递性4.
@@ -732,9 +732,9 @@ Proof.
         Col.
         Col.
       Col.
-    apply per_col with V.
+    apply 直角边共线点也构成直角2 with V.
       auto.
-      apply l8_2.
+      apply 直角的对称性.
       assumption.
     eapply 共线的传递性4.
       apply H0.
@@ -743,7 +743,7 @@ Proof.
     Col.
 Qed.
 
-Lemma l8_14_1 : forall A B, ~ Perp A B A B.
+Lemma l8_14_1_AB不垂直于AB : forall A B, ~ Perp A B A B.
 Proof.
     intros.
     unfold Perp.
@@ -756,21 +756,21 @@ Proof.
         Col.
       Col.
     assert (A = X).
-      apply (l8_7 A).
-        apply l8_2.
-        apply l8_5.
+      apply (ABC和ACB均直角则B与C重合 A).
+        apply 直角的对称性.
+        apply 角ABB成直角.
       assumption.
     assert (Per B X B) by (apply H3;Col).
     assert (B = X).
-      apply l8_7 with B.
-        apply l8_2.
-        apply l8_5.
+      apply ABC和ACB均直角则B与C重合 with B.
+        apply 直角的对称性.
+        apply 角ABB成直角.
       assumption.
     apply H0.
     congruence.
 Qed.
 
-Lemma l8_14_2_1a : forall X A B C D, 垂直于 X A B C D -> Perp A B C D.
+Lemma l8_14_2_1a_垂直于转垂直 : forall X A B C D, 垂直于 X A B C D -> Perp A B C D.
 Proof.
     intros.
     unfold Perp.
@@ -778,39 +778,39 @@ Proof.
     assumption.
 Qed.
 
-Lemma perp_in_distinct : forall X A B C D , 垂直于 X A B C D -> A <> B /\ C <> D.
+Lemma 垂直于推出不重合 : forall X A B C D , 垂直于 X A B C D -> A <> B /\ C <> D.
 Proof.
     intros.
-    apply l8_14_2_1a in H.
-    apply perp_distinct.
+    apply l8_14_2_1a_垂直于转垂直 in H.
+    apply 垂直推出不重合.
     assumption.
 Qed.
 
-Lemma l8_14_2_1b : forall X A B C D Y, 垂直于 X A B C D -> Col Y A B -> Col Y C D -> X=Y.
+Lemma l8_14_2_1b_垂点是交点 : forall X A B C D Y, 垂直于 X A B C D -> Col Y A B -> Col Y C D -> X=Y.
 Proof.
     intros.
     unfold 垂直于 in H.
     spliter.
     apply (H5 Y Y) in H1.
-      apply eq_sym, l8_8; assumption.
+      apply eq_sym, ABA直角则A与B重合; assumption.
     assumption.
 Qed.
 
-Lemma l8_14_2_1b_bis : forall A B C D X, Perp A B C D -> Col X A B -> Col X C D -> 垂直于 X A B C D.
+Lemma l8_14_2_1b_bis_交点是垂点 : forall A B C D X, Perp A B C D -> Col X A B -> Col X C D -> 垂直于 X A B C D.
 Proof.
     intros.
     unfold Perp in H.
     ex_and H Y.
-    assert (Y = X) by (eapply (l8_14_2_1b Y _ _ _ _ X) in H2;assumption).
+    assert (Y = X) by (eapply (l8_14_2_1b_垂点是交点 Y _ _ _ _ X) in H2;assumption).
     subst Y.
     assumption.
 Qed.
 
-Lemma l8_14_2_2 : forall X A B C D,
+Lemma l8_14_2_2_交点是垂点_另一表述 : forall X A B C D,
  Perp A B C D -> (forall Y, Col Y A B -> Col Y C D -> X=Y) ->  垂直于 X A B C D.
 Proof.
     intros.
-    eapply l8_14_2_1b_bis.
+    eapply l8_14_2_1b_bis_交点是垂点.
       assumption.
       unfold Perp in H.
       ex_and H Y.
@@ -831,32 +831,32 @@ Proof.
     assumption.
 Qed.
 
-Lemma l8_14_3 : forall A B C D X Y, 垂直于 X A B C D -> 垂直于 Y A B C D -> X=Y.
+Lemma l8_14_3_垂点的唯一性 : forall A B C D X Y, 垂直于 X A B C D -> 垂直于 Y A B C D -> X=Y.
 Proof.
     intros.
-    eapply l8_14_2_1b.
+    eapply l8_14_2_1b_垂点是交点.
       apply H.
       unfold 垂直于 in H0.
       intuition.
-    eapply l8_12 in H0.
+    eapply l8_12_垂直于的对称性 in H0.
     unfold 垂直于 in H0.
     intuition.
 Qed.
 
-Lemma l8_15_1 : forall A B C X, Col A B X -> Perp A B C X -> 垂直于 X A B C X.
+Lemma l8_15_1_垂线顶点在该线上则其为垂点 : forall A B C X, Col A B X -> Perp A B C X -> 垂直于 X A B C X.
 Proof.
     intros.
-    eapply l8_14_2_1b_bis;Col.
+    eapply l8_14_2_1b_bis_交点是垂点;Col.
 Qed.
-
+(* 无用 *)
 Lemma l8_15_2 : forall A B C X, Col A B X ->  垂直于 X A B C X -> Perp A B C X.
 Proof.
     intros.
-    eapply l8_14_2_1a.
+    eapply l8_14_2_1a_垂直于转垂直.
     apply H0.
 Qed.
 
-Lemma perp_in_per : forall A B C, 垂直于 B A B B C-> Per A B C.
+Lemma L形垂直于转直角 : forall A B C, 垂直于 B A B B C-> Per A B C.
 Proof.
     intros.
     unfold 垂直于 in H.
@@ -864,17 +864,17 @@ Proof.
     apply H3;Col.
 Qed.
 
-Lemma perp_sym : forall A B C D, Perp A B C D -> Perp C D A B.
+Lemma 垂直的对称性 : forall A B C D, Perp A B C D -> Perp C D A B.
 Proof.
     unfold Perp.
     intros.
     ex_and H X.
     exists X.
-    apply l8_12.
+    apply l8_12_垂直于的对称性.
     assumption.
 Qed.
 
-Lemma perp_col0 : forall A B C D X Y, Perp A B C D -> X <> Y -> Col A B X -> Col A B Y -> Perp C D X Y.
+Lemma 与垂线共线之线也为垂线1 : forall A B C D X Y, Perp A B C D -> X <> Y -> Col A B X -> Col A B Y -> Perp C D X Y.
 Proof.
     unfold Perp.
     intros.
@@ -892,7 +892,7 @@ Proof.
         assumption.
       assumption.
     intros.
-    apply l8_2.
+    apply 直角的对称性.
     apply H6.
       assert(Col A X Y).
         eapply 共线的传递性4 with A B;Col.
@@ -902,7 +902,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma per_perp_in : forall A B C, A <> B -> B <> C -> Per A B C -> 垂直于 B A B B C.
+Lemma 直角转L形垂直于 : forall A B C, A <> B -> B <> C -> Per A B C -> 垂直于 B A B B C.
 Proof.
     intros.
     unfold Perp.
@@ -912,30 +912,30 @@ Proof.
       Col.
       Col.
     intros.
-    eapply per_col.
+    eapply 直角边共线点也构成直角2.
       apply H0.
-      eapply l8_2.
-      eapply per_col.
+      eapply 直角的对称性.
+      eapply 直角边共线点也构成直角2.
         intro.
         apply H.
         apply sym_equal.
         apply H4.
-        apply l8_2.
+        apply 直角的对称性.
         assumption.
       Col.
     Col.
 Qed.
 
-Lemma per_perp : forall A B C, A <> B -> B <> C -> Per A B C -> Perp A B B C.
+Lemma 直角转L形垂直 : forall A B C, A <> B -> B <> C -> Per A B C -> Perp A B B C.
 Proof.
     intros.
-    apply per_perp_in in H1.
-      eapply l8_14_2_1a with B;assumption.
+    apply 直角转L形垂直于 in H1.
+      eapply l8_14_2_1a_垂直于转垂直 with B;assumption.
       assumption.
     assumption.
 Qed.
 
-Lemma perp_left_comm : forall A B C D, Perp A B C D -> Perp B A C D.
+Lemma 垂直的左交换性 : forall A B C D, Perp A B C D -> Perp B A C D.
 Proof.
     unfold Perp.
     intros.
@@ -945,7 +945,7 @@ Proof.
     intuition.
 Qed.
 
-Lemma perp_right_comm : forall A B C D, Perp A B C D -> Perp A B D C.
+Lemma 垂直的右交换性 : forall A B C D, Perp A B C D -> Perp A B D C.
 Proof.
     unfold Perp.
     intros.
@@ -955,15 +955,15 @@ Proof.
     intuition.
 Qed.
 
-Lemma perp_comm : forall A B C D, Perp A B C D -> Perp B A D C.
+Lemma 垂直的交换性 : forall A B C D, Perp A B C D -> Perp B A D C.
 Proof.
     intros.
-    apply perp_left_comm.
-    apply perp_right_comm.
+    apply 垂直的左交换性.
+    apply 垂直的右交换性.
     assumption.
 Qed.
-
-Lemma perp_in_sym :
+(* 重复 *)
+Lemma 垂直于的对称性 :
  forall A B C D X,
   垂直于 X A B C D -> 垂直于 X C D A B.
 Proof.
@@ -976,11 +976,11 @@ Proof.
       assumption.
       assumption.
     intros.
-    apply l8_2.
+    apply 直角的对称性.
     apply H3;assumption.
 Qed.
 
-Lemma perp_in_left_comm :
+Lemma 垂直于的左交换性 :
  forall A B C D X,
   垂直于 X A B C D -> 垂直于 X B A C D.
 Proof.
@@ -988,27 +988,27 @@ Proof.
     intuition.
 Qed.
 
-Lemma perp_in_right_comm : forall A B C D X, 垂直于 X A B C D -> 垂直于 X A B D C.
+Lemma 垂直于的右交换性 : forall A B C D X, 垂直于 X A B C D -> 垂直于 X A B D C.
 Proof.
     intros.
-    apply perp_in_sym.
-    apply perp_in_left_comm.
-    apply perp_in_sym.
+    apply 垂直于的对称性.
+    apply 垂直于的左交换性.
+    apply 垂直于的对称性.
     assumption.
 Qed.
 
-Lemma perp_in_comm : forall A B C D X, 垂直于 X A B C D -> 垂直于 X B A D C.
+Lemma 垂直于的交换性 : forall A B C D X, 垂直于 X A B C D -> 垂直于 X B A D C.
 Proof.
     intros.
-    apply perp_in_left_comm.
-    apply perp_in_right_comm.
+    apply 垂直于的左交换性.
+    apply 垂直于的右交换性.
     assumption.
 Qed.
 
 End T8_3.
 
-Hint Resolve perp_sym perp_left_comm perp_right_comm perp_comm per_perp_in per_perp
-             perp_in_per perp_in_left_comm perp_in_right_comm perp_in_comm perp_in_sym : perp.
+Hint Resolve 垂直的对称性 垂直的左交换性 垂直的右交换性 垂直的交换性 直角转L形垂直于 直角转L形垂直
+             L形垂直于转直角 垂直于的左交换性 垂直于的右交换性 垂直于的交换性 垂直于的对称性 : perp.
 
 Ltac double A B A' :=
    assert (mp:= 构造对称点 A B);
@@ -1018,7 +1018,7 @@ Section T8_4.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma Perp_cases :
+Lemma 垂直的各排列情况 :
   forall A B C D,
   Perp A B C D \/ Perp B A C D \/ Perp A B D C \/ Perp B A D C \/
   Perp C D A B \/ Perp C D B A \/ Perp D C A B \/ Perp D C B A ->
@@ -1028,7 +1028,7 @@ Proof.
     decompose [or] H; Perp.
 Qed.
 
-Lemma Perp_perm :
+Lemma 垂直的等价排列 :
   forall A B C D,
   Perp A B C D ->
   Perp A B C D /\ Perp B A C D /\ Perp A B D C /\ Perp B A D C /\
@@ -1038,7 +1038,7 @@ Proof.
     repeat split; Perp.
 Qed.
 
-Lemma Perp_in_cases :
+Lemma 垂直于的各排列情况 :
   forall X A B C D,
   垂直于 X A B C D \/ 垂直于 X B A C D \/ 垂直于 X A B D C \/ 垂直于 X B A D C \/
   垂直于 X C D A B \/ 垂直于 X C D B A \/ 垂直于 X D C A B \/ 垂直于 X D C B A ->
@@ -1048,7 +1048,7 @@ Proof.
     decompose [or]  H; Perp.
 Qed.
 
-Lemma Perp_in_perm :
+Lemma 垂直于的等价排列 :
   forall X A B C D,
   垂直于 X A B C D ->
   垂直于 X A B C D /\ 垂直于 X B A C D /\ 垂直于 X A B D C /\ 垂直于 X B A D C /\
@@ -1057,17 +1057,17 @@ Proof.
     intros.
     do 7 (split; Perp).
 Qed.
-
-Lemma perp_in_col : forall A B C D X, 垂直于 X A B C D -> Col A B X /\ Col C D X.
+(* 半重复 *)
+Lemma 垂点是交点 : forall A B C D X, 垂直于 X A B C D -> Col A B X /\ Col C D X.
 Proof.
     unfold 垂直于.
     intuition.
 Qed.
 
-Lemma perp_perp_in : forall A B C, Perp A B C A -> 垂直于 A A B C A.
+Lemma L形垂直转垂直于 : forall A B C, Perp A B C A -> 垂直于 A A B C A.
 Proof.
     intros.
-    apply l8_15_1.
+    apply l8_15_1_垂线顶点在该线上则其为垂点.
       unfold Perp in H.
       ex_and H X.
       unfold 垂直于 in H0.
@@ -1075,11 +1075,11 @@ Proof.
     assumption.
 Qed.
 
-Lemma perp_per_1 : forall A B C, Perp A B C A -> Per B A C.
+Lemma L形垂直转直角1 : forall A B C, Perp A B C A -> Per B A C.
 Proof.
     intros.
     assert (垂直于 A A B C A).
-      apply perp_perp_in.
+      apply L形垂直转垂直于.
       assumption.
     unfold 垂直于 in H0.
     spliter.
@@ -1088,46 +1088,46 @@ Proof.
     Col.
 Qed.
 
-Lemma perp_per_2 : forall A B C, Perp A B A C -> Per B A C.
+Lemma L形垂直转直角2 : forall A B C, Perp A B A C -> Per B A C.
 Proof.
     intros.
-    apply perp_right_comm in H.
-    apply perp_per_1; assumption.
+    apply 垂直的右交换性 in H.
+    apply L形垂直转直角1; assumption.
 Qed.
 
-Lemma perp_col : forall A B C D E, A<>E -> Perp A B C D -> Col A B E -> Perp A E C D.
+Lemma 垂线共线点也构成垂直1 : forall A B C D E, A<>E -> Perp A B C D -> Col A B E -> Perp A E C D.
 Proof.
     intros.
-    apply perp_sym.
-    apply perp_col0 with A B; Col.
+    apply 垂直的对称性.
+    apply 与垂线共线之线也为垂线1 with A B; Col.
 Qed.
 
-Lemma perp_col2 : forall A B C D X Y,
+Lemma 与垂线共线之线也为垂线2 : forall A B C D X Y,
   Perp A B X Y ->
   C <> D -> Col A B C -> Col A B D -> Perp C D X Y.
 Proof.
     intros.
     assert(HH:=H).
-    apply perp_distinct in HH.
+    apply 垂直推出不重合 in HH.
     spliter.
     induction (两点重合的决定性 A C).
       subst A.
-      apply perp_col with B; Col.
-    assert(Perp A C X Y) by (eapply perp_col;eauto).
-    apply perp_col with A; Perp.
+      apply 垂线共线点也构成垂直1 with B; Col.
+    assert(Perp A C X Y) by (eapply 垂线共线点也构成垂直1;eauto).
+    apply 垂线共线点也构成垂直1 with A; Perp.
     ColR.
 Qed.
 
-Lemma perp_col4 : forall A B C D P Q R S, P <> Q -> R <> S ->
+Lemma 与垂直两线分别共线的两线垂直 : forall A B C D P Q R S, P <> Q -> R <> S ->
   Col A B P -> Col A B Q -> Col C D R -> Col C D S -> Perp A B C D -> Perp P Q R S.
 Proof.
     intros.
-    apply (perp_col2 A B); auto.
-    apply perp_sym, (perp_col2 C D); auto.
-    apply perp_sym, H5.
+    apply (与垂线共线之线也为垂线2 A B); auto.
+    apply 垂直的对称性, (与垂线共线之线也为垂线2 C D); auto.
+    apply 垂直的对称性, H5.
 Qed.
-
-Lemma perp_not_eq_1 : forall A B C D, Perp A B C D -> A<>B.
+(* 重合 *)
+Lemma 垂直推出不重合1 : forall A B C D, Perp A B C D -> A<>B.
 Proof.
     intros.
     unfold Perp in H.
@@ -1135,54 +1135,54 @@ Proof.
     unfold 垂直于 in H0.
     tauto.
 Qed.
-
-Lemma perp_not_eq_2 : forall A B C D, Perp A B C D -> C<>D.
+(* 重合 *)
+Lemma 垂直推出不重合2 : forall A B C D, Perp A B C D -> C<>D.
 Proof.
     intros.
-    apply perp_sym in H.
-    eapply perp_not_eq_1.
+    apply 垂直的对称性 in H.
+    eapply 垂直推出不重合1.
     apply H.
 Qed.
-
-Lemma diff_per_diff : forall A B P R ,
+(* 无用 *)
+Lemma 双垂直推出不重合 : forall A B P R ,
       A <> B -> Cong A P B R -> Per B A P -> Per A B R -> P <> R.
 Proof.
     intros.
     intro.
     subst.
     assert (A = B).
-      eapply l8_7.
-        apply l8_2.
+      eapply ABC和ACB均直角则B与C重合.
+        apply 直角的对称性.
         apply H1.
-      apply l8_2.
+      apply 直角的对称性.
       assumption.
     intuition.
 Qed.
-
-Lemma per_not_colp : forall A B P R, A <> B -> A <> P -> B <> R -> Per B A P -> Per A B R -> ~Col P A R.
+(* 仅用一次 *)
+Lemma 双垂直推出不共线 : forall A B P R, A <> B -> A <> P -> B <> R -> Per B A P -> Per A B R -> ~Col P A R.
 Proof.
     intros.
     intro.
     assert (Perp A B P A).
-      apply perp_comm.
-      apply per_perp; auto.
+      apply 垂直的交换性.
+      apply 直角转L形垂直; auto.
     assert (Perp A B B R).
-      apply per_perp; auto.
+      apply 直角转L形垂直; auto.
     assert (Per B A R).
-      eapply per_col.
+      eapply 直角边共线点也构成直角2.
         apply H0.
         assumption.
       ColR.
-    apply l8_2 in H3.
-    apply l8_2 in H7.
+    apply 直角的对称性 in H3.
+    apply 直角的对称性 in H7.
     assert (A = B).
-      eapply l8_7.
+      eapply ABC和ACB均直角则B与C重合.
         apply H7.
       assumption.
     contradiction.
 Qed.
 
-Lemma per_not_col : forall A B C, A <> B -> B <> C -> Per A B C -> ~Col A B C.
+Lemma 成直角三点不共线 : forall A B C, A <> B -> B <> C -> Per A B C -> ~Col A B C.
 Proof.
     intros.
     intro.
@@ -1195,37 +1195,37 @@ Proof.
     induction H4;treat_equalities; intuition.
 Qed.
 
-Lemma perp_not_col2 : forall A B C D, Perp A B C D -> ~ Col A B C \/ ~ Col A B D.
+Lemma 垂直推出不共线 : forall A B C D, Perp A B C D -> ~ Col A B C \/ ~ Col A B D.
 Proof.
     intros.
     induction (共线的决定性 A B C).
       right.
       assert(垂直于 C A B C D).
-        apply l8_14_2_1b_bis; Col.
+        apply l8_14_2_1b_bis_交点是垂点; Col.
       intro.
       assert(垂直于 D A B C D).
-        apply l8_14_2_1b_bis; Col.
+        apply l8_14_2_1b_bis_交点是垂点; Col.
       assert(C = D).
-        eapply l8_14_3.
+        eapply l8_14_3_垂点的唯一性.
           apply H1.
         assumption.
-      apply perp_not_eq_2 in H.
+      apply 垂直推出不重合2 in H.
       contradiction.
     left.
     assumption.
 Qed.
 
-Lemma perp_not_col : forall A B P, Perp A B P A -> ~ Col A B P.
+Lemma L形垂直推出不共线 : forall A B P, Perp A B P A -> ~ Col A B P.
 Proof.
     intros.
     assert (垂直于 A A B P A).
-      apply perp_perp_in.
+      apply L形垂直转垂直于.
       assumption.
     assert (Per P A B).
-      apply perp_in_per.
-      apply perp_in_sym.
+      apply L形垂直于转直角.
+      apply 垂直于的对称性.
       assumption.
-    apply perp_in_left_comm in H0.
+    apply 垂直于的左交换性 in H0.
     assert (~ Col B A P  -> ~ Col A B P).
       intro.
       intro.
@@ -1233,17 +1233,17 @@ Proof.
       apply 等价共线BAC.
       assumption.
     apply H2.
-    apply perp_distinct in H.
+    apply 垂直推出不重合 in H.
     spliter.
-    apply per_not_col.
+    apply 成直角三点不共线.
       auto.
       auto.
-    apply perp_in_per.
-    apply perp_in_right_comm.
+    apply L形垂直于转直角.
+    apply 垂直于的右交换性.
     assumption.
 Qed.
 
-Lemma perp_in_col_perp_in : forall A B C D E P, C <> E -> Col C D E -> 垂直于 P A B C D -> 垂直于 P A B C E.
+Lemma 垂线共线点也构成垂直_垂直于 : forall A B C D E P, C <> E -> Col C D E -> 垂直于 P A B C D -> 垂直于 P A B C E.
 Proof.
     intros.
     unfold 垂直于 in *.
@@ -1256,7 +1256,7 @@ Proof.
     ColR.
 Qed.
 
-Lemma perp_col2_bis : forall A B C D P Q,
+Lemma 与垂线共线之线也为垂线3 : forall A B C D P Q,
   Perp A B C D ->
   Col C D P ->
   Col C D Q ->
@@ -1264,11 +1264,11 @@ Lemma perp_col2_bis : forall A B C D P Q,
   Perp A B P Q.
 Proof.
 intros A B C D P Q HPerp HCol1 HCol2 HCD.
-apply perp_sym.
-apply perp_col2 with C D; Perp.
+apply 垂直的对称性.
+apply 与垂线共线之线也为垂线2 with C D; Perp.
 Qed.
 
-Lemma perp_in_perp_bis : forall A B C D X,
+Lemma 垂直于转T形垂直 : forall A B C D X,
  垂直于 X A B C D -> Perp X B C D \/ Perp A X C D.
 Proof.
     intros.
@@ -1304,29 +1304,29 @@ Proof.
     assumption.
 Qed.
 
-Lemma col_per_perp : forall A B C D,
+Lemma 直角加共线转L形垂直 : forall A B C D,
  A <> B -> B <> C -> D <> B -> D <> C ->
  Col B C D -> Per A B C -> Perp C D A B.
 Proof.
     intros.
-    apply per_perp_in in H4.
-      apply perp_in_perp_bis in H4.
+    apply 直角转L形垂直于 in H4.
+      apply 垂直于转T形垂直 in H4.
       induction H4.
-        apply perp_distinct in H4.
+        apply 垂直推出不重合 in H4.
         spliter.
         absurde.
-      eapply (perp_col _ B).
+      eapply (垂线共线点也构成垂直1 _ B).
         auto.
-        apply perp_sym.
-        apply perp_right_comm.
+        apply 垂直的对称性.
+        apply 垂直的右交换性.
         assumption.
       apply 等价共线BAC.
       assumption.
       assumption.
     assumption.
 Qed.
-
-Lemma per_cong_mid : forall A B C H,
+(* 无用 *)
+Lemma 四点成首末边等长双直角S形则对边等长_mid : forall A B C H,
  B <> C -> Bet A B C -> Cong A H C H -> Per H B C ->
  中点 B A C.
 Proof.
@@ -1339,17 +1339,17 @@ Proof.
       apply 等长的右交换性.
       assumption.
     assert(Per C B H).
-      apply l8_2.
+      apply 直角的对称性.
       assumption.
     assert (Per H B A).
-      eapply per_col.
+      eapply 直角边共线点也构成直角2.
         apply H0.
         assumption.
       unfold Col.
       right; right.
       assumption.
     assert (Per A B H).
-      apply l8_2.
+      apply 直角的对称性.
       assumption.
     unfold Per in *.
     ex_and H3 C'.
@@ -1397,7 +1397,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma per_double_cong : forall A B C C',
+Lemma 直角端点和其关于顶点的对称点与另一端点等距 : forall A B C C',
  Per A B C -> 中点 B C C' -> Cong A C A C'.
 Proof.
     intros.
@@ -1413,7 +1413,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma cong_perp_or_mid : forall A B M X, A <> B -> 中点 M A B -> Cong A X B X ->
+Lemma 与两点等距点要么为其中点要么在其中垂线上 : forall A B M X, A <> B -> 中点 M A B -> Cong A X B X ->
  X = M \/ ~Col A B X /\ 垂直于 M X M A B.
 Proof.
 intros.
@@ -1434,16 +1434,17 @@ spliter; Col.
 assert_diffs.
 assert(Per X M A)
  by (unfold Per;exists B;split; Cong).
-apply per_perp_in in H4.
-apply perp_in_right_comm in H4.
-apply(perp_in_col_perp_in X M A M B M); Col.
+apply 直角转L形垂直于 in H4.
+apply 垂直于的右交换性 in H4.
+apply(垂线共线点也构成垂直_垂直于 X M A M B M); Col.
 
 intro;treat_equalities.
 apply H2; Col.
 auto.
 Qed.
-
-Lemma col_per2_cases : forall A B C D B', 
+(* 小半无用 *)
+(* 当A与B重合时B'在以AC为直径的圆上(∠AB'C=90°)且不与C重合，此时满足析取范式的第二项 *)
+Lemma 共线点和两直角的两种情况 : forall A B C D B', 
  B <> C -> B' <> C -> C <> D -> Col B C D -> Per A B C -> Per A B' C -> 
  B = B' \/ ~Col B' C D.
 Proof.
@@ -1455,43 +1456,43 @@ intro.
 assert(Col C B B').
 ColR.
 assert(Per A B' B).
-apply(per_col A B' C B H0 H4); Col.
+apply(直角边共线点也构成直角2 A B' C B H0 H4); Col.
 assert(Per A B B').
-apply(per_col A B C B' H H3); Col.
+apply(直角边共线点也构成直角2 A B C B' H H3); Col.
 apply H5.
-apply (l8_7 A); auto.
+apply (ABC和ACB均直角则B与C重合 A); auto.
 Qed.
 
-Lemma l8_16_1 : forall A B C U X,
+Lemma l8_16_1_共线四点和一垂直推另一直角 : forall A B C U X,
   Col A B X -> Col A B U -> Perp A B C X -> ~ Col A B C /\ Per C X U.
 Proof.
       intros.
       destruct (两点重合的决定性 U X).
         subst X.
         split.
-          destruct (perp_not_col2 A B C U); auto.
-        apply l8_5.
+          destruct (垂直推出不共线 A B C U); auto.
+        apply 角ABB成直角.
       split.
         intro.
         assert (垂直于 X A B C X).
-          eapply l8_15_1.
+          eapply l8_15_1_垂线顶点在该线上则其为垂点.
             assumption.
           assumption.
         assert (X = U).
-          eapply l8_14_2_1b.
+          eapply l8_14_2_1b_垂点是交点.
             apply H4.
             Col.
           eapply 共线的传递性4 with A B;Col.
-          apply perp_distinct in H1; spliter; auto.
+          apply 垂直推出不重合 in H1; spliter; auto.
         intuition.
-      apply l8_14_2_1b_bis with C X U X; Col.
+      apply l8_14_2_1b_bis_交点是垂点 with C X U X; Col.
       assert (Col A X U).
         eapply (共线的传递性4 A B);Col.
-        apply perp_distinct in H1; spliter; auto.
-      eapply perp_col0 with A B;Col.
+        apply 垂直推出不重合 in H1; spliter; auto.
+      eapply 与垂线共线之线也为垂线1 with A B;Col.
 Qed.
-
-Lemma l8_16_2 : forall A B C U X,
+(* 小半无用 *)
+Lemma l8_16_2_共线四点和一直角推另一垂直 : forall A B C U X,
   Col A B X -> Col A B U -> U<>X -> ~ Col A B C -> Per C X U -> Perp A B C X.
 Proof.
     intros.
@@ -1502,7 +1503,7 @@ Proof.
       assumption.
     unfold Perp.
     exists X.
-    eapply l8_13_2.
+    eapply l8_13_2_两线夹角为直角则两线垂直.
       assert_diffs; auto.
       assumption.
       Col.
@@ -1510,23 +1511,23 @@ Proof.
     exists U.
     exists C.
     repeat split; Col.
-    apply l8_2.
+    apply 直角的对称性.
     assumption.
 Qed.
 
-Lemma l8_18_uniqueness : forall A B C X Y,
+Lemma l8_18_过一点垂线之垂点的唯一性 : forall A B C X Y,
   ~ Col A B C -> Col A B X -> Perp A B C X -> Col A B Y -> Perp A B C Y -> X=Y.
 Proof.
     intros.
     show_distinct A B.
       solve [intuition].
-    assert (垂直于 X A B C X) by (eapply l8_15_1;assumption).
-    assert (垂直于 Y A B C Y) by (eapply l8_15_1;assumption).
+    assert (垂直于 X A B C X) by (eapply l8_15_1_垂线顶点在该线上则其为垂点;assumption).
+    assert (垂直于 Y A B C Y) by (eapply l8_15_1_垂线顶点在该线上则其为垂点;assumption).
     unfold 垂直于 in *.
     spliter.
-    apply l8_7 with C;apply l8_2;[apply H14 |apply H10];Col.
+    apply ABC和ACB均直角则B与C重合 with C;apply 直角的对称性;[apply H14 |apply H10];Col.
 Qed.
-
+(* 半无用，不翻译 *)
 Lemma midpoint_distinct : forall A B X C C', ~ Col A B C -> Col A B X -> 中点 X C C' -> C <> C'.
 Proof.
     intros.
@@ -1538,8 +1539,8 @@ Proof.
     treat_equalities.
     assumption.
 Qed.
-
-Lemma l8_20_1 : forall A B C C' D P,
+(* 半无用 *)
+Lemma 直角端点关于另两点对称点的中点与该两点构成直角 : forall A B C C' D P,
   Per A B C -> 中点 P C' D -> 中点 A C' C -> 中点 B D C -> Per B A P.
 Proof.
     intros.
@@ -1550,10 +1551,10 @@ Proof.
       subst B.
       unfold 中点 in H5.
       spliter.
-      eapply l8_2.
-      eapply l8_5.
+      eapply 直角的对称性.
+      eapply 角ABB成直角.
     assert (Per B' B C).
-      eapply l8_3.
+      eapply l8_3_直角边共线点也构成直角1.
         apply H.
         assumption.
       unfold Col.
@@ -1561,7 +1562,7 @@ Proof.
       apply midpoint_bet.
       assumption.
     assert (Per B B' C').
-      eapply l8_10.
+      eapply l8_10_直角与全等推出直角.
         apply H7.
       unfold 三角形全等.
       repeat split.
@@ -1667,7 +1668,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma l8_20_2 : forall A B C C' D P,
+Lemma 直角端点关于另两点对称点的中点与另一端点不重合 : forall A B C C' D P,
   Per A B C -> 中点 P C' D -> 中点 A C' C -> 中点 B D C -> B<>C -> A<>P.
 Proof.
     intros.
@@ -1684,12 +1685,12 @@ Proof.
     subst C.
     absurde.
 Qed.
-
-Lemma perp_col1 : forall A B C D X,
+(* 半无用 *)
+Lemma 垂线共线点也构成垂直2 : forall A B C D X,
  C <> X -> Perp A B C D -> Col C D X -> Perp A B C X.
 Proof.
     intros.
-    assert (T:=perp_distinct A B C D H0).
+    assert (T:=垂直推出不重合 A B C D H0).
     spliter.
     unfold Perp in *.
     ex_and H0 P.
@@ -1725,7 +1726,7 @@ Qed.
 
 
 
-Lemma l8_18_existence : forall A B C, ~ Col A B C -> exists X, Col A B X /\ Perp A B C X.
+Lemma l8_18_过一点垂线之垂点的存在性 : forall A B C, ~ Col A B C -> exists X, Col A B X /\ Perp A B C X.
 Proof.
     intros.
     prolong B A Y A C.
@@ -1744,8 +1745,8 @@ Proof.
       intuition.
     assert (Cong Z Q P A) by (eauto using 五线段公理_等价SAS_with_def).
     assert (三角形全等 A P Y Q Z Y) by (unfold 三角形全等;repeat split;Cong).
-    assert (Per Q Z Y) by (eauto using l8_10).
-    assert (Per Y Z Q) by eauto using l8_2.
+    assert (Per Q Z Y) by (eauto using l8_10_直角与全等推出直角).
+    assert (Per Y Z Q) by eauto using 直角的对称性.
     (* diversion *)
     show_distinct P Y.
       apply H; Col.
@@ -1866,7 +1867,7 @@ Proof.
       apply H.
       ColR.
     assert (垂直于 X Y Z C X).
-      eapply l8_13_2;Col.
+      eapply l8_13_2_两线夹角为直角则两线垂直;Col.
       exists Y.
       exists C.
       repeat split;Col.
@@ -1884,17 +1885,28 @@ Proof.
     apply H57;ColR.
 Qed.
 
-
-Lemma l8_21_aux : forall A B C,
+(* 半无用，不知该如何翻译*)
+(*      |
+        | C
+        |/
+        T
+       /|
+------P-A--------
+     /  |
+    /   |
+   /    |
+  /     B
+        |       *)
+Lemma 十字上的中间性_辅助 : forall A B C,
  ~ Col A B C -> exists P, exists T, Perp A B P A /\ Col A B T /\ Bet C T P.
 Proof.
     intros.
     assert (exists X : Tpoint, Col A B X /\ Perp A B C X).
-      eapply l8_18_existence.
+      eapply l8_18_过一点垂线之垂点的存在性.
       assumption.
     ex_and H0 X.
     assert (垂直于 X A B C X).
-      eapply l8_15_1; assert_diffs; auto.
+      eapply l8_15_1_垂线顶点在该线上则其为垂点; assert_diffs; auto.
     assert (Per A X C).
       unfold 垂直于 in H2.
       spliter.
@@ -1916,7 +1928,7 @@ Proof.
       assumption; spliter.
     ex_elim H6 P.
     assert (Per X A P).
-      eapply l8_20_1.
+      eapply 直角端点关于另两点对称点的中点与该两点构成直角.
         apply HH.
         apply M是AB中点则M是BA中点.
         apply H7.
@@ -1930,7 +1942,7 @@ Proof.
       apply H.
       assumption.
     assert (A <> P).
-      eapply l8_20_2.
+      eapply 直角端点关于另两点对称点的中点与另一端点不重合.
         apply HH.
         apply M是AB中点则M是BA中点.
         apply H7.
@@ -1966,7 +1978,7 @@ Proof.
       subst P.
       assert (Col A C C') by ColR.
       repeat split;Col;Between.
-      apply perp_col0 with C A;auto using perp_sym;Col.
+      apply 与垂线共线之线也为垂线1 with C A;auto using 垂直的对称性;Col.
     exists P.
     exists T.
     repeat split.
@@ -1981,10 +1993,10 @@ Proof.
       unfold 垂直于 in H2.
       spliter.
       intros.
-      eapply per_col in H6.
-        apply l8_2 in H6.
-        eapply per_col in H6.
-          eapply l8_2 in H6.
+      eapply 直角边共线点也构成直角2 in H6.
+        apply 直角的对称性 in H6.
+        eapply 直角边共线点也构成直角2 in H6.
+          eapply 直角的对称性 in H6.
           apply H6.
           assumption.
         ColR.
@@ -1994,7 +2006,18 @@ Proof.
     Between.
 Qed.
 
-Lemma l8_21 : forall A B C,
+(*      |
+        | C
+        |/
+        T
+       /|
+------P-A--------
+     /  |
+    /   |
+   /    |
+  /     B
+        |       *)
+Lemma 十字上的中间性 : forall A B C,
  A <> B -> exists P, exists T, Perp A B P A /\ Col A B T /\ Bet C T P.
 Proof.
     intros.
@@ -2004,7 +2027,7 @@ Proof.
         assumption.
       ex_elim H1 C'.
       assert ( exists P : Tpoint, (exists T : Tpoint, Perp A B P A /\ Col A B T /\ Bet C' T P)).
-        eapply l8_21_aux.
+        eapply 十字上的中间性_辅助.
         assumption.
       ex_elim H1 P.
       ex_and H3 T.
@@ -2014,11 +2037,17 @@ Proof.
         assumption.
         assumption.
       apply AAB中间性.
-    eapply l8_21_aux.
+    eapply 十字上的中间性_辅助.
     assumption.
 Qed.
-
-Lemma per_cong : forall A B P R X ,
+(* 
+    A---P
+   /|/ /
+  / X /
+ / /|/
+R---B
+*)
+Lemma 四点成首末边等长双直角S形则对边等长 : forall A B P R X ,
  A <> B -> A <> P ->
  Per B A P -> Per A B R ->
  Cong A P B R -> Col A B X -> Bet P X R ->
@@ -2026,7 +2055,7 @@ Lemma per_cong : forall A B P R X ,
 Proof.
     intros.
     assert (Per P A B).
-      apply l8_2.
+      apply 直角的对称性.
       assumption.
     double B R Q.
     assert (B <> R).
@@ -2036,7 +2065,7 @@ Proof.
       subst P.
       absurde.
     assert (Per A B Q).
-      eapply per_col.
+      eapply 直角边共线点也构成直角2.
         apply H8.
         assumption.
       unfold Col.
@@ -2044,7 +2073,7 @@ Proof.
       apply midpoint_bet.
       assumption.
     assert (Per P A X).
-      eapply per_col.
+      eapply 直角边共线点也构成直角2.
         apply H.
         assumption.
       assumption.
@@ -2055,12 +2084,12 @@ Proof.
       subst R.
       absurde.
     assert (Per R B X).
-      eapply per_col.
+      eapply 直角边共线点也构成直角2.
         intro.
         apply H.
         apply sym_equal.
         apply H12.
-        apply l8_2.
+        apply 直角的对称性.
         assumption.
       apply 等价共线BAC.
       assumption.
@@ -2068,7 +2097,7 @@ Proof.
       intro.
       subst X.
       assert (~Col P A R).
-        eapply per_not_colp.
+        eapply 双垂直推出不共线.
           apply H.
           assumption.
           assumption.
@@ -2093,7 +2122,7 @@ Proof.
       apply 等长的对称性.
       assumption.
     assert (Cong X P X P').
-      apply l8_2 in H10.
+      apply 直角的对称性 in H10.
       unfold Per in H10.
       ex_and H10 P''.
       assert (P'=P'').
@@ -2131,7 +2160,7 @@ Proof.
         assumption.
       apply 等价共线BCA in H23.
       assert (P = A \/ X = A).
-        eapply l8_9.
+        eapply l8_9_直角三点共线则必有两点重合.
           assumption.
         assumption.
       induction H24.
@@ -2146,7 +2175,7 @@ Proof.
     assert (X <> R).
       intro.
       treat_equalities.
-      apply l8_8 in H12.
+      apply ABA直角则A与B重合 in H12.
       treat_equalities.
       unfold 中点 in *.
       spliter.
@@ -2178,7 +2207,7 @@ Proof.
       right; right.
       assumption.
     assert (M = B).
-      eapply (l8_18_uniqueness A X R).
+      eapply (l8_18_过一点垂线之垂点的唯一性 A X R).
         intro.
         assert (Col A B R).
           eapply 共线的传递性2.
@@ -2189,7 +2218,7 @@ Proof.
             apply 等价共线ACB.
             assumption.
           assumption.
-        eapply per_not_col.
+        eapply 成直角三点不共线.
           apply H; apply H12.
           apply H8.
           assumption.
@@ -2197,9 +2226,9 @@ Proof.
         unfold Col.
         left.
         assumption; eapply 共线的传递性2.
-        apply per_perp in H17.
-          apply perp_comm.
-          eapply perp_col.
+        apply 直角转L形垂直 in H17.
+          apply 垂直的交换性.
+          eapply 垂线共线点也构成垂直1.
             assumption.
             apply H17.
           unfold Col.
@@ -2222,18 +2251,18 @@ Proof.
         eapply A是AA中点.
         apply 等价共线ACB.
         assumption.
-      apply per_perp in H10.
-        apply perp_comm.
-        eapply perp_col.
+      apply 直角转L形垂直 in H10.
+        apply 垂直的交换性.
+        eapply 垂线共线点也构成垂直1.
           apply H13.
-          apply perp_comm.
-          eapply perp_col.
+          apply 垂直的交换性.
+          eapply 垂线共线点也构成垂直1.
             intro.
             apply H13.
             apply sym_equal.
             apply H27.
-            apply perp_right_comm.
-            apply per_perp in H2.
+            apply 垂直的右交换性.
+            apply 直角转L形垂直 in H2.
               apply H2.
               assumption.
             assumption.
@@ -2299,53 +2328,53 @@ Proof.
 Qed.
 
 
-Lemma perp_cong : forall A B P R X,
+Lemma 四点成首末边等长双垂直S形则对边等长 : forall A B P R X,
  A <> B -> A <> P ->
  Perp A B P A -> Perp A B R B ->
  Cong A P B R -> Col A B X -> Bet P X R ->
  Cong A R P B.
 Proof.
     intros.
-    apply (per_cong A B P R X).
+    apply (四点成首末边等长双直角S形则对边等长 A B P R X).
       assumption.
       assumption.
-      apply perp_per_1.
+      apply L形垂直转直角1.
       assumption.
-      eapply perp_per_1.
+      eapply L形垂直转直角1.
         auto.
-      apply perp_left_comm;auto.
+      apply 垂直的左交换性;auto.
       assumption.
       assumption.
     assumption.
 Qed.
-
-Lemma perp_exists : forall O A B, A <> B -> exists X, Perp O X A B.
+(* 重复？ *)
+Lemma 垂点的存在性 : forall O A B, A <> B -> exists X, Perp O X A B.
 Proof.
     intros.
     induction(共线的决定性 A B O).
       destruct (每组共线三点都有另一共线点 A B O H0) as [C].
       spliter.
-      destruct (l8_21 O C O H3) as [P [T]].
+      destruct (十字上的中间性 O C O H3) as [P [T]].
       spliter.
       exists P.
-      apply perp_comm.
-      apply perp_sym.
-      apply (perp_col2 O C); ColR.
-    destruct (l8_18_existence A B O H0) as [X []].
+      apply 垂直的交换性.
+      apply 垂直的对称性.
+      apply (与垂线共线之线也为垂线2 O C); ColR.
+    destruct (l8_18_过一点垂线之垂点的存在性 A B O H0) as [X []].
     exists X.
-    apply perp_sym.
+    apply 垂直的对称性.
     apply H2.
 Qed.
 
-Lemma perp_vector : forall A B, A <> B -> (exists X, exists Y, Perp A B X Y).
+Lemma 垂线的存在性 : forall A B, A <> B -> (exists X, exists Y, Perp A B X Y).
 Proof.
     intros.
     exists A.
-    destruct (perp_exists A A B) as [Y]; auto.
+    destruct (垂点的存在性 A A B) as [Y]; auto.
     exists Y; Perp.
 Qed.
 
-Lemma midpoint_existence_aux : forall A B P Q T,
+Lemma 中点的存在性_辅助 : forall A B P Q T,
   A<>B -> Perp A B Q B -> Perp A B P A ->
   Col A B T -> Bet Q T P -> Le A P B Q ->
   exists X : Tpoint, 中点 X A B.
@@ -2368,8 +2397,8 @@ Proof.
      ColR.
      induction(共线的决定性 A B P).
       assert (B=A \/ P=A).
-        eapply l8_9.
-          apply perp_per_1.
+        eapply l8_9_直角三点共线则必有两点重合.
+          apply L形垂直转直角1.
           assumption.
         apply 等价共线BAC.
         assumption.
@@ -2378,7 +2407,7 @@ Proof.
         subst B.
         eapply A是AA中点.
       treat_equalities.
-      apply perp_distinct in H1.
+      apply 垂直推出不重合 in H1.
       spliter.
       absurde.
     assert (B <> R).
@@ -2390,10 +2419,10 @@ Proof.
     assert (~Col A B Q).
       intro.
       assert (A=B \/ Q=B).
-        eapply l8_9.
-          apply perp_per_2.
+        eapply l8_9_直角三点共线则必有两点重合.
+          apply L形垂直转直角2.
             auto.
-          apply perp_comm.
+          apply 垂直的交换性.
           assumption.
         assumption.
       induction H12.
@@ -2411,24 +2440,24 @@ Proof.
       intuition.
     induction (两点重合的决定性 A P).
       subst P.
-      apply perp_distinct in H1.
+      apply 垂直推出不重合 in H1.
       spliter.
       absurde.
     assert (Perp A B R B).
-      eapply perp_col.
+      eapply 垂线共线点也构成垂直1.
         assumption.
-        apply perp_sym.
-        apply perp_left_comm.
-        eapply perp_col.
+        apply 垂直的对称性.
+        apply 垂直的左交换性.
+        eapply 垂线共线点也构成垂直1.
           assumption.
-          apply perp_left_comm.
-          apply perp_sym.
+          apply 垂直的左交换性.
+          apply 垂直的对称性.
           apply H0.
         Col.
       Col.
     apply 中间性的对称性 in H7.
     assert (Cong A R P B).
-      apply (perp_cong A B P R X); assumption.
+      apply (四点成首末边等长双垂直S形则对边等长 A B P R X); assumption.
     assert (中点 X A B /\ 中点 X P R).
       apply (四点对边等长则对角线交点平分对角线 A P B R X); Col; Cong.
     spliter. exists X.
@@ -2439,9 +2468,9 @@ Qed.
  The proof is involved because we are not using continuity axioms.
 *)
 
-(** This corresponds to l8_22 in Tarski's book. *)
+(** This corresponds to 四点成首末边等长双直角S形则对边等长且对角线交点平分对角线 in Tarski's book. *)
 
-Lemma midpoint_existence : forall A B, exists X, 中点 X A B.
+Lemma 中点的存在性 : forall A B, exists X, 中点 X A B.
 Proof.
     intros.
     induction (两点重合的决定性 A B).
@@ -2457,14 +2486,14 @@ Proof.
         ex_and H2 T.
         assert (Le A P B Q \/ Le B Q A P) by (apply 长度小于等于的决定性).
         induction H4.
-          apply midpoint_existence_aux with P Q T; Perp.
+          apply 中点的存在性_辅助 with P Q T; Perp.
         assert (exists X : Tpoint, 中点 X B A)
-          by (apply (midpoint_existence_aux B A Q P T); finish).
+          by (apply (中点的存在性_辅助 B A Q P T); finish).
         ex_elim H5 X.
         exists X.
         中点.
-       apply l8_21;assumption.
-    assert (exists P : Tpoint, (exists T : Tpoint, Perp B A P B /\ Col B A T /\ Bet A T P)) by (apply (l8_21 B A);auto).
+       apply 十字上的中间性;assumption.
+    assert (exists P : Tpoint, (exists T : Tpoint, Perp B A P B /\ Col B A T /\ Bet A T P)) by (apply (十字上的中间性 B A);auto).
     ex_elim H0 P.
     ex_elim H1 T.
     spliter.
@@ -2473,7 +2502,7 @@ Proof.
 Qed.
 
 
-Lemma perp_in_id : forall A B C X, 垂直于 X A B C A -> X = A.
+Lemma L形垂直的垂点为端点 : forall A B C X, 垂直于 X A B C A -> X = A.
 Proof.
     intros.
     assert (Perp A B C A).
@@ -2481,27 +2510,27 @@ Proof.
       exists X.
       assumption.
     assert (A <> B /\ C <> A).
-      apply perp_distinct.
+      apply 垂直推出不重合.
       assumption.
     spliter.
     assert (HH:=H0).
-    apply perp_perp_in in HH.
-    assert (l8_16_1:=l8_16_1 A B C B A).
+    apply L形垂直转垂直于 in HH.
+    assert (l8_16_1_共线四点和一垂直推另一直角:=l8_16_1_共线四点和一垂直推另一直角 A B C B A).
     assert (~Col A B C /\ Per C A B).
-      apply l8_16_1;Col.
+      apply l8_16_1_共线四点和一垂直推另一直角;Col.
     spliter.
     unfold 垂直于 in H.
     spliter.
-    apply l8_18_uniqueness with A B C; Col.
-      apply perp_sym.
-      eapply perp_col with A; Col; Perp.
+    apply l8_18_过一点垂线之垂点的唯一性 with A B C; Col.
+      apply 垂直的对称性.
+      eapply 垂线共线点也构成垂直1 with A; Col; Perp.
         intro.
         subst X.
         Col.
 Qed.
 
-
-Lemma l8_22 : forall A B P R X ,
+(* 半无用 *)
+Lemma 四点成首末边等长双直角S形则对边等长且对角线交点平分对角线 : forall A B P R X ,
  A <> B -> A <> P ->
  Per B A P -> Per A B R ->
  Cong A P B R -> Col A B X -> Bet P X R ->
@@ -2509,31 +2538,31 @@ Lemma l8_22 : forall A B P R X ,
 Proof.
     intros.
     assert (Cong A R P B).
-      apply (per_cong A B P R X); assumption.
+      apply (四点成首末边等长双直角S形则对边等长 A B P R X); assumption.
     split.
       assumption.
     assert (~ Col B A P).
-      apply per_not_col.
+      apply 成直角三点不共线.
         auto.
         assumption.
       assumption.
     apply 四点对边等长则对角线交点平分对角线; Col; Cong.
     intro; treat_equalities; Col.
 Qed.
-
-Lemma l8_22_bis : forall A B P R X,
+(* 无用 *)
+Lemma 四点成首末边等长双垂直S形则对边等长且对角线交点平分对角线 : forall A B P R X,
  A <> B -> A <> P ->
  Perp A B P A -> Perp A B R B ->
  Cong A P B R -> Col A B X -> Bet P X R ->
  Cong A R P B /\ 中点 X A B /\ 中点 X P R.
 Proof.
     intros.
-    apply l8_22; auto.
-       apply perp_per_1;auto.
-       apply perp_per_1;Perp.
+    apply 四点成首末边等长双直角S形则对边等长且对角线交点平分对角线; auto.
+       apply L形垂直转直角1;auto.
+       apply L形垂直转直角1;Perp.
 Qed.
-
-Lemma perp_in_perp : forall A B C D X, 垂直于 X A B C D -> Perp A B C D.
+(* 重复 *)
+Lemma 垂直于转垂直 : forall A B C D X, 垂直于 X A B C D -> Perp A B C D.
 Proof.
     intros.
     unfold Perp.
@@ -2543,12 +2572,12 @@ Qed.
 
 End T8_4.
 
-Hint Resolve perp_per_1 perp_per_2 perp_col perp_perp_in perp_in_perp : perp.
+Hint Resolve L形垂直转直角1 L形垂直转直角2 垂线共线点也构成垂直1 L形垂直转垂直于 垂直于转垂直 : perp.
 
 Section T8_5.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
-
+(* 无用，不翻译 *)
 Lemma perp_proj : forall A B C D, Perp A B C D -> ~Col A C D -> exists X, Col A B X /\ Perp A X C D.
 Proof.
     intros.
@@ -2560,22 +2589,39 @@ Proof.
       spliter.
       apply 等价共线BCA.
       assumption.
-    eapply perp_col.
+    eapply 垂线共线点也构成垂直1.
       intro.
       subst X.
       unfold 垂直于 in H1.
       spliter.
       apply H0.
       assumption.
-      apply perp_in_perp in H1.
+      apply 垂直于转垂直 in H1.
       apply H1.
     unfold 垂直于 in H1.
     spliter.
     apply 等价共线BCA.
     assumption.
 Qed.
-
-Lemma l8_24 : forall A B P Q R T,
+(*
+P 
+|\
+| \
+|  \
+|   \
+A----T-X------B
+      \       |
+       \      |
+        \     |
+         \    |
+          \   |
+           \  |
+            \ |
+             \|
+              Q
+*)
+(* 半无用 *)
+Lemma 四点成双垂直S形则存在一点平分两对角线 : forall A B P Q R T,
  Perp P A A B ->
  Perp Q B A B ->
  Col A B T ->
@@ -2612,18 +2658,18 @@ Proof.
       apply 等价共线CAB.
       assumption.
     assert (A <> B).
-      apply perp_distinct in H.
+      apply 垂直推出不重合 in H.
       spliter.
       assumption.
     assert (A <> P).
-      apply perp_distinct in H.
+      apply 垂直推出不重合 in H.
       spliter.
       auto.
     induction(共线的决定性 A B P).
       assert (B=A \/ P=A).
-        eapply l8_9.
-          apply perp_per_1.
-          apply perp_sym.
+        eapply l8_9_直角三点共线则必有两点重合.
+          apply L形垂直转直角1.
+          apply 垂直的对称性.
           assumption.
         apply 等价共线BAC.
         assumption.
@@ -2640,17 +2686,17 @@ Proof.
       subst P.
       absurde.
     assert (Q <> B).
-      apply perp_distinct in H0.
+      apply 垂直推出不重合 in H0.
       spliter.
       assumption.
     assert (~Col A B Q).
       intro.
       assert (A=B \/ Q=B).
-        eapply l8_9.
-          apply perp_per_2.
+        eapply l8_9_直角三点共线则必有两点重合.
+          apply L形垂直转直角2.
             auto.
-          apply perp_comm.
-          apply perp_sym.
+          apply 垂直的交换性.
+          apply 垂直的对称性.
           assumption.
         assumption.
       induction H14.
@@ -2678,17 +2724,17 @@ Proof.
       contradiction.
     induction (两点重合的决定性 A P).
       subst P.
-      apply perp_distinct in H.
+      apply 垂直推出不重合 in H.
       spliter.
       absurde.
     assert (Perp A B R B).
-      eapply perp_col.
+      eapply 垂线共线点也构成垂直1.
         assumption.
-        apply perp_sym.
-        apply perp_left_comm.
-        eapply perp_col.
+        apply 垂直的对称性.
+        apply 垂直的左交换性.
+        eapply 垂线共线点也构成垂直1.
           assumption.
-          apply perp_left_comm.
+          apply 垂直的左交换性.
           apply H0.
         unfold Col.
         right; left.
@@ -2696,10 +2742,10 @@ Proof.
         assumption.
       apply ABB型共线.
     assert (Cong A R P B).
-      apply (perp_cong A B P R X).
+      apply (四点成首末边等长双垂直S形则对边等长 A B P R X).
         assumption.
         assumption.
-        apply perp_sym.
+        apply 垂直的对称性.
         assumption.
         assumption.
         assumption.
@@ -2727,17 +2773,17 @@ Proof.
     exists X.
     assumption.
 Qed.
-
-Lemma col_per2__per : forall A B C P X, A <> B -> Col A B C -> Per A X P -> Per B X P -> Per C X P.
+(* 半无用 *)
+Lemma 三共线点中两点分别与另两点成直角则余下点也行 : forall A B C P X, A <> B -> Col A B C -> Per A X P -> Per B X P -> Per C X P.
 Proof.
     intros.
     destruct (构造对称点 P X) as [Q].
     exists Q; split.
       assumption.
-    apply (l4_17 A B); try apply per_double_cong with X; assumption.
+    apply (l4_17 A B); try apply 直角端点和其关于顶点的对称点与另一端点等距 with X; assumption.
 Qed.
 
-Lemma perp_in_per_1 :
+Lemma 垂直于转直角1 :
  forall A B C D X,
   垂直于 X A B C D ->
   Per A X C.
@@ -2749,7 +2795,7 @@ apply H5;
 Col.
 Qed.
 
-Lemma perp_in_per_2 :
+Lemma 垂直于转直角2 :
  forall A B C D X,
   垂直于 X A B C D ->
   Per A X D.
@@ -2761,7 +2807,7 @@ apply H5;
 Col.
 Qed.
 
-Lemma perp_in_per_3 :
+Lemma 垂直于转直角3 :
  forall A B C D X,
   垂直于 X A B C D ->
   Per B X C.
@@ -2773,7 +2819,7 @@ apply H5;
 Col.
 Qed.
 
-Lemma perp_in_per_4 :
+Lemma 垂直于转直角4 :
  forall A B C D X,
   垂直于 X A B C D ->
   Per B X D.
@@ -2787,10 +2833,10 @@ Qed.
 
 End T8_5.
 
-Hint Resolve perp_in_per_1 perp_in_per_2 perp_in_per_3 perp_in_per_4 : perp.
+Hint Resolve 垂直于转直角1 垂直于转直角2 垂直于转直角3 垂直于转直角4 : perp.
 
 Ltac midpoint M A B :=
- let T:= fresh in assert (T:= midpoint_existence A B);
+ let T:= fresh in assert (T:= 中点的存在性 A B);
  ex_and T M.
 
 Tactic Notation "Name" ident(M) "the" "midpoint" "of" ident(A) "and" ident(B) :=

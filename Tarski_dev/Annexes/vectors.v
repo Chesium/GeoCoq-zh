@@ -105,7 +105,7 @@ induction (两点重合的决定性 A B).
 exists C.
 right.
 tauto.
-assert(HH:= midpoint_existence B C).
+assert(HH:= 中点的存在性 B C).
 ex_and HH M.
 prolong A M D A M.
 exists D.

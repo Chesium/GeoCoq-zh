@@ -60,11 +60,11 @@ Proof.
   destruct (共线的决定性 A B C); trivial.
   exfalso.
   apply HQR.
-  destruct (midpoint_existence P Q) as [X].
+  destruct (中点的存在性 P Q) as [X].
   apply 中点组的唯一性1 with P X; trivial.
-  destruct (midpoint_existence P R) as [Y].
+  destruct (中点的存在性 P R) as [Y].
   replace X with Y; trivial.
-  apply (l8_7 P); apply l8_2.
+  apply (ABC和ACB均直角则B与C重合 P); apply 直角的对称性.
   - apply l11_60 with A B C; [|exists R; split..|]; trivial.
     apply mp with P Q; Cong.
   - apply l11_60 with A B C; [|exists Q; split..|]; trivial.
@@ -78,7 +78,7 @@ Lemma median_planes_aux :
 Proof.
   intros Haux A B C D P Q; intros.
   destruct (共线的决定性 A B C) as [HCop|]; [apply col__coplanar, HCop|].
-  destruct (midpoint_existence P Q) as [M].
+  destruct (中点的存在性 P Q) as [M].
   destruct (ex_ncol_cop2 A B C M) as [A1 [A2 [HCop1 [HCop2 HNCol1]]]].
   assert (Cong A1 P A1 Q) by (apply (l11_60_aux A B C); assumption).
   assert (Cong A2 P A2 Q) by (apply (l11_60_aux A B C); assumption).
@@ -94,25 +94,25 @@ Proof.
     exfalso.
     destruct (由一点往一方向构造等长线段 P X P X) as [P' []].
     assert_diffs.
-    destruct (ex_per_cong P X X Q P' X) as [Q']; Col; spliter.
+    destruct (ex_四点成首末边等长双直角S形则对边等长 P X X Q P' X) as [Q']; Col; spliter.
     assert (HAXQ' : Per Q' X A) by (apply (l11_60 P Q X); Perp; Cop).
     assert (HBXQ' : Per Q' X B) by (apply (l11_60 P Q X); Perp; Cop).
     assert (HNCol' : ~ Col P X Q') by (apply one_side_not_col123 with Q; assumption).
     clear dependent Q.
     rename Q' into Q.
     destruct (由一点往一方向构造等长线段 A X P' X) as [A' []].
-    assert (HAXP' : Per P X A') by (assert_diffs; apply per_col with A; Perp; Col).
-    assert (HAXQ : Per Q X A') by (assert_diffs; apply per_col with A; Perp; Col).
+    assert (HAXP' : Per P X A') by (assert_diffs; apply 直角边共线点也构成直角2 with A; Perp; Col).
+    assert (HAXQ : Per Q X A') by (assert_diffs; apply 直角边共线点也构成直角2 with A; Perp; Col).
     assert (HNCol : ~ Col A' B X) by (intro; apply HNCol1; ColR).
     clear dependent A.
     rename A' into A.
-    destruct (ex_per_cong A X X B P' X) as [B']; Col; [assert_diffs; auto|].
+    destruct (ex_四点成首末边等长双直角S形则对边等长 A X X B P' X) as [B']; Col; [assert_diffs; auto|].
     spliter.
     assert (HBXP' : Per B' X P) by (apply (l11_60 A B X); Perp; Cop).
     assert (HBXQ : Per B' X Q) by (apply (l11_60 A B X); Perp; Cop).
     clear dependent B.
     rename B' into B.
-    assert (HCong : Cong Q P Q P') by (apply per_double_cong with X; [|split]; Cong).
+    assert (HCong : Cong Q P Q P') by (apply 直角端点和其关于顶点的对称点与另一端点等距 with X; [|split]; Cong).
     apply (up X P' P Q A B); repeat split; [Cong..| | | | |];
       (apply 等长的传递性 with P Q; [|Cong]);
       apply l10_12 with X X; Perp;
@@ -122,10 +122,10 @@ Proof.
     assert (HPer21 : Per U2 S U1) by (exists U1'; split; Cong).
     assert_diffs.
     absurd (Col U2 U1 S).
-      apply 共线否定排列ACB, per_not_col; auto.
+      apply 共线否定排列ACB, 成直角三点不共线; auto.
     apply p4col with U3 U4;
-      [apply 共线否定排列CAB, per_not_col; auto|..];
-      apply (l8_10 U2 S U1); trivial; repeat split; CongR.
+      [apply 共线否定排列CAB, 成直角三点不共线; auto|..];
+      apply (l8_10_直角与全等推出直角 U2 S U1); trivial; repeat split; CongR.
 Qed.
 
 Lemma 防升维公理_implies_orthonormal_family_axiom : 三维防升维公理_axiom -> orthonormal_family_axiom.
@@ -134,8 +134,8 @@ Proof.
   intros up A B X P Q HNCol HAXP HAXQ HBXP HBXQ.
   destruct (由一点往一方向构造等长线段 Q X X P) as [Q' []].
   assert (HNCol' : ~ Col P Q' X) by (intro; apply HNCol; ColR).
-  assert (HAXQ' : Per A X Q') by (assert_diffs; apply per_col with Q; Col).
-  assert (HBXQ' : Per B X Q') by (assert_diffs; apply per_col with Q; Col).
+  assert (HAXQ' : Per A X Q') by (assert_diffs; apply 直角边共线点也构成直角2 with Q; Col).
+  assert (HBXQ' : Per B X Q') by (assert_diffs; apply 直角边共线点也构成直角2 with Q; Col).
   clear dependent Q.
   destruct (构造对称点 P X) as [R].
   assert_diffs.
@@ -146,8 +146,8 @@ Proof.
     apply l10_12 with X X; Cong.
     apply l10_12 with X X; Cong.
     Cong.
-    apply per_double_cong with X; assumption.
-    apply per_double_cong with X; assumption.
+    apply 直角端点和其关于顶点的对称点与另一端点等距 with X; assumption.
+    apply 直角端点和其关于顶点的对称点与另一端点等距 with X; assumption.
     Cong.
 Qed.
 
@@ -161,7 +161,7 @@ Proof.
   apply orth_at_chara in HQ.
   spliter; clean.
   destruct (ex_ncol_cop2 A B C X) as [D [E [HD [HE HNCol]]]].
-  apply up with D E; [Col|apply l8_2..]; auto.
+  apply up with D E; [Col|apply 直角的对称性..]; auto.
 Qed.
 
 Lemma orthonormal_family_axiom_implies_not_two_sides_one_side :
@@ -173,7 +173,7 @@ Proof.
   assert (HOrth1 := HOrth).
   apply orth_at_chara in HOrth1.
   destruct HOrth1 as [HNCol [HPX [HP HOrth1]]].
-  destruct (l8_21_3 A B C P Y HP HY) as [X' [T [HOrth' [HT HBet]]]].
+  destruct (十字上的中间性_3 A B C P Y HP HY) as [X' [T [HOrth' [HT HBet]]]].
   apply (col_cop_orth__orth_at _ _ _ _ _ P) in HOrth'; Col.
   assert (~ 共面 A B C X') by (apply orth_at__ncop with P, HOrth').
   assert (HTS : 在平面异侧 A B C Y X').

@@ -98,9 +98,9 @@ Proof.
     exists B.
     unfold 萨凯里四边形 in *; spliter; assert_diffs.
     repeat split; Cong.
-    - apply (per_col _ _ A1); Col.
-    - apply perp_per_2, (perp_col1 _ _ _ P); Col.
-      apply perp_comm; apply (perp_col _ A1); Col.
+    - apply (直角边共线点也构成直角2 _ _ A1); Col.
+    - apply L形垂直转直角2, (垂线共线点也构成垂直2 _ _ _ P); Col.
+      apply 垂直的交换性; apply (垂线共线点也构成垂直1 _ A1); Col.
     - apply invert_one_side.
       apply (out_out_one_side _ _ _ P); [|apply l6_6; auto].
       apply invert_one_side.
@@ -146,9 +146,9 @@ Proof.
     assert(HSac2 : 萨凯里四边形 A0 B0 B A).
     { unfold 萨凯里四边形 in *; spliter; assert_diffs; assert(A0 <> A) by (intro; treat_equalities; auto).
       repeat split; Cong.
-      - apply (per_col _ _ A1); Col.
-      - apply perp_per_2, (perp_col1 _ _ _ P); Col.
-        apply perp_comm, (perp_col _ A1); Col.
+      - apply (直角边共线点也构成直角2 _ _ A1); Col.
+      - apply L形垂直转直角2, (垂线共线点也构成垂直2 _ _ _ P); Col.
+        apply 垂直的交换性, (垂线共线点也构成垂直1 _ A1); Col.
       - apply invert_one_side.
         apply (out_out_one_side _ _ _ P); [|apply l6_6; auto].
         apply invert_one_side.
@@ -259,9 +259,9 @@ Proof.
   - intro; treat_equalities; apply H6.
     apply (l6_21_两线交点的唯一性 A M N M); Col.
     apply 等价共线CBA, cop_per2__col with A; Col; Cop.
-  - apply per_col with A; Col.
-    apply l8_2, per_col with M; Col; Perp.
-  - apply l8_2, per_col with A; Col.
+  - apply 直角边共线点也构成直角2 with A; Col.
+    apply 直角的对称性, 直角边共线点也构成直角2 with M; Col; Perp.
+  - apply 直角的对称性, 直角边共线点也构成直角2 with A; Col.
   - apply l11_17 with M N A; auto.
     apply (l11_10 M N A M L B); auto; try (apply out_trivial; auto).
     apply l6_6, bet_out; Between.
@@ -303,11 +303,11 @@ Proof.
   intros HNob A B0 B00 C0 B C E HNCol HPerp0 Heq HGE.
   revert C.
   induction HGE; rename B into B0; rename D into B00; rename E into C0; subst B00.
-    intros C HPerp HCol; assert (C = C0) by (apply (l8_18_uniqueness A C0 B0); Col); subst C; Le.
+    intros C HPerp HCol; assert (C = C0) by (apply (l8_18_过一点垂线之垂点的唯一性 A C0 B0); Col); subst C; Le.
   rename C into B; rename C' into B'; rename F into E; rename F' into E'.
   intros C' HPerp' HCol'.
   apply gradexp2__gradexp123, gradexp__grad, grad__bet in HGE.
-  destruct (l8_18_existence A C0 B) as [C [HCol HPerp]].
+  destruct (l8_18_过一点垂线之垂点的存在性 A C0 B) as [C [HCol HPerp]].
     intro; assert_diffs; apply HNCol; ColR.
   assert (HLe : Le B0 E B C) by (apply IHHGE; trivial).
   clear IHHGE.
@@ -316,18 +316,18 @@ Proof.
     apply bet2_le2__le1346 with E B; Between; apply (l5_6_等长保持小于等于关系 B0 E B C); auto with cong.
   assert (HAC : A <> C).
   { intro; subst C; assert_diffs; assert (A = C0); auto.
-    apply (l8_18_uniqueness A C0 B0); Col.
-    apply perp_right_comm, perp_col1 with B; Perp; Col.
+    apply (l8_18_过一点垂线之垂点的唯一性 A C0 B0); Col.
+    apply 垂直的右交换性, 垂线共线点也构成垂直2 with B; Perp; Col.
   }
   assert (HAC' : A <> C').
   { intro; subst C'; assert_diffs; assert (A = C0); auto.
-    apply (l8_18_uniqueness A C0 B0); Col.
-    apply perp_right_comm, perp_col1 with B'; Perp; ColR.
+    apply (l8_18_过一点垂线之垂点的唯一性 A C0 B0); Col.
+    apply 垂直的右交换性, 垂线共线点也构成垂直2 with B'; Perp; ColR.
   }
-  assert (HPer : Per A C B) by (apply perp_per_1, perp_left_comm, perp_col with C0; assumption).
+  assert (HPer : Per A C B) by (apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with C0; assumption).
   destruct (t22_23 HNob A B' C' B C D) as [_ []]; Perp.
-  - assert_diffs; apply per_not_col in HPer; Col.
-  - apply perp_per_1, perp_col1 with C0; Perp.
+  - assert_diffs; apply 成直角三点不共线 in HPer; Col.
+  - apply L形垂直转直角1, 垂线共线点也构成垂直2 with C0; Perp.
   - split; auto.
   - ColR.
 Qed.
@@ -344,7 +344,7 @@ Proof.
   destruct IHHGE as [B [C [HGE2 [HPerp HCol]]]]; trivial.
   destruct (由一点往一方向构造等长线段 A B A B) as [B' [HBet HCong]].
   exists B'.
-  destruct (l8_18_existence A C0 B') as [C' [HCol' HPerp']].
+  destruct (l8_18_过一点垂线之垂点的存在性 A C0 B') as [C' [HCol' HPerp']].
     apply gradexp2__gradexp123, gradexp__grad, grad__bet in HGE2; intro; assert_diffs; apply HNCol; ColR. 
   exists C'; repeat (split; trivial); apply 双重对数刻度_步进 with B E; Cong.
 Qed.
@@ -352,10 +352,10 @@ Qed.
 Lemma t22_24 : archimedes_axiom -> aristotle_s_axiom.
 Proof.
   intros Harchi P Q D A B0 HNCol HACute0.
-  destruct (l8_18_existence A D B0) as [C0 [HColD HPerpD]]; Col.
+  destruct (l8_18_过一点垂线之垂点的存在性 A D B0) as [C0 [HColD HPerpD]]; Col.
   assert (HAC0 : A <> C0) by (intro; subst C0; apply (acute_not_per D A B0); Perp).
   assert (HNCol0 : ~ Col A B0 C0) by (intro; apply HNCol; ColR).
-  assert (HPerp0 := perp_col A D B0 C0 C0 HAC0 HPerpD HColD).
+  assert (HPerp0 := 垂线共线点也构成垂直1 A D B0 C0 C0 HAC0 HPerpD HColD).
   elim (两点重合的决定性 P Q); intro HPQ.
   { subst Q; exists C0; exists B0; split; assert_diffs.
       apply l6_6, acute_col_perp__out with B0; trivial; apply acute_sym; trivial.
@@ -376,11 +376,11 @@ Proof.
     assert_diffs; apply out2__conga; auto; apply out_trivial; auto.
   assert (HAC : A <> C) .
     intro; subst C; assert_diffs; apply (acute_not_per D A B); trivial.
-    apply perp_per_1, perp_col with C0; Col.
+    apply L形垂直转直角1, 垂线共线点也构成垂直1 with C0; Col.
   exists C, B; split.
-    assert_diffs; apply l6_6, acute_col_perp__out with B; [apply acute_sym; trivial|ColR|apply perp_col with C0; Col].
+    assert_diffs; apply l6_6, acute_col_perp__out with B; [apply acute_sym; trivial|ColR|apply 垂线共线点也构成垂直1 with C0; Col].
   split; trivial; split.
-    apply perp_per_1, perp_left_comm, perp_col with C0; trivial.
+    apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with C0; trivial.
   apply 长度小于_小于等于_传递性 with P Q'.
   split.
     apply bet__le1213; trivial.

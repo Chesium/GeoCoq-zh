@@ -5123,7 +5123,7 @@ destruct (colH_dec A B C) as [HCol|HNCol].
 assert (HAB : A <> B).
   intro; subst; apply HNCol; Col.
 assert (HM : exists M, 中点 M A B).
-  apply midpoint_existence.
+  apply 中点的存在性.
 destruct HM as [M HM].
 destruct (严格中点组推论1 M A B HAB HM).
 destruct HM.

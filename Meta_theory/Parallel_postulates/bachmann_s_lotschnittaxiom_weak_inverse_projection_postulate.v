@@ -17,7 +17,7 @@ intros lotschnitt A B C D E F P Q H为锐角 HPer HSuma HOut HPQ HPerP HCop.
 suma.assert_diffs.
 assert (HNCol : ~ Col A B C).
 { intro HCol.
-  apply (per_not_col D E F); auto.
+  apply (成直角三点不共线 D E F); auto.
   apply (col2_suma__col A B C A B C); assumption.
 }
 assert (HNCol1 : ~ Col B C P) by (intro; apply HNCol; ColR).
@@ -45,12 +45,12 @@ assert (HPer1 : Per A B P').
   exists P'; repeat (split; try (apply conga_refl; auto)); [|Cop].
   apply l9_9, l9_5 with P B; Col.
 }
-assert (HNCol3 : ~ Col A B P') by (apply per_not_col; auto).
+assert (HNCol3 : ~ Col A B P') by (apply 成直角三点不共线; auto).
 assert (HNCol4 : ~ Col B P' P) by (intro; apply HNCol3; ColR).
-assert (HPerp1 : Perp A B B P') by (apply per_perp; auto).
-assert (HPerp2 : Perp A B P Q) by (apply perp_left_comm, perp_col with P; Col; apply per_perp; auto).
+assert (HPerp1 : Perp A B B P') by (apply 直角转L形垂直; auto).
+assert (HPerp2 : Perp A B P Q) by (apply 垂直的左交换性, 垂线共线点也构成垂直1 with P; Col; apply 直角转L形垂直; auto).
 assert (HPerp3 : Perp B P' P' Q').
-  apply per_perp; auto; apply image_spec_preserves_per with B P Q B C; trivial; apply col__refl; Col.
+  apply 直角转L形垂直; auto; apply image_spec_preserves_per with B P Q B C; trivial; apply col__refl; Col.
 assert (HNCol5 : ~ Col P' P Q).
   apply (par_not_col B P'); Col.
   apply par_not_col_strict with P; Col.

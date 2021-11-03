@@ -40,9 +40,9 @@ assert (X <> B) by (intro;subst;assert (Col B A C) by (col_with_conga);elim HNCO
 assert (~ Col A B X) by (intro;elim HNCOL;col_with_conga).
 assert (~ Col A C X) by (intro;assert (Col C A B) by (col_with_conga);elim HNCOL;Col).
 assert (~ Col B C X) by (intro;assert (Col C B A) by (col_with_conga);elim HNCOL;Col).
-destruct (l8_18_existence A B X) as [HC [HCC1 HCC2]];auto.
-destruct (l8_18_existence A C X) as [HB [HBC1 HBC2]];auto.
-destruct (l8_18_existence B C X) as [HA [HAC1 HAC2]];auto.
+destruct (l8_18_过一点垂线之垂点的存在性 A B X) as [HC [HCC1 HCC2]];auto.
+destruct (l8_18_过一点垂线之垂点的存在性 A C X) as [HB [HBC1 HBC2]];auto.
+destruct (l8_18_过一点垂线之垂点的存在性 B C X) as [HA [HAC1 HAC2]];auto.
 exists X.
 unfold is_incenter.
 split.

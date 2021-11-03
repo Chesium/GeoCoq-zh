@@ -92,7 +92,7 @@ Proof.
   spliter.
   assert_diffs.
   destruct (l6_11_existence O O A B) as [A' []]; auto.
-  destruct (midpoint_existence A A') as [M].
+  destruct (中点的存在性 A A') as [M].
   exists A', M.
   split.
     assumption.

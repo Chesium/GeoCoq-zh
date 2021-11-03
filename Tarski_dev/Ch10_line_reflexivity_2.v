@@ -11,12 +11,12 @@ Lemma cop__cong_on_bissect : forall A B M P X,
 Proof.
 intros.
 assert(X = M \/ ~ Col A B X /\ 垂直于 M X M A B).
-assert_diffs; apply(cong_perp_or_mid A B M X); Cong.
+assert_diffs; apply(与两点等距点要么为其中点要么在其中垂线上 A B M X); Cong.
 induction H3.
 treat_equalities; Col.
 spliter.
-apply perp_in_perp in H1.
-apply perp_in_perp in H4.
+apply 垂直于转垂直 in H1.
+apply 垂直于转垂直 in H4.
 assert_cols.
 apply(cop_perp2__col _ _ _ A B); Perp; Cop.
 Qed.
@@ -26,7 +26,7 @@ Lemma cong_cop_mid_perp__col : forall A B M P X,
 Proof.
 intros.
 apply (cop__cong_on_bissect A B); Cong.
-apply l8_15_1; Col.
+apply l8_15_1_垂线顶点在该线上则其为垂点; Col.
 Qed.
 
 Lemma cop_image_in2__col : forall A B P P' Q Q' M,
@@ -66,12 +66,12 @@ Proof.
 
           apply cop_per2__col with B.
             Cop.
-            apply perp_distinct in H4.
+            apply 垂直推出不重合 in H4.
             spliter.
             auto.
-            apply l8_2.
+            apply 直角的对称性.
             apply H8.
-          apply l8_2.
+          apply 直角的对称性.
           assumption.
         assert (Per A M P).
           unfold Per.
@@ -97,10 +97,10 @@ Proof.
         apply cop_per2__col with A.
           assert_diffs; apply coplanar_perm_12, col_cop__cop with B; Cop.
           auto.
-          apply l8_2.
+          apply 直角的对称性.
           apply H9.
           auto.
-        apply l8_2.
+        apply 直角的对称性.
         assumption.
       subst P'.
       apply M是AA中点则M与A重合 in H0.
@@ -130,7 +130,7 @@ Proof.
     ex_and H X.
     ex_and H0 Y.
     assert (exists M, 中点 M X Y).
-      apply midpoint_existence.
+      apply 中点的存在性.
     ex_elim H6 Z.
     assert (Col A B Z).
       induction (两点重合的决定性 X Y).
@@ -162,7 +162,7 @@ Proof.
               apply H9.
             assumption.
           subst P'.
-          apply perp_distinct in H3.
+          apply 垂直推出不重合 in H3.
           spliter.
           absurde.
         assert (中点 Y R R') by (eauto using 对称保持中点).
@@ -412,14 +412,14 @@ Proof.
     induction (两点重合的决定性 A B).
       treat_equalities;auto.
     assert (exists X, 中点 X B B').
-      apply midpoint_existence.
+      apply 中点的存在性.
     ex_and H5 X.
     double A' X A1.
     double C' X C1.
     assert(三角形全等 A' B' C' A1 B C1)
     by (repeat split;eauto using l7_13_同中点组两侧等长, M是AB中点则M是BA中点).
     assert (Per A1 B C1)
-      by (eauto using l8_10).
+      by (eauto using l8_10_直角与全等推出直角).
     unfold 三角形全等 in H8.
     spliter.
     assert(Cong A B A1 B) by (apply 等长的传递性 with A' B'; trivial).
@@ -428,7 +428,7 @@ Proof.
     clear dependent A'; clear dependent B'; clear dependent C'; clear X.
 
     assert(exists Y, 中点 Y C C1)
-      by (apply midpoint_existence).
+      by (apply 中点的存在性).
     ex_and H0 Y.
     assert(对称 C1 C B Y) by (apply cong_midpoint__image; assumption).
     assert(exists A2, 对称 A1 A2 B Y).
@@ -452,12 +452,12 @@ Proof.
     clear dependent A1; clear dependent C1; clear dependent Y.
 
     assert (exists Z, 中点 Z A A2).
-      apply midpoint_existence.
+      apply 中点的存在性.
     ex_and H0 Z.
     assert (对称 A2 A B Z) by (apply cong_midpoint__image; Cong).
     destruct (构造对称点 C B) as [C0].
-    assert (Cong A C A C0) by (apply per_double_cong with B; assumption).
-    assert (Cong A2 C A2 C0) by (apply per_double_cong with B; assumption).
+    assert (Cong A C A C0) by (apply 直角端点和其关于顶点的对称点与另一端点等距 with B; assumption).
+    assert (Cong A2 C A2 C0) by (apply 直角端点和其关于顶点的对称点与另一端点等距 with B; assumption).
     assert (对称 C0 C B Z).
       apply is_image_rev, cong_midpoint__image; trivial.
       induction (两点重合的决定性 A A2).
@@ -480,7 +480,7 @@ Proof.
       apply H.
       apply AAB型共线.
     assert(exists X, Col A B X /\ Perp A B C X).
-      apply l8_18_existence.
+      apply l8_18_过一点垂线之垂点的存在性.
       assumption.
     ex_and H3 X.
     assert (exists X', 三角形全等 A B X A' B' X').
@@ -497,12 +497,12 @@ Proof.
     ex_and H5 Q.
     assert (exists C', Out X' C' Q /\ Cong  X' C' X C).
       eapply l6_11_existence.
-        apply perp_distinct in H5.
+        apply 垂直推出不重合 in H5.
         spliter.
         assumption.
       intro.
       subst C.
-      apply perp_distinct in H4.
+      apply 垂直推出不重合 in H4.
       spliter.
       absurde.
     ex_and H8 C'.
@@ -518,34 +518,34 @@ Proof.
         apply 等长的对称性.
         assumption.
       apply l10_12 with X X'.
-        apply perp_in_per.
-        eapply l8_14_2_1b_bis.
-          eapply perp_col.
+        apply L形垂直于转直角.
+        eapply l8_14_2_1b_bis_交点是垂点.
+          eapply 垂线共线点也构成垂直1.
             assumption.
-            apply perp_right_comm.
+            apply 垂直的右交换性.
             apply H4.
           assumption.
           apply ABA型共线.
         apply AAB型共线.
-        apply perp_in_per.
-        eapply l8_14_2_1b_bis.
-          eapply perp_col.
+        apply L形垂直于转直角.
+        eapply l8_14_2_1b_bis_交点是垂点.
+          eapply 垂线共线点也构成垂直1.
             intro assumption.
             subst X'.
             apply 等长的同一性 in H10.
             contradiction.
-            apply perp_sym.
-            eapply perp_col.
+            apply 垂直的对称性.
+            eapply 垂线共线点也构成垂直1.
               intro.
               subst X'.
               apply 等长的对称性 in H9.
               apply 等长的同一性 in H9.
               subst X.
-              apply perp_distinct in H4.
+              apply 垂直推出不重合 in H4.
               spliter.
               absurde.
-              apply perp_sym.
-              apply perp_right_comm.
+              apply 垂直的对称性.
+              apply 垂直的右交换性.
               apply H5.
             apply 等价共线ACB.
             eapply out_col.
@@ -568,35 +568,35 @@ Proof.
         apply 等长的对称性.
         assumption.
       apply l10_12 with X X'.
-        apply perp_in_per.
-        eapply l8_14_2_1b_bis.
-          eapply perp_col.
+        apply L形垂直于转直角.
+        eapply l8_14_2_1b_bis_交点是垂点.
+          eapply 垂线共线点也构成垂直1.
             assumption.
-            apply perp_comm.
+            apply 垂直的交换性.
             apply H4.
           apply 等价共线BAC.
           assumption.
           apply ABA型共线.
         apply AAB型共线.
-        apply perp_in_per.
-        eapply l8_14_2_1b_bis.
-          eapply perp_col.
+        apply L形垂直于转直角.
+        eapply l8_14_2_1b_bis_交点是垂点.
+          eapply 垂线共线点也构成垂直1.
             intro assumption.
             subst X'.
             apply 等长的同一性 in H11.
             contradiction.
-            apply perp_sym.
-            eapply perp_col.
+            apply 垂直的对称性.
+            eapply 垂线共线点也构成垂直1.
               intro.
               subst X'.
               apply 等长的对称性 in H9.
               apply 等长的同一性 in H9.
               subst X.
-              apply perp_distinct in H4.
+              apply 垂直推出不重合 in H4.
               spliter.
               absurde.
-              apply perp_sym.
-              apply perp_comm.
+              apply 垂直的对称性.
+              apply 垂直的交换性.
               apply H5.
             apply 等价共线ACB.
             eapply out_col.
@@ -664,8 +664,8 @@ Proof.
         induction(两点重合的决定性 A M).
           subst M.
           assert (Perp P A A B).
-            eapply perp_col.
-              apply perp_distinct in H4.
+            eapply 垂线共线点也构成垂直1.
+              apply 垂直推出不重合 in H4.
               spliter.
               intro.
               subst P.
@@ -673,17 +673,17 @@ Proof.
               apply A是AB中点则A与B重合 in H3.
               subst P'.
               absurde.
-              apply perp_sym.
-              apply perp_right_comm.
+              apply 垂直的对称性.
+              apply 垂直的右交换性.
               apply H4.
             unfold Col.
             right; left.
             apply midpoint_bet.
             assumption.
-          apply perp_comm in H6.
-          apply perp_perp_in in H6.
-          apply perp_in_comm in H6.
-          apply perp_in_per in H6.
+          apply 垂直的交换性 in H6.
+          apply L形垂直转垂直于 in H6.
+          apply 垂直于的交换性 in H6.
+          apply L形垂直于转直角 in H6.
           assert (Per X A P).
             unfold Per.
             exists P'.
@@ -691,7 +691,7 @@ Proof.
               apply M是AB中点则M是BA中点.
               assumption.
             Cong.
-          apply l8_2 in H6.
+          apply 直角的对称性 in H6.
           apply 等价共线CAB.
           apply (cop_per2__col P).
             Cop.
@@ -704,16 +704,16 @@ Proof.
             assumption.
           assumption.
         assert (Perp P M M A).
-          eapply perp_col.
+          eapply 垂线共线点也构成垂直1.
             intro.
             subst P.
             apply M是AB中点则M是BA中点 in H3.
             apply A是AB中点则A与B重合 in H3.
             subst P'.
             absurde.
-            apply perp_sym.
-            apply perp_comm.
-            eapply perp_col.
+            apply 垂直的对称性.
+            apply 垂直的交换性.
+            eapply 垂线共线点也构成垂直1.
               assumption.
               apply H4.
             assumption.
@@ -721,10 +721,10 @@ Proof.
           right; left.
           apply midpoint_bet.
           assumption.
-        apply perp_comm in H7.
-        apply perp_perp_in in H7.
-        apply perp_in_comm in H7.
-        apply perp_in_per in H7.
+        apply 垂直的交换性 in H7.
+        apply L形垂直转垂直于 in H7.
+        apply 垂直于的交换性 in H7.
+        apply L形垂直于转直角 in H7.
         assert (Per X M P).
           unfold Per.
           exists P'.
@@ -733,7 +733,7 @@ Proof.
             assumption.
           apply 等长的交换性.
           assumption.
-        apply l8_2 in H7.
+        apply 直角的对称性 in H7.
         assert (Col A X M).
           assert (P <> M).
             intro.
@@ -768,9 +768,9 @@ Proof.
       apply (cop_per2__col A).
         Cop.
         assumption.
-        apply l8_2.
+        apply 直角的对称性.
         assumption.
-      apply l8_2.
+      apply 直角的对称性.
       assumption.
     assumption.
 Qed.
@@ -785,7 +785,7 @@ Proof.
     right.
     apply is_image_is_image_spec; auto.
     apply l10_4, cong_midpoint__image; trivial.
-    apply per_double_cong with B; assumption.
+    apply 直角端点和其关于顶点的对称点与另一端点等距 with B; assumption.
 Qed.
 
 Lemma cong_cop_per2_gen : forall A B X Y,
@@ -812,7 +812,7 @@ Proof.
   - destruct (l10_15 A B C P HCol HNCol) as [Q []].
     exists Q.
     split; [|apply os__coplanar]; assumption.
-  - destruct (l8_18_existence A B C HNCol) as [Q []].
+  - destruct (l8_18_过一点垂线之垂点的存在性 A B C HNCol) as [Q []].
     exists Q.
     split.
       Perp.

@@ -17,16 +17,16 @@ assert (HF : exists A1 A2 B1 B2,
                Cong A3 B3 A1 B1).
   {
   destruct H as [A1' [A2' [B1 [B2 [HNC [HNE [HCop HF]]]]]]].
-  destruct (l8_18_existence _ _ _ HNC) as [A1 [HC1 HPerp1]].
+  destruct (l8_18_过一点垂线之垂点的存在性 _ _ _ HNC) as [A1 [HC1 HPerp1]].
   assert_diffs.
   assert (HPar : 严格平行 A1' A2' B1 B2).
     {
     split; trivial.
     intros [I [HI1 HI2]].
     assert (HNE' : B1 <> I) by (intro; subst; apply HNC; Col).
-    destruct (midpoint_existence B1 I) as [B3 HB3].
+    destruct (中点的存在性 B1 I) as [B3 HB3].
     assert (HNE'' : B1 <> B3) by (apply 严格中点组推论1 in HB3; spliter; auto).
-    destruct (l8_18_existence A1' A2' B3) as [A3 [HC4 HPerp3]].
+    destruct (l8_18_过一点垂线之垂点的存在性 A1' A2' B3) as [A3 [HC4 HPerp3]].
       intro; apply HNC; ColR.
     assert (HCong : Cong A1 B1 A3 B3)
       by (apply HF; Perp; ColR).
@@ -36,8 +36,8 @@ assert (HF : exists A1 A2 B1 B2,
         {
         intro; assert (A1 = A3); treat_equalities.
           {
-          apply l8_18_uniqueness with A1' A2' B1; Col.
-          apply perp_col0 with A3 B3; Col; Perp.
+          apply l8_18_过一点垂线之垂点的唯一性 with A1' A2' B1; Col.
+          apply 与垂线共线之线也为垂线1 with A3 B3; Col; Perp.
           }
         assert (HFalse : B3 <> B1) by auto.
         apply HFalse, between_cong with A1; [Between|Cong].
@@ -49,17 +49,17 @@ assert (HF : exists A1 A2 B1 B2,
       assert (HNE''''' : A1 <> I).
         {
         intro; treat_equalities; apply HNE'''.
-        apply l8_18_uniqueness with A1' A2' B3; Col; Perp.
+        apply l8_18_过一点垂线之垂点的唯一性 with A1' A2' B3; Col; Perp.
           intro; apply HNC; ColR.
-        apply perp_col2_bis with B1 A1; Col.
+        apply 与垂线共线之线也为垂线3 with B1 A1; Col.
         }
       destruct (l11_50_2 B1 A1 I B3 A3 I); Cong.
 
         {
         intro H.
         apply HNE'''.
-        apply perp_sym in HPerp1.
-        destruct (perp_not_col2 _ _ _ _ HPerp1);
+        apply 垂直的对称性 in HPerp1.
+        destruct (垂直推出不共线 _ _ _ _ HPerp1);
         [apply l6_21_两线交点的唯一性 with A1 B1 A1' A2'|apply l6_21_两线交点的唯一性 with A1 B1 A2' A1']; ColR.
         }
 
@@ -83,13 +83,13 @@ assert (HF : exists A1 A2 B1 B2,
 
         {
         assert_diffs; apply l11_16; auto;
-        apply perp_per_1, perp_col0 with A1' A2'; Perp; Col.
+        apply L形垂直转直角1, 与垂线共线之线也为垂线1 with A1' A2'; Perp; Col.
         }
       }
     assert (HFalse : B3 <> B1) by auto.
     apply HFalse, between_cong with I; Between; Cong.
     }
-  destruct (l8_18_existence A1' A2' B2) as [A2 [HC2 HPerp2]].
+  destruct (l8_18_过一点垂线之垂点的存在性 A1' A2' B2) as [A2 [HC2 HPerp2]].
     apply par_strict_not_col_4 with B1, HPar.
   assert (HNE' : A1 <> A2).
     {
@@ -97,27 +97,27 @@ assert (HF : exists A1 A2 B1 B2,
     apply HPar; exists A1; split; Col.
     apply cop_perp2__col with A1' A2'; Perp.
     }
-  apply perp_right_comm in HPerp1.
-  apply perp_right_comm in HPerp2.
+  apply 垂直的右交换性 in HPerp1.
+  apply 垂直的右交换性 in HPerp2.
   exists A1, A2, B1, B2.
-  repeat split; [apply l8_2, perp_per_2, perp_col0 with A1' A2'; auto..|apply HF; Col| |].
+  repeat split; [apply 直角的对称性, L形垂直转直角2, 与垂线共线之线也为垂线1 with A1' A2'; auto..|apply HF; Col| |].
     apply (col2_os__os A1' A2'); Side.
   intros A3 B3 HC4 HC5 HPerp3.
   apply HF; Col; [ColR|].
-  apply perp_col2 with A1 A2; auto; ColR.
+  apply 与垂线共线之线也为垂线2 with A1 A2; auto; ColR.
   }
 destruct HF as [A [D [B [C [HPer1 [HPer2 [HCong [HOS posid]]]]]]]].
 assert (HSac : 萨凯里四边形 A B C D) by (repeat split; Perp; Cong).
 apply (per_sac__rah A B C D); auto.
-destruct (midpoint_existence B C) as [M HM].
-destruct (midpoint_existence A D) as [N HN].
+destruct (中点的存在性 B C) as [M HM].
+destruct (中点的存在性 A D) as [N HN].
 assert(HPerp := mid2_sac__perp_lower A B C D M N HSac HM HN).
 assert_diffs.
 assert(Hdiff := sac_distincts A B C D HSac).
 spliter.
 assert_diffs.
 apply (t22_7__per _ _ _ D M N); Between.
-  apply perp_per_1, (perp_col1 _ _ _ D); Col; Perp.
+  apply L形垂直转直角1, (垂线共线点也构成垂直2 _ _ _ D); Col; Perp.
 apply 等长的左交换性, posid; Col; Perp.
 Qed.
 

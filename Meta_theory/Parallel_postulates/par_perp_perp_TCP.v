@@ -33,9 +33,9 @@ elim HInter; clear HInter; intro HInter.
         destruct HAB as [I [HPerp HMid]].
         apply perp_bisect_equiv_def.
         exists I; split; try assumption.
-        apply perp_in_sym.
-        apply perp_in_col_perp_in with C2; Col.
-        apply perp_in_sym.
+        apply 垂直于的对称性.
+        apply 垂线共线点也构成垂直_垂直于 with C2; Col.
+        apply 垂直于的对称性.
         assumption.
 
       split.
@@ -50,9 +50,9 @@ elim HInter; clear HInter; intro HInter.
           destruct HAC as [I [HPerp HMid]].
           apply perp_bisect_equiv_def.
           exists I; split; try assumption.
-          apply perp_in_sym.
-          apply perp_in_col_perp_in with B2; Col.
-          apply perp_in_sym.
+          apply 垂直于的对称性.
+          apply 垂线共线点也构成垂直_垂直于 with B2; Col.
+          apply 垂直于的对称性.
           assumption.
 
         destruct HCop1 as [HCop1 HCop3].
@@ -78,7 +78,7 @@ elim HInter; clear HInter; intro HInter.
   apply par_id.
   spliter.
   apply l12_9 with C1 C2; Perp; Cop; try CopR.
-  apply perp_sym, HPerp; CopR.
+  apply 垂直的对称性, HPerp; CopR.
 Qed.
 
 End par_perp_perp_TCP.

@@ -135,7 +135,7 @@ Lemma l12_19 :
    Cong A B C D /\ Cong B C D A /\ TS B D A C /\ TS A C B D.
 Proof.
     intros.
-    assert(exists P, 中点 P A C) by (eapply midpoint_existence).
+    assert(exists P, 中点 P A C) by (eapply 中点的存在性).
     ex_and H2 P.
     double B P D'.
     assert(Cong C D' A B).
@@ -203,7 +203,7 @@ Proof.
       unfold TS in H1.
       spliter.
       contradiction.
-    assert(exists P, 中点 P A C) by (apply midpoint_existence).
+    assert(exists P, 中点 P A C) by (apply 中点的存在性).
     ex_and H5 P.
     double B P D'.
     assert(Par B C D' A).
@@ -359,8 +359,8 @@ Lemma l12_23 :
       Bet B' A C' /\ 等角 A B C B A C' /\ 等角 A C B C A B'.
 Proof.
     intros.
-    assert(exists B0, 中点 B0 A B) by (apply midpoint_existence).
-    assert(exists C0, 中点 C0 A C) by (apply midpoint_existence).
+    assert(exists B0, 中点 B0 A B) by (apply 中点的存在性).
+    assert(exists C0, 中点 C0 A C) by (apply 中点的存在性).
     ex_and H0 B0.
     ex_and H1 C0.
     prolong B C0 B' B C0.

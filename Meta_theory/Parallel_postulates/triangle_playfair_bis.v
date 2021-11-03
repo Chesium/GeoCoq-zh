@@ -42,9 +42,9 @@ Proof.
         apply bet__ts; Between; apply one_side_not_col124 with C, HOS3.
       apply (one_side_transitivity _ _ _ A); [|Side].
       apply (one_side_transitivity _ _ _ C); Side.
-    - apply l11_16; auto; apply l8_2.
-        apply per_col with B; Perp; Col.
-        apply per_col with A; Perp; Col.
+    - apply l11_16; auto; apply 直角的对称性.
+        apply 直角边共线点也构成直角2 with B; Perp; Col.
+        apply 直角边共线点也构成直角2 with A; Perp; Col.
   }
   destruct (ex_suma B' P R C P B) as [I [J [K Hsuma2]]]; auto.
   assert(~ Col R P B').
@@ -93,8 +93,8 @@ Proof.
   assert(HQ := HPerpAP); auto.
   destruct HQ as [Q [_ [_ [HQP[HQA _]]]]].
   assert(P<>Q) by (intro; subst Q; Col).
-  apply (perp_col0 _ _ _ _ P Q) in HPerpAP; Col.
-  apply (perp_col0 _ _ _ _ P Q) in HPerpBP; Col.
+  apply (与垂线共线之线也为垂线1 _ _ _ _ P Q) in HPerpAP; Col.
+  apply (与垂线共线之线也为垂线1 _ _ _ _ P Q) in HPerpBP; Col.
   clear dependent P1.
   clear dependent P2.
 
@@ -136,8 +136,8 @@ Proof.
   destruct HA3 as [A3 []].
   assert_diffs.
   apply (legendre_aux greenberg triangle A3 B3 C1 P Q); trivial.
-    apply (perp_col2 A1 A2); Col.
-    apply (perp_col2 B1 B2); Col.
+    apply (与垂线共线之线也为垂线2 A1 A2); Col.
+    apply (与垂线共线之线也为垂线2 B1 B2); Col.
     apply (par_strict_col4__par_strict A1 A2 B1 B2); Col.
     apply (par_strict_col4__par_strict A1 A2 C1 C2); Col.
     apply (col2_os__os B1 B2); Col.

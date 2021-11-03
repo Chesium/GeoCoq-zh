@@ -25,8 +25,8 @@ Proof.
     assert (共面 IAB IAC IBD A2) by Cop.
     assert (共面 IAB IAC IBD B1) by Cop.
     assert (共面 IAB IAC IBD B2) by Cop.
-    assert (Per IAC IAB IBD) by (apply perp_per_1, (perp_col4 A1 A2 B1 B2); auto).
-    assert (HNC1 : ~ Col IAC IAB IBD) by (apply per_not_col; auto).
+    assert (Per IAC IAB IBD) by (apply L形垂直转直角1, (与垂直两线分别共线的两线垂直 A1 A2 B1 B2); auto).
+    assert (HNC1 : ~ Col IAC IAB IBD) by (apply 成直角三点不共线; auto).
     assert (HParA : 严格平行 A1 A2 D1 D2).
       {
       clear dependent C1; clear dependent C2;
@@ -47,8 +47,8 @@ Proof.
     destruct (每组共线三点都有另一共线点 D1 D2 IBD) as [R1 [HD1R1 [HD2R1 [HRR1 HDR1]]]]; Col.
     assert_diffs.
     destruct (bla IAC IAB IBD P1 R1) as [I [HI1 HI2]]; auto.
-      apply perp_per_1, (perp_col4 A1 A2 C1 C2); Col.
-      apply perp_per_1, (perp_col4 B1 B2 D1 D2); Col.
+      apply L形垂直转直角1, (与垂直两线分别共线的两线垂直 A1 A2 C1 C2); Col.
+      apply L形垂直转直角1, (与垂直两线分别共线的两线垂直 B1 B2 D1 D2); Col.
       apply col_cop2__cop with C1 C2; Cop.
       apply col_cop2__cop with D1 D2; Cop.
     exists I.

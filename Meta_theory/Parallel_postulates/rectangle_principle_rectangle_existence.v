@@ -9,8 +9,8 @@ Lemma rectangle_principle__rectangle_existence : postulate_of_right_lambert_quad
 Proof.
   intros rectangle.
   destruct ex_saccheri as [A [B [C [D HSac]]]].
-  destruct (midpoint_existence B C) as [M HM].
-  destruct (midpoint_existence A D) as [N HN].
+  destruct (中点的存在性 B C) as [M HM].
+  destruct (中点的存在性 A D) as [N HN].
   assert(HLam := mid2_sac__lam6521 A B C D M N HSac HM HN).
   exists N; exists M; exists B; exists A.
   split.

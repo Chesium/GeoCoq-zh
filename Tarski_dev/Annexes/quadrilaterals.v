@@ -469,7 +469,7 @@ assert(B = B' \/ 中点 A B B').
 eapply 共线点间距相同要么重合要么中点; auto.
 induction H5.
 subst B'.
-assert( HH:= midpoint_existence A B).
+assert( HH:= 中点的存在性 A B).
 ex_and HH M.
 exists M.
 right.
@@ -491,7 +491,7 @@ Col.
 Cong.
 induction H6.
 subst A'.
-assert( HH:= midpoint_existence A B).
+assert( HH:= 中点的存在性 A B).
 ex_and HH M.
 exists M.
 right.
@@ -513,7 +513,7 @@ Col.
 Cong.
 induction H7.
 subst A'.
-assert( HH:= midpoint_existence A B).
+assert( HH:= 中点的存在性 A B).
 ex_and HH M.
 exists M.
 left.
@@ -535,7 +535,7 @@ Col.
 Cong.
 induction H8.
 subst B'.
-assert( HH:= midpoint_existence A B).
+assert( HH:= 中点的存在性 A B).
 ex_and HH M.
 exists M.
 left.
@@ -557,7 +557,7 @@ ColR.
 induction H10.
 induction H4.
 
-assert( HH:= midpoint_existence A' B).
+assert( HH:= 中点的存在性 A' B).
 ex_and HH M.
 exists M.
 right.
@@ -598,7 +598,7 @@ assumption.
 
 induction H4.
 
-assert( HH:= midpoint_existence B B').
+assert( HH:= 中点的存在性 B B').
 ex_and HH M.
 exists M.
 left.
@@ -650,7 +650,7 @@ Between.
 Between.
 Cong.
 
-assert( HH:= midpoint_existence A' B).
+assert( HH:= 中点的存在性 A' B).
 ex_and HH M.
 exists M.
 right.
@@ -727,7 +727,7 @@ Between.
 Between.
 Cong.
 
-assert( HH:= midpoint_existence B B').
+assert( HH:= 中点的存在性 B B').
 ex_and HH M.
 exists M.
 
@@ -783,7 +783,7 @@ Between.
 Cong.
 assumption.
 
-assert( HH:= midpoint_existence A B').
+assert( HH:= 中点的存在性 A B').
 ex_and HH M.
 exists M.
 assert(HH:=H11).
@@ -847,7 +847,7 @@ tauto.
 
 induction H9.
 
-assert( HH:= midpoint_existence A A').
+assert( HH:= 中点的存在性 A A').
 ex_and HH M.
 exists M.
 assert(HH:=H11).
@@ -903,7 +903,7 @@ Between.
 Between.
 induction H11.
 
-assert( HH:= midpoint_existence A B').
+assert( HH:= 中点的存在性 A B').
 ex_and HH M.
 exists M.
 assert(HH:=H12).
@@ -950,7 +950,7 @@ split.
 Between.
 Cong.
 
-assert( HH:= midpoint_existence A A').
+assert( HH:= 中点的存在性 A A').
 ex_and HH M.
 exists M.
 assert(HH:=H12).
@@ -1145,7 +1145,7 @@ subst B.
 apply 等长的对称性 in H1.
 apply 等长的同一性 in H1.
 subst D.
-assert(HH:=midpoint_existence A C).
+assert(HH:=中点的存在性 A C).
 ex_and HH M.
 exists M.
 split; assumption.
@@ -2148,7 +2148,7 @@ subst B.
 apply 等长的对称性 in H2.
 apply 等长的同一性 in H2.
 subst D.
-assert(HH:=midpoint_existence A C).
+assert(HH:=中点的存在性 A C).
 ex_and HH M.
 exists M.
 left.
@@ -2205,7 +2205,7 @@ subst B.
 apply 等长的对称性 in H2.
 apply 等长的同一性 in H2.
 subst D.
-assert(HH:=midpoint_existence A C).
+assert(HH:=中点的存在性 A C).
 ex_and HH M.
 exists M.
 left.
@@ -2286,7 +2286,7 @@ Qed.
 Lemma plg_existence : forall A B C, A <> B -> exists D, 平行四边形 A B C D.
 Proof.
 intros.
-assert(HH:=midpoint_existence A C).
+assert(HH:=中点的存在性 A C).
 ex_and HH M.
 prolong B M D B M.
 
@@ -2701,7 +2701,7 @@ split;Cong.
 unfold Plg.
 split.
 intuition.
-elim (midpoint_existence A B).
+elim (中点的存在性 A B).
 intros.
 exists x.
 tauto.

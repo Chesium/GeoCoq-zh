@@ -18,20 +18,20 @@ destruct (构造对称点 IAB IBD) as [F HF].
 assert_diffs.
 assert (HPerp4 : Perp E IAB IAB F).
   {
-  apply perp_col0 with B1 B2; [apply perp_col0 with A1 A2|..]; ColR.
+  apply 与垂线共线之线也为垂线1 with B1 B2; [apply 与垂线共线之线也为垂线1 with A1 A2|..]; ColR.
   }
 assert (~ Col IAC IAB IBD).
-  apply per_not_col; auto; apply per_col with F; Col; apply l8_2, per_col with E; Perp; Col.
+  apply 成直角三点不共线; auto; apply 直角边共线点也构成直角2 with F; Col; apply 直角的对称性, 直角边共线点也构成直角2 with E; Perp; Col.
 assert (共面 E F IAB D1) by CopR.
 assert (共面 E F IAB D2) by CopR.
 assert (共面 E F IAB C1) by CopR.
 assert (共面 E F IAB C2) by CopR.
 destruct (HP E F IAB D1 D2 C1 C2) as [I [HC7 HC8]]; auto;
-[apply 共线否定排列BCA, perp_not_col| |split..|exists I; split; Col]; Perp; split.
+[apply 共线否定排列BCA, L形垂直推出不共线| |split..|exists I; split; Col]; Perp; split.
   exists IBD; split; auto.
-  left; apply perp_col0 with B1 B2; ColR.
+  left; apply 与垂线共线之线也为垂线1 with B1 B2; ColR.
   exists IAC; split; auto.
-  left; apply perp_col0 with A1 A2; ColR.
+  left; apply 与垂线共线之线也为垂线1 with A1 A2; ColR.
 Qed.
 
 End weak_triangle_circumscription_principle_bachmann_s_lotschnittaxiom.

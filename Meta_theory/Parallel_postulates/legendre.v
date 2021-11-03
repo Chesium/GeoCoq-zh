@@ -190,7 +190,7 @@ Proof.
   intros A B C B' C' HNCol HOutB HOutC.
   assert_diffs.
   assert (HNCol' : ~ Col A B' C') by (intro; assert_diffs; apply HNCol; ColR).
-  destruct (midpoint_existence B' C') as [M HM].
+  destruct (中点的存在性 B' C') as [M HM].
   destruct (构造对称点 A M) as [D' HD].
   assert (HNCol1 : ~ Col A M B') by (intro; assert_diffs; apply HNCol'; ColR).
   assert (HNCol2 : ~ Col D' B' C') by (intro; assert_diffs; apply HNCol'; ColR).

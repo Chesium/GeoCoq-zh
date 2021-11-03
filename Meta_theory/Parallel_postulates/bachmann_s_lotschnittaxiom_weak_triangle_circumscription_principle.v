@@ -22,14 +22,14 @@ destruct (HP B C A C A1 A2 B1 B2 C A3 B3) as [I [? ?]];
   destruct HC' as [[[C' [HMid HCol]] _] _].
   intro; treat_equalities; assert_diffs.
   assert (C = C'); [|treat_equalities; auto].
-  elim (perp_not_col2 _ _ _ _ (perp_bisect_perp _ _ _ _ HPerpB1)); intro HNC';
+  elim (垂直推出不共线 _ _ _ _ (perp_bisect_perp _ _ _ _ HPerpB1)); intro HNC';
   [apply l6_21_两线交点的唯一性 with A1 A2 B C|apply l6_21_两线交点的唯一性 with A1 A2 C B]; Col.
 
 - assert (HC' := HPerpB2).
   destruct HC' as [[[C' [HMid HCol]] _] _].
   intro; treat_equalities; assert_diffs.
   assert (C = C'); [|treat_equalities; auto].
-  elim (perp_not_col2 _ _ _ _ (perp_bisect_perp _ _ _ _ HPerpB2)); intro HNC';
+  elim (垂直推出不共线 _ _ _ _ (perp_bisect_perp _ _ _ _ HPerpB2)); intro HNC';
   [apply l6_21_两线交点的唯一性 with B1 B2 A C|apply l6_21_两线交点的唯一性 with B1 B2 C A]; Col.
 Qed.
 

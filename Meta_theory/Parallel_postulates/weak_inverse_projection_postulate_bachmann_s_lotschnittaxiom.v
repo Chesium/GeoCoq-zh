@@ -40,8 +40,8 @@ split; [assumption|].
 assert (HNCol3 : ~ Col Q C1 C2) by (apply par_not_col with B1 B2; Par; Col).
 assert (Per P Q R).
   {
-  apply perp_per_2, perp_col2 with A1 A2; Col;
-  apply perp_sym, perp_col2 with B1 B2; Col; Perp.
+  apply L形垂直转直角2, 与垂线共线之线也为垂线2 with A1 A2; Col;
+  apply 垂直的对称性, 与垂线共线之线也为垂线2 with B1 B2; Col; Perp.
   }
 assert (HSuma : 和角 P Q M P Q M P Q R).
   assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; 等角; 和角.
@@ -64,7 +64,7 @@ destruct (hrap P Q M P Q R P C3) as [S [HS1 HS2]]; trivial;
   |apply coplanar_trans_1 with R; Col; Cop|].
 { assert (HP := HPerpAC); destruct HP as [P' [_ [_ [HP1 [HP2 HP3]]]]].
   assert (P = P'); [|treat_equalities; apply HP3; Col].
-  elim (perp_not_col2 _ _ _ _ HPerpAC); intro;
+  elim (垂直推出不共线 _ _ _ _ HPerpAC); intro;
   [apply l6_21_两线交点的唯一性 with A1 A2 C1 C2|apply l6_21_两线交点的唯一性 with A1 A2 C2 C1]; Col.
 }
 exists S; split; [assumption|ColR].
@@ -78,7 +78,7 @@ apply bachmann_s_lotschnittaxiom_aux.
 intros A1 A2 B1 B2 C1 C2 D1 D2 Q P R HQP HQR HPerpAB HPerpAC HPerpBD.
 intros HCol1 HCol2 HCol3 HCol4 HCol5 HCol6 HCop1 HCop2 HCop3 HCop4.
 assert (HNC : ~ Col P Q R).
-  apply per_not_col; auto; apply perp_per_1, (perp_col4 A1 A2 B1 B2); auto.
+  apply 成直角三点不共线; auto; apply L形垂直转直角1, (与垂直两线分别共线的两线垂直 A1 A2 B1 B2); auto.
 destruct (angle_bisector P Q R) as [M [HM1 HM2]]; auto.
 assert (HSuma : 和角 P Q M P Q M P Q R).
   assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; 等角; 和角.
@@ -88,7 +88,7 @@ assert (H为锐角 : 为锐角 P Q M).
     intro; apply HNC; Col.
   assert (角度小于等于 P Q M P Q R) by Lea.
   assert (Per P Q R)
-    by (apply perp_per_2, perp_col2 with A1 A2; Col; apply perp_sym, perp_col2 with B1 B2; Col; Perp).
+    by (apply L形垂直转直角2, 与垂线共线之线也为垂线2 with A1 A2; Col; apply 垂直的对称性, 与垂线共线之线也为垂线2 with B1 B2; Col; Perp).
   apply sams_lea2__sams with P Q R P Q R; 和角.
   }
 destruct (weak_inverse_projection_postulate__bachmann_s_lotschnittaxiom_aux

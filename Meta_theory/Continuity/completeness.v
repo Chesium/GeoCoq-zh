@@ -111,7 +111,7 @@ Proof.
   assert (Haux : forall X Y, X <> Y -> line_extension f X Y).
     intros; apply extension__line_extension; assumption.
   unfold extension, inj, pres_bet, pres_cong in fext'; spliter.
-  destruct (@midpoint_existence Tn TnEQD P Q) as [S HS].
+  destruct (@中点的存在性 Tn TnEQD P Q) as [S HS].
   assert_diffs.
   destruct (共线的决定性 (f R) (f S) A).
   { assert (HB : exists B, Col R S B /\ f B = A).

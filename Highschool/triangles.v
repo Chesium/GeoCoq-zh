@@ -60,7 +60,7 @@ intros.
 assert_diffs.
 assert (~ Col A B C).
  {
-   intro;apply perp_not_col2 in H2.
+   intro;apply 垂直推出不共线 in H2.
    destruct H2;apply H2;ColR.
  }
 assert_diffs. 
@@ -70,7 +70,7 @@ assert (A<>H).
  intro.
  treat_equalities.
  assert (Lt A B B C /\ Lt A C B C).
- apply (l11_46 B A C);Col; left;apply perp_per_2;auto.
+ apply (l11_46 B A C);Col; left;apply L形垂直转直角2;auto.
  spliter.
  unfold isosceles in *.
  apply (等长推出不小于 A B B C);auto.
@@ -80,15 +80,15 @@ assert (C<>H).
  intro.
  treat_equalities.
  assert (Lt C B B A /\ Lt C A B A).
- apply (l11_46 B C A);Col; left;apply perp_per_2;finish.
+ apply (l11_46 B C A);Col; left;apply L形垂直转直角2;finish.
  spliter.
  unfold isosceles in *.
  apply (等长推出不小于 C B B A);finish.
  } 
 assert (垂直于 H A C B H)
- by (apply l8_14_2_1b_bis;finish).
-assert (Per A H B) by (apply perp_in_per_1 with C H;finish).
-assert (Per C H B) by (apply perp_in_per_3 with A H;finish). 
+ by (apply l8_14_2_1b_bis_交点是垂点;finish).
+assert (Per A H B) by (apply 垂直于转直角1 with C H;finish).
+assert (Per C H B) by (apply 垂直于转直角3 with A H;finish). 
 (* We prove that A H B and C H B are congruent triangles *)
 assert (Cong H A H C /\ 等角 H A B H C B /\ 等角 H B A H B C)
  by (apply (cong2_per2__cong_conga2 A H B C H B);finish).

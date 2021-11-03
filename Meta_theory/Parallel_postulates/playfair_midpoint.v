@@ -10,7 +10,7 @@ Lemma playfair_s_postulate_implies_midpoint_converse_postulate :
   midpoint_converse_postulate.
 Proof.
 intros HP A; intros.
-destruct (midpoint_existence A C) as [X HAC].
+destruct (中点的存在性 A C) as [X HAC].
 assert (X = Q).
  assert (严格平行 A B X P).
   apply triangle_mid_par with C; assumption.

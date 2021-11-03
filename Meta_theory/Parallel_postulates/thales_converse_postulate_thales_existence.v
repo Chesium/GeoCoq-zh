@@ -13,7 +13,7 @@ Proof.
   destruct (l10_15 C A C B0) as [B []]; Col.
   assert(~ Col C A B) by (apply (one_side_not_col123 _ _ _ B0); Side).
   assert(Per A C B) by Perp.
-  destruct (midpoint_existence A B) as [M].
+  destruct (中点的存在性 A B) as [M].
   exists A, B, C, M.
   repeat (split; Col).
   apply (thales _ B); assumption.

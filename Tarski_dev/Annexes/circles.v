@@ -290,7 +290,7 @@ Proof.
   assert (HA' : exists A', U <> A' /\ Col U P A' /\ Per A A' U).
   { destruct (共线的决定性 U P A) as [HCol|HNCol].
       exists A; split; Col; Perp.
-    destruct (l8_18_existence U P A) as [A' [HCol HPerp]]; trivial.
+    destruct (l8_18_过一点垂线之垂点的存在性 U P A) as [A' [HCol HPerp]]; trivial.
     assert (U <> A').
     { intro; treat_equalities.
       assert_diffs.
@@ -301,13 +301,13 @@ Proof.
       apply (l5_6_等长保持小于等于关系 A P A B); Cong.
     }
     exists A'; repeat split; trivial.
-    apply l8_2, perp_per_1.
-    apply perp_left_comm, perp_col with P; trivial.
+    apply 直角的对称性, L形垂直转直角1.
+    apply 垂直的左交换性, 垂线共线点也构成垂直1 with P; trivial.
   }
   destruct HA' as [A' [HUA' [HCol HPer]]].
   destruct (构造对称点 U A') as [V HV].
   assert_diffs.
-  assert (HCong := per_double_cong A A' U V HPer HV).
+  assert (HCong := 直角端点和其关于顶点的对称点与另一端点等距 A A' U V HPer HV).
   assert (HVOn : 在圆上 V A B).
     unfold 在圆上 in *.
     apply 等长的传递性 with A U; Cong.
@@ -374,7 +374,7 @@ Qed.
 Lemma incs_exists1 : forall O P X, X <> O -> P <> O -> exists Q, Out O X Q /\ 在圆内 Q O P.
 Proof.
 intros O P X HOX HOP.
-destruct (midpoint_existence O P) as [M HM].
+destruct (中点的存在性 O P) as [M HM].
 destruct (由一点往一方向构造等长线段_3 O X O M) as [Q [HQ1 HQ2]]; auto.
   intro; treat_equalities; auto.
 exists Q; split; auto.
@@ -465,11 +465,11 @@ apply (mid_onc2__per O P A B X); auto.
 unfold 中点 in *.
 spliter.
 
-apply per_perp_in in H4; auto.
-apply perp_in_perp in H4.
-apply perp_sym.
+apply 直角转L形垂直于 in H4; auto.
+apply 垂直于转垂直 in H4.
+apply 垂直的对称性.
 
-apply (perp_col _ X); Perp.
+apply (垂线共线点也构成垂直1 _ X); Perp.
 Col.
 intro.
 subst X.
@@ -483,12 +483,12 @@ Lemma col_onc2_perp__mid : forall O P A B X,
  O<>X -> A<>B -> Col A B X -> 在圆上 A O P -> 在圆上 B O P -> Perp O X A B -> 中点 X A B.
 Proof.
   intros O P A B X HOX HAB HCol HAOn HBOn HPerp.
-  destruct (midpoint_existence A B) as [M HM].
+  destruct (中点的存在性 A B) as [M HM].
   cut (X = M).
     intro; subst; trivial.
-  assert (HNCol : ~ Col A B O) by (destruct (perp_not_col2 A B O X); Perp; Col).
-  apply (l8_18_uniqueness A B O); Col; Perp.
-  apply perp_sym, mid_onc2__perp with P; auto.
+  assert (HNCol : ~ Col A B O) by (destruct (垂直推出不共线 A B O X); Perp; Col).
+  apply (l8_18_过一点垂线之垂点的唯一性 A B O); Col; Perp.
+  apply 垂直的对称性, mid_onc2__perp with P; auto.
   intro; subst; apply HNCol; Col.
 Qed.
 
@@ -500,13 +500,13 @@ Lemma circle_circle_os : forall A B C D I P,
   exists Z, 在圆上 Z A B /\ 在圆上 Z C D /\ OS A C P Z.
 Proof.
   intros A B C D I P HI1 HI2 HNCol1 HNCol2.
-  destruct (l8_18_existence A C I) as [X []]; trivial.
+  destruct (l8_18_过一点垂线之垂点的存在性 A C I) as [X []]; trivial.
   destruct (l10_15 A C X P) as [Z0 []]; trivial.
   assert_diffs.
   destruct (l6_11_existence X X I Z0) as [Z []]; auto.
   exists Z.
   assert (Perp A C X Z).
-    assert_diffs; apply perp_sym, perp_col with Z0; Perp; Col.
+    assert_diffs; apply 垂直的对称性, 垂线共线点也构成垂直1 with Z0; Perp; Col.
   assert (OS A C P Z).
     apply one_side_transitivity with Z0; trivial.
     apply out_one_side_1 with X; [apply one_side_not_col124 with P| |apply l6_6]; trivial.
@@ -515,13 +515,13 @@ Proof.
   - apply 等长的传递性 with A I; trivial.
     destruct (两点重合的决定性 A X).
       subst; assumption.
-    apply l10_12 with X X; Cong; [apply perp_per_2|apply perp_per_1];
-      apply perp_left_comm, perp_col with C; auto.
+    apply l10_12 with X X; Cong; [apply L形垂直转直角2|apply L形垂直转直角1];
+      apply 垂直的左交换性, 垂线共线点也构成垂直1 with C; auto.
   - apply 等长的传递性 with C I; trivial.
     destruct (两点重合的决定性 C X).
       subst; assumption.
-    apply l10_12 with X X; Cong; [apply perp_per_2|apply perp_per_1];
-      apply perp_left_comm, perp_col with A; Perp; Col.
+    apply l10_12 with X X; Cong; [apply L形垂直转直角2|apply L形垂直转直角1];
+      apply 垂直的左交换性, 垂线共线点也构成垂直1 with A; Perp; Col.
 Qed.
 
 (** If two circles intersect, then they intersect on any plane containing the centers *)
@@ -616,11 +616,11 @@ Lemma onc2_per__mid : forall O P U V M, U <> V -> M <> U ->
  在圆上 U O P -> 在圆上 V O P -> Col M U V -> Per O M U -> 中点 M U V .
 Proof.
 intros.
-assert(HH:=midpoint_existence U V).
+assert(HH:=中点的存在性 U V).
 ex_and HH M'.
 assert(HH:=(mid_onc2__per O P U V M' H1 H2 H5)).
 assert(M = M' \/ ~ Col M' U V).
-apply(col_per2_cases O M U V M'); Col.
+apply(共线点和两直角的两种情况 O M U V M'); Col.
 assert_diffs;auto.
 induction H6.
 subst M'.
@@ -728,7 +728,7 @@ split; auto.
 intro.
 apply H.
 unfold 直径 in *.
-assert(HP:=midpoint_existence U V).
+assert(HP:=中点的存在性 U V).
 ex_and HP O'.
 unfold 中点 in *.
 spliter.
@@ -1185,7 +1185,7 @@ Proof.
   destruct (两点重合的决定性 O X).
     subst; Col.
   apply cop_perp2__col with A B; Cop.
-  apply perp_left_comm, mid_onc2__perp with P; auto.
+  apply 垂直的左交换性, mid_onc2__perp with P; auto.
 Qed.
 
 Lemma cong2_cop2_onc3__eq : forall O P X A B C, A <> B -> A <> C -> B <> C ->
@@ -1194,8 +1194,8 @@ Lemma cong2_cop2_onc3__eq : forall O P X A B C, A <> B -> A <> C -> B <> C ->
   X = O.
 Proof.
   intros O P X A B C HAB HAC HBC HAOn HBOn HCOn HCop HCong1 HCong2 HCop1.
-  destruct (midpoint_existence A B) as [M1 HM1].
-  destruct (midpoint_existence A C) as [M2 HM2].
+  destruct (中点的存在性 A B) as [M1 HM1].
+  destruct (中点的存在性 A C) as [M2 HM2].
   assert (HNCol : ~ Col C A B) by (apply (onc3__ncol O P); auto).
   destruct (l10_15 A B M1 C) as [P1 [HPerp1 HOS1]]; Col.
   destruct (l10_15 A C M2 B) as [P2 [HPerp2 HOS2]]; Col.
@@ -1223,7 +1223,7 @@ Proof.
   split.
     exists M2; auto.
   left.
-  apply perp_col2 with P2 M2; Perp; ColR.
+  apply 与垂线共线之线也为垂线2 with P2 M2; Perp; ColR.
 Qed.
 
 Lemma tree_points_onc_cop : forall O P, O <> P -> exists A B C,
@@ -1631,7 +1631,7 @@ unfold 在圆上 in *.
 induction(两点重合的决定性 X Y).
 left; auto.
 right.
-assert(HH:= midpoint_existence X Y).
+assert(HH:= 中点的存在性 X Y).
 ex_and HH M.
 assert(Per O M X).
 {
@@ -1662,25 +1662,25 @@ spliter.
 
 induction(两点重合的决定性 M O).
 subst M.
-apply per_perp_in in H6.
-apply perp_in_comm in H6.
-apply perp_in_perp in H6.
-apply perp_sym in H6.
-apply (perp_col X O O A Y) in H6; Col.
+apply 直角转L形垂直于 in H6.
+apply 垂直于的交换性 in H6.
+apply 垂直于转垂直 in H6.
+apply 垂直的对称性 in H6.
+apply (垂线共线点也构成垂直1 X O O A Y) in H6; Col.
 Perp.
 intro.
 treat_equalities; tauto.
 intro.
 treat_equalities; tauto.
 
-apply(perp_col O M Y X A);Col.
+apply(垂线共线点也构成垂直1 O M Y X A);Col.
 intro.
 treat_equalities; tauto.
-apply per_perp_in in H5.
-apply perp_in_comm in H5.
-apply perp_in_perp in H5.
-apply perp_sym in H5.
-apply(perp_col X M M O Y) in H5; auto.
+apply 直角转L形垂直于 in H5.
+apply 垂直于的交换性 in H5.
+apply 垂直于转垂直 in H5.
+apply 垂直的对称性 in H5.
+apply(垂线共线点也构成垂直1 X M M O Y) in H5; auto.
 Perp.
 Col.
 auto.
@@ -1866,7 +1866,7 @@ assert(Perp O N C D).
 }
 assert(Perp O M C D).
 {
-  apply (perp_col O N C D M); Col.
+  apply (垂线共线点也构成垂直1 O N C D M); Col.
   intro.
   treat_equalities.
   apply H7; Col.
@@ -1934,9 +1934,9 @@ unfold 在圆上 in *.
 treat_equalities. intuition.
 }
 
-assert(HH:= midpoint_existence A B).
+assert(HH:= 中点的存在性 A B).
 ex_and HH M.
-assert(HH:= midpoint_existence C D).
+assert(HH:= 中点的存在性 C D).
 ex_and HH N.
 
 assert(Col O X M)
@@ -1949,8 +1949,8 @@ induction(两点重合的决定性 O X).
 - assert(Col O M N) by eCol.
 
 
-assert(HH1:=cong_perp_or_mid A B M X H H8 H6).
-assert(HH2:=cong_perp_or_mid C D N X H0 H9 H7).
+assert(HH1:=与两点等距点要么为其中点要么在其中垂线上 A B M X H H8 H6).
+assert(HH2:=与两点等距点要么为其中点要么在其中垂线上 C D N X H0 H9 H7).
 
 induction HH1.
 subst X.
@@ -1983,7 +1983,7 @@ apply H1.
 apply (l12_9_2D _ _ _ _ O M); Perp.
 
 spliter.
-apply perp_in_perp in H15.
+apply 垂直于转垂直 in H15.
 induction(共线的决定性 O A B).
 assert(A = B \/ 中点 O A B).
 unfold 在圆上 in *.
@@ -1995,7 +1995,7 @@ assert(M = O).
 apply (中点的唯一性1 A B); auto.
 subst M; tauto.
 assert(HM1:=mid_onc2__perp O P A B M H12 H H2 H3 H8).
-apply(perp_col M N C D O ) in H15; Col.
+apply(垂线共线点也构成垂直1 M N C D O ) in H15; Col.
 apply False_ind.
 apply H1.
 apply (l12_9_2D _ _ _ _ O M); Perp.
@@ -2013,18 +2013,18 @@ contradiction.
 apply (中点的唯一性1 C D); auto.
 
 assert(HM1:=mid_onc2__perp O P C D N H12 H0 H4 H5 H9).
-apply perp_in_perp in H15.
+apply 垂直于转垂直 in H15.
 apply False_ind.
 apply H1.
-apply(perp_col N M A B O) in H15; Col.
+apply(垂线共线点也构成垂直1 N M A B O) in H15; Col.
 
 apply (l12_9_2D _ _ _ _ O N); Perp.
 spliter.
-apply perp_in_perp in H17.
-apply perp_in_perp in H16.
+apply 垂直于转垂直 in H17.
+apply 垂直于转垂直 in H16.
 
-apply(perp_col X M A B O) in H17; Col.
-apply(perp_col X N C D O) in H16; Col.
+apply(垂线共线点也构成垂直1 X M A B O) in H17; Col.
+apply(垂线共线点也构成垂直1 X N C D O) in H16; Col.
 apply False_ind.
 apply H1.
 apply (l12_9_2D _ _ _ _ O X); Perp.

@@ -199,12 +199,12 @@ Proof.
       apply HNPer.
       destruct (两点重合的决定性 A U).
         subst; Perp.
-      apply perp_per_2, perp_left_comm, perp_col with C; Perp; Col.
+      apply L形垂直转直角2, 垂直的左交换性, 垂线共线点也构成垂直1 with C; Perp; Col.
   }
   intros A B U V P HCol HUV HBet.
-  destruct (per_dec A U V); [|apply Haux with P; assumption].
+  destruct (直角的决定性 A U V); [|apply Haux with P; assumption].
   destruct (Haux A B V U P) as [Z []]; Col.
-    intro; apply HUV, l8_7 with A; assumption.
+    intro; apply HUV, ABC和ACB均直角则B与C重合 with A; assumption.
   exists Z; split; Col.
 Qed.
 

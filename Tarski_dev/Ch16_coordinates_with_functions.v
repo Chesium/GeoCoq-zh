@@ -169,8 +169,8 @@ apply 等长的同一性 in H2.
 subst B'.
 unfold Ar2 in H.
 spliter.
-apply perp_right_comm in H0.
-apply perp_not_col in H0.
+apply 垂直的右交换性 in H0.
+apply L形垂直推出不共线 in H0.
 apply False_ind.
 apply H0.
 assert(O0 <> E0).
@@ -205,7 +205,7 @@ ex_and H1 B'.
 right.
 intro.
 subst B.
-apply perp_distinct in H1.
+apply 垂直推出不重合 in H1.
 tauto.
 Qed.
 
@@ -224,7 +224,7 @@ apply 等长的对称性 in H2.
 apply 等长的同一性 in H2.
 auto.
 ex_and H0 B'.
-apply perp_distinct in H0.
+apply 垂直推出不重合 in H0.
 tauto.
 Qed.
 
@@ -1229,7 +1229,7 @@ intros; split; intro H; [do 2 (split; try solve [assert_diffs; auto])|
 
   {
   destruct (构造对称点 A C) as [P HP];
-  exists P; split; [assumption|]; destruct (midpoint_existence B P) as [Q HQ].
+  exists P; split; [assumption|]; destruct (中点的存在性 B P) as [Q HQ].
   exists Q; split; [assumption|].
   assert (Par B A Q C) by (assert_diffs; apply triangle_mid_par with P; Col).
   destruct (parallel_uniqueness A B C D C Q C); Col; Par.
@@ -1286,7 +1286,7 @@ split; [intro H; destruct H as [HAB [HCD [P [HP [Q [HQ HCol]]]]]]|].
 
   {
   destruct (构造对称点 A C) as [P HP]; revert HP.
-  destruct (midpoint_existence B P) as [Q HQ]; revert HQ.
+  destruct (中点的存在性 B P) as [Q HQ]; revert HQ.
   setoid_rewrite characterization_of_neq_F_bis.
   setoid_rewrite characterization_of_midpoint_F.
   setoid_rewrite characterization_of_collinearity_F.
@@ -2109,8 +2109,8 @@ Proof.
 intros.
 destruct (exists_cong_per A B A B) as [P HP].
 destruct (exists_cong_per A P A B) as [Q HQ].
-destruct (midpoint_existence A Q) as [R HR].
-destruct (midpoint_existence A B) as [I HI].
+destruct (中点的存在性 A Q) as [R HR].
+destruct (中点的存在性 A B) as [I HI].
 destruct (exists_cong_per A I A R) as [C HC].
 exists C.
 spliter.

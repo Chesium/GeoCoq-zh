@@ -734,7 +734,7 @@ Lemma triangle_par :
 Proof.
 intros.
 
-assert(HH:=midpoint_existence B B').
+assert(HH:=中点的存在性 B B').
 ex_and HH M.
 prolong A' M A'' A' M.
 prolong C' M C'' C' M.
@@ -1840,15 +1840,15 @@ Lemma perp_projp : forall P P' A B, 垂直于 P' A B P P' -> Projp P P' A B.
 intros.
 unfold Projp.
 split.
-apply l8_14_2_1a in H.
-apply perp_not_eq_1 in H.
+apply l8_14_2_1a_垂直于转垂直 in H.
+apply 垂直推出不重合1 in H.
 assumption.
 left.
 split.
-apply perp_in_col in H.
+apply 垂点是交点 in H.
 spliter.
 assumption.
-apply l8_14_2_1a in H.
+apply l8_14_2_1a_垂直于转垂直 in H.
 assumption.
 Qed.
 
@@ -1861,7 +1861,7 @@ spliter.
 induction(两点重合的决定性 P' A).
 subst P'.
 right.
-apply perp_not_eq_1 in H1.
+apply 垂直推出不重合1 in H1.
 assumption.
 left.
 assumption.
@@ -1886,14 +1886,14 @@ intros.
 assert(A <> B).
 unfold Projp in H.
 tauto.
-assert(HH:=perp_vector A B H0).
+assert(HH:=垂线的存在性 A B H0).
 ex_and HH X.
 ex_and H1 Y.
 exists X.
 exists Y.
 
 assert(X <> Y).
-apply perp_not_eq_2 in H2.
+apply 垂直推出不重合2 in H2.
 assumption.
 
 unfold Proj.
@@ -1914,7 +1914,7 @@ induction H3.
 spliter.
 left.
 eapply l12_9_2D.
-apply perp_sym.
+apply 垂直的对称性.
 apply H4.
 Perp.
 right.
@@ -1931,14 +1931,14 @@ intros.
 assert(A <> B).
 unfold Projp in H.
 tauto.
-assert(HH:=perp_vector A B H0).
+assert(HH:=垂线的存在性 A B H0).
 ex_and HH X.
 ex_and H1 Y.
 exists X.
 exists Y.
 
 assert(X <> Y).
-apply perp_not_eq_2 in H2.
+apply 垂直推出不重合2 in H2.
 assumption.
 split.
 
@@ -1960,7 +1960,7 @@ induction H3.
 spliter.
 left.
 eapply l12_9_2D.
-apply perp_sym.
+apply 垂直的对称性.
 apply H4.
 Perp.
 right.
@@ -1978,9 +1978,9 @@ intros.
 unfold Proj.
 
 repeat split.
-eapply perp_not_eq_1.
+eapply 垂直推出不重合1.
 apply H.
-eapply perp_not_eq_2.
+eapply 垂直推出不重合2.
 apply H.
 apply perp_not_par.
 assumption.
@@ -1998,7 +1998,7 @@ induction H1.
 spliter.
 left.
 eapply l12_9_2D.
-apply perp_sym.
+apply 垂直的对称性.
 apply H2.
 Perp.
 spliter.
@@ -2017,13 +2017,13 @@ unfold Proj in H.
 spliter.
 unfold Projp.
 split.
-apply perp_not_eq_1 in H0.
+apply 垂直推出不重合1 in H0.
 assumption.
 induction H4.
 left.
 split.
 assumption.
-apply perp_sym.
+apply 垂直的对称性.
 
 eapply par_perp__perp.
 apply par_symmetry.
@@ -2048,7 +2048,7 @@ spliter.
 induction H6;
 induction H5.
 spliter.
-apply perp_sym.
+apply 垂直的对称性.
 eapply par_perp__perp.
 apply H5.
 Perp.
@@ -2110,19 +2110,19 @@ unfold Projp in *.
 spliter.
 induction H1; induction H2.
 spliter.
-apply (l8_18_uniqueness A B P); Col.
-apply perp_not_col2 in H4.
+apply (l8_18_过一点垂线之垂点的唯一性 A B P); Col.
+apply 垂直推出不共线 in H4.
 induction H4.
 assumption.
 contradiction.
 spliter.
 subst P'.
-apply perp_not_col2 in H3.
+apply 垂直推出不共线 in H3.
 
 induction H3; contradiction.
 spliter.
 subst Q'.
-apply perp_not_col2 in H4.
+apply 垂直推出不共线 in H4.
 induction H4; contradiction.
 spliter.
 subst P'.
@@ -2222,7 +2222,7 @@ intros P P1 P2 Q1 Q2 HP1P2 H1 H2.
 destruct H1 as [H H1]; clear H; destruct H2 as [H H2]; clear H.
 elim H1; clear H1; intro H1; elim H2; clear H2; intro H2;
 spliter; treat_equalities; Perp; [|intuition].
-apply perp_sym; apply perp_col0 with P1 P; Perp; Col.
+apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with P1 P; Perp; Col.
 apply 等价共线CAB; apply perp2__col with Q1 Q2; Perp.
 Qed.
 
@@ -2231,7 +2231,7 @@ Proof.
 intros A B P P' HCol1 HProjp.
 destruct HProjp as [HDiff HProjp]; elim HProjp; clear HProjp; intro HProjp;
 [exfalso;  destruct HProjp as [HCol2 HPerp]|spliter; auto].
-apply perp_not_col2 in HPerp; induction HPerp; intuition.
+apply 垂直推出不共线 in HPerp; induction HPerp; intuition.
 Qed.
 
 Lemma projp_col : forall A B P P', Projp P P' A B -> Col A B P'.
@@ -2252,7 +2252,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
 
   {
   destruct HA' as [HColA' HA']; destruct HB' as [HColB' HB'].
-  elim (perp_not_col2 A B C D HPerp); intro HNC.
+  elim (垂直推出不共线 A B C D HPerp); intro HNC.
 
     {
     apply l6_21_两线交点的唯一性 with A B C D; Col; try (intro; assert_diffs; intuition).
@@ -2289,7 +2289,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
 
   {
   destruct HB' as [HColB H]; treat_equalities.
-  apply perp_sym in HPerp; elim (perp_not_col2 C D A B HPerp);
+  apply 垂直的对称性 in HPerp; elim (垂直推出不共线 C D A B HPerp);
   intro HNC; [|intuition]; destruct HA' as [HColA' HA'].
   apply l6_21_两线交点的唯一性 with C D A B; Col; try (intro; assert_diffs; intuition).
   assert (HPar : Par A B A A')
@@ -2299,7 +2299,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
 
   {
   destruct HA' as [HColA H]; treat_equalities.
-  apply perp_sym in HPerp; elim (perp_not_col2 C D A B HPerp);
+  apply 垂直的对称性 in HPerp; elim (垂直推出不共线 C D A B HPerp);
   intro HNC; [intuition|]; destruct HB' as [HColB' HB'].
   apply l6_21_两线交点的唯一性 with C D B A; Col; try (intro; assert_diffs; intuition).
   assert (HPar : Par A B B B')
@@ -2308,8 +2308,8 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
   }
 
   {
-  spliter; treat_equalities; apply perp_sym in HPerp;
-  elim (perp_not_col2 C D A B HPerp); intuition.
+  spliter; treat_equalities; apply 垂直的对称性 in HPerp;
+  elim (垂直推出不共线 C D A B HPerp); intuition.
   }
 Qed.
 
@@ -2328,11 +2328,11 @@ elim HP'; clear HP'; intro HP'; elim HP''; clear HP''; intro HP''.
   assert (H : Par P P' P' P'').
     {
     apply l12_9_2D with L11 L12; Perp.
-    apply perp_sym; apply par_perp__perp with L21 L22; Par.
+    apply 垂直的对称性; apply par_perp__perp with L21 L22; Par.
     }
   elim H; clear H; intro H; [exfalso; apply H; exists P'; Col|].
   destruct H as [HDiff3 [HDiff4 [HCol4 H]]]; clear H.
-  elim (perp_not_col2 L11 L12 P' P'' HPerp2); [intro HNC|intuition].
+  elim (垂直推出不共线 L11 L12 P' P'' HPerp2); [intro HNC|intuition].
   apply l6_21_两线交点的唯一性 with L11 L12 P' P; Col.
   }
 
@@ -2340,13 +2340,13 @@ elim HP'; clear HP'; intro HP'; elim HP''; clear HP''; intro HP''.
   destruct HP' as [HCol2 HPerp1]; destruct HP'' as [HCol3 HPerp2]; treat_equalities.
   assert (HPerp2 : Perp L11 L12 P' P)
     by (apply par_perp__perp with L21 L22; Par; Perp).
-  elim (perp_not_col2 L11 L12 P' P HPerp2); [intro HNC|intuition].
+  elim (垂直推出不共线 L11 L12 P' P HPerp2); [intro HNC|intuition].
   apply l6_21_两线交点的唯一性 with L11 L12 P' P; Col.
   }
 
   {
   destruct HP' as [HCol2 HPerp1]; destruct HP'' as [HCol3 HPerp2]; treat_equalities.
-  elim (perp_not_col2 L11 L12 P P'' HPerp2); [intro HNC|intuition].
+  elim (垂直推出不共线 L11 L12 P P'' HPerp2); [intro HNC|intuition].
   apply l6_21_两线交点的唯一性 with L11 L12 P P''; Col.
   }
 

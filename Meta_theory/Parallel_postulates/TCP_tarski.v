@@ -200,19 +200,19 @@ Proof.
   assert (A <> CC).
   { intro; subst CC.
     destruct (l11_46 B A D) as [_ []]; auto.
-    assert_diffs; apply per_not_col; auto.
+    assert_diffs; apply 成直角三点不共线; auto.
   }
   assert (Per A CC D) by Cop.
   repeat split; trivial.
   - destruct (cong2_per2__cong_conga2 A CC D B CC D); Cong.
     intro; subst CC.
     destruct (l11_46 A B D) as [_ []]; Cong.
-    assert_diffs; apply per_not_col; auto.
+    assert_diffs; apply 成直角三点不共线; auto.
   - assert (Per C CC D) by Cop.
     destruct (cong2_per2__cong_conga2 A CC D C CC D); Cong.
     intro; subst CC.
     destruct (l11_46 A C D) as [_ []]; Cong.
-    apply per_not_col; auto.
+    apply 成直角三点不共线; auto.
 Qed.
 *)
 
@@ -257,14 +257,14 @@ assert (HXYZ1 : ~ Col X Y Z1).
   assert (共面 B C Y Z1) by (apply col2_cop__cop with T Z; Col).
   apply l12_9 with Y Z1; [Cop..| |Perp|].
     apply coplanar_pseudo_trans with B C T; auto; apply col_cop__cop with Z; auto.
-  apply perp_sym, perp_col2 with T Z; Perp; Col.
+  apply 垂直的对称性, 与垂线共线之线也为垂线2 with T Z; Perp; Col.
   }
 destruct (HTC X Y Z1 HXYZ1) as [x [HCong3 [HCong4 HCop1]]]; exists x.
 assert (HYM1 : Y <> M1) by (intro; treat_equalities; auto).
 assert (HCopZ1 : 共面 B C T Z1).
   {
   assert (~ Col A B Y)
-    by (intro; destruct (perp_not_col2 A B Y Z1) as [|HNCol]; Perp; apply HNCol; ColR).
+    by (intro; destruct (垂直推出不共线 A B Y Z1) as [|HNCol]; Perp; apply HNCol; ColR).
   apply coplanar_pseudo_trans with A B Y; [| |apply coplanar_pseudo_trans with B C T..|]; Cop.
   }
 assert (HCopx : 共面 B C T x).
@@ -281,7 +281,7 @@ assert (Col A B x).
 do 2 (split; trivial).
 apply par_not_col_strict with T; Col.
 apply l12_9 with X Y; [apply coplanar_pseudo_trans with B C T; assumption..| |].
-  apply perp_sym, perp_col2 with T Z; Perp; ColR.
+  apply 垂直的对称性, 与垂线共线之线也为垂线2 with T Z; Perp; ColR.
 apply perp_bisect_perp; apply cong_cop_perp_bisect; Cong; [|Cop].
 intro; subst; apply HABC; ColR.
 Qed.
@@ -371,7 +371,7 @@ unfold tarski_s_parallel_postulate.
 intro HTC; apply tarski_s_euclid_remove_degenerated_cases.
 intros A B C D T HAB HAC HAD HAT HBC HBD HBT HCD HCT HDT HABC HADT HBDC HBCT.
 clear HAT HBT HCT.
-assert (HY := l8_18_existence B C T HBCT); destruct HY as [Y [HBCY HPerp]].
+assert (HY := l8_18_过一点垂线之垂点的存在性 B C T HBCT); destruct HY as [Y [HBCY HPerp]].
 revert B C HAB HAC HBC HBD HCD HABC HBDC HBCT HBCY HPerp.
 cut (forall B C, A <> B -> A <> C -> B <> C -> B <> D -> C <> D -> ~ Col A B C ->
                  Bet B D C -> ~ Col B C T -> Col B C Y -> Perp B C T Y -> B <> Y ->
@@ -383,7 +383,7 @@ cut (forall B C, A <> B -> A <> C -> B <> C -> B <> D -> C <> D -> ~ Col A B C -
   elim (两点重合的决定性 C Y); intro HCY.
     subst; exfalso; apply HBC; reflexivity.
   apply 中间性的对称性 in HBDC.
-  apply perp_left_comm in HPerp.
+  apply 垂直的左交换性 in HPerp.
   destruct (Haux C B) as [y [x [HACy [HABx HxTy]]]]; Col.
   exists x, y; repeat split; Between.
   }
@@ -393,7 +393,7 @@ elim (两点重合的决定性 C Y); intro HCY.
   {
   treat_equalities.
   assert (HCT : C <> T) by (apply 不共线则不重合 in HBCT; spliter; auto).
-  assert (HY := midpoint_existence C T); destruct HY as [Y HY].
+  assert (HY := 中点的存在性 C T); destruct HY as [Y HY].
   assert (HAY : A <> Y) by (intro; treat_equalities; apply HABC; ColR).
   assert (H := 严格中点组推论1 Y C T HCT HY); destruct H as [HCY HTY];
   apply not_eq_sym in HCY; apply not_eq_sym in HTY.
@@ -416,7 +416,7 @@ elim (两点重合的决定性 C Y); intro HCY.
 
   {
   assert (HX := 构造对称点 Y T); destruct HX as [X HX].
-  assert (H := perp_distinct B C T Y HPerp); destruct H as [Hclear HTY]; clear Hclear.
+  assert (H := 垂直推出不重合 B C T Y HPerp); destruct H as [Hclear HTY]; clear Hclear.
   assert (H := 严格中点组推论2 T Y X HTY HX); destruct H as [HTX HXY]; apply not_eq_sym in HTX.
   destruct HX as [HXTY HXTYT].
   assert (HZ1 := l10_2_existence A B Y); destruct HZ1 as [Z1 HZ1].

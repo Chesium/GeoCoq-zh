@@ -18,7 +18,7 @@ Qed.
 Lemma Cs_not_Col : forall O E S U1 U2, Cs O E S U1 U2 -> ~ Col U1 S U2.
 Proof.
 unfold Cs; intros O E S U1 U2 HCs.
-spliter; assert_diffs; apply per_not_col; Perp.
+spliter; assert_diffs; apply 成直角三点不共线; Perp.
 Qed.
 
 (** As we are in dimension 2, we skip 16.3
@@ -29,7 +29,7 @@ Lemma exists_grid : exists O E E' S U1 U2, ~ Col O E E' /\ Cs O E S U1 U2.
 Proof.
 destruct 防降维公理_老版本 as [O [I [X HNC]]].
 assert (H : ~ Col O I X) by auto; clear HNC; rename H into HNC.
-assert_diffs; destruct (ex_per_cong I O O X O I) as [J HJ]; Col; spliter.
+assert_diffs; destruct (ex_四点成首末边等长双直角S形则对边等长 I O O X O I) as [J HJ]; Col; spliter.
 exists O; exists I; exists X; exists O; exists I; exists J.
 repeat (split; finish).
 Qed.
@@ -38,7 +38,7 @@ Lemma exists_grid_spec : exists S U1 U2, Cs PA PB S U1 U2.
 Proof.
 assert (~ Col PA PB PC) by (apply 防降维公理).
 assert_diffs.
-destruct (ex_per_cong PB PA PA PC PA PB) as [J HJ]; Col; spliter.
+destruct (ex_四点成首末边等长双直角S形则对边等长 PB PA PA PC PA PB) as [J HJ]; Col; spliter.
 exists PA; exists PB; exists J.
 repeat (split; finish).
 Qed.
@@ -68,7 +68,7 @@ Lemma exists_projp : forall A B P, A <> B -> exists P', Projp P P' A B.
 Proof.
 intros A B P HAB.
 elim (共线的决定性 A B P); intro HNC; [exists P; split; Col; right|].
-destruct (l8_18_existence A B P HNC) as [P' HP'].
+destruct (l8_18_过一点垂线之垂点的存在性 A B P HNC) as [P' HP'].
 exists P'; split; Col.
 Qed.
 
@@ -121,8 +121,8 @@ split; try apply all_coplanar.
 assert_diffs; split; [exists P|exists S]; repeat (split; Cong);
 [right; split; try apply 全等于退化的三角形 with O E X; Col|].
 left; split; Col.
-apply per_perp in HPer; auto.
-apply perp_col0 with S U1; Col; Perp;
+apply 直角转L形垂直 in HPer; auto.
+apply 与垂线共线之线也为垂线1 with S U1; Col; Perp;
 [unfold 三角形全等 in *; spliter; assert_diffs|apply 全等于退化的三角形 with O E X]; Col.
 Qed.
 
@@ -139,14 +139,14 @@ treat_equalities; [exists S; apply point_of_coordinates_origin|
 assert (H := HCs); destruct H as [HDiff [HCong1 [HCong2 H]]]; clear H.
 destruct (l4_14_退化三角形有其全等形 O E X S U1 HCol1 HCong1) as [PX HPX].
 destruct (l4_14_退化三角形有其全等形 O E Y S U2 HCol2 HCong2) as [PY HPY].
-destruct (perp_exists PX S U1) as [PX' HPerp1]; [assert_diffs; auto|].
-destruct (perp_exists PY S U2) as [PY' HPerp2]; [assert_diffs; auto|].
+destruct (垂点的存在性 PX S U1) as [PX' HPerp1]; [assert_diffs; auto|].
+destruct (垂点的存在性 PY S U2) as [PY' HPerp2]; [assert_diffs; auto|].
 assert (HPerp3 : Perp PX PX' PY PY').
   {
   apply par_perp__perp with S U2; Perp.
   apply l12_9_2D with S U1; Perp.
   destruct HCs as [H [H' [H'' HPer]]]; clear H; clear H'; clear H''.
-  assert_diffs; apply per_perp in HPer; Perp.
+  assert_diffs; apply 直角转L形垂直 in HPer; Perp.
   }
 assert (H := HPerp3); destruct H as [P HP]; exists P; split; auto.
 split; try apply all_coplanar.
@@ -155,12 +155,12 @@ split; [exists PX|exists PY]; split; Cong.
   {
   assert_diffs; split; auto.
   left; split; [apply 全等于退化的三角形 with O E X; Col|].
-  unfold 垂直于 in *; spliter; apply perp_col0 with PX PX'; Col.
+  unfold 垂直于 in *; spliter; apply 与垂线共线之线也为垂线1 with PX PX'; Col.
   assert (HPYS : PY <> S) by (unfold 三角形全等 in *; spliter; assert_diffs; auto).
   intro; treat_equalities; apply HPYS.
   apply l6_21_两线交点的唯一性 with S U1 U2 S; Col;
-  [destruct HCs as [H' [H'' [H''' HPer]]]; apply perp_not_col;
-   assert_diffs; apply per_perp in HPer; Perp|
+  [destruct HCs as [H' [H'' [H''' HPer]]]; apply L形垂直推出不共线;
+   assert_diffs; apply 直角转L形垂直 in HPer; Perp|
   |apply 全等于退化的三角形 with E O Y; try apply 三角形全等的BAC交换性; Col].
   assert (HPar : Par S U1 PY PY')
     by (apply l12_9_2D with P PX'; Perp).
@@ -172,12 +172,12 @@ split; [exists PX|exists PY]; split; Cong.
   {
   assert_diffs; split; auto.
   left; split; [apply 全等于退化的三角形 with O E Y; Col|].
-  unfold 垂直于 in *; spliter; apply perp_col0 with PY PY'; Col.
+  unfold 垂直于 in *; spliter; apply 与垂线共线之线也为垂线1 with PY PY'; Col.
   assert (HPXS : PX <> S) by (unfold 三角形全等 in *; spliter; assert_diffs; auto).
   intro; treat_equalities; apply HPXS.
   apply l6_21_两线交点的唯一性 with S U2 U1 S; Col;
-  [destruct HCs as [H' [H'' [H''' HPer]]]; apply perp_not_col;
-   assert_diffs; apply per_perp in HPer; Perp|
+  [destruct HCs as [H' [H'' [H''' HPer]]]; apply L形垂直推出不共线;
+   assert_diffs; apply 直角转L形垂直 in HPer; Perp|
   |apply 全等于退化的三角形 with E O X; try apply 三角形全等的BAC交换性; Col].
   assert (HPar : Par S U2 PX PX')
     by (apply l12_9_2D with P PY'; Perp).
@@ -255,7 +255,7 @@ split; intro; spliter; treat_equalities.
       destruct HProjp3 as [H H2]; clear H; elim H2; clear H2; intro H2;
       [destruct H2 as [H2 HPerp2]|spliter; intuition].
       apply l12_9_2D with P2 P1; Perp.
-      apply perp_col0 with P1 PY; Perp; Col.
+      apply 与垂线共线之线也为垂线1 with P1 PY; Perp; Col.
       }
 
       {
@@ -264,7 +264,7 @@ split; intro; spliter; treat_equalities.
       destruct HProjp4 as [H H2]; clear H; elim H2; clear H2; intro H2;
       [destruct H2 as [H2 HPerp2]|spliter; intuition].
       apply l12_9_2D with P2 P1; Perp.
-      apply perp_col0 with P1 PX; Perp; Col.
+      apply 与垂线共线之线也为垂线1 with P1 PX; Perp; Col.
       }
 
       {
@@ -273,7 +273,7 @@ split; intro; spliter; treat_equalities.
       destruct HProjp3 as [H H2]; clear H; elim H2; clear H2; intro H2;
       [destruct H2 as [H2 HPerp2]|spliter; intuition].
       apply l12_9_2D with P2 P1;
-      [apply perp_col0 with P1 PX|apply perp_col0 with P1 PY];Perp; Col.
+      [apply 与垂线共线之线也为垂线1 with P1 PX|apply 与垂线共线之线也为垂线1 with P1 PY];Perp; Col.
       }
     }
   assert (HFalse : ~ ~ Col U1 S U2).
@@ -282,7 +282,7 @@ split; intro; spliter; treat_equalities.
     elim HPar; clear HPar; intro HPar; spliter; Col.
     exfalso; apply HPar; exists S; Col.
     }
-  unfold Cs in HCs; spliter; assert_diffs; apply HFalse; apply per_not_col; Col.
+  unfold Cs in HCs; spliter; assert_diffs; apply HFalse; apply 成直角三点不共线; Col.
   }
 Qed.
 
@@ -392,7 +392,7 @@ assert (PY' = QY')
 treat_equalities;
 assert (HPerp1 : Perp P Q S U2) by (apply projp_projp_perp with PY'; auto).
 assert (HPerp2 : Perp U1 S S U2)
-  by (unfold Cs in HCs; spliter; assert_diffs; apply per_perp; Perp).
+  by (unfold Cs in HCs; spliter; assert_diffs; apply 直角转L形垂直; Perp).
 destruct HProjp1 as [H H1]; clear H; destruct HProjp3 as [H H2]; clear H.
 elim H1; clear H1; intro H1; elim H2; clear H2; intro H2;
 destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
@@ -409,7 +409,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       by (apply l12_9_2D with S U1; Perp).
     elim HPar2; clear HPar2; intro HCol1; [apply HCol1; exists S; Col|].
     elim HPar1; clear HPar1; intro HCol2; [apply HCol2; exists S; spliter; Col|].
-    spliter; apply perp_not_col2 in HPerp3;
+    spliter; apply 垂直推出不共线 in HPerp3;
     elim HPerp3; intro HNC'; apply HNC'; Col.
     }
 
@@ -421,13 +421,13 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
         by (apply l12_9_2D with S U1; Perp).
       elim H; clear H; intro H; [exfalso; apply H; exists S|spliter]; Col.
       }
-    assert (HNC' : ~ Col S U1 U2) by (apply perp_not_col; Perp).
+    assert (HNC' : ~ Col S U1 U2) by (apply L形垂直推出不共线; Perp).
     assert (H : 长方形 P S QX' Q).
       {
       apply perp3__rect; try (intro; assert_diffs; apply HNC'; ColR);
-      [apply perp_col0 with S U1|apply perp_sym; apply perp_col0 with S U1|];
+      [apply 与垂线共线之线也为垂线1 with S U1|apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with S U1|];
       Col; Perp.
-      apply perp_sym; apply par_perp__perp with S U1; Perp.
+      apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
       apply l12_9_2D with S U2; Perp.
       }
     apply 长方形_Plg in H; apply plg_to_parallelogram in H;
@@ -443,13 +443,13 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
         by (apply l12_9_2D with S U1; Perp).
       elim H; clear H; intro H; [exfalso; apply H; exists S|spliter]; Col.
       }
-    assert (HNC' : ~ Col S U1 U2) by (apply perp_not_col; Perp).
+    assert (HNC' : ~ Col S U1 U2) by (apply L形垂直推出不共线; Perp).
     assert (H : 长方形 Q S PX' P).
       {
       apply perp3__rect; try (intro; assert_diffs; apply HNC'; ColR);
-      [apply perp_col0 with S U1|apply perp_sym; apply perp_col0 with S U1|];
+      [apply 与垂线共线之线也为垂线1 with S U1|apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with S U1|];
       Col; Perp.
-      apply perp_sym; apply par_perp__perp with S U1; Perp.
+      apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
       apply l12_9_2D with S U2; Perp.
       }
     apply 长方形_Plg in H; apply plg_to_parallelogram in H;
@@ -461,7 +461,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
     elim (两点重合的决定性 S PY'); intro HDiff3; treat_equalities.
 
       {
-      assert (HNC' := HPerp3); apply perp_not_col2 in HNC'.
+      assert (HNC' := HPerp3); apply 垂直推出不共线 in HNC'.
       elim HNC'; clear HNC'; intro HNC'; [exfalso; apply HNC'|intuition].
       destruct HProjp2 as [H' H]; clear H'.
       elim H; clear H; intro H; [|spliter; subst; Col].
@@ -473,7 +473,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       }
 
       {
-      assert (HNC' : ~ Col S U1 U2) by (apply perp_not_col; Perp).
+      assert (HNC' : ~ Col S U1 U2) by (apply L形垂直推出不共线; Perp).
       assert (HCol7 : Col S U1 PX') by (apply 全等于退化的三角形 with O E PX; Col).
       assert (HCol8 : Col S U2 PY') by (apply 全等于退化的三角形 with O E PY; Col).
       assert (HCol9 : Col S U1 QX') by (apply 全等于退化的三角形 with O E QX; Col).
@@ -500,19 +500,19 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
         apply perp3__rect; try (intro; assert_diffs; apply HNC'; ColR).
 
           {
-          apply perp_col0 with S U2; Col.
-          apply perp_col0 with S U1; Col; Perp.
+          apply 与垂线共线之线也为垂线1 with S U2; Col.
+          apply 与垂线共线之线也为垂线1 with S U1; Col; Perp.
           }
 
           {
-          apply perp_col0 with P Q; try (apply perp_col0 with S U2); Col; Perp.
+          apply 与垂线共线之线也为垂线1 with P Q; try (apply 与垂线共线之线也为垂线1 with S U2); Col; Perp.
           apply 等价共线BCA; apply projp2_col with S U2; auto.
           }
 
           {
           apply par_perp__perp with S U1; Perp.
           apply l12_9_2D with S U2; Perp.
-          apply perp_sym; apply perp_col0 with P Q; Col.
+          apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with P Q; Col.
           apply 等价共线BCA; apply projp2_col with S U2; auto.
           }
         }
@@ -521,19 +521,19 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
         apply perp3__rect; try (intro; assert_diffs; apply HNC'; ColR).
 
           {
-          apply perp_col0 with S U2; Col.
-          apply perp_col0 with S U1; Col; Perp.
+          apply 与垂线共线之线也为垂线1 with S U2; Col.
+          apply 与垂线共线之线也为垂线1 with S U1; Col; Perp.
           }
 
           {
-          apply perp_col0 with P Q; try (apply perp_col0 with S U2); Col; Perp.
+          apply 与垂线共线之线也为垂线1 with P Q; try (apply 与垂线共线之线也为垂线1 with S U2); Col; Perp.
           apply 等价共线BCA; apply projp2_col with S U2; auto.
           }
 
           {
           apply par_perp__perp with S U1; Perp.
           apply l12_9_2D with S U2; Perp.
-          apply perp_sym; apply perp_col0 with P Q; Col.
+          apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with P Q; Col.
           apply 等价共线BCA; apply projp2_col with S U2; auto.
           }
         }
@@ -548,14 +548,14 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
   }
 
   {
-  exfalso; elim (perp_not_col2 S U1 P PX'); Perp; intro H; apply H; Col; clear H.
+  exfalso; elim (垂直推出不共线 S U1 P PX'); Perp; intro H; apply H; Col; clear H.
   assert (HPar : Par P Q S U1) by (apply l12_9_2D with S U2; Perp).
   elim HPar; clear HPar; intro HPar; spliter; Col.
   exfalso; apply HPar; exists Q; Col.
   }
 
   {
-  exfalso; elim (perp_not_col2 S U1 Q QX'); Perp; intro H; apply H; Col; clear H.
+  exfalso; elim (垂直推出不共线 S U1 Q QX'); Perp; intro H; apply H; Col; clear H.
   assert (HPar : Par P Q S U1) by (apply l12_9_2D with S U2; Perp).
   elim HPar; clear HPar; intro HPar; spliter; Col.
   exfalso; apply HPar; exists P; Col.
@@ -670,8 +670,8 @@ try clear HPX; try clear HPY; try clear HQX; try clear HQY.
   assert (HPerp1 : Perp P R S U1) by (apply projp_projp_perp with PX'; auto);
   assert (HPerp2 : Perp Q R S U2) by (apply projp_projp_perp with QY'; auto);
   assert (HPerp3 : Perp U1 S S U2)
-    by (unfold Cs in HCs; spliter; assert_diffs; apply per_perp; Perp).
-  apply perp_per_2; apply perp_sym; apply par_perp__perp with S U1; Perp.
+    by (unfold Cs in HCs; spliter; assert_diffs; apply 直角转L形垂直; Perp).
+  apply L形垂直转直角2; apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
   apply l12_9_2D with S U2; Perp.
   }
 
@@ -927,7 +927,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
     treat_equalities; assert (HPerp : Perp A C S U1).
       {
       assert (HCol' : Col AX' A B) by (apply projp2_col with S U1; auto).
-      assert_cols; apply perp_sym; apply perp_col0 with A B;
+      assert_cols; apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with A B;
       try apply projp_projp_perp with AX'; Col.
       }
     assert (AX' = CX') by (apply perp_projp2_eq with A C S U1; auto).
@@ -1140,12 +1140,12 @@ elim (共线的决定性 A B BX''); intro HABBX''.
         left; apply l12_9_2D with A1 A2.
 
           {
-          apply perp_sym; apply perp_col0 with BX' BX''; Perp;
+          apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with BX' BX''; Perp;
           assert_diffs; spliter; Col.
           }
 
           {
-          apply perp_sym; apply perp_col0 with CX' CX''; Perp;
+          apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with CX' CX''; Perp;
           assert_diffs; spliter; Col.
           intro; treat_equalities; assert_cols; apply HABBX''; ColR.
           }
@@ -1157,7 +1157,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
         elim HCol1; clear HCol1; intro HCol1;
         [exfalso; apply HCol1; exists BX'; Col|].
         left; apply l12_9_2D with A1 A2; Perp.
-        apply perp_sym; apply perp_col0 with BX' BX''; Perp;
+        apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with BX' BX''; Perp;
         assert_diffs; spliter; Col.
         }
 
@@ -1167,9 +1167,9 @@ elim (共线的决定性 A B BX''); intro HABBX''.
         elim HCol1; clear HCol1; intro HCol1;
         [exfalso; apply HCol1; exists BX'; Col|].
         left; apply l12_9_2D with A1 A2; Perp.
-        apply perp_sym; apply perp_col0 with BX' BX''; Perp;
+        apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with BX' BX''; Perp;
         assert_diffs; spliter; Col.
-        apply perp_sym; apply par_perp__perp with S U1; Perp.
+        apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
         }
 
         {
@@ -1182,7 +1182,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
         elim HCol2; clear HCol2; intro HCol2;
         [exfalso; apply HCol2; exists CX'; Col|].
         left; apply l12_9_2D with A1 A2; Perp.
-        apply perp_sym; apply perp_col0 with CX' CX''; Perp;
+        apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with CX' CX''; Perp;
         assert_diffs; spliter; Col.
         intro; treat_equalities; assert_cols; apply HABBX''; ColR.
         }
@@ -1193,7 +1193,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
 
         {
         left; apply l12_9_2D with A1 A2; Perp.
-        apply perp_sym; apply par_perp__perp with S U1; Perp.
+        apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
         }
 
         {
@@ -1208,11 +1208,11 @@ elim (共线的决定性 A B BX''); intro HABBX''.
         left; apply l12_9_2D with A1 A2; Perp.
 
           {
-          apply perp_sym; apply par_perp__perp with S U1; Perp.
+          apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
           }
 
           {
-          apply perp_sym; apply perp_col0 with CX' CX''; Perp;
+          apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with CX' CX''; Perp;
           assert_diffs; spliter; Col.
           intro; treat_equalities; assert_cols; apply HABBX''; ColR.
           }
@@ -1220,13 +1220,13 @@ elim (共线的决定性 A B BX''); intro HABBX''.
 
         {
         left; apply l12_9_2D with A1 A2; Perp.
-        apply perp_sym; apply par_perp__perp with S U1; Perp.
+        apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
         }
 
         {
         left; apply l12_9_2D with A1 A2; Perp.
-        apply perp_sym; apply par_perp__perp with S U1; Perp.
-        apply perp_sym; apply par_perp__perp with S U1; Perp.
+        apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
+        apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
         }
 
         {

@@ -293,7 +293,7 @@ Lemma triangle_mid_par_flat : forall A B C P Q,
  Par A B Q P.
 Proof.
 intros.
-elim (midpoint_existence A B); intro R; intro.
+elim (中点的存在性 A B); intro R; intro.
 assert (HTMT := triangle_mid_par_flat_cong_aux A B C P Q R H H0 H1 H2 H3); spliter.
 assumption.
 Qed.

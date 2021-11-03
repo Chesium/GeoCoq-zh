@@ -24,7 +24,7 @@ Proof.
   assert (为锐角 A P Q).
   { exists A, P, C; split; auto.
     apply (l11_17 P C D').
-      apply per_col with D; Col; Perp.
+      apply 直角边共线点也构成直角2 with D; Col; Perp.
     apply conga_sym, conga_right_comm, aia; [|apply par_col_par with D; Par; Col].
     apply l9_8_2 with D; trivial.
     apply invert_two_sides, bet__ts; Col.
@@ -75,7 +75,7 @@ Proof.
   { apply par_strict_symmetry, par_not_col_strict with P; auto.
     apply par_symmetry, HPar.
   }
-  destruct (l8_18_existence C D P) as [C0 []]; auto.
+  destruct (l8_18_过一点垂线之垂点的存在性 C D P) as [C0 []]; auto.
   destruct (共线的决定性 P Q C0) as [|HNCol1].
     exists C0; split; auto.
   assert_diffs.
@@ -100,7 +100,7 @@ Proof.
   destruct HA1 as [A1 []].
   assert(HC1 : exists C1, Col C D C1 /\ OS P C0 Q1 C1).
   { assert (共面 C D P Q1) by (apply col_cop__cop with Q; Col).
-    destruct (perp_not_col2 P C0 C D); Perp.
+    destruct (垂直推出不共线 P C0 C D); Perp.
       apply (cop_not_par_same_side _ _ _ _ C0); Col.
       apply coplanar_perm_5, col_cop__cop with D; Cop.
     destruct (cop_not_par_same_side P C0 D C C0 Q1) as [C1 []]; Col.
@@ -111,7 +111,7 @@ Proof.
   assert_diffs.
   destruct (alternate_interior__proclus_aux greenberg aia A1 C0 C1 P Q1) as [Y []]; auto.
     apply (par_strict_col4__par_strict A B C D); auto.
-    apply (perp_col2 C D); auto.
+    apply (与垂线共线之线也为垂线2 C D); auto.
     apply (col2_os__os A B); auto.
   clear dependent A.
   exists Y; split; ColR.

@@ -319,7 +319,7 @@ Qed.
 
 Lemma prop_10 : forall A B, exists D, 中点 D A B.
 Proof.
-  apply midpoint_existence.
+  apply 中点的存在性.
 Qed.
 
 
@@ -331,7 +331,7 @@ Qed.
 Lemma prop_11 : forall A B C, A <> B -> Col A B C -> exists F, Perp C F A B.
 Proof.
   intros.
-  apply perp_exists; assumption.
+  apply 垂点的存在性; assumption.
 Qed.
 
 
@@ -343,7 +343,7 @@ Qed.
 
 Lemma prop_12 : forall A B C, ~ Col A B C -> exists H, Col A B H /\ Perp A B C H.
 Proof.
-  apply l8_18_existence.
+  apply l8_18_过一点垂线之垂点的存在性.
 Qed.
 
 

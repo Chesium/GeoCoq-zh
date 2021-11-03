@@ -43,7 +43,7 @@ Proof.
       apply coplanar_perm_18, pars__coplanar; assumption.
     exists B3; right; right; split; Col.
   }
-  apply cop_per2__col with A1; auto; apply l8_2.
+  apply cop_per2__col with A1; auto; apply 直角的对称性.
     apply (rah _ _ _ A2); auto.
   apply (rah _ _ _ A3).
   unfold 萨凯里四边形 in *.
@@ -52,18 +52,18 @@ Proof.
   { intro.
     subst B3.
     assert(A1 = A3); auto.
-    apply (l8_18_uniqueness A1 A2 B1); Col; Perp.
-    apply 共线否定排列BCA; apply per_not_col; auto.
+    apply (l8_18_过一点垂线之垂点的唯一性 A1 A2 B1); Col; Perp.
+    apply 共线否定排列BCA; apply 成直角三点不共线; auto.
   }
   assert(Per A1 A3 B'3).
-  { apply perp_per_1, perp_comm, (perp_col _ A2); Col.
-    apply (perp_col1 _ _ _ B3); Col.
+  { apply L形垂直转直角1, 垂直的交换性, (垂线共线点也构成垂直1 _ A2); Col.
+    apply (垂线共线点也构成垂直2 _ _ _ B3); Col.
   }
   repeat split; Cong.
-    apply (per_col _ _ A2); auto.
+    apply (直角边共线点也构成直角2 _ _ A2); auto.
   apply (one_side_transitivity _ _ _ B3).
     apply l12_6; auto; apply (par_strict_col_par_strict _ _ _ B2); Col; Par.
-    apply invert_one_side; apply out_one_side; auto; right; apply 共线否定排列BAC; apply per_not_col; auto.
+    apply invert_one_side; apply out_one_side; auto; right; apply 共线否定排列BAC; apply 成直角三点不共线; auto.
 Qed.
 
 Lemma rah__posidonius :
@@ -74,12 +74,12 @@ destruct ex_saccheri as [A1 [B1 [B2 [A2 [HPer1 [HPer2 [HCong HOS]]]]]]].
 exists A1; exists A2; exists B1; exists B2.
 assert (HNE : A1 <> A2) by (destruct HOS as [X [[H ?] ?]]; intro; subst A2; Col).
 split; [destruct HOS; unfold TS in *; spliter; Col|].
-split; [intro; treat_equalities; apply l8_7 in HPer1; intuition|split; [Cop|]].
+split; [intro; treat_equalities; apply ABC和ACB均直角则B与C重合 in HPer1; intuition|split; [Cop|]].
 intros A3 A4 B3 B4 HC1 HC2 HPerp1 HC3 HC4 HPerp2.
 assert (HCong1 := rah__posidonius_aux HP A1 A2 A3 B1 B2 B3).
 assert (HCong2 := rah__posidonius_aux HP A1 A2 A4 B1 B2 B4).
 apply 等长的内传递性 with A1 B1; apply 等长的对称性;
-[apply HCong1|apply HCong2]; Cong; apply l8_2; auto.
+[apply HCong1|apply HCong2]; Cong; apply 直角的对称性; auto.
 Qed.
 
 End rah_posidonius.

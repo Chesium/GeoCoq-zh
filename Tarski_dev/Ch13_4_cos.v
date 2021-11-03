@@ -49,7 +49,7 @@ Proof.
         apply (eq_conga_out Y1 X1); auto.
       assert(Y2 = Z2).
         assert(Z2 = Y2 \/ X2 = Y2).
-          apply l8_9.
+          apply l8_9_直角三点共线则必有两点重合.
             auto.
           apply out_col in H19.
           Col.
@@ -81,7 +81,7 @@ Proof.
         auto.
       assert(Y1 = Z1).
         assert(Z1 = Y1 \/ X1 = Y1).
-          apply l8_9.
+          apply l8_9_直角三点共线则必有两点重合.
             auto.
           apply out_col in H20.
           Col.
@@ -100,7 +100,7 @@ Proof.
     assert(~Col Z1 X1 Y1).
       intro.
       assert(X1 = Y1 \/ Z1 = Y1).
-        apply l8_9.
+        apply l8_9_直角三点共线则必有两点重合.
           Perp.
         Col.
       induction H27.
@@ -134,7 +134,7 @@ Proof.
     assert(HH:= H7 B A C H6).
     assert(Col A B C) by (apply out_col;auto).
     assert(Col C B A) by Col.
-    assert(HQ:= l8_9 C B A H3 H9).
+    assert(HQ:= l8_9_直角三点共线则必有两点重合 C B A H3 H9).
     induction HQ.
       subst C.
       apply (all_eql A B).
@@ -312,8 +312,8 @@ Proof.
       repeat split; auto.
       intro.
       subst C.
-      apply perp_comm in H.
-      apply perp_not_col in H.
+      apply 垂直的交换性 in H.
+      apply L形垂直推出不共线 in H.
       apply H.
       Col.
     spliter.
@@ -321,9 +321,9 @@ Proof.
       intro.
       subst C'.
       assert(Per A B C).
-        apply perp_in_per.
-        apply perp_in_comm.
-        apply perp_perp_in.
+        apply L形垂直于转直角.
+        apply 垂直于的交换性.
+        apply L形垂直转垂直于.
         Perp.
       assert(等角 A0 B0 C0 A B C).
         apply l11_16; auto.
@@ -773,14 +773,14 @@ Proof.
       Col.
     assert(HP:= l10_15 A C B D H16 H2).
     ex_and HP P.
-    assert(HP:= perp_col A C P B B H10 H17 H16).
-    apply perp_left_comm in HP.
-    apply perp_perp_in in HP.
+    assert(HP:= 垂线共线点也构成垂直1 A C P B B H10 H17 H16).
+    apply 垂直的左交换性 in HP.
+    apply L形垂直转垂直于 in HP.
     assert(Per A B P).
-      apply perp_in_per.
-      apply perp_in_comm.
+      apply L形垂直于转直角.
+      apply 垂直于的交换性.
       auto.
-    assert(HR:= perp_not_eq_2 A C P B H17).
+    assert(HR:= 垂直推出不重合2 A C P B H17).
     assert(HQ:=l11_16 A B P A0 B0 C0 H19 H10 HR H0 H12 H13).
     assert(角度小于 A B D A B P).
       apply (conga_preserves_lta A B D A0 B0 C0); auto.
@@ -803,17 +803,17 @@ Proof.
       auto.
     assert(等角 A B P C B P).
       apply l11_16; auto.
-      apply perp_in_per.
+      apply L形垂直于转直角.
       assert(Perp C B P B).
-        apply(perp_col _ A).
+        apply(垂线共线点也构成垂直1 _ A).
           auto.
-          apply perp_left_comm.
+          apply 垂直的左交换性.
           auto.
         apply 中间性蕴含共线1 in H.
         Col.
-      apply perp_in_comm.
-      apply perp_perp_in.
-      apply perp_left_comm.
+      apply 垂直于的交换性.
+      apply L形垂直转垂直于.
+      apply 垂直的左交换性.
       auto.
     assert(角度小于等于 A B P C B D).
       apply (l11_30 C B P C B D); auto.
@@ -830,7 +830,7 @@ Proof.
     intros.
     induction(两点重合的决定性 B C).
       subst C.
-      apply l8_5.
+      apply 角ABB成直角.
     unfold Lcos in H2.
     spliter.
     ex_and H9 A0.
@@ -853,7 +853,7 @@ Proof.
     apply H17 in H18.
     spliter.
     eapply (l11_17 A0 B0 C0).
-      apply l8_2.
+      apply 直角的对称性.
       auto.
     auto.
 Qed.
@@ -902,8 +902,8 @@ Proof.
       unfold 锐零角谓词 in H12.
       spliter.
       assert(HH:= (H13 B A C H1)).
-      apply perp_comm in H0.
-      apply perp_not_col in H0.
+      apply 垂直的交换性 in H0.
+      apply L形垂直推出不共线 in H0.
       apply False_ind.
       apply H0.
       apply out_col in HH.
@@ -912,14 +912,14 @@ Proof.
       spliter.
       assert(等角 A B C A' B' C').
         apply l11_16; auto.
-          apply perp_in_per.
-          apply perp_in_comm.
-          apply perp_perp_in.
-          apply perp_comm.
+          apply L形垂直于转直角.
+          apply 垂直于的交换性.
+          apply L形垂直转垂直于.
+          apply 垂直的交换性.
           auto.
-          apply perp_not_eq_2 in H0.
+          apply 垂直推出不重合2 in H0.
           auto.
-          apply l8_2.
+          apply 直角的对称性.
           auto.
         intro.
         subst C'.
@@ -935,8 +935,8 @@ Proof.
         auto.
       assert(Cong C B C' B' /\ Cong A B A' B' /\ 等角 B C A B' C' A').
         apply(l11_50_2 C A B C' A' B').
-          apply perp_comm in H0.
-          apply perp_not_col in H0.
+          apply 垂直的交换性 in H0.
+          apply L形垂直推出不共线 in H0.
           intro.
           apply H0.
           Col.
@@ -1023,12 +1023,12 @@ Proof.
         assert(~ Col C D A).
           intro.
           assert(Per B C D).
-            apply(per_col B C A D); auto.
-              apply l8_2.
+            apply(直角边共线点也构成直角2 B C A D); auto.
+              apply 直角的对称性.
               auto.
             Col.
           assert(Per B D C).
-            apply(per_col B D A C); auto.
+            apply(直角边共线点也构成直角2 B D A C); auto.
               unfold OS in H21.
               ex_and H21 T.
               unfold TS in H21.
@@ -1037,11 +1037,11 @@ Proof.
               subst D.
               apply H21.
               Col.
-              apply l8_2.
+              apply 直角的对称性.
               auto.
             Col.
           assert(C = D).
-            apply (l8_7 B); auto.
+            apply (ABC和ACB均直角则B与C重合 B); auto.
           subst D.
           unfold TS in H25.
           spliter.
@@ -1051,19 +1051,19 @@ Proof.
             auto.
           subst T.
           contradiction.
-        assert(HH:= l8_18_existence C D A H28).
+        assert(HH:= l8_18_过一点垂线之垂点的存在性 C D A H28).
         ex_and HH E.
         assert(等角 B A C D A E /\ 等角 B A D C A E /\ Bet C E D).
           apply(l13_2 A B C D E).
             apply invert_two_sides.
             apply l9_2.
             auto.
-            apply l8_2.
+            apply 直角的对称性.
             auto.
-            apply l8_2.
+            apply 直角的对称性.
             auto.
             auto.
-          apply perp_sym.
+          apply 垂直的对称性.
           auto.
         spliter.
         assert(a D A E).
@@ -1072,7 +1072,7 @@ Proof.
         assert(b C A E).
           eapply (anga_conga_anga b B A D); auto.
         assert(Perp C E A E).
-          eapply (perp_col _ D) .
+          eapply (垂线共线点也构成垂直1 _ D) .
             intro.
             subst E.
             apply H5.
@@ -1089,13 +1089,13 @@ Proof.
           auto.
         assert(lab A E).
           apply (lcos_lg b lab la A E C H1).
-            apply perp_sym in H36.
-            apply perp_right_comm in H36.
+            apply 垂直的对称性 in H36.
+            apply 垂直的右交换性 in H36.
             auto.
             apply anga_sym; auto.
           apply lg_sym; auto.
         assert(Perp D E A E).
-          eapply (perp_col _ C) .
+          eapply (垂线共线点也构成垂直1 _ C) .
             intro.
             subst E.
             apply H3.
@@ -1106,7 +1106,7 @@ Proof.
               apply (anga_conga a); auto.
             apply (l11_21_a D A D A0 B0 C0 ).
               apply out_trivial; auto.
-              apply perp_not_eq_2 in H36.
+              apply 垂直推出不重合2 in H36.
               auto.
             apply conga_sym.
             auto.
@@ -1146,17 +1146,17 @@ Proof.
       auto.
     ex_and H3 P.
     assert(Per P B A).
-      apply perp_in_per.
-      apply perp_left_comm in H3.
-      apply perp_in_comm.
-      apply perp_perp_in.
+      apply L形垂直于转直角.
+      apply 垂直的左交换性 in H3.
+      apply 垂直于的交换性.
+      apply L形垂直转垂直于.
       Perp.
     unfold 为锐角.
     exists A.
     exists B.
     exists P.
     split.
-      apply l8_2.
+      apply 直角的对称性.
       auto.
     unfold 角度小于.
     split.
@@ -1164,13 +1164,13 @@ Proof.
       exists C.
       split.
         apply col_in_angle; auto.
-        apply perp_not_eq_2 in H3.
+        apply 垂直推出不重合2 in H3.
         auto.
       apply conga_refl; auto.
     intro.
     apply l11_21_a in H6.
-      apply perp_left_comm in H3.
-      apply perp_not_col in H3.
+      apply 垂直的左交换性 in H3.
+      apply L形垂直推出不共线 in H3.
       apply out_col in H6.
       contradiction.
     assumption.
@@ -1185,49 +1185,49 @@ Proof.
     assert(HH:= l11_43 P A B).
     induction(共线的决定性 P A B).
       assert(Perp B A A C).
-        eapply (perp_col _ P).
+        eapply (垂线共线点也构成垂直1 _ P).
           intro.
           subst A.
           assert(垂直于 B B P C B).
-            apply perp_perp_in.
-            apply perp_in_perp_bis in H0.
+            apply L形垂直转垂直于.
+            apply 垂直于转T形垂直 in H0.
             induction H0.
-              apply perp_not_eq_1 in H0.
+              apply 垂直推出不重合1 in H0.
               tauto.
             Perp.
           assert(P=B).
-            eapply(l8_14_3 B P B C); Perp.
+            eapply(l8_14_3_垂点的唯一性 B P B C); Perp.
           subst P.
-          apply perp_in_perp_bis in H0.
+          apply 垂直于转T形垂直 in H0.
           induction H0.
-            apply perp_not_eq_1 in H0.
+            apply 垂直推出不重合1 in H0.
             tauto.
-          apply perp_not_eq_1 in H0.
+          apply 垂直推出不重合1 in H0.
           tauto.
-          apply perp_in_perp_bis in H0.
+          apply 垂直于转T形垂直 in H0.
           induction H0.
-            apply perp_not_eq_1 in H0.
+            apply 垂直推出不重合1 in H0.
             tauto.
           auto.
         Col.
-      apply perp_comm in H2.
-      apply perp_perp_in in H2.
-      apply perp_in_comm in H2.
-      apply perp_in_sym in H2.
-      eapply (perp_in_col_perp_in _ _ _ _ P) in H2.
+      apply 垂直的交换性 in H2.
+      apply L形垂直转垂直于 in H2.
+      apply 垂直于的交换性 in H2.
+      apply 垂直于的对称性 in H2.
+      eapply (垂线共线点也构成垂直_垂直于 _ _ _ _ P) in H2.
         assert( A = P).
-          eapply(l8_14_3 A C B P); Perp.
+          eapply(l8_14_3_垂点的唯一性 A C B P); Perp.
         subst P.
         apply out_acute.
-        apply perp_in_perp_bis in H2.
+        apply 垂直于转T形垂直 in H2.
         induction H2.
           apply out_trivial.
-          apply perp_not_eq_2 in H2.
+          apply 垂直推出不重合2 in H2.
           auto.
-        apply perp_not_eq_1 in H2.
+        apply 垂直推出不重合1 in H2.
         tauto.
-        apply perp_in_perp_bis in H0.
-        induction H0; apply perp_not_eq_1 in H0; tauto.
+        apply 垂直于转T形垂直 in H0.
+        induction H0; apply 垂直推出不重合1 in H0; tauto.
       Col.
     apply acute_sym.
     assert_diffs.
@@ -1238,8 +1238,8 @@ Proof.
       subst P.
       apply H1.
       Col.
-    eapply (perp_in_col_perp_in _ _ _ _ P) in H0; auto.
-    apply perp_in_per.
+    eapply (垂线共线点也构成垂直_垂直于 _ _ _ _ P) in H0; auto.
+    apply L形垂直于转直角.
     Perp.
 Qed.
 
@@ -1266,8 +1266,8 @@ Proof.
     exists P.
     exists P.
     repeat split; auto.
-      apply l8_2.
-      apply l8_5.
+      apply 直角的对称性.
+      apply 角ABB成直角.
     apply (anga_out_anga _ A _ C); auto.
       apply l6_6.
       auto.
@@ -1291,7 +1291,7 @@ Proof.
             Col.
           apply H3.
           tauto.
-        assert(HH:= l8_18_existence B C A H5).
+        assert(HH:= l8_18_过一点垂线之垂点的存在性 B C A H5).
         ex_and HH P.
         assert(HH:=lg_exists B P).
         ex_and HH lp.
@@ -1319,17 +1319,17 @@ Proof.
         exists P.
         exists A.
         repeat split; auto.
-          apply perp_in_per.
-          apply perp_in_comm.
-          apply perp_perp_in.
-          apply perp_sym.
-          apply (perp_col _ C).
+          apply L形垂直于转直角.
+          apply 垂直于的交换性.
+          apply L形垂直转垂直于.
+          apply 垂直的对称性.
+          apply (垂线共线点也构成垂直1 _ C).
             intro.
             subst P.
             assert(Per A B C).
-              apply perp_in_per.
-              apply perp_in_comm.
-              apply perp_perp_in.
+              apply L形垂直于转直角.
+              apply 垂直于的交换性.
+              apply L形垂直转垂直于.
               Perp.
             apply acute_not_per in H10.
             contradiction.
@@ -1398,7 +1398,7 @@ tauto.
 auto.
 
 assert(C2 = B2 \/ A2 = B2).
-apply(l8_9 C2 B2 A2).
+apply(l8_9_直角三点共线则必有两点重合 C2 B2 A2).
 auto.
 apply out_col in H16.
 Col.
@@ -1430,7 +1430,7 @@ apply out_trivial; auto.
 apply conga_sym.
 auto.
 assert(C1 = B1 \/ A1 = B1).
-apply(l8_9 C1 B1 A1 ); auto.
+apply(l8_9_直角三点共线则必有两点重合 C1 B1 A1 ); auto.
 apply out_col in H20.
 Col.
 induction H21.
@@ -1443,7 +1443,7 @@ assert( Cong C1 B1 C2 B2 /\ Cong A1 B1 A2 B2 /\ 等角 B1 C1 A1 B2 C2 A2).
 apply(l11_50_2 C1 A1 B1 C2 A2 B2).
 intro.
 assert(C1 = B1 \/ A1 = B1).
-apply(l8_9 C1 B1 A1 ); auto.
+apply(l8_9_直角三点共线则必有两点重合 C1 B1 A1 ); auto.
 Col.
 induction H22.
 contradiction.

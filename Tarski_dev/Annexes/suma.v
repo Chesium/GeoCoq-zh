@@ -751,24 +751,24 @@ repeat
 
       | H:Per ?A ?B ?C, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct A B C H H2); clean_reap_hyps
+        assert (T:= 直角一边不重合则另一边不重合1 A B C H H2); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct A B C H (不重合的对称性 B A H2)); clean_reap_hyps
+        assert (T:= 直角一边不重合则另一边不重合1 A B C H (不重合的对称性 B A H2)); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?B<>?C |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct_1 A B C H H2); clean_reap_hyps
+        assert (T:= 直角一边不重合则另一边不重合2 A B C H H2); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?C<>?B |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct_1 A B C H (不重合的对称性 C B H2)); clean_reap_hyps
+        assert (T:= 直角一边不重合则另一边不重合2 A B C H (不重合的对称性 C B H2)); clean_reap_hyps
 
       | H:Perp ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
-       assert (T:= perp_distinct A B C D H);
+       assert (T:= 垂直推出不重合 A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:垂直于 ?X ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
-       assert (T:= perp_in_distinct X A B C D H);
+       assert (T:= 垂直于推出不重合 X A B C D H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:Out ?A ?B ?C |- _ =>
       let T:= fresh in (not_exist_hyp2 A B A C);
@@ -1883,7 +1883,7 @@ Proof.
   apply (bet_conga__bet A B A1); auto.
   apply (col_two_sides_bet _ C).
   apply 等价共线CAB; apply cop_per2__col with C; Cop.
-  apply cop_nos__ts; Cop; apply per_not_col; auto.
+  apply cop_nos__ts; Cop; apply 成直角三点不共线; auto.
 Qed.
 
 Lemma bet_per2__suma : forall A B C D E F G H I,
@@ -1916,7 +1916,7 @@ Proof.
   assert(HA1 := 构造对称点 A B).
   destruct HA1 as [A1].
   assert_diffs.
-  assert(HNCol : ~ Col A B C) by (apply per_not_col; auto).
+  assert(HNCol : ~ Col A B C) by (apply 成直角三点不共线; auto).
   apply (l11_17 A B C); auto.
   apply (sams2_suma2__conga456 A B C _ _ _ _ _ _ G H I); auto.
   - apply (sams_chara _ _ _ _ _ _ A1); Between.
@@ -1961,7 +1961,7 @@ Proof.
   intros A B C D E F HBet HSuma.
   assert_diffs.
   destruct HSuma as [A' [HConga1 [_ [_ HConga2]]]].
-  apply l8_2.
+  apply 直角的对称性.
   apply (l11_18_2 _ _ _ A'); 等角.
   apply (bet_conga__bet D E F); 等角.
 Qed.
@@ -2100,7 +2100,7 @@ Proof.
     exfalso.
     apply HNIsi.
     assert(HA' := 构造对称点 A B).
-    assert(HNCol : ~ Col A B C) by (apply per_not_col; auto).
+    assert(HNCol : ~ Col A B C) by (apply 成直角三点不共线; auto).
     destruct HA' as [A'].
     assert_diffs.
     repeat split; auto.

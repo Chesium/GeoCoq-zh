@@ -34,7 +34,7 @@ elim (共线的决定性 A1 A2 P); intro HCol.
   }
 
   {
-  assert(HI := l8_18_existence A1 A2 P HCol); destruct HI as [I [HCol' HPerp]].
+  assert(HI := l8_18_过一点垂线之垂点的存在性 A1 A2 P HCol); destruct HI as [I [HCol' HPerp]].
   assert (HCop1 : 共面 B1 B2 P I) by (apply col__coplanar; Col).
   assert (HCop2 : 共面 C1 C2 P I) by (apply col__coplanar; Col).
   assert (HPerp1 := HPTP A1 A2 B1 B2 P I HPar1 HPerp HCop1).
@@ -50,18 +50,18 @@ elim (共线的决定性 A1 A2 P); intro HCol.
         Col; apply par__coplanar, HPar2).
   assert (HCop6 : 共面 A1 A2 P I) by Cop.
   assert (Perp P C1 P I)
-    by (apply perp_left_comm, perp_col with C2; Col).
+    by (apply 垂直的左交换性, 垂线共线点也构成垂直1 with C2; Col).
   assert (Col P C1 B1).
     {
     elim (两点重合的决定性 P B1); intro HPB1; [subst; Col|].
     apply cop_perp2__col with P I; [CopR|assumption|].
-    apply perp_left_comm, perp_col with B2; Col.
+    apply 垂直的左交换性, 垂线共线点也构成垂直1 with B2; Col.
     }
   assert (Col P C1 B2).
     {
     elim (两点重合的决定性 P B2); intro HPB2; [subst; Col|].
     apply cop_perp2__col with P I; [CopR|assumption|].
-    apply perp_left_comm, perp_col with B1; Col; Perp.
+    apply 垂直的左交换性, 垂线共线点也构成垂直1 with B1; Col; Perp.
     }
   split; apply (共线的传递性4 P C1); Col.
   }

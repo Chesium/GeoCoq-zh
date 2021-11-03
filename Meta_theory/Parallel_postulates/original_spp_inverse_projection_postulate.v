@@ -29,7 +29,7 @@ Proof.
     intro; destruct Hlta; 等角.
   }
   intro HNCol1.
-  assert(HNCol2 : ~ Col B P Q) by (apply per_not_col; auto).
+  assert(HNCol2 : ~ Col B P Q) by (apply 成直角三点不共线; auto).
   assert(HQ0 := cop_not_par_same_side A B Q P P C).
   destruct HQ0 as [Q0 []]; Col; Cop.
     intro; apply HNCol2; ColR.
@@ -45,8 +45,8 @@ Proof.
     assert(Hlta : 角度小于 A B C C B P).
     { apply acute_per__lta; auto.
       apply (bet_per_suma__per123 _ _ _ B P Q0 D E F); auto.
-      apply l8_2.
-      apply (l8_3 Q); Perp; Col.
+      apply 直角的对称性.
+      apply (l8_3_直角边共线点也构成直角1 Q); Perp; Col.
     }
     destruct Hlta as [Hlea HNConga].
     apply HNConga.
@@ -69,7 +69,7 @@ Proof.
   - apply invert_one_side.
     apply in_angle_one_side; Col.
     { intro.
-      assert(HInter := l8_16_1 B0 B A C B).
+      assert(HInter := l8_16_1_共线四点和一垂直推另一直角 B0 B A C B).
       destruct HInter; Col; Perp.
       assert(Habs : 角度小于 A B C A B C) by (apply acute_per__lta; auto).
       destruct Habs; 等角.
@@ -78,7 +78,7 @@ Proof.
     apply lea_in_angle; Side.
     apply lta__lea.
     apply acute_per__lta; auto.
-    apply perp_per_1; Perp.
+    apply L形垂直转直角1; Perp.
 
   - apply out_one_side; Col.
 
@@ -86,10 +86,10 @@ Proof.
     assert(HPar : Par B B0 P Y).
     { apply (l12_9 _ _ _ _ A B); Perp; Cop.
       apply coplanar_trans_1 with C; Col; Cop.
-      apply perp_right_comm.
-      apply (perp_col1 _ _ _ P); Col.
-      apply perp_sym.
-      apply (perp_col1 _ _ _ Q); Perp; ColR.
+      apply 垂直的右交换性.
+      apply (垂线共线点也构成垂直2 _ _ _ P); Col.
+      apply 垂直的对称性.
+      apply (垂线共线点也构成垂直2 _ _ _ Q); Perp; ColR.
     }
     destruct HPar; auto.
     exfalso.

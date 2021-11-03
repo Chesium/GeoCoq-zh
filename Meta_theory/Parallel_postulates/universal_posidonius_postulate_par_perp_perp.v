@@ -17,20 +17,20 @@ Lemma universal_posidonius_postulate__perpendicular_transversal_postulate_aux :
   Perp F H P R.
 Proof.
 intros HP E F G H R P HPerp HCop HCol HSacc.
-assert (HPerp1 : Perp E G E F) by (apply perp_sym, sac__perp1214 with H, HSacc).
+assert (HPerp1 : Perp E G E F) by (apply 垂直的对称性, sac__perp1214 with H, HSacc).
 assert (HPar : 严格平行 E G F H) by (apply sac__pars1423, HSacc).
 assert_diffs.
 assert (HRAH : postulate_of_right_saccheri_quadrilaterals).
   {
-  destruct (midpoint_existence E G) as [M1 HM1].
-  destruct (midpoint_existence F H) as [M2 HM2].
+  destruct (中点的存在性 E G) as [M1 HM1].
+  destruct (中点的存在性 F H) as [M2 HM2].
   assert (HLamb := mid2_sac__lam6521 _ _ _ _ _ _ HSacc HM2 HM1).
   unfold Lambert四边形 in HLamb; spliter.
   assert (萨凯里四边形 M1 M2 F E).
     {
     repeat split; Perp.
       apply 等长的对称性, 等长的左交换性, HP with E G F H; Col; Par.
-      apply perp_col2 with E M1; Perp; Col.
+      apply 与垂线共线之线也为垂线2 with E M1; Perp; Col.
     apply l12_6, (par_strict_col4__par_strict E G F H); Col.
     }
   apply per_sac__rah with M1 M2 F E; auto.
@@ -39,8 +39,8 @@ destruct (两点重合的决定性 E R) as [|HER].
   {
   subst R.
   assert (Col F P E) by (apply (cop_per2__col G); Perp; CopR).
-  apply perp_sym, perp_left_comm, perp_col with F; Col.
-  apply per_perp; auto; apply HRAH with G, HSacc.
+  apply 垂直的对称性, 垂直的左交换性, 垂线共线点也构成垂直1 with F; Col.
+  apply 直角转L形垂直; auto; apply HRAH with G, HSacc.
   }
 assert (HP' : forall A1 A2 B1 B2 C1 C2 D1 D2 IAB IAC IBD, IAB <> IAC -> IAB <> IBD ->
         Perp A1 A2 B1 B2 -> Perp A1 A2 C1 C2 -> Perp B1 B2 D1 D2 ->
@@ -65,23 +65,23 @@ assert (S <> R) by (intro; apply HPar; exists R; subst; split; Col).
 assert (HSacc2 : 萨凯里四边形 E F S R).
   {
   repeat split.
-    apply per_col with G; Perp; Col.
-    apply perp_per_1; apply (perp_col4 E G R P); Col.
+    apply 直角边共线点也构成直角2 with G; Perp; Col.
+    apply L形垂直转直角1; apply (与垂直两线分别共线的两线垂直 E G R P); Col.
     apply 等长的右交换性, HP with E G F H; Col; Par.
-    apply perp_sym, perp_col with P; Perp; Col.
+    apply 垂直的对称性, 垂线共线点也构成垂直1 with P; Perp; Col.
   apply l12_6, par_strict_col_par_strict with H; Col;
   [|apply par_strict_symmetry, par_strict_col_par_strict with G; Col; Par].
   intro; treat_equalities.
-  assert (~ Col G E F) by (apply per_not_col; Perp).
+  assert (~ Col G E F) by (apply 成直角三点不共线; Perp).
   assert (Col E P R) by (apply col_cop2_perp2__col with F E G; Perp; Col; Cop).
   apply HER, l6_21_两线交点的唯一性 with E G F E; ColR.
   }
 assert_diffs.
-apply perp_col with S; Col.
+apply 垂线共线点也构成垂直1 with S; Col.
 assert (Hd := HSacc2).
 apply sac_distincts in Hd; spliter.
-apply perp_sym, perp_comm, perp_col with S; Col.
-apply per_perp; auto.
+apply 垂直的对称性, 垂直的交换性, 垂线共线点也构成垂直1 with S; Col.
+apply 直角转L形垂直; auto.
 apply HRAH with E, sac_perm, HSacc2.
 Qed.
 
@@ -94,16 +94,16 @@ revert P Q.
 cut (forall P Q, Perp A B P Q -> 共面 C D P Q -> ~ Col A B P -> Perp C D P Q).
   {
   intros Haux P Q HPerp HCop.
-  destruct (perp_not_col2 A B P Q HPerp); [|apply perp_right_comm]; apply Haux; Perp; Cop.
+  destruct (垂直推出不共线 A B P Q HPerp); [|apply 垂直的右交换性]; apply Haux; Perp; Cop.
   }
 intros P Q HPerp HCop HNCol.
 assert (HH := HPar).
-destruct HH as [HPars|]; [|spliter; apply (perp_col2 A B); auto; ColR].
+destruct HH as [HPars|]; [|spliter; apply (与垂线共线之线也为垂线2 A B); auto; ColR].
 assert (HH := HPerp); destruct HH as [R HR];
-apply perp_in_col in HR; destruct HR as [HR1 HR2].
-destruct (l8_18_existence A B C) as [E [HE1 HE2]].
+apply 垂点是交点 in HR; destruct HR as [HR1 HR2].
+destruct (l8_18_过一点垂线之垂点的存在性 A B C) as [E [HE1 HE2]].
   apply par_strict_not_col_1 with D, HPars.
-destruct (l8_18_existence A B D) as [G [HG1 HG2]].
+destruct (l8_18_过一点垂线之垂点的存在性 A B D) as [G [HG1 HG2]].
   apply par_strict_not_col_4 with C, HPars.
 assert (E <> G).
   {
@@ -114,18 +114,18 @@ assert (E <> G).
 assert (萨凯里四边形 E C D G).
   {
   repeat split.
-    apply perp_per_1, perp_col0 with A B; Perp.
-    apply perp_per_1, perp_col2 with A B; Perp.
+    apply L形垂直转直角1, 与垂线共线之线也为垂线1 with A B; Perp.
+    apply L形垂直转直角1, 与垂线共线之线也为垂线2 with A B; Perp.
     apply 等长的右交换性, HP with A B C D; Perp; Col.
   apply l12_6, par_strict_symmetry, par_strict_col2_par_strict with A B; Par.
   }
-assert (P <> Q) by (apply perp_distinct in HPerp; apply HPerp).
-apply perp_sym, perp_col with R; Col.
-apply perp_sym.
+assert (P <> Q) by (apply 垂直推出不重合 in HPerp; apply HPerp).
+apply 垂直的对称性, 垂线共线点也构成垂直1 with R; Col.
+apply 垂直的对称性.
 assert (P <> R) by (intro; subst; apply HNCol, HR1).
 apply par_distinct in HPar; spliter.
 apply universal_posidonius_postulate__perpendicular_transversal_postulate_aux with E G; trivial.
-  apply perp_col2 with A B; Col; apply perp_sym, perp_left_comm, perp_col with Q; Perp.
+  apply 与垂线共线之线也为垂线2 with A B; Col; apply 垂直的对称性, 垂直的左交换性, 垂线共线点也构成垂直1 with Q; Perp.
   apply col_cop__cop with Q; trivial.
   apply (共线的传递性4 A B); auto.
 Qed.

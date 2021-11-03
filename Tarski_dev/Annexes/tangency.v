@@ -187,7 +187,7 @@ assert(~圆的切线 A B O P).
 apply(diam_not_tangent); Col.
 contradiction.
 
-assert(HH:= l8_18_existence A B O H4).
+assert(HH:= l8_18_过一点垂线之垂点的存在性 A B O H4).
 ex_and HH R.
 
 induction(两点重合的决定性 T R).
@@ -200,15 +200,15 @@ ex_and HH T'.
 induction(两点重合的决定性 A R).
 subst A.
 assert(Perp T R R O).
-apply perp_comm.
-apply (perp_col R B O R T); Col.
+apply 垂直的交换性.
+apply (垂线共线点也构成垂直1 R B O R T); Col.
 assert(垂直于 R T R R O).
-apply perp_in_comm.
-apply perp_perp_in.
+apply 垂直于的交换性.
+apply L形垂直转垂直于.
 Perp.
 assert(Per O R T).
-apply l8_2.
-apply perp_in_per; auto.
+apply 直角的对称性.
+apply L形垂直于转直角; auto.
 unfold Per in *.
 ex_and H11 T''.
 assert(T' = T'').
@@ -238,23 +238,23 @@ Cong.
 
 
 assert(Perp T R R O).
-apply perp_comm.
-apply (perp_col R A O R T); Col.
-apply perp_left_comm.
-eapply (perp_col A B O R R); auto.
+apply 垂直的交换性.
+apply (垂线共线点也构成垂直1 R A O R T); Col.
+apply 垂直的左交换性.
+eapply (垂线共线点也构成垂直1 A B O R R); auto.
 unfold 中点 in *.
 spliter.
 apply 中间性蕴含共线1 in H8.
 ColR.
 assert(垂直于 R T R R O).
-apply perp_in_comm.
-apply perp_perp_in.
+apply 垂直于的交换性.
+apply L形垂直转垂直于.
 Perp.
 
 
 assert(Per O R T).
-apply l8_2.
-apply perp_in_per; auto.
+apply 直角的对称性.
+apply L形垂直于转直角; auto.
 unfold Per in *.
 ex_and H12 T''.
 assert(T' = T'').
@@ -303,12 +303,12 @@ unfold unique.
 exists T.
 split.
 split; auto.
-apply perp_in_col in H1.
+apply 垂点是交点 in H1.
 tauto.
 intros.
 spliter.
 assert(Col A B T).
-apply perp_in_col in H1.
+apply 垂点是交点 in H1.
 tauto.
 
 induction(两点重合的决定性 T x').
@@ -316,19 +316,19 @@ auto.
 apply False_ind.
 
 assert(Perp T x' O T).
-apply (perp_col2 A B); auto.
-apply perp_in_perp in H1.
+apply (与垂线共线之线也为垂线2 A B); auto.
+apply 垂直于转垂直 in H1.
 auto.
 
 assert(垂直于 T T x' O T).
-apply perp_perp_in; auto.
+apply L形垂直转垂直于; auto.
 
 assert(Per x' T O).
-apply perp_in_comm in H7.
-apply perp_in_per; auto.
+apply 垂直于的交换性 in H7.
+apply L形垂直于转直角; auto.
 
 assert(~Col x' T O).
-apply perp_not_col in H6.
+apply L形垂直推出不共线 in H6.
 ColR.
 
 assert(Lt T x' x' O /\ Lt T O x' O).
@@ -355,7 +355,7 @@ assert(HH:=tangentat_perp A B O P T).
 assert(Perp A B O T).
 apply HH; auto.
 
-apply(l8_14_2_1b_bis A B O T T H4); Col.
+apply(l8_14_2_1b_bis_交点是垂点 A B O T T H4); Col.
 Qed.
 
 
@@ -421,7 +421,7 @@ unfold Lt.
 split; auto.
 intro.
 
-assert(HH:=midpoint_existence X Q).
+assert(HH:=中点的存在性 X Q).
 ex_and HH M.
 assert(在圆内 M O P).
 apply(bet_inc2__incs O P Q X M); Circle.
@@ -564,13 +564,13 @@ assert(O <> X).
 assert(HH:=circ长度小于等于的决定性 O P X).
 induction HH.
 
-assert(HH:= perp_exists X O X H2).
+assert(HH:= 垂点的存在性 X O X H2).
 ex_and HH Y.
 unfold 在圆上 in *.
 exists Y.
 apply tangency_chara; auto.
 exists X.
-apply perp_perp_in in H4.
+apply L形垂直转垂直于 in H4.
 split; Circle.
 
 induction H3.
@@ -610,7 +610,7 @@ assert(Bet O U X).
 
 assert(exists X : Tpoint, Perp U X O U).
 {
-  apply(perp_exists U O U).
+  apply(垂点的存在性 U O U).
   intro.
   unfold 在圆上 in H4.
   treat_equalities; tauto.
@@ -623,7 +623,7 @@ spliter.
 assert(exists X0 : Tpoint, (Bet U R X0 \/ Bet U X0 R) /\ Cong U X0 W X).
 {
   apply(由一点往一方向构造等长线段_2 R U W X).
-  apply perp_distinct in H8.
+  apply 垂直推出不重合 in H8.
   spliter.
   auto.
 }
@@ -729,13 +729,13 @@ assert(等角 O U Y O V X).
 assert(Per O V X).
 {
   apply(l11_17 O U Y O V X).
-  apply(perp_col _ _ _ _ Y) in H8.
+  apply(垂线共线点也构成垂直1 _ _ _ _ Y) in H8.
 
-  apply perp_perp_in in H8.
-  apply perp_in_comm in H8.
-  apply perp_in_per.
-  apply perp_in_sym.
-  apply perp_in_comm.
+  apply L形垂直转垂直于 in H8.
+  apply 垂直于的交换性 in H8.
+  apply L形垂直于转直角.
+  apply 垂直于的对称性.
+  apply 垂直于的交换性.
   assumption.
   intro.
   treat_equalities.
@@ -749,9 +749,9 @@ assert(Per O V X).
 apply tangency_chara; auto.
 exists V.
 split; auto.
-apply per_perp_in in H24; Cong.
-apply perp_in_left_comm.
-apply perp_in_sym.
+apply 直角转L形垂直于 in H24; Cong.
+apply 垂直于的左交换性.
+apply 垂直于的对称性.
 assumption.
 unfold 在圆上 in *.
 intro.
@@ -793,14 +793,14 @@ spliter.
 induction (两点重合的决定性 Z Q).
   right; auto.
 left.
-assert(HH:=midpoint_existence Q P).
+assert(HH:=中点的存在性 Q P).
 ex_and HH M.
 assert(Per A M Q).
 apply(mid_onc2__per A B Q P M); auto.
 assert(Per C M Q).
 apply(mid_onc2__per C D Q P M); auto.
 
-assert(HH:=midpoint_existence Z Q).
+assert(HH:=中点的存在性 Z Q).
 ex_and HH N.
 
 assert(Per A N Q).
@@ -839,23 +839,23 @@ assert_diffs;auto.
 assert(Perp A C Q P).
 induction(两点重合的决定性 A M).
 subst M.
-apply per_perp_in in H12; auto.
-apply perp_in_comm in H12.
+apply 直角转L形垂直于 in H12; auto.
+apply 垂直于的交换性 in H12.
 
-apply perp_in_perp in H12.
-apply perp_sym.
-apply (perp_col Q A A C P); Perp.
+apply 垂直于转垂直 in H12.
+apply 垂直的对称性.
+apply (垂线共线点也构成垂直1 Q A A C P); Perp.
 ColR.
 assert_diffs;auto.
 
-apply per_perp_in in H11; auto.
-apply perp_in_comm in H11.
-apply perp_in_perp in H11.
-apply perp_comm in H11.
-apply (perp_col A M M Q C) in H11; Col.
-apply perp_sym in H11.
-apply perp_comm in H11.
-apply (perp_col Q M C A P) in H11; Col.
+apply 直角转L形垂直于 in H11; auto.
+apply 垂直于的交换性 in H11.
+apply 垂直于转垂直 in H11.
+apply 垂直的交换性 in H11.
+apply (垂线共线点也构成垂直1 A M M Q C) in H11; Col.
+apply 垂直的对称性 in H11.
+apply 垂直的交换性 in H11.
+apply (垂线共线点也构成垂直1 Q M C A P) in H11; Col.
 Perp.
 assert_diffs;auto.
 
@@ -865,26 +865,26 @@ ColR.
 assert(Perp A C Q Z).
 induction(两点重合的决定性 A N).
 subst N.
-apply per_perp_in in H15; auto.
-apply perp_in_comm in H15.
-apply perp_in_perp in H15.
-apply perp_sym.
-apply (perp_col Q A A C Z); Perp.
+apply 直角转L形垂直于 in H15; auto.
+apply 垂直于的交换性 in H15.
+apply 垂直于转垂直 in H15.
+apply 垂直的对称性.
+apply (垂线共线点也构成垂直1 Q A A C Z); Perp.
 assert_diffs;auto.
 
-apply per_perp_in in H14; auto.
-apply perp_in_comm in H14.
-apply perp_in_perp in H14.
-apply perp_comm in H14.
-apply (perp_col A N N Q C) in H14; Col.
-apply perp_sym in H14.
-apply perp_comm in H14.
-apply (perp_col Q N C A Z) in H14; Col.
+apply 直角转L形垂直于 in H14; auto.
+apply 垂直于的交换性 in H14.
+apply 垂直于转垂直 in H14.
+apply 垂直的交换性 in H14.
+apply (垂线共线点也构成垂直1 A N N Q C) in H14; Col.
+apply 垂直的对称性 in H14.
+apply 垂直的交换性 in H14.
+apply (垂线共线点也构成垂直1 Q N C A Z) in H14; Col.
 Perp.
 assert_diffs;auto.
 
-apply perp_sym in H21.
-apply perp_sym in H19.
+apply 垂直的对称性 in H21.
+apply 垂直的对称性 in H19.
 assert (HH : Par Q P Q Z).
 apply (l12_9 _ _ _ _ A C); auto.
 Cop.

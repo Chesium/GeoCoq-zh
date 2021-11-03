@@ -11,7 +11,7 @@ Lemma thales_postulate__thales_converse_postulate : thales_postulate -> thales_c
 Proof.
   intros thales A B C M HM HPer.
   destruct (共线的决定性 A B C) as [|HNCol].
-    destruct (l8_9 A C B); Col; subst; Cong.
+    destruct (l8_9_直角三点共线则必有两点重合 A C B); Col; subst; Cong.
   assert_diffs.
   assert(M <> C) by (intro; subst; apply HNCol; Col).
   destruct (由一点往一方向构造等长线段_3 M C M A) as [C' [HC' HCong]]; auto.

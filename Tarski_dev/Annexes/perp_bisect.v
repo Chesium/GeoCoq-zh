@@ -13,13 +13,13 @@ intros; unfold Perp_bisect; unfold 中垂线_另一定义; unfold 严格对称; 
   intro H; destruct H as [[[X [HMid HCol]] HPerp] HDiff].
   exists X; split; 中点.
   elim HPerp; clear HPerp; intro HPerp; [|exfalso;auto].
-  apply l8_14_2_1b_bis; Col; Perp.
+  apply l8_14_2_1b_bis_交点是垂点; Col; Perp.
   }
 
   {
   intro H; destruct H as [I [HPerp HMid]].
   assert_diffs; split; Col.
-  split; try (left; apply l8_14_2_1a with I); Perp.
+  split; try (left; apply l8_14_2_1a_垂直于转垂直 with I); Perp.
   exists I; split; 中点.
   unfold 垂直于 in *; spliter; Col.
   }
@@ -96,7 +96,7 @@ unfold 中垂线_另一定义 in *.
 elim H;intros I;intros;clear H.
 decompose [and] H0;clear H0.
 assert (Cong P A P B).
-apply (per_double_cong P I A B);
+apply (直角端点和其关于顶点的对称点与另一端点等距 P I A B);
 eauto with perp.
 Cong.
 Qed.
@@ -112,7 +112,7 @@ unfold 中垂线_另一定义 in *.
 elim H;intros I;intros;clear H.
 decompose [and] H0;clear H0.
 assert (Cong Q A Q B).
-apply (per_double_cong Q I A B);
+apply (直角端点和其关于顶点的对称点与另一端点等距 Q I A B);
 eauto with perp.
 Cong.
 Qed.
@@ -158,7 +158,7 @@ Proof.
 intros.
 apply perp_bisect_equiv_def.
 unfold 中垂线_另一定义.
-elim (midpoint_existence A B).
+elim (中点的存在性 A B).
 intros I HI.
 exists I.
 split;try assumption.
@@ -179,7 +179,7 @@ intuition.
 
 induction(两点重合的决定性 P I).
 subst.
-eapply l8_13_2;Col.
+eapply l8_13_2_两线夹角为直角则两线垂直;Col.
 exists Q. exists B;repeat split;Col.
 unfold Per.
 exists A.
@@ -187,7 +187,7 @@ split.
 中点.
 Cong.
 
-eapply l8_13_2.
+eapply l8_13_2_两线夹角为直角则两线垂直.
 assumption.
 assumption.
 
@@ -237,7 +237,7 @@ apply perp_bisect_equiv_def.
 unfold 中垂线_另一定义 in *.
 exists C.
 split; auto.
-apply l8_14_2_1b_bis; Col.
+apply l8_14_2_1b_bis_交点是垂点; Col.
 Qed.
 
 Lemma cong_cop2_perp_bisect_col : forall A B C D E,
@@ -252,8 +252,8 @@ assert (HCong2 := HPerp); apply perp_bisect_cong2 in HCong2; destruct HCong2 as 
 apply perp_bisect_equiv_def in HPerp.
 destruct HPerp as [F [HPerp [HBet HCong3]]].
 assert (HDE : D <> E) by (assert_diffs; auto).
-assert (HCol := HPerp); apply perp_in_col in HCol; destruct HCol as [HCol Hc]; clear Hc.
-apply l8_14_2_1a in HPerp.
+assert (HCol := HPerp); apply 垂点是交点 in HCol; destruct HCol as [HCol Hc]; clear Hc.
+apply l8_14_2_1a_垂直于转垂直 in HPerp.
 elim (两点重合的决定性 A C); intro; try (subst; Col).
 apply cop_perp2__col with D E; Perp; Cop.
 apply perp_bisect_perp; apply cong_cop_perp_bisect; Cong.
@@ -263,7 +263,7 @@ Lemma perp_bisect_cop2_existence : forall A B C,
   A <> B -> exists P, exists Q, Perp_bisect P Q A B /\ 共面 A B C P /\ 共面 A B C Q.
 Proof.
 intros A B C HDiff.
-destruct (midpoint_existence A B) as [M HM].
+destruct (中点的存在性 A B) as [M HM].
 destruct (ex_perp_cop A B M C HDiff) as [Q []].
 exists M; exists Q; unfold Perp_bisect.
 repeat split; Cop.
@@ -284,7 +284,7 @@ Lemma perp_bisect_existence_cop : forall A B C,
                                 共面 A B C Q.
 Proof.
 intros A B C HDiff.
-destruct (midpoint_existence A B) as [M HM].
+destruct (中点的存在性 A B) as [M HM].
 destruct (ex_perp_cop A B M C) as [Q [HQ HCop]]; auto.
 exists M; exists Q; unfold Perp_bisect.
 repeat split; Perp; [|Cop].

@@ -8,7 +8,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma euclid_5__original_euclid : euclid_5 -> euclid_s_parallel_postulate.
 Proof.
   intros eucl A B C D P Q R Hos HIsi HSuma HNBet.
-  assert(HM := midpoint_existence B C).
+  assert(HM := 中点的存在性 B C).
   destruct HM as [M].
   assert(HD' := 构造对称点 D C).
   destruct HD' as [D'].

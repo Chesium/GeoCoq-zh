@@ -26,7 +26,7 @@ destruct (两点重合的决定性 O B).
  unfold Ar2;auto.
  left;auto.
 -
-destruct (perp_exists O E O) as [X HX].
+destruct (垂点的存在性 O E O) as [X HX].
 auto.
 destruct (由一点往一方向构造等长线段_2 X O O B) as [B' [HB1 HB2]].
 assert_diffs;auto.
@@ -45,10 +45,10 @@ exists B'.
 split.
 
 assert (Perp O X O B).
-apply (perp_col1 O X O E B);Col.
+apply (垂线共线点也构成垂直2 O X O E B);Col.
 Perp.
 assert (Perp O B O B').
- apply (perp_col1 O B O X B').
+ apply (垂线共线点也构成垂直2 O B O X B').
  intro;treat_equalities.
  intuition.
  Perp.
@@ -147,13 +147,13 @@ Col.
 
 ex_and H3 B'.
 assert(Per A O B').
-apply l8_2.
-apply (per_col _ _ B).
-apply perp_distinct in H3.
+apply 直角的对称性.
+apply (直角边共线点也构成直角2 _ _ B).
+apply 垂直推出不重合 in H3.
 tauto.
-apply perp_in_per.
-apply perp_in_comm.
-apply perp_perp_in.
+apply L形垂直于转直角.
+apply 垂直于的交换性.
+apply L形垂直转垂直于.
 Perp.
 ColR.
 
@@ -255,8 +255,8 @@ subst C.
 apply 等长的对称性 in H9.
 apply 等长的同一性 in H9.
 subst B'.
-apply perp_right_comm in H3.
-apply perp_not_col in H3.
+apply 垂直的右交换性 in H3.
+apply L形垂直推出不共线 in H3.
 apply H3.
 ColR.
 apply not_out_bet in H14.
@@ -326,7 +326,7 @@ subst B.
 
 apply 等长的同一性 in H8.
 subst B'.
-apply perp_distinct in H3.
+apply 垂直推出不重合 in H3.
 tauto.
 apply not_out_bet in H13.
 assumption.
@@ -394,8 +394,8 @@ subst C.
 apply 等长的对称性 in H9.
 apply 等长的同一性 in H9.
 subst B'.
-apply perp_right_comm in H3.
-apply perp_not_col in H3.
+apply 垂直的右交换性 in H3.
+apply L形垂直推出不共线 in H3.
 apply H3.
 ColR.
 apply not_out_bet in H14.
@@ -418,7 +418,7 @@ subst B.
 
 apply 等长的同一性 in H8.
 subst B'.
-apply perp_distinct in H3.
+apply 垂直推出不重合 in H3.
 tauto.
 apply not_out_bet in H13.
 assumption.
@@ -571,8 +571,8 @@ subst C.
 apply 等长的对称性 in H9.
 apply 等长的同一性 in H9.
 subst B'.
-apply perp_right_comm in H3.
-apply perp_not_col in H3.
+apply 垂直的右交换性 in H3.
+apply L形垂直推出不共线 in H3.
 apply H3.
 ColR.
 apply not_out_bet in H14.
@@ -678,7 +678,7 @@ subst B.
 
 apply 等长的同一性 in H8.
 subst B'.
-apply perp_distinct in H3.
+apply 垂直推出不重合 in H3.
 tauto.
 apply not_out_bet in H13.
 assumption.
@@ -781,8 +781,8 @@ subst C.
 apply 等长的对称性 in H9.
 apply 等长的同一性 in H9.
 subst B'.
-apply perp_right_comm in H3.
-apply perp_not_col in H3.
+apply 垂直的右交换性 in H3.
+apply L形垂直推出不共线 in H3.
 apply H3.
 ColR.
 apply not_out_bet in H14.
@@ -822,7 +822,7 @@ subst B.
 
 apply 等长的同一性 in H8.
 subst B'.
-apply perp_distinct in H3.
+apply 垂直推出不重合 in H3.
 tauto.
 apply not_out_bet in H13.
 assumption.
@@ -957,12 +957,12 @@ eapply (sum_uniquenessA O E E' H A C1 C2 O); auto.
 ex_and H2 B'.
 spliter.
 subst B.
-apply perp_distinct in H2.
+apply 垂直推出不重合 in H2.
 tauto.
 ex_and H0 B'.
 spliter.
 subst B.
-apply perp_distinct in H0.
+apply 垂直推出不重合 in H0.
 tauto.
 
 ex_and H0 B1.
@@ -1043,11 +1043,11 @@ apply (等长的同一性 O C2 O);auto.
 Cong.
 
 assert(Per A O B1).
-apply perp_in_per.
-apply perp_in_comm.
-apply perp_perp_in.
+apply L形垂直于转直角.
+apply 垂直于的交换性.
+apply L形垂直转垂直于.
 
-apply (perp_col O B ).
+apply (垂线共线点也构成垂直1 O B ).
 auto.
 Perp.
 ColR.

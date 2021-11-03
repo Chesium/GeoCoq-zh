@@ -48,7 +48,7 @@ Proof.
     { induction n.
         exists A, C; split; constructor.
       destruct IHn as [X [Y [HX HY]]].
-      destruct (midpoint_existence X Y) as [M].
+      destruct (中点的存在性 X Y) as [M].
       destruct (Hdis M); [apply (Haux X Y); eauto|..].
         exists M, Y; split; [apply cX_other with X Y|apply cY_same with X M]; auto.
         exists X, M; split; [apply cX_same with Y M|apply cY_other with X Y]; auto.
@@ -89,7 +89,7 @@ Proof.
       exists O, A, B0; repeat split; [constructor..|Cong].
     destruct IHHP' as [n [X [Y [HX [HY HXY]]]]]; [assumption..|].
     exists (S n).
-    destruct (midpoint_existence X Y) as [M HM].
+    destruct (中点的存在性 X Y) as [M HM].
     destruct (Hdis M); [apply (Haux X Y); eauto|..].
     - exists M, Y; repeat split; [apply cX_other with X Y|apply cY_same with X M|]; auto.
       apply 等长的左交换性, 两中点组全段等长则前半段等长 with X B0; [|split|Cong]; 中点.

@@ -22,7 +22,7 @@ apply (l11_21_b A B C C B C);auto.
 apply (out_trivial B C);auto.
 (*Case 2 Bet A B C*)
 assert (Bet A B C) by(apply (not_out_bet A B C);auto).
-destruct (perp_exists B A C) as [E HPerp].
+destruct (垂点的存在性 B A C) as [E HPerp].
 intro HEQAC.
 subst.
 elim HAB.
@@ -33,16 +33,16 @@ assert_diffs.
 repeat split; auto.
 exists B.
 split;auto.
-assert (Perp B E A B) by (apply (perp_col1 B E A C B);Col).
-assert (Perp B E C B) by (assert_diffs;apply (perp_col1 B E C A B);Perp;Col).
-assert (Per E B A) by (apply (perp_per_1 B E A);assumption).
-assert (Per E B C) by (apply (perp_per_2 B E C);Perp).
+assert (Perp B E A B) by (apply (垂线共线点也构成垂直2 B E A C B);Col).
+assert (Perp B E C B) by (assert_diffs;apply (垂线共线点也构成垂直2 B E C A B);Perp;Col).
+assert (Per E B A) by (apply (L形垂直转直角1 B E A);assumption).
+assert (Per E B C) by (apply (L形垂直转直角2 B E C);Perp).
 assert (等角 E B A E B C) by (assert_diffs;apply (l11_16 E B A E B C);auto).
 等角.
 (*case 3: ~ Col A B C. *)
 destruct (由一点往一方向构造等长线段 B A B C ) as [C'[ HC'1 HC'2]].
 destruct (由一点往一方向构造等长线段 B C B A ) as [A' [HA'1 HA'2]].
-destruct (midpoint_existence A' C') as [I HI].
+destruct (中点的存在性 A' C') as [I HI].
 assert (Cong B C' A' B) by (apply 两组连续三点分段等则全体等 with A C;Cong;Between).
 assert_diffs.
 assert (等角 A' C' B C' A' B).
@@ -99,16 +99,16 @@ intros A B C I H1 H2 HNCOL HCOP HCOL1 HCOL2 HCONGA HORTHA HORTHC.
 split.
 intro.
 subst.
-assert (Per A B I) by (apply (perp_per_1 B A I);Perp).
+assert (Per A B I) by (apply (L形垂直转直角1 B A I);Perp).
 assert (Col A C B).
 {  apply cop_per2__col with I;Cop.
   assert_diffs;auto.
-  apply (l8_2 I B C);auto.
+  apply (直角的对称性 I B C);auto.
   apply (l11_17 A B I I B C);auto. }
 elim HNCOL;Col.
 intro;subst.
-assert (Per C B I) by (apply (perp_per_1 B C I);auto).
-assert (Per I B C) by (apply (l8_2 C B I);auto).
+assert (Per C B I) by (apply (L形垂直转直角1 B C I);auto).
+assert (Per I B C) by (apply (直角的对称性 C B I);auto).
 assert (Col A C B).
 { apply cop_per2__col with I;Cop.
   assert_diffs; auto.
@@ -125,7 +125,7 @@ destruct (not_col_bfoot_not_equality A B C I H1 H2) as [HNEQH1 HNEQH2];Col.
 assert (为锐角 H1 B I). 
 { apply (perp_out_acute H1 B I H1);auto. 
   apply (out_trivial B H1);auto.
-  apply (perp_col2 A B H1 B I H1);Col. }
+  apply (与垂线共线之线也为垂线2 A B H1 B I H1);Col. }
 assert (等角 H1 B I I B C).
 { assert_diffs;apply (l11_10 A B I I B C H1 I I C);Out. }
 assert (为锐角 I B C) by (apply (acute_conga__acute H1 B I I B C);auto).
@@ -151,9 +151,9 @@ assert (H2 <> B).
   Col.
 }
 assert (Perp B H2 I H2).
-  apply (perp_col B C I H2 H2);auto.
+  apply (垂线共线点也构成垂直1 B C I H2 H2);auto.
 assert (Per B H2 I).
-{  apply (perp_per_1 H2 B I);auto.
+{  apply (L形垂直转直角1 H2 B I);auto.
    Perp.
 }
 assert (Per H2 B I).
@@ -165,16 +165,16 @@ assert (Per H2 B I).
 }
 assert (H2 = B).
 {
-  apply (l8_7 I H2 B);auto.
-  apply (l8_2 B H2 I);auto.
-  apply (l8_2 H2 B I);auto.
+  apply (ABC和ACB均直角则B与C重合 I H2 B);auto.
+  apply (直角的对称性 B H2 I);auto.
+  apply (直角的对称性 H2 B I);auto.
 }
 contradiction.
 split;auto.
 intro.
 subst.
-assert (Perp B H1 I H1) by (apply (perp_col B A I H1 H1);auto;Perp;Col).
-assert (Per B H1 I) by (apply (perp_per_1 H1 B I);auto;Perp).
+assert (Perp B H1 I H1) by (apply (垂线共线点也构成垂直1 B A I H1 H1);auto;Perp;Col).
+assert (Per B H1 I) by (apply (L形垂直转直角1 H1 B I);auto;Perp).
 assert (Per H1 B I).
 {
   apply (l11_17 B H1 I H1 B I);auto.
@@ -184,9 +184,9 @@ assert (Per H1 B I).
 }
 assert (H1 = B).
 {
-  apply (l8_7 I H1 B);auto.
-  apply (l8_2 B H1 I);auto.
-  apply (l8_2 H1 B I);auto.
+  apply (ABC和ACB均直角则B与C重合 I H1 B);auto.
+  apply (直角的对称性 B H1 I);auto.
+  apply (直角的对称性 H1 B I);auto.
 }
 contradiction.
 Qed.
@@ -234,16 +234,16 @@ assert(HMY : Cong H1 B H2 B /\ 等角 H1 B I H2 B I /\ 等角 H1 I B H2 I B).
 {  assert_diffs.
    apply (l11_52 B H1 I B H2 I);Cong.
    apply (l11_16 B H1 I B H2 I);auto.
-   apply (perp_per_1 H1 B I).
-   assert (Perp B H1 I H1) by (apply (perp_col B A I H1 H1);auto;Perp;Col).
+   apply (L形垂直转直角1 H1 B I).
+   assert (Perp B H1 I H1) by (apply (垂线共线点也构成垂直1 B A I H1 H1);auto;Perp;Col).
    Perp.
-   apply (perp_per_1 H2 B I).
-   assert (Perp B H2 I H2) by (apply (perp_col B C I H2 H2);auto;Perp;Col).
+   apply (L形垂直转直角1 H2 B I).
+   assert (Perp B H2 I H2) by (apply (垂线共线点也构成垂直1 B C I H2 H2);auto;Perp;Col).
    Perp.
    apply (l11_46 B H1 I); auto.
    left.
-   apply (perp_per_1 H1 B I).
-   assert (Perp B H1 I H1) by (apply (perp_col B A I H1 H1);auto;Perp;Col).
+   apply (L形垂直转直角1 H1 B I).
+   assert (Perp B H1 I H1) by (apply (垂线共线点也构成垂直1 B A I H1 H1);auto;Perp;Col).
    Perp.  }
 destruct HMY as [HSH1BH2B [HAH1BI HAH1IB]].
 assert (TS I B A C).
@@ -277,10 +277,10 @@ Lemma bisector_perp_equality : forall A B C I H1 H2, 共面 A B C I ->
 Proof.
 intros A B C I H1 H2 HCOP HCABH HCCBH HPH1 HPH2 HCONGA.
 destruct (共线的决定性 A B C) as [HCOL | HNCOL].
-assert (Perp A B I H2) by (assert_diffs;apply (perp_col2 B C A B I H2);Col).
+assert (Perp A B I H2) by (assert_diffs;apply (与垂线共线之线也为垂线2 B C A B I H2);Col).
 assert (H1 = H2).
-{ apply (l8_14_2_1b H1 A B I H1 H2);auto.
- apply (l8_14_2_1b_bis A B I H1 H1);Col.
+{ apply (l8_14_2_1b_垂点是交点 H1 A B I H1 H2);auto.
+ apply (l8_14_2_1b_bis_交点是垂点 A B I H1 H1);Col.
  ColR.
  assert (Perp I H1 A B) by Perp.
  assert (Perp I H2 A B) by Perp.
@@ -299,10 +299,10 @@ apply (l11_50_2 I B H1 I B H2).
   col_with_conga. }
 { assert_diffs.
   apply (l11_16 B H1 I B H2 I);auto.
-  apply (perp_per_1 H1 B I).
-  apply (perp_col2 A B H1 B I H1);Col.
-  assert (Perp B H2 I H2) by (apply (perp_col B C I H2 H2);Col).
-  apply (perp_per_1 H2 B I);Perp. }
+  apply (L形垂直转直角1 H1 B I).
+  apply (与垂线共线之线也为垂线2 A B H1 B I H1);Col.
+  assert (Perp B H2 I H2) by (apply (垂线共线点也构成垂直1 B C I H2 H2);Col).
+  apply (L形垂直转直角1 H2 B I);Perp. }
 assert (等角 H1 B I I B H2).
 { assert_diffs.
   apply (l11_10 A B I I B C H1 I I H2);Out. }
@@ -336,16 +336,16 @@ assert (Out B H2 C').
   ColR.
   apply (conga_right_comm A' B I C' B I);auto.
   apply (l11_13 A B I C B I A' C');等角.
-  apply (perp_col2 A B A' B I H1);Col.
-  apply (perp_col2 B C B C' I H2);Col. }
+  apply (与垂线共线之线也为垂线2 A B A' B I H1);Col.
+  apply (与垂线共线之线也为垂线2 B C B C' I H2);Col. }
 apply (l11_50_2 I B H1 I B H2).
 { intro;elim HNCOL.
   col_with_conga. }
 assert (Per B H1 I).
-{  apply (perp_per_1 H1 B I).
-   apply (perp_col2 A B H1 B I H1);Col. }
-assert (Per B H2 I) by (apply (perp_per_1 H2 B I);
-    assert (Perp B H2 I H2) by (apply (perp_col B C I H2 H2);Col);Perp).
+{  apply (L形垂直转直角1 H1 B I).
+   apply (与垂线共线之线也为垂线2 A B H1 B I H1);Col. }
+assert (Per B H2 I) by (apply (L形垂直转直角1 H2 B I);
+    assert (Perp B H2 I H2) by (apply (垂线共线点也构成垂直1 B C I H2 H2);Col);Perp).
 assert_diffs.
 apply (l11_16 B H1 I B H2 I);auto.
 assert (等角 H1 B I I B H2).
@@ -374,19 +374,19 @@ assert(HMY : Cong H1 B H2 B /\ 等角 H1 B I H2 B I /\ 等角 H1 I B H2 I B).
  apply (l11_52 B H1 I B H2 I).
 { assert_diffs.
   apply (l11_16 B H1 I B H2 I); auto.
-  apply (perp_per_1 H1 B I).
-  assert (Perp B H1 I H1) by (apply (perp_col B A I H1 H1);Perp;Col).
+  apply (L形垂直转直角1 H1 B I).
+  assert (Perp B H1 I H1) by (apply (垂线共线点也构成垂直1 B A I H1 H1);Perp;Col).
   Perp.
-  apply (perp_per_1 H2 B I).
-  assert (Perp B H2 I H2) by (apply (perp_col B C I H2 H2);Perp;Col).
+  apply (L形垂直转直角1 H2 B I).
+  assert (Perp B H2 I H2) by (apply (垂线共线点也构成垂直1 B C I H2 H2);Perp;Col).
   Perp. }
 Cong.
 Cong.
 {  assert_diffs.
    apply (l11_46 B H1 I); auto.
    left.
-   apply (perp_per_1 H1 B I).
-   assert (Perp B H1 I H1) by (apply (perp_col B A I H1 H1);Perp;Col).
+   apply (L形垂直转直角1 H1 B I).
+   assert (Perp B H1 I H1) by (apply (垂线共线点也构成垂直1 B A I H1 H1);Perp;Col).
    Perp. }
 destruct HMY as [HSH1BH2B [HAH1BI HAH1IB]].
 destruct (out_dec B A H1) as [HOUT | HBET].

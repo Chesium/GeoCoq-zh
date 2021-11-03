@@ -20,13 +20,13 @@ elim (共线的决定性 A1 A2 P); [intro HCol; treat_equalities|intro HNC1].
   }
 
   {
-  destruct (perp_exists P A1 A2) as [X HPerp1]; [assert_diffs; auto|].
+  destruct (垂点的存在性 P A1 A2) as [X HPerp1]; [assert_diffs; auto|].
   revert dependent A2; revert A1.
   cut (forall A1 A2, Par A1 A2 B1 B2 -> Par A1 A2 C1 C2 -> ~ Col A1 A2 P -> Perp P X A1 A2 ->
                      ~ Col P X A1 -> Col C1 B1 B2 /\ Col C2 B1 B2).
   {
   intros Haux A1 A2 HParAB HParAC HNC1 HPerp1.
-  elim (perp_not_col2 _ _ _ _ HPerp1); [apply (Haux A1 A2)|apply (Haux A2 A1)]; Par; Col; Perp.
+  elim (垂直推出不共线 _ _ _ _ HPerp1); [apply (Haux A1 A2)|apply (Haux A2 A1)]; Par; Col; Perp.
   }
 
   intros A1 A2 HParAB HParAC HNC1 HPerp1 HNC2.

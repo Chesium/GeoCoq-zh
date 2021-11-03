@@ -781,7 +781,7 @@ assumption.
 induction H.
 apply False_ind.
 apply H0.
-assert(exists M, 中点 M B C) by(apply midpoint_existence).
+assert(exists M, 中点 M B C) by(apply 中点的存在性).
 ex_and H3 M.
 exists M.
 unfold 中点 in H4.
@@ -822,7 +822,7 @@ assumption.
 
 apply False_ind.
 apply H0.
-assert(exists M, 中点 M A B) by(apply midpoint_existence).
+assert(exists M, 中点 M A B) by(apply 中点的存在性).
 ex_and H3 M.
 exists M.
 unfold 中点 in H4.

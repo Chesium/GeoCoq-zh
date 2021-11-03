@@ -50,7 +50,7 @@ remember (f A) as fA; remember (f B) as fB; rewrite gradexp__gradexpinv.
 intro HI; induction HI as [|fA fB C C' ? ? ? HInd];
 [exists B; repeat split; [auto|constructor|auto]|].
 rename C into X, C' into X'; destruct HInd as [C [? []]]; auto.
-destruct (midpoint_existence A C) as [C' []]; exists C'.
+destruct (中点的存在性 A C) as [C' []]; exists C'.
 assert (Col P Q C')
   by (destruct (两点重合的决定性 A C); [treat_equalities|apply (共线的传递性5 A C)]; Col).
 split; [auto|split; [|apply 中点的唯一性1 with fA fB; split; subst; auto]].

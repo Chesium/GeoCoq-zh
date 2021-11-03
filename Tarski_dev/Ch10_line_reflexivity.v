@@ -91,23 +91,23 @@ Proof.
         assumption.
       apply A是AA中点.
     assert (exists M, Col A B M /\ Perp A B X M).
-      apply l8_18_existence.
+      apply l8_18_过一点垂线之垂点的存在性.
       assumption.
     ex_and H0 M0.
     double X M0 Z.
     exists Z.
     split.
       left.
-      apply perp_sym.
-      eapply perp_col.
+      apply 垂直的对称性.
+      eapply 垂线共线点也构成垂直1.
         intro.
         subst Z.
         apply M是AA中点则M与A重合 in H2.
         subst X.
-        apply perp_distinct in H1.
+        apply 垂直推出不重合 in H1.
         spliter.
         absurde.
-        apply perp_sym.
+        apply 垂直的对称性.
         apply H1.
       unfold Col.
       left.
@@ -150,23 +150,23 @@ Proof.
       right.
       reflexivity.
     assert (exists M, Col A B M /\ Perp A B X M).
-      apply l8_18_existence.
+      apply l8_18_过一点垂线之垂点的存在性.
       assumption.
     ex_and H1 M0.
     double X M0 Z.
     exists Z.
     split.
       left.
-      apply perp_sym.
-      eapply perp_col.
+      apply 垂直的对称性.
+      eapply 垂线共线点也构成垂直1.
         intro.
         subst Z.
         apply M是AA中点则M与A重合 in H3.
         subst X.
-        apply perp_distinct in H2.
+        apply 垂直推出不重合 in H2.
         spliter.
         absurde.
-        apply perp_sym.
+        apply 垂直的对称性.
         apply H2.
       unfold Col.
       left.
@@ -186,17 +186,17 @@ Proof.
         assumption.
       assumption.
     left.
-    apply perp_sym.
-    apply perp_left_comm.
-    eapply perp_col.
+    apply 垂直的对称性.
+    apply 垂直的左交换性.
+    eapply 垂线共线点也构成垂直1.
       intro.
       subst X.
       apply M是AA中点则M与A重合 in H3.
       subst Z.
-      apply perp_distinct in H2.
+      apply 垂直推出不重合 in H2.
       spliter.
       absurde.
-      apply perp_sym.
+      apply 垂直的对称性.
       apply H2.
     unfold Col.
     left.
@@ -228,7 +228,7 @@ Proof.
         subst X.
         apply A是AB中点则A与B重合 in H.
         subst P1.
-        apply perp_distinct in H3.
+        apply 垂直推出不重合 in H3.
         spliter.
         absurde.
       assert (P <> Y).
@@ -236,13 +236,13 @@ Proof.
         subst Y.
         apply A是AB中点则A与B重合 in H0.
         subst P2.
-        apply perp_distinct in H2.
+        apply 垂直推出不重合 in H2.
         spliter.
         absurde.
       assert (Perp P X A B).
-        eapply perp_col.
+        eapply 垂线共线点也构成垂直1.
           assumption.
-          apply perp_sym.
+          apply 垂直的对称性.
           apply H3.
         unfold Col.
         right; left.
@@ -250,9 +250,9 @@ Proof.
         apply M是AB中点则M是BA中点.
         assumption.
       assert (Perp P Y A B).
-        eapply perp_col.
+        eapply 垂线共线点也构成垂直1.
           assumption.
-          apply perp_sym.
+          apply 垂直的对称性.
           apply H2.
         unfold Col.
         right; left.
@@ -262,42 +262,42 @@ Proof.
       induction (两点重合的决定性 X A).
         subst X.
         assert (~ Col A B P /\ Per P A B).
-          eapply l8_16_1.
+          eapply l8_16_1_共线四点和一垂直推另一直角.
             apply ABA型共线.
             apply ABB型共线.
             auto.
-          apply perp_sym.
+          apply 垂直的对称性.
           assumption.
         spliter.
         assert (Y = A).
-          eapply l8_18_uniqueness.
+          eapply l8_18_过一点垂线之垂点的唯一性.
             apply H10.
             assumption.
-            apply perp_sym.
+            apply 垂直的对称性.
             assumption.
             apply ABA型共线.
-          apply perp_sym.
+          apply 垂直的对称性.
           assumption.
         subst Y.
         eapply 中点组的唯一性1.
           apply H.
         apply H0.
       assert (~ Col A B P /\ Per P X A).
-        eapply l8_16_1.
+        eapply l8_16_1_共线四点和一垂直推另一直角.
           assumption.
           apply ABA型共线.
           auto.
-        apply perp_sym.
+        apply 垂直的对称性.
         assumption.
       spliter.
       assert (Y = X).
-        eapply l8_18_uniqueness.
+        eapply l8_18_过一点垂线之垂点的唯一性.
           apply H11.
           assumption.
-          apply perp_sym.
+          apply 垂直的对称性.
           assumption.
           assumption.
-        apply perp_sym.
+        apply 垂直的对称性.
         assumption.
       subst Y.
       eapply 中点组的唯一性1.
@@ -311,13 +311,13 @@ Proof.
         subst X.
         apply A是AB中点则A与B重合 in H0.
         subst P2.
-        eapply perp_distinct in H2.
+        eapply 垂直推出不重合 in H2.
         spliter.
         absurde.
       assert (Perp P Y A B).
-        eapply perp_col.
+        eapply 垂线共线点也构成垂直1.
           assumption.
-          apply perp_sym.
+          apply 垂直的对称性.
           apply H2.
         unfold Col.
         right; left.
@@ -329,20 +329,20 @@ Proof.
       induction (两点重合的决定性 Y A).
         subst Y.
         assert (~ Col A B P /\ Per P A B).
-          eapply l8_16_1.
+          eapply l8_16_1_共线四点和一垂直推另一直角.
             assumption.
             apply ABB型共线.
             auto; auto.
-          apply perp_sym.
+          apply 垂直的对称性.
           assumption.
         spliter.
         contradiction.
       assert (~ Col A B P /\ Per P Y A).
-        eapply l8_16_1.
+        eapply l8_16_1_共线四点和一垂直推另一直角.
           assumption.
           apply ABA型共线.
           auto.
-        apply perp_sym.
+        apply 垂直的对称性.
         assumption.
       spliter.
       contradiction.
@@ -354,13 +354,13 @@ Proof.
         subst Y.
         apply A是AB中点则A与B重合 in H.
         subst P1.
-        eapply perp_distinct in H3.
+        eapply 垂直推出不重合 in H3.
         spliter.
         absurde.
       assert (Perp P X A B).
-        eapply perp_col.
+        eapply 垂线共线点也构成垂直1.
           assumption.
-          apply perp_sym.
+          apply 垂直的对称性.
           apply H3.
         unfold Col.
         right; left.
@@ -372,20 +372,20 @@ Proof.
       induction (两点重合的决定性 X A).
         subst X.
         assert (~ Col A B P /\ Per P A B).
-          eapply l8_16_1.
+          eapply l8_16_1_共线四点和一垂直推另一直角.
             assumption.
             apply ABB型共线.
             auto.
-          apply perp_sym.
+          apply 垂直的对称性.
           assumption.
         spliter.
         contradiction.
       assert (~ Col A B P /\ Per P X A).
-        eapply l8_16_1.
+        eapply l8_16_1_共线四点和一垂直推另一直角.
           assumption.
           apply ABA型共线.
           auto.
-        apply perp_sym.
+        apply 垂直的对称性.
         assumption.
       spliter.
       contradiction.
@@ -422,7 +422,7 @@ Proof.
       right.
       reflexivity.
     assert (exists X, Col A B X /\ Perp A B P X).
-      eapply l8_18_existence.
+      eapply l8_18_过一点垂线之垂点的存在性.
       assumption.
     ex_and H0 X.
     double P X P'.
@@ -432,16 +432,16 @@ Proof.
       exists X.
       split; assumption.
     left.
-    apply perp_sym.
-    eapply perp_col.
+    apply 垂直的对称性.
+    eapply 垂线共线点也构成垂直1.
       intro.
       subst P'.
       apply M是AA中点则M与A重合 in H2.
       subst X.
-      apply perp_distinct in H1.
+      apply 垂直推出不重合 in H1.
       spliter.
       absurde.
-      apply perp_sym.
+      apply 垂直的对称性.
       apply H1.
     unfold Col.
     left.
@@ -483,7 +483,7 @@ Proof.
       assumption.
     induction H0.
       left.
-      apply perp_right_comm.
+      apply 垂直的右交换性.
       assumption.
     auto.
 Qed.
@@ -640,7 +640,7 @@ Proof.
     ex_and H0 M0.
     induction H2.
       assert (HH:= H2).
-      apply perp_distinct in HH.
+      apply 垂直推出不重合 in HH.
       spliter.
       induction (两点重合的决定性 M0 X).
         subst X.
@@ -648,29 +648,29 @@ Proof.
         spliter.
         Cong.
       assert (Perp M0 X P' P).
-        eapply perp_col2;eauto.
+        eapply 与垂线共线之线也为垂线2;eauto.
       assert(~ Col A B P /\ Per P M0 X).
-        eapply l8_16_1.
+        eapply l8_16_1_共线四点和一垂直推另一直角.
           assumption.
           assumption.
           auto.
-        apply perp_sym.
-        eapply perp_col.
+        apply 垂直的对称性.
+        eapply 垂线共线点也构成垂直1.
           intro.
           subst P.
           apply M是AB中点则M是BA中点 in H0.
           apply A是AB中点则A与B重合 in H0.
           subst P'.
           absurde.
-          apply perp_left_comm.
-          apply perp_sym.
-          apply H2; eapply perp_left_comm.
+          apply 垂直的左交换性.
+          apply 垂直的对称性.
+          apply H2; eapply 垂直的左交换性.
         unfold Col.
         right; left.
         apply midpoint_bet.
         assumption.
       spliter.
-      eapply l8_2 in H9.
+      eapply 直角的对称性 in H9.
       unfold Per in H9.
       ex_and H9 P0.
       assert (P0 = P').
@@ -694,36 +694,36 @@ Proof.
     ex_and H M0.
     induction H1.
       assert (HH:= H1).
-      apply perp_distinct in HH.
+      apply 垂直推出不重合 in HH.
       spliter.
       induction (两点重合的决定性 M0 X).
         subst X.
         unfold 中点 in *.
         spliter.
         Cong.
-      assert (Perp M0 X P' P) by (eauto using perp_col2).
+      assert (Perp M0 X P' P) by (eauto using 与垂线共线之线也为垂线2).
       assert(~ Col A B P /\ Per P M0 X).
-        eapply l8_16_1.
+        eapply l8_16_1_共线四点和一垂直推另一直角.
           assumption.
           assumption.
           auto.
-        apply perp_sym.
-        eapply perp_col.
+        apply 垂直的对称性.
+        eapply 垂线共线点也构成垂直1.
           intro.
           subst P.
           apply M是AB中点则M是BA中点 in H.
           apply A是AB中点则A与B重合 in H.
           subst P'.
           absurde.
-          apply perp_left_comm.
-          apply perp_sym.
-          apply H1; eapply perp_left_comm.
+          apply 垂直的左交换性.
+          apply 垂直的对称性.
+          apply H1; eapply 垂直的左交换性.
         unfold Col.
         right; left.
         apply midpoint_bet.
         assumption.
       spliter.
-      eapply l8_2 in H8.
+      eapply 直角的对称性 in H8.
       unfold Per in H8.
       ex_and H8 P0.
       assert (P0 = P').
@@ -750,21 +750,21 @@ Proof.
     ex_and H1 X.
     induction H2.
       assert (A <> B /\ T' <> T).
-        apply perp_distinct in H2.
+        apply 垂直推出不重合 in H2.
         spliter.
         split; assumption.
       spliter.
       induction (两点重合的决定性 A X).
         subst X.
         assert (Perp A B T' A).
-          apply perp_sym.
-          eapply perp_col.
+          apply 垂直的对称性.
+          eapply 垂线共线点也构成垂直1.
             intro.
             subst T'.
             apply A是AB中点则A与B重合 in H1.
             subst A.
             absurde.
-            apply perp_sym.
+            apply 垂直的对称性.
             apply H2.
           unfold Col.
           right; left.
@@ -772,9 +772,9 @@ Proof.
           apply M是AB中点则M是BA中点.
           assumption.
         assert (~ Col  A T' B).
-          apply perp_not_col.
-          apply perp_comm.
-          apply perp_sym.
+          apply L形垂直推出不共线.
+          apply 垂直的交换性.
+          apply 垂直的对称性.
           assumption.
         assert (A = T).
           apply l6_21_两线交点的唯一性 with A T' B T; Col.
@@ -787,14 +787,14 @@ Proof.
       induction (两点重合的决定性 B X).
         subst X.
         assert (Perp A B T' B).
-          apply perp_sym.
-          eapply perp_col.
+          apply 垂直的对称性.
+          eapply 垂线共线点也构成垂直1.
             intro.
             subst T'.
             apply A是AB中点则A与B重合 in H1.
             subst B.
             absurde.
-            apply perp_sym.
+            apply 垂直的对称性.
             apply H2.
           unfold Col.
           right; left.
@@ -802,9 +802,9 @@ Proof.
           apply M是AB中点则M是BA中点.
           assumption.
         assert (~ Col  B T' A).
-          apply perp_not_col.
-          apply perp_left_comm.
-          apply perp_sym.
+          apply L形垂直推出不共线.
+          apply 垂直的左交换性.
+          apply 垂直的对称性.
           assumption.
         assert (B = T).
           eapply l6_21_两线交点的唯一性.
@@ -825,22 +825,22 @@ Proof.
         absurde.
       assert (Col A X T) by ColR.
       assert (Perp A B T' X).
-        apply perp_sym.
-        eapply perp_col.
+        apply 垂直的对称性.
+        eapply 垂线共线点也构成垂直1.
           intro.
           subst T'.
           apply A是AB中点则A与B重合 in H1.
           subst X.
           absurde.
-          apply perp_sym.
+          apply 垂直的对称性.
           apply H2.
         assert_cols.
         Col.
       assert (~ Col  X T' A).
-        apply perp_not_col.
-        apply perp_left_comm.
-        apply perp_sym.
-        eapply perp_col.
+        apply L形垂直推出不共线.
+        apply 垂直的左交换性.
+        apply 垂直的对称性.
+        eapply 垂线共线点也构成垂直1.
           assumption.
           apply H9.
         assumption.
@@ -888,7 +888,7 @@ Proof.
             assumption.
           assumption.
         subst P'.
-        apply perp_distinct in H3.
+        apply 垂直推出不重合 in H3.
         spliter.
         absurde.
       apply H0.
@@ -919,7 +919,7 @@ Proof.
       assert (P <> P').
         intro.
         subst P'.
-        apply perp_distinct in H4.
+        apply 垂直推出不重合 in H4.
         spliter.
         absurde.
       assert (Q <> Q').
@@ -932,7 +932,7 @@ Proof.
             apply H2.
           apply H3.
         subst P'.
-        apply perp_distinct in H4.
+        apply 垂直推出不重合 in H4.
         spliter.
         absurde.
       split.
@@ -971,11 +971,11 @@ Proof.
         subst Y.
         apply M是AA中点则M与A重合 in H6.
         subst X.
-        apply perp_sym.
-        eapply perp_col with P'.
+        apply 垂直的对称性.
+        eapply 垂线共线点也构成垂直1 with P'.
           auto.
-          apply perp_left_comm.
-          apply perp_col with P.
+          apply 垂直的左交换性.
+          apply 垂线共线点也构成垂直1 with P.
             intro.
             subst Q'.
             apply M是AA中点则M与A重合 in H3.
@@ -983,7 +983,7 @@ Proof.
             apply A是AB中点则A与B重合 in H1.
             subst P.
             absurde.
-            apply perp_sym.
+            apply 垂直的对称性.
             apply H4.
           eapply (共线的传递性3 M).
             intro.
@@ -1016,31 +1016,31 @@ Proof.
         right; right.
         apply midpoint_bet.
         assumption.
-      apply per_perp_in in H10.
-        apply perp_in_perp_bis in H10.
+      apply 直角转L形垂直于 in H10.
+        apply 垂直于转T形垂直 in H10.
         induction H10.
-          apply perp_distinct in H10.
+          apply 垂直推出不重合 in H10.
           spliter.
           absurde.
-        apply perp_comm.
-        apply perp_sym.
-        eapply perp_col.
+        apply 垂直的交换性.
+        apply 垂直的对称性.
+        eapply 垂线共线点也构成垂直1.
           assumption.
-          apply perp_comm.
-          eapply (perp_col  Y Q).
+          apply 垂直的交换性.
+          eapply (垂线共线点也构成垂直1  Y Q).
             intro.
             subst Q.
-            apply perp_distinct in H10.
+            apply 垂直推出不重合 in H10.
             spliter.
             absurde.
-            apply perp_sym.
+            apply 垂直的对称性.
             induction (两点重合的决定性 A M).
               subst A.
-              apply perp_left_comm.
-              eapply (perp_col _ M).
+              apply 垂直的左交换性.
+              eapply (垂线共线点也构成垂直1 _ M).
                 auto.
-                apply perp_left_comm.
-                eapply (perp_col _ Y).
+                apply 垂直的左交换性.
+                eapply (垂线共线点也构成垂直1 _ Y).
                   assumption.
                   assumption.
                 induction (两点重合的决定性 M X).
@@ -1060,8 +1060,8 @@ Proof.
               apply ABB型共线.
             induction (两点重合的决定性 B M).
               subst M.
-              apply perp_left_comm.
-              apply (perp_col _ Y).
+              apply 垂直的左交换性.
+              apply (垂线共线点也构成垂直1 _ Y).
                 auto.
                 assumption.
               induction (两点重合的决定性 B X).
@@ -1078,10 +1078,10 @@ Proof.
                 assumption.
               apply 等价共线BCA.
               assumption.
-            eapply perp_col.
+            eapply 垂线共线点也构成垂直1.
               assumption.
-              apply perp_left_comm.
-              eapply (perp_col M Y).
+              apply 垂直的左交换性.
+              eapply (垂线共线点也构成垂直1 M Y).
                 auto.
                 assumption.
               assert(Col B X M).
@@ -1199,17 +1199,17 @@ Proof.
         ex_and H0 M'.
         induction H3.
           assert (Perp P M' A B).
-            eapply perp_col.
+            eapply 垂线共线点也构成垂直1.
               intro.
               subst P.
               apply M是AB中点则M是BA中点 in H0.
               apply A是AB中点则A与B重合 in H0.
               subst P'.
-              apply perp_distinct in H3.
+              apply 垂直推出不重合 in H3.
               spliter.
               absurde.
-              apply perp_sym.
-              apply perp_right_comm.
+              apply 垂直的对称性.
+              apply 垂直的右交换性.
               apply H3.
             unfold Col.
             right; left.
@@ -1220,29 +1220,29 @@ Proof.
               induction (两点重合的决定性 A M').
                 subst M'.
                 assert (~ Col A B P /\ Per P A B).
-                  eapply l8_16_1.
+                  eapply l8_16_1_共线四点和一垂直推另一直角.
                     apply ABA型共线.
                     apply ABB型共线.
-                    apply perp_distinct in H3.
+                    apply 垂直推出不重合 in H3.
                     spliter.
                     auto.
-                  apply perp_sym.
+                  apply 垂直的对称性.
                   assumption.
                 spliter.
                 intro.
                 apply H6.
                 assumption.
               assert (~ Col A B P /\ Per P M' A).
-                eapply l8_16_1.
+                eapply l8_16_1_共线四点和一垂直推另一直角.
                   assumption.
                   apply ABA型共线.
-                apply perp_sym.
+                apply 垂直的对称性.
                 assumption.
               spliter.
               intro.
               apply H7.
               assumption.
-            apply perp_distinct in H3.
+            apply 垂直推出不重合 in H3.
             spliter.
             auto.
           subst M'.
@@ -1284,7 +1284,7 @@ Proof.
       assumption.
     induction H0.
       left.
-      apply perp_left_comm.
+      apply 垂直的左交换性.
       assumption.
     right.
     assumption.
@@ -1366,13 +1366,13 @@ Proof.
       right.
       assumption.
     left.
-    apply perp_sym.
+    apply 垂直的对称性.
     assert(B <> X /\ B <> Y).
       apply 严格中点组推论1.
         assumption.
       assumption.
     spliter.
-      apply col_per_perp; Col.
+      apply 直角加共线转L形垂直; Col.
     exists Y.
     split.
       assumption.
@@ -1421,7 +1421,7 @@ Proof.
       unfold 严格对称 in *.
       destruct H as [H HFalse].
       elim HFalse; clear HFalse; intro HFalse.
-        apply perp_distinct in HFalse.
+        apply 垂直推出不重合 in HFalse.
         intuition.
       intuition.
     elim (l10_6_existence_spec C D A HCD); intros B' HB'.
@@ -1457,32 +1457,32 @@ Proof.
       induction (两点重合的决定性 A M0).
         subst A.
         assert (Perp M0 B P M0).
-          apply perp_sym.
-          eapply (perp_col _ P').
+          apply 垂直的对称性.
+          eapply (垂线共线点也构成垂直1 _ P').
             assumption.
-            apply perp_sym.
-            apply perp_right_comm.
+            apply 垂直的对称性.
+            apply 垂直的右交换性.
             apply H2.
           unfold Col.
           right; left.
           apply midpoint_bet.
           assumption.
         assert (垂直于 M0 M0 B P M0).
-          eapply perp_perp_in.
+          eapply L形垂直转垂直于.
           assumption.
         assert(Per B M0 P).
-          eapply perp_in_per.
-          apply perp_in_comm.
+          eapply L形垂直于转直角.
+          apply 垂直于的交换性.
           assumption.
         assert (B <> M0).
           intro.
           repeat split.
           subst B.
-          apply perp_distinct in H2.
+          apply 垂直推出不重合 in H2.
           spliter.
           absurde.
         assert (~Col B M0 P).
-          eapply per_not_col.
+          eapply 成直角三点不共线.
             assumption.
             auto.
           assumption.
@@ -1516,26 +1516,26 @@ Proof.
       induction (两点重合的决定性 B M0).
         subst B.
         assert (Perp M0 A P M0).
-          apply perp_sym.
-          eapply (perp_col _ P').
+          apply 垂直的对称性.
+          eapply (垂线共线点也构成垂直1 _ P').
             assumption.
-            apply perp_sym.
-            apply perp_comm.
+            apply 垂直的对称性.
+            apply 垂直的交换性.
             apply H2.
           unfold Col.
           right; left.
           apply midpoint_bet.
           assumption.
         assert (垂直于 M0 M0 A P M0).
-          eapply perp_perp_in.
+          eapply L形垂直转垂直于.
           assumption.
         assert(Per A M0 P).
-          eapply perp_in_per.
-          apply perp_in_comm.
+          eapply L形垂直于转直角.
+          apply 垂直于的交换性.
           assumption.
         repeat split.
           assert (~Col A M0 P).
-            eapply per_not_col.
+            eapply 成直角三点不共线.
               assumption.
               auto.
             assumption.
@@ -1558,7 +1558,7 @@ Proof.
             apply midpoint_bet.
             apply M是AB中点则M是BA中点.
             assumption.
-          apply (per_not_col A M0 P); auto.
+          apply (成直角三点不共线 A M0 P); auto.
           apply 等价共线BAC.
           assumption.
         exists M0.
@@ -1569,42 +1569,42 @@ Proof.
         assumption.
       repeat split.
         assert(Perp  P M0 A B).
-          eapply perp_col.
+          eapply 垂线共线点也构成垂直1.
             assumption.
-            apply perp_sym.
-            apply perp_right_comm.
+            apply 垂直的对称性.
+            apply 垂直的右交换性.
             apply H2.
           unfold Col.
           right; left.
           apply midpoint_bet.
           assumption.
         assert (~ Col M0 P A).
-          apply perp_not_col.
-          apply perp_sym.
-          eapply perp_col.
+          apply L形垂直推出不共线.
+          apply 垂直的对称性.
+          eapply 垂线共线点也构成垂直1.
             assumption.
-            apply perp_sym.
-            apply perp_left_comm.
+            apply 垂直的对称性.
+            apply 垂直的左交换性.
             apply H7.
           assumption.
         intro.
         apply H8.
         apply 等价共线BCA.
         eapply 共线的传递性2.
-          apply perp_distinct in H2.
+          apply 垂直推出不重合 in H2.
           spliter.
           apply H2.
           assumption.
         apply 等价共线BCA.
         assumption.
         assert(Perp  P' M0 A B).
-          eapply perp_col.
+          eapply 垂线共线点也构成垂直1.
             intro.
             subst P'.
             apply A是AB中点则A与B重合 in H1.
             subst P.
             absurde.
-            apply perp_sym.
+            apply 垂直的对称性.
             apply H2.
           unfold Col.
           right; left.
@@ -1612,19 +1612,19 @@ Proof.
           apply M是AB中点则M是BA中点.
           assumption.
         assert (~ Col M0 P' A).
-          apply perp_not_col.
-          apply perp_sym.
-          eapply perp_col.
+          apply L形垂直推出不共线.
+          apply 垂直的对称性.
+          eapply 垂线共线点也构成垂直1.
             assumption.
-            apply perp_sym.
-            apply perp_left_comm.
+            apply 垂直的对称性.
+            apply 垂直的左交换性.
             apply H7.
           assumption.
         intro.
         apply H8.
         apply 等价共线BCA.
         eapply 共线的传递性2.
-          apply perp_distinct in H2.
+          apply 垂直推出不重合 in H2.
           spliter.
           apply H2.
           assumption.
@@ -1659,7 +1659,7 @@ Proof.
     induction (两点重合的决定性 A C).
       subst C.
       assert (exists Q, exists T, Perp A B Q A /\ Col A B T /\ Bet X T Q).
-        apply l8_21.
+        apply 十字上的中间性.
         assumption.
       ex_elim H2 Q.
       ex_and H4 T.
@@ -1670,7 +1670,7 @@ Proof.
         apply H3.
       unfold TS.
       repeat split.
-        apply perp_not_col in H2.
+        apply L形垂直推出不共线 in H2.
         intro.
         apply H2.
         apply 等价共线BCA.
@@ -1685,15 +1685,15 @@ Proof.
       apply 中间性的对称性.
       assumption.
     assert (exists Q, exists T, Perp C A Q C /\ Col C A T /\ Bet X T Q).
-      apply l8_21.
+      apply 十字上的中间性.
       auto.
     ex_elim H4 Q.
     ex_and H5 T.
     exists Q.
     split.
-      eapply perp_col.
+      eapply 垂线共线点也构成垂直1.
         assumption.
-        apply perp_left_comm.
+        apply 垂直的左交换性.
         apply H4.
       apply 等价共线ACB.
       assumption.
@@ -1701,7 +1701,7 @@ Proof.
       apply H3.
     unfold TS.
     repeat split.
-      eapply perp_not_col in H4.
+      eapply L形垂直推出不共线 in H4.
       intro.
       apply H4.
       apply 等价共线CAB.
@@ -1726,7 +1726,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma ex_per_cong : forall A B C D X Y,
+Lemma ex_四点成首末边等长双直角S形则对边等长 : forall A B C D X Y,
  A <> B -> X <> Y -> Col A B C -> ~Col A B D ->
  exists P, Per P C A /\ Cong P C X Y /\ OS A B P D.
 Proof.
@@ -1737,9 +1737,9 @@ Proof.
     exists P; repeat split; Cong.
     - destruct (两点重合的决定性 A C).
         subst; Perp.
-      apply perp_per_1.
-      apply perp_col1 with B; auto.
-      assert_diffs; apply perp_sym, perp_col1 with Q; Col; Perp.
+      apply L形垂直转直角1.
+      apply 垂线共线点也构成垂直2 with B; auto.
+      assert_diffs; apply 垂直的对称性, 垂线共线点也构成垂直2 with Q; Col; Perp.
     - apply os_out_os with Q C; Side.
 Qed.
 
@@ -1753,7 +1753,7 @@ exists x;split;spliter;Perp.
 destruct (两点不重合则存在不共线的点 A B H) as [P HP].
 destruct (两点重合的决定性 X Y).
 subst;exists B;split;[Perp|Cong].
-destruct (ex_per_cong A B B P X Y); Col.
+destruct (ex_四点成首末边等长双直角S形则对边等长 A B B P X Y); Col.
 spliter.
 exists x;split;[Perp|Cong].
 Qed.
