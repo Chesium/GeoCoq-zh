@@ -32,21 +32,21 @@ C'est une appliquette Java créée avec GeoGebra ( www.geogebra.org) - Il semble
 **)
 
 (*
-Definition is_orthocenter H A B C :=
+Definition 垂心 H A B C :=
  ~ Col A B C /\
  exists A1, exists B1, Perp A A1 B C /\ Perp B B1 A C /\ Col H A A1 /\ Col H B B1.
 *)
 
-Definition is_orthocenter H A B C :=
+Definition 垂心 H A B C :=
  ~ Col A B C /\ Perp A H B C /\ Perp B H A C /\ Perp C H A B.
 
-Lemma is_orthocenter_coplanar : forall A B C H, is_orthocenter H A B C -> 共面 H A B C.
+Lemma 垂心与三角形共面 : forall A B C H, 垂心 H A B C -> 共面 H A B C.
 Proof.
 intros A B C H [HNCol [HPerp]].
 apply coplanar_perm_6, perp__coplanar, HPerp.
 Qed.
 
-Lemma construct_intersection : forall A B C X1 X2 X3,
+Lemma 构造三角形两垂线的交点 : forall A B C X1 X2 X3,
  ~ Col A B C ->
  Par A C B X1 -> Par A B C X2 ->  Par B C A X3 ->
  exists E, Col E A X3 /\ Col E B X1.
@@ -68,7 +68,7 @@ intro; subst.
 apply HNC; apply not_strict_par1 with D E; finish.
 Qed.
 
-Lemma construct_triangle : forall A B C,
+Lemma 反构造中点三角形 : forall A B C,
   ~ Col A B C -> exists D, exists E, exists F,
   Col B D F /\ Col A E F /\ Col C D E /\
   Par A B C D /\ Par A C B D /\ Par B C A E /\
@@ -82,9 +82,9 @@ elim (parallel_existence1 A B C HAB);intros X1 HX1.
 elim (parallel_existence1 A C B HAC);intros X2 HX2.
 elim (parallel_existence1 B C A HBC);intros X3 HX3.
 
-assert (T : exists D, Col D B X2 /\ Col D C X1) by (apply construct_intersection with A X3; finish); DecompExAnd T D.
-assert (T : exists E, Col E A X3 /\ Col E C X1) by (apply construct_intersection with B X2; finish); DecompExAnd T E.
-assert (T : exists F, Col F A X3 /\ Col F B X2) by (apply construct_intersection with C X1; finish); DecompExAnd T F.
+assert (T : exists D, Col D B X2 /\ Col D C X1) by (apply 构造三角形两垂线的交点 with A X3; finish); DecompExAnd T D.
+assert (T : exists E, Col E A X3 /\ Col E C X1) by (apply 构造三角形两垂线的交点 with B X2; finish); DecompExAnd T E.
+assert (T : exists F, Col F A X3 /\ Col F B X2) by (apply 构造三角形两垂线的交点 with C X1; finish); DecompExAnd T F.
 
 assert (A <> E) by (apply not_col_par_col_diff with B C X1; finish).
 assert (A <> F) by (apply not_col_par_col_diff with C B X2; finish).
@@ -128,7 +128,7 @@ intro; subst.
 assert (D <> F) by (intro; subst; intuition).
 apply HNC; apply not_strict_par1 with D B; sfinish.
 Qed.
-
+(* 没看懂 *)
 Lemma diff_not_col_col_par4_mid: forall A B C D E,
   D <> E -> ~ Col A B C -> Col C D E -> Par A B C D ->
   Par A B C E -> Par A E B C -> Par A C B D -> 中点 C D E.
@@ -139,7 +139,7 @@ assert (HPara2 : 严格平行四边形 C A B D) by (apply parallel_2_plg; finish
 assert_congs_perm.
 apply 不重合共线点间距相同则为中点组2; Col; CongR.
 Qed.
-
+(* 看上去像废话 *)
 Lemma altitude_is_perp_bisect : forall A B C O A1 E F,
   A <> O -> E <> F -> Perp A A1 B C -> Col O A1 A -> Col A E F -> Par B C A E -> 中点 A E F ->
   Perp_bisect A O E F.
@@ -152,7 +152,7 @@ apply par_col_par with A...
 apply 垂线共线点也构成垂直2 with A1...
 Qed.
 
-Lemma altitude_intersect:
+Lemma 两垂线交点在第三条垂线上:
  forall A  A1 B B1 C C1 O: Tpoint,
  ~ Col A B C ->
  Perp A A1 B C  -> Perp B B1 A C -> Perp C C1 A B ->
@@ -161,7 +161,7 @@ Lemma altitude_intersect:
 Proof with finish.
 intros A A1 B B1 C C1 O HNC HPerp1 HPerp2 HPerp3 HC1 HC2.
 assert (HT := HNC).
-apply construct_triangle in HT.
+apply 反构造中点三角形 in HT.
 destruct HT as [D [E [F HT]]].
 spliter.
 
@@ -189,7 +189,7 @@ assert (Perp_bisect B O D F) by (apply altitude_is_perp_bisect with A C B1; fini
 
 assert (Perp O C D E).
 
-  apply circumcenter_intersect with F A B; finish.
+  apply 三角形的三条中垂线交于一点 with F A B; finish.
   apply perp_bisect_sym_1; assumption.
   apply perp_bisect_sym_1; assumption.
 
@@ -204,77 +204,77 @@ apply coplanar_perm_2, col_cop__cop with B1; Col; Cop.
 
 Qed.
 
-Lemma is_orthocenter_cases :
+Lemma 垂心的各排列情况 :
   forall A B C G,
-  is_orthocenter G A B C \/
-  is_orthocenter G A C B \/
-  is_orthocenter G B A C \/
-  is_orthocenter G B C A \/
-  is_orthocenter G C A B \/
-  is_orthocenter G C B A ->
-  is_orthocenter G A B C.
+  垂心 G A B C \/
+  垂心 G A C B \/
+  垂心 G B A C \/
+  垂心 G B C A \/
+  垂心 G C A B \/
+  垂心 G C B A ->
+  垂心 G A B C.
 Proof.
 intros.
 decompose [or] H;clear H;
-unfold is_orthocenter in *;spliter;
+unfold 垂心 in *;spliter;
 repeat (split; finish).
 Qed.
 
-Lemma is_orthocenter_perm : forall A B C G,
- is_orthocenter G A B C ->
- is_orthocenter G A B C /\ is_orthocenter G A C B /\
- is_orthocenter G B A C /\ is_orthocenter G B C A /\
- is_orthocenter G C A B /\ is_orthocenter G C B A.
+Lemma 垂心的等价排列 : forall A B C G,
+ 垂心 G A B C ->
+ 垂心 G A B C /\ 垂心 G A C B /\
+ 垂心 G B A C /\ 垂心 G B C A /\
+ 垂心 G C A B /\ 垂心 G C B A.
 Proof.
 intros.
-unfold is_orthocenter in *.
+unfold 垂心 in *.
 spliter.
 repeat split;finish.
 Qed.
 
-Lemma is_orthocenter_perm_1 : forall A B C G,
- is_orthocenter G A B C -> is_orthocenter G A C B.
+Lemma 等价垂心ACB : forall A B C G,
+ 垂心 G A B C -> 垂心 G A C B.
 Proof.
 intros.
-apply is_orthocenter_perm in H;intuition.
+apply 垂心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_orthocenter_perm_2 : forall A B C G,
- is_orthocenter G A B C -> is_orthocenter G B A C.
+Lemma 等价垂心BAC : forall A B C G,
+ 垂心 G A B C -> 垂心 G B A C.
 Proof.
 intros.
-apply is_orthocenter_perm in H;intuition.
+apply 垂心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_orthocenter_perm_3 : forall A B C G,
- is_orthocenter G A B C -> is_orthocenter G B C A.
+Lemma 等价垂心BCA : forall A B C G,
+ 垂心 G A B C -> 垂心 G B C A.
 Proof.
 intros.
-apply is_orthocenter_perm in H;intuition.
+apply 垂心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_orthocenter_perm_4 : forall A B C G,
- is_orthocenter G A B C -> is_orthocenter G C A B.
+Lemma 等价垂心CAB : forall A B C G,
+ 垂心 G A B C -> 垂心 G C A B.
 Proof.
 intros.
-apply is_orthocenter_perm in H;intuition.
+apply 垂心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_orthocenter_perm_5 : forall A B C G,
- is_orthocenter G A B C -> is_orthocenter G C B A.
+Lemma 等价垂心CBA : forall A B C G,
+ 垂心 G A B C -> 垂心 G C B A.
 Proof.
 intros.
-apply is_orthocenter_perm in H;intuition.
+apply 垂心的等价排列 in H;intuition.
 Qed.
 
-Lemma orthocenter_per :
+Lemma 直角三角形的垂心与直角顶点重合 :
  forall A B C H,
  Per A B C ->
- is_orthocenter H A B C ->
+ 垂心 H A B C ->
  H=B.
 Proof.
 intros.
-unfold is_orthocenter in *;spliter.
+unfold 垂心 in *;spliter.
 assert_diffs.
 assert (Perp A B B C) by (apply 直角转L形垂直;finish).
 assert (Par A H A B)
@@ -289,14 +289,14 @@ assert (Col B C H)
 apply l6_21_两线交点的唯一性 with A B C B;finish.
 Qed.
 
-Lemma orthocenter_col :
+Lemma 垂心与一边共线则必与该边一端点重合 :
  forall A B C H,
  Col H B C ->
- is_orthocenter H A B C ->
+ 垂心 H A B C ->
  H = B \/ H = C.
 Proof.
 intros.
-unfold is_orthocenter in *.
+unfold 垂心 in *.
 spliter.
 assert (垂直于 H B C A H).
 apply l8_14_2_1b_bis_交点是垂点;finish.
@@ -318,10 +318,10 @@ Qed.
 End Orthocenter.
 
 Hint Resolve
-     is_orthocenter_perm_1
-     is_orthocenter_perm_2
-     is_orthocenter_perm_3
-     is_orthocenter_perm_4
-     is_orthocenter_perm_5 : Orthocenter.
+     等价垂心ACB
+     等价垂心BAC
+     等价垂心BCA
+     等价垂心CAB
+     等价垂心CBA : Orthocenter.
 
-Hint Resolve is_orthocenter_coplanar : cop.
+Hint Resolve 垂心与三角形共面 : cop.

@@ -9,7 +9,7 @@ Context `{Ax1:euclidean_neutral_ruler_compass}.
 Lemma proposition_01 : 
    forall A B, 
    neq A B ->
-   exists X, equilateral A B X /\ Triangle A B X.
+   exists X, 等边三角形 A B X /\ Triangle A B X.
 Proof.
 intros.
 let Tf:=fresh in
@@ -38,7 +38,7 @@ assert (Cong B C A C) by (conclude lemma_congruencetransitive).
 assert (Cong A B B C) by (conclude lemma_congruencesymmetric).
 assert (Cong A C C A) by (conclude cn_equalityreverse).
 assert (Cong B C C A) by (conclude lemma_congruencetransitive).
-assert (equilateral A B C) by (conclude_def equilateral ).
+assert (等边三角形 A B C) by (conclude_def 等边三角形 ).
 assert (neq B C) by (conclude axiom_nocollapse).
 assert (neq C A) by (conclude axiom_nocollapse).
 assert (~ BetS A C B).

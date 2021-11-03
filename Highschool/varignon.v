@@ -13,8 +13,9 @@ The original proof by Varignon suffer from the same problem.
 The original proof can be found page 138, Corollary IV:
 http://polib.univ-lille3.fr/documents/B590092101_000000011.489_IMT.pdf
 *)
-
-Lemma varignon :
+(* 瓦里尼翁平行四边形 *)
+(* https://baike.baidu.com/item/%E7%93%A6%E9%87%8C%E5%B0%BC%E7%BF%81%E5%B9%B3%E8%A1%8C%E5%9B%9B%E8%BE%B9%E5%BD%A2 *)
+Lemma 瓦里尼翁平行四边形 :
  forall A B C D I J K L,
   A<>C -> B<>D -> ~ Col I J K ->
   中点 I A B ->
@@ -46,7 +47,7 @@ If we know that a quadrilateral has its pairs of opposite side congruent and par
  then it is a parallelogram. *)
 
 
-Lemma varignon_aux_aux :
+Lemma 瓦里尼翁平行四边形1 :
  forall A B C D I J K L,
   A<>C ->
   J<>L -> 
@@ -88,7 +89,7 @@ apply par_par_cong_cong_parallelogram;finish.
 Qed.
 
 
-Lemma varignon_aux :
+Lemma 瓦里尼翁平行四边形2 :
  forall A B C D I J K L,
   (A<>C \/ B<>D) ->
   J<>L ->
@@ -100,7 +101,7 @@ Lemma varignon_aux :
 Proof.
 intros.
 induction H.
-eauto using varignon_aux_aux.
+eauto using 瓦里尼翁平行四边形1.
 
 induction (两点重合的决定性 A C).
 treat_equalities.
@@ -133,7 +134,7 @@ assert (Cong I J K L)
 apply par_par_cong_cong_parallelogram;finish.
 Qed.
 
-Lemma varignon' :
+Lemma 瓦里尼翁平行四边形3 :
  forall A B C D I J K L,
   (A<>C \/ B<>D) ->
   中点 I A B ->
@@ -232,7 +233,7 @@ intro.
 treat_equalities.
 intuition.
 
-apply (varignon_aux A B C D);auto.
+apply (瓦里尼翁平行四边形2 A B C D);auto.
 Qed.
 
 

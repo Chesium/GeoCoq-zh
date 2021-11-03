@@ -1,100 +1,100 @@
-Require Export GeoCoq.Highschool.midpoint_thales.
+Require Export GeoCoq.Highschool.泰勒斯定理.
 Require Export GeoCoq.Highschool.exercises.
 
 Section Circumcenter.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
+(* 外接圆圆心 *)
+Definition 外心 G A B C := Cong A G B G /\ Cong B G C G /\ 共面 G A B C.
 
-Definition is_circumcenter G A B C := Cong A G B G /\ Cong B G C G /\ 共面 G A B C.
-
-Lemma is_circumcenter_coplanar : forall A B C G, is_circumcenter G A B C -> 共面 G A B C.
+Lemma 外心与三角形共面 : forall A B C G, 外心 G A B C -> 共面 G A B C.
 Proof.
-unfold is_circumcenter; intros; spliter; assumption.
+unfold 外心; intros; spliter; assumption.
 Qed.
 
-Lemma circumcenter_cong : forall G A B C,
- is_circumcenter G A B C ->
+Lemma 外心与三角形顶点距离相等 : forall G A B C,
+ 外心 G A B C ->
  Cong A G B G /\ Cong B G C G /\ Cong C G A G.
 Proof.
-unfold is_circumcenter.
+unfold 外心.
 intros.
 intuition eCong.
 Qed.
 
-Lemma is_circumcenter_perm : forall A B C G,
- is_circumcenter G A B C ->
- is_circumcenter G A B C /\ is_circumcenter G A C B /\
- is_circumcenter G B A C /\ is_circumcenter G B C A /\
- is_circumcenter G C A B /\ is_circumcenter G C B A.
+Lemma 外心的等价排列 : forall A B C G,
+ 外心 G A B C ->
+ 外心 G A B C /\ 外心 G A C B /\
+ 外心 G B A C /\ 外心 G B C A /\
+ 外心 G C A B /\ 外心 G C B A.
 Proof.
-unfold is_circumcenter.
+unfold 外心.
 intros.
 spliter.
 repeat split;eauto using 等长的传递性 with cong;Cop.
 Qed.
 
-Lemma is_circumcenter_cases :
+Lemma 外心的各排列情况 :
   forall A B C G,
-  is_circumcenter G A B C \/
-  is_circumcenter G A C B \/
-  is_circumcenter G B A C \/
-  is_circumcenter G B C A \/
-  is_circumcenter G C A B \/
-  is_circumcenter G C B A ->
-  is_circumcenter G A B C.
+  外心 G A B C \/
+  外心 G A C B \/
+  外心 G B A C \/
+  外心 G B C A \/
+  外心 G C A B \/
+  外心 G C B A ->
+  外心 G A B C.
 Proof.
 intros.
-decompose [or] H;clear H; first [apply is_circumcenter_perm in H0|apply is_circumcenter_perm in H1];
+decompose [or] H;clear H; first [apply 外心的等价排列 in H0|apply 外心的等价排列 in H1];
 spliter; assumption.
 Qed.
 
-Lemma is_circumcenter_perm_1 : forall A B C G,
- is_circumcenter G A B C -> is_circumcenter G A C B.
+Lemma 等价外心ACB : forall A B C G,
+ 外心 G A B C -> 外心 G A C B.
 Proof.
 intros.
-apply is_circumcenter_perm in H;intuition.
+apply 外心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_circumcenter_perm_2 : forall A B C G,
- is_circumcenter G A B C -> is_circumcenter G B A C.
+Lemma 等价外心BAC : forall A B C G,
+ 外心 G A B C -> 外心 G B A C.
 Proof.
 intros.
-apply is_circumcenter_perm in H;intuition.
+apply 外心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_circumcenter_perm_3 : forall A B C G,
- is_circumcenter G A B C -> is_circumcenter G B C A.
+Lemma 等价外心BCA : forall A B C G,
+ 外心 G A B C -> 外心 G B C A.
 Proof.
 intros.
-apply is_circumcenter_perm in H;intuition.
+apply 外心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_circumcenter_perm_4 : forall A B C G,
- is_circumcenter G A B C -> is_circumcenter G C A B.
+Lemma 等价外心CAB : forall A B C G,
+ 外心 G A B C -> 外心 G C A B.
 Proof.
 intros.
-apply is_circumcenter_perm in H;intuition.
+apply 外心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_circumcenter_perm_5 : forall A B C G,
- is_circumcenter G A B C -> is_circumcenter G C B A.
+Lemma 等价外心CBA : forall A B C G,
+ 外心 G A B C -> 外心 G C B A.
 Proof.
 intros.
-apply is_circumcenter_perm in H;intuition.
+apply 外心的等价排列 in H;intuition.
 Qed.
 
 End Circumcenter.
 
 Hint Resolve
-     is_circumcenter_perm_1
-     is_circumcenter_perm_2
-     is_circumcenter_perm_3
-     is_circumcenter_perm_4
-     is_circumcenter_perm_5 : Circumcenter.
+     等价外心ACB
+     等价外心BAC
+     等价外心BCA
+     等价外心CAB
+     等价外心CBA : Circumcenter.
 
-Hint Resolve is_circumcenter_coplanar : cop.
+Hint Resolve 外心与三角形共面 : cop.
 
-Ltac assert_cops :=
+Ltac 推导四点共面 :=
  repeat match goal with
       | H:Perp ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply perp__coplanar, H)
@@ -130,14 +130,14 @@ Ltac assert_cops :=
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply sac__coplanar, H)
       | H:Lambert四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply lambert__coplanar, H)
-      | H:is_circumcenter ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply is_circumcenter_coplanar, H)
+      | H:外心 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 外心与三角形共面, H)
  end.
 
 Ltac Cop := auto; try (intros; solve [apply col__coplanar; Col
      |apply coplanar_perm_1, col__coplanar; Col|apply coplanar_perm_4, col__coplanar; Col
      |apply coplanar_perm_18, col__coplanar; Col
-     |assert_cops; auto 2 with cop_perm]).
+     |推导四点共面; auto 2 with cop_perm]).
 
 Ltac copr_aux :=
  repeat match goal with
@@ -152,7 +152,7 @@ Ltac CopR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
  let cop := constr:(共面) in
-   treat_equalities; assert_cols; clean; assert_ncols; assert_cops; auto 2 with cop_perm;
+   treat_equalities; assert_cols; clean; assert_ncols; 推导四点共面; auto 2 with cop_perm;
    solve[apply col__coplanar; Col|apply coplanar_perm_1, col__coplanar; Col
         |apply coplanar_perm_4, col__coplanar; Col|apply coplanar_perm_18, col__coplanar; Col
         |copr_aux; Cop_refl tpoint col cop] || fail "Can not be deduced".
@@ -169,20 +169,20 @@ data-param-showResetIcon="false" data-param-enableLabelDrags="false" data-param-
 #
 **)
 
-Lemma circumcenter_perp : forall A B C A' G,
+Lemma 外心与一边中点连线是该边中垂线 : forall A B C A' G,
   A<>B -> B<>C -> A<>C -> G <> A' ->
-  is_circumcenter G A B C ->
+  外心 G A B C ->
   中点 A' B C ->
   Perp_bisect G A' B C.
 Proof.
 intros.
 apply cong_cop_perp_bisect; try assumption;
-unfold 中点, is_circumcenter in *; spliter; Cong; Cop.
+unfold 中点, 外心 in *; spliter; Cong; Cop.
 Qed.
 
 
-Lemma exists_circumcenter : forall A B C,
-  ~ Col A B C -> exists G, is_circumcenter G A B C.
+Lemma 外心的存在性 : forall A B C,
+  ~ Col A B C -> exists G, 外心 G A B C.
 Proof.
 intros.
 assert (triangle_circumscription_principle).
@@ -193,25 +193,25 @@ intros; apply cop_par_perp__perp with A0 B0; auto.
 unfold triangle_circumscription_principle in *.
 destruct (H0 A B C H) as [G HG].
 exists G.
-unfold is_circumcenter.
+unfold 外心.
 spliter.
 repeat split;Cop;CongR.
 Qed.
 
-Lemma circumcenter_perp_all : forall A B C A' B' C' G,
+Lemma 外心与任一边中点连线是该边中垂线 : forall A B C A' B' C' G,
   A<>B -> B<>C -> A<>C -> G <> A' -> G <> B' -> G <> C' ->
-  is_circumcenter G A B C ->
+  外心 G A B C ->
   中点 A' B C ->
   中点 B' A C ->
   中点 C' A B ->
   Perp_bisect G A' B C /\ Perp_bisect G B' A C /\ Perp_bisect G C' A B.
 Proof.
 intros.
-unfold is_circumcenter in *; spliter.
+unfold 外心 in *; spliter.
 split; [|split]; apply cong_mid_perp_bisect; trivial; CongR.
 Qed.
 
-Lemma circumcenter_intersect : forall A B C A' B' C' G,
+Lemma 三角形的三条中垂线交于一点 : forall A B C A' B' C' G,
   A<>B -> B<>C -> A<>C -> G <> A' -> G <> B' -> G <> C' ->
   中点 A' B C ->
   中点 B' A C ->
@@ -237,11 +237,11 @@ exists B.
 split; Cong.
 Qed.
 
-Lemma is_circumcenter_uniqueness :
+Lemma 外心的唯一性 :
    forall A B C O O',
   A<>B -> B<>C -> A<>C ->
-  is_circumcenter O A B C ->
-  is_circumcenter O' A B C ->
+  外心 O A B C ->
+  外心 O' A B C ->
   O = O'.
 Proof.
 intros A B C O O' HAB HBC HAC HIC1 HIC2.
@@ -251,7 +251,7 @@ elim (共线的决定性 A B C); intro HABC.
   Name C' the midpoint of A and B.
   assert (HPer1 : Perp_bisect O C' A B).
     {
-    unfold is_circumcenter in *; spliter; apply cong_mid_perp_bisect; Cong.
+    unfold 外心 in *; spliter; apply cong_mid_perp_bisect; Cong.
     intro; treat_equalities; assert (HFalse := 共线点间距相同要么重合要么中点 O B C).
     destruct HFalse; Cong.
       ColR.
@@ -260,7 +260,7 @@ elim (共线的决定性 A B C); intro HABC.
   Name A' the midpoint of B and C.
   assert (HPer2 : Perp_bisect O A' B C).
     {
-    unfold is_circumcenter in *; spliter; apply cong_mid_perp_bisect; Cong.
+    unfold 外心 in *; spliter; apply cong_mid_perp_bisect; Cong.
     intro; treat_equalities; assert (HFalse := 共线点间距相同要么重合要么中点 O A B).
     destruct HFalse; Cong.
       ColR.
@@ -280,7 +280,7 @@ elim (共线的决定性 A B C); intro HABC.
       show_distinct A' C'; try (apply HAC; apply 中点组的唯一性1 with B A';
       unfold 中点 in *; spliter; split; Cong; Between).
       intro; assert (HFalse := 共线点间距相同要么重合要么中点 O A B); elim HFalse; clear HFalse; try intro HFalse;
-      unfold is_circumcenter in *; spliter; Cong; assert_diffs; assert_cols; try ColR.
+      unfold 外心 in *; spliter; Cong; assert_diffs; assert_cols; try ColR.
       assert (HOC' : O <> C').
         {
         apply perp_bisect_equiv_def in HPer1.
@@ -302,8 +302,8 @@ elim (共线的决定性 A B C); intro HABC.
     {
     assert (HPer : Per A C B).
       {
-      apply midpoint_thales with O; Col.
-      apply circumcenter_cong in HIC1; spliter; Cong.
+      apply 泰勒斯定理 with O; Col.
+      apply 外心与三角形顶点距离相等 in HIC1; spliter; Cong.
       }
     Name B' the midpoint of A and C.
     assert (HO'B' : O' <> B').
@@ -311,8 +311,8 @@ elim (共线的决定性 A B C); intro HABC.
       intro; treat_equalities.
       assert (HPer2 : Per A B C).
         {
-        apply midpoint_thales with O'; Col.
-        unfold is_circumcenter in *; spliter; Cong.
+        apply 泰勒斯定理 with O'; Col.
+        unfold 外心 in *; spliter; Cong.
         }
       assert (HPar : 严格平行 A B A C).
         {
@@ -327,8 +327,8 @@ elim (共线的决定性 A B C); intro HABC.
       intro; treat_equalities.
       assert (HPer2 : Per B A C).
         {
-        apply midpoint_thales with O'; Col.
-        unfold is_circumcenter in *; spliter; Cong.
+        apply 泰勒斯定理 with O'; Col.
+        unfold 外心 in *; spliter; Cong.
         }
       assert (HPar : 严格平行 B A B C).
         {
@@ -339,18 +339,18 @@ elim (共线的决定性 A B C); intro HABC.
       }
     assert (H : Perp_bisect O' A' B C /\ Perp_bisect O' B' A C /\ Perp_bisect O' O A B).
       {
-      apply circumcenter_perp_all; Col.
+      apply 外心与任一边中点连线是该边中垂线; Col.
       }
     destruct H as [HPer3 [HPer4 Hc]]; clear Hc.
     assert (HPer1 : Perp_bisect O A' B C).
       {
-      unfold is_circumcenter in *; spliter.
+      unfold 外心 in *; spliter.
       apply cong_mid_perp_bisect; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
     assert (HPer2 : Perp_bisect O B' A C).
       {
-      apply circumcenter_cong in HIC1; spliter.
+      apply 外心与三角形顶点距离相等 in HIC1; spliter.
       apply cong_mid_perp_bisect; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
@@ -359,7 +359,7 @@ elim (共线的决定性 A B C); intro HABC.
       {
       assert (HRect : 长方形 C B' O A').
         {
-        apply Per_mid_rectangle with B A; Perp; unfold 中点 in *; spliter;
+        apply 直角三角形三边中点和直角顶点形成长方形 with B A; Perp; unfold 中点 in *; spliter;
         split; Between; Cong.
         }
       destruct HRect as [HPara Hc]; clear Hc.
@@ -382,8 +382,8 @@ elim (共线的决定性 A B C); intro HABC.
     {
     assert (HPer : Per A C B).
       {
-      apply midpoint_thales with O'; Col.
-      apply circumcenter_cong in HIC2; spliter; Cong.
+      apply 泰勒斯定理 with O'; Col.
+      apply 外心与三角形顶点距离相等 in HIC2; spliter; Cong.
       }
     Name B' the midpoint of A and C.
     assert (HOB' : O <> B').
@@ -391,8 +391,8 @@ elim (共线的决定性 A B C); intro HABC.
       intro; treat_equalities.
       assert (HPer2 : Per A B C).
         {
-        apply midpoint_thales with O; Col.
-        unfold is_circumcenter in *; spliter; Cong.
+        apply 泰勒斯定理 with O; Col.
+        unfold 外心 in *; spliter; Cong.
         }
       assert (HPar : 严格平行 A B A C).
         {
@@ -407,8 +407,8 @@ elim (共线的决定性 A B C); intro HABC.
       intro; treat_equalities.
       assert (HPer2 : Per B A C).
         {
-        apply midpoint_thales with O; Col.
-        unfold is_circumcenter in *; spliter; Cong.
+        apply 泰勒斯定理 with O; Col.
+        unfold 外心 in *; spliter; Cong.
         }
       assert (HPar : 严格平行 B A B C).
         {
@@ -419,18 +419,18 @@ elim (共线的决定性 A B C); intro HABC.
       }
     assert (H : Perp_bisect O A' B C /\ Perp_bisect O B' A C /\ Perp_bisect O O' A B).
       {
-      apply circumcenter_perp_all; Col.
+      apply 外心与任一边中点连线是该边中垂线; Col.
       }
     destruct H as [HPer3 [HPer4 Hc]]; clear Hc.
     assert (HPer1 : Perp_bisect O' A' B C).
       {
-      unfold is_circumcenter in *; spliter.
+      unfold 外心 in *; spliter.
       apply cong_mid_perp_bisect; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
     assert (HPer2 : Perp_bisect O' B' A C).
       {
-      apply circumcenter_cong in HIC2; spliter.
+      apply 外心与三角形顶点距离相等 in HIC2; spliter.
       apply cong_mid_perp_bisect; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
@@ -439,7 +439,7 @@ elim (共线的决定性 A B C); intro HABC.
       {
       assert (HRect : 长方形 C B' O' A').
         {
-        apply Per_mid_rectangle with B A; Perp; split; Between; Cong.
+        apply 直角三角形三边中点和直角顶点形成长方形 with B A; Perp; split; Between; Cong.
         }
       destruct HRect as [HPara Hc]; clear Hc.
       apply plg_to_parallelogram in HPara.
@@ -466,8 +466,8 @@ elim (共线的决定性 A B C); intro HABC.
       {
       assert (HPer : Per A B C).
         {
-        apply midpoint_thales with O; Col.
-        unfold is_circumcenter in *; spliter; Cong.
+        apply 泰勒斯定理 with O; Col.
+        unfold 外心 in *; spliter; Cong.
         }
       Name A' the midpoint of B and C.
       assert (HO'A' : O' <> A').
@@ -475,8 +475,8 @@ elim (共线的决定性 A B C); intro HABC.
         intro; treat_equalities.
         assert (HPer2 : Per B A C).
           {
-          apply midpoint_thales with O'; Col.
-          unfold is_circumcenter in *; spliter; Cong.
+          apply 泰勒斯定理 with O'; Col.
+          unfold 外心 in *; spliter; Cong.
           }
         assert (HPar : 严格平行 A C B C).
           {
@@ -487,18 +487,18 @@ elim (共线的决定性 A B C); intro HABC.
         }
       assert (H : Perp_bisect O' A' B C /\ Perp_bisect O' O A C /\ Perp_bisect O' C' A B).
         {
-        apply circumcenter_perp_all; Col.
+        apply 外心与任一边中点连线是该边中垂线; Col.
         }
       destruct H as [HPer3 [Hc HPer4]]; clear Hc.
       assert (HPer1 : Perp_bisect O A' B C).
         {
-        unfold is_circumcenter in *; spliter.
+        unfold 外心 in *; spliter.
         apply cong_mid_perp_bisect; Cong.
         intro; treat_equalities; apply HABC; Col.
         }
       assert (HPer2 : Perp_bisect O C' A B).
         {
-        unfold is_circumcenter in *; spliter.
+        unfold 外心 in *; spliter.
         apply cong_mid_perp_bisect; Cong.
         }
       apply l6_21_两线交点的唯一性 with O A' C' O'; Col.
@@ -506,7 +506,7 @@ elim (共线的决定性 A B C); intro HABC.
         {
         assert (HRect : 长方形 B A' O C').
           {
-          apply Per_mid_rectangle with A C; Perp; split; Between; Cong.
+          apply 直角三角形三边中点和直角顶点形成长方形 with A C; Perp; split; Between; Cong.
           }
         destruct HRect as [HPara Hc]; clear Hc.
         apply plg_to_parallelogram in HPara.
@@ -528,8 +528,8 @@ elim (共线的决定性 A B C); intro HABC.
       {
       assert (HPer : Per A B C).
         {
-        apply midpoint_thales with O'; Col.
-        unfold is_circumcenter in *; spliter; Cong.
+        apply 泰勒斯定理 with O'; Col.
+        unfold 外心 in *; spliter; Cong.
         }
       Name A' the midpoint of B and C.
       assert (HOA' : O <> A').
@@ -537,8 +537,8 @@ elim (共线的决定性 A B C); intro HABC.
         intro; treat_equalities.
         assert (HPer2 : Per B A C).
           {
-          apply midpoint_thales with O; Col.
-          unfold is_circumcenter in *; spliter; Cong.
+          apply 泰勒斯定理 with O; Col.
+          unfold 外心 in *; spliter; Cong.
           }
         assert (HPar : 严格平行 A C B C).
           {
@@ -549,18 +549,18 @@ elim (共线的决定性 A B C); intro HABC.
         }
       assert (H : Perp_bisect O A' B C /\ Perp_bisect O O' A C /\ Perp_bisect O C' A B).
         {
-        apply circumcenter_perp_all; Col.
+        apply 外心与任一边中点连线是该边中垂线; Col.
         }
       destruct H as [HPer3 [Hc HPer4]]; clear Hc.
       assert (HPer1 : Perp_bisect O' A' B C).
         {
-        unfold is_circumcenter in *; spliter.
+        unfold 外心 in *; spliter.
         apply cong_mid_perp_bisect; Cong.
         intro; treat_equalities; apply HABC; Col.
         }
       assert (HPer2 : Perp_bisect O' C' A B).
         {
-        unfold is_circumcenter in *; spliter.
+        unfold 外心 in *; spliter.
         apply cong_mid_perp_bisect; Cong.
         }
       apply l6_21_两线交点的唯一性 with O' A' C' O; Col.
@@ -568,7 +568,7 @@ elim (共线的决定性 A B C); intro HABC.
         {
         assert (HRect : 长方形 B A' O' C').
           {
-          apply Per_mid_rectangle with A C; Perp; split; Between; Cong.
+          apply 直角三角形三边中点和直角顶点形成长方形 with A C; Perp; split; Between; Cong.
           }
         destruct HRect as [HPara Hc]; clear Hc.
         apply plg_to_parallelogram in HPara.
@@ -594,22 +594,22 @@ elim (共线的决定性 A B C); intro HABC.
         {
         assert (HPer : Per C A B).
           {
-          unfold is_circumcenter in *; spliter.
-          apply 直角的对称性, midpoint_thales with O; Col; Cong.
+          unfold 外心 in *; spliter.
+          apply 直角的对称性, 泰勒斯定理 with O; Col; Cong.
           }
         assert (H : Perp_bisect O' O B C /\ Perp_bisect O' B' A C /\ Perp_bisect O' C' A B).
           {
-          apply circumcenter_perp_all; Col.
+          apply 外心与任一边中点连线是该边中垂线; Col.
           }
         destruct H as [Hc [HPer3 HPer4]]; clear Hc.
         assert (HPer1 : Perp_bisect O B' A C).
           {
-          apply circumcenter_cong in HIC1; spliter.
+          apply 外心与三角形顶点距离相等 in HIC1; spliter.
           apply cong_mid_perp_bisect; Cong.
           }
         assert (HPer2 : Perp_bisect O C' A B).
           {
-          unfold is_circumcenter in *; spliter.
+          unfold 外心 in *; spliter.
           apply cong_mid_perp_bisect; Cong.
           }
         apply l6_21_两线交点的唯一性 with O B' C' O'; Col.
@@ -617,7 +617,7 @@ elim (共线的决定性 A B C); intro HABC.
           {
           assert (HRect : 长方形 A B' O C').
             {
-            apply Per_mid_rectangle with B C; Perp; split; Between; Cong.
+            apply 直角三角形三边中点和直角顶点形成长方形 with B C; Perp; split; Between; Cong.
             }
           destruct HRect as [HPara Hc]; clear Hc.
           apply plg_to_parallelogram in HPara.
@@ -639,28 +639,28 @@ elim (共线的决定性 A B C); intro HABC.
         {
         assert (HPer : Per C A B).
           {
-          unfold is_circumcenter in *; spliter.
-          apply 直角的对称性, midpoint_thales with O'; Col; Cong.
+          unfold 外心 in *; spliter.
+          apply 直角的对称性, 泰勒斯定理 with O'; Col; Cong.
           }
         assert (H : Perp_bisect O O' B C /\ Perp_bisect O B' A C /\ Perp_bisect O C' A B).
           {
-          apply circumcenter_perp_all; auto.
+          apply 外心与任一边中点连线是该边中垂线; auto.
           }
         destruct H as [Hc [HPer3 HPer4]]; clear Hc.
         assert (HPer1 : Perp_bisect O' B' A C).
           {
-          apply circumcenter_cong in HIC2; spliter; apply cong_mid_perp_bisect; Cong.
+          apply 外心与三角形顶点距离相等 in HIC2; spliter; apply cong_mid_perp_bisect; Cong.
           }
         assert (HPer2 : Perp_bisect O' C' A B).
           {
-          unfold is_circumcenter in *; spliter; apply cong_mid_perp_bisect; Cong.
+          unfold 外心 in *; spliter; apply cong_mid_perp_bisect; Cong.
           }
         apply l6_21_两线交点的唯一性 with O' B' C' O; Col.
 
           {
           assert (HRect : 长方形 A B' O' C').
             {
-            apply Per_mid_rectangle with B C; Perp; split; Between; Cong.
+            apply 直角三角形三边中点和直角顶点形成长方形 with B C; Perp; split; Between; Cong.
             }
           destruct HRect as [HPara Hc]; clear Hc.
           apply plg_to_parallelogram in HPara.
@@ -682,12 +682,12 @@ elim (共线的决定性 A B C); intro HABC.
         {
         assert (H : Perp_bisect O A' B C /\ Perp_bisect O B' A C /\ Perp_bisect O C' A B).
           {
-          apply circumcenter_perp_all; auto.
+          apply 外心与任一边中点连线是该边中垂线; auto.
           }
         destruct H as [HPer1 [HPer2 Hc]]; clear Hc.
         assert (H : Perp_bisect O' A' B C /\ Perp_bisect O' B' A C /\ Perp_bisect O' C' A B).
           {
-          apply circumcenter_perp_all; auto.
+          apply 外心与任一边中点连线是该边中垂线; auto.
           }
         destruct H as [HPer3 [HPer4 Hc]]; clear Hc.
         apply l6_21_两线交点的唯一性 with O A' B' O; Col.
@@ -723,36 +723,36 @@ Section Circumcenter3.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
-Lemma midpoint_thales_reci_circum :
+Lemma 直角三角形斜边中点是其外心 :
   forall A B C O: Tpoint,
    Per A C B ->
    中点 O A B ->
-   is_circumcenter O A B C.
+   外心 O A B C.
 Proof.
 intros.
-assert (T:= midpoint_thales_reci A B C O H H0).
+assert (T:= 直角三角形斜边中线是斜边一半 A B C O H H0).
 spliter.
 split;finish.
 Qed.
 
-Lemma circumcenter_per :
+Lemma 直角三角形的外心是斜边中点 :
  forall A B C O,
  A<>B -> B<>C ->
  Per A B C ->
- is_circumcenter O A B C ->
+ 外心 O A B C ->
  中点 O A C.
 Proof.
 intros.
 
 Name O' the midpoint of A and C.
-assert (T:= midpoint_thales_reci_circum A C B O' H1 H4).
+assert (T:= 直角三角形斜边中点是其外心 A C B O' H1 H4).
 assert (O=O').
-apply is_circumcenter_uniqueness with A B C;finish.
+apply 外心的唯一性 with A B C;finish.
 intro.
 treat_equalities.
 apply ABA直角则A与B重合 in H1.
 intuition.
-auto using is_circumcenter_perm_1.
+auto using 等价外心ACB.
 subst;auto.
 Qed.
 

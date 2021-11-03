@@ -9,21 +9,21 @@ Section ABC.
 
 Variable A B C : Tpoint.
 
-Definition isosceles A B C :=
+Definition 等腰三角形 A B C :=
  Cong A B B C.
 
-Lemma isosceles_sym :
-  isosceles A B C ->
-  isosceles C B A.
+Lemma 等腰三角形的对称性 :
+  等腰三角形 A B C ->
+  等腰三角形 C B A.
 Proof.
-unfold isosceles.
+unfold 等腰三角形.
 intros.
 Cong.
 Qed.
 
-Lemma isosceles_conga :
+Lemma 等腰三角形底角相等 :
   A<>C -> A<>B ->
-  isosceles A B C ->
+  等腰三角形 A B C ->
   等角 C A B A C B.
 Proof.
 intros.
@@ -31,27 +31,27 @@ apply cong3_conga.
 auto.
 auto.
 unfold 三角形全等.
-unfold isosceles in H.
+unfold 等腰三角形 in H.
 repeat split;Cong.
 Qed.
 
-Lemma conga_isosceles :
+Lemma 底角相等的三角形是等腰三角形 :
  ~ Col A B C ->
  等角 C A B A C B ->
- isosceles A B C. 
+ 等腰三角形 A B C. 
 Proof.
 intros.
 assert (Cong B A B C)
  by (apply l11_44_1_b;finish;等角).
-unfold isosceles.
+unfold 等腰三角形.
 Cong.
 Qed.
 
-(** In a triangle isosceles in A the altitude wrt. A, is also the bisector and median. *)
+(** In a triangle 等腰三角形 in A the altitude wrt. A, is also the bisector and median. *)
 
-Lemma isosceles_foot__中点蕴含等长a :
+Lemma 等腰三角形底边垂线也是底边中线 :
  forall H,
- isosceles A B C ->
+ 等腰三角形 A B C ->
  Col H A C -> 
  Perp H B A C ->
  ~ Col A B C /\ A<>H /\ C<>H /\ 中点 H A C /\ 等角 H B A H B C.
@@ -72,7 +72,7 @@ assert (A<>H).
  assert (Lt A B B C /\ Lt A C B C).
  apply (l11_46 B A C);Col; left;apply L形垂直转直角2;auto.
  spliter.
- unfold isosceles in *.
+ unfold 等腰三角形 in *.
  apply (等长推出不小于 A B B C);auto.
  }
 assert (C<>H).
@@ -82,7 +82,7 @@ assert (C<>H).
  assert (Lt C B B A /\ Lt C A B A).
  apply (l11_46 B C A);Col; left;apply L形垂直转直角2;finish.
  spliter.
- unfold isosceles in *.
+ unfold 等腰三角形 in *.
  apply (等长推出不小于 C B B A);finish.
  } 
 assert (垂直于 H A C B H)
@@ -98,115 +98,115 @@ assert (中点 H A C)
 auto.
 Qed.
 
-Definition equilateral A B C :=
+Definition 等边三角形 A B C :=
  Cong A B B C /\ Cong B C C A.
 
-Definition equilateral_strict A B C :=
- equilateral A B C /\ A <> B.
+Definition 严格等边三角形 A B C :=
+ 等边三角形 A B C /\ A <> B.
 
-Lemma equilateral_strict_equilateral :
- equilateral_strict A B C ->
- equilateral A B C.
+Lemma 严格等边三角形蕴含等边三角形 :
+ 严格等边三角形 A B C ->
+ 等边三角形 A B C.
 Proof.
-unfold equilateral_strict in *. tauto.
+unfold 严格等边三角形 in *. tauto.
 Qed.
 
-Lemma equilateral_cong:
-  equilateral A B C ->
+Lemma 等边三角形三边等长:
+  等边三角形 A B C ->
   Cong A B B C /\ Cong B C C A /\ Cong C A A B.
 Proof.
-unfold equilateral;intros;intuition Cong.
+unfold 等边三角形;intros;intuition Cong.
 assert (T:=等长的传递性 A B B C C A H0 H1).
 Cong.
 Qed.
 
-Lemma equilateral_rot :
- equilateral A B C ->
- equilateral B C A.
+Lemma 等价等边三角形BCA :
+ 等边三角形 A B C ->
+ 等边三角形 B C A.
 Proof.
 intro.
-apply equilateral_cong in H.
-unfold equilateral.
+apply 等边三角形三边等长 in H.
+unfold 等边三角形.
 intuition Cong.
 Qed.
 
-Lemma equilateral_swap :
- equilateral A B C ->
- equilateral B A C.
+Lemma 等价等边三角形BAC :
+ 等边三角形 A B C ->
+ 等边三角形 B A C.
 Proof.
 intro.
-apply equilateral_cong in H.
-unfold equilateral.
+apply 等边三角形三边等长 in H.
+unfold 等边三角形.
 intuition Cong.
 Qed.
 
-Lemma equilateral_rot_2 :
- equilateral A B C ->
- equilateral C B A.
+Lemma 等价等边三角形CBA :
+ 等边三角形 A B C ->
+ 等边三角形 C B A.
 Proof.
 intro.
-apply equilateral_cong in H.
-unfold equilateral.
+apply 等边三角形三边等长 in H.
+unfold 等边三角形.
 intuition Cong.
 Qed.
 
-Lemma equilateral_swap_2 :
- equilateral A B C ->
- equilateral A C B.
+Lemma 等价等边三角形ACB :
+ 等边三角形 A B C ->
+ 等边三角形 A C B.
 Proof.
 intro.
-apply equilateral_cong in H.
-unfold equilateral.
+apply 等边三角形三边等长 in H.
+unfold 等边三角形.
 intuition Cong.
 Qed.
 
-Lemma equilateral_swap_rot :
- equilateral A B C ->
- equilateral C A B.
+Lemma 等价等边三角形CAB :
+ 等边三角形 A B C ->
+ 等边三角形 C A B.
 Proof.
 intro.
-apply equilateral_cong in H.
-unfold equilateral.
+apply 等边三角形三边等长 in H.
+unfold 等边三角形.
 intuition Cong.
 Qed.
 
-Hint Resolve equilateral_swap equilateral_swap_2
- equilateral_swap_rot equilateral_rot equilateral_rot_2 : equilateral.
+Hint Resolve 等价等边三角形BAC 等价等边三角形ACB
+ 等价等边三角形CAB 等价等边三角形BCA 等价等边三角形CBA : 等边三角形.
 
-Lemma equilateral_isosceles_1 :
-  equilateral A B C ->
-  isosceles A B C.
+Lemma 等边转ABC等腰 :
+  等边三角形 A B C ->
+  等腰三角形 A B C.
 Proof.
-unfold equilateral, isosceles.
+unfold 等边三角形, 等腰三角形.
 tauto.
 Qed.
 
-Lemma equilateral_isosceles_2 :
-  equilateral A B C ->
-  isosceles B C A.
+Lemma 等边转BCA等腰 :
+  等边三角形 A B C ->
+  等腰三角形 B C A.
 Proof.
-unfold equilateral, isosceles.
+unfold 等边三角形, 等腰三角形.
 tauto.
 Qed.
 
-Lemma equilateral_isosceles_3 :
-  equilateral A B C ->
-  isosceles C A B.
+Lemma 等边转CAB等腰 :
+  等边三角形 A B C ->
+  等腰三角形 C A B.
 Proof.
 intros.
-apply equilateral_cong in H.
-unfold isosceles.
+apply 等边三角形三边等长 in H.
+unfold 等腰三角形.
 tauto.
 Qed.
 
-Hint Resolve equilateral_isosceles_1 equilateral_isosceles_2 equilateral_isosceles_3 : equilateral.
+Hint Resolve 等边转ABC等腰 等边转BCA等腰 等边转CAB等腰 : 等边三角形.
 
-Lemma equilateral_strict_neq :
- equilateral_strict A B C ->
+Lemma 严格等边三角形三顶点不重合 :
+ 严格等边三角形 A B C ->
  A <> B /\ B <> C /\ A <> C.
 Proof.
 intros.
-unfold equilateral_strict, equilateral in H.
+unfold 严格等边三角形, 等边三角形 in H.
 decompose [and] H;clear H.
 repeat split;Cong.
 eauto using 与不同点等长之点不同.
@@ -217,68 +217,68 @@ assert (T:=等长的传递性 A B B C C A H2 H3).
 Cong.
 Qed.
 
-Hint Resolve equilateral_strict_neq : equilateral.
+Hint Resolve 严格等边三角形三顶点不重合 : 等边三角形.
 
-Lemma equilateral_strict_swap_1 :
- equilateral_strict A B C ->
- equilateral_strict A C B.
+Lemma 等价严格等边三角形ACB :
+ 严格等边三角形 A B C ->
+ 严格等边三角形 A C B.
 Proof.
 intros.
-assert (T:= equilateral_strict_neq H).
-unfold equilateral_strict in *.
-intuition (eauto with equilateral).
+assert (T:= 严格等边三角形三顶点不重合 H).
+unfold 严格等边三角形 in *.
+intuition (eauto with 等边三角形).
 Qed.
 
-Lemma equilateral_strict_swap_2 :
- equilateral_strict A B C ->
- equilateral_strict B A C.
+Lemma 等价严格等边三角形BAC :
+ 严格等边三角形 A B C ->
+ 严格等边三角形 B A C.
 Proof.
 intros.
-assert (T:= equilateral_strict_neq H).
-unfold equilateral_strict in *.
-intuition (eauto with equilateral).
+assert (T:= 严格等边三角形三顶点不重合 H).
+unfold 严格等边三角形 in *.
+intuition (eauto with 等边三角形).
 Qed.
 
-Lemma equilateral_strict_swap_3 :
- equilateral_strict A B C ->
- equilateral_strict B C A.
+Lemma 等价严格等边三角形BCA :
+ 严格等边三角形 A B C ->
+ 严格等边三角形 B C A.
 Proof.
 intros.
-assert (T:= equilateral_strict_neq H).
-unfold equilateral_strict in *.
-intuition (eauto with equilateral).
+assert (T:= 严格等边三角形三顶点不重合 H).
+unfold 严格等边三角形 in *.
+intuition (eauto with 等边三角形).
 Qed.
 
-Lemma equilateral_strict_swap_4 :
- equilateral_strict A B C ->
- equilateral_strict C A B.
+Lemma 等价严格等边三角形CAB :
+ 严格等边三角形 A B C ->
+ 严格等边三角形 C A B.
 Proof.
 intros.
-assert (T:= equilateral_strict_neq H).
-unfold equilateral_strict in *.
-intuition (eauto with equilateral).
+assert (T:= 严格等边三角形三顶点不重合 H).
+unfold 严格等边三角形 in *.
+intuition (eauto with 等边三角形).
 Qed.
 
-Lemma equilateral_strict_swap_5 :
- equilateral_strict A B C ->
- equilateral_strict C B A.
+Lemma 等价严格等边三角形CBA :
+ 严格等边三角形 A B C ->
+ 严格等边三角形 C B A.
 Proof.
 intros.
-assert (T:= equilateral_strict_neq H).
-unfold equilateral_strict in *.
-intuition (eauto with equilateral).
+assert (T:= 严格等边三角形三顶点不重合 H).
+unfold 严格等边三角形 in *.
+intuition (eauto with 等边三角形).
 Qed.
 
-Hint Resolve equilateral_strict_swap_1 equilateral_strict_swap_2
-equilateral_strict_swap_3 equilateral_strict_swap_4 equilateral_strict_swap_5 : equilateral.
+Hint Resolve 等价严格等边三角形ACB 等价严格等边三角形BAC
+等价严格等边三角形BCA 等价严格等边三角形CAB 等价严格等边三角形CBA : 等边三角形.
 
-Lemma equilateral_strict__not_col : 
- equilateral_strict A B C -> ~ Col A B C.
+Lemma 严格等边三角形三顶点不共线 : 
+ 严格等边三角形 A B C -> ~ Col A B C.
 Proof.
 intros.
-assert (T:=(equilateral_strict_neq H)).
-unfold equilateral_strict in *.
-unfold equilateral in *.
+assert (T:=(严格等边三角形三顶点不重合 H)).
+unfold 严格等边三角形 in *.
+unfold 等边三角形 in *.
 spliter.
 intro.
 assert (中点 B A C) by (apply (不重合共线点间距相同则为中点组1 B A C);finish).
@@ -286,15 +286,15 @@ assert (中点 C A B) by (apply (不重合共线点间距相同则为中点组1 
 apply 严格中点组换排列则否 with C A B;auto.
 Qed.
 
-Lemma equilateral_strict_conga_1 :
- equilateral_strict A B C ->
+Lemma 严格等边三角形AC等角 :
+ 严格等边三角形 A B C ->
  等角 C A B A C B.
 Proof.
 intros.
-assert (T:= equilateral_strict_neq H).
-apply equilateral_strict_equilateral in H.
-apply equilateral_isosceles_1 in H.
-apply isosceles_conga.
+assert (T:= 严格等边三角形三顶点不重合 H).
+apply 严格等边三角形蕴含等边三角形 in H.
+apply 等边转ABC等腰 in H.
+apply 等腰三角形底角相等.
 tauto.
 tauto.
 assumption.
@@ -302,42 +302,42 @@ Qed.
 
 End ABC.
 
-Lemma equilateral_strict_conga_2 :
+Lemma 严格等边三角形AB等角 :
  forall A B C,
- equilateral_strict A B C ->
+ 严格等边三角形 A B C ->
  等角 B A C A B C.
 Proof.
 intros.
-apply equilateral_strict_swap_1 in H.
-apply equilateral_strict_conga_1 in H.
+apply 等价严格等边三角形ACB in H.
+apply 严格等边三角形AC等角 in H.
 assumption.
 Qed.
 
-Lemma equilateral_strict_conga_3 :
+Lemma 严格等边三角形BC等角 :
  forall A B C,
- equilateral_strict A B C ->
+ 严格等边三角形 A B C ->
  等角 C B A B C A.
 Proof.
 intros.
-apply equilateral_strict_swap_2 in H.
-apply equilateral_strict_conga_1 in H.
+apply 等价严格等边三角形BAC in H.
+apply 严格等边三角形AC等角 in H.
 assumption.
 Qed.
 
-Lemma conga3_equilateral :
+Lemma 三角相等则为等边三角形 :
  forall A B C, 
  ~ Col A B C ->
  等角 B A C A B C ->
  等角 A B C B C A ->
- equilateral A B C.
+ 等边三角形 A B C.
 Proof.
 intros.
-assert (isosceles B C A)
- by (apply conga_isosceles;等角;Col).
-assert (isosceles C A B)
- by (apply conga_isosceles;等角;Col).
-unfold isosceles in *.
-unfold equilateral.
+assert (等腰三角形 B C A)
+ by (apply 底角相等的三角形是等腰三角形;等角;Col).
+assert (等腰三角形 C A B)
+ by (apply 底角相等的三角形是等腰三角形;等角;Col).
+unfold 等腰三角形 in *.
+unfold 等边三角形.
 split;eCong.
 Qed.
 

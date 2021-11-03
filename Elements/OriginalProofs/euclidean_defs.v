@@ -17,7 +17,7 @@ Definition Perp P Q A B := exists X, 垂直于 P Q A B X.
 Definition 在角内 A B C P := exists X Y, Out B A X /\ Out B C Y /\ BetS X P Y.
 Definition OS P Q A B := exists X U V, Col A B U /\ Col A B V /\ BetS P U X /\ BetS Q V X /\ nCol A B P /\ nCol A B Q.
 Definition IO A B C D := BetS A B C /\ BetS A B D /\ BetS A C D /\ BetS B C D.
-Definition isosceles A B C := Triangle A B C /\ Cong A B A C.
+Definition 等腰三角形 A B C := Triangle A B C /\ Cong A B A C.
 Definition Cut A B C D E := BetS A E B /\ BetS C E D /\ nCol A B C /\ nCol A B D.
 Definition 角度小于 A B C D E F := exists U X V, BetS U X V /\ Out E D U /\ Out E F V /\ 等角 A B C D E X.
 Definition TG A B C D E F := exists X, BetS A B X /\ Cong B X C D /\ Lt E F A X.
@@ -33,6 +33,6 @@ Definition SQ A B C D := Cong A B C D /\ Cong A B B C /\ Cong A B D A /\ Per D A
 Definition RE A B C D := Per D A B /\ Per A B C /\ Per B C D /\ Per C D A /\ CR A C B D.
 Definition RC A B C D a b c d := RE A B C D /\ RE a b c d /\ Cong A B a b /\ Cong B C b c.
 Definition ER A B C D a b c d := exists X Y Z U x z u w W, RC A B C D X Y Z U /\ RC a b c d x Y z u /\ BetS x Y Z /\ BetS X Y z /\ BetS W U w. 
-Definition equilateral A B C := Cong A B B C /\ Cong B C C A.
+Definition 等边三角形 A B C := Cong A B B C /\ Cong B C C A.
 
 End Definitions.

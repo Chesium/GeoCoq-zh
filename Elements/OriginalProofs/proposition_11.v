@@ -16,8 +16,8 @@ let Tf:=fresh in
 assert (Tf:exists E, (BetS A C E /\ Cong C E A C)) by (conclude lemma_extension);destruct Tf as [E];spliter.
 assert (neq A E) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists F, (equilateral A E F /\ Triangle A E F)) by (conclude proposition_01);destruct Tf as [F];spliter.
-assert (Cong E F F A) by (conclude_def equilateral ).
+assert (Tf:exists F, (等边三角形 A E F /\ Triangle A E F)) by (conclude proposition_01);destruct Tf as [F];spliter.
+assert (Cong E F F A) by (conclude_def 等边三角形 ).
 assert (Cong A F F E) by (forward_using lemma_doublereverse).
 assert (Cong A F E F) by (forward_using lemma_congruenceflip).
 assert (~ eq C F).

@@ -19,7 +19,7 @@ assert (~ Cong A C A B).
  {
  intro.
  assert (Cong A B A C) by (conclude lemma_congruencesymmetric).
- assert (isosceles A B C) by (conclude_def isosceles ).
+ assert (等腰三角形 A B C) by (conclude_def 等腰三角形 ).
  assert (等角 A B C A C B) by (conclude proposition_05).
  assert (等角 A C B A B C) by (conclude lemma_equalanglessymmetric).
  assert (等角 B C A A C B) by (conclude lemma_ABCequalsCBA).

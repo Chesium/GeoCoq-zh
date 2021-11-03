@@ -142,7 +142,7 @@ Qed.
 
 Lemma sesamath_4ieme_G2_ex36 :
  forall A B C H I J,
- isosceles B A C -> 
+ 等腰三角形 B A C -> 
  Perp A H B C ->
  Col B H C ->
  中点 I A B ->
@@ -154,7 +154,7 @@ assert_diffs.
 assert_cols.
 assert (~ Col B A C /\
        B <> H /\ C <> H /\ 中点 H B C /\ 等角 H A B H A C)
- by (apply (isosceles_foot__中点蕴含等长a B A C );finish).
+ by (apply (等腰三角形底边垂线也是底边中线 B A C );finish).
 spliter.
 assert (Plg A I H J).
  {
@@ -252,7 +252,7 @@ Les droites (HS) et (CA) sont perpendiculaires.
 Lemma sesamath_4ieme_G2_ex39:
 forall S C T H A,
 ~Col A C T ->
-is_circumcenter S C T A->
+外心 S C T A->
 中点 S C T ->
 Col C H A ->
 Perp S H A C ->
@@ -262,10 +262,10 @@ intros.
 assert_diffs.
 assert_cols.
 assert (Cong C S T S /\ Cong T S A S /\ Cong A S C S)
-  by ( apply(circumcenter_cong S C T A);finish).
+  by ( apply(外心与三角形顶点距离相等 S C T A);finish).
 spliter.
 assert(Per C A T)
-  by (perm_apply(midpoint_thales S C T A);finish).
+  by (perm_apply(泰勒斯定理 S C T A);finish).
 assert(Perp T A A C) by finish.
 assert(Par S H T A)
   by (perm_apply(l12_9 S H T A A C);finish).
@@ -421,7 +421,7 @@ b- Que peut-on dire de la position du point G sur chacune des médiane [BI] et [
 Lemma sesamath_4ieme_G2_ex42 :
 forall A B C I K L J G,
 ~Col A B C ->
-is_gravity_center G A B C ->
+重心 G A B C ->
 中点 I A C ->
 中点 J A B ->
 中点 K B G ->
@@ -432,21 +432,21 @@ intros.
 assert_diffs.
 assert_cols.
 assert (G<>A)
-  by (apply(is_gravity_center_diff_1 A B C G);finish). (* todo improve assert_diffs *)
+  by (apply(重心不与三角形顶点重合1 A B C G);finish). (* todo improve assert_diffs *)
 assert (Par B C K L)
   by(apply(triangle_mid_par B C G L K);finish).
 assert (G<>C)
-  by (apply(is_gravity_center_diff_3 A B C G);finish).
+  by (apply(重心不与三角形顶点重合3 A B C G);finish).
 assert_diffs.
 assert (中点 J B A)
   by(apply(M是AB中点则M是BA中点 J A B);finish).
-assert(is_gravity_center G C B A)
-  by(apply(is_gravity_center_perm_5 A B C G);finish). (* todo improve finish to include permutations of gravity center *)
+assert(重心 G C B A)
+  by(apply(等价重心CBA A B C G);finish). (* todo improve finish to include permutations of gravity center *)
 assert(中点 G J L)
-  by(apply(is_gravity_center_third C B A G L J);finish).
+  by(apply(重心截中线为二比一 C B A G L J);finish).
 assert_diffs.
 assert(平行四边形 I L K J)
-  by(apply(varignon.varignon_aux_aux A C G B I L K J);finish).
+  by(apply(varignon.瓦里尼翁平行四边形1 A C G B I L K J);finish).
 apply(Plg_perm I L K J);finish. (* todo improve finish to include permuations of Plg and other quadrilaterals *)
 Qed.
 
@@ -549,7 +549,7 @@ Col I A M ->
 Par J K A C ->
 Col K I C ->
 Col G C A /\ Col G M K ->
-中点 K I C /\ Par A K M C /\ is_gravity_center G C M I.
+中点 K I C /\ Par A K M C /\ 重心 G C M I.
 Proof.
 intros.
 assert_diffs.

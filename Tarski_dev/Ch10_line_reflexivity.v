@@ -1,7 +1,7 @@
 Require Export GeoCoq.Tarski_dev.Ch09_plane.
 Require Export GeoCoq.Tarski_dev.Tactics.CoincR_for_cop.
 
-Ltac assert_cops :=
+Ltac 推导四点共面 :=
  repeat match goal with
       | H:Perp ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply perp__coplanar, H)
@@ -42,7 +42,7 @@ Ltac assert_cops :=
 Ltac Cop := auto; try (intros; solve [apply col__coplanar; Col
      |apply coplanar_perm_1, col__coplanar; Col|apply coplanar_perm_4, col__coplanar; Col
      |apply coplanar_perm_18, col__coplanar; Col
-     |assert_cops; auto 2 with cop_perm]).
+     |推导四点共面; auto 2 with cop_perm]).
 
 Ltac exist_hyp_perm_col A B C := first [exist_hyp (Col A B C)|exist_hyp (Col A C B)
                                        |exist_hyp (Col B A C)|exist_hyp (Col B C A)
@@ -61,7 +61,7 @@ Ltac CopR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
  let cop := constr:(共面) in
-   treat_equalities; assert_cols; clean; assert_ncols; assert_cops; auto 2 with cop_perm;
+   treat_equalities; assert_cols; clean; assert_ncols; 推导四点共面; auto 2 with cop_perm;
    solve[apply col__coplanar; Col|apply coplanar_perm_1, col__coplanar; Col
         |apply coplanar_perm_4, col__coplanar; Col|apply coplanar_perm_18, col__coplanar; Col
         |copr_aux; Cop_refl tpoint col cop] || fail "Can not be deduced".

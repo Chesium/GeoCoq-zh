@@ -541,7 +541,7 @@ Ltac not_exist_hyp_perm_cop A B C D := not_exist_hyp_perm_cop_aux A B C D;
                                        not_exist_hyp_perm_cop_aux C A B D;
                                        not_exist_hyp_perm_cop_aux D A B C.
 
-Ltac assert_cops :=
+Ltac 推导四点共面 :=
  repeat match goal with
       | H:Perp ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply perp__coplanar, H)
@@ -594,4 +594,4 @@ Ltac exist_hyp_perm_ncop A B C D := first
 Ltac Cop := auto; try (intros; solve [apply col__coplanar; Col
      |apply coplanar_perm_1, col__coplanar; Col|apply coplanar_perm_4, col__coplanar; Col
      |apply coplanar_perm_18, col__coplanar; Col
-     |assert_cops; auto 2 with cop_perm]).
+     |推导四点共面; auto 2 with cop_perm]).

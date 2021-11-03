@@ -2103,7 +2103,7 @@ nsatz.
 prove_discr_for_powers_of_2.
 Qed.
 
-Lemma exists_equilateral_triangle : forall A B,
+Lemma exists_等边三角形_triangle : forall A B,
   exists C, Cong A B A C /\ Cong A B B C.
 Proof.
 intros.

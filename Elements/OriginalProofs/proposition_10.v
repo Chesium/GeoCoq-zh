@@ -14,9 +14,9 @@ Lemma proposition_10 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists C, (equilateral A B C /\ Triangle A B C)) by (conclude proposition_01);destruct Tf as [C];spliter.
+assert (Tf:exists C, (等边三角形 A B C /\ Triangle A B C)) by (conclude proposition_01);destruct Tf as [C];spliter.
 assert (nCol A B C) by (conclude_def Triangle ).
-assert ((Cong A B B C /\ Cong B C C A)) by (conclude_def equilateral ).
+assert ((Cong A B B C /\ Cong B C C A)) by (conclude_def 等边三角形 ).
 assert (Cong A C C B) by (forward_using lemma_doublereverse).
 assert (Cong A C B C) by (forward_using lemma_congruenceflip).
 assert (~ eq C B).

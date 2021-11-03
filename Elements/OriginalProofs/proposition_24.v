@@ -121,7 +121,7 @@ assert (~ Col A C H).
  contradict.
  }
 assert (Triangle A C H) by (conclude_def Triangle ).
-assert (isosceles A C H) by (conclude_def isosceles ).
+assert (等腰三角形 A C H) by (conclude_def 等腰三角形 ).
 assert (等角 A C H A H C) by (conclude proposition_05).
 assert ((BetS A H J \/ eq J H \/ BetS A J H)) by (conclude lemma_ray1).
 assert (Lt H B C B).

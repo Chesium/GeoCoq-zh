@@ -1,13 +1,13 @@
 Require Export GeoCoq.Tarski_dev.Annexes.midpoint_theorems.
 Require Export GeoCoq.Highschool.circumcenter.
 Require Export GeoCoq.Highschool.orthocenter.
-Require Export GeoCoq.Highschool.midpoint_thales.
+Require Export GeoCoq.Highschool.泰勒斯定理.
 Require Export GeoCoq.Highschool.concyclic.
 Require Export GeoCoq.Highschool.gravityCenter.
 
 Import concyclic.
 
-Ltac assert_cops :=
+Ltac 推导四点共面 :=
  repeat match goal with
       | H:Perp ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply perp__coplanar, H)
@@ -43,18 +43,18 @@ Ltac assert_cops :=
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply sac__coplanar, H)
       | H:Lambert四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply lambert__coplanar, H)
-      | H:is_circumcenter ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply is_circumcenter_coplanar, H)
-      | H:is_orthocenter ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply is_orthocenter_coplanar, H)
-      | H:is_gravity_center ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply is_gravity_center_coplanar, H)
+      | H:外心 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 外心与三角形共面, H)
+      | H:垂心 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 垂心与三角形共面, H)
+      | H:重心 ?X1 ?X2 ?X3 ?X4 |- _ =>
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 重心与三角形共面, H)
  end.
 
 Ltac Cop := auto; try (intros; solve [apply col__coplanar; Col
      |apply coplanar_perm_1, col__coplanar; Col|apply coplanar_perm_4, col__coplanar; Col
      |apply coplanar_perm_18, col__coplanar; Col
-     |assert_cops; auto 2 with cop_perm]).
+     |推导四点共面; auto 2 with cop_perm]).
 
 Ltac copr_aux :=
  repeat match goal with
@@ -69,12 +69,12 @@ Ltac CopR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
  let cop := constr:(共面) in
-   treat_equalities; assert_cols; clean; assert_ncols; assert_cops; auto 2 with cop_perm;
+   treat_equalities; assert_cols; clean; assert_ncols; 推导四点共面; auto 2 with cop_perm;
    solve[apply col__coplanar; Col|apply coplanar_perm_1, col__coplanar; Col
         |apply coplanar_perm_4, col__coplanar; Col|apply coplanar_perm_18, col__coplanar; Col
         |copr_aux; Cop_refl tpoint col cop] || fail "Can not be deduced".
 
-Section Euler_line.
+Section 欧拉线定理.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
@@ -156,7 +156,7 @@ Lemma concyclic_not_col_or_eq :
   A'=C \/ A'=B \/ A=B \/ A=C \/ A=A' \/ (~ Col A B A' /\ ~ Col A C A').
 Proof.
 intros A B C A' H.
-assert (H' := H); apply concyclic_perm_1 in H; apply concyclic_perm_3 in H'.
+assert (H' := H); apply 等价共圆ABDC in H; apply 等价共圆ACDB in H'.
 apply concyclic_not_col_or_eq_aux in H; apply concyclic_not_col_or_eq_aux in H'.
 elim (两点重合的决定性 A' C); intro; try tauto.
 elim (两点重合的决定性 A' B); intro; try tauto.
@@ -167,48 +167,48 @@ do 3 (elim H; clear H; intro H; try tauto); Col.
 do 3 (elim H'; clear H'; intro H'; try tauto); Col.
 Qed.
 
-Lemma Euler_line_special_case :
+Lemma 直角三角形上的欧拉线定理 :
   forall A B C G H O,
   Per A B C ->
-  is_gravity_center G A B C ->
-  is_orthocenter H A B C ->
-  is_circumcenter O A B C ->
+  重心 G A B C ->
+  垂心 H A B C ->
+  外心 O A B C ->
   Col G H O.
 Proof.
 intros.
 assert (H=B).
-  apply orthocenter_per with A C;finish.
+  apply 直角三角形的垂心与直角顶点重合 with A C;finish.
 subst.
 assert (中点 O A C).
- apply circumcenter_per with B;finish.
- unfold is_orthocenter in *;spliter;assert_diffs;finish.
- unfold is_orthocenter in *;spliter;assert_diffs;finish.
-assert (is_gravity_center G A C B).
- apply is_gravity_center_perm in H1;intuition.
-perm_apply (is_gravity_center_col A C B G O).
+ apply 直角三角形的外心是斜边中点 with B;finish.
+ unfold 垂心 in *;spliter;assert_diffs;finish.
+ unfold 垂心 in *;spliter;assert_diffs;finish.
+assert (重心 G A C B).
+ apply 重心的等价排列 in H1;intuition.
+perm_apply (重心在中线上 A C B G O).
 Qed.
 
 Lemma gravity_center_change_triangle:
  forall A B C G I B' C',
- is_gravity_center G A B C ->
+ 重心 G A B C ->
  中点 I B C ->
  中点 I B' C' ->
  ~ Col A B' C' ->
- is_gravity_center G A B' C'.
+ 重心 G A B' C'.
 Proof.
 intros.
 Name G' the midpoint of A and G.
 assert (中点 G I G')
-  by (apply (is_gravity_center_third A B C G G' I);finish).
-apply (is_gravity_center_third_reci A B' C' G I G');finish.
+  by (apply (重心截中线为二比一 A B C G G' I);finish).
+apply (截中线为二比一的点为重心 A B' C' G I G');finish.
 Qed.
 
-Lemma Euler_line :
+Lemma 欧拉线定理 :
  forall A B C G H O,
   ~ Col A B C ->
-  is_gravity_center G A B C ->
-  is_orthocenter H A B C ->
-  is_circumcenter O A B C ->
+  重心 G A B C ->
+  垂心 H A B C ->
+  外心 O A B C ->
   Col G H O.
 Proof.
 intros.
@@ -222,9 +222,9 @@ assert (Perp_bisect A A' B C)
   by (apply cong_mid_perp_bisect; Cong; intro; treat_equalities; apply H0; Col).
 
 assert (Col G A' A)
-  by (apply is_gravity_center_perm in H1; apply is_gravity_center_col with B C; spliter; Col).
+  by (apply 重心的等价排列 in H1; apply 重心在中线上 with B C; spliter; Col).
 
-unfold is_orthocenter in *; spliter.
+unfold 垂心 in *; spliter.
 
 elim (两点重合的决定性 O G); intro; treat_equalities; Col;
 elim (两点重合的决定性 O H); intro; treat_equalities; Col.
@@ -232,7 +232,7 @@ elim (两点重合的决定性 O H); intro; treat_equalities; Col.
 elim (两点重合的决定性 O A'); intro; treat_equalities.
 
 assert (Col A H O) by (apply cop_perp2__col with B C; Col; Cop; apply perp_bisect_perp; Col).
-apply is_gravity_center_coplanar in H1.
+apply 重心与三角形共面 in H1.
 apply 等价共线BCA; apply cop_perp2__col with B C.
 
 CopR.
@@ -240,7 +240,7 @@ apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with A O; try
 apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with A H; Col.
 
 assert (Col A A' H) by (apply cop_perp2__col with B C; Cop; apply perp_bisect_perp; auto).
-assert (Perp_bisect O A' B C) by (assert_diffs; apply circumcenter_perp with A; auto).
+assert (Perp_bisect O A' B C) by (assert_diffs; apply 外心与一边中点连线是该边中垂线 with A; auto).
 assert (Col A' A O)
   by (apply cop_perp2__col with B C; Perp; Cop).
 show_distinct A A'.
@@ -258,7 +258,7 @@ assert (共圆 A B C A').
   treat_equalities; Cop.
  apply coplanar_perm_12, col_cop__cop with O; Col; Cop.
  exists O.
- apply circumcenter_cong in H3.
+ apply 外心与三角形顶点距离相等 in H3.
  spliter.
  assert_congs_perm.
  spliter;repeat (split;finish).
@@ -267,21 +267,21 @@ assert (T:=concyclic_not_col_or_eq A B C A' H5).
 decompose [or] T;clear T;try contradiction.
  - subst.
    assert (Per A B C).
-    apply midpoint_thales with O;finish.
-    unfold is_circumcenter in *;spliter;finish.
-   apply (Euler_line_special_case A B C G H O);finish.
+    apply 泰勒斯定理 with O;finish.
+    unfold 外心 in *;spliter;finish.
+   apply (直角三角形上的欧拉线定理 A B C G H O);finish.
  - subst.
    assert (Per A C B).
-    apply midpoint_thales with O;finish.
-    unfold is_circumcenter in *;spliter.
+    apply 泰勒斯定理 with O;finish.
+    unfold 外心 in *;spliter.
     apply 等长的传递性 with O B;finish.
 
-   apply (Euler_line_special_case A C B G H O);finish.
-   apply is_gravity_center_perm_1; assumption.
+   apply (直角三角形上的欧拉线定理 A C B G H O);finish.
+   apply 等价重心ACB; assumption.
    auto with Orthocenter.
    auto with Circumcenter.
 
- - unfold is_circumcenter in *;spliter.
+ - unfold 外心 in *;spliter.
    treat_equalities.
    intuition.
  - spliter.
@@ -289,27 +289,27 @@ decompose [or] T;clear T;try contradiction.
 assert_diffs.
 
 assert (Per A B A').
- apply midpoint_thales with O;finish.
- unfold is_circumcenter in *;spliter;finish.
+ apply 泰勒斯定理 with O;finish.
+ unfold 外心 in *;spliter;finish.
 
 assert (Perp C H A B)
- by (unfold is_orthocenter in *;spliter;finish).
+ by (unfold 垂心 in *;spliter;finish).
 
 assert (Perp A' B B A)
  by (apply 直角转L形垂直;finish).
 
 assert (Par C H A' B).
  unfold 共圆 in *; spliter.
- apply is_orthocenter_coplanar in H2.
+ apply 垂心与三角形共面 in H2.
  apply l12_9 with A B; try CopR; Perp.
 
 assert (Perp B H A C)
- by (unfold is_orthocenter in *;spliter;finish).
+ by (unfold 垂心 in *;spliter;finish).
 
 assert (Per A C A').
  {
- apply midpoint_thales with O;finish.
- unfold is_circumcenter in *;spliter;finish.
+ apply 泰勒斯定理 with O;finish.
+ unfold 外心 in *;spliter;finish.
  apply 等长的传递性 with B O;finish.
  }
 
@@ -320,16 +320,16 @@ assert (Par B H C A').
  apply l12_9 with A C; try CopR; Perp.
 
 induction (共线的决定性 B H C).
- * assert (H=B \/ H=C) by (apply (orthocenter_col A B C H);finish).
+ * assert (H=B \/ H=C) by (apply (垂心与一边共线则必与该边一端点重合 A B C H);finish).
    induction H26.
    + subst H.
-     assert (中点 O A C) by (apply (circumcenter_per) with B;finish).
+     assert (中点 O A C) by (apply (直角三角形的外心是斜边中点) with B;finish).
      assert (Col G O B).
-        apply (is_gravity_center_col A C B G O).
-        apply is_gravity_center_perm in H1;intuition idtac.
+        apply (重心在中线上 A C B G O).
+        apply 重心的等价排列 in H1;intuition idtac.
         assumption.
      Col.
-   (*  perm_apply (is_gravity_center_col A C B G O). bug in 8.5 *) 
+   (*  perm_apply (重心在中线上 A C B G O). bug in 8.5 *) 
    + subst H;assert_diffs; intuition.
  * assert (平行四边形 B H C A')
      by (apply par_2_plg;finish).
@@ -341,12 +341,12 @@ induction (共线的决定性 B H C).
 
    elim (直角的决定性 B A C); intro.
 
-   apply Euler_line_special_case with B A C;
-   try apply is_gravity_center_cases; auto;
-   try apply is_orthocenter_cases; auto;
-   try apply is_circumcenter_cases; auto.
+   apply 直角三角形上的欧拉线定理 with B A C;
+   try apply 重心的各排列情况; auto;
+   try apply 垂心的各排列情况; auto;
+   try apply 外心的各排列情况; auto.
 
-   assert (is_gravity_center G A H A').
+   assert (重心 G A H A').
      {
      apply gravity_center_change_triangle with B C I;finish.
      show_distinct A' H; treat_equalities.
@@ -355,7 +355,7 @@ induction (共线的决定性 B H C).
      Name A'' the midpoint of B and C.
      show_distinct A'' O; treat_equalities.
      apply H27; apply L形垂直转直角1; assert_diffs; Perp.
-     assert (Perp_bisect O A'' B C) by (apply circumcenter_perp with A; Col).
+     assert (Perp_bisect O A'' B C) by (apply 外心与一边中点连线是该边中垂线 with A; Col).
      elim (两点重合的决定性 A A''); intro; treat_equalities.
      eauto using perp_bisect_cong_2 with cong.
      assert (Perp_bisect A'' A B C).
@@ -365,10 +365,10 @@ induction (共线的决定性 B H C).
      eauto using perp_bisect_cong_2 with cong.
      }
 
-   assert (is_gravity_center G A A' H)
-     by (apply is_gravity_center_cases;auto).
+   assert (重心 G A A' H)
+     by (apply 重心的各排列情况;auto).
 
-   perm_apply (is_gravity_center_col A A' H G O).
+   perm_apply (重心在中线上 A A' H G O).
 Qed.
 
-End Euler_line.
+End 欧拉线定理.

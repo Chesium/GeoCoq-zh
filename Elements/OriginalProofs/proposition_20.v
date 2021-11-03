@@ -57,7 +57,7 @@ assert (~ eq D C).
  contradict.
  }
 assert (Triangle A D C) by (conclude_def Triangle ).
-assert (isosceles A D C) by (conclude_def isosceles ).
+assert (等腰三角形 A D C) by (conclude_def 等腰三角形 ).
 assert (等角 A D C A C D) by (conclude proposition_05).
 assert (~ Col A C D).
  {

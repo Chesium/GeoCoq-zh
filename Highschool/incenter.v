@@ -6,18 +6,18 @@ Section InCenter.
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 
-Definition is_incenter I A B C :=
+Definition 内心 I A B C :=
  ~ Col A B C /\ 等角 B A I I A C /\ 等角 A B I I B C /\ 等角 A C I I C B.
 
 (** Proof of the existence of the incenter of a triangle. *)
 
-Lemma incenter_exists : forall A B C, ~ Col A B C -> exists I, is_incenter I A B C.
+Lemma 内心的存在性 : forall A B C, ~ Col A B C -> exists I, 内心 I A B C.
 Proof.
 intros A B C HNCOL.
 (*----construction---*)
 assert_diffs.
-destruct (bisector_existence A B C) as [IB HCONA];auto.
-destruct (bisector_existence B A C) as [IA HCONB];auto.
+destruct (角平分线的存在性 A B C) as [IB HCONA];auto.
+destruct (角平分线的存在性 B A C) as [IA HCONB];auto.
 destruct HCONA as [HBINANGLE HCONGAA].
 destruct HCONB as [HAINANGLE HCONGBB].
 destruct HBINANGLE as [HBAB [HBCB [HBIBB HBEXI]]].
@@ -44,7 +44,7 @@ destruct (l8_18_过一点垂线之垂点的存在性 A B X) as [HC [HCC1 HCC2]];
 destruct (l8_18_过一点垂线之垂点的存在性 A C X) as [HB [HBC1 HBC2]];auto.
 destruct (l8_18_过一点垂线之垂点的存在性 B C X) as [HA [HAC1 HAC2]];auto.
 exists X.
-unfold is_incenter.
+unfold 内心.
 split.
 assumption.
 (*-prove some conclusions which will be required later for many times.-*)
@@ -59,12 +59,12 @@ assert (等角 A B X X B C).
 { apply (l11_10 A B IB IB B C A X X C);Out.
 }
 assert (共面 C A B X) by (exists XB; left; split; Col).
-assert (Cong X HB X HC) by (apply (bisector_perp_equality C A B X HB HC);Col;Perp;等角).
-assert (Cong X HC X HA) by (apply (bisector_perp_equality A B C X HC HA);Col;Cop).
+assert (Cong X HB X HC) by (apply (角平分线定理 C A B X HB HC);Col;Perp;等角).
+assert (Cong X HC X HA) by (apply (角平分线定理 A B C X HC HA);Col;Cop).
 assert (Cong X HB X HA) by (apply (等长的传递性 X HB X HC X HA);auto).
 assert (等角 A C X X C B).
 { 
- apply (perp_equality_bisector A C B X HB HA);Col;Perp.
+ apply (角平分线定理的逆定理 A C B X HB HA);Col;Perp.
  assert (在角内 X A B C).
  repeat split;auto.
  exists XB.
@@ -93,9 +93,9 @@ assert (等角 A C X X C B).
 split;auto.
 Qed.
 
-Lemma incenter_permut132 : forall A B C I, is_incenter I A B C -> is_incenter I A C B.
+Lemma 等价内心ACB : forall A B C I, 内心 I A B C -> 内心 I A C B.
 Proof.
-unfold is_incenter.
+unfold 内心.
 intros A B C I HIABC.
 destruct HIABC as [HNCOL [HCONGAA [HCONGAB HCONGAC]]].
 split.
@@ -103,9 +103,9 @@ Col.
 split;等角.
 Qed.
 
-Lemma incenter_permut213 : forall A B C I, is_incenter I A B C -> is_incenter I B A C.
+Lemma 等价内心BAC : forall A B C I, 内心 I A B C -> 内心 I B A C.
 Proof.
-unfold is_incenter.
+unfold 内心.
 intros A B C I HIABC.
 destruct HIABC as [HNCOL [HCONGAA [HCONGAB HCONGAC]]].
 split.
@@ -114,31 +114,31 @@ split;auto.
 split;等角.
 Qed.
 
-Lemma incenter_permut231 : forall A B C I, is_incenter I A B C -> is_incenter I B C A.
+Lemma 等价内心BCA : forall A B C I, 内心 I A B C -> 内心 I B C A.
 Proof.
 intros A B C I HIABC.
-apply (incenter_permut132 B A C I).
-apply (incenter_permut213 A B C I);auto.
+apply (等价内心ACB B A C I).
+apply (等价内心BAC A B C I);auto.
 Qed.
 
-Lemma incenter_permut312 : forall A B C I, is_incenter I A B C -> is_incenter I C A B.
+Lemma 等价内心CAB : forall A B C I, 内心 I A B C -> 内心 I C A B.
 Proof.
 intros A B C I HIABC.
-apply (incenter_permut213 A C B I).
-apply (incenter_permut132 A B C I);auto.
+apply (等价内心BAC A C B I).
+apply (等价内心ACB A B C I);auto.
 Qed.
 
-Lemma incenter_permut321 : forall A B C I, is_incenter I A B C -> is_incenter I C B A.
+Lemma 等价内心CBA : forall A B C I, 内心 I A B C -> 内心 I C B A.
 Proof.
 intros A B C I HIABC.
-apply (incenter_permut312 B A C I).
-apply (incenter_permut213 A B C I);auto.
+apply (等价内心CAB B A C I).
+apply (等价内心BAC A B C I);auto.
 Qed.
 
-Lemma incenter_dec : forall A B C I, is_incenter I A B C \/ ~ is_incenter I A B C.
+Lemma 一点是否为内心的决定性 : forall A B C I, 内心 I A B C \/ ~ 内心 I A B C.
 Proof.
 intros A B C I.
-unfold is_incenter.
+unfold 内心.
 destruct (共线的决定性 A B C) as [HCOL | HNCOL].
 right.
 intro HCOLIN.

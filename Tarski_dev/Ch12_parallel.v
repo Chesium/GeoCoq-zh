@@ -441,7 +441,7 @@ Ltac CopR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
  let cop := constr:(共面) in
-   treat_equalities; assert_cols; clean; assert_ncols; assert_cops; auto 2 with cop_perm;
+   treat_equalities; assert_cols; clean; assert_ncols; 推导四点共面; auto 2 with cop_perm;
    solve[apply col__coplanar; Col|apply coplanar_perm_1, col__coplanar; Col
         |apply coplanar_perm_4, col__coplanar; Col|apply coplanar_perm_18, col__coplanar; Col
         |copr_aux; Cop_refl tpoint col cop] || fail "Can not be deduced".

@@ -7,11 +7,11 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma proposition_05 : 
    forall A B C, 
-   isosceles A B C ->
+   等腰三角形 A B C ->
    等角 A B C A C B.
 Proof.
 intros.
-assert ((Triangle A B C /\ Cong A B A C)) by (conclude_def isosceles ).
+assert ((Triangle A B C /\ Cong A B A C)) by (conclude_def 等腰三角形 ).
 assert (Cong A C A B) by (conclude lemma_congruencesymmetric).
 assert (nCol A B C) by (conclude_def Triangle ).
 assert (~ Col C A B).

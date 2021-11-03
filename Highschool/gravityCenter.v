@@ -32,7 +32,7 @@ C'est une appliquette Java créée avec GeoGebra ( www.geogebra.org) - Il semble
 
 **)
 
-Lemma intersection_two_medians_exist :
+Lemma 三角形两中线交点的存在性 :
 forall A B C I J,
  ~Col A B C ->
  中点 I B C -> 中点 J A C ->
@@ -46,14 +46,14 @@ exists G.
 spliter;assert_cols;split...
 Qed.
 
-Lemma intersection_two_medians_exist_unique :
+Lemma 三角形两中线交点的唯一性 :
 forall A B C I J,
  ~Col A B C ->
  中点 I B C -> 中点 J A C ->
  exists! G, Col G A I /\ Col G B J.
 Proof with finish.
 intros.
-elim (intersection_two_medians_exist A B C I J H H0 H1); intros G HG; spliter.
+elim (三角形两中线交点的存在性 A B C I J H H0 H1); intros G HG; spliter.
 exists G.
 unfold unique.
 assert_all.
@@ -64,28 +64,28 @@ intro; search_contradiction.
 show_distinct' B J...
 Qed.
 
-Definition is_gravity_center G A B C :=
+Definition 重心 G A B C :=
  ~ Col A B C /\
  exists I, exists J, 中点 I B C /\ 中点 J A C /\ Col G A I /\ Col G B J.
 
-Lemma is_gravity_center_coplanar : forall A B C G,
-  is_gravity_center G A B C -> 共面 G A B C.
+Lemma 重心与三角形共面 : forall A B C G,
+  重心 G A B C -> 共面 G A B C.
 Proof.
 intros.
 destruct H as [HNCol [I [J]]]; spliter.
 exists I; left; split; Col.
 Qed.
 
-Lemma is_gravity_center_exist_unique : forall A B C,
+Lemma 重心的唯一性 : forall A B C,
   ~ Col A B C ->
-  exists! G, is_gravity_center G A B C.
+  exists! G, 重心 G A B C.
 Proof with finish.
 intros.
 assert_diffs.
 Name I the midpoint of B and C.
 Name J the midpoint of A and C.
-elim (intersection_two_medians_exist A B C I J H H1 H4); intros G HG; spliter.
-exists G; unfold unique; unfold is_gravity_center; repeat split...
+elim (三角形两中线交点的存在性 A B C I J H H1 H4); intros G HG; spliter.
+exists G; unfold unique; unfold 重心; repeat split...
 exists I;  exists J; do 3 (split; finish).
 intros G' HG'; spliter; decompose [ex and] H8;clear H8.
 assert_all.
@@ -95,13 +95,13 @@ show_distinct' B x0...
 Qed.
 
 Ltac intersection_medians G A B C I J H1 H2 H3 :=
- let T := fresh in assert(T:= intersection_two_medians_exist A B C I J H1 H2 H3);
+ let T := fresh in assert(T:= 三角形两中线交点的存在性 A B C I J H1 H2 H3);
  ex_and T G.
 
 Tactic Notation "Name" ident(G) "the" "intersection" "of" "the" "medians" "(" ident(A) ident(I) ")" "which" "is" "a" "median" "since" ident(H2) "and" "(" ident(B) ident(J) ")" "which" "is" "a" "median" "since" ident(H3) "of" "the" "non-flat" "triangle" ident(A) ident(B) ident(C) ident(H1) :=
  intersection_medians G A B C I J H1 H2 H3.
 
-Lemma three_medians_intersect:
+Lemma 三中线交于一点:
  forall A B C I J K,
  ~Col A B C ->
  中点 I B C ->
@@ -139,19 +139,19 @@ Name Z the intersection of the diagonals (G D)
 ColR.
 Qed.
 
-Lemma is_gravity_center_col : forall A B C G I,
-  is_gravity_center G A B C ->
+Lemma 重心在中线上 : forall A B C G I,
+  重心 G A B C ->
   中点 I A B ->
   Col G I C.
 Proof.
 intros.
-unfold is_gravity_center in *.
+unfold 重心 in *.
 spliter.
 destruct H1 as [J [K [Ha [Hb [Hc Hd]]]]].
-elim (three_medians_intersect A B C J K I H);try assumption.
+elim (三中线交于一点 A B C J K I H);try assumption.
 intro G';intros.
 spliter.
-assert (T:=is_gravity_center_exist_unique A B C H).
+assert (T:=重心的唯一性 A B C H).
 elim T.
 intros G''.
 intros.
@@ -159,12 +159,12 @@ unfold unique in *.
 spliter.
 assert (G''=G).
 apply H5.
-unfold is_gravity_center.
+unfold 重心.
 split;auto.
 exists J. exists K;auto.
 assert (G''=G').
 apply H5.
-unfold is_gravity_center.
+unfold 重心.
 split;auto.
 exists J. exists K;auto.
 subst.
@@ -172,14 +172,14 @@ subst.
 Col.
 Qed.
 
-Lemma is_gravity_center_diff_1 :
+Lemma 重心不与三角形顶点重合1 :
  forall A B C G,
- is_gravity_center G A B C ->
+ 重心 G A B C ->
  G<>A.
 Proof.
 intros.
 intro.
-unfold is_gravity_center in *.
+unfold 重心 in *.
 spliter.
 decompose [ex and] H1.
 assert_cols.
@@ -189,14 +189,14 @@ assert_diffs.
 ColR.
 Qed.
 
-Lemma is_gravity_center_diff_2 :
+Lemma 重心不与三角形顶点重合2 :
  forall A B C G,
- is_gravity_center G A B C ->
+ 重心 G A B C ->
  G<>B.
 Proof.
 intros.
 intro.
-unfold is_gravity_center in *.
+unfold 重心 in *.
 spliter.
 decompose [ex and] H1.
 assert_cols.
@@ -206,14 +206,14 @@ assert_diffs.
 ColR.
 Qed.
 
-Lemma is_gravity_center_diff_3 :
+Lemma 重心不与三角形顶点重合3 :
  forall A B C G,
- is_gravity_center G A B C ->
+ 重心 G A B C ->
  G<>C.
 Proof.
 intros.
 intro.
-unfold is_gravity_center in *.
+unfold 重心 in *.
 spliter.
 decompose [ex and] H1.
 assert_cols.
@@ -226,17 +226,17 @@ Qed.
 
 (** We don't have ratio so we express that AG=2/3 AA' using midpoints. *)
 
-Lemma is_gravity_center_third :
+Lemma 重心截中线为二比一 :
  forall A B C G G' A',
- is_gravity_center G A B C ->
+ 重心 G A B C ->
  中点 G' A G ->
  中点 A' B C ->
  中点 G A' G'.
 Proof.
 intros.
 Name C' the midpoint of A and B.
-assert (Col G C' C) by (apply is_gravity_center_col with A B; Col).
-unfold is_gravity_center in *.
+assert (Col G C' C) by (apply 重心在中线上 with A B; Col).
+unfold 重心 in *.
 spliter.
 destruct H4 as [A'' [B' HIJ]].
 spliter.
@@ -244,7 +244,7 @@ treat_equalities.
 assert_diffs.
 Name G'' the midpoint of C and G.
 assert (HPar : 平行四边形  C' A' G'' G').
-apply (varignon' A B C G C' A' G'' G'); finish.
+apply (瓦里尼翁平行四边形3 A B C G C' A' G'' G'); finish.
 apply parallelogram_to_plg in HPar.
 destruct HPar as [HDiff [I [HCol1 HCol2]]].
 assert (G = I); [|subst; Cong].
@@ -257,13 +257,13 @@ assert_diffs.
 apply l6_21_两线交点的唯一性 with A G C G; trivial; ColR.
 Qed.
 
-Lemma is_gravity_center_third_reci :
+Lemma 截中线为二比一的点为重心 :
  forall A B C G A' A'',
  中点 A' B C ->
  中点 A'' A G ->
  中点 G A' A'' ->
  ~ Col A B C ->
- is_gravity_center G A B C.
+ 重心 G A B C.
 Proof.
 intros A B C G A' A'' HMid1 HMid2 HMid3 HNC.
 split; Col.
@@ -440,17 +440,17 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
   }
 Qed.
 
-Lemma is_gravity_center_perm : forall A B C G,
- is_gravity_center G A B C ->
- is_gravity_center G A B C /\ is_gravity_center G A C B /\
- is_gravity_center G B A C /\ is_gravity_center G B C A /\
- is_gravity_center G C A B /\ is_gravity_center G C B A.
+Lemma 重心的等价排列 : forall A B C G,
+ 重心 G A B C ->
+ 重心 G A B C /\ 重心 G A C B /\
+ 重心 G B A C /\ 重心 G B C A /\
+ 重心 G C A B /\ 重心 G C B A.
 Proof.
 intros.
 Name I the midpoint of A and B.
 assert (Col G I C)
- by (apply is_gravity_center_col with A B;finish).
-unfold is_gravity_center in *.
+ by (apply 重心在中线上 with A B;finish).
+unfold 重心 in *.
 spliter.
 destruct H2 as [J [K [Ha [Hb [Hc Hd]]]]].
  repeat split;Col.
@@ -462,72 +462,72 @@ exists I; exists J;repeat (split;finish).
 exists I; exists K;repeat (split;finish).
 Qed.
 
-Lemma is_gravity_center_perm_1 : forall A B C G,
- is_gravity_center G A B C -> is_gravity_center G A C B.
+Lemma 等价重心ACB : forall A B C G,
+ 重心 G A B C -> 重心 G A C B.
 Proof.
 intros.
-apply is_gravity_center_perm in H;intuition.
+apply 重心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_gravity_center_perm_2 : forall A B C G,
- is_gravity_center G A B C -> is_gravity_center G B A C.
+Lemma 等价重心BAC : forall A B C G,
+ 重心 G A B C -> 重心 G B A C.
 Proof.
 intros.
-apply is_gravity_center_perm in H;intuition.
+apply 重心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_gravity_center_perm_3 : forall A B C G,
- is_gravity_center G A B C -> is_gravity_center G B C A.
+Lemma 等价重心BCA : forall A B C G,
+ 重心 G A B C -> 重心 G B C A.
 Proof.
 intros.
-apply is_gravity_center_perm in H;intuition.
+apply 重心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_gravity_center_perm_4 : forall A B C G,
- is_gravity_center G A B C -> is_gravity_center G C A B.
+Lemma 等价重心CAB : forall A B C G,
+ 重心 G A B C -> 重心 G C A B.
 Proof.
 intros.
-apply is_gravity_center_perm in H;intuition.
+apply 重心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_gravity_center_perm_5 : forall A B C G,
- is_gravity_center G A B C -> is_gravity_center G C B A.
+Lemma 等价重心CBA : forall A B C G,
+ 重心 G A B C -> 重心 G C B A.
 Proof.
 intros.
-apply is_gravity_center_perm in H;intuition.
+apply 重心的等价排列 in H;intuition.
 Qed.
 
-Lemma is_gravity_center_cases : forall A B C G,
-  is_gravity_center G A B C \/
-  is_gravity_center G A C B \/
-  is_gravity_center G B A C \/
-  is_gravity_center G B C A \/
-  is_gravity_center G C A B \/
-  is_gravity_center G C B A ->
-  is_gravity_center G A B C.
+Lemma 重心的各排列情况 : forall A B C G,
+  重心 G A B C \/
+  重心 G A C B \/
+  重心 G B A C \/
+  重心 G B C A \/
+  重心 G C A B \/
+  重心 G C B A ->
+  重心 G A B C.
 Proof.
 intros.
 decompose [or] H;clear H.
-apply is_gravity_center_perm in H0;intuition.
-apply is_gravity_center_perm in H1;intuition.
-apply is_gravity_center_perm in H0;intuition.
-apply is_gravity_center_perm in H1;intuition.
-apply is_gravity_center_perm in H0;intuition.
-apply is_gravity_center_perm in H0;intuition.
+apply 重心的等价排列 in H0;intuition.
+apply 重心的等价排列 in H1;intuition.
+apply 重心的等价排列 in H0;intuition.
+apply 重心的等价排列 in H1;intuition.
+apply 重心的等价排列 in H0;intuition.
+apply 重心的等价排列 in H0;intuition.
 Qed.
 
 End GravityCenter.
 (* If we prove it with "Context `{Tn:无维度中性塔斯基公理系统}." we do not get the warning
-"the hint: eapply @is_gravity_center_perm_1 will only be used by eauto".
+"the hint: eapply @等价重心ACB will only be used by eauto".
 There must be a bug with the handling of bases of hints. *)
-Hint Resolve is_gravity_center_coplanar : cop.
+Hint Resolve 重心与三角形共面 : cop.
 
 Hint Resolve
-     is_gravity_center_perm_1
-     is_gravity_center_perm_2
-     is_gravity_center_perm_3
-     is_gravity_center_perm_4
-     is_gravity_center_perm_5 : gravitycenter.
+     等价重心ACB
+     等价重心BAC
+     等价重心BCA
+     等价重心CAB
+     等价重心CBA : gravitycenter.
 
 Ltac permutation_intro_in_goal :=
  match goal with
@@ -541,7 +541,7 @@ Ltac permutation_intro_in_goal :=
  | |- Col ?A ?B ?C => apply 共线的各排列情况
  | |- Bet ?A ?B ?C => apply 中间性的各排列情况
  | |- Cong ?A ?B ?C ?D => apply 等长的各排列情况
- | |- is_gravity_center ?G ?A ?B ?C => apply is_gravity_center_cases
+ | |- 重心 ?G ?A ?B ?C => apply 重心的各排列情况
  end.
 
 Ltac Gravitycenter := auto with gravitycenter.
@@ -557,7 +557,7 @@ Ltac finish := repeat match goal with
  | |- 垂直于 ?A ?B ?C ?D ?E => Perp
  | |- Per ?A ?B ?C => Perp
  | |- Cong ?A ?B ?C ?D => Cong
- | |- is_gravity_center ?G ?A ?B ?C => Gravitycenter
+ | |- 重心 ?G ?A ?B ?C => Gravitycenter
  | |- 中点 ?A ?B ?C => 中点
  | |- ?A<>?B => apply 不重合的对称性;assumption
  | |- _ => try assumption
@@ -575,7 +575,7 @@ Ltac sfinish := spliter; repeat match goal with
  | |- 垂直于 ?A ?B ?C ?D ?E => Perp
  | |- Per ?A ?B ?C => Perp
  | |- Cong ?A ?B ?C ?D => Cong;CongR
- | |- is_gravity_center ?G ?A ?B ?C => Gravitycenter
+ | |- 重心 ?G ?A ?B ?C => Gravitycenter
  | |- 中点 ?A ?B ?C => 中点
  | |- ?A<>?B => assumption
  | |- ?A<>?B => apply 不重合的对称性;assumption

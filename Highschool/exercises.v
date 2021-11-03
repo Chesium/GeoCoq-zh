@@ -5,7 +5,7 @@ Section Exercises.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
-Lemma Per_mid_rectangle : forall A B C I J K,
+Lemma 直角三角形三边中点和直角顶点形成长方形 : forall A B C I J K,
   A <> B ->
   B <> C ->
   Per B A C ->
@@ -91,7 +91,7 @@ Ltac assert_diffs_by_cases :=
  | A: Tpoint, B: Tpoint |- _ => not_exist_hyp_comm A B;induction (两点重合的决定性 A B);[treat_equalities;solve [finish|trivial] |idtac]
 end.
 
-Lemma quadrileral_midpoints:
+Lemma 四边形对边中点连线互相平分:
  forall A B C D I J K L X Y,
   ~ Col I J K ->
   中点 I A B ->
@@ -105,7 +105,7 @@ Proof.
 intros.
 assert_diffs_by_cases.
 assert (平行四边形 I J K L)
-  by (apply (varignon A B C D I J K L);finish).
+  by (apply (瓦里尼翁平行四边形 A B C D I J K L);finish).
 assert (中点 X J L)
   by (perm_apply (plg_mid_2 I J K L X)).
 treat_equalities;trivial.

@@ -5,7 +5,7 @@ Section T_42.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
-Lemma midpoint_thales : forall O A B C : Tpoint,
+Lemma 泰勒斯定理 : forall O A B C : Tpoint,
    ~ Col A B C ->
    中点 O A B ->
    Cong O A O C ->
@@ -28,7 +28,7 @@ Qed.
 
 (* TODO cleanup *)
 
-Lemma midpoint_thales_reci :
+Lemma 直角三角形斜边中线是斜边一半 :
   forall a b c o: Tpoint,
    Per a c b ->
    中点 o a b ->

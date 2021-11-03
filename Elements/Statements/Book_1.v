@@ -133,7 +133,7 @@ Require Export GeoCoq.Meta_theory.Continuity.elementary_continuity_props.
 Require Export GeoCoq.Tarski_dev.Ch16_coordinates_with_functions.
 
 (** * Proposition 1
-       On a given finite straight line to construct an equilateral triangle.
+       On a given finite straight line to construct an 等边三角形 triangle.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container1"></div> # **)
 
@@ -154,7 +154,7 @@ Lemma prop_1_euclidean :
   forall A B, exists C, Cong A B A C /\ Cong A B B C.
 Proof.
   destruct exists_grid_spec as [SS [U1 [U2 Hgrid]]].
-  apply (exists_equilateral_triangle SS U1 U2 Hgrid).
+  apply (exists_等边三角形_triangle SS U1 U2 Hgrid).
 Qed.
 
 End Book_1_prop_1_euclidean.
@@ -227,7 +227,7 @@ Qed.
 
 
 	    (** * Proposition 5
-       In isosceles triangles the angles at the base are equal to one another, and,
+       In 等腰三角形 triangles the angles at the base are equal to one another, and,
        if the equal straight lines be produced further, the angles under the base
        will be equal to one another.
        *)

@@ -6515,7 +6515,7 @@ Proof.
     split; assumption.
 Qed.
 
-(** In an isosceles triangle the two base angles are equal.
+(** In an 等腰三角形 triangle the two base angles are equal.
     This is Euclid: Book 1, Proposition 5.
  *)
 
@@ -6733,7 +6733,7 @@ Proof.
   apply lea_asym; assumption.
 Qed.
 
-(** If the base angles are equal, then the triangle is isosceles *)
+(** If the base angles are equal, then the triangle is 等腰三角形 *)
 
 Lemma l11_44_1_b : forall A B C, ~ Col A B C -> 等角 B A C B C A -> Cong B A B C.
 Proof.

@@ -3086,9 +3086,9 @@ rewrite H18.
 assumption.
 Qed.
 
-(** Theorem 11 of Hilbert: the angles at the base of an isosceles triangle are congruent *)
+(** Theorem 11 of Hilbert: the angles at the base of an 等腰三角形 triangle are congruent *)
 
-Lemma isosceles_congaH : forall A B C, ~ColH A B C -> CongH A B A C -> CongaH A B C A C B.
+Lemma 等腰三角形底角相等H : forall A B C, ~ColH A B C -> CongH A B A C -> CongaH A B C A C B.
 Proof.
 intros.
 apply (cong_5 A B C A C B).
@@ -4218,7 +4218,7 @@ induction (colH_dec Y Z1 Z2).
  }
  {
  assert (CongaH X Z1 Z2 X Z2 Z1)
-  by (apply (isosceles_congaH X Z1 Z2);auto).
+  by (apply (等腰三角形底角相等H X Z1 Z2);auto).
 
  apply conga_permlr.
  apply (cong_5 Z1 Y X Z2 Y X).
@@ -4242,7 +4242,7 @@ induction (colH_dec Y Z1 Z2).
   induction (colH_dec X Z1 Z2).
  {
  assert (CongaH Y Z1 Z2 Y Z2 Z1)
-  by (apply (isosceles_congaH Y Z1 Z2);auto).
+  by (apply (等腰三角形底角相等H Y Z1 Z2);auto).
 
  apply conga_permlr.
  apply (cong_5 Z1 Y X Z2 Y X).
@@ -4260,9 +4260,9 @@ induction (colH_dec Y Z1 Z2).
   }
 
 assert (CongaH X Z1 Z2 X Z2 Z1)
-  by (apply (isosceles_congaH X Z1 Z2);auto).
+  by (apply (等腰三角形底角相等H X Z1 Z2);auto).
 assert (CongaH Y Z1 Z2 Y Z2 Z1)
-  by (apply (isosceles_congaH Y Z1 Z2);auto).
+  by (apply (等腰三角形底角相等H Y Z1 Z2);auto).
 assert (CongaH X Z1 Y X Z2 Y).
   {
   apply th15 with Z2 Z1; auto;
@@ -4621,7 +4621,7 @@ assert(~ColH A' C'' C').
 
 assert(CongaH A' C'' C' A' C' C'').
    {
-      apply(isosceles_congaH A' C'' C'); auto.
+      apply(等腰三角形底角相等H A' C'' C'); auto.
    }
 
 assert(~ ColH B' C'' C').
@@ -4633,7 +4633,7 @@ assert(~ ColH B' C'' C').
 
 assert(CongaH B' C'' C' B' C' C'').
    {
-      apply(isosceles_congaH B' C'' C'); auto.
+      apply(等腰三角形底角相等H B' C'' C'); auto.
       apply (cong_pseudo_transitivity B C); auto using congH_sym.
    }
 

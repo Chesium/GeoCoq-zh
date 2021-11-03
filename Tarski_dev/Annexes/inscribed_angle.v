@@ -711,7 +711,7 @@ Lemma suppa_ts2__suppa : forall A B C D,
 Proof.
   intros A B C D HTS1 HTS2 HSuppa.
   assert (HCon : 共圆 A C B D) by (apply suppa_ts__concyclic; trivial).
-  apply concyclic_aux in HCon.
+  apply 共圆定义_辅助 in HCon.
   destruct HCon as [O [P]]; spliter.
   apply (cop_onc4_ts__suppa O P); trivial.
   apply coplanar_perm_2, coplanar_trans_1 with C; [destruct HTS1; Col|Cop..].

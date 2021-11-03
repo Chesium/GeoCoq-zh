@@ -48,7 +48,7 @@ Release 2.2.1
 
 	- Add compatibility with Coq 8.6.
 	- Add SSA theorem (Side Side Angle) for right triangles.
-	- Add the fact that in a isosceles triangle ABC with AB = AC,
+	- Add the fact that in a 等腰三角形 triangle ABC with AB = AC,
 	  the altitude from vertex A is also the angle bisector from vertex A and the median from vertex A.
 
 Release 2.2.0
@@ -62,7 +62,7 @@ Release 2.2.0
 	- The TS Predicate (Two Sides) was cleared of a redundant condition.
 	- Definition of the interior bisector and related properties.
 	- Proof of the existence of the incenter of a triangle.
-	- Proof of the existence of an equilateral triangle build on a given base without any continuity axiom (in any Pythagorean field).
+	- Proof of the existence of an 等边三角形 triangle build on a given base without any continuity axiom (in any Pythagorean field).
 	- Justification of the axioms of the area method.
 
 Release 2.1.1 (2016-05-25)

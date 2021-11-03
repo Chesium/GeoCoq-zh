@@ -8,7 +8,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** Existence of the interior bisector of an angle. *)
 
-Lemma bisector_existence : forall A B C,  A <> B -> B <> C ->
+Lemma 角平分线的存在性 : forall A B C,  A <> B -> B <> C ->
 exists E,  在角内 E A B C /\ 等角 A B E E B C.
 Proof.
 intros A B C HAB HBC.
@@ -47,7 +47,7 @@ assert (Cong B C' A' B) by (apply 两组连续三点分段等则全体等 with A
 assert_diffs.
 assert (等角 A' C' B C' A' B).
  {
- apply  (isosceles_conga C' B A');auto.
+ apply  (等腰三角形底角相等 C' B A');auto.
  {
  intro.
  subst.
@@ -55,7 +55,7 @@ assert (等角 A' C' B C' A' B).
  assert_cols.
  apply HNCOL.
   ColR. }
-  unfold isosceles. Cong.
+  unfold 等腰三角形. Cong.
  }
 assert (HTRI : Cong I B I B /\ (I <> B -> 等角 C' I B A' I B /\ 等角 C' B I A' B I)).
 { apply (l11_49 I C' B I A' B); Cong.
@@ -159,9 +159,9 @@ assert (Per B H2 I).
 assert (Per H2 B I).
 {
   apply (l11_17 B H2 I H2 B I);auto.
-  apply (isosceles_conga H2 I B);auto.
+  apply (等腰三角形底角相等 H2 I B);auto.
   assert_diffs;auto.
-  unfold isosceles;Cong.
+  unfold 等腰三角形;Cong.
 }
 assert (H2 = B).
 {
@@ -178,9 +178,9 @@ assert (Per B H1 I) by (apply (L形垂直转直角1 H1 B I);auto;Perp).
 assert (Per H1 B I).
 {
   apply (l11_17 B H1 I H1 B I);auto.
-  apply (isosceles_conga H1 I B);auto.
+  apply (等腰三角形底角相等 H1 I B);auto.
   assert_diffs;auto.
-  unfold isosceles;Cong.
+  unfold 等腰三角形;Cong.
 }
 assert (H1 = B).
 {
@@ -269,8 +269,8 @@ apply (invert_one_side I B H2 C);auto.
 Qed.
 
 (** The points on the bisector of an angle are at equal distances of the two sides. *)
-
-Lemma bisector_perp_equality : forall A B C I H1 H2, 共面 A B C I ->
+(* 角平分线定理：BI平分∠ABC IH₁⊥AB IH₂⊥BC -> IH₁=IH₂*)
+Lemma 角平分线定理 : forall A B C I H1 H2, 共面 A B C I ->
  Col B H1 A -> Col B H2 C ->
  Perp A B I H1 -> Perp B C I H2 ->
  等角 A B I I B C ->  Cong I H1 I H2.
@@ -359,8 +359,8 @@ Qed.
 
 
 (** The points which are at equal distance of the two side of an angle are on the bisector. *)
-
-Lemma perp_equality_bisector : forall A B C I H1 H2,  ~ Col A B C ->
+(* BI平分∠ABC，H₁与H₂为垂足 *)
+Lemma 角平分线定理的逆定理 : forall A B C I H1 H2,  ~ Col A B C ->
  在角内 I A B C -> Col B H1 A -> 
  Col B H2 C -> Perp A B I H1 -> Perp B C I H2 -> Cong I H1 I H2 ->
  等角 A B I I B C.

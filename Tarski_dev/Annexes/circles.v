@@ -1404,7 +1404,7 @@ Qed.
 (** If four coplanar points belong to a same sphere, then they belong to a same circle.
     This lemma justifies our definition of 共圆. *)
 
-Lemma concyclic_aux : forall A B C D, 共圆 A B C D -> exists O P,
+Lemma 共圆定义_辅助 : forall A B C D, 共圆 A B C D -> exists O P,
   在圆上 A O P /\ 在圆上 B O P /\ 在圆上 C O P /\ 在圆上 D O P /\ 共面 A B C O.
 Proof.
   intros A B C D [HCop [O1 [P1]]]; spliter.
@@ -1416,7 +1416,7 @@ Proof.
   repeat split; [Circle|apply cong2_per2__cong with O1 O1; finish..|assumption].
 Qed.
 
-Lemma concyclic_perm_1 : forall A B C D, 共圆 A B C D -> 共圆 B C D A.
+Lemma 等价共圆ABDC : forall A B C D, 共圆 A B C D -> 共圆 B C D A.
 Proof.
   unfold 共圆.
   intros A B C D [HCop [O [P]]].
@@ -1430,11 +1430,11 @@ Lemma concyclic_gen_perm_1 : forall A B C D,
   共圆或共线 A B C D -> 共圆或共线 B C D A.
 Proof.
   intros A B C D [H|].
-    left; apply concyclic_perm_1, H.
+    left; apply 等价共圆ABDC, H.
     right; spliter; repeat split; Col.
 Qed.
 
-Lemma concyclic_perm_2 : forall A B C D, 共圆 A B C D -> 共圆 B A C D.
+Lemma 等价共圆ACBD : forall A B C D, 共圆 A B C D -> 共圆 B A C D.
 Proof.
   unfold 共圆.
   intros A B C D [HCop [O [P]]].
@@ -1448,18 +1448,18 @@ Lemma concyclic_gen_perm_2 : forall A B C D,
   共圆或共线 A B C D -> 共圆或共线 B A C D.
 Proof.
   intros A B C D [H|].
-    left; apply concyclic_perm_2, H.
+    left; apply 等价共圆ACBD, H.
     right; spliter; repeat split; Col.
 Qed.
 
-Lemma concyclic_trans_1 : forall P Q R A B, ~ Col P Q R ->
+Lemma 共圆的传递性_1 : forall P Q R A B, ~ Col P Q R ->
   共圆 P Q R A -> 共圆 P Q R B -> 共圆 Q R A B.
 Proof.
   intros P Q R A B HNC H1 H2.
   split.
     unfold 共圆 in *; spliter; apply coplanar_trans_1 with P; assumption.
-  destruct (concyclic_aux P Q R A H1) as [O [M]].
-  destruct (concyclic_aux P Q R B H2) as [O' [M']].
+  destruct (共圆定义_辅助 P Q R A H1) as [O [M]].
+  destruct (共圆定义_辅助 P Q R B H2) as [O' [M']].
   spliter.
   exists O, M; repeat split; trivial.
   assert_diffs.
@@ -1473,7 +1473,7 @@ Lemma concyclic_gen_trans_1 : forall P Q R A B,
 Proof.
   intros P Q R A B HNC [|] [|]; [|spliter; exfalso; apply HNC; Col..].
   left.
-  apply (concyclic_trans_1 P); assumption.
+  apply (共圆的传递性_1 P); assumption.
 Qed.
 
 Lemma concyclic_pseudo_trans : forall A B C D P Q R, ~ Col P Q R ->
@@ -1484,10 +1484,10 @@ Proof.
   spliter.
   split.
     unfold 共圆 in *; spliter; apply coplanar_pseudo_trans with P Q R; assumption.
-  destruct (concyclic_aux P Q R A HA) as [OA [MA]].
-  destruct (concyclic_aux P Q R B HB) as [OB [MB]].
-  destruct (concyclic_aux P Q R C HC) as [OC [MC]].
-  destruct (concyclic_aux P Q R D HD) as [OD [MD]].
+  destruct (共圆定义_辅助 P Q R A HA) as [OA [MA]].
+  destruct (共圆定义_辅助 P Q R B HB) as [OB [MB]].
+  destruct (共圆定义_辅助 P Q R C HC) as [OC [MC]].
+  destruct (共圆定义_辅助 P Q R D HD) as [OD [MD]].
   spliter.
   assert_diffs.
   exists OA, MA; repeat split; [|apply (cop2_onc6__eqc P Q R OB MB)|

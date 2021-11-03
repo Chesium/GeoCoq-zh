@@ -970,4 +970,4 @@ Hint Resolve all_coplanar : cop.
 Ltac Cop := auto; try (intros; solve [apply all_coplanar|apply col__coplanar; Col
      |apply coplanar_perm_1, col__coplanar; Col|apply coplanar_perm_4, col__coplanar; Col
      |apply coplanar_perm_18, col__coplanar; Col
-     |assert_cops; auto 2 with cop_perm]).
+     |推导四点共面; auto 2 with cop_perm]).

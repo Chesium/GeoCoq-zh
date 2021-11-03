@@ -14,11 +14,11 @@ Lemma proposition_02 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists D, (equilateral A B D /\ Triangle A B D)) by (conclude proposition_01);destruct Tf as [D];spliter.
-assert (Cong A B B D) by (conclude_def equilateral ).
+assert (Tf:exists D, (等边三角形 A B D /\ Triangle A B D)) by (conclude proposition_01);destruct Tf as [D];spliter.
+assert (Cong A B B D) by (conclude_def 等边三角形 ).
 assert (Cong B D A B) by (conclude lemma_congruencesymmetric).
 assert (Cong B D B A) by (forward_using lemma_congruenceflip).
-assert (Cong B D D A) by (conclude_def equilateral ).
+assert (Cong B D D A) by (conclude_def 等边三角形 ).
 assert (nCol A B D) by (conclude_def Triangle ).
 assert (eq B B) by (conclude cn_equalityreflexive).
 let Tf:=fresh in

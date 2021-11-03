@@ -8,7 +8,7 @@ Context `{Ax:euclidean_neutral_ruler_compass}.
 
 Lemma proposition_05b : 
    forall A B C F G, 
-   isosceles A B C -> BetS A B F -> BetS A C G ->
+   等腰三角形 A B C -> BetS A B F -> BetS A C G ->
    等角 C B F B C G.
 Proof.
 intros.
