@@ -167,10 +167,10 @@ Proof.
         intro.
         apply H.
         assert(Col P C D).
-          apply col_permutation_2.
+          apply 等价共线CAB.
           apply (col_transitivity_1 _ A); Col.
         assert(Col P C D').
-          apply col_permutation_2.
+          apply 等价共线CAB.
           apply (col_transitivity_1 _ D); Col.
         assert(Col P A D').
           apply (col_transitivity_1 _ C); Col.

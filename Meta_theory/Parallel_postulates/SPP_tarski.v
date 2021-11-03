@@ -179,7 +179,7 @@ assert (HPar1 : Par B B' T B'')
   by (unfold BetS in *; spliter; apply l12_17 with MB; [|split..]; auto).
 assert (HPar2 : Par B B'' T B').
   {
-  apply not_col_distincts in H1; spliter.
+  apply 不共线则不重合 in H1; spliter.
   unfold BetS in *; spliter; apply l12_17 with MB; [|split..]; Between; Cong.
   }
 elim HBetS; clear HBetS; intro HBetS.
@@ -274,7 +274,7 @@ elim (col_dec X T Y); intro HXTY.
   apply (par_strict_col_par_strict T X B D C) in HPar'; Col.
   assert (HCop : 共面 T B B'' Y).
     {
-    apply not_col_distincts in HXTY; spliter.
+    apply 不共线则不重合 in HXTY; spliter.
     apply coplanar_perm_13, col_cop__cop with X; Col.
     apply coplanar_perm_4, coplanar_trans_1 with C; Col; Cop.
     }

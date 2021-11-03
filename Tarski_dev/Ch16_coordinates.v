@@ -80,7 +80,7 @@ intros O E S U P HSU HCong.
 destruct (exists_projp S U P HSU) as [PX Hprojp].
 assert (HCol : Col S U PX)
   by (destruct Hprojp as [H' H]; induction H; spliter; treat_equalities; Col).
-destruct (l4_14 S U PX O E) as [X HCong']; Cong.
+destruct (l4_14_退化三角形有其全等形 S U PX O E) as [X HCong']; Cong.
 exists PX; exists X; auto with cong.
 Qed.
 
@@ -114,7 +114,7 @@ Lemma point_of_coordinates_on_an_axis : forall O E S U1 U2 X,
 Proof.
 intros O E S U1 U2 X HCs HCol HOX.
 assert (H := HCs); destruct H as [HDiff [HCong1 [HCong2 H]]]; clear H.
-destruct (l4_14 O E X S U1 HCol HCong1) as [P HP].
+destruct (l4_14_退化三角形有其全等形 O E X S U1 HCol HCong1) as [P HP].
 exists P; split; auto.
 destruct HCs as [H [H' [H'' HPer]]]; clear H; clear H'; clear H''.
 split; try apply all_coplanar.
@@ -137,8 +137,8 @@ treat_equalities; [exists S; apply point_of_coordinates_origin|
                    try (exists P; apply coord_exchange_axes)|
                    apply point_of_coordinates_on_an_axis|]; auto.
 assert (H := HCs); destruct H as [HDiff [HCong1 [HCong2 H]]]; clear H.
-destruct (l4_14 O E X S U1 HCol1 HCong1) as [PX HPX].
-destruct (l4_14 O E Y S U2 HCol2 HCong2) as [PY HPY].
+destruct (l4_14_退化三角形有其全等形 O E X S U1 HCol1 HCong1) as [PX HPX].
+destruct (l4_14_退化三角形有其全等形 O E Y S U2 HCol2 HCong2) as [PY HPY].
 destruct (perp_exists PX S U1) as [PX' HPerp1]; [assert_diffs; auto|].
 destruct (perp_exists PY S U2) as [PY' HPerp2]; [assert_diffs; auto|].
 assert (HPerp3 : Perp PX PX' PY PY').
@@ -356,7 +356,7 @@ intros O E I J S U X Y HOE HCol1 HCol2 HCong1 HCong4.
 destruct HCong1 as [HCong1 [HCong2 HCong3]].
 destruct HCong4 as [HCong4 [HCong5 HCong6]].
 repeat (split; Cong).
-apply l4_16 with O E S U; Col.
+apply l4_16_五线段形式推论 with O E S U; Col.
 repeat (split; Cong).
 Qed.
 
@@ -371,7 +371,7 @@ destruct HCong1 as [HCong1 [HCong2 HCong3]].
 destruct HCong4 as [HCong4 [HCong5 HCong6]].
 destruct HCong7 as [HCong7 [HCong8 HCong9]].
 repeat (split; Cong);
-apply l4_16 with O E S U; Col; repeat (split; Cong).
+apply l4_16_五线段形式推论 with O E S U; Col; repeat (split; Cong).
 Qed.
 
 Lemma square_distance_formula_aux : forall O E E' S U1 U2 P PX PY Q QX PXQX,
@@ -506,14 +506,14 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
 
           {
           apply perp_col0 with P Q; try (apply perp_col0 with S U2); Col; Perp.
-          apply col_permutation_1; apply projp2_col with S U2; auto.
+          apply 等价共线BCA; apply projp2_col with S U2; auto.
           }
 
           {
           apply par_perp__perp with S U1; Perp.
           apply l12_9_2D with S U2; Perp.
           apply perp_sym; apply perp_col0 with P Q; Col.
-          apply col_permutation_1; apply projp2_col with S U2; auto.
+          apply 等价共线BCA; apply projp2_col with S U2; auto.
           }
         }
       assert (HRect2 : 长方形 QX' S PY' Q).
@@ -527,14 +527,14 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
 
           {
           apply perp_col0 with P Q; try (apply perp_col0 with S U2); Col; Perp.
-          apply col_permutation_1; apply projp2_col with S U2; auto.
+          apply 等价共线BCA; apply projp2_col with S U2; auto.
           }
 
           {
           apply par_perp__perp with S U1; Perp.
           apply l12_9_2D with S U2; Perp.
           apply perp_sym; apply perp_col0 with P Q; Col.
-          apply col_permutation_1; apply projp2_col with S U2; auto.
+          apply 等价共线BCA; apply projp2_col with S U2; auto.
           }
         }
       assert (HRect3 : 长方形 P PX' QX' Q)
@@ -921,7 +921,7 @@ elim (col_dec A B BX''); intro HABBX''.
         apply l6_21 with S U1 A AX'; Col;
         [| |apply 全等于退化的三角形 with O E AX|apply 全等于退化的三角形 with O E BX]; Col;
         intro; treat_equalities; apply HParS; exists A; split; Col;
-        apply col_permutation_2; apply 全等于退化的三角形 with O E AX; Col.
+        apply 等价共线CAB; apply 全等于退化的三角形 with O E AX; Col.
         }
       }
     treat_equalities; assert (HPerp : Perp A C S U1).

@@ -224,7 +224,7 @@ apply cong_col_mid.
  auto.
  assert (Par I L K L).
   apply par_trans with B D;Par.
- apply col_permutation_2, par_id; Par.
+ apply 等价共线CAB, par_id; Par.
 CongR.
 repeat split;Col;Cong.
 left.

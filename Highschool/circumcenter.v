@@ -371,11 +371,11 @@ elim (col_dec A B C); intro HABC.
       }
 
       {
-      apply col_permutation_2, cop_perp2__col with B C; Perp; CopR.
+      apply 等价共线CAB, cop_perp2__col with B C; Perp; CopR.
       }
 
       {
-      apply col_permutation_5, cop_perp2__col with A C; Perp; CopR.
+      apply 等价共线ACB, cop_perp2__col with A C; Perp; CopR.
       }
     }
 
@@ -450,11 +450,11 @@ elim (col_dec A B C); intro HABC.
       }
 
       {
-      apply col_permutation_2, cop_perp2__col with B C; Perp; CopR.
+      apply 等价共线CAB, cop_perp2__col with B C; Perp; CopR.
       }
 
       {
-      apply col_permutation_5, cop_perp2__col with A C; Perp; CopR.
+      apply 等价共线ACB, cop_perp2__col with A C; Perp; CopR.
       }
     }
 
@@ -517,11 +517,11 @@ elim (col_dec A B C); intro HABC.
         }
 
         {
-        apply col_permutation_2, cop_perp2__col with B C; Perp; CopR.
+        apply 等价共线CAB, cop_perp2__col with B C; Perp; CopR.
         }
 
         {
-        apply col_permutation_5, cop_perp2__col with A B; Perp; CopR.
+        apply 等价共线ACB, cop_perp2__col with A B; Perp; CopR.
         }
       }
 
@@ -579,11 +579,11 @@ elim (col_dec A B C); intro HABC.
         }
 
         {
-        apply col_permutation_2, cop_perp2__col with B C; Perp; CopR.
+        apply 等价共线CAB, cop_perp2__col with B C; Perp; CopR.
         }
 
         {
-        apply col_permutation_5, cop_perp2__col with A B; Perp; CopR.
+        apply 等价共线ACB, cop_perp2__col with A B; Perp; CopR.
         }
       }
 
@@ -628,11 +628,11 @@ elim (col_dec A B C); intro HABC.
           }
 
           {
-          apply col_permutation_2, cop_perp2__col with A C; Perp; CopR.
+          apply 等价共线CAB, cop_perp2__col with A C; Perp; CopR.
           }
 
           {
-          apply col_permutation_5, cop_perp2__col with A B; Perp; CopR.
+          apply 等价共线ACB, cop_perp2__col with A B; Perp; CopR.
           }
         }
 
@@ -671,11 +671,11 @@ elim (col_dec A B C); intro HABC.
           }
 
           {
-          apply col_permutation_2, cop_perp2__col with A C; Perp; CopR.
+          apply 等价共线CAB, cop_perp2__col with A C; Perp; CopR.
           }
 
           {
-          apply col_permutation_5, cop_perp2__col with A B; Perp; CopR.
+          apply 等价共线ACB, cop_perp2__col with A B; Perp; CopR.
           }
         }
 
@@ -704,11 +704,11 @@ elim (col_dec A B C); intro HABC.
           }
 
           {
-          apply col_permutation_2, cop_perp2__col with B C; Perp; CopR.
+          apply 等价共线CAB, cop_perp2__col with B C; Perp; CopR.
           }
 
           {
-          apply col_permutation_5, cop_perp2__col with A C; Perp; CopR.
+          apply 等价共线ACB, cop_perp2__col with A C; Perp; CopR.
           }
         }
       }

@@ -359,7 +359,7 @@ Proof.
         split; Col.
       spliter.
       apply NC.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply(col_transitivity_1 _ A'); Col.
       intro.
       subst A'.
@@ -583,7 +583,7 @@ Proof.
           apply H13.
           exists E.
           split; Col.
-          apply col_permutation_1.
+          apply 等价共线BCA.
           apply 中间性蕴含共线 in H1.
           apply(col_transitivity_1 _ A); Col.
         apply NC.
@@ -619,7 +619,7 @@ Proof.
           subst A'.
           apply par_distincts in H19.
           tauto.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply (col_transitivity_1 _ P'); Col.
       apply par_comm.
       apply (par_col_par _ _ _ P').
@@ -916,7 +916,7 @@ Proof.
         exists O.
         split; Col.
       spliter.
-      apply col_permutation_1.
+      apply 等价共线BCA.
       apply(col_transitivity_1 _ P'); Col.
     subst A'.
     induction H16.
@@ -1031,7 +1031,7 @@ Proof.
       apply(l6_21 O E E' O); Col.
         assert(Col O A' A).
           apply(col_transitivity_1 _ E); Col.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply (col_transitivity_1 _ A'); Col.
         intro.
         subst A'.
@@ -1146,7 +1146,7 @@ Proof.
       apply (par_col_par _ _ _ B); Col.
       apply par_right_comm.
       apply (par_col_par _ _ _ C); Par.
-      apply col_permutation_1.
+      apply 等价共线BCA.
       apply(col_transitivity_1 _ E); Col.
     subst C.
     apply grid_ok.
@@ -2021,7 +2021,7 @@ Proof.
       exists O.
       split.
         Col.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply (col_transitivity_1 _ D'); Col.
     assert(Par O B' A D').
       unfold Proj in H13.

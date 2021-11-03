@@ -36,7 +36,7 @@ Proof.
   }
   apply (l6_21 B1 B2 A3 B3); Col.
     apply (par_strict_not_col_4 _ _ A1); auto.
-  apply col_permutation_2.
+  apply 等价共线CAB.
   assert (共面 A1 B2 B'3 B1).
   { apply coplanar_perm_15, coplanar_trans_1 with A3.
       apply 共线否定排列CAB, par_strict_not_col_4 with A1; assumption.

@@ -371,7 +371,7 @@ apply l6_6.
 assumption.
 apply out_col in H3.
 apply 中间性蕴含共线 in H9.
-apply col_permutation_2.
+apply 等价共线CAB.
 
 apply (col_transitivity_1 _ CD); Col.
 induction H3.
@@ -1695,7 +1695,7 @@ ex_and H5 K.
 unfold TS in H23.
 spliter.
 apply H23.
-apply col_permutation_2.
+apply 等价共线CAB.
 apply (col_transitivity_1 _ C1).
 intro.
 subst C1.
@@ -1863,7 +1863,7 @@ apply perp_not_col in H24.
 apply False_ind.
 apply H24.
 apply out_col in H27.
-apply col_permutation_2.
+apply 等价共线CAB.
 apply (col_transitivity_1 _ N).
 intro.
 subst N.

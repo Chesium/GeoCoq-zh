@@ -62,7 +62,7 @@ Proof.
               assumption.
             apply 等长的交换性.
             eapply is_image_spec_col_cong with A B;Col.
-          apply col_permutation_2.
+          apply 等价共线CAB.
 
           apply cop_per2__col with B.
             Cop.
@@ -93,7 +93,7 @@ Proof.
           eapply is_image_spec_col_cong.
             apply H3.
           apply ABA型共线.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply cop_per2__col with A.
           assert_diffs; apply coplanar_perm_12, col_cop__cop with B; Cop.
           auto.
@@ -259,7 +259,7 @@ Lemma image_preserves_col : forall A B C A' B' C' X Y,
   Col A' B' C'.
 Proof.
     intros.
-    destruct H2 as [HBet|[HBet|HBet]]; [|apply col_permutation_2|apply col_permutation_1];
+    destruct H2 as [HBet|[HBet|HBet]]; [|apply 等价共线CAB|apply 等价共线BCA];
     apply 中间性蕴含共线; eapply image_preserves_bet; eauto.
 Qed.
 
@@ -269,7 +269,7 @@ Lemma image_gen_preserves_col : forall A B C A' B' C' X Y,
   Col A' B' C'.
 Proof.
     intros.
-    destruct H2 as [HBet|[HBet|HBet]]; [|apply col_permutation_2|apply col_permutation_1];
+    destruct H2 as [HBet|[HBet|HBet]]; [|apply 等价共线CAB|apply 等价共线BCA];
     apply 中间性蕴含共线; eapply image_gen_preserves_bet; eauto.
 Qed.
 
@@ -484,7 +484,7 @@ Proof.
       assumption.
     ex_and H3 X.
     assert (exists X', 三角形全等 A B X A' B' X').
-      eapply l4_14.
+      eapply l4_14_退化三角形有其全等形.
         assumption.
       assumption.
     ex_elim H5 X'.
@@ -547,7 +547,7 @@ Proof.
               apply perp_sym.
               apply perp_right_comm.
               apply H5.
-            apply col_permutation_5.
+            apply 等价共线ACB.
             eapply out_col.
             assumption.
           eapply 全等于退化的三角形.
@@ -574,7 +574,7 @@ Proof.
             assumption.
             apply perp_comm.
             apply H4.
-          apply col_permutation_4.
+          apply 等价共线BAC.
           assumption.
           apply ABA型共线.
         apply AAB型共线.
@@ -598,10 +598,10 @@ Proof.
               apply perp_sym.
               apply perp_comm.
               apply H5.
-            apply col_permutation_5.
+            apply 等价共线ACB.
             eapply out_col.
             assumption.
-          apply col_permutation_4.
+          apply 等价共线BAC.
           eapply 全等于退化的三角形.
             apply H3.
           unfold 三角形全等.
@@ -622,7 +622,7 @@ Proof.
           apply H3.
         unfold 三角形全等.
         repeat split; assumption.
-      apply col_permutation_1.
+      apply 等价共线BCA.
       apply out_col.
       assumption.
     apply 等长的对称性 in H1.
@@ -692,7 +692,7 @@ Proof.
               assumption.
             Cong.
           apply l8_2 in H6.
-          apply col_permutation_2.
+          apply 等价共线CAB.
           apply (cop_per2__col P).
             Cop.
             intro.
@@ -749,9 +749,9 @@ Proof.
           assumption.
         eapply col_transitivity_1.
           apply H6.
-          apply col_permutation_5.
+          apply 等价共线ACB.
           assumption.
-        apply col_permutation_5.
+        apply 等价共线ACB.
         assumption.
       subst P'.
       absurde.
@@ -764,7 +764,7 @@ Lemma cong_cop_per2_1 :
 Proof.
     intros.
     eapply l7_20.
-      apply col_permutation_5.
+      apply 等价共线ACB.
       apply (cop_per2__col A).
         Cop.
         assumption.

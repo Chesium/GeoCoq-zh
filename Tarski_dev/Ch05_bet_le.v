@@ -52,7 +52,7 @@ Proof.
       apply 等长的传递性 with C D; Cong.
     induction (两点重合的决定性 B C).
       subst C; auto.
-    assert (Cong D' C' D C) by (eapply l4_16; try apply H13; assumption).
+    assert (Cong D' C' D C) by (eapply l4_16_五线段形式推论; try apply H13; assumption).
     assert (exists E, Bet C E C' /\ Bet D E D') by (apply 帕施公理 with A; Between).
     ex_and H16 E.
     assert (内五线段形式 D E D' C D E D' C') by (unfold 内五线段形式; repeat split; Cong; apply 等长的传递性 with C D; Cong).
@@ -70,7 +70,7 @@ Proof.
       repeat split; Col; Cong.
       apply 两组连续三点分段等则全体等 with C C; Cong.
       apply 中间性的内传递性1 with C'; Between.
-    assert (Cong R P E D') by (eauto using l4_16).
+    assert (Cong R P E D') by (eauto using l4_16_五线段形式推论).
     assert (Cong R Q E D).
       eapply 等长的传递性.
         apply 等长的传递性 with R P; Cong.
@@ -81,7 +81,7 @@ Proof.
     assert (Cong D C Q C).
       induction (两点重合的决定性 D' E).
         unfold 内五线段形式, 三角形全等 in *; spliter; treat_equalities; Cong.
-      apply l4_16 with D' E P R; assumption.
+      apply l4_16_五线段形式推论 with D' E P R; assumption.
     assert (Cong C P C Q).
       unfold 五线段形式, 三角形全等 in *; spliter.
       apply 等长的传递性 with C D; Cong.

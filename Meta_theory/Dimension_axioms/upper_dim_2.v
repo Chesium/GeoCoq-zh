@@ -73,7 +73,7 @@ induction(col_dec A B X).
     apply perp_perp_in in H0.
     apply perp_in_comm in H0.
     apply perp_in_per in H0.
-    apply col_permutation_2.
+    apply 等价共线CAB.
     eapply (防升维公理_implies_per2__col).
       assumption.
       apply H.
@@ -91,7 +91,7 @@ induction(col_dec A B X).
       apply perp_sym.
       apply H0.
     assumption.
-  apply col_permutation_2.
+  apply 等价共线CAB.
   apply 防升维公理_implies_per2__col with A.
     assumption.
     apply perp_in_per.
@@ -189,7 +189,7 @@ apply H4.
 ColR.
 exists T.
 split.
-apply col_permutation_2.
+apply 等价共线CAB.
 assumption.
 apply 中间性的对称性.
 assumption.
@@ -217,13 +217,13 @@ assumption.
 eapply l9_8_1.
 apply l9_2.
 eapply (col_two_sides _ PX).
-apply col_permutation_5.
+apply 等价共线ACB.
 assumption.
 assumption.
 apply invert_two_sides.
 apply H14.
 eapply (col_two_sides _ PX).
-apply col_permutation_5.
+apply 等价共线ACB.
 assumption.
 assumption.
 apply invert_two_sides.
@@ -238,7 +238,7 @@ apply  invert_two_sides.
 assumption.
 assert(HO:= out_two_sides_two_sides A B X Y P PX (sym_not_eq H0) H2 H13 H14).
 contradiction.
-apply col_permutation_1 in HH.
+apply 等价共线BCA in HH.
 contradiction.
 Qed.
 
@@ -256,7 +256,7 @@ Proof.
       apply l8_18_existence.
       intro.
       apply H.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       assumption.
     ex_and H3 PX.
     induction(两点重合的决定性 PX A).

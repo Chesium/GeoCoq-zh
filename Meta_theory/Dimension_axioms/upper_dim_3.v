@@ -182,7 +182,7 @@ Proof.
   repeat split; trivial.
   exists P; split; [assumption|].
   apply not_out_bet.
-    apply col_permutation_1, (orthonormal_family_axiom_implies_orth_at2__col up A B C); assumption.
+    apply 等价共线BCA, (orthonormal_family_axiom_implies_orth_at2__col up A B C); assumption.
   intro; apply HNTS.
   apply l9_41_2 with X'.
     apply l9_38, HTS.

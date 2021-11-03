@@ -499,7 +499,7 @@ Proof.
       apply acute_cop_onc3__os with P; Cop.
     apply (acute_conga__acute A C B); assumption.
   - exfalso.
-    apply HNCol, col_permutation_1, midpoint_col.
+    apply HNCol, 等价共线BCA, midpoint_col.
     assert (HCong := onc2__cong O P).
     apply thales_converse_theorem_1 with C; Cop.
   - exists O; split; apply l9_2; apply cop_obtuse_onc3__ts with P; Cop.
@@ -521,7 +521,7 @@ Proof.
       apply cop_obtuse_onc3__ts with P; Cop; apply (acute_suppa__obtuse A C B); assumption.
       apply acute_cop_onc3__os with P; Cop.
   - exfalso.
-    apply HNCol, col_permutation_1, midpoint_col.
+    apply HNCol, 等价共线BCA, midpoint_col.
     assert (HCong := onc2__cong O P).
     apply thales_converse_theorem_1 with C; Cop.
   - apply l9_2, l9_8_2 with O.
@@ -571,7 +571,7 @@ Proof.
       apply acute_cop_onc3__os with P'; auto.
       apply (acute_conga__acute A C B); assumption.
     - exfalso.
-      apply HNCol1, col_permutation_1, midpoint_col.
+      apply HNCol1, 等价共线BCA, midpoint_col.
       apply thales_converse_theorem_1 with C; auto.
     - exists C; split; [|apply l9_2, l9_8_2 with D; [apply l9_2|Side]].
         apply cop_obtuse_onc3__ts with P; auto.

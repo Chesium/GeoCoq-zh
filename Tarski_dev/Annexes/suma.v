@@ -680,7 +680,7 @@ repeat
       | H:(~Col ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
       not_exist_hyp3 X1 X2 X1 X3 X2 X3;
-      assert (h := not_col_distincts X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 不共线则不重合 X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
 
       | H:(~Bet ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
@@ -904,7 +904,7 @@ Proof.
     exfalso.
     destruct Hisi as [_ [HUn _]].
     destruct HUn as [HEout | HBNBet].
-      apply HNColE; apply col_permutation_4; apply out_col; auto.
+      apply HNColE; apply 等价共线BAC; apply out_col; auto.
     destruct Hsuma as [J [HJ1 [HJ2 [HJ3 HJ4]]]].
     apply HJ2.
     apply conga_sym in HJ4.
@@ -941,7 +941,7 @@ Proof.
   assert(HNColX : ~Col X A B).
   { intro.
     apply HNColJ2.
-    apply col_permutation_1; apply (col_transitivity_1 A X); Col.
+    apply 等价共线BCA; apply (col_transitivity_1 A X); Col.
     intro; subst X; Col.
   }
   assert_diffs.
@@ -1032,7 +1032,7 @@ Proof.
     apply not_bet_out in HH'out; auto.
     exfalso.
     apply HNColB.
-    apply col_permutation_4.
+    apply 等价共线BAC.
     apply out_col.
     apply (out_lea__out _ _ _ G' H' I'); auto.
     apply (sams_suma__lea123789 _ _ _ D' E' F'); auto.
@@ -1219,7 +1219,7 @@ Proof.
       destruct HisiEH as [_ [[HEout | HHNBet] HJ]]; try solve [exfalso; Between].
       exfalso.
       apply HNColE.
-      apply col_permutation_4.
+      apply 等价共线BAC.
       apply out_col; auto.
     }
     intro HHout.
@@ -1259,7 +1259,7 @@ Proof.
         apply not_bet_out in HE'out; auto.
         exfalso.
         apply HNColE.
-        apply col_permutation_4.
+        apply 等价共线BAC.
         apply out_col.
         apply (out_lea__out _ _ _ D' E' F'); auto.
         apply (sams_suma__lea123789 _ _ _ G H I); auto.
@@ -1309,7 +1309,7 @@ Proof.
     apply not_bet_out in HB'out; auto.
     exfalso.
     apply HNColB.
-    apply col_permutation_4.
+    apply 等价共线BAC.
     apply out_col.
     apply (out_lea__out _ _ _ A' B' C'); auto.
     apply (sams_suma__lea123789 _ _ _ D E F); auto.
@@ -1360,7 +1360,7 @@ Proof.
     apply not_bet_out in HE'out; auto.
     exfalso.
     apply HNColE.
-    apply col_permutation_4.
+    apply 等价共线BAC.
     apply out_col.
     apply (out_lea__out _ _ _ D' E' F'); auto.
     apply (sams_suma__lea123789 _ _ _ G H I); auto.
@@ -1491,7 +1491,7 @@ Proof.
       apply HNColH; Col.
     apply not_bet_out in HB'out; auto.
     apply HNColB.
-    apply col_permutation_4.
+    apply 等价共线BAC.
     apply out_col.
     apply (out_lea__out _ _ _ A' B' C'); auto.
     apply (sams_suma__lea123789 _ _ _ D E F); auto.
@@ -1854,7 +1854,7 @@ Proof.
 
   - assert_diffs.
     apply HNCol.
-    apply col_permutation_3.
+    apply 等价共线CBA.
     apply out_col.
     apply (out_lea__out _ _ _ D E F).
       apply not_bet_out; Col.
@@ -1882,7 +1882,7 @@ Proof.
   assert(Per A1 B C) by (apply (l11_17 D E F); 等角).
   apply (bet_conga__bet A B A1); auto.
   apply (col_two_sides_bet _ C).
-  apply col_permutation_2; apply cop_per2__col with C; Cop.
+  apply 等价共线CAB; apply cop_per2__col with C; Cop.
   apply cop_nos__ts; Cop; apply per_not_col; auto.
 Qed.
 
@@ -1932,7 +1932,7 @@ Proof.
     intro Habs.
     destruct Habs as [_ [Habs]].
     apply Habs.
-    apply col_permutation_2.
+    apply 等价共线CAB.
     apply 中间性蕴含共线.
     apply (bet_conga__bet G H I); 等角.
 
@@ -2160,7 +2160,7 @@ Proof.
   intros A B C D E F G H I HCol1 HCol2 HSuma.
   destruct (bet_dec A B C).
   destruct (bet_dec D E F).
-  - apply col_permutation_4, out_col, (bet2_suma__out A B C D E F); assumption.
+  - apply 等价共线BAC, out_col, (bet2_suma__out A B C D E F); assumption.
   - apply (col_conga_col A B C); trivial.
     apply out546_suma__conga with D E F; trivial.
     apply not_bet_out; assumption.

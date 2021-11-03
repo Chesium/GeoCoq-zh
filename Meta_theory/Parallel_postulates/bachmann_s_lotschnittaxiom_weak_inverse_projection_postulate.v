@@ -65,7 +65,7 @@ destruct (lotschnitt A B B P' P Q P' Q' B P P') as [Y [HY1 HY2]]; Col; Cop.
 
 exists Y; split; trivial.
 apply col_one_side_out with A.
-  apply col_permutation_1, intersection_with_image_gen with P Q P' Q'; Col.
+  apply 等价共线BCA, intersection_with_image_gen with P Q P' Q'; Col.
 apply invert_one_side, one_side_transitivity with P'.
 - apply cop_nts__os; Col; Cop.
   apply (conga_sams_nos__nts A B C A B C P'); 和角.

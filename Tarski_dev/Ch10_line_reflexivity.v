@@ -1055,7 +1055,7 @@ Proof.
                   apply midpoint_bet.
                   apply l7_2.
                   assumption.
-                apply col_permutation_5.
+                apply 等价共线ACB.
                 assumption.
               apply ABB型共线.
             induction (两点重合的决定性 B M).
@@ -1076,7 +1076,7 @@ Proof.
                 apply midpoint_bet.
                 apply l7_2.
                 assumption.
-              apply col_permutation_1.
+              apply 等价共线BCA.
               assumption.
             eapply perp_col.
               assumption.
@@ -1094,10 +1094,10 @@ Proof.
                 apply is_midpoint_id in H6.
                 contradiction.
               assert(Col B Y M).
-                apply col_permutation_1.
+                apply 等价共线BCA.
                 eapply (col_transitivity_2  X).
                   auto.
-                  apply col_permutation_1.
+                  apply 等价共线BCA.
                   assumption.
                 unfold Col.
                 left.
@@ -1105,11 +1105,11 @@ Proof.
                 assumption.
               eapply (col_transitivity_1 _ B).
                 auto.
-                apply col_permutation_2.
+                apply 等价共线CAB.
                 assumption.
-              apply col_permutation_3.
+              apply 等价共线CBA.
               apply H0.
-            apply col_permutation_5.
+            apply 等价共线ACB.
             apply H0.
           apply ABB型共线.
         unfold Col.
@@ -1280,7 +1280,7 @@ Proof.
       exists M0.
       split.
         assumption.
-      apply col_permutation_4.
+      apply 等价共线BAC.
       assumption.
     induction H0.
       left.
@@ -1493,7 +1493,7 @@ Proof.
           Col.
           intro.
           apply H9.
-          apply col_permutation_2.
+          apply 等价共线CAB.
           eapply (col_transitivity_1 _ P').
             intro.
             subst P'.
@@ -1505,7 +1505,7 @@ Proof.
             apply midpoint_bet.
             apply l7_2.
             assumption.
-          apply col_permutation_4.
+          apply 等价共线BAC.
           assumption.
         exists M0.
         split.
@@ -1541,7 +1541,7 @@ Proof.
             assumption.
           intro.
           apply H9.
-          apply col_permutation_1.
+          apply 等价共线BCA.
           assumption.
           intro.
           assert (Col M0 A P).
@@ -1551,7 +1551,7 @@ Proof.
               apply is_midpoint_id in H1.
               subst P.
               absurde.
-              apply col_permutation_2.
+              apply 等价共线CAB.
               assumption.
             unfold Col.
             right; right.
@@ -1559,7 +1559,7 @@ Proof.
             apply l7_2.
             assumption.
           apply (per_not_col A M0 P); auto.
-          apply col_permutation_4.
+          apply 等价共线BAC.
           assumption.
         exists M0.
         split.
@@ -1589,13 +1589,13 @@ Proof.
           assumption.
         intro.
         apply H8.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         eapply col_transitivity_1.
           apply perp_distinct in H2.
           spliter.
           apply H2.
           assumption.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         assumption.
         assert(Perp  P' M0 A B).
           eapply perp_col.
@@ -1622,17 +1622,17 @@ Proof.
           assumption.
         intro.
         apply H8.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         eapply col_transitivity_1.
           apply perp_distinct in H2.
           spliter.
           apply H2.
           assumption.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         assumption.
       exists M0.
       split.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         assumption.
       apply midpoint_bet.
       apply l7_2.
@@ -1653,7 +1653,7 @@ Proof.
       apply l9_10.
       intro.
       apply H0.
-      apply col_permutation_1.
+      apply 等价共线BCA.
       assumption.
     ex_elim H2 X.
     induction (两点重合的决定性 A C).
@@ -1673,14 +1673,14 @@ Proof.
         apply perp_not_col in H2.
         intro.
         apply H2.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         assumption.
         unfold TS in H3.
         spliter.
         assumption.
       exists T.
       split.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         assumption.
       apply 中间性的对称性.
       assumption.
@@ -1695,7 +1695,7 @@ Proof.
         assumption.
         apply perp_left_comm.
         apply H4.
-      apply col_permutation_5.
+      apply 等价共线ACB.
       assumption.
     eapply l9_8_1.
       apply H3.
@@ -1704,10 +1704,10 @@ Proof.
       eapply perp_not_col in H4.
       intro.
       apply H4.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       eapply col_transitivity_1.
         apply H1.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         assumption.
       assumption.
       unfold TS in H3.
@@ -1715,12 +1715,12 @@ Proof.
       assumption.
     exists T.
     split.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       eapply col_transitivity_1.
         apply H2.
-        apply col_permutation_5.
+        apply 等价共线ACB.
         assumption.
-      apply col_permutation_4.
+      apply 等价共线BAC.
       assumption.
     apply 中间性的对称性.
     assumption.

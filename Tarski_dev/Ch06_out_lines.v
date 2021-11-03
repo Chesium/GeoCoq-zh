@@ -303,7 +303,7 @@ Proof.
     induction (两点重合的决定性 A P).
       subst; unfold Col; Between.
     assert (T:=l6_16_1 P Q A B).
-    apply col_permutation_1; apply T; Col.
+    apply 等价共线BCA; apply T; Col.
 Qed.
 
 Lemma col_transitivity_2 : forall P Q A B,
@@ -322,19 +322,19 @@ Proof.
     elim (两点重合的决定性 P Q); intro; try assumption.
     cut False.
       intro; intuition.
-    apply not_col_distincts in H.
+    apply 不共线则不重合 in H.
     spliter.
     assert (Col C P Q) by (apply col_transitivity_1 with D; Col).
     assert (Col Q B C).
       induction (两点重合的决定性 Q A).
         subst; apply col_transitivity_1 with P; Col.
-      apply col_transitivity_1 with P; Col; apply col_permutation_1, col_transitivity_1 with A; Col.
+      apply col_transitivity_1 with P; Col; apply 等价共线BCA, col_transitivity_1 with A; Col.
     assert (Col A B C).
       induction (两点重合的决定性 Q A).
         subst Q; assumption.
       induction (两点重合的决定性 Q B).
-        subst; apply col_permutation_2; apply col_transitivity_1 with P; Col.
-      apply col_permutation_2; apply col_transitivity_1 with Q; Col.
+        subst; apply 等价共线CAB; apply col_transitivity_1 with P; Col.
+      apply 等价共线CAB; apply col_transitivity_1 with Q; Col.
     contradiction.
 Qed.
 
@@ -402,12 +402,12 @@ Proof.
     intros.
     assert (Col X A B) by (apply col_transitivity_1 with Y; assumption).
     induction(两点重合的决定性 C X).
-      subst X; apply col_permutation_1; assumption.
-    apply col_permutation_1.
+      subst X; apply 等价共线BCA; assumption.
+    apply 等价共线BCA.
     apply col_transitivity_1 with X; try assumption.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply col_transitivity_1 with Y; assumption.
-    apply col_permutation_2.
+    apply 等价共线CAB.
     apply col_transitivity_1 with Y; assumption.
 Qed.
 
@@ -416,7 +416,7 @@ Proof.
     intros.
     destruct (两点重合的决定性 X Y).
       subst; Col.
-    apply (col3 A B); auto; apply col_permutation_1.
+    apply (col3 A B); auto; apply 等价共线BCA.
       apply col_transitivity_1 with Y; Col.
       apply (col_transitivity_2 X); Col.
 Qed.
@@ -706,7 +706,7 @@ Proof.
           unfold Out in *.
           spliter.
           assumption.
-      apply col_permutation_4.
+      apply 等价共线BAC.
       apply out_col.
       assumption.
     assert(Out B AA CC).
@@ -726,7 +726,7 @@ Proof.
         spliter.
       apply 中间性的对称性.
       assumption.
-    apply col_permutation_4.
+    apply 等价共线BAC.
     apply out_col.
     assumption.
 Qed.
@@ -974,7 +974,7 @@ Proof.
       ex_and HH D.
       exists D.
       repeat split; try assumption.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       eapply col_transitivity_1.
         apply H0.
         assumption.
@@ -993,10 +993,10 @@ Proof.
     ex_and HH D.
     exists D.
     repeat split; try assumption.
-    apply col_permutation_5.
+    apply 等价共线ACB.
     eapply col_transitivity_1.
       apply H0.
-      apply col_permutation_4.
+      apply 等价共线BAC.
       assumption.
     unfold Col.
     right;right.

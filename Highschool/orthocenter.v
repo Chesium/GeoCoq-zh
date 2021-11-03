@@ -118,11 +118,11 @@ repeat split; try ColR; finish.
 
 intro; subst.
 assert (E <> F) by (intro; subst; intuition).
-apply HNC; apply col_permutation_1; apply not_strict_par1 with E A; sfinish.
+apply HNC; apply 等价共线BCA; apply not_strict_par1 with E A; sfinish.
 
 intro; subst.
 assert (E <> F) by (intro; subst; intuition).
-apply HNC; apply col_permutation_2; apply not_strict_par1 with E C; sfinish.
+apply HNC; apply 等价共线CAB; apply not_strict_par1 with E C; sfinish.
 
 intro; subst.
 assert (D <> F) by (intro; subst; intuition).
@@ -172,12 +172,12 @@ assert (中点 C D E) by (apply diff_not_col_col_par4_mid with A B; finish).
 assert_diffs.
 elim (两点重合的决定性 A O); intro.
 
-  treat_equalities; apply col_permutation_4; apply cop_perp2__col with A B...
+  treat_equalities; apply 等价共线BAC; apply cop_perp2__col with A B...
   apply perp_right_comm; apply perp_col1 with B1...
 
 elim (两点重合的决定性 B O); intro.
 
-  treat_equalities; apply col_permutation_4; apply cop_perp2__col with A B...
+  treat_equalities; apply 等价共线BAC; apply cop_perp2__col with A B...
   apply perp_col1 with A1...
 
 elim (两点重合的决定性 C O); intro.
@@ -198,7 +198,7 @@ assert (Perp C1 C D E).
   apply perp_sym; apply cop_par_perp__perp with A B...
   apply par_symmetry; apply par_col_par_2 with C...
 
-apply col_permutation_2; apply cop_perp2__col with D E; Perp.
+apply 等价共线CAB; apply cop_perp2__col with D E; Perp.
 apply coplanar_pseudo_trans with A B C; Cop.
 apply coplanar_perm_2, col_cop__cop with B1; Col; Cop.
 

@@ -2620,14 +2620,14 @@ assert(Per B P Y).
 apply(H14 B Y); Col.
 assert(Per A' P Y).
 apply(H10 A' Y); Col.
-apply col_permutation_2.
+apply 等价共线CAB.
 apply cop_per2__col with Y; Cop.
 subst A.
 assert(Per B P X).
 apply(H14 B X); Col.
 assert(Per A' P X).
 apply(H10 A' X); Col.
-apply col_permutation_2.
+apply 等价共线CAB.
 apply cop_per2__col with X; auto.
 apply coplanar_perm_12.
 apply col_cop__cop with Y; Col; Cop.
@@ -2838,12 +2838,12 @@ Proof.
               intro.
               apply H15.
               apply 中间性蕴含共线 in H25.
-              apply col_permutation_1.
+              apply 等价共线BCA.
               eapply (col_transitivity_1 _ E''); Col.
               intro.
               apply 中间性蕴含共线 in H25.
               apply H15.
-              apply col_permutation_2.
+              apply 等价共线CAB.
               eapply (col_transitivity_1 _ E''); Col.
             exists E''.
             split; Col.
@@ -2897,12 +2897,12 @@ Proof.
             auto.
             intro.
             apply H33.
-            apply col_permutation_2.
+            apply 等价共线CAB.
             apply(col_transitivity_1 _ T); Col.
             intro.
             apply 中间性蕴含共线 in H25.
             apply H15.
-            apply col_permutation_1.
+            apply 等价共线BCA.
             eapply (col_transitivity_1 _ E''); Col.
           exists E''.
           split.
@@ -3121,12 +3121,12 @@ Proof.
         intro.
         apply H15.
         apply 中间性蕴含共线 in H25.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         eapply (col_transitivity_1 _ E''); Col.
         intro.
         apply H15.
         apply 中间性蕴含共线 in H25.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         eapply (col_transitivity_1 _ E''); Col.
       exists E''.
       split; Col.
@@ -3182,7 +3182,7 @@ Proof.
               apply H46.
               Col.
             apply H5.
-            apply col_permutation_1.
+            apply 等价共线BCA.
             eapply col_transitivity_1.
               apply H55.
               apply 中间性蕴含共线 in H35.

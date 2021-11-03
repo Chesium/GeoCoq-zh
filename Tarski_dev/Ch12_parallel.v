@@ -239,7 +239,7 @@ repeat
       | H:(~Col ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
       not_exist_hyp3 X1 X2 X1 X3 X2 X3;
-      assert (h := not_col_distincts X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 不共线则不重合 X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
 
       | H:(~Bet ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
@@ -571,7 +571,7 @@ Proof.
     right.
     intro.
     apply H3.
-    apply col_permutation_2, cop_perp2__col with A B; [Cop|apply perp_sym;assumption..].
+    apply 等价共线CAB, cop_perp2__col with A B; [Cop|apply perp_sym;assumption..].
 Qed.
 
 Lemma col_cop2_perp2__col : forall X1 X2 Y1 Y2 A B,
@@ -589,7 +589,7 @@ Proof.
           intuition.
           apply H0.
         Col.
-      apply col_permutation_1.
+      apply 等价共线BCA.
       apply cop_perp2__col with A B.
         assumption.
         apply H.
@@ -606,7 +606,7 @@ Proof.
       assumption.
     induction(两点重合的决定性 X1 Y1).
       subst Y1.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply cop_perp2__col with A B; Cop.
     assert(Perp X1 Y1 A B).
       eauto using perp_left_comm, perp_col with col.
@@ -779,7 +779,7 @@ Proof.
       exists P.
       split.
         assumption.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       eapply col_transitivity_1.
         apply H.
         Col.
@@ -789,12 +789,12 @@ Proof.
     repeat split.
       assumption.
       assumption.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       eapply col_transitivity_1.
         apply H2.
         assumption.
       Col.
-    apply col_permutation_2.
+    apply 等价共线CAB.
     eapply col_transitivity_1.
       apply H2.
       assumption.
@@ -838,7 +838,7 @@ Proof.
         split; Col.
       contradiction.
     spliter.
-    apply col_permutation_1.
+    apply 等价共线BCA.
     eapply col_transitivity_1.
       apply H2.
       Col.
@@ -1009,7 +1009,7 @@ Proof.
       apply os__coplanar, H0; Col.
     intro.
     ex_and H1 X.
-    assert(HH:= H0 X (col_permutation_1 _ _ _ H2) ).
+    assert(HH:= H0 X (等价共线BCA _ _ _ H2) ).
     ex_and HH M.
     unfold TS in H4.
     spliter.
@@ -1043,7 +1043,7 @@ Proof.
         apply H3.
         apply H0.
       assumption.
-    apply col_permutation_2.
+    apply 等价共线CAB.
     eapply col_transitivity_1.
       apply par_distincts in H0.
       spliter.
@@ -1098,7 +1098,7 @@ Proof.
     exists X.
     split.
       assumption.
-    apply col_permutation_2.
+    apply 等价共线CAB.
     apply (colx E F); Col.
 Qed.
 
@@ -1309,7 +1309,7 @@ Proof.
       apply 中间性蕴含共线 in H1.
       apply 中间性蕴含共线 in H0.
       assert(Col B C P).
-        eapply col_permutation_1.
+        eapply 等价共线BCA.
         eapply (col_transitivity_1 _ A).
           auto.
           Col.
@@ -1342,7 +1342,7 @@ Proof.
         induction(两点重合的决定性 C P).
           treat_equalities.
           intuition.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         eapply (col_transitivity_1 _ P).
           assumption.
           Col.
@@ -1581,7 +1581,7 @@ Proof.
           apply H2.
           Col.
         Col.
-      apply col_permutation_1.
+      apply 等价共线BCA.
       eapply (col_transitivity_1 _ P).
         intro.
         subst P.
@@ -1614,7 +1614,7 @@ Proof.
       intro.
       apply H1.
       assert(Col A B P).
-        apply col_permutation_2.
+        apply 等价共线CAB.
         eapply (col_transitivity_1 _ D).
           assumption.
           Col.
@@ -1636,7 +1636,7 @@ Proof.
           assumption.
           Col.
         Col.
-      apply col_permutation_1.
+      apply 等价共线BCA.
       eapply (col_transitivity_1 _ P).
         intro.
         subst P.
@@ -1670,7 +1670,7 @@ Proof.
       intro.
       apply H1.
       assert(Col A B P).
-        eapply col_permutation_2.
+        eapply 等价共线CAB.
         eapply col_transitivity_1.
           apply H2.
           Col.
@@ -1725,10 +1725,10 @@ Proof.
       repeat split.
         intro.
         assert(Col T B C).
-          apply col_permutation_1.
+          apply 等价共线BCA.
           apply (col_transitivity_1 _ A); Col.
         apply H3.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         eapply (col_transitivity_1 _ T).
           intro.
           treat_equalities.
@@ -1738,10 +1738,10 @@ Proof.
           Col.
         intro.
         assert(Col T C D).
-          apply col_permutation_2.
+          apply 等价共线CAB.
           apply (col_transitivity_1 _ A); Col.
         apply H3.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         apply (col_transitivity_1 _ T).
           intro.
           treat_equalities.
@@ -1838,7 +1838,7 @@ Proof.
       intro.
       unfold TS in H.
       spliter.
-      apply col_permutation_4 in H5.
+      apply 等价共线BAC in H5.
       assert(Col D C A).
         eapply col_conga_col.
           apply H5.
@@ -1947,7 +1947,7 @@ Proof.
             assumption.
             intro.
             apply H9.
-            apply col_permutation_1.
+            apply 等价共线BCA.
             eapply (col_transitivity_1 _ B').
               intro.
               treat_equalities.

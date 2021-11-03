@@ -1048,7 +1048,7 @@ spliter.
 auto.
 
 assert(Col C D D').
-apply col_permutation_1.
+apply 等价共线BCA.
 apply (parallel_uniqueness A B _ _ C _ C).
 left.
 apply H.

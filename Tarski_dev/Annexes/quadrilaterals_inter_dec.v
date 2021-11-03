@@ -372,7 +372,7 @@ unfold TS.
 repeat split; auto.
 intro.
 apply H4.
-apply col_permutation_1.
+apply 等价共线BCA.
 apply (col_transitivity_1 _ B'').
 assert_diffs.
 auto.
@@ -399,7 +399,7 @@ Col.
 intro.
 apply H4.
 
-apply col_permutation_1.
+apply 等价共线BCA.
 apply (col_transitivity_1 _ B'').
 assert_diffs.
 auto.
@@ -493,7 +493,7 @@ eapply (out_one_side_1 _ _ _ _ A).
 
 intro.
 apply H8.
-apply col_permutation_1.
+apply 等价共线BCA.
 apply (col_transitivity_1 _ X).
 intro.
 subst X.
@@ -538,7 +538,7 @@ assert(OS A A' X B).
 eapply (out_one_side_1).
 intro.
 apply H8.
-apply col_permutation_1.
+apply 等价共线BCA.
 eapply (col_transitivity_1 _ X).
 intro.
 subst X.
@@ -1318,7 +1318,7 @@ auto.
 unfold 中点 in H0.
 spliter.
 apply 中间性蕴含共线 in H0.
-apply col_permutation_5.
+apply 等价共线ACB.
 apply H0.
 apply par_symmetry.
 apply par_left_comm.
@@ -1334,7 +1334,7 @@ auto.
 unfold 中点 in H1.
 spliter.
 apply 中间性蕴含共线 in H1.
-apply col_permutation_2.
+apply 等价共线CAB.
 apply H1.
 apply par_left_comm.
 Par.
@@ -1379,7 +1379,7 @@ spliter.
 assumption.
 spliter.
 apply H22.
-apply col_permutation_1.
+apply 等价共线BCA.
 eapply (col_transitivity_1 _ P).
 intro.
 subst P.
@@ -1532,7 +1532,7 @@ apply 中间性蕴含共线 in H1.
 ColR.
 
 apply H4.
-apply col_permutation_2.
+apply 等价共线CAB.
 eapply (col_transitivity_1 _ M).
 intro.
 subst M.
@@ -1551,7 +1551,7 @@ spliter.
 apply 中间性蕴含共线 in H1.
 ColR.
 apply H6.
-apply col_permutation_1.
+apply 等价共线BCA.
 eapply (col_transitivity_1 _ M).
 intro.
 subst M.
@@ -2217,7 +2217,7 @@ repeat
       | H:(~Col ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
       not_exist_hyp3 X1 X2 X1 X3 X2 X3;
-      assert (h := not_col_distincts X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps 
+      assert (h := 不共线则不重合 X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps 
 
       | H:(~Bet ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in

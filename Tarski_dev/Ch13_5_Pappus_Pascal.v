@@ -891,7 +891,7 @@ Proof.
       apply perp_sym.
       apply (perp_col _ B); auto.
         Perp.
-      apply col_permutation_5.
+      apply 等价共线ACB.
       apply cop_per2__col with A; Perp; Cop.
     assert(HH:=H4).
     apply per_perp_in in H4; auto.
@@ -903,7 +903,7 @@ Proof.
     apply perp_left_comm.
     apply (perp_col _ B); auto.
       Perp.
-    apply col_permutation_5.
+    apply 等价共线ACB.
     eapply cop_per2__col with A; Perp; Cop.
 Qed.
 

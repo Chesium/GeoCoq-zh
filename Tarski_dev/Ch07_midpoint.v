@@ -12,7 +12,7 @@ repeat
       | H:(~Col ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
       not_exist_hyp3 X1 X2 X1 X3 X2 X3;
-      assert (h := not_col_distincts X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 不共线则不重合 X1 X2 X3 H);decompose [and] h;clear h;clean_reap_hyps
 
       | H:(~Bet ?X1 ?X2 ?X3) |- _ =>
       let h := fresh in
@@ -183,7 +183,7 @@ Proof.
       eapply 中间性_AB不等推AC不等.
         apply H14.
       auto.
-    assert (Cong X' Y' Y X) by eauto using l4_16.
+    assert (Cong X' Y' Y X) by eauto using l4_16_五线段形式推论.
     assert (Cong A X A X') by (apply 等长的传递性 with A Y; Cong).
     assert (内五线段形式 Y Q A X Y' Q' A X') by (unfold 内五线段形式, 五线段形式 in *;spliter;repeat split;Between; Cong).
     assert (Cong Q X Q' X') by eauto using l4_2.
@@ -357,7 +357,7 @@ Proof.
     intros.
     assert_diffs.
     assert (exists P', 三角形全等 B D P D B P').
-      eapply l4_14.
+      eapply l4_14_退化三角形有其全等形.
         Col.
       Cong.
     induction H9.
@@ -373,8 +373,8 @@ Proof.
       unfold 三角形全等 in *.
       spliter.
       repeat split; Col; Cong.
-    assert (Cong P A x C) by (eauto using l4_16).
-    assert (Cong P C x A) by (eauto using l4_16).
+    assert (Cong P A x C) by (eauto using l4_16_五线段形式推论).
+    assert (Cong P C x A) by (eauto using l4_16_五线段形式推论).
     assert (三角形全等 A P C C x A) by (unfold 三角形全等;repeat split; Cong).
     assert (Col C x A) by (eauto using 全等于退化的三角形).
     assert (P=x).
@@ -801,7 +801,7 @@ Proof.
         right; left.
         assumption.
       apply H0.
-      apply col_permutation_4.
+      apply 等价共线BAC.
       assumption.
     eapply (l6_21 A Q B P R R' ).
       intro.

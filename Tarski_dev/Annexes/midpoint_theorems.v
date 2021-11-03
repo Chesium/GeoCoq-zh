@@ -7,19 +7,19 @@ Section Triangle中点sTheorems.
 Context `{TE:塔斯基公理系统_欧几里得几何}.
 
 Lemma col_permut132 : forall A B C, Col A B C -> Col A C B.
-Proof. exact col_permutation_5. Qed.
+Proof. exact 等价共线ACB. Qed.
 
 Lemma col_permut213 : forall A B C, Col A B C -> Col B A C.
-Proof. exact col_permutation_4. Qed.
+Proof. exact 等价共线BAC. Qed.
 
 Lemma col_permut231 : forall A B C, Col A B C -> Col B C A.
-Proof. exact col_permutation_1. Qed.
+Proof. exact 等价共线BCA. Qed.
 
 Lemma col_permut312 : forall A B C, Col A B C -> Col C A B.
-Proof. exact col_permutation_2. Qed.
+Proof. exact 等价共线CAB. Qed.
 
 Lemma col_permut321 : forall A B C, Col A B C -> Col C B A.
-Proof. exact col_permutation_3. Qed.
+Proof. exact 等价共线CBA. Qed.
 
 Lemma col123_124__col134 : forall P Q A B,
   P <> Q -> Col P Q A -> Col P Q B -> Col P A B.

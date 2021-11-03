@@ -1089,7 +1089,7 @@ Proof.
     assert(P = R); [|subst; split; reflexivity].
     apply (l6_21 M P Q P); Col.
       apply (par_strict_not_col_2 N), HPar.
-    apply col_permutation_2, cop_per2__col with N; Perp.
+    apply 等价共线CAB, cop_per2__col with N; Perp.
     apply coplanar_perm_5, col_cop__cop with M; Col; Cop.
   }
   assert(HP' := symmetric_point_construction P M).
@@ -1387,7 +1387,7 @@ Proof.
       subst L.
       exists G.
       split; Between.
-      apply col_permutation_5.
+      apply 等价共线ACB.
       unfold Lambert四边形 in *.
       spliter.
       apply cop_per2__col with N; Perp.

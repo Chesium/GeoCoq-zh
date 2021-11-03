@@ -361,7 +361,7 @@ subst PX.
 apply proj_per in H8.
 spliter.
 apply H.
-apply col_permutation_2.
+apply 等价共线CAB.
 eapply per2__col.
 apply l8_2.
 apply H3.
@@ -375,7 +375,7 @@ subst PY.
 apply proj_per in H9.
 spliter.
 apply H0.
-apply col_permutation_2.
+apply 等价共线CAB.
 eapply per2__col.
 apply l8_2.
 apply H3.
@@ -723,7 +723,7 @@ intros.
 unfold proj in *.
 spliter.
 induction H2; induction H1; spliter.
-apply col_permutation_1.
+apply 等价共线BCA.
 eapply perp2__col.
 apply perp_sym.
 apply perp_comm.
@@ -814,7 +814,7 @@ unfold proj in H1.
 spliter.
 induction H3; spliter.
 assert(Col P Q B').
-apply col_permutation_1.
+apply 等价共线BCA.
 eapply proj_col.
 apply H2.
 
@@ -915,7 +915,7 @@ Col.
 unfold proj in *.
 spliter.
 induction H4; induction H5; spliter.
-apply col_permutation_2.
+apply 等价共线CAB.
 eapply perp2__col.
 apply perp_sym.
 apply H6.
@@ -1125,7 +1125,7 @@ assert(Q <> A').
 intro.
 apply H.
 auto.
-apply col_permutation_1 in H0.
+apply 等价共线BCA in H0.
 assert(~Col Q A' X).
 intro.
 apply H1.
@@ -1326,7 +1326,7 @@ apply H17.
 Col.
 intro.
 apply HH.
-apply col_permutation_2.
+apply 等价共线CAB.
 eapply (col_transitivity_1 _ A).
 auto.
 Col.
@@ -1429,7 +1429,7 @@ ColR.
 assert(Col B' C Q).
 ColR.
 eapply (col3 B' C); Col.
-apply col_permutation_1 in H9.
+apply 等价共线BCA in H9.
 
 assert(~Col C P Q).
 intro.
@@ -1953,7 +1953,7 @@ ex_and H10 X.
 prolong X M X' M X.
 assert(Col A' B' X').
 eapply mid_preserves_col.
-apply col_permutation_1.
+apply 等价共线BCA.
 apply H10.
 apply H0.
 apply H1.
@@ -1980,7 +1980,7 @@ apply 等长的对称性 in H5.
 apply 等长的同一性 in H5.
 subst B'.
 Col.
-apply col_permutation_2.
+apply 等价共线CAB.
 apply (col_transitivity_1 _ M); Col.
 
 assert(Col X M B').
@@ -2014,7 +2014,7 @@ assert (HH:=l7_20 M X' B' H18 H20).
 induction HH.
 subst X'.
 apply H3.
-apply col_permutation_2.
+apply 等价共线CAB.
 apply (col_transitivity_1 _ M).
 intro.
 subst M.
@@ -2055,7 +2055,7 @@ Lemma midpoint_par_strict : forall A B A' B' M, ~ Col A B B' -> 中点 M A A' ->
 Proof.
 intros.
 assert (A <> B).
-apply not_col_distincts in H; spliter; assumption.
+apply 不共线则不重合 in H; spliter; assumption.
 assert(Par A B A' B').
 eapply (midpoint_par A B A' B' M); assumption.
 induction H3.
@@ -2607,7 +2607,7 @@ unfold TS.
 repeat split; auto.
 intro.
 apply H6.
-apply col_permutation_1.
+apply 等价共线BCA.
 eapply (col_transitivity_1 _ B'').
 intro.
 subst B''.
@@ -2641,7 +2641,7 @@ Col.
 intro.
 apply H6.
 
-apply col_permutation_1.
+apply 等价共线BCA.
 eapply (col_transitivity_1 _ B'').
 intro.
 subst B''.
@@ -2767,7 +2767,7 @@ assert(OS A A' X B'').
 eapply (out_one_side_1 _ _ X B'').
 intro.
 apply H7.
-apply col_permutation_1.
+apply 等价共线BCA.
 eapply (col_transitivity_1 _ X).
 intro.
 subst X.
@@ -2837,7 +2837,7 @@ assert(OS A A' X B).
 eapply (out_one_side_1).
 intro.
 apply H7.
-apply col_permutation_1.
+apply 等价共线BCA.
 eapply (col_transitivity_1 _ X).
 intro.
 subst X.
@@ -3896,7 +3896,7 @@ apply l8_2.
 apply H4.
 auto.
 
-apply col_permutation_2.
+apply 等价共线CAB.
 apply col_transitivity_1 with B.
 
 assert(~Col P Q C).
@@ -3930,7 +3930,7 @@ auto.
 apply l8_2.
 apply H1.
 
-apply col_permutation_2.
+apply 等价共线CAB.
 apply col_transitivity_1 with B; Col.
 ColR.
 
@@ -4693,7 +4693,7 @@ Col.
 
 assert(OS A B X C).
 eapply (per_one_side A B D); auto.
-apply  col_permutation_3.
+apply  等价共线CBA.
 apply H17.
 Col.
 assumption.
@@ -4703,14 +4703,14 @@ Col.
 
 assert(OS A B Y C1).
 eapply (per_one_side A B D); auto.
-apply col_permutation_3.
+apply 等价共线CBA.
 apply H17.
-apply col_permutation_2.
+apply 等价共线CAB.
 eapply (col_transitivity_1 _ A);Col.
 assumption.
 eapply per_col; [|apply H3|].
 auto.
-apply col_permutation_2.
+apply 等价共线CAB.
 eapply (col_transitivity_1 _ C);
 Col.
 

@@ -126,7 +126,7 @@ assert (HOS : OS B C A x).
   assert (HBCB : Col B C B) by Col.
   assert (HABx' : Col A x B) by Col.
   assert (H := l9_19 B C A x B HBCB HABx'); rewrite H.
-  apply not_col_distincts in HABC; spliter.
+  apply 不共线则不重合 in HABC; spliter.
   split; [Out|Col].
 }
 assert (HTS' : TS B C x T) by (apply l9_8_2 with A; assumption);
@@ -252,7 +252,7 @@ assert (HCopY : 共面 B C T Y) by (apply col_cop__cop with Z; Col).
 assert (HCopX : 共面 B C T X) by (apply col_cop__cop with Y; Col).
 assert (HXYZ1 : ~ Col X Y Z1).
   {
-  intro; apply HABC, col_permutation_4, par_id.
+  intro; apply HABC, 等价共线BAC, par_id.
   assert (Col T Z Z1) by ColR.
   assert (共面 B C Y Z1) by (apply col2_cop__cop with T Z; Col).
   apply l12_9 with Y Z1; [Cop..| |Perp|].
@@ -323,7 +323,7 @@ assert (HxTy : Col x T y).
   {
   elim (两点重合的决定性 T x); intro; [|elim (两点重合的决定性 T y); intro]; [subst; Col..|].
   assert_diffs.
-  apply col_permutation_4, cop_perp2__col with X Y;
+  apply 等价共线BAC, cop_perp2__col with X Y;
     [|apply perp_bisect_perp, cong_cop_perp_bisect; Cong; Cop..].
   assert (共面 B C T Y) by (apply col_cop__cop with Z; Col; Cop).
   assert (共面 B C T X) by (apply col_cop__cop with Y; Col).
@@ -392,7 +392,7 @@ elim (两点重合的决定性 C Y); intro HCY.
 
   {
   treat_equalities.
-  assert (HCT : C <> T) by (apply not_col_distincts in HBCT; spliter; auto).
+  assert (HCT : C <> T) by (apply 不共线则不重合 in HBCT; spliter; auto).
   assert (HY := midpoint_existence C T); destruct HY as [Y HY].
   assert (HAY : A <> Y) by (intro; treat_equalities; apply HABC; ColR).
   assert (H := midpoint_distinct_1 Y C T HCT HY); destruct H as [HCY HTY];

@@ -191,7 +191,7 @@ eapply l8_13_2.
 assumption.
 assumption.
 
-apply col_permutation_2.
+apply 等价共线CAB.
 apply cop_per2__col with A; Col.
 destruct(col_dec B A P).
 exists I.

@@ -233,7 +233,7 @@ elim (两点重合的决定性 O A'); intro; treat_equalities.
 
 assert (Col A H O) by (apply cop_perp2__col with B C; Col; Cop; apply perp_bisect_perp; Col).
 apply is_gravity_center_coplanar in H1.
-apply col_permutation_1; apply cop_perp2__col with B C.
+apply 等价共线BCA; apply cop_perp2__col with B C.
 
 CopR.
 apply perp_sym; apply perp_col0 with A O; try apply perp_bisect_perp; Col.

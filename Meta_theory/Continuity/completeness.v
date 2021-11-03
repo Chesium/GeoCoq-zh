@@ -142,7 +142,7 @@ Proof.
     assert (Bet P S Q) by Between.
     assert (Bet (f P) (f S) (f Q)) by auto.
     destruct HX2 as [[HBet []]|[HBet []]];
-      [|apply col_permutation_4]; apply (col_transitivity_2 (f S)); Col.
+      [|apply 等价共线BAC]; apply (col_transitivity_2 (f S)); Col.
   }
   assert (HB : exists B, Col S Y B /\ f B = A) by (apply lc; Col).
   destruct HB as [B []].

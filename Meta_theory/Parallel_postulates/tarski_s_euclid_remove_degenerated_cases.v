@@ -96,7 +96,7 @@ elim (col_dec A B C); intro HABC.
     }
   }
   {
-  assert (~ Col B C T) by (intro; apply HABC, col_permutation_2, (colx D T); Col).
+  assert (~ Col B C T) by (intro; apply HABC, 等价共线CAB, (colx D T); Col).
   apply HGC with D; assumption.
   }
 Qed.

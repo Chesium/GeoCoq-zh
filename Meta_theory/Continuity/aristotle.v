@@ -18,7 +18,7 @@ Proof.
     apply lea121345; auto.
     intro.
     apply HNColB.
-    apply col_permutation_4.
+    apply 等价共线BAC.
     apply out_col.
     apply (eq_conga_out P R); auto.
   }

@@ -4,8 +4,8 @@ Require Export GeoCoq.Utils.arity.
 Class Col_theory (COLTpoint : Type) (CTCol: COLTpoint -> COLTpoint -> COLTpoint -> Prop) :=
 {
   CTcol_trivial : forall A B : COLTpoint, CTCol A A B;
-  CTcol_permutation_1 : forall A B C : COLTpoint, CTCol A B C -> CTCol B C A;
-  CTcol_permutation_2 : forall A B C : COLTpoint, CTCol A B C -> CTCol A C B;
+  CT等价共线BCA : forall A B C : COLTpoint, CTCol A B C -> CTCol B C A;
+  CT等价共线CAB : forall A B C : COLTpoint, CTCol A B C -> CTCol A C B;
   CTcol3 : forall X Y A B C : COLTpoint,
              X <> Y -> CTCol X Y A -> CTCol X Y B -> CTCol X Y C -> CTCol A B C
 }.

@@ -103,7 +103,7 @@ Lemma midpoint_par_strict :
 Proof.
 intros.
 assert (A <> B).
-apply not_col_distincts in H.
+apply 不共线则不重合 in H.
 spliter.
 assumption.
 

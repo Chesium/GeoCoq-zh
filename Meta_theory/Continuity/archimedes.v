@@ -73,7 +73,7 @@ Proof.
     assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac1); unfold 萨凯里四边形 in *; spliter.
     apply (l6_11_uniqueness A1 A0 B0 B1); Cong; [|apply out_trivial; auto].
     apply (col_one_side_out _ A0).
-      apply col_permutation_2, cop_per2__col with A0; Perp.
+      apply 等价共线CAB, cop_per2__col with A0; Perp.
       apply coplanar_perm_3, coplanar_trans_1 with B0; Cop.
       apply 共线否定排列CAB, one_side_not_col123 with B1; assumption.
     apply (one_side_transitivity _ _ _ B0); Side.
@@ -258,7 +258,7 @@ Proof.
   - intro; treat_equalities; apply HNCol; ColR.
   - intro; treat_equalities; apply H6.
     apply (l6_21 A M N M); Col.
-    apply col_permutation_3, cop_per2__col with A; Col; Cop.
+    apply 等价共线CBA, cop_per2__col with A; Col; Cop.
   - apply per_col with A; Col.
     apply l8_2, per_col with M; Col; Perp.
   - apply l8_2, per_col with A; Col.

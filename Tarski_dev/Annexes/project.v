@@ -2223,7 +2223,7 @@ destruct H1 as [H H1]; clear H; destruct H2 as [H H2]; clear H.
 elim H1; clear H1; intro H1; elim H2; clear H2; intro H2;
 spliter; treat_equalities; Perp; [|intuition].
 apply perp_sym; apply perp_col0 with P1 P; Perp; Col.
-apply col_permutation_2; apply perp2__col with Q1 Q2; Perp.
+apply 等价共线CAB; apply perp2__col with Q1 Q2; Perp.
 Qed.
 
 Lemma col_projp_eq : forall A B P P', Col A B P -> Projp P P' A B -> P = P'.

@@ -318,32 +318,32 @@ Section Col_refl.
 
 Context `{CT:Col_theory}.
 
-Lemma CTcol_permutation_5 : forall A B C : COLTpoint, CTCol A B C -> CTCol A C B.
+Lemma CT等价共线ACB : forall A B C : COLTpoint, CTCol A B C -> CTCol A C B.
 Proof.
-apply CTcol_permutation_2.
+apply CT等价共线CAB.
 Qed.
 
-Lemma CTcol_permutation_2 : forall A B C : COLTpoint, CTCol A B C -> CTCol C A B.
+Lemma CT等价共线CAB : forall A B C : COLTpoint, CTCol A B C -> CTCol C A B.
 Proof.
 intros.
-apply CTcol_permutation_1.
-apply CTcol_permutation_1.
+apply CT等价共线BCA.
+apply CT等价共线BCA.
 assumption.
 Qed.
 
-Lemma CTcol_permutation_3 : forall A B C : COLTpoint, CTCol A B C -> CTCol C B A.
+Lemma CT等价共线CBA : forall A B C : COLTpoint, CTCol A B C -> CTCol C B A.
 Proof.
 intros.
-apply CTcol_permutation_5.
-apply CTcol_permutation_2.
+apply CT等价共线ACB.
+apply CT等价共线CAB.
 assumption.
 Qed.
 
-Lemma CTcol_permutation_4 : forall A B C : COLTpoint, CTCol A B C -> CTCol B A C.
+Lemma CT等价共线BAC : forall A B C : COLTpoint, CTCol A B C -> CTCol B A C.
 Proof.
 intros.
-apply CTcol_permutation_5.
-apply CTcol_permutation_1.
+apply CT等价共线ACB.
+apply CT等价共线BCA.
 assumption.
 Qed.
 
@@ -355,7 +355,7 @@ Qed.
 Lemma CTABB型共线 : forall A B : COLTpoint, CTCol A B B.
 Proof.
 intros.
-apply CTcol_permutation_2.
+apply CT等价共线CAB.
 apply CTAAB型共线.
 Qed.
 
@@ -566,7 +566,7 @@ elim Hs; intro HsE.
 
           rewrite Hp3p2; rewrite HB; apply CTABB型共线.
 
-          rewrite Hp3p1; rewrite HA; apply CTcol_permutation_1; apply CTAAB型共线.
+          rewrite Hp3p1; rewrite HA; apply CT等价共线BCA; apply CTAAB型共线.
 
           rewrite Hp3p2; rewrite HB; apply CTABB型共线.
 
@@ -588,14 +588,14 @@ elim Hs; intro HsE.
 
           rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTABB型共线.
 
-          rewrite Hp3p1 in *; rewrite HA; apply CTcol_permutation_1; apply CTAAB型共线.
+          rewrite Hp3p1 in *; rewrite HA; apply CT等价共线BCA; apply CTAAB型共线.
 
           rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTABB型共线.
 
           rewrite SWP.Dec.F.add_neq_b in Hmem3.
           elim (Pos.eq_dec p3 pb); intro Hp3pb.
 
-            rewrite Hp3pb in *; rewrite HB; apply CTcol_permutation_5; assumption.
+            rewrite Hp3pb in *; rewrite HB; apply CT等价共线ACB; assumption.
 
             rewrite SWP.Dec.F.add_neq_b in Hmem3.
             rewrite <- SWP.singleton_equal_add in Hmem3.
@@ -619,17 +619,17 @@ elim Hs; intro HsE.
         rewrite Hpap2 in *; rewrite HA.
         elim (Pos.eq_dec p3 p2); intro Hp3p2; elim (Pos.eq_dec p3 pb); intro Hp3pb.
 
-          rewrite Hp3pb; rewrite HB; apply CTcol_permutation_1; apply CTAAB型共线.
+          rewrite Hp3pb; rewrite HB; apply CT等价共线BCA; apply CTAAB型共线.
 
           rewrite Hp3p2; rewrite HA; apply CTABB型共线.
 
-          rewrite Hp3pb; rewrite HB; apply CTcol_permutation_1; apply CTAAB型共线.
+          rewrite Hp3pb; rewrite HB; apply CT等价共线BCA; apply CTAAB型共线.
 
           do 2 (rewrite SWP.Dec.F.add_neq_b in Hmem3).
           rewrite <- SWP.singleton_equal_add in Hmem3.
           apply SWP.Dec.F.mem_iff in Hmem3.
           apply SWP.Dec.F.singleton_1 in Hmem3.
-          rewrite <- Hmem3; rewrite HC; apply CTcol_permutation_4; assumption.
+          rewrite <- Hmem3; rewrite HC; apply CT等价共线BAC; assumption.
           intuition.
           intuition.
           intuition.
@@ -648,18 +648,18 @@ elim Hs; intro HsE.
 
             rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTABB型共线.
 
-            rewrite Hp3p1 in *; rewrite Hp1pb; rewrite HB; apply CTcol_permutation_1; apply CTAAB型共线.
+            rewrite Hp3p1 in *; rewrite Hp1pb; rewrite HB; apply CT等价共线BCA; apply CTAAB型共线.
 
             rewrite Hp3p2 in *; rewrite Hmem2 in *; rewrite HC; apply CTABB型共线.
 
             elim (Pos.eq_dec p3 pa); intro Hp3pa.
 
-              rewrite Hp3pa; rewrite HA; apply CTcol_permutation_1; assumption.
+              rewrite Hp3pa; rewrite HA; apply CT等价共线BCA; assumption.
 
               rewrite SWP.Dec.F.add_neq_b in Hmem3.
               elim (Pos.eq_dec p3 pb); intro Hp3pb.
 
-                rewrite Hp3pb in *; rewrite HB; apply CTcol_permutation_5; apply CTAAB型共线.
+                rewrite Hp3pb in *; rewrite HB; apply CT等价共线ACB; apply CTAAB型共线.
 
                 rewrite SWP.Dec.F.add_neq_b in Hmem3.
                 rewrite <- SWP.singleton_equal_add in Hmem3.
@@ -684,17 +684,17 @@ elim Hs; intro HsE.
         rewrite Hpap2 in *; rewrite HA.
         elim (Pos.eq_dec p3 p2); intro Hp3p2; elim (Pos.eq_dec p3 pb); intro Hp3pb.
 
-          rewrite Hp3pb; rewrite HB; apply CTcol_permutation_2; assumption.
+          rewrite Hp3pb; rewrite HB; apply CT等价共线CAB; assumption.
 
           rewrite Hp3p2; rewrite HA; apply CTABB型共线.
 
-          rewrite Hp3pb; rewrite HB; apply CTcol_permutation_2; assumption.
+          rewrite Hp3pb; rewrite HB; apply CT等价共线CAB; assumption.
 
           do 2 (rewrite SWP.Dec.F.add_neq_b in Hmem3).
           rewrite <- SWP.singleton_equal_add in Hmem3.
           apply SWP.Dec.F.mem_iff in Hmem3.
           apply SWP.Dec.F.singleton_1 in Hmem3.
-          rewrite <- Hmem3; rewrite HC; apply CTcol_permutation_1; apply CTAAB型共线.
+          rewrite <- Hmem3; rewrite HC; apply CT等价共线BCA; apply CTAAB型共线.
           intuition.
           intuition.
           intuition.
@@ -705,9 +705,9 @@ elim Hs; intro HsE.
           rewrite Hp2pb; rewrite HB.
           elim (Pos.eq_dec p3 pa); intro Hp3pa; elim (Pos.eq_dec p3 pb); intro Hp3pb.
 
-            rewrite Hp3pa; rewrite HA; apply CTcol_permutation_3; assumption.
+            rewrite Hp3pa; rewrite HA; apply CT等价共线CBA; assumption.
 
-            rewrite Hp3pa; rewrite HA; apply CTcol_permutation_3; assumption.
+            rewrite Hp3pa; rewrite HA; apply CT等价共线CBA; assumption.
 
             rewrite Hp3pb; rewrite HB; apply CTABB型共线.
 
@@ -715,7 +715,7 @@ elim Hs; intro HsE.
             rewrite <- SWP.singleton_equal_add in Hmem3.
             apply SWP.Dec.F.mem_iff in Hmem3.
             apply SWP.Dec.F.singleton_1 in Hmem3.
-            rewrite <- Hmem3 in *; rewrite HC; apply CTcol_permutation_1; apply CTAAB型共线.
+            rewrite <- Hmem3 in *; rewrite HC; apply CT等价共线BCA; apply CTAAB型共线.
             intuition.
 
           intuition.
@@ -934,7 +934,7 @@ elim Hs; intro HIn; clear Hs.
         apply CTAAB型共线.
 
         subst.
-        apply CTcol_permutation_4; apply CTABB型共线.
+        apply CT等价共线BAC; apply CTABB型共线.
 
         subst.
         do 2 (rewrite andb_true_iff in Hmem).
@@ -957,7 +957,7 @@ elim Hs; intro HIn; clear Hs.
 
           elim (Pos.eq_dec pa p3); intro Hpap3.
 
-            subst; rewrite HB; apply CTcol_permutation_4; apply CTABB型共线.
+            subst; rewrite HB; apply CT等价共线BAC; apply CTABB型共线.
 
             assert (Hmem3 : S.mem p3 x = true).
 
@@ -1022,7 +1022,7 @@ elim Hs; intro HIn; clear Hs.
 
         elim (Pos.eq_dec pa p1); intro Hpap1.
 
-          subst; rewrite HB; apply CTcol_permutation_4; apply CTABB型共线.
+          subst; rewrite HB; apply CT等价共线BAC; apply CTABB型共线.
 
           assert (Hmem1 : S.mem p1 x = true).
 
@@ -1058,7 +1058,7 @@ elim Hs; intro HIn; clear Hs.
 
           subst; apply CTAAB型共线.
 
-          subst; apply CTcol_permutation_4; apply CTABB型共线.
+          subst; apply CT等价共线BAC; apply CTABB型共线.
 
           subst.
           assert (Hmem1 : S.mem pb x = true).

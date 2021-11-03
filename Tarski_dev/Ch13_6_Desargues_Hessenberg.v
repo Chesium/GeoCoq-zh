@@ -294,7 +294,7 @@ Proof.
           apply H24.
           assert(Col N A B').
             eapply (col_transitivity_1 _ L); Col.
-          apply col_permutation_2.
+          apply 等价共线CAB.
           eapply (col_transitivity_1 _ N); Col.
         apply(l13_14 A O A' A N L N B'); Col.
           Par.
@@ -352,7 +352,7 @@ Proof.
         intro.
         subst P.
         apply H13.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply (col_transitivity_1 _ N); Col.
       assert(A' <> P).
         intro.
@@ -380,12 +380,12 @@ Proof.
       assert(Col L O N).
         apply (col_transitivity_1 _ P); Col.
       apply (col_transitivity_1 _ N); Col.
-    (* apply col_permutation_2.
+    (* apply 等价共线CAB.
     apply (col_transitivity_1 _ A); Col.
-    apply col_permutation_1.
+    apply 等价共线BCA.
     apply (col_transitivity_1 _ O); Col.
     Col.
-    apply col_permutation_2.
+    apply 等价共线CAB.
     apply (col_transitivity_1 _ L); Col.
     *)
     assert(Par A' C' O N).
@@ -430,11 +430,11 @@ Proof.
           exists B.
           split.
             Col.
-          apply col_permutation_2.
+          apply 等价共线CAB.
           apply (col_transitivity_1 _ N); Col.
         spliter.
         apply H13.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply (col_transitivity_1 _ M); Col.
       assert(O <> P).
         intro.
@@ -461,13 +461,13 @@ Proof.
       assert(Col N A C) by ColR.
       apply H.
       ColR.
-    (* apply col_permutation_2.
+    (* apply 等价共线CAB.
     apply (col_transitivity_1 _ A); Col.
-    apply col_permutation_1.
+    apply 等价共线BCA.
     apply (col_transitivity_1 _ N); Col.
-    apply col_permutation_2.
+    apply 等价共线CAB.
     apply (col_transitivity_1 _ O); Col.
-    apply col_permutation_1.
+    apply 等价共线BCA.
     apply (col_transitivity_1 _ C); Col.
     *)
     assert(Par N M B' C').
@@ -492,7 +492,7 @@ Proof.
           exists L.
           split.
             Col.
-          apply col_permutation_2.
+          apply 等价共线CAB.
           apply(col_transitivity_1 _ C); Col.
         assert(L <> C').
           intro.
@@ -551,7 +551,7 @@ Proof.
         intro.
         subst P.
         apply H23.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         apply (col_transitivity_1 _ L); Col.
       induction (两点重合的决定性 L M).
         subst L.
@@ -806,7 +806,7 @@ Proof.
         Par.
       apply (par_col_par_2 _ X).
         auto.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply(col_transitivity_1 _ Y); Col.
       apply par_left_comm.
       apply (par_col_par_2 _ Y); Col.
@@ -821,7 +821,7 @@ Proof.
       spliter.
       apply False_ind.
       apply H8.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply(col_transitivity_1 _ B'); Col.
     assert(C' <> C'').
       intro.
@@ -1079,7 +1079,7 @@ Proof.
       apply H2.
       exists B'.
       split;Col.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply (col_transitivity_1 _ O); Col.
       intro.
       subst O.
@@ -1105,7 +1105,7 @@ Proof.
       spliter.
       apply False_ind.
       apply H8.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply (col_transitivity_1 _ C'').
         intro.
         subst C''.
@@ -1119,7 +1119,7 @@ Proof.
       apply H10.
       exists B'.
       split; Col.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply (col_transitivity_1 _ O); Col.
       intro.
       subst B.
@@ -1144,7 +1144,7 @@ Proof.
       spliter.
       apply False_ind.
       apply H11.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply (col_transitivity_1 _ B'); Col.
       intro.
       subst B'.
@@ -1233,7 +1233,7 @@ Proof.
         spliter; apply H2.
         exists B'.
         split; Col.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         apply(col_transitivity_1 _ P); Col.
       assert(Par C C'' B B' ).
         apply (par_col_par_2 _ P); Col.
@@ -1352,7 +1352,7 @@ Proof.
       intro.
       subst E.
       apply H.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply (col_transitivity_1 _ C); Col.
     induction(col_dec A D E).
       assert(B = D).
@@ -1390,7 +1390,7 @@ Proof.
         split; Col.
       spliter.
       apply H.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply (col_transitivity_1 _ A'); Col.
     assert(Par D E D' E').
       apply (l13_15 A _ _ A' _ _ O); Col.
@@ -1418,7 +1418,7 @@ Proof.
             assert(Col O A E).
               apply(col_transitivity_1 _ A'); Col.
             apply H.
-            apply col_permutation_2.
+            apply 等价共线CAB.
             apply(col_transitivity_1 _ E); Col.
             intro.
             subst E.
@@ -1434,7 +1434,7 @@ Proof.
         assert(Col A O E).
           apply(col_transitivity_1 _ A'); Col.
         apply H.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply(col_transitivity_1 _ E); Col.
       apply(col_transitivity_1 _ B); Col.
     apply par_comm.
@@ -1483,7 +1483,7 @@ Proof.
             assert(Col O B E).
               apply (col_transitivity_1 _ B'); Col.
             apply H.
-            apply col_permutation_1.
+            apply 等价共线BCA.
             apply (col_transitivity_1 _ E); Col.
             intro.
             subst E.
@@ -1496,7 +1496,7 @@ Proof.
         apply False_ind.
         apply H.
         assert(Col O B' E').
-          apply col_permutation_2.
+          apply 等价共线CAB.
           apply (col_transitivity_1 _ B); Col.
         assert(Col B' A' O).
           apply (col_transitivity_1 _ E'); Col.
@@ -1729,7 +1729,7 @@ Proof.
         intro.
         subst D.
         contradiction.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply (col_transitivity_1  _ E); Col.
         intro.
         subst E.
@@ -1737,7 +1737,7 @@ Proof.
         apply H16.
         exists B.
         split; Col.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         apply (col_transitivity_1  _ C); Col.
     assert(Par Y B E Z).
       apply (par_trans _ _ X A); Par.
@@ -1754,7 +1754,7 @@ Proof.
         apply H16.
         exists C.
         split; Col.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         apply (col_transitivity_1  _ E); Col.
         intro.
         subst E.
@@ -1762,7 +1762,7 @@ Proof.
         exists C.
         split; Col.
         clean_trivial_hyps.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         apply (col_transitivity_1  _ D); Col.
       intro.
       subst D.
@@ -1798,9 +1798,9 @@ Proof.
         apply H16.
         exists A.
         split; Col.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         apply (col_transitivity_1  _ D); Col.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply (col_transitivity_1  _ B'); Col.
     assert(~ Col X A B).
       intro.
@@ -1839,7 +1839,7 @@ Proof.
       apply H16.
       exists C.
       split; Col.
-      apply col_permutation_1.
+      apply 等价共线BCA.
       apply (col_transitivity_1  _ B'); Col.
     assert(D <> D').
       intro.
@@ -1852,7 +1852,7 @@ Proof.
       apply H16.
       exists D.
       split; Col.
-      apply col_permutation_1.
+      apply 等价共线BCA.
       apply (col_transitivity_1  _ A'); Col.
     assert(A' <> C').
       intro.
@@ -1880,7 +1880,7 @@ Proof.
       apply H16.
       exists A.
       split; Col.
-      apply col_permutation_1.
+      apply 等价共线BCA.
       apply (col_transitivity_1  _ D); Col.
     assert(A <> E).
       intro.
@@ -1921,9 +1921,9 @@ Proof.
         apply H16.
         exists B'.
         split; Col.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply (col_transitivity_1  _ A'); Col.
-      apply col_permutation_2.
+      apply 等价共线CAB.
       apply (col_transitivity_1  _ A); Col.
     assert(Par D E D' E').
       apply(l13_15_par A D E A' D' E'); Par.
@@ -1934,14 +1934,14 @@ Proof.
         apply H16.
         exists D.
         split; Col.
-        apply col_permutation_1.
+        apply 等价共线BCA.
         apply (col_transitivity_1  _ A'); Col.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply (col_transitivity_1  _ D'); Col.
         apply (par_col_par_2 _ X); Col.
         apply par_symmetry.
         apply (par_col_par_2 _ Y); Col.
-          apply col_permutation_2.
+          apply 等价共线CAB.
           apply (col_transitivity_1  _ B); Col.
         apply par_comm.
         apply (par_col_par_2 _ B); Col.
@@ -1973,7 +1973,7 @@ Proof.
           apply (col_transitivity_1  _ A); Col.
         assert(Col C B' X).
           apply (col_transitivity_1  _ C'); Col.
-        apply col_permutation_2.
+        apply 等价共线CAB.
         apply (col_transitivity_1  _ C); Col.
         assert(Par B E B' E').
           apply (par_col_par_2 _ A); Col.
@@ -1991,7 +1991,7 @@ Proof.
         apply (par_col_par_2 _ Y); Col.
         apply par_symmetry.
         apply (par_col_par_2 _ X); Col.
-          apply col_permutation_2.
+          apply 等价共线CAB.
           apply (col_transitivity_1  _ A); Col.
         apply par_left_comm.
         apply (par_col_par_2 _ A); Col.

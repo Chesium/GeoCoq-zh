@@ -4,35 +4,35 @@ Section T4_1.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma col_permutation_1 : forall A B C,Col A B C -> Col B C A.
+Lemma 等价共线BCA : forall A B C,Col A B C -> Col B C A.
 Proof.
     unfold Col.
     intros.
     intuition.
 Qed.
 
-Lemma col_permutation_2 : forall A B C, Col A B C -> Col C A B.
+Lemma 等价共线CAB : forall A B C, Col A B C -> Col C A B.
 Proof.
     unfold Col.
     intros.
     intuition.
 Qed.
 
-Lemma col_permutation_3 : forall A B C, Col A B C -> Col C B A.
+Lemma 等价共线CBA : forall A B C, Col A B C -> Col C B A.
 Proof.
     unfold Col.
     intros.
     intuition.
 Qed.
 
-Lemma col_permutation_4 : forall A B C, Col A B C -> Col B A C.
+Lemma 等价共线BAC : forall A B C, Col A B C -> Col B A C.
 Proof.
     unfold Col.
     intros.
     intuition.
 Qed.
 
-Lemma col_permutation_5 : forall A B C, Col A B C -> Col A C B.
+Lemma 等价共线ACB : forall A B C, Col A B C -> Col A C B.
 Proof.
     unfold Col.
     intros.
@@ -41,8 +41,8 @@ Qed.
 
 End T4_1.
 
-Hint Resolve 中间性蕴含共线 col_permutation_1 col_permutation_2
-col_permutation_3 col_permutation_4 col_permutation_5 : col.
+Hint Resolve 中间性蕴含共线 等价共线BCA 等价共线CAB
+等价共线CBA 等价共线BAC 等价共线ACB : col.
 
 Ltac Col := auto 3 with col.
 Ltac Col5 := auto with col.
@@ -164,7 +164,7 @@ Proof.
       eauto 6  using l4_6 with cong3.
 Qed.
 
-Lemma l4_14 : forall A B C A' B',
+Lemma l4_14_退化三角形有其全等形 : forall A B C A' B',
   Col A B C -> Cong A B A' B' -> exists C', 三角形全等 A B C A' B' C'.
 Proof.
     unfold Col.
@@ -184,7 +184,7 @@ Proof.
     unfold 三角形全等;intuition.
 Qed.
 
-Lemma l4_16 : forall A B C D A' B' C' D',
+Lemma l4_16_五线段形式推论 : forall A B C D A' B' C' D',
    五线段形式 A B C D A' B' C' D' -> A<>B -> Cong C D C' D'.
 Proof.
     unfold 五线段形式.
@@ -207,7 +207,7 @@ Lemma l4_17 : forall A B C P Q,
 Proof.
     intros.
     assert (五线段形式 A B C P A B C Q) by (unfold 五线段形式; unfold 三角形全等;repeat split; Cong).
-    eapply l4_16; eauto.
+    eapply l4_16_五线段形式推论; eauto.
 Qed.
 
 Lemma l4_18 : forall A B C C',
@@ -228,7 +228,7 @@ Proof.
     auto using 中间性蕴含共线 with col.
 Qed.
 
-Lemma not_col_distincts : forall A B C ,
+Lemma 不共线则不重合 : forall A B C ,
  ~ Col A B C ->
  ~ Col A B C /\ A <> B /\ B <> C /\ A <> C.
 Proof.
