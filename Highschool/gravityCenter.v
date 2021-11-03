@@ -273,7 +273,7 @@ exists A'; exists B'; split; Col; try split; Col; split;
 try (assert (A <> G) by (intro; treat_equalities; assert_cols; Col);
      assert_diffs; assert_cols; ColR).
 Name B'' the midpoint of B and G.
-assert (HB' := symmetric_point_construction B'' G).
+assert (HB' := 构造对称点 B'' G).
 destruct HB' as [B''' HB'].
 assert (HPar1 : Par B A A' B').
   {
@@ -314,7 +314,7 @@ assert (HCol : Col A' B' B''').
   assert (H := parallel_uniqueness A B A' B' A' B''' A'); destruct H as [HCol1 HCol2]; Col; Par.
   apply par_trans with A'' B''; Par.
   }
-assert (HElim := l7_20 A' B' B'''); elim HElim; clear HElim; try intro HElim; Col; try CongR.
+assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim HElim; clear HElim; try intro HElim; Col; try CongR.
 
   {
   assert (G <> B'') by (intro; treat_equalities; assert_cols; Col); ColR.
@@ -536,7 +536,7 @@ Ltac permutation_intro_in_goal :=
  | |- Perp ?A ?B ?C ?D => apply Perp_cases
  | |- 垂直于 ?X ?A ?B ?C ?D => apply Perp_in_cases
  | |- Per ?A ?B ?C => apply Per_cases
- | |- 中点 ?A ?B ?C => apply Mid_cases
+ | |- 中点 ?A ?B ?C => apply 中点的各排列情况
  | |- ~ Col ?A ?B ?C => apply 共线否定的各排列情况
  | |- Col ?A ?B ?C => apply 共线的各排列情况
  | |- Bet ?A ?B ?C => apply 中间性的各排列情况
@@ -559,7 +559,7 @@ Ltac finish := repeat match goal with
  | |- Cong ?A ?B ?C ?D => Cong
  | |- is_gravity_center ?G ?A ?B ?C => Gravitycenter
  | |- 中点 ?A ?B ?C => 中点
- | |- ?A<>?B => apply swap_diff;assumption
+ | |- ?A<>?B => apply 不重合的对称性;assumption
  | |- _ => try assumption
 end.
 *)
@@ -578,7 +578,7 @@ Ltac sfinish := spliter; repeat match goal with
  | |- is_gravity_center ?G ?A ?B ?C => Gravitycenter
  | |- 中点 ?A ?B ?C => 中点
  | |- ?A<>?B => assumption
- | |- ?A<>?B => apply swap_diff;assumption
+ | |- ?A<>?B => apply 不重合的对称性;assumption
  | |- ?A<>?B => intro;treat_equalities; solve [search_contradiction]
  | |- ?G1 /\ ?G2 => split
  | |- _ => try assumption

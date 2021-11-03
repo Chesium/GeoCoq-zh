@@ -135,9 +135,9 @@ repeat
       apply 中间性的同一律 in H;smart_subst X2
    | H : Le ?X1 ?X2 ?X3 ?X3 |- _ =>
       apply AB小于等于CC推出A与B重合 in H;smart_subst X2
-   | H : 中点 ?X ?Y ?Y |- _ => apply l7_3 in H; smart_subst Y
-   | H : 中点 ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
-   | H : 中点 ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
+   | H : 中点 ?X ?Y ?Y |- _ => apply M是AA中点则M与A重合 in H; smart_subst Y
+   | H : 中点 ?A ?B ?A |- _ => apply A是BA中点则A与B重合 in H; smart_subst A
+   | H : 中点 ?A ?A ?B |- _ => apply A是AB中点则A与B重合 in H; smart_subst A
    | H : 在圆上 ?A ?A ?B |- _ =>
       apply 等长的反向同一性 in H;smart_subst B
    | H : 在圆上 ?B ?A ?A |- _ =>
@@ -159,15 +159,15 @@ repeat
      let T := fresh in assert (T : B=C) by (apply (双中间性推出点重合2 A B C); Between);
                        smart_subst A
    | H : 中点 ?P ?A ?P1, H2 : 中点 ?P ?A ?P2 |- _ =>
-     let T := fresh in assert (T := symmetric_point_uniqueness A P P1 P2 H H2); smart_subst P1
+     let T := fresh in assert (T := 中点组的唯一性1 A P P1 P2 H H2); smart_subst P1
    | H : 中点 ?A ?P ?X, H2 : 中点 ?A ?Q ?X |- _ =>
-     let T := fresh in assert (T := l7_9 P Q A X H H2); smart_subst P
+     let T := fresh in assert (T := 中点组的唯一性2 P Q A X H H2); smart_subst P
    | H : 中点 ?A ?P ?X, H2 : 中点 ?A ?X ?Q |- _ =>
-     let T := fresh in assert (T := l7_9_bis P Q A X H H2); smart_subst P
+     let T := fresh in assert (T := 中点组的唯一性3 P Q A X H H2); smart_subst P
    | H : 中点 ?A ?P ?P', H2 : 中点 ?B ?P ?P' |- _ =>
-     let T := fresh in assert (T := l7_17 P P' A B H H2); smart_subst A
+     let T := fresh in assert (T := 中点的唯一性1 P P' A B H H2); smart_subst A
    | H : 中点 ?A ?P ?P', H2 : 中点 ?B ?P' ?P |- _ =>
-     let T := fresh in assert (T := l7_17_bis P P' A B H H2); smart_subst A
+     let T := fresh in assert (T := 中点的唯一性2 P P' A B H H2); smart_subst A
 end.
 
 Ltac CongR :=
@@ -305,7 +305,7 @@ Proof.
     apply perp_left_comm, perp_col with P; trivial.
   }
   destruct HA' as [A' [HUA' [HCol HPer]]].
-  destruct (symmetric_point_construction U A') as [V HV].
+  destruct (构造对称点 U A') as [V HV].
   assert_diffs.
   assert (HCong := per_double_cong A A' U V HPer HV).
   assert (HVOn : 在圆上 V A B).
@@ -379,7 +379,7 @@ destruct (由一点往一方向构造等长线段_3 O X O M) as [Q [HQ1 HQ2]]; a
   intro; treat_equalities; auto.
 exists Q; split; auto.
 apply (等长保持小于关系 O M O P); Cong.
-apply mid__lt; auto.
+apply 严格中点组半段小于全段; auto.
 Qed.
 
 (** Given a circle of center O and a ray OX, there is a point on the ray which is also on the circle. *)
@@ -648,7 +648,7 @@ Proof.
 intros.
 assert(Cong M B N D).
 apply 等长的交换性.
-eapply (cong_cong_half_1 _ _ A _ _ C); 中点.
+eapply (两中点组全段等长则前半段等长 _ _ A _ _ C); 中点.
 Cong.
 unfold 中点 in *.
 unfold 在圆上 in *.
@@ -735,9 +735,9 @@ spliter.
 unfold 在圆上 in *.
 assert(Cong O A O B) by (apply 等长的传递性 with O P; Cong).
 assert(Cong A O U O').
-apply(cong_cong_half_1 A O B U O' V); unfold 中点; try split; Cong.
+apply(两中点组全段等长则前半段等长 A O B U O' V); unfold 中点; try split; Cong.
 assert(Cong B O V O').
-apply(cong_cong_half_2 A O B U O' V); unfold 中点; try split; Cong.
+apply(两中点组全段等长则后半段等长 A O B U O' V); unfold 中点; try split; Cong.
 apply(全等于退化的三角形 O A B).
 Col.
 unfold 三角形全等.
@@ -786,7 +786,7 @@ left.
 assert_diffs.
 assert(Cong O A O X) by (apply 等长的传递性 with O P; Cong).
 assert(Col A O X) by ColR.
-assert(HH:= l7_20 O A X H11 H10).
+assert(HH:= 共线点间距相同要么重合要么中点 O A X H11 H10).
 induction HH.
 auto.
 assert(中点 O A B).
@@ -794,7 +794,7 @@ unfold 中点; split; trivial.
 apply 等长的传递性 with O P; Cong.
 apply False_ind.
 apply H5.
-apply (symmetric_point_uniqueness A O ); auto.
+apply (中点组的唯一性1 A O ); auto.
 Qed.
 
 Lemma bet_onc_le_a : forall O P A B T X, 直径 A B O P -> Bet B O T -> 在圆上 X O P -> Le T A T X.
@@ -934,8 +934,8 @@ assert(Lt A O A B /\ Lt B O A B).
   assert (中点 O A B).
     split; [assumption|apply 等长的传递性 with O P; Cong].
   split.
-  apply(mid__lt ); assert_diffs;auto.
-  assert (Lt B O B A) by (assert_diffs; apply mid__lt; 中点).
+  apply(严格中点组半段小于全段 ); assert_diffs;auto.
+  assert (Lt B O B A) by (assert_diffs; apply 严格中点组半段小于全段; 中点).
   auto using 长度小于的右交换性.
 }
 spliter.
@@ -1098,7 +1098,7 @@ intros.
 unfold 直径.
 split; Circle.
 assert(Cong O A O B) by (apply 等长的传递性 with O P; Cong).
-assert(A = B \/ 中点 O A B) by (apply(l7_20 O A B); Col).
+assert(A = B \/ 中点 O A B) by (apply(共线点间距相同要么重合要么中点 O A B); Col).
 induction H4.
 contradiction.
 Between.
@@ -1129,7 +1129,7 @@ Proof.
 intros.
 apply diam__midpoint in H.
 apply diam__midpoint in H0.
-apply (symmetric_point_uniqueness A O); 中点.
+apply (中点组的唯一性1 A O); 中点.
 Qed.
 
 
@@ -1217,7 +1217,7 @@ Proof.
   intro.
   apply HBC.
   destruct (两点重合的决定性 M1 M2).
-    apply (symmetric_point_uniqueness A M1); subst; trivial.
+    apply (中点组的唯一性1 A M1); subst; trivial.
   apply l10_2_uniqueness_spec with M1 P1 A.
     split; Perp; exists M1; Col.
   split.
@@ -1549,7 +1549,7 @@ apply(per2__col A B O X); Perp.
 unfold 中点 in *.
 spliter.
 assert(Col B X D).
-apply 中间性蕴含共线; auto.
+apply 中间性蕴含共线1; auto.
 assert(Col A X C).
 ColR.
 
@@ -1583,7 +1583,7 @@ treat_equalities.
 intuition.
 treat_equalities.
 assert(A = D) by
-(apply (symmetric_point_uniqueness C X); split; Between; Cong).
+(apply (中点组的唯一性1 C X); split; Between; Cong).
 treat_equalities.
 tauto.
 Qed.
@@ -1882,22 +1882,22 @@ Lemma onc3_mid2__ncol : forall O P A B C A' B',
 Proof.
 intros.
 induction(共线的决定性 O A C).
-assert(A = C \/ 中点 O A C) by (apply l7_20; [Col|CongR]).
+assert(A = C \/ 中点 O A C) by (apply 共线点间距相同要么重合要么中点; [Col|CongR]).
 induction H7.
 treat_equalities.
 apply False_ind.
 apply H5; Col.
 right; left.
-apply (l7_17 A C); auto.
+apply (中点的唯一性1 A C); auto.
 
 induction(共线的决定性 O B C).
-assert(B = C \/ 中点 O B C) by (apply l7_20; [Col|CongR]).
+assert(B = C \/ 中点 O B C) by (apply 共线点间距相同要么重合要么中点; [Col|CongR]).
 induction H8.
 treat_equalities.
 apply False_ind.
 apply H5; Col.
 right; right.
-apply (l7_17 B C); auto.
+apply (中点的唯一性1 B C); auto.
 left.
 intro.
 assert(HH:=chords_midpoints_col_par O P A A' C B B' C H H0 H2 H1 H2 H3 H4 H8 H6 H7).
@@ -1960,22 +1960,22 @@ subst N.
 induction(共线的决定性 O A B).
 assert(A = B \/ 中点 O A B).
 unfold 在圆上 in *.
-apply l7_20; Col.
+apply 共线点间距相同要么重合要么中点; Col.
 apply 等长的传递性 with O P; Cong.
 induction H15.
 contradiction.
 assert(M = O).
-apply (l7_17 A B); auto.
+apply (中点的唯一性1 A B); auto.
 subst M; tauto.
 
 induction(共线的决定性 O C D).
 assert(C = D \/ 中点 O C D).
 unfold 在圆上 in *.
-apply l7_20; Col.
+apply 共线点间距相同要么重合要么中点; Col.
 apply 等长的传递性 with O P; Cong.
 induction H16.
 contradiction.
-apply (l7_17 C D); auto.
+apply (中点的唯一性1 C D); auto.
 assert(HM1:=mid_onc2__perp O P A B M H12 H H2 H3 H8).
 assert(HM2:=mid_onc2__perp O P C D M H12 H0 H4 H5 H9).
 apply False_ind.
@@ -1987,12 +1987,12 @@ apply perp_in_perp in H15.
 induction(共线的决定性 O A B).
 assert(A = B \/ 中点 O A B).
 unfold 在圆上 in *.
-apply l7_20; Col.
+apply 共线点间距相同要么重合要么中点; Col.
 apply 等长的传递性 with O P; Cong.
 induction H17.
 contradiction.
 assert(M = O).
-apply (l7_17 A B); auto.
+apply (中点的唯一性1 A B); auto.
 subst M; tauto.
 assert(HM1:=mid_onc2__perp O P A B M H12 H H2 H3 H8).
 apply(perp_col M N C D O ) in H15; Col.
@@ -2006,11 +2006,11 @@ spliter.
 induction(共线的决定性 O C D).
 assert(C = D \/ 中点 O C D).
 unfold 在圆上 in *.
-apply l7_20; Col.
+apply 共线点间距相同要么重合要么中点; Col.
 apply 等长的传递性 with O P; Cong.
 induction H17.
 contradiction.
-apply (l7_17 C D); auto.
+apply (中点的唯一性1 C D); auto.
 
 assert(HM1:=mid_onc2__perp O P C D N H12 H0 H4 H5 H9).
 apply perp_in_perp in H15.

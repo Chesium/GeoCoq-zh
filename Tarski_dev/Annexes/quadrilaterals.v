@@ -16,7 +16,7 @@ eapply 等长的同一性.
 apply H0.
 Qed.
 
-Lemma midpoint_midpoint_col : forall A B A' B' M,
+Lemma midpoint_中点蕴含共线 : forall A B A' B' M,
  A <> B ->
  中点 M A A' -> 中点 M B B' ->
  Col A B B' ->
@@ -27,7 +27,7 @@ assert(A' <> B').
 intro.
 apply H.
 assert(Cong A' B' A B).
-eapply l7_13.
+eapply l7_13_同中点组两侧等长.
 apply H0.
 assumption.
 apply 等长的对称性 in H4.
@@ -42,15 +42,15 @@ unfold 中点 in HH1.
 spliter.
 
 assert(Col M A A').
-apply 中间性蕴含共线 in H6.
+apply 中间性蕴含共线1 in H6.
 Col.
 assert(Col M B B').
-apply 中间性蕴含共线 in H4.
+apply 中间性蕴含共线1 in H4.
 Col.
 
 induction(两点重合的决定性 B B').
 subst B'.
-apply l7_3 in H1.
+apply M是AA中点则M与A重合 in H1.
 subst M.
 Col5.
 
@@ -86,8 +86,8 @@ Col.
 induction(两点重合的决定性 A B').
 subst B'.
 assert(A'=B).
-eapply l7_9; [|apply H1].
-apply l7_2.
+eapply 中点组的唯一性2; [|apply H1].
+apply M是AB中点则M是BA中点.
 assumption.
 subst A'.
 Col.
@@ -114,13 +114,13 @@ assumption.
 spliter.
 apply False_ind.
 
-assert(HH:=midpoint_midpoint_col B' A' B A M).
+assert(HH:=midpoint_中点蕴含共线 B' A' B A M).
 assert(B <> A /\ Col B' B A /\ Col A' B A).
 apply HH.
 auto.
-apply l7_2.
+apply M是AB中点则M是BA中点.
 assumption.
-apply l7_2.
+apply M是AB中点则M是BA中点.
 assumption.
 Col.
 spliter.
@@ -316,9 +316,9 @@ apply 等长的同一性 in H2.
 contradiction.
 
 assert(Col A B' C').
-apply 中间性蕴含共线 in H0.
-apply 中间性蕴含共线 in H1.
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H0.
+apply 中间性蕴含共线1 in H1.
+apply 中间性蕴含共线1 in H.
 ColR.
 induction H8.
 assumption.
@@ -338,7 +338,7 @@ apply H9.
 Between.
 subst C.
 assert(B' = C').
-eapply l7_17.
+eapply 中点的唯一性1.
 apply HH0.
 assumption.
 subst C'.
@@ -403,10 +403,10 @@ Lemma symmetry_preseves_bet2 :
 Proof.
 intros.
 eapply l7_15.
-apply l7_3_2.
-apply l7_2.
+apply A是AA中点.
+apply M是AB中点则M是BA中点.
 apply H.
-apply l7_2.
+apply M是AB中点则M是BA中点.
 apply H0.
 assumption.
 Qed.
@@ -466,7 +466,7 @@ spliter.
 induction (两点重合的决定性 A A').
 subst A'.
 assert(B = B' \/ 中点 A B B').
-eapply l7_20; auto.
+eapply 共线点间距相同要么重合要么中点; auto.
 induction H5.
 subst B'.
 assert( HH:= midpoint_existence A B).
@@ -475,18 +475,18 @@ exists M.
 right.
 split.
 assumption.
-apply l7_2.
+apply M是AB中点则M是BA中点.
 assumption.
 exists A.
 left.
 split.
-apply l7_3_2.
+apply A是AA中点.
 assumption.
 
 induction (两点重合的决定性 B B').
 subst B'.
 assert(A = A' \/ 中点 B A A').
-eapply l7_20.
+eapply 共线点间距相同要么重合要么中点.
 Col.
 Cong.
 induction H6.
@@ -497,18 +497,18 @@ exists M.
 right.
 split.
 assumption.
-apply l7_2.
+apply M是AB中点则M是BA中点.
 assumption.
 exists B.
 left.
 split.
 assumption.
-apply l7_3_2.
+apply A是AA中点.
 
 induction (两点重合的决定性 A B').
 subst B'.
 assert(B = A' \/ 中点 A B A').
-eapply l7_20.
+eapply 共线点间距相同要么重合要么中点.
 Col.
 Cong.
 induction H7.
@@ -519,18 +519,18 @@ exists M.
 left.
 split.
 assumption.
-apply l7_2.
+apply M是AB中点则M是BA中点.
 assumption.
 exists A.
 right.
 split.
-apply l7_3_2.
+apply A是AA中点.
 assumption.
 
 induction (两点重合的决定性 A' B).
 subst A'.
 assert(A = B' \/ 中点 B A B').
-eapply l7_20.
+eapply 共线点间距相同要么重合要么中点.
 Col.
 Cong.
 induction H8.
@@ -541,13 +541,13 @@ exists M.
 left.
 split.
 assumption.
-apply l7_2.
+apply M是AB中点则M是BA中点.
 assumption.
 exists B.
 right.
 split.
 assumption.
-apply l7_3_2.
+apply A是AA中点.
 
 assert(Col A B A').
 ColR.
@@ -593,7 +593,7 @@ unfold 中点.
 split.
 assumption.
 Cong.
-apply l7_2.
+apply M是AB中点则M是BA中点.
 assumption.
 
 induction H4.
@@ -626,7 +626,7 @@ apply H14.
 assumption.
 intro.
 subst M.
-apply is_midpoint_id in H11.
+apply A是AB中点则A与B重合 in H11.
 contradiction.
 assert(Cong A M A' M).
 eapply 两组连续三点分段等则全体等.
@@ -681,8 +681,8 @@ apply H16.
 Between.
 intro.
 subst M.
-apply l7_2 in H12.
-apply is_midpoint_id in H12.
+apply M是AB中点则M是BA中点 in H12.
+apply A是AB中点则A与B重合 in H12.
 auto.
 assert(Bet B' M A).
 eapply 中间性的外传递性2.
@@ -690,7 +690,7 @@ apply H18.
 assumption.
 intro.
 subst A'.
-apply is_midpoint_id in H12.
+apply A是AB中点则A与B重合 in H12.
 subst M.
 tauto.
 
@@ -754,8 +754,8 @@ apply H15.
 assumption.
 intro.
 subst M.
-apply l7_2 in H12.
-apply is_midpoint_id in H12.
+apply M是AB中点则M是BA中点 in H12.
+apply A是AB中点则A与B重合 in H12.
 subst B'.
 tauto.
 
@@ -766,8 +766,8 @@ apply H16.
 Between.
 intro.
 subst M.
-apply l7_2 in H12.
-apply is_midpoint_id in H12.
+apply M是AB中点则M是BA中点 in H12.
+apply A是AB中点则A与B重合 in H12.
 subst B'.
 tauto.
 
@@ -810,7 +810,7 @@ apply H14.
 assumption.
 intro.
 subst M.
-apply is_midpoint_id in H11.
+apply A是AB中点则A与B重合 in H11.
 contradiction.
 
 assert(Cong B M A' M).
@@ -868,8 +868,8 @@ apply H14.
 Between.
 intro.
 subst M.
-apply l7_2 in H11.
-apply is_midpoint_id in H11.
+apply M是AB中点则M是BA中点 in H11.
+apply A是AB中点则A与B重合 in H11.
 subst A'.
 tauto.
 
@@ -930,8 +930,8 @@ apply H16.
 Between.
 intro.
 subst M.
-apply l7_2 in H12.
-apply is_midpoint_id in H12.
+apply M是AB中点则M是BA中点 in H12.
+apply A是AB中点则A与B重合 in H12.
 subst B'.
 tauto.
 
@@ -976,7 +976,7 @@ apply H16.
 Between.
 intro.
 subst M.
-apply is_midpoint_id in H12.
+apply A是AB中点则A与B重合 in H12.
 contradiction.
 assert(Cong B' M B M).
 eapply 两组连续三点分段等则全体等.
@@ -1002,7 +1002,7 @@ Lemma mid_par_cong1 :
 Proof.
 intros.
 split.
-eapply (l7_13 M);
+eapply (l7_13_同中点组两侧等长 M);
 中点.
 apply (l12_17 _ _ _ _ M); auto.
 Qed.
@@ -1017,7 +1017,7 @@ Proof.
 intros.
 spliter.
 split.
-apply (l7_13 M); 中点.
+apply (l7_13_同中点组两侧等长 M); 中点.
 eapply (l12_17 _ _ _ _ M); 中点.
 Qed.
 
@@ -1179,8 +1179,8 @@ induction(两点重合的决定性 B C).
 subst C.
 apply 等长的同一性 in H2.
 subst D.
-apply l7_3 in H8.
-apply l7_3 in H9.
+apply M是AA中点则M与A重合 in H8.
+apply M是AA中点则M与A重合 in H9.
 subst M.
 contradiction.
 assert(A <> D).
@@ -1198,19 +1198,19 @@ spliter.
 eapply (共线的传递性2 _ D).
 assumption.
 Col.
-apply 中间性蕴含共线 in H8.
+apply 中间性蕴含共线1 in H8.
 Col.
 
 assert(B <> M).
 intro.
 subst M.
-apply is_midpoint_id in H9.
+apply A是AB中点则A与B重合 in H9.
 contradiction.
 
 assert(A <> M).
 intro.
 subst M.
-apply is_midpoint_id in H8.
+apply A是AB中点则A与B重合 in H8.
 contradiction.
 
 induction H12.
@@ -1325,25 +1325,25 @@ Col.
 assert(B <> D).
 intro.
 subst D.
-apply l7_3 in H1.
+apply M是AA中点则M与A重合 in H1.
 subst M.
 unfold 中点 in H0.
 spliter.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 contradiction.
 
 assert(M <> D).
 intro.
 subst M.
-apply l7_2 in H1.
-apply is_midpoint_id in H1.
+apply M是AB中点则M是BA中点 in H1.
+apply A是AB中点则A与B重合 in H1.
 subst D.
 tauto.
 
 assert( M <> A).
 intro.
 subst M.
-apply is_midpoint_id in H0.
+apply A是AB中点则A与B重合 in H0.
 contradiction.
 repeat split.
 
@@ -1353,8 +1353,8 @@ Col.
 intro.
 unfold 中点 in *.
 spliter.
-apply 中间性蕴含共线 in H0.
-apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线1 in H0.
+apply 中间性蕴含共线1 in H1.
 apply H.
 assert(Col M A D).
 ColR.
@@ -1365,7 +1365,7 @@ exists M.
 unfold 中点 in *.
 spliter.
 split.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 Col.
 apply H1.
 apply (l12_17 _ _ _ _ M).
@@ -1375,7 +1375,7 @@ apply H.
 Col.
 assumption.
 assumption.
-eapply (l7_13 M); 中点.
+eapply (l7_13_同中点组两侧等长 M); 中点.
 Qed.
 
 Lemma mid_plgf_aux :
@@ -1389,7 +1389,7 @@ intros.
 unfold 退化平行四边形.
 induction(两点重合的决定性 B D).
 subst D.
-apply l7_3 in H2.
+apply M是AA中点则M与A重合 in H2.
 subst M.
 unfold 中点 in H1.
 spliter.
@@ -1400,19 +1400,19 @@ Cong.
 assert(Col A B M).
 unfold 中点 in *.
 spliter.
-apply 中间性蕴含共线 in H1.
-apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线1 in H1.
+apply 中间性蕴含共线1 in H2.
 ColR.
 assert(M <> B).
 intro.
 subst M.
-apply is_midpoint_id in H2.
+apply A是AB中点则A与B重合 in H2.
 contradiction.
 
 assert(M <> A).
 intro.
 subst M.
-apply is_midpoint_id in H1.
+apply A是AB中点则A与B重合 in H1.
 contradiction.
 
 induction H4.
@@ -1428,9 +1428,9 @@ repeat split.
 Col.
 unfold 中点 in *.
 spliter.
-apply 中间性蕴含共线 in H2.
-apply 中间性蕴含共线 in H1.
-apply 中间性蕴含共线 in H4.
+apply 中间性蕴含共线1 in H2.
+apply 中间性蕴含共线1 in H1.
+apply 中间性蕴含共线1 in H4.
 ColR.
 
 eapply l4_3.
@@ -1480,9 +1480,9 @@ unfold 中点 in *.
 spliter.
 repeat split.
 assumption.
-apply 中间性蕴含共线 in H4.
-apply 中间性蕴含共线 in H1.
-apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线1 in H4.
+apply 中间性蕴含共线1 in H1.
+apply 中间性蕴含共线1 in H2.
 ColR.
 eapply (两组连续三点分段等则全体等 _ M _ _ M _).
 Between.
@@ -1514,9 +1514,9 @@ unfold 中点 in *.
 spliter.
 repeat split.
 assumption.
-apply 中间性蕴含共线 in H4.
-apply 中间性蕴含共线 in H1.
-apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线1 in H4.
+apply 中间性蕴含共线1 in H1.
+apply 中间性蕴含共线1 in H2.
 ColR.
 
 eapply (两组连续三点分段等则全体等 _ M _ _ M _).
@@ -1548,9 +1548,9 @@ repeat split.
 Col.
 unfold 中点 in *.
 spliter.
-apply 中间性蕴含共线 in H2.
-apply 中间性蕴含共线 in H1.
-apply 中间性蕴含共线 in H4.
+apply 中间性蕴含共线1 in H2.
+apply 中间性蕴含共线1 in H1.
+apply 中间性蕴含共线1 in H4.
 ColR.
 apply 等长的交换性.
 eapply l4_3.
@@ -1591,14 +1591,14 @@ apply plgf_sym.
 induction(两点重合的决定性 A C).
 subst C.
 spliter.
-apply l7_3 in H1.
+apply M是AA中点则M与A重合 in H1.
 subst M.
 unfold 中点 in H2.
 spliter.
 unfold 退化平行四边形.
 repeat split.
 Col.
-apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线1 in H1.
 Col.
 Cong.
 Cong.
@@ -1609,8 +1609,8 @@ eapply (mid_plgf_aux C D A B M).
 auto.
 unfold 中点 in *.
 spliter.
-apply 中间性蕴含共线 in H1.
-apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线1 in H1.
+apply 中间性蕴含共线1 in H2.
 
 assert( M <> C).
 intro.
@@ -1667,7 +1667,7 @@ intros.
 apply mid_plg with M; intuition.
 Qed.
 
-Lemma midpoint_cong_uniqueness :
+Lemma 中点蕴含等长_uniqueness :
  forall A B C D M,
   Col A B C ->
   中点 M A B /\ 中点 M C D ->
@@ -1679,12 +1679,12 @@ intros.
 induction (两点重合的决定性 A B).
 subst B.
 spliter.
-apply l7_3 in H0.
+apply M是AA中点则M与A重合 in H0.
 subst M.
 apply 等长的对称性 in H1.
 apply 等长的同一性 in H1.
 subst D.
-apply l7_3 in H2.
+apply M是AA中点则M与A重合 in H2.
 left.
 split; assumption.
 
@@ -1694,30 +1694,30 @@ split.
 assumption.
 subst C.
 spliter.
-eapply symmetric_point_uniqueness.
+eapply 中点组的唯一性1.
 apply H0.
 assumption.
 right.
 spliter.
-assert(HH:=cong_cong_half_1 A M B C M D H0 H4 H1).
+assert(HH:=两中点组全段等长则前半段等长 A M B C M D H0 H4 H1).
 assert(A = C \/ 中点 M A C).
-apply l7_20.
+apply 共线点间距相同要么重合要么中点.
 unfold 中点 in *.
 spliter.
-apply 中间性蕴含共线 in H0.
-apply 中间性蕴含共线 in H4.
+apply 中间性蕴含共线1 in H0.
+apply 中间性蕴含共线1 in H4.
 ColR.
 Cong.
 induction H5.
 contradiction.
 assert(B = C).
-eapply symmetric_point_uniqueness.
+eapply 中点组的唯一性1.
 apply H0.
 assumption.
 split.
 subst C.
-eapply symmetric_point_uniqueness.
-apply l7_2.
+eapply 中点组的唯一性1.
+apply M是AB中点则M是BA中点.
 apply H0.
 assumption.
 assumption.
@@ -1742,7 +1742,7 @@ spliter.
 ex_and HH0 M.
 
 assert(A = B /\ C = D \/ A = D /\ C = B).
-apply(midpoint_cong_uniqueness A C B D M).
+apply(中点蕴含等长_uniqueness A C B D M).
 Col.
 split; assumption.
 Cong.
@@ -1759,7 +1759,7 @@ unfold 退化平行四边形 in *.
 intro.
 spliter.
 assert(A = B /\ C = D \/ A = D /\ C = B).
-apply(midpoint_cong_uniqueness A C B D M).
+apply(中点蕴含等长_uniqueness A C B D M).
 Col.
 split; assumption.
 Cong.
@@ -1991,7 +1991,7 @@ Col.
 Between.
 Cong.
 Cong.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 Col.
 Qed.
 
@@ -2062,7 +2062,7 @@ unfold 退化平行四边形 in H.
 spliter.
 
 assert(B=C \/ 中点 A B C).
-eapply l7_20.
+eapply 共线点间距相同要么重合要么中点.
 Col.
 Cong.
 induction H3.
@@ -2110,12 +2110,12 @@ ex_and H6 M.
 
 induction H7.
 
-eapply midpoint_cong_uniqueness.
+eapply 中点蕴含等长_uniqueness.
 Col.
 spliter.
 split.
 apply H6.
-apply l7_2.
+apply M是AB中点则M是BA中点.
 assumption.
 Cong.
 
@@ -2125,7 +2125,7 @@ ColR.
 assert(Cong A D C B).
 Cong.
 
-assert(HH:= midpoint_cong_uniqueness A D C B M H7 H6 H8).
+assert(HH:= 中点蕴含等长_uniqueness A D C B M H7 H6 H8).
 induction HH.
 spliter.
 contradiction.
@@ -2175,7 +2175,7 @@ induction H5.
 
 assert(A = B /\ C = D \/ A = D /\ C = B).
 
-apply (midpoint_cong_uniqueness A C B D M).
+apply (中点蕴含等长_uniqueness A C B D M).
 Col.
 assumption.
 assumption.
@@ -2234,7 +2234,7 @@ assumption.
 
 assert(A = B /\ D = C \/ A = C /\ D = B).
 
-apply (midpoint_cong_uniqueness A D B C M).
+apply (中点蕴含等长_uniqueness A D B C M).
 Col.
 assumption.
 assumption.
@@ -2279,7 +2279,7 @@ subst B'.
 apply 等长的同一性 in H2.
 subst B.
 tauto.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 ColR.
 Qed.
 
@@ -2297,15 +2297,15 @@ exists D.
 
 induction (两点重合的决定性 A C).
 subst C.
-apply l7_3 in H0.
+apply M是AA中点则M与A重合 in H0.
 subst M.
 right.
-apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线1 in H1.
 repeat split; Col; Cong.
 right.
 intro.
 subst D.
-apply l7_3 in H3.
+apply M是AA中点则M与A重合 in H3.
 contradiction.
 
 apply (mid_plg _ _ _ _ M).
@@ -2379,8 +2379,8 @@ intro.
 subst M.
 apply H6.
 apply sym_equal.
-apply is_midpoint_id.
-apply l7_2.
+apply A是AB中点则A与B重合.
+apply M是AB中点则M是BA中点.
 assumption.
 
 assert(B <> M).
@@ -2394,8 +2394,8 @@ intro.
 subst M.
 apply H8.
 apply sym_equal.
-apply is_midpoint_id.
-apply l7_2.
+apply A是AB中点则A与B重合.
+apply M是AB中点则M是BA中点.
 assumption.
 
 assert(TS X Y A A').
@@ -2405,7 +2405,7 @@ intro.
 apply H4.
 unfold 中点 in H1.
 spliter.
-apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线1 in H1.
 
 assert(Col M A' X).
 ColR.
@@ -2427,7 +2427,7 @@ intro.
 apply H5.
 unfold 中点 in H2.
 spliter.
-apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线1 in H2.
 
 assert(Col M B' X).
 ColR.
@@ -2482,8 +2482,8 @@ intro.
 subst M.
 apply H6.
 apply sym_equal.
-apply is_midpoint_id.
-apply l7_2.
+apply A是AB中点则A与B重合.
+apply M是AB中点则M是BA中点.
 assumption.
 
 assert(B <> M).
@@ -2497,8 +2497,8 @@ intro.
 subst M.
 apply H8.
 apply sym_equal.
-apply is_midpoint_id.
-apply l7_2.
+apply A是AB中点则A与B重合.
+apply M是AB中点则M是BA中点.
 assumption.
 
 assert(TS X Y A A').
@@ -2508,7 +2508,7 @@ intro.
 apply H4.
 unfold 中点 in H1.
 spliter.
-apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线1 in H1.
 
 assert(Col M A' X).
 ColR.
@@ -2530,7 +2530,7 @@ intro.
 apply H5.
 unfold 中点 in H2.
 spliter.
-apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线1 in H2.
 
 assert(Col M B' X).
 ColR.

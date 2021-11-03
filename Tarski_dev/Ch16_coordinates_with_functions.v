@@ -1180,7 +1180,7 @@ intros; elim (两点重合的决定性 A B); intro HAB.
 
     {
     cut (Cong I A I B /\ Col A I B);
-    [intros [HCong HCol]; induction (l7_20 I A B HCol HCong); intuition|].
+    [intros [HCong HCol]; induction (共线点间距相同要么重合要么中点 I A B HCol HCong); intuition|].
     clear HAB; rewrite characterization_of_congruence_F,
                        characterization_of_collinearity_F.
     revert HMid.
@@ -1203,7 +1203,7 @@ Lemma characterization_of_right_triangle_F : forall A B C,
   (Ax - Bx) * (Bx - Cx) + (Ay - By) * (By - Cy) =F= 0.
 Proof.
 intros; unfold Per.
-destruct (symmetric_point_construction C B) as [D HM]; revert HM.
+destruct (构造对称点 C B) as [D HM]; revert HM.
 setoid_rewrite characterization_of_congruence_F.
 setoid_rewrite characterization_of_midpoint_F.
 elim (coordinates_of_point_F A); intros [Ax Ay] _.
@@ -1228,7 +1228,7 @@ intros; split; intro H; [do 2 (split; try solve [assert_diffs; auto])|
                          destruct H as [HAB [HCD [P [HP [Q [HQ HCol]]]]]]].
 
   {
-  destruct (symmetric_point_construction A C) as [P HP];
+  destruct (构造对称点 A C) as [P HP];
   exists P; split; [assumption|]; destruct (midpoint_existence B P) as [Q HQ].
   exists Q; split; [assumption|].
   assert (Par B A Q C) by (assert_diffs; apply triangle_mid_par with P; Col).
@@ -1285,7 +1285,7 @@ split; [intro H; destruct H as [HAB [HCD [P [HP [Q [HQ HCol]]]]]]|].
   }
 
   {
-  destruct (symmetric_point_construction A C) as [P HP]; revert HP.
+  destruct (构造对称点 A C) as [P HP]; revert HP.
   destruct (midpoint_existence B P) as [Q HQ]; revert HQ.
   setoid_rewrite characterization_of_neq_F_bis.
   setoid_rewrite characterization_of_midpoint_F.

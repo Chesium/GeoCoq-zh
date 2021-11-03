@@ -118,7 +118,7 @@ cut (forall A B C P T,
   assert (HNOut : ~ Out B A C) by (intro; assert_diffs; apply (per_not_col A B C); Col).
   assert (HPerp : Perp B P P T) by (assert_diffs; apply per_perp; auto).
   destruct (weak_tarski_s_parallel_postulate__weak_inverse_projection_postulate_aux wtpp A B C P T) as [[X [HX1 HX2]]|[Y [HY1 HY2]]]; trivial.
-  - destruct (symmetric_point_construction X P) as [Y HY].
+  - destruct (构造对称点 X P) as [Y HY].
     assert (X <> Y).
     { intro; treat_equalities.
       apply HNOut, l6_7 with P; trivial.
@@ -131,7 +131,7 @@ cut (forall A B C P T,
       left; apply perp_col2_bis with P T; ColR.
     }
     exists X, Y; repeat (split; [assumption|]); ColR.
-  - destruct (symmetric_point_construction Y P) as [X HX].
+  - destruct (构造对称点 Y P) as [X HX].
     assert (X <> Y).
     { intro; treat_equalities.
       apply HNOut, l6_7 with P; apply l6_6; trivial.

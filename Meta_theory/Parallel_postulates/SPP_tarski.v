@@ -145,20 +145,20 @@ Lemma strong_parallel_postulate_implies_tarski_s_euclid_aux :
    B <> B' /\ B'' <> T).
 Proof.
 intros HSPP A B D T HAB HAD HAT HBD HBT HDT HABT HADT.
-destruct (symmetric_point_construction D B) as [B' HB'].
-destruct (midpoint_distinct_2 B D B' HBD HB') as [HB'D HBB'].
+destruct (构造对称点 D B) as [B' HB'].
+destruct (严格中点组推论2 B D B' HBD HB') as [HB'D HBB'].
 destruct HB' as [HBDB' HCong1].
 apply 中间性的对称性 in HADT.
 apply 中间性的对称性 in HBDB'.
 destruct (midpoint_existence B T) as [MB HMB].
-destruct (midpoint_distinct_1 MB B T HBT HMB) as [HBMB HMBT].
+destruct (严格中点组推论1 MB B T HBT HMB) as [HBMB HMBT].
 destruct HMB as [HBMBT HCong2].
-destruct (symmetric_point_construction B' MB) as [B'' HB''].
+destruct (构造对称点 B' MB) as [B'' HB''].
 assert (HB'MB : MB <> B').
   {
   intro; treat_equalities; apply HABT; ColR.
   }
-destruct (midpoint_distinct_2 MB B' B'' HB'MB HB'') as [HB'B'' HB''MB].
+destruct (严格中点组推论2 MB B' B'' HB'MB HB'') as [HB'B'' HB''MB].
 destruct HB'' as [HB'MBB'' HCong3].
 assert (H1 : ~ Col B T B'') by (intro; apply HABT; ColR).
 assert (H2 : BetS B MB T) by (repeat split; Between).

@@ -10,7 +10,7 @@ Lemma tarski_s_euclid_implies_euclid_5 :
   euclid_5.
 Proof.
 intros HT P Q R S T U HPTQ HRTS HQUR HNC HCong1 HCong2.
-destruct (symmetric_point_construction R P) as [V HMid].
+destruct (构造对称点 R P) as [V HMid].
 assert (Hc1 : Bet V P R) by (unfold 中点 in *; spliter; Between).
 assert (Hc2 : Bet Q U R) by (unfold BetS in *; spliter; Between).
 destruct (帕施公理 V Q R P U) as [W [HPWQ HUWV]]; Col; clear Hc1; clear Hc2.

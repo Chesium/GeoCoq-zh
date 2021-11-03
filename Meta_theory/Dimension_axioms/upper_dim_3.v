@@ -61,7 +61,7 @@ Proof.
   exfalso.
   apply HQR.
   destruct (midpoint_existence P Q) as [X].
-  apply symmetric_point_uniqueness with P X; trivial.
+  apply 中点组的唯一性1 with P X; trivial.
   destruct (midpoint_existence P R) as [Y].
   replace X with Y; trivial.
   apply (l8_7 P); apply l8_2.
@@ -137,7 +137,7 @@ Proof.
   assert (HAXQ' : Per A X Q') by (assert_diffs; apply per_col with Q; Col).
   assert (HBXQ' : Per B X Q') by (assert_diffs; apply per_col with Q; Col).
   clear dependent Q.
-  destruct (symmetric_point_construction P X) as [R].
+  destruct (构造对称点 P X) as [R].
   assert_diffs.
   apply up with P Q' R.
     auto.
@@ -265,7 +265,7 @@ Proof.
   exfalso.
   destruct (sep M A B Q C HQ HNCop).
     eauto.
-  apply l7_2 in HM.
+  apply M是AB中点则M是BA中点 in HM.
   apply (Haux C Q P M); Cong.
   apply l9_38, l9_41_2 with Q; [|assumption].
   repeat split; trivial.

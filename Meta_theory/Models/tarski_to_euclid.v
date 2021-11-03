@@ -435,7 +435,7 @@ unfold Definitions.BetS in *;spliter.
 assert (tarski_axioms.Cong X U X V) by CongR.
 assert (中点 X U V) by (split;Cong).
 assert (中点 X A V).
-apply (cong_col_mid A X V).
+apply (不重合共线点间距相同则为中点组2 A X V).
 assumption.
 ColR.
 CongR.
@@ -457,7 +457,7 @@ spliter.
 inversion H;subst.
 destruct (两点重合的决定性 C0 V).
 subst.
-destruct (symmetric_point_construction W V) as [X0 HX].
+destruct (构造对称点 W V) as [X0 HX].
 exists X0.
 exists W.
 assert_bets.
@@ -468,7 +468,7 @@ split;Cong.
 split;Cong.
 unfold Definitions.BetS;Between.
 destruct (由一点往一方向构造等长线段_3 C0 V V W H1 H0) as [X0 [HX0 HX1]].
-destruct (symmetric_point_construction X0 C0) as [Y0 HY0].
+destruct (构造对称点 X0 C0) as [Y0 HY0].
 exists X0.
 exists Y0.
 assert_bets.
@@ -499,7 +499,7 @@ assert (A <> X0).
   contradiction.
  }
 
-destruct (symmetric_point_construction X0 C0) as [Y0 HY0].
+destruct (构造对称点 X0 C0) as [Y0 HY0].
 assert (A <> Y0).
  {
   intro.
@@ -584,13 +584,13 @@ unfold InCirc.
 destruct (两点重合的决定性 U V).
 subst.
 exists W.
-destruct (symmetric_point_construction W V) as [Y HY].
+destruct (构造对称点 W V) as [Y HY].
 exists Y.
 assert_diffs.
 unfold Definitions.BetS.
 repeat split;Between;Cong.
 destruct (由一点往一方向构造等长线段_3 U V V W H0 H) as [X HX].
-destruct (symmetric_point_construction X U) as [Y HY].
+destruct (构造对称点 X U) as [Y HY].
 spliter.
 assert_diffs.
 assert_bets.

@@ -60,7 +60,7 @@ Lemma per23_preserves_bet : forall A B C B' C', Bet A B C -> A <> B' -> A <> C' 
 Proof.
 intros.
 assert(HC:Col A B C).
-apply 中间性蕴含共线 in H; Col.
+apply 中间性蕴含共线1 in H; Col.
 
 induction(两点重合的决定性 B B').
 subst B'.
@@ -161,7 +161,7 @@ unfold TS in H16.
 spliter.
 ex_and H18 T.
 assert(T = B').
-apply 中间性蕴含共线 in H19.
+apply 中间性蕴含共线1 in H19.
 apply (l6_21_两线交点的唯一性 B B' A B'); Col.
 ColR.
 subst T.
@@ -179,7 +179,7 @@ intros.
 induction(两点重合的决定性 B B').
 subst B'.
 assert(Col A C' C).
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 ColR.
 assert(A = C' \/ C = C').
 apply(l8_9 A C' C); auto.
@@ -221,14 +221,14 @@ subst C.
 apply 中间性的同一律 in H.
 contradiction.
 assert(Col A B' B).
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 ColR.
 assert(A = B' \/ B = B').
 apply(l8_9 A B' B); auto.
 induction H8;contradiction.
 
 assert(Perp A B' C' C).
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 apply(perp_col _ C'); Col.
 
 assert( Par B' B C' C).
@@ -310,7 +310,7 @@ Lemma per13_preserves_bet : forall A B C A' C', Bet A B C -> B <> A' -> B <> C' 
 Proof.
 intros.
 assert(Col A B C).
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 Col.
 
 induction(两点重合的决定性 A A').
@@ -458,7 +458,7 @@ Lemma per13_preserves_bet_inv : forall A B C A' C', Bet A' B C' -> B <> A' -> B 
 Proof.
 intros.
 assert(Col A' B C').
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 Col.
 
 induction(两点重合的决定性 A A').
@@ -631,11 +631,11 @@ subst A'.
 induction(两点重合的决定性 B B').
 subst B'.
 assert(Col O C C').
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 ColR.
 
 assert(C = C').
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 assert(O = C' \/ C = C').
 apply(l8_9 O C' C H5); Col.
 induction H10.
@@ -662,7 +662,7 @@ intro.
 subst C'.
 clean_trivial_hyps.
 apply H12.
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 ColR.
 
 assert(Perp B B' O A).
@@ -687,7 +687,7 @@ tauto.
 apply perp_sym.
 apply perp_right_comm.
 apply(perp_col O C' C' C A); auto.
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 ColR.
 
 assert(Par B B' C C').
@@ -769,7 +769,7 @@ subst C'.
 assert( ~ Col O A' A).
 apply(per_not_col O A' A ); auto.
 apply H13.
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 ColR.
 
 assert(Perp A A' O A').
@@ -875,7 +875,7 @@ intro.
 subst C'.
 apply H17.
 exists A.
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 split; Col.
 intro.
 subst C'.
@@ -895,7 +895,7 @@ subst A'.
 clean_trivial_hyps.
 apply H17.
 exists C.
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 split; Col.
 intro.
 subst C'.
@@ -913,7 +913,7 @@ intro.
 subst A'.
 apply H17.
 exists C.
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 split; Col.
 auto.
 induction H23.
@@ -995,7 +995,7 @@ subst C.
 apply 中间性的同一律 in H.
 subst B.
 tauto.
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 ColR.
 
 (********************************)
@@ -1150,16 +1150,16 @@ subst C.
 Between.
 
 assert(Col O A B').
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 ColR.
 assert(Col O B' C').
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 ColR.
 
 induction(两点重合的决定性 B B').
 subst B'.
 assert(Col O C C').
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 ColR.
 assert(C = C').
 apply(per_col_eq C C' O); Col; Perp.
@@ -1232,7 +1232,7 @@ apply 中间性的同一律 in H21.
 subst T.
 contradiction.
 intro.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 apply H19.
 ColR.
 subst T.
@@ -1382,7 +1382,7 @@ apply perp_in_comm in H5.
 apply perp_in_perp_bis in H5.
 induction H5.
 apply (perp_col _ B'); Col; Perp.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 ColR.
 apply perp_distinct in H5.
 tauto.
@@ -1497,12 +1497,12 @@ Lemma symmetry_preserves_per : forall A P B A' P', Per B P A -> 中点 B A A' ->
                                                    -> Per B P' A'.
 Proof.
 intros.
-assert(HS:=symmetric_point_construction A P).
+assert(HS:=构造对称点 A P).
 ex_and HS C.
-assert(HS:=symmetric_point_construction C B).
+assert(HS:=构造对称点 C B).
 ex_and HS C'.
 
-assert(HH:= symmetry_preserves_midpoint A P C A' P' C' B H0 H1 H3 H2).
+assert(HH:= 对称保持中点 A P C A' P' C' B H0 H1 H3 H2).
 unfold Per.
 exists C'.
 split.
@@ -1510,7 +1510,7 @@ assumption.
 unfold Per in H.
 ex_and H X.
 assert(X = C).
-apply(symmetric_point_uniqueness A P X C); auto.
+apply(中点组的唯一性1 A P X C); auto.
 subst X.
 unfold 中点 in *.
 spliter.
@@ -1549,9 +1549,9 @@ assert(D1:Q<>R).
 intro.
 subst R.
 assert(B=C).
-apply(symmetric_point_uniqueness A Q); auto.
+apply(中点组的唯一性1 A Q); auto.
 subst C.
-apply l7_3 in MBC.
+apply M是AA中点则M与A重合 in MBC.
 contradiction.
 
 assert(D2:R <> B).
@@ -1569,23 +1569,23 @@ intro.
 apply HC.
 unfold 中点 in *.
 spliter.
-apply 中间性蕴含共线 in H2.
-apply 中间性蕴含共线 in H4.
-apply 中间性蕴含共线 in H6.
+apply 中间性蕴含共线1 in H2.
+apply 中间性蕴含共线1 in H4.
+apply 中间性蕴含共线1 in H6.
 ColR.
 
 assert(HH:= l8_18_existence P Q C H1).
 ex_and HH C'.
 
-assert(HS1:=symmetric_point_construction C' Q).
+assert(HS1:=构造对称点 C' Q).
 ex_and HS1 A'.
-assert(HS1:=symmetric_point_construction C' P).
+assert(HS1:=构造对称点 C' P).
 ex_and HS1 B'.
 
 assert(Cong C C' B B').
-apply(l7_13 P C C' B B' MBC); 中点.
+apply(l7_13_同中点组两侧等长 P C C' B B' MBC); 中点.
 assert(Cong C C' A A').
-apply(l7_13 Q C C' A A'); 中点.
+apply(l7_13_同中点组两侧等长 Q C C' A A'); 中点.
 
 assert(Per P B' B).
 induction(两点重合的决定性 P C').
@@ -1626,13 +1626,13 @@ Perp.
 assert(Cl1: Col A' C' Q).
 unfold 中点 in H4.
 spliter.
-apply 中间性蕴含共线 in H4.
+apply 中间性蕴含共线1 in H4.
 Col.
 
 assert(Cl2: Col B' C' P).
 unfold 中点 in H5.
 spliter.
-apply 中间性蕴含共线 in H5.
+apply 中间性蕴含共线1 in H5.
 Col.
 
 assert(NE0: P <> Q).
@@ -1642,7 +1642,7 @@ assert(NE1 : A' <> B').
 intro.
 subst B'.
 apply NE0.
-apply (l7_17 C' A'); auto.
+apply (中点的唯一性1 C' A'); auto.
 
 assert(Cl3: Col A' B' P).
 induction(两点重合的决定性 P C').
@@ -1715,7 +1715,7 @@ apply perp_in_comm in H3.
 apply perp_in_per in H3.
 unfold 中点 in MAC.
 spliter.
-apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线1 in H2.
 apply (per_col P A' C A); Col.
 apply l8_2.
 apply (per_col A A' Q P); Perp.
@@ -1734,7 +1734,7 @@ apply perp_in_comm in H3.
 apply perp_in_per in H3.
 unfold 中点 in MBC.
 spliter.
-apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线1 in H2.
 apply (per_col Q B' C B); Col.
 apply l8_2.
 apply (per_col B B' P Q); Perp.
@@ -1908,7 +1908,7 @@ assert(Cong B B' A A').
 apply 等长的传递性 with C C'; Cong.
 
 assert(B = B'' \/ 中点 B' B B'').
-apply( l7_20); Col.
+apply( 共线点间距相同要么重合要么中点); Col.
 
 apply 等长的传递性 with A A'; Cong.
 induction H28.
@@ -1919,7 +1919,7 @@ exists X.
 
 ex_and H18 M.
 assert(R = M).
-apply (l7_17 A B); auto.
+apply (中点的唯一性1 A B); auto.
 subst M.
 
 assert(A <> B).
@@ -1930,7 +1930,7 @@ apply HC; Col.
 assert(Col R A B).
 unfold 中点 in MAB.
 spliter.
-apply 中间性蕴含共线 in H31.
+apply 中间性蕴含共线1 in H31.
 Col.
 
 assert(X <> R).
@@ -1961,7 +1961,7 @@ exists R.
 
 unfold 中点 in H14.
 spliter.
-apply 中间性蕴含共线 in H14.
+apply 中间性蕴含共线1 in H14.
 split; Col.
 spliter.
 apply NC1.
@@ -2105,7 +2105,7 @@ Proof.
       split.
         apply l11_16; auto.
       assert( A = C \/ 中点 B A C).
-        eapply l7_20; Cong.
+        eapply 共线点间距相同要么重合要么中点; Cong.
       induction H9.
         contradiction.
       unfold TS.
@@ -2232,7 +2232,7 @@ Proof.
       apply out_trivial.
       auto.
     assert(A = C \/ 中点 T A C).
-      apply l7_20; Col.
+      apply 共线点间距相同要么重合要么中点; Col.
     induction H17.
       contradiction.
     unfold TS.
@@ -2306,7 +2306,7 @@ unfold TS.
 repeat split; auto.
 intro.
 assert(A = P).
-apply 中间性蕴含共线 in H5.
+apply 中间性蕴含共线1 in H5.
 apply (l6_21_两线交点的唯一性 A B C D); Col.
 subst P.
 apply H6.
@@ -2314,7 +2314,7 @@ apply(per2_col_eq A C D B); Perp.
 Col.
 intro.
 assert(B = P).
-apply 中间性蕴含共线 in H5.
+apply 中间性蕴含共线1 in H5.
 apply (l6_21_两线交点的唯一性 A B C D); Col.
 subst P.
 apply H6.
@@ -2474,8 +2474,8 @@ Proof.
     ex_and H19 T1.
     ex_and H8 T.
     assert(T = T1).
-      apply 中间性蕴含共线 in H20.
-      apply 中间性蕴含共线 in H21.
+      apply 中间性蕴含共线1 in H20.
+      apply 中间性蕴含共线1 in H21.
       assert_diffs.
       apply (l6_21_两线交点的唯一性 A B C D); Col.
     subst T1.
@@ -2534,7 +2534,7 @@ spliter.
    apply perp_in_perp_bis in H3.
 unfold 中点 in H2.
 spliter.
-apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线1 in H2.
 assert(X <> Y).
 apply perp_distinct in H4.
 tauto.
@@ -2555,7 +2555,7 @@ assert(P = B).
 apply (l6_21_两线交点的唯一性 A B C P); Col.
 unfold 中点 in H0.
 spliter.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 Col.
 intro.
 subst P.
@@ -2582,7 +2582,7 @@ assert(P = B).
 apply (l6_21_两线交点的唯一性 A B C P); Col.
 unfold 中点 in H0.
 spliter.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 Col.
 intro.
 subst P.
@@ -2768,7 +2768,7 @@ Proof.
       subst E''.
       apply False_ind.
       apply H15.
-      apply 中间性蕴含共线 in H25.
+      apply 中间性蕴含共线1 in H25.
       Col.
     assert(等角 B A C D A E'').
       apply (l11_10 B A C D A E'); try apply out_trivial; auto.
@@ -2820,7 +2820,7 @@ Proof.
     assert(~ Col E'' A B).
       intro.
       apply H29.
-      apply 中间性蕴含共线 in H25.
+      apply 中间性蕴含共线1 in H25.
       apply (l6_21_两线交点的唯一性 A B C D); Col.
     assert(等角 C A E'' D A B).
       apply (l11_22 C A E'' B D A B E'').
@@ -2837,11 +2837,11 @@ Proof.
               auto.
               intro.
               apply H15.
-              apply 中间性蕴含共线 in H25.
+              apply 中间性蕴含共线1 in H25.
               apply 等价共线BCA.
               eapply (共线的传递性2 _ E''); Col.
               intro.
-              apply 中间性蕴含共线 in H25.
+              apply 中间性蕴含共线1 in H25.
               apply H15.
               apply 等价共线CAB.
               eapply (共线的传递性2 _ E''); Col.
@@ -2855,7 +2855,7 @@ Proof.
               apply H29.
               apply (l6_21_两线交点的唯一性 A B C D);Col.
               eapply (共线的传递性2 _ T); Col.
-              apply 中间性蕴含共线 in H25.
+              apply 中间性蕴含共线1 in H25.
               Col.
               intro.
               apply H15.
@@ -2900,7 +2900,7 @@ Proof.
             apply 等价共线CAB.
             apply(共线的传递性2 _ T); Col.
             intro.
-            apply 中间性蕴含共线 in H25.
+            apply 中间性蕴含共线1 in H25.
             apply H15.
             apply 等价共线BCA.
             eapply (共线的传递性2 _ E''); Col.
@@ -2945,7 +2945,7 @@ Proof.
         unfold 中点.
         split; Cong.
       assert(D' = D'').
-        eapply symmetric_point_uniqueness.
+        eapply 中点组的唯一性1.
           apply H40.
         auto.
       subst D''.
@@ -2960,7 +2960,7 @@ Proof.
         unfold 中点.
         split; Cong.
       assert(C' = C'').
-        eapply symmetric_point_uniqueness.
+        eapply 中点组的唯一性1.
           apply H42.
         auto.
       subst C''.
@@ -3002,7 +3002,7 @@ Proof.
             Col.
             intro.
             apply H5.
-            apply 中间性蕴含共线 in H35.
+            apply 中间性蕴含共线1 in H35.
             assert(C <> C').
               intro.
               subst C'.
@@ -3044,7 +3044,7 @@ Proof.
             Col.
             intro.
             apply H6.
-            apply 中间性蕴含共线 in H37.
+            apply 中间性蕴含共线1 in H37.
             assert(D <> D').
               intro.
               subst D'.
@@ -3098,8 +3098,8 @@ Proof.
     assert(~ Col C' D' B).
       intro.
       apply H16.
-      apply 中间性蕴含共线 in H35.
-      apply  中间性蕴含共线 in H37.
+      apply 中间性蕴含共线1 in H35.
+      apply  中间性蕴含共线1 in H37.
       assert(Col C' B D).
         ColR.
       ColR.
@@ -3120,12 +3120,12 @@ Proof.
         auto.
         intro.
         apply H15.
-        apply 中间性蕴含共线 in H25.
+        apply 中间性蕴含共线1 in H25.
         apply 等价共线CAB.
         eapply (共线的传递性2 _ E''); Col.
         intro.
         apply H15.
-        apply 中间性蕴含共线 in H25.
+        apply 中间性蕴含共线1 in H25.
         apply 等价共线BCA.
         eapply (共线的传递性2 _ E''); Col.
       exists E''.
@@ -3185,7 +3185,7 @@ Proof.
             apply 等价共线BCA.
             eapply 共线的传递性2.
               apply H55.
-              apply 中间性蕴含共线 in H35.
+              apply 中间性蕴含共线1 in H35.
               Col.
             Col.
           apply l9_9 in H53.
@@ -3205,7 +3205,7 @@ apply l8_2 in H0.
 unfold Per in H0.
 ex_and H0 C''.
 assert(C' = C'').
-apply(symmetric_point_uniqueness B C C' C''); auto.
+apply(中点组的唯一性1 B C C' C''); auto.
 split; Cong.
 subst C''.
 Cong.
@@ -3215,7 +3215,7 @@ apply l8_2 in H1.
 unfold Per in H1.
 ex_and H1 D''.
 assert(D' = D'').
-apply(symmetric_point_uniqueness B D D' D''); auto.
+apply(中点组的唯一性1 B D D' D''); auto.
 split; Cong.
 subst D''.
 Cong.
@@ -3670,7 +3670,7 @@ apply H1.
 Col.
 
 assert(Col B O C).
-apply 中间性蕴含共线.
+apply 中间性蕴含共线1.
 Between.
 
 induction(两点重合的决定性 B C).
@@ -3855,7 +3855,7 @@ Perp.
 induction(两点重合的决定性 C' B0).
 subst B0.
 assert(B' = C0).
-apply 中间性蕴含共线 in H24.
+apply 中间性蕴含共线1 in H24.
 apply (l6_21_两线交点的唯一性 C' O C C0); Col.
 assert(Par C B' C C0).
 apply(l12_9 C B' C C0 X Y); Perp; Cop.
@@ -4230,7 +4230,7 @@ intros.
 assert(HPO:=perp_out_acute).
 assert(HBO:=acute_bet__obtuse).
 assert(Col A B C').
-apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线1 in H1.
 Col.
 assert(为锐角 C' B C).
 apply (HPO _ _ _ C').

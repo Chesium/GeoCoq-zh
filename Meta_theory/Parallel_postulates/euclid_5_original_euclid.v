@@ -10,9 +10,9 @@ Proof.
   intros eucl A B C D P Q R Hos HIsi HSuma HNBet.
   assert(HM := midpoint_existence B C).
   destruct HM as [M].
-  assert(HD' := symmetric_point_construction D C).
+  assert(HD' := 构造对称点 D C).
   destruct HD' as [D'].
-  assert(HE := symmetric_point_construction D' M).
+  assert(HE := 构造对称点 D' M).
   destruct HE as [E].
   assert(Hdiff := HSuma).
   apply suma_distincts in Hdiff.

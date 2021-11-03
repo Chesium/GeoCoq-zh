@@ -154,7 +154,7 @@ assert_diffs.
 assert_cols.
 assert (~ Col B A C /\
        B <> H /\ C <> H /\ 中点 H B C /\ 等角 H A B H A C)
- by (apply (isosceles_foot__midpoint_conga B A C );finish).
+ by (apply (isosceles_foot__中点蕴含等长a B A C );finish).
 spliter.
 assert (Plg A I H J).
  {
@@ -439,7 +439,7 @@ assert (G<>C)
   by (apply(is_gravity_center_diff_3 A B C G);finish).
 assert_diffs.
 assert (中点 J B A)
-  by(apply(l7_2 J A B);finish).
+  by(apply(M是AB中点则M是BA中点 J A B);finish).
 assert(is_gravity_center G C B A)
   by(apply(is_gravity_center_perm_5 A B C G);finish). (* todo improve finish to include permutations of gravity center *)
 assert(中点 G J L)
@@ -481,7 +481,7 @@ assert(Par A D B C)
 assert(Cong A D B C)
   by (apply(plg_cong_2 A B C D);finish).
 assert(Cong D I B J)
-  by (apply(cong_cong_half_2 A I D C J B);finish).
+  by (apply(两中点组全段等长则后半段等长 A I D C J B);finish).
 assert(Par A D B J)
   by (apply(par_col_par A D B C);finish).
 assert(Par D I B J)
@@ -520,7 +520,7 @@ assert(Cong A x0 I x)
 assert( Cong I x J x)
   by(apply(等长的传递性 I x A x0 J x);finish).
 assert(中点 x I J)
-  by(apply(l7_20_bis x I J);finish).
+  by(apply(不重合共线点间距相同则为中点组1 x I J);finish).
 apply (mid_plg B J D I x);finish.
 Qed.
 

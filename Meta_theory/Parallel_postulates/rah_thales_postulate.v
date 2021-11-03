@@ -11,9 +11,9 @@ Proof.
   destruct (共线的决定性 A B C).
   { destruct (两点重合的决定性 A B).
       treat_equalities; Perp.
-    destruct (l7_20 M A C); [ColR|Cong|..].
+    destruct (共线点间距相同要么重合要么中点 M A C); [ColR|Cong|..].
       subst; Perp.
-    assert (B = C) by (apply l7_9 with M A; 中点).
+    assert (B = C) by (apply 中点组的唯一性2 with M A; 中点).
     subst; Perp.
   }
   apply (t22_17__rah _ _ _ M); assumption.

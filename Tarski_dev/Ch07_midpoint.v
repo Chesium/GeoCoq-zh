@@ -66,7 +66,7 @@ Section T7_1.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma midpoint_dec :
+Lemma 中点的决定性 :
  forall I A B, 中点 I A B \/ ~ 中点 I A B.
 Proof.
     intros.
@@ -74,7 +74,7 @@ Proof.
     elim (中间性的决定性 A I B);intro; elim (等长的决定性 A I I B);intro; tauto.
 Qed.
 
-Lemma is_midpoint_id : forall A B, 中点 A A B -> A = B.
+Lemma A是AB中点则A与B重合 : forall A B, 中点 A A B -> A = B.
 Proof.
     intros.
     unfold 中点 in H.
@@ -82,7 +82,7 @@ Proof.
     treat_equalities;reflexivity.
 Qed.
 
-Lemma is_midpoint_id_2 : forall A B, 中点 A B A -> A=B.
+Lemma A是BA中点则A与B重合 : forall A B, 中点 A B A -> A=B.
 Proof.
     intros.
     unfold 中点 in *.
@@ -91,20 +91,20 @@ Proof.
     auto.
 Qed.
 
-Lemma l7_2 : forall M A B, 中点 M A B -> 中点 M B A.
+Lemma M是AB中点则M是BA中点 : forall M A B, 中点 M A B -> 中点 M B A.
 Proof.
     unfold 中点.
     intuition.
 Qed.
 
-Lemma l7_3 : forall M A, 中点 M A A -> M=A.
+Lemma M是AA中点则M与A重合 : forall M A, 中点 M A A -> M=A.
 Proof.
     unfold 中点.
     intros;spliter;treat_equalities;reflexivity.
 Qed.
 
 
-Lemma l7_3_2 : forall A, 中点 A A A.
+Lemma A是AA中点 : forall A, 中点 A A A.
 Proof.
     unfold 中点.
     intros;repeat split;Between;Cong.
@@ -112,7 +112,7 @@ Qed.
 
 (** This corresponds to l7_8 in Tarski's book. *)
 
-Lemma symmetric_point_construction : forall P A, exists P', 中点 A P P'.
+Lemma 构造对称点 : forall P A, exists P', 中点 A P P'.
 Proof.
     unfold 中点.
     intros.
@@ -121,7 +121,7 @@ Proof.
     split;Cong;Between.
 Qed.
 
-Lemma symmetric_point_uniqueness : forall A P P1 P2, 中点 P A P1 -> 中点 P A P2 -> P1=P2.
+Lemma 中点组的唯一性1 : forall A P P1 P2, 中点 P A P1 -> 中点 P A P2 -> P1=P2.
 Proof.
     unfold 中点.
     intros.
@@ -131,7 +131,7 @@ Proof.
     apply (点的唯一构造 A P A P);Cong.
 Qed.
 
-Lemma l7_9 : forall P Q A X, 中点 A P X -> 中点 A Q X -> P=Q.
+Lemma 中点组的唯一性2 : forall P Q A X, 中点 A P X -> 中点 A Q X -> P=Q.
 Proof.
     unfold 中点.
     intros.
@@ -141,12 +141,12 @@ Proof.
     apply (点的唯一构造 X A X A);Cong;Between.
 Qed.
 
-Lemma l7_9_bis : forall P Q A X, 中点 A P X -> 中点 A X Q -> P=Q.
+Lemma 中点组的唯一性3 : forall P Q A X, 中点 A P X -> 中点 A X Q -> P=Q.
 Proof.
-intros; apply l7_9 with A X; unfold 中点 in *; split; spliter; Cong; Between.
+intros; apply 中点组的唯一性2 with A X; unfold 中点 in *; split; spliter; Cong; Between.
 Qed.
 
-Lemma l7_13 : forall A P Q P' Q',  中点 A P' P -> 中点 A Q' Q -> Cong P Q P' Q'.
+Lemma l7_13_同中点组两侧等长 : forall A P Q P' Q',  中点 A P' P -> 中点 A Q' Q -> Cong P Q P' Q'.
 Proof.
     unfold 中点.
     intros.
@@ -177,7 +177,7 @@ Proof.
     assert (Cong A X' A Y) by (apply 等长的传递性 with A Y'; Cong).
     assert (五线段形式 X A X' Y' Y' A Y X).
       unfold 五线段形式;repeat split; Cong.
-        apply 中间性蕴含共线;auto.
+        apply 中间性蕴含共线1;auto.
       eapply (两组连续三点分段等则全体等 X A X' Y' A Y);Between.
     assert (A <> X).
       eapply 中间性_AB不等推AC不等.
@@ -200,20 +200,20 @@ Proof.
       apply H2.
     unfold 三角形全等.
     repeat split.
-      eapply l7_13.
-        apply l7_2.
+      eapply l7_13_同中点组两侧等长.
+        apply M是AB中点则M是BA中点.
         apply H.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
-      eapply l7_13.
-        apply l7_2.
+      eapply l7_13_同中点组两侧等长.
+        apply M是AB中点则M是BA中点.
         apply H.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
-    eapply l7_13.
-      apply l7_2.
+    eapply l7_13_同中点组两侧等长.
+      apply M是AB中点则M是BA中点.
       apply H0.
-    apply l7_2.
+    apply M是AB中点则M是BA中点.
     assumption.
 Qed.
 
@@ -225,23 +225,23 @@ Lemma l7_16 : forall P Q R S P' Q' R' S' A,
 Proof.
     intros.
     assert (Cong P Q P' Q').
-      eapply l7_13.
-        apply l7_2.
+      eapply l7_13_同中点组两侧等长.
+        apply M是AB中点则M是BA中点.
         apply H.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       apply H0.
     assert (Cong R S R' S').
-      eapply l7_13.
-        apply l7_2.
+      eapply l7_13_同中点组两侧等长.
+        apply M是AB中点则M是BA中点.
         apply H1.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       apply H2.
     apply 等长的传递性 with P Q; Cong.
     apply 等长的传递性 with R S; Cong.
 Qed.
 
 
-Lemma symmetry_preserves_midpoint :
+Lemma 对称保持中点 :
    forall A B C D E F Z,
  中点 Z A D -> 中点 Z B E ->
  中点 Z C F -> 中点 B A C -> 中点 E D F.
@@ -257,8 +257,8 @@ Qed.
 
 End T7_1.
 
-Hint Resolve l7_13 : cong.
-Hint Resolve l7_2 l7_3_2 : midpoint.
+Hint Resolve l7_13_同中点组两侧等长 : cong.
+Hint Resolve M是AB中点则M是BA中点 A是AA中点 : midpoint.
 
 Ltac 中点 := auto with midpoint.
 
@@ -267,7 +267,7 @@ Section T7_2.
 Context {Tn:无维度中性塔斯基公理系统}.
 Context {TnEQD:无维度中性塔斯基公理系统_带两点重合决定性 Tn}.
 
-Lemma Mid_cases :
+Lemma 中点的各排列情况 :
   forall A B C,
   中点 A B C \/ 中点 A C B ->
   中点 A B C.
@@ -276,7 +276,7 @@ Proof.
     decompose [or] H; 中点.
 Qed.
 
-Lemma Mid_perm :
+Lemma 中点的等价排列 :
   forall A B C,
   中点 A B C ->
   中点 A B C /\ 中点 A C B.
@@ -287,14 +287,14 @@ Proof.
     repeat split; Between; Cong.
 Qed.
 
-Lemma l7_17 : forall P P' A B, 中点 A P P' -> 中点 B P P' -> A=B.
+Lemma 中点的唯一性1 : forall P P' A B, 中点 A P P' -> 中点 B P P' -> A=B.
 Proof.
     intros.
     assert (Cong P B P' B).
       unfold 中点 in *.
       spliter.
       Cong.
-    assert (exists B', 中点 A B B') by (apply symmetric_point_construction).
+    assert (exists B', 中点 A B B') by (apply 构造对称点).
     induction H2.
     assert (Cong P' B P x) by eauto with midpoint cong.
     assert (Cong P B P x) by (apply 等长的传递性 with P' B; Cong).
@@ -303,17 +303,17 @@ Proof.
     assert (Bet P B P') by (unfold 中点 in *;spliter;assumption).
     assert (B=x) by (apply (l4_19 P P' B x);Between).
     subst x.
-    apply l7_3.
+    apply M是AA中点则M与A重合.
     assumption.
 Qed.
 
-Lemma l7_17_bis : forall P P' A B, 中点 A P P' -> 中点 B P' P -> A=B.
+Lemma 中点的唯一性2 : forall P P' A B, 中点 A P P' -> 中点 B P' P -> A=B.
 Proof.
     intros.
-    apply l7_17 with P P'; 中点.
+    apply 中点的唯一性1 with P P'; 中点.
 Qed.
 
-Lemma l7_20 : forall M A B,
+Lemma 共线点间距相同要么重合要么中点 : forall M A B,
   Col A M B -> Cong M A M B -> A=B \/ 中点 M A B.
 Proof.
     unfold Col.
@@ -331,24 +331,24 @@ Proof.
     treat_equalities;auto.
 Qed.
 
-Lemma l7_20_bis : forall M A B, A<>B ->
+Lemma 不重合共线点间距相同则为中点组1 : forall M A B, A<>B ->
   Col A M B -> Cong M A M B -> 中点 M A B.
 Proof.
    intros.
-   induction (l7_20 M A B H0 H1);intuition.
+   induction (共线点间距相同要么重合要么中点 M A B H0 H1);intuition.
 Qed.
 
-Lemma cong_col_mid : forall A B C,
+Lemma 不重合共线点间距相同则为中点组2 : forall A B C,
  A <> C -> Col A B C -> Cong A B B C ->
  中点 B A C.
 Proof.
     intros.
-    apply l7_20 in H0.
+    apply 共线点间距相同要么重合要么中点 in H0.
       intuition subst.
     Cong.
 Qed.
 
-Lemma l7_21 : forall A B C D P,
+Lemma 四点对边等长则对角线交点平分对角线 : forall A B C D P,
   ~ Col A B C -> B<>D ->
   Cong A B C D -> Cong B C D A ->
   Col A P C -> Col B P D ->
@@ -383,10 +383,10 @@ Proof.
       apply (l6_21_两线交点的唯一性 A C B D); Col.
     subst x.
     unfold 三角形全等 in *;spliter.
-    split;apply l7_20_bis;Col;Cong.
+    split;apply 不重合共线点间距相同则为中点组1;Col;Cong.
 Qed.
 
-Lemma l7_22_aux : forall A1 A2 B1 B2 C M1 M2,
+Lemma M是AB中点则M是BA中点2_aux : forall A1 A2 B1 B2 C M1 M2,
    Bet A1 C A2 -> Bet B1 C B2 ->
    Cong C A1 C B1 -> Cong C A2 C B2 ->
    中点 M1 A1 B1 -> 中点 M2 A2 B2 ->
@@ -402,17 +402,17 @@ Proof.
       subst B1.
       apply 等长的反向同一性 in H2.
       subst B2.
-      apply l7_3 in H4.
+      apply M是AA中点则M与A重合 in H4.
       subst A1.
       apply ABB中间性.
     assert (exists A, 中点 C A2 A).
-      apply symmetric_point_construction.
+      apply 构造对称点.
     induction H7.
     assert (exists B, 中点 C B2 B).
-      apply symmetric_point_construction.
+      apply 构造对称点.
     induction H8.
     assert (exists M, 中点 C M2 M).
-      apply symmetric_point_construction.
+      apply 构造对称点.
     induction H9.
     assert(中点 x1 x x0).
       unfold 中点.
@@ -569,7 +569,7 @@ Proof.
       apply 等长的左交换性.
       assumption.
     assert (Q=M1).
-      eapply l7_17.
+      eapply 中点的唯一性1.
         apply H20.
       assumption.
     subst Q.
@@ -583,7 +583,7 @@ Qed.
 
 (** This is Krippen lemma , proved by Gupta in its PhD in 1965 as Theorem 3.45 *)
 
-Lemma l7_22 : forall A1 A2 B1 B2 C M1 M2,
+Lemma M是AB中点则M是BA中点2 : forall A1 A2 B1 B2 C M1 M2,
    Bet A1 C A2 -> Bet B1 C B2 ->
    Cong C A1 C B1 -> Cong C A2 C B2 ->
    中点 M1 A1 B1 -> 中点 M2 A2 B2 ->
@@ -593,7 +593,7 @@ Proof.
     assert (Le C A1 C A2 \/ Le C A2 C A1).
       eapply 长度小于等于的决定性.
     induction H5.
-      eapply l7_22_aux.
+      eapply M是AB中点则M是BA中点2_aux.
         apply H.
         apply H0.
         apply H1.
@@ -602,10 +602,10 @@ Proof.
         assumption.
       assumption.
     apply 中间性的对称性.
-    eapply l7_22_aux with A2 A1 B2 B1; finish.
+    eapply M是AB中点则M是BA中点2_aux with A2 A1 B2 B1; finish.
 Qed.
 
-Lemma 中间性蕴含共线1 : forall A B C D, Bet A B D -> Bet A C D -> Col A B C.
+Lemma 中间性蕴含共线2 : forall A B C D, Bet A B D -> Bet A C D -> Col A B C.
 Proof.
     intros.
     assert(Bet A B C \/ Bet A C B).
@@ -621,21 +621,21 @@ Proof.
     assumption.
 Qed.
 
-Lemma l7_25 : forall A B C,
+Lemma 一点与两点等距则该两点存在中点 : forall A B C,
   Cong C A C B ->
   exists X, 中点 X A B.
 Proof.
     intros.
     induction(共线的决定性 A B C).
       assert(A = B \/ 中点 C A B).
-        apply l7_20.
+        apply 共线点间距相同要么重合要么中点.
           unfold Col in *.
           intuition.
         assumption.
       induction H1.
         subst B.
         exists A.
-        apply l7_3_2.
+        apply A是AA中点.
       exists C.
       assumption.
     assert (exists P, Bet C A P /\ A<>P).
@@ -869,7 +869,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma midpoint_distinct_1 : forall I A B,
+Lemma 严格中点组推论1 : forall I A B,
  A<>B ->
  中点 I A B ->
  I<>A /\ I<>B.
@@ -889,7 +889,7 @@ Proof.
     intuition.
 Qed.
 
-Lemma midpoint_distinct_2 : forall I A B,
+Lemma 严格中点组推论2 : forall I A B,
  I<>A ->
  中点 I A B ->
  A<>B /\ I<>B.
@@ -902,13 +902,13 @@ Proof.
       intuition.
     split.
       assumption.
-    apply midpoint_distinct_1 in H0.
+    apply 严格中点组推论1 in H0.
       intuition.
     intuition.
 Qed.
 
 
-Lemma midpoint_distinct_3 : forall I A B,
+Lemma 严格中点组推论3 : forall I A B,
  I<>B ->
  中点 I A B ->
  A<>B /\ I<>A.
@@ -921,7 +921,7 @@ Proof.
       intuition.
     split.
       assumption.
-    apply midpoint_distinct_1 in H0.
+    apply 严格中点组推论1 in H0.
       intuition.
     intuition.
 Qed.
@@ -943,17 +943,17 @@ Proof.
     assumption.
 Qed.
 
-Lemma midpoint_col : forall A M B, 中点 M A B -> Col M A B.
+Lemma 中点蕴含共线 : forall A M B, 中点 M A B -> Col M A B.
 Proof.
     intros.
     unfold Col.
     right;right.
     apply midpoint_bet.
-    apply l7_2.
+    apply M是AB中点则M是BA中点.
     assumption.
 Qed.
 
-Lemma midpoint_cong : forall A B C, 中点 B A C -> Cong A B B C.
+Lemma 中点蕴含等长 : forall A B C, 中点 B A C -> Cong A B B C.
 Proof.
     unfold 中点.
     intros.
@@ -966,7 +966,7 @@ Lemma midpoint_out : forall A B C, A <> C -> 中点 B A C -> Out A B C.
 Proof.
     intros.
     repeat split.
-      apply midpoint_distinct_1 in H0; spliter; auto.
+      apply 严格中点组推论1 in H0; spliter; auto.
       auto.
     left.
     apply midpoint_bet.
@@ -979,14 +979,14 @@ Proof.
     apply l6_6, midpoint_out; 中点.
 Qed.
 
-Lemma midpoint_not_midpoint : forall I A B,
+Lemma 严格中点组换排列则否 : forall I A B,
   A<>B ->
   中点 I A B ->
 ~ 中点 B A I.
 Proof.
     intros.
     assert (I<>B).
-      apply midpoint_distinct_1 in H0.
+      apply 严格中点组推论1 in H0.
         tauto.
       assumption.
     apply midpoint_bet in H0.
@@ -1001,12 +1001,12 @@ Proof.
     intuition.
 Qed.
 
-Lemma swap_diff : forall (A B : Tpoint), A<>B -> B<>A.
+Lemma 不重合的对称性 : forall (A B : Tpoint), A<>B -> B<>A.
 Proof.
     intuition.
 Qed.
 
-Lemma cong_cong_half_1 : forall A M B A' M' B',
+Lemma 两中点组全段等长则前半段等长 : forall A M B A' M' B',
  中点 M A B -> 中点 M' A' B' ->
  Cong A B A' B' -> Cong A M A' M'.
 Proof.
@@ -1031,7 +1031,7 @@ Proof.
         apply H3.
       assumption.
     assert(M'=M'').
-      eapply l7_17; unfold 中点; split.
+      eapply 中点的唯一性1; unfold 中点; split.
         apply H0.
         apply H2.
         apply H4.
@@ -1044,18 +1044,18 @@ Proof.
     assumption.
 Qed.
 
-Lemma cong_cong_half_2 : forall A M B A' M' B',
+Lemma 两中点组全段等长则后半段等长 : forall A M B A' M' B',
  中点 M A B -> 中点 M' A' B' ->
  Cong A B A' B' -> Cong B M B' M'.
 Proof.
     intros.
-    apply cong_cong_half_1 with A A'.
+    apply 两中点组全段等长则前半段等长 with A A'.
       中点.
       中点.
     Cong.
 Qed.
 
-Lemma cong_mid2__cong : forall A M B A' M' B',
+Lemma 两中点组半段等长则全段等长 : forall A M B A' M' B',
  中点 M A B -> 中点 M' A' B' ->
  Cong A M A' M' -> Cong A B A' B'.
 Proof.
@@ -1067,12 +1067,12 @@ Proof.
     apply (等长的传递性 _ _ A M); Cong.
 Qed.
 
-Lemma mid__lt : forall A M B,
+Lemma 严格中点组半段小于全段 : forall A M B,
  A <> B -> 中点 M A B ->
  Lt A M A B.
 Proof.
     intros A M B HAB HM.
-    destruct (midpoint_distinct_1 M A B HAB HM) as [HMA HMB].
+    destruct (严格中点组推论1 M A B HAB HM) as [HMA HMB].
     destruct HM.
     split.
       exists M; Cong.
@@ -1080,7 +1080,7 @@ Proof.
     apply HMB, between_cong with A; auto.
 Qed.
 
-Lemma le_mid2__le13 : forall A M B A' M' B',
+Lemma 两中点组半段偏序则全段偏序 : forall A M B A' M' B',
  中点 M A B -> 中点 M' A' B' ->
  Le A M A' M' -> Le A B A' B'.
 Proof.
@@ -1091,39 +1091,39 @@ Proof.
     apply (l5_6_等长保持小于等于关系 A M A' M'); auto.
 Qed.
 
-Lemma le_mid2__le12 : forall A M B A' M' B',
+Lemma 两中点组全段偏序则半段偏序 : forall A M B A' M' B',
  中点 M A B -> 中点 M' A' B' ->
  Le A B A' B' -> Le A M A' M'.
 Proof.
     intros A M B A' M' B' HM HM' Hle.
     elim(长度小于等于的决定性 A M A' M'); auto.
     intro.
-    assert(Le A' B' A B) by (apply (le_mid2__le13 _ M' _ _ M); auto).
+    assert(Le A' B' A B) by (apply (两中点组半段偏序则全段偏序 _ M' _ _ M); auto).
     apply 等长则小于等于.
-    apply (cong_cong_half_1 _ _ B _ _ B'); auto.
+    apply (两中点组全段等长则前半段等长 _ _ B _ _ B'); auto.
     apply 长度小于等于的反对称性; auto.
 Qed.
 
-Lemma lt_mid2__lt13 : forall A M B A' M' B',
+Lemma 两中点组半段全序则全段全序 : forall A M B A' M' B',
  中点 M A B -> 中点 M' A' B' ->
  Lt A M A' M' -> Lt A B A' B'.
 Proof.
     intros A M B A' M' B' HM HM' [HLe HNcong].
     split.
-      apply le_mid2__le13 with M M'; trivial.
+      apply 两中点组半段偏序则全段偏序 with M M'; trivial.
     intro.
-    apply HNcong, cong_cong_half_1 with B B'; trivial.
+    apply HNcong, 两中点组全段等长则前半段等长 with B B'; trivial.
 Qed.
 
-Lemma lt_mid2__lt12 : forall A M B A' M' B',
+Lemma 两中点组全段全序则半段全序 : forall A M B A' M' B',
  中点 M A B -> 中点 M' A' B' ->
  Lt A B A' B' -> Lt A M A' M'.
 Proof.
     intros A M B A' M' B' HM HM' [HLe HNcong].
     split.
-      apply le_mid2__le12 with B B'; trivial.
+      apply 两中点组全段偏序则半段偏序 with B B'; trivial.
     intro.
-    apply HNcong, cong_mid2__cong with M M'; trivial.
+    apply HNcong, 两中点组半段等长则全段等长 with M M'; trivial.
 Qed.
 
 Lemma midpoint_preserves_out :
@@ -1142,19 +1142,19 @@ Proof.
       intro.
       subst B'.
       assert (A = B).
-        eapply symmetric_point_uniqueness.
-          apply l7_2.
+        eapply 中点组的唯一性1.
+          apply M是AB中点则M是BA中点.
           apply H0.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       auto.
       intro.
       subst C'.
       assert (A = C).
-        eapply symmetric_point_uniqueness.
-          apply l7_2.
+        eapply 中点组的唯一性1.
+          apply M是AB中点则M是BA中点.
           apply H0.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       auto.
     induction H4.
@@ -1181,9 +1181,9 @@ assumption.
 apply 等长的伪自反性.
 Cong.
 assert(D = D1 \/ 中点 C D D1).
-eapply l7_20.
-apply 中间性蕴含共线 in H1.
-apply 中间性蕴含共线 in H2.
+eapply 共线点间距相同要么重合要么中点.
+apply 中间性蕴含共线1 in H1.
+apply 中间性蕴含共线1 in H2.
 
 induction (两点重合的决定性 A B).
 subst B.
@@ -1221,7 +1221,7 @@ subst B.
 apply 等长的对称性 in H0.
 apply 等长的同一性 in H0.
 subst D.
-apply is_midpoint_id in H7.
+apply A是AB中点则A与B重合 in H7.
 subst D1.
 Between.
 apply 中间性的对称性.
@@ -1251,10 +1251,10 @@ eapply 等长的传递性.
 apply H0.
 Cong.
 assert(D = D2).
-eapply symmetric_point_uniqueness.
-apply l7_2.
+eapply 中点组的唯一性1.
+apply M是AB中点则M是BA中点.
 apply H7.
-apply l7_2.
+apply M是AB中点则M是BA中点.
 assumption.
 subst D2.
 right.
@@ -1325,7 +1325,7 @@ Between.
 
 
 eapply (col_cong2_bet2 _ A).
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 ColR.
 Between.
 Cong.
@@ -1342,7 +1342,7 @@ apply 等长的同一性 in H1.
 subst D.
 Between.
 apply (col_cong2_bet1 A D B C).
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 ColR.
 assumption.
 Cong.
@@ -1416,7 +1416,7 @@ induction(两点重合的决定性 A a').
 treat_equalities.
 assert(b'=B \/ 中点 A b' B).
 {
-  apply l7_20.
+  apply 共线点间距相同要么重合要么中点.
   Col.
   Cong.
 }
@@ -1438,7 +1438,7 @@ induction(两点重合的决定性 B b').
 treat_equalities.
 assert(a'=A \/ 中点 B a' A).
 {
-  apply l7_20.
+  apply 共线点间距相同要么重合要么中点.
   Col.
   Cong.
 }
@@ -1517,6 +1517,6 @@ Qed.
 End T7_2.
 
 Hint Resolve midpoint_bet : between.
-Hint Resolve midpoint_col : col.
-Hint Resolve midpoint_cong : cong.
+Hint Resolve 中点蕴含共线 : col.
+Hint Resolve 中点蕴含等长 : cong.
 Hint Resolve midpoint_out midpoint_out_1 : out.

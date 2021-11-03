@@ -130,7 +130,7 @@ Proof.
   tauto.
   exists M.
   split.
-  apply l7_2;assumption.
+  apply M是AB中点则M是BA中点;assumption.
   unfold 中点.
   split.
   assumption.
@@ -151,9 +151,9 @@ Proof.
   ex_and H4 M.
   ex_and H3 N.
   assert (M = N). 
-  apply l7_17 with A C;assumption.
+  apply 中点的唯一性1 with A C;assumption.
   subst.
-  apply symmetric_point_uniqueness with B N;assumption.
+  apply 中点组的唯一性1 with B N;assumption.
 Qed.
 
 Lemma ColCongMid: forall A B C, A <> C -> Col A B C -> Cong A B B C -> 中点 B A C.
@@ -162,7 +162,7 @@ Proof.
   assert(Col A B C). Col.
   assert(Cong B A B C). Cong.
   assert(A = C \/ 中点 B A C).
-  apply l7_20; tauto. 
+  apply 共线点间距相同要么重合要么中点; tauto. 
   tauto.
 Qed.
 
@@ -198,13 +198,13 @@ Proof.
     - intros.
       unfold 中点 in H4.
       destruct (midpoint_existence A C) as [Y H5].
-      destruct (symmetric_point_construction B Y) as [E H6].
+      destruct (构造对称点 B Y) as [E H6].
       exists E.
       assert(B <> E).
       induction (两点重合的决定性 B E).
       subst E.
       assert(Y = B).
-      apply l7_3. exact H6.
+      apply M是AA中点则M与A重合. exact H6.
       subst Y.
       assert(Col A B C). Col. tauto. tauto. 
       split. tauto.
@@ -216,13 +216,13 @@ Proof.
       destruct H4.
       unfold 中点 in H4.
       destruct (midpoint_existence A C) as [Y H7].
-      destruct (symmetric_point_construction B Y) as [E H8].
+      destruct (构造对称点 B Y) as [E H8].
       exists E.
       assert(B <> E).
       induction (两点重合的决定性 B E).
       subst E.
       assert(Y = B).
-      apply l7_3. exact H8.
+      apply M是AA中点则M与A重合. exact H8.
       subst Y.
       assert(Col A B C). Col. tauto. tauto. 
       split. tauto.

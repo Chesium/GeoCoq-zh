@@ -26,7 +26,7 @@ Proof.
       unfold 退化平行四边形 in H7.
       spliter.
       assert(O = C \/ 中点 A O C).
-        apply(l7_20 A O C); Cong.
+        apply(共线点间距相同要么重合要么中点 A O C); Cong.
       induction H13.
         subst C.
         apply False_ind.
@@ -113,7 +113,7 @@ Proof.
     assert(HG:=grid_not_par O E E' H).
     spliter.
     assert(A = MA \/ 中点 O A MA).
-      apply(l7_20 O A MA); Col.
+      apply(共线点间距相同要么重合要么中点 O A MA); Col.
     induction H16.
       subst MA.
       tauto.
@@ -126,7 +126,7 @@ Proof.
     assert(MA <> O).
       intro.
       subst MA.
-      apply is_midpoint_id_2 in H16.
+      apply A是BA中点则A与B重合 in H16.
       subst A.
       tauto.
     unfold 中点 in H16.

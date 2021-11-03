@@ -284,7 +284,7 @@ Proof.
     absurd (Col A D N); [|Col].
     apply one_side_not_col124 with B.
     apply l9_17 with C; trivial.
-    apply midpoint_bet, l7_20_bis; Col.
+    apply midpoint_bet, 不重合共线点间距相同则为中点组1; Col.
   }
   exists C.
   split; auto.
@@ -342,7 +342,7 @@ Lemma mid2_sac__lam6534 : forall A B C D M N,
   Lambert四边形 N M C D.
 Proof.
   intros A B C D M N HSac HM HN.
-  apply (mid2_sac__lam6521 _ _ B A); [apply sac_perm|apply l7_2..]; assumption.
+  apply (mid2_sac__lam6521 _ _ B A); [apply sac_perm|apply M是AB中点则M是BA中点..]; assumption.
 Qed.
 
 Lemma lam6521_mid2__sac : forall A B C D M N,
@@ -504,9 +504,9 @@ Proof.
   - intro HCong.
     apply (per_col _ _ M); Col.
     apply l8_2, (cong_lam__per N); auto.
-    apply 等长的交换性; apply (cong_cong_half_1 _ _ D _ _ C); auto.
+    apply 等长的交换性; apply (两中点组全段等长则前半段等长 _ _ D _ _ C); auto.
   - intro HPer.
-    apply cong_mid2__cong with N M; trivial.
+    apply 两中点组半段等长则全段等长 with N M; trivial.
     apply 等长的交换性, lam_per__cong; trivial.
     apply l8_2, per_col with C; Col.
 Qed.
@@ -532,9 +532,9 @@ Proof.
   - intro HLt.
     apply (acute_conga__acute M B A); 等角.
     apply (lam_lt__acute N); trivial.
-    apply 长度小于的交换性, lt_mid2__lt12 with D C; trivial.
+    apply 长度小于的交换性, 两中点组全段全序则半段全序 with D C; trivial.
   - intro H为锐角.
-    apply lt_mid2__lt13 with N M; trivial.
+    apply 两中点组半段全序则全段全序 with N M; trivial.
     apply 长度小于的交换性, acute_lam__lt; trivial.
     apply (acute_conga__acute A B C); trivial.
 Qed.
@@ -560,9 +560,9 @@ Proof.
   - intro HLt.
     apply (conga_obtuse__obtuse M B A); 等角.
     apply (lam_lt__obtuse N); trivial.
-    apply 长度小于的交换性, lt_mid2__lt12 with C D; trivial.
+    apply 长度小于的交换性, 两中点组全段全序则半段全序 with C D; trivial.
   - intro H为钝角.
-    apply lt_mid2__lt13 with M N; trivial.
+    apply 两中点组半段全序则全段全序 with M N; trivial.
     apply 长度小于的交换性, lam_obtuse__lt; trivial.
     apply (conga_obtuse__obtuse A B C); trivial.
 Qed.
@@ -1092,18 +1092,18 @@ Proof.
     apply 等价共线CAB, cop_per2__col with N; Perp.
     apply coplanar_perm_5, col_cop__cop with M; Col; Cop.
   }
-  assert(HP' := symmetric_point_construction P M).
+  assert(HP' := 构造对称点 P M).
   destruct HP' as [P' HP'].
-  apply l7_2 in HP'.
-  assert(HQ' := symmetric_point_construction Q N).
+  apply M是AB中点则M是BA中点 in HP'.
+  assert(HQ' := 构造对称点 Q N).
   destruct HQ' as [Q' HQ'].
-  apply l7_2 in HQ'.
-  assert(HR' := symmetric_point_construction R M).
+  apply M是AB中点则M是BA中点 in HQ'.
+  assert(HR' := 构造对称点 R M).
   destruct HR' as [R' HR'].
-  apply l7_2 in HR'.
-  assert(HS' := symmetric_point_construction S N).
+  apply M是AB中点则M是BA中点 in HR'.
+  assert(HS' := 构造对称点 S N).
   destruct HS' as [S' HS'].
-  apply l7_2 in HS'.
+  apply M是AB中点则M是BA中点 in HS'.
   assert(HSacR := lam6534_mid2__sac S' R' R S M N HLamR HR' HS').
   assert(HSacP := lam6534_mid2__sac Q' P' P Q M N HLamP HP' HQ').
   assert(Cong S' R' R S /\ Cong Q' P' P Q) by (unfold 萨凯里四边形 in *; spliter; split; auto).
@@ -1694,9 +1694,9 @@ Lemma lam_per__rah : forall A B C D,
   Lambert四边形 A B C D -> (Per B C D <-> hypothesis_of_right_saccheri_quadrilaterals).
 Proof.
   intros A B C D HLam.
-  assert(HC' := symmetric_point_construction C B).
+  assert(HC' := 构造对称点 C B).
   destruct HC' as [C'].
-  assert(HD' := symmetric_point_construction D A).
+  assert(HD' := 构造对称点 D A).
   destruct HD' as [D'].
   split.
   - intro.
@@ -1718,9 +1718,9 @@ Lemma lam_acute__aah : forall A B C D,
   Lambert四边形 A B C D -> (为锐角 B C D <-> hypothesis_of_acute_saccheri_quadrilaterals).
 Proof.
   intros A B C D HLam.
-  assert(HC' := symmetric_point_construction C B).
+  assert(HC' := 构造对称点 C B).
   destruct HC' as [C'].
-  assert(HD' := symmetric_point_construction D A).
+  assert(HD' := 构造对称点 D A).
   destruct HD' as [D'].
   split.
   - intro.
@@ -1745,9 +1745,9 @@ Lemma lam_obtuse__oah : forall A B C D,
   Lambert四边形 A B C D -> (为钝角 B C D <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
 Proof.
   intros A B C D HLam.
-  assert(HC' := symmetric_point_construction C B).
+  assert(HC' := 构造对称点 C B).
   destruct HC' as [C'].
-  assert(HD' := symmetric_point_construction D A).
+  assert(HD' := 构造对称点 D A).
   destruct HD' as [D'].
   split.
   - intro.

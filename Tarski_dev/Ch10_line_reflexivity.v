@@ -89,7 +89,7 @@ Proof.
       exists X.
       split.
         assumption.
-      apply l7_3_2.
+      apply A是AA中点.
     assert (exists M, Col A B M /\ Perp A B X M).
       apply l8_18_existence.
       assumption.
@@ -102,7 +102,7 @@ Proof.
       eapply perp_col.
         intro.
         subst Z.
-        apply l7_3 in H2.
+        apply M是AA中点则M与A重合 in H2.
         subst X.
         apply perp_distinct in H1.
         spliter.
@@ -140,12 +140,12 @@ Proof.
       split.
         assumption.
       split.
-        apply l7_3_2.
+        apply A是AA中点.
       unfold 严格对称.
       split.
         exists X.
         split.
-          apply l7_3_2.
+          apply A是AA中点.
         assumption.
       right.
       reflexivity.
@@ -161,7 +161,7 @@ Proof.
       eapply perp_col.
         intro.
         subst Z.
-        apply l7_3 in H3.
+        apply M是AA中点则M与A重合 in H3.
         subst X.
         apply perp_distinct in H2.
         spliter.
@@ -182,7 +182,7 @@ Proof.
     split.
       exists M0.
       split.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       assumption.
     left.
@@ -191,7 +191,7 @@ Proof.
     eapply perp_col.
       intro.
       subst X.
-      apply l7_3 in H3.
+      apply M是AA中点则M与A重合 in H3.
       subst Z.
       apply perp_distinct in H2.
       spliter.
@@ -216,7 +216,7 @@ Proof.
       induction H0.
         intuition.
       spliter.
-      eapply symmetric_point_uniqueness with P B;auto.
+      eapply 中点组的唯一性1 with P B;auto.
     rewrite -> (is_image_is_image_spec) in * by apply H1.
     unfold 严格对称 in *.
     spliter.
@@ -226,7 +226,7 @@ Proof.
       assert (P <> X).
         intro.
         subst X.
-        apply is_midpoint_id in H.
+        apply A是AB中点则A与B重合 in H.
         subst P1.
         apply perp_distinct in H3.
         spliter.
@@ -234,7 +234,7 @@ Proof.
       assert (P <> Y).
         intro.
         subst Y.
-        apply is_midpoint_id in H0.
+        apply A是AB中点则A与B重合 in H0.
         subst P2.
         apply perp_distinct in H2.
         spliter.
@@ -247,7 +247,7 @@ Proof.
         unfold Col.
         right; left.
         apply midpoint_bet.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       assert (Perp P Y A B).
         eapply perp_col.
@@ -257,7 +257,7 @@ Proof.
         unfold Col.
         right; left.
         apply midpoint_bet.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       induction (两点重合的决定性 X A).
         subst X.
@@ -279,7 +279,7 @@ Proof.
           apply perp_sym.
           assumption.
         subst Y.
-        eapply symmetric_point_uniqueness.
+        eapply 中点组的唯一性1.
           apply H.
         apply H0.
       assert (~ Col A B P /\ Per P X A).
@@ -300,16 +300,16 @@ Proof.
         apply perp_sym.
         assumption.
       subst Y.
-      eapply symmetric_point_uniqueness.
+      eapply 中点组的唯一性1.
         apply H.
       apply H0.
       subst P1.
       assert (P <> Y).
         intro.
         subst Y.
-        apply l7_3 in H.
+        apply M是AA中点则M与A重合 in H.
         subst X.
-        apply is_midpoint_id in H0.
+        apply A是AB中点则A与B重合 in H0.
         subst P2.
         eapply perp_distinct in H2.
         spliter.
@@ -322,9 +322,9 @@ Proof.
         unfold Col.
         right; left.
         apply midpoint_bet.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
-      apply l7_3 in H.
+      apply M是AA中点则M与A重合 in H.
       subst X.
       induction (两点重合的决定性 Y A).
         subst Y.
@@ -350,9 +350,9 @@ Proof.
       assert (P <> X).
         intro.
         subst X.
-        apply l7_3 in H0.
+        apply M是AA中点则M与A重合 in H0.
         subst Y.
-        apply is_midpoint_id in H.
+        apply A是AB中点则A与B重合 in H.
         subst P1.
         eapply perp_distinct in H3.
         spliter.
@@ -365,9 +365,9 @@ Proof.
         unfold Col.
         right; left.
         apply midpoint_bet.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
-      apply l7_3 in H0.
+      apply M是AA中点则M与A重合 in H0.
       subst Y.
       induction (两点重合的决定性 X A).
         subst X.
@@ -417,7 +417,7 @@ Proof.
       split.
         exists P.
         split.
-          apply l7_3_2.
+          apply A是AA中点.
         assumption.
       right.
       reflexivity.
@@ -436,7 +436,7 @@ Proof.
     eapply perp_col.
       intro.
       subst P'.
-      apply l7_3 in H2.
+      apply M是AA中点则M与A重合 in H2.
       subst X.
       apply perp_distinct in H1.
       spliter.
@@ -456,7 +456,7 @@ Proof.
     induction (两点重合的决定性 A B).
       subst B.
       unfold 对称.
-      elim (symmetric_point_construction P A).
+      elim (构造对称点 P A).
       intros P'.
       exists P'.
       tauto.
@@ -478,7 +478,7 @@ Proof.
     split.
       exists X.
       split.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       assumption.
     induction H0.
@@ -500,7 +500,7 @@ Proof.
       spliter.
       split.
         assumption.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     rewrite -> (is_image_is_image_spec) in * by apply H0.
     apply l10_4_spec;auto.
@@ -519,8 +519,8 @@ Proof.
       induction H0.
         intuition.
       spliter.
-      apply symmetric_point_uniqueness with P' B.
-        apply l7_2.
+      apply 中点组的唯一性1 with P' B.
+        apply M是AB中点则M是BA中点.
         assumption.
       assumption.
     rewrite -> (is_image_is_image_spec) in * by apply H1.
@@ -545,10 +545,10 @@ Proof.
       induction H0.
         intuition.
       spliter.
-      apply symmetric_point_uniqueness with P B.
-        apply l7_2.
+      apply 中点组的唯一性1 with P B.
+        apply M是AB中点则M是BA中点.
         assumption.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     eapply l10_2_uniqueness.
       apply l10_4.
@@ -614,7 +614,7 @@ Proof.
     induction H.
       spliter.
       ex_and H1 X.
-      apply l7_3 in H1.
+      apply M是AA中点则M与A重合 in H1.
       subst X.
       Col.
     spliter. subst. Col.
@@ -658,8 +658,8 @@ Proof.
         eapply perp_col.
           intro.
           subst P.
-          apply l7_2 in H0.
-          apply is_midpoint_id in H0.
+          apply M是AB中点则M是BA中点 in H0.
+          apply A是AB中点则A与B重合 in H0.
           subst P'.
           absurde.
           apply perp_left_comm.
@@ -674,9 +674,9 @@ Proof.
       unfold Per in H9.
       ex_and H9 P0.
       assert (P0 = P').
-        eapply symmetric_point_uniqueness.
+        eapply 中点组的唯一性1.
           apply H9.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       subst P0.
       apply 等长的交换性.
@@ -711,8 +711,8 @@ Proof.
         eapply perp_col.
           intro.
           subst P.
-          apply l7_2 in H.
-          apply is_midpoint_id in H.
+          apply M是AB中点则M是BA中点 in H.
+          apply A是AB中点则A与B重合 in H.
           subst P'.
           absurde.
           apply perp_left_comm.
@@ -727,9 +727,9 @@ Proof.
       unfold Per in H8.
       ex_and H8 P0.
       assert (P0 = P').
-        eapply symmetric_point_uniqueness.
+        eapply 中点组的唯一性1.
           apply H8.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       subst P0.
       Cong.
@@ -761,7 +761,7 @@ Proof.
           eapply perp_col.
             intro.
             subst T'.
-            apply is_midpoint_id in H1.
+            apply A是AB中点则A与B重合 in H1.
             subst A.
             absurde.
             apply perp_sym.
@@ -769,7 +769,7 @@ Proof.
           unfold Col.
           right; left.
           apply midpoint_bet.
-          apply l7_2.
+          apply M是AB中点则M是BA中点.
           assumption.
         assert (~ Col  A T' B).
           apply perp_not_col.
@@ -780,8 +780,8 @@ Proof.
           apply l6_21_两线交点的唯一性 with A T' B T; Col.
           intro; treat_equalities; Col.
         subst A.
-        apply l7_2 in H1.
-        apply is_midpoint_id in H1.
+        apply M是AB中点则M是BA中点 in H1.
+        apply A是AB中点则A与B重合 in H1.
         subst T'.
         absurde.
       induction (两点重合的决定性 B X).
@@ -791,7 +791,7 @@ Proof.
           eapply perp_col.
             intro.
             subst T'.
-            apply is_midpoint_id in H1.
+            apply A是AB中点则A与B重合 in H1.
             subst B.
             absurde.
             apply perp_sym.
@@ -799,7 +799,7 @@ Proof.
           unfold Col.
           right; left.
           apply midpoint_bet.
-          apply l7_2.
+          apply M是AB中点则M是BA中点.
           assumption.
         assert (~ Col  B T' A).
           apply perp_not_col.
@@ -814,13 +814,13 @@ Proof.
             unfold Col.
             right; right.
             apply midpoint_bet.
-            apply l7_2.
+            apply M是AB中点则M是BA中点.
             apply H1.
             apply ABB型共线.
             assumption.
         subst B.
-        apply l7_2 in H1.
-        apply is_midpoint_id in H1.
+        apply M是AB中点则M是BA中点 in H1.
+        apply A是AB中点则A与B重合 in H1.
         subst T'.
         absurde.
       assert (Col A X T) by ColR.
@@ -829,7 +829,7 @@ Proof.
         eapply perp_col.
           intro.
           subst T'.
-          apply is_midpoint_id in H1.
+          apply A是AB中点则A与B重合 in H1.
           subst X.
           absurde.
           apply perp_sym.
@@ -852,13 +852,13 @@ Proof.
           unfold Col.
           right; right.
           apply midpoint_bet.
-          apply l7_2.
+          apply M是AB中点则M是BA中点.
           apply H1.
           apply ABB型共线.
           assumption.
       subst X.
-      apply l7_2 in H1.
-      apply is_midpoint_id in H1.
+      apply M是AB中点则M是BA中点 in H1.
+      apply A是AB中点则A与B重合 in H1.
       subst T'.
       absurde.
     subst T'.
@@ -910,11 +910,11 @@ Proof.
     induction H4.
       double X M Y.
       assert (中点 Y Q Q').
-        eapply symmetry_preserves_midpoint.
+        eapply 对称保持中点.
           apply H2.
           apply H6.
           apply H3.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H1.
       assert (P <> P').
         intro.
@@ -925,10 +925,10 @@ Proof.
       assert (Q <> Q').
         intro.
         subst Q'.
-        apply l7_3 in H7.
+        apply M是AA中点则M与A重合 in H7.
         subst Q.
         assert (P=P').
-          eapply l7_9.
+          eapply 中点组的唯一性2.
             apply H2.
           apply H3.
         subst P'.
@@ -938,7 +938,7 @@ Proof.
       split.
         exists Y.
         split.
-          apply l7_2.
+          apply M是AB中点则M是BA中点.
           apply H7.
         induction (两点重合的决定性 X Y).
           subst Y.
@@ -969,7 +969,7 @@ Proof.
         assumption.
       induction (两点重合的决定性 X Y).
         subst Y.
-        apply l7_3 in H6.
+        apply M是AA中点则M与A重合 in H6.
         subst X.
         apply perp_sym.
         eapply perp_col with P'.
@@ -978,9 +978,9 @@ Proof.
           apply perp_col with P.
             intro.
             subst Q'.
-            apply l7_3 in H3.
+            apply M是AA中点则M与A重合 in H3.
             subst P'.
-            apply is_midpoint_id in H1.
+            apply A是AB中点则A与B重合 in H1.
             subst P.
             absurde.
             apply perp_sym.
@@ -988,24 +988,24 @@ Proof.
           eapply (共线的传递性3 M).
             intro.
             subst P'.
-            apply is_midpoint_id in H1.
+            apply A是AB中点则A与B重合 in H1.
             subst P.
             absurde.
             unfold Col.
             right; right.
             apply midpoint_bet.
-            apply l7_2.
+            apply M是AB中点则M是BA中点.
             assumption.
           unfold Col.
           right; right.
           apply midpoint_bet.
-          apply l7_2.
+          apply M是AB中点则M是BA中点.
           assumption.
         eapply (共线的传递性3 M).
           intro.
           subst Q'.
-          apply l7_2 in H7.
-          apply is_midpoint_id in H7.
+          apply M是AB中点则M是BA中点 in H7.
+          apply A是AB中点则A与B重合 in H7.
           subst Q.
           absurde.
           unfold Col.
@@ -1045,7 +1045,7 @@ Proof.
                   assumption.
                 induction (两点重合的决定性 M X).
                   subst X.
-                  apply is_midpoint_id in H6.
+                  apply A是AB中点则A与B重合 in H6.
                   subst M.
                   apply AAB型共线.
                 eapply (共线的传递性2 _ X).
@@ -1053,7 +1053,7 @@ Proof.
                   unfold Col.
                   right; right.
                   apply midpoint_bet.
-                  apply l7_2.
+                  apply M是AB中点则M是BA中点.
                   assumption.
                 apply 等价共线ACB.
                 assumption.
@@ -1066,7 +1066,7 @@ Proof.
                 assumption.
               induction (两点重合的决定性 B X).
                 subst X.
-                apply is_midpoint_id in H6.
+                apply A是AB中点则A与B重合 in H6.
                 subst Y.
                 absurde.
               eapply 共线的传递性2.
@@ -1074,7 +1074,7 @@ Proof.
                 unfold Col.
                 right; right.
                 apply midpoint_bet.
-                apply l7_2.
+                apply M是AB中点则M是BA中点.
                 assumption.
               apply 等价共线BCA.
               assumption.
@@ -1091,7 +1091,7 @@ Proof.
                 assumption.
               induction (两点重合的决定性 M X).
                 subst X.
-                apply is_midpoint_id in H6.
+                apply A是AB中点则A与B重合 in H6.
                 contradiction.
               assert(Col B Y M).
                 apply 等价共线BCA.
@@ -1118,33 +1118,33 @@ Proof.
         apply H7.
         intro.
         subst Y.
-        apply l7_2 in H6.
-        apply is_midpoint_id in H6.
+        apply M是AB中点则M是BA中点 in H6.
+        apply A是AB中点则A与B重合 in H6.
         subst X.
         absurde.
       intro.
       subst Q.
-      apply is_midpoint_id in H7.
+      apply A是AB中点则A与B重合 in H7.
       subst Q'.
       absurde.
     subst P'.
-    apply l7_3 in H1.
+    apply M是AA中点则M与A重合 in H1.
     subst P.
     assert(Q = Q').
-      eapply l7_9.
-        apply l7_2.
+      eapply 中点组的唯一性2.
+        apply M是AB中点则M是BA中点.
         apply H2.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       apply H3.
     subst Q'.
     split.
       exists Q.
       split.
-        apply l7_3_2.
+        apply A是AA中点.
       induction (两点重合的决定性 M X).
         subst X.
         assert(M=Q).
-          apply is_midpoint_id.
+          apply A是AB中点则A与B重合.
           assumption.
         subst Q.
         assumption.
@@ -1202,8 +1202,8 @@ Proof.
             eapply perp_col.
               intro.
               subst P.
-              apply l7_2 in H0.
-              apply is_midpoint_id in H0.
+              apply M是AB中点则M是BA中点 in H0.
+              apply A是AB中点则A与B重合 in H0.
               subst P'.
               apply perp_distinct in H3.
               spliter.
@@ -1319,7 +1319,7 @@ Proof.
     double C' M C1'.
     exists C1'.
     split.
-      eapply symmetry_preserves_midpoint.
+      eapply 对称保持中点.
         apply H2.
         apply H1.
         apply H4.
@@ -1339,7 +1339,7 @@ Proof.
     split.
       exists X.
       split.
-        apply l7_3_2.
+        apply A是AA中点.
       assumption.
     right.
     reflexivity.
@@ -1368,7 +1368,7 @@ Proof.
     left.
     apply perp_sym.
     assert(B <> X /\ B <> Y).
-      apply midpoint_distinct_1.
+      apply 严格中点组推论1.
         assumption.
       assumption.
     spliter.
@@ -1450,8 +1450,8 @@ Proof.
       assert (P <> M0).
         intro.
         subst P.
-        apply l7_2 in H1.
-        apply is_midpoint_id in H1.
+        apply M是AB中点则M是BA中点 in H1.
+        apply A是AB中点则A与B重合 in H1.
         subst P'.
         absurde.
       induction (两点重合的决定性 A M0).
@@ -1497,13 +1497,13 @@ Proof.
           eapply (共线的传递性2 _ P').
             intro.
             subst P'.
-            apply is_midpoint_id in H1.
+            apply A是AB中点则A与B重合 in H1.
             subst P.
             absurde.
             unfold Col.
             right; right.
             apply midpoint_bet.
-            apply l7_2.
+            apply M是AB中点则M是BA中点.
             assumption.
           apply 等价共线BAC.
           assumption.
@@ -1511,7 +1511,7 @@ Proof.
         split.
           apply AAB型共线.
         apply midpoint_bet.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       induction (两点重合的决定性 B M0).
         subst B.
@@ -1548,7 +1548,7 @@ Proof.
             eapply (共线的传递性2 _ P').
               intro.
               subst P'.
-              apply is_midpoint_id in H1.
+              apply A是AB中点则A与B重合 in H1.
               subst P.
               absurde.
               apply 等价共线CAB.
@@ -1556,7 +1556,7 @@ Proof.
             unfold Col.
             right; right.
             apply midpoint_bet.
-            apply l7_2.
+            apply M是AB中点则M是BA中点.
             assumption.
           apply (per_not_col A M0 P); auto.
           apply 等价共线BAC.
@@ -1565,7 +1565,7 @@ Proof.
         split.
           apply ABA型共线.
         apply midpoint_bet.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       repeat split.
         assert(Perp  P M0 A B).
@@ -1601,7 +1601,7 @@ Proof.
           eapply perp_col.
             intro.
             subst P'.
-            apply is_midpoint_id in H1.
+            apply A是AB中点则A与B重合 in H1.
             subst P.
             absurde.
             apply perp_sym.
@@ -1609,7 +1609,7 @@ Proof.
           unfold Col.
           right; left.
           apply midpoint_bet.
-          apply l7_2.
+          apply M是AB中点则M是BA中点.
           assumption.
         assert (~ Col M0 P' A).
           apply perp_not_col.
@@ -1635,7 +1635,7 @@ Proof.
         apply 等价共线CAB.
         assumption.
       apply midpoint_bet.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     subst P'.
     absurde.

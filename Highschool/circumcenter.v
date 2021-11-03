@@ -232,7 +232,7 @@ assert (Cong A G B G).
 apply perp_col1 with C'; Col.
 apply perp_right_comm.
 apply per_perp; auto.
- apply midpoint_distinct_1 with B; 中点.
+ apply 严格中点组推论1 with B; 中点.
 exists B.
 split; Cong.
 Qed.
@@ -252,7 +252,7 @@ elim (共线的决定性 A B C); intro HABC.
   assert (HPer1 : Perp_bisect O C' A B).
     {
     unfold is_circumcenter in *; spliter; apply cong_mid_perp_bisect; Cong.
-    intro; treat_equalities; assert (HFalse := l7_20 O B C).
+    intro; treat_equalities; assert (HFalse := 共线点间距相同要么重合要么中点 O B C).
     destruct HFalse; Cong.
       ColR.
     treat_equalities; auto.
@@ -261,7 +261,7 @@ elim (共线的决定性 A B C); intro HABC.
   assert (HPer2 : Perp_bisect O A' B C).
     {
     unfold is_circumcenter in *; spliter; apply cong_mid_perp_bisect; Cong.
-    intro; treat_equalities; assert (HFalse := l7_20 O A B).
+    intro; treat_equalities; assert (HFalse := 共线点间距相同要么重合要么中点 O A B).
     destruct HFalse; Cong.
       ColR.
     treat_equalities; auto.
@@ -277,9 +277,9 @@ elim (共线的决定性 A B C); intro HABC.
       }
 
       {
-      show_distinct A' C'; try (apply HAC; apply symmetric_point_uniqueness with B A';
+      show_distinct A' C'; try (apply HAC; apply 中点组的唯一性1 with B A';
       unfold 中点 in *; spliter; split; Cong; Between).
-      intro; assert (HFalse := l7_20 O A B); elim HFalse; clear HFalse; try intro HFalse;
+      intro; assert (HFalse := 共线点间距相同要么重合要么中点 O A B); elim HFalse; clear HFalse; try intro HFalse;
       unfold is_circumcenter in *; spliter; Cong; assert_diffs; assert_cols; try ColR.
       assert (HOC' : O <> C').
         {
@@ -288,7 +288,7 @@ elim (共线的决定性 A B C); intro HABC.
         unfold Perp_bisect in *; unfold 垂直于 in *;
         destruct HPer1 as [I [HOC' Hc1]]; assert_diffs; Col.
         }
-      apply HOC'; apply l7_17 with A B; Col.
+      apply HOC'; apply 中点的唯一性1 with A B; Col.
       }
     }
   assert (HFalse := not_par_strict_id O A' C'); exfalso; apply HFalse; Col.

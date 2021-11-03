@@ -309,8 +309,8 @@ assert (等角 H1 B I I B H2).
 等角.
 Cong.
 
-destruct (symmetric_point_construction A B) as [A' HCONHA'].
-destruct (symmetric_point_construction C B) as [C' HCONHC'].
+destruct (构造对称点 A B) as [A' HCONHA'].
+destruct (构造对称点 C B) as [C' HCONHC'].
 assert (Bet A B A') by (apply (midpoint_bet A B A');auto).
 assert (Bet C B C') by (apply (midpoint_bet C B C');auto).
 assert (Out B H1 A').

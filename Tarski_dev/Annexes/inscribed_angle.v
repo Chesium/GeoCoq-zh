@@ -499,7 +499,7 @@ Proof.
       apply acute_cop_onc3__os with P; Cop.
     apply (acute_conga__acute A C B); assumption.
   - exfalso.
-    apply HNCol, 等价共线BCA, midpoint_col.
+    apply HNCol, 等价共线BCA, 中点蕴含共线.
     assert (HCong := onc2__cong O P).
     apply thales_converse_theorem_1 with C; Cop.
   - exists O; split; apply l9_2; apply cop_obtuse_onc3__ts with P; Cop.
@@ -521,7 +521,7 @@ Proof.
       apply cop_obtuse_onc3__ts with P; Cop; apply (acute_suppa__obtuse A C B); assumption.
       apply acute_cop_onc3__os with P; Cop.
   - exfalso.
-    apply HNCol, 等价共线BCA, midpoint_col.
+    apply HNCol, 等价共线BCA, 中点蕴含共线.
     assert (HCong := onc2__cong O P).
     apply thales_converse_theorem_1 with C; Cop.
   - apply l9_2, l9_8_2 with O.
@@ -556,7 +556,7 @@ Proof.
   destruct (共线的决定性 A B O) as [|HNCol1].
   { suma.assert_diffs.
     assert (中点 O A B) by (apply col_onc2__mid with P; assumption).
-    apply (l7_17 A B); trivial.
+    apply (中点的唯一性1 A B); trivial.
     apply thales_converse_theorem_1 with D; auto.
     apply (l11_17 A C B); trivial.
     apply thales_theorem with O; auto.
@@ -571,7 +571,7 @@ Proof.
       apply acute_cop_onc3__os with P'; auto.
       apply (acute_conga__acute A C B); assumption.
     - exfalso.
-      apply HNCol1, 等价共线BCA, midpoint_col.
+      apply HNCol1, 等价共线BCA, 中点蕴含共线.
       apply thales_converse_theorem_1 with C; auto.
     - exists C; split; [|apply l9_2, l9_8_2 with D; [apply l9_2|Side]].
         apply cop_obtuse_onc3__ts with P; auto.
@@ -787,7 +787,7 @@ assert(Col O O' A').
 
 induction(两点重合的决定性 O O').
 treat_equalities.
-apply(symmetric_point_uniqueness C' O); 中点.
+apply(中点组的唯一性1 C' O); 中点.
 split; [Between|CongR].
 
 assert(HQ:= mid_onc2__perp O P B C' O' H23  H10 H4 H17 H20).

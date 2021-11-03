@@ -13,7 +13,7 @@ Proof.
   destruct (l10_15 C A C B0) as [B []]; Col.
   assert(HNCol1 : ~ Col C A B) by (apply (one_side_not_col123 _ _ _ B0); Side).
   assert(Per A C B) by Perp.
-  destruct (symmetric_point_construction A B) as [B'].
+  destruct (构造对称点 A B) as [B'].
   assert_diffs.
   assert(HNCol2 : ~ Col A C B') by (intro; apply HNCol1; ColR).
   assert(HNCol3 : ~ Col B B' C) by (intro; apply HNCol2; ColR).

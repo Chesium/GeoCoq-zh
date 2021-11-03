@@ -200,7 +200,7 @@ split; ColR.
 apply coplanar_perm_12, col_cop__cop with B; Col; Cop.
 exists B; split; Cong.
 
-apply midpoint_col;auto.
+apply 中点蕴含共线;auto.
 exists P.
 exists A.
 repeat split;Col.

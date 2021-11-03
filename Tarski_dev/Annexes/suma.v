@@ -44,7 +44,7 @@ Proof.
   { intro HColE.
     elim (中间性的决定性 D E F).
     { intro HEBet.
-      assert (HJ : exists J, 中点 B C J) by (apply symmetric_point_construction).
+      assert (HJ : exists J, 中点 B C J) by (apply 构造对称点).
       destruct HJ as [J HMid].
       assert_diffs.
       destruct HMid as [HJBet HCong].
@@ -129,7 +129,7 @@ Proof.
   { intro HColB.
     elim (中间性的决定性 A B C).
     { intro HBBet.
-      assert (HK : exists K, 中点 E F K) by (apply symmetric_point_construction).
+      assert (HK : exists K, 中点 E F K) by (apply 构造对称点).
       destruct HK as [K [HKBet HCong]].
       assert_diffs.
       exists K.
@@ -460,7 +460,7 @@ Proof.
       { apply not_bet_out; auto.
         intro HEBet.
         apply HNColB'.
-        apply 中间性蕴含共线; apply 中间性的对称性.
+        apply 中间性蕴含共线1; apply 中间性的对称性.
         apply (bet_lea__bet D E F); auto.
       }
       split.
@@ -524,9 +524,9 @@ Proof.
   intros A B C D E F Hisi.
   assert(A<>B/\B<>C/\D<>E/\E<>F) by (apply sams_distincts; auto).
   spliter.
-  assert(HD' : exists D', 中点 E D D') by apply symmetric_point_construction.
+  assert(HD' : exists D', 中点 E D D') by apply 构造对称点.
   destruct HD' as [D'].
-  assert(HA' : exists A', 中点 B A A') by apply symmetric_point_construction.
+  assert(HA' : exists A', 中点 B A A') by apply 构造对称点.
   destruct HA' as [A'].
   assert_diffs.
   apply (sams_chara D E F A B C D'); Between.
@@ -577,9 +577,9 @@ Lemma conga2_sams__sams : forall A B C D E F A' B' C' D' E' F',
    角度之和小于平角 A B C D E F -> 角度之和小于平角 A' B' C' D' E' F'.
 Proof.
   intros A B C D E F A' B' C' D' E' F' HCongaB HCongaE Hisi.
-  assert(HA0 : exists A0, 中点 B A A0) by apply symmetric_point_construction.
+  assert(HA0 : exists A0, 中点 B A A0) by apply 构造对称点.
   destruct HA0 as [A0].
-  assert(HA'0 : exists A'0, 中点 B' A' A'0) by apply symmetric_point_construction.
+  assert(HA'0 : exists A'0, 中点 B' A' A'0) by apply 构造对称点.
   destruct HA'0 as [A'0].
   assert_diffs.
   apply (sams_chara _ _ _ _ _ _ A'0); Between.
@@ -717,36 +717,36 @@ repeat
         assert (T:= 小于等于推出不重合 A B C D H2 H);clean_reap_hyps
       | H:Le ?A ?B ?C ?D, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= 小于等于推出不重合 A B C D (swap_diff B A H2) H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D (不重合的对称性 B A H2) H);clean_reap_hyps
       | H:Lt ?A ?B ?C ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
         assert (T:= 小于推出不重合 A B C D H);clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
-       assert (T:= midpoint_distinct_1 I A B H2 H);
+       assert (T:= 严格中点组推论1 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
-       assert (T:= midpoint_distinct_1 I A B (swap_diff B A H2) H);
+       assert (T:= 严格中点组推论1 I A B (不重合的对称性 B A H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?I<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
-       assert (T:= midpoint_distinct_2 I A B H2 H);
+       assert (T:= 严格中点组推论2 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?A<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
-       assert (T:= midpoint_distinct_2 I A B (swap_diff A I H2) H);
+       assert (T:= 严格中点组推论2 I A B (不重合的对称性 A I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?I<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
-       assert (T:= midpoint_distinct_3 I A B H2 H);
+       assert (T:= 严格中点组推论3 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?B<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
-       assert (T:= midpoint_distinct_3 I A B (swap_diff B I H2) H);
+       assert (T:= 严格中点组推论3 I A B (不重合的对称性 B I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:Per ?A ?B ?C, H2 : ?A<>?B |- _ =>
@@ -754,13 +754,13 @@ repeat
         assert (T:= per_distinct A B C H H2); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct A B C H (swap_diff B A H2)); clean_reap_hyps
+        assert (T:= per_distinct A B C H (不重合的对称性 B A H2)); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?B<>?C |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
         assert (T:= per_distinct_1 A B C H H2); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?C<>?B |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct_1 A B C H (swap_diff C B H2)); clean_reap_hyps
+        assert (T:= per_distinct_1 A B C H (不重合的对称性 C B H2)); clean_reap_hyps
 
       | H:Perp ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
@@ -971,9 +971,9 @@ Lemma sams_lea2__sams : forall A B C D E F A' B' C' D' E' F',
    角度之和小于平角 A B C D E F.
 Proof.
   intros A B C D E F A' B' C' D' E' F' Hisi HleaB HleaE.
-  assert(HA0 : exists A0, 中点 B A A0) by apply symmetric_point_construction.
+  assert(HA0 : exists A0, 中点 B A A0) by apply 构造对称点.
   destruct HA0 as [A0].
-  assert(HA'0 : exists A'0, 中点 B' A' A'0) by apply symmetric_point_construction.
+  assert(HA'0 : exists A'0, 中点 B' A' A'0) by apply 构造对称点.
   destruct HA'0 as [A'0].
   assert_diffs.
   apply (sams_chara _ _ _ _ _ _ A0); Between.
@@ -1017,7 +1017,7 @@ Proof.
   clear HE'Nout.
   elim(共线的决定性 D E F).
   { intro HColE.
-    assert(~ Bet D E F) by (intro; apply HNColE'; apply 中间性蕴含共线; apply (bet_lea__bet D E F); auto).
+    assert(~ Bet D E F) by (intro; apply HNColE'; apply 中间性蕴含共线1; apply (bet_lea__bet D E F); auto).
     apply (l11_30 A B C G' H' I'); try (apply conga_refl); auto.
     apply (sams_suma__lea123789 _ _ _ D' E' F'); auto.
     apply (out546_suma__conga _ _ _ D E F); auto.
@@ -1168,9 +1168,9 @@ Lemma suma_assoc_1 : forall A B C D E F G H I K L M A' B' C' D' E' F',
    和角 A' B' C' G H I K L M -> 和角 A B C D' E' F' K L M.
 Proof.
   intros A B C D E F G H I K L M A' B' C' D' E' F' HisiBE HisiEH HsBE HsEH HsB'H.
-  assert(HA0 : exists A0, 中点 B A A0) by apply symmetric_point_construction.
+  assert(HA0 : exists A0, 中点 B A A0) by apply 构造对称点.
   destruct HA0 as [A0 []].
-  assert(HD0 : exists D0, 中点 E D D0) by apply symmetric_point_construction.
+  assert(HD0 : exists D0, 中点 E D D0) by apply 构造对称点.
   destruct HD0 as [D0 []].
   assert_diffs.
   elim(共线的决定性 A B C).
@@ -1338,7 +1338,7 @@ Proof.
   { intro HColE'.
     elim(中间性的决定性 D' E' F').
     { intro HE'Bet.
-      assert(HC0 : exists C0, 中点 B C C0) by apply symmetric_point_construction.
+      assert(HC0 : exists C0, 中点 B C C0) by apply 构造对称点.
       destruct HC0 as [C0 []].
       assert_diffs.
       assert(TS B C1 C C0).
@@ -1814,7 +1814,7 @@ Lemma sams123231 : forall A B C, A <> B -> A <> C -> B <> C -> 角度之和小�
 Proof.
   intros A B C.
   intros.
-  assert(HA' := symmetric_point_construction A B).
+  assert(HA' := 构造对称点 A B).
   destruct HA' as [A'].
   assert_diffs.
   apply (sams_chara _ _ _ _ _ _ A'); Between.
@@ -1842,7 +1842,7 @@ Proof.
   destruct (共线的决定性 A B C) as [|HNCol]; [trivial|].
   exfalso.
   destruct (中间性的决定性 D E F).
-  - assert (HP := symmetric_point_construction A B).
+  - assert (HP := 构造对称点 A B).
     destruct HP as [P []].
     assert_diffs.
     assert (Hlta : 角度小于 D E F A B P);
@@ -1913,7 +1913,7 @@ Lemma bet_per_suma__per456 : forall A B C D E F G H I, Per A B C -> Bet G H I ->
    和角 A B C D E F G H I -> Per D E F.
 Proof.
   intros A B C D E F G H I HPer HBet HSuma.
-  assert(HA1 := symmetric_point_construction A B).
+  assert(HA1 := 构造对称点 A B).
   destruct HA1 as [A1].
   assert_diffs.
   assert(HNCol : ~ Col A B C) by (apply per_not_col; auto).
@@ -1933,7 +1933,7 @@ Proof.
     destruct Habs as [_ [Habs]].
     apply Habs.
     apply 等价共线CAB.
-    apply 中间性蕴含共线.
+    apply 中间性蕴含共线1.
     apply (bet_conga__bet G H I); 等角.
 
   - assert(HSuma' := ex_suma A B C A B C).
@@ -1971,7 +1971,7 @@ Qed.
 Lemma acute__sams : forall A B C, 为锐角 A B C -> 角度之和小于平角 A B C A B C.
 Proof.
   intros A B C Hacute.
-  assert(HA' := symmetric_point_construction A B).
+  assert(HA' := 构造对称点 A B).
   destruct HA' as [A'].
   assert_diffs.
   apply (sams_chara _ _ _ _ _ _ A'); Between.
@@ -2055,7 +2055,7 @@ Qed.
 Lemma obtuse__nsams : forall A B C, 为钝角 A B C -> ~ 角度之和小于平角 A B C A B C.
 Proof.
   intros A B C Hobtuse.
-  assert(HA' := symmetric_point_construction A B).
+  assert(HA' := 构造对称点 A B).
   destruct HA' as [A'].
   assert_diffs.
   intro.
@@ -2099,7 +2099,7 @@ Proof.
     destruct HUn; auto.
     exfalso.
     apply HNIsi.
-    assert(HA' := symmetric_point_construction A B).
+    assert(HA' := 构造对称点 A B).
     assert(HNCol : ~ Col A B C) by (apply per_not_col; auto).
     destruct HA' as [A'].
     assert_diffs.
@@ -2458,7 +2458,7 @@ Proof.
   intros A B C D E F.
   destruct(两点重合的决定性 A B).
     subst; right; intro; assert_diffs; auto.
-  assert(HA' := symmetric_point_construction A B).
+  assert(HA' := 构造对称点 A B).
   destruct HA' as [A'].
   assert_diffs.
   destruct(lea_dec D E F C B A') as [|HNlea].

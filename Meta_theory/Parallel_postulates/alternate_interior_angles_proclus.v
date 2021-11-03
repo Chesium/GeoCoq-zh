@@ -14,7 +14,7 @@ Lemma alternate_interior__proclus_aux :
 Proof.
   intros greenberg aia.
   intros A C D P Q HParS HPerp HOS1 HOS2 HOS3.
-  destruct (symmetric_point_construction D C) as [D' []].
+  destruct (构造对称点 D C) as [D' []].
   assert_diffs.
   assert (~ Col P A Q) by (apply one_side_not_col124 with C, HOS1).
   assert (~ Col P C Q) by (apply one_side_not_col123 with D, HOS3).

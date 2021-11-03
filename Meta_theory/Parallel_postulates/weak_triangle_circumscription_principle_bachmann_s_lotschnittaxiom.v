@@ -13,8 +13,8 @@ intro HP.
 apply bachmann_s_lotschnittaxiom_aux.
 intros A1 A2 B1 B2 C1 C2 D1 D2 IAB IAC IBD Hd1 Hd2 HPerp1 HPerp2 HPerp3.
 intros HCol1 HCol2 HCol3 HCol4 HCol5 HCol6 HCop1 HCop2 HCop3 HCop4.
-destruct (symmetric_point_construction IAB IAC) as [E HE].
-destruct (symmetric_point_construction IAB IBD) as [F HF].
+destruct (构造对称点 IAB IAC) as [E HE].
+destruct (构造对称点 IAB IBD) as [F HF].
 assert_diffs.
 assert (HPerp4 : Perp E IAB IAB F).
   {

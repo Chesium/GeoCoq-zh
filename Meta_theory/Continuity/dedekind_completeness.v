@@ -53,7 +53,7 @@ rename C into X, C' into X'; destruct HInd as [C [? []]]; auto.
 destruct (midpoint_existence A C) as [C' []]; exists C'.
 assert (Col P Q C')
   by (destruct (两点重合的决定性 A C); [treat_equalities|apply (共线的传递性5 A C)]; Col).
-split; [auto|split; [|apply l7_17 with fA fB; split; subst; auto]].
+split; [auto|split; [|apply 中点的唯一性1 with fA fB; split; subst; auto]].
 rewrite gradexp__gradexpinv; apply gradexpinv_stab with C; auto.
 rewrite <- gradexp__gradexpinv; assumption.
 Qed.

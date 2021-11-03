@@ -177,11 +177,11 @@ Proof.
       eapply (l4_18 B B').
         intro.
         subst B'.
-        apply l7_3 in H3.
+        apply M是AA中点则M与A重合 in H3.
         contradiction.
-        unfold 中点 in H3; assert(HH:= midpoint_col).
+        unfold 中点 in H3; assert(HH:= 中点蕴含共线).
         spliter.
-        apply 中间性蕴含共线 in H3.
+        apply 中间性蕴含共线1 in H3.
         Col.
         auto.
       unfold 中点 in H3.
@@ -769,7 +769,7 @@ Proof.
       apply 中间性的同一律 in H.
       contradiction.
     assert(Col A C B).
-      apply 中间性蕴含共线 in H.
+      apply 中间性蕴含共线1 in H.
       Col.
     assert(HP:= l10_15 A C B D H16 H2).
     ex_and HP P.
@@ -809,7 +809,7 @@ Proof.
           auto.
           apply perp_left_comm.
           auto.
-        apply 中间性蕴含共线 in H.
+        apply 中间性蕴含共线1 in H.
         Col.
       apply perp_in_comm.
       apply perp_perp_in.

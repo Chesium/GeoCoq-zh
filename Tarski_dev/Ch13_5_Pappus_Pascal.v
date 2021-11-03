@@ -450,7 +450,7 @@ Lemma per13_preserves_bet_inv : forall A B C A' C', Bet A' B C' -> B <> A' -> B 
 Proof.
 intros.
 assert(Col A' B C').
-apply 中间性蕴含共线 in H.
+apply 中间性蕴含共线1 in H.
 Col.
 
 induction(两点重合的决定性 A A').
@@ -1772,7 +1772,7 @@ Proof.
     ex_and H21 M.
     ex_and H22 N.
     assert(M = N).
-      eapply (l7_17 C C'); auto.
+      eapply (中点的唯一性1 C C'); auto.
     subst N.
     assert(平行四边形 A B A' B').
       apply(mid_plg A B A' B' M).
@@ -1787,7 +1787,7 @@ Proof.
     induction(两点重合的决定性 A B).
       subst B.
       assert(B' = A').
-        eapply (symmetric_point_uniqueness A M); auto.
+        eapply (中点组的唯一性1 A M); auto.
       subst B'.
       apply par_reflexivity.
       intro.

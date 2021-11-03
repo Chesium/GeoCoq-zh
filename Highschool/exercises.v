@@ -38,7 +38,7 @@ elim (两点重合的决定性 A C); intro; apply plg_per_rect.
 
     assumption.
 
-    right; intro; subst; assert (B = C) by (apply symmetric_point_uniqueness with A K; assumption); contradiction.
+    right; intro; subst; assert (B = C) by (apply 中点组的唯一性1 with A K; assumption); contradiction.
 
     apply pars_par_plg.
 

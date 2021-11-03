@@ -629,7 +629,7 @@ Proof.
     ex_and H A0.
     ex_and H1 B0.
     ex_and H C0.
-    apply(swap_diff) in H1.
+    apply(不重合的对称性) in H1.
     assert(HH:= H2 A0 B0 C0).
     destruct HH.
     assert(a A0 B0 C0).
@@ -836,7 +836,7 @@ Proof.
     ex_and HH A0.
     ex_and H3 B0.
     ex_and H4 C0.
-    apply(swap_diff) in H4.
+    apply(不重合的对称性) in H4.
     assert(HH:= H5 A0 B0 C0).
     destruct HH.
     assert(a A0 B0 C0).

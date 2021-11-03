@@ -506,7 +506,7 @@ Proof.
     apply sump_to_sum.
     unfold Sump.
     repeat split.
-      apply 中间性蕴含共线 in H1.
+      apply 中间性蕴含共线1 in H1.
       apply (共线的传递性2 _ A);Col.
       Col.
     assert(E <> E' /\ O <> E').
@@ -584,7 +584,7 @@ Proof.
           exists E.
           split; Col.
           apply 等价共线BCA.
-          apply 中间性蕴含共线 in H1.
+          apply 中间性蕴含共线1 in H1.
           apply(共线的传递性2 _ A); Col.
         apply NC.
         tauto.
@@ -3896,7 +3896,7 @@ Proof.
       unfold 退化平行四边形 in H0.
       spliter.
       assert(O = C \/ 中点 A O C).
-        apply(l7_20 A O C H0).
+        apply(共线点间距相同要么重合要么中点 A O C H0).
         Cong.
       induction H5.
         subst C.
@@ -3942,7 +3942,7 @@ Proof.
     unfold 退化平行四边形 in H5.
     spliter.
     assert(A = MA \/ 中点 O A MA).
-      apply(l7_20 O A MA).
+      apply(共线点间距相同要么重合要么中点 O A MA).
         Col.
       Cong.
     induction H10.

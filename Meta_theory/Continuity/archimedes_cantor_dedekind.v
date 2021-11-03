@@ -92,9 +92,9 @@ Proof.
     destruct (midpoint_existence X Y) as [M HM].
     destruct (Hdis M); [apply (Haux X Y); eauto|..].
     - exists M, Y; repeat split; [apply cX_other with X Y|apply cY_same with X M|]; auto.
-      apply 等长的左交换性, cong_cong_half_1 with X B0; [|split|Cong]; 中点.
+      apply 等长的左交换性, 两中点组全段等长则前半段等长 with X B0; [|split|Cong]; 中点.
     - exists X, M; repeat split; [apply cX_same with Y M|apply cY_other with X Y|]; auto.
-      apply cong_cong_half_1 with Y B0; [|split|]; assumption.
+      apply 两中点组全段等长则前半段等长 with Y B0; [|split|]; assumption.
   }
   intros X Y HX HY.
   apply (中间性的交换传递性1 A).

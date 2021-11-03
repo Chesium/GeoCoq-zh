@@ -75,8 +75,8 @@ assert (Per o x c)
 unfold Per in H8.
 destruct H8.
 spliter.
-apply l7_2 in H8.
-assert(HmidU := l7_9 a x0 x c H2 H8).
+apply M是AB中点则M是BA中点 in H8.
+assert(HmidU := 中点组的唯一性2 a x0 x c H2 H8).
 subst.
 unfold 中点 in H2.
 spliter.

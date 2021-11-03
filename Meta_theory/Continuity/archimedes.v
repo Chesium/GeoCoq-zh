@@ -311,7 +311,7 @@ Proof.
     intro; assert_diffs; apply HNCol; ColR.
   assert (HLe : Le B0 E B C) by (apply IHHGE; trivial).
   clear IHHGE.
-  destruct (symmetric_point_construction C B) as [D HD].
+  destruct (构造对称点 C B) as [D HD].
   apply 长度小于等于的传递性 with D C.
     apply bet2_le2__le1346 with E B; Between; apply (l5_6_等长保持小于等于关系 B0 E B C); auto with cong.
   assert (HAC : A <> C).

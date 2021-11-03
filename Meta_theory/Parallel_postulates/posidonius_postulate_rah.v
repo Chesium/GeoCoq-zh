@@ -25,7 +25,7 @@ assert (HF : exists A1 A2 B1 B2,
     intros [I [HI1 HI2]].
     assert (HNE' : B1 <> I) by (intro; subst; apply HNC; Col).
     destruct (midpoint_existence B1 I) as [B3 HB3].
-    assert (HNE'' : B1 <> B3) by (apply midpoint_distinct_1 in HB3; spliter; auto).
+    assert (HNE'' : B1 <> B3) by (apply 严格中点组推论1 in HB3; spliter; auto).
     destruct (l8_18_existence A1' A2' B3) as [A3 [HC4 HPerp3]].
       intro; apply HNC; ColR.
     assert (HCong : Cong A1 B1 A3 B3)
@@ -44,7 +44,7 @@ assert (HF : exists A1 A2 B1 B2,
         }
       assert (HNE'''' : B3 <> I).
         {
-        apply midpoint_distinct_1 with B1; auto.
+        apply 严格中点组推论1 with B1; auto.
         }
       assert (HNE''''' : A1 <> I).
         {

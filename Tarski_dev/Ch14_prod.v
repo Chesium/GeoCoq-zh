@@ -1837,7 +1837,7 @@ Proof.
       intro.
       apply H.
       exists O'.
-      apply 中间性蕴含共线 in H10.
+      apply 中间性蕴含共线1 in H10.
       split; Col.
       ColR.
     assert(HH:= prod_y_axis_change O E E' E'' A B C  HP H19).

@@ -50,7 +50,7 @@ Proof.
             unfold Per.
             exists P'.
             split.
-              apply l7_2.
+              apply M是AB中点则M是BA中点.
               assumption.
             apply 等长的交换性.
             eapply is_image_spec_col_cong with A B;Col.
@@ -58,7 +58,7 @@ Proof.
             unfold Per.
             exists Q'.
             split.
-              apply l7_2.
+              apply M是AB中点则M是BA中点.
               assumption.
             apply 等长的交换性.
             eapply is_image_spec_col_cong with A B;Col.
@@ -77,7 +77,7 @@ Proof.
           unfold Per.
           exists P'.
           split.
-            apply l7_2.
+            apply M是AB中点则M是BA中点.
             assumption.
           apply 等长的交换性.
           eapply is_image_spec_col_cong.
@@ -87,7 +87,7 @@ Proof.
           unfold Per.
           exists Q'.
           split.
-            apply l7_2.
+            apply M是AB中点则M是BA中点.
             assumption.
           apply 等长的交换性.
           eapply is_image_spec_col_cong.
@@ -103,11 +103,11 @@ Proof.
         apply l8_2.
         assumption.
       subst P'.
-      apply l7_3 in H0.
+      apply M是AA中点则M与A重合 in H0.
       subst P.
       Col.
     subst Q'.
-    apply l7_3 in H1.
+    apply M是AA中点则M与A重合 in H1.
     subst Q.
     Col.
 Qed.
@@ -135,7 +135,7 @@ Proof.
     assert (Col A B Z).
       induction (两点重合的决定性 X Y).
         subst Y.
-        apply l7_3 in H7.
+        apply M是AA中点则M与A重合 in H7.
         subst X.
         assumption.
       ColR.
@@ -158,22 +158,22 @@ Proof.
           intro.
           subst R'.
           assert( P' = P).
-            eapply l7_9.
+            eapply 中点组的唯一性2.
               apply H9.
             assumption.
           subst P'.
           apply perp_distinct in H3.
           spliter.
           absurde.
-        assert (中点 Y R R') by (eauto using symmetry_preserves_midpoint).
-        assert (Cong Q' R' Q R) by (apply (l7_13 Y); assumption).
+        assert (中点 Y R R') by (eauto using 对称保持中点).
+        assert (Cong Q' R' Q R) by (apply (l7_13_同中点组两侧等长 Y); assumption).
         assert (Cong P' Z P Z) by (apply (is_image_spec_col_cong A B); assumption).
         assert (Cong Q' Z Q Z) by (apply (is_image_spec_col_cong A B); assumption).
         apply 等长的交换性, (五线段公理_等价SAS R R' Z Z); Cong; Between.
           apply 等长的传递性 with P Z; [|apply 等长的传递性 with P' Z]; Cong.
           intro; treat_equalities; contradiction.
       subst Q'.
-      apply l7_3 in H0.
+      apply M是AA中点则M与A重合 in H0.
       subst Q.
       apply 等长的交换性.
       eapply is_image_spec_col_cong.
@@ -181,7 +181,7 @@ Proof.
         apply HH0.
       assumption.
     subst P'.
-    apply l7_3 in H.
+    apply M是AA中点则M与A重合 in H.
     subst P.
     eapply is_image_spec_col_cong.
       apply l10_4_spec.
@@ -202,7 +202,7 @@ Proof.
       induction H0.
         intuition.
       spliter.
-      apply l7_13 with B; apply l7_2;auto.
+      apply l7_13_同中点组两侧等长 with B; apply M是AB中点则M是BA中点;auto.
     apply l10_10_spec with A B;try apply is_image_is_image_spec;assumption.
 Qed.
 
@@ -260,7 +260,7 @@ Lemma image_preserves_col : forall A B C A' B' C' X Y,
 Proof.
     intros.
     destruct H2 as [HBet|[HBet|HBet]]; [|apply 等价共线CAB|apply 等价共线BCA];
-    apply 中间性蕴含共线; eapply image_preserves_bet; eauto.
+    apply 中间性蕴含共线1; eapply image_preserves_bet; eauto.
 Qed.
 
 Lemma image_gen_preserves_col : forall A B C A' B' C' X Y,
@@ -270,7 +270,7 @@ Lemma image_gen_preserves_col : forall A B C A' B' C' X Y,
 Proof.
     intros.
     destruct H2 as [HBet|[HBet|HBet]]; [|apply 等价共线CAB|apply 等价共线BCA];
-    apply 中间性蕴含共线; eapply image_gen_preserves_bet; eauto.
+    apply 中间性蕴含共线1; eapply image_gen_preserves_bet; eauto.
 Qed.
 
 Lemma image_gen_preserves_ncol : forall A B C A' B' C' X Y,
@@ -375,7 +375,7 @@ Proof.
       unfold Per in H2.
       ex_and H2 C2.
       assert (C2=C1).
-        eapply symmetric_point_uniqueness.
+        eapply 中点组的唯一性1.
           apply H2.
         assumption.
       subst C2.
@@ -396,7 +396,7 @@ Proof.
     induction (两点重合的决定性 X Y).
     - induction H; induction H0; induction H1; spliter; [contradiction..|].
       treat_equalities.
-      apply midpoint_preserves_per with A B C X; [|apply l7_2..]; assumption.
+      apply midpoint_preserves_per with A B C X; [|apply M是AB中点则M是BA中点..]; assumption.
     - induction H; induction H0; induction H1; spliter; [|contradiction..].
       apply image_spec_preserves_per with A B C X Y; assumption.
 Qed.
@@ -417,7 +417,7 @@ Proof.
     double A' X A1.
     double C' X C1.
     assert(三角形全等 A' B' C' A1 B C1)
-    by (repeat split;eauto using l7_13, l7_2).
+    by (repeat split;eauto using l7_13_同中点组两侧等长, M是AB中点则M是BA中点).
     assert (Per A1 B C1)
       by (eauto using l8_10).
     unfold 三角形全等 in H8.
@@ -455,7 +455,7 @@ Proof.
       apply midpoint_existence.
     ex_and H0 Z.
     assert (对称 A2 A B Z) by (apply cong_midpoint__image; Cong).
-    destruct (symmetric_point_construction C B) as [C0].
+    destruct (构造对称点 C B) as [C0].
     assert (Cong A C A C0) by (apply per_double_cong with B; assumption).
     assert (Cong A2 C A2 C0) by (apply per_double_cong with B; assumption).
     assert (对称 C0 C B Z).
@@ -669,8 +669,8 @@ Proof.
               spliter.
               intro.
               subst P.
-              apply l7_2 in H3.
-              apply is_midpoint_id in H3.
+              apply M是AB中点则M是BA中点 in H3.
+              apply A是AB中点则A与B重合 in H3.
               subst P'.
               absurde.
               apply perp_sym.
@@ -688,7 +688,7 @@ Proof.
             unfold Per.
             exists P'.
             split.
-              apply l7_2.
+              apply M是AB中点则M是BA中点.
               assumption.
             Cong.
           apply l8_2 in H6.
@@ -697,8 +697,8 @@ Proof.
             Cop.
             intro.
             subst P.
-            apply l7_2 in H3.
-            apply is_midpoint_id in H3.
+            apply M是AB中点则M是BA中点 in H3.
+            apply A是AB中点则A与B重合 in H3.
             subst P'.
             absurde.
             assumption.
@@ -707,8 +707,8 @@ Proof.
           eapply perp_col.
             intro.
             subst P.
-            apply l7_2 in H3.
-            apply is_midpoint_id in H3.
+            apply M是AB中点则M是BA中点 in H3.
+            apply A是AB中点则A与B重合 in H3.
             subst P'.
             absurde.
             apply perp_sym.
@@ -729,7 +729,7 @@ Proof.
           unfold Per.
           exists P'.
           split.
-            apply l7_2.
+            apply M是AB中点则M是BA中点.
             assumption.
           apply 等长的交换性.
           assumption.
@@ -738,8 +738,8 @@ Proof.
           assert (P <> M).
             intro.
             subst P.
-            apply l7_2 in H3.
-            apply is_midpoint_id in H3.
+            apply M是AB中点则M是BA中点 in H3.
+            apply A是AB中点则A与B重合 in H3.
             subst P'.
             absurde.
           apply (cop_per2__col P).
@@ -763,7 +763,7 @@ Lemma cong_cop_per2_1 :
  Cong B X B Y -> 共面 A B X Y -> X = Y \/ 中点 B X Y.
 Proof.
     intros.
-    eapply l7_20.
+    eapply 共线点间距相同要么重合要么中点.
       apply 等价共线ACB.
       apply (cop_per2__col A).
         Cop.
@@ -898,7 +898,7 @@ Proof.
 intros A B C D I HCD HCol1 HCol2 HNC.
 assert (HX : exists X, Col C D X /\ I <> X) by (exists C; split; try intro; treat_equalities; Col).
 destruct HX as [X [HCol3 HIX]].
-destruct (symmetric_point_construction X I) as [Y HMid].
+destruct (构造对称点 X I) as [Y HMid].
 exists X; exists Y; assert_diffs; assert_cols; repeat split; try ColR.
   intro; apply HIX, l6_21_两线交点的唯一性 with A B C D; Col.
   intro; absurd (I = Y); [auto|apply l6_21_两线交点的唯一性 with A B C D; ColR].

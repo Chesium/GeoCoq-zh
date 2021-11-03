@@ -137,7 +137,7 @@ intros A B C D E HD HNC HC HPar1 HPar2 HPar3 HPar4.
 assert (HPara1 : 严格平行四边形 A B C E) by (apply parallel_2_plg; finish).
 assert (HPara2 : 严格平行四边形 C A B D) by (apply parallel_2_plg; finish).
 assert_congs_perm.
-apply cong_col_mid; Col; CongR.
+apply 不重合共线点间距相同则为中点组2; Col; CongR.
 Qed.
 
 Lemma altitude_is_perp_bisect : forall A B C O A1 E F,

@@ -17,7 +17,7 @@ Lemma legendre_aux :
 Proof.
   intros greenberg triangle.
   intros A B C P Q HPerpAP HPerpBP HParAB HParAC HOS1 HOS2 HOS3.
-  destruct (symmetric_point_construction B P) as [B'].
+  destruct (构造对称点 B P) as [B'].
   assert(H在角内 : 在角内 C Q P B) by Side.
   assert (~ Col P B C) by (apply one_side_not_col124 with Q, HOS1).
   assert (~ Col P Q C) by (apply one_side_not_col123 with A, HOS2).
@@ -159,7 +159,7 @@ Proof.
   intro Hts.
   assert(HC1NotB : ~ Col C1 B1 B2) by (destruct Hts as [_ []]; auto).
   assert(C1<>P) by (intro; subst C1; Col).
-  destruct (symmetric_point_construction C1 P) as [C3].
+  destruct (构造对称点 C1 P) as [C3].
   assert_diffs.
   assert(HC3NotB : ~ Col C3 B1 B2) by (intro; apply HC1NotB; ColR).
   apply HC3NotB.

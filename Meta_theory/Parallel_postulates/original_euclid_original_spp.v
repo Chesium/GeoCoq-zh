@@ -8,9 +8,9 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma original_euclid__original_spp : euclid_s_parallel_postulate -> alternative_strong_parallel_postulate.
 Proof.
   intros oe A B C D P Q R Hos HSuma HNBet.
-  assert(HA' := symmetric_point_construction A B).
+  assert(HA' := 构造对称点 A B).
   destruct HA' as [A'].
-  assert(HD' := symmetric_point_construction D C).
+  assert(HD' := 构造对称点 D C).
   destruct HD' as [D'].
   assert (Hdiff := HSuma).
   apply suma_distincts in Hdiff.

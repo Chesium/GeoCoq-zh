@@ -4,7 +4,7 @@ Section T2_1.
 
 Context `{Tn:无维度中性塔斯基公理系统}.
 
-Lemma 中间性蕴含共线 : forall A B C, Bet A B C -> Col A B C.
+Lemma 中间性蕴含共线1 : forall A B C, Bet A B C -> Col A B C.
 Proof.
     intros;unfold Col;auto.
 Qed.
@@ -128,7 +128,7 @@ Ltac assert_cols :=
 repeat
  match goal with
       | H:Bet ?X1 ?X2 ?X3 |- _ =>
-     not_exist_hyp_perm_col X1 X2 X3;assert (Col X1 X2 X3) by (apply 中间性蕴含共线;apply H)
+     not_exist_hyp_perm_col X1 X2 X3;assert (Col X1 X2 X3) by (apply 中间性蕴含共线1;apply H)
  end.
 
 Ltac clean_trivial_hyps :=

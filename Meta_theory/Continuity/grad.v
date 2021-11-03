@@ -13,7 +13,7 @@ Qed.
 
 Lemma grad__col : forall A B C, Grad A B C -> Col A B C.
 Proof.
-  intros; apply 中间性蕴含共线, grad__bet; assumption.
+  intros; apply 中间性蕴含共线1, grad__bet; assumption.
 Qed.
 
 Lemma grad_neq__neq13 : forall A B C, Grad A B C -> A <> B -> A <> C.
@@ -272,7 +272,7 @@ Proof.
   destruct (midpoint_existence A B) as [M HM].
   assert_diffs.
   destruct (IHHR1 M) as [C []]; auto.
-    apply le_mid2__le12 with B R'; [|split|]; trivial.
+    apply 两中点组全段偏序则半段偏序 with B R'; [|split|]; trivial.
   exists C; split; trivial.
   destruct HM.
   apply 对数刻度_步进 with M; trivial.

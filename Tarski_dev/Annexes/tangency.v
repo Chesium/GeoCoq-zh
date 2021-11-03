@@ -59,7 +59,7 @@ spliter.
 ex_and H11 Z.
 
 assert(Z = X).
-apply l7_3; auto.
+apply M是AA中点则M与A重合; auto.
 subst Z.
 Col.
 spliter.
@@ -75,7 +75,7 @@ subst B.
 unfold 圆的切线 in *.
 unfold unique in *.
 ex_and H0 T.
-assert(HH:=symmetric_point_construction T O).
+assert(HH:=构造对称点 T O).
 ex_and HH T'.
 assert(在圆上 T' O P).
 apply (symmetric_oncircle T T' O P); auto.
@@ -84,7 +84,7 @@ apply H1.
 split; Col.
 subst T'.
 apply H.
-apply l7_3 in H3.
+apply M是AA中点则M与A重合 in H3.
 subst T.
 unfold 在圆上 in H2.
 treat_equalities; tauto.
@@ -153,7 +153,7 @@ subst TT.
 assert(T = T').
 apply H9.
 split; auto.
-apply 中间性蕴含共线 in H7.
+apply 中间性蕴含共线1 in H7.
 
 assert(Col A X T); ColR.
 subst T'.
@@ -194,7 +194,7 @@ induction(两点重合的决定性 T R).
 subst R.
 auto.
 
-assert(HH:= (symmetric_point_construction T R)).
+assert(HH:= (构造对称点 T R)).
 ex_and HH T'.
 
 induction(两点重合的决定性 A R).
@@ -212,7 +212,7 @@ apply perp_in_per; auto.
 unfold Per in *.
 ex_and H11 T''.
 assert(T' = T'').
-apply (symmetric_point_uniqueness T R T' T''); auto.
+apply (中点组的唯一性1 T R T' T''); auto.
 subst T''.
 
 assert(T <> T').
@@ -220,7 +220,7 @@ intro.
 subst T'.
 apply H7.
 apply sym_equal.
-apply l7_3; auto.
+apply M是AA中点则M与A重合; auto.
 
 assert(在圆上 T' O P).
 unfold 在圆上 in *.
@@ -244,7 +244,7 @@ apply perp_left_comm.
 eapply (perp_col A B O R R); auto.
 unfold 中点 in *.
 spliter.
-apply 中间性蕴含共线 in H8.
+apply 中间性蕴含共线1 in H8.
 ColR.
 assert(垂直于 R T R R O).
 apply perp_in_comm.
@@ -258,7 +258,7 @@ apply perp_in_per; auto.
 unfold Per in *.
 ex_and H12 T''.
 assert(T' = T'').
-apply (symmetric_point_uniqueness T R T' T''); auto.
+apply (中点组的唯一性1 T R T' T''); auto.
 subst T''.
 
 assert(T <> T').
@@ -266,7 +266,7 @@ intro.
 subst T'.
 apply H7.
 apply sym_equal.
-apply l7_3; auto.
+apply M是AA中点则M与A重合; auto.
 
 assert(在圆上 T' O P).
 unfold 在圆上 in *.
@@ -275,7 +275,7 @@ apply 等长的传递性 with O T; Cong.
 assert(在圆外 T' O P).
 unfold 中点 in *.
 spliter.
-apply 中间性蕴含共线 in H12.
+apply 中间性蕴含共线1 in H12.
 apply (tangent_out A B O P T T'); auto.
 ColR.
 unfold 在圆外 in *.
@@ -428,12 +428,12 @@ apply(bet_inc2__incs O P Q X M); Circle.
 intro.
 subst M.
 
-apply l7_2 in H7.
-apply is_midpoint_id in H7.
+apply M是AB中点则M是BA中点 in H7.
+apply A是AB中点则A与B重合 in H7.
 subst X; tauto.
 intro.
 subst M.
-apply is_midpoint_id in H7.
+apply A是AB中点则A与B重合 in H7.
 contradiction.
 unfold 中点 in H7.
 spliter.
@@ -516,7 +516,7 @@ assert(Cong A B A D) by (apply 等长的传递性 with A T; Cong).
 assert(T = B).
 apply(H1 B); Cong.
 subst T.
-assert(HH:=symmetric_point_construction B A).
+assert(HH:=构造对称点 B A).
 ex_and HH B'.
 unfold 中点 in *.
 spliter.
@@ -616,7 +616,7 @@ assert(exists X : Tpoint, Perp U X O U).
   treat_equalities; tauto.
 }
 ex_and H7 R.
-assert(HP:=symmetric_point_construction X O).
+assert(HP:=构造对称点 X O).
 ex_and HP W.
 unfold 中点 in *.
 spliter.

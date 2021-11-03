@@ -395,13 +395,13 @@ elim (两点重合的决定性 C Y); intro HCY.
   assert (HCT : C <> T) by (apply 不共线则不重合 in HBCT; spliter; auto).
   assert (HY := midpoint_existence C T); destruct HY as [Y HY].
   assert (HAY : A <> Y) by (intro; treat_equalities; apply HABC; ColR).
-  assert (H := midpoint_distinct_1 Y C T HCT HY); destruct H as [HCY HTY];
+  assert (H := 严格中点组推论1 Y C T HCT HY); destruct H as [HCY HTY];
   apply not_eq_sym in HCY; apply not_eq_sym in HTY.
   assert (HBY : B <> Y) by (intro; subst; apply HBCT; Col).
   destruct HY as [HCTY HCYTY].
   assert (HACY : ~ Col A B Y) by (apply impossible_two_sides_not_col with C D T; Between; Col).
-  assert (HX := symmetric_point_construction Y T); destruct HX as [X HX].
-  assert (H := midpoint_distinct_2 T Y X HTY HX); destruct H as [HTX HXY]; apply not_eq_sym in HTX.
+  assert (HX := 构造对称点 Y T); destruct HX as [X HX].
+  assert (H := 严格中点组推论2 T Y X HTY HX); destruct H as [HTX HXY]; apply not_eq_sym in HTX.
   destruct HX as [HXTY HXTYT].
   assert (HZ1 := l10_2_existence A B Y); destruct HZ1 as [Z1 HZ1].
   elim HZ1; clear HZ1; intro HZ1; destruct HZ1 as [Hclear HZ1]; [|contradiction]; clear Hclear.
@@ -415,9 +415,9 @@ elim (两点重合的决定性 C Y); intro HCY.
   }
 
   {
-  assert (HX := symmetric_point_construction Y T); destruct HX as [X HX].
+  assert (HX := 构造对称点 Y T); destruct HX as [X HX].
   assert (H := perp_distinct B C T Y HPerp); destruct H as [Hclear HTY]; clear Hclear.
-  assert (H := midpoint_distinct_2 T Y X HTY HX); destruct H as [HTX HXY]; apply not_eq_sym in HTX.
+  assert (H := 严格中点组推论2 T Y X HTY HX); destruct H as [HTX HXY]; apply not_eq_sym in HTX.
   destruct HX as [HXTY HXTYT].
   assert (HZ1 := l10_2_existence A B Y); destruct HZ1 as [Z1 HZ1].
   elim HZ1; clear HZ1; intro HZ1; destruct HZ1 as [Hclear HZ1]; [|contradiction]; clear Hclear.

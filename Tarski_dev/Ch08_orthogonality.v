@@ -20,10 +20,10 @@ Ltac assert_cols :=
 repeat
  match goal with
       | H:Bet ?X1 ?X2 ?X3 |- _ =>
-     not_exist_hyp_perm_col X1 X2 X3;assert (Col X1 X2 X3) by (apply 中间性蕴含共线;apply H)
+     not_exist_hyp_perm_col X1 X2 X3;assert (Col X1 X2 X3) by (apply 中间性蕴含共线1;apply H)
 
       | H:中点 ?X1 ?X2 ?X3 |- _ =>
-     not_exist_hyp_perm_col X1 X2 X3;let N := fresh in assert (N := midpoint_col X2 X1 X3 H)
+     not_exist_hyp_perm_col X1 X2 X3;let N := fresh in assert (N := 中点蕴含共线 X2 X1 X3 H)
 
       | H:Out ?X1 ?X2 ?X3 |- _ =>
      not_exist_hyp_perm_col X1 X2 X3;let N := fresh in assert (N := out_col X1 X2 X3 H)
@@ -103,29 +103,29 @@ repeat
 
       | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
-       assert (T:= midpoint_distinct_1 I A B H2 H);
+       assert (T:= 严格中点组推论1 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
-       assert (T:= midpoint_distinct_1 I A B (swap_diff B A H2) H);
+       assert (T:= 严格中点组推论1 I A B (不重合的对称性 B A H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?I<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
-       assert (T:= midpoint_distinct_2 I A B H2 H);
+       assert (T:= 严格中点组推论2 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?A<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
-       assert (T:= midpoint_distinct_2 I A B (swap_diff A I H2) H);
+       assert (T:= 严格中点组推论2 I A B (不重合的对称性 A I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?I<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
-       assert (T:= midpoint_distinct_3 I A B H2 H);
+       assert (T:= 严格中点组推论3 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?B<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
-       assert (T:= midpoint_distinct_3 I A B (swap_diff B I H2) H);
+       assert (T:= 严格中点组推论3 I A B (不重合的对称性 B I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:Out ?A ?B ?C |- _ =>
@@ -170,9 +170,9 @@ repeat
       apply 中间性的同一律 in H;smart_subst X2
    | H : Le ?X1 ?X2 ?X3 ?X3 |- _ =>
       apply AB小于等于CC推出A与B重合 in H;smart_subst X2
-   | H : 中点 ?X ?Y ?Y |- _ => apply l7_3 in H; smart_subst Y
-   | H : 中点 ?A ?B ?A |- _ => apply is_midpoint_id_2 in H; smart_subst A
-   | H : 中点 ?A ?A ?B |- _ => apply is_midpoint_id in H; smart_subst A
+   | H : 中点 ?X ?Y ?Y |- _ => apply M是AA中点则M与A重合 in H; smart_subst Y
+   | H : 中点 ?A ?B ?A |- _ => apply A是BA中点则A与B重合 in H; smart_subst A
+   | H : 中点 ?A ?A ?B |- _ => apply A是AB中点则A与B重合 in H; smart_subst A
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?A ?C |- _ =>
      let T := fresh in assert (T : A=B) by (apply (双中间性推出点重合 A B C); Between);
                        smart_subst A
@@ -186,15 +186,15 @@ repeat
      let T := fresh in assert (T : B=C) by (apply (双中间性推出点重合2 A B C); Between);
                        smart_subst A
    | H : 中点 ?P ?A ?P1, H2 : 中点 ?P ?A ?P2 |- _ =>
-     let T := fresh in assert (T := symmetric_point_uniqueness A P P1 P2 H H2); smart_subst P1
+     let T := fresh in assert (T := 中点组的唯一性1 A P P1 P2 H H2); smart_subst P1
    | H : 中点 ?A ?P ?X, H2 : 中点 ?A ?Q ?X |- _ =>
-     let T := fresh in assert (T := l7_9 P Q A X H H2); smart_subst P
+     let T := fresh in assert (T := 中点组的唯一性2 P Q A X H H2); smart_subst P
    | H : 中点 ?A ?P ?X, H2 : 中点 ?A ?X ?Q |- _ =>
-     let T := fresh in assert (T := l7_9_bis P Q A X H H2); smart_subst P
+     let T := fresh in assert (T := 中点组的唯一性3 P Q A X H H2); smart_subst P
    | H : 中点 ?A ?P ?P', H2 : 中点 ?B ?P ?P' |- _ =>
-     let T := fresh in assert (T := l7_17 P P' A B H H2); smart_subst A
+     let T := fresh in assert (T := 中点的唯一性1 P P' A B H H2); smart_subst A
    | H : 中点 ?A ?P ?P', H2 : 中点 ?B ?P' ?P |- _ =>
-     let T := fresh in assert (T := l7_17_bis P P' A B H H2); smart_subst A
+     let T := fresh in assert (T := 中点的唯一性2 P P' A B H H2); smart_subst A
 end.
 
 Ltac CongR :=
@@ -279,21 +279,21 @@ repeat
       apply 等长的同一性 in H; smart_subst'
    | H:(Bet ?X1 ?X2 ?X1) |- _ =>
       apply  中间性的同一律 in H; smart_subst'
-   | H:(中点 ?X ?Y ?Y) |- _ => apply l7_3 in H; smart_subst'
+   | H:(中点 ?X ?Y ?Y) |- _ => apply M是AA中点则M与A重合 in H; smart_subst'
    | H : Bet ?A ?B ?C, H2 : Bet ?B ?A ?C |- _ =>
      let T := fresh in not_exist_hyp (A=B); assert (T : 双中间性推出点重合 A B C H H2); smart_subst'
    | H : 中点 ?P ?A ?P1, H2 : 中点 ?P ?A ?P2 |- _ =>
-     let T := fresh in not_exist_hyp (P1=P2); assert (T : symmetric_point_uniqueness A P P1 P2 H H2); smart_subst'
+     let T := fresh in not_exist_hyp (P1=P2); assert (T : 中点组的唯一性1 A P P1 P2 H H2); smart_subst'
    | H : 中点 ?A ?P ?X, H2 : 中点 ?A ?Q ?X |- _ =>
-     let T := fresh in not_exist_hyp (P=Q); assert (T : l7_9 P Q A X H H2); smart_subst'
+     let T := fresh in not_exist_hyp (P=Q); assert (T : 中点组的唯一性2 P Q A X H H2); smart_subst'
    | H : 中点 ?M ?A ?A |- _ =>
-     let T := fresh in not_exist_hyp (M=A); assert (T : l7_3 M A H); smart_subst'
+     let T := fresh in not_exist_hyp (M=A); assert (T : M是AA中点则M与A重合 M A H); smart_subst'
    | H : 中点 ?A ?P ?P', H2 : 中点 ?B ?P ?P' |- _ =>
-     let T := fresh in not_exist_hyp (A=B); assert (T := l7_17 P P' A B H H2); smart_subst'
+     let T := fresh in not_exist_hyp (A=B); assert (T := 中点的唯一性1 P P' A B H H2); smart_subst'
    | H : 中点 ?A ?B ?A |- _ =>
-     let T := fresh in not_exist_hyp (A=B); assert (T := is_midpoint_id_2 A B H); smart_subst'
+     let T := fresh in not_exist_hyp (A=B); assert (T := A是BA中点则A与B重合 A B H); smart_subst'
    | H : 中点 ?A ?A ?B |- _ =>
-     let T := fresh in not_exist_hyp (A=B); assert (T := is_midpoint_id A B H); smart_subst'
+     let T := fresh in not_exist_hyp (A=B); assert (T := A是AB中点则A与B重合 A B H); smart_subst'
 end.
 
 Ltac search_contradiction' :=
@@ -337,7 +337,7 @@ Lemma per_dec : forall A B C, Per A B C \/ ~ Per A B C.
 Proof.
     intros.
     unfold Per.
-    elim (symmetric_point_construction C B);intros C' HC'.
+    elim (构造对称点 C B);intros C' HC'.
     elim (等长的决定性 A C A C');intro.
       left.
       exists C'.
@@ -345,7 +345,7 @@ Proof.
     right.
     intro.
     decompose [ex and] H0;clear H0.
-    assert (C'=x) by (apply symmetric_point_uniqueness with C B;assumption).
+    assert (C'=x) by (apply 中点组的唯一性1 with C B;assumption).
     subst.
     intuition.
 Qed.
@@ -356,7 +356,7 @@ Proof.
     intros.
     ex_and H C'.
     assert (exists A', 中点 B A A').
-      apply symmetric_point_construction.
+      apply 构造对称点.
     ex_and H1 A'.
     exists A'.
     split.
@@ -364,9 +364,9 @@ Proof.
     eapply 等长的传递性.
       apply 等长的交换性.
       apply H0.
-    eapply l7_13.
+    eapply l7_13_同中点组两侧等长.
       apply H.
-    apply l7_2.
+    apply M是AB中点则M是BA中点.
     assumption.
 Qed.
 
@@ -418,9 +418,9 @@ Proof.
     ex_and H B'.
     exists C.
     split.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
-    assert (B' = C') by (eapply symmetric_point_uniqueness;eauto).
+    assert (B' = C') by (eapply 中点组的唯一性1;eauto).
     subst B'.
     Cong.
 Qed.
@@ -431,7 +431,7 @@ Proof.
     intros.
     exists B.
     split.
-      apply l7_3_2.
+      apply A是AA中点.
     Cong.
 Qed.
 
@@ -441,11 +441,11 @@ Proof.
     intros.
     ex_and H C'.
     ex_and H0 C''.
-    assert (C'=C'') by (eapply symmetric_point_uniqueness;eauto).
+    assert (C'=C'') by (eapply 中点组的唯一性1;eauto).
     subst C''.
     assert (C = C') by (eapply l4_19;eauto).
     subst C'.
-    apply l7_3.
+    apply M是AA中点则M与A重合.
     assumption.
 Qed.
 
@@ -455,10 +455,10 @@ Hint Resolve l8_5 : perp.
 
 Ltac let_symmetric C P A :=
 let id1:=fresh in (assert (id1:(exists A', 中点 P A A'));
-[apply symmetric_point_construction|ex_and id1 C]).
+[apply 构造对称点|ex_and id1 C]).
 
 Ltac symmetric B' A B :=
-assert(sp:= symmetric_point_construction B A); ex_and sp B'.
+assert(sp:= 构造对称点 B A); ex_and sp B'.
 
 Section T8_3.
 
@@ -485,7 +485,7 @@ Proof.
     assert (Cong A C' A' C').
       unfold Per in H4.
       ex_and H4 Z.
-      assert (A' = Z) by (eapply (symmetric_point_uniqueness A C A');auto).
+      assert (A' = Z) by (eapply (中点组的唯一性1 A C A');auto).
       subst Z.
       Cong.
     unfold 中点 in *.
@@ -675,7 +675,7 @@ Proof.
     induction H1.
       assert (Bet B C' D').
         eapply l7_15.
-          eapply l7_3_2.
+          eapply A是AA中点.
           apply H0.
           apply H7.
         assumption.
@@ -693,7 +693,7 @@ Proof.
         eapply l7_15.
           apply H0.
           apply H7.
-          apply l7_3_2.
+          apply A是AA中点.
         assumption.
       assert (Cong C D C' D') by (eapply l4_3 with B B;Between;Cong).
       assert(内五线段形式 B D C A B D' C' A) by (unfold 内五线段形式;repeat split;Between;Cong).
@@ -702,7 +702,7 @@ Proof.
     assert (Bet D' B C').
       eapply l7_15.
         apply H7.
-        eapply l7_3_2.
+        eapply A是AA中点.
         apply H0.
       assumption.
     assert (Cong C D C' D') by (eapply 两组连续三点分段等则全体等 with B B;Between;Cong).
@@ -1011,7 +1011,7 @@ Hint Resolve perp_sym perp_left_comm perp_right_comm perp_comm per_perp_in per_p
              perp_in_per perp_in_left_comm perp_in_right_comm perp_in_comm perp_in_sym : perp.
 
 Ltac double A B A' :=
-   assert (mp:= symmetric_point_construction A B);
+   assert (mp:= 构造对称点 A B);
    elim mp; intros A' ; intro; clear mp.
 
 Section T8_4.
@@ -1189,7 +1189,7 @@ Proof.
     unfold Per in H1.
     ex_and H1 C'.
     assert (C = C' \/ 中点 A C C').
-      apply l7_20.
+      apply 共线点间距相同要么重合要么中点.
         ColR.
         assumption.
     induction H4;treat_equalities; intuition.
@@ -1362,14 +1362,14 @@ Proof.
         apply midpoint_bet.
         assumption.
         apply 等长的交换性.
-        apply midpoint_cong.
-        apply l7_2.
+        apply 中点蕴含等长.
+        apply M是AB中点则M是BA中点.
         apply H5.
         apply midpoint_bet.
         assumption.
       apply 等长的交换性.
-      apply midpoint_cong.
-      apply l7_2.
+      apply 中点蕴含等长.
+      apply M是AB中点则M是BA中点.
       assumption.
     subst H''.
     assert(内五线段形式 H B H' A H B H' C).
@@ -1404,10 +1404,10 @@ Proof.
     unfold Per in H.
     ex_and H C''.
     assert (C' = C'').
-      eapply l7_9.
-        apply l7_2.
+      eapply 中点组的唯一性2.
+        apply M是AB中点则M是BA中点.
         apply H0.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     subst C''.
     assumption.
@@ -1420,11 +1420,11 @@ intros.
 induction(共线的决定性 A B X).
 left.
 assert(A = B \/ 中点 X A B).
-apply l7_20; Col.
+apply 共线点间距相同要么重合要么中点; Col.
 Cong.
 induction H3.
 contradiction.
-apply (l7_17 A B); auto.
+apply (中点的唯一性1 A B); auto.
 right.
 split; auto.
 assert(Col M A B).
@@ -1566,26 +1566,26 @@ Proof.
       unfold 三角形全等.
       repeat split.
         apply 等长的伪自反性.
-        eapply l7_13.
+        eapply l7_13_同中点组两侧等长.
           unfold 中点.
           split.
             apply H3.
-          apply midpoint_cong.
+          apply 中点蕴含等长.
           assumption.
         assumption.
-      eapply l7_13.
-        apply l7_2.
+      eapply l7_13_同中点组两侧等长.
+        apply M是AB中点则M是BA中点.
         apply H3.
       assumption.
     assert(中点 B' D' C').
-      eapply symmetry_preserves_midpoint.
+      eapply 对称保持中点.
         apply H4.
         apply H3.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H1.
       assumption.
     assert(中点 P' C D').
-      eapply symmetry_preserves_midpoint.
+      eapply 对称保持中点.
         apply H1.
         apply H5.
         apply H4.
@@ -1597,44 +1597,44 @@ Proof.
     unfold Per in H7.
     ex_and H7 D''.
     assert (D''= D).
-      eapply symmetric_point_uniqueness.
+      eapply 中点组的唯一性1.
         apply H7.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     subst D''.
     unfold Per in H8.
     ex_and H8 D''.
     assert (D' = D'').
-      eapply symmetric_point_uniqueness.
-        apply l7_2.
+      eapply 中点组的唯一性1.
+        apply M是AB中点则M是BA中点.
         apply H9.
       assumption.
     subst D''.
     assert (中点 P C' D).
-      eapply symmetry_preserves_midpoint.
-        apply l7_2.
+      eapply 对称保持中点.
+        apply M是AB中点则M是BA中点.
         apply H1.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H5.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H4.
       assumption.
     assert (Cong C D C' D').
-      eapply l7_13.
+      eapply l7_13_同中点组两侧等长.
         apply H1.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     assert (Cong C' D C D').
-      eapply l7_13.
-        apply l7_2.
+      eapply l7_13_同中点组两侧等长.
+        apply M是AB中点则M是BA中点.
         apply H1.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     assert(Cong P D P' D').
-      eapply l7_13.
-        apply l7_2.
+      eapply l7_13_同中点组两侧等长.
+        apply M是AB中点则M是BA中点.
         apply H5.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     assert (Cong P D P' C).
       eapply 等长的传递性.
@@ -1650,7 +1650,7 @@ Proof.
         apply midpoint_bet.
         assumption.
         apply midpoint_bet.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
         apply 等长的右交换性.
         assumption.
@@ -1658,7 +1658,7 @@ Proof.
         apply 等长的交换性.
         assumption.
       apply 等长的右交换性.
-      apply midpoint_cong.
+      apply 中点蕴含等长.
       assumption.
     assert (Cong P B P' B).
       eapply l4_2.
@@ -1674,12 +1674,12 @@ Proof.
     intro.
     subst P.
     assert (C = D).
-      eapply symmetric_point_uniqueness.
+      eapply 中点组的唯一性1.
         apply H1.
       assumption.
     subst D.
     assert (B = C).
-      apply l7_3.
+      apply M是AA中点则M与A重合.
       assumption.
     subst C.
     absurde.
@@ -1729,15 +1729,15 @@ Lemma l8_18_existence : forall A B C, ~ Col A B C -> exists X, Col A B X /\ Perp
 Proof.
     intros.
     prolong B A Y A C.
-    assert (exists P, 中点 P C Y) by (apply l7_25 with A;Cong).
+    assert (exists P, 中点 P C Y) by (apply 一点与两点等距则该两点存在中点 with A;Cong).
     ex_and H2 P.
-    assert (Per A P Y) by (unfold Per;exists C;auto using l7_2).
+    assert (Per A P Y) by (unfold Per;exists C;auto using M是AB中点则M是BA中点).
     prolong A Y Z Y P.
     prolong P Y Q Y A.
     prolong Q Z Q' Q Z.
     assert (中点 Z Q Q') by (unfold 中点;split;Cong).
     prolong Q' Y C' Y C.
-    assert (exists X, 中点 X C C') by (apply l7_25 with Y;Cong).
+    assert (exists X, 中点 X C C') by (apply 一点与两点等距则该两点存在中点 with Y;Cong).
     ex_and H13 X.
     assert (外五线段形式 A Y Z Q Q Y P A) by (unfold 外五线段形式;repeat split;Between;Cong).
     show_distinct A Y.
@@ -1752,12 +1752,12 @@ Proof.
     unfold Per in H19.
     ex_and H19 Q''.
     assert (Q' = Q'').
-      eapply symmetric_point_uniqueness.
+      eapply 中点组的唯一性1.
         apply H10.
       assumption.
     subst Q''.
     assert (hy:Bet Z Y X).
-      apply (l7_22 Q C Q' C' Y Z X);Cong.
+      apply (M是AB中点则M是BA中点2 Q C Q' C' Y Z X);Cong.
       assert (T:=中间性的外传递性1 C P Y Q).
       assert_bets.
       apply 中间性的对称性.
@@ -1810,7 +1810,7 @@ Proof.
     assert (C <> C').
       intro.
       subst C'.
-      apply l7_3 in H14.
+      apply M是AA中点则M与A重合 in H14.
       subst X.
       assert (Col Z Q Q') by ColR.
       assert (Y <> Z).
@@ -1906,7 +1906,7 @@ Proof.
     ex_and H3 C'.
     double C A C''.
     assert (exists P, 中点 P C' C'').
-      eapply l7_25.
+      eapply 一点与两点等距则该两点存在中点.
       unfold 中点 in *.
       spliter.
       eapply 等长的传递性.
@@ -1918,11 +1918,11 @@ Proof.
     assert (Per X A P).
       eapply l8_20_1.
         apply HH.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H7.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H5.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     assert (X <> C).
       intro.
@@ -1932,23 +1932,23 @@ Proof.
     assert (A <> P).
       eapply l8_20_2.
         apply HH.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H7.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       assumption.
     assert (exists T, Bet P T C /\ Bet A T X).
       eapply l3_17_三中间性推交点存在性.
         apply midpoint_bet.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H5.
         apply midpoint_bet.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H3.
       apply midpoint_bet.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       apply H7.
     ex_and H10 T.
     induction (两点重合的决定性 A X).
@@ -1958,11 +1958,11 @@ Proof.
       apply 中间性的同一律 in H11.
       subst T.
       assert (C'= C'').
-        eapply symmetric_point_uniqueness.
+        eapply 中点组的唯一性1.
           apply H3.
         assumption.
       subst C''.
-      apply l7_3 in H7.
+      apply M是AA中点则M与A重合 in H7.
       subst P.
       assert (Col A C C') by ColR.
       repeat split;Col;Between.
@@ -2051,7 +2051,7 @@ Proof.
     assert (B <> Q).
       intro.
       subst Q.
-      apply l7_3 in H7.
+      apply M是AA中点则M与A重合 in H7.
       subst R.
       absurde.
     assert (Per R B X).
@@ -2081,7 +2081,7 @@ Proof.
     double P A P'.
     prolong P' X R' X R.
     assert (exists M, 中点 M R R').
-      eapply l7_25.
+      eapply 一点与两点等距则该两点存在中点.
       apply 等长的对称性.
       apply H16.
     ex_elim H17 M.
@@ -2097,7 +2097,7 @@ Proof.
       unfold Per in H10.
       ex_and H10 P''.
       assert (P'=P'').
-        eapply symmetric_point_uniqueness.
+        eapply 中点组的唯一性1.
           apply H14.
         apply H10.
       subst P''.
@@ -2107,13 +2107,13 @@ Proof.
       subst P'.
       apply 等长的同一性 in H19.
       subst X.
-      apply l7_3 in H14.
+      apply M是AA中点则M与A重合 in H14.
       subst P.
       absurde.
     assert (P <> P').
       intro.
       subst P'.
-      eapply l7_3 in H14.
+      eapply M是AA中点则M与A重合 in H14.
       subst P.
       absurde.
     assert(~Col X P P').
@@ -2140,7 +2140,7 @@ Proof.
       apply H13.
       assumption.
     assert (Bet A X M).
-      apply (l7_22 P R P' R'); trivial.
+      apply (M是AB中点则M是BA中点2 P R P' R'); trivial.
       apply 等长的对称性.
       assumption.
     assert (X <> R).
@@ -2208,7 +2208,7 @@ Proof.
           auto.
         intro.
         subst M.
-        apply (symmetric_point_uniqueness R R R R')  in H18.
+        apply (中点组的唯一性1 R R R R')  in H18.
           subst R'.
           apply H22.
           eapply 共线的传递性2.
@@ -2219,7 +2219,7 @@ Proof.
           unfold Col.
           right; right.
           assumption.
-        eapply l7_3_2.
+        eapply A是AA中点.
         apply 等价共线ACB.
         assumption.
       apply per_perp in H10.
@@ -2281,13 +2281,13 @@ Proof.
           apply midpoint_bet.
           apply H18.
           eapply 等长的传递性.
-            apply midpoint_cong.
-            apply l7_2.
+            apply 中点蕴含等长.
+            apply M是AB中点则M是BA中点.
             apply H14.
           eapply 等长的传递性.
             apply H3.
           apply 等长的交换性.
-          apply midpoint_cong.
+          apply 中点蕴含等长.
           assumption.
         assumption.
         assumption.
@@ -2376,7 +2376,7 @@ Proof.
       induction H10.
         exists A.
         subst B.
-        eapply l7_3_2.
+        eapply A是AA中点.
       treat_equalities.
       apply perp_distinct in H1.
       spliter.
@@ -2430,7 +2430,7 @@ Proof.
     assert (Cong A R P B).
       apply (perp_cong A B P R X); assumption.
     assert (中点 X A B /\ 中点 X P R).
-      apply (l7_21 A P B R X); Col; Cong.
+      apply (四点对边等长则对角线交点平分对角线 A P B R X); Col; Cong.
     spliter. exists X.
     assumption.
 Qed.
@@ -2447,7 +2447,7 @@ Proof.
     induction (两点重合的决定性 A B).
       subst B.
       exists A.
-      apply l7_3_2.
+      apply A是AA中点.
     cut(exists Q, Perp A B B Q).
       intro.
       ex_elim H0 Q.
@@ -2517,7 +2517,7 @@ Proof.
         auto.
         assumption.
       assumption.
-    apply l7_21; Col; Cong.
+    apply 四点对边等长则对角线交点平分对角线; Col; Cong.
     intro; treat_equalities; Col.
 Qed.
 
@@ -2708,7 +2708,7 @@ Proof.
       assumption.
     intros.
     assert (中点 X A B /\ 中点 X P R).
-      apply (l7_21 A P B R X).
+      apply (四点对边等长则对角线交点平分对角线 A P B R X).
         intro.
         apply H10.
         apply 等价共线ACB.
@@ -2731,7 +2731,7 @@ Qed.
 Lemma col_per2__per : forall A B C P X, A <> B -> Col A B C -> Per A X P -> Per B X P -> Per C X P.
 Proof.
     intros.
-    destruct (symmetric_point_construction P X) as [Q].
+    destruct (构造对称点 P X) as [Q].
     exists Q; split.
       assumption.
     apply (l4_17 A B); try apply per_double_cong with X; assumption.

@@ -276,36 +276,36 @@ repeat
         assert (T:= 小于等于推出不重合 A B C D H2 H);clean_reap_hyps
       | H:Le ?A ?B ?C ?D, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= 小于等于推出不重合 A B C D (swap_diff B A H2) H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D (不重合的对称性 B A H2) H);clean_reap_hyps
       | H:Lt ?A ?B ?C ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
         assert (T:= 小于推出不重合 A B C D H);clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
-       assert (T:= midpoint_distinct_1 I A B H2 H);
+       assert (T:= 严格中点组推论1 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
-       assert (T:= midpoint_distinct_1 I A B (swap_diff B A H2) H);
+       assert (T:= 严格中点组推论1 I A B (不重合的对称性 B A H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?I<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
-       assert (T:= midpoint_distinct_2 I A B H2 H);
+       assert (T:= 严格中点组推论2 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?A<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
-       assert (T:= midpoint_distinct_2 I A B (swap_diff A I H2) H);
+       assert (T:= 严格中点组推论2 I A B (不重合的对称性 A I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?I<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
-       assert (T:= midpoint_distinct_3 I A B H2 H);
+       assert (T:= 严格中点组推论3 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?B<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
-       assert (T:= midpoint_distinct_3 I A B (swap_diff B I H2) H);
+       assert (T:= 严格中点组推论3 I A B (不重合的对称性 B I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:Per ?A ?B ?C, H2 : ?A<>?B |- _ =>
@@ -313,13 +313,13 @@ repeat
         assert (T:= per_distinct A B C H H2); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct A B C H (swap_diff B A H2)); clean_reap_hyps
+        assert (T:= per_distinct A B C H (不重合的对称性 B A H2)); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?B<>?C |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
         assert (T:= per_distinct_1 A B C H H2); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?C<>?B |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct_1 A B C H (swap_diff C B H2)); clean_reap_hyps
+        assert (T:= per_distinct_1 A B C H (不重合的对称性 C B H2)); clean_reap_hyps
 
       | H:Perp ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
@@ -1273,7 +1273,7 @@ Proof.
       right.
       induction(两点重合的决定性 A P).
         subst P.
-        apply is_midpoint_id in H0.
+        apply A是AB中点则A与B重合 in H0.
         subst C.
         repeat split.
           assumption.
@@ -1283,22 +1283,22 @@ Proof.
           apply AAB型共线.
         unfold 中点 in H1.
         spliter.
-        apply 中间性蕴含共线.
+        apply 中间性蕴含共线1.
         assumption.
       induction(两点重合的决定性 B P).
         subst P.
-        apply is_midpoint_id in H1.
+        apply A是AB中点则A与B重合 in H1.
         subst D.
         repeat split.
           assumption.
           intro.
           subst C.
-          apply l7_2 in H0.
-          apply is_midpoint_id in H0.
+          apply M是AB中点则M是BA中点 in H0.
+          apply A是AB中点则A与B重合 in H0.
           auto.
           unfold 中点 in H0.
           spliter.
-          apply 中间性蕴含共线 in H0 .
+          apply 中间性蕴含共线1 in H0 .
           Col.
         apply ABA型共线.
       assert(HH0 := H0).
@@ -1306,8 +1306,8 @@ Proof.
       unfold 中点 in H0.
       unfold 中点 in H1.
       spliter.
-      apply 中间性蕴含共线 in H1.
-      apply 中间性蕴含共线 in H0.
+      apply 中间性蕴含共线1 in H1.
+      apply 中间性蕴含共线1 in H0.
       assert(Col B C P).
         eapply 等价共线BCA.
         eapply (共线的传递性2 _ A).
@@ -1332,8 +1332,8 @@ Proof.
             intro.
             subst C.
             assert(A = D).
-              eapply symmetric_point_uniqueness.
-                eapply l7_2.
+              eapply 中点组的唯一性1.
+                eapply M是AB中点则M是BA中点.
                 apply HH0.
               assumption.
             contradiction.
@@ -1370,7 +1370,7 @@ Proof.
       prolong B A B' B A.
       prolong B' P D' B' P.
       assert(中点 C D D').
-        eapply symmetry_preserves_midpoint.
+        eapply 对称保持中点.
           apply H1.
           apply H0.
           split.
@@ -1383,11 +1383,11 @@ Proof.
         eapply per_col.
           apply H.
           assumption.
-        apply 中间性蕴含共线 in H6.
+        apply 中间性蕴含共线1 in H6.
         Col.
       ex_and H3 B''.
       assert(B' = B'').
-        eapply symmetric_point_uniqueness.
+        eapply 中点组的唯一性1.
           split.
             apply H6.
           Cong.
@@ -1417,7 +1417,7 @@ Proof.
           apply H14.
         unfold 中点 in H0.
         spliter.
-        apply 中间性蕴含共线 in H0.
+        apply 中间性蕴含共线1 in H0.
         Col.
         intro.
         treat_equalities.
@@ -1425,14 +1425,14 @@ Proof.
       intro.
       subst D.
       assert(C = D').
-        apply is_midpoint_id.
+        apply A是AB中点则A与B重合.
         assumption.
       subst D'.
       assert(A = B).
-        eapply symmetric_point_uniqueness.
-          apply l7_2.
+        eapply 中点组的唯一性1.
+          apply M是AB中点则M是BA中点.
           apply H0.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         assumption.
       auto.
     prolong E P F E P.
@@ -1444,7 +1444,7 @@ Proof.
     prolong A E A' A E.
     prolong A' P C' A' P.
     assert(中点 F C C').
-      eapply symmetry_preserves_midpoint.
+      eapply 对称保持中点.
         apply H0.
         split.
           apply H7.
@@ -1474,7 +1474,7 @@ Proof.
         unfold Per in H15.
         ex_and H15 A''.
         assert( A' = A'').
-          eapply symmetric_point_uniqueness.
+          eapply 中点组的唯一性1.
             split.
               apply H10.
             Cong.
@@ -1502,10 +1502,10 @@ Proof.
           intro.
           subst D.
           assert (A = B).
-            eapply symmetric_point_uniqueness.
-              apply l7_2.
+            eapply 中点组的唯一性1.
+              apply M是AB中点则M是BA中点.
               apply H0.
-            apply l7_2.
+            apply M是AB中点则M是BA中点.
             assumption.
           auto.
           apply perp_sym.
@@ -1517,7 +1517,7 @@ Proof.
             auto.
             apply perp_left_comm.
             apply H17.
-          apply 中间性蕴含共线 in H7.
+          apply 中间性蕴含共线1 in H7.
           Col.
         Col.
       apply perp_distinct in H17.
@@ -1531,12 +1531,12 @@ Proof.
     intro.
     subst C.
     assert(F = C').
-      apply is_midpoint_id .
+      apply A是AB中点则A与B重合 .
       assumption.
     treat_equalities.
     assert(A = E).
-      eapply symmetric_point_uniqueness.
-        apply l7_2.
+      eapply 中点组的唯一性1.
+        apply M是AB中点则M是BA中点.
         apply H0.
       split.
         apply 中间性的对称性.
@@ -1552,7 +1552,7 @@ Lemma l12_18_a :
   Par A B C D.
 Proof.
     intros.
-    assert(中点 P A C /\ 中点 P B D) by (apply l7_21; assumption).
+    assert(中点 P A C /\ 中点 P B D) by (apply 四点对边等长则对角线交点平分对角线; assumption).
     spliter.
     eapply l12_17.
       intro.
@@ -1570,7 +1570,7 @@ Lemma l12_18_b :
   Par B C D A.
 Proof.
     intros.
-    assert(中点 P A C /\ 中点 P B D) by (apply l7_21; assumption).
+    assert(中点 P A C /\ 中点 P B D) by (apply 四点对边等长则对角线交点平分对角线; assumption).
     eapply l12_18_a.
       assumption.
       Cong.
@@ -1586,8 +1586,8 @@ Proof.
         intro.
         subst P.
         spliter.
-        apply l7_2 in H5.
-        apply is_midpoint_id in H5.
+        apply M是AB中点则M是BA中点 in H5.
+        apply A是AB中点则A与B重合 in H5.
         subst C.
         apply H1.
         apply ABA型共线.
@@ -1608,7 +1608,7 @@ Lemma l12_18_c :
   TS B D A C.
 Proof.
     intros.
-    assert(中点 P A C /\ 中点 P B D) by (apply l7_21; assumption).
+    assert(中点 P A C /\ 中点 P B D) by (apply 四点对边等长则对角线交点平分对角线; assumption).
     unfold TS.
     repeat split.
       intro.
@@ -1623,7 +1623,7 @@ Proof.
         intro.
         subst P.
         spliter.
-        apply is_midpoint_id in H5.
+        apply A是AB中点则A与B重合 in H5.
         subst C.
         apply H1.
         apply ABA型共线.
@@ -1641,8 +1641,8 @@ Proof.
         intro.
         subst P.
         spliter.
-        apply l7_2 in H5.
-        apply is_midpoint_id in H5.
+        apply M是AB中点则M是BA中点 in H5.
+        apply A是AB中点则A与B重合 in H5.
         subst C.
         apply H1.
         apply ABA型共线.
@@ -1663,7 +1663,7 @@ Lemma l12_18_d :
  TS A C B D.
 Proof.
     intros.
-    assert(中点 P A C /\ 中点 P B D) by (apply l7_21; assumption).
+    assert(中点 P A C /\ 中点 P B D) by (apply 四点对边等长则对角线交点平分对角线; assumption).
     eapply (l12_18_c _ _ _ _ P).
       Cong.
       Cong.
@@ -1679,7 +1679,7 @@ Proof.
         intro.
         subst P.
         spliter.
-        apply is_midpoint_id in H5.
+        apply A是AB中点则A与B重合 in H5.
         subst C.
         contradiction.
         Col.
@@ -1751,7 +1751,7 @@ Proof.
           Col.
       exists T.
       split.
-        apply 中间性蕴含共线 in H8.
+        apply 中间性蕴含共线1 in H8.
         Col.
       induction H6.
         assert(HH:= outer_pasch C D T A B (中间性的对称性 _ _ _ H8) (中间性的对称性 _ _ _ H6)).
@@ -1880,13 +1880,13 @@ Proof.
       treat_equalities.
       contradiction.
     assert(中点 M A C /\ 中点 M B D').
-      apply l7_21.
+      apply 四点对边等长则对角线交点平分对角线.
         assumption.
         assumption.
         Cong.
         Cong.
         Col.
-      apply 中间性蕴含共线 in H15.
+      apply 中间性蕴含共线1 in H15.
       Col.
     spliter.
     assert(Par A B C D').
@@ -1953,7 +1953,7 @@ Proof.
               treat_equalities.
               unfold 等角 in H3.
               tauto.
-              apply 中间性蕴含共线 in H1.
+              apply 中间性蕴含共线1 in H1.
               Col.
             Col.
           exists A.
@@ -1963,13 +1963,13 @@ Proof.
         apply l9_2.
         apply l9_8_2 with B.
           apply col_two_sides with P.
-            apply 中间性蕴含共线 in H1.
+            apply 中间性蕴含共线1 in H1.
             Col.
             assumption.
           apply invert_two_sides.
           apply H10.
         apply col_one_side with P.
-          apply 中间性蕴含共线 in H1.
+          apply 中间性蕴含共线1 in H1.
           Col.
           auto.
         apply invert_one_side.
@@ -1989,7 +1989,7 @@ Proof.
       auto.
       apply par_symmetry.
       apply H9.
-    apply 中间性蕴含共线 in H1.
+    apply 中间性蕴含共线1 in H1.
     Col.
 Qed.
 
@@ -2021,7 +2021,7 @@ Proof.
     apply par_symmetry.
     apply l12_22_aux with P; auto.
       apply (col_one_side _ A).
-        apply 中间性蕴含共线 in H4.
+        apply 中间性蕴含共线1 in H4.
         Col.
         auto.
       apply one_side_symmetry.
@@ -2136,7 +2136,7 @@ Proof.
       apply inangle__lea, (in_angle_trans2 A); trivial.
       apply os_ts__inangle; trivial.
       apply invert_one_side, inangle_one_side with C; Col.
-      intro; apply HNCol1, 中间性蕴含共线, bet_in_angle_bet with T; trivial.
+      intro; apply HNCol1, 中间性蕴含共线1, bet_in_angle_bet with T; trivial.
       apply col_two_sides_bet with P'; Col.
     - apply lea_left_comm, inangle__lea.
       destruct (共线的决定性 B A T).
@@ -2167,7 +2167,7 @@ Ltac finish := repeat match goal with
  | |- Per ?A ?B ?C => Perp
  | |- Cong ?A ?B ?C ?D => Cong
  | |- 中点 ?A ?B ?C => 中点
- | |- ?A<>?B => apply swap_diff;assumption
+ | |- ?A<>?B => apply 不重合的对称性;assumption
  | |- _ => try assumption
 end.
 *)
@@ -2250,7 +2250,7 @@ Proof.
       eapply (col_per_perp _ _ _ C) in H12; auto.
         apply perp_right_comm.
         assumption.
-      apply 中间性蕴含共线 in H11.
+      apply 中间性蕴含共线1 in H11.
       Col.
     assert(B <> T).
       intro.
@@ -2284,15 +2284,15 @@ Proof.
       Perp.
       intro.
       subst T.
-      apply is_midpoint_id in H15.
+      apply A是AB中点则A与B重合 in H15.
       contradiction.
       intro.
       subst T.
-      apply l7_2 in H15.
-      apply is_midpoint_id in H15.
+      apply M是AB中点则M是BA中点 in H15.
+      apply A是AB中点则A与B重合 in H15.
       apply H10.
       auto.
-    apply 中间性蕴含共线 in H6.
+    apply 中间性蕴含共线1 in H6.
     Col.
 Qed.
 

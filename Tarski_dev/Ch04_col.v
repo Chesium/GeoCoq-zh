@@ -41,7 +41,7 @@ Qed.
 
 End T4_1.
 
-Hint Resolve 中间性蕴含共线 等价共线BCA 等价共线CAB
+Hint Resolve 中间性蕴含共线1 等价共线BCA 等价共线CAB
 等价共线CBA 等价共线BAC 等价共线ACB : col.
 
 Ltac Col := auto 3 with col.
@@ -225,7 +225,7 @@ Proof.
     induction (两点重合的决定性 A B).
       treat_equalities; reflexivity.
     apply (l4_18 A B); Cong.
-    auto using 中间性蕴含共线 with col.
+    auto using 中间性蕴含共线1 with col.
 Qed.
 
 Lemma 不共线则不重合 : forall A B C ,

@@ -562,11 +562,11 @@ Lemma 帕施公理 a b c p q :
   exists x, bet p x b /\ bet q x a.
 Proof. by move=> ? ? ? ? ? ? ? ; apply 帕施公理' with c. Qed.
 
-Lemma 中间性蕴含共线 a b c:
+Lemma 中间性蕴含共线1 a b c:
     bet a b c -> (bet a b c \/ bet b c a \/ bet c a b).
 Proof. by auto. Qed.
 
-Lemma 中间性蕴含共线F a b c :
+Lemma 中间性蕴含共线1F a b c :
   bet a b c -> ~ (bet b a c \/ bet a c b \/ bet c b a) -> False.
 Proof.
 by move=>/bet_symmetry bet nbet; exfalso; apply nbet; rewrite bet; right; right.
@@ -606,7 +606,7 @@ Lemma euclid a b c d t (k1 := betR a d t) (k2 := betR b d c) :
   ~ (bet a b c \/ bet b c a \/ bet c a b) ->
   exists x y, bet a b x /\ bet a c y /\ bet x t y.
 Proof.
-move=> /orP[/betEP[[->->]|->|->] b2 _ _ H|]; try solve[by apply 中间性蕴含共线F in H];
+move=> /orP[/betEP[[->->]|->|->] b2 _ _ H|]; try solve[by apply 中间性蕴含共线1F in H];
 [exists b,c|move=> b1 b2 _ _ _]; by [rewrite !bet_axx|move: b2; apply euclid'].
 Qed.
 

@@ -18,7 +18,7 @@ assert (HPar : Par A C B B1)
 apply (par_not_col_strict _ _ _ _ B) in HPar; Col.
 assert (HNCol1 : ~ Col C B B1) by (apply (par_not_col A C); Col).
 assert (HNCol2 : ~ Col A B B1) by (apply (par_not_col A C); Col).
-destruct (symmetric_point_construction B1 B) as [B2 [HBet HCong]]; assert_diffs.
+destruct (构造对称点 B1 B) as [B2 [HBet HCong]]; assert_diffs.
 assert (HTS1 : TS B A B1 B2)
   by (repeat split; Col; [intro; apply HNCol2; ColR|exists B; Col]).
 assert (HTS2 : TS B A C B2)

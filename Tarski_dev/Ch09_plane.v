@@ -80,36 +80,36 @@ repeat
         assert (T:= 小于等于推出不重合 A B C D H2 H);clean_reap_hyps
       | H:Le ?A ?B ?C ?D, H2 : ?B <> ?A |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
-        assert (T:= 小于等于推出不重合 A B C D (swap_diff B A H2) H);clean_reap_hyps
+        assert (T:= 小于等于推出不重合 A B C D (不重合的对称性 B A H2) H);clean_reap_hyps
       | H:Lt ?A ?B ?C ?D |-_ =>
       let T:= fresh in (not_exist_hyp_comm C D);
         assert (T:= 小于推出不重合 A B C D H);clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?A<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
-       assert (T:= midpoint_distinct_1 I A B H2 H);
+       assert (T:= 严格中点组推论1 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B I A);
-       assert (T:= midpoint_distinct_1 I A B (swap_diff B A H2) H);
+       assert (T:= 严格中点组推论1 I A B (不重合的对称性 B A H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?I<>?A |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
-       assert (T:= midpoint_distinct_2 I A B H2 H);
+       assert (T:= 严格中点组推论2 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?A<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I B A B);
-       assert (T:= midpoint_distinct_2 I A B (swap_diff A I H2) H);
+       assert (T:= 严格中点组推论2 I A B (不重合的对称性 A I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:中点 ?I ?A ?B, H2 : ?I<>?B |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
-       assert (T:= midpoint_distinct_3 I A B H2 H);
+       assert (T:= 严格中点组推论3 I A B H2 H);
        decompose [and] T;clear T;clean_reap_hyps
       | H:中点 ?I ?A ?B, H2 : ?B<>?I |- _ =>
       let T:= fresh in (not_exist_hyp2 I A A B);
-       assert (T:= midpoint_distinct_3 I A B (swap_diff B I H2) H);
+       assert (T:= 严格中点组推论3 I A B (不重合的对称性 B I H2) H);
        decompose [and] T;clear T;clean_reap_hyps
 
       | H:Per ?A ?B ?C, H2 : ?A<>?B |- _ =>
@@ -117,13 +117,13 @@ repeat
         assert (T:= per_distinct A B C H H2); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?B<>?A |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct A B C H (swap_diff B A H2)); clean_reap_hyps
+        assert (T:= per_distinct A B C H (不重合的对称性 B A H2)); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?B<>?C |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
         assert (T:= per_distinct_1 A B C H H2); clean_reap_hyps
       | H:Per ?A ?B ?C, H2 : ?C<>?B |- _ =>
       let T:= fresh in (not_exist_hyp_comm A C);
-        assert (T:= per_distinct_1 A B C H (swap_diff C B H2)); clean_reap_hyps
+        assert (T:= per_distinct_1 A B C H (不重合的对称性 C B H2)); clean_reap_hyps
 
       | H:Perp ?A ?B ?C ?D |- _ =>
       let T:= fresh in (not_exist_hyp2 A B C D);
@@ -321,10 +321,10 @@ Proof with Col.
         assert (M <> R).
           intro.
           subst R.
-          eapply (symmetric_point_uniqueness) in H12.
+          eapply (中点组的唯一性1) in H12.
             apply H19.
             apply H12.
-          apply l7_3_2.
+          apply A是AA中点.
         apply 等价共线CAB.
         ColR.
       Between.
@@ -362,7 +362,7 @@ Qed.
 Lemma sym_sym : forall A C A', 中点 C A A' -> 对称P A' A C.
 Proof.
     intros.
-    apply l7_2.
+    apply M是AB中点则M是BA中点.
     assumption.
 Qed.
 *)
@@ -395,10 +395,10 @@ Lemma per_mid_per : forall A B X Y M,
 Proof.
     intros.
     assert (Cong A X B Y).
-      eapply l7_13.
-        apply l7_2.
+      eapply l7_13_同中点组两侧等长.
+        apply M是AB中点则M是BA中点.
         apply H1.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     split.
       assumption.
@@ -406,9 +406,9 @@ Proof.
     ex_and H0 B'.
     double A B A'.
     assert (Cong B X A Y).
-      eapply l7_13.
+      eapply l7_13_同中点组两侧等长.
         apply H1.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     assert (外五线段形式 B A B' X A B A' Y).
       unfold 外五线段形式.
@@ -456,7 +456,7 @@ Proof.
     intro.
     subst B'.
     assert (A = B).
-      eapply l7_9.
+      eapply 中点组的唯一性2.
         apply H0.
       assumption.
     contradiction.
@@ -472,7 +472,7 @@ Proof.
     intros.
     induction (两点重合的决定性 R S).
       subst S.
-      apply l7_3 in H5.
+      apply M是AA中点则M与A重合 in H5.
       subst R.
       unfold TS in H0.
       assert (~ Col A P Q).
@@ -499,12 +499,12 @@ Proof.
             absurde.
             intro.
             subst C'.
-            apply l7_2 in H6.
-            eapply (symmetric_point_uniqueness _ _ M) in H6.
+            apply M是AB中点则M是BA中点 in H6.
+            eapply (中点组的唯一性1 _ _ M) in H6.
               apply H10.
               apply sym_equal.
               apply H6.
-            apply l7_3_2.
+            apply A是AA中点.
           induction H12.
             assert (Bet U M C).
               eapply 中间性的交换传递性1.
@@ -536,7 +536,7 @@ Proof.
         repeat split.
           intro.
           subst U.
-          eapply is_midpoint_id in H6.
+          eapply A是AB中点则A与B重合 in H6.
           subst C'.
           apply H11.
           reflexivity.
@@ -657,9 +657,9 @@ Proof.
         assumption.
       assumption.
     ex_and H12 M'.
-    apply l7_2 in H12.
+    apply M是AB中点则M是BA中点 in H12.
     assert (M = M').
-      eapply l7_17.
+      eapply 中点的唯一性1.
         apply H5.
       apply H12.
     subst M'.
@@ -681,20 +681,20 @@ Proof.
           eapply l7_15.
             apply H5.
             apply H6.
-            apply l7_2.
+            apply M是AB中点则M是BA中点.
             apply H13.
           assumption.
         left.
         eapply l7_15.
           apply H5.
-          apply l7_2.
+          apply M是AB中点则M是BA中点.
           apply H13.
           apply H6.
         assumption.
       left.
       eapply l7_15.
         apply H5.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H13.
         apply H6.
       eapply 中间性的交换传递性2.
@@ -706,9 +706,9 @@ Proof.
     repeat split.
       eapply sym_preserve_diff.
         apply H15.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H6.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
       intro.
       subst R.
@@ -719,19 +719,19 @@ Proof.
       eapply l5_1.
         apply H10.
         eapply l7_15.
-          apply l7_2.
+          apply M是AB中点则M是BA中点.
           apply H12.
           apply H13.
-          apply l7_2.
+          apply M是AB中点则M是BA中点.
           apply H6.
         assumption.
       assumption.
     left.
     eapply 中间性的交换传递性2.
       eapply l7_15.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H12.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H6.
         apply H13.
       assumption.
@@ -746,11 +746,11 @@ Proof.
     assert_bets.
     assert_cols.
     assert (Col A C C') by ColR.
-    assert (C = C' \/ 中点 A C C') by (eapply l7_20;Col).
+    assert (C = C' \/ 中点 A C C') by (eapply 共线点间距相同要么重合要么中点;Col).
     induction H6.
       treat_equalities.
       intuition.
-    eapply l7_17;eauto.
+    eapply 中点的唯一性1;eauto.
 Qed.
 
 
@@ -799,9 +799,9 @@ Proof.
       assumption.
       assumption.
       assumption.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       apply H4.
-    apply l7_2.
+    apply M是AB中点则M是BA中点.
     assumption.
 Qed.
 
@@ -919,7 +919,7 @@ Proof.
       induction (两点重合的决定性 R T).
         subst T.
         clear H9 H3.
-        apply (out_out_two_sides P Q A C U V R); auto using l6_6, 中间性蕴含共线 with col.
+        apply (out_out_two_sides P Q A C U V R); auto using l6_6, 中间性蕴含共线1 with col.
       assert (Perp R T A R) by (eapply perp_col2  with P Q;Col).
       apply perp_perp_in in H12.
       apply perp_in_comm in H12.
@@ -1013,7 +1013,7 @@ Proof.
       absurde.
     assert (TS R S U U').
       eapply mid_two_sides.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H18.
         intro.
         apply H13.
@@ -1041,7 +1041,7 @@ Proof.
       right; right.
       apply midpoint_bet.
       apply H18.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
       apply ABA型共线.
     assert (forall X Y, 中点 M X Y -> (Out R X A <-> Out S C Y)).
@@ -1051,7 +1051,7 @@ Proof.
         assumption.
         apply ABA型共线.
         assumption.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     assert (Out R U A <-> Out S C U').
       eapply H23.
@@ -1149,9 +1149,9 @@ Proof.
         apply 等价共线CAB.
         assumption.
         assumption.
-        apply l7_2.
+        apply M是AB中点则M是BA中点.
         apply H10.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     destruct H11.
     assert (Out C' D C).
@@ -1198,7 +1198,7 @@ Proof.
       apply l9_3 with A M R; trivial.
       induction (两点重合的决定性 A' C').
         subst C'.
-        apply l7_3 in H10.
+        apply M是AA中点则M与A重合 in H10.
         subst A'.
         apply 等价共线CAB.
         assumption.
@@ -1626,8 +1626,8 @@ Proof.
       eapply (共线的传递性2 _ A').
         intro.
         subst A'.
-        apply l7_2 in H0.
-        eapply is_midpoint_id in H0.
+        apply M是AB中点则M是BA中点 in H0.
+        eapply A是AB中点则A与B重合 in H0.
         subst A.
         apply H.
         assumption.
@@ -1662,8 +1662,8 @@ Proof.
         eapply (共线的传递性2 _ C).
           intro.
           subst C.
-          apply l7_2 in H0.
-          apply is_midpoint_id in H0.
+          apply M是AB中点则M是BA中点 in H0.
+          apply A是AB中点则A与B重合 in H0.
           subst A.
           apply H.
           assumption.
@@ -2209,7 +2209,7 @@ Proof.
             apply 等价共线BAC.
             assumption.
           apply 等价共线BCA.
-          apply 中间性蕴含共线.
+          apply 中间性蕴含共线1.
           assumption.
         exists A.
         split.
@@ -2231,10 +2231,10 @@ Proof.
       eapply (共线的传递性2 _ Z').
         auto.
         apply 等价共线BCA.
-        apply 中间性蕴含共线.
+        apply 中间性蕴含共线1.
         assumption.
       apply 等价共线BCA.
-      apply 中间性蕴含共线.
+      apply 中间性蕴含共线1.
       assumption.
     assert(OS Y A Z' T).
       eapply out_one_side.
@@ -2244,7 +2244,7 @@ Proof.
         apply 等价共线CAB.
         eapply (共线的传递性2 _ Z').
           auto.
-          apply 中间性蕴含共线 in H6.
+          apply 中间性蕴含共线1 in H6.
           apply 等价共线BCA.
           assumption.
         apply 等价共线BCA.
@@ -2272,7 +2272,7 @@ Proof.
             apply AAB型共线.
             apply 等价共线BAC.
             assumption.
-          apply 中间性蕴含共线 in H6.
+          apply 中间性蕴含共线1 in H6.
           apply 等价共线ACB.
           assumption.
         apply l6_6.
@@ -2280,14 +2280,14 @@ Proof.
           intro.
           subst T.
           apply H11.
-          apply 中间性蕴含共线.
+          apply 中间性蕴含共线1.
           assumption.
         apply 中间性的对称性.
         assumption.
       assert(OS A Z Y T).
         apply invert_one_side.
         eapply (col_one_side _ Z').
-          apply 中间性蕴含共线 in H6.
+          apply 中间性蕴含共线1 in H6.
           apply 等价共线ACB.
           assumption.
           auto.
@@ -2302,7 +2302,7 @@ Proof.
             assumption.
             apply 等价共线BCA.
             assumption.
-          apply 中间性蕴含共线 in H6.
+          apply 中间性蕴含共线1 in H6.
           apply 等价共线BAC.
           assumption.
           unfold OS in H17.
@@ -2442,7 +2442,7 @@ Proof.
       exists P.
       split; Col.
     assert(TS A B T C').
-      apply 中间性蕴含共线 in H4.
+      apply 中间性蕴含共线1 in H4.
       eapply (out_out_two_sides _ _ T C _ _ P); Col.
         apply l9_2.
         assumption.
@@ -2610,11 +2610,11 @@ Proof.
         apply 中间性的同一律 in H3.
         subst X.
         contradiction.
-        apply 中间性蕴含共线 in H.
+        apply 中间性蕴含共线1 in H.
         apply 等价共线CBA.
         assumption.
       apply 等价共线CAB.
-      apply 中间性蕴含共线.
+      apply 中间性蕴含共线1.
       assumption.
     induction H.
       unfold TS in H0.
@@ -2628,10 +2628,10 @@ Proof.
           subst X.
           contradiction.
           apply 等价共线BAC.
-          apply 中间性蕴含共线.
+          apply 中间性蕴含共线1.
           assumption.
         apply 等价共线CAB.
-        apply 中间性蕴含共线.
+        apply 中间性蕴含共线1.
         assumption.
       apply False_ind.
       apply H1.
@@ -2813,9 +2813,9 @@ contradiction.
 Perp.
 induction H7.
 
-apply 中间性蕴含共线 in H7.
+apply 中间性蕴含共线1 in H7.
 Col.
-apply 中间性蕴含共线 in H7.
+apply 中间性蕴含共线1 in H7.
 Col.
 
 repeat split;auto.
@@ -3238,7 +3238,7 @@ try (intros HCol1 HCol2); try (intro H; destruct H as [HCol1 HCol2]).
   {
   elim (两点重合的决定性 Z I); intro HZI; treat_equalities; Col.
   assert (HCong3 : Cong I A I B) by (apply l4_17 with X Y; unfold 中点 in *; spliter; Cong).
-  assert (H := l7_20 I A B).
+  assert (H := 共线点间距相同要么重合要么中点 I A B).
   elim H; try ColR; intro.
     treat_equalities; exfalso; auto.
   ColR.
@@ -3381,7 +3381,7 @@ Proof.
       assert_diffs; apply per_col with D; Col; apply perp_per_1, perp_col2 with A B; auto.
       ColR.
     replace M with M'; Between.
-    apply (l7_17 C0 D0); assumption.
+    apply (中点的唯一性1 C0 D0); assumption.
 Qed.
 
 Lemma cop_nts__os :

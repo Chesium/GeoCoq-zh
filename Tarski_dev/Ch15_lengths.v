@@ -282,7 +282,7 @@ assert(Bet O AB CD).
 apply (leP_bet O E E'); assumption.
 
 prolong D C M' A B.
-assert(HH:=symmetric_point_construction M' C).
+assert(HH:=构造对称点 M' C).
 ex_and HH M.
 unfold 中点 in H11.
 spliter.
@@ -362,7 +362,7 @@ subst X.
 clean_trivial_hyps.
 
 assert(AB = M \/ 中点 O AB M).
-apply(l7_20 O AB M); Cong.
+apply(共线点间距相同要么重合要么中点 O AB M); Cong.
 
 unfold Ps in *.
 assert(Out O AB CD).
@@ -370,7 +370,7 @@ apply (l6_7 O AB E CD); auto.
 apply l6_6.
 assumption.
 apply out_col in H3.
-apply 中间性蕴含共线 in H9.
+apply 中间性蕴含共线1 in H9.
 apply 等价共线CAB.
 
 apply (共线的传递性2 _ CD); Col.
@@ -472,7 +472,7 @@ spliter.
 assert(Cong O AB O AB').
 apply 等长的传递性 with A B; Cong.
 assert(AB = AB' \/ 中点 O AB AB').
-apply(l7_20 O AB AB').
+apply(共线点间距相同要么重合要么中点 O AB AB').
 ColR.
 Cong.
 induction H10.
@@ -1345,10 +1345,10 @@ tauto.
 spliter.
 clean_duplicated_hyps.
 apply(l7_15 A B C A' B' C' X).
-apply l7_2.
+apply M是AB中点则M是BA中点.
 auto.
-apply l7_2; auto.
-apply l7_2; auto.
+apply M是AB中点则M是BA中点; auto.
+apply M是AB中点则M是BA中点; auto.
 assumption.
 apply (image_preserves_bet A B C A' B' C' X Y).
 unfold 对称 in H0.
@@ -1779,7 +1779,7 @@ assert(M <> C1).
 {
 intro.
 subst M.
-eapply (symmetric_point_uniqueness _ _ C1) in H7.
+eapply (中点组的唯一性1 _ _ C1) in H7.
 subst C1'.
 apply H2.
 apply out_col.
@@ -1788,7 +1788,7 @@ apply(cong3_preserves_out O A1 C1 P A C H28).
 unfold 三角形全等 in *.
 spliter.
 repeat split; Cong.
-apply l7_3_2.
+apply A是AA中点.
 }
 
 assert(Per O M C1).
@@ -1836,7 +1836,7 @@ apply (perp_col _ M).
 intro.
 subst C1'.
 
-apply l7_3 in H7.
+apply M是AA中点则M与A重合 in H7.
 contradiction.
 Perp.
 unfold 中点 in H7.
@@ -1856,7 +1856,7 @@ induction H25.
 apply perp_right_comm.
 assumption.
 subst D1'.
-apply l7_3 in H24.
+apply M是AA中点则M与A重合 in H24.
 subst D1.
 induction H30.
 apply perp_not_col in H24.
@@ -1895,7 +1895,7 @@ subst N.
 apply HN.
 unfold 中点 in H24.
 spliter.
-apply 中间性蕴含共线 in H24.
+apply 中间性蕴含共线1 in H24.
 apply out_col in H31.
 apply out_col in H27.
 eapply (共线的传递性2 _ D1').
@@ -1960,7 +1960,7 @@ Col.
 induction H25.
 Perp.
 subst D1'.
-apply l7_3 in H24.
+apply M是AA中点则M与A重合 in H24.
 subst N.
 apply False_ind.
 apply out_col in H31.
@@ -1985,7 +1985,7 @@ Col.
 Col.
 unfold 中点 in H24.
 spliter.
-apply 中间性蕴含共线 in H24.
+apply 中间性蕴含共线1 in H24.
 Col.
 Col.
 }
@@ -1999,7 +1999,7 @@ apply perp_in_per in H32.
 unfold Per in H32.
 ex_and H32 D2.
 assert(D2 = D1').
-apply (l7_9 _ _ N D1); 中点.
+apply (中点组的唯一性2 _ _ N D1); 中点.
 subst D2.
 assumption.
 }
@@ -2023,12 +2023,12 @@ Perp.
 apply perp_distinct in H30.
 tauto.
 subst D1'.
-apply l7_3 in H24.
+apply M是AA中点则M与A重合 in H24.
 subst N.
 apply perp_distinct in H32.
 tauto.
 subst D1'.
-apply l7_3 in H24.
+apply M是AA中点则M与A重合 in H24.
 subst N.
 apply perp_distinct in H32.
 tauto.
@@ -2470,7 +2470,7 @@ apply perp_not_col in H30.
 apply H30.
 unfold 中点 in H7.
 spliter.
-apply 中间性蕴含共线 in H7.
+apply 中间性蕴含共线1 in H7.
 ColR.
 apply perp_distinct in H30.
 tauto.
@@ -2510,14 +2510,14 @@ assert(Perp D1 D1' N O).
 apply(perp_col D1 N N O D1').
 intro.
 subst D1'.
-apply l7_3 in H24.
+apply M是AA中点则M与A重合 in H24.
 subst N.
 apply perp_distinct in H32.
 tauto.
 Perp.
 unfold 中点 in H24.
 spliter.
-apply 中间性蕴含共线 in H24.
+apply 中间性蕴含共线1 in H24.
 Col.
 apply perp_sym.
 apply(perp_col O N D1 D1' M).
@@ -2528,7 +2528,7 @@ induction H30.
 apply (perp_col C1 M O M C1'); Col; Perp.
 unfold 中点 in H7.
 spliter.
-apply 中间性蕴含共线 in H7.
+apply 中间性蕴含共线1 in H7.
 Col.
 apply perp_distinct in H30.
 tauto.
@@ -2572,7 +2572,7 @@ spliter.
 apply H49.
 ColR.
 subst D1.
-apply l7_3 in H24.
+apply M是AA中点则M与A重合 in H24.
 subst N.
 apply perp_distinct in H32.
 tauto.
@@ -2656,7 +2656,7 @@ subst M.
 apply False_ind.
 unfold 中点 in H7.
 spliter.
-apply 中间性蕴含共线 in H7.
+apply 中间性蕴含共线1 in H7.
 Col.
 
 right.
@@ -4766,7 +4766,7 @@ Lemma inter_tangent_circle : forall P Q O M, P <> Q -> Cong P O Q O -> Col P O Q
 Proof.
 intros.
 assert(P = Q \/ 中点 O P Q).
-apply(l7_20 O P Q H1);Cong.
+apply(共线点间距相同要么重合要么中点 O P Q H1);Cong.
 induction H4.
 contradiction.
 unfold 中点 in *.
@@ -5341,7 +5341,7 @@ induction(两点重合的决定性 P T).
       apply H7; ColR.
       intro.
       subst T'.
-      apply is_midpoint_id in H5.
+      apply A是AB中点则A与B重合 in H5.
       contradiction.
       intro.
       apply H7.
@@ -5365,7 +5365,7 @@ induction(两点重合的决定性 P T).
   subst T.
   assert(P = Q \/ 中点 A P Q).
   {
-    apply(l7_20 A P Q); Col.
+    apply(共线点间距相同要么重合要么中点 A P Q); Col.
     Cong.
   }
   induction H3.

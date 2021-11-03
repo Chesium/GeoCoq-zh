@@ -117,16 +117,16 @@ assert (H := midpoint_existence A B); destruct H as [M1 HMid1].
 assert (HOM1 : O <> M1).
   {
   intro; treat_equalities.
-  assert (H := l7_20 O A C); elim H; clear H; try intro H; Cong;
-  try (apply HBC; apply symmetric_point_uniqueness with A O; Col);
+  assert (H := 共线点间距相同要么重合要么中点 O A C); elim H; clear H; try intro H; Cong;
+  try (apply HBC; apply 中点组的唯一性1 with A O; Col);
   assert_cols; ColR.
   }
 assert (H := midpoint_existence A C); destruct H as [M2 HMid2].
 assert (HOM2 : O <> M2).
   {
   intro; treat_equalities.
-  assert (H := l7_20 O A B); elim H; clear H; try intro H; Cong;
-  try (apply HBC; apply symmetric_point_uniqueness with A O; Col);
+  assert (H := 共线点间距相同要么重合要么中点 O A B); elim H; clear H; try intro H; Cong;
+  try (apply HBC; apply 中点组的唯一性1 with A O; Col);
   assert_cols; ColR.
   }
 assert (HM1M2 : M1 <> M2) by (intro; treat_equalities; Col).
@@ -136,8 +136,8 @@ assert (HPerp2 : Perp_bisect O M2 A C)
   by (apply cong_mid_perp_bisect; spliter; Cong).
 assert (HOM1M2 : ~ Col O M1 M2).
   {
-  intro HOM1M2; assert (H := l7_20 O A B); elim H; clear H; try intro H; Cong;
-  try (apply HOM1; apply l7_17 with A B; Col); assert_diffs; assert_cols; ColR.
+  intro HOM1M2; assert (H := 共线点间距相同要么重合要么中点 O A B); elim H; clear H; try intro H; Cong;
+  try (apply HOM1; apply 中点的唯一性1 with A B; Col); assert_diffs; assert_cols; ColR.
   }
 assert (H严格平行 : 严格平行 O M1 O M2).
   {

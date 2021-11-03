@@ -49,7 +49,7 @@ Qed.
 
 (** In a triangle isosceles in A the altitude wrt. A, is also the bisector and median. *)
 
-Lemma isosceles_foot__midpoint_conga :
+Lemma isosceles_foot__中点蕴含等长a :
  forall H,
  isosceles A B C ->
  Col H A C -> 
@@ -94,7 +94,7 @@ assert (Cong H A H C /\ 等角 H A B H C B /\ 等角 H B A H B C)
  by (apply (cong2_per2__cong_conga2 A H B C H B);finish).
 spliter.
 assert (中点 H A C)
- by (apply l7_20_bis;finish).
+ by (apply 不重合共线点间距相同则为中点组1;finish).
 auto.
 Qed.
 
@@ -281,9 +281,9 @@ unfold equilateral_strict in *.
 unfold equilateral in *.
 spliter.
 intro.
-assert (中点 B A C) by (apply (l7_20_bis B A C);finish).
-assert (中点 C A B) by (apply (l7_20_bis C A B);finish).
-apply midpoint_not_midpoint with C A B;auto.
+assert (中点 B A C) by (apply (不重合共线点间距相同则为中点组1 B A C);finish).
+assert (中点 C A B) by (apply (不重合共线点间距相同则为中点组1 C A B);finish).
+apply 严格中点组换排列则否 with C A B;auto.
 Qed.
 
 Lemma equilateral_strict_conga_1 :

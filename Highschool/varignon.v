@@ -198,7 +198,7 @@ assert_diffs.
 induction (两点重合的决定性 B C).
  treat_equalities.
  assert_cols.
- apply cong_col_mid.
+ apply 不重合共线点间距相同则为中点组2.
   auto.
   ColR.
  Cong.
@@ -220,7 +220,7 @@ induction (两点重合的决定性 I K).
   spliter.
   apply (plg_not_comm_1 B D A C);auto.
 
-apply cong_col_mid.
+apply 不重合共线点间距相同则为中点组2.
  auto.
  assert (Par I L K L).
   apply par_trans with B D;Par.

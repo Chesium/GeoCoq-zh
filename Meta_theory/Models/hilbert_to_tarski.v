@@ -263,7 +263,7 @@ Proof.
 exact (Build_Col_theory Point ColH colH_trivial112 colH_permut_231 colH_permut_132 colH_trans).
 Defined.
 
-Lemma 中间性蕴含共线H : forall A B C, Bet A B C -> ColH A B C.
+Lemma 中间性蕴含共线1H : forall A B C, Bet A B C -> ColH A B C.
 Proof.
 intros.
 unfold Bet in H.
@@ -280,7 +280,7 @@ End Hilbert_2D_to_Tarski_2D.
 
 Hint Resolve colH_trivial121 colH_trivial122 colH_trivial112 colH_trivial111 colH_permut_231
              colH_permut_312 colH_permut_321 colH_permut_213 colH_permut_132 colH_permut_231
-             between_col 中间性蕴含共线H : col.
+             between_col 中间性蕴含共线1H : col.
 
 Ltac Col := auto 3 with col.
 
@@ -4993,7 +4993,7 @@ induction (两点重合的决定性H A B).
   induction (两点重合的决定性H A C).
   subst;unfold Bet in *;intuition.
   apply 帕施公理_aux with C;auto.
-  apply 中间性蕴含共线H in H.
+  apply 中间性蕴含共线1H in H.
 intro.
 assert (ColH A B C).
 apply colH_trans with P C;Col.
@@ -5058,7 +5058,7 @@ Lemma col_colh : forall A B C, Col A B C <-> ColH A B C.
 Proof.
 unfold Col.
 intros A B C; split; intro HCol.
-destruct HCol as [H|[H|H]]; apply 中间性蕴含共线H in H; Col.
+destruct HCol as [H|[H|H]]; apply 中间性蕴含共线1H in H; Col.
 apply ColH_bets, HCol.
 Qed.
 
@@ -5125,7 +5125,7 @@ assert (HAB : A <> B).
 assert (HM : exists M, 中点 M A B).
   apply midpoint_existence.
 destruct HM as [M HM].
-destruct (midpoint_distinct_1 M A B HAB HM).
+destruct (严格中点组推论1 M A B HAB HM).
 destruct HM.
 assert (HM : ColH A B M) by Col.
 destruct (两点重合的决定性H D M) as [|HDM].
@@ -5523,7 +5523,7 @@ assert (HC : ColH A B C).
   assert (HC : ColH A C I); [|apply betH_expand in HBet; spliter; ColHR].
   apply betH_expand in HBet; spliter.
   elim (col_防升维公理 I A C P Q); Col; intro HE;
-  elim HE; clear HE; intro HE; apply 中间性蕴含共线H in HE; Col.
+  elim HE; clear HE; intro HE; apply 中间性蕴含共线1H in HE; Col.
   }
 apply between_one in HC; Bet; unfold Bet.
 elim HC; clear HC; intro HC; [|elim HC; clear HC; intro HC]; auto.
@@ -5572,7 +5572,7 @@ assert (HC : ColH A B C).
   assert (HC2 : ColH A C I); [|apply betH_expand in HBet2; spliter; ColHR].
   apply betH_expand in HBet1; apply betH_expand in HBet2; spliter.
   elim (col_防升维公理 I A C P Q); Col; intro HE;
-  elim HE; clear HE; intro HE; apply 中间性蕴含共线H in HE; Col.
+  elim HE; clear HE; intro HE; apply 中间性蕴含共线1H in HE; Col.
   }
 apply between_one in HC; Bet; unfold Bet.
 elim HC; clear HC; intro HC; [|elim HC; clear HC; intro HC]; auto.
@@ -5717,7 +5717,7 @@ Section Hilbert_euclidean.
 Context `{Hi:Hilbert_euclidean}.
 
 Lemma Col__ColH : forall A B C, Col A B C -> ColH A B C.
-Proof. intros A B C [HBet|[HBet|HBet]]; apply 中间性蕴含共线H in HBet; Col. Qed.
+Proof. intros A B C [HBet|[HBet|HBet]]; apply 中间性蕴含共线1H in HBet; Col. Qed.
 
 Lemma ColH__Col : forall A B C, ColH A B C -> Col A B C.
 Proof. intros A B C HCol; apply ColH_bets in HCol; auto. Qed.

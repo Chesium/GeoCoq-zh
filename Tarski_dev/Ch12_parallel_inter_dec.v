@@ -139,9 +139,9 @@ Proof.
     ex_and H2 P.
     double B P D'.
     assert(Cong C D' A B).
-      apply (l7_13 P); assumption.
+      apply (l7_13_同中点组两侧等长 P); assumption.
     assert(Cong B C D' A).
-      apply (l7_13 P); 中点.
+      apply (l7_13_同中点组两侧等长 P); 中点.
     assert(Par A B C D').
       assert_diffs; apply l12_17 with P; auto.
     assert(Par C D C D').
@@ -210,14 +210,14 @@ Proof.
       eapply l12_17.
         assumption.
         apply H5.
-      apply l7_2.
+      apply M是AB中点则M是BA中点.
       assumption.
     assert(Par A B C D').
       assert_diffs; apply l12_17 with P; auto.
     assert(Cong C D' A B).
-      apply (l7_13 P); assumption.
+      apply (l7_13_同中点组两侧等长 P); assumption.
     assert(Cong B C D' A).
-      apply (l7_13 P); 中点.
+      apply (l7_13_同中点组两侧等长 P); 中点.
     assert(Par C D C D').
       eapply par_trans.
         apply par_symmetry.
@@ -228,7 +228,7 @@ Proof.
     assert(Cong C D C D').
       apply (等长的传递性 _ _ A B); Cong.
     assert(D = D' \/ 中点 C D D').
-      apply l7_20; Col.
+      apply 共线点间距相同要么重合要么中点; Col.
     induction H14.
     { subst D'.
       assert(Par B C D A) by Par.
@@ -386,7 +386,7 @@ Proof.
         intro.
         treat_equalities.
         assert(C0 = B0).
-          apply (l7_17 A B).
+          apply (中点的唯一性1 A B).
               split.
               apply 中间性的对称性.
               assumption.
@@ -404,7 +404,7 @@ Proof.
         intro.
         treat_equalities.
         assert(C0 = B0).
-          eapply l7_17.
+          eapply 中点的唯一性1.
             apply H0.
           split.
             apply 中间性的对称性.

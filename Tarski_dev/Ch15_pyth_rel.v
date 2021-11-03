@@ -38,8 +38,8 @@ split.
 unfold Ar2.
 repeat split;auto.
 destruct HC1.
-auto using 中间性蕴含共线 .
-apply 中间性蕴含共线 in H3. Col.
+auto using 中间性蕴含共线1 .
+apply 中间性蕴含共线1 in H3. Col.
 right.
 exists B'.
 split.
@@ -53,8 +53,8 @@ assert (Perp O B O B').
  intuition.
  Perp.
  destruct HB1.
- apply 中间性蕴含共线 in H6. Col.
- apply 中间性蕴含共线 in H6. Col.
+ apply 中间性蕴含共线1 in H6. Col.
+ apply 中间性蕴含共线1 in H6. Col.
  Perp.
  split.
  Cong.
@@ -162,7 +162,7 @@ subst A.
 assert(Cong O B O C).
 apply 等长的传递性 with O B'; Cong.
 assert(B = C \/ 中点 O B C).
-apply l7_20; auto.
+apply 共线点间距相同要么重合要么中点; auto.
 ColR.
 induction H12.
 subst C.
@@ -978,7 +978,7 @@ apply H;Col.
 assert(HH:= perp2__col O B1 B2 O B H0 H2).
 
 assert(B1 = B2 \/ 中点 O B1 B2).
-apply l7_20; Col.
+apply 共线点间距相同要么重合要么中点; Col.
 
 induction H13.
 subst B2.
@@ -989,7 +989,7 @@ assert(Cong O C2 O C1).
 apply 等长的传递性 with A B1; Cong.
 
 assert(C1 = C2 \/ 中点 O C1 C2).
-apply l7_20.
+apply 共线点间距相同要么重合要么中点.
 ColR.
 Cong.
 induction H5.
@@ -1020,7 +1020,7 @@ assert(Cong O C1 O C2).
 apply 等长的传递性 with O B2; trivial.
 apply 等长的传递性 with O B1; Cong.
 assert(C1 = C2 \/ 中点 O C1 C2).
-apply l7_20; eCol.
+apply 共线点间距相同要么重合要么中点; eCol.
 
 induction H15.
 assumption.
@@ -1055,7 +1055,7 @@ ColR.
 unfold Per in H15.
 ex_and H15 B2'.
 assert(B2 = B2').
-apply (symmetric_point_uniqueness B1 O); auto.
+apply (中点组的唯一性1 B1 O); auto.
 subst B2'.
 
 assert(Cong O C1 O C2).
@@ -1063,7 +1063,7 @@ apply 等长的传递性 with A B2; trivial.
 apply 等长的传递性 with A B1; Cong.
 
 assert(C1 = C2 \/ 中点 O C1 C2).
-apply l7_20.
+apply 共线点间距相同要么重合要么中点.
 ColR.
 Cong.
 

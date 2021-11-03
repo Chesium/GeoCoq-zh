@@ -141,7 +141,7 @@ Proof.
   split; [|split].
   - intro.
     absurd (O = M); auto.
-    apply l7_17 with A A'; trivial.
+    apply 中点的唯一性1 with A A'; trivial.
     split; Cong.
   - repeat split; auto.
     exists M.
@@ -167,7 +167,7 @@ Proof.
     apply (l6_11_uniqueness O O A B); auto.
   }
   subst A2.
-  assert(M1 = M2) by (apply (l7_17 A A1); assumption).
+  assert(M1 = M2) by (apply (中点的唯一性1 A A1); assumption).
   subst M2.
   apply l6_7 with M1; [apply l6_6|]; assumption.
 Qed.

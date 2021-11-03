@@ -14,7 +14,7 @@ elim HPar1; clear HPar1; intro HPar1; elim HPar2; clear HPar2; intro HPar2.
 
   {
   assert (HDiff : P <> A1) by (intro; apply HPar1; exists P; subst; Col).
-  assert (HX := symmetric_point_construction A1 P); destruct HX as [X HMid1].
+  assert (HX := 构造对称点 A1 P); destruct HX as [X HMid1].
   revert B1 B2 C1 C2 HCol1 HCol2 HPar1 HPar2.
   assert (Haux : forall B1 B2, Col P B1 B2 -> 严格平行 A1 A2 B1 B2 ->
             exists B3, Col B1 B2 B3 /\ BetS A2 B3 X /\ 严格平行 A1 A2 P B3).
@@ -68,7 +68,7 @@ elim HPar1; clear HPar1; intro HPar1; elim HPar2; clear HPar2; intro HPar2.
   assert (HCol6 : Col A2 X C3) by (unfold BetS in *; spliter; Col).
   assert (HNC' : ~ Col A1 A2 X)
     by (intro; apply HPar1; exists P; split; ColR).
-  assert (B3 = C3) by (apply l7_17 with A2 X; apply HT with A1 P; Col; Par).
+  assert (B3 = C3) by (apply 中点的唯一性1 with A2 X; apply HT with A1 P; Col; Par).
   subst; split; ColR.
   }
 

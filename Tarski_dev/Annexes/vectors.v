@@ -117,7 +117,7 @@ subst D.
 right.
 intro.
 subst C.
-apply l7_3 in H0.
+apply M是AA中点则M与A重合 in H0.
 apply 中间性的同一律 in H1.
 subst M.
 contradiction.
@@ -364,13 +364,13 @@ unfold EqV in H.
 induction H.
 apply plg_mid in H.
 ex_and H M.
-apply l7_3 in H0.
+apply M是AA中点则M与A重合 in H0.
 subst M.
 assumption.
 spliter.
 subst C.
 subst B.
-apply l7_3_2.
+apply A是AA中点.
 Qed.
 
 Lemma mid_eqv :
@@ -381,7 +381,7 @@ intros.
 unfold EqV.
 induction(两点重合的决定性 A B).
 subst B.
-apply is_midpoint_id in H.
+apply A是AB中点则A与B重合 in H.
 subst C.
 right.
 tauto.
@@ -391,7 +391,7 @@ apply (mid_plg _ _ _ _ A).
 left.
 intro.
 subst C.
-apply l7_3 in H.
+apply M是AA中点则M与A重合 in H.
 contradiction.
 assumption.
 中点.
@@ -431,7 +431,7 @@ induction H0.
 apply plg_mid in H0.
 ex_and H0 M.
 assert( A = M).
-apply (l7_17 B D).
+apply (中点的唯一性1 B D).
 apply HP.
 中点.
 subst M.
@@ -457,7 +457,7 @@ ex_and H0 M0.
 ex_and H1 M1.
 
 assert(M1 = M0).
-apply (l7_17 B D).
+apply (中点的唯一性1 B D).
 apply H5.
 中点.
 subst M1.
@@ -744,7 +744,7 @@ apply (l6_21_两线交点的唯一性 A B C B); Col.
 subst T.
 apply H22.
 exists D.
-apply 中间性蕴含共线 in H14.
+apply 中间性蕴含共线1 in H14.
 split; Col.
 
 induction(共线的决定性 C D T).
@@ -754,7 +754,7 @@ apply (l6_21_两线交点的唯一性 C D B C); Col.
 subst T.
 apply H22.
 exists A.
-apply 中间性蕴含共线 in H14.
+apply 中间性蕴含共线1 in H14.
 split; Col.
 
 induction H13.
@@ -850,7 +850,7 @@ subst D'.
 unfold 退化平行四边形 in H0.
 spliter.
 assert(B = C \/ 中点 A B C).
-apply l7_20.
+apply 共线点间距相同要么重合要么中点.
 Col.
 Cong.
 induction H9.
@@ -867,7 +867,7 @@ subst C.
 unfold 退化平行四边形 in H0.
 spliter.
 assert(A = D' \/ 中点 B A D').
-apply l7_20.
+apply 共线点间距相同要么重合要么中点.
 Col.
 Cong.
 induction H10.
@@ -1022,7 +1022,7 @@ subst M.
 apply False_ind.
 apply H.
 exists C.
-apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线1 in H1.
 split; Col.
 
 induction (两点重合的决定性 B D').
@@ -1073,7 +1073,7 @@ apply H11.
 ColR.
 exists M.
 split.
-apply 中间性蕴含共线 in H1.
+apply 中间性蕴含共线1 in H1.
 Col.
 auto.
 
@@ -1155,7 +1155,7 @@ split; Col.
 unfold 退化平行四边形 in H0.
 spliter.
 assert(A = D' \/ 中点 B A D').
-apply l7_20.
+apply 共线点间距相同要么重合要么中点.
 Col.
 Cong.
 induction H5.
@@ -1333,7 +1333,7 @@ spliter.
 apply H.
 exists C.
 split; Col.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 Col.
 apply plgs_par_strict in H1.
 spliter.
@@ -1427,7 +1427,7 @@ apply H.
 exists B.
 split.
 Col.
-apply 中间性蕴含共线 in H2.
+apply 中间性蕴含共线1 in H2.
 ColR.
 
 assert(HH1:=plgs_one_side B C C' B' H6).
@@ -1572,7 +1572,7 @@ Col.
 assert(Par A B' P Q).
 apply plg_par in H8; auto.
 spliter.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 
 apply (par_col_par_2 _ B); auto.
 apply plg_par in H4; auto.
@@ -1595,7 +1595,7 @@ spliter.
 apply False_ind.
 unfold 退化平行四边形 in *.
 spliter.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 assert(Col B' P' Q).
 ColR.
 
@@ -1715,7 +1715,7 @@ spliter.
 
 assert(Par A B C' D).
 apply (par_col_par_2 _ B'); auto.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 Col.
 
 assert(Col C' C D /\ Col D C D).
@@ -1735,7 +1735,7 @@ unfold 退化平行四边形 in H11.
 spliter.
 apply plgs_par_strict in H10.
 spliter.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 apply H10.
 assert(Col A B C').
 ColR.
@@ -1747,7 +1747,7 @@ unfold 退化平行四边形 in H10.
 spliter.
 apply plgs_par_strict in H11.
 spliter.
-apply 中间性蕴含共线 in H0.
+apply 中间性蕴含共线1 in H0.
 apply H11.
 assert(Col A B' C).
 ColR.
@@ -2256,7 +2256,7 @@ apply plgs_par_strict in H5.
 spliter.
 apply H5.
 exists D.
-apply 中间性蕴含共线 in H4.
+apply 中间性蕴含共线1 in H4.
 split; Col.
 assumption.
 
@@ -2314,7 +2314,7 @@ apply plgs_par_strict in H6.
 spliter.
 apply H6.
 exists D.
-apply 中间性蕴含共线 in H4.
+apply 中间性蕴含共线1 in H4.
 split; Col.
 assumption.
 
@@ -2440,7 +2440,7 @@ tauto.
 induction H2.
 
 assert( A = C' \/ 中点 B A C').
-apply l7_20.
+apply 共线点间距相同要么重合要么中点.
 Col.
 Cong.
 induction H8.
@@ -2452,7 +2452,7 @@ spliter.
 apply (l5_2 A); auto.
 
 assert( A = C' \/ 中点 B A C').
-apply l7_20.
+apply 共线点间距相同要么重合要么中点.
 Col.
 Cong.
 induction H8.

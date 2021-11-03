@@ -305,7 +305,7 @@ assert (HCol3 : Col O E XMY).
 assert (HCong1 := HXMY); apply diff_sum in HCong1; apply l15_3 in HCong1.
 elim HXY; clear HXY; intro HXY; [|spliter; intuition].
 destruct HXY as [H [HCol4 [HLe2 HCong2]]].
-elim (l7_20 O XY XMY); [auto|intro HMid; clear H|ColR|apply 等长的传递性 with X Y; Cong].
+elim (共线点间距相同要么重合要么中点 O XY XMY); [auto|intro HMid; clear H|ColR|apply 等长的传递性 with X Y; Cong].
 elim HLe1; clear HLe1; intro HLt1; [clear HCong1|treat_equalities; auto].
 elim HLe2; clear HLe2; intro HLt2; [clear HCong2|treat_equalities; auto].
 exfalso; apply not_pos_and_neg with O E XMY;
@@ -753,7 +753,7 @@ split; [intro HCong|intro; treat_equalities].
     }
   clear HLengthAB; clear HLengthCD; clear HCong; rename H into HCong.
   assert (H : Col O AB CD) by ColR.
-  elim (l7_20 O AB CD); Col; clear H; clear HCong; intro HMid; treat_equalities.
+  elim (共线点间距相同要么重合要么中点 O AB CD); Col; clear H; clear HCong; intro HMid; treat_equalities.
 
     {
     apply prod_uniqueness with O E E' AB AB; auto.

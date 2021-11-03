@@ -191,7 +191,7 @@ Proof.
   assert_diffs.
   assert (HNCol' : ~ Col A B' C') by (intro; assert_diffs; apply HNCol; ColR).
   destruct (midpoint_existence B' C') as [M HM].
-  destruct (symmetric_point_construction A M) as [D' HD].
+  destruct (构造对称点 A M) as [D' HD].
   assert (HNCol1 : ~ Col A M B') by (intro; assert_diffs; apply HNCol'; ColR).
   assert (HNCol2 : ~ Col D' B' C') by (intro; assert_diffs; apply HNCol'; ColR).
   exists D'.
