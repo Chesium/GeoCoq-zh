@@ -130,7 +130,7 @@ Proof.
     assert (M <> O) by (intro; treat_equalities; apply HNCol1; Col).
     assert (O <> C) by (intro; treat_equalities; auto).
     suma.assert_diffs.
-    assert (Cong O A O C) by (apply (onc2__cong O P); assumption).
+    assert (Cong O A O C) by (apply (在同圆上的两点与圆心等距 O P); assumption).
     destruct (angle_partition M O C); auto.
     - assert (HMO := H).
       clear H.
@@ -145,7 +145,7 @@ Proof.
           apply (等长保持小于关系 O M O P); Cong.
           apply bet_inc2__incs with A B; Circle; Between.
       }
-      assert (Perp O M A B) by (apply mid_onc2__perp with P; auto).
+      assert (Perp O M A B) by (apply 弦中点与圆心连线垂直于弦 with P; auto).
       assert (HOS1 : OS A B C H).
       { apply l12_6, par_not_col_strict with C; Col.
         apply l12_9 with O M; Perp; [|Cop| |Cop].
@@ -165,7 +165,7 @@ Proof.
       apply (等长保持小于关系 M A O A); Cong.
       apply l11_46; auto.
       left.
-      apply mid_onc2__per with P B; auto.
+      apply 弦中点与圆心连线形成直角 with P B; auto.
   }
   destruct HLt as [[C' [HBet HCong]] HNCong].
   exists A, C', B; split.
@@ -191,7 +191,7 @@ Proof.
   destruct (由一点往一方向构造等长线段 C O O P) as [C' []].
   suma.assert_diffs.
   assert (O <> C') by (intro; treat_equalities; auto).
-  assert (HCong := (onc2__cong O P)).
+  assert (HCong := (在同圆上的两点与圆心等距 O P)).
   apply suma_preserves_ghalfa with A C C' C' C B A O C' C' O B.
     apply (onc3_os__acute O P); assumption.
     apply ts__suma, invert_two_sides, col_two_sides with O; Side; Col.
@@ -210,7 +210,7 @@ Proof.
   assert (Haux : forall O P A B C, 在圆上 A O P -> 在圆上 B O P -> 在圆上 C O P ->
   OS A B O C -> OS O C A B -> OS O B A C -> gHalfA A C B A O B).
   { intros O P A B C HA HB HC HOS1 HOS2 HOS3.
-    destruct (chord_completion O P C O) as [C' [HC' HBet ]]; Circle.
+    destruct (由圆上圆内两点补全一弦 O P C O) as [C' [HC' HBet ]]; Circle.
     suma.assert_diffs.
     assert (C' <> O) by (intro; treat_equalities; auto).
     assert (TS O B A C').
@@ -221,7 +221,7 @@ Proof.
         intro; apply HOS3; ColR.
       exists O; split; Col.
     }
-    assert (HCong := (onc2__cong O P)).
+    assert (HCong := (在同圆上的两点与圆心等距 O P)).
     apply acute_ghalfa2_sams_suma2__ghalfa123 with B C O A C O B O C' A O C'.
     - repeat split; auto.
         right; intro; assert_cols; assert_ncols; Col.
@@ -255,7 +255,7 @@ Lemma inscribed_angle : forall O P A B C,
   gHalfA A C B A O B.
 Proof.
   intros O P A B C HA HB HC HOS.
-  assert (HCong := (onc2__cong O P)).
+  assert (HCong := (在同圆上的两点与圆心等距 O P)).
   destruct (共线的决定性 A O C).
   { suma.assert_diffs.
     assert (Bet C O A) by (apply col_inc_onc2__bet with O P; Col; Circle).
@@ -283,7 +283,7 @@ Lemma diam_onc2_ts__suppa : forall O P A B C C',
 Proof.
   intros O P A B C C' HA HB [HBet [HC HC']] HTS.
   suma.assert_diffs.
-  assert (HCong := onc2__cong O P).
+  assert (HCong := 在同圆上的两点与圆心等距 O P).
   assert (HMid : 中点 O C C') by (split; Cong).
   assert (C <> C') by (intro; treat_equalities; auto).
   assert (HNColA : ~ Col C C' A) by (apply (onc3__ncol O P); auto).
@@ -338,12 +338,12 @@ Proof.
   intros O P A B C HAB HBC HAC HA HB HC HCop.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
   destruct (共线的决定性 A B O).
-  { assert (中点 O A B) by (apply col_onc2__mid with P; auto).
+  { assert (中点 O A B) by (apply 若圆心在一弦上则其平分该弦 with P; auto).
     assert (Per A C B) by (apply thales_theorem with O; auto; apply 等长的传递性 with O P; Cong).
     suma.assert_diffs; apply bet_per2__suma; Between.
   }
   destruct (cop__one_or_two_sides A B O C); Col; Cop.
-  - destruct (chord_completion O P C O) as [C' []]; Circle.
+  - destruct (由圆上圆内两点补全一弦 O P C O) as [C' []]; Circle.
     assert (TS A B C' C) by (apply l9_2, bet_ts__ts with O; Side).
     assert (互为补角 A C' B A C B).
       apply (diam_onc2_ts__suppa O P); [..|repeat split|]; Between.
@@ -374,7 +374,7 @@ Lemma onc3_ts__obtuse : forall O P A B C,
   为钝角 A C B.
 Proof.
   intros O P A B C HA HB HC HTS.
-  destruct (chord_completion O P C O) as [C' []]; Circle.
+  destruct (由圆上圆内两点补全一弦 O P C O) as [C' []]; Circle.
   assert (TS A B C C') by (apply bet_ts__ts with O; Side).
   apply (acute_suppa__obtuse A C' B).
     apply (onc3_os__acute O P); trivial; exists C; split; Side.
@@ -394,7 +394,7 @@ Proof.
   assert_ncols.
   destruct (共线的决定性 A B O).
   { suma.assert_diffs.
-    assert (中点 O A B) by (apply col_onc2__mid with P; auto).
+    assert (中点 O A B) by (apply 若圆心在一弦上则其平分该弦 with P; auto).
     apply l11_16; auto; apply thales_theorem with O; Col; apply 等长的传递性 with O P; Cong.
   }
   destruct (cop__one_or_two_sides A B O C); Col; Cop.
@@ -436,9 +436,9 @@ Proof.
   assert (~ Col C A B) by (destruct HTS; assumption).
   destruct (共线的决定性 A B O).
   { suma.assert_diffs.
-    assert (中点 O A B) by (apply col_onc2__mid with P; auto).
+    assert (中点 O A B) by (apply 若圆心在一弦上则其平分该弦 with P; auto).
     destruct HTS as [_ []].
-    apply per2__suppa; auto; apply thales_theorem with O; trivial; apply onc2__cong with P; assumption.
+    apply per2__suppa; auto; apply thales_theorem with O; trivial; apply 在同圆上的两点与圆心等距 with P; assumption.
   }
   destruct (cop__one_or_two_sides A B O C); Col; Cop.
   apply suppa_sym, Haux; [..|exists C; split]; Side.
@@ -458,8 +458,8 @@ Proof.
   apply cop_nts__os; Col; intro Habs; apply (nlta A C B).
   - apply acute_per__lta; auto.
     apply thales_theorem with O; trivial.
-      apply col_onc2__mid with P; Col.
-      apply (onc2__cong O P); assumption.
+      apply 若圆心在一弦上则其平分该弦 with P; Col.
+      apply (在同圆上的两点与圆心等距 O P); assumption.
   - apply acute_obtuse__lta; trivial.
     apply (onc3_ts__obtuse O P); assumption.
 Qed.
@@ -478,8 +478,8 @@ Proof.
   apply cop_nos__ts; Col; intro Habs; apply (nlta A C B).
   - apply obtuse_per__lta; auto.
     apply thales_theorem with O; trivial.
-      apply col_onc2__mid with P; Col.
-      apply (onc2__cong O P); assumption.
+      apply 若圆心在一弦上则其平分该弦 with P; Col.
+      apply (在同圆上的两点与圆心等距 O P); assumption.
   - apply acute_obtuse__lta; trivial.
     apply (onc3_os__acute O P); assumption.
 Qed.
@@ -500,7 +500,7 @@ Proof.
     apply (acute_conga__acute A C B); assumption.
   - exfalso.
     apply HNCol, 等价共线BCA, 中点蕴含共线.
-    assert (HCong := onc2__cong O P).
+    assert (HCong := 在同圆上的两点与圆心等距 O P).
     apply thales_converse_theorem_1 with C; Cop.
   - exists O; split; apply l9_2; apply cop_obtuse_onc3__ts with P; Cop.
     apply (conga_obtuse__obtuse A C B); assumption.
@@ -522,7 +522,7 @@ Proof.
       apply acute_cop_onc3__os with P; Cop.
   - exfalso.
     apply HNCol, 等价共线BCA, 中点蕴含共线.
-    assert (HCong := onc2__cong O P).
+    assert (HCong := 在同圆上的两点与圆心等距 O P).
     apply thales_converse_theorem_1 with C; Cop.
   - apply l9_2, l9_8_2 with O.
       apply cop_obtuse_onc3__ts with P; Cop.
@@ -551,11 +551,11 @@ Proof.
   apply eqc_chara.
   assert (O = O'); [|split; trivial; subst O'; apply 等长的传递性 with O A; Cong].
   assert (HNCol : ~ Col A B C) by (apply one_side_not_col123 with D, HOS).
-  assert (HCong := onc2__cong O P).
-  assert (HCong' := onc2__cong O' P').
+  assert (HCong := 在同圆上的两点与圆心等距 O P).
+  assert (HCong' := 在同圆上的两点与圆心等距 O' P').
   destruct (共线的决定性 A B O) as [|HNCol1].
   { suma.assert_diffs.
-    assert (中点 O A B) by (apply col_onc2__mid with P; assumption).
+    assert (中点 O A B) by (apply 若圆心在一弦上则其平分该弦 with P; assumption).
     apply (中点的唯一性1 A B); trivial.
     apply thales_converse_theorem_1 with D; auto.
     apply (l11_17 A C B); trivial.
@@ -590,7 +590,7 @@ Proof.
     assert (O' <> M) by (intro; subst; apply HNCol1'; Col).
     assert (Col O O' M); [|ColR].
     suma.assert_diffs; apply (cop_per2__col A); auto;
-      [|apply mid_onc2__per with P B; auto|apply mid_onc2__per with P' B; auto].
+      [|apply 弦中点与圆心连线形成直角 with P B; auto|apply 弦中点与圆心连线形成直角 with P' B; auto].
     apply coplanar_trans_1 with B; Col; [|Cop].
     apply coplanar_trans_1 with C; Col; [Cop|].
     apply coplanar_perm_12, coplanar_trans_1 with D; Col; Cop.
@@ -677,7 +677,7 @@ Proof.
       unfold 在圆上; repeat split; Cong.
     spliter.
     exists O, A; repeat split; trivial.
-    destruct (chord_completion O A C O) as [C'[HC' HBet]]; Circle.
+    destruct (由圆上圆内两点补全一弦 O A C O) as [C'[HC' HBet]]; Circle.
     assert (TS A B C C').
       apply bet_ts__ts with O; [apply l9_2, cop_obtuse_onc3__ts with A|]; assumption.
     apply (conga_cop_onc3_os__onc A B C'); trivial.
@@ -732,7 +732,7 @@ intros.
 suma.assert_diffs.
 assert(中点 U A B).
 {
-  apply(col_onc2_perp__mid O P A B U); Col.
+  apply(垂直于弦的直径平分弦 O P A B U); Col.
 }
 assert(O <> A').
 intro.
@@ -756,7 +756,7 @@ apply L形垂直推出不共线 in H18.
 apply H18; Col.
 unfold 直径 in H1.
 spliter.
-assert(HH:=mid_onc2__perp O P A C' A' H15 H13 H3 H17 H2).
+assert(HH:=弦中点与圆心连线垂直于弦 O P A C' A' H15 H13 H3 H17 H2).
 assert(Perp O U O A').
 {
   apply(par_perp__perp A C' O U O A' H7); Perp.
@@ -790,7 +790,7 @@ treat_equalities.
 apply(中点组的唯一性1 C' O); 中点.
 split; [Between|CongR].
 
-assert(HQ:= mid_onc2__perp O P B C' O' H23  H10 H4 H17 H20).
+assert(HQ:= 弦中点与圆心连线垂直于弦 O P B C' O' H23  H10 H4 H17 H20).
 apply(垂线共线点也构成垂直1 O A' A C' O') in HH; Col.
 assert(Par A C' B C').
 {

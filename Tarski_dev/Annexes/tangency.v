@@ -78,7 +78,7 @@ ex_and H0 T.
 assert(HH:=构造对称点 T O).
 ex_and HH T'.
 assert(在圆上 T' O P).
-apply (symmetric_oncircle T T' O P); auto.
+apply (圆上点关于圆心的对称点也在圆上 T T' O P); auto.
 assert(T = T').
 apply H1.
 split; Col.
@@ -103,7 +103,7 @@ destruct(两点重合的决定性 A B).
   assert (HQQ' : Q <> Q') by (intro; treat_equalities; auto).
   apply HQQ', HQUnique; split; Col.
 destruct (每组共线三点都有另一共线点 A B O) as [C [HOC [HAC [HBC HColC]]]]; Col.
-destruct (diam_points O P C) as [Q1 [Q2 [HBet [HQ1Q2C [HQ1On HQ2On]]]]].
+destruct (存在两端点在圆心两侧的直径 O P C) as [Q1 [Q2 [HBet [HQ1Q2C [HQ1On HQ2On]]]]].
 assert (HQ1Q2 : Q1 <> Q2).
   intro; treat_equalities; auto.
 assert(Q = Q1) by (apply HQUnique; split; ColR).
@@ -139,7 +139,7 @@ contradiction.
 assert(在圆上或圆内 X O P -> X = T).
 intro.
 
-assert(HH:= chord_completion O P T X H3 H5).
+assert(HH:= 由圆上圆内两点补全一弦 O P T X H3 H5).
 ex_and HH T'.
 assert(A <> B).
 apply (tangent_neq A B O P); auto.
@@ -165,7 +165,7 @@ assert(~在圆上或圆内 X O P).
 intro.
 apply H5 in H6.
 contradiction.
-apply ninc__outcs.
+apply 不在圆上或圆内就是在圆外.
 assumption.
 Qed.
 
@@ -459,7 +459,7 @@ induction(两点重合的决定性 X Q).
 subst X.
 unfold 圆的切线切于 in *.
 spliter.
-apply onc__outc; auto.
+apply 在圆上蕴含在圆上或圆外; auto.
 
 assert(在圆外 X O P).
 apply(tangent_out A B O P Q X); auto.
@@ -561,7 +561,7 @@ assert(O <> X).
   intuition.
 }
 
-assert(HH:=circ长度小于等于的决定性 O P X).
+assert(HH:=点与圆的位置关系的决定性 O P X).
 induction HH.
 
 assert(HH:= 垂点的存在性 X O X H2).
@@ -640,7 +640,7 @@ assert(在圆内 U O X).
 
 assert(在圆外 T O X).
 {
-  apply(diam_cong_incs__outcs O X X W U T); auto.
+  apply(diam_cong_在圆内等价的在圆外 O X X W U T); auto.
   unfold 直径.
   unfold 在圆上.
   repeat split; Cong.
@@ -650,8 +650,8 @@ unfold segment_circle in H.
 assert(exists Z : Tpoint, Bet U Z T /\ 在圆上 Z O X).
 {
   apply(H O X U T).
-  apply incs__inc; auto.
-  apply outcs__outc; auto.
+  apply 在圆内蕴含在圆上或圆内; auto.
+  apply 在圆外蕴含在圆上或圆外; auto.
 }
 
 ex_and H14 Y.
@@ -796,22 +796,22 @@ left.
 assert(HH:=中点的存在性 Q P).
 ex_and HH M.
 assert(Per A M Q).
-apply(mid_onc2__per A B Q P M); auto.
+apply(弦中点与圆心连线形成直角 A B Q P M); auto.
 assert(Per C M Q).
-apply(mid_onc2__per C D Q P M); auto.
+apply(弦中点与圆心连线形成直角 C D Q P M); auto.
 
 assert(HH:=中点的存在性 Z Q).
 ex_and HH N.
 
 assert(Per A N Q).
-apply(mid_onc2__per A Z Q Z).
+apply(弦中点与圆心连线形成直角 A Z Q Z).
 apply 等长的传递性 with A B; Cong.
 Circle.
 中点.
 
 
 assert(Per C N Q).
-apply(mid_onc2__per C Z Q Z).
+apply(弦中点与圆心连线形成直角 C Z Q Z).
 apply 等长的传递性 with C D; Cong.
 Circle.
 中点.
@@ -900,7 +900,7 @@ exists Q.
 split; ColR.
 spliter.
 assert(Z = P \/ Z = Q).
-apply(line_circle_two_points A B P Q Z H4); auto.
+apply(圆交一线于至多两点 A B P Q Z H4); auto.
 induction H26; tauto.
 Qed.
 

@@ -44,7 +44,7 @@ Lemma prop_3_1 : forall O P A B X,
  中点 X A B ->
  Perp O X A B.
 Proof.
-exact mid_onc2__perp.
+exact 弦中点与圆心连线垂直于弦.
 Qed.
 
 Lemma prop_3_2 : forall O P A B X,
@@ -55,7 +55,7 @@ Lemma prop_3_2 : forall O P A B X,
  Perp O X A B ->
  中点 X A B.
 Proof.
-exact col_onc2_perp__mid.
+exact 垂直于弦的直径平分弦.
 Qed.
 
 (** * Proposition 4

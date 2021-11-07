@@ -47,7 +47,7 @@ Proof.
     destruct (exists_cong_per A C C D) as [R [HR1 HR2]].
     assert_diffs.
     apply 成直角三点不共线 in HR1; auto.
-    destruct (circ长度小于等于的决定性 A B R) as [HOn|HNOn].
+    destruct (点与圆的位置关系的决定性 A B R) as [HOn|HNOn].
       exists R; split; trivial.
     destruct HNOn; [apply Haux' with R Q|apply Haux' with P R]; Col; Cop.
 
@@ -182,14 +182,14 @@ Proof.
   destruct (onc_exists C D R) as [Z [HZ1 HZ2]]; auto.
   exists Z; split; trivial.
   assert (A <> B) by (apply (小于推出不重合 A P), HPIn).
-  destruct (circ长度小于等于的决定性 A B Z) as [|[Habs|Habs]]; trivial; exfalso.
+  destruct (点与圆的位置关系的决定性 A B Z) as [|[Habs|Habs]]; trivial; exfalso.
 
 
   - assert (Q <> R).
     { intro; subst R.
       assert (Q = Z) by (apply (inc_onc2_out__eq C D C); Circle).
       subst.
-      apply outcs__ninc in HQOut; Circle.
+      apply 在圆外等价于不在圆上或圆内 in HQOut; Circle.
     }
     assert (HNCol2 : ~ Col C Q R) by (intro; apply HNCol1; ColR).
     assert (HT : exists T, 在圆上 T A B /\ Bet A Z T).
@@ -202,7 +202,7 @@ Proof.
     }
     destruct HT as [T [HT1 HT2]].
     assert (T <> Z).
-      intro; subst; apply incs__noutc in Habs; apply Habs; Circle.
+      intro; subst; apply 在圆内等价于不在圆上或圆外 in Habs; apply Habs; Circle.
     destruct (ex_四点成首末边等长双直角S形则对边等长 C R Z Q T Z) as [I [HI1 [HI2 HI3]]]; Col.
     assert_diffs.
     assert (HNCol3 : ~ Col I Z C) by (apply 成直角三点不共线; auto).
@@ -277,7 +277,7 @@ Proof.
     { intro; subst R.
       assert (P = Z) by (apply (inc_onc2_out__eq C D C); Circle).
       subst.
-      apply incs__noutc in HPIn; Circle.
+      apply 在圆内等价于不在圆上或圆外 in HPIn; Circle.
     }
     assert (HNCol2 : ~ Col C P R) by (intro; apply HNCol1; ColR).
     destruct (onc_exists A B Z) as [T [HT1 HT2]]; auto.
@@ -288,7 +288,7 @@ Proof.
       apply (l5_6_等长保持小于等于关系 A B A Z); Cong; Le.
     }
     assert (T <> Z).
-      intro; subst; apply outcs__ninc in Habs; apply Habs; Circle.
+      intro; subst; apply 在圆外等价于不在圆上或圆内 in Habs; apply Habs; Circle.
     destruct (ex_四点成首末边等长双直角S形则对边等长 C R Z P T Z) as [I [HI1 [HI2 HI3]]]; Col.
     assert_diffs.
     assert (HNCol3 : ~ Col I Z C) by (apply 成直角三点不共线; auto).

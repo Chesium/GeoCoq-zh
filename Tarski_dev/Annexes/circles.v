@@ -4,27 +4,27 @@ Section Circle.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma inc112 : forall A B,
+Lemma A在圆AB上或内 : forall A B,
  在圆上或圆内 A A B.
 Proof.
   unfold 在圆上或圆内.
   Le.
 Qed.
 
-Lemma onc212 : forall A B,
+Lemma B在圆AB上 : forall A B,
  在圆上 B A B.
 Proof.
   unfold 在圆上.
   Cong.
 Qed.
 
-Lemma onc_sym : forall A B P, 在圆上 P A B -> 在圆上 B A P.
+Lemma 在圆上的对称性 : forall A B P, 在圆上 P A B -> 在圆上 B A P.
 Proof.
   unfold 在圆上.
   Cong.
 Qed.
 
-Lemma ninc__outcs : forall X O P, ~ 在圆上或圆内 X O P -> 在圆外 X O P.
+Lemma 不在圆上或圆内就是在圆外 : forall X O P, ~ 在圆上或圆内 X O P -> 在圆外 X O P.
 Proof.
 intros.
 unfold 在圆外.
@@ -32,83 +32,83 @@ unfold 在圆上或圆内 in *.
 apply 不小于等于推出反向小于 in H; auto.
 Qed.
 
-Lemma inc__outc : forall A B P, 在圆上或圆内 P A B <-> 在圆上或圆外 B A P.
+Lemma 在圆内或圆上等价的在圆外或圆上 : forall A B P, 在圆上或圆内 P A B <-> 在圆上或圆外 B A P.
 Proof.
   split; trivial.
 Qed.
 
-Lemma incs__outcs : forall A B P, 在圆内 P A B <-> 在圆外 B A P.
+Lemma 在圆内等价的在圆外 : forall A B P, 在圆内 P A B <-> 在圆外 B A P.
 Proof.
   split; trivial.
 Qed.
 
-Lemma onc__inc : forall A B P, 在圆上 P A B -> 在圆上或圆内 P A B.
+Lemma 在圆上蕴含在圆上或圆内 : forall A B P, 在圆上 P A B -> 在圆上或圆内 P A B.
 Proof.
 unfold 在圆上, 在圆上或圆内.
 Le.
 Qed.
 
-Lemma onc__outc : forall A B P, 在圆上 P A B -> 在圆上或圆外 P A B.
+Lemma 在圆上蕴含在圆上或圆外 : forall A B P, 在圆上 P A B -> 在圆上或圆外 P A B.
 Proof.
 unfold 在圆上, 在圆上或圆外.
 Le.
 Qed.
 
-Lemma inc_outc__onc : forall A B P, 在圆上或圆内 P A B -> 在圆上或圆外 P A B -> 在圆上 P A B.
+Lemma 在圆上或圆内且在圆上或圆外则在圆上 : forall A B P, 在圆上或圆内 P A B -> 在圆上或圆外 P A B -> 在圆上 P A B.
 Proof.
   intros A B P HIn HOut.
   apply 长度小于等于的反对称性; trivial.
 Qed.
 
-Lemma incs__inc : forall A B P, 在圆内 P A B -> 在圆上或圆内 P A B.
+Lemma 在圆内蕴含在圆上或圆内 : forall A B P, 在圆内 P A B -> 在圆上或圆内 P A B.
 Proof.
 unfold 在圆内, 在圆上或圆内.
 Le.
 Qed.
 
-Lemma outcs__outc : forall A B P, 在圆外 P A B -> 在圆上或圆外 P A B.
+Lemma 在圆外蕴含在圆上或圆外 : forall A B P, 在圆外 P A B -> 在圆上或圆外 P A B.
 Proof.
 unfold 在圆外, 在圆上或圆外.
 Le.
 Qed.
 
-Lemma incs__noutc : forall A B P, 在圆内 P A B <-> ~ 在圆上或圆外 P A B.
+Lemma 在圆内等价于不在圆上或圆外 : forall A B P, 在圆内 P A B <-> ~ 在圆上或圆外 P A B.
 Proof.
 intros.
 split; intro; [apply 小于推出反向不小于等于|apply 不小于等于推出反向小于]; assumption.
 Qed.
 
-Lemma outcs__ninc : forall A B P, 在圆外 P A B <-> ~ 在圆上或圆内 P A B.
+Lemma 在圆外等价于不在圆上或圆内 : forall A B P, 在圆外 P A B <-> ~ 在圆上或圆内 P A B.
 Proof.
 intros.
 split; intro; [apply 小于推出反向不小于等于|apply 不小于等于推出反向小于]; assumption.
 Qed.
 
-Lemma inc__noutcs : forall A B P, 在圆上或圆内 P A B <-> ~ 在圆外 P A B.
+Lemma 在圆上或圆内等价于不在圆外 : forall A B P, 在圆上或圆内 P A B <-> ~ 在圆外 P A B.
 Proof.
 intros.
 split; intro; [apply 长度小于等于推出反向不小于|apply 不小于推出反向小于等于]; assumption.
 Qed.
 
-Lemma outc__nincs : forall A B P, 在圆上或圆外 P A B <-> ~ 在圆内 P A B.
+Lemma 在圆上或圆外等价于不在圆内 : forall A B P, 在圆上或圆外 P A B <-> ~ 在圆内 P A B.
 Proof.
 intros.
 split; intro; [apply 长度小于等于推出反向不小于|apply 不小于推出反向小于等于]; assumption.
 Qed.
 
-Lemma inc_eq : forall A P, 在圆上或圆内 P A A -> A = P.
+Lemma 在圆AA上或内推出与A重合 : forall A P, 在圆上或圆内 P A A -> A = P.
 Proof.
 intros A B HIn.
 apply AB小于等于CC推出A与B重合 with A; assumption.
 Qed.
 
-Lemma outc_eq : forall A B, 在圆上或圆外 A A B -> A = B.
+Lemma 圆心在圆上或圆内则圆缩为一点 : forall A B, 在圆上或圆外 A A B -> A = B.
 Proof.
 intros A B HOut.
 apply AB小于等于CC推出A与B重合 with A; assumption.
 Qed.
 
-Lemma onc2__cong : forall O P A B, 在圆上 A O P -> 在圆上 B O P -> Cong O A O B.
+Lemma 在同圆上的两点与圆心等距 : forall O P A B, 在圆上 A O P -> 在圆上 B O P -> Cong O A O B.
 Proof.
 unfold 在圆上.
 intros O P A B H1 H2.
@@ -118,8 +118,8 @@ Qed.
 End Circle.
 
 
-Hint Resolve inc112 onc212 onc_sym inc__outc onc__inc onc__outc
-             inc_outc__onc incs__inc outcs__outc : circle.
+Hint Resolve A在圆AB上或内 B在圆AB上 在圆上的对称性 在圆内或圆上等价的在圆外或圆上 在圆上蕴含在圆上或圆内 在圆上蕴含在圆上或圆外
+             在圆上或圆内且在圆上或圆外则在圆上 在圆内蕴含在圆上或圆内 在圆外蕴含在圆上或圆外 : circle.
 
 Ltac Circle := auto with circle.
 
@@ -219,7 +219,7 @@ Proof.
     subst P; assumption.
   destruct (两点重合的决定性 P V).
     subst P; assumption.
-  apply incs__inc, bet_inc2__incs with U V; assumption.
+  apply 在圆内蕴含在圆上或圆内, bet_inc2__incs with U V; assumption.
 Qed.
 
 (** Given two points U and V on a circle, the points of the line UV which are inside the circle are
@@ -231,7 +231,7 @@ Proof.
   intros A B U V P HUV HU HV HCol HIn.
   destruct (两点重合的决定性 P U); [subst; Between|].
   destruct (两点重合的决定性 P V); [subst; Between|].
-  assert (Cong A U A V) by (apply (onc2__cong A B); assumption).
+  assert (Cong A U A V) by (apply (在同圆上的两点与圆心等距 A B); assumption).
   apply out2__bet; apply not_bet_out; Col; intro.
   - apply (bet_le__lt P V A U); Cong.
     apply (l5_6_等长保持小于等于关系 A P A B); Cong.
@@ -246,7 +246,7 @@ Lemma onc2_out__outcs : forall A B U V P, U <> V -> 在圆上 U A B -> 在圆上
   在圆外 P A B.
 Proof.
   intros A B U V P HUV HUOn HVOn HOut.
-  apply outcs__ninc.
+  apply 在圆外等价于不在圆上或圆内.
   intro HIn.
   apply (not_bet_and_out U P V).
   split; trivial.
@@ -262,13 +262,13 @@ Proof.
   intros A B U V P HUIn HVIn HCol HOut.
   apply not_bet_out; Col.
   intro HBet.
-  apply outcs__ninc in HOut.
+  apply 在圆外等价于不在圆上或圆内 in HOut.
   apply HOut, bet_inc2__inc with U V; trivial.
 Qed.
 
 (** If the center of a circle belongs to a chord, then it is the midpoint of the chord. *)
 
-Lemma col_onc2__mid : forall A B U V, U <> V -> 在圆上 U A B -> 在圆上 V A B ->
+Lemma 若圆心在一弦上则其平分该弦 : forall A B U V, U <> V -> 在圆上 U A B -> 在圆上 V A B ->
   Col U V A -> 中点 A U V.
 Proof.
   intros A B U V HUV HU HV HCol.
@@ -280,7 +280,7 @@ Qed.
 (** Given a point U on a circle and a point P inside the circle, there is a point V such as
     UV is a chord of the circle going through P. *)
 
-Lemma chord_completion : forall A B U P, 在圆上 U A B -> 在圆上或圆内 P A B ->
+Lemma 由圆上圆内两点补全一弦 : forall A B U P, 在圆上 U A B -> 在圆上或圆内 P A B ->
   exists V, 在圆上 V A B /\ Bet U P V.
 Proof.
   intros A B U P HOn HIn.
@@ -318,7 +318,7 @@ Qed.
 
 (** Given a circle, there is a point strictly outside the circle. *)
 
-Lemma outcs_exists : forall O P, exists Q, 在圆外 Q O P.
+Lemma 严格在圆外的点的存在性 : forall O P, exists Q, 在圆外 Q O P.
 Proof.
 intros.
 induction(两点重合的决定性 O P).
@@ -343,7 +343,7 @@ Qed.
 (** Given a circle of center O and a ray OX, there is a point on the ray
     which is also strictly outside the circle. *)
 
-Lemma outcs_exists1 : forall O P X, X <> O -> exists Q, Out O X Q /\ 在圆外 Q O P.
+Lemma 严格在圆外的点的存在性_另一表述 : forall O P X, X <> O -> exists Q, Out O X Q /\ 在圆外 Q O P.
 Proof.
 intros O P X HOX.
 destruct (由一点往一方向构造等长线段 O X O P) as [Q [HQ1 HQ2]].
@@ -361,7 +361,7 @@ Qed.
 
 (** Given a circle there is a point which is strictly inside. *)
 
-Lemma incs_exists : forall O P, O <> P -> exists Q, 在圆内 Q O P.
+Lemma 严格在非退化圆内的点的存在性 : forall O P, O <> P -> exists Q, 在圆内 Q O P.
 Proof.
 intros.
 exists O.
@@ -371,7 +371,7 @@ Qed.
 (** Given a circle of center O and a ray OX, there is a point on the ray
     which is also strictly inside the circle. *)
 
-Lemma incs_exists1 : forall O P X, X <> O -> P <> O -> exists Q, Out O X Q /\ 在圆内 Q O P.
+Lemma 严格在非退化圆内的点的存在性_另一表述 : forall O P X, X <> O -> P <> O -> exists Q, Out O X Q /\ 在圆内 Q O P.
 Proof.
 intros O P X HOX HOP.
 destruct (中点的存在性 O P) as [M HM].
@@ -403,7 +403,7 @@ Qed.
 (** Given a circle of center O and a line OX, O is between two points of the line
     which are also on the circle. *)
 
-Lemma diam_points : forall O P X, exists Q1 Q2,
+Lemma 存在两端点在圆心两侧的直径 : forall O P X, exists Q1 Q2,
   Bet Q1 O Q2 /\ Col Q1 Q2 X /\ 在圆上 Q1 O P /\ 在圆上 Q2 O P.
 Proof.
 intros O P X.
@@ -426,7 +426,7 @@ Qed.
 
 (** The symmetric of a point on a circle relative to the center is also on the circle. *)
 
-Lemma symmetric_oncircle : forall X Y O P, 
+Lemma 圆上点关于圆心的对称点也在圆上 : forall X Y O P, 
  中点 O X Y -> 在圆上 X O P -> 在圆上 Y O P.
 Proof.
 intros.
@@ -436,8 +436,8 @@ Qed.
 
 (** The middle of a chord together with the center of the circle and one end of the chord
     form a right angle *)
-
-Lemma mid_onc2__per : forall O P U V X,
+(* 垂径定理 *)
+Lemma 弦中点与圆心连线形成直角 : forall O P U V X,
  在圆上 U O P -> 在圆上 V O P -> 中点 X U V -> Per O X U.
 Proof.
 intros.
@@ -456,12 +456,12 @@ Qed.
 
 (** The line from the center of a circle to the midpoint of a chord is perpendicular to the chord. *)
 
-Lemma mid_onc2__perp : forall O P A B X,
+Lemma 弦中点与圆心连线垂直于弦 : forall O P A B X,
  O <> X -> A <> B -> 在圆上 A O P -> 在圆上 B O P -> 中点 X A B -> Perp O X A B.
 Proof.
 intros.
 assert(Per O X A).
-apply (mid_onc2__per O P A B X); auto.
+apply (弦中点与圆心连线形成直角 O P A B X); auto.
 unfold 中点 in *.
 spliter.
 
@@ -479,7 +479,7 @@ Qed.
 (** If a line passing through the center of a circle is perpendicular to a chord,
     then they intersect at the middle of the chord *)
 
-Lemma col_onc2_perp__mid : forall O P A B X,
+Lemma 垂直于弦的直径平分弦 : forall O P A B X,
  O<>X -> A<>B -> Col A B X -> 在圆上 A O P -> 在圆上 B O P -> Perp O X A B -> 中点 X A B.
 Proof.
   intros O P A B X HOX HAB HCol HAOn HBOn HPerp.
@@ -488,7 +488,7 @@ Proof.
     intro; subst; trivial.
   assert (HNCol : ~ Col A B O) by (destruct (垂直推出不共线 A B O X); Perp; Col).
   apply (l8_18_过一点垂线之垂点的唯一性 A B O); Col; Perp.
-  apply 垂直的对称性, mid_onc2__perp with P; auto.
+  apply 垂直的对称性, 弦中点与圆心连线垂直于弦 with P; auto.
   intro; subst; apply HNCol; Col.
 Qed.
 
@@ -542,7 +542,7 @@ Qed.
 
 (** A circle does not cut a line at more than two points. *)
 
-Lemma line_circle_two_points : forall O P U V W,
+Lemma 圆交一线于至多两点 : forall O P U V W,
  U <> V -> Col U V W -> 在圆上 U O P -> 在圆上 V O P -> 在圆上 W O P -> 
  W = U \/ W = V.
 Proof.
@@ -554,7 +554,7 @@ Qed.
 
 (** The midpoint of a chord is strictly inside the circle. *)
 
-Lemma onc2_mid__incs : forall O P U V M, 
+Lemma 弦中点严格在圆内 : forall O P U V M, 
  U <> V -> 在圆上 U O P -> 在圆上 V O P -> 中点 M U V ->
  在圆内 M O P.
 Proof.
@@ -565,7 +565,7 @@ Qed.
 
 (** A point is either strictly inside, on or strictly outside a circle. *)
 
-Lemma circ长度小于等于的决定性 : forall O P X,
+Lemma 点与圆的位置关系的决定性 : forall O P X,
   在圆上 X O P \/ 在圆内 X O P \/ 在圆外 X O P.
 Proof.
 intros O P X.
@@ -576,7 +576,7 @@ Qed.
 
 (** If a point is inside a circle, then it lies on a radius. *)
 
-Lemma inc__radius : forall O P X, 在圆上或圆内 X O P ->
+Lemma 圆上或圆内的点在一条半径上 : forall O P X, 在圆上或圆内 X O P ->
   exists Y, 在圆上 Y O P /\ Bet O X Y.
 Proof.
   intros O P X HIn.
@@ -595,16 +595,16 @@ Lemma inc_onc2_out__eq : forall O P A B C,
   在圆上或圆内 A O P -> 在圆上 B O P -> 在圆上 C O P -> Out A B C -> B = C.
 Proof.
   intros O P A B C HA HB HC HOut.
-  destruct (chord_completion O P B A) as [B' [HB' HBet]]; trivial.
+  destruct (由圆上圆内两点补全一弦 O P B A) as [B' [HB' HBet]]; trivial.
   assert_diffs.
-  destruct (line_circle_two_points O P B B' C); auto.
+  destruct (圆交一线于至多两点 O P B B' C); auto.
     ColR.
   subst C.
   exfalso.
   apply (not_bet_and_out B A B'); split; assumption.
 Qed.
 
-Lemma onc_not_center : forall O P A, O <> P -> 在圆上 A O P -> A <> O.
+Lemma 非退化圆上的点不与圆心重合 : forall O P A, O <> P -> 在圆上 A O P -> A <> O.
 Proof.
 intros.
 intro.
@@ -612,13 +612,13 @@ unfold 在圆上 in *.
 treat_equalities; tauto.
 Qed.
 
-Lemma onc2_per__mid : forall O P U V M, U <> V -> M <> U ->
+Lemma 与弦成直角的直径平分弦 : forall O P U V M, U <> V -> M <> U ->
  在圆上 U O P -> 在圆上 V O P -> Col M U V -> Per O M U -> 中点 M U V .
 Proof.
 intros.
 assert(HH:=中点的存在性 U V).
 ex_and HH M'.
-assert(HH:=(mid_onc2__per O P U V M' H1 H2 H5)).
+assert(HH:=(弦中点与圆心连线形成直角 O P U V M' H1 H2 H5)).
 assert(M = M' \/ ~ Col M' U V).
 apply(共线点和两直角的两种情况 O M U V M'); Col.
 assert_diffs;auto.
@@ -635,7 +635,7 @@ Equal straight lines in a circle are equally distant from the center,
 and those which are equally distant from the center equal one another.
 *)
 
-Lemma cong_chord_cong_center : forall O P A B C D M N,
+Lemma 同圆等长弦与圆心等距 : forall O P A B C D M N,
  在圆上 A O P ->
  在圆上 B O P ->
  在圆上 C O P ->
@@ -663,7 +663,7 @@ apply (等长的传递性 _ _ O P); Cong.
 Qed.
 
 (** variant *)
-Lemma cong_chord_cong_center1 : forall O P A B C D M N,
+Lemma 同圆等长弦与圆心等距 : forall O P A B C D M N,
  A <> B -> C <> D -> M <> A -> N <> C ->
  在圆上 A O P ->
  在圆上 B O P ->
@@ -678,15 +678,15 @@ Lemma cong_chord_cong_center1 : forall O P A B C D M N,
 Proof.
 intros.
 assert(中点 M A B).
-apply(onc2_per__mid O P A B M H H1 H3 H4 H7 H9).
+apply(与弦成直角的直径平分弦 O P A B M H H1 H3 H4 H7 H9).
 assert(中点 N C D).
-apply(onc2_per__mid O P C D N H0 H2 H5 H6 H8 H10).
-apply (cong_chord_cong_center O P A B C D M N); auto.
+apply(与弦成直角的直径平分弦 O P C D N H0 H2 H5 H6 H8 H10).
+apply (同圆等长弦与圆心等距 O P A B C D M N); auto.
 Qed.
 
 (** Prop 7   **)
 
-Lemma onc_sym__onc : forall O P A B X Y, 
+Lemma 在圆上的对称性__onc : forall O P A B X Y, 
 Bet O A B -> 在圆上 A O P -> 在圆上 B O P -> 在圆上 X O P -> 严格对称 X Y A B -> 在圆上 Y O P.
 Proof.
 intros.
@@ -699,14 +699,14 @@ apply 等长的传递性 with O X; Cong.
 Qed.
 
 
-Lemma mid_onc__diam : forall O P A B, 在圆上 A O P -> 中点 O A B -> 直径 A B O P.
+Lemma 圆上点与其关于圆心的对称点构成直径 : forall O P A B, 在圆上 A O P -> 中点 O A B -> 直径 A B O P.
 Proof.
   intros O P A B HA HB.
   repeat split; Between.
-  apply (symmetric_oncircle A); trivial.
+  apply (圆上点关于圆心的对称点也在圆上 A); trivial.
 Qed.
 
-Lemma chord_le_diam : forall O P A B U V,
+Lemma 弦长小于等于直径 : forall O P A B U V,
  直径 A B O P -> 在圆上 U O P -> 在圆上 V O P -> Le U V A B.
 Proof.
 intros.
@@ -717,12 +717,12 @@ apply(triangle_inequality_2 U O V A O B); trivial;
 apply 等长的传递性 with O P; Cong.
 Qed.
 
-Lemma chord_lt_diam : forall O P A B U V, 
+Lemma 非直径之弦长小于直径 : forall O P A B U V, 
  ~ Col O U V -> 直径 A B O P -> 在圆上 U O P -> 在圆上 V O P ->
  Lt U V A B.
 Proof.
 intros.
-assert(HH:= chord_le_diam O P A B U V H0 H1 H2).
+assert(HH:= 弦长小于等于直径 O P A B U V H0 H1 H2).
 unfold Lt.
 split; auto.
 intro.
@@ -745,7 +745,7 @@ repeat split; Cong; apply 等长的传递性 with O P; Cong.
 Qed.
 
 
-Lemma inc2_le_diam: forall O P A B U V, 直径 A B O P -> 在圆上或圆内 U O P -> 在圆上或圆内 V O P -> Le U V A B.
+Lemma 圆上或圆内两点间距小于等于直径: forall O P A B U V, 直径 A B O P -> 在圆上或圆内 U O P -> 在圆上或圆内 V O P -> Le U V A B.
 Proof.
 intros.
 unfold 在圆上或圆内 in *.
@@ -770,7 +770,7 @@ apply(长度小于等于的传递性 U V U W A B); auto.
 Qed.
 
 
-Lemma onc_col_diam__eq : forall O P A B X, 直径 A B O P -> 在圆上 X O P -> Col A B X -> X = A \/ X = B.
+Lemma 直径与圆的交点为直径两端点 : forall O P A B X, 直径 A B O P -> 在圆上 X O P -> Col A B X -> X = A \/ X = B.
 Proof.
 intros.
 unfold 直径 in *.
@@ -797,7 +797,7 @@ apply H5.
 apply (中点组的唯一性1 A O ); auto.
 Qed.
 
-Lemma bet_onc_le_a : forall O P A B T X, 直径 A B O P -> Bet B O T -> 在圆上 X O P -> Le T A T X.
+Lemma 直径上一点距圆上一点小于等于距较远的直径端点 : forall O P A B T X, 直径 A B O P -> Bet B O T -> 在圆上 X O P -> Le T A T X.
 Proof.
 intros.
 unfold 直径 in*.
@@ -818,12 +818,12 @@ apply (l5_2 B); Between.
 Qed.
 
 
-Lemma bet_onc_lt_a : forall O P A B T X,
+Lemma 直径上一点距圆上另一点小于距较远的直径端点 : forall O P A B T X,
  直径 A B O P -> O <> P -> O <> T -> X <> A -> Bet B O T  -> 在圆上 X O P ->
  Lt T A T X.
 Proof.
 intros.
-assert(HH:= bet_onc_le_a O P A B T X H H3 H4).
+assert(HH:= 直径上一点距圆上一点小于等于距较远的直径端点 O P A B T X H H3 H4).
 assert(Lt T A T X \/ Cong T A T X).
 {
   induction(等长的决定性 T A T X).
@@ -991,7 +991,7 @@ apply 长度小于的左交换性.
 apply(长度小于等于_小于_传递性 V U V U'); auto.
 Qed.
 
-Lemma diam_cong_incs__outcs : forall O P A B U V, 直径 A B O P -> Cong A B U V -> 在圆内 U O P -> 在圆外 V O P.
+Lemma diam_cong_在圆内等价的在圆外 : forall O P A B U V, 直径 A B O P -> Cong A B U V -> 在圆内 U O P -> 在圆外 V O P.
 Proof.
 intros.
 induction(两点重合的决定性 O P).
@@ -1005,7 +1005,7 @@ treat_equalities.
 apply False_ind.
 apply H2; Cong.
 
-assert(HH:= circ长度小于等于的决定性 O P V).
+assert(HH:= 点与圆的位置关系的决定性 O P V).
 induction HH.
 assert(Lt U V A B) by  apply(incs_onc_diam__lt O P A B U V H H1 H3).
 unfold Lt in H4.
@@ -1047,14 +1047,14 @@ Lemma onc3__ncol : forall O P A B C,
  ~ Col A B C.
 Proof.
 intros.
-assert (Hcong := onc2__cong O P).
+assert (Hcong := 在同圆上的两点与圆心等距 O P).
 apply (cong2__ncol O); Cong.
 Qed.
 
 Lemma diam_exists : forall O P T, exists A, exists B, 直径 A B O P /\ Col A B T.
 Proof.
 intros.
-destruct (diam_points O P T) as [A [B [HBet [HCol [HA HB]]]]].
+destruct (存在两端点在圆心两侧的直径 O P T) as [A [B [HBet [HCol [HA HB]]]]].
 exists A, B.
 repeat split; auto.
 Qed.
@@ -1185,7 +1185,7 @@ Proof.
   destruct (两点重合的决定性 O X).
     subst; Col.
   apply cop_perp2__col with A B; Cop.
-  apply 垂直的左交换性, mid_onc2__perp with P; auto.
+  apply 垂直的左交换性, 弦中点与圆心连线垂直于弦 with P; auto.
 Qed.
 
 Lemma cong2_cop2_onc3__eq : forall O P X A B C, A <> B -> A <> C -> B <> C ->
@@ -1231,7 +1231,7 @@ Lemma tree_points_onc_cop : forall O P, O <> P -> exists A B C,
 Proof.
   intros O P HOP.
   destruct (两点不重合则存在不共线的点 O P) as [X HNCol]; auto.
-  destruct (diam_points O P X) as [B [C [HBet [HCol []]]]].
+  destruct (存在两端点在圆心两侧的直径 O P X) as [B [C [HBet [HCol []]]]].
   exists P, B, C.
   repeat split; Circle.
     intro; subst; apply HNCol; ColR.
@@ -1250,7 +1250,7 @@ Proof.
     destruct (tree_points_onc_cop O P HOP) as [A [B [C]]]; spliter.
     exists A, B, C; repeat split; auto.
   destruct (两点不重合则存在不共线的点 O Q) as [X HNCol]; auto.
-  destruct (diam_points O P X) as [B [C [HBet [HCol []]]]].
+  destruct (存在两端点在圆心两侧的直径 O P X) as [B [C [HBet [HCol []]]]].
   destruct (l6_11_existence O O P Q) as [A []]; auto.
   exists A, B, C.
   assert (~ Col O A B) by (intro; unfold 在圆上 in *; assert_diffs; apply HNCol; ColR).
@@ -1275,7 +1275,7 @@ Lemma bet_cop_onc2__ex_onc_os_out : forall O P A B C I,
   exists C1, Out C1 O I /\ 在圆上 C1 O P /\ OS A B C C1.
 Proof.
   intros O P A B C I HAI HBI HNCol HNCol1 HA HB HBet HCop.
-  destruct (diam_points O P I) as [C1 [C2 [HBet1 [HCol [HC1 HC2]]]]].
+  destruct (存在两端点在圆心两侧的直径 O P I) as [C1 [C2 [HBet1 [HCol [HC1 HC2]]]]].
   assert (HTS : TS A B C1 C2).
   { apply (chord_intersection O P); trivial.
     unfold 在圆上 in *; assert_diffs.
@@ -1319,7 +1319,7 @@ Proof.
         treat_equalities; auto.
       - destruct (tree_points_onc_cop2 A B C Hd) as [B0 [B1 [B2]]].
         spliter.
-        assert (HCong := onc2__cong C D).
+        assert (HCong := 在同圆上的两点与圆心等距 C D).
         apply cong2_cop2_onc3__eq with B B0 B1 B2; try (apply HCong; apply Heq); auto.
     }
     subst C.
@@ -1391,8 +1391,8 @@ Lemma cop2_onc6__eqc : forall A B C O P O' P', A <> B -> B <> C -> A <> C ->
   同圆 O P O' P'.
 Proof.
   intros A B C O P O' P'; intros.
-  assert (HCong := onc2__cong O P).
-  assert (HCong' := onc2__cong O' P').
+  assert (HCong := 在同圆上的两点与圆心等距 O P).
+  assert (HCong' := 在同圆上的两点与圆心等距 O' P').
   assert (O = O') by (apply (cong4_cop2__eq A B C); Cong).
   apply eqc_chara.
   split.
@@ -1412,7 +1412,7 @@ Proof.
     exists O1, P1; repeat split; Cop.
   destruct (l11_62_existence A B C O1) as [O []].
   exists O, A.
-  assert (HCong := onc2__cong O1 P1).
+  assert (HCong := 在同圆上的两点与圆心等距 O1 P1).
   repeat split; [Circle|apply cong2_per2__cong with O1 O1; finish..|assumption].
 Qed.
 
@@ -1539,8 +1539,8 @@ Lemma mid2_onc4__eq : forall O P A B C D X, B <> C-> A <> B ->
 Proof.
 intros O P A B C D X Hbc.
 intros.
-assert(HH:=mid_onc2__per O P A C X H0 H2 H4).
-assert(HP:=mid_onc2__per O P B D X H1 H3 H5).
+assert(HH:=弦中点与圆心连线形成直角 O P A C X H0 H2 H4).
+assert(HP:=弦中点与圆心连线形成直角 O P B D X H1 H3 H5).
 
 induction(两点重合的决定性 X O).
 auto.
@@ -1577,7 +1577,7 @@ assert(Col A B C).
 ColR.
 
 assert(C = A \/ C = B).
-apply(line_circle_two_points O P A B C); Col.
+apply(圆交一线于至多两点 O P A B C); Col.
 destruct H14.
 treat_equalities.
 intuition.
@@ -1609,7 +1609,7 @@ Lemma onc2_mid_cong_col : forall O P U V M X,
  U <> V ->在圆上 U O P -> 在圆上 V O P -> 中点 M U V -> Cong U X V X -> Col O X M.
 Proof.
 intros.
-assert(HH:=mid_onc2__per O P U V M H0 H1 H2).
+assert(HH:=弦中点与圆心连线形成直角 O P U V M H0 H1 H2).
 assert(Per X M U).
 unfold Per.
 exists V.
@@ -1635,7 +1635,7 @@ assert(HH:= 中点的存在性 X Y).
 ex_and HH M.
 assert(Per O M X).
 {
-  apply(mid_onc2__per O P X Y M); Circle.
+  apply(弦中点与圆心连线形成直角 O P X Y M); Circle.
 }
 assert(Per A M X).
 {
@@ -1844,7 +1844,7 @@ Proof.
 intros.
 assert(Perp O M A B).
 {
-  apply(mid_onc2__perp O  P A B M); Circle.
+  apply(弦中点与圆心连线垂直于弦 O  P A B M); Circle.
   intro.
   treat_equalities.
   apply H7.
@@ -1855,7 +1855,7 @@ assert(Perp O M A B).
 }
 assert(Perp O N C D).
 {
-  apply(mid_onc2__perp O  P C D N); Circle.
+  apply(弦中点与圆心连线垂直于弦 O  P C D N); Circle.
   intro.
   treat_equalities.
   apply H8.
@@ -1976,8 +1976,8 @@ apply 等长的传递性 with O P; Cong.
 induction H16.
 contradiction.
 apply (中点的唯一性1 C D); auto.
-assert(HM1:=mid_onc2__perp O P A B M H12 H H2 H3 H8).
-assert(HM2:=mid_onc2__perp O P C D M H12 H0 H4 H5 H9).
+assert(HM1:=弦中点与圆心连线垂直于弦 O P A B M H12 H H2 H3 H8).
+assert(HM2:=弦中点与圆心连线垂直于弦 O P C D M H12 H0 H4 H5 H9).
 apply False_ind.
 apply H1.
 apply (l12_9_2D _ _ _ _ O M); Perp.
@@ -1994,7 +1994,7 @@ contradiction.
 assert(M = O).
 apply (中点的唯一性1 A B); auto.
 subst M; tauto.
-assert(HM1:=mid_onc2__perp O P A B M H12 H H2 H3 H8).
+assert(HM1:=弦中点与圆心连线垂直于弦 O P A B M H12 H H2 H3 H8).
 apply(垂线共线点也构成垂直1 M N C D O ) in H15; Col.
 apply False_ind.
 apply H1.
@@ -2012,7 +2012,7 @@ induction H17.
 contradiction.
 apply (中点的唯一性1 C D); auto.
 
-assert(HM1:=mid_onc2__perp O P C D N H12 H0 H4 H5 H9).
+assert(HM1:=弦中点与圆心连线垂直于弦 O P C D N H12 H0 H4 H5 H9).
 apply 垂直于转垂直 in H15.
 apply False_ind.
 apply H1.

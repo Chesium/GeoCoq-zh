@@ -74,7 +74,7 @@ Proof.
     clear dependent B'.
     destruct (or_bet_out P Z1 Q) as [HBet|[HOut|HNCol]];
       [exists Z1; auto| |exfalso; apply HNCol; Col].
-    destruct (chord_completion A B Z1 P) as [Z2 [HZ2On HBet]]; trivial.
+    destruct (由圆上圆内两点补全一弦 A B Z1 P) as [Z2 [HZ2On HBet]]; trivial.
     exists Z2; split; trivial.
     assert_diffs.
     assert (HBet2 : Bet Z1 Z2 Q).
@@ -99,7 +99,7 @@ Proof.
     destruct (Hoplc A B U V P HCol HUV HBet) as [Z1 [HZ1Col HZ1On]].
     exists Z1.
     assert (HPIn : 在圆上或圆内 P A B) by (apply bet__le1213, HBet).
-    destruct (chord_completion A B Z1 P) as [Z2 [HZ2On HPBet]]; trivial.
+    destruct (由圆上圆内两点补全一弦 A B Z1 P) as [Z2 [HZ2On HPBet]]; trivial.
     assert (Z1 <> P).
       intro; treat_equalities; apply HPB, between_cong with A; trivial.
     assert_diffs.
@@ -134,8 +134,8 @@ Proof.
   intros Hcc A B C D P Q HPOn HPIn HQOn HQIn.
   destruct (两点重合的决定性 P Q).
     subst Q; exists P; split; assumption.
-  destruct (chord_completion C D P Q) as [P' [HP'On HBetQ]]; trivial.
-  destruct (chord_completion A B Q P) as [Q' [HQ'On HBetP]]; trivial.
+  destruct (由圆上圆内两点补全一弦 C D P Q) as [P' [HP'On HBetQ]]; trivial.
+  destruct (由圆上圆内两点补全一弦 A B Q P) as [Q' [HQ'On HBetP]]; trivial.
   apply (Hcc A B C D P P'); trivial.
   destruct (长度小于等于的决定性 A P' A B); trivial.
   assert (P' = Q).
@@ -314,8 +314,8 @@ Proof.
     assert (Bet C1 E1 C2) by (apply (euclid_22_aux A B C D E F A' B' E' F'); trivial).
     assert (Bet E1 C1 E2) by (apply (euclid_22_aux B A E F C D B' A' C' D'); Sums; Le).
     destruct (Hcc A C1 B E1 E1 C1) as [Z [HZ1 HZ2]]; Circle.
-      apply bet_inc2__inc with C1 C2; Circle; apply onc__inc, 等长的传递性 with C D; Cong.
-      apply bet_inc2__inc with E1 E2; Circle; apply onc__inc, 等长的传递性 with E F; Cong.
+      apply bet_inc2__inc with C1 C2; Circle; apply 在圆上蕴含在圆上或圆内, 等长的传递性 with C D; Cong.
+      apply bet_inc2__inc with E1 E2; Circle; apply 在圆上蕴含在圆上或圆内, 等长的传递性 with E F; Cong.
     exists Z; repeat split; Cong.
       apply 等长的传递性 with A C1; Cong.
       apply 等长的传递性 with B E1; Cong.
@@ -361,7 +361,7 @@ Proof.
   destruct (两点重合的决定性 A B).
   { subst B.
     exists P; split; trivial.
-    apply inc_eq in HPIn; subst; Circle.
+    apply 在圆AA上或内推出与A重合 in HPIn; subst; Circle.
   }
   destruct HXYZ as [X [Y [Z [HAC [HAB HCD]]]]].
   assert_diffs.
