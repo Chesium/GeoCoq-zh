@@ -663,7 +663,7 @@ apply (等长的传递性 _ _ O P); Cong.
 Qed.
 
 (** variant *)
-Lemma 同圆等长弦与圆心等距 : forall O P A B C D M N,
+Lemma 同圆等长弦与圆心等距_变体 : forall O P A B C D M N,
  A <> B -> C <> D -> M <> A -> N <> C ->
  在圆上 A O P ->
  在圆上 B O P ->

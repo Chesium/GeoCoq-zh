@@ -716,7 +716,7 @@ assert(Cong V X U Y).
 assert(等角 O U Y O V X).
 {
   unfold 在圆上 in *.
-  apply(三角形全等推角等2 O U Y O V X).
+  apply(三角形全等推角等1 O U Y O V X).
   intro;treat_equalities; tauto.
   intro;treat_equalities.
   unfold 在圆外 in *.

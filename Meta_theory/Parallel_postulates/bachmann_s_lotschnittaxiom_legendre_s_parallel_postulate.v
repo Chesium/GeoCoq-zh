@@ -143,7 +143,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       assert (HPer2 : Per C B D).
         {
         apply l11_17_等于直角的角是直角 with A B D; trivial.
-        apply 三角形全等推角等2; auto.
+        apply 三角形全等推角等1; auto.
         repeat split; Cong.
         }
       assert (H和角 : 和角 A B D C B D A B C).

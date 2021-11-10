@@ -940,7 +940,7 @@ Qed.
 Lemma plg_conga1 : forall A B C D, A <> B -> A <> C -> Plg A B C D -> 等角 B A C D C A.
 Proof.
 intros.
-apply 三角形全等推角等2; auto.
+apply 三角形全等推角等1; auto.
 assert(HH := plg_to_parallelogram A B C D H1).
 apply plg_cong in HH.
 spliter.
@@ -1248,9 +1248,9 @@ spliter.
 assert(HH:= plg_mid A B C D H0).
 ex_and HH M.
 split.
-apply 三角形全等推角等2; auto.
+apply 三角形全等推角等1; auto.
 repeat split; Cong.
-apply 三角形全等推角等2; auto.
+apply 三角形全等推角等1; auto.
 intro.
 subst D.
 apply H.
@@ -4131,7 +4131,7 @@ left.
 assumption.
 
 assert(等角 E A D F B C).
-apply 三角形全等推角等2.
+apply 三角形全等推角等1.
 intro.
 subst E.
 apply H13.

@@ -336,7 +336,7 @@ spliter.
 auto.
 Qed.
 
-Lemma 三角形全等推角等2 : forall A B C A' B' C',
+Lemma 三角形全等推角等1 : forall A B C A' B' C',
  A <> B -> C <> B ->
  三角形全等 A B C A' B' C' ->
  等角 A B C A' B' C'.
@@ -1523,7 +1523,7 @@ Proof.
       exists C'.
       split.
         apply l11_10 with C0 C C0' C'.
-          apply 三角形全等推角等2.
+          apply 三角形全等推角等1.
             intro.
             subst C0.
             absurde.
@@ -1619,7 +1619,7 @@ Proof.
           apply 等长的交换性.
           assumption.
         apply l11_13 with C0 C0'.
-          apply 三角形全等推角等2; auto.
+          apply 三角形全等推角等1; auto.
           intro.
           subst C.
           apply H.
@@ -2059,7 +2059,7 @@ Proof.
         apply H13.
         assumption.
       assert(等角 A B C A'' B' C'').
-        apply 三角形全等推角等2.
+        apply 三角形全等推角等1.
           assumption.
           assumption.
         repeat split.
@@ -2070,7 +2070,7 @@ Proof.
         apply 等长的交换性.
         assumption.
       assert(等角 C B T  C'' B' T'').
-        apply 三角形全等推角等2.
+        apply 三角形全等推角等1.
           assumption.
           auto.
         repeat split.
@@ -2263,7 +2263,7 @@ Proof.
         subst T.
         assumption.
       assert(等角 A B C A'' B' C'').
-        apply 三角形全等推角等2.
+        apply 三角形全等推角等1.
           assumption.
           assumption.
         repeat split.
@@ -2274,7 +2274,7 @@ Proof.
         apply 等长的交换性.
         assumption.
       assert(等角 C B T  C'' B' T'').
-        apply 三角形全等推角等2.
+        apply 三角形全等推角等1.
           assumption.
           auto.
         repeat split.
@@ -3366,7 +3366,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma 给定角一边可作出等角 :
+Lemma 给定角一边可作出共面等角 :
  forall A B C A' B' P,
   A <> B -> C <> B -> A' <> B' ->
   exists C', 等角 A B C A' B' C' /\ 共面 A' B' C' P.
@@ -5816,7 +5816,7 @@ Proof.
       apply A是AB中点则A与B重合 in H3.
       contradiction.
     assert(等角 A C B C A P).
-      apply 三角形全等推角等2; assumption.
+      apply 三角形全等推角等1; assumption.
     assert(exists X, Bet A X P /\ Bet M X D).
       eapply 帕施公理.
         apply 中间性的对称性.
@@ -6534,7 +6534,7 @@ Proof.
     intros.
     destruct (中点的存在性 A C) as [P HP].
     统计不重合点.
-    assert(等角 B A P B C P) by (apply 三角形全等推角等2; auto; repeat split; Cong).
+    assert(等角 B A P B C P) by (apply 三角形全等推角等1; auto; repeat split; Cong).
     apply l11_10 with B P B P; Out.
 Qed.
 
@@ -7122,7 +7122,7 @@ Proof.
         assumption.
       assumption.
     assert(等角 B A C B' A' C'').
-      apply 三角形全等推角等2.
+      apply 三角形全等推角等1.
         auto.
         apply 不共线则不重合 in H.
         spliter.
@@ -7163,7 +7163,7 @@ Proof.
         apply 等长的交换性.
         assumption.
       assumption.
-    apply 三角形全等推角等2.
+    apply 三角形全等推角等1.
       apply 不共线则不重合 in H.
       spliter.
       assumption.
@@ -7220,7 +7220,7 @@ Proof.
     assert(三角形全等 B C A B' C'' A').
       repeat split; Cong.
     assert(等角 B C A B' C'' A').
-      apply 三角形全等推角等2.
+      apply 三角形全等推角等1.
         auto.
         apply 不共线则不重合 in H.
         spliter.
@@ -7251,7 +7251,7 @@ Proof.
             apply 等长的对称性.
             assumption.
           assumption.
-        apply 三角形全等推角等2.
+        apply 三角形全等推角等1.
           auto.
           auto.
         assumption.
@@ -7344,7 +7344,7 @@ Proof.
     assert(三角形全等 B A C B' A' C' /\ 三角形全等 A B C A' B' C' /\ 三角形全等 B C A B' C' A').
       repeat split; Cong.
     spliter.
-    split; [|split]; apply 三角形全等推角等2; auto.
+    split; [|split]; apply 三角形全等推角等1; auto.
 Qed.
 
 Lemma conga_distinct : forall A B C D E F, 等角 A B C D E F -> 等角 A B C D E F /\ A <> B /\ C <> B /\ D <> E /\ F <> E.
@@ -7647,7 +7647,7 @@ Proof.
     split.
       assumption.
     split.
-      apply 三角形全等推角等2.
+      apply 三角形全等推角等1.
         auto.
         intro.
         subst C.
@@ -7655,7 +7655,7 @@ Proof.
         subst B.
         absurde.
       auto with cong3.
-    apply 三角形全等推角等2.
+    apply 三角形全等推角等1.
       auto.
       intro.
       subst C.
@@ -8032,7 +8032,7 @@ Proof.
     apply (l7_13_同中点组两侧等长 M); 中点.
   assert(Cong A C A' C').
     apply (l7_13_同中点组两侧等长 M); 中点.
-  apply 三角形全等推角等2; auto.
+  apply 三角形全等推角等1; auto.
   repeat split; Cong.
 Qed.
 
@@ -10853,7 +10853,7 @@ Ltac ColR :=
  let col := constr:(Col) in
    treat_equalities; assert_cols; Col; 统计不重合点; Col_refl tpoint col.
 
-Hint Resolve 同角相等 等角的对称性 三角形全等推角等2 角ABC等于角CBA 角ABA等于角CDC
+Hint Resolve 同角相等 等角的对称性 三角形全等推角等1 角ABC等于角CBA 角ABA等于角CDC
              等角的右交换性 等角的左交换性 等角的交换性 成中间性三点组的角相等 l11_16_直角相等 : conga.
 
 Ltac 等角 := auto 3 with conga.

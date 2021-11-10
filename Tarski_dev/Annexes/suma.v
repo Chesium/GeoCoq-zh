@@ -32,7 +32,7 @@ Proof.
   exists B.
   elim (共线的决定性 A B C).
   { intro HColB.
-    destruct (给定角一边可作出等角 D E F C B A) as [J [HConga HCop]]; auto.
+    destruct (给定角一边可作出共面等角 D E F C B A) as [J [HConga HCop]]; auto.
     统计不重合点.
     exists J.
     exists J.

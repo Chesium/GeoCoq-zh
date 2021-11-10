@@ -1677,7 +1677,7 @@ ex_and H4 C1'.
 
 assert(等角 P A C O A1 C1').
 {
-apply(三角形全等推角等2).
+apply(三角形全等推角等1).
 intro.
 subst A.
 apply H2; Col.
@@ -2041,7 +2041,7 @@ repeat split; Cong.
 }
 assert(等角 P C A O C1' A1).
 {
-apply 三角形全等推角等2.
+apply 三角形全等推角等1.
 intro.
 subst C.
 apply H2.

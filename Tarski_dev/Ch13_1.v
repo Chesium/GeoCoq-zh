@@ -2951,7 +2951,7 @@ Proof.
       subst D''.
       repeat split; Cong.
     assert(等角 B A D D' A D).
-      apply 三角形全等推角等2; auto.
+      apply 三角形全等推角等1; auto.
     assert(三角形全等 B A C C' A C).
       apply 直角的对称性 in H0.
       unfold Per in H0.
@@ -2966,7 +2966,7 @@ Proof.
       subst C''.
       repeat split; Cong.
     assert(等角 B A C C' A C).
-      apply 三角形全等推角等2; auto.
+      apply 三角形全等推角等1; auto.
     assert(等角 E'' A C' D' A E'').
       apply l11_22 with C D.
       split.
