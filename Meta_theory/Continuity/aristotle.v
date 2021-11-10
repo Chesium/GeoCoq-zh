@@ -43,17 +43,17 @@ Proof.
   { intro; treat_equalities.
     assert (T=Q) by (apply ABA直角则A与B重合; auto); treat_equalities; absurde.
   }
-  apply conga_preserves_lta with P S Q T S Q; try (apply conga_refl; auto); [|split].
-  - apply conga_trans with X B Y; [|apply out2__conga; auto].
+  apply conga_preserves_lta with P S Q T S Q; try (apply 同角相等; auto); [|split].
+  - apply 角等的传递性 with X B Y; [|apply out2__conga; auto].
     assert (HInter : (Cong T S Y B /\ (T <> S -> 等角 Q T S X Y B /\ 等角 Q S T X B Y))).
     { apply (l11_49 T Q S Y X B); Cong.
-      apply l11_16; Perp.
+      apply l11_16_直角相等; Perp.
     }
     destruct HInter as [_ [_ HConga]]; auto.
-    apply conga_left_comm; auto.
+    apply 等角的左交换性; auto.
 
-  - apply lea_comm.
-    apply (l11_29_b Q S P Q S T).
+  - apply 角度小于等于的交换性.
+    apply (l11_29_b_能在其内找一点构造等角之角较大 Q S P Q S T).
     exists T.
     split; 等角.
     repeat split; auto.
@@ -72,7 +72,7 @@ Proof.
         assert (HUn : S=Q\/P=Q) by (apply l8_9_直角三点共线则必有两点重合; Col).
         destruct HUn; treat_equalities; absurde.
       }
-      apply l11_16; Perp.
+      apply l11_16_直角相等; Perp.
       等角.
     }
     destruct HInter as [HCong _].
@@ -128,7 +128,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     {
     apply l11_10 with B P' C' P''; try solve [assert_diffs; finish].
     apply l11_49; try solve [assert_diffs; finish]; eCong.
-    apply l11_16; try solve [assert_diffs; auto]; apply L形垂直转直角1;
+    apply l11_16_直角相等; try solve [assert_diffs; auto]; apply L形垂直转直角1;
     [apply 与垂线共线之线也为垂线2 with B D'|apply 与垂线共线之线也为垂线2 with C' D''];
     assert_diffs; finish; apply 垂直的对称性; apply 与垂线共线之线也为垂线2 with B A; finish.
     }
@@ -139,8 +139,8 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     apply lea_in_angle.
 
       {
-      apply l11_30 with B C' P' A B C; finish;
-      apply conga_refl; assert_diffs; auto.
+      apply l11_30_等角保持小于等于 with B C' P' A B C; finish;
+      apply 同角相等; assert_diffs; auto.
       }
 
       {
@@ -165,8 +165,8 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
   assert (HTZ : T <> Z).
     {
     intro; treat_equalities; destruct H角度小于 as [_ HF]; apply HF.
-    apply conga_trans with A B P''; finish.
-    apply conga_sym, out2__conga; [assert_diffs; finish|].
+    apply 角等的传递性 with A B P''; finish.
+    apply 等角的对称性, out2__conga; [assert_diffs; finish|].
     apply l6_7 with T; finish.
     assert_diffs; split; auto; split; auto.
     induction HOut6; auto.
@@ -261,17 +261,17 @@ Proof.
   assert (H角度小于 : 角度小于 Q P A' C' P Q) by (apply obtuse_per__lta; Perp).
   destruct H角度小于 as [H角度小于等于 HN等角].
   assert (H在角内 : 在角内 A' Q P C').
-    apply lea_in_angle; Side; apply lea_right_comm; trivial.
+    apply lea_in_angle; Side; apply 角度小于等于的右交换性; trivial.
   destruct (由一点往一方向构造等长线段 C' P C' P) as [C [HC1 HC2]].
   destruct (由一点往一方向构造等长线段 A' P A' P) as [A [HA1 HA2]].
   assert_diffs.
   assert (H在角内1 : 在角内 C A P Q).
     apply in_angle_reverse with A'; auto.
-    apply l11_24, in_angle_reverse with C'; auto.
-    apply l11_24; trivial.
+    apply l11_24_在角内的对称性, in_angle_reverse with C'; auto.
+    apply l11_24_在角内的对称性; trivial.
   assert (HNCol : ~ Col P C' A').
   { intro Habs.
-    apply HN等角, conga_right_comm, out2__conga.
+    apply HN等角, 等角的右交换性, out2__conga.
       apply out_trivial; auto.
     apply col_one_side_out with Q; trivial.
   }
@@ -279,7 +279,7 @@ Proof.
   assert (HNCol2 : ~ Col P Q C) by (intro; apply (par_strict_not_col_2 Q' Q C' P); ColR).
   assert (HPer : Per A P Q) by (apply 直角的对称性, 直角边共线点也构成直角2 with A'; Perp; Col).
   assert (HOS1 : OS A P C Q).
-    apply in_angle_one_side; Col.
+    apply 角内点和一端点在角另一边同侧; Col.
     apply 成直角三点不共线; auto.
   destruct (aristotle P Q A P C) as [X [Y]]; Col.
   { exists A, P, Q; split; Perp; split.

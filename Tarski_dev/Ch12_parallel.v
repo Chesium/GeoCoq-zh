@@ -349,25 +349,25 @@ repeat
 
       | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm A B);
-        assert (T:= conga_diff1 A B C A' B' C' H);clean_reap_hyps
+        assert (T:= 角等推AB不重合 A B C A' B' C' H);clean_reap_hyps
       | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm B C);
-        assert (T:= conga_diff2 A B C A' B' C' H);clean_reap_hyps
+        assert (T:= 角等推CB不重合 A B C A' B' C' H);clean_reap_hyps
       | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm A' B');
-        assert (T:= conga_diff45 A B C A' B' C' H);clean_reap_hyps
+        assert (T:= 角等推DE不重合 A B C A' B' C' H);clean_reap_hyps
       | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm B' C');
-        assert (T:= conga_diff56 A B C A' B' C' H);clean_reap_hyps
+        assert (T:= 角等推FE不重合 A B C A' B' C' H);clean_reap_hyps
 
       | H:(在角内 ?P ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp3 A B C B P B;
-      assert (h := inangle_distincts A B C P H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 在角内推出点不重合 A B C P H);decompose [and] h;clear h;clean_reap_hyps
       | H:角度小于等于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
-      assert (h := lea_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角度小于等于推出点不重合 A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
       | H:角度小于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
@@ -1840,7 +1840,7 @@ Proof.
       spliter.
       apply 等价共线BAC in H5.
       assert(Col D C A).
-        eapply col_conga_col.
+        eapply 共线三点构成的角的等角三点也共线.
           apply H5.
         assumption.
       contradiction.
@@ -1861,8 +1861,8 @@ Proof.
       apply out_trivial.
       assumption.
     assert(Cong D' A B C).
-      eapply cong2_conga_cong.
-        apply conga_sym.
+      eapply 等角两边等长则端点间距相等.
+        apply 等角的对称性.
         apply H10.
         Cong.
       Cong.
@@ -1974,13 +1974,13 @@ Proof.
           auto.
         apply invert_one_side.
         apply H2.
-      eapply conga_trans.
-        apply conga_sym.
-        apply conga_comm.
+      eapply 角等的传递性.
+        apply 等角的对称性.
+        apply 等角的交换性.
         apply H7.
-      eapply conga_trans.
+      eapply 角等的传递性.
         apply H3.
-      apply conga_sym.
+      apply 等角的对称性.
       assumption.
     apply par_symmetry.
     apply par_col_par with B'.
@@ -2012,7 +2012,7 @@ Proof.
         spliter.
         auto.
         Col.
-      apply conga_comm in H1.
+      apply 等角的交换性 in H1.
       apply conga_os__out in H1; Col.
     unfold Out in H.
     spliter.
@@ -2026,7 +2026,7 @@ Proof.
         auto.
       apply one_side_symmetry.
       assumption.
-    apply conga_sym.
+    apply 等角的对称性.
     assumption.
 Qed.
 
@@ -2071,10 +2071,10 @@ Proof.
   apply (one_side_transitivity _ _ _ A).
     apply l12_6; Par.
   apply invert_one_side.
-  apply in_angle_one_side; Col.
-  apply l11_24.
+  apply 角内点和一端点在角另一边同侧; Col.
+  apply l11_24_在角内的对称性.
   apply lea_in_angle; Side.
-  apply lta_comm.
+  apply 角度小于的交换性.
   apply acute_per__lta; Perp.
 Qed.
 
@@ -2123,27 +2123,27 @@ Proof.
   { apply acute_lea_acute with P' B A; trivial.
     assert (HNCol2 : ~ Col P' B A).
       intro.
-      assert (Col P' B C) by (apply (col_conga_col P' B A); assumption).
+      assert (Col P' B C) by (apply (共线三点构成的角的等角三点也共线 P' B A); assumption).
       apply HNCol1; ColR.
     assert (共面 A B T P') by (apply coplanar_trans_1 with C; Cop; Col).
     destruct (共线的决定性 T B P'); [|assert_diffs; destruct (cop__one_or_two_sides B P' A T); Col; Cop].
-    - apply l11_31_1; auto.
+    - apply l11_31_1_任何角小于等于平角_Out表述; auto.
       apply col_one_side_out with A; Col.
-      apply invert_one_side, inangle_one_side with C; Col.
+      apply invert_one_side, 角内两点在角一边同侧 with C; Col.
       assert (~ Col B P T) by (apply 成直角三点不共线; auto).
       intro; assert_diffs; apply HNCol2; ColR.
-    - apply (l11_30 P' B T P' B C); 等角.
+    - apply (l11_30_等角保持小于等于 P' B T P' B C); 等角.
       apply inangle__lea, (in_angle_trans2 A); trivial.
       apply os_ts__inangle; trivial.
-      apply invert_one_side, inangle_one_side with C; Col.
-      intro; apply HNCol1, 中间性蕴含共线1, bet_in_angle_bet with T; trivial.
+      apply invert_one_side, 角内两点在角一边同侧 with C; Col.
+      intro; apply HNCol1, 中间性蕴含共线1, 角一边反向延长线上点在角内则该角为平角 with T; trivial.
       apply col_two_sides_bet with P'; Col.
-    - apply lea_left_comm, inangle__lea.
+    - apply 角度小于等于的左交换性, inangle__lea.
       destruct (共线的决定性 B A T).
         apply out341__inangle; auto.
         apply col_one_side_out with P'; assumption.
       apply os2__inangle; trivial.
-      apply invert_one_side, inangle_one_side with C; Col.
+      apply invert_one_side, 角内两点在角一边同侧 with C; Col.
   }
   apply 垂线共线点也构成垂直1 with P; Col.
   apply 垂直的右交换性, 直角转L形垂直; auto.
@@ -2245,7 +2245,7 @@ Proof.
     induction (中间性的决定性 A B C).
       assert(Per P B A).
         apply(l11_18_2 P B A C); auto.
-        apply conga_comm.
+        apply 等角的交换性.
         assumption.
       eapply (直角加共线转L形垂直 _ _ _ C) in H12; auto.
         apply 垂直的右交换性.
@@ -2259,7 +2259,7 @@ Proof.
     assert(等角 T B A T B C).
       induction H5.
         eapply (l11_13 P _ _ P); Between.
-        apply conga_comm.
+        apply 等角的交换性.
         apply H1.
       assert(Out B P T).
         repeat split; auto.
@@ -2268,10 +2268,10 @@ Proof.
           Between.
         right.
         Between.
-      apply conga_comm.
+      apply 等角的交换性.
       apply (l11_10 A _ P C _ P); try (apply out_trivial); auto; apply l6_6; assumption.
     assert(Cong T A T C).
-      apply (cong2_conga_cong T B A T B C); Cong.
+      apply (等角两边等长则端点间距相等 T B A T B C); Cong.
     assert(中点 T A C).
       split; Cong.
     assert(Per B T A).

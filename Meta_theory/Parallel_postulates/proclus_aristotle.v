@@ -83,7 +83,7 @@ Proof.
     apply (one_side_transitivity _ _ _ C).
       apply out_one_side; [Col|Out].
     apply invert_one_side.
-    apply in_angle_one_side; [..|apply l11_24]; Col.
+    apply 角内点和一端点在角另一边同侧; [..|apply l11_24_在角内的对称性]; Col.
   }
 
   assert(Per B X Y).
@@ -97,8 +97,8 @@ Proof.
     assert(HAAS := l11_50_2 B Y D Y B X).
     destruct HAAS; Cong.
       apply 共线否定排列ACB, (par_strict_not_col_4 _ _ X); auto.
-      apply l11_16; Perp; apply L形垂直转直角2, (垂线共线点也构成垂直1 _ Y0); Col; Perp.
-    apply conga_comm.
+      apply l11_16_直角相等; Perp; apply L形垂直转直角2, (垂线共线点也构成垂直1 _ Y0); Col; Perp.
+    apply 等角的交换性.
     assert (aia : alternate_interior_angles_postulate).
     { apply playfair__alternate_interior, tarski_s_euclid_implies_playfair.
       apply strong_parallel_postulate_implies_tarski_s_euclid.
@@ -108,7 +108,7 @@ Proof.
     apply aia.
     - apply l9_2.
       apply (l9_8_2 _ _ A).
-      apply (col_preserves_two_sides C B); Col; apply in_angle_two_sides; Col.
+      apply (col_preserves_two_sides C B); Col; apply 角端点在角内点与顶点连线两侧; Col.
       apply invert_one_side, out_one_side; Col.
 
     - apply par_left_comm.

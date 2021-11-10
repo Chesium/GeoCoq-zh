@@ -25,7 +25,7 @@ Proof.
   apply conga_trisuma__trisuma with P Q R; trivial.
   assert (Hd := HTri).
   apply trisuma_distincts in Hd; spliter.
-  apply conga_line; auto.
+  apply 成中间性三点组的角相等; auto.
   apply (trisuma__bet A B C); trivial.
 Qed.
 
@@ -49,7 +49,7 @@ Proof.
   intros A B C D E F G H I HGH HHI HBet HSuma.
   suma.assert_diffs.
   destruct (bet__trisuma A B C G H I) as [D' [E' [F' []]]]; auto.
-  apply (conga3_suma__suma D' E' F' C A B G H I); try apply conga_refl; auto.
+  apply (等角保持和角 D' E' F' C A B G H I); try apply 同角相等; auto.
   apply (suma2__conga A B C B C A); assumption.
 Qed.
 
@@ -66,8 +66,8 @@ Lemma high_school_exterior_angle_theorem : forall A B C B', A <> B -> B <> C -> 
   Bet B A B' -> 和角 A B C B C A C A B'.
 Proof.
   intros A B C B'; intros.
-  destruct (ex_suma A B C B C A) as [D [E [F HSuma]]]; auto.
-  apply (conga3_suma__suma A B C B C A D E F); try apply conga_refl; auto.
+  destruct (和角的存在性 A B C B C A) as [D [E [F HSuma]]]; auto.
+  apply (等角保持和角 A B C B C A D E F); try apply 同角相等; auto.
   apply suppa2__conga123 with C A B.
     apply suma__suppa; assumption.
     apply suppa_sym, suppa_left_comm, bet__suppa; auto.
@@ -110,9 +110,9 @@ Proof.
   apply ghalfa_chara; split.
     apply cong__acute; auto.
   suma.assert_diffs.
-  apply (conga3_suma__suma A B C B C A C A B'); try apply conga_refl; auto.
+  apply (等角保持和角 A B C B C A C A B'); try apply 同角相等; auto.
     apply high_school_exterior_angle_theorem; auto.
-  apply conga_left_comm, l11_44_1_a; Cong.
+  apply 等角的左交换性, l11_44_1_a; Cong.
 Qed.
 
 (** If the angle ACB is inscribed in a circle of center O and
@@ -294,7 +294,7 @@ Proof.
   assert (Per C B C') by (apply thales_theorem with O; auto).
   assert (HSuma : 和角 C A C' C B C' C O C') by (suma.assert_diffs; apply bet_per2__suma; auto).
   apply bet_suma__suppa with C O C'; trivial.
-  destruct (ex_suma C A C' C' C B) as [D [E [F HSuma1]]]; auto.
+  destruct (和角的存在性 C A C' C' C B) as [D [E [F HSuma1]]]; auto.
   assert (HTS2 : TS C C' A B) by (apply (chord_intersection O P); assumption).
   assert (HTS3 : TS C' C A B) by (apply invert_two_sides, HTS2).
   assert (为锐角 C' C A).
@@ -395,7 +395,7 @@ Proof.
   destruct (共线的决定性 A B O).
   { suma.assert_diffs.
     assert (中点 O A B) by (apply 若圆心在一弦上则其平分该弦 with P; auto).
-    apply l11_16; auto; apply thales_theorem with O; Col; apply 等长的传递性 with O P; Cong.
+    apply l11_16_直角相等; auto; apply thales_theorem with O; Col; apply 等长的传递性 with O P; Cong.
   }
   destruct (cop__one_or_two_sides A B O C); Col; Cop.
   - suma.assert_diffs; destruct (cop2_onc4__or_conga_suppa O P A B C C') as [|Habs]; auto.
@@ -558,7 +558,7 @@ Proof.
     assert (中点 O A B) by (apply 若圆心在一弦上则其平分该弦 with P; assumption).
     apply (中点的唯一性1 A B); trivial.
     apply thales_converse_theorem_1 with D; auto.
-    apply (l11_17 A C B); trivial.
+    apply (l11_17_等于直角的角是直角 A C B); trivial.
     apply thales_theorem with O; auto.
   }
   assert (HNCol' : ~ Col A B D) by (apply one_side_not_col124 with C, HOS).

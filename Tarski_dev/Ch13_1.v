@@ -2103,7 +2103,7 @@ Proof.
       apply 直角的对称性 in H7.
       apply 直角的对称性 in H8.
       split.
-        apply l11_16; auto.
+        apply l11_16_直角相等; auto.
       assert( A = C \/ 中点 B A C).
         eapply 共线点间距相同要么重合要么中点; Cong.
       induction H9.
@@ -2183,7 +2183,7 @@ Proof.
       Col.
     assert(Cong T A T C /\ 等角 T A B T C B /\ 等角 T B A T B C).
       apply( l11_52 A T B C T B); Cong.
-        eapply l11_16; auto.
+        eapply l11_16_直角相等; auto.
           apply L形垂直于转直角.
           apply 垂直于的交换性.
           apply 垂直于的对称性.
@@ -2204,12 +2204,12 @@ Proof.
     spliter.
     split.
       induction(中间性的决定性 P B T).
-        apply conga_comm.
+        apply 等角的交换性.
         eapply l11_13; auto.
           apply H16.
           Between.
         Between.
-      apply conga_comm.
+      apply 等角的交换性.
       assert(Out B T P).
         unfold Out.
         repeat split; auto.
@@ -2440,7 +2440,7 @@ Proof.
         intro.
         apply H6.
         Col.
-        eapply l11_16; auto.
+        eapply l11_16_直角相等; auto.
           apply 直角的对称性.
           auto.
           intro.
@@ -2453,7 +2453,7 @@ Proof.
         subst D.
         apply H7.
         Col.
-        apply conga_comm.
+        apply 等角的交换性.
         auto.
       Cong.
     spliter.
@@ -2484,15 +2484,15 @@ Proof.
       apply (l6_21_两线交点的唯一性 A B C D); Col.
     subst T.
     split.
-      apply conga_left_comm.
+      apply 等角的左交换性.
       apply l11_10 with C B D B; try apply out_trivial; auto.
       repeat split; auto.
       intro.
       subst E.
       contradiction.
     split.
-      apply conga_sym.
-      apply conga_right_comm.
+      apply 等角的对称性.
+      apply 等角的右交换性.
       apply l11_10 with C B D B; try apply out_trivial; auto.
         repeat split; auto.
         intro.
@@ -2689,7 +2689,7 @@ Proof.
       apply l9_9 in H.
       contradiction.
     assert(exists C', 等角 B A C D A C' /\ OS D A C' B).
-      apply(angle_construction_1 B A C D A B).
+      apply(给定角一边可作出与给定点同侧一点构成等角_非平角 B A C D A B).
         intro.
         apply H5.
         Col.
@@ -2739,17 +2739,17 @@ Proof.
       unfold 角度小于等于.
       exists B.
       split.
-        apply l11_24.
+        apply l11_24_在角内的对称性.
         assumption.
-      apply conga_refl; auto.
+      apply 同角相等; auto.
     assert(在角内 E' D A C).
       eapply lea_in_angle.
-        apply lea_comm.
-        eapply l11_30.
+        apply 角度小于等于的交换性.
+        eapply l11_30_等角保持小于等于.
         apply H21.
-        apply conga_comm.
+        apply 等角的交换性.
         assumption.
-        apply conga_refl; auto.
+        apply 同角相等; auto.
       assert(HH1:=ts_per_per_ts A B C D H H0 H1).
       assert(OS D A C B).
         apply ts_ts_os.
@@ -2781,7 +2781,7 @@ Proof.
       subst E''.
       apply l13_2_1; auto.
       eapply l11_10.
-        apply conga_left_comm.
+        apply 等角的左交换性.
         apply H27.
         apply out_trivial; auto.
         apply out_trivial; auto.
@@ -2791,7 +2791,7 @@ Proof.
     assert(D <> E'').
       intro.
       subst E''.
-      apply conga_sym in H27.
+      apply 等角的对称性 in H27.
       apply eq_conga_out in H27.
       apply out_col in H27.
       apply H5.
@@ -2806,7 +2806,7 @@ Proof.
         apply ts_per_per_ts; auto.
       assert(Out A B D).
         apply(conga_os__out C A B D).
-          apply conga_comm.
+          apply 等角的交换性.
           assumption.
         assumption.
       apply out_col in H32.
@@ -2930,10 +2930,10 @@ Proof.
         apply col_cop__cop with D; Col; Cop.
 
       split.
-        apply conga_left_comm.
+        apply 等角的左交换性.
         auto.
-      apply conga_right_comm.
-      apply conga_refl; auto.
+      apply 等角的右交换性.
+      apply 同角相等; auto.
     (***********************)
     prolong B C C' B C.
     prolong B D D' B D.
@@ -2951,7 +2951,7 @@ Proof.
       subst D''.
       repeat split; Cong.
     assert(等角 B A D D' A D).
-      apply cong3_conga; auto.
+      apply 三角形全等推角等2; auto.
     assert(三角形全等 B A C C' A C).
       apply 直角的对称性 in H0.
       unfold Per in H0.
@@ -2966,7 +2966,7 @@ Proof.
       subst C''.
       repeat split; Cong.
     assert(等角 B A C C' A C).
-      apply cong3_conga; auto.
+      apply 三角形全等推角等2; auto.
     assert(等角 E'' A C' D' A E'').
       apply l11_22 with C D.
       split.
@@ -2984,14 +2984,14 @@ Proof.
           right.
           Between.
         assert(OS C A B D).
-          apply in_angle_one_side.
+          apply 角内点和一端点在角另一边同侧.
             intro.
             apply H15.
             Col.
             intro.
             apply H5.
             Col.
-          apply l11_24.
+          apply l11_24_在角内的对称性.
           auto.
         assert(TS C A B C').
           unfold TS.
@@ -3027,7 +3027,7 @@ Proof.
           unfold Out.
           repeat split; auto.
         assert(OS D A B C).
-          apply in_angle_one_side.
+          apply 角内点和一端点在角另一边同侧.
             intro.
             apply H15.
             Col.
@@ -3071,15 +3071,15 @@ Proof.
           apply H49.
         auto.
       split.
-        eapply conga_trans.
-          apply conga_comm.
+        eapply 角等的传递性.
+          apply 等角的交换性.
           apply H34.
         apply H40.
-      apply conga_sym.
-      eapply conga_trans.
-        apply conga_sym.
+      apply 等角的对称性.
+      eapply 角等的传递性.
+        apply 等角的对称性.
         apply H27.
-      apply conga_right_comm.
+      apply 等角的右交换性.
       auto.
     assert(D' <> B).
       intro.
@@ -3132,14 +3132,14 @@ Proof.
       split; Col.
       Between.
     assert(TS B A C D).
-      apply in_angle_two_sides.
+      apply 角端点在角内点与顶点连线两侧.
         intro.
         apply H5.
         Col.
         intro.
         apply H6.
         Col.
-      apply l11_24.
+      apply l11_24_在角内的对称性.
       assumption.
     assert (OS A B C C').
       apply (out_one_side_1 _ _ _ _ B); Col.
@@ -3170,7 +3170,7 @@ Proof.
       auto.
     assert(Perp  C' D' A E'').
       apply cong_conga_perp.
-        apply conga_right_comm in H43.
+        apply 等角的右交换性 in H43.
         apply conga_cop__or_out_ts in H43.
         induction H43.
           assert(OS A B C' D').
@@ -3196,7 +3196,7 @@ Proof.
         unfold 三角形全等 in *.
         spliter.
         apply 等长的传递性 with B A; Cong.
-      apply conga_left_comm.
+      apply 等角的左交换性.
       assumption.
 
 
@@ -3366,8 +3366,8 @@ tauto.
     split.
       auto.
     split.
-      apply conga_sym.
-      apply conga_right_comm.
+      apply 等角的对称性.
+      apply 等角的右交换性.
       auto.
     Between.
 Qed.

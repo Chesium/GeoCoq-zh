@@ -292,7 +292,7 @@ Proof.
   intros Hcc A B C D E F A' B' C' D' E' F' HSum1 HSum2 HSum3 HLe1 HLe2 HLe3.
   exists A, B.
   destruct (两点重合的决定性 A B); [|destruct (两点重合的决定性 C D)]; [| |destruct (两点重合的决定性 E F)].
-  - destruct (由一点往一方向构造等长线段_0 C D A) as [P HCong].
+  - destruct (由一点构造等长线段 C D A) as [P HCong].
     exists P; repeat split; Cong.
     subst B.
     apply 等长的传递性 with C D; trivial.
@@ -366,7 +366,7 @@ Proof.
   destruct HXYZ as [X [Y [Z [HAC [HAB HCD]]]]].
   assert_diffs.
   assert (HZ0 : exists Z0, 等角 Y X Z C A Z0 /\ Cong X Z A Z0).
-  { destruct (angle_construction_3 Y X Z C A) as [Z']; auto.
+  { destruct (给定角一边可作出等角 Y X Z C A) as [Z']; auto.
     assert_diffs.
     destruct (由一点往一方向构造等长线段_3 A Z' X Z) as [Z0 []]; auto.
     exists Z0; split; Cong.

@@ -23,9 +23,9 @@ Proof.
   assert (OS P C D A) by (apply one_side_transitivity with Q; Side).
   assert (为锐角 A P Q).
   { exists A, P, C; split; auto.
-    apply (l11_17 P C D').
+    apply (l11_17_等于直角的角是直角 P C D').
       apply 直角边共线点也构成直角2 with D; Col; Perp.
-    apply conga_sym, conga_right_comm, aia; [|apply par_col_par with D; Par; Col].
+    apply 等角的对称性, 等角的右交换性, aia; [|apply par_col_par with D; Par; Col].
     apply l9_8_2 with D; trivial.
     apply invert_two_sides, bet__ts; Col.
   }
@@ -46,13 +46,13 @@ Proof.
     assert (等角 A P S C S P) by (apply aia; [Side|Par]).
     assert (HLta : 角度小于 A P S A P Q) by (apply (conga_preserves_lta P S C A P Q); 等角).
     destruct HLta as [HLea HNConga].
-    apply invert_two_sides, in_angle_two_sides; [|destruct HTS as [_ []]; Col|].
+    apply invert_two_sides, 角端点在角内点与顶点连线两侧; [|destruct HTS as [_ []]; Col|].
     { intro.
       assert (Out P Q S).
         apply col_one_side_out with C; [|apply one_side_transitivity with A]; Side.
       apply HNConga, out2__conga; Out.
     }
-    apply l11_24, lea_in_angle; trivial.
+    apply l11_24_在角内的对称性, lea_in_angle; trivial.
     apply one_side_transitivity with C; Side.
   }
   clear dependent A.

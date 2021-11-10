@@ -125,27 +125,27 @@ Proof.
   { intros X Y X0 Y0; intros.
     apply t18_18 with C C; Cong.
       apply 等长的传递性 with C D; Cong.
-    apply lta_comm, (conga_preserves_lta A C X A C Y).
+    apply 角度小于的交换性, (conga_preserves_lta A C X A C Y).
       apply out2__conga; [apply out_trivial|apply l6_6]; auto.
       apply out2__conga; [apply out_trivial|apply l6_6]; auto.
     split.
     { apply inangle__lea.
       assert_diffs.
-      apply l11_24, in_angle_trans with P.
+      apply l11_24_在角内的对称性, in_angle_trans with P.
         repeat split; auto; exists X; split; Between; right; apply out_trivial; auto.
       apply in_angle_trans2 with Q.
         repeat split; auto.
         exists Y; split; Between.
         right; apply out_trivial; auto.
       destruct HDij as [HOS'|[[HCol HNCol]|[HNCol HCol]]].
-      - apply l11_24, lea_in_angle; [Lea|Side].
+      - apply l11_24_在角内的对称性, lea_in_angle; [Lea|Side].
       - apply out341__inangle; auto.
         apply not_bet_out; Col.
         intro; apply (lta__nlea A C P A C Q); Lea.
-      - apply in_angle_line; auto.
+      - apply 任何点都在平角内; auto.
         apply 中间性的对称性, not_out_bet; Col.
         intro; apply (lta__nlea A C P A C Q); trivial.
-        apply l11_31_1; auto.
+        apply l11_31_1_任何角小于等于平角_Out表述; auto.
     }
     intro.
     destruct (conga_cop__or_out_ts A C X Y); trivial.
@@ -332,7 +332,7 @@ Proof.
     assert_diffs.
     assert (HY : 在角内 Y0 P C R).
     { apply l11_25 with Y0 P Z; try (apply out_trivial); auto.
-      apply l11_24, lea_in_angle.
+      apply l11_24_在角内的对称性, lea_in_angle.
       - apply t18_19; auto.
           apply 等长的传递性 with C D; Cong.
           Cong.

@@ -193,7 +193,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma prop_2 : forall A B C, exists L, Cong A L B C.
 Proof.
   intros.
-  apply 由一点往一方向构造等长线段_0.
+  apply 由一点构造等长线段.
 Qed.
 
 
@@ -444,8 +444,8 @@ Lemma prop_18 : forall A B C, ~ Col A B C -> Lt A B A C -> Lt B C A C ->
 Proof.
   intros.
   split.
-  - apply lta_left_comm, l11_44_2_a; Col.
-  - apply lta_right_comm, l11_44_2_a.
+  - apply 角度小于的左交换性, l11_44_2_a; Col.
+  - apply 角度小于的右交换性, l11_44_2_a.
       Col.
     apply 长度小于的交换性; assumption.
 Qed.
@@ -463,10 +463,10 @@ Proof.
   split.
   - apply l11_44_2_b.
       Col.
-    apply lta_left_comm; assumption.
+    apply 角度小于的左交换性; assumption.
   - apply 长度小于的交换性, l11_44_2_b.
       Col.
-    apply lta_right_comm; assumption.
+    apply 角度小于的右交换性; assumption.
 Qed.
 
 
@@ -560,7 +560,7 @@ Lemma prop_23 : forall A B C D E, A <> B -> C <> D -> C <> E ->
   exists F, 等角 D C E B A F.
 Proof.
   intros.
-  apply angle_construction_3; auto.
+  apply 给定角一边可作出等角; auto.
 Qed.
 
 
@@ -763,11 +763,11 @@ Proof.
   destruct (ex_trisuma C A B) as [P [Q [R HTri]]]; auto.
   assert (Bet P Q R) by (apply (prop_32_1 C A B), HTri).
   destruct HTri as [S [T [U [HSuma1 H和角2]]]].
-  apply conga3_suma__suma with C A B A B C S T U; try (apply conga_refl); auto.
+  apply 等角保持和角 with C A B A B C S T U; try (apply 同角相等); auto.
   assert_diffs.
-  assert (H等角 : 等角 B C D P Q R) by (apply conga_line; auto).
+  assert (H等角 : 等角 B C D P Q R) by (apply 成中间性三点组的角相等; auto).
   assert (H和角' : 和角 A C D B C A P Q R).
-    apply conga3_suma__suma with A C D B C A B C D; 等角.
+    apply 等角保持和角 with A C D B C A B C D; 等角.
     apply suma_sym, bet__suma; auto.
   apply sams2_suma2__conga123 with B C A P Q R; trivial;
     apply bet_suma__sams with P Q R; assumption.

@@ -147,8 +147,8 @@ Proof.
   assert (Hd2 := defect_distincts C B B1 M N O HDef4).
   assert (Hd3 := defect_distincts B1 C D A' B' C' HDef5).
   spliter; clean.
-  destruct (ex_suma G H I A' B' C') as [G' [H' [I' HSuma1]]]; auto.
-  destruct (ex_suma M N O A' B' C') as [J' [K' [L' HSuma2]]]; auto.
+  destruct (和角的存在性 G H I A' B' C') as [G' [H' [I' HSuma1]]]; auto.
+  destruct (和角的存在性 M N O A' B' C') as [J' [K' [L' HSuma2]]]; auto.
 
   destruct (t22_16_1bis noah A B1 C1 C G H I J K L S T U) as [HIsi3 HSuma3]; trivial.
   destruct (t22_16_1bis noah B1 C C1 D A' B' C' D' E' F' J K L) as [HIsi4 HSuma4]; trivial.
@@ -236,7 +236,7 @@ Proof.
     intro; subst; apply HNCol; ColR.
   exists B''; exists C''; exists P''; exists Q''; exists R''.
   repeat (split; trivial).
-  destruct (ex_suma P' Q' R' P' Q' R') as [V [W [X HSuma1]]]; auto.
+  destruct (和角的存在性 P' Q' R' P' Q' R') as [V [W [X HSuma1]]]; auto.
   destruct (legendre_aux noah A B' C' D' B'' C'' P' Q' R' P'' Q'' R'' V W X) as [HIsi1 HLea1]; trivial.
     apply l6_7 with B; Out.
     apply l6_7 with C; Out.
@@ -279,7 +279,7 @@ Proof.
     assert_diffs.
     destruct (ex_defect A B'' C'') as [S' [T' [U' HDef'']]]; auto.
       intro; subst; apply HNCol; ColR.
-    destruct (ex_suma P' Q' R' P' Q' R') as [V [W [X HSuma]]]; auto.
+    destruct (和角的存在性 P' Q' R' P' Q' R') as [V [W [X HSuma]]]; auto.
     destruct (legendre_aux archi A B' C' D' B'' C'' P' Q' R' S' T' U' V W X); trivial;
     [apply l6_7 with B|apply l6_7 with C]; Out.
 Qed.

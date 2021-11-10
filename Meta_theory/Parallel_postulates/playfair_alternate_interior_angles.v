@@ -9,9 +9,9 @@ Lemma playfair__alternate_interior :  playfair_s_postulate -> alternate_interior
 Proof.
 intros playfair A B C D Hts HPar.
 assert(~ Col B A C) by (destruct Hts; auto).
-assert(HD' := ex_conga_ts B A C A C B).
+assert(HD' := 给定角一边可作出与给定点异侧一点构成等角_非平角 B A C A C B).
 destruct HD' as [D' []]; Col.
-apply (conga_trans _ _ _ D' C A).
+apply (角等的传递性 _ _ _ D' C A).
 等角.
 assert_diffs.
 apply out2__conga; [|apply out_trivial; auto].

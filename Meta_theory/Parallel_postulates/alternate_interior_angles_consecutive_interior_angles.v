@@ -14,7 +14,7 @@ Proof.
     assert_diffs; auto.
   destruct (由一点往一方向构造等长线段 A B B A) as [A' []].
   exists A'; split; trivial.
-  apply conga_comm, conga_sym, aia; [|assert_diffs; apply par_col_par_2 with A; Col; Par].
+  apply 等角的交换性, 等角的对称性, aia; [|assert_diffs; apply par_col_par_2 with A; Col; Par].
   apply l9_2, l9_8_2 with A; trivial.
   apply one_side_not_col123 in Hos.
   repeat split.

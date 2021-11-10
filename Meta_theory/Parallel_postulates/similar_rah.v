@@ -26,13 +26,13 @@ Proof.
   assert(B <> G) by (intro; subst; destruct Hlt; Cong).
   assert(HCongaA' : 等角 C A B H A G) by (apply out2__conga; apply l6_6; auto).
   destruct(l11_49 F D E H A G) as [_ [HConga1 HConga2]]; Cong.
-    apply (conga_trans _ _ _ C A B); 等角.
-  apply (conga_trans _ _ _ _ _ _ A G H) in HCongaB; auto.
-  apply (conga_trans _ _ _ _ _ _ G H A) in HCongaC; 等角.
+    apply (角等的传递性 _ _ _ C A B); 等角.
+  apply (角等的传递性 _ _ _ _ _ _ A G H) in HCongaB; auto.
+  apply (角等的传递性 _ _ _ _ _ _ G H A) in HCongaC; 等角.
   clear dependent D; clear dependent E; clear dependent F.
   rename HCongaA' into HCongaA.
 
-  assert(HNCol1 : ~ Col A G H) by (apply (ncol_conga_ncol A B C); auto).
+  assert(HNCol1 : ~ Col A G H) by (apply (不共线三点构成的角的等角三点也不共线 A B C); auto).
   assert(HNCol2 : ~ Col B G H) by (intro; apply HNCol1; ColR).
   assert(严格平行 G H B C).
   { apply (par_not_col_strict _ _ _ _ B); Col.
@@ -54,7 +54,7 @@ Proof.
   assert(Bet A H C) by (apply out2__bet; apply l6_6; auto).
   assert(角度之和小于平角 B G H H C B).
   { apply (sams_chara _ _ _ _ _ _ A); Between.
-    apply (l11_30 B C A A B C); auto; apply conga_right_comm; auto.
+    apply (l11_30_等角保持小于等于 B C A A B C); auto; apply 等角的右交换性; auto.
     apply out2__conga; [apply out_trivial|]; auto.
   }
   assert(等角 A G H G B C).
@@ -63,12 +63,12 @@ Proof.
     apply (l11_10 G H A B C A); try (apply out_trivial); 等角.
   assert(角度之和小于平角 B G H C B G) by (apply (conga2_sams__sams B G H H G A); 等角; 和角).
   assert(角度之和小于平角 C H G B C H) by (apply (conga2_sams__sams C H G G H A); 等角; 和角).
-  destruct(ex_suma B C G C G B) as [I [J [K]]]; auto.
-  destruct(ex_suma H C G C G H) as [L [M [N]]]; auto.
+  destruct(和角的存在性 B C G C G B) as [I [J [K]]]; auto.
+  destruct(和角的存在性 H C G C G H) as [L [M [N]]]; auto.
   suma.assert_diffs.
-  destruct(ex_suma I J K G B C) as [O [P [Q]]]; auto.
-  destruct(ex_suma L M N G H C) as [R [S [T]]]; auto.
-  destruct(ex_suma I J K L M N) as [U [V [W]]]; auto.
+  destruct(和角的存在性 I J K G B C) as [O [P [Q]]]; auto.
+  destruct(和角的存在性 L M N G H C) as [R [S [T]]]; auto.
+  destruct(和角的存在性 I J K L M N) as [U [V [W]]]; auto.
   suma.assert_diffs.
   assert(HInter : 角度之和小于平角 I J K L M N /\ 和角 H G B B C H U V W).
   { assert(TS G C B H).
@@ -77,11 +77,11 @@ Proof.
       apply invert_one_side; apply out_one_side; try (apply l6_6); Col.
     }
     assert(角度之和小于平角 H G B B C G).
-    { apply (sams_lea2__sams _ _ _ _ _ _ H G B B C H); try (apply lea_refl); 和角.
+    { apply (sams_lea2__sams _ _ _ _ _ _ H G B B C H); try (apply 任何角小于等于自己); 和角.
       apply inangle__lea.
       apply os_ts__inangle; Side.
     }
-    destruct(ex_suma B C G H G B) as [X [Y [Z]]]; auto.
+    destruct(和角的存在性 B C G H G B) as [X [Y [Z]]]; auto.
     assert(和角 B G C C G H H G B) by 和角.
     assert(角度之和小于平角 B G C C G H).
     { apply os_ts__sams; trivial.
@@ -108,12 +108,12 @@ Proof.
     { destruct (t22_14__sams_nbet aah C G B I J K O P Q) as [HIsi HNBet]; Col.
       apply (sams_lea_lta789_suma2__lta123 _ _ _ G B C O P Q _ _ _ G B C A G B); Lea.
         split; Lea; intro; apply HNBet; apply (bet_conga__bet A G B); 等角.
-        apply (conga3_suma__suma B G H H G A A G B); 等角; 和角.
+        apply (等角保持和角 B G H H G A A G B); 等角; 和角.
     }
     destruct (t22_14__sams_nbet aah C G H L M N R S T) as [HIsi HNBet]; Col.
     apply (sams_lea_lta789_suma2__lta123 _ _ _ G H C R S T _ _ _ G H C A H C); Lea.
       split; Lea; intro; apply HNBet; apply (bet_conga__bet A H C); 等角.
-      apply (conga3_suma__suma A H G G H C A H C); 等角; 和角.
+      apply (等角保持和角 A H G G H C A H C); 等角; 和角.
 
   - intro HUn.
     destruct HUn as [|oah]; auto.
@@ -140,19 +140,19 @@ Proof.
 
   - intro.
     apply (similar__rah_aux D E F A B C); 等角.
-      apply (ncol_conga_ncol A B C); auto.
-      apply (l11_30 B C A A B C); auto.
+      apply (不共线三点构成的角的等角三点也不共线 A B C); auto.
+      apply (l11_30_等角保持小于等于 B C A A B C); auto.
       split; auto.
 
   - intro.
     apply (similar__rah_aux A C B D F E); Col; 等角.
-      apply lea_comm; trivial.
+      apply 角度小于等于的交换性; trivial.
     split; auto; intro; destruct(l11_50_1 A C B D F E); Col; 等角; Cong.
 
   - intro.
     apply (similar__rah_aux D F E A C B); 等角.
-      apply (ncol_conga_ncol A C B); Col; 等角.
-      apply (l11_30 A B C B C A); 等角.
+      apply (不共线三点构成的角的等角三点也不共线 A C B); Col; 等角.
+      apply (l11_30_等角保持小于等于 A B C B C A); 等角.
       split; auto; intro; destruct(l11_50_1 A C B D F E); Col; 等角; Cong.
 Qed.
 

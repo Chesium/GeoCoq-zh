@@ -780,7 +780,7 @@ clear H15.
 assert(等角 A' B' C' A'' B C'').
 
 apply (symmetry_preserves_conga _ _ _ _ _ _ M); 中点.
-eapply conga_trans; [|apply conga_sym, H13].
+eapply 角等的传递性; [|apply 等角的对称性, H13].
 
 show_distinct B A''.
 assert_diffs;intuition.

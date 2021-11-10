@@ -82,7 +82,7 @@ assert (HF : exists A1 A2 B1 B2,
         }
 
         {
-        assert_diffs; apply l11_16; auto;
+        assert_diffs; apply l11_16_直角相等; auto;
         apply L形垂直转直角1, 与垂线共线之线也为垂线1 with A1' A2'; Perp; Col.
         }
       }

@@ -26,7 +26,7 @@ Proof.
   assert(~ Col B C C') by (intro; apply HNCol; ColR).
   assert_diffs.
   assert(等角 A C B A C' B).
-    apply l11_16; auto; apply (thales _ _ _ M); assumption.
+    apply l11_16_直角相等; auto; apply (thales _ _ _ M); assumption.
   assert(OS A B C C') by (apply (out_one_side_1 _ _ _ _ M); Col).
   destruct HC' as [_ [_ [HMCC'|HMC'C]]].
   - assert(Hlta : 角度小于 A C' B A C B); [|destruct Hlta; 等角].

@@ -1642,13 +1642,13 @@ assert (HConga : CongaH A C D A C E).
   apply cong_5; try apply congH_refl; try apply addition_betH with B B;
   try apply congH_refl; auto; try (intro; subst; Col); try (apply HNC; ColHR).
   apply conga_out_conga with C B C B; try apply outH_trivial; try left; auto;
-  try apply conga_refl; try intro; subst; apply HNC; Col.
+  try apply 同角相等; try intro; subst; apply HNC; Col.
   }
 assert (Hout : outH C D E).
   {
   assert (HD2 := between_diff _ _ _ HBet1).
   assert (HC := between_col _ _ _ HBet1).
-  apply (cong_4_uniqueness A C D C D A D E); try apply conga_refl;
+  apply (cong_4_uniqueness A C D C D A D E); try apply 同角相等;
   try apply same_side_prime_refl; auto; try (intro; apply HNC; ColHR).
   destruct (between_out B A) as [F HBet3]; auto.
   split; [intro; subst; Col|intros l HI1 HI2; exists F; split].
@@ -3097,7 +3097,7 @@ intro;apply H;Col.
 assumption.
 apply congH_sym;auto.
 apply ncolH_distincts in H;spliter;auto.
-apply conga_comm.
+apply 等角的交换性.
 intro;apply H;Col.
 Qed.
 
@@ -4531,7 +4531,7 @@ apply (th19 B A C); auto.
 intuition Col.
 intuition Col.
 intuition Col.
-apply conga_refl; auto.
+apply 同角相等; auto.
 Qed.
 
 Lemma congaH_commr : forall A B C D E F, ~ColH A B C -> ~ColH D E F
@@ -4546,7 +4546,7 @@ apply H; Col.
 intro.
 apply H0; Col.
 apply congaH_sym; auto.
-apply conga_comm; auto.
+apply 等角的交换性; auto.
 Qed.
 
 Lemma cong_preserves_col : forall A B C A' B' C', BetH A B C -> CongH A B A' B' -> CongH B C B' C' -> CongH A C A' C'
@@ -4640,7 +4640,7 @@ assert(CongaH B' C'' C' B' C' C'').
 assert(CongaH A' C'' C' B' C'' C').
    {
       apply(conga_out_conga B' C'' C' B' C'' C' A' C' B' C').
-      apply conga_refl.
+      apply 同角相等.
       Col.
       left.
       Bet.
@@ -4684,7 +4684,7 @@ assert(outH C' A' B').
       apply H28.
       Col.
       apply congaH_commr; intuition Col.
-      apply conga_refl.
+      apply 同角相等.
       intuition Col.
       apply congaH_commr; intuition Col.
       assert(C' <> C'').
@@ -5473,7 +5473,7 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
     {
     assert (H : outH B P Q);
     [|apply outH_expand in H; spliter; exfalso; apply HNC1; Col].
-    apply cong_4_uniqueness with C B P P C; try apply conga_refl;
+    apply cong_4_uniqueness with C B P P C; try apply 同角相等;
     try apply same_side_prime_refl; try (intro; apply HNC3; Col); auto.
     apply th18_aux; Cong; intro; [apply HNC3|apply HNC4]; Col.
     }
@@ -5651,7 +5651,7 @@ elim (plane_separation_2D _ _ _ _ HNC4 HNC5); intro HS3.
   {
   assert (H : outH A P Q);
   [|apply outH_expand in H; spliter; exfalso; apply HNC1; Col].
-  apply cong_4_uniqueness with B A P P B; try apply conga_refl;
+  apply cong_4_uniqueness with B A P P B; try apply 同角相等;
   try apply same_side_prime_refl; try (intro; apply HNC4; Col); auto.
   apply th18_aux; Cong; intro; [apply HNC4|apply HNC5]; Col.
   }

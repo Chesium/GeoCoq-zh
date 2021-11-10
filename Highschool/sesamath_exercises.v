@@ -402,7 +402,7 @@ assert(等角 O A T H S T)
 assert(等角 O A T E A S)
   by(apply(l11_14 O A T E S);finish).
 assert(等角 H S T E A S)
-  by(apply(conga_trans H S T O A T E A S);finish).
+  by(apply(角等的传递性 H S T O A T E A S);finish).
 assert(中点 A S T)
   by(apply(triangle_par_mid S H T O A);finish).
 split;finish.

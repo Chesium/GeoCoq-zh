@@ -1076,7 +1076,7 @@ assert(~Col X O P).
 intro.
 apply H.
 Col.
-assert(HH:=angle_construction_1 A B C X O P H0 H1).
+assert(HH:=给定角一边可作出与给定点同侧一点构成等角_非平角 A B C X O P H0 H1).
 
 ex_and HH Y.
 
@@ -1122,8 +1122,8 @@ intros.
 rewrite <- cols_coincide in H.
 rewrite <- cols_coincide in H0.
 assert (T:等角 X O Y X O Y').
-eapply conga_trans.
-apply conga_sym.
+eapply 角等的传递性.
+apply 等角的对称性.
 apply H1.
 assumption.
 
@@ -1140,13 +1140,13 @@ assumption.
 assumption.
 Qed.
 
-Lemma axiom_conga_comm : forall A B C,
+Lemma axiom_等角的交换性 : forall A B C,
  ~ Col_H A B C -> 等角 A B C C B A.
 Proof.
 intros.
 rewrite <- cols_coincide in H.
 assert_diffs.
-apply conga_pseudo_refl;auto.
+apply 角ABC等于角CBA;auto.
 Qed.
 
 Lemma axiom_congaH_outH_congaH :
@@ -1165,7 +1165,7 @@ Qed.
 Lemma axiom_conga_permlr:
 forall A B C D E F : Tpoint, 等角 A B C D E F -> 等角 C B A F E D.
 Proof.
-apply Ch11_angles.conga_comm.
+apply Ch11_angles.等角的交换性.
 Qed.
 
 (*
@@ -1178,10 +1178,10 @@ intro; [left|right]; auto.
 Qed.
 *)
 
-Lemma axiom_conga_refl : forall A B C, ~ Col_H A B C -> 等角 A B C A B C.
+Lemma axiom_同角相等 : forall A B C, ~ Col_H A B C -> 等角 A B C A B C.
 Proof.
 intros A B C H.
-apply Ch11_angles.conga_refl; intro; subst; apply H; apply cols_coincide; Col.
+apply Ch11_angles.同角相等; intro; subst; apply H; apply cols_coincide; Col.
 Qed.
 
 End T.
@@ -1199,7 +1199,7 @@ exact (Build_Hilbert_neutral_dimensionless Tpoint Line Plane 谓词等长 谓词
        axiom_line_on_plane Between_H axiom_between_diff axiom_between_col axiom_between_comm
        axiom_between_out axiom_between_only_one axiom_pasch Cong 等长的右交换性
        axiom_hcong_1_existence 等长的内传递性
-        axiom_hcong_3 等角 axiom_conga_refl axiom_conga_comm
+        axiom_hcong_3 等角 axiom_同角相等 axiom_等角的交换性
        axiom_conga_permlr axiom_congaH_outH_congaH axiom_hcong_4_existence
        axiom_hcong_4_uniqueness axiom_cong_5').
 Defined.

@@ -12,7 +12,7 @@ Lemma alternate_interior__triangle :
 Proof.
 intros AIA A B C D E F HTrisuma.
 elim (共线的决定性 A B C); [intro; apply (col_trisuma__bet A B C); auto|intro HNCol].
-destruct(ex_conga_ts B C A C B A) as [B1 [HConga HTS]]; Col.
+destruct(给定角一边可作出与给定点异侧一点构成等角_非平角 B C A C B A) as [B1 [HConga HTS]]; Col.
 assert (HPar : Par A C B B1)
   by (apply par_left_comm, par_symmetry, l12_21_b; Side; 等角).
 apply (par_not_col_strict _ _ _ _ B) in HPar; Col.
@@ -28,13 +28,13 @@ destruct HTrisuma as [D1 [E1 [F1 []]]].
 apply (suma2__conga D1 E1 F1 C A B); auto.
 assert (等角 A B B2 C A B).
   {
-  apply conga_left_comm, AIA; Side.
+  apply 等角的左交换性, AIA; Side.
   apply par_symmetry, (par_col_par _ _ _ B1); Col; Par.
   }
-apply (conga3_suma__suma B1 B A A B B2 B1 B B2); try (apply conga_refl); auto;
+apply (等角保持和角 B1 B A A B B2 B1 B B2); try (apply 同角相等); auto;
 [exists B2; repeat (split; 等角); Cop; apply l9_9; auto|].
 apply (suma2__conga A B C B C A); auto.
-apply (conga3_suma__suma A B C C B B1 A B B1); 等角.
+apply (等角保持和角 A B C C B B1 A B B1); 等角.
 exists B1; repeat (split; 等角); Cop; apply l9_9; Side.
 Qed.
 

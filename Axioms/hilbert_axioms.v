@@ -93,8 +93,8 @@ Class Hilbert_neutral_dimensionless :=
      CongH A C A' C';
  CongaH :
    Point -> Point -> Point -> Point -> Point -> Point -> Prop;
- conga_refl : forall A B C, ~ ColH A B C -> CongaH A B C A B C;
- conga_comm : forall A B C, ~ ColH A B C -> CongaH A B C C B A;
+ 同角相等 : forall A B C, ~ ColH A B C -> CongaH A B C A B C;
+ 等角的交换性 : forall A B C, ~ ColH A B C -> CongaH A B C C B A;
  conga_permlr :
    forall A B C D E F, CongaH A B C D E F -> CongaH C B A F E D;
  same_side := fun A B l => exists P, cut l A P /\ cut l B P;

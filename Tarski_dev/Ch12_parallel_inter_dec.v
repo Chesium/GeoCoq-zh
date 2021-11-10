@@ -316,7 +316,7 @@ Proof.
     { intros Haux A B C D P HOut HOS HPar.
       destruct HOut as [HAP [HCP [|]]].
         apply Haux; trivial.
-      apply conga_sym, Haux; Par.
+      apply 等角的对称性, Haux; Par.
       apply col_one_side with A; Col; Side.
     }
     intros A B C D P HAP HBet HOS HPar.
@@ -328,7 +328,7 @@ Proof.
     }
     destruct (由一点往一方向构造等长线段 B A B A) as [B' []].
     assert_diffs.
-    apply conga_trans with B' A C.
+    apply 角等的传递性 with B' A C.
       apply l11_14; auto.
     apply l11_10 with B' C D A; try (apply out_trivial); auto; [|apply l6_6, bet_out; Between].
     apply l12_21_a; [|apply par_col_par_2 with B; Col].

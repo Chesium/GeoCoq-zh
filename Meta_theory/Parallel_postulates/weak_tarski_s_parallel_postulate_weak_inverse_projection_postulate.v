@@ -65,7 +65,7 @@ cut (forall A B C P T,
   assert (HNCol2 : ~ Col B P Q) by (assert_diffs; apply 成直角三点不共线; auto).
   assert (H等角 : 等角 A B C P B C).
     assert_diffs; apply out2__conga; [apply l6_6|apply out_trivial]; auto.
-  assert (HNCol3 : ~ Col P B C) by (apply (ncol_conga_ncol A B C); assumption).
+  assert (HNCol3 : ~ Col P B C) by (apply (不共线三点构成的角的等角三点也不共线 A B C); assumption).
   assert (HPerp : Perp B P P Q) by (apply 直角转L形垂直; assert_diffs; auto).
   apply suma_left_comm in HSuma.
   destruct HSuma as [J [HJ1 [HJ2 [HJ3 HJ4]]]].
@@ -98,15 +98,15 @@ cut (forall A B C P T,
     assert_diffs.
     apply l11_25 with A C J; [|apply out_trivial..|]; auto.
     apply os_ts__inangle.
-      assert (~ Col A B J) by (apply (ncol_conga_ncol A B C); 等角).
+      assert (~ Col A B J) by (apply (不共线三点构成的角的等角三点也不共线 A B C); 等角).
       apply cop_nos__ts; Col; Cop.
     assert (~ Col C B J).
-      apply (ncol_conga_ncol D E F); 等角; apply 成直角三点不共线; auto.
+      apply (不共线三点构成的角的等角三点也不共线 D E F); 等角; apply 成直角三点不共线; auto.
     apply invert_one_side, one_side_symmetry, cop_nts__os; Col.
     apply conga_sams_nos__nts with A B C; 和角.
   }
   destruct (rabp C B J P Q') as [Y [_ [HY1 [HY2 _]]]]; trivial.
-    apply (l11_17 D E F); 等角.
+    apply (l11_17_等于直角的角是直角 D E F); 等角.
     assert_diffs; apply l11_10 with A C A J; try (apply out_trivial); 等角.
     CopR.
     apply 直角边共线点也构成直角2 with Q; auto.

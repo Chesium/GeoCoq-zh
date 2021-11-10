@@ -1720,7 +1720,7 @@ assert(Out T A O).
   Between.
 }
 assert(Cong A X A Y).
-{ apply(cong2_conga_cong A T X A T Y); Cong.
+{ apply(等角两边等长则端点间距相等 A T X A T Y); Cong.
   apply (l11_10 O T X O T Y); auto.
   apply out_trivial; auto.
   apply out_trivial.
@@ -1773,7 +1773,7 @@ assert_diffs.
 
 assert(角度小于等于 Y O T X O T).
 {
-  apply lea_comm.
+  apply 角度小于等于的交换性.
   apply(l11_36 A O X A O Y T T); auto.
 }
 
@@ -1786,13 +1786,13 @@ assert(Lt T Y T X).
   intro.
   assert(Cong Y T X T).
   {
-    apply(cong2_conga_cong Y O T X O T); Cong.
+    apply(等角两边等长则端点间距相等 Y O T X O T); Cong.
   }
   assert(等角 A O X A O Y).
   apply(l11_13 T O X T O Y A A); Between.
   等角.
   apply H8.
-  apply(cong2_conga_cong A O X A O Y); Cong.
+  apply(等角两边等长则端点间距相等 A O X A O Y); Cong.
 }
 apply 长度小于蕴含小于等于.
 assumption.

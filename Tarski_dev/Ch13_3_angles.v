@@ -23,7 +23,7 @@ Proof.
       split.
         auto.
       auto.
-    apply conga_refl; auto.
+    apply 同角相等; auto.
 Qed.
 
 Lemma ex_points_ang : forall a , 角谓词 a ->  exists A, exists B, exists C, a A B C.
@@ -39,7 +39,7 @@ Proof.
     exists B.
     exists C.
     apply H2.
-    apply conga_refl; auto.
+    apply 同角相等; auto.
 Qed.
 
 End Angles_1.
@@ -71,8 +71,8 @@ Proof.
     destruct HH1.
     apply H5 in H0.
     apply H7 in H1.
-    eapply conga_trans.
-      apply conga_sym.
+    eapply 角等的传递性.
+      apply 等角的对称性.
       apply H0.
     auto.
 Qed.
@@ -102,7 +102,7 @@ Proof.
     destruct HH1.
     apply H5 in H1.
     apply H6.
-    eapply conga_trans.
+    eapply 角等的传递性.
       apply H1.
     auto.
 Qed.
@@ -218,7 +218,7 @@ Proof.
     apply is_ang_distinct in H1.
     apply is_ang_distinct in H2.
     spliter.
-    eapply conga_line; auto.
+    eapply 成中间性三点组的角相等; auto.
 Qed.
 
 Lemma ang_distinct: forall a A B C, 角谓词 a -> a A B C -> A <> B /\ C <> B.
@@ -248,7 +248,7 @@ Proof.
         auto.
       intro.
       auto.
-    apply conga_refl; auto.
+    apply 同角相等; auto.
 Qed.
 
 (************************************* 为锐角 angle *****************************************)
@@ -266,7 +266,7 @@ Proof.
         auto.
       intros.
       split; auto.
-    apply conga_refl; auto.
+    apply 同角相等; auto.
 Qed.
 
 Lemma anga_is_ang : forall a, 锐角谓词 a -> 角谓词 a.
@@ -392,7 +392,7 @@ Proof.
     destruct HH1.
     apply H5 in H1.
     apply H6.
-    eapply conga_trans.
+    eapply 角等的传递性.
       apply H1.
     auto.
 Qed.
@@ -530,7 +530,7 @@ Proof.
         auto.
       intro.
       auto.
-    apply conga_refl; auto.
+    apply 同角相等; auto.
 Qed.
 
 Lemma not_null_ang_ang : forall a, 非零角谓词 a -> 角谓词 a.
@@ -561,7 +561,7 @@ Proof.
       destruct HH.
       assert(a A B C).
         apply H4.
-        apply conga_refl; auto.
+        apply 同角相等; auto.
       split.
         auto.
       apply (H0 A B C).
@@ -602,7 +602,7 @@ Proof.
       destruct HH.
       assert(a A B C).
         apply H4.
-        apply conga_refl; auto.
+        apply 同角相等; auto.
       split.
         auto.
       apply (H0 A B C).
@@ -634,7 +634,7 @@ Proof.
     destruct HH.
     assert(a A0 B0 C0).
       apply H3.
-      apply conga_refl; auto.
+      apply 同角相等; auto.
     assert(HH :=两点不重合则存在不共线的点 A B H0).
     ex_and HH P.
     induction(两点重合的决定性 A0 C0).
@@ -643,8 +643,8 @@ Proof.
       assert(HH:= (H2 A B A)).
       destruct HH.
       apply H7.
-      apply conga_trivial_1; auto.
-    assert(HH:=angle_construction_2 A0 B0 C0 A B P H H7 H1).
+      apply 角ABA等于角CDC; auto.
+    assert(HH:=给定角一边可作出与给定点同侧一点构成等角_可平角 A0 B0 C0 A B P H H7 H1).
     ex_and HH C; auto.
     exists C.
     apply H2.
@@ -674,7 +674,7 @@ Proof.
     assert(HH:= H2 A B C).
     destruct HH.
     apply H4 in H0.
-    apply conga_right_comm in H0.
+    apply 等角的右交换性 in H0.
     assert(HH:= H2 C B A).
     destruct HH.
     apply H5.
@@ -757,7 +757,7 @@ Proof.
     assert(HH:= H1 A B C).
     destruct HH.
     apply H3 in H0.
-    apply conga_right_comm in H0.
+    apply 等角的右交换性 in H0.
     assert(HH:= H1 C B A).
     destruct HH.
     apply H4.
@@ -841,7 +841,7 @@ Proof.
     destruct HH.
     assert(a A0 B0 C0).
       apply H6.
-      apply conga_refl; auto.
+      apply 同角相等; auto.
     assert(HH:=ang_distincts a A0 B0 C0 H0 H8).
     assert(A0 <> C0).
       intro.
@@ -857,7 +857,7 @@ Proof.
       subst B.
       apply H.
       Col.
-    assert(HH:=angle_construction_2 A0 B0 C0 A B P H10 H9 H4).
+    assert(HH:=给定角一边可作出与给定点同侧一点构成等角_可平角 A0 B0 C0 A B P H10 H9 H4).
     ex_and HH C; auto.
     exists C.
     assert(a A B C).
@@ -968,7 +968,7 @@ Proof.
     induction H6.
       subst X.
       apply H1.
-      apply conga_line; auto.
+      apply 成中间性三点组的角相等; auto.
     assert(Bet A0 B0 P).
       apply (bet_conga__bet A B C); auto.
     assert(Bet A0 B0 C0).
@@ -978,7 +978,7 @@ Proof.
         eBetween.
       eBetween.
     apply H1.
-    apply (conga_line A B C); auto.
+    apply (成中间性三点组的角相等 A B C); auto.
 Qed.
 
 Lemma anga_acute : forall a A B C , 锐角谓词 a -> a A B C -> 为锐角 A B C.
@@ -1006,7 +1006,7 @@ Proof.
       auto.
     assert(HP:= H1 A B C).
     destruct HP.
-    apply conga_sym.
+    apply 等角的对称性.
     apply H3.
     auto.
 Qed.
@@ -1139,7 +1139,7 @@ Proof.
     destruct HP.
     apply H4 in H0.
     assert(等角 A0 B0 C0 A' B' C').
-      eapply conga_trans.
+      eapply 角等的传递性.
         apply H0.
       apply H1.
     apply H5.
@@ -1166,7 +1166,7 @@ Proof.
     assert(HH:= H4 A' B C').
     destruct HH.
     apply H11.
-    apply (conga_trans _ _ _ A B C); auto.
+    apply (角等的传递性 _ _ _ A B C); auto.
 Qed.
 
 Lemma out_out_anga : forall a A B C A' B' C', 锐角谓词 a -> Out B A C -> Out B' A' C' -> a A B C -> a A' B' C'.
@@ -1192,7 +1192,7 @@ Proof.
     apply H3.
     assert (a A0 B0 C0).
       apply H3.
-      apply conga_refl; auto.
+      apply 同角相等; auto.
     assert(HH:= (H1 A0 B0 C0 H5)).
     apply l11_21_b; auto.
     apply out_trivial.
@@ -1312,7 +1312,7 @@ Proof.
       assert(a A' B' C').
         assert(HP:= H6 A B C).
         destruct HP.
-        assert(等角 A B C A' B' C') by (apply conga_sym;auto).
+        assert(等角 A B C A' B' C') by (apply 等角的对称性;auto).
         assert(HP:=is_ang_conga_is_ang A B C A' B' C' a).
         assert(Ang A' B' C' a).
           apply HP.
@@ -1328,7 +1328,7 @@ Proof.
       split.
         assert (HH:= acute_distincts A' B' C' H).
         spliter.
-        apply inangle3123; auto.
+        apply C在角ABC内; auto.
       apply (is_ang_conga _ _ _ _ _ _ a).
         split; auto.
       split; auto.

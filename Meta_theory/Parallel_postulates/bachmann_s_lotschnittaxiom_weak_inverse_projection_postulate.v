@@ -31,7 +31,7 @@ assert (P' <> Q').
  intro; subst Q'; assert (P = Q) by (apply (l10_2_uniqueness B C P'); assumption); auto.
 assert (H等角 : 等角 C B P' A B C).
   apply l11_10 with C P' P C; Out.
-  apply conga_sym, conga_left_comm, reflectl__conga; auto.
+  apply 等角的对称性, 等角的左交换性, reflectl__conga; auto.
   apply is_image_spec_rev, HP'.
 assert (HTS : TS B C P P').
   repeat split; Col; destruct HP' as [[X [HX1 HX2]] _]; exists X; split; [Col|Between].
@@ -39,10 +39,10 @@ apply l6_6 in HOut.
 assert (共面 P' C A B) by (apply col2_cop__cop with P B; Col; Cop).
 assert (共面 B P P' Q) by CopR.
 assert (HPer1 : Per A B P').
-{ apply l11_17 with D E F; trivial.
+{ apply l11_17_等于直角的角是直角 with D E F; trivial.
   apply (suma2__conga A B C A B C); trivial.
-  apply conga3_suma__suma with A B C C B P' A B P'; 等角.
-  exists P'; repeat (split; try (apply conga_refl; auto)); [|Cop].
+  apply 等角保持和角 with A B C C B P' A B P'; 等角.
+  exists P'; repeat (split; try (apply 同角相等; auto)); [|Cop].
   apply l9_9, l9_5 with P B; Col.
 }
 assert (HNCol3 : ~ Col A B P') by (apply 成直角三点不共线; auto).

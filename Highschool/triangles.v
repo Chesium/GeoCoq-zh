@@ -27,7 +27,7 @@ Lemma 等腰三角形底角相等 :
   等角 C A B A C B.
 Proof.
 intros.
-apply cong3_conga.
+apply 三角形全等推角等2.
 auto.
 auto.
 unfold 三角形全等.

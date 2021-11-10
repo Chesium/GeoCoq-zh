@@ -84,11 +84,11 @@ assert (等角 A C X X C B).
  Between.
  apply (os2__inangle A C B X).
  apply (one_side_symmetry C A X B).
- apply (in_angle_one_side C A B X);Col.
- apply (l11_24 X B A C);auto.
+ apply (角内点和一端点在角另一边同侧 C A B X);Col.
+ apply (l11_24_在角内的对称性 X B A C);auto.
  apply (one_side_symmetry C B X A).
- apply (in_angle_one_side C B A X);Col.
- apply (l11_24 X A B C);auto.
+ apply (角内点和一端点在角另一边同侧 C B A X);Col.
+ apply (l11_24_在角内的对称性 X A B C);auto.
 }
 split;auto.
 Qed.

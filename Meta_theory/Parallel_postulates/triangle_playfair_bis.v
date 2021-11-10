@@ -23,7 +23,7 @@ Proof.
   assert (~ Col P Q C) by (apply one_side_not_col123 with A, HOS2).
   assert (~ Col P Q A) by (apply one_side_not_col124 with C, HOS2).
   assert(角度小于 B P C B P Q).
-    apply inangle__lta; [Col|apply l11_24, H在角内].
+    apply inangle__lta; [Col|apply l11_24_在角内的对称性, H在角内].
   assert(为锐角 B P C).
     exists B, P, Q; split; Perp.
   assert_diffs.
@@ -32,21 +32,21 @@ Proof.
   assert(OS P Q R A) by (apply invert_one_side, out_one_side; Col).
   assert(OS P C Q R).
     apply l12_6, par_strict_col_par_strict with A; Par; Col.
-  destruct (ex_suma B' P R P R Q) as [D [E [F Hsuma1]]]; auto.
+  destruct (和角的存在性 B' P R P R Q) as [D [E [F Hsuma1]]]; auto.
   assert(Htri : 三角形内角和 R Q P D E F).
   { exists B', P, R; split; auto.
-    apply (conga3_suma__suma B' P Q Q P R B' P R); try (apply conga_refl; auto).
+    apply (等角保持和角 B' P Q Q P R B' P R); try (apply 同角相等; auto).
     - exists R.
       assert (TS P Q R B'); [|repeat (split; 等角); Side; Cop].
       apply (l9_8_2 _ _ B).
         apply bet__ts; Between; apply one_side_not_col124 with C, HOS3.
       apply (one_side_transitivity _ _ _ A); [|Side].
       apply (one_side_transitivity _ _ _ C); Side.
-    - apply l11_16; auto; apply 直角的对称性.
+    - apply l11_16_直角相等; auto; apply 直角的对称性.
         apply 直角边共线点也构成直角2 with B; Perp; Col.
         apply 直角边共线点也构成直角2 with A; Perp; Col.
   }
-  destruct (ex_suma B' P R C P B) as [I [J [K Hsuma2]]]; auto.
+  destruct (和角的存在性 B' P R C P B) as [I [J [K Hsuma2]]]; auto.
   assert(~ Col R P B').
   { apply (par_not_col Q A); Col.
     apply par_strict_col_par_strict with B; Col.
@@ -54,9 +54,9 @@ Proof.
   assert(Hsuma3 : 和角 B' P R R P B B' P B) by (apply bet__suma; Between).
   assert(Hsams3 : 角度之和小于平角 B' P R R P B) by (apply bet__sams; Between).
   assert(角度小于等于 C P B R P B).
-  { apply lea_comm, inangle__lea, os_ts__inangle.
+  { apply 角度小于等于的交换性, inangle__lea, os_ts__inangle.
     - apply l9_2, (l9_8_2 _ _ Q); trivial.
-      apply invert_two_sides, in_angle_two_sides; Col.
+      apply invert_two_sides, 角端点在角内点与顶点连线两侧; Col.
     - apply (one_side_transitivity _ _ _ Q); trivial.
       apply one_side_symmetry, l12_6, par_strict_col_par_strict with A; Par; Col.
   }
@@ -68,7 +68,7 @@ Proof.
   }
   apply Habs.
   apply suma_distincts in Hsuma1; spliter.
-  apply conga_line; Between.
+  apply 成中间性三点组的角相等; Between.
   apply (triangle R Q P); auto.
 Qed.
 

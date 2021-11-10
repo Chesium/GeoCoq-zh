@@ -1524,9 +1524,9 @@ Lemma conga_bet_conga : forall A B C D E F A' C' D' F',
 Proof.
 intros.
 assert(HH:= l11_13 A B C D E F A' D' H H4 H0 H6 H2).
-apply conga_comm.
+apply 等角的交换性.
 apply(l11_13 C B A' F E D' C' F'); auto.
-apply conga_comm.
+apply 等角的交换性.
 assumption.
 Qed.
 
@@ -1677,7 +1677,7 @@ ex_and H4 C1'.
 
 assert(等角 P A C O A1 C1').
 {
-apply(cong3_conga).
+apply(三角形全等推角等2).
 intro.
 subst A.
 apply H2; Col.
@@ -2041,7 +2041,7 @@ repeat split; Cong.
 }
 assert(等角 P C A O C1' A1).
 {
-apply cong3_conga.
+apply 三角形全等推角等2.
 intro.
 subst C.
 apply H2.
@@ -2442,7 +2442,7 @@ apply False_ind.
 unfold 等角 in H42.
 tauto.
 
-apply conga_sym.
+apply 等角的对称性.
 apply out2__conga; auto.
 }
 
@@ -2542,11 +2542,11 @@ apply(length_out O E E' P B  P A B1 A1); auto.
 }
 assert(等角 D1' O B1 D P B).
 {
-apply (conga_trans _ _ _ C P A).
-apply (conga_trans _ _ _ C1' O A1).
-apply conga_sym.
+apply (角等的传递性 _ _ _ C P A).
+apply (角等的传递性 _ _ _ C1' O A1).
+apply 等角的对称性.
 assumption.
-apply conga_sym.
+apply 等角的对称性.
 assumption.
 assumption.
 }
@@ -2580,7 +2580,7 @@ tauto.
 apply H55 in H56.
 spliter.
 clear H55.
-apply conga_comm in H57.
+apply 等角的交换性 in H57.
 
 assert(等角 C1' A1 O D1' B1 O <-> Par A1 C1' B1 D1').
 {
@@ -2602,12 +2602,12 @@ destruct H55.
 assert(Par A1 C1' B1 D1').
 {
 apply H55.
-apply (conga_trans _ _ _ D B P).
-apply (conga_trans _ _ _ C A P).
-apply conga_sym.
+apply (角等的传递性 _ _ _ D B P).
+apply (角等的传递性 _ _ _ C A P).
+apply 等角的对称性.
 assumption.
 assumption.
-apply conga_sym.
+apply 等角的对称性.
 assumption.
 }
 clear H55 H58.
@@ -2813,7 +2813,7 @@ tauto.
 
 assert(Cong H C H' C' /\ (H <> C -> 等角 A H C A H' C' /\ 等角 A C H A C' H')).
 apply(l11_49 H A C H' A C').
-apply conga_left_comm.
+apply 等角的左交换性.
 apply out2__conga.
 apply l6_6.
 assumption.
@@ -2843,7 +2843,7 @@ assumption.
 apply 垂点是交点 in H2.
 tauto.
 
-assert(HH:= l11_17 A H C A H' C' H21 H19).
+assert(HH:= l11_17_等于直角的角是直角 A H C A H' C' H21 H19).
 assert(Par C B H' C').
 apply(l12_9_2D C B H' C' A C).
 apply 直角转L形垂直于 in H1.
@@ -4135,7 +4135,7 @@ ex_and HH CC.
 assert(Lt AA CC A B).
 {
   apply(t18_18 C A B B' AA CC);Cong.
-  apply lta_comm.
+  apply 角度小于的交换性.
   apply(lta_out_lta A' B' C' A C B);
   try(apply l6_6; auto).
   apply out_trivial; auto.
@@ -4360,7 +4360,7 @@ induction(两点重合的决定性 A B).
   assert(Lt A B AA CC).
   {
     apply(t18_18 B' AA CC C A B );Cong.
-    apply lta_comm.
+    apply 角度小于的交换性.
     apply(lta_out_lta  A C B A' B' C');
     try(apply l6_6; auto).
     apply out_trivial; auto.

@@ -44,7 +44,7 @@ assert (Per P Q R).
   apply 垂直的对称性, 与垂线共线之线也为垂线2 with B1 B2; Col; Perp.
   }
 assert (HSuma : 和角 P Q M P Q M P Q R).
-  assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; 等角; 和角.
+  assert_diffs; apply 等角保持和角 with P Q M M Q R P Q R; 等角; 和角.
 assert (H为锐角 : 为锐角 P Q M).
 { apply nbet_sams_suma__acute with P Q R; auto.
     intro; apply HNC; Col.
@@ -81,7 +81,7 @@ assert (HNC : ~ Col P Q R).
   apply 成直角三点不共线; auto; apply L形垂直转直角1, (与垂直两线分别共线的两线垂直 A1 A2 B1 B2); auto.
 destruct (angle_bisector P Q R) as [M [HM1 HM2]]; auto.
 assert (HSuma : 和角 P Q M P Q M P Q R).
-  assert_diffs; apply conga3_suma__suma with P Q M M Q R P Q R; 等角; 和角.
+  assert_diffs; apply 等角保持和角 with P Q M M Q R P Q R; 等角; 和角.
 assert (H为锐角 : 为锐角 P Q M).
   {
   apply nbet_sams_suma__acute with P Q R; auto.
@@ -95,7 +95,7 @@ destruct (weak_inverse_projection_postulate__bachmann_s_lotschnittaxiom_aux
     hrap A1 A2 B1 B2 C1 C2 Q P R M) as [HParB [S [HS1 HS2]]]; Col.
 destruct (weak_inverse_projection_postulate__bachmann_s_lotschnittaxiom_aux
     hrap B1 B2 A1 A2 D1 D2 Q R P M) as [HParA [T [HT1 HT2]]]; [trivial..|]; [Perp|Cop..|Col| |等角|].
-  apply l11_24, HM1.
+  apply l11_24_在角内的对称性, HM1.
 destruct (共线的决定性 C1 C2 T).
   exists T; split; Col.
 destruct (共线的决定性 D1 D2 S).

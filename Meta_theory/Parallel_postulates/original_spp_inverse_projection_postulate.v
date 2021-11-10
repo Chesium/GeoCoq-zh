@@ -25,7 +25,7 @@ Proof.
     apply HN.
     split; auto.
     split.
-    apply l11_31_2; Between.
+    apply l11_31_1_任何角小于等于平角_Bet表述; Between.
     intro; destruct Hlta; 等角.
   }
   intro HNCol1.
@@ -35,7 +35,7 @@ Proof.
     intro; apply HNCol2; ColR.
   assert(HNCol3 : ~ Col A B Q0) by (apply (one_side_not_col123 _ _ _ C); Side).
   assert(P<>Q0) by (intro; subst; Col).
-  assert (HSuma := ex_suma C B P B P Q0).
+  assert (HSuma := 和角的存在性 C B P B P Q0).
   destruct HSuma as [D [E [F]]]; auto.
 
   assert(HY := ospp C B P Q0 D E F).
@@ -50,7 +50,7 @@ Proof.
     }
     destruct Hlta as [Hlea HNConga].
     apply HNConga.
-    apply conga_right_comm.
+    apply 等角的右交换性.
     apply l6_6 in Hout.
     apply out2__conga; try (apply out_trivial); auto.
   }
@@ -67,14 +67,14 @@ Proof.
   apply (one_side_transitivity _ _ _ P).
   apply (one_side_transitivity _ _ _ A).
   - apply invert_one_side.
-    apply in_angle_one_side; Col.
+    apply 角内点和一端点在角另一边同侧; Col.
     { intro.
       assert(HInter := l8_16_1_共线四点和一垂直推另一直角 B0 B A C B).
       destruct HInter; Col; Perp.
       assert(Habs : 角度小于 A B C A B C) by (apply acute_per__lta; auto).
       destruct Habs; 等角.
     }
-    apply l11_24.
+    apply l11_24_在角内的对称性.
     apply lea_in_angle; Side.
     apply lta__lea.
     apply acute_per__lta; auto.

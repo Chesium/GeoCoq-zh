@@ -24,7 +24,7 @@ cut (forall A B C P T,
   assert_diffs.
   assert (HNCol1 : ~ Col A B C) by (apply 成直角三点不共线; auto).
   assert (HNCol2 : ~ Col P0 B A).
-  { assert (和角 P0 B A P0 B A A B C) by (apply (conga3_suma__suma A B P0 P0 B C A B C); 等角; 和角).
+  { assert (和角 P0 B A P0 B A A B C) by (apply (等角保持和角 A B P0 P0 B C A B C); 等角; 和角).
     intro; apply HNCol1, (col2_suma__col P0 B A P0 B A); assumption.
   }
   assert (HXY : exists X Y, Out B A X /\ Out B C Y /\ Col X T Y).
@@ -66,12 +66,12 @@ cut (forall A B C P T,
   - apply col_one_side_out with B; trivial.
     apply invert_one_side, col_one_side with A; Col.
     apply out_out_one_side with C; trivial.
-    apply invert_one_side, in_angle_one_side; Col.
+    apply invert_one_side, 角内点和一端点在角另一边同侧; Col.
     intro; apply HTX, (l6_21_两线交点的唯一性 A B Y X); Col.
   - apply col_one_side_out with B; Col.
     apply invert_one_side, col_one_side with C; Col.
     apply one_side_symmetry, out_out_one_side with A; trivial.
-    apply invert_one_side, in_angle_one_side; [Col| |apply l11_24, H在角内].
+    apply invert_one_side, 角内点和一端点在角另一边同侧; [Col| |apply l11_24_在角内的对称性, H在角内].
     intro; apply HTY, (l6_21_两线交点的唯一性 B C X Y); Col.
     intro; apply HNCol1; ColR.
   }
@@ -81,14 +81,14 @@ cut (forall A B C P T,
   assert_diffs.
   assert (HIn : 在角内 P A B C) by (apply conga_cop_inangle_per2__inangle with T; assumption).
   assert (H和角 : 和角 P B A P B A A B C).
-    apply (conga3_suma__suma A B P P B C A B C); 等角; 和角.
+    apply (等角保持和角 A B P P B C A B C); 等角; 和角.
   assert (H为锐角 : 为锐角 P B A) by (apply acute_sym, conga_inangle_per__acute with C; assumption).
   assert (HOut : Out B P P) by (apply out_trivial; auto).
   assert (~ Col A B C) by (apply 成直角三点不共线; auto).
   destruct (wipp P B A A B C P T) as [X [HX1 HX2]]; trivial; [CopR|].
   destruct (wipp P B C C B A P T) as [Y [HY1 HY2]]; Perp.
     apply (acute_conga__acute P B A); assumption.
-    apply (conga3_suma__suma P B A P B A A B C); 等角.
+    apply (等角保持和角 P B A P B A A B C); 等角.
     CopR.
   exists X, Y; repeat (split; Col).
   }

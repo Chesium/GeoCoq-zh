@@ -46,7 +46,7 @@ Proof.
   destruct HDef' as [G' [H' [I' [HTri' HSuppa']]]].
   apply (suppa2__conga456 G H I); trivial.
   suma.assert_diffs.
-  apply (conga2_suppa__suppa G' H' I' D' E' F'); try apply conga_refl; auto.
+  apply (conga2_suppa__suppa G' H' I' D' E' F'); try apply 同角相等; auto.
   apply (trisuma2__conga A B C); assumption.
 Qed.
 
@@ -155,7 +155,7 @@ Proof.
   assert (HInter : 和角 S T U D E F B C1 C /\ 角度之和小于平角 S T U D E F).
   { suma.assert_diffs.
     assert (HSuma4 : 和角 B C1 C A C1 B A C1 C) by 和角.
-    destruct (ex_suma A C1 B D E F) as [V [W [X HSuma5]]]; auto.
+    destruct (和角的存在性 A C1 B D E F) as [V [W [X HSuma5]]]; auto.
     assert (HIsi : 角度之和小于平角 P Q R D E F) by (apply suppa__sams; trivial).
     assert (HIsi1 : 角度之和小于平角 S T U A C1 B) by (apply (t22_20 noah), HSuma2).
     assert (HIsi2 : 角度之和小于平角 A C1 B D E F).
@@ -166,9 +166,9 @@ Proof.
     assert (HIsi3 : 角度之和小于平角 S T U D E F).
       apply sams_lea2__sams with P Q R D E F; Lea; apply sams_suma__lea123789 with A C1 B; 和角.
     split; trivial.
-    destruct (ex_suma S T U D E F) as [B' [C1' [C' HSuma']]]; auto.
+    destruct (和角的存在性 S T U D E F) as [B' [C1' [C' HSuma']]]; auto.
     assert (HSuma7 : 和角 B' C1' C' A C1 B A C1 C) by (apply suma_assoc_2 with S T U D E F V W X; 和角).
-    apply (conga3_suma__suma S T U D E F B' C1' C'); try (apply conga_refl); auto.
+    apply (等角保持和角 S T U D E F B' C1' C'); try (apply 同角相等); auto.
     apply (suppa2__conga456 A C1 B).
       apply suppa_sym, bet_suma__suppa with A C1 C; assumption.
       apply bet__suppa; auto.
@@ -191,7 +191,7 @@ Proof.
   split; trivial.
 
   suma.assert_diffs.
-  destruct (ex_suma V W X S T U) as [A' [B' [C' HSuma6]]]; auto.
+  destruct (和角的存在性 V W X S T U) as [A' [B' [C' HSuma6]]]; auto.
   assert (HIsi6 : 角度之和小于平角 V W X S T U).
   { apply sams_lea2__sams with V W X B C1 C; Lea.
     apply sams_suma__lea123789 with D E F; trivial.
@@ -206,7 +206,7 @@ Proof.
   clear dependent D; clear dependent E; clear dependent G; clear dependent H;
   clear dependent K; clear dependent L; clear dependent P; clear dependent Q; clear F I M R.
 
-  destruct (ex_suma V W X C1 B A) as [D [E [F HSuma]]]; auto.
+  destruct (和角的存在性 V W X C1 B A) as [D [E [F HSuma]]]; auto.
   assert (HIsi : 角度之和小于平角 V W X C1 B A).
   { apply sams_lea2__sams with V W X S T U; Lea.
     apply sams_suma__lea123789 with B A C1; 和角.
@@ -217,13 +217,13 @@ Proof.
   split.
   - assert (HConga : 等角 C1 C B A C B).
       apply out2__conga; [apply l6_6, bet_out|apply out_trivial]; Between.
-    apply (conga3_suma__suma C1 C B C B A D E F); 等角.
+    apply (等角保持和角 C1 C B C B A D E F); 等角.
     assert (H在角内 : 在角内 C1 C B A).
       repeat split; auto; exists C1; split; Between; right; apply out_trivial; auto.
     apply suma_assoc_1 with C B C1 C1 B A V W X; 和角.
   - assert (HConga : 等角 B A C B A C1).
       apply out2__conga; [apply out_trivial|apply bet_out]; auto.
-    apply (conga3_suma__suma D E F B A C1 A' B' C'); 等角.
+    apply (等角保持和角 D E F B A C1 A' B' C'); 等角.
     apply suma_assoc_2 with V W X C1 B A S T U; 和角.
 Qed.
 
@@ -238,10 +238,10 @@ Proof.
   assert (Hd := defect_distincts A B C1 D E F HDefA).
   assert (Hd' := defect_distincts B C1 C G H I HDefB).
   spliter.
-  destruct (ex_suma D E F G H I) as [K' [L' [M' HSuma]]]; auto.
+  destruct (和角的存在性 D E F G H I) as [K' [L' [M' HSuma]]]; auto.
   destruct (t22_16_1 noah A B C C1 D E F G H I K' L' M') as [HIsi HDef']; trivial.
   split; trivial.
-  apply (conga3_suma__suma D E F G H I K' L' M'); try (apply conga_refl); auto.
+  apply (等角保持和角 D E F G H I K' L' M'); try (apply 同角相等); auto.
   apply (defect2__conga A B C); trivial.
 Qed.
 
@@ -268,7 +268,7 @@ Proof.
     apply col_defect__out in HDefB; trivial.
     apply col_defect__out in HDefC; trivial.
     split; [和角|].
-    apply (conga3_suma__suma D1 D2 D3 B1 B2 B3 P Q R); try (apply conga_refl); auto;
+    apply (等角保持和角 D1 D2 D3 B1 B2 B3 P Q R); try (apply 同角相等); auto;
     apply l11_21_b; trivial.
   }
   assert (B = O) by (apply (l6_21_两线交点的唯一性 A C D B); Col).
@@ -278,7 +278,7 @@ Proof.
     apply defect_perm_132, HDefC.
     apply defect_perm_321, HDefA.
   split; trivial.
-  apply (conga3_suma__suma C1 C2 C3 A1 A2 A3 B1 B2 B3); 等角.
+  apply (等角保持和角 C1 C2 C3 A1 A2 A3 B1 B2 B3); 等角.
 Qed.
 
 Lemma t22_16_2aux1 :
@@ -297,7 +297,7 @@ Proof.
   assert (HOut : Out C2 C1 C3) by (apply (col_defect__out A B D); trivial).
   split; [和角|].
   assert (HSuma1 : 和角 C1 C2 C3 A1 A2 A3 A1 A2 A3) by (apply out213__suma; auto).
-  apply (conga3_suma__suma C1 C2 C3 A1 A2 A3 A1 A2 A3); try (apply conga_refl); auto.
+  apply (等角保持和角 C1 C2 C3 A1 A2 A3 A1 A2 A3); try (apply 同角相等); auto.
   apply (suma2__conga D1 D2 D3 B1 B2 B3); trivial.
   destruct (t22_16_2aux noah B A D C B1 B2 B3 A1 A2 A3 D1 D2 D3 C1 C2 C3 O A1 A2 A3); Col;
   apply defect_perm_213; trivial.
@@ -351,7 +351,7 @@ Proof.
     apply defect_perm_213, HDefA.
   suma.assert_diffs.
 
-  destruct (ex_suma D1 D2 D3 S3 T3 U3) as [V [W [X HSuma1]]]; auto.
+  destruct (和角的存在性 D1 D2 D3 S3 T3 U3) as [V [W [X HSuma1]]]; auto.
   assert (HIsi1 : 角度之和小于平角 D1 D2 D3 S3 T3 U3).
     apply sams_lea2__sams with D1 D2 D3 B1 B2 B3; Lea; apply (sams_suma__lea456789 S4 T4 U4); trivial.
   assert (HSuma2 : 和角 V W X S4 T4 U4 P Q R).

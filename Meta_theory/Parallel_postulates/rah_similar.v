@@ -32,7 +32,7 @@ Proof.
   }
   assert(A <> C') by (intro; treat_equalities; auto).
   assert(Per B' C' A) by (apply L形垂直转直角1, (垂线共线点也构成垂直2 _ _ _ C); Col; Perp).
-  assert(等角 B C A B' C' A) by (apply l11_16; Perp).
+  assert(等角 B C A B' C' A) by (apply l11_16_直角相等; Perp).
   assert(等角 C A B C' A B').
     apply out2__conga; apply l6_6, bet_out; Between.
   split; Col; split.
@@ -49,7 +49,7 @@ Proof.
       和角.
       apply (conga2_sams__sams C' A B' A B' C'); 等角; 和角.
       apply t22_12__rah; Perp.
-      apply (conga3_suma__suma C' A B' A B' C' B' C' A); 等角; apply t22_12__rah; auto.
+      apply (等角保持和角 C' A B' A B' C' B' C' A); 等角; apply t22_12__rah; auto.
     }
 Qed.
 

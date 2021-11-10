@@ -26,7 +26,7 @@ Proof.
 
   intro.
   assert(角度之和小于平角 D' C B C B A') by (apply (sams_chara _ _ _ _ _ _ D); Between).
-  assert(HSuma' := ex_suma A' B C B C D').
+  assert(HSuma' := 和角的存在性 A' B C B C D').
   destruct HSuma' as [P' [Q' [R' HSuma']]]; auto.
   assert(Hdiff := HSuma').
   apply suma_distincts in Hdiff.

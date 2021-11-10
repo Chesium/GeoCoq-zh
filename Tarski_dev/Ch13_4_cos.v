@@ -77,7 +77,7 @@ Proof.
       subst Z2.
       assert(Out X1 Y1 Z1).
         apply (eq_conga_out Y2 X2).
-        apply conga_sym.
+        apply 等角的对称性.
         auto.
       assert(Y1 = Z1).
         assert(Z1 = Y1 \/ X1 = Y1).
@@ -96,7 +96,7 @@ Proof.
     apply conga_distinct in H16.
     spliter.
     assert(等角 X1 Y1 Z1 X2 Y2 Z2).
-      apply l11_16; Perp; auto.
+      apply l11_16_直角相等; Perp; auto.
     assert(~Col Z1 X1 Y1).
       intro.
       assert(X1 = Y1 \/ Z1 = Y1).
@@ -107,7 +107,7 @@ Proof.
         subst Y1.
         tauto.
       contradiction.
-    apply conga_comm in H16.
+    apply 等角的交换性 in H16.
     apply 等长的交换性 in H13.
     assert(HH:=l11_50_2 Z1 X1 Y1 Z2 X2 Y2 H26 H25 H16 H13).
     spliter.
@@ -275,11 +275,11 @@ Proof.
       repeat split; auto.
     spliter.
     assert(等角 A0 B0 C0 A1 B1 C1).
-      apply l11_16; auto.
+      apply l11_16_直角相等; auto.
     assert(角度小于 A1 B1 C1 A B C).
       apply (conga_preserves_lta A0 B0 C0 A B C).
         auto.
-        apply conga_refl; auto.
+        apply 同角相等; auto.
       assumption.
     assert(HH:=两长度不可能互相小于对方a A B C A1 B1 C1).
     apply HH.
@@ -326,7 +326,7 @@ Proof.
         apply L形垂直转垂直于.
         Perp.
       assert(等角 A0 B0 C0 A B C).
-        apply l11_16; auto.
+        apply l11_16_直角相等; auto.
       unfold 角度小于 in H3.
       spliter.
       unfold 角度小于等于 in H3.
@@ -707,13 +707,13 @@ Proof.
     induction H7.
       subst X.
       apply H2.
-      apply conga_line; auto.
+      apply 成中间性三点组的角相等; auto.
     assert(等角 A B C A' B' X).
       apply (l11_10 A B C A' B' P'); auto; apply out_trivial; auto.
     apply H2.
     assert(Bet A' B' X).
       apply (bet_conga__bet A B C); auto.
-    apply conga_line; auto.
+    apply 成中间性三点组的角相等; auto.
     apply (中间性的交换传递性2 _ _ X); auto.
 Qed.
 
@@ -755,11 +755,11 @@ Proof.
     apply lta_distincts in Hd.
     apply lta_distincts in Hd'.
     spliter.
-    assert(HH:=l11_16 A0 B0 C0 A1 B1 C1 H0 H12 H13 H1 H7 H8).
+    assert(HH:=l11_16_直角相等 A0 B0 C0 A1 B1 C1 H0 H12 H13 H1 H7 H8).
     assert(角度小于 C B D A0 B0 C0).
       eapply(conga_preserves_lta C B D A1 B1 C1).
-        apply conga_refl; auto.
-        apply conga_sym.
+        apply 同角相等; auto.
+        apply 等角的对称性.
         auto.
       auto.
     clear H4.
@@ -781,16 +781,16 @@ Proof.
       apply 垂直于的交换性.
       auto.
     assert(HR:= 垂直推出不重合2 A C P B H17).
-    assert(HQ:=l11_16 A B P A0 B0 C0 H19 H10 HR H0 H12 H13).
+    assert(HQ:=l11_16_直角相等 A B P A0 B0 C0 H19 H10 HR H0 H12 H13).
     assert(角度小于 A B D A B P).
       apply (conga_preserves_lta A B D A0 B0 C0); auto.
-        apply conga_refl; auto.
-      apply conga_sym.
+        apply 同角相等; auto.
+      apply 等角的对称性.
       auto.
     assert(角度小于 C B D A B P).
       apply (conga_preserves_lta C B D A0 B0 C0); auto.
-        apply conga_refl; auto.
-      apply conga_sym.
+        apply 同角相等; auto.
+      apply 等角的对称性.
       auto.
     clear HQ H15 HH H3 H0 H1.
     unfold 角度小于 in *.
@@ -802,7 +802,7 @@ Proof.
       apply H20.
       auto.
     assert(等角 A B P C B P).
-      apply l11_16; auto.
+      apply l11_16_直角相等; auto.
       apply L形垂直于转直角.
       assert(Perp C B P B).
         apply(垂线共线点也构成垂直1 _ A).
@@ -816,10 +816,10 @@ Proof.
       apply 垂直的左交换性.
       auto.
     assert(角度小于等于 A B P C B D).
-      apply (l11_30 C B P C B D); auto.
-        apply conga_sym.
+      apply (l11_30_等角保持小于等于 C B P C B D); auto.
+        apply 等角的对称性.
         auto.
-      apply conga_refl; auto.
+      apply 同角相等; auto.
     assert(HH:=lea_asym C B D A B P H0 H24).
     contradiction.
 Qed.
@@ -852,7 +852,7 @@ Proof.
       Cong.
     apply H17 in H18.
     spliter.
-    eapply (l11_17 A0 B0 C0).
+    eapply (l11_17_等于直角的角是直角 A0 B0 C0).
       apply 直角的对称性.
       auto.
     auto.
@@ -881,7 +881,7 @@ Proof.
     apply HConga.
     apply acute_distincts in Hacute.
     spliter.
-    apply conga_refl; auto.
+    apply 同角相等; auto.
 Qed.
 
 Lemma lcos_lg : forall a lp l A B C, Lcos lp l a -> Perp A B B C -> a B A C -> l A C -> lp A B.
@@ -911,7 +911,7 @@ Proof.
       apply conga_distinct in H11.
       spliter.
       assert(等角 A B C A' B' C').
-        apply l11_16; auto.
+        apply l11_16_直角相等; auto.
           apply L形垂直于转直角.
           apply 垂直于的交换性.
           apply L形垂直转垂直于.
@@ -931,7 +931,7 @@ Proof.
           apply (anga_conga a); auto.
         apply (l11_21_a B' A' B') .
           apply out_trivial; auto.
-        apply conga_sym.
+        apply 等角的对称性.
         auto.
       assert(Cong C B C' B' /\ Cong A B A' B' /\ 等角 B C A B' C' A').
         apply(l11_50_2 C A B C' A' B').
@@ -941,7 +941,7 @@ Proof.
           apply H0.
           Col.
           auto.
-          apply conga_comm.
+          apply 等角的交换性.
           auto.
         Cong.
       spliter.
@@ -1083,7 +1083,7 @@ Proof.
               apply (anga_conga b); auto.
             apply (l11_21_a C A C A0 B0 C0 ).
               apply out_trivial; auto.
-            apply conga_sym.
+            apply 等角的对称性.
             auto.
             auto.
           auto.
@@ -1108,7 +1108,7 @@ Proof.
               apply out_trivial; auto.
               apply 垂直推出不重合2 in H36.
               auto.
-            apply conga_sym.
+            apply 等角的对称性.
             auto.
             Perp.
           Col.
@@ -1166,7 +1166,7 @@ Proof.
         apply col_in_angle; auto.
         apply 垂直推出不重合2 in H3.
         auto.
-      apply conga_refl; auto.
+      apply 同角相等; auto.
     intro.
     apply l11_21_a in H6.
       apply 垂直的左交换性 in H3.
@@ -1310,8 +1310,8 @@ Proof.
           split.
             apply conga_distinct in HP.
             spliter.
-            apply inangle3123; auto.
-          apply conga_sym.
+            apply C在角ABC内; auto.
+          apply 等角的对称性.
           auto.
         unfold Lcos.
         repeat split; auto.
@@ -1420,14 +1420,14 @@ tauto.
 apply conga_distinct in H14.
 spliter.
 assert(等角 C1 B1 A1 C2 B2 A2).
-apply l11_16; auto.
+apply l11_16_直角相等; auto.
 intro.
 subst C2.
 
 assert(Out A1 B1 C1).
 apply (l11_21_a B2 A2 B2).
 apply out_trivial; auto.
-apply conga_sym.
+apply 等角的对称性.
 auto.
 assert(C1 = B1 \/ A1 = B1).
 apply(l8_9_直角三点共线则必有两点重合 C1 B1 A1 ); auto.
@@ -1449,9 +1449,9 @@ induction H22.
 contradiction.
 subst B1.
 tauto.
-apply conga_comm.
+apply 等角的交换性.
 auto.
-apply conga_comm.
+apply 等角的交换性.
 auto.
 Cong.
 spliter.

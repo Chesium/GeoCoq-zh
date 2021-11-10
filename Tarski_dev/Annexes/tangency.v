@@ -696,8 +696,8 @@ assert(等角 X O V Y O U).
 {
   unfold 在圆上 in *.
   apply(l11_10 U O Y Y O U X V Y U).
-  apply conga_left_comm.
-  apply conga_refl; intro;treat_equalities; tauto.
+  apply 等角的左交换性.
+  apply 同角相等; intro;treat_equalities; tauto.
   repeat split; try(intro;treat_equalities; tauto).
   right; auto.
   repeat split; try(intro;treat_equalities; tauto).
@@ -709,14 +709,14 @@ assert(等角 X O V Y O U).
 assert(Cong V X U Y).
 {
 
-  apply(cong2_conga_cong V O X U O Y); Cong.
+  apply(等角两边等长则端点间距相等 V O X U O Y); Cong.
   等角.
 }
 
 assert(等角 O U Y O V X).
 {
   unfold 在圆上 in *.
-  apply(cong3_conga O U Y O V X).
+  apply(三角形全等推角等2 O U Y O V X).
   intro;treat_equalities; tauto.
   intro;treat_equalities.
   unfold 在圆外 in *.
@@ -728,7 +728,7 @@ assert(等角 O U Y O V X).
 
 assert(Per O V X).
 {
-  apply(l11_17 O U Y O V X).
+  apply(l11_17_等于直角的角是直角 O U Y O V X).
   apply(垂线共线点也构成垂直1 _ _ _ _ Y) in H8.
 
   apply L形垂直转垂直于 in H8.

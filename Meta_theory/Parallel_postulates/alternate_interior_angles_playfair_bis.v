@@ -60,9 +60,9 @@ Proof.
   destruct HA3 as [A3 [HA3 Hts]].
   assert(~ Col A3 P Q) by (destruct Hts as [_ []]; auto).
   assert_diffs.
-  apply (l11_17 A3 Q P).
+  apply (l11_17_等于直角的角是直角 A3 Q P).
     apply L形垂直转直角1, (与垂线共线之线也为垂线2 A1 A2); Col.
-  apply conga_sym.
+  apply 等角的对称性.
   apply aip; auto.
   apply (par_col4__par C1 C2 A1 A2); Col.
   apply par_strict_par; Par.

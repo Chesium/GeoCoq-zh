@@ -262,7 +262,7 @@ Proof.
   - apply 直角边共线点也构成直角2 with A; Col.
     apply 直角的对称性, 直角边共线点也构成直角2 with M; Col; Perp.
   - apply 直角的对称性, 直角边共线点也构成直角2 with A; Col.
-  - apply l11_17 with M N A; auto.
+  - apply l11_17_等于直角的角是直角 with M N A; auto.
     apply (l11_10 M N A M L B); auto; try (apply out_trivial; auto).
     apply l6_6, bet_out; Between.
   - apply coplanar_perm_16, col_cop__cop with M; Col.
@@ -285,10 +285,10 @@ Proof.
   unfold Lambert四边形 in HLam; spliter.
   destruct (angle_partition L B C) as [H为锐角 | [HPer | H为钝角]]; trivial; [ | | exfalso; auto].
   - split; apply 长度小于蕴含小于等于; [apply (等长保持小于关系 N C B L); Cong | ].
-      apply lta_os_per2__lt; Perp; Side; apply lta_left_comm, acute_per__lta; auto.
+      apply lta_os_per2__lt; Perp; Side; apply 角度小于的左交换性, acute_per__lta; auto.
     apply 长度小于的左交换性, lta_os_per2__lt; Side; apply acute_per__lta; auto.
   - split; apply 等长则小于等于; [apply 等长的传递性 with B L; trivial | apply 等长的左交换性];
-    apply conga_per2_os__cong; Perp; Side; apply l11_16; Perp.
+    apply conga_per2_os__cong; Perp; Side; apply l11_16_直角相等; Perp.
 Qed.
 
 (** For every n, 2^n times B0C0 is lower than or equal to BnCn *)

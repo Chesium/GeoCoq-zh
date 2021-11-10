@@ -35,7 +35,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
     apply acute_conga__acute with A B C; auto.
     apply out213_suma__conga with T B A; [|Out].
     assert_diffs.
-    exists C; repeat (split; try (apply conga_refl; auto)).
+    exists C; repeat (split; try (apply 同角相等; auto)).
       apply col123__nos; Col.
       Cop.
     }
@@ -46,9 +46,9 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       {
       apply l6_6, acute_col_perp__out with T; Col; Perp.
       apply acute_lea_acute with A B C; auto.
-      apply lea_left_comm, l11_29_b.
+      apply 角度小于等于的左交换性, l11_29_b_能在其内找一点构造等角之角较大.
       exists C; split; trivial.
-      assert_diffs; apply conga_refl; auto.
+      assert_diffs; apply 同角相等; auto.
       }
     destruct (HP X T) as [Y [HOut2 H]].
       assumption.
@@ -69,7 +69,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
 
       {
       assert (HOS : OS C B T A)
-        by (apply in_angle_one_side; [Col..|apply l11_24, H在角内]).
+        by (apply 角内点和一端点在角另一边同侧; [Col..|apply l11_24_在角内的对称性, H在角内]).
       exfalso; apply (l9_9_bis _ _ _ _ HOS).
       apply l9_2, l9_8_2 with X.
 
@@ -85,7 +85,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       }
 
       {
-      assert (HOS : OS A B T C) by (apply in_angle_one_side; Col).
+      assert (HOS : OS A B T C) by (apply 角内点和一端点在角另一边同侧; Col).
       exfalso; apply (l9_9_bis _ _ _ _ HOS).
       apply l9_2; apply l9_8_2 with Y.
 
@@ -130,7 +130,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
     exists A, B, C; split; [Perp|split].
 
       {
-      exists D; split; [repeat split|apply conga_refl]; auto.
+      exists D; split; [repeat split|apply 同角相等]; auto.
       exists D; split; [Between|right; Out].
       }
 
@@ -138,12 +138,12 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       intro H等角.
       assert (HPer1 : Per A B D).
         {
-        apply l11_17 with A B C; [Perp|等角].
+        apply l11_17_等于直角的角是直角 with A B C; [Perp|等角].
         }
       assert (HPer2 : Per C B D).
         {
-        apply l11_17 with A B D; trivial.
-        apply cong3_conga; auto.
+        apply l11_17_等于直角的角是直角 with A B D; trivial.
+        apply 三角形全等推角等2; auto.
         repeat split; Cong.
         }
       assert (H和角 : 和角 A B D C B D A B C).
@@ -216,8 +216,8 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       assert_diffs.
       destruct (per_lt B P I) as [HLt _]; [Perp..|].
       destruct (l11_52 I P B I P' B) as [_ [_ H等角2]]; Cong; Le.
-        apply l11_16; Perp.
-      apply cong2_conga_cong with B B; Cong.
+        apply l11_16_直角相等; Perp.
+      apply 等角两边等长则端点间距相等 with B B; Cong.
       apply l11_10 with P I P' I; Out.
       }
 

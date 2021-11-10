@@ -249,13 +249,13 @@ Proof.
       assert(等角 B A C B' A' C').
         apply (anga_conga a); auto.
       assert(等角 C B A C' B' A').
-        apply l11_16; auto.
+        apply l11_16_直角相等; auto.
       assert(Cong A C A' C' /\ Cong B C B' C' /\ 等角 A C B A' C' B').
         apply(l11_50_1 A B C A' B' C'); auto.
           intro.
           apply HH.
           Col.
-        apply conga_comm.
+        apply 等角的交换性.
         auto.
       spliter.
       apply (all_eql A' C').
@@ -402,7 +402,7 @@ Proof.
       apply H22.
       Cong.
     assert(等角 A P O A' P' O').
-      apply l11_16; auto.
+      apply l11_16_直角相等; auto.
     assert(Cong P A P' A' /\ 等角 P A O P' A' O' /\ 等角 P O A P' O' A').
       assert(Lt P A A O /\ Lt P O A O).
         assert_diffs; apply(l11_46 A P O); auto.
@@ -411,10 +411,10 @@ Proof.
       spliter.
       apply(l11_52 A P O A' P' O' ); Cong.
     spliter.
-    apply conga_comm in H23.
+    apply 等角的交换性 in H23.
     apply (anga_conga_anga a A' O' P'); auto.
       apply (anga_sym a); auto.
-    apply conga_sym.
+    apply 等角的对称性.
     auto.
 Qed.
 
@@ -1459,18 +1459,18 @@ Proof.
             assert(等角 N O A B O N').
 (*************** pair of vertical angles (angles opposés par Le sommet) ********************)  
               apply(l11_13 N' O A A O N' N B ); Between.
-              apply conga_left_comm.
-              apply conga_refl; auto.
+              apply 等角的左交换性.
+              apply 同角相等; auto.
             apply (anga_conga_anga n' A O N); auto.
-            apply conga_comm.
+            apply 等角的交换性.
             auto.
 (*************** we prove (Per O N' A') usinglcos ln' la' n  ********************) 
           assert(Per O N' A').
             apply(lcos_per O N' A' ln' la' n); auto.
             assert(等角 N O B' A' O N').
               apply(l11_13 N' O B' B' O N' N A' ); Between.
-                apply conga_left_comm.
-                apply conga_refl; auto.
+                apply 等角的左交换性.
+                apply 同角相等; auto.
                 apply 中间性的对称性.
                 apply(l13_10_aux3 A B C A' B' C' O); auto.
               intro.
@@ -1478,7 +1478,7 @@ Proof.
               apply H.
               Col.
             eapply (anga_conga_anga  n B' O N); auto.
-            apply conga_comm.
+            apply 等角的交换性.
             auto.
 (*************** we prove (Perp O N B A')  ********************) 
           apply (垂线共线点也构成垂直1 _ N'); Col.
@@ -1514,7 +1514,7 @@ Proof.
               apply l6_6.
               auto.
             apply (anga_conga_anga n' A O N); auto.
-            apply conga_right_comm.
+            apply 等角的右交换性.
             auto.
 (*************** we prove (Per O N' A) using Lcos ln' la' n  ********************)
           assert(Per O N' A').
@@ -1523,7 +1523,7 @@ Proof.
               apply out2__conga; auto.
                 apply (l13_10_aux5 A B C A' B' C'); Col.
             apply (anga_conga_anga n B' O N); auto.
-            apply conga_right_comm.
+            apply 等角的右交换性.
             auto.
           apply(垂线共线点也构成垂直1 _ N').
             auto.

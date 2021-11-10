@@ -26,13 +26,13 @@ Proof.
   intros A B C D E F A' B' C' D' E' F' HGA.
   revert A' B' C' D' E' F'.
   induction HGA; intros A' B' C' D' E' F' Hconga1 Hconga2.
-    apply 角度线性刻度_初始化, conga_trans with D E F; trivial; apply conga_trans with A B C; 等角.
+    apply 角度线性刻度_初始化, 角等的传递性 with D E F; trivial; apply 角等的传递性 with A B C; 等角.
   suma.assert_diffs.
   assert (Hconga3 : 等角 D E F D E F) by 等角.
   apply 角度线性刻度_步进 with D E F.
     apply (IHHGA A' B' C' D E F); trivial.
     apply (conga2_sams__sams D E F A B C); trivial.
-  apply (conga3_suma__suma D E F A B C G H I); trivial.
+  apply (等角保持和角 D E F A B C G H I); trivial.
 Qed.
 
 Lemma grada__lea : forall A B C D E F, 角度在线性刻度上 A B C D E F -> 角度小于等于 A B C D E F.
@@ -65,11 +65,11 @@ Proof.
     intros K L M HSuma.
     suma.assert_diffs.
     apply (conga2_sams__sams D E F G H I D E F A B C) in HIsi; 等角.
-    apply (conga3_suma__suma D E F G H I K L M D E F A B C K L M) in HSuma; 等角.
+    apply (等角保持和角 D E F G H I K L M D E F A B C K L M) in HSuma; 等角.
     apply 角度线性刻度_步进 with D E F; trivial.
   }
   assert (Hd1 := sams_distincts D0 E0 F0 A B C H0); assert (Hd2 := sams_distincts D E F G H I HIsi); spliter.
-  destruct (ex_suma D E F D0 E0 F0) as [K [L [M HSuma]]]; auto.
+  destruct (和角的存在性 D E F D0 E0 F0) as [K [L [M HSuma]]]; auto.
   intros K0 L0 M0 HSuma2.
   assert (HIsi2 : 角度之和小于平角 D E F D0 E0 F0).
     apply sams_lea2__sams with D E F G H I; Lea.
@@ -97,13 +97,13 @@ Proof.
   assert (HNCol1 : ~ Col O A B) by (apply 成直角三点不共线; auto).
   assert (HNCol2 : ~ Col O A D).
     assert_cols; intro; elim (两点重合的决定性 A C); intro; [treat_equalities|]; apply HNCol1; ColR.
-  destruct (angle_construction_1 A D O O D E) as [P [HP1 HP2]]; Col.
+  destruct (给定角一边可作出与给定点同侧一点构成等角_非平角 A D O O D E) as [P [HP1 HP2]]; Col.
     intro; apply HNCol2; ColR.
   assert (H为锐角 : 为锐角 A D O).
     apply l11_43_aux; Col; left; apply 直角的对称性, 直角边共线点也构成直角2 with B; auto; ColR.
   assert (HF : 在角内 P O D E).
   { apply lea_in_angle; Side.
-    apply (l11_30 A D O E D O); 等角.
+    apply (l11_30_等角保持小于等于 A D O E D O); 等角.
     destruct (acute_chara A D O E) as [HD HI]; eBetween.
     apply lta__lea, HD, H为锐角.
   }
@@ -113,14 +113,14 @@ Proof.
   assert (H等角1 : 等角 A D O O D F).
     apply (l11_10 A D O O D P); try apply out_trivial; auto.
   assert (H等角2 : 等角 O D C A D O).
-    apply conga_left_comm, out2__conga; [apply l6_6, bet_out|apply out_trivial]; Between.
+    apply 等角的左交换性, out2__conga; [apply l6_6, bet_out|apply out_trivial]; Between.
   clear dependent P.
-  assert (HNCol3 : ~ Col O D F) by (apply (ncol_conga_ncol A D O); Col).
+  assert (HNCol3 : ~ Col O D F) by (apply (不共线三点构成的角的等角三点也不共线 A D O); Col).
   assert_diffs.
   destruct (l11_50_1 O D C O D F) as [HCong1 [HCong2 H等角3]]; Cong.
     intro; apply HNCol2; ColR.
     apply (l11_10 D O C D O E); 等角; try (apply out_trivial; auto); apply bet_out; auto.
-    apply conga_trans with A D O; trivial.
+    apply 角等的传递性 with A D O; trivial.
   apply (等长保持小于关系 D F D E); Cong.
   assert (HNCol4 : ~ Col E D F).
   { intro; elim (两点重合的决定性 E F); intro; [|apply HNCol3; ColR].
@@ -160,9 +160,9 @@ Proof.
     assert (Bet A0 O B) by (apply bet_lea__bet with P Q R; trivial).
     apply HNCol; Col.
   }
-  destruct (angle_construction_1 P Q R A0 O B) as [C [Hconga HOS]]; Col.
+  destruct (给定角一边可作出与给定点同侧一点构成等角_非平角 P Q R A0 O B) as [C [Hconga HOS]]; Col.
   assert (HA : 在角内 C A0 O B).
-    apply lea_in_angle; Side; apply (l11_30 P Q R A0 O B); 等角.
+    apply lea_in_angle; Side; apply (l11_30_等角保持小于等于 P Q R A0 O B); 等角.
   destruct HA as [_ [_ [HCO [A [HA HUn]]]]].
   destruct HUn as [Heq|Hout].
     exfalso; treat_equalities; apply HNCol; Col.
@@ -173,10 +173,10 @@ Proof.
   elim (两点重合的决定性 A1 A).
     intro; subst A; Between.
   intro HAA1.
-  apply (ncol_conga_ncol P Q R A0 O A) in HNCol2; trivial.
+  apply (不共线三点构成的角的等角三点也不共线 P Q R A0 O A) in HNCol2; trivial.
   assert (HInangle : 在角内 A1 A0 O A).
   { apply lea_in_angle.
-      apply (l11_30 A0 O A1 P Q R); 等角; apply grada__lea; trivial.
+      apply (l11_30_等角保持小于等于 A0 O A1 P Q R); 等角; apply grada__lea; trivial.
     apply out_one_side; auto.
     assert_diffs.
     apply l6_7 with B; [|apply l6_6]; apply bet_out; auto.
@@ -212,7 +212,7 @@ Proof.
   assert (HIsi : 角度之和小于平角 P Q R A0 O A1).
   { apply sams_lea2__sams with A0 O B A0 O B.
     - apply acute__sams, l11_43_aux; Col.
-    - apply (l11_30 A0 O A' A0 O B); 等角.
+    - apply (l11_30_等角保持小于等于 A0 O A' A0 O B); 等角.
       exists A'; assert_diffs; split; 等角.
       repeat split; auto.
       exists A'; split; trivial.
@@ -223,19 +223,19 @@ Proof.
       right; apply out_trivial; auto.
   }
   assert_diffs.
-  destruct (ex_suma P Q R A0 O A1) as [P' [Q' [R' HSuma]]]; auto.
+  destruct (和角的存在性 P Q R A0 O A1) as [P' [Q' [R' HSuma]]]; auto.
   assert (HGA' : 角度在线性刻度上 A0 O A1 P' Q' R') by (apply 角度线性刻度_步进 with P Q R; trivial).
   exists P'; exists Q'; exists R'; split; trivial.
   destruct (acute_archi_aux1 O A0 A1 B P' Q' R') as [HLea|HA'']; auto.
   right; destruct HA'' as [A'' [HBet1'' [HBet2'' HConga'']]].
-  assert (HNCol2 : ~ Col A O A') by (apply (ncol_conga_ncol A0 O A1); Col; 等角).
+  assert (HNCol2 : ~ Col A O A') by (apply (不共线三点构成的角的等角三点也不共线 A0 O A1); Col; 等角).
   assert (HNCol3 : ~ Col A0 O A') by (intro; assert_diffs; apply HNCol; ColR).
   assert (HNCol4 : ~ Col A' O A'').
   { intro HCol; apply HNCol1.
     elim (两点重合的决定性 A' A''); intro; [|ColR].
     treat_equalities.
     assert (HSuma2 : 和角 A0 O A' A0 O A1 A0 O A').
-      apply (conga3_suma__suma P Q R A0 O A1 P' Q' R'); 等角.
+      apply (等角保持和角 P Q R A0 O A1 P' Q' R'); 等角.
     apply sams_suma__out546 in HSuma2; Col.
     apply (conga2_sams__sams P Q R A0 O A1); 等角.
   }
@@ -243,15 +243,15 @@ Proof.
   assert (HBet4 : Bet A0 A' A'').
   { apply col_two_sides_bet with O.
       ColR.
-    apply in_angle_two_sides; Col.
+    apply 角端点在角内点与顶点连线两侧; Col.
     apply lea_in_angle.
-      apply (l11_30 P Q R P' Q' R'); 等角; apply sams_suma__lea123789 with A0 O A1; trivial.
+      apply (l11_30_等角保持小于等于 P Q R P' Q' R'); 等角; apply sams_suma__lea123789 with A0 O A1; trivial.
     apply out_one_side; Col; apply l6_7 with B; [|apply l6_6]; assert_diffs; apply bet_out; auto.
   }
   assert (HConga4 : 等角 A O A' A' O A'').
   { assert_diffs.
     assert (HNOS : ~ OS O A' A0 A'') by (apply l9_9; repeat split; auto; Col; exists A'; Col).
-    apply conga_trans with A0 O A1; trivial.
+    apply 角等的传递性 with A0 O A1; trivial.
     apply sams2_suma2__conga456 with P Q R P' Q' R'; trivial.
     - apply (conga2_sams__sams A0 O A' A' O A''); 等角.
       split; auto; split.
@@ -259,7 +259,7 @@ Proof.
       exists A''; repeat (split; 等角); Cop.
       apply l9_9_bis, out_one_side; Col.
       apply bet_out; auto.
-    - apply (conga3_suma__suma A0 O A' A' O A'' A0 O A''); 等角.
+    - apply (等角保持和角 A0 O A' A' O A'' A0 O A''); 等角.
       exists A''; repeat (split; 等角); Cop.
   }
   assert (HLe'' : Le A0 A1 A' A'').
@@ -269,7 +269,7 @@ Proof.
     apply bet2_le2__le1346 with C A'; auto.
     apply (l5_6_等长保持小于等于关系 A0 A1 A' A''); Cong.
   exists A'; split; trivial; split; trivial.
-  apply conga_trans with A O A'; 等角.
+  apply 角等的传递性 with A O A'; 等角.
 Qed.
 
 Lemma archi_in_acute_angles :
@@ -283,7 +283,7 @@ Proof.
   elim (共线的决定性 D E F).
   { intro HCol; exists A; exists B; exists C; split.
       apply 角度线性刻度_初始化; 等角.
-    apply l11_31_1; auto; apply not_bet_out; trivial.
+    apply l11_31_1_任何角小于等于平角_Out表述; auto; apply not_bet_out; trivial.
     intro HBet; apply (nlta D E F), acute_obtuse__lta; trivial.
     apply bet__obtuse; auto.
   }
@@ -295,13 +295,13 @@ Proof.
   assert_diffs.
   assert (HConga : 等角 D E F D0 E F) by (apply out2__conga; [|apply out_trivial]; auto).
   apply (acute_conga__acute D E F D0 E F) in H为锐角; trivial.
-  apply (l11_30 A B C D E F A B C D0 E F) in HLea; 等角.
-  apply (ncol_conga_ncol D E F D0 E F) in HNCol1; trivial.
+  apply (l11_30_等角保持小于等于 A B C D E F A B C D0 E F) in HLea; 等角.
+  apply (不共线三点构成的角的等角三点也不共线 D E F D0 E F) in HNCol1; trivial.
   assert (HPer : Per E D0 F) by (apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with D; Perp; Col).
   clear H0 HD0 HD0' HOut H9.
-  destruct (angle_construction_1 A B C D0 E F) as [D1' [HConga1 HOS]]; trivial.
+  destruct (给定角一边可作出与给定点同侧一点构成等角_非平角 A B C D0 E F) as [D1' [HConga1 HOS]]; trivial.
   destruct (lea_in_angle D0 E F D1') as [_ [_ [_ [D1 [HBet HUn]]]]]; Side.
-    apply (l11_30 A B C D0 E F); 等角.
+    apply (l11_30_等角保持小于等于 A B C D0 E F); 等角.
   destruct HUn as [Heq|HOut].
     exfalso; subst D1; Col.
   assert (HConga2 : 等角 A B C D0 E D1).
@@ -317,7 +317,7 @@ Proof.
     assert (Hdistincts := grada_distincts D0 E D1 P Q R HGA); spliter.
     apply (conga2_grada__grada D0 E D1 P Q R); 等角.
   destruct HUn as [HLea2|Habs].
-    assert_diffs; apply (l11_30 D0 E F P Q R); 等角.
+    assert_diffs; apply (l11_30_等角保持小于等于 D0 E F P Q R); 等角.
   exfalso.
   destruct Habs as [A' [HBet2 [HBet3 [HConga3 [HLe HA]]]]].
   apply (长度小于等于推出反向不小于 D0 F' D0 G); trivial.
@@ -343,7 +343,7 @@ Proof.
   elim (sams_dec D E F D0 E0 F0); [|apply IHHGA2; trivial].
   intro HIsi; clear IHHGA2.
   assert (Hd := sams_distincts D E F D0 E0 F0 HIsi); spliter.
-  destruct (ex_suma D E F D0 E0 F0) as [P [Q [R HSuma]]]; auto.
+  destruct (和角的存在性 D E F D0 E0 F0) as [P [Q [R HSuma]]]; auto.
   exists P; exists Q; exists R; split.
     apply grada2_sams_suma__grada with D E F D0 E0 F0; trivial.
   intro HIsi2; apply HNIsi, sams_assoc_1 with D0 E0 F0 A B C P Q R; trivial.
@@ -364,25 +364,25 @@ Proof.
     elim (共线的决定性 D E F1).
       intros HCol; apply col123__nos; Col.
     intro HNCol1.
-    apply l9_9, invert_two_sides, in_angle_two_sides; Col.
-    apply 共线否定排列BCA, (ncol_conga_ncol D E F1); 等角.
+    apply l9_9, invert_two_sides, 角端点在角内点与顶点连线两侧; Col.
+    apply 共线否定排列BCA, (不共线三点构成的角的等角三点也不共线 D E F1); 等角.
   }
   assert (HSuma : 和角 D E F1 D E F1 D E F) by (assert_diffs; exists F; repeat (split; 等角); Cop).
   destruct (archi_in_acute_angles archi A B C D E F1) as [P1 [Q1 [R1 [HGA HLea]]]]; trivial.
   { apply nbet_sams_suma__acute with D E F; trivial.
     assert_diffs; split; trivial; split.
-      right; intro HBet; apply HNBet, bet_in_angle_bet with F1; trivial.
+      right; intro HBet; apply HNBet, 角一边反向延长线上点在角内则该角为平角 with F1; trivial.
     exists F; repeat (split; 等角); Cop.
     elim (共线的决定性 D E F1).
       intros HCol HTS; destruct HTS; Col.
     intro HNCol1.
     elim (共线的决定性 D E F).
       intros HCol HTS; destruct HTS as [_ []]; Col.
-    intro HNCol2; apply l9_9_bis, in_angle_one_side; Col.
+    intro HNCol2; apply l9_9_bis, 角内点和一端点在角另一边同侧; Col.
   }
   assert_diffs.
   destruct (sams_dec P1 Q1 R1 P1 Q1 R1) as [HIsi|HNIsi].
-  { destruct (ex_suma P1 Q1 R1 P1 Q1 R1) as [P [Q [R HSuma1]]]; auto.
+  { destruct (和角的存在性 P1 Q1 R1 P1 Q1 R1) as [P [Q [R HSuma1]]]; auto.
     exists P; exists Q; exists R; split.
       apply grada2_sams_suma__grada with P1 Q1 R1 P1 Q1 R1; trivial.
     left; apply sams_lea2_suma2__lea with D E F1 D E F1 P1 Q1 R1 P1 Q1 R1; trivial.
@@ -410,11 +410,11 @@ Proof.
   intro HIsi.
   destruct HUn as [HLea|HNIsi]; [|exfalso; auto].
   assert_diffs.
-  destruct (ex_suma P1 Q1 R1 A B C) as [P [Q [R HSuma]]]; auto.
+  destruct (和角的存在性 P1 Q1 R1 A B C) as [P [Q [R HSuma]]]; auto.
   exists P; exists Q; exists R; split.
     apply 角度线性刻度_步进 with P1 Q1 R1; trivial.
   suma.assert_diffs.
-  left; apply l11_31_2; auto.
+  left; apply l11_31_1_任何角小于等于平角_Bet表述; auto.
   apply (bet_lea__bet A B A0); trivial.
   apply sams_lea2_suma2__lea with A0 B C A B C P1 Q1 R1 A B C; Lea.
   exists A; repeat (split; 等角); Cop.
@@ -454,7 +454,7 @@ Proof.
   destruct (sams_dec P Q R P Q R) as [HIsi|HNIsi].
   { destruct HUn as [Habs|HLea].
       absurd (角度之和小于平角 P Q R P Q R); trivial; apply obtuse__nsams, Habs.
-    destruct (ex_suma P Q R P Q R) as [S [T [U HSuma]]]; auto.
+    destruct (和角的存在性 P Q R P Q R) as [S [T [U HSuma]]]; auto.
     exists S; exists T; exists U; split.
       apply 角度对数刻度_步进 with P Q R; trivial.
     right; apply sams_lea2_suma2__lea with D E F A B C P Q R P Q R; trivial.

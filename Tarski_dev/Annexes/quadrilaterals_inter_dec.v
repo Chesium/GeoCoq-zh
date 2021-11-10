@@ -940,7 +940,7 @@ Qed.
 Lemma plg_conga1 : forall A B C D, A <> B -> A <> C -> Plg A B C D -> 等角 B A C D C A.
 Proof.
 intros.
-apply cong3_conga; auto.
+apply 三角形全等推角等2; auto.
 assert(HH := plg_to_parallelogram A B C D H1).
 apply plg_cong in HH.
 spliter.
@@ -1248,9 +1248,9 @@ spliter.
 assert(HH:= plg_mid A B C D H0).
 ex_and HH M.
 split.
-apply cong3_conga; auto.
+apply 三角形全等推角等2; auto.
 repeat split; Cong.
-apply cong3_conga; auto.
+apply 三角形全等推角等2; auto.
 intro.
 subst D.
 apply H.
@@ -1765,7 +1765,7 @@ intro.
 subst P.
 apply 中间性的同一律 in H0.
 contradiction.
-apply conga_right_comm.
+apply 等角的右交换性.
 
 assert(等角 C D P C' D A).
 eapply l11_14; auto.
@@ -1777,13 +1777,13 @@ Between.
 intro.
 subst D.
 Col.
-eapply conga_trans.
-apply conga_sym.
+eapply 角等的传递性.
+apply 等角的对称性.
 apply H14.
-eapply conga_trans.
+eapply 角等的传递性.
 apply H12.
-apply conga_sym.
-apply conga_left_comm.
+apply 等角的对称性.
+apply 等角的左交换性.
 assumption.
 Qed.
 
@@ -2327,25 +2327,25 @@ repeat
 
       | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm A B);
-        assert (T:= conga_diff1 A B C A' B' C' H);clean_reap_hyps
+        assert (T:= 角等推AB不重合 A B C A' B' C' H);clean_reap_hyps
       | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm B C);
-        assert (T:= conga_diff2 A B C A' B' C' H);clean_reap_hyps
+        assert (T:= 角等推CB不重合 A B C A' B' C' H);clean_reap_hyps
       | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm A' B');
-        assert (T:= conga_diff45 A B C A' B' C' H);clean_reap_hyps
+        assert (T:= 角等推DE不重合 A B C A' B' C' H);clean_reap_hyps
       | H:等角 ?A ?B ?C ?A' ?B' ?C' |- _ =>
       let T:= fresh in (not_exist_hyp_comm B' C');
-        assert (T:= conga_diff56 A B C A' B' C' H);clean_reap_hyps
+        assert (T:= 角等推FE不重合 A B C A' B' C' H);clean_reap_hyps
 
       | H:(在角内 ?P ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp3 A B C B P B;
-      assert (h := inangle_distincts A B C P H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 在角内推出点不重合 A B C P H);decompose [and] h;clear h;clean_reap_hyps
       | H:角度小于等于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
-      assert (h := lea_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角度小于等于推出点不重合 A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
       | H:角度小于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
@@ -3647,7 +3647,7 @@ assumption.
 assumption.
 split.
 assumption.
-apply conga_comm.
+apply 等角的交换性.
 assumption.
 
 apply(l11_22b A D E D' B C F D').
@@ -3678,7 +3678,7 @@ apply one_side_symmetry.
 assumption.
 split.
 assumption.
-apply conga_comm.
+apply 等角的交换性.
 assumption.
 
 assert(HP0:=plgs_cong A B C D H).
@@ -3686,7 +3686,7 @@ assert(HP1:=plgs_cong C D E F H0).
 spliter.
 apply 等长的对称性 in H27.
 
-assert(HP:=cong2_conga_cong A D E B C F H25 H29 H27).
+assert(HP:=等角两边等长则端点间距相等 A D E B C F H25 H29 H27).
 (**************)
 
 assert(Par A B E F).
@@ -3999,7 +3999,7 @@ assert(等角 A D E B C F).
 induction HH.
 spliter.
 eapply l11_10.
-apply conga_comm.
+apply 等角的交换性.
 apply H26.
 repeat split.
 auto.
@@ -4042,7 +4042,7 @@ induction H29.
 spliter.
 
 apply (l11_10 D' D E D' C F).
-apply conga_comm.
+apply 等角的交换性.
 apply H26.
 repeat split;auto.
 left.
@@ -4069,7 +4069,7 @@ spliter.
 
 eapply l11_13.
 
-apply conga_comm.
+apply 等角的交换性.
 apply H26.
 
 assert_diffs.
@@ -4091,7 +4091,7 @@ spliter.
 
 eapply l11_13.
 
-apply conga_comm.
+apply 等角的交换性.
 
 apply H26.
 assert_diffs.
@@ -4114,7 +4114,7 @@ auto.
 
 assert(Cong A E B F).
 
-eapply(cong2_conga_cong A D E B C F H29);Cong.
+eapply(等角两边等长则端点间距相等 A D E B C F H29);Cong.
 assert(三角形全等 E A D F B C).
 repeat split; Cong.
 
@@ -4131,7 +4131,7 @@ left.
 assumption.
 
 assert(等角 E A D F B C).
-apply cong3_conga.
+apply 三角形全等推角等2.
 intro.
 subst E.
 apply H13.
@@ -4158,9 +4158,9 @@ prolong A B A' A B.
 
 apply (conga_to_par_os _ _ _ _ A');
 auto.
-apply conga_comm.
+apply 等角的交换性.
 eapply l11_13.
-apply conga_comm.
+apply 等角的交换性.
 apply H33.
 apply 中间性的外传递性2 with B.
 apply 中间性的对称性.
@@ -4191,9 +4191,9 @@ spliter.
 prolong A B A' A B.
 apply (conga_to_par_os _ _ _ _ A');
 auto.
-apply conga_comm.
+apply 等角的交换性.
 eapply l11_13.
-apply conga_comm.
+apply 等角的交换性.
 apply H33.
 apply 中间性的外传递性2 with B.
 apply 中间性的外传递性2 with C.
@@ -4221,10 +4221,10 @@ prolong A B A' A B.
 
 apply (conga_to_par_os _ _ _ _ A');
 auto.
-apply conga_comm.
+apply 等角的交换性.
 
 eapply l11_10.
-apply conga_comm.
+apply 等角的交换性.
 apply H33.
 repeat split; auto.
 intro.
@@ -4262,10 +4262,10 @@ prolong A B A' A C.
 
 apply (conga_to_par_os _ _ _ _ A');
 auto.
-apply conga_comm.
+apply 等角的交换性.
 
 eapply l11_10.
-apply conga_comm.
+apply 等角的交换性.
 apply H33.
 repeat split; auto.
 intro.
