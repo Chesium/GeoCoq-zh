@@ -1,7 +1,7 @@
 Require Export GeoCoq.Tarski_dev.Annexes.midpoint_theorems.
 Require Export GeoCoq.Highschool.circumcenter.
 Require Export GeoCoq.Highschool.orthocenter.
-Require Export GeoCoq.Highschool.泰勒斯定理.
+Require Export GeoCoq.Highschool.midpoint_thales.
 Require Export GeoCoq.Highschool.concyclic.
 Require Export GeoCoq.Highschool.gravityCenter.
 

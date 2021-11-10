@@ -1,4 +1,4 @@
-Require Export GeoCoq.Highschool.泰勒斯定理.
+Require Export GeoCoq.Highschool.midpoint_thales.
 Require Export GeoCoq.Highschool.exercises.
 
 Section Circumcenter.
