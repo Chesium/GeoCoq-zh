@@ -112,7 +112,7 @@ Proof.
     intros; apply extension__line_extension; assumption.
   unfold extension, inj, pres_bet, pres_cong in fext'; spliter.
   destruct (@中点的存在性 Tn TnEQD P Q) as [S HS].
-  assert_diffs.
+  统计不重合点.
   destruct (共线的决定性 (f R) (f S) A).
   { assert (HB : exists B, Col R S B /\ f B = A).
       assert (R <> S) by (intro; subst; apply HNCol; Col).

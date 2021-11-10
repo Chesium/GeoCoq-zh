@@ -81,7 +81,7 @@ Lemma 重心的唯一性 : forall A B C,
   exists! G, 重心 G A B C.
 Proof with finish.
 intros.
-assert_diffs.
+统计不重合点.
 Name I the midpoint of B and C.
 Name J the midpoint of A and C.
 elim (三角形两中线交点的存在性 A B C I J H H1 H4); intros G HG; spliter.
@@ -110,7 +110,7 @@ Lemma 三中线交于一点:
  exists G, Col G A I /\ Col G B J /\Col G C K.
 Proof with assert_all.
 intros.
-assert_diffs.
+统计不重合点.
 Name G the intersection of the medians (A I)
      which is a median since H0 and (B J)
      which is a median since H1
@@ -185,7 +185,7 @@ decompose [ex and] H1.
 assert_cols.
 apply H.
 treat_equalities.
-assert_diffs.
+统计不重合点.
 ColR.
 Qed.
 
@@ -202,7 +202,7 @@ decompose [ex and] H1.
 assert_cols.
 apply H.
 treat_equalities.
-assert_diffs.
+统计不重合点.
 ColR.
 Qed.
 
@@ -219,10 +219,10 @@ decompose [ex and] H1.
 assert_cols.
 apply H.
 treat_equalities.
-assert_diffs.
+统计不重合点.
 ColR.
 Qed.
-(* TODO put in assert_diffs ? *)
+(* TODO put in 统计不重合点 ? *)
 
 (** We don't have ratio so we express that AG=2/3 AA' using midpoints. *)
 
@@ -241,7 +241,7 @@ spliter.
 destruct H4 as [A'' [B' HIJ]].
 spliter.
 treat_equalities.
-assert_diffs.
+统计不重合点.
 Name G'' the midpoint of C and G.
 assert (HPar : 平行四边形  C' A' G'' G').
 apply (瓦里尼翁平行四边形3 A B C G C' A' G'' G'); finish.
@@ -253,7 +253,7 @@ assert (~ Col A G C) by (intro; apply H; ColR).
 assert (C' <> G'' /\ A' <> G')
   by (elim HDiff; clear HDiff; intro; split; trivial; intro; apply H; ColR).
 spliter.
-assert_diffs.
+统计不重合点.
 apply l6_21_两线交点的唯一性 with A G C G; trivial; ColR.
 Qed.
 
@@ -271,35 +271,35 @@ Name B' the midpoint of A and C.
 Name C' the midpoint of A and B.
 exists A'; exists B'; split; Col; try split; Col; split;
 try (assert (A <> G) by (intro; treat_equalities; assert_cols; Col);
-     assert_diffs; assert_cols; ColR).
+     统计不重合点; assert_cols; ColR).
 Name B'' the midpoint of B and G.
 assert (HB' := 构造对称点 B'' G).
 destruct HB' as [B''' HB'].
 assert (HPar1 : Par B A A' B').
   {
-  apply triangle_mid_par with C; assert_diffs; try split;
+  apply triangle_mid_par with C; 统计不重合点; try split;
   unfold 中点 in *; spliter; Between; Cong.
   }
 assert (HCong1 : Cong A C' A' B').
   {
   assert (H := triangle_mid_par_cong A B C A' B' C');
-  destruct H as [Hc1 [Hc2 [Hc3 [H Hc4]]]]; assert_diffs; Cong.
+  destruct H as [Hc1 [Hc2 [Hc3 [H Hc4]]]]; 统计不重合点; Cong.
   }
 assert (HPar2 : Par A B A'' B'').
   {
-  apply triangle_mid_par with G; assert_diffs; try split;
+  apply triangle_mid_par with G; 统计不重合点; try split;
   unfold 中点 in *; spliter; Between; Cong.
   }
 assert (HCong2 : Cong A C' A'' B'').
   {
   assert (H := triangle_mid_par_cong A B G B'' A'' C');
-  destruct H as [Hc1 [Hc2 [Hc3 [H Hc4]]]]; assert_diffs; Cong;
+  destruct H as [Hc1 [Hc2 [Hc3 [H Hc4]]]]; 统计不重合点; Cong;
   intro; treat_equalities; assert_cols; Col.
-  assert_diffs; apply HNC; ColR.
+  统计不重合点; apply HNC; ColR.
   }
 assert (HPar3 : Par A'' B'' A' B''').
   {
-  apply plg_par_1; try (intro; treat_equalities; Col; assert_diffs; assert_cols; apply HNC; ColR).
+  apply plg_par_1; try (intro; treat_equalities; Col; 统计不重合点; assert_cols; apply HNC; ColR).
   apply mid_plg_1 with G; try (intro; treat_equalities; assert_cols; Col);
   unfold 中点 in *; spliter; split; Between; Cong.
   }
@@ -331,10 +331,10 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
       assert (HH2 : Col A' B'' A') by Col.
       assert (HH3 : Col G A''  A') by (assert_cols; Col).
       assert (HH := l9_19 A' B'' G A'' A' HH2 HH3); rewrite HH.
-      assert_diffs; assert_cols; show_distinct G A'; treat_equalities; Col.
+      统计不重合点; assert_cols; show_distinct G A'; treat_equalities; Col.
       show_distinct G A''; treat_equalities; Col.
       show_distinct G B''; treat_equalities; Col.
-      assert_diffs; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
+      统计不重合点; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
       split; try (intro; apply HABG; ColR).
       split; Col.
       split; try (intro; treat_equalities; Col).
@@ -346,10 +346,10 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
       assert (HH2 : Col A' B'' B'') by Col.
       assert (HH3 : Col G B'''  B'') by (assert_cols; Col).
       assert (HH := l9_19 A' B'' G B''' B'' HH2 HH3); rewrite HH.
-      assert_diffs; assert_cols; show_distinct G A'; treat_equalities; Col.
+      统计不重合点; assert_cols; show_distinct G A'; treat_equalities; Col.
       show_distinct G A''; treat_equalities; Col.
       show_distinct G B''; treat_equalities; Col.
-      assert_diffs; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
+      统计不重合点; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
       split; try (intro; apply HABG; ColR).
       split; Col.
       split; try (intro; treat_equalities; Col).
@@ -361,10 +361,10 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
 
     {
     assert (A' <> B'') by (intro; treat_equalities; Col).
-    assert_diffs; assert_cols; show_distinct G A'; treat_equalities; Col.
+    统计不重合点; assert_cols; show_distinct G A'; treat_equalities; Col.
     show_distinct G A''; treat_equalities; Col.
     show_distinct G B''; treat_equalities; Col.
-    assert_diffs; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
+    统计不重合点; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
     split; try (intro; apply HABG; ColR).
     split; try (intro; apply HABG; ColR).
     exists A'; unfold 中点 in *; spliter; split; Col; Between.
@@ -380,14 +380,14 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
 
         {
         apply one_side_symmetry.
-        assert_diffs; assert_cols; show_distinct G A'; treat_equalities; Col.
+        统计不重合点; assert_cols; show_distinct G A'; treat_equalities; Col.
         show_distinct G A''; treat_equalities; Col.
         show_distinct G B''; treat_equalities; Col.
         assert (HH1 : A' <> B'') by (intro; treat_equalities; Col).
         assert (HH2 : Col A' B'' A') by Col.
         assert (HH3 : Col G A  A') by ColR.
         assert (HH := l9_19 A' B'' G A A' HH2 HH3); rewrite HH.
-        assert_diffs; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
+        统计不重合点; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
         split; try (intro; apply HABG; ColR).
         split; Col.
         split; try (intro; treat_equalities; Col).
@@ -399,10 +399,10 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
 
           {
           assert (A' <> B'') by (intro; treat_equalities; Col).
-          assert_diffs; assert_cols; show_distinct G A'; treat_equalities; Col.
+          统计不重合点; assert_cols; show_distinct G A'; treat_equalities; Col.
           show_distinct G A''; treat_equalities; Col.
           show_distinct G B''; treat_equalities; Col.
-          assert_diffs; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
+          统计不重合点; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
           split; try (intro; apply HABG; ColR).
           split; try (intro; apply HABG; ColR).
           exists B''; unfold 中点 in *; spliter; split; Col; Between.
@@ -410,10 +410,10 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
 
           {
           assert (A' <> B'') by (intro; treat_equalities; Col).
-          assert_diffs; assert_cols; show_distinct G A'; treat_equalities; Col.
+          统计不重合点; assert_cols; show_distinct G A'; treat_equalities; Col.
           show_distinct G A''; treat_equalities; Col.
           show_distinct G B''; treat_equalities; Col.
-          assert_diffs; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
+          统计不重合点; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
           split; try (intro; apply HABG; ColR).
           split; try (intro; apply HABG; ColR).
           exists A'; unfold 中点 in *; spliter; split; Col; Between.
@@ -422,14 +422,14 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
       }
 
       {
-      assert_diffs; assert_cols; show_distinct G A'; treat_equalities; Col.
+      统计不重合点; assert_cols; show_distinct G A'; treat_equalities; Col.
       show_distinct G A''; treat_equalities; Col.
       show_distinct G B''; treat_equalities; Col.
       assert (HH1 : A' <> B'') by (intro; treat_equalities; Col).
       assert (HH2 : Col A' B'' A') by Col.
       assert (HH3 : Col A A''  A') by ColR.
       assert (HH := l9_19 A' B'' A A'' A' HH2 HH3); rewrite HH.
-      assert_diffs; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
+      统计不重合点; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
       show_distinct A A'; Col.
       split; try (intro; apply HABG; ColR).
       split; Col.

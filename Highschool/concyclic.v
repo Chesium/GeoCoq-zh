@@ -31,7 +31,7 @@ decompose [ex and] H1;clear H1.
 exists x.
 repeat split;Cong.
 assert (x=x0).
-assert_diffs.
+统计不重合点.
 apply 外心的唯一性 with A B C;try assumption.
 repeat split; [CongR..|Cop].
 repeat split; [CongR..|Cop].

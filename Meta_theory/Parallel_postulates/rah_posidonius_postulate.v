@@ -15,7 +15,7 @@ Proof.
   assert (HSac : 萨凯里四边形 A1 B1 B2 A2) by (repeat split; Perp; Cong).
   assert(Hdiff := sac_distincts A1 B1 B2 A2 HSac).
   spliter.
-  assert_diffs.
+  统计不重合点.
   elim(两点重合的决定性 A1 A3).
   { intro.
     subst A3.
@@ -27,7 +27,7 @@ Proof.
   }
   intro.
   destruct(由一点往一方向构造等长线段_3 A3 B3 A1 B1) as [B'3 []]; auto.
-  assert_diffs.
+  统计不重合点.
   assert(B3 = B'3); [|subst; assumption].
   assert(严格平行 B1 B2 A1 A3).
   { apply (par_strict_col_par_strict _ _ _ A2); auto.

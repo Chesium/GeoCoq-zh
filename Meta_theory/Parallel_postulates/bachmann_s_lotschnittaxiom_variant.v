@@ -41,11 +41,11 @@ Proof.
         apply l12_9 with A1 A2; Perp; CopR.
       intro; apply HNC1; ColR.
       }
-    assert (HPQ : IAC <> IAB) by (assert_diffs; auto).
-    assert (HQR : IAB <> IBD) by (assert_diffs; auto).
+    assert (HPQ : IAC <> IAB) by (统计不重合点; auto).
+    assert (HQR : IAB <> IBD) by (统计不重合点; auto).
     destruct (每组共线三点都有另一共线点 C1 C2 IAC) as [P1 [HC1P1 [HC2P1 [HPP1 HCP1]]]]; Col.
     destruct (每组共线三点都有另一共线点 D1 D2 IBD) as [R1 [HD1R1 [HD2R1 [HRR1 HDR1]]]]; Col.
-    assert_diffs.
+    统计不重合点.
     destruct (bla IAC IAB IBD P1 R1) as [I [HI1 HI2]]; auto.
       apply L形垂直转直角1, (与垂直两线分别共线的两线垂直 A1 A2 C1 C2); Col.
       apply L形垂直转直角1, (与垂直两线分别共线的两线垂直 B1 B2 D1 D2); Col.

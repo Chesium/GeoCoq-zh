@@ -20,7 +20,7 @@ Proof.
 intro hrap.
 intros A1 A2 B1 B2 C1 C2 Q P R M HPerpAB HPerpAC.
 intros HCol1 HCol2 HCol3 HCol4 HCol5 HCop1 HCop2 HNC HM1 HM2.
-assert_diffs.
+统计不重合点.
 assert (HNCol1 : ~ Col A1 A2 R) by (intro; apply HNC, (共线的传递性4 A1 A2); auto).
 assert (HNCol2 : ~ Col B1 B2 P) by (intro; apply HNC, (共线的传递性4 B1 B2); auto).
 assert (HPar : 严格平行 B1 B2 C1 C2).
@@ -44,12 +44,12 @@ assert (Per P Q R).
   apply 垂直的对称性, 与垂线共线之线也为垂线2 with B1 B2; Col; Perp.
   }
 assert (HSuma : 和角 P Q M P Q M P Q R).
-  assert_diffs; apply 等角保持和角 with P Q M M Q R P Q R; 等角; 和角.
+  统计不重合点; apply 等角保持和角性质 with P Q M M Q R P Q R; 等角; 和角.
 assert (H为锐角 : 为锐角 P Q M).
-{ apply nbet_sams_suma__acute with P Q R; auto.
+{ apply 一角的倍角不大于平角则该角为锐角 with P Q R; auto.
     intro; apply HNC; Col.
   assert (角度小于等于 P Q M P Q R) by Lea.
-  apply sams_lea2__sams with P Q R P Q R; 和角.
+  apply 角度小于等于保持和角不大于平角性质 with P Q R P Q R; 和角.
 }
 assert (HC3 : exists C3, Col C1 C2 C3 /\ OS P Q R C3).
 { destruct (每组共线三点都有另一共线点 C1 C2 P) as [C0]; Col; spliter.
@@ -81,15 +81,15 @@ assert (HNC : ~ Col P Q R).
   apply 成直角三点不共线; auto; apply L形垂直转直角1, (与垂直两线分别共线的两线垂直 A1 A2 B1 B2); auto.
 destruct (angle_bisector P Q R) as [M [HM1 HM2]]; auto.
 assert (HSuma : 和角 P Q M P Q M P Q R).
-  assert_diffs; apply 等角保持和角 with P Q M M Q R P Q R; 等角; 和角.
+  统计不重合点; apply 等角保持和角性质 with P Q M M Q R P Q R; 等角; 和角.
 assert (H为锐角 : 为锐角 P Q M).
   {
-  apply nbet_sams_suma__acute with P Q R; auto.
+  apply 一角的倍角不大于平角则该角为锐角 with P Q R; auto.
     intro; apply HNC; Col.
   assert (角度小于等于 P Q M P Q R) by Lea.
   assert (Per P Q R)
     by (apply L形垂直转直角2, 与垂线共线之线也为垂线2 with A1 A2; Col; apply 垂直的对称性, 与垂线共线之线也为垂线2 with B1 B2; Col; Perp).
-  apply sams_lea2__sams with P Q R P Q R; 和角.
+  apply 角度小于等于保持和角不大于平角性质 with P Q R P Q R; 和角.
   }
 destruct (weak_inverse_projection_postulate__bachmann_s_lotschnittaxiom_aux
     hrap A1 A2 B1 B2 C1 C2 Q P R M) as [HParB [S [HS1 HS2]]]; Col.

@@ -21,9 +21,9 @@ split; intros Hdec A B C D; destruct (cop_dec A B C D) as [|HNCop].
 - left; intros [I []]; apply HNCop; exists I; left; split; Col.
 
 - destruct (两点重合的决定性 A B).
-    right; subst; intro; assert_diffs; auto.
+    right; subst; intro; 统计不重合点; auto.
   destruct (两点重合的决定性 C D).
-    right; subst; intro; assert_diffs; auto.
+    right; subst; intro; 统计不重合点; auto.
   destruct (共线的决定性 A C D).
 
   {
@@ -50,9 +50,9 @@ Lemma par_trans__par_dec :
 Proof.
 intros HTP A B C D.
 elim (两点重合的决定性 A B); intro HAB;
-[treat_equalities; right; intro; assert_diffs; auto|].
+[treat_equalities; right; intro; 统计不重合点; auto|].
 elim (两点重合的决定性 C D); intro HCD;
-[treat_equalities; right; intro; assert_diffs; auto|].
+[treat_equalities; right; intro; 统计不重合点; auto|].
 destruct (parallel_existence1 A B C HAB) as [D' HPar].
 elim (共线的决定性 C D D'); intro HCol;
 [left; apply par_col_par with D'; Par; Col|
@@ -186,9 +186,9 @@ intros HP A1 A2 B1 B2 C1 C2 P HPar1 HP1 HPar2 HP2.
 elim (共线的决定性 A1 B1 B2); intro HNC1.
 
   {
-  assert (HA : A1 <> A2) by (assert_diffs; auto).
-  assert (HB : B1 <> B2) by (assert_diffs; auto).
-  assert (HC : C1 <> C2) by (assert_diffs; auto).
+  assert (HA : A1 <> A2) by (统计不重合点; auto).
+  assert (HB : B1 <> B2) by (统计不重合点; auto).
+  assert (HC : C1 <> C2) by (统计不重合点; auto).
   apply (not_strict_par _ _ _ _ A1) in HPar1; Col.
   destruct HPar1 as [HC1 HC2]; clear HNC1.
   apply (not_strict_par _ _ _ _ P) in HPar2; spliter; [split|..]; ColR.
@@ -198,9 +198,9 @@ elim (共线的决定性 A1 B1 B2); intro HNC1.
   elim (共线的决定性 A1 C1 C2); intro HNC2.
 
     {
-    assert (HA : A1 <> A2) by (assert_diffs; auto).
-    assert (HB : B1 <> B2) by (assert_diffs; auto).
-    assert (HC : C1 <> C2) by (assert_diffs; auto).
+    assert (HA : A1 <> A2) by (统计不重合点; auto).
+    assert (HB : B1 <> B2) by (统计不重合点; auto).
+    assert (HC : C1 <> C2) by (统计不重合点; auto).
     apply (not_strict_par _ _ _ _ A1) in HPar2; Col.
     destruct HPar2 as [HC1 HC2]; clear HNC2.
     apply (not_strict_par _ _ _ _ P) in HPar1; spliter; [split|..]; ColR.
@@ -211,7 +211,7 @@ elim (共线的决定性 A1 B1 B2); intro HNC1.
                 Col C1 B1 B2 /\ Col C2 B1 B2)
       by (induction (共线的决定性 C1 B1 B2); induction (共线的决定性 C2 B1 B2); intuition).
 
-    assert_diffs; apply H; clear H; intro HNC3; apply (HP A1 A2 B1 B2 C1 C2 P); Col;
+    统计不重合点; apply H; clear H; intro HNC3; apply (HP A1 A2 B1 B2 C1 C2 P); Col;
      try (intros [HC1 HC2]; auto).
 
       {
@@ -273,7 +273,7 @@ assert (H : playfair_quater <->
 assert (H : Col C1 B1 B2 /\ Col C2 B1 B2 <-> ~ ~ (Col C1 B1 B2 /\ Col C2 B1 B2))
   by (induction (共线的决定性 C1 B1 B2); induction (共线的决定性 C2 B1 B2); tauto).
 apply H; clear H; intro HNC; apply (HP A1 A2 B1 B2 C1 C2 P).
-assert_diffs.
+统计不重合点.
 repeat (split; [assumption|]).
 assert (HNC1 : ~ Col A1 B1 B2).
   {

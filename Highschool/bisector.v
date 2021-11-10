@@ -29,22 +29,22 @@ elim HAB.
 apply (中间性的同一律 C B); auto.
 exists E.
 split.
-assert_diffs.
+统计不重合点.
 repeat split; auto.
 exists B.
 split;auto.
 assert (Perp B E A B) by (apply (垂线共线点也构成垂直2 B E A C B);Col).
-assert (Perp B E C B) by (assert_diffs;apply (垂线共线点也构成垂直2 B E C A B);Perp;Col).
+assert (Perp B E C B) by (统计不重合点;apply (垂线共线点也构成垂直2 B E C A B);Perp;Col).
 assert (Per E B A) by (apply (L形垂直转直角1 B E A);assumption).
 assert (Per E B C) by (apply (L形垂直转直角2 B E C);Perp).
-assert (等角 E B A E B C) by (assert_diffs;apply (l11_16_直角相等 E B A E B C);auto).
+assert (等角 E B A E B C) by (统计不重合点;apply (l11_16_直角相等 E B A E B C);auto).
 等角.
 (*case 3: ~ Col A B C. *)
 destruct (由一点往一方向构造等长线段 B A B C ) as [C'[ HC'1 HC'2]].
 destruct (由一点往一方向构造等长线段 B C B A ) as [A' [HA'1 HA'2]].
 destruct (中点的存在性 A' C') as [I HI].
 assert (Cong B C' A' B) by (apply 两组连续三点分段等则全体等 with A C;Cong;Between).
-assert_diffs.
+统计不重合点.
 assert (等角 A' C' B C' A' B).
  {
  apply  (等腰三角形底角相等 C' B A');auto.
@@ -59,7 +59,7 @@ assert (等角 A' C' B C' A' B).
  }
 assert (HTRI : Cong I B I B /\ (I <> B -> 等角 C' I B A' I B /\ 等角 C' B I A' B I)).
 { apply (l11_49 I C' B I A' B); Cong.
- assert_diffs.
+ 统计不重合点.
  apply (l11_10 A' C' B C' A' B I B I B);Out.
 }
 exists I.
@@ -102,7 +102,7 @@ subst.
 assert (Per A B I) by (apply (L形垂直转直角1 B A I);Perp).
 assert (Col A C B).
 {  apply cop_per2__col with I;Cop.
-  assert_diffs;auto.
+  统计不重合点;auto.
   apply (直角的对称性 I B C);auto.
   apply (l11_17_等于直角的角是直角 A B I I B C);auto. }
 elim HNCOL;Col.
@@ -111,7 +111,7 @@ assert (Per C B I) by (apply (L形垂直转直角1 B C I);auto).
 assert (Per I B C) by (apply (直角的对称性 C B I);auto).
 assert (Col A C B).
 { apply cop_per2__col with I;Cop.
-  assert_diffs; auto.
+  统计不重合点; auto.
  apply (l11_17_等于直角的角是直角 I B C A B I);等角. }
 elim HNCOL; Col.
 Qed.
@@ -127,7 +127,7 @@ assert (为锐角 H1 B I).
   apply (out_trivial B H1);auto.
   apply (与垂线共线之线也为垂线2 A B H1 B I H1);Col. }
 assert (等角 H1 B I I B C).
-{ assert_diffs;apply (l11_10 A B I I B C H1 I I C);Out. }
+{ 统计不重合点;apply (l11_10 A B I I B C H1 I I C);Out. }
 assert (为锐角 I B C) by (apply (acute_conga__acute H1 B I I B C);auto).
 apply (acute_col_perp__out I B C H2);auto.
 Qed.
@@ -160,7 +160,7 @@ assert (Per H2 B I).
 {
   apply (l11_17_等于直角的角是直角 B H2 I H2 B I);auto.
   apply (等腰三角形底角相等 H2 I B);auto.
-  assert_diffs;auto.
+  统计不重合点;auto.
   unfold 等腰三角形;Cong.
 }
 assert (H2 = B).
@@ -179,7 +179,7 @@ assert (Per H1 B I).
 {
   apply (l11_17_等于直角的角是直角 B H1 I H1 B I);auto.
   apply (等腰三角形底角相等 H1 I B);auto.
-  assert_diffs;auto.
+  统计不重合点;auto.
   unfold 等腰三角形;Cong.
 }
 assert (H1 = B).
@@ -231,7 +231,7 @@ intros A B C I H1 H2 HNCOL HINANGLE HCOLH2 HCONG HPERH1 HPERH2 HOUTH1.
 destruct (not_col_efoot_not_equality A B C I H1 H2) as [HNEQH1 HNEQH2];Col.
  Cop.
 assert(HMY : Cong H1 B H2 B /\ 等角 H1 B I H2 B I /\ 等角 H1 I B H2 I B).
-{  assert_diffs.
+{  统计不重合点.
    apply (l11_52 B H1 I B H2 I);Cong.
    apply (l11_16_直角相等 B H1 I B H2 I);auto.
    apply (L形垂直转直角1 H1 B I).
@@ -277,7 +277,7 @@ Lemma 角平分线定理 : forall A B C I H1 H2, 共面 A B C I ->
 Proof.
 intros A B C I H1 H2 HCOP HCABH HCCBH HPH1 HPH2 HCONGA.
 destruct (共线的决定性 A B C) as [HCOL | HNCOL].
-assert (Perp A B I H2) by (assert_diffs;apply (与垂线共线之线也为垂线2 B C A B I H2);Col).
+assert (Perp A B I H2) by (统计不重合点;apply (与垂线共线之线也为垂线2 B C A B I H2);Col).
 assert (H1 = H2).
 { apply (l8_14_2_1b_垂点是交点 H1 A B I H1 H2);auto.
  apply (l8_14_2_1b_bis_交点是垂点 A B I H1 H1);Col.
@@ -297,14 +297,14 @@ apply (l11_50_2 I B H1 I B H2).
 { intro.
   elim HNCOL.
   col_with_conga. }
-{ assert_diffs.
+{ 统计不重合点.
   apply (l11_16_直角相等 B H1 I B H2 I);auto.
   apply (L形垂直转直角1 H1 B I).
   apply (与垂线共线之线也为垂线2 A B H1 B I H1);Col.
   assert (Perp B H2 I H2) by (apply (垂线共线点也构成垂直1 B C I H2 H2);Col).
   apply (L形垂直转直角1 H2 B I);Perp. }
 assert (等角 H1 B I I B H2).
-{ assert_diffs.
+{ 统计不重合点.
   apply (l11_10 A B I I B C H1 I I H2);Out. }
 等角.
 Cong.
@@ -322,12 +322,12 @@ assert (Out B H1 A').
   elim HNOUT.
   apply (l6_6 B A H1);auto.
   apply (l6_3_2 H1 A' B);auto.
-  assert_diffs.
+  统计不重合点.
   repeat split;auto.
   exists A.
   repeat split;Between. }
 assert (Out B H2 C').
-{ assert_diffs.
+{ 统计不重合点.
   apply (bisector_foot_out_out A' B C' I H1 H2);auto.
   intro.
   elim HNCOL.
@@ -346,10 +346,10 @@ assert (Per B H1 I).
    apply (与垂线共线之线也为垂线2 A B H1 B I H1);Col. }
 assert (Per B H2 I) by (apply (L形垂直转直角1 H2 B I);
     assert (Perp B H2 I H2) by (apply (垂线共线点也构成垂直1 B C I H2 H2);Col);Perp).
-assert_diffs.
+统计不重合点.
 apply (l11_16_直角相等 B H1 I B H2 I);auto.
 assert (等角 H1 B I I B H2).
-{ assert_diffs.
+{ 统计不重合点.
   apply (l11_10 A' B I I B C' H1 I I H2);Out.
   assert (等角 A' B I C' B I) by (apply (l11_13 A B I C B I A' C');等角).
   等角. }
@@ -372,7 +372,7 @@ destruct (not_col_efoot_not_equality A B C I H1 H2) as [HNEQH1 HNEQH2];auto.
  Col.
 assert(HMY : Cong H1 B H2 B /\ 等角 H1 B I H2 B I /\ 等角 H1 I B H2 I B).
  apply (l11_52 B H1 I B H2 I).
-{ assert_diffs.
+{ 统计不重合点.
   apply (l11_16_直角相等 B H1 I B H2 I); auto.
   apply (L形垂直转直角1 H1 B I).
   assert (Perp B H1 I H1) by (apply (垂线共线点也构成垂直1 B A I H1 H1);Perp;Col).
@@ -382,7 +382,7 @@ assert(HMY : Cong H1 B H2 B /\ 等角 H1 B I H2 B I /\ 等角 H1 I B H2 I B).
   Perp. }
 Cong.
 Cong.
-{  assert_diffs.
+{  统计不重合点.
    apply (l11_46 B H1 I); auto.
    left.
    apply (L形垂直转直角1 H1 B I).
@@ -392,7 +392,7 @@ destruct HMY as [HSH1BH2B [HAH1BI HAH1IB]].
 destruct (out_dec B A H1) as [HOUT | HBET].
 assert (Out B H2 C) by (apply (equality_foot_out_out A B C I H1 H2);Col;apply (l6_6 B A H1);auto).
 assert (等角 A B I C B I).
-{ assert_diffs.
+{ 统计不重合点.
  apply (l11_10 H1 B I H2 B I A I C I);Out. }
 等角.
 assert (~ Out B C H2).
@@ -412,7 +412,7 @@ assert (~ Out B C H2).
   apply (l6_6 B H1 A);auto.  }
 assert (Bet A B H1) by (apply (not_out_bet A B H1);auto;Col).
 assert (Bet C B H2) by (apply (not_out_bet C B H2);auto;Col).
-assert_diffs.
+统计不重合点.
 assert (等角 A B I C B I) by (apply (l11_13 H1 B I H2 B I A C);Between).
 等角.
 Qed.

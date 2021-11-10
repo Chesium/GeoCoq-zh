@@ -783,10 +783,10 @@ apply (symmetry_preserves_conga _ _ _ _ _ _ M); 中点.
 eapply 角等的传递性; [|apply 等角的对称性, H13].
 
 show_distinct B A''.
-assert_diffs;intuition.
+统计不重合点;intuition.
 
 show_distinct B C''.
-assert_diffs;intuition.
+统计不重合点;intuition.
 
 assert(A <> B).
 apply par_distincts in H0.
@@ -2255,7 +2255,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
   elim (垂直推出不共线 A B C D HPerp); intro HNC.
 
     {
-    apply l6_21_两线交点的唯一性 with A B C D; Col; try (intro; assert_diffs; intuition).
+    apply l6_21_两线交点的唯一性 with A B C D; Col; try (intro; 统计不重合点; intuition).
 
       {
       assert (HPar : Par A B A A')
@@ -2271,7 +2271,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
     }
 
     {
-    apply l6_21_两线交点的唯一性 with A B D C; Col; try (intro; assert_diffs; intuition).
+    apply l6_21_两线交点的唯一性 with A B D C; Col; try (intro; 统计不重合点; intuition).
 
       {
       assert (HPar : Par A B A A')
@@ -2291,7 +2291,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
   destruct HB' as [HColB H]; treat_equalities.
   apply 垂直的对称性 in HPerp; elim (垂直推出不共线 C D A B HPerp);
   intro HNC; [|intuition]; destruct HA' as [HColA' HA'].
-  apply l6_21_两线交点的唯一性 with C D A B; Col; try (intro; assert_diffs; intuition).
+  apply l6_21_两线交点的唯一性 with C D A B; Col; try (intro; 统计不重合点; intuition).
   assert (HPar : Par A B A A')
     by (apply l12_9_2D with C D; Perp).
   elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists A|spliter]; Col.
@@ -2301,7 +2301,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
   destruct HA' as [HColA H]; treat_equalities.
   apply 垂直的对称性 in HPerp; elim (垂直推出不共线 C D A B HPerp);
   intro HNC; [intuition|]; destruct HB' as [HColB' HB'].
-  apply l6_21_两线交点的唯一性 with C D B A; Col; try (intro; assert_diffs; intuition).
+  apply l6_21_两线交点的唯一性 with C D B A; Col; try (intro; 统计不重合点; intuition).
   assert (HPar : Par A B B B')
     by (apply l12_9_2D with C D; Perp).
   elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists B|spliter]; Col.

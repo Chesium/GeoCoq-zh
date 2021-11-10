@@ -1814,13 +1814,13 @@ Proof.
             assert(HY:= pars_par_plg C' A' A C H24 H25).
             split; auto.
           subst C'.
-          assert_diffs;contradiction.
+          统计不重合点;contradiction.
         split; Col.
         subst A'.
-        assert_diffs.
+        统计不重合点.
         contradiction.
       subst C'.
-      assert_diffs.
+      统计不重合点.
       contradiction.
     subst B.
     tauto.
@@ -1860,7 +1860,7 @@ Proof.
         spliter.
         unfold Ar2 in H.
         spliter.
-        assert_diffs.
+        统计不重合点.
         ColR.
       apply plgf_comm2.
       auto.
@@ -3984,7 +3984,7 @@ Proof.
       repeat split; Col.
         Cong.
         Cong.
-        assert_diffs; auto.
+        统计不重合点; auto.
     apply sum_cong in H0; auto.
 Qed.
 

@@ -18,7 +18,7 @@ Proof.
   assert(HD := 由一点往一方向构造等长线段 B D0 P Q).
   destruct HD as [D []].
   assert(HNCol1 : ~ Col B A D0) by (apply L形垂直推出不共线; auto).
-  assert_diffs.
+  统计不重合点.
   assert(D<>B) by (intro;Between).
   assert(~ Col D B A) by (intro; apply HNCol1; ColR).
   assert(HY0 := l10_15 D B D A).
@@ -58,7 +58,7 @@ Proof.
     apply HNConga.
     apply out2__conga; [apply out_trivial|apply l6_6, not_bet_out]; Col.
   }
-  assert_diffs.
+  统计不重合点.
   assert(Y<>D) by (intro; subst Y; Col).
   assert(OS B A C D).
     apply (one_side_transitivity _ _ _ D0); auto; apply out_one_side; Col; apply bet_out; auto.
@@ -88,12 +88,12 @@ Proof.
 
   assert(Per B X Y).
   { assert (~ Col B D X) by (apply (par_strict_not_col_1 _ _ _ Y); auto).
-    assert_diffs.
+    统计不重合点.
     apply L形垂直转直角1, 垂直的左交换性, (垂线共线点也构成垂直1 _ A); Col; Perp.
   }
 
   assert(Cong B D X Y).
-  { assert_diffs.
+  { 统计不重合点.
     assert(HAAS := l11_50_2 B Y D Y B X).
     destruct HAAS; Cong.
       apply 共线否定排列ACB, (par_strict_not_col_4 _ _ X); auto.

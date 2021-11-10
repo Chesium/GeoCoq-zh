@@ -121,7 +121,7 @@ cut(forall P Q A B,
        Q is such a point since these three points are collinear *)
     destruct (or_bet_out (f Q) (f P) B) as [HBet|[HOut|]]; [..|exfalso; Col];
     [destruct (由一点往一方向构造等长线段 Q P P Q) as [Q' []]; exists Q'|exists Q];
-    [assert (f Q' <> f P) by (intro; cut (P = Q'); assert_diffs; finish)|];
+    [assert (f Q' <> f P) by (intro; cut (P = Q'); 统计不重合点; finish)|];
     repeat split; Col; [| |apply l6_13_1; Le|];
     [|intro; subst; destruct HLt; intuition..].
     assert (Bet (f Q) (f P) (f Q')) by (apply fBet; Col).
@@ -154,7 +154,7 @@ cut(forall P Q A B,
           destruct (由一点往一方向构造等长线段 P Q P Q) as [Q' []]; exists Q'.
           assert (Bet (f P) (f Q) (f Q')) by (apply fBet; Col).
           assert (Cong (f Q) (f Q') (f P) (f Q)) by (apply fCong; Col).
-          assert (f Q <> f Q') by (assert_diffs; auto).
+          assert (f Q <> f Q') by (统计不重合点; auto).
           assert (HLt2 : Lt (f Q) (f Q') (f Q) B)
             by (apply (等长保持小于关系 (f P) (f Q) (f Q) B); Cong).
           repeat split; Col; [|intro; subst; destruct HLt2; Cong].
@@ -192,7 +192,7 @@ cut(forall P Q A B,
       exists E; repeat split; [apply 线性刻度_步进 with D| | |intro; subst E]; auto;
       [|apply 小于推出反向不小于等于 in HLt; apply HLt, 长度小于等于的传递性 with D B; spliter; Le].
       apply l6_13_1; [destruct (两点重合的决定性 A D); [subst D|]|];
-      [apply l6_2 with (f P); assert_diffs|apply l6_2 with D|]; eBetween.
+      [apply l6_2 with (f P); 统计不重合点|apply l6_2 with D|]; eBetween.
       apply 长度小于等于的传递性 with D E; Le.
       apply 长度小于等于的传递性 with (f P) (f Q); Le.
       }
@@ -207,7 +207,7 @@ Proof.
     subst; exists P; split; Col.
   assert (HR : exists R, Col P Q R /\ Bet (f P) A (f R)).
   { destruct (由一点往一方向构造等长线段 (f P) A (f P) A) as [A1 []].
-    assert_diffs.
+    统计不重合点.
     destruct (extension_image_density P Q f archi fLineExt A A1) as [R [HR1 [HR2 []]]]; Col.
       apply 共线的传递性2 with A; Col.
     exists R; split; eBetween.
@@ -218,7 +218,7 @@ Proof.
   - repeat split; finish.
   - split; assumption.
   - intros Z HZ.
-    assert (Col P Q Z) by (assert_diffs; apply 共线的传递性2 with R; Col).
+    assert (Col P Q Z) by (统计不重合点; apply 共线的传递性2 with R; Col).
     destruct (两点重合的决定性 (f Z) A).
       subst; right; split; Between.
     assert (HOut : Out (f P) (f Z) A).

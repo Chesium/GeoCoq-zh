@@ -11,7 +11,7 @@ Lemma playfair_implies_par_trans :
   playfair_s_postulate -> postulate_of_transitivity_of_parallelism.
 Proof.
   intros HP A1 A2 B1 B2 C1 C2 HAB HBC.
-  assert_diffs.
+  统计不重合点.
   destruct (cop_dec A1 A2 C1 B1) as [|HNCop]; [induction (共线的决定性 A1 A2 C1)|].
 
   - right.

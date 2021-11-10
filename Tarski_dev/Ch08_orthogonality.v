@@ -11,7 +11,7 @@ Ltac not_exist_hyp_perm_ncol A B C := not_exist_hyp (~ Col A B C); not_exist_hyp
                                  not_exist_hyp (~ Col B A C); not_exist_hyp (~ Col B C A);
                                  not_exist_hyp (~ Col C A B); not_exist_hyp (~ Col C B A).
 
-Ltac assert_diffs_by_cases :=
+Ltac 统计不重合点_by_cases :=
  repeat match goal with
  | A: Tpoint, B: Tpoint |- _ => not_exist_hyp_comm A B;induction (两点重合的决定性 A B);[treat_equalities;solve [finish|trivial] |idtac]
 end.
@@ -56,7 +56,7 @@ Ltac clean_reap_hyps :=
    | H:(?A<>?B), H2 : (?B<>?A) |- _ => clear H2
 end.
 
-Ltac assert_diffs :=
+Ltac 统计不重合点 :=
 repeat
  match goal with
       | H:(~Col ?X1 ?X2 ?X3) |- _ =>
@@ -205,7 +205,7 @@ Ltac CongR :=
 Ltac ColR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
-   treat_equalities; assert_cols; Col; assert_diffs; Col_refl tpoint col.
+   treat_equalities; assert_cols; Col; 统计不重合点; Col_refl tpoint col.
 
 Ltac show_distinct X Y := assert (X<>Y);[intro;treat_equalities|idtac].
 
@@ -214,7 +214,7 @@ Ltac show_distinct'' X Y :=
  [intro;treat_equalities; solve [finish]|idtac].
 
 Ltac assert_all_diffs_by_contradiction :=
-assert_diffs;repeat match goal with
+统计不重合点;repeat match goal with
  | A: Tpoint, B: Tpoint |- _ => not_exist_hyp_comm A B;show_distinct'' A B
 end.
 
@@ -1431,7 +1431,7 @@ assert(Col M A B).
 unfold 中点 in *.
 spliter; Col.
 
-assert_diffs.
+统计不重合点.
 assert(Per X M A)
  by (unfold Per;exists B;split; Cong).
 apply 直角转L形垂直于 in H4.
@@ -1504,7 +1504,7 @@ Proof.
     unfold Perp.
     exists X.
     eapply l8_13_2_两线夹角为直角则两线垂直.
-      assert_diffs; auto.
+      统计不重合点; auto.
       assumption.
       Col.
       Col.
@@ -1766,7 +1766,7 @@ Proof.
     show_distinct Q Y.
       intuition.
     assert (Per Y X C) by (unfold Per;exists C';split;Cong).
-    assert_diffs.
+    统计不重合点.
     assert (Col P Y Q).
       unfold Col.
       left.
@@ -1906,7 +1906,7 @@ Proof.
       assumption.
     ex_and H0 X.
     assert (垂直于 X A B C X).
-      eapply l8_15_1_垂线顶点在该线上则其为垂点; assert_diffs; auto.
+      eapply l8_15_1_垂线顶点在该线上则其为垂点; 统计不重合点; auto.
     assert (Per A X C).
       unfold 垂直于 in H2.
       spliter.
@@ -1986,7 +1986,7 @@ Proof.
       exists A.
       unfold 垂直于.
       repeat split.
-        assert_diffs; auto.
+        统计不重合点; auto.
         auto.
         apply AAB型共线.
         apply ABA型共线.

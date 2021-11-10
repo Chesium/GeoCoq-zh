@@ -25,7 +25,7 @@ Lemma 瓦里尼翁平行四边形 :
   平行四边形 I J K L.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert (Par I L B D) (** Applying the midpoint theorem in the triangle BDA. *)
   by perm_apply (triangle_mid_par B D A L I).
 assert (Par J K B D) (** Applying the midpoint theorem in the triangle BDC. *)
@@ -63,7 +63,7 @@ treat_equalities.
 apply plg_trivial.
 intro;treat_equalities;intuition.
 Name X the midpoint of B and D.
-assert_diffs.
+统计不重合点.
 
 assert (Par B D L I /\ Cong B X L I)
   by (apply (triangle_mid_par_cong_1 A B D X L I);finish).
@@ -109,7 +109,7 @@ apply plg_trivial1.
 intro;treat_equalities;intuition.
 
 Name X the midpoint of B and D.
-assert_diffs.
+统计不重合点.
 
 assert (Par B D L I /\ Cong B X L I)
   by (apply (triangle_mid_par_cong_1 A B D X L I);finish).
@@ -175,7 +175,7 @@ induction (两点重合的决定性 A D).
    Cong.
  repeat split.
  show_distinct L X . intuition.
- assert_diffs.
+ 统计不重合点.
  ColR.
  Col.
  auto.
@@ -195,7 +195,7 @@ spliter.
 induction (两点重合的决定性 C D).
  treat_equalities.
  intuition.
-assert_diffs.
+统计不重合点.
 induction (两点重合的决定性 B C).
  treat_equalities.
  assert_cols.

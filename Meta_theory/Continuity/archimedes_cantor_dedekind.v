@@ -36,7 +36,7 @@ Proof.
     destruct (Hcut X C HX HC).
     apply l6_7 with Y; trivial.
     destruct (两点重合的决定性 A X).
-      subst; assert_diffs; apply l6_7 with Y; Out.
+      subst; 统计不重合点; apply l6_7 with Y; Out.
     apply out_bet_out_2 with X; [|Between].
     apply l6_7 with C; Out.
   }

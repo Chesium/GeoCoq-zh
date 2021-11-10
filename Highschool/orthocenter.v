@@ -76,7 +76,7 @@ Lemma 反构造中点三角形 : forall A B C,
   D <> E /\ D <> F /\ E <> F.
 Proof.
 intros A B C HNC.
-assert_diffs; rename H2 into HAB; rename H1 into HBC; rename H4 into HAC.
+统计不重合点; rename H2 into HAB; rename H1 into HBC; rename H4 into HAC.
 
 elim (parallel_existence1 A B C HAB);intros X1 HX1.
 elim (parallel_existence1 A C B HAC);intros X2 HX2.
@@ -109,7 +109,7 @@ assert (~ (D = E /\ D = F)).
   contradiction.
 
 exists D; exists E; exists F.
-assert_diffs.
+统计不重合点.
 (*
 deduce_cols.
 repeat split; try cols; finish; clear_cols; untag_hyps.
@@ -169,7 +169,7 @@ assert (中点 A E F) by (apply diff_not_col_col_par4_mid with B C; finish).
 assert (中点 B D F) by (apply diff_not_col_col_par4_mid with A C; finish).
 assert (中点 C D E) by (apply diff_not_col_col_par4_mid with A B; finish).
 
-assert_diffs.
+统计不重合点.
 elim (两点重合的决定性 A O); intro.
 
   treat_equalities; apply 等价共线BAC; apply cop_perp2__col with A B...
@@ -275,7 +275,7 @@ Lemma 直角三角形的垂心与直角顶点重合 :
 Proof.
 intros.
 unfold 垂心 in *;spliter.
-assert_diffs.
+统计不重合点.
 assert (Perp A B B C) by (apply 直角转L形垂直;finish).
 assert (Par A H A B)
  by (apply l12_9 with B C;Cop).
@@ -309,7 +309,7 @@ assert (Par A H A C)
 assert (Col H A C)
   by (perm_apply (par_id A C H)).
 assert (H=C).
-assert_diffs.
+统计不重合点.
 apply l6_21_两线交点的唯一性 with B C A C;finish.
 subst.
 auto.

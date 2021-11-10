@@ -5725,7 +5725,7 @@ Proof. intros A B C HCol; apply ColH_bets in HCol; auto. Qed.
 Lemma playfair_s_postulateH : playfair_s_postulate.
 Proof.
 intros A1 A2 B1 B2 C1 C2 P HPar1 HCol1 HPar2 HCol2.
-assert_diffs.
+统计不重合点.
 destruct (line_existence A1 A2) as [l [Hl1 Hl2]]; auto.
 destruct (line_existence B1 B2) as [m1 [Hm11 Hm12]]; auto.
 destruct (line_existence C1 C2) as [m2 [Hm21 Hm22]]; auto.
@@ -5765,7 +5765,7 @@ elim (IncidL_dec P l); intro HInc.
       [|exfalso; apply HNC; ColR].
       apply coplanar_plane in HCop.
       destruct HCop as [p [Hp1 [Hp2 [Hp3 Hp4]]]]; exists p.
-      split; assert_diffs;
+      split; 统计不重合点;
       [apply line_on_plane with A1 A2|apply line_on_plane with B1 B2]; auto.
       }
     }

@@ -10,7 +10,7 @@ Lemma original_spp__inverse_projection_postulate :
   alternative_strong_parallel_postulate -> inverse_projection_postulate.
 Proof.
   intros ospp A B C P Q Hacute Hout HPQ HPer HCop.
-  assert_diffs.
+  统计不重合点.
   assert_cols.
   elim(共线的决定性 A B C).
   { intro.
@@ -20,7 +20,7 @@ Proof.
     apply not_bet_out; Col.
     intro.
     destruct Hacute as [x [y [z [HPer2 Hlta]]]].
-    assert_diffs.
+    统计不重合点.
     assert(HN := 两长度不可能互相小于对方a A B C x y z).
     apply HN.
     split; auto.
@@ -44,7 +44,7 @@ Proof.
   { intro.
     assert(Hlta : 角度小于 A B C C B P).
     { apply acute_per__lta; auto.
-      apply (bet_per_suma__per123 _ _ _ B P Q0 D E F); auto.
+      apply (一角加上直角为平角则该角为直角 _ _ _ B P Q0 D E F); auto.
       apply 直角的对称性.
       apply (l8_3_直角边共线点也构成直角1 Q); Perp; Col.
     }
@@ -61,7 +61,7 @@ Proof.
   destruct HB0 as [B0 []]; Col.
   assert(HNCol4 : ~ Col A B B0) by (apply (one_side_not_col123 _ _ _ C); Side).
   assert(HNCol5 : ~ Col B C P) by (intro; apply HNCol1; ColR).
-  assert_diffs.
+  统计不重合点.
   assert(P<>Y) by (intro; subst; auto).
   apply (col_one_side_out _ B0); auto.
   apply (one_side_transitivity _ _ _ P).

@@ -28,7 +28,7 @@ Theorem stronger_legendre_s_first_theorem :
   aristotle_s_axiom ->
   forall A B C D E F,
     和角 C A B A B C D E F ->
-    角度之和小于平角 D E F B C A.
+    和角不大于平角 D E F B C A.
 Proof.
   intros ari A B C D E F.
   apply (t22_20 (aristotle__obtuse_case_elimination ari)).
@@ -38,7 +38,7 @@ Theorem legendre_s_first_theorem :
   archimedes_axiom ->
   forall A B C D E F,
     和角 C A B A B C D E F ->
-    角度之和小于平角 D E F B C A.
+    和角不大于平角 D E F B C A.
 Proof.
   intros archi A B C D E F.
   apply (t22_20 (archi__obtuse_case_elimination archi)).
@@ -86,11 +86,11 @@ Lemma legendre_aux :
     ~ Col A B C -> 等角 A C B C B D ->
     Cong A C B D -> TS B C A D -> Out A B B1 -> Out A C C1 -> Bet B1 D C1 ->
     三角形内角和与平角之差 A B C P Q R -> 三角形内角和与平角之差 A B1 C1 S T U -> 和角 P Q R P Q R V W X ->
-    角度之和小于平角 P Q R P Q R /\ 角度小于等于 V W X S T U.
+    和角不大于平角 P Q R P Q R /\ 角度小于等于 V W X S T U.
 Proof.
   intros noah A B C D B1 C1 P Q R S T U V W X HNCol HConga HCong HTS HOutB HOutC HBet HDef HDef1 HSuma.
   destruct (l11_49 A C B D B C) as [HCong1 [HConga1 HConga2]]; 等角; Cong.
-    assert_diffs; auto.
+    统计不重合点; auto.
   assert (HPar : 严格平行 A C B D).
   { apply par_not_col_strict with B; Col.
     apply par_left_comm, l12_21_b; Side; 等角.
@@ -102,7 +102,7 @@ Proof.
   assert (HNCol2:= HPar'); assert (HNCol3 := HPar'); assert (HNCol4 := HPar').
   apply par_strict_not_col_2 in HNCol2; apply par_strict_not_col_3 in HNCol3; apply par_strict_not_col_4 in HNCol4.
   assert (HB : ~ Col B1 B D /\ TS B D B1 C1 /\ Bet A B B1).
-  { assert_diffs.
+  { 统计不重合点.
     apply par_strict_symmetry, (par_strict_col_par_strict B D A C C1) in HPar; Col.
     assert (HNCol' := par_strict_not_col_4 B D A C1 HPar).
     assert (B <> B1) by (intro; subst B1; apply HNCol'; Col).
@@ -114,7 +114,7 @@ Proof.
   }
   destruct HB as [HNCol5 [HTS1 HBetB]].
   assert (HC : ~ Col C D B1 /\ C <> C1 /\ Bet A C C1).
-  { assert_diffs.
+  { 统计不重合点.
     apply par_strict_symmetry, (par_strict_col_par_strict C D A B B1) in HPar'; Col.
     assert (HNCol' := par_strict_not_col_4 C D A B1 HPar').
     assert (C <> C1) by (intro; subst C1; apply HNCol'; Col).
@@ -126,7 +126,7 @@ Proof.
     exists D; Col.
   }
   destruct HC as [HNCol6 [HCC1 HBetC]].
-  assert_diffs.
+  统计不重合点.
   destruct (ts2__ex_bet2 B C D B1) as [Z [HZ1 HZ2]].
     apply l9_8_2 with C1; Side; apply one_side_symmetry, l12_6, par_strict_col_par_strict with A; Col; Par.
     { apply l9_31.
@@ -155,31 +155,31 @@ Proof.
   destruct (t22_16_1bis noah A C B1 B P Q R M N O G H I) as [HIsi5 HSuma5]; trivial.
     apply defect_perm_132, HDef.
     apply defect_perm_132, HDef2.
-  assert (HIsi1 : 角度之和小于平角 G H I A' B' C').
-    apply sams_lea2__sams with G H I J K L; Lea.
-    apply sams_suma__lea123789 with D' E' F'; trivial.
-  assert (HIsi2 : 角度之和小于平角 M N O A' B' C').
-    apply sams_lea2__sams with G H I A' B' C'; Lea.
-    apply sams_suma__lea456789 with P Q R; trivial.
+  assert (HIsi1 : 和角不大于平角 G H I A' B' C').
+    apply 角度小于等于保持和角不大于平角性质 with G H I J K L; Lea.
+    apply 原角小于等于和角 with D' E' F'; trivial.
+  assert (HIsi2 : 和角不大于平角 M N O A' B' C').
+    apply 角度小于等于保持和角不大于平角性质 with G H I A' B' C'; Lea.
+    apply 加角小于等于和角 with P Q R; trivial.
   assert (HSuma6 : 和角 G' H' I' D' E' F' S T U).
-    apply suma_assoc_2 with G H I A' B' C' J K L; trivial.
-  assert (HIsi6 : 角度之和小于平角 G' H' I' D' E' F').
-    apply sams_assoc_2 with G H I A' B' C' J K L; trivial.
+    apply 和角结合律2 with G H I A' B' C' J K L; trivial.
+  assert (HIsi6 : 和角不大于平角 G' H' I' D' E' F').
+    apply 和角不大于平角结合律2 with G H I A' B' C' J K L; trivial.
   assert (HSuma7 : 和角 P Q R J' K' L' G' H' I').
-    apply suma_assoc_1 with M N O A' B' C' G H I; trivial.
-  assert (HIsi7 : 角度之和小于平角 P Q R J' K' L').
-    apply sams_assoc_1 with M N O A' B' C' G H I; trivial.
+    apply 和角结合律1 with M N O A' B' C' G H I; trivial.
+  assert (HIsi7 : 和角不大于平角 P Q R J' K' L').
+    apply 和角不大于平角结合律1 with M N O A' B' C' G H I; trivial.
   destruct (t22_16_2 noah C B B1 D M' N' O' A' B' C' P Q R M N O Z J' K' L') as [HIsi8 HSuma8]; trivial.
     apply defect_perm_231, (conga3_defect__defect A B C); 等角.
     apply defect_perm_231, HDef5.
-  assert (HLea : 角度小于等于 P Q R J' K' L') by (apply sams_suma__lea123789 with M' N' O'; trivial).
+  assert (HLea : 角度小于等于 P Q R J' K' L') by (apply 原角小于等于和角 with M' N' O'; trivial).
 
   split.
-    suma.assert_diffs.
-    apply sams_lea2__sams with P Q R J' K' L'; Lea.
+    suma.统计不重合点.
+    apply 角度小于等于保持和角不大于平角性质 with P Q R J' K' L'; Lea.
   apply lea_trans with G' H' I'.
-    apply sams_lea456_suma2__lea with P Q R P Q R J' K' L'; trivial.
-  apply sams_suma__lea123789 with D' E' F'; trivial.
+    apply 和角保持角度小于等于性质_右 with P Q R P Q R J' K' L'; trivial.
+  apply 原角小于等于和角 with D' E' F'; trivial.
 Qed.
 
 Lemma legendre_aux1 : forall A B C B' C',
@@ -188,14 +188,14 @@ Lemma legendre_aux1 : forall A B C B' C',
              Cong A C' B' D' /\ TS B' C' A D'.
 Proof.
   intros A B C B' C' HNCol HOutB HOutC.
-  assert_diffs.
-  assert (HNCol' : ~ Col A B' C') by (intro; assert_diffs; apply HNCol; ColR).
+  统计不重合点.
+  assert (HNCol' : ~ Col A B' C') by (intro; 统计不重合点; apply HNCol; ColR).
   destruct (中点的存在性 B' C') as [M HM].
   destruct (构造对称点 A M) as [D' HD].
-  assert (HNCol1 : ~ Col A M B') by (intro; assert_diffs; apply HNCol'; ColR).
-  assert (HNCol2 : ~ Col D' B' C') by (intro; assert_diffs; apply HNCol'; ColR).
+  assert (HNCol1 : ~ Col A M B') by (intro; 统计不重合点; apply HNCol'; ColR).
+  assert (HNCol2 : ~ Col D' B' C') by (intro; 统计不重合点; apply HNCol'; ColR).
   exists D'.
-  assert_diffs; destruct HM; destruct HD; split.
+  统计不重合点; destruct HM; destruct HD; split.
     apply l11_25 with D' B' C'; try (apply out_trivial); auto.
     repeat split; auto.
     exists M; split; trivial.
@@ -224,14 +224,14 @@ Lemma legendre_aux2 :
 Proof.
   intros noah A B C HNCol H为锐角 legendre P Q R S T U HDef.
   induction 1; rename A0 into P; rename B0 into Q; rename C0 into R.
-    exists B; exists C; exists P; exists Q; exists R; assert_diffs.
+    exists B; exists C; exists P; exists Q; exists R; 统计不重合点.
     repeat (split; [Out|]); Lea.
   rename D into S; rename E into T; rename F into U.
   destruct IH角度在对数刻度上 as [B' [C' [P' [Q' [R' [HOutB [HOutC [HDef' HLea]]]]]]]]; trivial.
   destruct (legendre_aux1 A B C B' C') as [D' [HInangle [HConga [HCong HTS]]]]; trivial.
   assert (HNCol' : ~ Col A B' C') by (destruct HTS; Col).
   destruct (legendre D' HInangle) as [B'' [C'' [HOutB' [HOutC' HBet]]]].
-  assert (Hd := defect_distincts A B' C' P' Q' R' HDef'); spliter; assert_diffs.
+  assert (Hd := defect_distincts A B' C' P' Q' R' HDef'); spliter; 统计不重合点.
   destruct (ex_defect A B'' C'') as [P'' [Q'' [R'' HDef'']]]; auto.
     intro; subst; apply HNCol; ColR.
   exists B''; exists C''; exists P''; exists Q''; exists R''.
@@ -241,7 +241,7 @@ Proof.
     apply l6_7 with B; Out.
     apply l6_7 with C; Out.
   apply lea_trans with V W X; trivial.
-  apply sams_lea2_suma2__lea with S T U S T U P' Q' R' P' Q' R'; trivial.
+  apply 和角保持角度小于等于性质 with S T U S T U P' Q' R' P' Q' R'; trivial.
 Qed.
 
 Lemma legendre_s_fourth_theorem_aux :
@@ -251,7 +251,7 @@ Lemma legendre_s_fourth_theorem_aux :
 Proof.
   intros archi legendre.
   destruct legendre as [B [A [C [HNCol [H为锐角 legendre]]]]].
-  assert_diffs.
+  统计不重合点.
   destruct (ex_defect A B C) as [P [Q [R HDef]]]; auto.
   destruct (共线的决定性 P Q R) as [HCol|HNCol1].
   - apply archi__obtuse_case_elimination in archi.
@@ -263,20 +263,20 @@ Proof.
     destruct HDef as [D [E [F [[G [H [I [HSuma1 HSuma2]]]] HSuppa]]]].
     apply out_col, l6_6, out_lea__out with D E F.
       apply (bet_suppa__out P Q R); [|apply suppa_sym]; assumption.
-    apply sams_suma__lea456789 with G H I; trivial.
+    apply 加角小于等于和角 with G H I; trivial.
     apply (t22_20 archi); trivial.
   - destruct (archi__gradaexp_destruction archi P Q R HNCol1) as [S [T [U [HGAE H为钝角]]]].
     apply archi__obtuse_case_elimination in archi.
     apply 共线否定排列BAC in HNCol.
     destruct (legendre_aux2 archi A B C HNCol H为锐角 legendre P Q R S T U HDef HGAE) as [B' [C' HInter]].
     destruct HInter as [P' [Q' [R' [HOutB [HOutC [HDef' HLea]]]]]].
-    apply (lea_obtuse_obtuse P' Q' R'), obtuse__nsams in H为钝角; auto.
+    apply (lea_obtuse_obtuse P' Q' R'), 钝角的倍角大于平角 in H为钝角; auto.
     exfalso.
     apply H为钝角.
     destruct (legendre_aux1 A B C B' C') as [D' [HInangle [HConga [HCong HTS]]]]; trivial.
     assert (HNCol' : ~ Col A B' C') by (destruct HTS; Col).
     destruct (legendre D' HInangle) as [B'' [C'' [HOutB' [HOutC' HBet]]]].
-    assert_diffs.
+    统计不重合点.
     destruct (ex_defect A B'' C'') as [S' [T' [U' HDef'']]]; auto.
       intro; subst; apply HNCol; ColR.
     destruct (和角的存在性 P' Q' R' P' Q' R') as [V [W [X HSuma]]]; auto.

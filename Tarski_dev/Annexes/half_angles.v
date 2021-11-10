@@ -12,7 +12,7 @@ Proof.
   unfold HalfA.
   intros.
   spliter.
-  assert_diffs.
+  统计不重合点.
   repeat split; auto.
 Qed.
 
@@ -21,14 +21,14 @@ Proof.
   unfold HalfA.
   intros P A O B H.
   spliter.
-  assert_diffs.
-  apply (等角保持和角 A O P B O P A O B); [和角|等角..].
+  统计不重合点.
+  apply (等角保持和角性质 A O P B O P A O B); [和角|等角..].
 Qed.
 
 Lemma halfa_exists : forall A O B, ~ Bet A O B -> exists P, HalfA P A O B.
 Proof.
   intros A O B HNBet.
-  assert_diffs.
+  统计不重合点.
   destruct (angle_bisector A O B) as [P [HIn HConga]]; auto.
   apply 等角的交换性 in HConga.
   exists P; repeat (split; trivial).
@@ -55,7 +55,7 @@ Proof.
   split.
     assumption.
   apply in_angle_out with B; trivial.
-  assert_diffs.
+  统计不重合点.
   apply l6_2 with P; auto.
   apply (bet_conga__bet A O P); assumption.
 Qed.
@@ -90,7 +90,7 @@ Proof.
   unfold HalfA.
   intros P A O B H.
   spliter.
-  assert_diffs.
+  统计不重合点.
   destruct (l6_11_existence O O A B) as [A' []]; auto.
   destruct (中点的存在性 A A') as [M].
   exists A', M.
@@ -107,7 +107,7 @@ Proof.
     apply in_angle_out with B; trivial.
   }
   assert (在角内 M A O B).
-  { assert_diffs.
+  { 统计不重合点.
     assert (O <> M).
     { intro.
       subst M.
@@ -124,7 +124,7 @@ Proof.
   apply col_inangle2__out with A B; trivial.
   apply conga2_cop2__col_1 with A B; [| |apply 等角的交换性; assumption|Cop..].
     intro; destruct (or_bet_out A O B) as [|[|]]; auto.
-  assert_diffs.
+  统计不重合点.
   destruct (l11_51 O M A O M A'); Cong.
     intro; treat_equalities; apply HNCol; Col.
   apply l11_10 with M A M A'; [|apply out_trivial..|apply l6_6]; auto.
@@ -135,7 +135,7 @@ Lemma halfa_chara2 : forall P A O B,
 Proof.
   intros P A O B H.
   destruct H as [A' [M [HCong [HOut [HM1 HM2]]]]].
-  assert_diffs.
+  统计不重合点.
   apply out_preserves_halfa with M A A'; trivial.
     apply out_trivial; auto.
   split; [|split].
@@ -150,7 +150,7 @@ Proof.
       right; apply out_trivial; auto.
   - destruct (两点重合的决定性 A A').
       subst; apply 同角相等; auto.
-    assert_diffs.
+    统计不重合点.
     destruct (l11_51 O A M O A' M); Cong.
 Qed.
 
@@ -163,7 +163,7 @@ Proof.
   destruct HP' as [A2 [M2]].
   spliter.
   assert (A1 = A2).
-  { assert_diffs.
+  { 统计不重合点.
     apply (l6_11_uniqueness O O A B); auto.
   }
   subst A2.
@@ -178,7 +178,7 @@ Proof.
   assert (Col B O P).
     apply (共线三点构成的角的等角三点也共线 A O P); assumption.
   apply HNCol.
-  assert_diffs.
+  统计不重合点.
   ColR.
 Qed.
 
@@ -203,19 +203,19 @@ Proof.
   apply l6_6, halfa1123__out, halfa_sym, HHalf.
 Qed.
 
-Lemma halfa__sams : forall P A O B, HalfA P A O B -> 角度之和小于平角 A O P A O P.
+Lemma halfa__sams : forall P A O B, HalfA P A O B -> 和角不大于平角 A O P A O P.
 Proof.
   unfold HalfA.
   intros P A O B H.
   spliter.
-  assert_diffs.
-  apply (conga2_sams__sams A O P P O B); [等角..|和角].
+  统计不重合点.
+  apply (等角保持和角不大于平角性质 A O P P O B); [等角..|和角].
 Qed.
 
 Lemma halfa__acute : forall P A O B, HalfA P A O B -> 为锐角 A O P.
 Proof.
   intros P A O B HHalfa.
-  apply nbet_sams_suma__acute with A O B.
+  apply 一角的倍角不大于平角则该角为锐角 with A O B.
     destruct HHalfa; assumption.
     apply halfa__sams with B; assumption.
     apply halfa__suma; assumption.
@@ -233,7 +233,7 @@ Lemma halfa2_lea__lea1 : forall P A O B P' A' O' B',
   HalfA P A O B -> HalfA P' A' O' B' -> 角度小于等于 A' O' P' A O P -> 角度小于等于 A' O' B' A O B.
 Proof.
   intros P A O B P' A' O' B' HP HP' HLea.
-  apply sams_lea2_suma2__lea with A' O' P' A' O' P' A O P A O P; trivial.
+  apply 和角保持角度小于等于性质 with A' O' P' A' O' P' A O P A O P; trivial.
     apply halfa__sams with B; assumption.
     apply halfa__suma; assumption.
     apply halfa__suma; assumption.
@@ -256,12 +256,12 @@ Lemma conga_halfa__conga1 : forall P A O B P' A' O' B',
  等角 A O B A' O' B'.
 Proof.
   intros P A O B P' A' O' B' HP HP' HConga.
-  apply (suma2__conga A O P A O P).
+  apply (和角的唯一性 A O P A O P).
     apply halfa__suma; assumption.
   assert (Hd := HP').
   apply halfa_distincts in Hd.
   spliter.
-  apply (等角保持和角 A' O' P' A' O' P' A' O' B'); [|等角..].
+  apply (等角保持和角性质 A' O' P' A' O' P' A' O' B'); [|等角..].
   apply halfa__suma; assumption.
 Qed.
 
@@ -269,13 +269,13 @@ Lemma conga_halfa__conga2 : forall P A O B P' A' O' B',
  HalfA P A O B -> HalfA P' A' O' B' -> 等角 A O B A' O' B' -> 等角 A O P A' O' P'.
 Proof.
   intros P A O B P' A' O' B' HP HP' HConga.
-  apply sams2_suma2__conga with A O B.
+  apply 两角倍角不大于平角且相等则两角相等 with A O B.
     apply halfa__sams with B; assumption.
     apply halfa__suma; assumption.
     apply halfa__sams with B'; assumption.
   apply halfa__suma in HP'.
-  assert_diffs.
-  apply (等角保持和角 A' O' P' A' O' P' A' O' B'); 等角.
+  统计不重合点.
+  apply (等角保持和角性质 A' O' P' A' O' P' A' O' B'); 等角.
 Qed.
 
 Lemma halfa2_lta__lta1 : forall P A O B P' A' O' B',
@@ -403,7 +403,7 @@ Proof.
   intros A' O' B' A O B [P [HP]].
   apply halfa_distincts in HP.
   spliter.
-  assert_diffs.
+  统计不重合点.
   repeat split; auto.
 Qed.
 
@@ -460,7 +460,7 @@ Proof.
   assert (Hd := HHalf).
   apply halfa_distincts in HHalf.
   spliter.
-  apply (等角保持和角 A O P A O P A O B); [|等角..].
+  apply (等角保持和角性质 A O P A O P A O B); [|等角..].
   apply halfa__suma; assumption.
 Qed.
 
@@ -480,9 +480,9 @@ Proof.
     intro HHalf; split; [eapply ghalfa__acute, HHalf|apply ghalfa__suma, HHalf].
   intros [H为锐角 HSuma].
   destruct (halfa_exists A O B) as [P HP].
-    apply (acute_suma__nbet A' O' B'); assumption.
+    apply (锐角的倍角不为平角 A' O' B'); assumption.
   exists P; split; [assumption|].
-  apply sams2_suma2__conga with A O B; [和角..| |].
+  apply 两角倍角不大于平角且相等则两角相等 with A O B; [和角..| |].
     eapply halfa__sams, HP.
     apply halfa__suma, HP.
 Qed.
@@ -491,7 +491,7 @@ Lemma ghalfa__out : forall A O B, gHalfA A O B A O B -> Out O A B.
 Proof.
   intros A O B HHalf.
   rewrite ghalfa_chara in HHalf; spliter.
-  apply (sams_suma__out546 A O B); 和角.
+  apply (和角与原角等则加角为零角 A O B); 和角.
 Qed.
 
 Lemma ghalfa_preserves_lta : forall A B C X Y Z A' B' C' X' Y' Z',
@@ -536,7 +536,7 @@ Proof.
   intros A B C A' B' C' A'' B'' C''.
   rewrite 2 ghalfa_chara.
   intros [H为锐角' HSuma'] [H为锐角'' HSuma''].
-  apply (suma2__conga A B C A B C); assumption.
+  apply (和角的唯一性 A B C A B C); assumption.
 Qed.
 
 (** Unicity of the half angle *)
@@ -548,7 +548,7 @@ Proof.
   apply 角等的传递性 with A B P'; [assumption|].
   apply 角等的传递性 with A B P''; [|等角].
   apply out2__conga.
-    apply out_trivial; assert_diffs; auto.
+    apply out_trivial; 统计不重合点; auto.
   apply halfa_uniqueness with A C; assumption.
 Qed.
 
@@ -563,7 +563,7 @@ Proof.
   intros [H为锐角 HSuma].
   split.
     apply (acute_conga__acute A B C); assumption.
-    apply (等角保持和角 A B C A B C A' B' C'); assumption.
+    apply (等角保持和角性质 A B C A B C A' B' C'); assumption.
 Qed.
 
 (** Out preserves gHalfA *)
@@ -588,18 +588,18 @@ Proof.
   rewrite 3 ghalfa_chara.
   intros [H为锐角1 HSuma1] [H为锐角2 HSuma2].
   split; [apply H为锐角|].
-  assert_diffs.
+  统计不重合点.
   destruct (和角的存在性 A' B' C' D E F) as [G [H [I]]]; auto.
-  assert (和角 A B C X Y Z G H I) by (apply suma_assoc_1 with A B C D E F A' B' C'; 和角).
-  apply suma_assoc_1 with A B C D E F G H I; [和角..|].
-  apply suma_assoc_2 with A' B' C' D E F D' E' F'; [|和角..].
-  apply sams_assoc_2 with A B C A B C X Y Z; 和角.
+  assert (和角 A B C X Y Z G H I) by (apply 和角结合律1 with A B C D E F A' B' C'; 和角).
+  apply 和角结合律1 with A B C D E F G H I; [和角..|].
+  apply 和角结合律2 with A' B' C' D E F D' E' F'; [|和角..].
+  apply 和角不大于平角结合律2 with A B C A B C X Y Z; 和角.
 Qed.
 
 (** Given two angles a and b, a/2 - b/2 = (a-b)/2 *)
 
 Lemma acute_ghalfa2_sams_suma2__ghalfa456 : forall A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z',
-  角度之和小于平角 A' B' C' D' E' F' -> 为锐角 D E F ->
+  和角不大于平角 A' B' C' D' E' F' -> 为锐角 D E F ->
   和角 A B C D E F X Y Z -> 和角 A' B' C' D' E' F' X' Y' Z' ->
   gHalfA A B C A' B' C' -> gHalfA X Y Z X' Y' Z' ->
   gHalfA D E F D' E' F'.
@@ -608,19 +608,19 @@ Proof.
   rewrite 3 ghalfa_chara.
   intros [H为锐角1 HSuma1] [H为锐角2 HSuma2].
   split; [apply H为锐角|].
-  assert_diffs.
+  统计不重合点.
   destruct (和角的存在性 D E F D E F) as [D'' [E'' [F'' HSuma3]]]; auto.
-  apply (等角保持和角 D E F D E F D'' E'' F''); try apply 同角相等; auto.
+  apply (等角保持和角性质 D E F D E F D'' E'' F''); try apply 同角相等; auto.
   destruct (和角的存在性 A' B' C' D E F) as [G [H [I]]]; auto.
-  assert (和角 A B C X Y Z G H I) by (apply suma_assoc_1 with A B C D E F A' B' C'; 和角).
-  assert (角度之和小于平角 A' B' C' D E F) by (apply sams_assoc_2 with A B C A B C X Y Z; 和角).
-  apply sams2_suma2__conga456 with A' B' C' X' Y' Z'; trivial; clear dependent D'; clear dependent E'.
-    apply sams_assoc_1 with D E F D E F G H I; [..|apply sams_assoc_2 with X Y Z A B C X Y Z]; 和角.
-    apply suma_assoc_1 with D E F D E F G H I; [..|apply suma_assoc_2 with X Y Z A B C X Y Z]; 和角.
+  assert (和角 A B C X Y Z G H I) by (apply 和角结合律1 with A B C D E F A' B' C'; 和角).
+  assert (和角不大于平角 A' B' C' D E F) by (apply 和角不大于平角结合律2 with A B C A B C X Y Z; 和角).
+  apply 和角推加角唯一性 with A' B' C' X' Y' Z'; trivial; clear dependent D'; clear dependent E'.
+    apply 和角不大于平角结合律1 with D E F D E F G H I; [..|apply 和角不大于平角结合律2 with X Y Z A B C X Y Z]; 和角.
+    apply 和角结合律1 with D E F D E F G H I; [..|apply 和角结合律2 with X Y Z A B C X Y Z]; 和角.
 Qed.
 
 Lemma acute_ghalfa2_sams_suma2__ghalfa123 : forall A B C D E F X Y Z A' B' C' D' E' F' X' Y' Z',
-  角度之和小于平角 A' B' C' D' E' F' -> 为锐角 A B C ->
+  和角不大于平角 A' B' C' D' E' F' -> 为锐角 A B C ->
   和角 A B C D E F X Y Z -> 和角 A' B' C' D' E' F' X' Y' Z' ->
   gHalfA D E F D' E' F' -> gHalfA X Y Z X' Y' Z' ->
   gHalfA A B C A' B' C'.

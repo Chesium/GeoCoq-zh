@@ -93,10 +93,10 @@ Proof.
     destruct (l10_15 A0 A1 A B0) as [P [HPerp HOS]]; Col.
       apply par_strict_not_col_1 with B1, sac__pars1423, HSac1.
     destruct (l6_11_existence A A0 B0 P) as [B [HOut Hcong5]].
-      assert_diffs; auto.
+      统计不重合点; auto.
       assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac1); spliter; auto.
     exists B.
-    unfold 萨凯里四边形 in *; spliter; assert_diffs.
+    unfold 萨凯里四边形 in *; spliter; 统计不重合点.
     repeat split; Cong.
     - apply (直角边共线点也构成直角2 _ _ A1); Col.
     - apply L形垂直转直角2, (垂线共线点也构成垂直2 _ _ _ P); Col.
@@ -141,10 +141,10 @@ Proof.
       Col.
       apply par_strict_not_col_1 with B1, sac__pars1423, HSac.
     destruct (l6_11_existence A A0 B0 P) as [B [HOut Hcong5]].
-      assert_diffs; auto.
+      统计不重合点; auto.
       assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac); spliter; auto.
     assert(HSac2 : 萨凯里四边形 A0 B0 B A).
-    { unfold 萨凯里四边形 in *; spliter; assert_diffs; assert(A0 <> A) by (intro; treat_equalities; auto).
+    { unfold 萨凯里四边形 in *; spliter; 统计不重合点; assert(A0 <> A) by (intro; treat_equalities; auto).
       repeat split; Cong.
       - apply (直角边共线点也构成直角2 _ _ A1); Col.
       - apply L形垂直转直角2, (垂线共线点也构成垂直2 _ _ _ P); Col.
@@ -166,7 +166,7 @@ Proof.
       apply (l5_6_等长保持小于等于关系 B0 B B0 E); Cong.
     clear dependent D; clear dependent E.
     destruct (l6_11_existence A0 A0 B0 A) as [B0' [HOut2 Hcong4]];
-      try (assert_diffs; intro; treat_equalities; auto).
+      try (统计不重合点; intro; treat_equalities; auto).
     destruct (由一点往一方向构造等长线段 A0 B0' B0 B) as [B' [Hbet7 Hcong7]].
     destruct (由一点往一方向构造等长线段 B0' B' B A) as [A' [Hbet8 Hcong8]].
     assert (Le A0 A A0 A'). (** A0A' = A0B0 + B0B + BA *)
@@ -183,7 +183,7 @@ Proof.
       apply (l5_6_等长保持小于等于关系 B0' B' B0' A'); Cong; destruct (l5_12_a B0' B' A'); auto.
     destruct HLe3 as [Q' [Hbet9 Hcong9]].
     assert (HBet10 : Bet A0 B0' A').
-      apply sac_distincts in HSac2; spliter; assert_diffs.
+      apply sac_distincts in HSac2; spliter; 统计不重合点.
       apply (中间性的外传递性2 _ _ B'); Between.
     apply (长度小于等于_小于_传递性 _ _ A0 Q').
       apply (bet2_le2__le1245 _ _ A' _ _ A); eBetween.
@@ -195,7 +195,7 @@ Proof.
       elim(中间性的决定性 B0' Q' B').
         intro; apply (l4_3 _ _ B' _ _ Q'); Cong; eBetween.
       intro HNBet.
-      apply sac_distincts in HSac2; spliter; assert_diffs.
+      apply sac_distincts in HSac2; spliter; 统计不重合点.
       assert (Q' <> B0') by (intro; subst; apply HNBet; Between).
       assert (A' <> B0') by (intro; treat_equalities; auto).
       assert (HOut3 : Out B0' B' Q').
@@ -249,7 +249,7 @@ Lemma t22_23_aux :
     中点 M N L -> Bet A N C /\ Lambert四边形 N L B C /\ Cong B L A N.
 Proof.
   intros A B C M N L HNCol HPerC HAC HM HPerN HColN HN.
-  assert_diffs.
+  统计不重合点.
   assert (HBet : Bet A N C) by (apply per23_preserves_bet with M B; Perp; Col; Between).
   destruct (l11_49 A M N B M L) as [HCong1 [H等角1 H等角2]]; auto with cong.
     apply l11_14; Between.
@@ -308,25 +308,25 @@ Proof.
   intros C' HPerp' HCol'.
   apply gradexp2__gradexp123, gradexp__grad, grad__bet in HGE.
   destruct (l8_18_过一点垂线之垂点的存在性 A C0 B) as [C [HCol HPerp]].
-    intro; assert_diffs; apply HNCol; ColR.
+    intro; 统计不重合点; apply HNCol; ColR.
   assert (HLe : Le B0 E B C) by (apply IHHGE; trivial).
   clear IHHGE.
   destruct (构造对称点 C B) as [D HD].
   apply 长度小于等于的传递性 with D C.
     apply bet2_le2__le1346 with E B; Between; apply (l5_6_等长保持小于等于关系 B0 E B C); auto with cong.
   assert (HAC : A <> C).
-  { intro; subst C; assert_diffs; assert (A = C0); auto.
+  { intro; subst C; 统计不重合点; assert (A = C0); auto.
     apply (l8_18_过一点垂线之垂点的唯一性 A C0 B0); Col.
     apply 垂直的右交换性, 垂线共线点也构成垂直2 with B; Perp; Col.
   }
   assert (HAC' : A <> C').
-  { intro; subst C'; assert_diffs; assert (A = C0); auto.
+  { intro; subst C'; 统计不重合点; assert (A = C0); auto.
     apply (l8_18_过一点垂线之垂点的唯一性 A C0 B0); Col.
     apply 垂直的右交换性, 垂线共线点也构成垂直2 with B'; Perp; ColR.
   }
   assert (HPer : Per A C B) by (apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with C0; assumption).
   destruct (t22_23 HNob A B' C' B C D) as [_ []]; Perp.
-  - assert_diffs; apply 成直角三点不共线 in HPer; Col.
+  - 统计不重合点; apply 成直角三点不共线 in HPer; Col.
   - apply L形垂直转直角1, 垂线共线点也构成垂直2 with C0; Perp.
   - split; auto.
   - ColR.
@@ -345,7 +345,7 @@ Proof.
   destruct (由一点往一方向构造等长线段 A B A B) as [B' [HBet HCong]].
   exists B'.
   destruct (l8_18_过一点垂线之垂点的存在性 A C0 B') as [C' [HCol' HPerp']].
-    apply gradexp2__gradexp123, gradexp__grad, grad__bet in HGE2; intro; assert_diffs; apply HNCol; ColR. 
+    apply gradexp2__gradexp123, gradexp__grad, grad__bet in HGE2; intro; 统计不重合点; apply HNCol; ColR. 
   exists C'; repeat (split; trivial); apply 双重对数刻度_步进 with B E; Cong.
 Qed.
 
@@ -357,7 +357,7 @@ Proof.
   assert (HNCol0 : ~ Col A B0 C0) by (intro; apply HNCol; ColR).
   assert (HPerp0 := 垂线共线点也构成垂直1 A D B0 C0 C0 HAC0 HPerpD HColD).
   elim (两点重合的决定性 P Q); intro HPQ.
-  { subst Q; exists C0; exists B0; split; assert_diffs.
+  { subst Q; exists C0; exists B0; split; 统计不重合点.
       apply l6_6, acute_col_perp__out with B0; trivial; apply acute_sym; trivial.
     split.
       apply out_trivial; auto.
@@ -366,19 +366,19 @@ Proof.
   }
   destruct (由一点往一方向构造等长线段 P Q P Q) as [Q' [HBetQ HCongQ]].
   destruct (reach__ex_gradexp_le B0 C0 P Q') as [E [HGE HLe]].
-    assert_diffs; apply Harchi; trivial.
+    统计不重合点; apply Harchi; trivial.
   destruct (t22_24_aux1 A B0 C0 E) as [B [C [HGE2 [HPerp HCol]]]]; trivial.
   assert(HOut : Out A B0 B).
-    apply gradexp2__gradexp123, gradexp__grad, grad__bet in HGE2; assert_diffs; apply bet_out; auto.
+    apply gradexp2__gradexp123, gradexp__grad, grad__bet in HGE2; 统计不重合点; apply bet_out; auto.
   assert(H为锐角 : 为锐角 D A B).
     apply (acute_conga__acute D A B0); trivial.
     apply l6_6 in HOut.
-    assert_diffs; apply out2__conga; auto; apply out_trivial; auto.
+    统计不重合点; apply out2__conga; auto; apply out_trivial; auto.
   assert (HAC : A <> C) .
-    intro; subst C; assert_diffs; apply (acute_not_per D A B); trivial.
+    intro; subst C; 统计不重合点; apply (acute_not_per D A B); trivial.
     apply L形垂直转直角1, 垂线共线点也构成垂直1 with C0; Col.
   exists C, B; split.
-    assert_diffs; apply l6_6, acute_col_perp__out with B; [apply acute_sym; trivial|ColR|apply 垂线共线点也构成垂直1 with C0; Col].
+    统计不重合点; apply l6_6, acute_col_perp__out with B; [apply acute_sym; trivial|ColR|apply 垂线共线点也构成垂直1 with C0; Col].
   split; trivial; split.
     apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with C0; trivial.
   apply 长度小于_小于等于_传递性 with P Q'.

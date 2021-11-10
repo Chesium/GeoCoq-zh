@@ -306,7 +306,7 @@ Proof.
         exists B.
         split; Col.
       assert(共面 A O N L).
-        assert_diffs; apply coplanar_perm_1, col_cop__cop with B'; Col; Cop.
+        统计不重合点; apply coplanar_perm_1, col_cop__cop with B'; Col; Cop.
       assert(HH:=cop_npar__inter_exists A O N L H51 H18).
       ex_and HH P.
       apply par_right_comm.
@@ -1068,7 +1068,7 @@ Proof.
       split; Col.
     assert(exists X : Tpoint, Col X B' C' /\ Col X O C).
       apply cop_npar__inter_exists.
-        assert_diffs; apply coplanar_perm_13, col_cop__cop with B; Col; Cop.
+        统计不重合点; apply coplanar_perm_13, col_cop__cop with B; Col; Cop.
       apply par_not_par with B C; Par.
       intro.
       induction H6.
@@ -1153,7 +1153,7 @@ Proof.
       split; Col.
     assert(Par A C A' C'').
       apply(l13_15 B A C B' A' C'' O); Par; Col.
-      assert_diffs; apply coplanar_perm_3, coplanar_trans_1 with C'; Col.
+      统计不重合点; apply coplanar_perm_3, coplanar_trans_1 with C'; Col.
         apply coplanar_perm_4, col_cop__cop with A'; Col; Cop.
         apply coplanar_perm_4, col_cop__cop with B'; Col; Cop.
     assert(Par A' C' A' C'').
@@ -1689,7 +1689,7 @@ Proof.
       exfalso.
       apply H25.
       right.
-      assert_diffs.
+      统计不重合点.
       repeat split; auto.
       assert (A <> E).
         intro.

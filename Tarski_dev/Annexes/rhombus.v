@@ -102,9 +102,9 @@ Proof.
   destruct 防降维公理_老版本 as [A [B [C HNC]]].
   assert (H1 : ~ Col A B C) by auto.
   clear HNC.
-  assert_diffs.
+  统计不重合点.
   assert (HAB := perp_bisect_existence A B);
-  destruct HAB as [C1 [C2 HAB]]; try (assert_diffs; assumption).
+  destruct HAB as [C1 [C2 HAB]]; try (统计不重合点; assumption).
   assert(Cong A C1 B C1).
   apply perp_bisect_cong_2 with C2.
   apply perp_bisect_sym_1.

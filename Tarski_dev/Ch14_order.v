@@ -574,7 +574,7 @@ Proof.
 intros O E E' X HNC HBet.
 elim (两点重合的决定性 O X); intro HOX; [right; auto|left].
 exists X; split; [apply diff_A_O; induction HBet; Col|].
-assert_diffs; repeat (split; Col).
+统计不重合点; repeat (split; Col).
 Qed.
 
 Lemma 小于推出不重合_ps : forall O E E' X Y XMY,
@@ -589,7 +589,7 @@ Lemma col_2_le_or_ge : forall O E E' A B,
   ~ Col O E E' -> Col O E A -> Col O E B -> LeP O E E' A B \/ LeP O E E' B A.
 Proof.
 intros O E E' A B HNC HColA HColB.
-assert (HDiff1 : O <> E) by (assert_diffs; auto).
+assert (HDiff1 : O <> E) by (统计不重合点; auto).
 elim (两点重合的决定性 A B); intro HDiff2; treat_equalities; [left; right; auto|].
 destruct (diff_exists O E E' B A) as [D HD]; Col.
 assert (HColD : Col O E D) by (apply diff_ar2 in HD; unfold Ar2 in *; spliter; Col).
@@ -683,7 +683,7 @@ elim HElim; clear HElim; intro HPs2; treat_equalities.
   assert (HFalse : Ps O E ME) by (apply prod_pos_pos with E' MIA A; auto).
   apply opp_pos_neg with O E E' ME E in HFalse; try apply opp_comm; auto.
   exfalso; apply neg_not_pos in HFalse; apply HFalse.
-  assert_diffs; repeat (split; Between).
+  统计不重合点; repeat (split; Between).
   }
 Qed.
 
@@ -729,7 +729,7 @@ Proof.
 intros O E E' A B C HBet HLt.
 assert (HNC : ~ Col O E E')
   by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
-assert (HDiff1 : O <> E) by (assert_diffs; auto).
+assert (HDiff1 : O <> E) by (统计不重合点; auto).
 elim (两点重合的决定性 B C); intro HDiff2; [right; auto|].
 assert (HDiff3 : A <> B) by (apply ltP_neq with O E E'; auto).
 assert (HColA : Col O E A)

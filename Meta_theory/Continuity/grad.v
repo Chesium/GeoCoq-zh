@@ -77,7 +77,7 @@ Proof.
     apply grad__bet in HGrad; apply 中间性的交换传递性1 with A; assumption.
   assert (Bet E F F').
   { apply cong_preserves_bet with B C C'; Cong.
-    assert_diffs.
+    统计不重合点.
     apply l6_2 with D; Between.
   }
   apply 双重线性刻度_步进 with C F; Cong.
@@ -125,7 +125,7 @@ Proof.
   assert (HBet2 : Bet A B D) by (apply grad__bet; trivial).
   assert(HBet3 : Bet C E E').
   { apply l6_13_1.
-      assert_diffs; apply l6_2 with A; Between.
+      统计不重合点; apply l6_2 with A; Between.
     apply (l5_6_等长保持小于等于关系 A D A D'); Cong.
     apply bet__le1213; trivial.
   }
@@ -238,14 +238,14 @@ Proof.
   induction HD1.
     intros; assert (B = C) by (apply 双中间性推出点重合 with A; Between); subst C.
     destruct (由一点往一方向构造等长线段 A B A B) as [C []].
-    assert_diffs.
+    统计不重合点.
     exists B, C; repeat split; Between; Cong; constructor.
   intros; destruct (l5_3 A C0 C C'); trivial.
     apply IHHD1; assumption.
   destruct (两点重合的决定性 C' C0).
   - subst C0.
     destruct (由一点往一方向构造等长线段 A C' A B) as [C'' []].
-    assert_diffs.
+    统计不重合点.
     exists C', C''; repeat split; Cong.
     apply 线性刻度_步进 with C; assumption.
   - exists C, C'; repeat split; assumption.
@@ -270,7 +270,7 @@ Proof.
   }
   rename C into R, C' into R'.
   destruct (中点的存在性 A B) as [M HM].
-  assert_diffs.
+  统计不重合点.
   destruct (IHHR1 M) as [C []]; auto.
     apply 两中点组全段偏序则半段偏序 with B R'; [|split|]; trivial.
   exists C; split; trivial.

@@ -167,7 +167,7 @@ Definition alternative_strong_parallel_postulate := forall A B C D P Q R,
     meet on that side on which are the angles less than the two right angles. *)
 
 Definition euclid_s_parallel_postulate := forall A B C D P Q R,
-  OS B C A D -> 角度之和小于平角 A B C B C D -> 和角 A B C B C D P Q R -> ~ Bet P Q R ->
+  OS B C A D -> 和角不大于平角 A B C B C D -> 和角 A B C B C D P Q R -> ~ Bet P Q R ->
   exists Y, Out B A Y /\ Out C D Y.
 
 (** There exists a triangle whose sum of angles is equal to the flat angle. *)

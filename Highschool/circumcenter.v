@@ -280,13 +280,13 @@ elim (共线的决定性 A B C); intro HABC.
       show_distinct A' C'; try (apply HAC; apply 中点组的唯一性1 with B A';
       unfold 中点 in *; spliter; split; Cong; Between).
       intro; assert (HFalse := 共线点间距相同要么重合要么中点 O A B); elim HFalse; clear HFalse; try intro HFalse;
-      unfold 外心 in *; spliter; Cong; assert_diffs; assert_cols; try ColR.
+      unfold 外心 in *; spliter; Cong; 统计不重合点; assert_cols; try ColR.
       assert (HOC' : O <> C').
         {
         apply perp_bisect_equiv_def in HPer1.
         apply perp_bisect_equiv_def in HPer2.
         unfold Perp_bisect in *; unfold 垂直于 in *;
-        destruct HPer1 as [I [HOC' Hc1]]; assert_diffs; Col.
+        destruct HPer1 as [I [HOC' Hc1]]; 统计不重合点; Col.
         }
       apply HOC'; apply 中点的唯一性1 with A B; Col.
       }
@@ -367,7 +367,7 @@ elim (共线的决定性 A B C); intro HABC.
       apply plg_permut in HPara.
       intro HOA'B'; apply plg_col_plgf in HPara; Col.
       destruct HPara as [Hc1 [HCol2 Hc2]]; clear Hc1; clear Hc2.
-      assert_diffs; assert_cols; apply HABC; ColR.
+      统计不重合点; assert_cols; apply HABC; ColR.
       }
 
       {
@@ -446,7 +446,7 @@ elim (共线的决定性 A B C); intro HABC.
       apply plg_permut in HPara.
       intro HO'A'B'; apply plg_col_plgf in HPara; Col.
       destruct HPara as [Hc1 [HCol2 Hc2]]; clear Hc1; clear Hc2.
-      assert_diffs; assert_cols; apply HABC; ColR.
+      统计不重合点; assert_cols; apply HABC; ColR.
       }
 
       {
@@ -513,7 +513,7 @@ elim (共线的决定性 A B C); intro HABC.
         apply plg_permut in HPara.
         intro HOA'C'; apply plg_col_plgf in HPara; Col.
         destruct HPara as [Hc1 [HCol2 Hc2]]; clear Hc1; clear Hc2.
-        assert_diffs; assert_cols; apply HABC; ColR.
+        统计不重合点; assert_cols; apply HABC; ColR.
         }
 
         {
@@ -575,7 +575,7 @@ elim (共线的决定性 A B C); intro HABC.
         apply plg_permut in HPara.
         intro HO'A'C'; apply plg_col_plgf in HPara; Col.
         destruct HPara as [Hc1 [HCol2 Hc2]]; clear Hc1; clear Hc2.
-        assert_diffs; assert_cols; apply HABC; ColR.
+        统计不重合点; assert_cols; apply HABC; ColR.
         }
 
         {
@@ -624,7 +624,7 @@ elim (共线的决定性 A B C); intro HABC.
           apply plg_permut in HPara.
           intro HOB'C'; apply plg_col_plgf in HPara; Col.
           destruct HPara as [Hc1 [HCol2 Hc2]]; clear Hc1; clear Hc2.
-          assert_diffs; assert_cols; apply HABC; ColR.
+          统计不重合点; assert_cols; apply HABC; ColR.
           }
 
           {
@@ -667,7 +667,7 @@ elim (共线的决定性 A B C); intro HABC.
           apply plg_permut in HPara.
           intro HO'B'C'; apply plg_col_plgf in HPara; Col.
           destruct HPara as [Hc1 [HCol2 Hc2]]; clear Hc1; clear Hc2.
-          assert_diffs; assert_cols; apply HABC; ColR.
+          统计不重合点; assert_cols; apply HABC; ColR.
           }
 
           {

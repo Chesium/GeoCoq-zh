@@ -79,7 +79,7 @@ Lemma sesamath_4ieme_G2_ex35 :
  长方形 F E R A.
 Proof.
 intros G A Z F E R HnCol HPER HM1 HM2 HM3.
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert (Par A Z E R)
  by (perm_apply (triangle_mid_par Z A G R E)).
@@ -122,7 +122,7 @@ Lemma sesamath_4ieme_G2_ex36_aux :
  Plg I J K B.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert (Par A B J K)
  by (perm_apply (triangle_mid_par B A C J K)).
 assert (Par B I J K)
@@ -150,7 +150,7 @@ Lemma sesamath_4ieme_G2_ex36 :
  菱形 A I H J.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert (~ Col B A C /\
        B <> H /\ C <> H /\ 中点 H B C /\ 等角 H A B H A C)
@@ -194,7 +194,7 @@ Perp_bisect A O L E ->
 Perp A O I M.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert (Par L E I M) 
   by (perm_apply (triangle_mid_par L E S M I);finish).
@@ -226,7 +226,7 @@ forall E A U M N L,
 exists O : Tpoint, Col O E L /\ 中点 O M N.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert( ~Col U E A);finish.
 assert (Plg M L N E)
@@ -259,7 +259,7 @@ Perp S H A C ->
 中点 H A C.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert (Cong C S T S /\ Cong T S A S /\ Cong A S C S)
   by ( apply(外心与三角形顶点距离相等 S C T A);finish).
@@ -296,7 +296,7 @@ Bet C R B ->
 Par M S N T /\ 平行四边形 M S T N.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert_all_diffs_by_contradiction.
 assert (Par A R M S)
@@ -367,7 +367,7 @@ S <> L ->
 等角 S A E T S H /\ 中点 A T S.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert(OS H L T T)
   by (apply(one_side_reflexivity H L T);finish).
@@ -429,22 +429,22 @@ forall A B C I K L J G,
 平行四边形 I J K L.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert (G<>A)
-  by (apply(重心不与三角形顶点重合1 A B C G);finish). (* todo improve assert_diffs *)
+  by (apply(重心不与三角形顶点重合1 A B C G);finish). (* todo improve 统计不重合点 *)
 assert (Par B C K L)
   by(apply(triangle_mid_par B C G L K);finish).
 assert (G<>C)
   by (apply(重心不与三角形顶点重合3 A B C G);finish).
-assert_diffs.
+统计不重合点.
 assert (中点 J B A)
   by(apply(M是AB中点则M是BA中点 J A B);finish).
 assert(重心 G C B A)
   by(apply(等价重心CBA A B C G);finish). (* todo improve finish to include permutations of gravity center *)
 assert(中点 G J L)
   by(apply(重心截中线为二比一 C B A G L J);finish).
-assert_diffs.
+统计不重合点.
 assert(平行四边形 I L K J)
   by(apply(varignon.瓦里尼翁平行四边形1 A C G B I L K J);finish).
 apply(Plg_perm I L K J);finish. (* todo improve finish to include permuations of Plg and other quadrilaterals *)
@@ -472,7 +472,7 @@ Bet D F J ->
 平行四边形 B J D I.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert_ncols.
 apply (严格平行四边形_平行四边形 A B C D) in H.
@@ -552,7 +552,7 @@ Col G C A /\ Col G M K ->
 中点 K I C /\ Par A K M C /\ 重心 G C M I.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert (~ Col C I A)
   by (intro;apply H;ColR).
@@ -568,7 +568,7 @@ intuition.
 }
 assert (~ Col I M C)
   by (intro;apply H14;ColR).
-assert_diffs.
+统计不重合点.
 assert(中点 K C I).
  (apply(triangle_par_mid C A I J K);finish).
 split.
@@ -606,7 +606,7 @@ Par A A' C C' ->
 中点 B' A' C'.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 destruct (中点的存在性 A C') as [x Hx].
 assert_cols.
@@ -621,7 +621,7 @@ assert(Col B B' x)
   by(apply(par_id B B' x);finish).
 assert( Par A A' B x)
   by(apply(par_trans A A' B B' B x);finish).
-assert_diffs.
+统计不重合点.
 assert(x=B'\/x<>B')
   by(apply(两点重合的决定性 x B');finish).
 destruct H14.

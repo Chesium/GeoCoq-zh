@@ -710,7 +710,7 @@ Qed.
 Lemma fieldF : field_theory OF OneF AddF MulF SubF OppF DivF InvF EqF.
 Proof.
 split; unfold OF, OneF, MulF, DivF, InvF, EqF, sig_rect; simpl;
-[apply ringF|assert (T:=ncolOEE');assert_diffs; auto|intros p q|intros p Hp].
+[apply ringF|assert (T:=ncolOEE');统计不重合点; auto|intros p q|intros p Hp].
 
   {
   destruct (div_f (proj1_sig p) (proj1_sig q)
@@ -790,7 +790,7 @@ simpl in *; subst; assumption.
 Qed.
 
 Global Instance Fintegral : (Integral_domain (Rcr:=Fcri)).
-Proof. split; [exact Fmult_integral|assert (T:=ncolOEE');assert_diffs; auto]. Defined.
+Proof. split; [exact Fmult_integral|assert (T:=ncolOEE');统计不重合点; auto]. Defined.
 
 Lemma PythFOk : forall A B, (PythF A B) * (PythF A B) =F= A*A + B*B.
 Proof.
@@ -837,7 +837,7 @@ Proof.
 unfold Ps.
 unfold Out.
 assert (T:=ncolOEE').
-assert_diffs.
+统计不重合点.
 repeat split;Between.
 Qed.
 
@@ -961,7 +961,7 @@ split; intro HBet; [|destruct HBet as [T HBet]].
   apply <- (characterization_of_betweenness O E E' SS U1 U2
                                             A Ax Ay B Bx By C Cx Cy
                                             Tx Ty CxMAx CyMAy); auto.
-  exists (proj1_sig T); repeat (split; auto); [assert (TT:=ncolOEE');assert_diffs; auto|].
+  exists (proj1_sig T); repeat (split; auto); [assert (TT:=ncolOEE');统计不重合点; auto|].
   apply (proj2_sig T).
   }
 Qed.
@@ -1224,14 +1224,14 @@ Lemma characterization_of_parallelism_F_aux : forall A B C D,
   A <> B /\ C <> D /\
   exists P, 中点 C A P /\ exists Q, 中点 Q B P /\ Col C D Q.
 Proof.
-intros; split; intro H; [do 2 (split; try solve [assert_diffs; auto])|
+intros; split; intro H; [do 2 (split; try solve [统计不重合点; auto])|
                          destruct H as [HAB [HCD [P [HP [Q [HQ HCol]]]]]]].
 
   {
   destruct (构造对称点 A C) as [P HP];
   exists P; split; [assumption|]; destruct (中点的存在性 B P) as [Q HQ].
   exists Q; split; [assumption|].
-  assert (Par B A Q C) by (assert_diffs; apply triangle_mid_par with P; Col).
+  assert (Par B A Q C) by (统计不重合点; apply triangle_mid_par with P; Col).
   destruct (parallel_uniqueness A B C D C Q C); Col; Par.
   }
 

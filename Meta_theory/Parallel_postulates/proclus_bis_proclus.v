@@ -16,7 +16,7 @@ Proof.
   assert(HC0 := l8_18_过一点垂线之垂点的存在性 C D P).
   destruct HC0 as [C0 []]; auto.
   assert(HNCol2 : ~ Col C0 A B) by (apply (par_not_col C D); Col).
-  assert_diffs.
+  统计不重合点.
   assert(HA0 : exists A0, Col A B A0 /\ ~ Col C0 P A0).
   { elim(共线的决定性 C0 P A).
     - intro.
@@ -31,7 +31,7 @@ Proof.
   destruct HA0 as [A0 []].
   assert(HA' := l10_15 C0 P P A0).
   destruct HA' as [A' []]; Col.
-  assert_diffs.
+  统计不重合点.
   assert (共面 C D P A0) by (apply col2_cop__cop with A B; Col; Cop).
   elim(共线的决定性 A0 P A').
   - intro.

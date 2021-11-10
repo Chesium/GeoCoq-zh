@@ -401,9 +401,9 @@ Proof.
     assert (HR1 := HP1).
     assert (HR2 := HP2).
     destruct HR1 as [HX1 [HPerp|Heq1]].
-      assert_diffs; apply (l10_2_uniqueness A B P); apply is_image_is_image_spec; assumption.
+      统计不重合点; apply (l10_2_uniqueness A B P); apply is_image_is_image_spec; assumption.
     destruct HR2 as [HX2 [HPerp|Heq2]].
-      assert_diffs; apply (l10_2_uniqueness A B P); apply is_image_is_image_spec; assumption.
+      统计不重合点; apply (l10_2_uniqueness A B P); apply is_image_is_image_spec; assumption.
    congruence.
 Qed.
 
@@ -563,9 +563,9 @@ Proof.
     assert (HR1 := HP1).
     assert (HR2 := HP2).
     destruct HR1 as [HX1 [HPerp|Heq1]].
-      assert_diffs; apply (l10_6_uniqueness A B P); apply is_image_is_image_spec; assumption.
+      统计不重合点; apply (l10_6_uniqueness A B P); apply is_image_is_image_spec; assumption.
     destruct HR2 as [HX2 [HPerp|Heq2]].
-      assert_diffs; apply (l10_6_uniqueness A B P); apply is_image_is_image_spec; assumption.
+      统计不重合点; apply (l10_6_uniqueness A B P); apply is_image_is_image_spec; assumption.
     subst; reflexivity.
 Qed.
 
@@ -943,7 +943,7 @@ Proof.
         induction (两点重合的决定性 X Y).
           subst Y.
           assumption.
-        assert_diffs.
+        统计不重合点.
         ColR.
       left.
       assert(Per M Y Q).
@@ -1732,14 +1732,14 @@ Lemma ex_四点成首末边等长双直角S形则对边等长 : forall A B C D X
 Proof.
     intros A B C D X Y HAB HXY HCol HNCol.
     destruct (l10_15 A B C D) as [Q [HQ1 HQ2]]; trivial.
-    assert_diffs.
+    统计不重合点.
     destruct (由一点往一方向构造等长线段_3 C Q X Y) as [P [HP1 HP2]]; auto.
     exists P; repeat split; Cong.
     - destruct (两点重合的决定性 A C).
         subst; Perp.
       apply L形垂直转直角1.
       apply 垂线共线点也构成垂直2 with B; auto.
-      assert_diffs; apply 垂直的对称性, 垂线共线点也构成垂直2 with Q; Col; Perp.
+      统计不重合点; apply 垂直的对称性, 垂线共线点也构成垂直2 with Q; Col; Perp.
     - apply os_out_os with Q C; Side.
 Qed.
 

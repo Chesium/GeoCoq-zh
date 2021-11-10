@@ -293,7 +293,7 @@ Proof.
     destruct (l8_18_过一点垂线之垂点的存在性 U P A) as [A' [HCol HPerp]]; trivial.
     assert (U <> A').
     { intro; treat_equalities.
-      assert_diffs.
+      统计不重合点.
       destruct (l11_46 P U A) as [_ HLt]; auto.
         left; Perp.
       apply 小于推出反向不小于等于 in HLt.
@@ -306,7 +306,7 @@ Proof.
   }
   destruct HA' as [A' [HUA' [HCol HPer]]].
   destruct (构造对称点 U A') as [V HV].
-  assert_diffs.
+  统计不重合点.
   assert (HCong := 直角端点和其关于顶点的对称点与另一端点等距 A A' U V HPer HV).
   assert (HVOn : 在圆上 V A B).
     unfold 在圆上 in *.
@@ -502,11 +502,11 @@ Proof.
   intros A B C D I P HI1 HI2 HNCol1 HNCol2.
   destruct (l8_18_过一点垂线之垂点的存在性 A C I) as [X []]; trivial.
   destruct (l10_15 A C X P) as [Z0 []]; trivial.
-  assert_diffs.
+  统计不重合点.
   destruct (l6_11_existence X X I Z0) as [Z []]; auto.
   exists Z.
   assert (Perp A C X Z).
-    assert_diffs; apply 垂直的对称性, 垂线共线点也构成垂直1 with Z0; Perp; Col.
+    统计不重合点; apply 垂直的对称性, 垂线共线点也构成垂直1 with Z0; Perp; Col.
   assert (OS A C P Z).
     apply one_side_transitivity with Z0; trivial.
     apply out_one_side_1 with X; [apply one_side_not_col124 with P| |apply l6_6]; trivial.
@@ -559,7 +559,7 @@ Lemma 弦中点严格在圆内 : forall O P U V M,
  在圆内 M O P.
 Proof.
 intros O P U V M HUV HUOn HVOn HM.
-assert_diffs.
+统计不重合点.
 apply bet_inc2__incs with U V; Between; Circle.
 Qed.
 
@@ -596,7 +596,7 @@ Lemma inc_onc2_out__eq : forall O P A B C,
 Proof.
   intros O P A B C HA HB HC HOut.
   destruct (由圆上圆内两点补全一弦 O P B A) as [B' [HB' HBet]]; trivial.
-  assert_diffs.
+  统计不重合点.
   destruct (圆交一线于至多两点 O P B B' C); auto.
     ColR.
   subst C.
@@ -621,7 +621,7 @@ ex_and HH M'.
 assert(HH:=(弦中点与圆心连线形成直角 O P U V M' H1 H2 H5)).
 assert(M = M' \/ ~ Col M' U V).
 apply(共线点和两直角的两种情况 O M U V M'); Col.
-assert_diffs;auto.
+统计不重合点;auto.
 induction H6.
 subst M'.
 assumption.
@@ -783,7 +783,7 @@ left; auto.
 induction(两点重合的决定性 X B).
 right; auto.
 left.
-assert_diffs.
+统计不重合点.
 assert(Cong O A O X) by (apply 等长的传递性 with O P; Cong).
 assert(Col A O X) by ColR.
 assert(HH:= 共线点间距相同要么重合要么中点 O A X H11 H10).
@@ -810,9 +810,9 @@ apply AB小于等于AB.
 induction(两点重合的决定性 T O).
 subst T.
 apply 等长则小于等于;Cong.
-assert_diffs.
+统计不重合点.
 apply(triangle_reverse_inequality O T X A); Cong.
-assert_diffs.
+统计不重合点.
 repeat split; auto.
 apply (l5_2 B); Between.
 Qed.
@@ -836,7 +836,7 @@ induction H5; auto.
 unfold 直径 in*.
 spliter.
 unfold 在圆上 in *.
-assert_diffs.
+统计不重合点.
 assert(Bet O A T \/ Bet O T A).
 apply(l5_2 B O A T); Between.
 assert (Cong O A O X) by (apply 等长的传递性 with O P; Cong).
@@ -934,8 +934,8 @@ assert(Lt A O A B /\ Lt B O A B).
   assert (中点 O A B).
     split; [assumption|apply 等长的传递性 with O P; Cong].
   split.
-  apply(严格中点组半段小于全段 ); assert_diffs;auto.
-  assert (Lt B O B A) by (assert_diffs; apply 严格中点组半段小于全段; 中点).
+  apply(严格中点组半段小于全段 ); 统计不重合点;auto.
+  assert (Lt B O B A) by (统计不重合点; apply 严格中点组半段小于全段; 中点).
   auto using 长度小于的右交换性.
 }
 spliter.
@@ -1036,7 +1036,7 @@ assert(Bet A O X).
   repeat split; Cong.
   apply 等长的传递性 with O P; Cong.
 }
-assert_diffs.
+统计不重合点.
 apply(between_cong_3 A O); auto.
 apply 等长的传递性 with O P; Cong.
 Qed.
@@ -1073,7 +1073,7 @@ apply (onc3__ncol O P); Circle; try(intro; treat_equalities; Col).
 exists T.
 split.
 Col.
-assert_diffs.
+统计不重合点.
 apply (col_inc_onc2__bet O P); Col.
 apply(bet_inc2__incs O P X Y T); Circle; intro; treat_equalities; Col.
 Qed.
@@ -1140,7 +1140,7 @@ Lemma center_onc2_mid__ncol : forall O P A B M ,
 Proof.
 intros.
 intro.
-assert_diffs.
+统计不重合点.
 unfold 中点 in H3.
 spliter.
 apply H0.
@@ -1212,7 +1212,7 @@ Proof.
   assert (HColO2 : Col M2 P2 O).
     apply (cop_mid_onc2_perp__col O P A C); Perp.
     apply coplanar_perm_12, coplanar_trans_1 with B; Cop.
-  assert_diffs.
+  统计不重合点.
   destruct (共线的决定性 M1 P1 M2); [apply (l6_21_两线交点的唯一性 M2 P2 M1 P1)|apply (l6_21_两线交点的唯一性 M1 P1 M2 P2)]; Col.
   intro.
   apply HBC.
@@ -1253,8 +1253,8 @@ Proof.
   destruct (存在两端点在圆心两侧的直径 O P X) as [B [C [HBet [HCol []]]]].
   destruct (l6_11_existence O O P Q) as [A []]; auto.
   exists A, B, C.
-  assert (~ Col O A B) by (intro; unfold 在圆上 in *; assert_diffs; apply HNCol; ColR).
-  assert_diffs.
+  assert (~ Col O A B) by (intro; unfold 在圆上 in *; 统计不重合点; apply HNCol; ColR).
+  统计不重合点.
   repeat split; Circle.
     intro; subst; apply HNCol; ColR.
     exists B; left; split; Col.
@@ -1278,16 +1278,16 @@ Proof.
   destruct (存在两端点在圆心两侧的直径 O P I) as [C1 [C2 [HBet1 [HCol [HC1 HC2]]]]].
   assert (HTS : TS A B C1 C2).
   { apply (chord_intersection O P); trivial.
-    unfold 在圆上 in *; assert_diffs.
+    unfold 在圆上 in *; 统计不重合点.
     repeat split; [intro; apply HNCol1; ColR..|exists I; split; Col].
   }
   assert (HBet2 : Bet C1 I C2).
-  { assert_diffs; apply (col_inc_onc2__bet O P); auto.
+  { 统计不重合点; apply (col_inc_onc2__bet O P); auto.
     apply bet_inc2__inc with A B; Circle.
   }
   assert (HNCol2 : ~ Col C1 A B) by (destruct HTS; assumption).
   destruct (cop__one_or_two_sides A B C C1); Col.
-    apply coplanar_trans_1 with O; Col; [Cop|exists I; right; right; assert_diffs; split; ColR].
+    apply coplanar_trans_1 with O; Col; [Cop|exists I; right; right; 统计不重合点; split; ColR].
   - exists C2.
     split; [|split; trivial; exists C1; Side].
     apply bet2__out with C1; Between.
@@ -1462,7 +1462,7 @@ Proof.
   destruct (共圆定义_辅助 P Q R B H2) as [O' [M']].
   spliter.
   exists O, M; repeat split; trivial.
-  assert_diffs.
+  统计不重合点.
   apply (cop2_onc6__eqc P Q R O' M'); auto.
 Qed.
 
@@ -1489,7 +1489,7 @@ Proof.
   destruct (共圆定义_辅助 P Q R C HC) as [OC [MC]].
   destruct (共圆定义_辅助 P Q R D HD) as [OD [MD]].
   spliter.
-  assert_diffs.
+  统计不重合点.
   exists OA, MA; repeat split; [|apply (cop2_onc6__eqc P Q R OB MB)|
     apply (cop2_onc6__eqc P Q R OC MC)|apply (cop2_onc6__eqc P Q R OD MD)]; auto.
 Qed.
@@ -1558,7 +1558,7 @@ subst X.
 treat_equalities.
 assert(在圆外 D O P).
 apply(onc2_out__outcs O P A B D); auto.
-assert_diffs.
+统计不重合点.
 unfold Out.
 split.
 auto.
@@ -1616,7 +1616,7 @@ exists V.
 unfold 在圆上 in *.
 split; Cong.
 apply(per2__col _ _ U); auto.
-assert_diffs.
+统计不重合点.
 auto.
 Qed.
 
@@ -1769,7 +1769,7 @@ assert(Le T X T A).
   apply(bet_onc_le_b O P A B T X HD H0).
   Circle.
 }
-assert_diffs.
+统计不重合点.
 
 assert(角度小于等于 Y O T X O T).
 {

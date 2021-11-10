@@ -15,7 +15,7 @@ intros A1 A2 B1 B2 C1 C2 D1 D2 IAB IAC IBD Hd1 Hd2 HPerp1 HPerp2 HPerp3.
 intros HCol1 HCol2 HCol3 HCol4 HCol5 HCol6 HCop1 HCop2 HCop3 HCop4.
 destruct (构造对称点 IAB IAC) as [E HE].
 destruct (构造对称点 IAB IBD) as [F HF].
-assert_diffs.
+统计不重合点.
 assert (HPerp4 : Perp E IAB IAB F).
   {
   apply 与垂线共线之线也为垂线1 with B1 B2; [apply 与垂线共线之线也为垂线1 with A1 A2|..]; ColR.

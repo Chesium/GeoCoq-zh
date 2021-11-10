@@ -3123,7 +3123,7 @@ Lemma is_length_exists : forall O E E' X Y,
 Proof.
 intros O E E' X Y HNC.
 elim (两点重合的决定性 X Y); intro HXY;
-[treat_equalities; exists O; left; apply length_id_2; assert_diffs; auto|
+[treat_equalities; exists O; left; apply length_id_2; 统计不重合点; auto|
 destruct (length_existence O E E' X Y) as [XY HLength]; Col; exists XY; left; auto].
 Qed.
 
@@ -4846,7 +4846,7 @@ induction(两点重合的决定性 P T).
 
   assert(HX:O<>E).
   {
-    assert_diffs; auto.
+    统计不重合点; auto.
   }
   assert(Per P T A).
   {
@@ -5078,7 +5078,7 @@ induction(两点重合的决定性 P T).
 
   assert(HX:O<>E).
   {
-    assert_diffs; auto.
+    统计不重合点; auto.
   }
   assert(Per P T A).
   {

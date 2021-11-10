@@ -36,7 +36,7 @@ Proof.
   assert(HNCol3 : ~ Col A B Q0) by (apply (one_side_not_col123 _ _ _ C0); Side).
   assert(P<>Q0) by (intro; subst; auto).
   assert(HNCol4 : ~ Col P C0 Q0) by (intro; apply HNCol1; ColR).
-  assert_diffs.
+  统计不重合点.
   assert(HC1 : exists C1, Col C D C1 /\ C1 <> C0).
   { elim(两点重合的决定性 C C0).
       intro; subst C0; exists D; split; Col.
@@ -58,7 +58,7 @@ Proof.
   }
   destruct HA0 as [A0 []].
   assert(HNCol6 : ~ Col P C0 A0) by (apply (one_side_not_col123 _ _ _ Q0); Side).
-  assert_diffs.
+  统计不重合点.
 
   assert(HY := ip C0 P Q0 C0 C1).
   destruct HY as [Y []]; [|Out..|apply (l8_16_1_共线四点和一垂直推另一直角 C D); Col|CopR|exists Y; split; ColR].

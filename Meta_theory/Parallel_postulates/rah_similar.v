@@ -14,7 +14,7 @@ Proof.
   assert(HNCol1 : ~ Col C A B) by (apply (one_side_not_col123 _ _ _ B0); Side).
   assert(Per A C B) by Perp.
   destruct (构造对称点 A B) as [B'].
-  assert_diffs.
+  统计不重合点.
   assert(HNCol2 : ~ Col A C B') by (intro; apply HNCol1; ColR).
   assert(HNCol3 : ~ Col B B' C) by (intro; apply HNCol2; ColR).
   destruct (l8_18_过一点垂线之垂点的存在性 A C B') as [C' []]; auto.
@@ -22,7 +22,7 @@ Proof.
   assert(严格平行 B C B' C').
     apply (par_not_col_strict _ _ _ _ B'); Col; apply (l12_9 _ _ _ _ A C); Perp; Cop.
   assert(HNCol4 : ~ Col B C C') by (apply (par_strict_not_col_4 _ _ B'); auto).
-  assert_diffs.
+  统计不重合点.
   assert(Bet A C C').
   { apply (col_two_sides_bet _ B); Col.
     apply l9_2.
@@ -45,11 +45,11 @@ Proof.
 
     {
     split; [|split; auto].
-    apply (sams2_suma2__conga456 C A B _ _ _ _ _ _ B C A).
+    apply (和角推加角唯一性 C A B _ _ _ _ _ _ B C A).
       和角.
-      apply (conga2_sams__sams C' A B' A B' C'); 等角; 和角.
+      apply (等角保持和角不大于平角性质 C' A B' A B' C'); 等角; 和角.
       apply t22_12__rah; Perp.
-      apply (等角保持和角 C' A B' A B' C' B' C' A); 等角; apply t22_12__rah; auto.
+      apply (等角保持和角性质 C' A B' A B' C' B' C' A); 等角; apply t22_12__rah; auto.
     }
 Qed.
 

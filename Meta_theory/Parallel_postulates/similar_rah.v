@@ -17,7 +17,7 @@ Lemma similar__rah_aux : forall A B C D E F,
   角度小于等于 B C A A B C -> Lt D E A B -> postulate_of_right_saccheri_quadrilaterals.
 Proof.
   intros A B C D E F HNCol HCongaB HCongaC HCongaA Hlea Hlt.
-  assert_diffs.
+  统计不重合点.
   destruct (由一点往一方向构造等长线段_3 A B D E) as [G []]; auto.
   rename H into HFD.
   destruct (由一点往一方向构造等长线段_3 A C D F) as [H []]; auto.
@@ -43,7 +43,7 @@ Proof.
   assert(HNCol3 : ~ Col G H C) by (apply (par_strict_not_col_4 _ _ B); auto).
   assert(HNCol4 : ~ Col B C G) by (apply (par_strict_not_col_3 _ H); auto).
   assert(HNCol5 : ~ Col H B C) by (apply (par_strict_not_col_2 G); auto).
-  assert_diffs.
+  统计不重合点.
   assert(Out C H A).
   { apply (col_one_side_out _ B); Col.
     apply invert_one_side.
@@ -52,8 +52,8 @@ Proof.
       apply out_one_side; Col; apply bet_out; Between.
   }
   assert(Bet A H C) by (apply out2__bet; apply l6_6; auto).
-  assert(角度之和小于平角 B G H H C B).
-  { apply (sams_chara _ _ _ _ _ _ A); Between.
+  assert(和角不大于平角 B G H H C B).
+  { apply (用角度小于等于特征化和角不大于平角 _ _ _ _ _ _ A); Between.
     apply (l11_30_等角保持小于等于 B C A A B C); auto; apply 等角的右交换性; auto.
     apply out2__conga; [apply out_trivial|]; auto.
   }
@@ -61,42 +61,42 @@ Proof.
     apply (l11_10 A G H A B C); try (apply out_trivial); 等角; apply bet_out; Between.
   assert(等角 G H A B C H).
     apply (l11_10 G H A B C A); try (apply out_trivial); 等角.
-  assert(角度之和小于平角 B G H C B G) by (apply (conga2_sams__sams B G H H G A); 等角; 和角).
-  assert(角度之和小于平角 C H G B C H) by (apply (conga2_sams__sams C H G G H A); 等角; 和角).
+  assert(和角不大于平角 B G H C B G) by (apply (等角保持和角不大于平角性质 B G H H G A); 等角; 和角).
+  assert(和角不大于平角 C H G B C H) by (apply (等角保持和角不大于平角性质 C H G G H A); 等角; 和角).
   destruct(和角的存在性 B C G C G B) as [I [J [K]]]; auto.
   destruct(和角的存在性 H C G C G H) as [L [M [N]]]; auto.
-  suma.assert_diffs.
+  suma.统计不重合点.
   destruct(和角的存在性 I J K G B C) as [O [P [Q]]]; auto.
   destruct(和角的存在性 L M N G H C) as [R [S [T]]]; auto.
   destruct(和角的存在性 I J K L M N) as [U [V [W]]]; auto.
-  suma.assert_diffs.
-  assert(HInter : 角度之和小于平角 I J K L M N /\ 和角 H G B B C H U V W).
+  suma.统计不重合点.
+  assert(HInter : 和角不大于平角 I J K L M N /\ 和角 H G B B C H U V W).
   { assert(TS G C B H).
     { apply invert_two_sides, l9_31; Side.
       apply (col_one_side _ A); Col.
       apply invert_one_side; apply out_one_side; try (apply l6_6); Col.
     }
-    assert(角度之和小于平角 H G B B C G).
-    { apply (sams_lea2__sams _ _ _ _ _ _ H G B B C H); try (apply 任何角小于等于自己); 和角.
+    assert(和角不大于平角 H G B B C G).
+    { apply (角度小于等于保持和角不大于平角性质 _ _ _ _ _ _ H G B B C H); try (apply 任何角小于等于自己); 和角.
       apply inangle__lea.
       apply os_ts__inangle; Side.
     }
     destruct(和角的存在性 B C G H G B) as [X [Y [Z]]]; auto.
     assert(和角 B G C C G H H G B) by 和角.
-    assert(角度之和小于平角 B G C C G H).
-    { apply os_ts__sams; trivial.
+    assert(和角不大于平角 B G C C G H).
+    { apply 同侧异侧推和角不大于平角; trivial.
       apply (col_one_side _ A); Col.
       apply invert_one_side, out_one_side; Col.
     }
-    assert(角度之和小于平角 I J K C G H) by (apply (sams_assoc B C G C G B _ _ _ _ _ _ H G B); 和角).
-    assert(和角 I J K C G H X Y Z) by (apply (suma_assoc B C G C G B _ _ _ _ _ _ _ _ _ H G B); 和角).
-    assert(角度之和小于平角 B C G H C G) by (apply sams_right_comm, os_ts__sams; Side).
+    assert(和角不大于平角 I J K C G H) by (apply (和角不大于平角结合律 B C G C G B _ _ _ _ _ _ H G B); 和角).
+    assert(和角 I J K C G H X Y Z) by (apply (和角结合律 B C G C G B _ _ _ _ _ _ _ _ _ H G B); 和角).
+    assert(和角不大于平角 B C G H C G) by (apply 和角不大于平角的右交换性, 同侧异侧推和角不大于平角; Side).
     assert(和角 B C G H C G H C B) by 和角.
     split.
-    - assert(角度之和小于平角 X Y Z H C G) by (apply (sams_assoc H G B B C G _ _ _ _ _ _ H C B); 和角).
-      apply (sams_assoc _ _ _ C G H H C G X Y Z); 和角.
-    - assert(和角 X Y Z H C G U V W) by (apply (suma_assoc I J K C G H _ _ _ _ _ _ _ _ _ L M N); 和角).
-      apply (suma_assoc _ _ _ B C G H C G _ _ _ X Y Z); 和角.
+    - assert(和角不大于平角 X Y Z H C G) by (apply (和角不大于平角结合律 H G B B C G _ _ _ _ _ _ H C B); 和角).
+      apply (和角不大于平角结合律 _ _ _ C G H H C G X Y Z); 和角.
+    - assert(和角 X Y Z H C G U V W) by (apply (和角结合律 I J K C G H _ _ _ _ _ _ _ _ _ L M N); 和角).
+      apply (和角结合律 _ _ _ B C G H C G _ _ _ X Y Z); 和角.
   }
   destruct HInter.
 
@@ -104,27 +104,27 @@ Proof.
   - intro aah.
     exfalso.
     apply(nlta U V W).
-    apply (sams_lta2_suma2__lta I J K L M N _ _ _ H G B B C H); 和角.
+    apply (角度双全序则和角保持全序 I J K L M N _ _ _ H G B B C H); 和角.
     { destruct (t22_14__sams_nbet aah C G B I J K O P Q) as [HIsi HNBet]; Col.
-      apply (sams_lea_lta789_suma2__lta123 _ _ _ G B C O P Q _ _ _ G B C A G B); Lea.
+      apply (加角反偏序和角全序则原角全序 _ _ _ G B C O P Q _ _ _ G B C A G B); Lea.
         split; Lea; intro; apply HNBet; apply (bet_conga__bet A G B); 等角.
-        apply (等角保持和角 B G H H G A A G B); 等角; 和角.
+        apply (等角保持和角性质 B G H H G A A G B); 等角; 和角.
     }
     destruct (t22_14__sams_nbet aah C G H L M N R S T) as [HIsi HNBet]; Col.
-    apply (sams_lea_lta789_suma2__lta123 _ _ _ G H C R S T _ _ _ G H C A H C); Lea.
+    apply (加角反偏序和角全序则原角全序 _ _ _ G H C R S T _ _ _ G H C A H C); Lea.
       split; Lea; intro; apply HNBet; apply (bet_conga__bet A H C); 等角.
-      apply (等角保持和角 A H G G H C A H C); 等角; 和角.
+      apply (等角保持和角性质 A H G G H C A H C); 等角; 和角.
 
   - intro HUn.
     destruct HUn as [|oah]; auto.
     exfalso.
     apply(nlta U V W).
-    apply (sams_lta2_suma2__lta H G B B C H _ _ _ I J K L M N); 和角; apply nlea__lta; auto; intro.
+    apply (角度双全序则和角保持全序 H G B B C H _ _ _ I J K L M N); 和角; apply nlea__lta; auto; intro.
     { apply (t22_14__nsams oah C G B I J K); Col.
-      apply (sams_lea2__sams _ _ _ _ _ _ H G B G B C); Lea; 和角.
+      apply (角度小于等于保持和角不大于平角性质 _ _ _ _ _ _ H G B G B C); Lea; 和角.
     }
     apply (t22_14__nsams oah C G H L M N); Col.
-    apply (sams_lea2__sams _ _ _ _ _ _ B C H G H C); Lea; 和角.
+    apply (角度小于等于保持和角不大于平角性质 _ _ _ _ _ _ B C H G H C); Lea; 和角.
 Qed.
 
 Lemma similar__rah : postulate_of_existence_of_similar_triangles -> postulate_of_right_saccheri_quadrilaterals.
@@ -132,7 +132,7 @@ Proof.
   intro similar.
   destruct similar as [A [B [C [D [E [F]]]]]].
   spliter.
-  assert_diffs.
+  统计不重合点.
   elim (lea_total B C A A B C); auto; intro; [elim (长度小于等于的决定性 D E A B)|elim (长度小于等于的决定性 D F A C)].
   - intro.
     apply (similar__rah_aux A B C D E F); auto.

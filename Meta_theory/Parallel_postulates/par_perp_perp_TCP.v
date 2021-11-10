@@ -13,9 +13,9 @@ Lemma inter_dec_plus_par_perp_perp_imply_triangle_circumscription :
 Proof.
 intros HID HPTP A B C HNC.
 assert (HAB := perp_bisect_existence_cop A B C);
-destruct HAB as [C1 [C2 [HAB HCop1]]]; try (assert_diffs; assumption).
+destruct HAB as [C1 [C2 [HAB HCop1]]]; try (统计不重合点; assumption).
 assert (HAC := perp_bisect_existence_cop A C B);
-destruct HAC as [B1 [B2 [HAC HCop2]]]; try (assert_diffs; assumption).
+destruct HAC as [B1 [B2 [HAC HCop2]]]; try (统计不重合点; assumption).
 assert (HInter := HID B1 B2 C1 C2).
 elim HInter; clear HInter; intro HInter.
 
@@ -57,7 +57,7 @@ elim HInter; clear HInter; intro HInter.
 
         destruct HCop1 as [HCop1 HCop3].
         destruct HAB as [[_ HE] HAB].
-        elim HE; clear HE; intro; [assert_diffs|exfalso; auto].
+        elim HE; clear HE; intro; [统计不重合点|exfalso; auto].
         apply col_cop2__cop with C1 C2; Col; Cop.
 
   exfalso; apply HNC.

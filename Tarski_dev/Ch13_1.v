@@ -1391,7 +1391,7 @@ assert(Par B B' A A').
 apply(l12_9 B B' A A' O A'); Perp.
 exists O.
 left.
-assert_diffs.
+统计不重合点.
 split; ColR.
 exists A'.
 left.
@@ -1410,14 +1410,14 @@ assert(Par B B' C C').
 apply(l12_9 B B' C C' O A'); Perp.
 exists O.
 left.
-assert_diffs.
+统计不重合点.
 split; ColR.
 exists C'.
 left.
 split; Col.
 exists B'.
 left.
-assert_diffs.
+统计不重合点.
 split; ColR.
 exists A'.
 left.
@@ -1844,7 +1844,7 @@ assert(~ Col A X y).
 intro.
 assert(A=B'').
 apply (image_id X y); Col.
-assert_diffs.
+统计不重合点.
 auto.
 apply(l12_9 A' B' A B'' X y); Perp.
 Cop.
@@ -1945,7 +1945,7 @@ assert(~ Col A R y).
 intro.
 assert(A=B).
 apply (image_id R y); Col.
-assert_diffs.
+统计不重合点.
 auto.
 apply(l12_9 A B A' B' R y); Perp.
 Cop.
@@ -2298,7 +2298,7 @@ assert(HTS:= H).
       subst B.
       Col.
     ex_and H4 P.
-    assert_diffs.
+    统计不重合点.
     show_distinct C D.
 contradiction.
 
@@ -2476,11 +2476,11 @@ Proof.
     assert(T = T1).
       apply 中间性蕴含共线1 in H20.
       apply 中间性蕴含共线1 in H21.
-      assert_diffs.
+      统计不重合点.
       apply (l6_21_两线交点的唯一性 A B C D); Col.
     subst T1.
     assert(T = E).
-      assert_diffs.
+      统计不重合点.
       apply (l6_21_两线交点的唯一性 A B C D); Col.
     subst T.
     split.
@@ -3596,13 +3596,13 @@ apply (l12_9 _ _ _ _ X Y); Perp.
 induction(共线的决定性 B X Y).
 exists A.
 left.
-assert_diffs.
+统计不重合点.
 split; ColR.
 apply coplanar_trans_1 with B; Cop.
 induction(共线的决定性 A X Y).
 exists B.
 left.
-assert_diffs.
+统计不重合点.
 split; ColR.
 apply coplanar_trans_1 with A; Cop.
 exists O.
@@ -3694,13 +3694,13 @@ apply (l12_9 _ _ _ _ X Y); Perp.
 induction(共线的决定性 C' X Y).
 exists B'.
 left.
-assert_diffs.
+统计不重合点.
 split; ColR.
 apply coplanar_trans_1 with C'; Cop.
 induction(共线的决定性 B X Y).
 exists C.
 left.
-assert_diffs.
+统计不重合点.
 split; ColR.
 apply coplanar_trans_1 with B; Cop.
 
@@ -4206,7 +4206,7 @@ assumption.
 assert(为锐角 C' C B /\ 为锐角 C' B C).
 apply(l11_43 C' C B).
 
-assert_diffs.
+统计不重合点.
 auto.
 auto.
 left.

@@ -6,7 +6,7 @@ Ltac not_exist_hyp_comm A B := not_exist_hyp (A<>B);not_exist_hyp (B<>A).
 Ltac not_exist_hyp2 A B C D := first [not_exist_hyp_comm A B | not_exist_hyp_comm C D].
 Ltac not_exist_hyp3 A B C D E F := first [not_exist_hyp_comm A B | not_exist_hyp_comm C D | not_exist_hyp_comm E F].
 
-Ltac assert_diffs :=
+Ltac 统计不重合点 :=
 repeat
  match goal with
       | H:(~Col ?X1 ?X2 ?X3) |- _ =>
@@ -60,7 +60,7 @@ repeat
 Ltac ColR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
-   treat_equalities; assert_cols; Col; assert_diffs; Col_refl tpoint col.
+   treat_equalities; assert_cols; Col; 统计不重合点; Col_refl tpoint col.
 
 Section T7_1.
 
@@ -355,7 +355,7 @@ Lemma 四点对边等长则对角线交点平分对角线 : forall A B C D P,
   中点 P A C /\ 中点 P B D.
 Proof.
     intros.
-    assert_diffs.
+    统计不重合点.
     assert (exists P', 三角形全等 B D P D B P').
       eapply l4_14_退化三角形有其全等形.
         Col.

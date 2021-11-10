@@ -14,11 +14,11 @@ Lemma bachmann_s_lotschnittaxiom__weak_inverse_projection_postulate :
 Proof.
 rewrite bachmann_s_lotschnittaxiom_aux.
 intros lotschnitt A B C D E F P Q H为锐角 HPer HSuma HOut HPQ HPerP HCop.
-suma.assert_diffs.
+suma.统计不重合点.
 assert (HNCol : ~ Col A B C).
 { intro HCol.
   apply (成直角三点不共线 D E F); auto.
-  apply (col2_suma__col A B C A B C); assumption.
+  apply (两退化角之和退化 A B C A B C); assumption.
 }
 assert (HNCol1 : ~ Col B C P) by (intro; apply HNCol; ColR).
 destruct (l10_6_existence_spec B C P) as [P' HP']; trivial.
@@ -26,7 +26,7 @@ assert (HP'1 : 对称 P P' B C) by (apply is_image_is_image_spec; auto).
 assert (HNCol2 : ~ Col B C P') by (apply osym_not_col with P; trivial).
 destruct (l10_6_existence_spec B C Q) as [Q' HQ']; trivial.
 assert (HQ'1 : 对称 Q Q' B C) by (apply is_image_is_image_spec; auto).
-assert_diffs.
+统计不重合点.
 assert (P' <> Q').
  intro; subst Q'; assert (P = Q) by (apply (l10_2_uniqueness B C P'); assumption); auto.
 assert (H等角 : 等角 C B P' A B C).
@@ -40,8 +40,8 @@ assert (共面 P' C A B) by (apply col2_cop__cop with P B; Col; Cop).
 assert (共面 B P P' Q) by CopR.
 assert (HPer1 : Per A B P').
 { apply l11_17_等于直角的角是直角 with D E F; trivial.
-  apply (suma2__conga A B C A B C); trivial.
-  apply 等角保持和角 with A B C C B P' A B P'; 等角.
+  apply (和角的唯一性 A B C A B C); trivial.
+  apply 等角保持和角性质 with A B C C B P' A B P'; 等角.
   exists P'; repeat (split; try (apply 同角相等; auto)); [|Cop].
   apply l9_9, l9_5 with P B; Col.
 }
@@ -68,7 +68,7 @@ apply col_one_side_out with A.
   apply 等价共线BCA, intersection_with_image_gen with P Q P' Q'; Col.
 apply invert_one_side, one_side_transitivity with P'.
 - apply cop_nts__os; Col; Cop.
-  apply (conga_sams_nos__nts A B C A B C P'); 和角.
+  apply (和角不大于平角推不同侧不异侧_间接 A B C A B C P'); 和角.
   apply l9_9, l9_5 with P B; Col.
 - apply l12_6, par_strict_col_par_strict with Q'; Col.
     intro; subst; apply HNCol5; Col.

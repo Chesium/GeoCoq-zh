@@ -11,7 +11,7 @@ Lemma cop__cong_on_bissect : forall A B M P X,
 Proof.
 intros.
 assert(X = M \/ ~ Col A B X /\ 垂直于 M X M A B).
-assert_diffs; apply(与两点等距点要么为其中点要么在其中垂线上 A B M X); Cong.
+统计不重合点; apply(与两点等距点要么为其中点要么在其中垂线上 A B M X); Cong.
 induction H3.
 treat_equalities; Col.
 spliter.
@@ -95,7 +95,7 @@ Proof.
           apply ABA型共线.
         apply 等价共线CAB.
         apply cop_per2__col with A.
-          assert_diffs; apply coplanar_perm_12, col_cop__cop with B; Cop.
+          统计不重合点; apply coplanar_perm_12, col_cop__cop with B; Cop.
           auto.
           apply 直角的对称性.
           apply H9.
@@ -308,7 +308,7 @@ Proof.
     apply l10_8.
     assert (对称 A' A X Y) by (apply l10_4; assumption).
     assert (~ Col A' B' A) by (apply image_gen_preserves_ncol with A B A' X Y; trivial).
-    assert_diffs.
+    统计不重合点.
     apply image_gen_preserves_inter with A B A' B' A' B' A B; trivial.
     apply l10_4; assumption.
 Qed.
@@ -832,7 +832,7 @@ assert (HTS : TS I P B C).
   split; try (intro; apply HNC'; ColR).
   exists I; Col.
   }
-assert (HCop1 : 共面 A P B I) by (assert_diffs; apply col_cop__cop with C; Cop; Col).
+assert (HCop1 : 共面 A P B I) by (统计不重合点; apply col_cop__cop with C; Cop; Col).
 elim (two_sides_dec I P A B); intro HTS'.
 
   {
@@ -899,7 +899,7 @@ intros A B C D I HCD HCol1 HCol2 HNC.
 assert (HX : exists X, Col C D X /\ I <> X) by (exists C; split; try intro; treat_equalities; Col).
 destruct HX as [X [HCol3 HIX]].
 destruct (构造对称点 X I) as [Y HMid].
-exists X; exists Y; assert_diffs; assert_cols; repeat split; try ColR.
+exists X; exists Y; 统计不重合点; assert_cols; repeat split; try ColR.
   intro; apply HIX, l6_21_两线交点的唯一性 with A B C D; Col.
   intro; absurd (I = Y); [auto|apply l6_21_两线交点的唯一性 with A B C D; ColR].
 exists I; unfold 中点 in HMid; spliter; split; Col; Between.
@@ -916,7 +916,7 @@ assert (共面 A B P X).
   apply coplanar_trans_1 with C; [Col|Cop|].
   exists I; right; right; split; ColR.
 elim (two_sides_dec A B P X); intro HOS; [exists X; Col|].
-assert_diffs; apply cop_nts__os in HOS; Col; [|intro; unfold TS in HTS; intuition].
+统计不重合点; apply cop_nts__os in HOS; Col; [|intro; unfold TS in HTS; intuition].
 exists Y; split; Col.
 apply l9_8_2 with X; [|apply one_side_symmetry]; Col.
 Qed.
@@ -932,7 +932,7 @@ assert (共面 A B P X).
   apply coplanar_trans_1 with C; [Col|Cop|].
   exists I; right; right; split; ColR.
 elim (one_side_dec A B P X); intro HTS2; [exists X; Col|].
-assert_diffs; apply cop_nos__ts in HTS2; Col; [|intro; unfold TS in HTS; intuition].
+统计不重合点; apply cop_nos__ts in HTS2; Col; [|intro; unfold TS in HTS; intuition].
 exists Y; split; Col.
 exists X; split; Side.
 Qed.

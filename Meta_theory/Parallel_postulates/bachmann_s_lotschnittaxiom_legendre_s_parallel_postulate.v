@@ -33,8 +33,8 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
     split; [|split]; Between.
     apply l6_6, acute_col_perp__out with T; Col.
     apply acute_conga__acute with A B C; auto.
-    apply out213_suma__conga with T B A; [|Out].
-    assert_diffs.
+    apply 零角加上任何角后者大小不变 with T B A; [|Out].
+    统计不重合点.
     exists C; repeat (split; try (apply 同角相等; auto)).
       apply col123__nos; Col.
       Cop.
@@ -48,12 +48,12 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       apply acute_lea_acute with A B C; auto.
       apply 角度小于等于的左交换性, l11_29_b_能在其内找一点构造等角之角较大.
       exists C; split; trivial.
-      assert_diffs; apply 同角相等; auto.
+      统计不重合点; apply 同角相等; auto.
       }
     destruct (HP X T) as [Y [HOut2 H]].
       assumption.
-      assert_diffs; auto.
-      assert_diffs; apply L形垂直转直角1, 垂直的对称性, 与垂线共线之线也为垂线1 with A B; Col.
+      统计不重合点; auto.
+      统计不重合点; apply L形垂直转直角1, 垂直的对称性, 与垂线共线之线也为垂线1 with A B; Col.
       Cop.
     exists X, Y; repeat (split; [assumption|]).
     elim H; clear H; intro H; auto.
@@ -61,7 +61,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       subst; Between.
     assert (HACT : ~ Col B C T).
       {
-      assert_diffs; intro; apply HTY, l6_21_两线交点的唯一性 with B C X T; Col.
+      统计不重合点; intro; apply HTY, l6_21_两线交点的唯一性 with B C X T; Col.
         intro; apply HNC; ColR.
         right; assumption.
       }
@@ -90,7 +90,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       apply l9_2; apply l9_8_2 with Y.
 
         {
-        repeat split; [intro; assert_diffs; apply HNC; ColR..|].
+        repeat split; [intro; 统计不重合点; apply HNC; ColR..|].
         exists X; split; Col.
         }
 
@@ -108,7 +108,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
   destruct (l8_18_过一点垂线之垂点的存在性 D E C) as [B [HC1 HPerp]]; Col.
   assert (HF : exists F, Col D E F /\ B <> F).
     {
-    assert_diffs; elim (两点重合的决定性 B E); intro;
+    统计不重合点; elim (两点重合的决定性 B E); intro;
     [exists D|exists E]; subst; split; Col.
     }
   destruct HF as [F [HC2 HNE]].
@@ -117,7 +117,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
     by (assert (Col A B F) by (induction Hd; Col); ColR).
   clear Hd.
   assert (HPerp1 : Perp B A C B)
-    by (assert_diffs; apply 垂直的对称性, 与垂线共线之线也为垂线1 with D E; Perp).
+    by (统计不重合点; apply 垂直的对称性, 与垂线共线之线也为垂线1 with D E; Perp).
   clear dependent D; clear dependent F; clear E.
   assert (HNC := L形垂直推出不共线 _ _ _ HPerp1).
   destruct (中点的存在性 A C) as [D HD].
@@ -125,7 +125,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
   split; [intro; apply HNC; ColR|split].
 
     {
-    assert_diffs.
+    统计不重合点.
     assert (D <> B) by (intro; subst; apply HNC; Col).
     exists A, B, C; split; [Perp|split].
 
@@ -153,24 +153,24 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
         repeat split; [apply 成直角三点不共线; auto..|].
         exists D; split; [Col|Between].
         }
-      assert (HC := per2_suma__bet _ _ _ _ _ _ _ _ _ HPer1 HPer2 H和角).
+      assert (HC := 两直角之和为平角 _ _ _ _ _ _ _ _ _ HPer1 HPer2 H和角).
       apply HNC; Col.
       }
     }
 
     {
     intros P Q HOut1 HNE1 HPer HCop1.
-    destruct (l6_11_existence B B P C) as [P' [HOut2 HCong2]]; [assert_diffs; auto..|].
-    destruct (ex_perp_cop B C P' A) as [Q' [HPerp2 HCop2]]; [assert_diffs; auto|].
+    destruct (l6_11_existence B B P C) as [P' [HOut2 HCong2]]; [统计不重合点; auto..|].
+    destruct (ex_perp_cop B C P' A) as [Q' [HPerp2 HCop2]]; [统计不重合点; auto|].
     assert (HPerp3 : Perp B A Q P).
       {
-      assert_diffs.
+      统计不重合点.
       apply l8_16_2_共线四点和一直角推另一垂直 with B; Col; Perp.
       apply 成直角三点不共线 in HPer; auto.
       intro; apply HPer; ColR.
       }
     assert (共面 B Q A C)
-      by (assert_diffs; apply col2_cop__cop with A D; Col; Cop).
+      by (统计不重合点; apply col2_cop__cop with A D; Col; Cop).
     assert (B <> P') by (destruct HOut2; auto).
     assert (B <> P) by (intro; treat_equalities; auto).
     destruct (bla B A B C P Q P' Q' B P P') as [I [HC1 HC2]]; Col; Perp; [CopR..|].
@@ -196,7 +196,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       {
       elim (两点重合的决定性 D I); intro HNE3; [treat_equalities; Col|].
       assert (共面 A B C I) by (apply col_cop2__cop with P Q; Cop).
-      assert_diffs.
+      统计不重合点.
       apply cop_perp2__col with A C;
       [Cop|apply perp_bisect_perp, perp_bisect_sym_1, cong_mid_perp_bisect; Cong..].
       assert (HPerp4 : Perp P I B P).
@@ -213,7 +213,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
         assert (HPar : Par B C P Q) by (apply l12_9 with B A; Perp; Cop).
         destruct (not_strict_par B C P Q P'); ColR.
         }
-      assert_diffs.
+      统计不重合点.
       destruct (per_lt B P I) as [HLt _]; [Perp..|].
       destruct (l11_52 I P B I P' B) as [_ [_ H等角2]]; Cong; Le.
         apply l11_16_直角相等; Perp.
@@ -232,7 +232,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
         }
 
         {
-        assert_diffs.
+        统计不重合点.
         apply l9_19 with C; Col; split; Out.
         }
 

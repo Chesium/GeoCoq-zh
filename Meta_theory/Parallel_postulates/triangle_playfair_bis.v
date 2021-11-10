@@ -26,16 +26,16 @@ Proof.
     apply inangle__lta; [Col|apply l11_24_在角内的对称性, H在角内].
   assert(为锐角 B P C).
     exists B, P, Q; split; Perp.
-  assert_diffs.
+  统计不重合点.
   destruct (greenberg P Q A B P C) as [R []]; Perp; Col.
-  assert_diffs.
+  统计不重合点.
   assert(OS P Q R A) by (apply invert_one_side, out_one_side; Col).
   assert(OS P C Q R).
     apply l12_6, par_strict_col_par_strict with A; Par; Col.
   destruct (和角的存在性 B' P R P R Q) as [D [E [F Hsuma1]]]; auto.
   assert(Htri : 三角形内角和 R Q P D E F).
   { exists B', P, R; split; auto.
-    apply (等角保持和角 B' P Q Q P R B' P R); try (apply 同角相等; auto).
+    apply (等角保持和角性质 B' P Q Q P R B' P R); try (apply 同角相等; auto).
     - exists R.
       assert (TS P Q R B'); [|repeat (split; 等角); Side; Cop].
       apply (l9_8_2 _ _ B).
@@ -51,8 +51,8 @@ Proof.
   { apply (par_not_col Q A); Col.
     apply par_strict_col_par_strict with B; Col.
   }
-  assert(Hsuma3 : 和角 B' P R R P B B' P B) by (apply bet__suma; Between).
-  assert(Hsams3 : 角度之和小于平角 B' P R R P B) by (apply bet__sams; Between).
+  assert(Hsuma3 : 和角 B' P R R P B B' P B) by (apply 中间性推出和角; Between).
+  assert(Hsams3 : 和角不大于平角 B' P R R P B) by (apply 邻补角之和不大于平角; Between).
   assert(角度小于等于 C P B R P B).
   { apply 角度小于等于的交换性, inangle__lea, os_ts__inangle.
     - apply l9_2, (l9_8_2 _ _ Q); trivial.
@@ -62,12 +62,12 @@ Proof.
   }
   assert(Habs : 角度小于 D E F B' P B).
   { apply (lea456789_lta__lta _ _ _ I J K);
-    [|apply (sams_lea2_suma2__lea B' P R C P B _ _ _ B' P R R P B); Lea].
-    apply (sams_lea_lta456_suma2__lta B' P R P R Q _ _ _ B' P R C P B); Lea.
-    apply (sams_lea2__sams _ _ _ _ _ _ B' P R R P B); Lea.
+    [|apply (和角保持角度小于等于性质 B' P R C P B _ _ _ B' P R R P B); Lea].
+    apply (角度一偏序一全序则和角保持全序 B' P R P R Q _ _ _ B' P R C P B); Lea.
+    apply (角度小于等于保持和角不大于平角性质 _ _ _ _ _ _ B' P R R P B); Lea.
   }
   apply Habs.
-  apply suma_distincts in Hsuma1; spliter.
+  apply 和角推出不重合 in Hsuma1; spliter.
   apply 成中间性三点组的角相等; Between.
   apply (triangle R Q P); auto.
 Qed.
@@ -98,7 +98,7 @@ Proof.
   clear dependent P1.
   clear dependent P2.
 
-  assert_diffs.
+  统计不重合点.
   assert(Hos : OS B1 B2 Q C1).
   { apply (one_side_transitivity _ _ _ A1).
     - destruct (两点重合的决定性 A1 Q).
@@ -134,7 +134,7 @@ Proof.
     exists A3; split; Col.
   }
   destruct HA3 as [A3 []].
-  assert_diffs.
+  统计不重合点.
   apply (legendre_aux greenberg triangle A3 B3 C1 P Q); trivial.
     apply (与垂线共线之线也为垂线2 A1 A2); Col.
     apply (与垂线共线之线也为垂线2 B1 B2); Col.
@@ -160,7 +160,7 @@ Proof.
   assert(HC1NotB : ~ Col C1 B1 B2) by (destruct Hts as [_ []]; auto).
   assert(C1<>P) by (intro; subst C1; Col).
   destruct (构造对称点 C1 P) as [C3].
-  assert_diffs.
+  统计不重合点.
   assert(HC3NotB : ~ Col C3 B1 B2) by (intro; apply HC1NotB; ColR).
   apply HC3NotB.
   apply (legendre_aux1 greenberg triangle A1 A2 _ _ _ C1 P); Col.

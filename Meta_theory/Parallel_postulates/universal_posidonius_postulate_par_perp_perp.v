@@ -19,7 +19,7 @@ Proof.
 intros HP E F G H R P HPerp HCop HCol HSacc.
 assert (HPerp1 : Perp E G E F) by (apply 垂直的对称性, sac__perp1214 with H, HSacc).
 assert (HPar : 严格平行 E G F H) by (apply sac__pars1423, HSacc).
-assert_diffs.
+统计不重合点.
 assert (HRAH : postulate_of_right_saccheri_quadrilaterals).
   {
   destruct (中点的存在性 E G) as [M1 HM1].
@@ -76,7 +76,7 @@ assert (HSacc2 : 萨凯里四边形 E F S R).
   assert (Col E P R) by (apply col_cop2_perp2__col with F E G; Perp; Col; Cop).
   apply HER, l6_21_两线交点的唯一性 with E G F E; ColR.
   }
-assert_diffs.
+统计不重合点.
 apply 垂线共线点也构成垂直1 with S; Col.
 assert (Hd := HSacc2).
 apply sac_distincts in Hd; spliter.

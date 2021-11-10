@@ -47,7 +47,7 @@ Proof.
       apply 长度小于等于的传递性 with A P; Le.
   }
   destruct HX as [X HX].
-  assert_diffs.
+  统计不重合点.
   assert (HGrad := 线性刻度_初始化 A B).
   assert (HBet : Bet B X C) by (apply HX; [right|]; split; Out; exists B; split; Le).
   assert (Out A B X) by (apply out_bet_out_1 with C; auto).
@@ -72,7 +72,7 @@ Proof.
         apply 中间性的对称性, l6_13_1; trivial.
         apply l6_6; trivial.
       - absurd (X = X0).
-          assert_diffs; auto.
+          统计不重合点; auto.
         apply 双中间性推出点重合 with B.
           apply l6_13_1; trivial.
         apply 中间性的对称性, HX; [right|]; split; trivial.
@@ -99,7 +99,7 @@ Proof.
     apply (not_bet_and_out X1 X C).
     split; [|apply l6_6; trivial].
     apply HX; [right|]; split; trivial; [| |apply bet_out; auto].
-      assert_diffs; apply l6_7 with X; Out.
+      统计不重合点; apply l6_7 with X; Out.
     destruct HReach as [B' [HGrad' HLe]].
     destruct (由一点往一方向构造等长线段 A B' A B) as [B1' [HBet' HCong']].
     exists B1'; split.
@@ -133,7 +133,7 @@ Proof.
     apply 长度小于等于的传递性 with A X; Le.
   }
   destruct HX as [X HX].
-  assert_diffs.
+  统计不重合点.
   assert (HGrad := 线性刻度_初始化 A B).
   assert (HBet : Bet B X C).
   { apply HX; split; trivial.
@@ -164,7 +164,7 @@ Proof.
         apply 中间性的对称性, l6_13_1; trivial.
         apply l6_6; trivial.
       - absurd (X = X0).
-          assert_diffs; auto.
+          统计不重合点; auto.
         apply 双中间性推出点重合 with B.
           apply l6_13_1; trivial.
         apply 中间性的对称性, HX; split; trivial.
@@ -192,7 +192,7 @@ Proof.
     split; [|apply l6_6; trivial].
     apply HX; split; trivial; [| |apply bet_out; auto].
     { apply l6_7 with X; trivial.
-      assert_diffs; apply bet_out; auto.
+      统计不重合点; apply bet_out; auto.
     }
     destruct HReach as [B' [HGrad' HLe]].
     destruct (由一点往一方向构造等长线段 A B' A B) as [B1' [HBet' HCong']].

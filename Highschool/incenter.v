@@ -15,7 +15,7 @@ Lemma 内心的存在性 : forall A B C, ~ Col A B C -> exists I, 内心 I A B C
 Proof.
 intros A B C HNCOL.
 (*----construction---*)
-assert_diffs.
+统计不重合点.
 destruct (角平分线的存在性 A B C) as [IB HCONA];auto.
 destruct (角平分线的存在性 B A C) as [IA HCONB];auto.
 destruct HCONA as [HBINANGLE HCONGAA].
@@ -48,9 +48,9 @@ unfold 内心.
 split.
 assumption.
 (*-prove some conclusions which will be required later for many times.-*)
-assert (Out A X IA) by (assert (Out A X XA) by (assert_diffs;apply (bet_out A X XA);Between);
+assert (Out A X IA) by (assert (Out A X XA) by (统计不重合点;apply (bet_out A X XA);Between);
 apply (l6_7 A X XA IA);auto).
-assert (Out B X IB) by (assert (Out B X XB) by (assert_diffs;apply (bet_out B X XB);Between);
+assert (Out B X IB) by (assert (Out B X XB) by (统计不重合点;apply (bet_out B X XB);Between);
 apply (l6_7 B X XB IB);auto).
 assert (等角 B A X X A C).
 { apply (l11_10 B A IA IA A C B X X C);Out.
@@ -74,7 +74,7 @@ assert (等角 A C X X C B).
  apply (bet_out B X XB);auto.
  Between.
  assert (在角内 X B A C).
- assert_diffs.
+ 统计不重合点.
  repeat split;auto.
  exists XA.
  split;auto.

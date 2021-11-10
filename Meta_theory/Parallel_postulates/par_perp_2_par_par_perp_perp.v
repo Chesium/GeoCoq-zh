@@ -20,7 +20,7 @@ elim (共线的决定性 C D X); intro HCDX.
   assert (HY := l8_18_过一点垂线之垂点的存在性 C D X HCDX); destruct HY as [Y [HCDY HPerp']].
   assert (HPar' : Par P Q X Y).
     {
-    destruct HX as [_ [_ [HCol [ ]]]]; assert_diffs.
+    destruct HX as [_ [_ [HCol [ ]]]]; 统计不重合点.
     assert (共面 C D X A)
       by (apply col2_cop__cop with A B; Col; apply pars__coplanar; Par).
     assert (共面 C D X B)

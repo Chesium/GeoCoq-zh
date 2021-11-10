@@ -1,6 +1,6 @@
 Require Export GeoCoq.Tarski_dev.Annexes.quadrilaterals_inter_dec.
 
-Ltac assert_all := treat_equalities; assert_cols_perm; assert_diffs; assert_congs_perm.
+Ltac assert_all := treat_equalities; assert_cols_perm; 统计不重合点; assert_congs_perm.
 
 Section Triangle中点sTheorems.
 
@@ -39,7 +39,7 @@ intros.
 Name x the symmetric of P wrt Q.
 assert_all.
 assert (~ Col A P C) by (intro; apply H; ColR).
-assert_diffs.
+统计不重合点.
 assert (严格平行四边形 A P C x) by (apply mid_plgs with Q;auto).
 assert (Cong A x B P) by CongR.
 assert (Par A x B P) by (assert_pars_perm; apply par_col2_par with P C; Col).
@@ -53,7 +53,7 @@ induction HElim.
  search_contradiction.
 
 apply par_strict_col2_par_strict with x P; Col.
-assert_diffs; auto.
+统计不重合点; auto.
 (*
 apply ncol134_plg__pars1423; auto; intro; apply H; ColR.
 *)
@@ -76,7 +76,7 @@ intros.
 Name x the symmetric of P wrt Q.
 assert_all.
 assert (~ Col A P C) by (intro; search_contradiction).
-assert_diffs.
+统计不重合点.
 assert (严格平行四边形 A P C x) by (apply mid_plgs with Q;auto).
 assert_all.
 assert_pars_perm.
@@ -91,7 +91,7 @@ induction HElim.
  search_contradiction.
 
 assert_pars_perm.
-assert (Par P Q A B) by (assert_diffs; apply par_col_par_2 with x; Col; Par).
+assert (Par P Q A B) by (统计不重合点; apply par_col_par_2 with x; Col; Par).
 split.
 
 apply par_not_col_strict with x; Col; Par.

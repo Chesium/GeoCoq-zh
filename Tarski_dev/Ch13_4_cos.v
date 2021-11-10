@@ -1230,7 +1230,7 @@ Proof.
         induction H0; apply 垂直推出不重合1 in H0; tauto.
       Col.
     apply acute_sym.
-    assert_diffs.
+    统计不重合点.
     apply l11_43; auto.
     left.
     assert(A <> P).

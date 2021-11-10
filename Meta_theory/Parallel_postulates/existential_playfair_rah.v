@@ -16,15 +16,15 @@ destruct (l8_18_过一点垂线之垂点的存在性 A1 A2 P) as [Q [HCcol1 HPer
 assert (HA3 : exists A3, Col A1 A2 A3 /\ A3 <> Q).
 {
   destruct (两点重合的决定性 A1 Q).
-    subst; exists A2; assert_diffs; split; Col.
+    subst; exists A2; 统计不重合点; split; Col.
     exists A1; split; Col.
 }
 destruct HA3 as [A3 []].
 destruct (ex_perp_cop P Q P A3) as [R [HPerp2 HCop]].
-  assert_diffs; auto.
+  统计不重合点; auto.
 assert (HPar1 : Par A1 A2 P R).
 {
-  assert_diffs.
+  统计不重合点.
   apply l12_9 with P Q; Perp.
     Cop.
     apply coplanar_perm_3, col_cop__cop with A3; Cop; ColR.
@@ -43,7 +43,7 @@ apply par_strict_not_col_3 in HNC4.
 destruct (l8_18_过一点垂线之垂点的存在性 R S P) as [R' [HC共线的传递性4 HPerp4]]; Col.
 assert (HPar3 : Par A1 A2 P R').
 {
-  assert_diffs.
+  统计不重合点.
   apply l12_9 with R S; Perp.
     apply coplanar_perm_5, col_cop__cop with A2; Col; Cop.
     exists R'; left; split; Col.
@@ -51,17 +51,17 @@ assert (HPar3 : Par A1 A2 P R').
     exists R'; left; split; Col.
 }
 destruct (HP P R P R') as [_ HCol4]; Col.
-assert (R = R') by (assert_diffs; apply l6_21_两线交点的唯一性 with P R S R; Col).
+assert (R = R') by (统计不重合点; apply l6_21_两线交点的唯一性 with P R S R; Col).
 assert (HPs : 严格平行 P Q R S) by (apply par_not_col_strict with R; Col).
 treat_equalities; rewrite <- (lam_per__rah P Q S R).
 
   {
   apply 垂直于转直角1 with S S; apply l8_14_2_1b_bis_交点是垂点; Col.
-  assert_diffs; apply 与垂线共线之线也为垂线2 with A1 A2; Col.
+  统计不重合点; apply 与垂线共线之线也为垂线2 with A1 A2; Col.
   }
 
   {
-  assert_diffs.
+  统计不重合点.
   repeat split; auto; [Perp..| |Cop].
   apply L形垂直转直角1, 垂直的左交换性, 与垂线共线之线也为垂线1 with A1 A2; Col.
   }

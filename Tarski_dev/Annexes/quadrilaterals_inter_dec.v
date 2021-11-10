@@ -374,7 +374,7 @@ intro.
 apply H4.
 apply 等价共线BCA.
 apply (共线的传递性2 _ B'').
-assert_diffs.
+统计不重合点.
 auto.
 Col.
 Col.
@@ -401,7 +401,7 @@ apply H4.
 
 apply 等价共线BCA.
 apply (共线的传递性2 _ B'').
-assert_diffs.
+统计不重合点.
 auto.
 Col.
 Col.
@@ -504,7 +504,7 @@ Col.
 Col.
 Col.
 Col.
-assert_diffs.
+统计不重合点.
 repeat split; auto.
 
 assert(TS A A' B' B'').
@@ -550,7 +550,7 @@ split; Col.
 Col.
 Col.
 apply ABB型共线;Col.
-assert_diffs.
+统计不重合点.
 repeat split; Between.
 
 assert(OS A A' X B').
@@ -577,7 +577,7 @@ assert (HCol1 : Col B'' A' B').
   assert (Col A' A' B' /\ Col B'' A' B'); [|spliter; Col].
   assert (HPar := par_strict_par A B A' B' HParS).
   apply HP with A B A'; Col.
-  assert_diffs; apply l12_17 with M1; Col.
+  统计不重合点; apply l12_17 with M1; Col.
   }
 assert (HCong1 : Cong A' B' A' B'')
   by (assert (H := l7_13_同中点组两侧等长 M1 A' B'' A B HM1 HB''); eCong).
@@ -588,7 +588,7 @@ assert (HCol2 : Col A'' A' B').
   assert (Col B' A' B' /\ Col A'' A' B'); [|spliter; Col].
   assert (HPar := par_strict_par A B A' B' HParS).
   apply HP with A B B'; Col.
-  assert_diffs; apply l12_17 with M2; Col.
+  统计不重合点; apply l12_17 with M2; Col.
   }
 assert (HCong2 : Cong A' B' B' A'')
   by (assert (H := l7_13_同中点组两侧等长 M2 B' A'' A B HM2 HA''); eCong).
@@ -1612,7 +1612,7 @@ unfold 严格平行 in H7.
 spliter.
 apply H11.
 exists N.
-assert_diffs; split; ColR.
+统计不重合点; split; ColR.
 
 spliter.
 
@@ -2211,7 +2211,7 @@ Ltac diag_plg_intersection M A B C D H :=
 Tactic Notation "Name" ident(M) "the" "intersection" "of" "the" "diagonals" "(" ident(A) ident(C) ")" "and" "(" ident(B) ident(D) ")" "of" "the" "parallelogram" ident(H) :=
  diag_plg_intersection M A B C D H.
 
-Ltac assert_diffs :=
+Ltac 统计不重合点 :=
 repeat
  match goal with
       | H:(~Col ?X1 ?X2 ?X3) |- _ =>
@@ -2399,17 +2399,17 @@ repeat
       | H:和角 ?A ?B ?C ?D ?E ?F ?G ?I ?J |- _ =>
       let h := fresh in
       not_exist_hyp6 A B B C D E E F G I I J;
-      assert (h := suma_distincts A B C D E F G I J H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 和角推出不重合 A B C D E F G I J H);decompose [and] h;clear h;clean_reap_hyps
 
       | H:三角形内角和 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp5 A B B C A C D E E F;
-      assert (h := trisuma_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 三角形内角和推出不重合 A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
 
-      | H:角度之和小于平角 ?A ?B ?C ?D ?E ?F |- _ =>
+      | H:和角不大于平角 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
-      assert (h := sams_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 和角不大于平角推出不重合 A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
 
       | H:严格平行四边形 ?A ?B ?C ?D |- _ =>
       let T := fresh in
@@ -2420,7 +2420,7 @@ repeat
 Ltac ColR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
-   treat_equalities; assert_cols; Col; assert_diffs; Col_refl tpoint col.
+   treat_equalities; assert_cols; Col; 统计不重合点; Col_refl tpoint col.
 
 Ltac CongR :=
  let tpoint := constr:(Tpoint) in
@@ -2434,7 +2434,7 @@ Ltac show_distinct'' X Y :=
  [intro;treat_equalities; solve [finish]|idtac].
 
 Ltac assert_all_diffs_by_contradiction :=
-assert_diffs;repeat match goal with
+统计不重合点;repeat match goal with
  | A: Tpoint, B: Tpoint |- _ => not_exist_hyp_comm A B;show_distinct'' A B
 end.
 
@@ -2960,7 +2960,7 @@ Lemma cop_perp3__rect :
 Proof.
 intros.
 assert (~ Col A B C)
- by (assert_diffs; apply 成直角三点不共线; Perp).
+ by (统计不重合点; apply 成直角三点不共线; Perp).
 assert (Par A B C D)
  by (apply (l12_9 A B C D B C); Perp; Cop).
 assert (Perp D A A B)
@@ -2980,7 +2980,7 @@ Lemma conga_to_par_os : forall A B C D P , Bet A D P -> OS A D B C -> 等角 B A
                                            -> Par A B C D.
 Proof.
 intros A B C D P HBet HOS H等角.
-assert_diffs.
+统计不重合点.
 apply par_right_comm, l12_22_b with P; trivial.
   apply l6_6, bet_out; Between.
 apply invert_one_side, col_one_side with D; Col.
@@ -4072,7 +4072,7 @@ eapply l11_13.
 apply 等角的交换性.
 apply H26.
 
-assert_diffs.
+统计不重合点.
 apply 中间性的对称性.
 apply 中间性的外传递性2 with C.
 apply 中间性的外传递性2 with B.
@@ -4094,7 +4094,7 @@ eapply l11_13.
 apply 等角的交换性.
 
 apply H26.
-assert_diffs.
+统计不重合点.
 apply 中间性的外传递性2 with B.
 apply 中间性的对称性.
 apply 中间性的外传递性2 with C.
@@ -4104,7 +4104,7 @@ auto.
 Between.
 auto.
 auto.
-assert_diffs.
+统计不重合点.
 apply 中间性的外传递性2 with D.
 Between.
 Between.
@@ -4578,7 +4578,7 @@ assumption.
 induction H5.
 apply Plg_perm in H4.
 apply Plg_perm in H5.
-assert_diffs.
+统计不重合点.
 spliter.
 apply plg_not_comm in H8.
 intuition.
@@ -4755,7 +4755,7 @@ Lemma exists_square : forall A B, A<>B -> exists C D,  正方形 A B C D.
 Proof.
 intros.
 destruct (exists_cong_per A B A B) as [C [HC1 HC2]].
-assert_diffs.
+统计不重合点.
 destruct (per__ex_saccheri B C A) as [D HSac]; Perp.
 exists C.
 exists D.

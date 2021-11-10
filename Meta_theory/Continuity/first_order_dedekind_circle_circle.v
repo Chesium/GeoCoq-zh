@@ -45,7 +45,7 @@ Proof.
       intro; treat_equalities; apply (两长度不可能互相小于对方 A C A B); split; trivial.
     destruct (共线的决定性 P A C); [|apply Haux' with P Q; Cop].
     destruct (exists_cong_per A C C D) as [R [HR1 HR2]].
-    assert_diffs.
+    统计不重合点.
     apply 成直角三点不共线 in HR1; auto.
     destruct (点与圆的位置关系的决定性 A B R) as [HOn|HNOn].
       exists R; split; trivial.
@@ -61,7 +61,7 @@ Proof.
       apply Haux with P Q; auto.
     destruct (cop__one_or_two_sides A C P Q); trivial; [|apply Haux with P Q; auto].
     destruct (l10_2_existence A C P) as [P' HP'].
-    assert_diffs.
+    统计不重合点.
     apply Haux with P' Q; trivial.
       apply 等长的传递性 with C P; trivial.
       apply 等长的交换性, (is_image_col_cong A C); Col.
@@ -130,7 +130,7 @@ Proof.
       apply out2__conga; [apply out_trivial|apply l6_6]; auto.
     split.
     { apply inangle__lea.
-      assert_diffs.
+      统计不重合点.
       apply l11_24_在角内的对称性, in_angle_trans with P.
         repeat split; auto; exists X; split; Between; right; apply out_trivial; auto.
       apply in_angle_trans2 with Q.
@@ -152,7 +152,7 @@ Proof.
     - assert (Col P Q X) by ColR.
       apply coplanar_pseudo_trans with P Q C; [assumption| |Cop..].
       destruct HDij as [|[[]|[]]]; Cop.
-    - absurd (X = Y); trivial; assert_diffs; apply (l6_21_两线交点的唯一性 P Q C X); ColR.
+    - absurd (X = Y); trivial; 统计不重合点; apply (l6_21_两线交点的唯一性 P Q C X); ColR.
     - apply (HNTS X Y); trivial.
   }
 
@@ -173,9 +173,9 @@ Proof.
     apply 长度小于等于的传递性 with A B; trivial.
   }
   assert (HP : exists X0, 在圆上 X0 C D /\ Out C P X0 /\ 在圆上或圆内 X0 A B).
-    exists P; repeat (split; Circle); apply out_trivial; assert_diffs; auto.
+    exists P; repeat (split; Circle); apply out_trivial; 统计不重合点; auto.
   assert (HQ : exists Y0, 在圆上 Y0 C D /\ Out C Q Y0 /\ 在圆上或圆外 Y0 A B).
-    exists Q; repeat (split; Circle); apply out_trivial; assert_diffs; auto.
+    exists Q; repeat (split; Circle); apply out_trivial; 统计不重合点; auto.
   destruct HR as [R HR].
   assert (HBet : Bet P R Q) by (apply HR; split; Between).
   assert (R <> C) by (intro; subst; apply HNCol1; Col).
@@ -204,7 +204,7 @@ Proof.
     assert (T <> Z).
       intro; subst; apply 在圆内等价于不在圆上或圆外 in Habs; apply Habs; Circle.
     destruct (ex_四点成首末边等长双直角S形则对边等长 C R Z Q T Z) as [I [HI1 [HI2 HI3]]]; Col.
-    assert_diffs.
+    统计不重合点.
     assert (HNCol3 : ~ Col I Z C) by (apply 成直角三点不共线; auto).
     destruct (onc_exists C D I) as [X0 [HX0On HX0Out]]; auto.
     assert (HLt : Lt C X0 C I).
@@ -216,12 +216,12 @@ Proof.
     assert (X0 <> I) by (intro; apply (nlt C I); subst; assumption).
     assert (HNCol4 : ~ Col I X0 Z) by (intro; apply (one_side_not_col123 C R I Q); ColR).
     assert (HLt1 : Lt X0 Z I Z).
-    { assert_diffs.
+    { 统计不重合点.
       destruct (l11_46 I X0 Z); auto.
       right.
       apply acute_bet__obtuse with C; auto.
         apply l6_13_1; [apply l6_6|]; Le.
-      assert_diffs; apply cong__acute; auto.
+      统计不重合点; apply cong__acute; auto.
       apply 等长的传递性 with C D; Cong.
     }
 
@@ -241,7 +241,7 @@ Proof.
         intro.
         apply HMT, (between_cong A); assumption.
     }
-    assert_diffs.
+    统计不重合点.
     assert (HX : 在角内 X0 R C Q).
     { apply l11_25 with X0 Z Q; try (apply out_trivial); auto.
       apply lea_in_angle.
@@ -290,7 +290,7 @@ Proof.
     assert (T <> Z).
       intro; subst; apply 在圆外等价于不在圆上或圆内 in Habs; apply Habs; Circle.
     destruct (ex_四点成首末边等长双直角S形则对边等长 C R Z P T Z) as [I [HI1 [HI2 HI3]]]; Col.
-    assert_diffs.
+    统计不重合点.
     assert (HNCol3 : ~ Col I Z C) by (apply 成直角三点不共线; auto).
 
     destruct (onc_exists C D I) as [Y0 [HY0On HY0Out]]; auto.
@@ -303,12 +303,12 @@ Proof.
     assert (Y0 <> I) by (intro; apply (nlt C I); subst; assumption).
     assert (HNCol4 : ~ Col I Y0 Z) by (intro; apply (one_side_not_col123 C R I P); ColR).
     assert (HLt1 : Lt Y0 Z I Z).
-    { assert_diffs.
+    { 统计不重合点.
       destruct (l11_46 I Y0 Z); auto.
       right.
       apply acute_bet__obtuse with C; auto.
         apply l6_13_1; [apply l6_6|]; Le.
-      assert_diffs; apply cong__acute; auto.
+      统计不重合点; apply cong__acute; auto.
       apply 等长的传递性 with C D; Cong.
     }
 
@@ -327,9 +327,9 @@ Proof.
         intro.
         apply HTM, (between_cong A); assumption.
       - apply (triangle_reverse_inequality Z); Cong.
-        assert_diffs; apply l6_6, bet_out; eBetween.
+        统计不重合点; apply l6_6, bet_out; eBetween.
     }
-    assert_diffs.
+    统计不重合点.
     assert (HY : 在角内 Y0 P C R).
     { apply l11_25 with Y0 P Z; try (apply out_trivial); auto.
       apply l11_24_在角内的对称性, lea_in_angle.

@@ -93,7 +93,7 @@ Proof.
     destruct (共线的决定性 A B X) as [|HNCol1]; [assumption|].
     exfalso.
     destruct (由一点往一方向构造等长线段 P X P X) as [P' []].
-    assert_diffs.
+    统计不重合点.
     destruct (ex_四点成首末边等长双直角S形则对边等长 P X X Q P' X) as [Q']; Col; spliter.
     assert (HAXQ' : Per Q' X A) by (apply (l11_60 P Q X); Perp; Cop).
     assert (HBXQ' : Per Q' X B) by (apply (l11_60 P Q X); Perp; Cop).
@@ -101,12 +101,12 @@ Proof.
     clear dependent Q.
     rename Q' into Q.
     destruct (由一点往一方向构造等长线段 A X P' X) as [A' []].
-    assert (HAXP' : Per P X A') by (assert_diffs; apply 直角边共线点也构成直角2 with A; Perp; Col).
-    assert (HAXQ : Per Q X A') by (assert_diffs; apply 直角边共线点也构成直角2 with A; Perp; Col).
+    assert (HAXP' : Per P X A') by (统计不重合点; apply 直角边共线点也构成直角2 with A; Perp; Col).
+    assert (HAXQ : Per Q X A') by (统计不重合点; apply 直角边共线点也构成直角2 with A; Perp; Col).
     assert (HNCol : ~ Col A' B X) by (intro; apply HNCol1; ColR).
     clear dependent A.
     rename A' into A.
-    destruct (ex_四点成首末边等长双直角S形则对边等长 A X X B P' X) as [B']; Col; [assert_diffs; auto|].
+    destruct (ex_四点成首末边等长双直角S形则对边等长 A X X B P' X) as [B']; Col; [统计不重合点; auto|].
     spliter.
     assert (HBXP' : Per B' X P) by (apply (l11_60 A B X); Perp; Cop).
     assert (HBXQ : Per B' X Q) by (apply (l11_60 A B X); Perp; Cop).
@@ -120,7 +120,7 @@ Proof.
   - intros p4col S U1' U1 U2 U3 U4 H; spliter.
     assert (HMid : 中点 S U1 U1') by (split; Cong).
     assert (HPer21 : Per U2 S U1) by (exists U1'; split; Cong).
-    assert_diffs.
+    统计不重合点.
     absurd (Col U2 U1 S).
       apply 共线否定排列ACB, 成直角三点不共线; auto.
     apply p4col with U3 U4;
@@ -134,11 +134,11 @@ Proof.
   intros up A B X P Q HNCol HAXP HAXQ HBXP HBXQ.
   destruct (由一点往一方向构造等长线段 Q X X P) as [Q' []].
   assert (HNCol' : ~ Col P Q' X) by (intro; apply HNCol; ColR).
-  assert (HAXQ' : Per A X Q') by (assert_diffs; apply 直角边共线点也构成直角2 with Q; Col).
-  assert (HBXQ' : Per B X Q') by (assert_diffs; apply 直角边共线点也构成直角2 with Q; Col).
+  assert (HAXQ' : Per A X Q') by (统计不重合点; apply 直角边共线点也构成直角2 with Q; Col).
+  assert (HBXQ' : Per B X Q') by (统计不重合点; apply 直角边共线点也构成直角2 with Q; Col).
   clear dependent Q.
   destruct (构造对称点 P X) as [R].
-  assert_diffs.
+  统计不重合点.
   apply up with P Q' R.
     auto.
     intro; subst; apply HNCol'; Col.
@@ -205,9 +205,9 @@ Proof.
     exists Q, 共面 A B C Q /\ 共面 D E P Q /\ P <> Q).
   { intros A B C D E P HP1 HP2.
     destruct (cop_dec A B C D).
-      assert_diffs; exists D; repeat split; Cop.
+      统计不重合点; exists D; repeat split; Cop.
     destruct (cop_dec A B C E).
-      assert_diffs; exists E; repeat split; Cop.
+      统计不重合点; exists E; repeat split; Cop.
     destruct (sep A B C D E); auto.
       apply cop_tsp__ex_cop2; assumption.
       apply cop_osp__ex_cop2; assumption.
@@ -250,7 +250,7 @@ Proof.
     intro.
     apply (not_bet_and_out P M Q); split; [Between|].
     assert (~ 共面 M A B P) by (intro HP; apply HCong in HP; treat_equalities; auto).
-    assert_diffs.
+    统计不重合点.
     assert (forall Z, ~ 共面 M A B Z -> Z <> T) by (intros Z HZ He; subst; apply HZ, HT).
     assert (X <> T) by auto.
     replace M with T.

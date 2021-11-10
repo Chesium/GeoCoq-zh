@@ -1256,7 +1256,7 @@ Lemma proclus a b c d p q :
   par a b c d -> col a b p -> ~ col a b q -> coplanar c d p q ->
   exists y, col p q y /\ col c d y.
 Proof.
-cut (proclus_postulate); [intros; assert_diffs; apply H with a b; tauto|].
+cut (proclus_postulate); [intros; 统计不重合点; apply H with a b; tauto|].
 have: tarski_s_parallel_postulate.
   by unfold tarski_s_parallel_postulate; apply euclidT.
 apply equivalent_postulates_without_decidability_of_intersection_of_lines_bis;

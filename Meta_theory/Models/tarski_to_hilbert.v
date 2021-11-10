@@ -220,7 +220,7 @@ Qed.
 Lemma 防降维公理' : PA <> PB /\ PB <> PC /\ PA <> PC /\ ~ Col_H PA PB PC.
 Proof.
 assert (HNCol : ~ Col PA PB PC) by (apply 防降维公理).
-assert_diffs.
+统计不重合点.
 apply ncols_coincide in HNCol.
 repeat split; auto.
 Qed.
@@ -959,7 +959,7 @@ Lemma OS_distinct : forall P Q A B,
 Proof.
 intros.
 apply one_side_not_col123 in H.
-assert_diffs;assumption.
+统计不重合点;assumption.
 Qed.
 
 
@@ -1059,7 +1059,7 @@ assert (~ Col A B C).
 intro.
 apply cols_coincide_2 in H4.
 intuition.
-assert_diffs.
+统计不重合点.
 intuition.
 Qed.
 
@@ -1145,7 +1145,7 @@ Lemma axiom_等角的交换性 : forall A B C,
 Proof.
 intros.
 rewrite <- cols_coincide in H.
-assert_diffs.
+统计不重合点.
 apply 角ABC等于角CBA;auto.
 Qed.
 

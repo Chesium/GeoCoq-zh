@@ -37,7 +37,7 @@ Ltac clean_reap_hyps :=
    | H:(垂直于 ?X ?A ?B ?C ?D), H2 : 垂直于 ?X ?B ?A ?D ?C |- _ => clear H2
 end.
 
-Ltac assert_diffs :=
+Ltac 统计不重合点 :=
 repeat
  match goal with
       | H:(~Col ?X1 ?X2 ?X3) |- _ =>
@@ -142,7 +142,7 @@ repeat
 Ltac ColR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
-   treat_equalities; assert_cols; Col; assert_diffs; Col_refl tpoint col.
+   treat_equalities; assert_cols; Col; 统计不重合点; Col_refl tpoint col.
 
 Ltac clean_trivial_hyps :=
   repeat
@@ -171,7 +171,7 @@ Lemma ts_distincts : forall A B P Q, TS A B P Q ->
 Proof.
   intros A B P Q HTS.
   destruct HTS as [HNCol1 [HNCol2 [T [HCol HBet]]]].
-  assert_diffs.
+  统计不重合点.
   repeat split; auto.
   intro; treat_equalities; auto.
 Qed.
@@ -249,7 +249,7 @@ Proof with Col.
         apply H4.
         apply 等价共线CAB.
         eapply (共线的传递性2 _ B).
-          assert_diffs;intuition.
+          统计不重合点;intuition.
           apply 等价共线BAC.
           assumption.
         assert_cols...
@@ -811,7 +811,7 @@ Lemma mid_two_sides : forall A B M X Y,
 Proof.
     intros A B M X Y HM1 HNCol HM2.
     repeat split; Col.
-      assert_diffs.
+      统计不重合点.
       assert (X<>Y) by (intro; treat_equalities; apply HNCol; Col).
       intro; apply HNCol; ColR.
     exists M; split; Col; Between.
@@ -1266,7 +1266,7 @@ Proof.
         assert_cols.
         intro;apply H1; ColR.
       exists Q; split;Col;Between.
-    assert_diffs.
+    统计不重合点.
     assert (TS P Q A B) by (apply l9_5 with C P;unfold Out;intuition).
     unfold TS in H8.
     spliter.
@@ -2689,7 +2689,7 @@ Proof.
   destruct HTS as [HNCol [HNCol1 [X [HCol HBet]]]].
   exists X; split; trivial.
   apply col_two_sides_bet with B; trivial.
-  assert_diffs.
+  统计不重合点.
   apply invert_two_sides, col_two_sides with D; Col.
   intro; subst X; auto.
 Qed.
@@ -2872,7 +2872,7 @@ Lemma one_or_two_sides_aux : forall A B C D X,
  TS A B C D \/ OS A B C D.
 Proof.
     intros.
-    assert_diffs.
+    统计不重合点.
     assert (A <> X) by (intro; subst; Col).
     assert (B <> X) by (intro; subst; Col).
     assert (~ Col X A B) by (intro; apply H; ColR).
@@ -3072,7 +3072,7 @@ assert (Haux : forall P Q R A B C,
   共面 A B C R).
   {
   intros P Q R A B C HNC HCop1 HCop2 HCop3.
-  assert_diffs.
+  统计不重合点.
   elim (共线的决定性 R Q A); intro HQRA.
     apply coplanar_perm_18, col_cop__cop with Q; auto.
     apply coplanar_perm_17, (coplanar_trans_1 P); assumption.
@@ -3080,7 +3080,7 @@ assert (Haux : forall P Q R A B C,
   }
 intros A B C D P Q R HNC HCop1 HCop2 HCop3 HCop4.
 elim (共线的决定性 P Q D); intro HPQD.
-  apply col_cop2__cop with P Q; [assert_diffs|apply (Haux Q R)|apply (Haux P R)|]; Col; Cop.
+  apply col_cop2__cop with P Q; [统计不重合点|apply (Haux Q R)|apply (Haux P R)|]; Col; Cop.
 apply (Haux P Q); [assumption|apply (coplanar_trans_1 R); Col; Cop..].
 Qed.
 
@@ -3284,7 +3284,7 @@ Proof.
         assumption.
       apply 等价共线CAB.
       apply cop_per2__col with A.
-        assert_diffs; apply coplanar_perm_12, col_cop__cop with B; Cop.
+        统计不重合点; apply coplanar_perm_12, col_cop__cop with B; Cop.
         auto.
         apply L形垂直于转直角.
         apply 垂直于的交换性.
@@ -3348,7 +3348,7 @@ Proof.
       right; intros [HN []]; contradiction.
     destruct (l8_18_过一点垂线之垂点的存在性 A B C) as [C0 [HCol1 HPerp1]]; Col.
     destruct (l8_18_过一点垂线之垂点的存在性 A B D) as [D0 [HCol2 HPerp2]]; Col.
-    assert_diffs.
+    统计不重合点.
     destruct (中点的存在性 C0 D0) as [M].
     assert (Col M A B).
       destruct (两点重合的决定性 C0 D0); [treat_equalities; Col|ColR].
@@ -3378,7 +3378,7 @@ Proof.
     destruct HTS1 as [HNCol' [_ [M' []]]].
     destruct (四点成首末边等长双直角S形则对边等长且对角线交点平分对角线 C0 D0 C D' M') as [_ []]; Between; Cong; Col.
       apply L形垂直转直角1, 与垂线共线之线也为垂线2 with A B; auto.
-      assert_diffs; apply 直角边共线点也构成直角2 with D; Col; apply L形垂直转直角1, 与垂线共线之线也为垂线2 with A B; auto.
+      统计不重合点; apply 直角边共线点也构成直角2 with D; Col; apply L形垂直转直角1, 与垂线共线之线也为垂线2 with A B; auto.
       ColR.
     replace M with M'; Between.
     apply (中点的唯一性1 C0 D0); assumption.
@@ -3495,13 +3495,13 @@ Proof.
   assert (Per C M P) by (exists Q; Cong).
   elim (两点重合的决定性 A M); intro HAM.
     treat_equalities.
-    assert_diffs; apply 等价共线CAB, cop_per2__col with P; Cop.
+    统计不重合点; apply 等价共线CAB, cop_per2__col with P; Cop.
   assert (Col A B M).
-    apply cop_per2__col with P; try apply HUD; assert_diffs; auto.
+    apply cop_per2__col with P; try apply HUD; 统计不重合点; auto.
     apply coplanar_perm_12, col_cop__cop with Q; Col.
     apply coplanar_trans_1 with C; Cop; Col.
   assert (Col A C M).
-    apply cop_per2__col with P; try apply HUD; assert_diffs; auto.
+    apply cop_per2__col with P; try apply HUD; 统计不重合点; auto.
     apply coplanar_perm_12, col_cop__cop with Q; Col.
     apply coplanar_trans_1 with B; Cop; Col.
   apply 共线的传递性2 with M; Col.
@@ -3520,7 +3520,7 @@ Proof.
   intros A B C D P Q R [HP [HR [T [HT HBet]]]] HCop HOut.
   assert (HNCol : ~ Col A B C) by (apply ncop__ncol with P, HP).
   split.
-    intro; assert_diffs; apply HP, col_cop2__cop with D Q; Col.
+    intro; 统计不重合点; apply HP, col_cop2__cop with D Q; Col.
   split; [assumption|].
   destruct (两点重合的决定性 D T).
     subst T; exists D; split; [|apply (bet_out__bet P)]; assumption.
@@ -3548,7 +3548,7 @@ Proof.
   intros A B C P Q R HPR [S [[HP [_ [X []]]] [HQ [HS [Y []]]]]].
   assert (P <> X /\ S <> X /\ Q <> Y /\ S <> Y) by (repeat split; intro; subst; auto); spliter.
   destruct (共线的决定性 P Q S) as [|HNCol].
-  { assert (X = Y) by (assert_diffs; apply (col2_cop2__eq A B C Q S); ColR).
+  { assert (X = Y) by (统计不重合点; apply (col2_cop2__eq A B C Q S); ColR).
     subst Y.
     apply l9_39 with X P; trivial.
     apply l6_2 with S; auto.
@@ -3567,7 +3567,7 @@ Proof.
   assert (HA : 共面 A B C A) by Cop.
   exists Q; repeat split.
   - assumption.
-  - assert (A <> P) by (intro; subst; apply HP, HA); assert_diffs.
+  - assert (A <> P) by (intro; subst; apply HP, HA); 统计不重合点.
     intro; apply HP, col_cop2__cop with A Q; Col.
   - exists A; split; assumption.
 Qed.
@@ -3686,7 +3686,7 @@ Proof.
     apply l9_39 with Y P; trivial.
     destruct HPS as [HP [HS [X []]]].
     assert (P <> X /\ S <> X /\ R <> Y) by (repeat split; intro; subst; auto); spliter.
-    assert (X = Y) by (assert_diffs; apply (col2_cop2__eq A B C R S); ColR).
+    assert (X = Y) by (统计不重合点; apply (col2_cop2__eq A B C R S); ColR).
     subst Y.
     apply out_bet_out_1 with R; [|assumption].
     apply l6_2 with S; auto.
@@ -3701,8 +3701,8 @@ Proof.
       exists Y; split; Col.
   }
   destruct HOS as [S' [[HNCol1 [HNCol2 [X' []]]] [HNCol3 [_ [Y' []]]]]].
-  assert (共面 A B C X') by (assert_diffs; apply col_cop2__cop with X Y; Col).
-  assert (共面 A B C Y') by (assert_diffs; apply col_cop2__cop with X Y; Col).
+  assert (共面 A B C X') by (统计不重合点; apply col_cop2__cop with X Y; Col).
+  assert (共面 A B C Y') by (统计不重合点; apply col_cop2__cop with X Y; Col).
   assert (HS' : ~ 共面 A B C S').
     intro; apply HP, col_cop2__cop with X' S'; Col; intro; subst; Col.
   exists S'; repeat split; trivial.
@@ -3738,10 +3738,10 @@ Lemma cop_out__osp : forall A B C X Y P,
 Proof.
   intros A B C X Y P HX HP HOut.
   assert (~ 共面 A B C Y).
-    assert_diffs; intro; apply HX, col_cop2__cop with P Y; Col.
+    统计不重合点; intro; apply HX, col_cop2__cop with P Y; Col.
   destruct (由一点往一方向构造等长线段 X P P X) as [X' []].
   assert (~ 共面 A B C X').
-    assert_diffs; intro; apply HX, col_cop2__cop with P X'; Col.
+    统计不重合点; intro; apply HX, col_cop2__cop with P X'; Col.
   exists X'; repeat split; trivial; exists P; split; trivial.
   apply bet_out__bet with X; assumption.
 Qed.
@@ -3768,7 +3768,7 @@ Lemma cop2_ts__tsp : forall A B C D E X Y, ~ 共面 A B C X ->
   在平面异侧 A B C X Y.
 Proof.
   intros A B C D E X Y HX HD HE [HNCol [HNCol' [T []]]].
-  assert (共面 A B C T) by (assert_diffs; apply col_cop2__cop with D E; Col).
+  assert (共面 A B C T) by (统计不重合点; apply col_cop2__cop with D E; Col).
   repeat split.
     assumption.
     intro; apply HX, col_cop2__cop with T Y; Col; intro; subst; apply HNCol'; Col.
@@ -3850,7 +3850,7 @@ Proof.
   assert (~ Col D E' P) by (intro; apply HNCol; ColR).
   destruct (cop_tsp__ex_cop2 A B C D E' P) as [Q [HQ1 [HQ2 HPQ]]]; [assumption|..].
   { apply l9_41_2 with E.
-      assert_diffs; destruct H在平面同侧 as [F [_ [HE]]]; apply bet_cop__tsp with P; Cop.
+      统计不重合点; destruct H在平面同侧 as [F [_ [HE]]]; apply bet_cop__tsp with P; Cop.
       apply osp_symmetry, H在平面同侧.
   }
   exists Q; repeat split; auto.

@@ -25,12 +25,12 @@ elim HPar1; clear HPar1; intro HPar1; elim HPar2; clear HPar2; intro HPar2.
       intros Haux B1 B2 HCol1 HPar1.
       elim (两点重合的决定性 P B1); auto.
       intro.
-      assert (P <> B2) by (intro; subst; assert_diffs; auto).
+      assert (P <> B2) by (intro; subst; 统计不重合点; auto).
       destruct (Haux B2 B1) as [B3 []]; Par; Col.
       exists B3; split; Col.
       }
     intros B1 B2 HCol1 HPar1 HPB1.
-    assert_diffs.
+    统计不重合点.
     destruct (hilbert_s_version_of_pasch X A1 A2 B1 P) as [B3 [HCol HBet]];
     [..|repeat split; Between|].
 

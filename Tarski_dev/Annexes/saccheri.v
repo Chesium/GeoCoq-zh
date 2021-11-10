@@ -25,7 +25,7 @@ Proof.
   spliter.
   assert(~ Col A D B) by (apply (one_side_not_col123 _ _ _ C); auto).
   assert(~ Col A D C) by (apply (one_side_not_col123 _ _ _ B); Side).
-  assert_diffs.
+  统计不重合点.
   repeat split; auto.
   intro; treat_equalities.
   assert(A=D) by (apply (ABC和ACB均直角则B与C重合 B A D); Perp); auto.
@@ -97,7 +97,7 @@ Lemma per2_os__pars : forall A B C D, Per B A D -> Per A D C -> OS A D B C ->
   严格平行 A B C D.
 Proof.
   intros A B C D HPer1 HPer2 Hos.
-  assert_diffs.
+  统计不重合点.
   assert(~ Col A D B) by (apply (one_side_not_col123 _ _ _ C), Hos).
   apply (col_cop_perp2__pars D A); Perp; Col; Cop.
 Qed.
@@ -145,7 +145,7 @@ Proof.
   assert(E<>C) by (intro; subst; auto).
   assert(~ Col A D B) by (apply (one_side_not_col123 _ _ _ C); auto).
   assert(~ Col A D C) by (apply (one_side_not_col123 _ _ _ B); Side).
-  assert_diffs.
+  统计不重合点.
   assert(HNCol1 :=  per2_os__ncol123 A B C D HPer1 HPer2 Hos).
   assert(HNCol2 :=  per2_os__ncol234 A B C D HPer1 HPer2 Hos).
   assert(HSac : 萨凯里四边形 A B E D).
@@ -162,7 +162,7 @@ Proof.
   { apply (par_not_col_strict _ _ _ _ D); Col.
     apply (l12_9 _ _ _ _ A D); Perp; Cop.
   }
-  assert_diffs.
+  统计不重合点.
   apply (lta_trans _ _ _ B E D).
   - assert(HInter := l11_41 E C B D).
     destruct HInter; Between.
@@ -251,7 +251,7 @@ Proof.
   assert(HConga := sac__conga A B C D HSac).
   unfold 萨凯里四边形 in HSac.
   spliter.
-  assert_diffs.
+  统计不重合点.
   assert(HSAS := l11_49 M B A M C D).
   destruct HSAS; Cong.
     apply (l11_10 C B A B C D); [等角|Out..].
@@ -271,7 +271,7 @@ Proof.
   assert(HConga := sac__conga A B C D HSac).
   unfold 萨凯里四边形 in HSac.
   spliter.
-  assert_diffs.
+  统计不重合点.
   assert(HSAS := l11_49 N A B N D C).
   destruct HSAS; Cong.
   { apply l11_16_直角相等; auto.
@@ -326,7 +326,7 @@ Proof.
   assert(HPerp2 := mid2_sac__perp_upper A B C D M N HSac HM HN).
   unfold 萨凯里四边形 in HSac.
   spliter.
-  assert_diffs.
+  统计不重合点.
   repeat split; auto.
   - apply L形垂直转直角1, (垂线共线点也构成垂直2 _ _ _ D); Perp; Col.
   - apply (l8_3_直角边共线点也构成直角1 D); Perp; Col.
@@ -354,7 +354,7 @@ Proof.
   assert (HLam' := HLam).
   unfold Lambert四边形 in HLam'.
   spliter.
-  assert_diffs.
+  统计不重合点.
   assert(Per D A B) by (apply (l8_3_直角边共线点也构成直角1 N); Col).
   assert(严格对称 D A M N).
   { split.
@@ -499,7 +499,7 @@ Proof.
   destruct HN as [N HN].
   assert(HLam := mid2_sac__lam6521 A B C D M N HSac HM HN).
   apply sac_distincts in HSac; spliter.
-  assert_diffs.
+  统计不重合点.
   split.
   - intro HCong.
     apply (直角边共线点也构成直角2 _ _ M); Col.
@@ -523,7 +523,7 @@ Proof.
   assert(HLam := mid2_sac__lam6521 A B C D M N HSac HM HN).
   assert (H等角 : 等角 A B C M B A).
   { apply sac_distincts in HSac; spliter.
-    assert_diffs.
+    统计不重合点.
     apply 等角的右交换性, out2__conga.
       apply out_trivial; auto.
     apply bet_out; Between.
@@ -551,7 +551,7 @@ Proof.
   assert(HLam := mid2_sac__lam6521 A B C D M N HSac HM HN).
   assert (H等角 : 等角 A B C M B A).
   { apply sac_distincts in HSac; spliter.
-    assert_diffs.
+    统计不重合点.
     apply 等角的右交换性, out2__conga.
       apply out_trivial; auto.
     apply bet_out; Between.
@@ -607,9 +607,9 @@ Proof.
     apply (col_one_side _ A); Col.
     apply (l9_17 _ _ B); Between; Side.
   }
-  apply (bet_suma__per _ _ _ B P C); auto.
+  apply (一角的倍角为平角则该角为直角 _ _ _ B P C); auto.
   assert (P <> Q) by (intro; treat_equalities; auto).
-  apply (等角保持和角 B P Q Q P C B P C); [和角|..|等角].
+  apply (等角保持和角性质 B P Q Q P C B P C); [和角|..|等角].
   - apply (l11_10 B P Q A B P); Out.
     apply 等角的对称性, sac__conga, HSac1.
 
@@ -634,7 +634,7 @@ Proof.
   assert(HPar := sac__pars1423 A B C D HSac).
   assert(HPar' := sac__pars1234 A B C D HSac).
   assert(~ Col A B C) by (apply par_strict_not_col_1 with D, HPar').
-  assert_diffs.
+  统计不重合点.
   assert(P <> Q) by (intro; apply HPar; exists P; subst; split; Col).
   assert(B <> P).
   { intro.
@@ -694,7 +694,7 @@ Proof.
   assert(HPar := sac__pars1423 A B C D HSac).
   assert(HPar' := sac__pars1234 A B C D HSac).
   assert(~ Col A B C) by (apply par_strict_not_col_1 with D, HPar').
-  assert_diffs.
+  统计不重合点.
   assert(B <> P).
   { intro.
     subst P.
@@ -822,7 +822,7 @@ Proof.
   assert(HSac' := HSac).
   unfold 萨凯里四边形 in HSac'.
   spliter.
-  assert_diffs.
+  统计不重合点.
   assert(HPar := sac__pars1423 A B C D HSac).
   assert(HPer1 : Per B A S) by (apply 直角边共线点也构成直角2 with D; Col).
   assert(HPer2 : Per D S J) by (apply (l8_3_直角边共线点也构成直角1 A); [apply 直角边共线点也构成直角2 with R|..]; Col).
@@ -888,7 +888,7 @@ Proof.
   assert(HJ := Hlt).
   apply 长度小于的右交换性 in HJ.
   destruct HJ as [[J []] _].
-  assert_diffs.
+  统计不重合点.
   assert(J <> R) by (intro; subst J; destruct Hlt; Cong).
   assert(等角 A B C B C D) by (apply sac__conga; auto).
   destruct (t22_8_aux A B C D R S J) as [HCR [HSac1 [HSac2 [HOS HCop]]]]; [Out; Cong..|].
@@ -896,7 +896,7 @@ Proof.
   apply (acute_chara _ _ _ R); auto.
   assert(等角 A B J B J S) by (apply sac__conga; auto).
   assert(等角 D C J C J S) by (apply sac__conga; auto).
-  assert_diffs.
+  统计不重合点.
   assert(HPar1 := sac__pars1234 A B J S HSac1).
   assert(HPar2 := sac__pars1423 D C J S HSac2).
   assert(HNCol1 : ~ Col B J S) by (apply (par_strict_not_col_2 A), HPar1).
@@ -912,7 +912,7 @@ Proof.
     apply invert_one_side, out_one_side; [Col|Out].
   }
   assert (HNCol2 : ~ Col J B C) by (apply two_sides_not_col with S; auto).
-  apply (sams_lta2_suma2__lta A B J J B C _ _ _ D C J J C R); [..|和角].
+  apply (角度双全序则和角保持全序 A B J J B C _ _ _ D C J J C R); [..|和角].
   - apply (conga_preserves_lta S J B S J C); 等角.
     split.
       apply inangle__lea; Side.
@@ -922,7 +922,7 @@ Proof.
   - apply (conga_preserves_lta C B J J C R); 等角.
     apply l11_41; Col.
 
-  - apply os_ts__sams; trivial.
+  - apply 同侧异侧推和角不大于平角; trivial.
     apply par_strict_all_one_side with S; Col.
     apply sac__pars1234, HSac2.
 
@@ -948,7 +948,7 @@ Proof.
   spliter.
   assert(HI := l5_5_1 S R A B).
   destruct HI as [I []]; Le.
-  assert_diffs.
+  统计不重合点.
   assert(HPar := sac__pars1423 A B C D HSac).
   assert(R <> I) by (intro; subst I; destruct Hlt; Cong).
   assert(R <> S) by (intro; apply HPar; exists R; subst; split; Col).
@@ -958,7 +958,7 @@ Proof.
   apply (obtuse_chara _ _ _ R); auto.
   assert(等角 A B I B I S) by (apply sac__conga; auto).
   assert(等角 D C I C I S) by (apply sac__conga; auto).
-  assert_diffs.
+  统计不重合点.
   assert(HPar1 := sac__pars1234 A B I S HSac1).
   assert(HPar2 := sac__pars1423 D C I S HSac2).
   assert(HOS1 : OS C R S D).
@@ -971,7 +971,7 @@ Proof.
   { apply l9_2, (l9_8_2 _ _ S); Side.
     apply invert_two_sides, bet__ts; Col.
   }
-  apply(sams_lta2_suma2__lta456 I C R _ _ _ D C I I B C _ _ _ A B I).
+  apply(原角反全序和角全序则加角全序 I C R _ _ _ D C I I B C _ _ _ A B I).
   - apply 角度小于的左交换性, l11_41; Col.
 
   - assert(OS R S C B) by (apply out_one_side; Out; Col).
@@ -989,7 +989,7 @@ Proof.
     apply conga_os__out in Habs; trivial.
     apply HNCol2; Col.
 
-  - apply os_ts__sams; trivial.
+  - apply 同侧异侧推和角不大于平角; trivial.
     apply one_side_transitivity with S; Side.
     apply two_sides_not_col in HTS.
     apply out_one_side; Out; Col.
@@ -1036,7 +1036,7 @@ Lemma t22_8__lt1256 : forall A B C D R S,
 Proof.
   intros A B C D R S HSac.
   intros.
-  assert_diffs.
+  统计不重合点.
   destruct(等长的决定性 R S A B).
   { exfalso.
     apply (nlta A B C), acute_per__lta; auto.
@@ -1058,7 +1058,7 @@ Lemma t22_8__lt5612 : forall A B C D R S,
 Proof.
   intros A B C D R S HSac.
   intros.
-  assert_diffs.
+  统计不重合点.
   destruct(等长的决定性 R S A B).
   { exfalso.
     apply (nlta A B C).
@@ -1115,7 +1115,7 @@ Proof.
   assert(Bet Q' Q S) by (apply (中间性的外传递性1 _ N); Between).
   assert(Bet R' P R) by (apply (中间性的内传递性2 _ M); Between).
   assert(Bet S' Q S) by (apply (中间性的内传递性2 _ N); Between).
-  assert_diffs.
+  统计不重合点.
   assert(Per Q' S R) by (apply (l8_3_直角边共线点也构成直角1 N); auto; ColR).
   assert(Per S' Q P) by (apply (l8_3_直角边共线点也构成直角1 N); auto; ColR).
   assert(S' <> Q) by (intro; treat_equalities; auto).
@@ -1213,7 +1213,7 @@ Proof.
   assert(~ Col N M P) by (apply 成直角三点不共线; auto).
   assert(~ Col M N Q) by (apply 成直角三点不共线; auto).
   assert(~ Col M' N' Q') by (apply 成直角三点不共线; auto).
-  assert_diffs.
+  统计不重合点.
   assert(HSAS := l11_49 N Q P N' Q' P').
   destruct HSAS as [HCong3 [HConga1 HConga2]]; Cong; [等角|].
   assert(等角 M N P M' N' P').
@@ -1292,17 +1292,17 @@ Proof.
   assert(Hdiff' := sac_distincts A' B' C' D' HSac').
   spliter.
   assert(HNCol1 : ~ Col C D A) by (apply (par_strict_not_col_3 _ B), sac__pars1234, HSac).
-  assert_diffs.
+  统计不重合点.
   rename H into HA'B'.
   assert(HH := 由一点往一方向构造等长线段_3 N D N' D').
   destruct HH as [H []]; auto.
   assert(Col A D H) by ColR.
   assert(G0 := l10_15 A D H C).
   destruct G0 as [G0 []]; Col.
-  assert_diffs.
+  统计不重合点.
   assert(HG := 由一点往一方向构造等长线段_3 H G0 C' D').
   destruct HG as [G []]; auto.
-  assert_diffs.
+  统计不重合点.
   assert(OS N D C G).
   { apply invert_one_side.
     apply (col_one_side _ A); Col.
@@ -1334,7 +1334,7 @@ Proof.
     apply (l12_9 _ _ _ _ A D); Cop; [|Perp].
     apply 垂直的右交换性; apply (垂线共线点也构成垂直2 _ _ _ N); Col; Perp.
   }
-  assert_diffs.
+  统计不重合点.
   assert(A <> H) by (intro; subst H; assert(Habs := l6_4_1 D A N); destruct Habs; Between).
   assert(Col H A N) by ColR.
   assert(HL := l8_18_过一点垂线之垂点的存在性 M N G).
@@ -1426,7 +1426,7 @@ Proof.
       apply invert_one_side; apply out_one_side; Col.
     apply l12_6; auto.
   }
-  assert_diffs.
+  统计不重合点.
   assert(HLam3 : Lambert四边形 N M K H).
   { unfold Lambert四边形 in *.
     spliter.
@@ -1598,7 +1598,7 @@ Proof.
   assert (HNCol : ~ Col B A D) by (apply 成直角三点不共线; auto).
   destruct (l10_15 A D D B) as [C0 []]; Col.
   assert(~ Col A D C0) by (apply (one_side_not_col123 _ _ _ B); Side).
-  assert_diffs.
+  统计不重合点.
   destruct (由一点往一方向构造等长线段_3 D C0 A B) as [C []]; auto.
   exists C.
   repeat split; Cong.
@@ -1612,7 +1612,7 @@ Proof.
   assert(HNCol : ~ Col A D E) by (unfold Col; assumption).
   destruct (l10_15 A D A E) as [B []]; Col.
   assert(~ Col A D B) by (apply (one_side_not_col123 _ _ _ E); Side).
-  assert_diffs.
+  统计不重合点.
   destruct (per__ex_saccheri A B D) as [C HSac]; Perp.
   exists A; exists B; exists C; exists D; trivial.
 Qed.
@@ -1708,7 +1708,7 @@ Proof.
     apply (l8_3_直角边共线点也构成直角1 B); Col.
 
   - intro rah.
-    apply (l8_3_直角边共线点也构成直角1 C'); Col ;[|unfold Lambert四边形 in HLam; spliter; assert_diffs; auto].
+    apply (l8_3_直角边共线点也构成直角1 C'); Col ;[|unfold Lambert四边形 in HLam; spliter; 统计不重合点; auto].
     apply 直角的对称性.
     apply (rah _ _ _ D').
     apply (lam6521_mid2__sac _ _ _ _ B A); auto.
@@ -1728,7 +1728,7 @@ Proof.
       apply (lam6521_mid2__sac _ _ _ _ B A); auto.
     unfold Lambert四边形 in HLam.
     spliter.
-    assert_diffs.
+    统计不重合点.
     apply (acute_conga__acute B C D); auto.
     apply 等角的左交换性, out2__conga; [apply out_trivial|apply l6_6, bet_out]; Between.
 
@@ -1737,7 +1737,7 @@ Proof.
       apply (aah _ _ _ D'); apply (lam6521_mid2__sac _ _ _ _ B A); auto.
     unfold Lambert四边形 in HLam.
     spliter.
-    assert_diffs.
+    统计不重合点.
     apply 等角的左交换性, out2__conga; [apply bet_out|apply out_trivial]; Between.
 Qed.
 
@@ -1755,7 +1755,7 @@ Proof.
       apply (lam6521_mid2__sac _ _ _ _ B A); auto.
     unfold Lambert四边形 in HLam.
     spliter.
-    assert_diffs.
+    统计不重合点.
     apply (conga_obtuse__obtuse B C D); auto.
     apply 等角的左交换性, out2__conga; [apply out_trivial|apply l6_6, bet_out]; Between.
 
@@ -1764,7 +1764,7 @@ Proof.
       apply (oah _ _ _ D'); apply (lam6521_mid2__sac _ _ _ _ B A); auto.
     unfold Lambert四边形 in HLam.
     spliter.
-    assert_diffs.
+    统计不重合点.
     apply 等角的左交换性, out2__conga; [apply bet_out|apply out_trivial]; Between.
 Qed.
 
@@ -1846,20 +1846,20 @@ Proof.
   assert(HPars1 := sac__pars1423 B A D C HSac).
   assert(HPars2 := sac__pars1234 B A D C HSac).
   assert(TS C A B D) by (apply l9_31; Side).
-  assert_diffs.
+  统计不重合点.
   assert(等角 B C D A B C) by (unfold 萨凯里四边形 in HSac; spliter; 等角).
   split.
   - intro.
     apply (per_sac__rah B A D C); auto.
     apply (t22_11__per _ _ _ C); auto.
     apply 等角的左交换性.
-    apply (sams2_suma2__conga456 B C A _ _ _ _ _ _ A B C); try (apply sams123231); auto.
-      apply os_ts__sams; Side.
+    apply (和角推加角唯一性 B C A _ _ _ _ _ _ A B C); try (apply 三角形两内角之和小于平角_BC); auto.
+      apply 同侧异侧推和角不大于平角; Side.
     exists D.
     repeat (split; 等角); Side; Cop.
 
   - intro rah.
-    apply (等角保持和角 B C A A C D B C D); try (apply 同角相等); auto.
+    apply (等角保持和角性质 B C A A C D B C D); try (apply 同角相等); auto.
       exists D; repeat (split; 等角); Side; Cop.
     apply 等角的对称性.
     apply 等角的左交换性.
@@ -1872,12 +1872,12 @@ Lemma t22_12__aah : forall A B C P Q R,
   (为锐角 P Q R <-> hypothesis_of_acute_saccheri_quadrilaterals).
 Proof.
   intros A B C P Q R HPer HSuma.
-  suma.assert_diffs.
+  suma.统计不重合点.
   destruct (per__ex_saccheri B A C) as [D HSac]; auto.
   assert(HSac' := HSac).
   unfold 萨凯里四边形 in HSac'.
   spliter.
-  assert_diffs.
+  统计不重合点.
   assert(HPars1 := sac__pars1423 B A D C HSac).
   assert(HPars2 := sac__pars1234 B A D C HSac).
   assert(TS C A B D) by (apply l9_31; Side).
@@ -1887,15 +1887,15 @@ Proof.
     apply (acute_sac__aah B A D C); auto.
     apply (t22_11__acute _ _ _ C); auto.
     apply 角度小于的左交换性.
-    apply (sams_lea_lta789_suma2__lta456 B C A _ _ _ P Q R B C A _ _ _ B C D); Lea; 和角.
+    apply (原角反偏序和角全序则加角全序 B C A _ _ _ P Q R B C A _ _ _ B C D); Lea; 和角.
 
   - intro aah.
     exists B, C, D.
     split; trivial.
-    apply (sams_lea_lta456_suma2__lta B C A C A B _ _ _ B C A A C D); auto.
+    apply (角度一偏序一全序则和角保持全序 B C A C A B _ _ _ B C A A C D); auto.
       apply 任何角小于等于自己; auto.
       apply 角度小于的左交换性; apply t22_11__acute; try (apply (aah _ _ _ C)); auto.
-      apply os_ts__sams; Side.
+      apply 同侧异侧推和角不大于平角; Side.
       和角.
 Qed.
 
@@ -1904,12 +1904,12 @@ Lemma t22_12__oah : forall A B C P Q R,
   (为钝角 P Q R <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
 Proof.
   intros A B C P Q R HPer HSuma.
-  suma.assert_diffs.
+  suma.统计不重合点.
   destruct (per__ex_saccheri B A C) as [D HSac]; auto.
   assert(HSac' := HSac).
   unfold 萨凯里四边形 in HSac'.
   spliter.
-  assert_diffs.
+  统计不重合点.
   assert(HPars1 := sac__pars1423 B A D C HSac).
   assert(HPars2 := sac__pars1234 B A D C HSac).
   assert(TS C A B D) by (apply l9_31; Side).
@@ -1919,13 +1919,13 @@ Proof.
     apply (obtuse_sac__oah B A D C); auto.
     apply (t22_11__obtuse _ _ _ C); auto.
     apply 角度小于的右交换性.
-    apply (sams_lea_lta789_suma2__lta456 B C A _ _ _ B C D B C A _ _ _ P Q R); Lea; [|和角].
-    apply os_ts__sams; Side.
+    apply (原角反偏序和角全序则加角全序 B C A _ _ _ B C D B C A _ _ _ P Q R); Lea; [|和角].
+    apply 同侧异侧推和角不大于平角; Side.
 
   - intro oah.
     exists B, C, D.
     split; trivial.
-    apply (sams_lea_lta456_suma2__lta B C A A C D _ _ _ B C A C A B); 和角.
+    apply (角度一偏序一全序则和角保持全序 B C A A C D _ _ _ B C A C A B); 和角.
       apply 任何角小于等于自己; auto.
       apply 角度小于的右交换性; apply t22_11__obtuse; try (apply (oah _ _ _ C)); auto.
 Qed.
@@ -1941,7 +1941,7 @@ Proof.
   assert(Out B A' C) by (apply (acute_col_perp__out A); auto).
   assert(Out C A' B) by (apply (acute_col_perp__out A); Col; Perp).
   assert(Bet B A' C) by (apply (out2__bet); [|apply l6_6]; auto).
-  assert_diffs.
+  统计不重合点.
   assert(Per B A' A) by (apply L形垂直转直角1, 垂直的左交换性, (垂线共线点也构成垂直1 _ C); Col).
   assert(Per C A' A) by (apply (l8_3_直角边共线点也构成直角1 B); Col).
   do 4 (split; [等角|]).
@@ -1955,24 +1955,24 @@ Lemma t22_14__bet_aux : forall A B C P Q R,
   ~ Col A B C -> 三角形内角和 A B C P Q R -> 为锐角 A B C -> 为锐角 A C B -> Bet P Q R.
 Proof.
   intros A B C P Q R rah HNCol HTri HacuteB HacuteC.
-  apply trisuma_perm_312 in HTri.
+  apply 等价三角形内角和CAB in HTri.
   destruct HTri as [D [E [F []]]].
   destruct (t22_14_aux A B C) as [A']; [assumption..|spliter].
-  assert_diffs.
+  统计不重合点.
 
   apply (bet_conga__bet B A' C); auto.
-  apply (suma2__conga D E F B C A); auto.
-  apply (suma_assoc B A' A C A A' _ _ _ _ _ _ _ _ _ A A' C); [..|和角].
-    apply (conga2_sams__sams C A' A A' A C); 等角; 和角.
-    apply (conga2_sams__sams A' A C A C A'); 等角; 和角.
-    { apply suma_sym, (suma_assoc _ _ _ A' A B A B C _ _ _ C A B); auto.
-      - apply os_ts__sams; Side.
+  apply (和角的唯一性 D E F B C A); auto.
+  apply (和角结合律 B A' A C A A' _ _ _ _ _ _ _ _ _ A A' C); [..|和角].
+    apply (等角保持和角不大于平角性质 C A' A A' A C); 等角; 和角.
+    apply (等角保持和角不大于平角性质 A' A C A C A'); 等角; 和角.
+    { apply 和角的对称性, (和角结合律 _ _ _ A' A B A B C _ _ _ C A B); auto.
+      - apply 同侧异侧推和角不大于平角; Side.
         apply out_one_side; [Col|Out].
-      - apply (conga2_sams__sams A' A B A B A'); 等角; 和角.
+      - apply (等角保持和角不大于平角性质 A' A B A B A'); 等角; 和角.
       - 和角.
-      - apply (等角保持和角 A' A B A B A' B A' A); 等角; apply t22_12__rah; auto.
+      - apply (等角保持和角性质 A' A B A B A' B A' A); 等角; apply t22_12__rah; auto.
     }
-  apply (等角保持和角 A' A C A C A' C A' A); 等角; apply t22_12__rah; auto.
+  apply (等角保持和角性质 A' A C A C A' C A' A); 等角; apply t22_12__rah; auto.
 Qed.
 
 (** Under the Right angle hypothesis,
@@ -1985,19 +1985,19 @@ Lemma t22_14__bet :
 Proof.
   intros rah A B C P Q R HTri.
   elim(共线的决定性 A B C).
-    intro; apply (col_trisuma__bet A B C); auto.
+    intro; apply (退化三角形的内角和为平角 A B C); auto.
   intro.
-  assert_diffs.
+  统计不重合点.
   destruct (angle_partition A B C); auto; [destruct (angle_partition A C B); auto|].
   - apply (t22_14__bet_aux A B C); auto.
 
   - destruct (l11_43 C A B); auto.
     apply (t22_14__bet_aux C A B); Col.
-    apply trisuma_perm_312; auto.
+    apply 等价三角形内角和CAB; auto.
 
   - destruct (l11_43 B A C); auto.
     apply (t22_14__bet_aux B A C); Col.
-    apply trisuma_perm_213; auto.
+    apply 等价三角形内角和BAC; auto.
 Qed.
 
 
@@ -2006,58 +2006,58 @@ Lemma t22_14__sams_nbet_aux : forall A B C D E F P Q R,
   ~ Col A B C ->
   和角 C A B A B C D E F -> 和角 D E F B C A P Q R ->
   为锐角 A B C -> 为锐角 A C B ->
-  角度之和小于平角 D E F B C A /\ ~ Bet P Q R.
+  和角不大于平角 D E F B C A /\ ~ Bet P Q R.
 Proof.
   intros A B C D E F P Q R aah HNCol HSuma1 HSuma2 HacuteB HacuteC.
   destruct (t22_14_aux A B C) as [A']; [assumption..|spliter].
-  assert_diffs.
+  统计不重合点.
   rename H into HBet.
 
   assert(HSuma3 := 和角的存在性 B A' A C A A').
   destruct HSuma3 as [G [H [I HSuma3]]]; auto.
-  suma.assert_diffs.
+  suma.统计不重合点.
   assert(角度小于 D E F G H I).
   { assert(HSuma4 := 和角的存在性 A' A B A B C).
     destruct HSuma4 as [V [W [X HSuma4]]]; auto.
-    suma.assert_diffs.
-    apply (sams_lea_lta456_suma2__lta C A A' V W X _ _ _ C A A' B A' A); [Lea|..|和角].
-      apply (acute_per__lta); auto; apply (t22_12__aah B A' A); auto; apply (等角保持和角 A' A B A B C V W X); 等角.
-      apply (conga2_sams__sams C A A' A A' C); 和角; 等角.
-    apply (suma_assoc _ _ _ A' A B A B C _ _ _ C A B); auto.
-    - apply os_ts__sams; Side.
+    suma.统计不重合点.
+    apply (角度一偏序一全序则和角保持全序 C A A' V W X _ _ _ C A A' B A' A); [Lea|..|和角].
+      apply (acute_per__lta); auto; apply (t22_12__aah B A' A); auto; apply (等角保持和角性质 A' A B A B C V W X); 等角.
+      apply (等角保持和角不大于平角性质 C A A' A A' C); 和角; 等角.
+    apply (和角结合律 _ _ _ A' A B A B C _ _ _ C A B); auto.
+    - apply 同侧异侧推和角不大于平角; Side.
       apply out_one_side; [Col|Out].
-    - apply (conga2_sams__sams A' A B A B A'); 和角; 等角.
+    - apply (等角保持和角不大于平角性质 A' A B A B A'); 和角; 等角.
     - exists B; repeat (split; 等角); Side.
       exists C; left; split; Col.
   }
   assert(HSuma4 := 和角的存在性 C A A' B C A).
   destruct HSuma4 as [J [K [L HSuma4]]]; auto.
-  suma.assert_diffs.
+  suma.统计不重合点.
   assert(角度小于 J K L A A' C).
-    apply (acute_per__lta); Perp; apply (t22_12__aah C A' A); auto; apply (等角保持和角 C A A' B C A J K L); 等角.
-  assert(角度之和小于平角 G H I B C A).
-  { apply (sams_assoc B A' A C A A' _ _ _ _ _ _ J K L); auto.
-      apply (conga2_sams__sams C A' A A' A C); 和角; 等角.
-      apply (conga2_sams__sams A' A C A C A'); 和角; 等角.
-      apply (sams_chara _ _ _ _ _ _ C); Lea.
+    apply (acute_per__lta); Perp; apply (t22_12__aah C A' A); auto; apply (等角保持和角性质 C A A' B C A J K L); 等角.
+  assert(和角不大于平角 G H I B C A).
+  { apply (和角不大于平角结合律 B A' A C A A' _ _ _ _ _ _ J K L); auto.
+      apply (等角保持和角不大于平角性质 C A' A A' A C); 和角; 等角.
+      apply (等角保持和角不大于平角性质 A' A C A C A'); 和角; 等角.
+      apply (用角度小于等于特征化和角不大于平角 _ _ _ _ _ _ C); Lea.
   }
   assert(HSuma5 := 和角的存在性 G H I B C A).
   destruct HSuma5 as [S [T [U HSuma5]]]; auto.
-  suma.assert_diffs.
+  suma.统计不重合点.
   assert(角度小于 S T U B A' C).
-  { apply (sams_lea_lta456_suma2__lta B A' A J K L _ _ _ B A' A A A' C); [Lea..|和角| |和角].
-    apply (suma_assoc _ _ _ C A A' B C A _ _ _ G H I); auto;
-      [apply (conga2_sams__sams C A' A A' A C)|apply (conga2_sams__sams A' A C A C A')];
+  { apply (角度一偏序一全序则和角保持全序 B A' A J K L _ _ _ B A' A A A' C); [Lea..|和角| |和角].
+    apply (和角结合律 _ _ _ C A A' B C A _ _ _ G H I); auto;
+      [apply (等角保持和角不大于平角性质 C A' A A' A C)|apply (等角保持和角不大于平角性质 A' A C A C A')];
       和角; 等角.
   }
 
   split.
-    apply (sams_lea2__sams _ _ _ _ _ _ G H I B C A); Lea.
+    apply (角度小于等于保持和角不大于平角性质 _ _ _ _ _ _ G H I B C A); Lea.
   intro.
   apply (nlta P Q R).
   apply (conga_preserves_lta P Q R B A' C); 等角.
   apply (lta_trans _ _ _ S T U); auto.
-  apply (sams_lea_lta123_suma2__lta D E F B C A _ _ _ G H I B C A); Lea.
+  apply (角度一全序一偏序则和角保持全序 D E F B C A _ _ _ G H I B C A); Lea.
 Qed.
 
 (** Under the 为锐角 angle hypothesis,
@@ -2068,10 +2068,10 @@ Lemma t22_14__sams_nbet :
   hypothesis_of_acute_saccheri_quadrilaterals ->
   forall A B C D E F P Q R, ~ Col A B C ->
   和角 C A B A B C D E F -> 和角 D E F B C A P Q R ->
-  角度之和小于平角 D E F B C A /\ ~ Bet P Q R.
+  和角不大于平角 D E F B C A /\ ~ Bet P Q R.
 Proof.
   intros aah A B C D E F P Q R HNCol HSuma1 HSuma2.
-  assert_diffs.
+  统计不重合点.
   destruct (angle_partition A B C); auto; [destruct (angle_partition A C B); auto|].
   - apply (t22_14__sams_nbet_aux A B C); auto.
 
@@ -2079,12 +2079,12 @@ Proof.
     assert(HSuma3 := 和角的存在性 B C A C A B).
     rename H into H为锐角.
     destruct HSuma3 as [G [H [I HSuma3]]]; auto.
-    suma.assert_diffs.
+    suma.统计不重合点.
     assert(HInter := t22_14__sams_nbet_aux C A B G H I P Q R).
     destruct HInter as [HIsi HNBet]; Col.
-      apply (suma_assoc B C A C A B _ _ _ _ _ _ _ _ _ D E F); 和角.
+      apply (和角结合律 B C A C A B _ _ _ _ _ _ _ _ _ D E F); 和角.
     split; auto.
-    apply sams_sym; apply (sams_assoc _ _ _ C A B A B C G H I); 和角.
+    apply 和角不大于平角的对称性; apply (和角不大于平角结合律 _ _ _ C A B A B C G H I); 和角.
 
   - destruct (l11_43 B A C); auto.
     assert(HInter := t22_14__sams_nbet_aux B A C D E F P Q R).
@@ -2095,14 +2095,14 @@ Lemma t22_14__nsams_aux : forall A B C D E F,
   hypothesis_of_obtuse_saccheri_quadrilaterals ->
   ~ Col A B C ->
   和角 C A B A B C D E F -> 为锐角 A B C -> 为锐角 A C B ->
-  ~ 角度之和小于平角 D E F B C A.
+  ~ 和角不大于平角 D E F B C A.
 Proof.
   intros A B C D E F oah HNCol HSuma1 HacuteB HacuteC HIsi.
   destruct (t22_14_aux A B C) as [A']; [assumption..|spliter].
-  assert_diffs.
+  统计不重合点.
 
   assert(HSuma2 := 和角的存在性 D E F B C A).
-  destruct HSuma2 as [P [Q [R HSuma2]]]; suma.assert_diffs; auto.
+  destruct HSuma2 as [P [Q [R HSuma2]]]; suma.统计不重合点; auto.
   absurd (角度小于 B A' C P Q R).
     apply (lea__nlta); apply l11_31_1_任何角小于等于平角_Bet表述; auto.
   assert(HSuma3 := 和角的存在性 B A' A C A A').
@@ -2111,39 +2111,39 @@ Proof.
   assert(角度小于 G H I D E F).
   { assert(HSuma4 := 和角的存在性 A' A B A B C).
     destruct HSuma4 as [V [W [X HSuma4]]]; auto.
-    suma.assert_diffs.
-    assert(角度之和小于平角 C A A' A' A B).
-    { apply os_ts__sams; Side.
+    suma.统计不重合点.
+    assert(和角不大于平角 C A A' A' A B).
+    { apply 同侧异侧推和角不大于平角; Side.
       apply out_one_side; [Col|Out].
     }
-    assert(角度之和小于平角 A' A B A B C) by (apply (conga2_sams__sams A' A B A B A'); 和角; 等角).
+    assert(和角不大于平角 A' A B A B C) by (apply (等角保持和角不大于平角性质 A' A B A B A'); 和角; 等角).
     assert(和角 C A A' A' A B C A B) by (exists B; repeat (split; 等角); Side; Cop).
-    apply (sams_lea_lta456_suma2__lta C A A' B A' A _ _ _ C A A' V W X); Lea.
-      apply (obtuse_per__lta); auto; apply (t22_12__oah B A' A); auto; apply (等角保持和角 A' A B A B C V W X); 等角.
-      apply (sams_assoc _ _ _ A' A B A B C C A B); 和角.
+    apply (角度一偏序一全序则和角保持全序 C A A' B A' A _ _ _ C A A' V W X); Lea.
+      apply (obtuse_per__lta); auto; apply (t22_12__oah B A' A); auto; apply (等角保持和角性质 A' A B A B C V W X); 等角.
+      apply (和角不大于平角结合律 _ _ _ A' A B A B C C A B); 和角.
       和角.
-      apply (suma_assoc _ _ _ A' A B A B C _ _ _ C A B); auto.
+      apply (和角结合律 _ _ _ A' A B A B C _ _ _ C A B); auto.
   }
   assert(HSuma4 := 和角的存在性 C A A' B C A).
   destruct HSuma4 as [J [K [L HSuma4]]]; auto.
-  suma.assert_diffs.
+  suma.统计不重合点.
   assert(角度小于 A A' C J K L).
-    apply (obtuse_per__lta); Perp; apply (t22_12__oah C A' A); auto; apply (等角保持和角 C A A' B C A J K L); 等角.
+    apply (obtuse_per__lta); Perp; apply (t22_12__oah C A' A); auto; apply (等角保持和角性质 C A A' B C A J K L); 等角.
   assert(HSuma5 := 和角的存在性 B A' A J K L).
   destruct HSuma5 as [S [T [U HSuma5]]]; auto.
-  suma.assert_diffs.
+  suma.统计不重合点.
   apply (lta_trans _ _ _ S T U).
-  - apply (sams_lea_lta456_suma2__lta B A' A A A' C _ _ _ B A' A J K L); Lea;
+  - apply (角度一偏序一全序则和角保持全序 B A' A A A' C _ _ _ B A' A J K L); Lea;
     [|exists C; repeat (split; 等角); Side; Cop].
-    apply (sams_assoc _ _ _ C A A' B C A G H I); auto.
-      apply (conga2_sams__sams C A' A C A A'); 和角; 等角.
-      apply (conga2_sams__sams C A A' A' C A); 和角; 等角.
-    apply (sams_lea2__sams _ _ _ _ _ _ D E F B C A); Lea.
+    apply (和角不大于平角结合律 _ _ _ C A A' B C A G H I); auto.
+      apply (等角保持和角不大于平角性质 C A' A C A A'); 和角; 等角.
+      apply (等角保持和角不大于平角性质 C A A' A' C A); 和角; 等角.
+    apply (角度小于等于保持和角不大于平角性质 _ _ _ _ _ _ D E F B C A); Lea.
 
-  - apply (sams_lea_lta123_suma2__lta G H I B C A _ _ _ D E F B C A); Lea.
-    apply (suma_assoc B A' A C A A' _ _ _ _ _ _ _ _ _ J K L); auto.
-      apply (conga2_sams__sams C A' A C A A'); 和角; 等角.
-      apply (conga2_sams__sams C A A' A' C A); 和角; 等角.
+  - apply (角度一全序一偏序则和角保持全序 G H I B C A _ _ _ D E F B C A); Lea.
+    apply (和角结合律 B A' A C A A' _ _ _ _ _ _ _ _ _ J K L); auto.
+      apply (等角保持和角不大于平角性质 C A' A C A A'); 和角; 等角.
+      apply (等角保持和角不大于平角性质 C A A' A' C A); 和角; 等角.
 Qed.
 
 (** Under the 为钝角 angle hypothesis,
@@ -2154,10 +2154,10 @@ Lemma t22_14__nsams :
   hypothesis_of_obtuse_saccheri_quadrilaterals ->
   forall A B C D E F, ~ Col A B C ->
   和角 C A B A B C D E F ->
-  ~ 角度之和小于平角 D E F B C A.
+  ~ 和角不大于平角 D E F B C A.
 Proof.
   intros oah A B C D E F HNCol HSuma1.
-  assert_diffs.
+  统计不重合点.
   elim(angle_partition A B C); auto.
   intro; elim(angle_partition A C B); auto.
   - intro.
@@ -2169,18 +2169,18 @@ Proof.
     assert(HSuma3 := 和角的存在性 B C A C A B).
     rename H into H为锐角.
     destruct HSuma3 as [G [H [I HSuma3]]]; auto.
-    suma.assert_diffs.
+    suma.统计不重合点.
     assert(HNIsi := t22_14__nsams_aux C A B G H I).
     intro HIsi.
-    absurd(角度之和小于平角 G H I A B C).
+    absurd(和角不大于平角 G H I A B C).
       apply HNIsi; Col.
-      apply (sams_assoc B C A C A B _ _ _ _ _ _ D E F); 和角.
+      apply (和角不大于平角结合律 B C A C A B _ _ _ _ _ _ D E F); 和角.
 
   - intro.
     assert (HInter := l11_43 B A C).
     destruct HInter; Col.
     intro.
-    absurd(角度之和小于平角 D E F A C B).
+    absurd(和角不大于平角 D E F A C B).
       apply (t22_14__nsams_aux B A C D E F); Col; 和角.
       和角.
 Qed.
@@ -2194,7 +2194,7 @@ Lemma t22_14__rah : forall A B C P Q R,
   ~ Col A B C -> 三角形内角和 A B C P Q R -> Bet P Q R -> hypothesis_of_right_saccheri_quadrilaterals.
 Proof.
   intros A B C P Q R HNCol HTri HBet.
-  apply trisuma_perm_312 in HTri.
+  apply 等价三角形内角和CAB in HTri.
   destruct (saccheri_s_three_hypotheses) as [aah|[|oah]]; auto; exfalso.
   - destruct HTri as [D [E [F []]]].
     assert(HInter := t22_14__sams_nbet aah A B C D E F P Q R).
@@ -2205,8 +2205,8 @@ Proof.
     apply (t22_14__nsams oah A B C D E F); auto.
     destruct HSuma2 as [G [HConga1 [HNos [HCop HConga2]]]].
     apply 等角的对称性 in HConga1.
-    assert_diffs.
-    apply (sams_chara _ _ _ _ _ _ G); Lea.
+    统计不重合点.
+    apply (用角度小于等于特征化和角不大于平角 _ _ _ _ _ _ G); Lea.
     apply (bet_conga__bet P Q R); 等角.
 Qed.
 
@@ -2216,7 +2216,7 @@ Qed.
 
 Lemma t22_14__aah : forall A B C D E F P Q R,
   和角 C A B A B C D E F -> 和角 D E F B C A P Q R ->
-  角度之和小于平角 D E F B C A ->
+  和角不大于平角 D E F B C A ->
   ~ Bet P Q R ->
   hypothesis_of_acute_saccheri_quadrilaterals.
 Proof.
@@ -2224,17 +2224,17 @@ Proof.
   destruct(saccheri_s_three_hypotheses) as [|[rah|oah]]; auto; exfalso.
   - apply HNBet.
     apply (t22_14__bet rah A B C).
-    apply trisuma_perm_231.
+    apply 等价三角形内角和BCA.
     exists D, E, F.
     split; auto.
 
   - destruct (共线的决定性 A B C).
     { apply HNBet.
-      apply (col_trisuma__bet C A B); Col.
+      apply (退化三角形的内角和为平角 C A B); Col.
       exists D, E, F.
       split; auto.
     }
-    absurd(角度之和小于平角 D E F B C A); auto.
+    absurd(和角不大于平角 D E F B C A); auto.
     apply t22_14__nsams; auto.
 Qed.
 
@@ -2243,24 +2243,24 @@ Qed.
  *)
 
 Lemma t22_14__oah : forall A B C D E F,
-  和角 C A B A B C D E F -> ~ 角度之和小于平角 D E F B C A -> hypothesis_of_obtuse_saccheri_quadrilaterals.
+  和角 C A B A B C D E F -> ~ 和角不大于平角 D E F B C A -> hypothesis_of_obtuse_saccheri_quadrilaterals.
 Proof.
   intros A B C D E F HSuma1 HNIsi.
-  suma.assert_diffs.
+  suma.统计不重合点.
   destruct(共线的决定性 A B C).
   { exfalso.
     apply HNIsi.
     destruct(中间性的决定性 A B C).
-    - apply out546__sams; Out.
-    - apply (conga2_sams__sams C A B B C A); try (apply 同角相等); 和角.
-      apply (out546_suma__conga _ _ _ A B C); auto.
+    - apply OutEDF推和角不大于平角; Out.
+    - apply (等角保持和角不大于平角性质 C A B B C A); try (apply 同角相等); 和角.
+      apply (任何角加上零角大小不变 _ _ _ A B C); auto.
       apply not_bet_out; auto.
   }
   assert(HSuma2 := 和角的存在性 D E F B C A).
   destruct HSuma2 as [P [Q [R HSuma2]]]; auto.
   destruct (saccheri_s_three_hypotheses) as [aah|[rah|]]; auto; exfalso; apply HNIsi.
   - apply t22_14__sams_nbet with P Q R; assumption.
-  - apply bet_suma__sams with P Q R; trivial.
+  - apply 和角为平角推和角不大于平角 with P Q R; trivial.
     apply (t22_14__bet rah C A B).
     exists D, E, F; split; assumption.
 Qed.
@@ -2274,7 +2274,7 @@ Lemma cong_mid__suma : forall A B C M,
   和角 C A B A B C A C B.
 Proof.
   intros A B C M HNCol HM HCong.
-  assert_diffs.
+  统计不重合点.
   assert(等角 A B C M C B).
   { apply (l11_10 M B C M C B); Out.
     apply l11_44_1_a; auto; apply (等长的传递性 _ _ M A); Cong.
@@ -2283,7 +2283,7 @@ Proof.
   { apply (l11_10 M A C M C A); Out.
     apply l11_44_1_a; Cong.
   }
-  apply (等角保持和角 A C M M C B A C B); 等角.
+  apply (等角保持和角性质 A C M M C B A C B); 等角.
   assert (TS M C A B) by (apply bet__ts; Between; intro; apply HNCol; ColR).
   exists B.
   repeat (split; 等角); Side; Cop.
@@ -2301,16 +2301,16 @@ Lemma t22_17__rah : forall A B C M,
   (Per A C B <-> hypothesis_of_right_saccheri_quadrilaterals).
 Proof.
   intros A B C M HNCol HM HCong.
-  assert_diffs.
+  统计不重合点.
   assert(和角 C A B A B C A C B) by (apply (cong_mid__suma _ _ _ M); auto).
   assert(HSuma := 和角的存在性 A C B B C A).
   destruct HSuma as [P [Q [R]]]; auto.
   split; intro HR.
   - apply (t22_14__rah C A B P Q R); Col.
       exists A; exists C; exists B; auto.
-      apply (per2_suma__bet A C B B C A); Perp.
+      apply (两直角之和为平角 A C B B C A); Perp.
 
-  - apply (bet_suma__per _ _ _ P Q R); 和角.
+  - apply (一角的倍角为平角则该角为直角 _ _ _ P Q R); 和角.
     apply (t22_14__bet HR C A B).
     exists A, C, B; auto.
 Qed.
@@ -2321,16 +2321,16 @@ Lemma t22_17__oah : forall A B C M,
   (为钝角 A C B <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
 Proof.
   intros A B C M HNCol HM HCong.
-  assert_diffs.
+  统计不重合点.
   assert(和角 C A B A B C A C B) by (apply (cong_mid__suma _ _ _ M); auto).
   assert(HSuma := 和角的存在性 A C B B C A).
   destruct HSuma as [P [Q [R]]]; auto.
   split; intro HO.
   - apply (t22_14__oah A B C B C A); Col; 和角.
-    apply obtuse__nsams; apply obtuse_sym; auto.
+    apply 钝角的倍角大于平角; apply obtuse_sym; auto.
 
   - apply obtuse_sym.
-    apply nsams__obtuse; auto.
+    apply 一角的倍角大于平角则该角为钝角; auto.
     apply (t22_14__nsams HO A B C); Col; 和角.
 Qed.
 
@@ -2340,7 +2340,7 @@ Lemma t22_17__aah : forall A B C M,
   (为锐角 A C B <-> hypothesis_of_acute_saccheri_quadrilaterals).
 Proof.
   intros A B C M HNCol HM HCong.
-  assert_diffs.
+  统计不重合点.
   split; intro.
   - destruct (saccheri_s_three_hypotheses) as [|[|]]; auto; exfalso; apply (nlta A C B).
       apply (acute_per__lta); auto; rewrite (t22_17__rah _ _ _ M); auto.
@@ -2353,10 +2353,10 @@ Proof.
 Qed.
 
 Lemma t22_20 : ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
-  forall A B C D E F, 和角 A B C B C A D E F -> 角度之和小于平角 D E F C A B.
+  forall A B C D E F, 和角 A B C B C A D E F -> 和角不大于平角 D E F C A B.
 Proof.
   intros noah A B C D E F HS.
-  destruct(sams_dec D E F C A B); trivial.
+  destruct(和角不大于平角的决定性 D E F C A B); trivial.
   exfalso.
   apply noah, (t22_14__oah B C A D E F); trivial.
 Qed.
@@ -2367,8 +2367,8 @@ Lemma absolute_exterior_angle_theorem : ~ hypothesis_of_obtuse_saccheri_quadrila
 Proof.
   intros noah A B C D E F B' HBet HAB' HSuma.
   assert (HIsi := t22_20 noah A B C D E F HSuma).
-  assert_diffs.
-  apply sams_chara with B; 和角.
+  统计不重合点.
+  apply 用角度小于等于特征化和角不大于平角 with B; 和角.
 Qed.
 
 End 萨凯里四边形.

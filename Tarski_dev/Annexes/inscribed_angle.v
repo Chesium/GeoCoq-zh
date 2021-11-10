@@ -21,10 +21,10 @@ Lemma bet__trisuma : forall A B C D E F, Bet D E F -> A <> B -> B <> C -> A <> C
   三角形内角和 A B C D E F.
 Proof.
   intros A B C D E F HBet; intros.
-  destruct (ex_trisuma A B C) as [P [Q [R HTri]]]; auto.
-  apply conga_trisuma__trisuma with P Q R; trivial.
+  destruct (三角形内角和的存在性 A B C) as [P [Q [R HTri]]]; auto.
+  apply 等角保持三角形内角和性质 with P Q R; trivial.
   assert (Hd := HTri).
-  apply trisuma_distincts in Hd; spliter.
+  apply 三角形内角和推出不重合 in Hd; spliter.
   apply 成中间性三点组的角相等; auto.
   apply (trisuma__bet A B C); trivial.
 Qed.
@@ -40,25 +40,25 @@ Proof.
   unfold hypothesis_of_right_saccheri_quadrilaterals; apply right_saccheris.
 Qed.
 
-Lemma suma123231__sams : forall A B C D E F, 和角 A B C B C A D E F -> 角度之和小于平角 D E F C A B.
+Lemma suma123231__sams : forall A B C D E F, 和角 A B C B C A D E F -> 和角不大于平角 D E F C A B.
 Proof. exact (t22_20 not_obtuse_saccheris). Qed.
 
 Lemma bet_suma__suma : forall A B C D E F G H I, G <> H -> H <> I ->
   Bet G H I -> 和角 A B C B C A D E F -> 和角 D E F C A B G H I.
 Proof.
   intros A B C D E F G H I HGH HHI HBet HSuma.
-  suma.assert_diffs.
+  suma.统计不重合点.
   destruct (bet__trisuma A B C G H I) as [D' [E' [F' []]]]; auto.
-  apply (等角保持和角 D' E' F' C A B G H I); try apply 同角相等; auto.
-  apply (suma2__conga A B C B C A); assumption.
+  apply (等角保持和角性质 D' E' F' C A B G H I); try apply 同角相等; auto.
+  apply (和角的唯一性 A B C B C A); assumption.
 Qed.
 
 Lemma suma__suppa : forall A B C D E F, 和角 A B C B C A D E F -> 互为补角 D E F C A B.
 Proof.
   intros A B C D E F HSuma.
-  suma.assert_diffs.
+  suma.统计不重合点.
   destruct (构造满足中间性的不重合点 A B) as [A' []].
-  apply bet_suma__suppa with A B A'; trivial.
+  apply 和角为平角则为补角 with A B A'; trivial.
   apply bet_suma__suma; auto.
 Qed.
 
@@ -67,7 +67,7 @@ Lemma high_school_exterior_angle_theorem : forall A B C B', A <> B -> B <> C -> 
 Proof.
   intros A B C B'; intros.
   destruct (和角的存在性 A B C B C A) as [D [E [F HSuma]]]; auto.
-  apply (等角保持和角 A B C B C A D E F); try apply 同角相等; auto.
+  apply (等角保持和角性质 A B C B C A D E F); try apply 同角相等; auto.
   apply suppa2__conga123 with C A B.
     apply suma__suppa; assumption.
     apply suppa_sym, suppa_left_comm, bet__suppa; auto.
@@ -98,7 +98,7 @@ Proof.
   intros A B C O HAC HBC HPer HCong1 HCong2 HCop.
   destruct (中点的存在性 A B) as [M HM].
   assert (M = O); [|subst; apply HM].
-  suma.assert_diffs.
+  suma.统计不重合点.
   apply (cong4_cop2__eq A C B); Cong; [|Cop..].
   apply 等长的交换性, thales_converse_theorem with B; assumption.
 Qed.
@@ -109,8 +109,8 @@ Proof.
   intros A B C B' HAB HBC HAB' HBet HCong.
   apply ghalfa_chara; split.
     apply cong__acute; auto.
-  suma.assert_diffs.
-  apply (等角保持和角 A B C B C A C A B'); try apply 同角相等; auto.
+  suma.统计不重合点.
+  apply (等角保持和角性质 A B C B C A C A B'); try apply 同角相等; auto.
     apply high_school_exterior_angle_theorem; auto.
   apply 等角的左交换性, l11_44_1_a; Cong.
 Qed.
@@ -129,7 +129,7 @@ Proof.
   { assert (HNCol1 : ~ Col A B O) by (eapply one_side_not_col123, HOS).
     assert (M <> O) by (intro; treat_equalities; apply HNCol1; Col).
     assert (O <> C) by (intro; treat_equalities; auto).
-    suma.assert_diffs.
+    suma.统计不重合点.
     assert (Cong O A O C) by (apply (在同圆上的两点与圆心等距 O P); assumption).
     destruct (angle_partition M O C); auto.
     - assert (HMO := H).
@@ -154,7 +154,7 @@ Proof.
       }
       assert (M <> H) by (intro; subst; apply one_side_not_col124 in HOS1; apply HOS1; Col).
       assert (Per M H C) by (apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with O; Col).
-      apply 长度小于的传递性 with H C; [|suma.assert_diffs; apply l11_46; auto].
+      apply 长度小于的传递性 with H C; [|suma.统计不重合点; apply l11_46; auto].
       apply cong_lt_per2__lt_1 with O O; Cong.
         apply 直角的对称性, 直角边共线点也构成直角2 with M; Col; Perp.
         apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直2 with B; Col.
@@ -170,7 +170,7 @@ Proof.
   destruct HLt as [[C' [HBet HCong]] HNCong].
   exists A, C', B; split.
     apply thales_theorem with M; trivial.
-  suma.assert_diffs.
+  suma.统计不重合点.
   assert (C <> C') by (intro; subst; apply HNCong, HCong).
   apply os3__lta.
   - apply one_side_transitivity with M.
@@ -189,13 +189,13 @@ Lemma inscribed_angle_aux : forall O P A B C,
 Proof.
   intros O P A B C HA HB HC HOS HTS.
   destruct (由一点往一方向构造等长线段 C O O P) as [C' []].
-  suma.assert_diffs.
+  suma.统计不重合点.
   assert (O <> C') by (intro; treat_equalities; auto).
   assert (HCong := (在同圆上的两点与圆心等距 O P)).
   apply suma_preserves_ghalfa with A C C' C' C B A O C' C' O B.
     apply (onc3_os__acute O P); assumption.
-    apply ts__suma, invert_two_sides, col_two_sides with O; Side; Col.
-    apply ts__suma, invert_two_sides, col_two_sides with C; Col.
+    apply 异侧推出和角1, invert_two_sides, col_two_sides with O; Side; Col.
+    apply 异侧推出和角1, invert_two_sides, col_two_sides with C; Col.
     apply ghalfa_out4__ghalfa with A O A C'; try apply out_trivial; auto;
       [apply l6_6, bet_out|apply ghalfa_left_comm, bet_cong__ghalfa]; auto.
     apply ghalfa_out4__ghalfa with O B C' B; try apply out_trivial; auto;
@@ -211,7 +211,7 @@ Proof.
   OS A B O C -> OS O C A B -> OS O B A C -> gHalfA A C B A O B).
   { intros O P A B C HA HB HC HOS1 HOS2 HOS3.
     destruct (由圆上圆内两点补全一弦 O P C O) as [C' [HC' HBet ]]; Circle.
-    suma.assert_diffs.
+    suma.统计不重合点.
     assert (C' <> O) by (intro; treat_equalities; auto).
     assert (TS O B A C').
     { apply l9_8_2 with C; [|Side].
@@ -257,7 +257,7 @@ Proof.
   intros O P A B C HA HB HC HOS.
   assert (HCong := (在同圆上的两点与圆心等距 O P)).
   destruct (共线的决定性 A O C).
-  { suma.assert_diffs.
+  { suma.统计不重合点.
     assert (Bet C O A) by (apply col_inc_onc2__bet with O P; Col; Circle).
     assert (O <> C) by (intro; treat_equalities; auto).
     apply ghalfa_right_comm, ghalfa_out4__ghalfa with O B B A; try apply out_trivial; auto.
@@ -265,7 +265,7 @@ Proof.
     apply bet_cong__ghalfa; auto.
   }
   destruct (共线的决定性 B O C).
-  { suma.assert_diffs.
+  { suma.统计不重合点.
     assert (Bet C O B) by (apply col_inc_onc2__bet with O P; Col; Circle).
     assert (O <> C) by (intro; treat_equalities; auto).
     apply ghalfa_left_comm, ghalfa_out4__ghalfa with O A A B; try apply out_trivial; auto.
@@ -282,7 +282,7 @@ Lemma diam_onc2_ts__suppa : forall O P A B C C',
   互为补角 A C B A C' B.
 Proof.
   intros O P A B C C' HA HB [HBet [HC HC']] HTS.
-  suma.assert_diffs.
+  suma.统计不重合点.
   assert (HCong := 在同圆上的两点与圆心等距 O P).
   assert (HMid : 中点 O C C') by (split; Cong).
   assert (C <> C') by (intro; treat_equalities; auto).
@@ -292,41 +292,41 @@ Proof.
   assert (HSumaB : 和角 B C C' C C' B C B C') by (apply cong_mid__suma with O; auto).
   assert (Per C A C') by (apply thales_theorem with O; auto).
   assert (Per C B C') by (apply thales_theorem with O; auto).
-  assert (HSuma : 和角 C A C' C B C' C O C') by (suma.assert_diffs; apply bet_per2__suma; auto).
-  apply bet_suma__suppa with C O C'; trivial.
+  assert (HSuma : 和角 C A C' C B C' C O C') by (suma.统计不重合点; apply 平角为两直角之和; auto).
+  apply 和角为平角则为补角 with C O C'; trivial.
   destruct (和角的存在性 C A C' C' C B) as [D [E [F HSuma1]]]; auto.
   assert (HTS2 : TS C C' A B) by (apply (chord_intersection O P); assumption).
   assert (HTS3 : TS C' C A B) by (apply invert_two_sides, HTS2).
   assert (为锐角 C' C A).
-  { suma.assert_diffs; apply acute_out2__acute with O A.
+  { suma.统计不重合点; apply acute_out2__acute with O A.
       apply l6_6, bet_out; auto.
       apply out_trivial; auto.
       apply cong__acute; auto.
   }
   assert (为锐角 C' C B).
-  { suma.assert_diffs; apply acute_out2__acute with O B.
+  { suma.统计不重合点; apply acute_out2__acute with O B.
       apply l6_6, bet_out; auto.
       apply out_trivial; auto.
       apply cong__acute; auto.
   }
   assert (为锐角 C C' A).
-  { suma.assert_diffs; apply acute_out2__acute with O A.
+  { suma.统计不重合点; apply acute_out2__acute with O A.
       apply l6_6, bet_out; Between.
       apply out_trivial; auto.
       apply cong__acute; auto.
   }
   assert (为锐角 C C' B).
-  { suma.assert_diffs; apply acute_out2__acute with O B.
+  { suma.统计不重合点; apply acute_out2__acute with O B.
       apply l6_6, bet_out; Between.
       apply out_trivial; auto.
       apply cong__acute; auto.
   }
   assert (HSuma2 : 和角 A C B A C' C D E F).
-    apply suma_sym, suma_assoc_1 with A C C' C' C B C A C'; 和角.
-  assert (H角度之和小于平角 : 角度之和小于平角 A C B A C' C).
-    apply sams_sym, sams_assoc_1 with A C C' C' C B C A C'; 和角.
-  apply suma_assoc_1 with A C' C C C' B D E F; [和角..|].
-  apply suma_assoc_2 with C A C' B C C' C B C'; 和角.
+    apply 和角的对称性, 和角结合律1 with A C C' C' C B C A C'; 和角.
+  assert (H和角不大于平角 : 和角不大于平角 A C B A C' C).
+    apply 和角不大于平角的对称性, 和角不大于平角结合律1 with A C C' C' C B C A C'; 和角.
+  apply 和角结合律1 with A C' C C C' B D E F; [和角..|].
+  apply 和角结合律2 with C A C' B C C' C B C'; 和角.
 Qed.
 
 (** In a circle the angle at the centre is double of the angle at the circumference. *)
@@ -340,14 +340,14 @@ Proof.
   destruct (共线的决定性 A B O).
   { assert (中点 O A B) by (apply 若圆心在一弦上则其平分该弦 with P; auto).
     assert (Per A C B) by (apply thales_theorem with O; auto; apply 等长的传递性 with O P; Cong).
-    suma.assert_diffs; apply bet_per2__suma; Between.
+    suma.统计不重合点; apply 平角为两直角之和; Between.
   }
   destruct (cop__one_or_two_sides A B O C); Col; Cop.
   - destruct (由圆上圆内两点补全一弦 O P C O) as [C' []]; Circle.
     assert (TS A B C' C) by (apply l9_2, bet_ts__ts with O; Side).
     assert (互为补角 A C' B A C B).
       apply (diam_onc2_ts__suppa O P); [..|repeat split|]; Between.
-    apply (suma_suppa2__suma A C' B A C' B); trivial.
+    apply (两角和与其补角和相等 A C' B A C' B); trivial.
     apply ghalfa__suma, inscribed_angle with P; trivial.
     exists C; split; trivial.
   - apply ghalfa__suma, inscribed_angle with P; trivial.
@@ -363,7 +363,7 @@ Lemma cop2_onc4__or_conga_suppa : forall O P A B C C',
   等角 A C B A C' B \/ 互为补角 A C B A C' B.
 Proof.
   intros O P A B C C'; intros.
-  apply suma2__or_conga_suppa with A O B; trivial; apply inscribed_angle_1 with P; assumption.
+  apply 两角倍角相等则两角相等或互补 with A O B; trivial; apply inscribed_angle_1 with P; assumption.
 Qed.
 
 (** If the angle ACB is inscribed in a circle of center O and
@@ -393,12 +393,12 @@ Proof.
   intros O P A B C C' HA HB HC HC' HOS HCop.
   assert_ncols.
   destruct (共线的决定性 A B O).
-  { suma.assert_diffs.
+  { suma.统计不重合点.
     assert (中点 O A B) by (apply 若圆心在一弦上则其平分该弦 with P; auto).
     apply l11_16_直角相等; auto; apply thales_theorem with O; Col; apply 等长的传递性 with O P; Cong.
   }
   destruct (cop__one_or_two_sides A B O C); Col; Cop.
-  - suma.assert_diffs; destruct (cop2_onc4__or_conga_suppa O P A B C C') as [|Habs]; auto.
+  - suma.统计不重合点; destruct (cop2_onc4__or_conga_suppa O P A B C C') as [|Habs]; auto.
       apply coplanar_trans_1 with C; Col; Cop.
     exfalso.
     apply (nlta A C' B), acute_obtuse__lta.
@@ -421,7 +421,7 @@ Proof.
   assert (Haux : forall C C', 在圆上 C O P -> 在圆上 C' O P -> TS A B C C' -> OS A B O C ->
     互为补角 A C B A C' B).
   { intros C C' HC HC' HTS HOS.
-    suma.assert_diffs.
+    suma.统计不重合点.
     assert (~ Col C A B) by (destruct HTS; assumption).
     assert (共面 A B C' O) by (apply coplanar_trans_1 with C; Cop).
     destruct (cop2_onc4__or_conga_suppa O P A B C C') as [Habs|]; Cop.
@@ -435,7 +435,7 @@ Proof.
   intros C C' HC HC' HTS HCop.
   assert (~ Col C A B) by (destruct HTS; assumption).
   destruct (共线的决定性 A B O).
-  { suma.assert_diffs.
+  { suma.统计不重合点.
     assert (中点 O A B) by (apply 若圆心在一弦上则其平分该弦 with P; auto).
     destruct HTS as [_ []].
     apply per2__suppa; auto; apply thales_theorem with O; trivial; apply 在同圆上的两点与圆心等距 with P; assumption.
@@ -452,7 +452,7 @@ Lemma acute_cop_onc3__os : forall O P A B C, A <> B ->
   OS A B O C.
 Proof.
   intros O P A B C HAB HA HB HC HCop H为锐角.
-  suma.assert_diffs.
+  suma.统计不重合点.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
   apply coplanar_perm_1 in HCop.
   apply cop_nts__os; Col; intro Habs; apply (nlta A C B).
@@ -472,7 +472,7 @@ Lemma cop_obtuse_onc3__ts : forall O P A B C,
   TS A B O C.
 Proof.
   intros O P A B C HA HB HC HCop H为钝角.
-  suma.assert_diffs.
+  suma.统计不重合点.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
   apply coplanar_perm_1 in HCop.
   apply cop_nos__ts; Col; intro Habs; apply (nlta A C B).
@@ -493,7 +493,7 @@ Lemma conga_cop2_onc4__os : forall O P A B C D, ~ Col A B O ->
   OS A B C D.
 Proof.
   intros O P A B C D HNCol HA HB HC HD HCopC HCopD HConga.
-  suma.assert_diffs.
+  suma.统计不重合点.
   destruct (angle_partition A C B) as [H为锐角|[HPer|H为钝角]]; auto.
   - apply one_side_transitivity with O; [apply one_side_symmetry|];
       apply acute_cop_onc3__os with P; Cop.
@@ -515,7 +515,7 @@ Lemma cop2_onc4_suppa__ts : forall O P A B C D, ~ Col A B O ->
   TS A B C D.
 Proof.
   intros O P A B C D HNCol HA HB HC HD HCopC HCopD HSuppa.
-  suma.assert_diffs.
+  suma.统计不重合点.
   destruct (angle_partition A C B) as [H为锐角|[HPer|H为钝角]]; auto.
   - apply l9_8_2 with O.
       apply cop_obtuse_onc3__ts with P; Cop; apply (acute_suppa__obtuse A C B); assumption.
@@ -554,7 +554,7 @@ Proof.
   assert (HCong := 在同圆上的两点与圆心等距 O P).
   assert (HCong' := 在同圆上的两点与圆心等距 O' P').
   destruct (共线的决定性 A B O) as [|HNCol1].
-  { suma.assert_diffs.
+  { suma.统计不重合点.
     assert (中点 O A B) by (apply 若圆心在一弦上则其平分该弦 with P; assumption).
     apply (中点的唯一性1 A B); trivial.
     apply thales_converse_theorem_1 with D; auto.
@@ -564,7 +564,7 @@ Proof.
   assert (HNCol' : ~ Col A B D) by (apply one_side_not_col124 with C, HOS).
   destruct (中点的存在性 A B) as [M HM].
   assert (HOS1 : OS A B O O').
-  { suma.assert_diffs; destruct (angle_partition A C B) as [H为锐角|[HPer|H为钝角]]; auto.
+  { suma.统计不重合点; destruct (angle_partition A C B) as [H为锐角|[HPer|H为钝角]]; auto.
     - apply one_side_transitivity with C;
         [|apply one_side_transitivity with D; trivial; apply one_side_symmetry].
         apply acute_cop_onc3__os with P; auto.
@@ -579,8 +579,8 @@ Proof.
       apply (conga_obtuse__obtuse A C B); assumption.
   }
   assert (HNCol1' : ~ Col A B O') by (apply one_side_not_col124 with O, HOS1).
-  destruct (bet_cop_onc2__ex_onc_os_out O P A B C M) as [C1]; Between; Col; [suma.assert_diffs; auto..|].
-  destruct (bet_cop_onc2__ex_onc_os_out O' P' A B D M) as [D1]; Between; Col; [suma.assert_diffs; auto..|].
+  destruct (bet_cop_onc2__ex_onc_os_out O P A B C M) as [C1]; Between; Col; [suma.统计不重合点; auto..|].
+  destruct (bet_cop_onc2__ex_onc_os_out O' P' A B D M) as [D1]; Between; Col; [suma.统计不重合点; auto..|].
   spliter.
   assert (HNCol2 : ~ Col A B C1) by (apply one_side_not_col124 with C; assumption).
   assert (HOut : Out M C1 D1).
@@ -589,7 +589,7 @@ Proof.
     assert (O <> M) by (intro; subst; apply HNCol1; Col).
     assert (O' <> M) by (intro; subst; apply HNCol1'; Col).
     assert (Col O O' M); [|ColR].
-    suma.assert_diffs; apply (cop_per2__col A); auto;
+    suma.统计不重合点; apply (cop_per2__col A); auto;
       [|apply 弦中点与圆心连线形成直角 with P B; auto|apply 弦中点与圆心连线形成直角 with P' B; auto].
     apply coplanar_trans_1 with B; Col; [|Cop].
     apply coplanar_trans_1 with C; Col; [Cop|].
@@ -597,14 +597,14 @@ Proof.
   }
   destruct (两点重合的决定性 C1 D1).
   { subst D1.
-    suma.assert_diffs.
+    suma.统计不重合点.
     apply (cong4_cop2__eq A B C1); Cong; exists M; left; split; Col.
   }
   assert (HNCol2' : ~ Col A B D1) by (apply one_side_not_col124 with D; assumption).
   assert (等角 A C1 B A C B) by (apply (cop_onc4_os__conga O P); Side; exists M; left; split; Col).
   assert (等角 A D1 B A D B) by (apply (cop_onc4_os__conga O' P'); Side; exists M; left; split; Col).
-  assert (Out A B M) by (suma.assert_diffs; apply l6_6, bet_out; Between).
-  assert (Out B A M) by (suma.assert_diffs; apply l6_6, bet_out; Between).
+  assert (Out A B M) by (suma.统计不重合点; apply l6_6, bet_out; Between).
+  assert (Out B A M) by (suma.统计不重合点; apply l6_6, bet_out; Between).
   assert (HH := HOut).
   destruct HH as [HMC1 [HMD1 [HBet|HBet]]]; exfalso.
   - apply (lta_not_conga A D B A C B); 等角.
@@ -687,7 +687,7 @@ Proof.
   }
   intros C D HTS HSuppa.
   assert (HCop : 共面 A B C D) by (apply ts__coplanar, HTS).
-  suma.assert_diffs; destruct (angle_partition A C B) as [|[|]]; auto; split; trivial.
+  suma.统计不重合点; destruct (angle_partition A C B) as [|[|]]; auto; split; trivial.
   { destruct (Haux D C) as [_ [O [P]]].
       Side.
       apply (acute_suppa__obtuse A C B); trivial.
@@ -729,7 +729,7 @@ Lemma chord_par_diam : forall O P A B C C' A' U,
  Col A B U -> Perp O U A B -> Par A C' O U -> B = C.
 Proof.
 intros.
-suma.assert_diffs.
+suma.统计不重合点.
 assert(中点 U A B).
 {
   apply(垂直于弦的直径平分弦 O P A B U); Col.

@@ -137,7 +137,7 @@ assert (HPerp2 : Perp_bisect O M2 A C)
 assert (HOM1M2 : ~ Col O M1 M2).
   {
   intro HOM1M2; assert (H := 共线点间距相同要么重合要么中点 O A B); elim H; clear H; try intro H; Cong;
-  try (apply HOM1; apply 中点的唯一性1 with A B; Col); assert_diffs; assert_cols; ColR.
+  try (apply HOM1; apply 中点的唯一性1 with A B; Col); 统计不重合点; assert_cols; ColR.
   }
 assert (H严格平行 : 严格平行 O M1 O M2).
   {
@@ -181,8 +181,8 @@ assert (H=B).
 subst.
 assert (中点 O A C).
  apply 直角三角形的外心是斜边中点 with B;finish.
- unfold 垂心 in *;spliter;assert_diffs;finish.
- unfold 垂心 in *;spliter;assert_diffs;finish.
+ unfold 垂心 in *;spliter;统计不重合点;finish.
+ unfold 垂心 in *;spliter;统计不重合点;finish.
 assert (重心 G A C B).
  apply 重心的等价排列 in H1;intuition.
 perm_apply (重心在中线上 A C B G O).
@@ -240,7 +240,7 @@ apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with A O; try
 apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with A H; Col.
 
 assert (Col A A' H) by (apply cop_perp2__col with B C; Cop; apply perp_bisect_perp; auto).
-assert (Perp_bisect O A' B C) by (assert_diffs; apply 外心与一边中点连线是该边中垂线 with A; auto).
+assert (Perp_bisect O A' B C) by (统计不重合点; apply 外心与一边中点连线是该边中垂线 with A; auto).
 assert (Col A' A O)
   by (apply cop_perp2__col with B C; Perp; Cop).
 show_distinct A A'.
@@ -249,7 +249,7 @@ ColR.
 
 Name A' the symmetric of A wrt O.
 
-assert_diffs.
+统计不重合点.
 
 assert (共圆 A B C A').
  unfold 共圆.
@@ -286,7 +286,7 @@ decompose [or] T;clear T;try contradiction.
    intuition.
  - spliter.
 
-assert_diffs.
+统计不重合点.
 
 assert (Per A B A').
  apply 泰勒斯定理 with O;finish.
@@ -330,7 +330,7 @@ induction (共线的决定性 B H C).
         assumption.
      Col.
    (*  perm_apply (重心在中线上 A C B G O). bug in 8.5 *) 
-   + subst H;assert_diffs; intuition.
+   + subst H;统计不重合点; intuition.
  * assert (平行四边形 B H C A')
      by (apply par_2_plg;finish).
 
@@ -350,11 +350,11 @@ induction (共线的决定性 B H C).
      {
      apply gravity_center_change_triangle with B C I;finish.
      show_distinct A' H; treat_equalities.
-     apply plg_par in H26; spliter; assert_diffs; Col.
+     apply plg_par in H26; spliter; 统计不重合点; Col.
      intro.
      Name A'' the midpoint of B and C.
      show_distinct A'' O; treat_equalities.
-     apply H27; apply L形垂直转直角1; assert_diffs; Perp.
+     apply H27; apply L形垂直转直角1; 统计不重合点; Perp.
      assert (Perp_bisect O A'' B C) by (apply 外心与一边中点连线是该边中垂线 with A; Col).
      elim (两点重合的决定性 A A''); intro; treat_equalities.
      eauto using perp_bisect_cong_2 with cong.

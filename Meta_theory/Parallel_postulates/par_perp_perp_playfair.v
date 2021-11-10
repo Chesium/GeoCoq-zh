@@ -40,13 +40,13 @@ elim (共线的决定性 A1 A2 P); intro HCol.
   assert (HPerp1 := HPTP A1 A2 B1 B2 P I HPar1 HPerp HCop1).
   assert (HPerp2 := HPTP A1 A2 C1 C2 P I HPar2 HPerp HCop2).
   assert (HCop3 : 共面 A1 A2 P B1)
-    by (assert_diffs; apply coplanar_perm_1, col_cop__cop with B2;
+    by (统计不重合点; apply coplanar_perm_1, col_cop__cop with B2;
         Col; apply par__coplanar, HPar1).
   assert (HCop4 : 共面 A1 A2 P B2)
-    by (assert_diffs; apply coplanar_perm_1, col_cop__cop with B1;
+    by (统计不重合点; apply coplanar_perm_1, col_cop__cop with B1;
         Col; apply coplanar_perm_1, par__coplanar, HPar1).
   assert (HCop5 : 共面 A1 A2 P C1)
-    by (assert_diffs; apply coplanar_perm_1, col_cop__cop with C2;
+    by (统计不重合点; apply coplanar_perm_1, col_cop__cop with C2;
         Col; apply par__coplanar, HPar2).
   assert (HCop6 : 共面 A1 A2 P I) by Cop.
   assert (Perp P C1 P I)

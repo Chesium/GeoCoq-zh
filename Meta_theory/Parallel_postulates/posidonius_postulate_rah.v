@@ -18,7 +18,7 @@ assert (HF : exists A1 A2 B1 B2,
   {
   destruct H as [A1' [A2' [B1 [B2 [HNC [HNE [HCop HF]]]]]]].
   destruct (l8_18_过一点垂线之垂点的存在性 _ _ _ HNC) as [A1 [HC1 HPerp1]].
-  assert_diffs.
+  统计不重合点.
   assert (HPar : 严格平行 A1' A2' B1 B2).
     {
     split; trivial.
@@ -82,7 +82,7 @@ assert (HF : exists A1 A2 B1 B2,
         }
 
         {
-        assert_diffs; apply l11_16_直角相等; auto;
+        统计不重合点; apply l11_16_直角相等; auto;
         apply L形垂直转直角1, 与垂线共线之线也为垂线1 with A1' A2'; Perp; Col.
         }
       }
@@ -112,10 +112,10 @@ apply (per_sac__rah A B C D); auto.
 destruct (中点的存在性 B C) as [M HM].
 destruct (中点的存在性 A D) as [N HN].
 assert(HPerp := mid2_sac__perp_lower A B C D M N HSac HM HN).
-assert_diffs.
+统计不重合点.
 assert(Hdiff := sac_distincts A B C D HSac).
 spliter.
-assert_diffs.
+统计不重合点.
 apply (t22_7__per _ _ _ D M N); Between.
   apply L形垂直转直角1, (垂线共线点也构成垂直2 _ _ _ D); Col; Perp.
 apply 等长的左交换性, posid; Col; Perp.

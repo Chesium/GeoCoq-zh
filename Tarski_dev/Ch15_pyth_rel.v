@@ -17,7 +17,7 @@ Lemma PythRel_exists : forall O E E', ~ Col O E  E' -> forall A B,
  exists C, PythRel O E E' A B C.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 destruct (两点重合的决定性 O B).
 - subst.
  exists A.
@@ -29,7 +29,7 @@ destruct (两点重合的决定性 O B).
 destruct (垂点的存在性 O E O) as [X HX].
 auto.
 destruct (由一点往一方向构造等长线段_2 X O O B) as [B' [HB1 HB2]].
-assert_diffs;auto.
+统计不重合点;auto.
 destruct (由一点往一方向构造等长线段_2 E O A B') as [C [HC1 HC2]].
 auto.
 exists C.

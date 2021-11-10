@@ -18,7 +18,7 @@ intros; unfold Perp_bisect; unfold 中垂线_另一定义; unfold 严格对称; 
 
   {
   intro H; destruct H as [I [HPerp HMid]].
-  assert_diffs; split; Col.
+  统计不重合点; split; Col.
   split; try (left; apply l8_14_2_1a_垂直于转垂直 with I); Perp.
   exists I; split; 中点.
   unfold 垂直于 in *; spliter; Col.
@@ -251,7 +251,7 @@ intros A B C D E HCop1 HCop2 HCong1 HPerp.
 assert (HCong2 := HPerp); apply perp_bisect_cong2 in HCong2; destruct HCong2 as [HCong2 Hc]; clear Hc.
 apply perp_bisect_equiv_def in HPerp.
 destruct HPerp as [F [HPerp [HBet HCong3]]].
-assert (HDE : D <> E) by (assert_diffs; auto).
+assert (HDE : D <> E) by (统计不重合点; auto).
 assert (HCol := HPerp); apply 垂点是交点 in HCol; destruct HCol as [HCol Hc]; clear Hc.
 apply l8_14_2_1a_垂直于转垂直 in HPerp.
 elim (两点重合的决定性 A C); intro; try (subst; Col).

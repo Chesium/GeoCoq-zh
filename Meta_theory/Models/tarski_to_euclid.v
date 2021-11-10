@@ -172,7 +172,7 @@ assert (Z1<>B).
  assert (B=D1) by (apply between_cong with C;auto).
  subst. intuition.
 }
-assert_diffs.
+统计不重合点.
 assert (B<>Z2).
 {
  intro. subst.
@@ -206,7 +206,7 @@ assert (Z1<>B).
  assert (B=D2) by (apply between_cong with C;auto).
  subst. intuition.
 }
-assert_diffs.
+统计不重合点.
 assert (B<>Z2).
 {
  intro. subst.
@@ -332,7 +332,7 @@ Cong.
 - intros;unfold Definitions.BetS in *;spliter.
   destruct (帕施公理 A B C P Q H H0) as [X [HXa HXb]].
   exists X.
-  assert_diffs.
+  统计不重合点.
   assert (~ Bet A C B) by tauto.
   assert (B<>C) by auto.
   assert (~ Bet A B C) by tauto.
@@ -356,7 +356,7 @@ Cong.
   assert (Bet Q C B) by Between.
   destruct (outer_pasch Q A C B P H18 H) as [X [HXa HXb]].
   exists X.
-   assert_diffs.
+   统计不重合点.
   repeat split;Between.
   intro;treat_equalities;assert_cols;
  assert (HCol:Definitions.Col B A Q) by ColR;
@@ -371,7 +371,7 @@ Cong.
   assert (HCol:Definitions.Col A Q B) by ColR;
   unfold Definitions.Col in HCol;tauto.
 - intros. destruct (由一点往一方向构造等长线段 A B A B) as [X [HXa HXb]].
-  exists X; unfold Definitions.BetS;assert_diffs;auto.
+  exists X; unfold Definitions.BetS;统计不重合点;auto.
 - intros.
   unfold CI;exists (A,A,B);auto.
 Defined.
@@ -461,7 +461,7 @@ destruct (构造对称点 W V) as [X0 HX].
 exists X0.
 exists W.
 assert_bets.
-assert_diffs.
+统计不重合点.
 split.
 unfold Definitions.BetS;Between.
 split;Cong.
@@ -472,7 +472,7 @@ destruct (构造对称点 X0 C0) as [Y0 HY0].
 exists X0.
 exists Y0.
 assert_bets.
-assert_diffs.
+统计不重合点.
 unfold Definitions.BetS;split;auto.
 split.
 apply 等长的传递性 with C0 X0; Cong.
@@ -512,7 +512,7 @@ assert (A <> Y0).
 destruct HX0 as [HA [ HB [HC | HC]]].
 exists X0.
 exists Y0.
-assert_diffs.
+统计不重合点.
 split;unfold Definitions.BetS;Between.
 split.
 apply 等长的传递性 with C0 X0; Cong.
@@ -586,13 +586,13 @@ subst.
 exists W.
 destruct (构造对称点 W V) as [Y HY].
 exists Y.
-assert_diffs.
+统计不重合点.
 unfold Definitions.BetS.
 repeat split;Between;Cong.
 destruct (由一点往一方向构造等长线段_3 U V V W H0 H) as [X HX].
 destruct (构造对称点 X U) as [Y HY].
 spliter.
-assert_diffs.
+统计不重合点.
 assert_bets.
 exists X. exists Y.
 split.
@@ -660,7 +660,7 @@ split.
  split.
  apply (Col_Col A B Y); auto.
  split.
- unfold Definitions.BetS in *;spliter;assert_diffs.
+ unfold Definitions.BetS in *;spliter;统计不重合点.
  unfold Definitions.Col in H2.
  destruct H2.
  unfold BetS;simpl;unfold Definitions.BetS.

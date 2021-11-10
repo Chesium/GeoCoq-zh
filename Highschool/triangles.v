@@ -57,13 +57,13 @@ Lemma 等腰三角形底边垂线也是底边中线 :
  ~ Col A B C /\ A<>H /\ C<>H /\ 中点 H A C /\ 等角 H B A H B C.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert (~ Col A B C).
  {
    intro;apply 垂直推出不共线 in H2.
    destruct H2;apply H2;ColR.
  }
-assert_diffs. 
+统计不重合点. 
 assert (A<>H).
  { (** these point are distinct
       because otherwise the hypothenuse is not larger than the side *)

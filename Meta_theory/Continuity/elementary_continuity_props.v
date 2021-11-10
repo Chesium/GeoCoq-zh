@@ -46,7 +46,7 @@ Proof.
     destruct (Hsc A B P Q) as [Z [HZ1 HZ2]]; trivial.
       apply (l5_6_等长保持小于等于关系 Q Q0 Q A); Cong.
       apply (triangle_reverse_inequality P); Cong.
-      assert_diffs.
+      统计不重合点.
       apply l6_6, bet_out; auto.
     exists Z; split; trivial.
     ColR.
@@ -76,7 +76,7 @@ Proof.
       [exists Z1; auto| |exfalso; apply HNCol; Col].
     destruct (由圆上圆内两点补全一弦 A B Z1 P) as [Z2 [HZ2On HBet]]; trivial.
     exists Z2; split; trivial.
-    assert_diffs.
+    统计不重合点.
     assert (HBet2 : Bet Z1 Z2 Q).
     { apply out2__bet.
         apply l6_7 with P; trivial.
@@ -102,7 +102,7 @@ Proof.
     destruct (由圆上圆内两点补全一弦 A B Z1 P) as [Z2 [HZ2On HPBet]]; trivial.
     assert (Z1 <> P).
       intro; treat_equalities; apply HPB, between_cong with A; trivial.
-    assert_diffs.
+    统计不重合点.
     exists Z2; repeat (split; trivial); ColR.
 
   - intros Htplc A B U V P HCol HUV HBet.
@@ -141,7 +141,7 @@ Proof.
   assert (P' = Q).
   { apply 双中间性推出点重合 with Q'.
       eBetween.
-    assert_diffs.
+    统计不重合点.
     apply (col_inc_onc2__bet A B); trivial; ColR.
   }
   subst.
@@ -261,7 +261,7 @@ Lemma euclid_22_aux : forall A B C D E F A' B' E' F' C1 C2 E1,
   Bet C1 E1 C2.
 Proof.
   intros A B C D E F A' B' E' F'; intros.
-  assert (Bet C1 A C2) by (assert_diffs; apply l6_2 with B; auto).
+  assert (Bet C1 A C2) by (统计不重合点; apply l6_2 with B; auto).
   apply not_out_bet.
     ColR.
   intro HOut; destruct HOut as [HC1E1 [HC2E1 [HBet|HBet]]].
@@ -269,7 +269,7 @@ Proof.
     assert (Bet A E1 B).
       apply out2__bet; trivial.
       apply l6_7 with C1; apply l6_6; trivial.
-      assert_diffs; apply bet_out; trivial.
+      统计不重合点; apply bet_out; trivial.
     apply (长度小于等于推出反向不小于 A B A' B'); trivial.
     apply le_lt12_sums2__lt with C D E F A E1 E1 B; Sums; Le.
     split.
@@ -278,7 +278,7 @@ Proof.
     apply HC1E1, between_cong with A; trivial.
     apply 等长的传递性 with C D; trivial.
   - assert (Bet A C2 E1) by eBetween.
-    assert (Bet B C2 E1) by (assert_diffs; apply l6_2 with A; auto; apply bet_out; Between).
+    assert (Bet B C2 E1) by (统计不重合点; apply l6_2 with A; auto; apply bet_out; Between).
     apply (长度小于等于推出反向不小于 E F E' F'); trivial.
     apply (等长保持小于关系 B C2 B E1); Cong.
       split; [exists C2; Cong|].
@@ -364,10 +364,10 @@ Proof.
     apply 在圆AA上或内推出与A重合 in HPIn; subst; Circle.
   }
   destruct HXYZ as [X [Y [Z [HAC [HAB HCD]]]]].
-  assert_diffs.
+  统计不重合点.
   assert (HZ0 : exists Z0, 等角 Y X Z C A Z0 /\ Cong X Z A Z0).
   { destruct (给定角一边可作出等角 Y X Z C A) as [Z']; auto.
-    assert_diffs.
+    统计不重合点.
     destruct (由一点往一方向构造等长线段_3 A Z' X Z) as [Z0 []]; auto.
     exists Z0; split; Cong.
     apply l11_10 with Y Z C Z'; [|apply out_trivial..|apply l6_6]; auto.

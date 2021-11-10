@@ -10,8 +10,8 @@ Proof.
   intro triangle.
   destruct 防降维公理_老版本 as [A [B [C]]].
   assert(~ Col A B C) by (unfold Col; assumption).
-  assert_diffs.
-  destruct (ex_trisuma A B C) as [D [E [F]]]; auto.
+  统计不重合点.
+  destruct (三角形内角和的存在性 A B C) as [D [E [F]]]; auto.
   exists A; exists B; exists C; exists D; exists E; exists F.
   repeat split.
     assumption.

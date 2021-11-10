@@ -276,7 +276,7 @@ Lemma prop_7 : forall A B C C', Cong A C A C' -> Cong B C B C' -> OS A B C C' ->
 Proof.
   intros A B C C' H等角 HCongB HOS.
   assert (HNCol := one_side_not_col123 A B C C' HOS).
-  assert_diffs.
+  统计不重合点.
   destruct (l11_51 A B C A B C') as [H等角A [H等角B H等角C]]; Cong.
   apply (l6_21_两线交点的唯一性 A C B C); Col; apply out_col.
     apply (conga_os__out B); Side.
@@ -359,8 +359,8 @@ Lemma prop_13 : forall A B C D P Q R, A <> B -> B <> C -> B <> D -> Bet C B D ->
 Proof.
   intros.
   split.
-  - apply bet__suma; auto.
-  - apply bet_per2__suma; auto.
+  - apply 中间性推出和角; auto.
+  - apply 平角为两直角之和; auto.
 Qed.
 
 
@@ -377,10 +377,10 @@ Lemma prop_14 : forall A B C D P Q R S T U, TS A B C D -> Per P Q R ->
 Proof.
   intros A B C D P Q R S T U HTS HP HSuma1 HSuma2.
   apply (bet_conga__bet S T U).
-    apply (per2_suma__bet P Q R P Q R); assumption.
-  apply (suma2__conga A B C A B D).
+    apply (两直角之和为平角 P Q R P Q R); assumption.
+  apply (和角的唯一性 A B C A B D).
     assumption.
-  apply suma_left_comm, ts__suma, HTS.
+  apply 和角的左交换性, 异侧推出和角1, HTS.
 Qed.
 
 
@@ -418,19 +418,19 @@ Qed.
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container17"></div> # **)
 
       (** Here, the fact that the two angles are less than two right angles is described with
-          the 角度之和小于平角 predicate, which means that they have a "sum at most straight", and the fact that
+          the 和角不大于平角 predicate, which means that they have a "sum at most straight", and the fact that
           their sum is not a straight line.
         *)
 
 Lemma prop_17 : forall A B C P Q R, ~ Col A B C -> 和角 A B C B C A P Q R -> 
-  角度之和小于平角 A B C B C A /\ ~ Bet P Q R.
+  和角不大于平角 A B C B C A /\ ~ Bet P Q R.
 Proof.
   intros A B C P Q R HNCol HSuma.
   split.
-  - assert_diffs.
-    apply sams123231; auto.
+  - 统计不重合点.
+    apply 三角形两内角之和小于平角_BC; auto.
   - intro HBet.
-    apply HNCol, col_suma__col with P Q R; Col.
+    apply HNCol, 共线与和角推共线 with P Q R; Col.
 Qed.
 
 
@@ -506,7 +506,7 @@ Proof.
   assert (HNCol : ~ Col A B C) by (apply one_side_not_col123 with D; assumption).
   destruct (os2__inangle A B C D) as [HAB [HCB [HDB [E [HBet [Heq|HOut]]]]]]; Side.
     subst; exfalso; apply HNCol; ColR.
-  assert_diffs.
+  统计不重合点.
   assert (A <> E) by (intro; subst E; apply (one_side_not_col124 A B C D); Col).
   assert (C <> E) by (intro; subst E; apply (one_side_not_col124 B C A D); Col).
   assert (D <> E) by (intro; subst E; apply (one_side_not_col124 A C B D); Col).
@@ -651,7 +651,7 @@ Proof.
   intros A C G H P Q R HOS H和角 HBet.
   destruct (由一点往一方向构造等长线段 C H C H) as [D [HBet1 HCong]].
   apply par_comm.
-  assert_diffs.
+  统计不重合点.
   apply par_col_par with D; Col.
   apply l12_21_b.
   - apply l9_8_2 with C; Side.
@@ -660,7 +660,7 @@ Proof.
       intro; apply HNCol; ColR.
     exists H; Col.
   - apply suppa2__conga123 with G H C.
-      apply bet_suma__suppa with P Q R; assumption.
+      apply 和角为平角则为补角 with P Q R; assumption.
       split; auto; exists C; split; [Between|等角].
 Qed.
 
@@ -701,7 +701,7 @@ Lemma prop_29_3 : forall A C G H P Q R, OS G H A C -> Par A G H C -> 和角 A G 
   Bet P Q R.
 Proof.
   intros A C G H P Q R HOS HPar.
-  apply (suma_suppa__bet).
+  apply (补角和为平角).
   apply alternate_interior__consecutive_interior; trivial.
   unfold alternate_interior_angles_postulate.
   apply l12_21_a.
@@ -760,17 +760,17 @@ Lemma prop_32_2 : forall A B C D, A <> B -> B <> C -> A <> C -> Bet B C D -> C <
   和角 C A B A B C A C D.
 Proof.
   intros A B C D HAB HBC HAC HBet HAD.
-  destruct (ex_trisuma C A B) as [P [Q [R HTri]]]; auto.
+  destruct (三角形内角和的存在性 C A B) as [P [Q [R HTri]]]; auto.
   assert (Bet P Q R) by (apply (prop_32_1 C A B), HTri).
   destruct HTri as [S [T [U [HSuma1 H和角2]]]].
-  apply 等角保持和角 with C A B A B C S T U; try (apply 同角相等); auto.
-  assert_diffs.
+  apply 等角保持和角性质 with C A B A B C S T U; try (apply 同角相等); auto.
+  统计不重合点.
   assert (H等角 : 等角 B C D P Q R) by (apply 成中间性三点组的角相等; auto).
   assert (H和角' : 和角 A C D B C A P Q R).
-    apply 等角保持和角 with A C D B C A B C D; 等角.
-    apply suma_sym, bet__suma; auto.
-  apply sams2_suma2__conga123 with B C A P Q R; trivial;
-    apply bet_suma__sams with P Q R; assumption.
+    apply 等角保持和角性质 with A C D B C A B C D; 等角.
+    apply 和角的对称性, 中间性推出和角; auto.
+  apply 和角推原角唯一性 with B C A P Q R; trivial;
+    apply 和角为平角推和角不大于平角 with P Q R; assumption.
 Qed.
 
 
@@ -788,7 +788,7 @@ Proof.
   intros A B C D HTS HPAR HC.
   assert (HPara:平行四边形 B A C D) by (left;split;finish).
   destruct (plg_cong B A C D HPara).
-  assert_diffs.
+  统计不重合点.
   destruct (plg_par B A C D); auto.
   split; [Cong|Par].
 Qed.

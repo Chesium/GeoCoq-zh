@@ -74,7 +74,7 @@ absurd (TS B C x y); Side.
 apply bet_ts__ts with T; trivial.
 apply l9_8_2 with A.
   repeat split; Col; exists D; split; Col.
-assert_diffs; apply out_one_side; [Col|Out].
+统计不重合点; apply out_one_side; [Col|Out].
 Qed.
 
 Lemma impossible_case_4_1 :
@@ -200,14 +200,14 @@ Proof.
   assert (A <> CC).
   { intro; subst CC.
     destruct (l11_46 B A D) as [_ []]; auto.
-    assert_diffs; apply 成直角三点不共线; auto.
+    统计不重合点; apply 成直角三点不共线; auto.
   }
   assert (Per A CC D) by Cop.
   repeat split; trivial.
   - destruct (cong2_per2__cong_conga2 A CC D B CC D); Cong.
     intro; subst CC.
     destruct (l11_46 A B D) as [_ []]; Cong.
-    assert_diffs; apply 成直角三点不共线; auto.
+    统计不重合点; apply 成直角三点不共线; auto.
   - assert (Per C CC D) by Cop.
     destruct (cong2_per2__cong_conga2 A CC D C CC D); Cong.
     intro; subst CC.
@@ -242,7 +242,7 @@ intros HBD HCD HDT HTX.
 intros HABC HABM1 HADT HBCT HBDC HTYZ HYTX HYM1Z1.
 intros HCong1 HCong2 HPerp1 HPerp2.
 assert (A <> D) by (intro; subst; apply HABC; Col).
-assert_diffs.
+统计不重合点.
 assert (HCopA : 共面 B C T A) by (exists D; left; split; Col).
 assert (HCopB : 共面 B C T B) by Cop.
 assert (HCopC : 共面 B C T C) by Cop.
@@ -322,7 +322,7 @@ destruct Hy as [y [HACy [Hy1 Hy2]]]; [Between; Col; Perp..|]; exists y.
 assert (HxTy : Col x T y).
   {
   elim (两点重合的决定性 T x); intro; [|elim (两点重合的决定性 T y); intro]; [subst; Col..|].
-  assert_diffs.
+  统计不重合点.
   apply 等价共线BAC, cop_perp2__col with X Y;
     [|apply perp_bisect_perp, cong_cop_perp_bisect; Cong; Cop..].
   assert (共面 B C T Y) by (apply col_cop__cop with Z; Col; Cop).

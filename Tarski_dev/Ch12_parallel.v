@@ -233,7 +233,7 @@ Proof. intros; apply par_symmetry in H; apply (par_neq1 C D A B H). Qed.
 
 End T12_1.
 
-Ltac assert_diffs :=
+Ltac 统计不重合点 :=
 repeat
  match goal with
       | H:(~Col ?X1 ?X2 ?X3) |- _ =>
@@ -409,7 +409,7 @@ repeat
 Ltac ColR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
-   treat_equalities; assert_cols; Col; assert_diffs; Col_refl tpoint col.
+   treat_equalities; assert_cols; Col; 统计不重合点; Col_refl tpoint col.
 
 Ltac assert_ncols :=
 repeat
@@ -768,7 +768,7 @@ Proof.
     unfold Par in *.
     induction H0.
       left.
-      assert_diffs.
+      统计不重合点.
       unfold 严格平行 in *.
       spliter.
       split.
@@ -967,7 +967,7 @@ Proof.
       assumption.
     unfold Par in H.
     induction H.
-      assert_diffs.
+      统计不重合点.
       split; assumption.
     spliter.
     split; assumption.
@@ -990,7 +990,7 @@ Lemma col_cop_perp2__pars : forall P Q A B C D, ~ Col A B P ->
 Proof.
     intros.
     apply par_not_col_strict with P; trivial.
-    assert_diffs.
+    统计不重合点.
     assert (共面 A B C P) by (apply col_cop__cop with D; Col).
     assert (共面 A B D P) by (apply col_cop__cop with C; Col; Cop).
     apply l12_9 with P Q; trivial; apply coplanar_perm_2.
@@ -1087,7 +1087,7 @@ Lemma par_strict_col2_par_strict : forall A B C D E F,
  严格平行 A B E F.
 Proof.
     intros.
-    assert_diffs.
+    统计不重合点.
     unfold 严格平行 in *.
     spliter.
     split.
@@ -1161,14 +1161,14 @@ Lemma inter_distincts : forall A B C D X, Inter A B C D X -> A <> B /\ C <> D.
 Proof.
     intros.
     destruct H as [HAB [[P []] _]].
-    assert_diffs.
+    统计不重合点.
     split; auto.
 Qed.
 
 Lemma inter_trivial : forall A B X, ~ Col A B X -> Inter A X B X X.
 Proof.
     intros.
-    assert_diffs.
+    统计不重合点.
     unfold Inter.
     repeat split; Col.
       exists B.
@@ -1718,7 +1718,7 @@ Proof.
     spliter.
     unfold Par in H.
     induction H.
-      assert_diffs.
+      统计不重合点.
       unfold TS in *.
       spliter.
       ex_and H6 T.
@@ -2056,7 +2056,7 @@ Proof.
   destruct HUn as [HNCol1|]; [|contradiction].
   assert(HB' := l10_15 B C B A).
   destruct HB' as [B' []]; Col.
-  assert_diffs.
+  统计不重合点.
   assert(HNCol2 : ~ Col B' B C ) by (apply 成直角三点不共线; Perp).
   assert(HNCol3 : ~ Col B B' A).
   { intro.
@@ -2084,9 +2084,9 @@ Proof.
   intros A B C A' H为锐角 HCol HPerp.
   destruct (由一点往一方向构造等长线段 A B A B) as [A0 [HA1 HA2]].
   destruct (由一点往一方向构造等长线段 C B C B) as [C0 [HC1 HC2]].
-  assert_diffs.
+  统计不重合点.
   assert (HNCol : ~ Col B A A') by (apply 成直角三点不共线; Perp).
-  assert_diffs.
+  统计不重合点.
   apply l6_2 with C0; auto.
   apply not_out_bet.
     ColR.
@@ -2107,9 +2107,9 @@ Proof.
   intros A B C P T HPer HInangle HConga HPerP HCop.
   destruct (两点重合的决定性 P T).
     subst; apply HInangle.
-  assert_diffs.
+  统计不重合点.
   destruct (angle_bisector A B C) as [P' [HInangle' HConga']]; auto.
-  assert_diffs.
+  统计不重合点.
   assert (H为锐角 : 为锐角 P' B A).
     apply acute_sym, conga_inangle_per__acute with C; trivial.
   apply l11_25 with P' A C; try (apply out_trivial); auto.
@@ -2126,12 +2126,12 @@ Proof.
       assert (Col P' B C) by (apply (共线三点构成的角的等角三点也共线 P' B A); assumption).
       apply HNCol1; ColR.
     assert (共面 A B T P') by (apply coplanar_trans_1 with C; Cop; Col).
-    destruct (共线的决定性 T B P'); [|assert_diffs; destruct (cop__one_or_two_sides B P' A T); Col; Cop].
+    destruct (共线的决定性 T B P'); [|统计不重合点; destruct (cop__one_or_two_sides B P' A T); Col; Cop].
     - apply l11_31_1_任何角小于等于平角_Out表述; auto.
       apply col_one_side_out with A; Col.
       apply invert_one_side, 角内两点在角一边同侧 with C; Col.
       assert (~ Col B P T) by (apply 成直角三点不共线; auto).
-      intro; assert_diffs; apply HNCol2; ColR.
+      intro; 统计不重合点; apply HNCol2; ColR.
     - apply (l11_30_等角保持小于等于 P' B T P' B C); 等角.
       apply inangle__lea, (in_angle_trans2 A); trivial.
       apply os_ts__inangle; trivial.

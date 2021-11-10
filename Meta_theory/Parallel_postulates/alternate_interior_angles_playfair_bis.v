@@ -35,7 +35,7 @@ Proof.
   assert (HNC2 : ~ Col Q C1 P)
     by (apply (par_not_col A1 A2); auto;
         apply (par_strict_col_par_strict _ _ _ C2); Col).
-  assert_diffs.
+  统计不重合点.
   assert(HB3 : exists B3, Col B1 B2 B3 /\ B3 <> P).
   { elim(两点重合的决定性 B1 P).
     intro; subst B1; exists B2; Col.
@@ -43,7 +43,7 @@ Proof.
   }
   destruct HB3 as [B3 []].
   assert(Col P C1 B3); [|ColR].
-  assert_diffs.
+  统计不重合点.
   apply (cop_perp2__col _ _ _ P Q); [clear HNC2; CopR| |apply (与垂线共线之线也为垂线2 B1 B2); Col].
   apply 垂直的左交换性.
   apply 直角转L形垂直; auto.
@@ -59,7 +59,7 @@ Proof.
 
   destruct HA3 as [A3 [HA3 Hts]].
   assert(~ Col A3 P Q) by (destruct Hts as [_ []]; auto).
-  assert_diffs.
+  统计不重合点.
   apply (l11_17_等于直角的角是直角 A3 Q P).
     apply L形垂直转直角1, (与垂线共线之线也为垂线2 A1 A2); Col.
   apply 等角的对称性.

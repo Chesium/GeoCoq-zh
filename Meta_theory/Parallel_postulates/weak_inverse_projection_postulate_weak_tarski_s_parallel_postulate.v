@@ -19,13 +19,13 @@ cut (forall A B C P T,
 
   {
   intros rabp A B C T HPer H在角内.
-  assert_diffs.
+  统计不重合点.
   destruct (angle_bisector A B C) as [P0 [HIn HConga]]; auto.
-  assert_diffs.
+  统计不重合点.
   assert (HNCol1 : ~ Col A B C) by (apply 成直角三点不共线; auto).
   assert (HNCol2 : ~ Col P0 B A).
-  { assert (和角 P0 B A P0 B A A B C) by (apply (等角保持和角 A B P0 P0 B C A B C); 等角; 和角).
-    intro; apply HNCol1, (col2_suma__col P0 B A P0 B A); assumption.
+  { assert (和角 P0 B A P0 B A A B C) by (apply (等角保持和角性质 A B P0 P0 B C A B C); 等角; 和角).
+    intro; apply HNCol1, (两退化角之和退化 P0 B A P0 B A); assumption.
   }
   assert (HXY : exists X Y, Out B A X /\ Out B C Y /\ Col X T Y).
   { destruct (共线的决定性 B P0 T).
@@ -35,12 +35,12 @@ cut (forall A B C P T,
             intro; apply HNCol1; Col.
             CopR.
         exists T'; split; trivial.
-        assert_diffs.
+        统计不重合点.
         apply 垂线共线点也构成垂直1 with P0; Col.
         apply 垂线共线点也构成垂直2 with T0; Perp.
       }
       destruct HT' as [T' []].
-      assert_diffs.
+      统计不重合点.
       destruct (rabp A B C T T') as [X [Y]]; Perp; Cop.
         apply col_conga__conga with P0; auto.
       spliter; exists X, Y; repeat (split; [assumption|]); ColR.
@@ -48,7 +48,7 @@ cut (forall A B C P T,
       assert (Out B P P0).
         apply (acute_col_perp__out T); trivial.
         apply acute_sym, conga_inangle2_per__acute with A C; trivial.
-      assert_diffs.
+      统计不重合点.
       destruct (rabp A B C P T) as [X [Y]]; auto.
         apply col_conga__conga with P0; auto.
         apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with P0; auto.
@@ -56,7 +56,7 @@ cut (forall A B C P T,
       spliter; exists X, Y; repeat (split; [assumption|]); ColR.
   }
   destruct HXY as [X [Y [HOutX [HOutY HCol]]]].
-  assert_diffs.
+  统计不重合点.
   assert (HNCol3 : ~ Col A B Y) by (intro; apply HNCol1; ColR).
   assert (X <> Y) by (intro; subst; apply HNCol3; Col).
   exists X, Y; repeat (split; [assumption|]).
@@ -78,17 +78,17 @@ cut (forall A B C P T,
 
   {
   intros A B C P T HPer HInangle HPT HConga HPerP HCop.
-  assert_diffs.
+  统计不重合点.
   assert (HIn : 在角内 P A B C) by (apply conga_cop_inangle_per2__inangle with T; assumption).
   assert (H和角 : 和角 P B A P B A A B C).
-    apply (等角保持和角 A B P P B C A B C); 等角; 和角.
+    apply (等角保持和角性质 A B P P B C A B C); 等角; 和角.
   assert (H为锐角 : 为锐角 P B A) by (apply acute_sym, conga_inangle_per__acute with C; assumption).
   assert (HOut : Out B P P) by (apply out_trivial; auto).
   assert (~ Col A B C) by (apply 成直角三点不共线; auto).
   destruct (wipp P B A A B C P T) as [X [HX1 HX2]]; trivial; [CopR|].
   destruct (wipp P B C C B A P T) as [Y [HY1 HY2]]; Perp.
     apply (acute_conga__acute P B A); assumption.
-    apply (等角保持和角 P B A P B A A B C); 等角.
+    apply (等角保持和角性质 P B A P B A A B C); 等角.
     CopR.
   exists X, Y; repeat (split; Col).
   }

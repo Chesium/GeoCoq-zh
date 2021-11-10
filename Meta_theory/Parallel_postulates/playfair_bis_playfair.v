@@ -16,11 +16,11 @@ elim (共线的决定性 A1 A2 P); [intro HCol; treat_equalities|intro HNC1].
   intros [_ [_ [HCol1 HCol2]]].
   elim HParAC; [intros [_ HF]; exfalso; apply HF; exists P; Col|].
   intros [_ [_ [HCol3 HCol4]]].
-  assert_diffs; split; ColR.
+  统计不重合点; split; ColR.
   }
 
   {
-  destruct (垂点的存在性 P A1 A2) as [X HPerp1]; [assert_diffs; auto|].
+  destruct (垂点的存在性 P A1 A2) as [X HPerp1]; [统计不重合点; auto|].
   revert dependent A2; revert A1.
   cut (forall A1 A2, Par A1 A2 B1 B2 -> Par A1 A2 C1 C2 -> ~ Col A1 A2 P -> Perp P X A1 A2 ->
                      ~ Col P X A1 -> Col C1 B1 B2 /\ Col C2 B1 B2).
@@ -32,9 +32,9 @@ elim (共线的决定性 A1 A2 P); [intro HCol; treat_equalities|intro HNC1].
   intros A1 A2 HParAB HParAC HNC1 HPerp1 HNC2.
   assert (HCop1 : 共面 P X A1 A2) by Cop.
   assert(HD := ex_perp_cop P X P A1).
-  assert_diffs.
+  统计不重合点.
   destruct HD as [D [HPerp2 HCop2]]; auto.
-  assert_diffs.
+  统计不重合点.
   assert(Perp2 A1 A2 P D P).
     {
     exists X.

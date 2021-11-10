@@ -15,7 +15,7 @@ Proof.
     destruct (Hex 1) as [A1 [B1 []]].
     destruct (HAB O A0 A1 B1 B0) as [HBet1 [HBet2 Hdiff]]; trivial.
     assert (Bet A0 A1 B0) by eBetween.
-    assert_diffs; auto.
+    统计不重合点; auto.
   intros Am Bm HAm HBm.
   destruct (Hex n) as [An [Bn []]].
   destruct (HAB n An Am Bm Bn) as [HBet1 [HBet2 Hdiff]]; trivial.

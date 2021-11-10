@@ -21,7 +21,7 @@ apply par_symmetry in HPar.
 apply (par_not_col_strict Q S P R P) in HPar; Col.
 assert (HOS : OS Q S R U).
   {
-  assert (HQS : Q <> S) by (assert_diffs; auto).
+  assert (HQS : Q <> S) by (统计不重合点; auto).
   assert (HQSQ : Col Q S Q) by Col.
   assert (HRUQ : Col R U Q) by (spliter; Col).
   rewrite (l9_19 Q S R U Q HQSQ HRUQ).
@@ -118,7 +118,7 @@ elim HPUI; clear HPUI; intro HPUI.
 
     {
     assert (H1 : 严格平行 P R Q I).
-      assert_diffs; apply par_strict_col_par_strict with S; Col.
+      统计不重合点; apply par_strict_col_par_strict with S; Col.
       apply par_strict_symmetry, par_not_col_strict with P; Col; Par.
     apply H1.
     destruct (outer_pasch Q I U R P HQUR HPUI) as [J [HQJI HRPJ]]; exists J.

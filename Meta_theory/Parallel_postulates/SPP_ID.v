@@ -21,7 +21,7 @@ elim (共线的决定性 P R U); intro HPRU.
     {
     apply par_strict_col_par_strict with R; Col.
     apply par_not_col_strict with P; Col.
-    apply l12_17 with T; [assert_diffs; auto|split; Between; Cong..].
+    apply l12_17 with T; [统计不重合点; auto|split; Between; Cong..].
     }
   destruct HPar as [H1 H].
   right; intro HI; apply H.

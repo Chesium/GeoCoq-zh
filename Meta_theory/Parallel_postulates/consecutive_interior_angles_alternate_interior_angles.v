@@ -12,14 +12,14 @@ Proof.
   intros cia A B C D Hts HPar.
   destruct (由一点往一方向构造等长线段 D C C D) as [D' []].
   apply suppa2__conga123 with A C D'.
-  - apply cia; [|assert_diffs; apply par_left_comm, par_col_par with D; Col].
+  - apply cia; [|统计不重合点; apply par_left_comm, par_col_par with D; Col].
     exists D; split; trivial.
     destruct Hts as [_ [HNCol _]].
     repeat split.
       intro; apply HNCol; ColR.
       Col.
     exists C; split; [Col|Between].
-  - assert_diffs; split; auto.
+  - 统计不重合点; split; auto.
     exists D'; split; 等角.
 Qed.
 

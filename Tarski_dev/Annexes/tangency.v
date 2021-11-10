@@ -332,7 +332,7 @@ apply L形垂直推出不共线 in H6.
 ColR.
 
 assert(Lt T x' x' O /\ Lt T O x' O).
-assert_diffs.
+统计不重合点.
 apply(l11_46 x' T O); auto.
 unfold 在圆上 in *.
 unfold Lt in H10.
@@ -823,7 +823,7 @@ exists M.
 left.
 split; ColR.
 apply coplanar_perm_12, col_cop__cop with P; Col; Cop.
-assert_diffs;auto.
+统计不重合点;auto.
 
 assert(A <> C).
 apply(interccat__neq A B C D P Q); auto.
@@ -834,7 +834,7 @@ apply coplanar_perm_12, col_cop__cop with Z; Col.
 apply coplanar_trans_1 with P; Cop.
 apply interccat__ncol in HIC.
 Col.
-assert_diffs;auto.
+统计不重合点;auto.
 
 assert(Perp A C Q P).
 induction(两点重合的决定性 A M).
@@ -846,7 +846,7 @@ apply 垂直于转垂直 in H12.
 apply 垂直的对称性.
 apply (垂线共线点也构成垂直1 Q A A C P); Perp.
 ColR.
-assert_diffs;auto.
+统计不重合点;auto.
 
 apply 直角转L形垂直于 in H11; auto.
 apply 垂直于的交换性 in H11.
@@ -857,7 +857,7 @@ apply 垂直的对称性 in H11.
 apply 垂直的交换性 in H11.
 apply (垂线共线点也构成垂直1 Q M C A P) in H11; Col.
 Perp.
-assert_diffs;auto.
+统计不重合点;auto.
 
 assert(Col Q N Z).
 ColR.
@@ -870,7 +870,7 @@ apply 垂直于的交换性 in H15.
 apply 垂直于转垂直 in H15.
 apply 垂直的对称性.
 apply (垂线共线点也构成垂直1 Q A A C Z); Perp.
-assert_diffs;auto.
+统计不重合点;auto.
 
 apply 直角转L形垂直于 in H14; auto.
 apply 垂直于的交换性 in H14.
@@ -881,7 +881,7 @@ apply 垂直的对称性 in H14.
 apply 垂直的交换性 in H14.
 apply (垂线共线点也构成垂直1 Q N C A Z) in H14; Col.
 Perp.
-assert_diffs;auto.
+统计不重合点;auto.
 
 apply 垂直的对称性 in H21.
 apply 垂直的对称性 in H19.

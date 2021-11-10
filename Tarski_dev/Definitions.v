@@ -398,9 +398,9 @@ Definition 在中垂线上 P A B := Cong A P P B.
 Definition 和角 A B C D E F G H I :=
   exists J, 等角 C B J D E F /\ ~ OS B C A J /\ 共面 A B C J /\ 等角 A B J G H I.
 
-(** The 角度之和小于平角 predicate describes the fact that the sum of the two angles is "at most straight" *)
+(** The 和角不大于平角 predicate describes the fact that the sum of the two angles is "at most straight" *)
 
-Definition 角度之和小于平角 A B C D E F :=
+Definition 和角不大于平角 A B C D E F :=
   A <> B /\ (Out E D F \/ ~ Bet A B C) /\
   exists J, 等角 C B J D E F /\ ~ OS B C A J /\ ~ TS A B C J /\ 共面 A B C J.
 
@@ -531,7 +531,7 @@ Inductive 角度在线性刻度上 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpo
   | 角度线性刻度_初始化 : forall A B C D E F, 等角 A B C D E F -> 角度在线性刻度上 A B C D E F
   | 角度线性刻度_步进 : forall A B C D E F G H I,
                    角度在线性刻度上 A B C D E F ->
-                   角度之和小于平角 D E F A B C -> 和角 D E F A B C G H I ->
+                   和角不大于平角 D E F A B C -> 和角 D E F A B C G H I ->
                    角度在线性刻度上 A B C G H I.
 
 (** There exists n such that the angle DEF is congruent to 2^n times the angle ABC *)
@@ -540,7 +540,7 @@ Inductive 角度在对数刻度上 : Tpoint -> Tpoint -> Tpoint -> Tpoint -> Tpo
   | 角度对数刻度_初始化 : forall A B C D E F, 等角 A B C D E F -> 角度在对数刻度上 A B C D E F
   | 角度对数刻度_步进 : forall A B C D E F G H I,
                       角度在对数刻度上 A B C D E F ->
-                      角度之和小于平角 D E F D E F -> 和角 D E F D E F G H I ->
+                      和角不大于平角 D E F D E F -> 和角 D E F D E F G H I ->
                       角度在对数刻度上 A B C G H I.
 
 (** 平行四边形 *)

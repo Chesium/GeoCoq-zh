@@ -11,7 +11,7 @@ Proof.
   intros HNColB HABCacute HQRdiff HQright.
   elim (两点重合的决定性 P Q); intro HPQdiff.
   { treat_equalities.
-    assert_diffs.
+    统计不重合点.
     exists R.
     split; [|apply out_trivial; auto].
     split.
@@ -24,13 +24,13 @@ Proof.
   }
   assert (HXY : (exists X Y, Out B A X /\ Out B C Y /\ Per B X Y /\ Lt P Q X Y)) by (apply aristotle; assumption).
   destruct HXY as [X [Y [PX [PY [HXright [Hle HNcong]]]]]].
-  assert_diffs.
+  统计不重合点.
   assert (HXYdiff : X <> Y) by (intro; treat_equalities; auto).
   assert (HT : (exists T, Out Q T P /\ Cong Q T X Y)) by (apply l6_11_existence; auto).
   destruct HT as [T []].
   assert (HS : (exists S, Out Q S R /\ Cong Q S X B)) by (apply l6_11_existence; auto).
   destruct HS as [S []].
-  assert_diffs.
+  统计不重合点.
   exists S.
   split; auto.
   assert (Per S Q P) by (apply (l8_3_直角边共线点也构成直角1 R); Perp; Col).
@@ -92,22 +92,22 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
   {
   destruct (l8_18_过一点垂线之垂点的存在性 A B C) as [X [HCol HPerp]]; Col; exists X, C.
   split; [apply l6_6, acute_col_perp__out with C; try apply acute_sym; finish|].
-  split; [apply out_trivial; assert_diffs; auto|].
-  split; [|apply BC不重合则AA小于BC; assert_diffs; auto].
+  split; [apply out_trivial; 统计不重合点; auto|].
+  split; [|apply BC不重合则AA小于BC; 统计不重合点; auto].
   elim (两点重合的决定性 X B); intro HBX; treat_equalities; Perp.
   apply L形垂直转直角1, 与垂线共线之线也为垂线2 with A B; Col.
   }
 
   {
   destruct (由一点往一方向构造等长线段_3 B D' P Q) as [P' [HOut1 HCong1]];
-  try solve [assert_diffs; auto].
-  destruct (HG P' B A A B C) as [C' HC']; Col; try solve [assert_diffs; auto];
-  [apply L形垂直转直角2,  与垂线共线之线也为垂线2 with D' B; finish; assert_diffs; auto|].
+  try solve [统计不重合点; auto].
+  destruct (HG P' B A A B C) as [C' HC']; Col; try solve [统计不重合点; auto];
+  [apply L形垂直转直角2,  与垂线共线之线也为垂线2 with D' B; finish; 统计不重合点; auto|].
   destruct HC' as [H角度小于 HOut2].
   destruct (l10_15 B C' C' C) as [D'' [HPerp2 HOS2]]; Col;
-  try (intro H; apply HNC; assert_diffs; assert_cols; ColR).
+  try (intro H; apply HNC; 统计不重合点; assert_cols; ColR).
   destruct (由一点往一方向构造等长线段_3 C' D'' P Q) as [P'' [HOut3 HCong2]];
-  try solve [assert_diffs; auto].
+  try solve [统计不重合点; auto].
   destruct (由一点往一方向构造等长线段_3 B C B P'') as [Z [HOut4 HCong3]];
   try (intro; treat_equalities; assert_cols; Col);
   [elim (垂直推出不共线 _ _ _ _ HPerp2); intro HF; apply HF; Col|].
@@ -116,21 +116,21 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     {
       apply acute_col_perp__out with Z; finish.
       apply acute_sym, acute_out2__acute with A C; finish.
-      apply out_trivial; assert_diffs; auto.
+      apply out_trivial; 统计不重合点; auto.
     }
   exists Z', Z; do 2 (split; finish); split;
-  [apply L形垂直转直角1, 与垂线共线之线也为垂线2 with A B; assert_diffs; Col|].
+  [apply L形垂直转直角1, 与垂线共线之线也为垂线2 with A B; 统计不重合点; Col|].
   apply 等长保持小于关系 with C' P'' Z' Z; Cong.
   apply cong_lt_per2__lt_1 with B B; Cong; try (apply L形垂直转直角1);
   [apply 与垂线共线之线也为垂线2 with A B|apply 与垂线共线之线也为垂线3 with C' D''|];
-  try solve [assert_diffs; Col; Perp].
+  try solve [统计不重合点; Col; Perp].
   assert (H等角 : 等角 B C' P' A B P'').
     {
-    apply l11_10 with B P' C' P''; try solve [assert_diffs; finish].
-    apply l11_49; try solve [assert_diffs; finish]; eCong.
-    apply l11_16_直角相等; try solve [assert_diffs; auto]; apply L形垂直转直角1;
+    apply l11_10 with B P' C' P''; try solve [统计不重合点; finish].
+    apply l11_49; try solve [统计不重合点; finish]; eCong.
+    apply l11_16_直角相等; try solve [统计不重合点; auto]; apply L形垂直转直角1;
     [apply 与垂线共线之线也为垂线2 with B D'|apply 与垂线共线之线也为垂线2 with C' D''];
-    assert_diffs; finish; apply 垂直的对称性; apply 与垂线共线之线也为垂线2 with B A; finish.
+    统计不重合点; finish; apply 垂直的对称性; apply 与垂线共线之线也为垂线2 with B A; finish.
     }
   assert (HT : 在角内 P'' Z' B Z).
     {
@@ -140,12 +140,12 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
 
       {
       apply l11_30_等角保持小于等于 with B C' P' A B C; finish;
-      apply 同角相等; assert_diffs; auto.
+      apply 同角相等; 统计不重合点; auto.
       }
 
       {
       apply one_side_transitivity with D''.
-      apply col2_os__os with B C'; assert_diffs; finish.
+      apply col2_os__os with B C'; 统计不重合点; finish.
       apply out_one_side_1 with C'; finish.
       elim (垂直推出不共线 _ _ _ _ HPerp2); intro HF; Col.
       intro; apply HF; ColR.
@@ -156,8 +156,8 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
   assert (HPar : Par Z Z' C' P'').
     {
     apply l12_9 with B C'; Cop; [|apply col__coplanar; ColR|apply 垂直的对称性|];
-    [|apply 与垂线共线之线也为垂线2 with A B; assert_diffs; finish|
-    apply 与垂线共线之线也为垂线2 with C' D''; assert_diffs; finish].
+    [|apply 与垂线共线之线也为垂线2 with A B; 统计不重合点; finish|
+    apply 与垂线共线之线也为垂线2 with C' D''; 统计不重合点; finish].
     assert (共面 B Z C  C') by (apply col__coplanar; ColR).
     assert (共面 C' P'' D'' B) by (apply col__coplanar; ColR).
     assert (共面 C' B D'' C); [Cop|CopR].
@@ -166,9 +166,9 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     {
     intro; treat_equalities; destruct H角度小于 as [_ HF]; apply HF.
     apply 角等的传递性 with A B P''; finish.
-    apply 等角的对称性, out2__conga; [assert_diffs; finish|].
+    apply 等角的对称性, out2__conga; [统计不重合点; finish|].
     apply l6_7 with T; finish.
-    assert_diffs; split; auto; split; auto.
+    统计不重合点; split; auto; split; auto.
     induction HOut6; auto.
     }
   assert (HTZ' : T <> Z').
@@ -180,13 +180,13 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     {
     intro; treat_equalities; assert (HF : 为锐角 B T Z).
       {
-      apply cong__acute; try solve [assert_diffs; finish].
+      apply cong__acute; try solve [统计不重合点; finish].
       }
     apply (acute__not_obtuse _ _ _ HF).
     apply acute_suppa__obtuse with B T Z';
-    try (apply suppa_left_comm, bet__suppa); try solve [assert_diffs; finish].
-    apply acute_sym, l11_43; try solve [assert_diffs; auto]; left.
-    apply L形垂直转直角1; apply 与垂线共线之线也为垂线2 with A B; Col; [|assert_diffs; auto].
+    try (apply suppa_left_comm, bet__suppa); try solve [统计不重合点; finish].
+    apply acute_sym, l11_43; try solve [统计不重合点; auto]; left.
+    apply L形垂直转直角1; apply 与垂线共线之线也为垂线2 with A B; Col; [|统计不重合点; auto].
     apply 垂直的对称性, 与垂线共线之线也为垂线2 with Z Z'; finish.
     }
   assert (HBet2 : Bet B T P''); [|clear HOut6].
@@ -196,23 +196,23 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
       {
       apply acute_suppa__obtuse with B T Z';
       try (apply suppa_left_comm, suppa_right_comm);
-      try (apply bet__suppa); try solve [assert_diffs; finish].
-      apply acute_sym, l11_43; try solve [assert_diffs; auto]; left.
-      apply L形垂直转直角1; apply 与垂线共线之线也为垂线2 with A B; Col; [|assert_diffs; auto].
+      try (apply bet__suppa); try solve [统计不重合点; finish].
+      apply acute_sym, l11_43; try solve [统计不重合点; auto]; left.
+      apply L形垂直转直角1; apply 与垂线共线之线也为垂线2 with A B; Col; [|统计不重合点; auto].
     apply 垂直的对称性, 与垂线共线之线也为垂线2 with Z Z'; finish.
       }
     apply (两长度不可能互相小于对方a B Z T B T Z); split.
 
       {
       apply acute_obtuse__lta; [|apply obtuse_sym; auto].
-      apply acute_sym, l11_43; assert_diffs; finish.
+      apply acute_sym, l11_43; 统计不重合点; finish.
       right; apply obtuse_sym; auto.
       }
 
       {
       apply l11_44_2_a; [intro; apply HNC; ColR|].
       apply 长度小于等于_小于_传递性 with B P''; [apply 等长则小于等于; finish|].
-      apply bet__lt1213; assert_diffs; finish.
+      apply bet__lt1213; 统计不重合点; finish.
       }
     }
   apply par_symmetry in HPar; apply (par_not_col_strict _ _ _ _ T) in HPar; Col;
@@ -221,7 +221,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     elim (垂直推出不共线 _ _ _ _ HPerp2); Col;
     intros HF ?; apply HF; ColR].
   assert (HOS3 := pars__os3412 _ _ _ _ HPar).
-  assert (HOut6 : Out P'' T B) by (split; [auto|split; assert_diffs; finish]).
+  assert (HOut6 : Out P'' T B) by (split; [auto|split; 统计不重合点; finish]).
   assert (HOut7 : Out B C' Z') by (apply l6_7 with A; finish).
   destruct HOut7 as [_ [_ [HBet3|HBet3]]];
   [|apply bet__lt1213; Between;
@@ -237,7 +237,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
 
     {
     apply out_one_side_1 with Z'; finish; [intro; apply HNC; ColR|].
-    assert_diffs; do 2 (split; auto); right; finish.
+    统计不重合点; do 2 (split; auto); right; finish.
     }
   }
 Qed.
@@ -257,14 +257,14 @@ Proof.
   destruct (l10_15 P Q P C') as [A' [HPerp HOS]]; Col.
     apply 共线否定排列BCA.
     apply par_strict_not_col_1 with Q'; Par.
-  assert_diffs.
+  统计不重合点.
   assert (H角度小于 : 角度小于 Q P A' C' P Q) by (apply obtuse_per__lta; Perp).
   destruct H角度小于 as [H角度小于等于 HN等角].
   assert (H在角内 : 在角内 A' Q P C').
     apply lea_in_angle; Side; apply 角度小于等于的右交换性; trivial.
   destruct (由一点往一方向构造等长线段 C' P C' P) as [C [HC1 HC2]].
   destruct (由一点往一方向构造等长线段 A' P A' P) as [A [HA1 HA2]].
-  assert_diffs.
+  统计不重合点.
   assert (H在角内1 : 在角内 C A P Q).
     apply in_angle_reverse with A'; auto.
     apply l11_24_在角内的对称性, in_angle_reverse with C'; auto.
@@ -293,17 +293,17 @@ Proof.
   apply (两长度不可能互相小于对方 P Q X Y).
   split; trivial.
   destruct (l8_18_过一点垂线之垂点的存在性 P Q Y) as [Z [HZ1 HZ2]].
-    intro; assert_diffs; apply HNCol2; ColR.
+    intro; 统计不重合点; apply HNCol2; ColR.
   apply 长度小于的传递性 with P Z.
 
   - assert (P <> Z).
     { intro; subst Z.
-      assert_diffs.
+      统计不重合点.
       assert (Per Q P C) by (apply 直角边共线点也构成直角2 with Y; Col; Perp).
       apply HNCol1, cop_perp2__col with P Q; Perp; Cop.
     }
     assert (HLam : Lambert四边形 P X Y Z).
-    { assert_diffs.
+    { 统计不重合点.
       repeat split; auto.
         apply 直角边共线点也构成直角2 with Q; Col.
         apply 直角的对称性, 直角边共线点也构成直角2 with A; Perp; Col.
@@ -318,7 +318,7 @@ Proof.
   - assert (HOut : Out Q P Z).
     { apply col_one_side_out with Q'; Col.
       apply one_side_transitivity with Y.
-        assert_diffs; apply l12_6, par_strict_col_par_strict with C'; Par; ColR.
+        统计不重合点; apply l12_6, par_strict_col_par_strict with C'; Par; ColR.
       apply l12_6, par_not_col_strict with Y; Col.
       { apply l12_9 with P Q; Perp; [Cop..| |Cop].
         apply coplanar_perm_12, col_cop__cop with C; Col.
@@ -326,7 +326,7 @@ Proof.
       }
       apply 共线否定排列BCA, par_not_col with P C'; Par; ColR.
     }
-    assert_diffs.
+    统计不重合点.
     apply bet__lt1213; auto.
     apply out2__bet; trivial.
     apply col_one_side_out with A; Col.

@@ -17,7 +17,7 @@ assert (严格平行 O X B C)
  by perm_apply (triangle_mid_par_strict_cong_simp C B A O X).
 assert(Per O X A)
  by (exists C;split;finish).
-assert_diffs.
+统计不重合点.
 assert_cols.
 assert(Hid2 : Perp O X C A)
  by perm_apply (直角加共线转L形垂直 O X A C).
@@ -40,7 +40,7 @@ induction (共线的决定性 a b c).
 
 induction (l8_9_直角三点共线则必有两点重合 a c b H);
 treat_equalities;assert_congs_perm;try split;finish.
-assert_diffs.
+统计不重合点.
 (* Demonstration Cong o a o b *)
 assert_congs_perm.
 split.
@@ -62,12 +62,12 @@ assert(Hcop : 共面 x o c a) by Cop.
 assert(HH := cop_par_perp__perp c b x o c a Hpar Hper).
 assert(Hper2 : Perp c x o x).
   apply (垂线共线点也构成垂直1 c a o x x).
-  assert_diffs.
+  统计不重合点.
   finish.
   Perp.
   Col.
 (*Transformation de Perp c x o x en Per *)
-assert_diffs.
+统计不重合点.
 assert (Per o x c)
  by (apply L形垂直转直角2;Perp).
 

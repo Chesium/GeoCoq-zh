@@ -96,7 +96,7 @@ Lemma l12_16 : forall A1 A2 B1 B2 C1 C2 X,
   Par A1 A2 B1 B2 -> 共面 B1 B2 C1 C2 -> Inter A1 A2 C1 C2 X -> exists Y, Inter B1 B2 C1 C2 Y.
 Proof.
     intros.
-    assert_diffs.
+    统计不重合点.
     apply cop_npar__inter; auto.
       destruct H1.
       auto.
@@ -143,7 +143,7 @@ Proof.
     assert(Cong B C D' A).
       apply (l7_13_同中点组两侧等长 P); 中点.
     assert(Par A B C D').
-      assert_diffs; apply l12_17 with P; auto.
+      统计不重合点; apply l12_17 with P; auto.
     assert(Par C D C D').
       eapply par_trans.
         apply par_symmetry.
@@ -153,7 +153,7 @@ Proof.
       apply par_id.
       assumption.
     assert(Par B C D' A).
-      assert_diffs; apply l12_17 with P; 中点.
+      统计不重合点; apply l12_17 with P; 中点.
     assert(Par D A D' A).
       eapply par_trans.
         apply par_symmetry.
@@ -163,7 +163,7 @@ Proof.
       apply par_id.
       Par.
     assert(D = D').
-      assert_diffs; apply (l6_21_两线交点的唯一性 A D C D); Col.
+      统计不重合点; apply (l6_21_两线交点的唯一性 A D C D); Col.
         intro.
         apply H.
         assert(Col P C D).
@@ -194,8 +194,8 @@ Lemma l12_20_bis :
    Par B C D A /\ Cong B C D A /\ TS A C B D.
 Proof.
     intros.
-    assert(B <> C) by (assert_diffs; auto).
-    assert(A <> D) by (assert_diffs; auto).
+    assert(B <> C) by (统计不重合点; auto).
+    assert(A <> D) by (统计不重合点; auto).
     assert(~ Col A B C).
       intro.
       assert(Col A B D).
@@ -213,7 +213,7 @@ Proof.
       apply M是AB中点则M是BA中点.
       assumption.
     assert(Par A B C D').
-      assert_diffs; apply l12_17 with P; auto.
+      统计不重合点; apply l12_17 with P; auto.
     assert(Cong C D' A B).
       apply (l7_13_同中点组两侧等长 P); assumption.
     assert(Cong B C D' A).
@@ -327,7 +327,7 @@ Proof.
       apply par_id; Par.
     }
     destruct (由一点往一方向构造等长线段 B A B A) as [B' []].
-    assert_diffs.
+    统计不重合点.
     apply 角等的传递性 with B' A C.
       apply l11_14; auto.
     apply l11_10 with B' C D A; try (apply out_trivial); auto; [|apply l6_6, bet_out; Between].
@@ -428,13 +428,13 @@ Proof.
       eapply out_one_side_1.
         intro.
         apply H.
-        assert_diffs.
+        统计不重合点.
         eapply (共线的传递性2 _ B0); Col.
         apply ABB型共线.
       apply bet_out.
         intro.
         treat_equalities.
-        assert_diffs; auto.
+        统计不重合点; auto.
       assumption.
     assert(OS A C B0 B).
       eapply out_one_side_1.
@@ -445,7 +445,7 @@ Proof.
           treat_equalities.
           Col.
         apply ABA型共线.
-      assert_diffs; apply bet_out; Between.
+      统计不重合点; apply bet_out; Between.
     assert(OS A C B C').
       apply one_side_transitivity with B0.
         apply one_side_symmetry.

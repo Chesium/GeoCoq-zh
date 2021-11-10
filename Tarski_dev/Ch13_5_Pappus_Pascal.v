@@ -336,7 +336,7 @@ Proof.
           subst P'.
           eapply (等长的同一性 _  O' O'); Cong.
         assert(Lt P' A' A' O' /\ Lt P' O' A' O').
-          assert_diffs; apply(l11_46 A' P' O'); auto.
+          统计不重合点; apply(l11_46 A' P' O'); auto.
         spliter.
         unfold Lt in H17.
         spliter.
@@ -395,7 +395,7 @@ Proof.
       assert(Cong O P O A).
         apply (等长的传递性 _ _ O' P'); Cong.
       assert(Lt P A A O /\ Lt P O A O).
-        assert_diffs; apply(l11_46 A P O); auto.
+        统计不重合点; apply(l11_46 A P O); auto.
       spliter.
       unfold Lt in H21.
       spliter.
@@ -405,7 +405,7 @@ Proof.
       apply l11_16_直角相等; auto.
     assert(Cong P A P' A' /\ 等角 P A O P' A' O' /\ 等角 P O A P' O' A').
       assert(Lt P A A O /\ Lt P O A O).
-        assert_diffs; apply(l11_46 A P O); auto.
+        统计不重合点; apply(l11_46 A P O); auto.
       spliter.
       unfold Lt in H22.
       spliter.
@@ -1612,7 +1612,7 @@ Proof.
       apply(l13_10 A B C A' B' C' O); assumption.
     ex_and HQ X.
     ex_and H12 Y.
-    assert_diffs.
+    统计不重合点.
     assert (共面 O A A' X).
       apply coplanar_perm_13, col_cop__cop with B'; Col.
       apply coplanar_perm_3, col_cop__cop with Y; Col; Cop.

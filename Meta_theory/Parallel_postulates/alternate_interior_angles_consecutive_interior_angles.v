@@ -11,10 +11,10 @@ Lemma alternate_interior__consecutive_interior :
 Proof.
   intros aia A B C D Hos HPar.
   split.
-    assert_diffs; auto.
+    统计不重合点; auto.
   destruct (由一点往一方向构造等长线段 A B B A) as [A' []].
   exists A'; split; trivial.
-  apply 等角的交换性, 等角的对称性, aia; [|assert_diffs; apply par_col_par_2 with A; Col; Par].
+  apply 等角的交换性, 等角的对称性, aia; [|统计不重合点; apply par_col_par_2 with A; Col; Par].
   apply l9_2, l9_8_2 with A; trivial.
   apply one_side_not_col123 in Hos.
   repeat split.

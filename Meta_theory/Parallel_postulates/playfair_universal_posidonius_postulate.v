@@ -10,7 +10,7 @@ Lemma playfair__universal_posidonius_postulate : playfair_s_postulate -> univers
 Proof.
 intros HP A1 A2 A3 A4 B1 B2 B3 B4 HPar HC1 HC2 HPerp1 HC3 HC4 HPerp2.
 elim HPar; intro HParS; [|destruct HParS as [HD1 [HD2 [HC5 HC6]]];
-                           assert_diffs; assert_cols;
+                           统计不重合点; assert_cols;
                            elim (垂直推出不共线 _ _ _ _ HPerp1);
                            intro HF; exfalso; apply HF; ColR].
 destruct (l8_18_过一点垂线之垂点的存在性 A1 A2 B1) as [A1' [HC5 HPerp3]];
@@ -25,14 +25,14 @@ clear HC1; clear HC2; clear HC3; clear HC4; clear HPerp1; clear HPerp2;
 clear A3; clear A4; clear B3; clear B4; intros A3 B3 HC1 HC2 HPerp1;
 rename HC5 into HC3; rename HPerp3 into HPerp2.
 destruct (由一点往一方向构造等长线段_2 B3 A3 A1' B1) as [B3' [HC4 HCong]];
-[assert_diffs; auto|]; elim (两点重合的决定性 A1' A3); intro HD; treat_equalities.
+[统计不重合点; auto|]; elim (两点重合的决定性 A1' A3); intro HD; treat_equalities.
   {
   assert (HC1 : Col A1' B1 B3).
     apply cop_perp2__col with A1 A2; Perp.
-    assert_diffs; apply col_cop__cop with B2; Col.
+    统计不重合点; apply col_cop__cop with B2; Col.
     apply par__coplanar, HPar.
   assert (B1 = B3); treat_equalities; Cong.
-  assert_diffs; apply l6_21_两线交点的唯一性 with B1 B2 A1' B1; Col.
+  统计不重合点; apply l6_21_两线交点的唯一性 with B1 B2 A1' B1; Col.
   elim (两点重合的决定性 A1' A1); intro HD1.
    treat_equalities; apply par_strict_not_col_1 with A2;
    apply par_strict_col2_par_strict with A1' A2; Col; Par.
@@ -45,7 +45,7 @@ destruct (由一点往一方向构造等长线段_2 B3 A3 A1' B1) as [B3' [HC4 H
     {
     apply sac__pars1423; repeat split; [apply L形垂直转直角1..|Cong|].
       apply 与垂线共线之线也为垂线1 with A1 A2; Perp.
-      assert_diffs.
+      统计不重合点.
       apply 与垂线共线之线也为垂线1 with A3 B3; [apply 与垂线共线之线也为垂线1 with A1 A2| |induction HC4|]; Col.
     apply one_side_transitivity with B3.
 
@@ -58,13 +58,13 @@ destruct (由一点往一方向构造等长线段_2 B3 A3 A1' B1) as [B3' [HC4 H
       }
 
       {
-      assert_diffs.
+      统计不重合点.
       apply invert_one_side, out_one_side; [|repeat split; auto].
       elim (垂直推出不共线 _ _ _ _ HPerp1); intro HNC; [contradiction|].
       left; intro; apply HNC; ColR.
       }
     }
-  assert_diffs.
+  统计不重合点.
   destruct (HP A1 A2 B1 B2 B1 B3' B1) as [_ HC5]; Col;
   [apply par_symmetry; apply par_col2_par with A1' A3; Par; ColR|].
   assert (B3 = B3'); [|subst; Cong].

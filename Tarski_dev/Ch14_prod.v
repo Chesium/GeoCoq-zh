@@ -639,7 +639,7 @@ Proof.
         intro.
         subst B''.
         apply H27.
-        assert_diffs.
+        统计不重合点.
         apply(l6_21_两线交点的唯一性 O E' B B'); [|ColR..].
         intro.
         apply H.

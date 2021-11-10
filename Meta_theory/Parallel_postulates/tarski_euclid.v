@@ -27,7 +27,7 @@ destruct (HT P V U W Q) as [X [Y [HPVX [HPUY HXQY]]]]; Between.
 assert (HPar : 严格平行 Q S P R).
   {
   apply par_not_col_strict with P; Col.
-  assert_diffs; unfold BetS in *; spliter;
+  统计不重合点; unfold BetS in *; spliter;
   apply l12_17 with T; [auto|split; Cong; Between..].
   }
 assert (HTS : TS Q S P Y).
@@ -35,7 +35,7 @@ assert (HTS : TS Q S P Y).
   apply l9_8_2 with X.
 
     {
-    assert_diffs.
+    统计不重合点.
     assert (P <> R)
       by (intro; treat_equalities; apply par_strict_distinct in HPar; spliter; Col).
     assert (P <> X)
@@ -159,11 +159,11 @@ split.
   apply l9_9 in HFalse; exfalso; apply HFalse.
   apply l9_19 with Q; Col.
   apply par_strict_not_col_4 in HPar; split; [|Col].
-  assert_diffs; repeat split; auto; elim HSQI; Between.
+  统计不重合点; repeat split; auto; elim HSQI; Between.
   }
 
   {
-  assert_diffs; split; auto.
+  统计不重合点; split; auto.
   }
 Qed.
 

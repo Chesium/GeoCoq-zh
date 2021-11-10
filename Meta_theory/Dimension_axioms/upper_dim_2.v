@@ -19,7 +19,7 @@ destruct HPer1 as [C' HPer1].
 destruct HPer2 as [C'' HPer2].
 assert (C' = C'') by (apply 中点组的唯一性1 with C X; spliter; auto); treat_equalities.
 unfold 防升维公理_axiom in HUD.
-spliter; assert_diffs; unfold 中点 in *; spliter; apply HUD with C C'; Cong.
+spliter; 统计不重合点; unfold 中点 in *; spliter; apply HUD with C C'; Cong.
 Qed.
 
 Lemma 防升维公理_implies_col_perp2__col :

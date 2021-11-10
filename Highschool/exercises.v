@@ -15,7 +15,7 @@ Lemma 直角三角形三边中点和直角顶点形成长方形 : forall A B C I
   长方形 A J I K.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 assert_cols.
 elim (两点重合的决定性 A C); intro; apply plg_per_rect.
 
@@ -29,7 +29,7 @@ elim (两点重合的决定性 A C); intro; apply plg_per_rect.
   by (apply triangle_mid_par_cong; intuition).
   spliter.
 
-  elim (共线的决定性 A B C); intro; assert_diffs.
+  elim (共线的决定性 A B C); intro; 统计不重合点.
 
     apply parallelogram_to_plg; unfold 平行四边形; right; unfold 退化平行四边形; repeat split.
     ColR.
@@ -86,7 +86,7 @@ C'est une appliquette Java créée avec GeoGebra ( www.geogebra.org) - Il semble
 </applet>
 *)
 
-Ltac assert_diffs_by_cases :=
+Ltac 统计不重合点_by_cases :=
  repeat match goal with
  | A: Tpoint, B: Tpoint |- _ => not_exist_hyp_comm A B;induction (两点重合的决定性 A B);[treat_equalities;solve [finish|trivial] |idtac]
 end.
@@ -103,7 +103,7 @@ Lemma 四边形对边中点连线互相平分:
   X = Y.
 Proof.
 intros.
-assert_diffs_by_cases.
+统计不重合点_by_cases.
 assert (平行四边形 I J K L)
   by (apply (瓦里尼翁平行四边形 A B C D I J K L);finish).
 assert (中点 X J L)

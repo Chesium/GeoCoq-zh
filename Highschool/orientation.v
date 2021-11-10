@@ -499,7 +499,7 @@ unfold OS in H1.
 ex_and H1 U.
 unfold TS in H1.
 spliter.
-assert_diffs; tauto.
+统计不重合点; tauto.
 
 unfold proj in H8.
 spliter.

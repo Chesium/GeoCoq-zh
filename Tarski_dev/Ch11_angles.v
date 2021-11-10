@@ -22,7 +22,7 @@ Proof.
     exists C'.
     exists D'.
     exists F'.
-    assert_diffs.
+    统计不重合点.
     repeat split; auto; apply 等长的左交换性.
       apply 两组连续三点分段等则全体等 with A D; Cong; Between.
       apply 两组连续三点分段等则全体等 with C F; Cong; Between.
@@ -56,7 +56,7 @@ Proof.
           unfold Out.
           repeat split.
             assumption.
-            assert_diffs.
+            统计不重合点.
             auto.
           apply l5_1 with D; auto.
         apply 等长的交换性.
@@ -65,8 +65,8 @@ Proof.
         apply (cong_preserves_bet B A0 A'); trivial.
         unfold Out.
         repeat split.
-          assert_diffs;auto.
-          assert_diffs;auto.
+          统计不重合点;auto.
+          统计不重合点;auto.
         apply l5_1 with D; auto.
       apply l4_3 with B E; Between; Cong.
       apply 等长的交换性.
@@ -83,7 +83,7 @@ Proof.
         unfold Out.
         repeat split.
           assumption.
-          assert_diffs;auto.
+          统计不重合点;auto.
         apply l5_1 with D; auto.
       apply 等长的交换性.
       apply l4_3 with B E; Cong.
@@ -95,7 +95,7 @@ Proof.
         unfold Out.
         repeat split.
           assumption.
-          assert_diffs;auto.
+          统计不重合点;auto.
         eauto using l5_1.
         apply 中间性的对称性.
         eapply 中间性的交换传递性2.
@@ -225,7 +225,7 @@ Proof.
     apply 等长的交换性.
     apply (l4_16_五线段形式推论 B C0 C' A' E F0 F' D').
       repeat split; Col; Cong.
-    assert_diffs.
+    统计不重合点.
     auto.
 Qed.
 
@@ -255,7 +255,7 @@ Proof.
     assert (Cong B C' E F').
       apply 等长的右交换性.
       apply 两组连续三点分段等则全体等 with C F; Cong; Between.
-    assert_diffs; repeat split; auto.
+    统计不重合点; repeat split; auto.
     apply H3; repeat split; Cong.
 Qed.
 
@@ -295,12 +295,12 @@ Proof.
     apply l11_4_1 in H.
     spliter.
     apply l11_4_2.
-    assert_diffs.
+    统计不重合点.
     repeat split; auto.
     intros.
     spliter.
     apply H7.
-    assert_diffs.
+    统计不重合点.
     repeat split;Cong.
       apply l6_7 with A'; Out.
       apply l6_7 with C'; Out.
@@ -311,7 +311,7 @@ Qed.
 Lemma out2__conga : forall A B C A' C', Out B A' A -> Out B C' C -> 等角 A B C A' B C'.
 Proof.
   intros A B C A' C' HAOut HCOut.
-  assert_diffs.
+  统计不重合点.
   apply l11_10 with A C A C; Out.
   apply 同角相等;auto.
 Qed.
@@ -322,7 +322,7 @@ Proof.
 unfold 三角形全等 in *.
 intros.
 spliter.
-assert_diffs.
+统计不重合点.
 auto.
 Qed.
 
@@ -332,7 +332,7 @@ Proof.
 unfold 三角形全等 in *.
 intros.
 spliter.
-assert_diffs.
+统计不重合点.
 auto.
 Qed.
 
@@ -364,7 +364,7 @@ Proof.
     unfold 三角形全等 in H.
     spliter.
     unfold 等角.
-    assert_diffs.
+    统计不重合点.
     repeat split; auto.
     prolong B' A' A1 B'' A''.
     prolong B' C' C1 B'' C''.
@@ -432,7 +432,7 @@ Proof.
     ex_and H5 C0.
     ex_and H4 A1.
     ex_and H5 C1.
-    assert_diffs.
+    统计不重合点.
     assert(A'' <> B'' /\ C'' <> B'').
       unfold 等角 in H0.
       spliter.
@@ -554,7 +554,7 @@ Proof.
         assumption.
       apply 等长的右交换性.
       apply 两组连续三点分段等则全体等 with C F; Cong; Between.
-    assert_diffs;auto.
+    统计不重合点;auto.
 Qed.
 
 Lemma 等角的右交换性 : forall A B C D E F, 等角 A B C D E F -> 等角 A B C F E D.
@@ -587,7 +587,7 @@ Lemma 成中间性三点组的角相等 : forall A B C A' B' C',
  等角 A B C A' B' C'.
 Proof.
     intros.
-    assert_diffs.
+    统计不重合点.
     prolong B C C0 B' C'.
     prolong B' C' C1 B C.
     prolong B A A0 B' A'.
@@ -646,7 +646,7 @@ Lemma l11_14 : forall A B C A' C',
  等角 A B C A' B C'.
 Proof.
     intros.
-    assert_diffs.
+    统计不重合点.
     assert (等角 A' B C  C' B A).
     {
       apply l11_13 with A C; Between.
@@ -2106,7 +2106,7 @@ Proof.
         assert (HH := H0); destruct HH as [HNCol].
         apply coplanar_trans_1 with A'; Col.
           Cop.
-        assert_diffs; apply coplanar_perm_19, col_cop__cop with A''; Col.
+        统计不重合点; apply coplanar_perm_19, col_cop__cop with A''; Col.
         exists T''.
         right.
         left.
@@ -2296,7 +2296,7 @@ Proof.
         assert (HH := H0); destruct HH as [HNCol].
         apply coplanar_trans_1 with A'; Col.
           Cop.
-        assert_diffs; apply coplanar_perm_19, col_cop__cop with A''; Col.
+        统计不重合点; apply coplanar_perm_19, col_cop__cop with A''; Col.
         exists T''.
         right.
         left.
@@ -2533,7 +2533,7 @@ Lemma out321__inangle :
   在角内 P A B C.
 Proof.
     intros.
-    assert_diffs.
+    统计不重合点.
     apply col_in_angle; auto.
 Qed.
 
@@ -2555,7 +2555,7 @@ Lemma out341__inangle :
   在角内 P A B C.
 Proof.
     intros.
-    assert_diffs.
+    统计不重合点.
     apply col_in_angle; auto.
 Qed.
 
@@ -5720,7 +5720,7 @@ Proof.
   destruct (由一点往一方向构造等长线段 E B E B) as [E' [HE1 HE2]].
   assert (Hd := HD).
   apply 在角内推出点不重合 in Hd.
-  spliter; assert_diffs.
+  spliter; 统计不重合点.
   apply l11_24_在角内的对称性, in_angle_reverse with E'; Between.
   apply l11_24_在角内的对称性, in_angle_trans with A; apply l11_24_在角内的对称性; trivial.
   apply in_angle_reverse with E; auto.
@@ -5882,7 +5882,7 @@ Proof.
         apply H12.
       assumption.
     assert (共面 C A D P).
-      assert_diffs.
+      统计不重合点.
       apply coplanar_perm_3, col_cop__cop with B; Col.
       exists M.
       right.
@@ -6036,20 +6036,20 @@ Proof.
         apply 等价共线ACB.
         assumption.
         assumption.
-        assert_diffs;auto.
+        统计不重合点;auto.
     assert(等角 B A C C A B).
     {
       apply 等角的左交换性.
       apply 同角相等;
-      assert_diffs;auto.
+      统计不重合点;auto.
     }
     assert(等角 D A C E A B)
-      by (eapply l11_13 with B C;assert_diffs;auto).
+      by (eapply l11_13 with B C;统计不重合点;auto).
     unfold 角度小于 in *.
     spliter.
     repeat split.
       apply l11_30_等角保持小于等于 with A B C B A E; trivial.
-        apply 同角相等;assert_diffs;auto.
+        apply 同角相等;统计不重合点;auto.
       apply 等角的对称性.
       apply 等角的交换性.
       assumption.
@@ -6205,10 +6205,10 @@ Qed.
 Lemma out__acute : forall A B C, Out B A C -> 为锐角 A B C.
 Proof.
   intros A B C Hout.
-  assert_diffs.
+  统计不重合点.
   assert(HD := 垂点的存在性 B A B).
   destruct HD as [D]; auto.
-  assert_diffs.
+  统计不重合点.
   exists A.
   exists B.
   exists D.
@@ -6228,7 +6228,7 @@ Proof.
   intros A B C HBet HAB HBC.
   assert(HD := 垂点的存在性 B A B).
   destruct HD as [D]; auto.
-  assert_diffs.
+  统计不重合点.
   exists A.
   exists B.
   exists D.
@@ -6251,7 +6251,7 @@ Proof.
         apply (成直角三点不共线 B A C); Col.
       apply out__acute, bet_out; auto.
       apply col_obtuse__bet; Col.
-    assert_diffs.
+    统计不重合点.
     prolong B A B' B A.
     assert(~ Col B' A C).
       intro.
@@ -6533,7 +6533,7 @@ Lemma l11_44_1_a : forall A B C, A <> B -> A <> C -> Cong B A B C -> 等角 B A 
 Proof.
     intros.
     destruct (中点的存在性 A C) as [P HP].
-    assert_diffs.
+    统计不重合点.
     assert(等角 B A P B C P) by (apply 三角形全等推角等2; auto; repeat split; Cong).
     apply l11_10 with B P B P; Out.
 Qed.
@@ -6798,7 +6798,7 @@ Qed.
 
 Lemma l11_44_1 : forall A B C, ~ Col A B C -> (等角 B A C B C A <-> Cong B A B C).
 Proof.
-    intros; assert_diffs; split; intro; auto using l11_44_1_b, l11_44_1_a.
+    intros; 统计不重合点; split; intro; auto using l11_44_1_b, l11_44_1_a.
 Qed.
 
 Lemma l11_44_2 : forall A B C, ~ Col A B C -> (角度小于 B A C B C A <-> Lt B C B A).
@@ -6836,7 +6836,7 @@ Proof.
         apply H0, between_cong with A; Cong.
       intro.
       apply H, eq_sym, between_cong with C; Between; Cong.
-    assert_diffs.
+    统计不重合点.
     assert(HH:= H1).
     apply l11_43 in H1; auto.
       spliter.
@@ -7852,7 +7852,7 @@ intros.
 apply (l11_52 A B C A' B' C'); auto.
 destruct (共线的决定性 A B C).
   apply bet__le2313, col_obtuse__bet; assumption.
-assert_diffs; apply l11_46; auto.
+统计不重合点; apply l11_46; auto.
 Qed.
 
 (** This is SSA congruence with a right angle *)
@@ -7867,7 +7867,7 @@ forall A B C A' B' C',
        Cong B A B' A' /\ 等角 B A C B' A' C' /\ 等角 B C A B' C' A'.
 Proof.
 intros.
-assert_diffs.
+统计不重合点.
 destruct (l11_46 A B C) as [_ []]; auto using 成直角三点不共线.
 apply (l11_52 A B C A' B' C');auto.
 apply l11_16_直角相等;auto.
@@ -7889,7 +7889,7 @@ destruct (两点重合的决定性 B C).
   treat_equalities; Cong.
 destruct (两点重合的决定性 A B).
   destruct (两点重合的决定性 A' B'); subst; [Cong|].
-  assert_diffs.
+  统计不重合点.
   destruct (cong2_per2__cong_conga2 A' B' C' B B C); Cong; Perp.
 apply cong2_per2__cong_conga2 with C C'; auto.
 Qed.
@@ -7923,10 +7923,10 @@ destruct (两点重合的决定性 A B).
 destruct (两点重合的决定性 B C).
   subst C.
   apply (等长保持小于关系 B' A' C' A'); Cong.
-  assert_diffs.
+  统计不重合点.
   apply l11_46; Perp.
 destruct H2 as [[C0 []] HNCong].
-assert_diffs.
+统计不重合点.
 assert (Per A' B' C0) by (apply 直角边共线点也构成直角2 with C'; Col).
 apply (等长保持小于关系 A' C0 A' C'); [|apply l10_12 with B' B|]; Cong.
 apply 长度小于的交换性.
@@ -7961,13 +7961,13 @@ intros.
 destruct (两点重合的决定性 B C).
   subst C.
   apply 长度小于的传递性 with A' B'; auto.
-  assert_diffs.
+  统计不重合点.
   apply 长度小于的交换性, l11_46; Perp.
 apply 长度小于的交换性 in H1.
 assert (HC0 := H2).
 destruct HC0 as [[C0 []] HNCong].
 assert (Per A' B' C0).
-  assert_diffs; apply 直角边共线点也构成直角2 with C'; Col.
+  统计不重合点; apply 直角边共线点也构成直角2 with C'; Col.
 apply 长度小于的传递性 with A' C0.
   apply 长度小于的交换性, cong_lt_per2__lt with B B'; Cong; Perp.
 apply cong_lt_per2__lt with B' B'; Cong.
@@ -8048,12 +8048,12 @@ Proof.
   assert (HNColB := one_side_not_col123 A A' B B' HOSB).
   assert (HNColC := one_side_not_col123 A A' C C' HOSC).
   apply 角等的传递性 with B'' A' C''.
-    assert_diffs; apply symmetry_preserves_conga with M; auto.
+    统计不重合点; apply symmetry_preserves_conga with M; auto.
   assert (~ Col B'' A A').
     assert (B <> M) by (intro; subst; apply HNColB; Col); intro; apply HNColB; ColR.
   assert (Bet B'' A' B').
   { assert (Col B' B'' A').
-    { assert_diffs; apply (cop_per2__col A); auto.
+    { 统计不重合点; apply (cop_per2__col A); auto.
         apply coplanar_perm_3, coplanar_trans_1 with B; [Col|Cop|].
         exists M; right; right; split; Col.
       apply midpoint_preserves_per with B A A' M; 中点.
@@ -8067,7 +8067,7 @@ Proof.
     assert (C <> M) by (intro; subst; apply HNColC; Col); intro; apply HNColC; ColR.
   assert (Bet C'' A' C').
   { assert (Col C' C'' A').
-    { assert_diffs; apply (cop_per2__col A); auto.
+    { 统计不重合点; apply (cop_per2__col A); auto.
         apply coplanar_perm_3, coplanar_trans_1 with C; [Col|Cop|].
         exists M; right; right; split; Col.
       apply midpoint_preserves_per with C A A' M; 中点.
@@ -8079,7 +8079,7 @@ Proof.
   }
   apply one_side_not_col124 in HOSB.
   apply one_side_not_col124 in HOSC.
-  assert_diffs; apply l11_14; auto.
+  统计不重合点; apply l11_14; auto.
 Qed.
 
 Lemma cop3_orth_at__orth_at : forall A B C D E F U V X, ~ Col D E F ->
@@ -8124,7 +8124,7 @@ Qed.
 Lemma orth_at_distincts : forall A B C U V X, 垂直平面于 X A B C U V ->
   A <> B /\ B <> C /\ A <> C /\ U <> V.
 Proof.
-  unfold 垂直平面于; intros; spliter; assert_diffs.
+  unfold 垂直平面于; intros; spliter; 统计不重合点.
   repeat split; auto.
 Qed.
 
@@ -8193,7 +8193,7 @@ Lemma l11_60_aux : forall A B C D P Q, ~ Col A B C ->
 Proof.
   intros A B C D P Q HNCol HA HB HC HCop.
   destruct (中点的存在性 P Q) as [M []].
-  assert_diffs; destruct HCop as [X [|[|]]]; spliter.
+  统计不重合点; destruct HCop as [X [|[|]]]; spliter.
   - apply l4_17 with C X; Col.
       intro; subst; apply HNCol; assumption.
     apply l4_17 with A B; auto.
@@ -8235,9 +8235,9 @@ Lemma l11_61 : forall A B C A' B' C',
   Per B A C -> Per B' A' C'.
 Proof.
   intros A B C A' B' C'; intros.
-  assert (~ Col C A A') by (assert_diffs; apply 成直角三点不共线; auto).
+  assert (~ Col C A A') by (统计不重合点; apply 成直角三点不共线; auto).
   destruct (l10_15 A A' A' C) as [C'' []]; Col.
-  assert_diffs.
+  统计不重合点.
   apply 直角的对称性, (l11_60 A' A C'');
     [apply one_side_not_col124 with C; Side|Perp..| |apply coplanar_trans_1 with C; Col; Cop].
   apply 直角的对称性.
@@ -8253,7 +8253,7 @@ Proof.
   destruct (cop__one_or_two_sides A A' B B'); Col.
     apply 成直角三点不共线; auto.
   destruct (由一点往一方向构造等长线段 B' A' A' B') as [B'' []].
-  assert_diffs.
+  统计不重合点.
   apply 直角的对称性, 直角边共线点也构成直角2 with B''; Col.
   apply 直角的对称性, Haux; [|apply 直角的对称性, 直角边共线点也构成直角2 with B'; Perp; Col].
   exists B'; split; trivial.
@@ -8267,7 +8267,7 @@ Lemma l11_61_bis : forall A B C D E P Q,
   垂直平面于 E A B C E Q.
 Proof.
   intros A B C D E P Q [HNCol [HDP [HD [_ HOrth]]]] HPerp HE HCop.
-  assert_diffs.
+  统计不重合点.
   repeat split; Col.
   assert (Haux : forall M, 共面 A B C M -> Per M E Q).
   { intros M HM.
@@ -8279,7 +8279,7 @@ Proof.
       apply coplanar_pseudo_trans with A B C; Cop.
     }
     destruct HD' as [D' []].
-    assert_diffs.
+    统计不重合点.
     apply 直角的对称性, (l11_61 D P D'); auto.
       apply 直角的对称性; Col.
       Perp.
@@ -8358,13 +8358,13 @@ Proof.
   destruct (l8_18_过一点垂线之垂点的存在性 A B P) as [D0 [HCol0 HPerp0]].
     intro; apply HNCop; exists P; left; split; Col.
   assert (HCop0 : 共面 A B C D0) by (exists D0; left; split; Col).
-  assert_diffs.
+  统计不重合点.
   destruct (ex_perp_cop A B D0 C) as [D1 [HPerp1 HCop1]]; auto.
   destruct (垂直推出不共线 A B D1 D0 HPerp1) as [HNCol1|]; [|exfalso; Col].
   assert (Haux : forall D, Col D0 D1 D -> 共面 A B C D).
   { intros D HD.
     apply coplanar_trans_1 with D1; [Col|Cop|].
-    assert_diffs; apply coplanar_perm_12, col_cop__cop with D0; Col; Cop.
+    统计不重合点; apply coplanar_perm_12, col_cop__cop with D0; Col; Cop.
   }
   destruct (每组共线三点都有另一共线点 A B D0 HCol0) as [A0].
   spliter.
@@ -8385,7 +8385,7 @@ Proof.
   assert (D <> D0) by (intro; subst; apply HNPer; Perp).
   assert (HPer : Per D0 D P) by (apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with D1; auto).
   assert (HPer1 : Per D D0 A0).
-    assert_diffs; apply 直角的对称性, 直角边共线点也构成直角2 with D1; auto; destruct (l8_16_1_共线四点和一垂直推另一直角 A B D1 A0 D0); Perp.
+    统计不重合点; apply 直角的对称性, 直角边共线点也构成直角2 with D1; auto; destruct (l8_16_1_共线四点和一垂直推另一直角 A B D1 A0 D0); Perp.
   apply l11_60 with D0 A0 D; Perp; [apply 成直角三点不共线 in HPer1; Col|..].
   { destruct (构造对称点 A0 D) as [A0'].
     apply 直角的对称性; exists A0'; split; trivial.
@@ -8431,17 +8431,17 @@ Proof.
   split; [assumption|].
   destruct (ex_ncol_cop A B C D E HDE) as [F [HF1 HF2]].
   destruct (ex_perp_cop D E D F) as [D' [HD'1 HD'2]]; auto.
-  assert (~ Col D' D E) by (assert_diffs; apply 成直角三点不共线; Perp).
+  assert (~ Col D' D E) by (统计不重合点; apply 成直角三点不共线; Perp).
   assert (共面 D E F A) by (apply coplanar_pseudo_trans with A B C; Cop).
   assert (共面 D E F B) by (apply coplanar_pseudo_trans with A B C; Cop).
   assert (共面 D E F C) by (apply coplanar_pseudo_trans with A B C; Cop).
   exists D.
   apply (cop3_orth_at__orth_at D' D E);
     [assumption|apply coplanar_pseudo_trans with D E F; Cop..|].
-  assert_diffs.
+  统计不重合点.
   apply l11_60_bis; Cop; [|Perp..].
   destruct (ex_perp_cop D E E F) as [E' [HE'1 HE'2]]; auto.
-  assert_diffs.
+  统计不重合点.
   apply (l11_61 E E' P); Perp.
     apply coplanar_trans_1 with F; Col; Cop.
     apply os__coplanar in HQ2; Cop.
@@ -8470,7 +8470,7 @@ Proof.
   { subst E.
     destruct (由一点往一方向构造等长线段 X D D X) as [Y []].
     exists Y, D; subst; repeat split; trivial.
-    assert (D <> X) by (intro; subst; apply (HX HD)); assert_diffs.
+    assert (D <> X) by (intro; subst; apply (HX HD)); 统计不重合点.
     apply col_orth__orth with X; Col.
     exists D; assumption.
   }
@@ -8488,7 +8488,7 @@ Proof.
   }
   destruct HT as [_ [_ [T []]]].
   exists P, T; repeat split; [|apply col_cop2__cop with D E; Col|assumption].
-  assert_diffs.
+  统计不重合点.
   apply col_orth__orth with P'; Col.
 Qed.
 
@@ -8553,7 +8553,7 @@ Proof.
     { apply l11_62_unicity_bis with A B C U; [assumption|].
       apply orth_at_symmetry, col_orth_at__orth_at with V; [destruct HY; spliter..|]; trivial.
       intro; subst Y; absurd (共面 A B C U); [|assumption].
-      assert_diffs; apply orth_at__ncop2 with X X; auto.
+      统计不重合点; apply orth_at__ncop2 with X X; auto.
     }
     subst; destruct HY; spliter; Col.
   }
@@ -8635,7 +8635,7 @@ Proof.
   assert(~ Col B A C) by (apply (one_side_not_col123 _ _ _ P); auto).
   assert (HP' := 构造对称点 P B).
   destruct HP' as [P'].
-  assert_diffs.
+  统计不重合点.
   assert(~ Col B A P') by (intro; apply HNCol; ColR).
   assert(HUn := two_sides_in_angle A B C P P').
   destruct HUn as [|Habs]; Between.
@@ -8805,7 +8805,7 @@ Proof.
     clear H0.
     assert(H0 : 等角 A B P A B P).
     { assert(~ Col A B P) by (apply (one_side_not_col123 _ _ _ C); Side).
-      assert_diffs.
+      统计不重合点.
       apply 同角相等; auto.
     }
     unfold 角度小于等于 in H.
@@ -8854,7 +8854,7 @@ Proof.
   intro HNCol1.
   assert(HD := l10_15 A B B C).
   destruct HD as [D []]; Col.
-  assert_diffs.
+  统计不重合点.
   assert(HNCol2 : ~ Col C B D).
   { intro.
     apply (nlta A B C).
@@ -8912,7 +8912,7 @@ Proof.
   intro HNCol1.
   assert(HD := l10_15 A B B C).
   destruct HD as [D []]; Col.
-  assert_diffs.
+  统计不重合点.
   assert(HNCol2 : ~ Col C B D).
   { intro.
     apply (nlta A B C).
@@ -8990,7 +8990,7 @@ Proof.
     intro HNColB.
     assert(HP' := 构造对称点 P B).
     destruct HP' as [P'].
-    assert_diffs.
+    统计不重合点.
     elim(two_sides_dec B P A C).
     { intro.
       assert(HUn := two_sides_in_angle A B C P P').
@@ -9004,7 +9004,7 @@ Proof.
       assert(Col B X' P) by (destruct HUn; subst; Col).
       assert(X = X') by (apply (l6_21_两线交点的唯一性 A C B P); ColR).
       subst X'.
-      assert_diffs.
+      统计不重合点.
       destruct HUn; auto.
       apply (l6_4_1 P P' B); Between.
       apply (l6_7 _ _ X); auto.
@@ -9215,7 +9215,7 @@ Proof.
   assert(~ Col A' B' D') by (unfold Col; auto).
   assert(HC' := l10_15 A' B' B' D').
   destruct HC' as [C' [HC'Right _]]; Col.
-  assert_diffs.
+  统计不重合点.
   destruct (or_lta2_conga A B C A' B' C') as [|[|]]; auto.
   - left.
     exists A', B', C'.
@@ -9304,7 +9304,7 @@ Proof.
   }
   destruct (由一点往一方向构造等长线段 C B C B) as [C' []].
   apply conga_distinct in H等角; spliter.
-  assert_diffs.
+  统计不重合点.
   apply acute_sym, acute_chara with C'; auto.
   destruct (l11_41 B C A C'); Col.
   apply (conga_preserves_lta B C A A B C'); trivial.
@@ -9316,7 +9316,7 @@ Lemma cong__acute : forall A B C, A <> B -> B <> C -> Cong A B A C -> 为锐角 
 Proof.
   intros A B C HAB HBC HCong.
   apply conga__acute.
-  assert_diffs.
+  统计不重合点.
   destruct (l11_51 A B C A C B) as [_ []]; Cong.
 Qed.
 
@@ -9361,7 +9361,7 @@ Proof.
   intros A B C D HBet HCong HNBet.
   elim(共线的决定性 A B C).
   { intro.
-    assert_diffs.
+    统计不重合点.
     apply not_bet_out in HNBet; Col.
     destruct HNBet as [_ [_ [HBAC|HBCA]]].
     - split.
@@ -9386,10 +9386,10 @@ Proof.
       apply (双中间性推出点重合 _ _ A); Between.
   }
   intro HNCol.
-  assert_diffs.
+  统计不重合点.
   assert(A <> D) by (intro; treat_equalities; auto).
   assert(~ Col A C D) by (intro; apply HNCol; ColR).
-  assert_diffs.
+  统计不重合点.
   apply 中间性的对称性 in HBet.
   apply l11_44_2; Col.
   assert(等角 C D A D C B).
@@ -9467,7 +9467,7 @@ Proof.
   intros A B C D HABD HCong HNout.
   elim(共线的决定性 A B C).
   { intro.
-    assert_diffs.
+    统计不重合点.
     apply not_out_bet in HNout; Col.
     assert(Bet D A C) by (apply (l6_2 B); auto).
     assert(C <> D) by (intro; treat_equalities; auto).
@@ -9487,7 +9487,7 @@ Proof.
     apply 不重合共线点间距相同则为中点组1; auto; ColR.
   }
   intro HNCol.
-  assert_diffs.
+  统计不重合点.
   elim(两点重合的决定性 B D).
   { intro.
     subst.
@@ -9497,7 +9497,7 @@ Proof.
   intro.
   assert(HNCol2 : ~ Col B C D) by (intro; apply HNCol; ColR).
   assert(HNCol3 : ~ Col A C D) by (intro; apply HNCol; ColR).
-  assert_diffs.
+  统计不重合点.
   apply l11_44_2; Col.
   assert(等角 A C D A D C) by (apply l11_44_1; Cong; Col).
   destruct HABD as [_ [_ [HABD|HADB]]].
@@ -9523,7 +9523,7 @@ Proof.
 
   - assert(HE := 构造对称点 B C).
     destruct HE as [E []].
-    assert_diffs.
+    统计不重合点.
     apply (bet2_lta__lta A _ _ E); Between.
     assert (OS D C A E).
     { exists B.
@@ -9554,7 +9554,7 @@ Proof.
   intros A B C D HABD HCong.
   elim(out_dec A B C); [|apply triangle_strict_reverse_inequality; auto].
   intro.
-  assert_diffs.
+  统计不重合点.
   assert(C = D) by (apply (l6_11_uniqueness A A C B); Cong; apply l6_6; auto).
   subst; Le.
 Qed.
@@ -9575,7 +9575,7 @@ Proof.
     exfalso; subst; Col.
   assert(A <> E) by (intro; subst; Col5).
   assert(C <> E) by (intro; subst; Col5).
-  assert_diffs.
+  统计不重合点.
   apply (lta_trans _ _ _ B E C).
   - destruct (l11_41 E A B C); auto.
       intro; apply HNCol; ColR.
@@ -9586,7 +9586,7 @@ Proof.
 
   - assert(Out E D B).
       apply (col_one_side_out _ A); Col; apply invert_one_side; apply (col_one_side _ C); Col; Side.
-    assert_diffs.
+    统计不重合点.
     destruct (l11_41 D E C B); auto.
       intro; apply HNCol; ColR.
       apply out2__bet; auto.
@@ -9615,7 +9615,7 @@ Proof.
     }
     intro HNBet.
     apply not_bet_out in HNBet; try ColR.
-    assert_diffs.
+    统计不重合点.
     assert(Bet C D A) by (apply (l6_2 B); try (apply l6_6); Between).
     assert(A <> C) by (intro; treat_equalities; auto).
     assert(Hout : Out A C B) by (apply (l6_7 _ _ D); [apply l6_6|]; apply bet_out; Between).
@@ -9630,7 +9630,7 @@ Proof.
       apply out2__bet; [apply not_bet_out; Col; Between|apply l6_6; assumption].
     assert(HC' := 构造对称点 A C).
     destruct HC' as [C'].
-    assert_diffs.
+    统计不重合点.
     assert(Bet C C' B).
     { apply l6_13_1.
       apply (l6_2 _ _ A); Between.
@@ -9645,7 +9645,7 @@ Proof.
     apply (between_cong C); Between.
   }
   intro HNCol.
-  assert_diffs.
+  统计不重合点.
   apply l11_44_2.
     intro; apply HNCol; ColR.
   apply (lea123456_lta__lta _ _ _ C A B).
@@ -9653,7 +9653,7 @@ Proof.
     apply l11_44_2bis; Col; Le.
 
   - assert(~ Col D A C) by (intro; apply HNCol; ColR).
-    assert_diffs.
+    统计不重合点.
     assert(HInter := l11_41 D A C B).
     destruct HInter; auto.
     apply (conga_preserves_lta D A C C D B); try (apply 同角相等); auto.
@@ -9686,14 +9686,14 @@ Proof.
     assert (Haux : forall R, Col P Q R -> Cong A R B R /\ Cong A R C R).
       intros R HR; split; apply 等长的交换性, (l4_17 P Q); Cong.
     destruct (中点的存在性 A B) as [D].
-    assert_diffs.
+    统计不重合点.
     assert (HCol1 : Col P Q D).
     { assert (共面 A B C D) by Cop.
       apply cong3_cop2__col with A B; Cong; apply coplanar_pseudo_trans with A B C; Cop.
     }
     destruct (每组共线三点都有另一共线点 P Q D HCol1) as [R1]; spliter.
     destruct (由一点往一方向构造等长线段 R1 D R1 D) as [R2 []].
-    assert_diffs.
+    统计不重合点.
     assert (Col P Q R2) by ColR.
     destruct (Haux R1); trivial.
     destruct (Haux R2); trivial.
@@ -9718,7 +9718,7 @@ Proof.
   assert(HG0 := 给定角一边可作出与给定点同侧一点构成等角_非平角 C A B F D E).
   destruct HG0 as [G0 []]; Col.
   assert(~ Col F D G0) by (apply (one_side_not_col123 _ _ _ E); auto).
-  assert_diffs.
+  统计不重合点.
   assert(HG := 由一点往一方向构造等长线段_3 D G0 A B).
   destruct HG as [G []]; auto.
   assert(等角 C A B F D G).
@@ -9732,7 +9732,7 @@ Proof.
   assert(HNCol3 : ~ Col F D G) by (apply (one_side_not_col123 _ _ _ E); auto).
   clear dependent G0.
 
-  assert_diffs.
+  统计不重合点.
   assert(HSAS := l11_49 C A B F D G).
   destruct HSAS as [HCongBC _]; Cong.
   apply (等长保持小于关系 F E F G); Cong.
@@ -9773,7 +9773,7 @@ Proof.
   destruct Hlt.
   assert(H <> E) by (intro; subst; Cong).
   assert(Bet D H E) by (apply l6_13_1; Le).
-  assert_diffs.
+  统计不重合点.
   assert(OS E G F D).
   { apply (one_side_transitivity _ _ _ H);
     [apply invert_one_side; apply one_side_symmetry|];
@@ -9875,7 +9875,7 @@ Lemma t18_19 : forall A B C D E F, A <> B -> A <> C -> Cong A B D E -> Cong A C 
    角度小于 F D E C A B.
 Proof.
   intros A B C D E F HAB HAC H等角B H等角C Hlt.
-  assert_diffs.
+  统计不重合点.
   apply nlea__lta; auto.
   intro Hlea.
   elim(conga_dec C A B F D E).
@@ -9901,7 +9901,7 @@ Proof.
     assert(exists C : Tpoint, Per C B A /\ Cong C B A B /\ OS A B C P).
       apply(ex_四点成首末边等长双直角S形则对边等长 A B B P A B H H); Col; exists A.
     ex_and H1 C.
-    assert_diffs.
+    统计不重合点.
     exists A, B, C.
     split.
       apply 直角的对称性.
@@ -9961,10 +9961,10 @@ Proof.
     elim (中间性的决定性 A B C).
     - intro HBet; destruct (两点不重合则存在不共线的点 A B) as [Q HNCol]; trivial.
       destruct (l10_15 A B B Q) as [P [HPerp HOS]]; Col.
-      assert_diffs; exists P; split.
+      统计不重合点; exists P; split.
         apply 任何点都在平角内; auto.
       apply l11_18_1; Perp.
-    - intro HOut; apply not_bet_out in HOut; trivial; assert_diffs.
+    - intro HOut; apply not_bet_out in HOut; trivial; 统计不重合点.
       exists C; split.
         repeat split; auto.
        exists C; split; Between.
@@ -9974,13 +9974,13 @@ Proof.
       apply out_trivial; auto.
   }
   intro HNCol.
-  assert_diffs.
+  统计不重合点.
   destruct (l6_11_existence B B A C) as [C0 [HOut HCong]]; auto.
   destruct (中点的存在性 A C0) as [P HP].
   exists P.
-  assert_diffs.
+  统计不重合点.
   assert (HNCol1 : ~ Col A B C0) by (intro; apply HNCol; ColR).
-  assert_diffs.
+  统计不重合点.
   assert (P <> B) by (intro; subst P; apply HNCol1; Col).
   split.
     apply (l11_25 P A B C0); try (apply out_trivial); auto; [|apply l6_6; trivial].
@@ -9995,10 +9995,10 @@ Lemma reflectl__conga : forall A B P P', A <> B -> B <> P -> 严格对称 P P' A
 Proof.
   intros A B P P' HAB HBP HRefl.
   destruct HRefl as [[A' [HMid HCol]] [HPerp|Heq]]; [|subst; apply 同角相等; auto].
-  assert_diffs.
+  统计不重合点.
   destruct (两点重合的决定性 A' B).
     subst A'.
-    assert_diffs.
+    统计不重合点.
     apply l11_16_直角相等; auto; apply L形垂直转直角1;
     [apply 垂线共线点也构成垂直2 with P'|apply 垂线共线点也构成垂直2 with P]; Col; Perp.
   destruct HMid as [HBet HCong].
@@ -10009,7 +10009,7 @@ Proof.
   destruct (中间性的决定性 A' B A) as [HBBet|HBOut].
     apply l11_13 with A' A'; assumption.
   apply not_bet_out in HBOut; Col.
-  assert_diffs.
+  统计不重合点.
   apply l6_6 in HBOut.
   apply l11_10 with A' P A' P'; trivial; apply out_trivial; auto.
 Qed.
@@ -10020,7 +10020,7 @@ Lemma conga_cop_out_reflectl__out : forall A B C P T T',
 Proof.
   intros A B C P T T' HNOut HCop HConga HOut HRefl.
   apply conga_distinct in HConga; spliter; clean.
-  assert_diffs.
+  统计不重合点.
   assert (HConga1 : 等角 P B T P B T') by (apply reflectl__conga; auto; apply is_image_spec_rev, HRefl).
   apply is_image_is_image_spec in HRefl; auto.
   apply conga_distinct in HConga1; spliter; clean.
@@ -10056,7 +10056,7 @@ Proof.
   destruct (由一点往一方向构造等长线段 A B A B) as [A' [HA'1 HA'2]].
   destruct (由一点往一方向构造等长线段 C B C B) as [C' [HC'1 HC'2]].
   assert (Out B C' T'); try ColR.
-  apply conga_distinct in HConga; spliter; assert_diffs.
+  apply conga_distinct in HConga; spliter; 统计不重合点.
   apply conga_cop_out_reflectl__out with A' P T; trivial.
   - intro; apply HNOut.
     apply l6_2 with A'; auto.
@@ -10126,11 +10126,11 @@ Proof.
   destruct (共线的决定性 B P Q) as [HCol|HNCol1].
   { destruct (由一点往一方向构造等长线段 B P B P) as [R [HR1 HR2]].
     exists R.
-    assert_diffs; split; [|split; ColR].
+    统计不重合点; split; [|split; ColR].
     apply l11_25 with P A C; try (apply out_trivial); auto.
     apply l6_6, bet_out; auto.
   }
-  assert_diffs.
+  统计不重合点.
   destruct (共线的决定性 A B C) as [HCol|HNCol2].
     exists Q; split; Col.
     apply 任何点都在平角内; auto.
@@ -10148,7 +10148,7 @@ Proof.
     assert (HR : exists R, Bet P R Q0 /\ Col P Q R /\ Col B A R).
     { destruct (共线的决定性 B A Q0).
         exists Q0; split; Between; Col.
-      assert_diffs.
+      统计不重合点.
       destruct (cop_nos__ts B A P Q0) as [_ [_ [R [HCol' HBet]]]]; Col; Cop.
       exists R; split; trivial; split; ColR.
     }
@@ -10173,7 +10173,7 @@ Proof.
     assert (HR : exists R, Bet P R Q0 /\ Col P Q R /\ Col B C R).
     { destruct (共线的决定性 B C Q0).
         exists Q0; split; Between; Col.
-      assert_diffs.
+      统计不重合点.
       destruct (cop_nos__ts B C P Q0) as [_ [_ [R [HCol' HBet]]]]; Col; Cop.
       exists R; split; trivial; split; ColR.
     }
@@ -10355,7 +10355,7 @@ assert(TS O A B P).
 apply l9_9 in H6.
 contradiction.
 apply H2.
-assert_diffs.
+统计不重合点.
 apply out2__conga.
 apply out_trivial; auto.
 repeat split; auto.
@@ -10471,7 +10471,7 @@ destruct (由一点往一方向构造等长线段 C B C B) as [C' []].
 exists C'.
 split; auto.
 apply 角等的传递性 with C B A'; trivial.
-assert_diffs.
+统计不重合点.
 apply 等角的左交换性, l11_14; Between.
 Qed.
 
@@ -10491,7 +10491,7 @@ split; auto.
 destruct (由一点往一方向构造等长线段 D E D E) as [D' []].
 exists D'.
 split; auto.
-assert_diffs.
+统计不重合点.
 apply 等角的右交换性, l11_13 with A' D; Between.
 apply 等角的对称性, 等角的右交换性, H1.
 Qed.
@@ -10577,7 +10577,7 @@ intros.
 destruct (由一点往一方向构造等长线段 A B A B) as [B' []].
 apply (bet_conga__bet A B B'); trivial.
 apply (suppa2__conga456 A B C); trivial.
-assert_diffs.
+统计不重合点.
 apply suppa_sym, bet_out__suppa; auto.
 Qed.
 
@@ -10686,7 +10686,7 @@ Ltac not_exist_hyp5 A B C D E F G H I J := first [not_exist_hyp_comm A B | not_e
 
 Ltac not_exist_hyp6 A B C D E F G H I J K L := first [not_exist_hyp_comm A B | not_exist_hyp_comm C D | not_exist_hyp_comm E F | not_exist_hyp_comm G H | not_exist_hyp_comm I J | not_exist_hyp_comm K L].
 
-Ltac assert_diffs :=
+Ltac 统计不重合点 :=
 repeat
  match goal with
       | H:(~Col ?X1 ?X2 ?X3) |- _ =>
@@ -10851,7 +10851,7 @@ repeat
 Ltac ColR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
-   treat_equalities; assert_cols; Col; assert_diffs; Col_refl tpoint col.
+   treat_equalities; assert_cols; Col; 统计不重合点; Col_refl tpoint col.
 
 Hint Resolve 同角相等 等角的对称性 三角形全等推角等2 角ABC等于角CBA 角ABA等于角CDC
              等角的右交换性 等角的左交换性 等角的交换性 成中间性三点组的角相等 l11_16_直角相等 : conga.
@@ -10891,13 +10891,13 @@ assert(Per A O B).
 }
 assert(等角 A' B' C' A O B).
 {
-  assert_diffs.
+  统计不重合点.
   apply l11_16_直角相等; auto.
 }
 assert(角度小于 A O P A O B).
 {
   apply(conga_preserves_lta A O P A' B' C' A O P A O B); auto.
-  assert_diffs.
+  统计不重合点.
   apply 同角相等; auto.
 }
 
@@ -10906,13 +10906,13 @@ assert(~Col P O B).
   intro.
   assert(Per A O P).
   {
-    assert_diffs.
+    统计不重合点.
     apply (直角边共线点也构成直角2 A O B P); Col.
   }
   unfold 角度小于 in H4.
   spliter.
   apply H7.
-  assert_diffs.
+  统计不重合点.
   apply(l11_16_直角相等); auto.
 }
 
@@ -10941,7 +10941,7 @@ assert(O <> T).
   treat_equalities.
   assert(角度小于等于 A O B A O P).
   {
-    assert_diffs.
+    统计不重合点.
     apply(l11_31_1_任何角小于等于平角_Bet表述 A O B A O P); auto.
   }
   assert(~角度小于 A O P A O B).
@@ -10955,7 +10955,7 @@ assert(O <> T).
 assert(在角内 T A O P).
 {
   unfold 在角内.
-  assert_diffs.
+  统计不重合点.
   repeat split; auto.
   exists T.
   split; auto.
@@ -10969,7 +10969,7 @@ assert(OS O A T P).
   apply invert_one_side.
   apply out_one_side.
   right; Col.
-  assert_diffs.
+  统计不重合点.
   repeat split; auto.
   apply L形垂直推出不共线 in H0.
   intro;  treat_equalities.
@@ -10986,7 +10986,7 @@ apply H14 in H13.
 spliter.
 assert(在角内 B A O P).
 {
-  assert_diffs.
+  统计不重合点.
   apply(l11_25 T A O P A P B H11); auto;
   try(apply out_trivial; auto).
   apply l6_6; auto.
@@ -11005,7 +11005,7 @@ Proof.
 intros.
 assert(角度小于 A O P A O B).
 {
-  assert_diffs.
+  统计不重合点.
   apply(acute_per__lta A O P A O B H0); auto.
   apply L形垂直转垂直于 in H1.
   apply 垂直于的交换性 in H1.
@@ -11015,7 +11015,7 @@ assert(角度小于 A O P A O B).
 
 assert(Out O A P).
 {
-  assert_diffs.
+  统计不重合点.
   induction H.
   assert(角度小于等于 A O B A O P).
   {

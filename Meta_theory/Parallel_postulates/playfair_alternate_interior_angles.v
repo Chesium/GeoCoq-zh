@@ -13,7 +13,7 @@ assert(HD' := 给定角一边可作出与给定点异侧一点构成等角_非�
 destruct HD' as [D' []]; Col.
 apply (角等的传递性 _ _ _ D' C A).
 等角.
-assert_diffs.
+统计不重合点.
 apply out2__conga; [|apply out_trivial; auto].
 apply (col_one_side_out _ A).
 assert (HP := playfair A B C D C D' C).
