@@ -43,7 +43,7 @@ cut (forall A B C P T,
       统计不重合点.
       destruct (rabp A B C T T') as [X [Y]]; Perp; Cop.
         apply col_conga__conga with P0; auto.
-      spliter; exists X, Y; repeat (split; [assumption|]); ColR.
+      分离合取式; exists X, Y; repeat (split; [assumption|]); ColR.
     - destruct (l8_18_过一点垂线之垂点的存在性 B P0 T) as [P [HP1 HP2]]; trivial.
       assert (Out B P P0).
         apply (acute_col_perp__out T); trivial.
@@ -53,7 +53,7 @@ cut (forall A B C P T,
         apply col_conga__conga with P0; auto.
         apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with P0; auto.
         CopR.
-      spliter; exists X, Y; repeat (split; [assumption|]); ColR.
+      分离合取式; exists X, Y; repeat (split; [assumption|]); ColR.
   }
   destruct HXY as [X [Y [HOutX [HOutY HCol]]]].
   统计不重合点.

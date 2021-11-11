@@ -13,9 +13,9 @@ Lemma lemma_angleaddition :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists S, (等角 A B C P Q S /\ 等角 D E F S Q R /\ BetS P S R)) by (conclude_def 和角 );destruct Tf as [S];spliter.
+assert (Tf:exists S, (等角 A B C P Q S /\ 等角 D E F S Q R /\ BetS P S R)) by (conclude_def 和角 );destruct Tf as [S];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists s, (等角 a b c p q s /\ 等角 d e f s q r /\ BetS p s r)) by (conclude_def 和角 );destruct Tf as [s];spliter.
+assert (Tf:exists s, (等角 a b c p q s /\ 等角 d e f s q r /\ BetS p s r)) by (conclude_def 和角 );destruct Tf as [s];分离合取式.
 assert (nCol P Q S) by (conclude lemma_equalanglesNC).
 assert (nCol S Q R) by (conclude lemma_equalanglesNC).
 assert (neq Q P) by (forward_using lemma_NCdistinct).
@@ -27,11 +27,11 @@ assert (neq q p) by (forward_using lemma_NCdistinct).
 assert (neq q r) by (forward_using lemma_NCdistinct).
 assert (neq q s) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists G, (Out q p G /\ Cong q G Q P)) by (conclude lemma_layoff);destruct Tf as [G];spliter.
+assert (Tf:exists G, (Out q p G /\ Cong q G Q P)) by (conclude lemma_layoff);destruct Tf as [G];分离合取式.
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (Out q s H /\ Cong q H Q S)) by (conclude lemma_layoff);destruct Tf as [H];spliter.
+assert (Tf:exists H, (Out q s H /\ Cong q H Q S)) by (conclude lemma_layoff);destruct Tf as [H];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists K, (Out q r K /\ Cong q K Q R)) by (conclude lemma_layoff);destruct Tf as [K];spliter.
+assert (Tf:exists K, (Out q r K /\ Cong q K Q R)) by (conclude lemma_layoff);destruct Tf as [K];分离合取式.
 assert (等角 P Q S A B C) by (conclude lemma_equalanglessymmetric).
 assert (等角 P Q S a b c) by (conclude lemma_equalanglestransitive).
 assert (等角 P Q S p q s) by (conclude lemma_equalanglestransitive).

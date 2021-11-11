@@ -17,9 +17,9 @@ intros.
 assert (PG M C E L) by (conclude lemma_rectangleparallelogram).
 assert (PG m c e l) by (conclude lemma_rectangleparallelogram).
 let Tf:=fresh in
-assert (Tf:exists P, (BetS M P E /\ BetS C P L)) by (conclude lemma_diagonalsmeet);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS M P E /\ BetS C P L)) by (conclude lemma_diagonalsmeet);destruct Tf as [P];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists p, (BetS m p e /\ BetS c p l)) by (conclude lemma_diagonalsmeet);destruct Tf as [p];spliter.
+assert (Tf:exists p, (BetS m p e /\ BetS c p l)) by (conclude lemma_diagonalsmeet);destruct Tf as [p];分离合取式.
 assert (Par M C E L) by (conclude_def PG ).
 assert (nCol M C L) by (forward_using lemma_parallelNC).
 assert (Par m c e l) by (conclude_def PG ).
@@ -130,7 +130,7 @@ assert (~ CR B D C L).
  }
 assert (CR B L D C) by (conclude lemma_crisscross).
 let Tf:=fresh in
-assert (Tf:exists R, (BetS B R L /\ BetS D R C)) by (conclude_def CR );destruct Tf as [R];spliter.
+assert (Tf:exists R, (BetS B R L /\ BetS D R C)) by (conclude_def CR );destruct Tf as [R];分离合取式.
 assert (Col b m c) by (conclude_def Col ).
 assert (Col m c b) by (forward_using lemma_collinearorder).
 assert (neq b c) by (forward_using lemma_betweennotequal).
@@ -204,7 +204,7 @@ assert (~ CR b d c l).
  }
 assert (CR b l d c) by (conclude lemma_crisscross).
 let Tf:=fresh in
-assert (Tf:exists r, (BetS b r l /\ BetS d r c)) by (conclude_def CR );destruct Tf as [r];spliter.
+assert (Tf:exists r, (BetS b r l /\ BetS d r c)) by (conclude_def CR );destruct Tf as [r];分离合取式.
 assert (EF D B C L d b c l) by (conclude axiom_paste2).
 assert (EF D B C L b d l c) by (forward_using axiom_EFpermutation).
 assert (EF b d l c D B C L) by (conclude axiom_EFsymmetric).
@@ -259,7 +259,7 @@ assert (~ CR B D C E).
  }
 assert (CR B E D C) by (conclude lemma_crisscross).
 let Tf:=fresh in
-assert (Tf:exists T, (BetS B T E /\ BetS D T C)) by (conclude_def CR );destruct Tf as [T];spliter.
+assert (Tf:exists T, (BetS B T E /\ BetS D T C)) by (conclude_def CR );destruct Tf as [T];分离合取式.
 assert (Par b c l e) by (forward_using lemma_parallelflip).
 assert (Col e l d) by (conclude_def Col ).
 assert (Col l e d) by (forward_using lemma_collinearorder).
@@ -303,7 +303,7 @@ assert (~ CR b d c e).
  }
 assert (CR b e d c) by (conclude lemma_crisscross).
 let Tf:=fresh in
-assert (Tf:exists t, (BetS b t e /\ BetS d t c)) by (conclude_def CR );destruct Tf as [t];spliter.
+assert (Tf:exists t, (BetS b t e /\ BetS d t c)) by (conclude_def CR );destruct Tf as [t];分离合取式.
 assert (EF B D E C b d e c) by (conclude axiom_paste2).
 assert (EF B D E C b c e d) by (forward_using axiom_EFpermutation).
 assert (EF b c e d B D E C) by (conclude axiom_EFsymmetric).

@@ -45,11 +45,11 @@ Proof.
         unfold Par in H18.
         induction H18.
           unfold 严格平行 in H18.
-          spliter.
+          分离合取式.
           apply H19.
           exists P.
           split; Col.
-        spliter.
+        分离合取式.
         apply 垂直的交换性 in H1.
         apply L形垂直推出不共线 in H1.
         apply H1.
@@ -177,7 +177,7 @@ Proof.
       apply null_lcos; auto.
       intro.
       unfold 零长谓词 in H14.
-      spliter.
+      分离合取式.
       ex_and H15 X.
       assert(HH:= lg_cong la O A X X H0 H4 H16).
       treat_equalities.
@@ -196,7 +196,7 @@ Proof.
     apply null_lcos; auto.
     intro.
     unfold 零长谓词 in H17.
-    spliter.
+    分离合取式.
     ex_and H18 X.
     assert(HH:= lg_cong lb O B X X H2 H6 H19).
     treat_equalities.
@@ -210,19 +210,19 @@ Proof.
     induction(is_null_anga_dec a).
       apply lcos_lg_anga in H.
       apply lcos_lg_anga in H0.
-      spliter.
+      分离合取式.
       assert(HH:= null_lcos_eql lp l1 a H H1).
       assert(HP:= null_lcos_eql lp l2 a H0 H1).
       transitivity lp; auto.
       symmetry; auto.
       apply lcos_lg_anga in H.
       apply lcos_lg_anga in H0.
-      spliter.
+      分离合取式.
       assert (HH:= H).
       assert(HH0:= H0).
       unfold Lcos in HH.
       unfold Lcos in HH0.
-      spliter.
+      分离合取式.
       ex_and H11 A.
       ex_and H16 B.
       ex_and H11 C.
@@ -243,7 +243,7 @@ Proof.
         Col.
       assert(HQ:= anga_distincts a B A C H4  H18).
       assert(HR:= anga_distincts a B' A' C' H4 H21).
-      spliter.
+      分离合取式.
       assert(Cong A B A' B').
         apply (lg_cong lp); auto.
       assert(等角 B A C B' A' C').
@@ -257,7 +257,7 @@ Proof.
           Col.
         apply 等角的交换性.
         auto.
-      spliter.
+      分离合取式.
       apply (all_eql A' C').
         split; auto.
       split; auto.
@@ -282,7 +282,7 @@ Proof.
     split; auto.
     apply lcos2_lg_anga in H.
     apply lcos2_lg_anga in H0.
-    spliter.
+    分离合取式.
     apply(lcos2_eql_lcos2 l2 l2 ll2 ll1 c d); auto.
       reflexivity.
     symmetry; auto.
@@ -304,7 +304,7 @@ Proof.
     split; auto.
     apply lcos_lg_anga in H.
     apply lcos_lg_anga in H0.
-    spliter.
+    分离合取式.
     rewrite H3;auto.
 Qed.
 
@@ -313,7 +313,7 @@ Proof.
     intros.
     assert(HH:= H).
     unfold Lcos in HH.
-    spliter.
+    分离合取式.
     ex_and H6 O'.
     ex_and H7 P'.
     ex_and H6 A'.
@@ -322,7 +322,7 @@ Proof.
     assert(Cong O P O' P').
       apply (lg_cong lp); auto.
     assert(HH:= lcos_lg_not_null lp la a H).
-    spliter.
+    分离合取式.
     induction(两点重合的决定性 A P).
       subst A.
       assert(Cong O' A' O' P').
@@ -337,9 +337,9 @@ Proof.
           eapply (等长的同一性 _  O' O'); Cong.
         assert(Lt P' A' A' O' /\ Lt P' O' A' O').
           统计不重合点; apply(l11_46 A' P' O'); auto.
-        spliter.
+        分离合取式.
         unfold Lt in H17.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H18.
         Cong.
@@ -375,7 +375,7 @@ Proof.
       auto.
     induction(共线的决定性 A P O).
       assert (HH:=anga_distincts a P' O' A' H5 H9).
-      spliter.
+      分离合取式.
       assert(A' <> P').
         intro.
         subst A'.
@@ -388,7 +388,7 @@ Proof.
         apply(成直角三点不共线 A P O); auto.
       contradiction.
     assert (HH:=anga_distincts a P' O' A' H5 H9).
-    spliter.
+    分离合取式.
     assert(A' <> P').
       intro.
       subst A'.
@@ -396,9 +396,9 @@ Proof.
         apply (等长的传递性 _ _ O' P'); Cong.
       assert(Lt P A A O /\ Lt P O A O).
         统计不重合点; apply(l11_46 A P O); auto.
-      spliter.
+      分离合取式.
       unfold Lt in H21.
-      spliter.
+      分离合取式.
       apply H22.
       Cong.
     assert(等角 A P O A' P' O').
@@ -406,11 +406,11 @@ Proof.
     assert(Cong P A P' A' /\ 等角 P A O P' A' O' /\ 等角 P O A P' O' A').
       assert(Lt P A A O /\ Lt P O A O).
         统计不重合点; apply(l11_46 A P O); auto.
-      spliter.
+      分离合取式.
       unfold Lt in H22.
-      spliter.
+      分离合取式.
       apply(l11_52 A P O A' P' O' ); Cong.
-    spliter.
+    分离合取式.
     apply 等角的交换性 in H23.
     apply (anga_conga_anga a A' O' P'); auto.
       apply (anga_sym a); auto.
@@ -425,7 +425,7 @@ Proof.
     intros.
     apply lcos_lg_anga in H.
     apply lcos_lg_anga in H0.
-    spliter.
+    分离合取式.
     assert(Per O P A).
       apply (lcos_per O P A lp la a); auto.
       apply anga_sym; auto.
@@ -436,7 +436,7 @@ Proof.
     intro.
     subst P.
     assert(HH:=lcos_lg_not_null lp la a H).
-    spliter.
+    分离合取式.
     apply H15.
     unfold 零长谓词.
     split; auto.
@@ -527,7 +527,7 @@ apply one_side_symmetry in H10.
 unfold OS in H10.
 ex_and H10 X.
 unfold TS in H10.
-spliter.
+分离合取式.
 apply H10.
 Col.
 left.
@@ -547,7 +547,7 @@ apply one_side_symmetry in H10.
 unfold OS in H10.
 ex_and H10 X.
 unfold TS in H10.
-spliter.
+分离合取式.
 apply H10.
 Col.
 left.
@@ -574,7 +574,7 @@ assert(Out C B A).
 apply(col_one_side_out C C' B A); Col.
 
 unfold Out in *.
-spliter.
+分离合取式.
 
 induction H19.
 Between.
@@ -586,7 +586,7 @@ apply (双中间性推出点重合 _ _ B); Between.
 
 (****************************)
 
-spliter.
+分离合取式.
 assert(Perp A' C' A A').
 apply (垂线共线点也构成垂直1 _ B); Perp.
 intro.
@@ -736,7 +736,7 @@ Proof.
             apply H14.
             exists C.
             split; Col.
-          spliter.
+          分离合取式.
           Col.
         apply (l6_21_两线交点的唯一性 O C' C B'); Col.
           intro.
@@ -855,7 +855,7 @@ Proof.
       apply H.
       Col.
     induction H10.
-    spliter.
+    分离合取式.
     induction H13.
       eapply (l13_10_aux4 A B C _ _ C'); auto.
     apply l6_6.
@@ -1270,7 +1270,7 @@ Proof.
           apply(lcos_exists lb n'); auto.
           intro.
           unfold 零长谓词 in H73.
-          spliter.
+          分离合取式.
           ex_and H74 X.
           apply H0.
           eapply (等长的同一性 _ _ X).
@@ -1281,7 +1281,7 @@ Proof.
           apply(lcos_exists ll n'); auto.
           intro.
           unfold 零长谓词 in H73.
-          spliter.
+          分离合取式.
           ex_and H75 X.
           apply H48.
           apply (等长的同一性 _ _ X).
@@ -1290,7 +1290,7 @@ Proof.
         assert(exists lp, Lcos lp bn' l').
           apply(lcos_exists bn' l'); auto.
             apply lcos_lg_anga in H74.
-            spliter.
+            分离合取式.
             auto.
           assert(HH:= lcos_lg_not_null bn' lb n' H74 ).
           tauto.
@@ -1308,7 +1308,7 @@ Proof.
           apply (lcos2_uniqueness lb _ _ l' n'); auto.
         apply lcos_lg_anga in H75.
         apply lcos_lg_anga in H76.
-        spliter.
+        分离合取式.
         assert(Eq_Lcos2 lb l' n' lb n' l').
           unfold Eq_Lcos2.
           exists bl'n'.
@@ -1405,7 +1405,7 @@ Proof.
         assert(O <> N).
           apply 垂直推出不重合2 in H25; auto.
         apply lcos_lg_anga in H85.
-        spliter.
+        分离合取式.
 (*************** we prove : n' A O N  ********************)
         assert(n' A O N).
           apply(lcos_per_anga _ _ _ la ln); auto.
@@ -1443,7 +1443,7 @@ Proof.
             intro.
             subst N'.
             assert(HH:=lcos_lg_not_null ln' lb n' H85).
-            spliter.
+            分离合取式.
             apply H96.
             unfold 零长谓词.
             split; auto.
@@ -1503,7 +1503,7 @@ Proof.
           assert(exists N' : Tpoint, ln' O N' /\ Out O N' N).
             apply(ex_point_lg_out ln' O N H87 H89).
             assert(HH:=lcos_lg_not_null ln' la' n H86).
-            spliter.
+            分离合取式.
             auto.
           ex_and H94 N'.
 (*************** we prove (Per O N' B) using Lcos ln' lb n'  ********************)
@@ -1575,7 +1575,7 @@ Lemma cop_par__perp2 : forall A B C D P, 共面 A B C P -> Par A B C D -> Perp2 
 Proof.
     intros.
     apply par_distincts in H0.
-    spliter.
+    分离合取式.
     unfold Perp2.
     assert(HH:= ex_perp_cop A B P C H1).
     ex_and HH Q.
@@ -1591,7 +1591,7 @@ Proof.
       apply coplanar_pseudo_trans with A B C; Cop.
       apply par_strict_not_col_3 with D.
       assumption.
-    spliter.
+    分离合取式.
     apply coplanar_perm_16, col2_cop__cop with A B; Col; Cop.
 Qed.
 
@@ -1631,9 +1631,9 @@ Proof.
     intros.
     assert(HP:= H).
     unfold 严格平行 in HP.
-    spliter.
-    assert (O <> A) by (apply par_strict_distinct in H; spliter; auto).
-    assert (O' <> A') by (apply par_strict_distinct in H; spliter; auto).
+    分离合取式.
+    assert (O <> A) by (apply par_strict_distinct in H; 分离合取式; auto).
+    assert (O' <> A') by (apply par_strict_distinct in H; 分离合取式; auto).
     assert(~Col O A A').
       intro.
       apply H9.
@@ -1646,7 +1646,7 @@ Proof.
         apply H6.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       assert(A' =  C').
         eapply (l6_21_两线交点的唯一性 A C' O' A'); Col.
         intro.
@@ -1671,7 +1671,7 @@ Proof.
         apply H6.
         exists A'.
         split; Col.
-      spliter.
+      分离合取式.
       apply H13.
       eapply (l6_21_两线交点的唯一性 A A' O A); Col.
     assert(严格平行 A C A' C').
@@ -1705,7 +1705,7 @@ Proof.
             apply H7.
             exists B.
             split; Col.
-          spliter.
+          分离合取式.
           Col.
           Col.
           ColR.
@@ -1719,7 +1719,7 @@ Proof.
         apply H7.
         exists B'.
         split; Col.
-      spliter.
+      分离合取式.
       apply H17.
       eapply (l6_21_两线交点的唯一性 A C B' B).
         intro.
@@ -1727,7 +1727,7 @@ Proof.
           apply H6.
           exists C.
           split; Col.
-        spliter.
+        分离合取式.
         apply H15.
         exists B'.
         split; Col.

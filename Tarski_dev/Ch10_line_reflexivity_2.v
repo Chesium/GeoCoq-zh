@@ -14,7 +14,7 @@ assert(X = M \/ ~ Col A B X /\ 垂直于 M X M A B).
 统计不重合点; apply(与两点等距点要么为其中点要么在其中垂线上 A B M X); Cong.
 induction H3.
 treat_equalities; Col.
-spliter.
+分离合取式.
 apply 垂直于转垂直 in H1.
 apply 垂直于转垂直 in H4.
 assert_cols.
@@ -41,7 +41,7 @@ Proof.
       eapply (image_in_is_image_spec M).
       assumption.
     unfold 严格对称于 in *.
-    spliter.
+    分离合取式.
     induction H4.
       induction H6.
         induction (两点重合的决定性 A M).
@@ -67,7 +67,7 @@ Proof.
           apply cop_per2__col with B.
             Cop.
             apply 垂直推出不重合 in H4.
-            spliter.
+            分离合取式.
             auto.
             apply 直角的对称性.
             apply H8.
@@ -126,7 +126,7 @@ Proof.
     assert(HH1 := H0).
     unfold 严格对称 in H.
     unfold 严格对称 in H0.
-    spliter.
+    分离合取式.
     ex_and H X.
     ex_and H0 Y.
     assert (exists M, 中点 M X Y).
@@ -163,7 +163,7 @@ Proof.
             assumption.
           subst P'.
           apply 垂直推出不重合 in H3.
-          spliter.
+          分离合取式.
           absurde.
         assert (中点 Y R R') by (eauto using 对称保持中点).
         assert (Cong Q' R' Q R) by (apply (l7_13_同中点组两侧等长 Y); assumption).
@@ -201,7 +201,7 @@ Proof.
         intuition.
       induction H0.
         intuition.
-      spliter.
+      分离合取式.
       apply l7_13_同中点组两侧等长 with B; apply M是AB中点则M是BA中点;auto.
     apply l10_10_spec with A B;try apply is_image_is_image_spec;assumption.
 Qed.
@@ -321,7 +321,7 @@ Lemma image_preserves_midpoint :
 Proof.
     intros.
     unfold 中点 in *.
-    spliter.
+    分离合取式.
     repeat split.
       eapply image_preserves_bet.
         apply H0.
@@ -394,10 +394,10 @@ Lemma image_preserves_per : forall A B C A' B' C' X Y,
 Proof.
     intros.
     induction (两点重合的决定性 X Y).
-    - induction H; induction H0; induction H1; spliter; [contradiction..|].
+    - induction H; induction H0; induction H1; 分离合取式; [contradiction..|].
       treat_equalities.
       apply midpoint_preserves_per with A B C X; [|apply M是AB中点则M是BA中点..]; assumption.
-    - induction H; induction H0; induction H1; spliter; [|contradiction..].
+    - induction H; induction H0; induction H1; 分离合取式; [|contradiction..].
       apply image_spec_preserves_per with A B C X Y; assumption.
 Qed.
 
@@ -421,7 +421,7 @@ Proof.
     assert (Per A1 B C1)
       by (eauto using l8_10_直角与全等推出直角).
     unfold 三角形全等 in H8.
-    spliter.
+    分离合取式.
     assert(Cong A B A1 B) by (apply 等长的传递性 with A' B'; trivial).
     assert(Cong B C B C1) by (apply 等长的传递性 with B' C'; trivial).
     apply 等长的传递性 with A1 C1; Cong.
@@ -498,17 +498,17 @@ Proof.
     assert (exists C', Out X' C' Q /\ Cong  X' C' X C).
       eapply l6_11_existence.
         apply 垂直推出不重合 in H5.
-        spliter.
+        分离合取式.
         assumption.
       intro.
       subst C.
       apply 垂直推出不重合 in H4.
-      spliter.
+      分离合取式.
       absurde.
     ex_and H8 C'.
     exists C'.
     unfold 三角形全等 in *.
-    spliter.
+    分离合取式.
     assert (Cong A C A' C').
       induction(两点重合的决定性 A X).
         subst X.
@@ -542,7 +542,7 @@ Proof.
               apply 等长的同一性 in H9.
               subst X.
               apply 垂直推出不重合 in H4.
-              spliter.
+              分离合取式.
               absurde.
               apply 垂直的对称性.
               apply 垂直的右交换性.
@@ -593,7 +593,7 @@ Proof.
               apply 等长的同一性 in H9.
               subst X.
               apply 垂直推出不重合 in H4.
-              spliter.
+              分离合取式.
               absurde.
               apply 垂直的对称性.
               apply 垂直的交换性.
@@ -627,7 +627,7 @@ Proof.
       assumption.
     apply 等长的对称性 in H1.
     destruct H14.
-    spliter.
+    分离合取式.
     assert (OS A' B' C' Q).
       apply H15.
       split.
@@ -656,9 +656,9 @@ Proof.
     intros.
     unfold 对称 in *.
     induction H0.
-      spliter.
+      分离合取式.
       unfold 严格对称 in H3.
-      spliter.
+      分离合取式.
       ex_and H3 M.
       induction H4.
         induction(两点重合的决定性 A M).
@@ -666,7 +666,7 @@ Proof.
           assert (Perp P A A B).
             eapply 垂线共线点也构成垂直1.
               apply 垂直推出不重合 in H4.
-              spliter.
+              分离合取式.
               intro.
               subst P.
               apply M是AB中点则M是BA中点 in H3.
@@ -755,7 +755,7 @@ Proof.
         assumption.
       subst P'.
       absurde.
-    spliter;subst;Col.
+    分离合取式;subst;Col.
 Qed.
 
 Lemma cong_cop_per2_1 :
@@ -848,7 +848,7 @@ elim (two_sides_dec I P A B); intro HTS'.
   assert (HTS' : TS I P A C).
     {
     apply l9_8_2 with B; Col.
-    unfold TS in HTS; spliter.
+    unfold TS in HTS; 分离合取式.
     apply cop_nts__os; Cop.
     intro; apply HOS; apply l9_2; Col.
     }
@@ -865,10 +865,10 @@ Lemma hilbert_s_version_of_pasch : forall A B C P Q, 共面 A B C P ->
   exists X, Col P Q X /\ (BetS A X C \/ BetS B X C).
 Proof.
 intros A B C P Q HCop HNC1 HNC2 HAQB.
-rewrite 严格中间性的等价 in HAQB; spliter.
+rewrite 严格中间性的等价 in HAQB; 分离合取式.
 destruct (hilbert_s_version_of_pasch_aux C A B Q P) as [X [HPQX HBetS]]; Cop.
 exists X; split; Col; unfold BetS.
-induction HBetS; spliter; repeat split; Between.
+induction HBetS; 分离合取式; repeat split; Between.
 Qed.
 
 Lemma two_sides_cases : forall O P A B,
@@ -882,7 +882,7 @@ assert(TS O A P B \/ OS O A P B).
   unfold OS in H0.
   ex_and H0 R.
   unfold TS in H0.
-  spliter.
+  分离合取式.
   Col.
 }
 induction H1.
@@ -902,7 +902,7 @@ destruct (构造对称点 X I) as [Y HMid].
 exists X; exists Y; 统计不重合点; assert_cols; repeat split; try ColR.
   intro; apply HIX, l6_21_两线交点的唯一性 with A B C D; Col.
   intro; absurd (I = Y); [auto|apply l6_21_两线交点的唯一性 with A B C D; ColR].
-exists I; unfold 中点 in HMid; spliter; split; Col; Between.
+exists I; unfold 中点 in HMid; 分离合取式; split; Col; Between.
 Qed.
 
 Lemma cop_not_par_other_side :

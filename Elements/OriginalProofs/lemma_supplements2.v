@@ -12,9 +12,9 @@ Lemma lemma_supplements2 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists a b c d e, (Supp a b c d e /\ 等角 A B C a b c /\ 等角 P Q R d b e)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];spliter.
+assert (Tf:exists a b c d e, (Supp a b c d e /\ 等角 A B C a b c /\ 等角 P Q R d b e)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists j k l m n, (Supp j k l m n /\ 等角 J K L j k l /\ 等角 D E F m k n)) by (conclude_def RT );destruct Tf as [j[k[l[m[n]]]]];spliter.
+assert (Tf:exists j k l m n, (Supp j k l m n /\ 等角 J K L j k l /\ 等角 D E F m k n)) by (conclude_def RT );destruct Tf as [j[k[l[m[n]]]]];分离合取式.
 assert (等角 a b c A B C) by (conclude lemma_equalanglessymmetric).
 assert (等角 a b c J K L) by (conclude lemma_equalanglestransitive).
 assert (等角 a b c j k l) by (conclude lemma_equalanglestransitive).

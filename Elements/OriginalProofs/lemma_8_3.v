@@ -12,7 +12,7 @@ Lemma lemma_8_3 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists E, (BetS A B E /\ Cong A B E B /\ Cong A C E C /\ neq B C)) by (conclude_def Per );destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS A B E /\ Cong A B E B /\ Cong A C E C /\ neq B C)) by (conclude_def Per );destruct Tf as [E];分离合取式.
 assert (Cong B C B C) by (conclude cn_congruencereflexive).
 assert (Cong C D C D) by (conclude cn_congruencereflexive).
 assert (Cong B A B E) by (forward_using lemma_congruenceflip).

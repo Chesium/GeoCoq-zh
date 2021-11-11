@@ -93,7 +93,7 @@ Proof.
     }
     destruct HPar; auto.
     exfalso.
-    spliter.
+    分离合取式.
     apply HNCol2; ColR.
 Qed.
 

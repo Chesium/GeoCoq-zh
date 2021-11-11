@@ -17,7 +17,7 @@ assert (neq H G) by (conclude lemma_inequalitysymmetric).
 assert (neq K H) by (forward_using lemma_betweennotequal).
 assert (neq H K) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists P, (BetS H G P /\ Cong G P G H)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS H G P /\ Cong G P G H)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
 assert (BetS P G H) by (conclude axiom_betweennesssymmetry).
 assert (等角 A G H G H F)
  by (apply (proposition_29 A B E F P G H);auto).
@@ -41,9 +41,9 @@ assert (Out G A A) by (conclude lemma_ray4).
 assert (等角 C K H A G K) by (conclude lemma_equalangleshelper).
 assert (等角 H K C K G A) by (conclude lemma_equalanglesflip).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M F /\ Col G H M /\ nCol G H A)) by (conclude_def TS );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M F /\ Col G H M /\ nCol G H A)) by (conclude_def TS );destruct Tf as [M];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists m, (BetS C m F /\ Col K H m /\ nCol K H C)) by (conclude_def TS );destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS C m F /\ Col K H m /\ nCol K H C)) by (conclude_def TS );destruct Tf as [m];分离合取式.
 assert (Col G K H) by (conclude_def Col ).
 assert (Col H G K) by (forward_using lemma_collinearorder).
 assert (Col H G M) by (forward_using lemma_collinearorder).

@@ -42,7 +42,7 @@ assert (~ ~ EF A B C D E B C F).
   intro.
   rename_H H;
   let Tf:=fresh in
-  assert (Tf:exists H, (BetS B H E /\ BetS C H D)) by (conclude lemma_parallelPasch);destruct Tf as [H];spliter.
+  assert (Tf:exists H, (BetS B H E /\ BetS C H D)) by (conclude lemma_parallelPasch);destruct Tf as [H];分离合取式.
   assert (BetS D H C) by (conclude axiom_betweennesssymmetry).
   assert (Col B H E) by (conclude_def Col ).
   assert (Col B E H) by (forward_using lemma_collinearorder).
@@ -61,7 +61,7 @@ assert (~ ~ EF A B C D E B C F).
   assert (OS F C B E) by (conclude_def TP ).
   assert (TS F B E D) by (conclude lemma_planeseparation).
   let Tf:=fresh in
-  assert (Tf:exists e, (BetS F e D /\ Col B E e /\ nCol B E F)) by (conclude_def TS );destruct Tf as [e];spliter.
+  assert (Tf:exists e, (BetS F e D /\ Col B E e /\ nCol B E F)) by (conclude_def TS );destruct Tf as [e];分离合取式.
   assert (neq F D) by (forward_using lemma_betweennotequal).
   assert (Col F e D) by (conclude_def Col ).
   assert (~ neq e E).
@@ -112,7 +112,7 @@ assert (~ ~ EF A B C D E B C F).
   intro.
   rename_H H;
   let Tf:=fresh in
-  assert (Tf:exists H, (BetS C H F /\ BetS B H A)) by (conclude lemma_parallelPasch);destruct Tf as [H];spliter.
+  assert (Tf:exists H, (BetS C H F /\ BetS B H A)) by (conclude lemma_parallelPasch);destruct Tf as [H];分离合取式.
   assert (BetS A H B) by (conclude axiom_betweennesssymmetry).
   assert (Col C H F) by (conclude_def Col ).
   assert (Col C F H) by (forward_using lemma_collinearorder).
@@ -131,7 +131,7 @@ assert (~ ~ EF A B C D E B C F).
   assert (OS E B C F) by (conclude_def TP ).
   assert (TS E C F A) by (conclude lemma_planeseparation).
   let Tf:=fresh in
-  assert (Tf:exists e, (BetS E e A /\ Col C F e /\ nCol C F E)) by (conclude_def TS );destruct Tf as [e];spliter.
+  assert (Tf:exists e, (BetS E e A /\ Col C F e /\ nCol C F E)) by (conclude_def TS );destruct Tf as [e];分离合取式.
   assert (neq E A) by (forward_using lemma_betweennotequal).
   assert (~ neq e F).
    {
@@ -186,7 +186,7 @@ assert (~ ~ EF A B C D E B C F).
     {
     intro.
     let Tf:=fresh in
-    assert (Tf:exists p, (BetS E p C /\ BetS B p F)) by (conclude lemma_diagonalsmeet);destruct Tf as [p];spliter.
+    assert (Tf:exists p, (BetS E p C /\ BetS B p F)) by (conclude lemma_diagonalsmeet);destruct Tf as [p];分离合取式.
     assert (Col E p C) by (conclude_def Col ).
     assert (Col B p F) by (conclude_def Col ).
     assert (Col F B p) by (forward_using lemma_collinearorder).
@@ -259,7 +259,7 @@ assert (~ ~ EF A B C D E B C F).
     {
     intro.
     let Tf:=fresh in
-    assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];spliter.
+    assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];分离合取式.
     assert (~ Col A B C).
      {
      intro.

@@ -39,7 +39,7 @@ assert (TG C D E D E C) by (conclude lemma_TGsymmetric).
 assert (TG E C E D C D) by (forward_using lemma_TGflip).
 let Tf:=fresh in
 assert (Tf:exists G F, (Cong A G E C /\ Cong A F C D /\ Cong G F E D /\ Out A B G /\ Triangle A G F)) 
- by (conclude proposition_22);destruct Tf as [G[F]];spliter.
+ by (conclude proposition_22);destruct Tf as [G[F]];分离合取式.
 assert (Cong A G C E) by (forward_using lemma_congruenceflip).
 assert (Cong F G D E) by (forward_using lemma_congruenceflip).
 assert (eq E E) by (conclude cn_equalityreflexive).

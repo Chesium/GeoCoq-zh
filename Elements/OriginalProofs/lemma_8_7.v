@@ -16,7 +16,7 @@ assert (Per A B C) by (conclude lemma_8_2).
 assert (neq B C) by (conclude_def Per ).
 assert (neq C B) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS B C E /\ Cong C E C B)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS B C E /\ Cong C E C B)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (Col B C E) by (conclude_def Col ).
 assert (Col E C B) by (forward_using lemma_collinearorder).
 assert (Per A B C) by (conclude lemma_8_2).
@@ -28,7 +28,7 @@ assert (~ Per A C B).
  intro.
  assert (Per B C A) by (conclude lemma_8_2).
  let Tf:=fresh in
- assert (Tf:exists F, (BetS B C F /\ Cong B C F C /\ Cong B A F A /\ neq C A)) by (conclude_def Per );destruct Tf as [F];spliter.
+ assert (Tf:exists F, (BetS B C F /\ Cong B C F C /\ Cong B A F A /\ neq C A)) by (conclude_def Per );destruct Tf as [F];分离合取式.
  assert (Cong F C B C) by (conclude lemma_congruencesymmetric).
  assert (Cong C F B C) by (forward_using lemma_congruenceflip).
  assert (Cong C E B C) by (forward_using lemma_congruenceflip).

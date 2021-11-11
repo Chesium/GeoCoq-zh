@@ -10,14 +10,14 @@ Lemma lemma_21helper :
 Proof.
 intros.
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (BetS B A H /\ Cong A H A E /\ Lt B E B H)) by (conclude_def TG );destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS B A H /\ Cong A H A E /\ Lt B E B H)) by (conclude_def TG );destruct Tf as [H];分离合取式.
 assert (neq B A) by (forward_using lemma_betweennotequal).
 assert (~ eq B E).
  {
  intro.
  assert (Lt B B B H) by (conclude cn_equalitysub).
  let Tf:=fresh in
- assert (Tf:exists K, (BetS B K H /\ Cong B K B B)) by (conclude_def Lt );destruct Tf as [K];spliter.
+ assert (Tf:exists K, (BetS B K H /\ Cong B K B B)) by (conclude_def Lt );destruct Tf as [K];分离合取式.
  assert (~ neq B K).
   {
   intro.
@@ -32,10 +32,10 @@ assert (~ eq B E).
  }
 assert (neq A C) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists F, (BetS B A F /\ Cong A F A C)) by (conclude lemma_extension);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS B A F /\ Cong A F A C)) by (conclude lemma_extension);destruct Tf as [F];分离合取式.
 assert (neq E C) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists G, (BetS B E G /\ Cong E G E C)) by (conclude lemma_extension);destruct Tf as [G];spliter.
+assert (Tf:exists G, (BetS B E G /\ Cong E G E C)) by (conclude lemma_extension);destruct Tf as [G];分离合取式.
 assert (Cong A C A F) by (conclude lemma_congruencesymmetric).
 assert (Cong A E A H) by (conclude lemma_congruencesymmetric).
 assert (Cong A E A E) by (conclude cn_congruencereflexive).

@@ -14,12 +14,12 @@ Lemma lemma_linereflectionisometry :
 Proof.
 intros.
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (BetS B A H /\ Cong B A H A /\ Cong B C H C /\ neq A C)) by (conclude_def Per );destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS B A H /\ Cong B A H A /\ Cong B C H C /\ neq A C)) by (conclude_def Per );destruct Tf as [H];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists G, (BetS A B G /\ Cong A B G B /\ Cong A D G D /\ neq B D)) by (conclude_def Per );destruct Tf as [G];spliter.
+assert (Tf:exists G, (BetS A B G /\ Cong A B G B /\ Cong A D G D /\ neq B D)) by (conclude_def Per );destruct Tf as [G];分离合取式.
 assert (neq A B) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M B /\ Cong M A M B)) by (conclude proposition_10);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M B /\ Cong M A M B)) by (conclude proposition_10);destruct Tf as [M];分离合取式.
 assert (Per D B A) by (conclude lemma_8_2).
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 assert (BetS B M A) by (conclude axiom_betweennesssymmetry).
@@ -34,7 +34,7 @@ assert (~ eq D M).
  }
 assert (neq M D) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists R, (BetS D M R /\ Cong M R M D)) by (conclude lemma_extension);destruct Tf as [R];spliter.
+assert (Tf:exists R, (BetS D M R /\ Cong M R M D)) by (conclude lemma_extension);destruct Tf as [R];分离合取式.
 assert (Cong D B B F) by (forward_using lemma_congruenceflip).
 assert (Col D B F) by (conclude_def Col ).
 assert (neq B F) by (forward_using lemma_betweennotequal).
@@ -51,7 +51,7 @@ assert (~ eq F M).
  }
 assert (neq M F) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS F M Q /\ Cong M Q M F)) by (conclude lemma_extension);destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS F M Q /\ Cong M Q M F)) by (conclude lemma_extension);destruct Tf as [Q];分离合取式.
 assert (Cong M D M R) by (conclude lemma_congruencesymmetric).
 assert (Cong D M M R) by (forward_using lemma_congruenceflip).
 assert (中点 D M R) by (conclude_def 中点 ).

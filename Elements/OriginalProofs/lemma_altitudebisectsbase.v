@@ -10,20 +10,20 @@ Lemma lemma_altitudebisectsbase :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists C, (BetS A M C /\ Cong A M C M /\ Cong A P C P /\ neq M P)) by (conclude_def Per );destruct Tf as [C];spliter.
+assert (Tf:exists C, (BetS A M C /\ Cong A M C M /\ Cong A P C P /\ neq M P)) by (conclude_def Per );destruct Tf as [C];分离合取式.
 assert (BetS C M A) by (conclude axiom_betweennesssymmetry).
 assert (Cong C M A M) by (conclude lemma_congruencesymmetric).
 assert (Cong C P A P) by (conclude lemma_congruencesymmetric).
 assert (Per C M P) by (conclude_def Per ).
 assert (Per P M A) by (conclude lemma_8_2).
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS P M Q /\ Cong P M Q M /\ Cong P A Q A /\ neq M A)) by (conclude_def Per );destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS P M Q /\ Cong P M Q M /\ Cong P A Q A /\ neq M A)) by (conclude_def Per );destruct Tf as [Q];分离合取式.
 assert (Cong Q M P M) by (conclude lemma_congruencesymmetric).
 assert (Per P M C) by (conclude lemma_8_2).
 assert (Out M C B) by (conclude_def Out ).
 assert (Per P M B) by (conclude lemma_8_3).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS P M E /\ Cong P M E M /\ Cong P B E B /\ neq M B)) by (conclude_def Per );destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS P M E /\ Cong P M E M /\ Cong P B E B /\ neq M B)) by (conclude_def Per );destruct Tf as [E];分离合取式.
 assert (Cong P A P B) by (forward_using lemma_congruenceflip).
 assert (Cong M Q P M) by (forward_using lemma_congruenceflip).
 assert (Cong P M M Q) by (conclude lemma_congruencesymmetric).

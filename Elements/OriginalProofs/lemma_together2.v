@@ -15,7 +15,7 @@ Lemma lemma_together2 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists J, (BetS A a J /\ Cong a J C c /\ Lt B b A J)) by (conclude_def TG );destruct Tf as [J];spliter.
+assert (Tf:exists J, (BetS A a J /\ Cong a J C c /\ Lt B b A J)) by (conclude_def TG );destruct Tf as [J];分离合取式.
 assert (neq a J) by (forward_using lemma_betweennotequal).
 assert (neq C c) by (conclude axiom_nocollapse).
 assert (~ eq M N).
@@ -33,7 +33,7 @@ assert (~ eq M N).
 assert (neq F M) by (conclude lemma_raystrict).
 assert (neq M F) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists D, (BetS M F D /\ Cong F D M F)) by (conclude lemma_extension);destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS M F D /\ Cong F D M F)) by (conclude lemma_extension);destruct Tf as [D];分离合取式.
 assert ((BetS F M G \/ eq G M \/ BetS F G M)) by (conclude lemma_ray1).
 assert (BetS G F D).
 by cases on (BetS F M G \/ eq G M \/ BetS F G M).
@@ -59,7 +59,7 @@ assert (~ BetS F M N).
  intro.
  assert (neq F M) by (forward_using lemma_betweennotequal).
  let Tf:=fresh in
- assert (Tf:exists P, (BetS F M P /\ Cong M P C c)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+ assert (Tf:exists P, (BetS F M P /\ Cong M P C c)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
  assert (Lt F G F P) by (conclude lemma_together).
  assert (Cong C c G N) by (conclude lemma_congruencesymmetric).
  assert (Cong C c N G) by (forward_using lemma_congruenceflip).

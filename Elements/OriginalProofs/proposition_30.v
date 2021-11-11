@@ -20,11 +20,11 @@ Lemma proposition_30 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists b, (BetS A G b /\ Cong G b A G)) by (conclude lemma_extension);destruct Tf as [b];spliter.
+assert (Tf:exists b, (BetS A G b /\ Cong G b A G)) by (conclude lemma_extension);destruct Tf as [b];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists f, (BetS E H f /\ Cong H f E H)) by (conclude lemma_extension);destruct Tf as [f];spliter.
+assert (Tf:exists f, (BetS E H f /\ Cong H f E H)) by (conclude lemma_extension);destruct Tf as [f];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists d, (BetS C K d /\ Cong K d C K)) by (conclude lemma_extension);destruct Tf as [d];spliter.
+assert (Tf:exists d, (BetS C K d /\ Cong K d C K)) by (conclude lemma_extension);destruct Tf as [d];分离合取式.
 assert (nCol C D E) by (forward_using lemma_parallelNC).
 assert (neq C D) by (forward_using lemma_NCdistinct).
 assert (Col A G b) by (conclude_def Col ).
@@ -98,7 +98,7 @@ assert (BetS K H G) by (conclude axiom_betweennesssymmetry).
 assert (TS K E H G) by (conclude_def TS ).
 assert (TS C E H G) by (conclude lemma_planeseparation).
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS C Q G /\ Col E H Q /\ nCol E H C)) by (conclude_def TS );destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS C Q G /\ Col E H Q /\ nCol E H C)) by (conclude_def TS );destruct Tf as [Q];分离合取式.
 assert (Par E f C d) by (conclude lemma_parallelsymmetric).
 assert (TP E f C d) by (conclude lemma_paralleldef2B).
 assert (OS C d E f) by (conclude_def TP ).
@@ -112,7 +112,7 @@ assert (nCol E f C) by (forward_using lemma_NCorder).
 assert (TS C E f G) by (conclude_def TS ).
 assert (TS d E f G) by (conclude lemma_planeseparation).
 let Tf:=fresh in
-assert (Tf:exists P, (BetS d P G /\ Col E f P /\ nCol E f d)) by (conclude_def TS );destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS d P G /\ Col E f P /\ nCol E f d)) by (conclude_def TS );destruct Tf as [P];分离合取式.
 assert (~ ~ (CR A f G H \/ CR A E G H)).
  {
  intro.
@@ -170,7 +170,7 @@ by cases on (CR A f G H \/ CR A E G H).
   }
  {
   let Tf:=fresh in
-  assert (Tf:exists M, (BetS C M E /\ BetS K M H)) by (conclude_def CR );destruct Tf as [M];spliter.
+  assert (Tf:exists M, (BetS C M E /\ BetS K M H)) by (conclude_def CR );destruct Tf as [M];分离合取式.
   assert (Col K M H) by (conclude_def Col ).
   assert (Col K H M) by (forward_using lemma_collinearorder).
   assert (BetS f H E) by (conclude axiom_betweennesssymmetry).
@@ -180,7 +180,7 @@ by cases on (CR A f G H \/ CR A E G H).
   assert (TS C K H d) by (conclude_def TS ).
   assert (TS f K H d) by (conclude lemma_planeseparation).
   let Tf:=fresh in
-  assert (Tf:exists m, (BetS f m d /\ Col K H m /\ nCol K H f)) by (conclude_def TS );destruct Tf as [m];spliter.
+  assert (Tf:exists m, (BetS f m d /\ Col K H m /\ nCol K H f)) by (conclude_def TS );destruct Tf as [m];分离合取式.
   assert (Par f E C d) by (conclude lemma_parallelsymmetric).
   assert (~ Meet f E C d) by (auto using parnotmeet).
   assert (Col f H E) by (forward_using lemma_collinearorder).
@@ -223,7 +223,7 @@ by cases on (CR A f G H \/ CR A E G H).
  by cases on (CR C f K H \/ CR C E K H).
  {
   let Tf:=fresh in
-  assert (Tf:exists M, (BetS C M f /\ BetS K M H)) by (conclude_def CR );destruct Tf as [M];spliter.
+  assert (Tf:exists M, (BetS C M f /\ BetS K M H)) by (conclude_def CR );destruct Tf as [M];分离合取式.
   assert (Col K M H) by (conclude_def Col ).
   assert (Col K H M) by (forward_using lemma_collinearorder).
   assert (nCol K H E) by (forward_using lemma_NCorder).
@@ -234,7 +234,7 @@ by cases on (CR A f G H \/ CR A E G H).
   assert (TS C K H d) by (conclude_def TS ).
   assert (TS E K H d) by (conclude lemma_planeseparation).
   let Tf:=fresh in
-  assert (Tf:exists m, (BetS E m d /\ Col K H m /\ nCol K H E)) by (conclude_def TS );destruct Tf as [m];spliter.
+  assert (Tf:exists m, (BetS E m d /\ Col K H m /\ nCol K H E)) by (conclude_def TS );destruct Tf as [m];分离合取式.
   assert (Par E f C d) by (conclude lemma_parallelsymmetric).
   assert (~ Meet E f C d) by (auto using parnotmeet).
   assert (Col E H f) by (forward_using lemma_collinearorder).

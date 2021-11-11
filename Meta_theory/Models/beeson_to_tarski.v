@@ -125,7 +125,7 @@ elim (eq_dec C P);intro.
  unfold BetT;auto.
 
 unfold ICol in H1.
-spliter.
+分离合取式.
 apply not_and_or in H1.
 induction H1.
 apply NNPP in H1.
@@ -234,7 +234,7 @@ decompose [or] H0;clear H0.
 
 elim (I帕施公理 A B C P Q H2 H H1).
 intros.
-spliter.
+分离合取式.
 exists x.
 split.
 tauto.
@@ -277,7 +277,7 @@ intros.
 apply I五线段公理_等价SAS with A A' B B' ;try assumption.
 unfold IT.
 intro.
-spliter.
+分离合取式.
 unfold BetT in *.
 intuition.
 unfold BetT in *.
@@ -291,7 +291,7 @@ Proof.
 intros.
 unfold IT.
 intro.
-spliter.
+分离合取式.
 intuition.
 Qed.
 
@@ -300,7 +300,7 @@ Proof.
 intros.
 unfold IT.
 intro.
-spliter.
+分离合取式.
 intuition.
 Qed.
 
@@ -339,7 +339,7 @@ intuition.
 elim (I由一点往一方向构造等长线段 A B C D H).
 intros.
 exists x.
-spliter.
+分离合取式.
 split;try assumption.
 unfold IT in *.
 unfold BetT.

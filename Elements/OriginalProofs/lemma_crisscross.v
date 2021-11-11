@@ -22,7 +22,7 @@ assert (OS A C B D) by (conclude_def TP ).
 assert (nCol A C B) by (forward_using lemma_parallelNC).
 assert (neq A B) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS A B E /\ Cong B E A B)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS A B E /\ Cong B E A B)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (eq B B) by (conclude cn_equalityreflexive).
 assert (Col B D B) by (conclude_def Col ).
 assert (nCol A B D) by (forward_using lemma_parallelNC).
@@ -31,7 +31,7 @@ assert (OS C A B D) by (forward_using lemma_samesidesymmetric).
 assert (TS A B D E) by (conclude_def TS ).
 assert (TS C B D E) by (conclude lemma_planeseparation).
 let Tf:=fresh in
-assert (Tf:exists F, (BetS C F E /\ Col B D F /\ nCol B D C)) by (conclude_def TS );destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS C F E /\ Col B D F /\ nCol B D C)) by (conclude_def TS );destruct Tf as [F];分离合取式.
 assert (neq B D) by (forward_using lemma_NCdistinct).
 assert (nCol A B D) by (forward_using lemma_parallelNC).
 assert (neq A D) by (forward_using lemma_NCdistinct).
@@ -83,7 +83,7 @@ by cases on (eq B D \/ eq B F \/ eq D F \/ BetS D B F \/ BetS B D F \/ BetS B F 
  assert (nCol C E A) by (conclude lemma_NChelper).
  assert (nCol A E C) by (forward_using lemma_NCorder).
  let Tf:=fresh in
- assert (Tf:exists M, (BetS A M F /\ BetS C M B)) by (conclude postulate_Pasch_inner);destruct Tf as [M];spliter.
+ assert (Tf:exists M, (BetS A M F /\ BetS C M B)) by (conclude postulate_Pasch_inner);destruct Tf as [M];分离合取式.
  assert (BetS A M D) by (conclude cn_equalitysub).
  assert (BetS B M C) by (conclude axiom_betweennesssymmetry).
  assert (CR A D B C) by (conclude_def CR ).
@@ -108,7 +108,7 @@ by cases on (eq B D \/ eq B F \/ eq D F \/ BetS D B F \/ BetS B D F \/ BetS B F 
   assert (nCol E C D) by (forward_using lemma_NCorder).
   assert (BetS E F C) by (conclude axiom_betweennesssymmetry).
   let Tf:=fresh in
-  assert (Tf:exists M, (BetS D M C /\ BetS E B M)) by (conclude postulate_Pasch_outer);destruct Tf as [M];spliter.
+  assert (Tf:exists M, (BetS D M C /\ BetS E B M)) by (conclude postulate_Pasch_outer);destruct Tf as [M];分离合取式.
   assert (BetS C M D) by (conclude axiom_betweennesssymmetry).
   assert (BetS M B E) by (conclude axiom_betweennesssymmetry).
   assert (Col A B E) by (conclude_def Col ).
@@ -145,7 +145,7 @@ by cases on (eq B D \/ eq B F \/ eq D F \/ BetS D B F \/ BetS B D F \/ BetS B F 
  assert (nCol B E C) by (conclude lemma_NChelper).
  assert (nCol C E B) by (forward_using lemma_NCorder).
  let Tf:=fresh in
- assert (Tf:exists J, (BetS B J E /\ BetS C D J)) by (conclude postulate_Pasch_outer);destruct Tf as [J];spliter.
+ assert (Tf:exists J, (BetS B J E /\ BetS C D J)) by (conclude postulate_Pasch_outer);destruct Tf as [J];分离合取式.
  assert (BetS A J E) by (conclude lemma_3_5b).
  assert (nCol A C B) by (forward_using lemma_parallelNC).
  assert (nCol A B C) by (forward_using lemma_NCorder).
@@ -159,7 +159,7 @@ by cases on (eq B D \/ eq B F \/ eq D F \/ BetS D B F \/ BetS B D F \/ BetS B F 
  assert (nCol A J C) by (conclude lemma_NChelper).
  assert (BetS A B J) by (conclude axiom_innertransitivity).
  let Tf:=fresh in
- assert (Tf:exists M, (BetS A M D /\ BetS C M B)) by (conclude postulate_Pasch_inner);destruct Tf as [M];spliter.
+ assert (Tf:exists M, (BetS A M D /\ BetS C M B)) by (conclude postulate_Pasch_inner);destruct Tf as [M];分离合取式.
  assert (BetS B M C) by (conclude axiom_betweennesssymmetry).
  assert (CR A D B C) by (conclude_def CR ).
  close.
@@ -175,7 +175,7 @@ by cases on (eq B D \/ eq B F \/ eq D F \/ BetS D B F \/ BetS B D F \/ BetS B F 
  assert (nCol A E D) by (conclude lemma_NChelper).
  assert (nCol E A D) by (forward_using lemma_NCorder).
  let Tf:=fresh in
- assert (Tf:exists Q, (BetS D Q A /\ BetS E F Q)) by (conclude postulate_Pasch_outer);destruct Tf as [Q];spliter.
+ assert (Tf:exists Q, (BetS D Q A /\ BetS E F Q)) by (conclude postulate_Pasch_outer);destruct Tf as [Q];分离合取式.
  assert (BetS E F C) by (conclude axiom_betweennesssymmetry).
  assert (Col E F Q) by (conclude_def Col ).
  assert (Col E F C) by (conclude_def Col ).
@@ -203,7 +203,7 @@ by cases on (eq B D \/ eq B F \/ eq D F \/ BetS D B F \/ BetS B D F \/ BetS B F 
  assert (nCol A E C) by (conclude lemma_NChelper).
  assert (BetS C Q E) by (conclude lemma_3_6b).
  let Tf:=fresh in
- assert (Tf:exists M, (BetS A M Q /\ BetS C M B)) by (conclude postulate_Pasch_inner);destruct Tf as [M];spliter.
+ assert (Tf:exists M, (BetS A M Q /\ BetS C M B)) by (conclude postulate_Pasch_inner);destruct Tf as [M];分离合取式.
  assert (BetS A M D) by (conclude lemma_3_6b).
  assert (BetS B M C) by (conclude axiom_betweennesssymmetry).
  assert (CR A D B C) by (conclude_def CR ).

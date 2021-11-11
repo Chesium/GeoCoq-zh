@@ -17,10 +17,10 @@ assert (~ neq M J).
  intro.
  assert (neq J M) by (conclude lemma_inequalitysymmetric).
  let Tf:=fresh in
- assert (Tf:exists E, (BetS M J E /\ Cong J E M J)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+ assert (Tf:exists E, (BetS M J E /\ Cong J E M J)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
  assert (neq M E) by (forward_using lemma_betweennotequal).
  let Tf:=fresh in
- assert (Tf:exists F, (BetS J M F /\ Cong M F M E)) by (conclude lemma_extension);destruct Tf as [F];spliter.
+ assert (Tf:exists F, (BetS J M F /\ Cong M F M E)) by (conclude lemma_extension);destruct Tf as [F];分离合取式.
  assert (BetS E J M) by (conclude axiom_betweennesssymmetry).
  assert (BetS E J F) by (conclude lemma_3_7b).
  assert (BetS F J E) by (conclude axiom_betweennesssymmetry).

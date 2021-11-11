@@ -70,7 +70,7 @@ Proof.
   induction HG; rename A into A0; rename B into A1; rename D into B0; rename E into B1.
   { intros B HSac.
     assert(B = B1); [|subst B; Le].
-    assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac1); unfold 萨凯里四边形 in *; spliter.
+    assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac1); unfold 萨凯里四边形 in *; 分离合取式.
     apply (l6_11_uniqueness A1 A0 B0 B1); Cong; [|apply out_trivial; auto].
     apply (col_one_side_out _ A0).
       apply 等价共线CAB, cop_per2__col with A0; Perp.
@@ -84,7 +84,7 @@ Proof.
   { intro; treat_equalities.
     assert (A0 = A1) by (apply 中间性的同一律, grad__bet, (grad2__grad123 _ _ _ B0 B1 E); auto).
     treat_equalities.
-    apply sac_distincts in HSac1; spliter; auto.
+    apply sac_distincts in HSac1; 分离合取式; auto.
   }
   assert (HB : exists B, 萨凯里四边形 A0 B0 B A).
   { clear dependent A'; clear dependent B'; clear IHHG.
@@ -94,9 +94,9 @@ Proof.
       apply par_strict_not_col_1 with B1, sac__pars1423, HSac1.
     destruct (l6_11_existence A A0 B0 P) as [B [HOut Hcong5]].
       统计不重合点; auto.
-      assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac1); spliter; auto.
+      assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac1); 分离合取式; auto.
     exists B.
-    unfold 萨凯里四边形 in *; spliter; 统计不重合点.
+    unfold 萨凯里四边形 in *; 分离合取式; 统计不重合点.
     repeat split; Cong.
     - apply (直角边共线点也构成直角2 _ _ A1); Col.
     - apply L形垂直转直角2, (垂线共线点也构成垂直2 _ _ _ P); Col.
@@ -112,9 +112,9 @@ Proof.
   clear IHHG.
   destruct (由一点往一方向构造等长线段 B0 B E E') as [C [HBet HCong]].
   assert (Cong B0 B1 B B').
-    apply (cong2_sac2__cong A0 B0 B1 A1 A _ _ A'); auto; [|unfold 萨凯里四边形 in *; spliter; Cong].
+    apply (cong2_sac2__cong A0 B0 B1 A1 A _ _ A'); auto; [|unfold 萨凯里四边形 in *; 分离合取式; Cong].
     apply cop_sac2__sac with A0 B0; Cop.
-    intro; treat_equalities; apply sac_distincts in HSac1; spliter; auto.
+    intro; treat_equalities; apply sac_distincts in HSac1; 分离合取式; auto.
   apply (长度小于等于的传递性 _ _ B0 C).
     apply (triangle_inequality B0 B B' C); trivial.
     apply 等长的传递性 with E E'; Cong.
@@ -142,9 +142,9 @@ Proof.
       apply par_strict_not_col_1 with B1, sac__pars1423, HSac.
     destruct (l6_11_existence A A0 B0 P) as [B [HOut Hcong5]].
       统计不重合点; auto.
-      assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac); spliter; auto.
+      assert(Hdiff := sac_distincts A0 B0 B1 A1 HSac); 分离合取式; auto.
     assert(HSac2 : 萨凯里四边形 A0 B0 B A).
-    { unfold 萨凯里四边形 in *; spliter; 统计不重合点; assert(A0 <> A) by (intro; treat_equalities; auto).
+    { unfold 萨凯里四边形 in *; 分离合取式; 统计不重合点; assert(A0 <> A) by (intro; treat_equalities; auto).
       repeat split; Cong.
       - apply (直角边共线点也构成直角2 _ _ A1); Col.
       - apply L形垂直转直角2, (垂线共线点也构成垂直2 _ _ _ P); Col.
@@ -175,7 +175,7 @@ Proof.
         apply (triangle_inequality_2 _ B0 _ _ B0'); Cong.
       apply (bet2_le2__le1346 _ B0' _ _ B0'); Le.
         apply (中间性的外传递性2 _ _ B'); auto.
-        intro; treat_equalities; apply sac_distincts in HSac2; spliter; auto.
+        intro; treat_equalities; apply sac_distincts in HSac2; 分离合取式; auto.
       apply (l5_6_等长保持小于等于关系 B0 A B0' A'); Cong.
       apply (triangle_inequality_2 _ B _ _ B'); Cong.
     }
@@ -183,7 +183,7 @@ Proof.
       apply (l5_6_等长保持小于等于关系 B0' B' B0' A'); Cong; destruct (l5_12_a B0' B' A'); auto.
     destruct HLe3 as [Q' [Hbet9 Hcong9]].
     assert (HBet10 : Bet A0 B0' A').
-      apply sac_distincts in HSac2; spliter; 统计不重合点.
+      apply sac_distincts in HSac2; 分离合取式; 统计不重合点.
       apply (中间性的外传递性2 _ _ B'); Between.
     apply (长度小于等于_小于_传递性 _ _ A0 Q').
       apply (bet2_le2__le1245 _ _ A' _ _ A); eBetween.
@@ -195,7 +195,7 @@ Proof.
       elim(中间性的决定性 B0' Q' B').
         intro; apply (l4_3 _ _ B' _ _ Q'); Cong; eBetween.
       intro HNBet.
-      apply sac_distincts in HSac2; spliter; 统计不重合点.
+      apply sac_distincts in HSac2; 分离合取式; 统计不重合点.
       assert (Q' <> B0') by (intro; subst; apply HNBet; Between).
       assert (A' <> B0') by (intro; treat_equalities; auto).
       assert (HOut3 : Out B0' B' Q').
@@ -282,7 +282,7 @@ Proof.
   assert (HLBC : ~ 为钝角 L B C) by (intro; apply HNob, (lam_obtuse__oah N L B C); trivial).
   assert (Hos1 : OS N L B C) by (apply lam__os; trivial).
   assert (Hos2 : OS N C B L) by (apply lam__os, lam_perm; trivial).
-  unfold Lambert四边形 in HLam; spliter.
+  unfold Lambert四边形 in HLam; 分离合取式.
   destruct (angle_partition L B C) as [H为锐角 | [HPer | H为钝角]]; trivial; [ | | exfalso; auto].
   - split; apply 长度小于蕴含小于等于; [apply (等长保持小于关系 N C B L); Cong | ].
       apply lta_os_per2__lt; Perp; Side; apply 角度小于的左交换性, acute_per__lta; auto.

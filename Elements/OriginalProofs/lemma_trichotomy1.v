@@ -14,12 +14,12 @@ Proof.
 intros.
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists P, (BetS B A P /\ Cong A P A B)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS B A P /\ Cong A P A B)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
 assert (BetS P A B) by (conclude axiom_betweennesssymmetry).
 assert (neq A P) by (forward_using lemma_betweennotequal).
 assert (neq P A) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS P A E /\ Cong A E C D)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS P A E /\ Cong A E C D)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (~ BetS A B E).
  {
  intro.

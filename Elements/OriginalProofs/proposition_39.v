@@ -40,7 +40,7 @@ assert (~ ~ Par A D B C).
   {
   intro.
   let Tf:=fresh in
-  assert (Tf:exists M, (BetS A M C /\ Out B D M)) by (conclude lemma_crossbar2);destruct Tf as [M];spliter.
+  assert (Tf:exists M, (BetS A M C /\ Out B D M)) by (conclude lemma_crossbar2);destruct Tf as [M];分离合取式.
   assert (Par A D B C) by (conclude proposition_39A).
   contradict.
   }
@@ -48,7 +48,7 @@ assert (~ ~ Par A D B C).
   {
   intro.
   let Tf:=fresh in
-  assert (Tf:exists M, (BetS D M C /\ Out B A M)) by (conclude lemma_crossbar2);destruct Tf as [M];spliter.
+  assert (Tf:exists M, (BetS D M C /\ Out B A M)) by (conclude lemma_crossbar2);destruct Tf as [M];分离合取式.
   assert (ET D B C A B C) by (conclude axiom_ETsymmetric).
   assert (Par D A B C) by (conclude proposition_39A).
   assert (Par A D B C) by (forward_using lemma_parallelflip).
@@ -75,7 +75,7 @@ assert (~ ~ Par A D B C).
   {
   intro.
   let Tf:=fresh in
-  assert (Tf:exists M, (BetS A M B /\ Out C D M)) by (conclude lemma_crossbar2);destruct Tf as [M];spliter.
+  assert (Tf:exists M, (BetS A M B /\ Out C D M)) by (conclude lemma_crossbar2);destruct Tf as [M];分离合取式.
   assert (Par A D C B) by (conclude proposition_39A).
   assert (Par A D B C) by (forward_using lemma_parallelflip).
   contradict.
@@ -84,7 +84,7 @@ assert (~ ~ Par A D B C).
   {
   intro.
   let Tf:=fresh in
-  assert (Tf:exists M, (BetS D M B /\ Out C A M)) by (conclude lemma_crossbar2);destruct Tf as [M];spliter.
+  assert (Tf:exists M, (BetS D M B /\ Out C A M)) by (conclude lemma_crossbar2);destruct Tf as [M];分离合取式.
   assert (ET D C B A C B) by (conclude axiom_ETsymmetric).
   assert (Par D A C B) by (conclude proposition_39A).
   assert (Par A D B C) by (forward_using lemma_parallelflip).

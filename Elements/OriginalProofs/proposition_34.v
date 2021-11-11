@@ -15,7 +15,7 @@ intros.
 assert ((Par A C D B /\ Par A B C D)) by (conclude_def PG ).
 assert (Par A C B D) by (forward_using lemma_parallelflip).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M D /\ BetS C M B)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M D /\ BetS C M B)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];分离合取式.
 assert (BetS B M C) by (conclude axiom_betweennesssymmetry).
 assert (Col B M C) by (conclude_def Col ).
 assert (Col B C M) by (forward_using lemma_collinearorder).

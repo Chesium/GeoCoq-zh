@@ -23,7 +23,7 @@ assert (~ Lt E F B C).
  {
  intro.
  rename_H H;let Tf:=fresh in
- assert (Tf:exists H, (BetS B H C /\ Cong B H E F)) by (conclude_def Lt );destruct Tf as [H];spliter.
+ assert (Tf:exists H, (BetS B H C /\ Cong B H E F)) by (conclude_def Lt );destruct Tf as [H];分离合取式.
  assert (等角 A B C A B C) by (conclude lemma_equalanglesreflexive).
  assert (eq A A) by (conclude cn_equalityreflexive).
  assert (Out B A A) by (conclude lemma_ray4).

@@ -131,7 +131,7 @@ Lemma similar__rah : postulate_of_existence_of_similar_triangles -> postulate_of
 Proof.
   intro similar.
   destruct similar as [A [B [C [D [E [F]]]]]].
-  spliter.
+  分离合取式.
   统计不重合点.
   elim (lea_total B C A A B C); auto; intro; [elim (长度小于等于的决定性 D E A B)|elim (长度小于等于的决定性 D F A C)].
   - intro.

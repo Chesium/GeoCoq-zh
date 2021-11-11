@@ -16,7 +16,7 @@ intros.
 assert (neq A B) by (forward_using lemma_betweennotequal).
 assert (neq C D) by (forward_using lemma_betweennotequal).
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (BetS A H D /\ Col E F H /\ nCol E F A)) by (conclude_def TS );destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS A H D /\ Col E F H /\ nCol E F A)) by (conclude_def TS );destruct Tf as [H];分离合取式.
 assert (Col A E B) by (conclude_def Col ).
 assert (neq A E) by (forward_using lemma_betweennotequal).
 assert (Col C F D) by (conclude_def Col ).
@@ -29,7 +29,7 @@ assert (~ Meet A B C D).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists G, (neq A B /\ neq C D /\ Col A B G /\ Col C D G)) by (conclude_def Meet );destruct Tf as [G];spliter.
+ assert (Tf:exists G, (neq A B /\ neq C D /\ Col A B G /\ Col C D G)) by (conclude_def Meet );destruct Tf as [G];分离合取式.
  assert (Col B A G) by (forward_using lemma_collinearorder).
  assert (Col B A E) by (forward_using lemma_collinearorder).
  assert (neq B A) by (conclude lemma_inequalitysymmetric).
@@ -82,7 +82,7 @@ assert (~ Meet A B C D).
   assert (TS D E F C) by (conclude_def TS ).
   assert (TS G E F C) by (conclude lemma_planeseparation).
   let Tf:=fresh in
-  assert (Tf:exists R, (BetS G R C /\ Col E F R /\ nCol E F G)) by (conclude_def TS );destruct Tf as [R];spliter.
+  assert (Tf:exists R, (BetS G R C /\ Col E F R /\ nCol E F G)) by (conclude_def TS );destruct Tf as [R];分离合取式.
   assert (~ neq F R).
    {
    intro.
@@ -186,7 +186,7 @@ assert (~ Meet A B C D).
   assert (OS G A E F) by (forward_using lemma_samesidesymmetric).
   assert (TS G E F D) by (conclude lemma_planeseparation).
   let Tf:=fresh in
-  assert (Tf:exists P, (BetS G P D /\ Col E F P /\ nCol E F G)) by (conclude_def TS );destruct Tf as [P];spliter.
+  assert (Tf:exists P, (BetS G P D /\ Col E F P /\ nCol E F G)) by (conclude_def TS );destruct Tf as [P];分离合取式.
   assert (Col G P D) by (conclude_def Col ).
   assert (~ neq P F).
    {

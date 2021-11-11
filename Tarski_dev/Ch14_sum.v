@@ -27,7 +27,7 @@ Proof.
     intros.
     unfold Sum in H.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     repeat split; Col.
     ex_and H0 A'.
     ex_and H4 C'.
@@ -35,7 +35,7 @@ Proof.
     exists C'.
     assert(O <> E /\ O <> E').
       repeat split; intro; subst O; apply H; Col.
-    spliter.
+    分离合取式.
     assert(HH:=parallel_existence1 O E A' H8).
     ex_and HH P'.
     exists P'.
@@ -50,7 +50,7 @@ Proof.
         apply H12.
         exists E'.
         split; Col.
-      spliter.
+      分离合取式.
       contradiction.
       unfold Pj in H0.
       induction H0.
@@ -60,7 +60,7 @@ Proof.
       right.
       auto.
       apply par_distincts in H10.
-      spliter.
+      分离合取式.
       auto.
       intro.
       assert(Par O E O E').
@@ -69,7 +69,7 @@ Proof.
         apply H13.
         exists O.
         split; Col.
-      spliter.
+      分离合取式.
       apply H.
       Col.
       unfold Pj in H5.
@@ -84,7 +84,7 @@ Proof.
           apply H12.
           exists A'.
           split; Col.
-        spliter.
+        分离合取式.
         Col.
       subst C'.
       Col.
@@ -100,7 +100,7 @@ Proof.
         apply H12.
         exists E.
         split; Col.
-      spliter.
+      分离合取式.
       contradiction.
     unfold Pj in H7.
     induction H7.
@@ -116,7 +116,7 @@ Lemma sump_to_sum : forall O E E' A B C, Sump O E E' A B C -> Sum O E E' A B C.
 Proof.
     intros.
     unfold Sump in H.
-    spliter.
+    分离合取式.
     ex_and H1 A'.
     ex_and H2 C'.
     ex_and H1 P'.
@@ -125,19 +125,19 @@ Proof.
       repeat split; Col.
         intro.
         unfold Proj in H1.
-        spliter.
+        分离合取式.
         apply H7.
         right.
         repeat split; Col.
       unfold Proj in H4.
-      spliter.
+      分离合取式.
       Col.
     exists A'.
     exists C'.
     unfold Pj.
     repeat split.
       unfold Proj in H1.
-      spliter.
+      分离合取式.
       induction H8.
         left.
         apply par_symmetry.
@@ -149,17 +149,17 @@ Proof.
         tauto.
       left.
       unfold Proj in H3.
-      spliter.
+      分离合取式.
       apply (par_col_par _  _ _ P'); Col.
       unfold Proj in H3.
-      spliter.
+      分离合取式.
       induction H8.
         left.
         apply par_symmetry.
         auto.
       tauto.
     unfold Proj in H4.
-    spliter.
+    分离合取式.
     induction H8.
       left.
       apply par_symmetry.
@@ -177,7 +177,7 @@ Lemma project_col_project : forall A B C P P' X Y,
 Proof.
     intros.
     unfold Proj in *.
-    spliter.
+    分离合取式.
     repeat split; auto.
       intro.
       apply H3.
@@ -266,14 +266,14 @@ Proof.
         apply H4.
         exists E'.
         split; Col.
-      spliter.
+      分离合取式.
       apply NC.
       Col.
     ex_and H4 A'.
     assert(HH:=parallel_existence1 O E A' H1).
     ex_and HH P.
     unfold unique in H5.
-    spliter.
+    分离合取式.
     assert(A <> A').
       intro.
       subst A'.
@@ -291,9 +291,9 @@ Proof.
       exists A'.
       unfold Pj.
       unfold Proj in H5.
-      spliter.
+      分离合取式.
       repeat split.
-        spliter.
+        分离合取式.
         induction H11.
           left.
           apply par_symmetry.
@@ -312,7 +312,7 @@ Proof.
             apply H11.
             exists E.
             split; Col.
-          spliter.
+          分离合取式.
           contradiction.
         contradiction.
       induction H11.
@@ -324,7 +324,7 @@ Proof.
     assert(exists! C', Proj B C' A' P O E').
       apply(project_existence B A' P O E'); auto.
       apply par_distincts in H4.
-      spliter.
+      分离合取式.
       auto.
       intro.
       assert(Par O E O E').
@@ -336,12 +336,12 @@ Proof.
         apply H10.
         exists O.
         split; Col.
-      spliter.
+      分离合取式.
       apply NC.
       Col.
     ex_and H9 C'.
     unfold unique in H10.
-    spliter.
+    分离合取式.
     assert(exists! C : Tpoint, Proj C' C O E A A').
       apply(project_existence C' O E A A'); auto.
       intro.
@@ -349,7 +349,7 @@ Proof.
         apply H11.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       assert(HH:=project_par_dir A A' O E' E E' H11 H5).
       assert(Col E A A').
         ColR.
@@ -357,7 +357,7 @@ Proof.
         apply H16.
         exists E.
         split; Col.
-      spliter.
+      分离合取式.
       apply NC.
       apply 等价共线CAB.
       apply(共线的传递性2 _ A'); Col.
@@ -365,14 +365,14 @@ Proof.
       subst A'.
       clean_trivial_hyps.
       unfold Proj in H5.
-      spliter.
+      分离合取式.
       apply NC.
       Col.
     ex_and H11 C.
     unfold unique in H12.
-    spliter.
+    分离合取式.
     unfold Proj in *.
-    spliter.
+    分离合取式.
     exists C.
     unfold Sum.
     split.
@@ -397,13 +397,13 @@ Proof.
             apply H16.
             exists A'.
             split; Col.
-          spliter.
+          分离合取式.
           induction H20.
             induction H20.
               apply H20.
               exists A'.
               split; Col.
-            spliter.
+            分离合取式.
             apply NC.
             apply (共线的传递性2 _ B); Col.
           subst A'.
@@ -449,7 +449,7 @@ Proof.
     apply sum_to_sump in H0.
     unfold Sump in H.
     unfold Sump in H0.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     ex_and H4 A'.
     ex_and H0 C'.
@@ -471,7 +471,7 @@ Proof.
         apply H9.
         exists A'.
         split; Col.
-      spliter.
+      分离合取式.
       Col.
     assert(Proj B C'' A' P' O E').
       eapply (project_col_project _ P''); Col.
@@ -511,7 +511,7 @@ Proof.
       Col.
     assert(E <> E' /\ O <> E').
       split; intro; subst E'; apply NC; Col.
-    spliter.
+    分离合取式.
     assert(exists! P' : Tpoint, Proj MA P' O E' E E').
       apply(project_existence MA O E' E E'); auto.
       intro.
@@ -519,12 +519,12 @@ Proof.
         apply H5.
         exists E'.
         split; Col.
-      spliter.
+      分离合取式.
       apply NC.
       Col.
     ex_and H5 A'.
     unfold unique in H6.
-    spliter.
+    分离合取式.
     exists A'.
     assert(O <> E).
       intro.
@@ -536,7 +536,7 @@ Proof.
     assert(exists! C' : Tpoint, Proj A C' A' P' O E').
       apply(project_existence A A' P' O E'); auto.
       apply par_distincts in H8.
-      spliter.
+      分离合取式.
       auto.
       intro.
       assert(Par O E O E').
@@ -547,19 +547,19 @@ Proof.
         apply H10.
         exists O.
         split; Col.
-      spliter.
+      分离合取式.
       apply NC.
       Col.
     ex_and H9 C'.
     unfold unique in H10.
-    spliter.
+    分离合取式.
     exists C'.
     exists P'.
     split; auto.
     split; auto.
     split; auto.
     unfold Proj in H5.
-    spliter.
+    分离合取式.
     unfold Proj.
     repeat split; Col.
       intro.
@@ -571,7 +571,7 @@ Proof.
       tauto.
     left.
     unfold Proj in H9.
-    spliter.
+    分离合取式.
     assert(Par O E' O A').
       right.
       repeat split; Col.
@@ -601,7 +601,7 @@ Proof.
             Par.
           induction H20.
             auto.
-          spliter.
+          分离合取式.
           apply False_ind.
           apply NC.
           apply (共线的传递性2 _ A'); Col.
@@ -612,7 +612,7 @@ Proof.
           apply H8.
           exists A.
           split; Col.
-        spliter.
+        分离合取式.
         apply NC.
         apply (共线的传递性2 _ A'); Col.
           intro.
@@ -630,7 +630,7 @@ Proof.
             apply H18.
             exists A'.
             split; Col.
-          spliter.
+          分离合取式.
           apply NC.
           apply (共线的传递性2 _ A); Col.
         subst A'.
@@ -638,7 +638,7 @@ Proof.
           apply H18.
           exists O.
           split; Col.
-        spliter.
+        分离合取式.
         apply NC.
         apply (共线的传递性2 _ A); Col.
         apply par_symmetry.
@@ -662,13 +662,13 @@ Proof.
       assert(HH:= plg_pseudo_trans C' A' O A O MA H20 H21).
       induction HH.
         auto.
-      spliter.
+      分离合取式.
       subst MA.
       apply 等长的对称性 in H2.
       apply 等长的同一性 in H2.
       contradiction.
     apply plg_par in H22.
-      spliter.
+      分离合取式.
       induction H14.
         apply (par_trans _ _ A' MA).
           auto.
@@ -681,11 +681,11 @@ Proof.
       unfold 平行四边形 in H20.
       induction H20.
         unfold 严格平行四边形 in H20.
-        spliter.
+        分离合取式.
         apply par_distincts in H23.
         tauto.
       unfold 退化平行四边形 in H20.
-      spliter.
+      分离合取式.
       apply 等长的对称性 in H24.
       apply 等长的同一性 in H24.
       subst A.
@@ -695,11 +695,11 @@ Proof.
     unfold 平行四边形 in H21.
     induction H21.
       unfold 严格平行四边形 in H21.
-      spliter.
+      分离合取式.
       unfold TS in H21; unfold 平行四边形.
-      spliter; Col.
+      分离合取式; Col.
     unfold 退化平行四边形 in H21.
-    spliter.
+    分离合取式.
     apply NC.
     apply (共线的传递性2 _ A); Col.
     apply (共线的传递性2 _ A'); Col.
@@ -715,7 +715,7 @@ Proof.
     assert(NC:=grid_ok).
     assert(O <> E' /\ E <> E').
       split; intro ; subst E'; apply NC; Col.
-    spliter.
+    分离合取式.
     assert(O <> E).
       intro.
       subst E.
@@ -734,7 +734,7 @@ Proof.
         apply H2.
         exists E'.
         split; Col.
-      spliter.
+      分离合取式.
       contradiction.
     split.
       apply par_reflexivity; auto.
@@ -745,7 +745,7 @@ Proof.
         apply H2.
         exists O.
         split; Col.
-      spliter.
+      分离合取式.
       apply NC.
       Col.
     apply project_trivial; Col.
@@ -754,7 +754,7 @@ Proof.
       apply H2.
       exists E.
       split; Col.
-    spliter.
+    分离合取式.
     contradiction.
 Qed.
 
@@ -772,7 +772,7 @@ Proof.
     assert(O <> E' /\ E <> E').
       split; intro ; subst E'; apply grid_ok; Col.
     split.
-      spliter.
+      分离合取式.
       unfold Ar2.
       repeat split; Col.
     exists O.
@@ -789,7 +789,7 @@ Proof.
       repeat split; Col.
     assert(O <> E' /\ E <> E').
       split; intro; subst E'; apply grid_ok; Col.
-    spliter.
+    分离合取式.
     induction (两点重合的决定性 A O).
       exists O.
       exists O.
@@ -800,17 +800,17 @@ Proof.
         apply H3.
         exists E'.
         split; Col.
-      spliter.
+      分离合取式.
       apply grid_ok.
       Col.
     assert(HH:= project_existence A O E' E E' H1 H0 H3).
     ex_and HH A'.
     unfold unique in H4.
-    spliter.
+    分离合取式.
     exists A'.
     exists A'.
     unfold Proj in H4.
-    spliter.
+    分离合取式.
     repeat split; Col.
       unfold Pj.
       induction H9.
@@ -831,7 +831,7 @@ Proof.
           apply H9.
           exists E.
           split; Col.
-        spliter.
+        分离合取式.
         contradiction.
       contradiction.
     unfold Pj.
@@ -854,14 +854,14 @@ Proof.
       repeat split; Col.
     assert(O <> E' /\ E <> E').
       split; intro; subst E'; apply grid_ok; Col.
-    spliter.
+    分离合取式.
     assert(~ Par E E' O E').
       intro.
       induction H3.
         apply H3.
         exists E'.
         split; Col.
-      spliter.
+      分离合取式.
       apply grid_ok.
       Col.
     exists O.
@@ -884,12 +884,12 @@ Proof.
     unfold Opp in H.
     apply sum_to_sump in H.
     unfold Sump in H.
-    spliter.
+    分离合取式.
     ex_and H1 A'.
     ex_and H2 C'.
     ex_and H1 P'.
     unfold Proj in *.
-    spliter.
+    分离合取式.
     induction H8.
       induction H12.
         assert(Par O E' E E').
@@ -902,7 +902,7 @@ Proof.
           apply H17.
           exists E'.
           split; Col.
-        spliter.
+        分离合取式.
         contradiction.
       subst C'.
       apply par_distincts in H8.
@@ -915,7 +915,7 @@ Proof.
         apply H2.
         exists O.
         split; Col.
-      spliter.
+      分离合取式.
       apply 等价共线BCA.
       apply(共线的传递性2 _ P'); Col.
     subst A'.
@@ -925,7 +925,7 @@ Proof.
         apply H8.
         exists E.
         split; Col.
-      spliter.
+      分离合取式.
       contradiction.
     assumption.
 Qed.
@@ -940,12 +940,12 @@ Proof.
     intro.
     ex_and H3 X.
     unfold Proj in H2.
-    spliter.
+    分离合取式.
     induction H1.
       apply H1.
       exists X.
       split; Col.
-    spliter.
+    分离合取式.
     assert(Col A' O E).
       apply (共线的传递性2 _ C'); Col.
     induction(两点重合的决定性 A' O).
@@ -956,7 +956,7 @@ Proof.
           apply H7.
           exists E.
           split; Col.
-        spliter.
+        分离合取式.
         contradiction.
       contradiction.
     apply grid_ok.
@@ -968,7 +968,7 @@ Proof.
     intros.
     assert(HH:=grid_ok).
     unfold Proj in H2.
-    spliter.
+    分离合取式.
     subst A.
     induction H6.
       apply False_ind.
@@ -989,14 +989,14 @@ Proof.
         apply H.
         exists E.
         split; Col.
-      spliter.
+      分离合取式.
       contradiction.
       intro.
       induction H.
         apply H.
         exists O.
         split; Col.
-      spliter.
+      分离合取式.
       apply grid_ok.
       Col.
       intro.
@@ -1004,7 +1004,7 @@ Proof.
         apply H.
         exists E'.
         split; Col.
-      spliter.
+      分离合取式.
       contradiction.
       intro.
       subst E.
@@ -1024,9 +1024,9 @@ Lemma proj_id : forall A A', Proj A A' O E' E E' -> Col O E A -> Col O E A' -> A
 Proof.
     intros.
     assert(HH:=grid_not_par).
-    spliter.
+    分离合取式.
     unfold Proj in H.
-    spliter.
+    分离合取式.
     induction H11.
       apply(l6_21_两线交点的唯一性 O E E' O); Col.
         assert(Col O A' A).
@@ -1039,7 +1039,7 @@ Proof.
           apply H11.
           exists E.
           split; Col.
-        spliter.
+        分离合取式.
         contradiction.
     subst.
     apply(l6_21_两线交点的唯一性 O E E' O); Col.
@@ -1050,9 +1050,9 @@ Proof.
     intros.
     assert (HS:=H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     assert(HH:=sum_O_B B H2).
     apply (sum_uniqueness O B); auto.
 Qed.
@@ -1062,9 +1062,9 @@ Proof.
     intros.
     assert (HS:=H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     assert(HH:=sum_A_O A H1).
     apply (sum_uniqueness A O); auto.
 Qed.
@@ -1082,7 +1082,7 @@ Proof.
       repeat split; auto.
     unfold Ar2 in H.
     unfold Pj in *.
-    spliter.
+    分离合取式.
     assert(A' <> O).
       intro.
       subst A'.
@@ -1091,13 +1091,13 @@ Proof.
           apply H3.
           exists O.
           split; Col.
-        spliter.
+        分离合取式.
         induction H1.
           induction H1.
             apply H1.
             exists E.
             split; Col.
-          spliter.
+          分离合取式.
           apply grid_ok.
           apply(共线的传递性2 _ A); Col.
         contradiction.
@@ -1107,7 +1107,7 @@ Proof.
           apply H1.
           exists E.
           split; Col.
-        spliter.
+        分离合取式.
         apply grid_ok.
         apply(共线的传递性2 _ A); Col.
       contradiction.
@@ -1119,7 +1119,7 @@ Proof.
     induction H3.
       induction H3.
         assumption.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply grid_ok.
       assert(Col A' O E ).
@@ -1132,14 +1132,14 @@ Proof.
         apply H3.
         exists A'.
         split; Col.
-      spliter.
+      分离合取式.
       assert(Col O B E').
         apply (共线的传递性2 _ A'); Col.
       apply grid_ok.
       apply (共线的传递性2 _ B); Col.
     subst A'.
     assert(HH:= grid_not_par).
-    spliter.
+    分离合取式.
     induction H5.
       apply H3.
       apply par_symmetry.
@@ -1157,23 +1157,23 @@ Lemma sum_A_B_A : forall A B, Sum O E E' A B A -> B = O.
 Proof.
     intros.
     unfold Sum in H.
-    spliter.
+    分离合取式.
     ex_and H0 A'.
     ex_and H1 C'.
     assert(HH:= grid_not_par).
-    spliter.
+    分离合取式.
     induction(两点重合的决定性 A O).
       subst A.
       unfold Pj in *.
       unfold Ar2 in H.
-      spliter.
+      分离合取式.
       induction H0.
         induction H0.
           apply False_ind.
           apply H0.
           exists E'.
           split; Col.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply grid_ok.
         ColR.
@@ -1193,7 +1193,7 @@ Proof.
           apply H0.
           exists O.
           split; Col.
-        spliter.
+        分离合取式.
         induction(两点重合的决定性 B O).
           auto.
         apply False_ind.
@@ -1202,13 +1202,13 @@ Proof.
       assumption.
     assert(A' <> O /\ (严格平行 O E A' C' \/ B = O)).
       apply(sum_par_strict A B A A' C');auto.
-    spliter.
+    分离合取式.
     induction(两点重合的决定性 B O).
       auto.
     induction H13.
       unfold Pj in *.
       unfold Ar2 in H.
-      spliter.
+      分离合取式.
       induction H0.
         induction H4.
           assert(Par A A' A C').
@@ -1218,7 +1218,7 @@ Proof.
             apply H18.
             exists A.
             split; Col.
-          spliter.
+          分离合取式.
           apply H13.
           exists A.
           split; Col.
@@ -1238,14 +1238,14 @@ Lemma sum_A_B_B : forall A B, Sum O E E' A B B -> A = O.
 Proof.
     intros.
     unfold Sum in H.
-    spliter.
+    分离合取式.
     ex_and H0 A'.
     ex_and H1 C'.
     assert(HH:= grid_not_par).
-    spliter.
+    分离合取式.
     unfold Pj in *.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     induction H3.
       induction H4.
         apply False_ind.
@@ -1262,7 +1262,7 @@ Proof.
         repeat split; auto.
       unfold Pj.
       auto.
-    spliter.
+    分离合取式.
     induction H15.
       apply False_ind.
       apply H15.
@@ -1275,7 +1275,7 @@ Proof.
         apply H2.
         exists O.
         split; Col.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply H.
       ColR.
@@ -1299,12 +1299,12 @@ Proof.
     assert(HSy:= H0).
     unfold Sum in H.
     unfold Sum in H0.
-    spliter.
+    分离合取式.
     assert(Hx:=H).
     assert(Hy:=H0).
     unfold Ar2 in H.
     unfold Ar2 in H0.
-    spliter.
+    分离合取式.
     ex_and H2 A''.
     ex_and H10 C''.
     ex_and H3 A'.
@@ -1314,7 +1314,7 @@ Proof.
       apply(sum_par_strict A X C A' C'); auto.
     assert(A'' <> O /\ (严格平行 O E A'' C'' \/ Y = O)).
       apply(sum_par_strict A Y C A'' C''); auto.
-    spliter.
+    分离合取式.
     unfold Pj in *.
     induction(两点重合的决定性 X O).
       subst X.
@@ -1335,7 +1335,7 @@ Proof.
           apply H19.
           exists A.
           split; Col.
-        spliter.
+        分离合取式.
         assert(A' = A'').
           apply (l6_21_两线交点的唯一性 O E' A A'); Col.
           intro.
@@ -1351,7 +1351,7 @@ Proof.
               apply H23.
               exists A'.
               split; Col.
-            spliter.
+            分离合取式.
             induction H13.
               induction H17.
                 assert(Par C C' C C'').
@@ -1361,7 +1361,7 @@ Proof.
                   apply H27.
                   exists C.
                   split; Col.
-                spliter.
+                分离合取式.
                 assert(C' = C'').
                   apply (l6_21_两线交点的唯一性 A' C' C C'); Col.
                   intro.
@@ -1379,7 +1379,7 @@ Proof.
                       apply H21.
                       exists C'.
                       split; Col.
-                    spliter.
+                    分离合取式.
                     apply(l6_21_两线交点的唯一性 O E C' X); Col.
                     intro.
                     apply H4.
@@ -1463,12 +1463,12 @@ Proof.
     assert(HSy:= H0).
     unfold Sum in H.
     unfold Sum in H0.
-    spliter.
+    分离合取式.
     assert(Hx:=H).
     assert(Hy:=H0).
     unfold Ar2 in H.
     unfold Ar2 in H0.
-    spliter.
+    分离合取式.
     ex_and H2 A''.
     ex_and H10 C''.
     ex_and H3 A'.
@@ -1494,7 +1494,7 @@ Proof.
       apply(sum_par_strict X B C A' C'); auto.
     assert(A'' <> O /\ (严格平行 O E A'' C'' \/ B = O)).
       apply(sum_par_strict Y B C A'' C''); auto.
-    spliter.
+    分离合取式.
     induction H12.
       induction H16.
         assert(Par B C' B C'').
@@ -1504,7 +1504,7 @@ Proof.
           apply H20.
           exists B.
           split; Col.
-        spliter.
+        分离合取式.
         clean_trivial_hyps.
         induction H13.
           induction H17.
@@ -1515,7 +1515,7 @@ Proof.
               apply H22.
               exists C.
               split; Col.
-            spliter.
+            分离合取式.
             assert(C' = C'').
               apply(l6_21_两线交点的唯一性 C C' B C'); Col.
               intro.
@@ -1554,7 +1554,7 @@ Proof.
                   apply H23.
                   exists C'.
                   split; Col.
-                spliter.
+                分离合取式.
                 assert(A'= A'').
                   apply (l6_21_两线交点的唯一性 O E' C' A'); Col.
                   intro.
@@ -1562,7 +1562,7 @@ Proof.
                     apply H16.
                     exists C'.
                     split; Col.
-                  spliter.
+                  分离合取式.
                   apply H1.
                   apply (l6_21_两线交点的唯一性 O E C' O); Col.
                     intro.
@@ -1586,7 +1586,7 @@ Proof.
                       apply H6.
                       exists A'.
                       split; Col.
-                    spliter.
+                    分离合取式.
                     apply (l6_21_两线交点的唯一性 O E A' X); Col.
                     intro.
                     apply H19.
@@ -1615,7 +1615,7 @@ Proof.
             intro.
             subst E.
             apply grid_ok; Col.
-          spliter.
+          分离合取式.
           apply grid_ok.
           apply(共线的传递性5 B C); Col.
         subst C''.
@@ -1629,7 +1629,7 @@ Proof.
           intro.
           subst E.
           apply grid_ok; Col.
-        spliter.
+        分离合取式.
         apply grid_ok.
         apply(共线的传递性5 B C); Col.
       apply False_ind.
@@ -1653,9 +1653,9 @@ Proof.
     intros.
     assert(HS:=H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     assert(HP:= sum_A_O A H1).
     apply(sum_uniquenessB A B O A); auto.
 Qed.
@@ -1665,9 +1665,9 @@ Proof.
     intros.
     assert(HS:=H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     assert(HP:= sum_O_B B H2).
     apply(sum_uniquenessA B A O B); auto.
 Qed.
@@ -1677,7 +1677,7 @@ Proof.
     intros.
     assert(HS:=H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     ex_and H1 A'.
     ex_and H2 C'.
     exists A'.
@@ -1685,7 +1685,7 @@ Proof.
     unfold Pj in *.
     unfold Ar2 in H.
     assert(HH:= grid_not_par).
-    spliter.
+    分离合取式.
     induction(两点重合的决定性 O B).
       subst B.
       assert(HH:=sum_A_O A H12).
@@ -1697,7 +1697,7 @@ Proof.
           apply H4.
           exists O.
           split; Col.
-        spliter.
+        分离合取式.
         induction H3.
           induction H3.
             apply False_ind.
@@ -1706,7 +1706,7 @@ Proof.
             split.
               Col.
             apply (共线的传递性2 _ E'); Col.
-          spliter.
+          分离合取式.
           apply False_ind.
           apply grid_ok.
           assert(Col C' O E).
@@ -1739,7 +1739,7 @@ Proof.
           apply H1.
           exists E'.
           split; Col.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H.
         apply (共线的传递性2 _ A'); Col.
@@ -1765,7 +1765,7 @@ Proof.
     assert(A' <> O /\ (严格平行 O E A' C' \/ B = O)).
       apply(sum_par_strict A B C A' C');auto.
       repeat split; auto.
-    spliter.
+    分离合取式.
     induction H19.
       assert(Par O B C' A').
         apply par_symmetry.
@@ -1773,7 +1773,7 @@ Proof.
       assert(严格平行 O B C' A').
         induction H20.
           auto.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H19.
         exists O.
@@ -1800,7 +1800,7 @@ Proof.
         assert(严格平行 C' A' A C).
           induction H23.
             auto.
-          spliter.
+          分离合取式.
           apply False_ind.
           apply H19.
           exists C'.
@@ -1840,7 +1840,7 @@ Proof.
       induction H1.
         apply False_ind.
         unfold 严格平行四边形 in H1.
-        spliter.
+        分离合取式.
         apply par_distincts in H2.
         tauto.
       assumption.
@@ -1857,14 +1857,14 @@ Proof.
         apply False_ind.
         apply H4.
         unfold Sum in H.
-        spliter.
+        分离合取式.
         unfold Ar2 in H.
-        spliter.
+        分离合取式.
         统计不重合点.
         ColR.
       apply plgf_comm2.
       auto.
-    spliter.
+    分离合取式.
     subst A.
     apply False_ind.
     subst C.
@@ -1879,7 +1879,7 @@ Proof.
 intros.
 apply sum_cong in H.
 unfold 退化平行四边形 in *.
-spliter;split;Cong.
+分离合取式;split;Cong.
 assumption.
 Qed.
 
@@ -1890,7 +1890,7 @@ Proof.
       subst B.
       assert(Col O E A).
         unfold Sum in H.
-        spliter.
+        分离合取式.
         unfold Ar2 in H.
         tauto.
       assert(C = A).
@@ -1905,7 +1905,7 @@ Proof.
       subst A.
       assert(Col O E B).
         unfold Sum in H.
-        spliter.
+        分离合取式.
         unfold Ar2 in H.
         tauto.
       assert(B = C).
@@ -1920,7 +1920,7 @@ Proof.
       left.
       auto.
     assert(HH:=grid_not_par).
-    spliter.
+    分离合取式.
     assert(HH := sum_plg A B C H H2).
     ex_and HH A'.
     ex_and H9 C'.
@@ -1937,7 +1937,7 @@ Proof.
     assert(exists! P : Tpoint, Proj A P B' P' O E').
       apply(project_existence A B' P' O E'); auto.
       apply par_distincts in H12.
-      spliter.
+      分离合取式.
       auto.
       intro.
       apply H4.
@@ -1953,7 +1953,7 @@ Proof.
     apply sump_to_sum.
     unfold Sump.
     unfold Ar2 in H14.
-    spliter.
+    分离合取式.
     repeat split; Col.
     exists B'.
     exists D'.
@@ -1964,11 +1964,11 @@ Proof.
     assert(严格平行 O E B' P').
       induction H12.
         auto.
-      spliter.
+      分离合取式.
       apply False_ind.
       assert(HA:=H11).
       unfold Proj in H11.
-      spliter.
+      分离合取式.
       assert(Col B' O E).
         apply (共线的传递性2 _ P'); Col.
       assert(B' <> O).
@@ -1982,7 +1982,7 @@ Proof.
             apply H24.
             exists E.
             split; Col.
-          spliter.
+          分离合取式.
           contradiction.
         contradiction.
       apply grid_ok.
@@ -1992,13 +1992,13 @@ Proof.
         intro.
         subst D'.
         unfold Proj in *.
-        spliter.
+        分离合取式.
         induction H22.
           induction H22.
             apply H22.
             exists B'.
             split; Col.
-          spliter.
+          分离合取式.
           apply grid_ok.
           apply (共线的传递性2 _ A); Col.
         subst B'.
@@ -2008,16 +2008,16 @@ Proof.
         apply par_symmetry.
         apply (par_col_par _ _ _ E); Col; Par.
       unfold Proj in H13.
-      spliter.
+      分离合取式.
       Col.
     assert(严格平行 O A B' D').
       induction H19.
         auto.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply H18.
       unfold Proj in H13.
-      spliter.
+      分离合取式.
       exists O.
       split.
         Col.
@@ -2025,7 +2025,7 @@ Proof.
       apply (共线的传递性2 _ D'); Col.
     assert(Par O B' A D').
       unfold Proj in H13.
-      spliter.
+      分离合取式.
       induction H24.
         apply par_symmetry.
         apply(par_col_par _ _ _ E'); Par.
@@ -2035,7 +2035,7 @@ Proof.
           exists O.
           split;Col.
         unfold Proj in H11.
-        spliter.
+        分离合取式.
         auto.
       subst D'.
       apply False_ind.
@@ -2058,7 +2058,7 @@ Proof.
       apply plg_permut in H23.
       apply plg_par in H23.
         unfold Proj in *.
-        spliter.
+        分离合取式.
         induction H32.
           left.
           apply (par_trans _ _ B B'); Par.
@@ -2076,7 +2076,7 @@ Proof.
       subst C.
       assert(HN:= sum_A_null A B H).
       contradiction.
-    spliter.
+    分离合取式.
     subst A.
     tauto.
 Qed.
@@ -2092,7 +2092,7 @@ Proof.
     induction (两点重合的决定性 A O).
       subst A.
       unfold Ar2 in H.
-      spliter.
+      分离合取式.
       apply 等长的对称性 in H0.
       apply 等长的同一性 in H0.
       subst C.
@@ -2100,7 +2100,7 @@ Proof.
     induction (两点重合的决定性 B O).
       subst B.
       unfold Ar2 in H.
-      spliter.
+      分离合取式.
       apply 等长的对称性 in H1.
       apply 等长的同一性 in H1.
       subst C.
@@ -2109,7 +2109,7 @@ Proof.
     split; auto.
     unfold Ar2 in H.
     assert(HH:=grid_not_par).
-    spliter.
+    分离合取式.
     assert(exists ! P' : Tpoint, Proj A P' O E' E E').
       apply(project_existence A O E' E E'); auto.
       intro.
@@ -2117,27 +2117,27 @@ Proof.
       Par.
     ex_and H13 A'.
     unfold unique in H14.
-    spliter.
+    分离合取式.
     clear H14.
     unfold Proj in H13.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     assert(HH:=parallel_existence1 O E A' H7).
     ex_and HH P'.
     assert(exists ! C' : Tpoint, Proj B C' A' P' O E').
       apply(project_existence B A' P' O E'); auto.
       apply par_distincts in H.
-      spliter.
+      分离合取式.
       auto.
       intro.
       apply H5.
       apply(par_trans _ _ A' P'); Par.
     ex_and H13 C'.
     unfold unique in H14.
-    spliter.
+    分离合取式.
     clear H14.
     unfold Proj in H13.
-    spliter.
+    分离合取式.
     exists A'.
     exists C'.
     assert(A' <> O).
@@ -2148,7 +2148,7 @@ Proof.
           apply H17.
           exists E.
           split; Col.
-        spliter.
+        分离合取式.
         contradiction.
       contradiction.
     assert(严格平行 O E A' P').
@@ -2160,7 +2160,7 @@ Proof.
         apply H.
         exists X.
         split; Col.
-      spliter.
+      分离合取式.
       apply grid_ok.
       ColR.
     assert(A <> A').
@@ -2182,7 +2182,7 @@ Proof.
             apply H19.
             exists A'.
             split; Col.
-          spliter.
+          分离合取式.
           apply grid_ok.
           ColR.
         subst A'.
@@ -2204,7 +2204,7 @@ Proof.
           apply H19.
           exists A'.
           split; Col.
-        spliter.
+        分离合取式.
         apply grid_ok.
         ColR.
       subst A'.
@@ -2253,12 +2253,12 @@ Proof.
       induction H26.
         apply plg_comm2.
         assumption.
-      spliter.
+      分离合取式.
       subst C'.
       subst A'.
       tauto.
     apply plg_par in H26.
-      spliter.
+      分离合取式.
       induction H17.
         left.
         apply(par_trans _ _ A A'); Par.
@@ -2277,7 +2277,7 @@ Proof.
         exists O.
         split; Col.
         ColR.
-      spliter.
+      分离合取式.
       apply grid_ok.
       ColR.
     subst C.
@@ -2361,22 +2361,22 @@ Proof.
               unfold 平行四边形 in H6.
               induction H6.
                 unfold 严格平行四边形 in H6.
-                spliter.
+                分离合取式.
                 unfold TS in H6.
-                spliter.
+                分离合取式.
                 apply False_ind.
                 apply H9.
                 Col.
               unfold 退化平行四边形 in H6.
-              spliter.
+              分离合取式.
               apply 等长的对称性 in H9.
               apply 等长的同一性 in H9.
               auto.
-            spliter.
+            分离合取式.
             subst MA1.
             subst MA2.
             auto.
-          spliter.
+          分离合取式.
           subst MA1.
           subst C''.
           subst A''.
@@ -2384,14 +2384,14 @@ Proof.
           unfold 平行四边形 in H0.
           induction H0.
             unfold 严格平行四边形 in H0.
-            spliter.
+            分离合取式.
             apply par_distincts in H5.
             tauto.
           unfold 退化平行四边形 in H0.
-          spliter.
+          分离合取式.
           apply 等长的同一性 in H6.
           auto.
-        spliter.
+        分离合取式.
         contradiction.
       left; auto.
     left; auto.
@@ -2406,7 +2406,7 @@ Proof.
     induction(两点重合的决定性 A O).
       subst A.
       assert(HH:= grid_not_par O E E' H).
-      spliter.
+      分离合取式.
       induction H3.
         apply False_ind.
         apply H7.
@@ -2427,7 +2427,7 @@ Proof.
         apply H6.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       apply(l6_21_两线交点的唯一性 O E' A A'); Col.
       intro.
       apply H.
@@ -2490,14 +2490,14 @@ Proof.
     intros.
     assert(HH:= H).
     unfold Sum in HH.
-    spliter.
+    分离合取式.
     ex_and H5 A0.
     ex_and H6 C0.
     unfold Ar2 in H4.
-    spliter.
+    分离合取式.
     assert(HH:= grid_not_par O E E' H4).
     unfold Ar1 in H0.
-    spliter.
+    分离合取式.
     induction(两点重合的决定性 A O).
       subst A.
       unfold Pj in H1.
@@ -2550,7 +2550,7 @@ Proof.
         Col.
       contradiction.
     unfold Sum.
-    spliter.
+    分离合取式.
     split.
       repeat split; Col.
     assert(HH:=plg_existence A O B' H22).
@@ -2559,7 +2559,7 @@ Proof.
     exists D.
     assert(HP:= H26).
     apply plg_par in H26.
-      spliter.
+      分离合取式.
       repeat split; Col.
         apply pj_comm; auto.
         left.
@@ -2581,7 +2581,7 @@ Proof.
         auto.
       induction H29.
         apply plg_par in H29.
-          spliter.
+          分离合取式.
           induction H2.
             induction H3.
               assert(Par B B' C C').
@@ -2593,7 +2593,7 @@ Proof.
                 apply H32.
                 exists C.
                 split; Col.
-              spliter.
+              分离合取式.
               left.
               apply par_right_comm.
               apply (par_col_par _ _ _ C); Col; Par.
@@ -2603,7 +2603,7 @@ Proof.
                 apply H29.
                 exists O.
                 split; ColR.
-              spliter.
+              分离合取式.
               apply H25.
               apply(l6_21_两线交点的唯一性 O E E' O); ColR.
             subst C'.
@@ -2622,13 +2622,13 @@ Proof.
           apply H27.
           exists O.
           split; ColR.
-        spliter.
+        分离合取式.
         apply H4.
         apply (共线的传递性2 _ A).
           auto.
           Col.
         apply (共线的传递性2 _ B'); Col.
-      spliter.
+      分离合取式.
       contradiction.
       intro.
       subst.
@@ -2648,7 +2648,7 @@ Proof.
     unfold Sum in H.
     unfold Sum in H0.
     unfold Sum in H1.
-    spliter.
+    分离合取式.
     assert(HA1:= H).
     assert(HA2:= H0).
     assert(HA3 := H1).
@@ -2658,7 +2658,7 @@ Proof.
     clear H2.
     clear H3.
     clear H4.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     induction (两点重合的决定性 A O).
       subst A.
@@ -2682,7 +2682,7 @@ Proof.
       subst AB.
       apply sum_A_O; Col.
     assert(HH:= grid_not_par O E E' H).
-    spliter.
+    分离合取式.
     apply sum_comm in HS1; auto.
     apply sum_comm in HS3; auto.
     assert(S1:=HS1).
@@ -2691,7 +2691,7 @@ Proof.
     unfold Sum in HS1.
     unfold Sum in HS2.
     unfold Sum in HS3.
-    spliter.
+    分离合取式.
     ex_and H20 B1'.
     ex_and H21 A1.
     ex_and H18 B1''.
@@ -2703,7 +2703,7 @@ Proof.
     subst B1''.
     clean_duplicated_hyps.
     assert(HH:=sum_par_strict O E E' H B A AB B1' A1 H19 H1 H20 H21 H22 H23 H24).
-    spliter.
+    分离合取式.
     assert(严格平行 O E B1' A1).
       induction H25.
         auto.
@@ -2711,7 +2711,7 @@ Proof.
     clear H25.
     clear H22.
     assert(HH:=grid_not_par O E E' H).
-    spliter.
+    分离合取式.
     assert(exists ! P' : Tpoint, Proj AB P' O E' E E').
       apply(project_existence AB O E' E E' H37 H36).
       intro.
@@ -2719,10 +2719,10 @@ Proof.
       Par.
     ex_and H38 AB2'.
     unfold unique in H39.
-    spliter.
+    分离合取式.
     clear H39.
     unfold Proj in H38.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     assert(A <> AB).
       intro.
@@ -2755,10 +2755,10 @@ Proof.
           apply H35.
           exists E.
           split; Col.
-        spliter.
+        分离合取式.
         contradiction.
       apply plg_par in H34; auto.
-      spliter.
+      分离合取式.
       repeat split; Col.
       exists AB2'.
       exists C2.
@@ -2793,7 +2793,7 @@ Proof.
       assert(平行四边形 B AB ABC BC).
         induction H43.
           assumption.
-        spliter.
+        分离合取式.
         contradiction.
       clear H43.
       assert(平行四边形 O C ABC AB \/ O = C /\ BC = B /\ AB = ABC /\ O = AB).
@@ -2808,7 +2808,7 @@ Proof.
       assert(平行四边形 O C ABC AB).
         induction H43.
           assumption.
-        spliter.
+        分离合取式.
         subst C.
         tauto.
       clear H43.
@@ -2822,12 +2822,12 @@ Proof.
       assert(平行四边形 ABC AB AB2' C2).
         induction H43.
           assumption.
-        spliter.
+        分离合取式.
         subst C.
         tauto.
       clear H43.
       apply plg_par in H46; auto.
-      spliter.
+      分离合取式.
       left.
       apply(par_trans _ _ AB AB2'); Par.
     subst AB2'.
@@ -2852,7 +2852,7 @@ Proof.
     assert(平行四边形 BC C A O).
       induction H38.
         assumption.
-      spliter.
+      分离合取式.
       subst A.
       tauto.
     clear H38.
@@ -2881,9 +2881,9 @@ Proof.
     unfold Sum in H.
     unfold Sum in H0.
     unfold Sum in H1.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     apply sum_comm; auto.
     apply(sum_assoc_1 O E E' C B A BC AB ABC ).
@@ -2918,9 +2918,9 @@ Proof.
       tauto.
     assert(HA:=H1).
     unfold Ar2 in H1.
-    spliter.
+    分离合取式.
     assert(HH:=grid_not_par O E E' H1).
-    spliter.
+    分离合取式.
     induction(两点重合的决定性 A O).
       subst A.
       apply sum_O_B_eq in H; Col.
@@ -2940,15 +2940,15 @@ Proof.
         apply H14.
         exists E''.
         split; Col.
-      spliter.
+      分离合取式.
       apply H0.
       Col.
     ex_and H14 A''.
     unfold unique in H15.
-    spliter.
+    分离合取式.
     clear H15.
     unfold Proj in H14.
-    spliter.
+    分离合取式.
     assert(Par A A'' E E'').
       induction H18; auto.
       subst A''.
@@ -2967,7 +2967,7 @@ Proof.
         apply H19.
         exists E.
         split; Col.
-      spliter.
+      分离合取式.
       contradiction.
     repeat split; Col.
     exists A''.
@@ -2977,12 +2977,12 @@ Proof.
       Par.
       Col.
       apply plg_par in H18; auto.
-      spliter.
+      分离合取式.
       left.
       apply par_symmetry.
       apply (par_col_par _ _ _ B); Par; Col.
       apply plg_par in H18; auto.
-      spliter.
+      分离合取式.
       left.
       apply par_symmetry.
       apply (par_col_par _ _ _ A''); Par; Col.
@@ -3006,7 +3006,7 @@ Proof.
     assert(平行四边形 C'' A'' A C).
       induction H23.
         assumption.
-      spliter.
+      分离合取式.
       subst B.
       tauto.
     clear H23.
@@ -3031,7 +3031,7 @@ Proof.
       assert(HH:= plg_uniqueness A'' A'' A A C H26 H24).
       contradiction.
     apply plg_par in H24; auto.
-    spliter.
+    分离合取式.
     apply(par_trans _ _ A'' A); Par.
 Qed.
 
@@ -3054,15 +3054,15 @@ Proof.
       tauto.
     assert(HA:=H3).
     unfold Ar2 in H3.
-    spliter.
+    分离合取式.
     assert(HH:=grid_not_par O E E' H3).
-    spliter.
+    分离合取式.
     assert(~Col O U E').
       intro.
       apply H3.
       ColR.
     assert(HH:=grid_not_par O U E' H13).
-    spliter.
+    分离合取式.
     induction(两点重合的决定性 A O).
       subst A.
       apply sum_O_B_eq in H; Col.
@@ -3084,7 +3084,7 @@ Proof.
       repeat split ; auto; ColR.
     assert(HB:= H23).
     unfold Ar2 in H23.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     assert(exists ! P' : Tpoint, Proj A P' O E' U E').
       apply(project_existence A O E' U E' H19 H11 ).
@@ -3093,10 +3093,10 @@ Proof.
       Par.
     ex_and H18 A''.
     unfold unique in H23.
-    spliter.
+    分离合取式.
     clear H23.
     unfold Proj in H18.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     assert(Par A A'' U E').
       induction H29.
@@ -3119,12 +3119,12 @@ Proof.
         apply H18.
         exists U.
         split; Col.
-      spliter.
+      分离合取式.
       apply H3.
       ColR.
     assert(HP1:=H23).
     apply plg_par in H23; auto.
-    spliter.
+    分离合取式.
     repeat split; auto.
     exists A''.
     exists C''.
@@ -3155,12 +3155,12 @@ Proof.
     assert(平行四边形 A C C'' A'').
       induction H32.
         assumption.
-      spliter.
+      分离合取式.
       contradiction.
     clear H32.
     apply plg_par in H33.
       left.
-      spliter.
+      分离合取式.
       apply(par_trans _ _ A A''); Par.
       intro.
       subst C.
@@ -3174,7 +3174,7 @@ Proof.
       exists C.
       split; Col.
       ColR.
-    spliter.
+    分离合取式.
     apply H3.
     ColR.
 Qed.
@@ -3199,7 +3199,7 @@ Proof.
     ex_and H9 C1.
     unfold Ar1 in *.
     unfold Ar2 in H6.
-    spliter.
+    分离合取式.
     subst A.
     clean_duplicated_hyps.
     assert(A' = O').
@@ -3220,7 +3220,7 @@ Proof.
           apply H3.
           exists O.
           split; Col.
-        spliter.
+        分离合取式.
         Col.
       subst A'.
       Col.
@@ -3251,7 +3251,7 @@ Proof.
               apply H13.
               exists B.
               split; Col.
-            spliter.
+            分离合取式.
             Col.
           subst B'.
           Col.
@@ -3284,16 +3284,16 @@ Proof.
     ex_and H9 C1.
     unfold Ar1 in *.
     unfold Ar2 in H6.
-    spliter.
+    分离合取式.
     assert(HG:=grid_not_par O E E' H6).
-    spliter.
+    分离合取式.
     assert(~Col O' E' E).
       intro.
       apply H.
       exists E.
       split; Col.
     assert(HG:=grid_not_par O' E' E H28).
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     induction(两点重合的决定性 B O).
       subst B.
@@ -3310,7 +3310,7 @@ Proof.
           apply H3.
           exists O.
           split; Col.
-        spliter.
+        分离合取式.
         apply H.
         exists O'.
         split; Col.
@@ -3330,7 +3330,7 @@ Proof.
           apply H3.
           exists O'.
           split; Col.
-        spliter.
+        分离合取式.
         contradiction.
       subst A.
       apply H15.
@@ -3340,7 +3340,7 @@ Proof.
       left.
       auto.
     unfold 退化平行四边形 in H32.
-    spliter.
+    分离合取式.
     assert(Proj O O' O' E' E E').
       unfold Proj.
       repeat split; Col.
@@ -3414,13 +3414,13 @@ Proof.
         induction H44.
           induction H44.
           unfold TS in H44.
-          spliter.
+          分离合取式.
           apply False_ind.
           apply H47.
           ColR.
         assumption.
       unfold 退化平行四边形 in H45.
-      spliter.
+      分离合取式.
       apply cong_sum; auto.
         induction H49.
           left; auto.
@@ -3428,7 +3428,7 @@ Proof.
         repeat split; Col.
         Cong.
       Cong.
-    spliter.
+    分离合取式.
     subst A'.
     tauto.
 Qed.
@@ -3440,9 +3440,9 @@ Proof.
       assumption.
     assert(HS:= H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     assert(退化平行四边形 O A O A).
       apply(sum_cong O E E' H A A O HS).
       left; auto.
@@ -3466,9 +3466,9 @@ Proof.
     subst A.
     assert(HS:= H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     assert(HH:= sum_O_O O E E' H).
     apply H0.
     apply (sum_uniqueness O E E' O O); assumption.
@@ -3481,9 +3481,9 @@ Proof.
     ex_and H MA.
     unfold Opp in H.
     unfold Sum in *.
-    spliter.
+    分离合取式.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     repeat split; auto.
 Qed.
 
@@ -3507,7 +3507,7 @@ Proof.
     assert(Col O E MB).
       unfold Opp in H2.
       unfold Sum in H2.
-      spliter.
+      分离合取式.
       unfold Ar2 in H2.
       tauto.
     assert(HS:=sum_exists O E E' H A MB H0 H3).
@@ -3524,7 +3524,7 @@ Proof.
     assert(Ar2 O E E' A B D1).
       apply (diff_ar2); assumption.
     unfold Ar2 in H1.
-    spliter.
+    分离合取式.
     unfold Diff in *.
     ex_and H MB1.
     ex_and H0 MB2.
@@ -3556,8 +3556,8 @@ Lemma diff_O_A : forall O E E' A mA,
   ~ Col O E E' -> Opp O E E' A mA -> Diff O E E' O A mA.
 Proof.
     intros.
-    assert (Col O E A) by (unfold Opp, Sum, Ar2 in *; spliter; auto).
-    assert (Col O E mA) by (unfold Opp, Sum, Ar2 in *; spliter; auto).
+    assert (Col O E A) by (unfold Opp, Sum, Ar2 in *; 分离合取式; auto).
+    assert (Col O E mA) by (unfold Opp, Sum, Ar2 in *; 分离合取式; auto).
     revert H0; revert H1; revert H2; intros.
     unfold Diff.
     exists mA.
@@ -3576,7 +3576,7 @@ Proof.
     assert(Ar2 O E E' O A' mA).
       apply sum_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     assert(Sum O E E' O A' A').
       apply (sum_O_B); auto.
@@ -3595,7 +3595,7 @@ Proof.
     assert(Ar2 O E E' A' B C).
       apply diff_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     unfold Diff in *.
     ex_and H mB.
@@ -3615,7 +3615,7 @@ Proof.
     assert(Ar2 O E E' A B' C).
       apply diff_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     unfold Diff in *.
     ex_and H mB.
@@ -3632,7 +3632,7 @@ Proof.
     assert(Ar2 O E E' A B O).
       apply diff_ar2; auto.
     unfold Ar2 in H0.
-    spliter.
+    分离合取式.
     clear H3.
     assert(Diff O E E' A A O).
       apply diff_null; Col.
@@ -3645,10 +3645,10 @@ Proof.
     intros.
     unfold Ar2.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     clear H1.
     unfold 中点 in H0.
-    spliter.
+    分离合取式.
     induction (两点重合的决定性 A B).
       subst B.
       apply 中间性的同一律 in H0.
@@ -3668,7 +3668,7 @@ Proof.
     assert(Ar2 O E E' A B S).
       apply sum_ar2; auto.
     unfold Ar2 in H0.
-    spliter.
+    分离合取式.
     assert(HH:=opp_exists O E E' H0 A H1).
     ex_and HH mA.
     exists mA.
@@ -3677,7 +3677,7 @@ Proof.
     assert(Ar2 O E E' mA A O).
       apply sum_ar2; auto.
     unfold Ar2 in H5.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     clear H8.
     induction(两点重合的决定性 A O).
@@ -3713,20 +3713,20 @@ Proof.
       induction H9.
         apply False_ind.
         unfold 严格平行四边形 in H9.
-        spliter.
+        分离合取式.
         unfold TS in H9.
-        spliter.
+        分离合取式.
         apply H12.
         ColR.
       unfold 退化平行四边形 in H.
       unfold 退化平行四边形 in H4.
       unfold 退化平行四边形 in H9.
-      spliter.
+      分离合取式.
       apply cong_sum; auto.
         repeat split; Col.
         Cong.
       Cong.
-    spliter.
+    分离合取式.
     subst A.
     tauto.
 Qed.
@@ -3737,7 +3737,7 @@ intros.
 assert(Ar2 O E E' S A B).
 apply diff_ar2; auto.
 unfold Ar2 in H0.
-spliter.
+分离合取式.
 induction(两点重合的决定性 A O).
 subst A.
 assert(HH:=diff_A_O O E E' S H0 H1).
@@ -3784,18 +3784,18 @@ induction H9.
 induction H9.
 apply False_ind.
 unfold 严格平行四边形 in H9.
-spliter.
+分离合取式.
 unfold TS in H9.
-spliter.
+分离合取式.
 apply H12.
 ColR.
 unfold 退化平行四边形 in H.
 unfold 退化平行四边形 in H5.
 unfold 退化平行四边形 in H9.
-spliter.
+分离合取式.
 apply cong_sum; Cong.
 repeat split; Col.
-spliter.
+分离合取式.
 subst A.
 tauto.
 Qed.
@@ -3809,7 +3809,7 @@ Proof.
     assert(Ar2 O E E' B A BmA).
       apply diff_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     apply diff_sum in H.
     apply diff_sum in H0.
@@ -3853,13 +3853,13 @@ Proof.
         apply False_ind.
         unfold 严格平行四边形 in H9.
         unfold TS in H9.
-        spliter.
+        分离合取式.
         apply H13.
         ColR.
       unfold 退化平行四边形 in H.
       unfold 退化平行四边形 in H0.
       unfold 退化平行四边形 in H9.
-      spliter.
+      分离合取式.
       unfold Opp.
       apply cong_sum; Cong.
         right.
@@ -3867,7 +3867,7 @@ Proof.
         subst BmA.
         tauto.
       repeat split; Col.
-    spliter.
+    分离合取式.
     subst AmB.
     subst BmA.
     unfold Opp.
@@ -3894,7 +3894,7 @@ Proof.
     induction(两点重合的决定性 A B).
       subst B.
       unfold 退化平行四边形 in H0.
-      spliter.
+      分离合取式.
       assert(O = C \/ 中点 A O C).
         apply(共线点间距相同要么重合要么中点 A O C H0).
         Cong.
@@ -3910,7 +3910,7 @@ Proof.
       tauto.
     unfold Ar2 in H.
     unfold 退化平行四边形 in H0.
-    spliter.
+    分离合取式.
     apply cong_sum; auto.
       repeat split; auto.
       Cong.
@@ -3926,9 +3926,9 @@ Proof.
     unfold Opp in H.
     assert(HS:=H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     induction (两点重合的决定性 A O).
       subst A.
       assert(HH:= sum_A_O_eq O E E' H MA O HS).
@@ -3940,7 +3940,7 @@ Proof.
       apply(sum_cong O E E' H MA A O HS).
       tauto.
     unfold 退化平行四边形 in H5.
-    spliter.
+    分离合取式.
     assert(A = MA \/ 中点 O A MA).
       apply(共线点间距相同要么重合要么中点 O A MA).
         Col.
@@ -3957,7 +3957,7 @@ Proof.
     assert(Ar2 O E E' B A dBA).
       apply diff_ar2; auto.
     unfold Ar2 in H1.
-    spliter.
+    分离合取式.
     apply diff_sum in H0.
     induction(两点重合的决定性 A O).
       subst A.
@@ -3979,7 +3979,7 @@ Proof.
         auto.
       apply opp_midpoint in H7.
       unfold 中点 in H7.
-      spliter.
+      分离合取式.
       unfold 退化平行四边形.
       repeat split; Col.
         Cong.
@@ -3998,7 +3998,7 @@ Proof.
     assert(Ar2 O E E' AB C S).
       apply sum_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     repeat split; auto.
 Qed.
 
@@ -4007,7 +4007,7 @@ Proof.
     intros.
     assert(~Col O E E' /\ Col O E A /\ Col O E B /\ Col O E C /\ Col O E S).
       apply sum3_col; auto.
-    spliter.
+    分离合取式.
     unfold sum3 in H.
     ex_and H AB.
     assert(HH:= sum_exists O E E' H0 A C H1 H3).
@@ -4028,7 +4028,7 @@ Proof.
     intros.
     assert(~Col O E E' /\ Col O E A /\ Col O E B /\ Col O E C /\ Col O E S).
       apply sum3_col; auto.
-    spliter.
+    分离合取式.
     unfold sum3 in H.
     ex_and H AB.
     unfold sum3.
@@ -4050,13 +4050,13 @@ Lemma sum3_exists : forall O E E' A B C, Ar2 O E E' A B C -> exists S, sum3 O E 
 Proof.
     intros.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     assert(HH:=sum_exists O E E' H A B H0 H1).
     ex_and HH AB.
     assert(Ar2 O E E' A B AB).
       apply sum_ar2; auto.
     unfold Ar2 in H4.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     assert(HH:=sum_exists O E E' H AB C H7 H2).
     ex_and HH ABC.
@@ -4088,7 +4088,7 @@ Proof.
     assert(Ar2 O E E' ABC D S).
       apply sum_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     repeat split; auto.
 Qed.
 
@@ -4105,7 +4105,7 @@ Proof.
     assert(Ar2 O E E' AB CD S).
       apply sum_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     repeat split; auto.
 Qed.
 
@@ -4125,7 +4125,7 @@ Proof.
     assert(Ar2 O E E' ABC X S).
       apply sum_ar2; auto.
     unfold Ar2 in H2.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     unfold Sum4.
     exists ABC.
@@ -4136,7 +4136,7 @@ Lemma sum_A_exists : forall O E E' A AB, Ar2 O E E' A AB O -> exists B, Sum O E 
 Proof.
     intros.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     assert(HH:=diff_exists O E E' AB A H H1 H0).
     ex_and HH B.
     exists B.
@@ -4148,7 +4148,7 @@ Lemma sum_B_exists : forall O E E' B AB, Ar2 O E E' B AB O -> exists A, Sum O E 
 Proof.
     intros.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     assert(HH:=diff_exists O E E' AB B H H1 H0).
     ex_and HH A.
     exists A.
@@ -4163,7 +4163,7 @@ Proof.
       intro.
       assert(~Col O E E' /\ Col O E A /\ Col O E B /\ Col O E C /\ Col O E D /\ Col O E S).
         apply sum4_col; auto.
-      spliter.
+      分离合取式.
       assert(HS1:= sum_exists O E E' H0 A B H1 H2).
       assert(HS2:= sum_exists O E E' H0 C D H3 H4).
       ex_and HS1 AB.
@@ -4176,7 +4176,7 @@ Proof.
       assert(Ar2 O E E' C D CD).
         apply sum_ar2; auto.
       unfold Ar2 in *.
-      spliter.
+      分离合取式.
       clean_duplicated_hyps.
       split; auto.
       split; auto.
@@ -4202,7 +4202,7 @@ Proof.
     assert(Ar2 O E E' AB CD S).
       apply sum_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     unfold Sum4.
     assert(HS:=sum_exists O E E' H2 AB C H13 H8).
@@ -4223,7 +4223,7 @@ Proof.
     intros.
     assert( ~Col O E E' /\ Col O E A /\ Col O E B /\ Col O E C /\ Col O E D /\ Col O E S).
       apply sum4_col; auto.
-    spliter.
+    分离合取式.
     assert(HH:=sum4_equiv O E E' A B C D S).
     destruct HH.
     assert(sum22 O E E' A B C D S).
@@ -4252,7 +4252,7 @@ Proof.
     assert(Ar2 O E E' D A AD).
       apply sum_ar2; auto.
     unfold Ar2 in H20.
-    spliter.
+    分离合取式.
     clean_trivial_hyps.
     assert(HP:= sum_exists O E E' H0 AD B H23 H2); auto.
     ex_and HP ABD.
@@ -4297,7 +4297,7 @@ Proof.
     intros.
     assert(~Col O E E' /\ Col O E A /\ Col O E B /\ Col O E C /\ Col O E D /\ Col O E S).
       apply sum4_col; auto.
-    spliter.
+    分离合取式.
     assert(HH:= sum4_equiv O E E' A B C D S).
     destruct HH.
     apply H6 in H.
@@ -4321,7 +4321,7 @@ Proof.
     intros.
     assert(~Col O E E' /\ Col O E A /\ Col O E B /\ Col O E C /\ Col O E D /\ Col O E S).
       apply sum22_col; auto.
-    spliter.
+    分离合取式.
     unfold sum22 in H.
     ex_and H AB.
     ex_and H6 CD.
@@ -4350,7 +4350,7 @@ Proof.
     assert(Ar2 O E E' AB CD S).
       apply sum_ar2;auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     assert(sum22 O E E' A B C D S).
       unfold sum22.
@@ -4384,7 +4384,7 @@ Proof.
     assert(Ar2 O E E' C A dCA).
       apply diff_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     unfold Diff in H.
     ex_and H mA.
@@ -4431,7 +4431,7 @@ Proof.
     assert(Ar2 O E E' dCB dBA dCA).
       apply sum_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     unfold Diff in H.
     ex_and H mA.
@@ -4474,7 +4474,7 @@ Proof.
     assert(Ar2 O E E' dXA dYB dZC).
       apply sum_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     apply diff_sum in H1.
     apply diff_sum in H2.
@@ -4522,7 +4522,7 @@ Proof.
     assert(Ar2 O E E' Z C dZC).
       apply diff_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     assert(HH:=sum_exists O E E' H4 dXA dYB H17 H14).
     ex_and HH dZC'.
@@ -4546,19 +4546,19 @@ Lemma sum_diff_diff : forall O E E' AX BX CX AXMBX AXMCX BXMCX,
 Proof.
 intros O E E' AX BX CX AXMBX AXMCX BXMCX HAXMBX HAXMCX HBXMCX.
 assert (HNC : ~ Col O E E')
-  by (unfold Diff, Sum, Ar2 in *; destruct HAXMBX; spliter; auto).
+  by (unfold Diff, Sum, Ar2 in *; destruct HAXMBX; 分离合取式; auto).
 assert (HColAX : Col O E AX)
-  by (unfold Diff, Sum, Ar2 in *; destruct HAXMBX; spliter; auto).
+  by (unfold Diff, Sum, Ar2 in *; destruct HAXMBX; 分离合取式; auto).
 assert (HColBX : Col O E BX)
-  by (unfold Diff, Sum, Ar2 in *; destruct HBXMCX; spliter; auto).
+  by (unfold Diff, Sum, Ar2 in *; destruct HBXMCX; 分离合取式; auto).
 assert (HColCX : Col O E CX)
-  by (unfold Diff, Opp, Sum, Ar2 in *; destruct HBXMCX; spliter; auto).
+  by (unfold Diff, Opp, Sum, Ar2 in *; destruct HBXMCX; 分离合取式; auto).
 assert (HColAXMBX : Col O E AXMBX)
-  by (unfold Diff, Sum, Ar2 in *; destruct HAXMBX; spliter; auto).
+  by (unfold Diff, Sum, Ar2 in *; destruct HAXMBX; 分离合取式; auto).
 assert (HColAXMCX : Col O E AXMCX)
-  by (unfold Diff, Sum, Ar2 in *; destruct HAXMCX; spliter; auto).
+  by (unfold Diff, Sum, Ar2 in *; destruct HAXMCX; 分离合取式; auto).
 assert (HColBXMCX : Col O E BXMCX)
-  by (unfold Diff, Sum, Ar2 in *; destruct HBXMCX; spliter; auto).
+  by (unfold Diff, Sum, Ar2 in *; destruct HBXMCX; 分离合取式; auto).
 destruct (opp_exists O E E' HNC BX) as [MBX HMBX]; Col.
 assert (HSum1 : Sum O E E' AX MBX AXMBX).
   {
@@ -4575,7 +4575,7 @@ apply sum_assoc_1 with AX MBX MCX; auto.
 
   {
   apply sum_assoc_2 with BX MCX O; auto; apply sum_O_B; Col.
-  unfold Opp, Sum, Ar2 in *; spliter; Col.
+  unfold Opp, Sum, Ar2 in *; 分离合取式; Col.
   }
 
   {

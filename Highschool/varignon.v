@@ -69,7 +69,7 @@ assert (Par B D L I /\ Cong B X L I)
   by (apply (广义三角形中位线平行于第三边且与其一半相等 A B D X L I);finish).
 assert (Par B D K J /\ Cong B X K J)
   by (apply (广义三角形中位线平行于第三边且与其一半相等 C B D X K J);finish).
-spliter.
+分离合取式.
 assert (Par I L J K)
   by (eapply par_trans with B D;finish).
 assert (Cong I L J K)
@@ -80,7 +80,7 @@ assert (Par A C J I /\ Cong A X' J I)
   by (apply (广义三角形中位线平行于第三边且与其一半相等 B A C X' J  I);finish).
 assert (Par A C K L /\ Cong A X' K L)
   by (apply (广义三角形中位线平行于第三边且与其一半相等 D A C X' K L);finish).
-spliter.
+分离合取式.
 assert (Par I J K L)
   by (eapply par_trans with A C;finish).
 assert (Cong I J K L)
@@ -115,7 +115,7 @@ assert (Par B D L I /\ Cong B X L I)
   by (apply (广义三角形中位线平行于第三边且与其一半相等 A B D X L I);finish).
 assert (Par B D K J /\ Cong B X K J)
   by (apply (广义三角形中位线平行于第三边且与其一半相等 C B D X K J);finish).
-spliter.
+分离合取式.
 assert (Par I L J K)
   by (eapply par_trans with B D;finish).
 assert (Cong I L J K)
@@ -126,7 +126,7 @@ assert (Par A C J I /\ Cong A X' J I)
   by (apply (广义三角形中位线平行于第三边且与其一半相等 B A C X' J  I);finish).
 assert (Par A C K L /\ Cong A X' K L)
   by (apply (广义三角形中位线平行于第三边且与其一半相等 D A C X' K L);finish).
-spliter.
+分离合取式.
 assert (Par I J K L)
   by (eapply par_trans with A C;finish).
 assert (Cong I J K L)
@@ -171,7 +171,7 @@ induction (两点重合的决定性 A D).
   apply (退化三角形中位线定理综合 B L C K L X);Col;中点.
    intro;treat_equalities. intuition.
    intro;treat_equalities. intuition.
-   spliter.
+   分离合取式.
    Cong.
  repeat split.
  show_distinct L X . intuition.
@@ -191,7 +191,7 @@ assert (Par A B L X /\
        Cong B I X L /\
        Cong A L X I /\ Cong D L X I /\ Cong B X L I /\ Cong D X L I).
 apply (广义三角形中位线定理综合 A B D X L I);auto.
-spliter.
+分离合取式.
 induction (两点重合的决定性 C D).
  treat_equalities.
  intuition.
@@ -210,7 +210,7 @@ assert (Par B C X K /\
        Cong C L K X /\
        Cong B X K L /\ Cong D X K L /\ Cong C K X L /\ Cong D K X L).
 apply (广义三角形中位线定理综合 B C D K X L);auto.
-spliter.
+分离合取式.
 induction (两点重合的决定性 I K).
   treat_equalities.
   assert (平行四边形 A D B C) by (apply mid_plg with I;中点).
@@ -218,7 +218,7 @@ induction (两点重合的决定性 I K).
   exfalso.
   apply Plg_perm in H35.
   apply Plg_perm in H39.
-  spliter.
+  分离合取式.
   apply (plg_not_comm_1 B D A C);auto.
 
 apply 不重合共线点间距相同则为中点组2.

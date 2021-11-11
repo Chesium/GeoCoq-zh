@@ -16,7 +16,7 @@ Proof.
   destruct HE as [E].
   assert(Hdiff := HSuma).
   apply 和角推出不重合 in Hdiff.
-  spliter.
+  分离合取式.
   统计不重合点.
   assert(HNCol1 : ~ Col B C A) by (apply (one_side_not_col123 _ _ _ D); auto).
   assert(HNCol2 : ~ Col B C D) by (apply (one_side_not_col123 _ _ _ A); Side).
@@ -66,7 +66,7 @@ Proof.
     apply (l11_10 D' C M E B M); Out; 等角.
   }
   unfold BetS in HY.
-  spliter.
+  分离合取式.
   exists Y.
   split.
     apply (l6_7 _ _ A'); Out.

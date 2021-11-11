@@ -56,11 +56,11 @@ assert (ET B D C b d c) by (conclude axiom_ETsymmetric).
 assert (RE A B C D) by (conclude lemma_squarerectangle).
 assert (CR A C B D) by (conclude_def RE ).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude_def CR );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude_def CR );destruct Tf as [M];分离合取式.
 assert (RE a b c d) by (conclude lemma_squarerectangle).
 assert (CR a c b d) by (conclude_def RE ).
 let Tf:=fresh in
-assert (Tf:exists m, (BetS a m c /\ BetS b m d)) by (conclude_def CR );destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS a m c /\ BetS b m d)) by (conclude_def CR );destruct Tf as [m];分离合取式.
 assert (EF B A D C b a d c) by (conclude axiom_paste3).
 assert (EF B A D C a b c d) by (forward_using axiom_EFpermutation).
 assert (EF a b c d B A D C) by (conclude axiom_EFsymmetric).

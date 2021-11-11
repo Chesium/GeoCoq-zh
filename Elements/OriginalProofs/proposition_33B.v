@@ -16,7 +16,7 @@ assert (~ CR A C B D).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude_def CR );destruct Tf as [M];spliter.
+ assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude_def CR );destruct Tf as [M];分离合取式.
  assert (Col B M D) by (conclude_def Col ).
  assert (Col B D M) by (forward_using lemma_collinearorder).
  assert (nCol A B D) by (forward_using lemma_parallelNC).
@@ -27,7 +27,7 @@ assert (~ CR A C B D).
  }
 assert (CR A D C B) by (conclude lemma_crisscross).
 let Tf:=fresh in
-assert (Tf:exists m, (BetS A m D /\ BetS C m B)) by (conclude_def CR );destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS A m D /\ BetS C m B)) by (conclude_def CR );destruct Tf as [m];分离合取式.
 assert (BetS B m C) by (conclude axiom_betweennesssymmetry).
 assert ((Par A C B D /\ Cong A C B D)) by (conclude proposition_33).
 close.

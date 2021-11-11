@@ -19,9 +19,9 @@ assert (eq D D) by (conclude cn_equalityreflexive).
 assert (Col A D A) by (conclude_def Col ).
 assert (Col A D D) by (conclude_def Col ).
 let Tf:=fresh in
-assert (Tf:exists E, (PG A E B C /\ Col A D E)) by (conclude lemma_triangletoparallelogram);destruct Tf as [E];spliter.
+assert (Tf:exists E, (PG A E B C /\ Col A D E)) by (conclude lemma_triangletoparallelogram);destruct Tf as [E];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists F, (PG D F B C /\ Col A D F)) by (conclude lemma_triangletoparallelogram);destruct Tf as [F];spliter.
+assert (Tf:exists F, (PG D F B C /\ Col A D F)) by (conclude lemma_triangletoparallelogram);destruct Tf as [F];分离合取式.
 assert (PG E B C A) by (conclude lemma_PGrotate).
 assert (PG F B C D) by (conclude lemma_PGrotate).
 assert (Col D A F) by (forward_using lemma_collinearorder).
@@ -36,9 +36,9 @@ assert (EF E B C A F B C D) by (conclude proposition_35).
 assert (三角形全等 B E A A C B) by (conclude proposition_34).
 assert (三角形全等 B F D D C B) by (conclude proposition_34).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS E M C /\ BetS B M A)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS E M C /\ BetS B M A)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists m, (BetS F m C /\ BetS B m D)) by (conclude lemma_diagonalsmeet);destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS F m C /\ BetS B m D)) by (conclude lemma_diagonalsmeet);destruct Tf as [m];分离合取式.
 assert (Col B M A) by (conclude_def Col ).
 assert (Col B m D) by (conclude_def Col ).
 assert (Col B A M) by (forward_using lemma_collinearorder).

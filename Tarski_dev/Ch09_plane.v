@@ -180,7 +180,7 @@ Lemma l9_2 : forall A B P Q, TS A B P Q -> TS A B Q P.
 Proof.
     unfold TS.
     intros.
-    spliter.
+    分离合取式.
     repeat split; Col.
     destruct H1 as [T [HCol1 HCol2]].
     exists T; Col; Between.
@@ -191,7 +191,7 @@ Lemma invert_two_sides : forall A B P Q,
 Proof with Col.
     unfold TS.
     intros.
-    spliter.
+    分离合取式.
     repeat split...
     ex_and H1 T.
     exists T;split...
@@ -206,9 +206,9 @@ Proof with Col.
     intros.
     unfold TS in *.
     assert (~ Col A P Q).
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     clear H.
     assert (P <> Q).
       intro.
@@ -232,7 +232,7 @@ Proof with Col.
         intro.
         subst B.
         unfold Out in H3.
-        spliter.
+        分离合取式.
         absurde.
       assert (Col P R B) by ColR.
       assert (Col P R A).
@@ -267,7 +267,7 @@ Proof with Col.
           apply 等价共线BAC.
           assumption.
         unfold Out in H3.
-        spliter.
+        分离合取式.
         unfold Col.
         induction H16.
           right; left.
@@ -281,7 +281,7 @@ Proof with Col.
         Col.
       assumption.
     induction H3.
-    spliter.
+    分离合取式.
     induction H10.
       double B M B'.
       double R M R'.
@@ -419,7 +419,7 @@ Proof.
         assumption.
         apply 等长的伪自反性.
         unfold 中点 in *.
-        spliter.
+        分离合取式.
         eapply 等长的传递性.
           apply 等长的对称性.
           apply H8.
@@ -476,9 +476,9 @@ Proof.
       subst R.
       unfold TS in H0.
       assert (~ Col A P Q).
-        spliter.
+        分离合取式.
         assumption.
-      spliter.
+      分离合取式.
       clear H0.
       assert (P <> Q).
         intro.
@@ -490,12 +490,12 @@ Proof.
         split.
           intro.
           unfold Out in *.
-          spliter.
+          分离合取式.
           repeat split.
             intro.
             subst C.
             apply 垂直推出不重合 in H4.
-            spliter.
+            分离合取式.
             absurde.
             intro.
             subst C'.
@@ -512,7 +512,7 @@ Proof.
                 apply H12.
               assumption.
             unfold 中点 in H13.
-            spliter.
+            分离合取式.
             eapply l5_2.
               apply H10.
               assumption.
@@ -528,11 +528,11 @@ Proof.
             apply H10.
             assumption.
           unfold 中点 in H6.
-          spliter.
+          分离合取式.
           assumption.
         intro.
         unfold Out in *.
-        spliter.
+        分离合取式.
         repeat split.
           intro.
           subst U.
@@ -543,11 +543,11 @@ Proof.
           intro.
           subst A.
           apply 垂直推出不重合 in H2.
-          spliter.
+          分离合取式.
           apply H13.
           reflexivity.
         unfold 中点 in H6.
-        spliter.
+        分离合取式.
         assert (Bet A M C').
           induction H12.
             eapply 中间性的外传递性2.
@@ -583,12 +583,12 @@ Proof.
       split.
         intro.
         unfold Out in *.
-        spliter.
+        分离合取式.
         repeat split.
           intro.
           subst C.
           apply 垂直推出不重合 in H4.
-          spliter.
+          分离合取式.
           absurde.
           intro.
           subst C'.
@@ -602,7 +602,7 @@ Proof.
       intro.
       subst S.
       apply 垂直推出不重合 in H4.
-      spliter.
+      分离合取式.
       absurde.
     assert (R <> D).
       intro.
@@ -622,9 +622,9 @@ Proof.
     assert(exists M, 中点 M S R /\ 中点 M C D).
       unfold TS in H0.
       assert (~ Col A P Q).
-        spliter.
+        分离合取式.
         assumption.
-      spliter.
+      分离合取式.
       clear H0.
       assert (P <> Q).
         intro.
@@ -666,7 +666,7 @@ Proof.
     split.
       intro.
       unfold Out in H14.
-      spliter.
+      分离合取式.
       unfold Out.
       repeat split.
         assumption.
@@ -702,7 +702,7 @@ Proof.
       apply H16.
     unfold Out.
     intros.
-    spliter.
+    分离合取式.
     repeat split.
       eapply sym_preserve_diff.
         apply H15.
@@ -713,7 +713,7 @@ Proof.
       intro.
       subst R.
       apply 垂直推出不重合 in H11.
-      spliter.
+      分离合取式.
       absurde.
     induction H16.
       eapply l5_1.
@@ -827,14 +827,14 @@ Proof.
     intros.
     unfold TS in *.
     assert (~ Col X A B).
-      spliter.
+      分离合取式.
       assumption.
     clear H.
     assert (A <> B).
       intro.
       subst B.
       Col.
-    spliter.
+    分离合取式.
     repeat split.
       intro.
       apply H4.
@@ -867,21 +867,21 @@ Proof.
     intros.
     unfold TS in *.
     assert (~ Col X A B).
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     repeat split.
       intro.
       apply H5.
       unfold Out in H3.
-      spliter.
+      分离合取式.
       induction H10.
       ColR.
       ColR.
       intro.
       apply H6.
       unfold Out in H4.
-      spliter.
+      分离合取式.
       induction H10.
       ColR.
       ColR.
@@ -907,9 +907,9 @@ Proof.
       assert (TT:= H0).
       unfold TS in H0.
       assert (~ Col A P Q).
-        spliter.
+        分离合取式.
         assumption.
-      spliter.
+      分离合取式.
       clear H0.
       assert (P <> Q).
         intro.
@@ -938,7 +938,7 @@ Proof.
     (********* R <> S ***************)
     assert(P <> Q).
       apply 垂直推出不重合 in H4.
-      spliter.
+      分离合取式.
       assumption.
     assert (TS R S A C).
       eapply (col_preserves_two_sides P Q).
@@ -983,9 +983,9 @@ Proof.
     assert (HH9:=H9).
     unfold TS in HH9.
     assert (~ Col A R S).
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     ex_and H15 T.
     unfold Le in H.
     ex_and H C'.
@@ -1009,7 +1009,7 @@ Proof.
       intro.
       subst U.
       unfold Out in H5.
-      spliter.
+      分离合取式.
       absurde.
     assert (TS R S U U').
       eapply mid_two_sides.
@@ -1023,7 +1023,7 @@ Proof.
           apply 等价共线ACB.
           assumption.
         induction H5.
-        spliter.
+        分离合取式.
         induction H24.
           unfold Col.
           left.
@@ -1085,7 +1085,7 @@ Proof.
     intros.
     assert (P <> Q).
       unfold TS in H.
-      spliter.
+      分离合取式.
       intro.
       subst Q.
       Col.
@@ -1093,14 +1093,14 @@ Proof.
       eapply l8_18_过一点垂线之垂点的存在性.
       intro.
       unfold TS in H.
-      spliter.
+      分离合取式.
       apply H.
       apply 等价共线CAB.
       assumption.
     assert(exists C0, Col P Q C0 /\ Perp P Q C C0).
       eapply l8_18_过一点垂线之垂点的存在性.
       unfold TS in H.
-      spliter.
+      分离合取式.
       intro.
       apply H4.
       apply 等价共线CAB.
@@ -1110,7 +1110,7 @@ Proof.
       assert (HH1:=H1).
       unfold Out in HH1.
       unfold TS in H.
-      spliter.
+      分离合取式.
       intro.
       assert (Col P B R).
         eapply 共线的传递性2.
@@ -1161,12 +1161,12 @@ Proof.
         intro.
         subst A'.
         apply 垂直推出不重合 in H6.
-        spliter.
+        分离合取式.
         absurde.
         intro.
         subst A'.
         apply 垂直推出不重合 in H6.
-        spliter.
+        分离合取式.
         absurde.
       left.
       apply ABB中间性.
@@ -1184,12 +1184,12 @@ Proof.
           intro.
           subst A'.
           apply 垂直推出不重合 in H6.
-          spliter.
+          分离合取式.
           absurde.
           intro.
           subst A'.
           apply 垂直推出不重合 in H6.
-          spliter.
+          分离合取式.
           absurde.
         left.
         apply ABB中间性.
@@ -1210,7 +1210,7 @@ Proof.
         intro.
         subst D.
         unfold Out in H13.
-        spliter.
+        分离合取式.
         absurde.
         apply 垂直的对称性.
         apply 垂直的右交换性.
@@ -1222,7 +1222,7 @@ Proof.
       intro.
       subst B.
       apply 垂直推出不重合 in H8.
-      spliter.
+      分离合取式.
       absurde.
     apply l6_6.
     assumption.
@@ -1247,7 +1247,7 @@ Proof.
       split.
         Between.
       unfold Out in H3.
-      spliter.
+      分离合取式.
       induction H5.
         apply 中间性的交换传递性1 with C;Between.
       apply 中间性的外传递性1 with C;Between.
@@ -1269,7 +1269,7 @@ Proof.
     统计不重合点.
     assert (TS P Q A B) by (apply l9_5 with C P;unfold Out;intuition).
     unfold TS in H8.
-    spliter.
+    分离合取式.
     ex_and H11 X.
     exists X.
     split.
@@ -1300,7 +1300,7 @@ Proof.
   destruct HOS as [Z [HTS1 HTS2]].
   apply ts_distincts in HTS1.
   apply ts_distincts in HTS2.
-  spliter.
+  分离合取式.
   repeat split; auto.
 Qed.
 
@@ -1327,7 +1327,7 @@ Proof.
     intros.
     intro.
     unfold TS in H.
-    spliter.
+    分离合取式.
     ex_and H1 T.
     apply 中间性的同一律 in H2.
     subst T.
@@ -1350,23 +1350,23 @@ Proof.
     assert (P <> Q).
       intro.
       subst Q.
-      spliter.
+      分离合取式.
       Col.
-    spliter.
+    分离合取式.
     unfold TS in HH0.
     assert (P <> Q).
       intro.
       subst Q.
-      spliter.
+      分离合取式.
       Col.
-    spliter.
+    分离合取式.
     unfold TS in HH.
     assert (P <> Q).
       intro.
       subst Q.
-      spliter.
+      分离合取式.
       Col.
-    spliter.
+    分离合取式.
     ex_and H13 T.
     ex_and H9 X.
     ex_and H5 Y.
@@ -1729,16 +1729,16 @@ Proof.
     assert (P <> Q).
       intro.
       subst Q.
-      spliter.
+      分离合取式.
       Col.
-    spliter.
+    分离合取式.
     unfold TS in H.
     assert (P <> Q).
       intro.
       subst Q.
-      spliter.
+      分离合取式.
       Col.
-    spliter.
+    分离合取式.
     ex_and H8 X.
     ex_and H5 Y.
     assert (exists T,  Bet B T D /\ Bet X T Y).
@@ -1765,7 +1765,7 @@ Proof.
         assumption.
       assumption.
       unfold TS in HH1.
-      spliter.
+      分离合取式.
       assumption.
     exists T.
     induction (共线的决定性 A C D).
@@ -1826,11 +1826,11 @@ Proof.
     split.
       intros.
       unfold TS in H1.
-      spliter.
+      分离合取式.
       assert (X <> Y).
         intro.
         subst Y.
-        spliter.
+        分离合取式.
         Col.
       ex_and H3 T.
       assert (P=T).
@@ -1844,7 +1844,7 @@ Proof.
       repeat split; Col.
     intro.
     unfold TS.
-    spliter.
+    分离合取式.
     repeat split; Col.
     exists P.
     split.
@@ -1864,17 +1864,17 @@ Proof.
       ex_and H1 D.
       unfold TS in H2.
       assert (~ Col B X Y).
-        spliter.
+        分离合取式.
         assumption.
-      spliter.
+      分离合取式.
       clear H3.
       assert (X <> Y).
         intro.
         subst Y.
-        spliter.
+        分离合取式.
         Col.
       unfold TS in H1.
-      spliter.
+      分离合取式.
       ex_and H5 M.
       ex_and H7 N.
       split.
@@ -1916,7 +1916,7 @@ Proof.
       apply H1.
       Col.
     intros.
-    spliter.
+    分离合取式.
     assert (exists D, TS X Y A D).
       apply l9_10.
       intro.
@@ -1944,7 +1944,7 @@ Proof.
     unfold OS in H.
     ex_and H C.
     unfold TS in *.
-    spliter.
+    分离合取式.
     intro.
     apply H.
     apply 等价共线CAB.
@@ -1967,7 +1967,7 @@ Lemma col_two_sides : forall A B C P Q,
 Proof.
     intros.
     unfold TS in *.
-    spliter.
+    分离合取式.
     ex_and H3 T.
     repeat split.
       intro.
@@ -2022,7 +2022,7 @@ Proof.
       unfold OS in H.
       ex_and H C.
       unfold TS in H.
-      spliter.
+      分离合取式.
       intro.
       subst B.
       Col.
@@ -2051,7 +2051,7 @@ Proof.
               apply 等长的同一性 in H3.
               subst Y.
               unfold Out in H0.
-              spliter.
+              分离合取式.
               absurde.
               apply 等价共线BAC.
               assumption.
@@ -2073,7 +2073,7 @@ Proof.
           intro.
           subst Z.
           unfold Out in H0.
-          spliter.
+          分离合取式.
           absurde.
           apply 等价共线BAC.
           assumption.
@@ -2101,7 +2101,7 @@ Proof.
       split.
         apply AAB型共线.
       unfold Out in H0.
-      spliter.
+      分离合取式.
       induction H5.
         apply 中间性的对称性.
         eapply 中间性的外传递性2.
@@ -2112,7 +2112,7 @@ Proof.
       apply 中间性的对称性.
       eapply 中间性的内传递性1.
         apply 中间性的对称性.
-        apply H2; spliter.
+        apply H2; 分离合取式.
       assumption.
     eapply one_side_transitivity.
       apply H.
@@ -2177,7 +2177,7 @@ Proof.
       ex_and H C.
       ex_and H0 D.
       unfold TS in *.
-      spliter.
+      分离合取式.
       split.
         intro.
         subst X.
@@ -2187,7 +2187,7 @@ Proof.
         subst Z.
         Col.
       repeat split; assumption.
-    spliter.
+    分离合取式.
     prolong Z A Z' Z A.
     assert(Z' <> A).
       intro.
@@ -2219,9 +2219,9 @@ Proof.
       assumption.
     unfold TS in H9.
     assert (~ Col Y A X).
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     ex_and H12 T.
     assert(T <> A).
       intro.
@@ -2308,7 +2308,7 @@ Proof.
           unfold OS in H17.
           ex_and H17 C.
           unfold TS in H18.
-          spliter.
+          分离合取式.
           assumption.
         exists A.
         split.
@@ -2344,7 +2344,7 @@ Proof.
         unfold OS in H5.
         ex_and H15 C.
         unfold TS in H15.
-        spliter.
+        分离合取式.
         intro.
         apply H15.
         apply 等价共线ACB.
@@ -2364,7 +2364,7 @@ Proof.
         unfold OS in H15.
         ex_and H15 C.
         unfold TS in H18.
-        spliter.
+        分离合取式.
         intro.
         apply H18.
         apply 等价共线CBA.
@@ -2420,13 +2420,13 @@ Proof.
       unfold OS in H0.
       ex_and H0 T.
       unfold TS in H0.
-      spliter.
+      分离合取式.
       split.
         intro.
         subst B.
         Col.
       assumption.
-    spliter.
+    分离合取式.
     prolong C P T C P.
     assert(P <> T).
       intro.
@@ -2460,7 +2460,7 @@ Lemma ts_ts_os : forall A B C D, TS A B C D -> TS C D A B -> OS A C B D.
 Proof.
     intros.
     unfold TS in *.
-    spliter.
+    分离合取式.
     ex_and H4 T1.
     ex_and H2 T.
     assert(T1 = T).
@@ -2517,7 +2517,7 @@ Lemma two_sides_not_col :
 Proof.
     intros.
     unfold TS in H.
-    spliter.
+    分离合取式.
     intro.
     apply H.
     apply 等价共线CAB.
@@ -2534,7 +2534,7 @@ Proof.
       unfold OS in H0.
       ex_and H0 Z.
       unfold TS in *.
-      spliter.
+      分离合取式.
       ex_and H5 T0.
       ex_and H3 T1.
       split.
@@ -2544,7 +2544,7 @@ Proof.
       intro.
       subst Y.
       Col.
-    spliter.
+    分离合取式.
     unfold Col in H.
     induction H.
       unfold Out.
@@ -2563,7 +2563,7 @@ Proof.
       unfold OS in H0.
       ex_and H0 Z.
       unfold TS in *.
-      spliter.
+      分离合取式.
       repeat split.
         assumption.
         assumption.
@@ -2586,7 +2586,7 @@ Proof.
     unfold Col in H.
     induction H.
       unfold TS in H0.
-      spliter.
+      分离合取式.
       ex_and H2 T.
       apply False_ind.
       apply H1.
@@ -2618,7 +2618,7 @@ Proof.
       assumption.
     induction H.
       unfold TS in H0.
-      spliter.
+      分离合取式.
       ex_and H2 T.
       assert(Col Y A T).
         eapply (共线的传递性2 _ X).
@@ -2755,7 +2755,7 @@ Proof.
       eapply (col_one_side _ PX).
         Col.
         unfold TS in H2.
-        spliter.
+        分离合取式.
         auto.
         intro.
         subst B.
@@ -2765,7 +2765,7 @@ Proof.
         left.
         intro.
         unfold TS in H2.
-        spliter.
+        分离合取式.
         apply H2.
         ColR.
       apply l6_6.
@@ -2838,7 +2838,7 @@ apply(l9_8_2 A B P P' C); auto.
 apply l9_2.
 assumption.
 unfold TS in H11.
-spliter.
+分离合取式.
 ex_and H13 T'.
 exists T'.
 split; auto.
@@ -2848,7 +2848,7 @@ Lemma ts__ncol : forall A B X Y, TS A B X Y -> ~Col A X Y \/ ~Col B X Y.
 Proof.
 intros.
 unfold TS in H.
-spliter.
+分离合取式.
 ex_and H1 T.
 
 assert(X <> Y).
@@ -2939,12 +2939,12 @@ Lemma cop__one_or_two_sides :
 Proof.
     intros.
     ex_and H X.
-    induction H2; spliter.
+    induction H2; 分离合取式.
       destruct (or_bet_out C X D) as [|[|]].
         left; repeat split; auto; exists X; split; Col.
         right; apply out_one_side_1 with X; Col.
       exfalso; Col.
-    induction H; spliter.
+    induction H; 分离合取式.
       apply one_or_two_sides_aux with X; assumption.
     induction (one_or_two_sides_aux A B D C X H1 H0 H H2).
       left; apply l9_2; assumption.
@@ -3113,7 +3113,7 @@ try (intros HCol1 HCol2); try (intro H; destruct H as [HCol1 HCol2]).
 
   {
   elim (两点重合的决定性 X I); intro HXI; treat_equalities; Col.
-  assert (HCong3 : Cong I A I B) by (apply l4_17 with Y Z; unfold 中点 in *; spliter; Cong).
+  assert (HCong3 : Cong I A I B) by (apply l4_17 with Y Z; unfold 中点 in *; 分离合取式; Cong).
   elim HCol1; clear HCol1; intro HCol1; try (elim HCol1; clear HCol1; intro HCol1).
 
     {
@@ -3175,7 +3175,7 @@ try (intros HCol1 HCol2); try (intro H; destruct H as [HCol1 HCol2]).
 
   {
   elim (两点重合的决定性 Y I); intro HYI; treat_equalities; Col.
-  assert (HCong3 : Cong I A I B) by (apply l4_17 with X Z; unfold 中点 in *; spliter; Cong).
+  assert (HCong3 : Cong I A I B) by (apply l4_17 with X Z; unfold 中点 in *; 分离合取式; Cong).
   elim HCol1; clear HCol1; intro HCol1; try (elim HCol1; clear HCol1; intro HCol1).
 
     {
@@ -3237,7 +3237,7 @@ try (intros HCol1 HCol2); try (intro H; destruct H as [HCol1 HCol2]).
 
   {
   elim (两点重合的决定性 Z I); intro HZI; treat_equalities; Col.
-  assert (HCong3 : Cong I A I B) by (apply l4_17 with X Y; unfold 中点 in *; spliter; Cong).
+  assert (HCong3 : Cong I A I B) by (apply l4_17 with X Y; unfold 中点 in *; 分离合取式; Cong).
   assert (H := 共线点间距相同要么重合要么中点 I A B).
   elim H; try ColR; intro.
     treat_equalities; exfalso; auto.
@@ -3254,7 +3254,7 @@ Proof.
         subst A.
         assert(X <> B).
           apply 垂直推出不重合 in H0.
-          spliter.
+          分离合取式.
           assumption.
         apply 垂直的右交换性 in H0.
         apply L形垂直转垂直于 in H0.
@@ -3306,7 +3306,7 @@ Proof.
     assert(HH3:=H3).
     apply 垂点是交点 in H0.
     apply 垂点是交点 in H3.
-    spliter.
+    分离合取式.
     assert(Perp X Y0 A B).
       eapply 垂线共线点也构成垂直1.
         intro.
@@ -3546,7 +3546,7 @@ Qed.
 Lemma l9_41_2 : forall A B C P Q R, 在平面异侧 A B C P R -> 在平面同侧 A B C P Q -> 在平面异侧 A B C Q R.
 Proof.
   intros A B C P Q R HPR [S [[HP [_ [X []]]] [HQ [HS [Y []]]]]].
-  assert (P <> X /\ S <> X /\ Q <> Y /\ S <> Y) by (repeat split; intro; subst; auto); spliter.
+  assert (P <> X /\ S <> X /\ Q <> Y /\ S <> Y) by (repeat split; intro; subst; auto); 分离合取式.
   destruct (共线的决定性 P Q S) as [|HNCol].
   { assert (X = Y) by (统计不重合点; apply (col2_cop2__eq A B C Q S); ColR).
     subst Y.
@@ -3599,7 +3599,7 @@ Proof.
   assert (~ Col A B C) by (apply ncop__ncol with P, HP).
   assert (共面 D E F A /\ 共面 D E F B /\ 共面 D E F C /\ 共面 D E F T).
     repeat split; apply coplanar_pseudo_trans with A B C; Cop.
-  spliter.
+  分离合取式.
   repeat split.
     intro; apply HP; apply coplanar_pseudo_trans with D E F; Cop.
     intro; apply HQ; apply coplanar_pseudo_trans with D E F; Cop.
@@ -3626,9 +3626,9 @@ Proof.
   intros A B C P Q [HP [HQ HT]].
   assert (HP' := ncop_distincts A B C P HP).
   assert (HQ' := ncop_distincts A B C Q HQ).
-  spliter; clean.
+  分离合取式; clean.
   repeat split; auto.
-  destruct HT; spliter.
+  destruct HT; 分离合取式.
   intro; apply HP; treat_equalities; assumption.
 Qed.
 
@@ -3638,17 +3638,17 @@ Proof.
   intros A B C P Q [R [HPR HQR]].
   apply tsp_distincts in HPR.
   apply tsp_distincts in HQR.
-  spliter; clean; repeat split; auto.
+  分离合取式; clean; repeat split; auto.
 Qed.
 
 Lemma tsp__ncop1 : forall A B C P Q, 在平面异侧 A B C P Q -> ~ 共面 A B C P.
 Proof.
-  unfold 在平面异侧; intros; spliter; assumption.
+  unfold 在平面异侧; intros; 分离合取式; assumption.
 Qed.
 
 Lemma tsp__ncop2 : forall A B C P Q, 在平面异侧 A B C P Q -> ~ 共面 A B C Q.
 Proof.
-  unfold 在平面异侧; intros; spliter; assumption.
+  unfold 在平面异侧; intros; 分离合取式; assumption.
 Qed.
 
 Lemma osp__ncop1 : forall A B C P Q, 在平面同侧 A B C P Q -> ~ 共面 A B C P.
@@ -3667,7 +3667,7 @@ Lemma tsp__nosp : forall A B C P Q, 在平面异侧 A B C P Q -> ~ 在平面同�
 Proof.
   intros A B C P Q HTS HOS.
   absurd (在平面异侧 A B C P P).
-    intro Habs; apply tsp_distincts in Habs; spliter; auto.
+    intro Habs; apply tsp_distincts in Habs; 分离合取式; auto.
     apply l9_41_2 with Q; [apply l9_38 | apply osp_symmetry]; assumption.
 Qed.
 
@@ -3685,7 +3685,7 @@ Proof.
     split; [assumption|].
     apply l9_39 with Y P; trivial.
     destruct HPS as [HP [HS [X []]]].
-    assert (P <> X /\ S <> X /\ R <> Y) by (repeat split; intro; subst; auto); spliter.
+    assert (P <> X /\ S <> X /\ R <> Y) by (repeat split; intro; subst; auto); 分离合取式.
     assert (X = Y) by (统计不重合点; apply (col2_cop2__eq A B C R S); ColR).
     subst Y.
     apply out_bet_out_1 with R; [|assumption].
@@ -3694,7 +3694,7 @@ Proof.
   destruct HPS as [HP [HS [X []]]].
   assert (HOS : OS X Y P Q).
   { apply l9_17 with R; [|assumption].
-    assert (P <> X /\ S <> X /\ R <> Y /\ S <> Y) by (repeat split; intro; subst; auto); spliter.
+    assert (P <> X /\ S <> X /\ R <> Y /\ S <> Y) by (repeat split; intro; subst; auto); 分离合取式.
     assert (~ Col S X Y) by (intro; apply HNCol; ColR).
     exists S; repeat split; trivial; try (intro; apply HNCol; ColR).
       exists X; split; Col.
@@ -3753,8 +3753,8 @@ Proof.
   split; [|intros []; apply cop_out__osp with P; assumption].
   intro HOS.
   assert (~ 共面 A B C X /\ ~ 共面 A B C Y).
-    unfold 在平面同侧, 在平面异侧 in HOS; destruct HOS as [Z []]; spliter; split; assumption.
-  spliter.
+    unfold 在平面同侧, 在平面异侧 in HOS; destruct HOS as [Z []]; 分离合取式; split; assumption.
+  分离合取式.
   split; [|assumption].
   apply not_bet_out; [Col|].
   intro HBet.
@@ -3825,7 +3825,7 @@ Lemma cop_tsp__ex_cop2 : forall A B C D E P,
 Proof.
   intros A B C D E P HCop H在平面异侧.
   destruct (共线的决定性 D E P) as [|HNCol].
-  { apply tsp_distincts in H在平面异侧; spliter.
+  { apply tsp_distincts in H在平面异侧; 分离合取式.
     destruct (两点重合的决定性 P A).
       subst; exists B; repeat split; Cop.
       exists A; repeat split; Cop.
@@ -3841,7 +3841,7 @@ Lemma cop_osp__ex_cop2 : forall A B C D E P,
 Proof.
   intros A B C D E P HCop H在平面同侧.
   destruct (共线的决定性 D E P) as [|HNCol].
-  { apply osp_distincts in H在平面同侧; spliter.
+  { apply osp_distincts in H在平面同侧; 分离合取式.
     destruct (两点重合的决定性 P A).
       subst; exists B; repeat split; Cop.
       exists A; repeat split; Cop.

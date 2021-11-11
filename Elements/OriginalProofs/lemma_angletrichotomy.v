@@ -17,9 +17,9 @@ assert (~ 角度小于 D E F A B C).
  intro.
  assert (角度小于 A B C A B C) by (conclude lemma_angleordertransitive).
  rename_H H;let Tf:=fresh in
- assert (Tf:exists G H J, (BetS G H J /\ Out B A G /\ Out B C J /\ 等角 A B C A B H)) by (conclude_def 角度小于 );destruct Tf as [G[H[J]]];spliter.
+ assert (Tf:exists G H J, (BetS G H J /\ Out B A G /\ Out B C J /\ 等角 A B C A B H)) by (conclude_def 角度小于 );destruct Tf as [G[H[J]]];分离合取式.
  let Tf:=fresh in
- assert (Tf:exists U V u v, (Out B A U /\ Out B C V /\ Out B A u /\ Out B H v /\ Cong B U B u /\ Cong B V B v /\ Cong U V u v /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];spliter.
+ assert (Tf:exists U V u v, (Out B A U /\ Out B C V /\ Out B A u /\ Out B H v /\ Cong B U B u /\ Cong B V B v /\ Cong U V u v /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];分离合取式.
  assert (~ eq A B).
   {
   intro.
@@ -34,7 +34,7 @@ assert (~ 角度小于 D E F A B C).
  assert (neq G H) by (forward_using lemma_betweennotequal).
  assert (neq H G) by (conclude lemma_inequalitysymmetric).
  let Tf:=fresh in
- assert (Tf:exists P, (BetS H G P /\ Cong G P H G)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+ assert (Tf:exists P, (BetS H G P /\ Cong G P H G)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
  assert (BetS J H G) by (conclude axiom_betweennesssymmetry).
  assert (BetS J G P) by (conclude lemma_3_7a).
  assert (~ Col B A J).

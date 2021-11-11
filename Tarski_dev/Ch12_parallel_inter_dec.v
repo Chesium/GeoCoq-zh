@@ -88,7 +88,7 @@ Proof.
     destruct H as [HA [[P []] []]].
     induction 1.
     apply (par_not_col A1 A2 B1 B2 X); Col.
-    spliter.
+    分离合取式.
     apply H0, (共线的传递性4 B1 B2); Col.
 Qed.
 
@@ -201,7 +201,7 @@ Proof.
       assert(Col A B D).
         apply not_strict_par1 with C C; Col; Par.
       unfold TS in H1.
-      spliter.
+      分离合取式.
       contradiction.
     assert(exists P, 中点 P A C) by (apply 中点的存在性).
     ex_and H5 P.
@@ -235,7 +235,7 @@ Proof.
       split.
         assumption.
       assert(HH:=l12_19 A B C D H4 H H14).
-      spliter.
+      分离合取式.
       split; assumption.
     }
     (************)
@@ -278,7 +278,7 @@ Proof.
         assumption.
       assumption.
     assert(HH:=l12_20_bis A B C D H H0 H2).
-    spliter.
+    分离合取式.
     split.
       assumption.
     split.
@@ -511,7 +511,7 @@ Proof.
     intros.
     apply par_distincts in H0.
     apply par_distincts in H1.
-    spliter.
+    分离合取式.
     assert(Par A B B C).
       right.
       repeat split; Col.
@@ -526,7 +526,7 @@ Proof.
       apply H7.
       exists B'.
       split; Col.
-    spliter.
+    分离合取式.
     Col.
 Qed.
 

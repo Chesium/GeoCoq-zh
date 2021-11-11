@@ -17,7 +17,7 @@ assert (neq a b) by (conclude axiom_nocollapse).
 assert (neq B C) by (forward_using lemma_betweennotequal).
 assert (neq b c) by (conclude axiom_nocollapse).
 let Tf:=fresh in
-assert (Tf:exists d, (BetS a b d /\ Cong b d b c)) by (conclude lemma_localextension);destruct Tf as [d];spliter.
+assert (Tf:exists d, (BetS a b d /\ Cong b d b c)) by (conclude lemma_localextension);destruct Tf as [d];分离合取式.
 assert (Cong b c b d) by (conclude lemma_congruencesymmetric).
 assert (Cong b c B C) by (conclude lemma_congruencesymmetric).
 assert (Cong b d B C) by (conclude cn_congruencetransitive).

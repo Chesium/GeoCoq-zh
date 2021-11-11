@@ -15,7 +15,7 @@ intros.
 assert (Par B C P Q) by (conclude lemma_parallelsymmetric).
 assert (Par C B P Q) by (forward_using lemma_parallelflip).
 let Tf:=fresh in
-assert (Tf:exists G, (PG A G B C /\ Col P Q G)) by (conclude lemma_triangletoparallelogram);destruct Tf as [G];spliter.
+assert (Tf:exists G, (PG A G B C /\ Col P Q G)) by (conclude lemma_triangletoparallelogram);destruct Tf as [G];分离合取式.
 assert (PG G B C A) by (conclude lemma_PGrotate).
 assert (nCol P B C) by (forward_using lemma_parallelNC).
 assert (neq B C) by (forward_using lemma_NCdistinct).
@@ -23,7 +23,7 @@ assert (neq E F) by (conclude axiom_nocollapse).
 assert (Par P Q E F) by (conclude lemma_collinearparallel2).
 assert (Par E F P Q) by (conclude lemma_parallelsymmetric).
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (PG D H F E /\ Col P Q H)) by (conclude lemma_triangletoparallelogram);destruct Tf as [H];spliter.
+assert (Tf:exists H, (PG D H F E /\ Col P Q H)) by (conclude lemma_triangletoparallelogram);destruct Tf as [H];分离合取式.
 assert (PG H F E D) by (conclude lemma_PGrotate).
 assert (Cong B C F E) by (forward_using lemma_congruenceflip).
 assert (nCol P Q B) by (forward_using lemma_parallelNC).
@@ -35,11 +35,11 @@ assert (EF G B C A E F H D) by (forward_using axiom_EFpermutation).
 assert (EF E F H D G B C A) by (conclude axiom_EFsymmetric).
 assert (EF E F H D C B G A) by (forward_using axiom_EFpermutation).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS D M F /\ BetS H M E)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS D M F /\ BetS H M E)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];分离合取式.
 assert (Col D M F) by (conclude_def Col ).
 assert (Col F D M) by (forward_using lemma_collinearorder).
 let Tf:=fresh in
-assert (Tf:exists m, (BetS A m B /\ BetS G m C)) by (conclude lemma_diagonalsmeet);destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS A m B /\ BetS G m C)) by (conclude lemma_diagonalsmeet);destruct Tf as [m];分离合取式.
 assert (Col A m B) by (conclude_def Col ).
 assert (Col B A m) by (forward_using lemma_collinearorder).
 assert (Par A G B C) by (conclude_def PG ).

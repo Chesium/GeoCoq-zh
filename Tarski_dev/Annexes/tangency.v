@@ -53,16 +53,16 @@ subst Y.
 
 unfold 对称 in H6.
 induction H6.
-spliter.
+分离合取式.
 unfold 严格对称 in *.
-spliter.
+分离合取式.
 ex_and H11 Z.
 
 assert(Z = X).
 apply M是AA中点则M与A重合; auto.
 subst Z.
 Col.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -118,7 +118,7 @@ Lemma 切线上的非切点均在圆外 : forall A B O P T X,
 Proof.
 intros.
 unfold 圆的切线切于 in *.
-spliter.
+分离合取式.
 
 induction(两点重合的决定性 O P).
 subst P.
@@ -178,7 +178,7 @@ Proof.
 intros.
 assert(TA:=H0).
 unfold 圆的切线切于 in H0.
-spliter.
+分离合取式.
 assert(A <> B).
 apply (非退化圆切线两端点不重合 A B O P); auto.
 assert(~Col A B O).
@@ -230,7 +230,7 @@ assert(在圆外 T' O P).
 apply (切线上的非切点均在圆外 R B O P T T'); ColR.
 unfold 在圆外 in *.
 unfold Lt in *.
-spliter.
+分离合取式.
 unfold 在圆上 in H14.
 apply False_ind.
 apply H16.
@@ -243,7 +243,7 @@ apply (垂线共线点也构成垂直1 R A O R T); Col.
 apply 垂直的左交换性.
 eapply (垂线共线点也构成垂直1 A B O R R); auto.
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H8.
 ColR.
 assert(垂直于 R T R R O).
@@ -274,13 +274,13 @@ apply 等长的传递性 with O T; Cong.
 
 assert(在圆外 T' O P).
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H12.
 apply (切线上的非切点均在圆外 A B O P T T'); auto.
 ColR.
 unfold 在圆外 in *.
 unfold Lt in *.
-spliter.
+分离合取式.
 unfold 在圆上 in H14.
 apply False_ind.
 apply H17.
@@ -306,7 +306,7 @@ split; auto.
 apply 垂点是交点 in H1.
 tauto.
 intros.
-spliter.
+分离合取式.
 assert(Col A B T).
 apply 垂点是交点 in H1.
 tauto.
@@ -336,7 +336,7 @@ assert(Lt T x' x' O /\ Lt T O x' O).
 apply(l11_46 x' T O); auto.
 unfold 在圆上 in *.
 unfold Lt in H10.
-spliter.
+分离合取式.
 apply H12.
 apply 等长的传递性 with O P; Cong.
 
@@ -371,14 +371,14 @@ unfold unique.
 exists Q.
 repeat split; Col.
 intros.
-spliter.
+分离合取式.
 assert(HH:=(H1 x' H2)).
 induction HH.
 auto.
 unfold 在圆上 in *.
 unfold 在圆外 in *.
 unfold Lt in *.
-spliter.
+分离合取式.
 apply False_ind.
 apply H5; Cong.
 
@@ -436,12 +436,12 @@ subst M.
 apply A是AB中点则A与B重合 in H7.
 contradiction.
 unfold 中点 in H7.
-spliter.
+分离合取式.
 Between.
 
 assert(Col A B M).
 unfold 中点 in *.
-spliter.
+分离合取式.
 ColR.
 assert(HH:=(H2 M H9)).
 unfold 在圆内 in *.
@@ -458,7 +458,7 @@ repeat split; Col.
 induction(两点重合的决定性 X Q).
 subst X.
 unfold 圆的切线切于 in *.
-spliter.
+分离合取式.
 apply 在圆上蕴含在圆上或圆外; auto.
 
 assert(在圆外 X O P).
@@ -480,7 +480,7 @@ unfold 两圆相交 in *.
 ex_and H P.
 ex_and H0 Q.
 unfold 两圆相交于 in *.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 intro.
 subst C.
@@ -519,7 +519,7 @@ subst T.
 assert(HH:=构造对称点 B A).
 ex_and HH B'.
 unfold 中点 in *.
-spliter.
+分离合取式.
 assert(B = B').
   apply(H1 B'); split; Cong.
   apply 等长的传递性 with A B; Cong.
@@ -550,7 +550,7 @@ unfold 在圆上 in *.
 exists O.
 repeat split; Col; Cong.
 intros.
-spliter.
+分离合取式.
 treat_equalities; auto.
 
 assert(O <> X).
@@ -589,7 +589,7 @@ ex_and H4 U.
 assert(Bet O U X).
 {
   unfold Out in H5.
-  spliter.
+  分离合取式.
   induction H7.
   unfold 在圆外 in *.
   unfold 在圆上 in *.
@@ -619,12 +619,12 @@ ex_and H7 R.
 assert(HP:=构造对称点 X O).
 ex_and HP W.
 unfold 中点 in *.
-spliter.
+分离合取式.
 assert(exists X0 : Tpoint, (Bet U R X0 \/ Bet U X0 R) /\ Cong U X0 W X).
 {
   apply(由一点往一方向构造等长线段_2 R U W X).
   apply 垂直推出不重合 in H8.
-  spliter.
+  分离合取式.
   auto.
 }
 
@@ -669,7 +669,7 @@ exists V.
 assert(Bet O V Y).
 {
   unfold Out in H17.
-  spliter.
+  分离合取式.
   induction H19.
   unfold 在圆外 in H3.
   assert(Lt O V O Y).
@@ -721,7 +721,7 @@ assert(等角 O U Y O V X).
   intro;treat_equalities.
   unfold 在圆外 in *.
   unfold Lt in *.
-  spliter.
+  分离合取式.
   Cong.
   repeat split; Cong.
 }
@@ -769,7 +769,7 @@ intros.
 intro.
 assert (HH := H).
 unfold 两圆相交于 in HH.
-spliter.
+分离合取式.
 apply H2.
 apply (l4_18 A C).
 apply 相交于两点之圆圆心不同 in H.
@@ -789,7 +789,7 @@ Proof.
 intros.
 assert(HIC := H).
 unfold 两圆相交于 in H.
-spliter.
+分离合取式.
 induction (两点重合的决定性 Z Q).
   right; auto.
 left.
@@ -893,12 +893,12 @@ apply 两圆非切点交点不与两圆心共线 in HIC.
 Col.
 induction HH.
 unfold 严格平行 in H22.
-spliter.
+分离合取式.
 apply False_ind.
 apply H23.
 exists Q.
 split; ColR.
-spliter.
+分离合取式.
 assert(Z = P \/ Z = Q).
 apply(圆交一线于至多两点 A B P Q Z H4); auto.
 induction H26; tauto.

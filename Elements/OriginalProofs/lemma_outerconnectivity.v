@@ -20,7 +20,7 @@ assert (~ eq A C).
  }
 assert (neq A D) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS A C E /\ Cong C E A D)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS A C E /\ Cong C E A D)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (BetS A B E) by (conclude lemma_3_6b).
 assert (~ eq A D).
  {
@@ -31,7 +31,7 @@ assert (~ eq A D).
  }
 assert (neq A C) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists F, (BetS A D F /\ Cong D F A C)) by (conclude lemma_extension);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS A D F /\ Cong D F A C)) by (conclude lemma_extension);destruct Tf as [F];分离合取式.
 assert (BetS F D A) by (conclude axiom_betweennesssymmetry).
 assert (BetS D B A) by (conclude axiom_betweennesssymmetry).
 assert (BetS F B A) by (conclude lemma_3_5b).

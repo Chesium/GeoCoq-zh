@@ -12,7 +12,7 @@ intros HPT A1; intros.
 assert (Par C1 C2 B1 B2) by (apply HPT with A1 A2; Par).
 induction H3.
 exfalso; apply H3; exists P; Col.
-spliter; split; Col.
+分离合取式; split; Col.
 Qed.
 
 End par_trans_playfair.

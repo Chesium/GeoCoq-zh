@@ -11,10 +11,10 @@ Proof.
     intros.
     assert(HS:=H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
     unfold Out in H0.
-    spliter.
+    分离合取式.
     assert(退化平行四边形 O A C B).
       apply(sum_cong O E E' H A B C HS).
       tauto.
@@ -24,7 +24,7 @@ Proof.
     induction(两点重合的决定性 A B).
       subst B.
       unfold 退化平行四边形 in H7.
-      spliter.
+      分离合取式.
       assert(O = C \/ 中点 A O C).
         apply(共线点间距相同要么重合要么中点 A O C); Cong.
       induction H13.
@@ -62,7 +62,7 @@ Proof.
     intros.
     assert(HH:= l14_36_a O E E' A B C H H0).
     unfold Out in H0.
-    spliter.
+    分离合取式.
     split; auto.
     split.
       intro.
@@ -74,9 +74,9 @@ Proof.
     subst C.
     assert(HS:= H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     assert(Sum O E E' A O A).
       apply (sum_A_O). assumption.
     assumption.
@@ -103,15 +103,15 @@ Proof.
       right; left; auto.
     assert(HS:= H).
     unfold Sum in H.
-    spliter.
+    分离合取式.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     assert(退化平行四边形 O MA O A).
       apply(sum_cong O E E' H MA A O HS); tauto.
     unfold 退化平行四边形 in H5.
-    spliter.
+    分离合取式.
     assert(HG:=grid_not_par O E E' H).
-    spliter.
+    分离合取式.
     assert(A = MA \/ 中点 O A MA).
       apply(共线点间距相同要么重合要么中点 O A MA); Col.
     induction H16.
@@ -130,7 +130,7 @@ Proof.
       subst A.
       tauto.
     unfold 中点 in H16.
-    spliter.
+    分离合取式.
     unfold Ps.
     unfold Col in H2.
     induction H2.
@@ -160,7 +160,7 @@ Proof.
       apply l6_6 in H0.
       apply(l6_7 O A E B); auto.
     assert(HH:=l14_36_b O E E' A B AB H1 H2).
-    spliter.
+    分离合取式.
     assert(HH:=l14_36_a O E E' A B AB H1 H2).
     apply l6_6 in H.
     assert(Out O A AB).
@@ -176,16 +176,16 @@ Proof.
     intros.
     assert(HP:= H1).
     unfold Prod in H1.
-    spliter.
+    分离合取式.
     unfold Ar2 in H1.
-    spliter.
+    分离合取式.
     ex_and H2 B'.
     assert(HG:= grid_not_par O E E' H1).
-    spliter.
+    分离合取式.
     unfold Ps in H.
     unfold Ps in H0.
     unfold Out in *.
-    spliter.
+    分离合取式.
     assert(E' <> A).
       intro.
       subst A.
@@ -200,7 +200,7 @@ Proof.
         apply H20.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       contradiction.
     assert(Proj E E' O E' E E').
       apply(pj_col_project); Col.
@@ -257,7 +257,7 @@ Proof.
     unfold Ps in H.
     unfold Ng in H0.
     unfold Out in H.
-    spliter.
+    分离合取式.
     induction H4.
       apply H.
       apply (双中间性推出点重合 _ _ E); Between.
@@ -272,7 +272,7 @@ Proof.
     unfold Ps in H0.
     unfold Ng in H.
     unfold Out in H0.
-    spliter.
+    分离合取式.
     induction H2.
       apply H0.
       apply (双中间性推出点重合 _ _ E); Between.
@@ -288,7 +288,7 @@ Proof.
     unfold Ps in H.
     unfold Out in H.
     unfold 中点 in HH.
-    spliter.
+    分离合取式.
     repeat split; auto.
       intro.
       subst MA.
@@ -306,7 +306,7 @@ Proof.
     unfold Ng in H.
     unfold Ps.
     unfold 中点 in HH.
-    spliter.
+    分离合取式.
     apply l6_6.
     unfold Out.
     repeat split; auto.
@@ -324,7 +324,7 @@ Proof.
     ex_and H D.
     apply diff_ar2 in H.
     unfold Ar2 in H.
-    spliter.
+    分离合取式.
     repeat split; auto.
 Qed.
 
@@ -333,7 +333,7 @@ Proof.
     intros.
     assert(HH:=ltP_ar2 O E E' A B H).
     unfold Ar2 in HH.
-    spliter.
+    分离合取式.
     unfold LtP in H.
     intro.
     subst B.
@@ -376,7 +376,7 @@ Proof.
     unfold 中点 in H0.
     unfold Ps in H.
     unfold Out in H.
-    spliter.
+    分离合取式.
     unfold Ng.
     repeat split.
       intro.
@@ -405,11 +405,11 @@ Lemma not_pos_and_neg : forall O E A, ~(Ps O E A /\ Ng O E A).
 Proof.
     intros.
     intro.
-    spliter.
+    分离合取式.
     unfold Ps in H.
     unfold Ng in H0.
     unfold Out in H.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     induction H4.
       apply H.
@@ -451,7 +451,7 @@ Proof.
       assert(Ar2 O E E' C B dCB).
         apply diff_ar2; auto.
       unfold Ar2 in *.
-      spliter.
+      分离合取式.
       clean_duplicated_hyps.
       assert(HH:= sum_exists O E E' H3 dBA dCB H10 H7).
       ex_and HH dCA.
@@ -483,7 +483,7 @@ Proof.
     assert(Ar2 O E E' X Y Z).
       apply sum_ar2; auto.
     unfold Ar2 in *.
-    spliter.
+    分离合取式.
     clean_duplicated_hyps.
     induction H; induction H0.
       unfold LtP in *.
@@ -537,8 +537,8 @@ Lemma square_pos : forall O E E' A A2,
   O <> A -> Prod O E E' A A A2 -> Ps O E A2.
 Proof.
 intros O E E' A A2 HDiff HA2.
-assert (HNC : ~ Col O E E') by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColA : Col O E A) by (unfold Prod, Ar2 in *; spliter; Col).
+assert (HNC : ~ Col O E E') by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColA : Col O E A) by (unfold Prod, Ar2 in *; 分离合取式; Col).
 destruct (opp_exists O E E' HNC A) as [MA HMA]; Col.
 assert (HElim := HMA); apply pos_null_neg in HElim.
 elim HElim; clear HElim; intro HElim; [apply prod_pos_pos with E' A A; auto|].
@@ -565,7 +565,7 @@ intros O E E' A HLt.
 destruct HLt as [MA [HDiff HPs]].
 apply opp_pos_neg with E' MA; auto.
 apply diff_O_A_opp; apply sum_diff; apply sum_comm; try apply diff_sum; auto.
-unfold Diff, Opp, Sum, Ar2 in HDiff; destruct HDiff as [MB HXMY]; spliter; Col.
+unfold Diff, Opp, Sum, Ar2 in HDiff; destruct HDiff as [MB HXMY]; 分离合取式; Col.
 Qed.
 
 Lemma ps_le : forall O E E' X,
@@ -592,7 +592,7 @@ intros O E E' A B HNC HColA HColB.
 assert (HDiff1 : O <> E) by (统计不重合点; auto).
 elim (两点重合的决定性 A B); intro HDiff2; treat_equalities; [left; right; auto|].
 destruct (diff_exists O E E' B A) as [D HD]; Col.
-assert (HColD : Col O E D) by (apply diff_ar2 in HD; unfold Ar2 in *; spliter; Col).
+assert (HColD : Col O E D) by (apply diff_ar2 in HD; unfold Ar2 in *; 分离合取式; Col).
 assert (HDiff3 : O <> D)
   by (intro; treat_equalities; apply diff_null_eq in HD; intuition).
 apply col_pos_or_neg in HColD; auto.
@@ -612,7 +612,7 @@ elim HLe; clear HLe; intro HLe.
   {
   left; destruct HLe as [D [HDiff HPs]]; exists D; split; auto.
   assert (HNC : ~ Col O E E')
-    by (apply diff_ar2 in HDiff; unfold Ar2 in *; spliter; Col).
+    by (apply diff_ar2 in HDiff; unfold Ar2 in *; 分离合取式; Col).
   apply sum_diff; apply diff_sum in HDiff;
   apply sum_assoc_1 with C A B; auto;
   apply sum_comm; auto.
@@ -634,10 +634,10 @@ elim H角度小于等于; clear H角度小于等于; intro H角度小于等于;
 elim HLeB; clear HLeB; intro HLeB; treat_equalities;
 try (apply prod_O_l_eq in HAB); try (apply prod_O_r_eq in HAB);
 treat_equalities; try (apply leP_refl).
-assert (HNC : ~ Col O E E') by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColA : Col O E A) by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColB : Col O E B) by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColAB : Col O E AB) by (unfold Prod, Ar2 in *; spliter; Col).
+assert (HNC : ~ Col O E E') by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColA : Col O E A) by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColB : Col O E B) by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColAB : Col O E AB) by (unfold Prod, Ar2 in *; 分离合取式; Col).
 left; exists AB; split; try (apply diff_A_O); Col.
 destruct H角度小于等于 as [A' [HDiff1 HPsA]]; destruct HLeB as [B' [HDiff2 HPsB]].
 assert (A = A')
@@ -652,9 +652,9 @@ Lemma pos_inv_pos : forall O E E' A IA,
 Proof.
 intros O E E' A IA HOA HLe HIA.
 elim HLe; clear HLe; intro HLe; treat_equalities; [|intuition].
-assert (HNC : ~ Col O E E') by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColA : Col O E A) by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColIA : Col O E IA) by (unfold Prod, Ar2 in *; spliter; Col).
+assert (HNC : ~ Col O E E') by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColA : Col O E A) by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColIA : Col O E IA) by (unfold Prod, Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' IA O) as [IA' HIA']; Col.
 assert (IA = IA') by (apply diff_uniqueness with O E E' IA O; auto; apply diff_A_O; Col).
 treat_equalities; left; exists IA; split; auto; clear HIA'.
@@ -673,7 +673,7 @@ elim HElim; clear HElim; intro HPs2; treat_equalities.
 
   {
   destruct (opp_exists O E E' HNC E) as [ME HME]; Col.
-  assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+  assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
   assert (HProd1 : Prod O E E' IA ME MIA) by (apply opp_prod; auto).
   assert (HProd2 : Prod O E E' MIA A ME).
     {
@@ -693,18 +693,18 @@ Lemma le_pos_prod_le : forall O E E' A B C AC BC,
   LeP O E E' AC BC.
 Proof.
 intros O E E' A B C AC BC HALeB HPsC HAC HBC.
-assert (HNC : ~ Col O E E') by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColA : Col O E A) by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColB : Col O E B) by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColC : Col O E C) by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColAC : Col O E AC) by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColBC : Col O E BC) by (unfold Prod, Ar2 in *; spliter; Col).
+assert (HNC : ~ Col O E E') by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColA : Col O E A) by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColB : Col O E B) by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColC : Col O E C) by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColAC : Col O E AC) by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColBC : Col O E BC) by (unfold Prod, Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' BC AC) as [BCMAC HBCMAC]; Col.
 apply compatibility_of_sum_with_order with O BCMAC AC;
 try apply sum_O_B; try (apply sum_comm; try apply diff_sum); Col.
 destruct (diff_exists O E E' B A) as [BMA HBMA]; Col.
 assert (HColBMA : Col O E BMA)
-  by (apply diff_ar2 in HBMA; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBMA; unfold Ar2 in *; 分离合取式; Col).
 destruct (prod_exists O E E' HNC BMA C) as [BCMAC' HBCMAC']; Col.
 assert (H : Diff O E E' BC AC BCMAC').
   {
@@ -715,7 +715,7 @@ assert (BCMAC = BCMAC') by (apply diff_uniqueness with O E E' BC AC; auto).
 clear H; treat_equalities;
 apply compatibility_of_prod_with_order with BMA C; auto.
 destruct (opp_exists O E E' HNC A) as [MA HMA]; Col.
-assert (HColMA : Col O E MA) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+assert (HColMA : Col O E MA) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
 apply compatibility_of_sum_with_order with A B MA; auto;
 try (apply diff_sum; apply diff_O_A; Col).
 apply diff_O_A in HMA; Col; apply diff_sum in HBMA; apply diff_sum in HMA.
@@ -728,14 +728,14 @@ Lemma bet_lt12_le23 : forall O E E' A B C,
 Proof.
 intros O E E' A B C HBet HLt.
 assert (HNC : ~ Col O E E')
-  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
+  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; 分离合取式; Col).
 assert (HDiff1 : O <> E) by (统计不重合点; auto).
 elim (两点重合的决定性 B C); intro HDiff2; [right; auto|].
 assert (HDiff3 : A <> B) by (apply ltP_neq with O E E'; auto).
 assert (HColA : Col O E A)
-  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
+  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; 分离合取式; Col).
 assert (HColB : Col O E B)
-  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
+  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; 分离合取式; Col).
 assert (HColC : Col O E C) by ColR.
 destruct (diff_exists O E E' C B) as [CMB HCMB]; Col.
 elim (两点重合的决定性 O A); intro HDiff4; elim (两点重合的决定性 O B); intro HDiff5;
@@ -776,7 +776,7 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
 
   {
   apply ltP_neg in HLt; apply ps_le; Col.
-  unfold Ng in *; spliter.
+  unfold Ng in *; 分离合取式.
   elim (l5_2 A O C E); Between.
   }
 
@@ -1416,7 +1416,7 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
         {
         assert (HBet3 : Bet B O A).
           {
-          destruct HPsA as [H'' [H' H]]; unfold Ng in *; spliter;
+          destruct HPsA as [H'' [H' H]]; unfold Ng in *; 分离合取式;
           induction H; eBetween.
           }
         exfalso; apply neg_not_pos in HNgB; apply HNgB; clear HNgB.
@@ -1518,7 +1518,7 @@ elim (两点重合的决定性 O C); intro HDiff6; treat_equalities;
         {
         assert (HBet3 : Bet B O A).
           {
-          destruct HPsA as [H'' [H' H]]; unfold Ng in *; spliter;
+          destruct HPsA as [H'' [H' H]]; unfold Ng in *; 分离合取式;
           induction H; eBetween.
           }
         exfalso; apply neg_not_pos in HNgB; apply HNgB; clear HNgB.
@@ -1790,29 +1790,29 @@ Lemma bet_lt21_le32 : forall O E E' A B C,
 Proof.
 intros O E E' A B C HBet HLt.
 assert (HNC : ~ Col O E E')
-  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
+  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; 分离合取式; Col).
 elim (两点重合的决定性 B C); intro HDiff2; [right; auto|].
 assert (HDiff3 : B <> A) by (apply ltP_neq with O E E'; auto).
 assert (HColA : Col O E A)
-  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
+  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; 分离合取式; Col).
 assert (HColB : Col O E B)
-  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; spliter; Col).
+  by (destruct HLt as [D [H H']]; apply diff_ar2 in H; unfold Ar2 in *; 分离合取式; Col).
 assert (HColC : Col O E C) by ColR.
 destruct (diff_exists O E E' B C) as [BMC HBMC]; Col.
 destruct (opp_exists O E E' HNC A) as [MA HMA]; Col.
 destruct (opp_exists O E E' HNC B) as [MB HMB]; Col.
 destruct (opp_exists O E E' HNC C) as [MC HMC]; Col.
-assert (HColMA : Col O E MA) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
-assert (HColMB : Col O E MB) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
-assert (HColMC : Col O E MC) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+assert (HColMA : Col O E MA) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
+assert (HColMB : Col O E MB) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
+assert (HColMC : Col O E MC) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
 assert (HColBMC : Col O E BMC)
-  by (apply diff_ar2 in HBMC; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBMC; unfold Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' A B) as [AMB HAMB]; Col.
 assert (HColAMB : Col O E AMB)
-  by (apply diff_ar2 in HAMB; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAMB; unfold Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' MA MB) as [MAMMB HMAMMB]; Col.
 assert (HColMAMMB : Col O E MAMMB)
-  by (apply diff_ar2 in HMAMMB; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HMAMMB; unfold Ar2 in *; 分离合取式; Col).
 assert (HOppAMB : Opp O E E' AMB MAMMB).
   {
   apply sum_opp; apply sum_assoc_1 with MB A B;
@@ -1834,7 +1834,7 @@ assert (HOppAMB : Opp O E E' AMB MAMMB).
   }
 destruct (diff_exists O E E' MB MA) as [MBMMA HMBMMA]; Col.
 assert (HColMBMMA : Col O E MBMMA)
-  by (apply diff_ar2 in HMBMMA; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HMBMMA; unfold Ar2 in *; 分离合取式; Col).
 assert (HOppMAMMB : Opp O E E' MAMMB MBMMA) by (apply diff_opp with MA MB; auto).
 assert (AMB = MBMMA)
   by (apply opp_uniqueness with O E E' MAMMB; auto; apply opp_comm; auto).
@@ -1843,7 +1843,7 @@ assert (HBet' : Bet MA MB MC)
   by (apply l7_15 with A B C O; auto; try apply opp_midpoint with E E'; auto).
 destruct (diff_exists O E E' MB MC) as [MBMMC HMBMMC]; Col.
 assert (HColMAMMC : Col O E MBMMC)
-  by (apply diff_ar2 in HMBMMC; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HMBMMC; unfold Ar2 in *; 分离合取式; Col).
 assert (HOppAMC : Opp O E E' BMC MBMMC).
   {
   apply sum_opp; apply sum_assoc_1 with MC B C;
@@ -1890,11 +1890,11 @@ Lemma opp_2_le_le : forall O E E' A MA B MB,
   Opp O E E' A MA -> Opp O E E' B MB -> LeP O E E' A B -> LeP O E E' MB MA.
 Proof.
 intros O E E' A MA B MB HOppA HOppB HLe.
-assert (HNC : ~ Col O E E') by (unfold Opp, Sum, Ar2 in *; spliter; Col).
-assert (HColA : Col O E A) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
-assert (HColMA : Col O E MA) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
-assert (HColB : Col O E B) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
-assert (HColMB : Col O E MB) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+assert (HNC : ~ Col O E E') by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
+assert (HColA : Col O E A) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
+assert (HColMA : Col O E MA) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
+assert (HColB : Col O E B) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
+assert (HColMB : Col O E MB) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
 destruct (sum_exists O E E' HNC MA MB) as [MAMB HMAMB]; Col.
 assert (HMA : Sum O E E' B MAMB MA)
   by (apply sum_assoc_2 with MB MA O; apply sum_comm; Col; apply sum_A_O; auto).
@@ -1908,13 +1908,13 @@ Lemma diff_2_le_le : forall O E E' A B C AMC BMC,
   LeP O E E' AMC BMC.
 intros O E E' A B C AMC BMC HAMC HBMC HLe.
 assert (HNC : ~ Col O E E')
-  by (apply diff_ar2 in HAMC; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAMC; unfold Ar2 in *; 分离合取式; Col).
 assert (HColC : Col O E C)
-  by (apply diff_ar2 in HAMC; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAMC; unfold Ar2 in *; 分离合取式; Col).
 assert (HColAMC : Col O E AMC)
-  by (apply diff_ar2 in HAMC; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAMC; unfold Ar2 in *; 分离合取式; Col).
 assert (HColBMC : Col O E BMC)
-  by (apply diff_ar2 in HBMC; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBMC; unfold Ar2 in *; 分离合取式; Col).
 destruct (opp_exists O E E' HNC C) as [MC HMC]; Col.
 assert (HAMC' : Sum O E E' A MC AMC).
   {

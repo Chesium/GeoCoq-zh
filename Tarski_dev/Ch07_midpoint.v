@@ -78,7 +78,7 @@ Lemma A是AB中点则A与B重合 : forall A B, 中点 A A B -> A = B.
 Proof.
     intros.
     unfold 中点 in H.
-    spliter.
+    分离合取式.
     treat_equalities;reflexivity.
 Qed.
 
@@ -86,7 +86,7 @@ Lemma A是BA中点则A与B重合 : forall A B, 中点 A B A -> A=B.
 Proof.
     intros.
     unfold 中点 in *.
-    spliter.
+    分离合取式.
     apply 等长的同一性 in H0.
     auto.
 Qed.
@@ -100,7 +100,7 @@ Qed.
 Lemma M是AA中点则M与A重合 : forall M A, 中点 M A A -> M=A.
 Proof.
     unfold 中点.
-    intros;spliter;treat_equalities;reflexivity.
+    intros;分离合取式;treat_equalities;reflexivity.
 Qed.
 
 
@@ -125,7 +125,7 @@ Lemma 中点组的唯一性1 : forall A P P1 P2, 中点 P A P1 -> 中点 P A P2 
 Proof.
     unfold 中点.
     intros.
-    spliter.
+    分离合取式.
     elim (两点重合的决定性 A P); intros.
       treat_equalities;auto.
     apply (点的唯一构造 A P A P);Cong.
@@ -135,7 +135,7 @@ Lemma 中点组的唯一性2 : forall P Q A X, 中点 A P X -> 中点 A Q X -> P
 Proof.
     unfold 中点.
     intros.
-    spliter.
+    分离合取式.
     induction (两点重合的决定性 A X).
       treat_equalities;reflexivity.
     apply (点的唯一构造 X A X A);Cong;Between.
@@ -143,14 +143,14 @@ Qed.
 
 Lemma 中点组的唯一性3 : forall P Q A X, 中点 A P X -> 中点 A X Q -> P=Q.
 Proof.
-intros; apply 中点组的唯一性2 with A X; unfold 中点 in *; split; spliter; Cong; Between.
+intros; apply 中点组的唯一性2 with A X; unfold 中点 in *; split; 分离合取式; Cong; Between.
 Qed.
 
 Lemma l7_13_同中点组两侧等长 : forall A P Q P' Q',  中点 A P' P -> 中点 A Q' Q -> Cong P Q P' Q'.
 Proof.
     unfold 中点.
     intros.
-    spliter.
+    分离合取式.
     induction (两点重合的决定性 P A).
       treat_equalities;Cong.
     prolong P' P X Q A.
@@ -185,7 +185,7 @@ Proof.
       auto.
     assert (Cong X' Y' Y X) by eauto using l4_16_五线段形式推论.
     assert (Cong A X A X') by (apply 等长的传递性 with A Y; Cong).
-    assert (内五线段形式 Y Q A X Y' Q' A X') by (unfold 内五线段形式, 五线段形式 in *;spliter;repeat split;Between; Cong).
+    assert (内五线段形式 Y Q A X Y' Q' A X') by (unfold 内五线段形式, 五线段形式 in *;分离合取式;repeat split;Between; Cong).
     assert (Cong Q X Q' X') by eauto using l4_2.
     assert (内五线段形式 X P A Q X' P' A Q') by (unfold 内五线段形式;repeat split;Between;Cong).
     eauto using l4_2.
@@ -195,7 +195,7 @@ Lemma l7_15 : forall P Q R P' Q' R' A,
  中点 A P P' -> 中点 A Q Q' -> 中点 A R R' -> Bet P Q R -> Bet P' Q' R'.
 Proof.
     intros.
-    spliter.
+    分离合取式.
     eapply l4_6.
       apply H2.
     unfold 三角形全等.
@@ -249,7 +249,7 @@ Proof.
     intros.
     unfold 中点.
     unfold 中点 in H2.
-    spliter.
+    分离合取式.
     split.
       eapply l7_15;eauto.
     eapply l7_16;eauto.
@@ -283,7 +283,7 @@ Lemma 中点的等价排列 :
 Proof.
     unfold 中点.
     intros.
-    spliter.
+    分离合取式.
     repeat split; Between; Cong.
 Qed.
 
@@ -292,7 +292,7 @@ Proof.
     intros.
     assert (Cong P B P' B).
       unfold 中点 in *.
-      spliter.
+      分离合取式.
       Cong.
     assert (exists B', 中点 A B B') by (apply 构造对称点).
     induction H2.
@@ -300,7 +300,7 @@ Proof.
     assert (Cong P B P x) by (apply 等长的传递性 with P' B; Cong).
     assert (Cong P B P' x) by eauto with midpoint cong.
     assert (Cong P' B P' x) by (apply 等长的传递性 with P x; Cong; apply 等长的传递性 with P B; Cong).
-    assert (Bet P B P') by (unfold 中点 in *;spliter;assumption).
+    assert (Bet P B P') by (unfold 中点 in *;分离合取式;assumption).
     assert (B=x) by (apply (l4_19 P P' B x);Between).
     subst x.
     apply M是AA中点则M与A重合.
@@ -366,12 +366,12 @@ Proof.
     assert (五线段形式 B D P A D B x C).
       unfold 五线段形式.
       unfold 三角形全等 in *.
-      spliter.
+      分离合取式.
       repeat split; Cong; Col.
     assert (五线段形式 B D P C D B x A).
       unfold 五线段形式.
       unfold 三角形全等 in *.
-      spliter.
+      分离合取式.
       repeat split; Col; Cong.
     assert (Cong P A x C) by (eauto using l4_16_五线段形式推论).
     assert (Cong P C x A) by (eauto using l4_16_五线段形式推论).
@@ -379,10 +379,10 @@ Proof.
     assert (Col C x A) by (eauto using 全等于退化的三角形).
     assert (P=x).
       unfold 五线段形式 in *.
-      spliter.
+      分离合取式.
       apply (l6_21_两线交点的唯一性 A C B D); Col.
     subst x.
-    unfold 三角形全等 in *;spliter.
+    unfold 三角形全等 in *;分离合取式.
     split;apply 不重合共线点间距相同则为中点组1;Col;Cong.
 Qed.
 
@@ -422,7 +422,7 @@ Proof.
           apply H9.
           apply H8.
         unfold 中点 in H4.
-        spliter.
+        分离合取式.
         assumption.
       eapply l7_16.
         apply H7.
@@ -430,7 +430,7 @@ Proof.
         apply H9.
         apply H8.
       unfold 中点 in H4.
-      spliter.
+      分离合取式.
       assumption.
     assert (Le C A1 C x).
       eapply l5_6_等长保持小于等于关系.
@@ -438,7 +438,7 @@ Proof.
         apply H5.
         apply 等长的自反性.
       unfold 中点 in H7.
-      spliter.
+      分离合取式.
       apply 等长的左交换性.
       assumption.
     assert (Bet C A1 x).
@@ -460,7 +460,7 @@ Proof.
         apply 中间性的对称性.
         assumption; intro.
       unfold 中点 in H7.
-      spliter.
+      分离合取式.
       assumption.
     (* assert (M1=x).
     eauto with 中点.
@@ -470,7 +470,7 @@ Proof.
         apply H11.
         assumption.
       unfold 中点 in *.
-      spliter.
+      分离合取式.
       eapply 等长的传递性.
         apply 等长的对称性.
         apply H16.
@@ -509,7 +509,7 @@ Proof.
           assumption.
         apply l5_2 with B2; Between.
         unfold 中点 in H8.
-        spliter.
+        分离合取式.
         assumption.
       assumption.
     assert (exists Q, Bet x1 Q C /\ Bet A1 Q B1).
@@ -519,13 +519,13 @@ Proof.
         apply 中间性的对称性.
         apply H14.
       unfold 中点 in H10.
-      spliter.
+      分离合取式.
       assumption.
     ex_and H15 Q.
     assert (内五线段形式 x A1 C x1 x0 B1 C x1).
       unfold 内五线段形式.
       unfold 中点 in *.
-      spliter.
+      分离合取式.
       repeat split.
         apply 中间性的对称性.
         assumption.
@@ -576,7 +576,7 @@ Proof.
     eapply 中间性的交换传递性1.
       apply H15.
     unfold 中点 in H9.
-    spliter.
+    分离合取式.
     apply 中间性的对称性.
     assumption.
 Qed.
@@ -709,7 +709,7 @@ Proof.
         apply 等长的交换性.
         assumption.
         unfold 三角形全等 in H12.
-        spliter.
+        分离合取式.
         assumption.
         apply 等长的伪自反性.
       apply 等长的交换性.
@@ -721,7 +721,7 @@ Proof.
         apply 等长的交换性.
         assumption.
         unfold 三角形全等 in H12.
-        spliter.
+        分离合取式.
         assumption.
       apply 等长的伪自反性.
     assert (Cong R A R' B).
@@ -747,7 +747,7 @@ Proof.
       assumption.
     assert (B <> P).
       unfold 内五线段形式, 外五线段形式, 三角形全等 in *.
-      spliter.
+      分离合取式.
       intro.
       subst P.
       apply 中间性的同一律 in H14.
@@ -761,7 +761,7 @@ Proof.
       assumption.
     assert (A <> Q).
       unfold 内五线段形式, 外五线段形式, 三角形全等 in *.
-      spliter.
+      分离合取式.
       intro.
       subst Q.
       apply 等长的反向同一性 in H20.
@@ -779,7 +779,7 @@ Proof.
     assert (B <> R).
       intro.
       unfold 三角形全等, 内五线段形式, 外五线段形式 in *.
-      spliter.
+      分离合取式.
       subst R.
       clean_duplicated_hyps.
       assert (Col B A C).
@@ -897,7 +897,7 @@ Proof.
     intros.
     assert (A<>B).
       intro.
-      unfold 中点 in *;spliter.
+      unfold 中点 in *;分离合取式.
       treat_equalities.
       intuition.
     split.
@@ -916,7 +916,7 @@ Proof.
     intros.
     assert (A<>B).
       intro.
-      unfold 中点 in *;spliter.
+      unfold 中点 in *;分离合取式.
       treat_equalities.
       intuition.
     split.
@@ -966,7 +966,7 @@ Lemma midpoint_out : forall A B C, A <> C -> 中点 B A C -> Out A B C.
 Proof.
     intros.
     repeat split.
-      apply 严格中点组推论1 in H0; spliter; auto.
+      apply 严格中点组推论1 in H0; 分离合取式; auto.
       auto.
     left.
     apply midpoint_bet.
@@ -1012,7 +1012,7 @@ Lemma 两中点组全段等长则前半段等长 : forall A M B A' M' B',
 Proof.
     intros.
     unfold 中点 in *.
-    spliter.
+    分离合取式.
     assert(exists M'', Bet A' M'' B' /\ 三角形全等 A M B A' M'' B').
       eapply l4_5.
         assumption.
@@ -1023,7 +1023,7 @@ Proof.
       split.
         assumption.
       unfold 三角形全等 in H5.
-      spliter.
+      分离合取式.
       eapply 等长的传递性.
         apply 等长的对称性.
         apply H5.
@@ -1036,11 +1036,11 @@ Proof.
         apply H2.
         apply H4.
       unfold 中点 in H6.
-      spliter.
+      分离合取式.
       assumption.
     subst M''.
     unfold 三角形全等 in H5.
-    spliter.
+    分离合取式.
     assumption.
 Qed.
 
@@ -1136,7 +1136,7 @@ Lemma midpoint_preserves_out :
 Proof.
     intros.
     unfold Out in H.
-    spliter.
+    分离合取式.
     unfold Out.
     repeat split.
       intro.
@@ -1242,7 +1242,7 @@ apply H11.
 assumption.
 auto.
 unfold 中点 in H7.
-spliter.
+分离合取式.
 eapply 等长的传递性.
 apply 等长的对称性.
 apply 等长的交换性.
@@ -1280,7 +1280,7 @@ eapply bet_cong_eq.
 Between.
 eBetween.
 Cong.
-spliter.
+分离合取式.
 subst D.
 subst C.
 Between.
@@ -1306,7 +1306,7 @@ eapply bet_cong_eq.
 Between.
 eBetween.
 Cong.
-spliter.
+分离合取式.
 subst D.
 subst C.
 Between.
@@ -1369,14 +1369,14 @@ intros.
 unfold Lt.
 split.
 unfold Lt in *.
-spliter.
+分离合取式.
 apply(bet2_le2__le O o A B a b); auto.
 intro.
 
 induction(两点重合的决定性 O A).
 treat_equalities.
 unfold Lt in H1.
-spliter.
+分离合取式.
 apply AB小于等于CC推出A与B重合 in H0.
 treat_equalities.
 apply H1.
@@ -1385,14 +1385,14 @@ apply 等长的平凡同一性.
 induction(两点重合的决定性 O B).
 treat_equalities.
 unfold Lt in H2.
-spliter.
+分离合取式.
 apply AB小于等于CC推出A与B重合 in H0.
 treat_equalities.
 apply H2.
 apply 等长的平凡同一性.
 
 unfold Lt in *.
-spliter.
+分离合取式.
 
 unfold Le in H1.
 ex_and H1 a'.
@@ -1424,7 +1424,7 @@ induction H1.
 treat_equalities.
 contradiction.
 unfold 中点 in *.
-spliter.
+分离合取式.
 assert(b' = B).
 {
   apply (between_cong A).
@@ -1446,7 +1446,7 @@ induction H2.
 treat_equalities.
 contradiction.
 unfold 中点 in *.
-spliter.
+分离合取式.
 assert(a' = A).
 {
   apply (between_cong B).
@@ -1494,7 +1494,7 @@ intros.
 unfold Lt.
 split.
 unfold Lt in *.
-spliter.
+分离合取式.
 assert(Le o a O A).
 {
   unfold Le.
@@ -1508,7 +1508,7 @@ assert(HH:=由一点往一方向构造等长线段 A O o b).
 ex_and HH b'.
 
 unfold Lt in H2.
-spliter.
+分离合取式.
 apply H6.
 
 apply(l4_3_1 a o b A O B H H0 ); Cong.

@@ -68,7 +68,7 @@ Proof.
       assert(Par A' C' A B).
         apply(par_col_par_2 A' B' A B C').
           apply par_strict_distinct in H3.
-          spliter.
+          分离合取式.
           auto.
           auto.
         left.
@@ -80,7 +80,7 @@ Proof.
         apply H17.
         exists A.
         split; Col.
-      spliter; Col.
+      分离合取式; Col.
     induction(共线的决定性 O B C).
       right.
       repeat split.
@@ -197,7 +197,7 @@ Proof.
         apply H36.
         exists O.
         split; Col.
-      spliter.
+      分离合取式.
       apply H16.
       Col.
     assert(共面 X Y O C).
@@ -230,7 +230,7 @@ Proof.
           apply H32.
           exists O.
           split; Col.
-        spliter.
+        分离合取式.
         ColR.
       assert(Par X A' O B).
         apply (par_col_par_2 _ Y); Col.
@@ -244,7 +244,7 @@ Proof.
         apply H42.
         exists O.
         split; Col.
-      spliter.
+      分离合取式.
       Col.
     assert(~ Par L B' A' B').
       intro.
@@ -252,7 +252,7 @@ Proof.
         apply H42.
         exists B'.
         split;Col.
-      spliter.
+      分离合取式.
       apply H15.
       eapply (共线的传递性2 _ L); Col.
     assert(~ Par A B L B').
@@ -269,7 +269,7 @@ Proof.
     assert(严格平行 A L O B').
       induction H34.
         auto.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply H13.
       apply (共线的传递性2 _ B'); Col.
@@ -289,7 +289,7 @@ Proof.
         assert(严格平行 A O N L).
           induction H18.
             auto.
-          spliter.
+          分离合取式.
           apply False_ind.
           apply H24.
           assert(Col N A B').
@@ -403,7 +403,7 @@ Proof.
         assert(严格平行 A N O C).
           induction H52.
             auto.
-          spliter.
+          分离合取式.
           apply False_ind.
           apply H14.
           Col.
@@ -432,7 +432,7 @@ Proof.
             Col.
           apply 等价共线CAB.
           apply (共线的传递性2 _ N); Col.
-        spliter.
+        分离合取式.
         apply H13.
         apply 等价共线CAB.
         apply (共线的传递性2 _ M); Col.
@@ -443,7 +443,7 @@ Proof.
           apply H51.
           exists A.
           split; Col.
-        spliter.
+        分离合取式.
         apply H14.
         Col.
       assert(P <> N).
@@ -453,7 +453,7 @@ Proof.
           apply H51.
           exists C.
           split; Col.
-        spliter.
+        分离合取式.
         apply H14.
         Col.
       apply(l13_11 N B A C M O P); Par; try ColR.
@@ -475,7 +475,7 @@ Proof.
         assert(严格平行 N B' O C').
           induction H53.
             auto.
-          spliter.
+          分离合取式.
           apply False_ind.
           induction H51.
             apply H51.
@@ -483,7 +483,7 @@ Proof.
             split.
               ColR.
             Col.
-          spliter.
+          分离合取式.
           contradiction.
         assert(M <> L).
           intro.
@@ -531,7 +531,7 @@ Proof.
                 apply H27.
                 exists O.
                 split; Col.
-              spliter.
+              分离合取式.
               apply H13.
               apply(共线的传递性4 X Y); Col.
               auto.
@@ -543,7 +543,7 @@ Proof.
         subst M.
         right.
         repeat split; auto.
-          apply par_distincts in H52; spliter; auto.
+          apply par_distincts in H52; 分离合取式; auto.
           intro; subst; apply H15; Col.
           Col.
         Col.
@@ -587,7 +587,7 @@ Proof.
                     apply H50.
                     exists C'.
                     split; Col.
-                  spliter.
+                  分离合取式.
                   apply H23.
                   ColR.
                   Col.
@@ -628,7 +628,7 @@ Proof.
                     apply H52.
                     exists B.
                     split; Col.
-                  spliter.
+                  分离合取式.
                   assert(B = O).
                     apply (l6_21_两线交点的唯一性 O B' M C); Col.
                   subst B.
@@ -662,13 +662,13 @@ Proof.
         apply H1.
         exists O.
         split; Col.
-        spliter.
+        分离合取式.
         apply H; Col.
-        spliter.
+        分离合取式.
         apply H; Col.
-      spliter.
+      分离合取式.
       apply H; Col.
-    spliter.
+    分离合取式.
     assert( A <> O /\ B <> O /\ C <> O).
       repeat split; intro; subst O.
         apply H9.
@@ -677,7 +677,7 @@ Proof.
         Col.
       apply H9.
       Col.
-    spliter.
+    分离合取式.
     assert( A' <> O).
       intro.
       subst A'.
@@ -689,7 +689,7 @@ Proof.
         apply H13.
         exists B.
         split; Col.
-      spliter.
+      分离合取式.
       contradiction.
     assert(B' <> O).
       intro.
@@ -704,7 +704,7 @@ Proof.
         apply H14.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       apply H7.
       Col.
     assert(C' <> O).
@@ -720,7 +720,7 @@ Proof.
         apply H15.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       apply H9.
       Col.
     assert(~Col O A' B').
@@ -777,7 +777,7 @@ Proof.
         apply H28.
         exists C.
         split; Col.
-      spliter.
+      分离合取式.
       contradiction.
     assert(共面 X Y O C).
       induction H25.
@@ -787,7 +787,7 @@ Proof.
           apply coplanar_perm_1, col_cop__cop with X; Col; Cop.
           Cop.
           Cop.
-      spliter.
+      分离合取式.
       Cop.
     assert(HH:=cop_npar__inter_exists X Y O C H28 H27).
     ex_and HH C''.
@@ -818,7 +818,7 @@ Proof.
         auto.
       induction H32.
         Par.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply H8.
       apply 等价共线CAB.
@@ -840,7 +840,7 @@ Proof.
         apply H35.
         exists A'.
         split; Col.
-        spliter.
+        分离合取式.
         Col.
     contradiction.
 Qed.
@@ -891,7 +891,7 @@ Proof.
         apply H10.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       Col.
     assert(B' <> O).
       intro.
@@ -910,7 +910,7 @@ Proof.
         apply H9.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       apply H1.
       exists O.
       split; Col.
@@ -932,7 +932,7 @@ Proof.
           apply H0.
           exists O.
           split; Col.
-        spliter.
+        分离合取式.
         apply H.
         Col.
         Col.
@@ -997,7 +997,7 @@ Proof.
           apply par_distincts in H2.
           tauto.
         apply plg_par in H6.
-          spliter.
+          分离合取式.
           Par.
           auto.
         intro.
@@ -1005,7 +1005,7 @@ Proof.
         apply H7.
         exists B'.
         split; Col.
-      spliter.
+      分离合取式.
       subst C.
       subst C'.
       apply False_ind.
@@ -1014,11 +1014,11 @@ Proof.
       split; Col.
     induction H6.
       apply plg_par in H6.
-        spliter.
+        分离合取式.
         Par.
-        spliter.
+        分离合取式.
         auto.
-      spliter.
+      分离合取式.
       intro.
       subst C'.
       assert(Par A B A C).
@@ -1027,10 +1027,10 @@ Proof.
         apply H11.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       apply H.
       Col.
-    spliter.
+    分离合取式.
     subst B'.
     subst A'.
     subst C'.
@@ -1047,7 +1047,7 @@ Lemma l13_18_2 : forall A B C A' B' C' O, ~Col A B C
                                -> (严格平行 B C B' C' /\ Col O A A' /\ Col O B B' -> Col O C C').
 Proof.
     intros.
-    spliter.
+    分离合取式.
     assert(~ Col O A B).
       intro.
       apply H0.
@@ -1075,7 +1075,7 @@ Proof.
         apply H6.
         exists C.
         split; Col.
-      spliter.
+      分离合取式.
       apply H2.
       exists B'.
       split;Col.
@@ -1102,7 +1102,7 @@ Proof.
     assert(严格平行 C' C'' B C).
       induction H9.
         auto.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply H8.
       apply 等价共线CAB.
@@ -1141,7 +1141,7 @@ Proof.
     assert(严格平行 B' C'' B C).
       induction H12.
         auto.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply H11.
       apply 等价共线CAB.
@@ -1165,7 +1165,7 @@ Proof.
       apply H15.
       exists A'.
       split; Col.
-    spliter.
+    分离合取式.
     assert(~ Col A' B' C').
       intro.
       apply H.
@@ -1187,10 +1187,10 @@ Lemma l13_18_3 : forall A B C A' B' C', ~Col A B C
                                -> (Par C C' A A' /\ Par C C' B B').
 Proof.
     intros.
-    spliter.
+    分离合取式.
     assert(Par C C' A A').
       apply par_distincts in H3.
-      spliter.
+      分离合取式.
       assert(HH:= parallel_existence1 B B' C H5).
       ex_and HH P.
       induction(par_dec C P B C).
@@ -1199,14 +1199,14 @@ Proof.
           apply H7.
           exists C.
           split; Col.
-        spliter.
+        分离合取式.
         assert(Col P B' C).
           induction H6.
             apply False_ind.
             apply H6.
             exists B.
             split; Col.
-          spliter.
+          分离合取式.
           Col.
         assert(Col C B B').
           apply (共线的传递性2 _ P); Col.
@@ -1230,7 +1230,7 @@ Proof.
           apply H6.
           exists B'.
           split; Col.
-        spliter; apply H2.
+        分离合取式; apply H2.
         exists B'.
         split; Col.
         apply 等价共线BCA.
@@ -1253,7 +1253,7 @@ Proof.
         assert(Par C' A' B C).
           apply (par_col_par_2 _ B').
             apply par_strict_distinct in H1.
-            spliter.
+            分离合取式.
             auto.
             Col.
           apply par_left_comm.
@@ -1266,7 +1266,7 @@ Proof.
           apply H17.
           exists C.
           split; Col.
-        spliter; Col.
+        分离合取式; Col.
       assert(Par A C A' C'').
         apply(l13_15_par B A C B' A' C'').
           intro.
@@ -1276,7 +1276,7 @@ Proof.
           Par.
           induction H14.
             Par.
-          spliter.
+          分离合取式.
           apply False_ind.
           apply H2.
           exists B'.
@@ -1307,16 +1307,16 @@ Lemma l13_18 :  forall A B C A' B' C' O, ~Col A B C /\ 严格平行 A B A' B' /\
                                           /\ (Par A A' B B' /\ Par A A' C C' -> Par B C B' C').
 Proof.
     intros.
-    spliter.
+    分离合取式.
     split.
       intros.
       apply (l13_18_2 A B C A' B' C' O); auto.
     split.
       intros.
-      spliter.
+      分离合取式.
       apply l13_18_3; auto.
     intros.
-    spliter.
+    分离合取式.
     apply (l13_15_par A B C A' B' C'); auto.
 Qed.
 
@@ -1341,7 +1341,7 @@ Proof.
         apply H24.
         exists E.
         split; Col.
-      spliter.
+      分离合取式.
       apply H.
       apply (共线的传递性2 _ E); Col.
     assert(共面 A' B' O E).
@@ -1371,7 +1371,7 @@ Proof.
         apply H29.
         exists A'.
         split; Col.
-      spliter.
+      分离合取式.
       assert(B' = D').
         eapply(l6_21_两线交点的唯一性 A' B' O B'); Col.
         intro.
@@ -1388,7 +1388,7 @@ Proof.
         apply H17.
         exists B.
         split; Col.
-      spliter.
+      分离合取式.
       apply H.
       apply 等价共线CAB.
       apply (共线的传递性2 _ A'); Col.
@@ -1397,7 +1397,7 @@ Proof.
         exists B; left; split; Col.
         induction H18.
           auto.
-        spliter.
+        分离合取式.
         apply False_ind.
         assert(Col A' A D).
           apply (共线的传递性2 _ D'); Col.
@@ -1427,7 +1427,7 @@ Proof.
           Par.
         induction H30.
           auto.
-        spliter.
+        分离合取式.
         apply False_ind.
         assert(Col A' A E).
           apply(共线的传递性2 _ E'); Col.
@@ -1452,7 +1452,7 @@ Proof.
         apply H32.
         exists A'.
         split; Col.
-      spliter.
+      分离合取式.
       assert(B' = D').
         eapply(l6_21_两线交点的唯一性 A' B' O B'); Col.
           Col5.
@@ -1464,7 +1464,7 @@ Proof.
         exists D; right; left; split; Col.
         induction H19.
           auto.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H.
         assert(Col B O C').
@@ -1492,7 +1492,7 @@ Proof.
           Par.
         induction H32.
           auto.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H.
         assert(Col O B' E').
@@ -1538,7 +1538,7 @@ Proof.
           apply H14.
           exists A.
           split; Col.
-        spliter.
+        分离合取式.
         Col.
       subst B'.
       assert(D = D').
@@ -1551,7 +1551,7 @@ Proof.
             apply H15.
             exists A.
             split; Col.
-          spliter.
+          分离合取式.
           Col.
       subst D'.
       assert(C = C').
@@ -1564,7 +1564,7 @@ Proof.
             apply H16.
             exists B.
             split; Col.
-          spliter.
+          分离合取式.
           Col.
       subst C'.
       apply par_reflexivity.
@@ -1582,7 +1582,7 @@ Proof.
           apply H18.
           exists B'.
           split; Col.
-        spliter.
+        分离合取式.
         eapply (l6_21_两线交点的唯一性 B' C' O A); Col.
         intro.
         apply H.
@@ -1600,7 +1600,7 @@ Proof.
           apply H19.
           exists B.
           split; Col.
-        spliter.
+        分离合取式.
         eapply (l6_21_两线交点的唯一性 B C O A'); Col.
           intro.
           apply H.
@@ -1664,17 +1664,17 @@ Proof.
         apply H25.
         exists E.
         split; Col.
-      spliter.
+      分离合取式.
       induction H24.
         apply H24.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       induction H26.
         apply H26.
         exists B.
         split; Col.
-      spliter.
+      分离合取式.
       apply H16.
       exists E.
       split;ColR.
@@ -1685,7 +1685,7 @@ Proof.
     assert(共面 A' B' E Z).
       induction H24.
         CopR.
-      spliter.
+      分离合取式.
       exfalso.
       apply H25.
       right.
@@ -1710,7 +1710,7 @@ Proof.
           exists D.
           split; Col.
         apply par_distincts in H19.
-        spliter.
+        分离合取式.
         auto.
       assert(Col A B D) by ColR.
       apply H16.
@@ -1720,7 +1720,7 @@ Proof.
     assert(严格平行 X A E Z).
       induction H24.
         Par.
-      spliter.
+      分离合取式.
       apply False_ind.
       assert(Col E X A) by ColR.
       assert(Col A C E) by ColR.
@@ -1744,7 +1744,7 @@ Proof.
     assert(严格平行 Y B E Z).
       induction H32.
         Par.
-      spliter.
+      分离合取式.
       apply False_ind.
       assert(Col E Y B) by ColR.
       assert(Col B D E) by ColR.
@@ -1794,7 +1794,7 @@ Proof.
           apply H37.
           exists A.
           split; Col.
-        spliter.
+        分离合取式.
         apply H16.
         exists A.
         split; Col.
@@ -1826,7 +1826,7 @@ Proof.
           apply H18.
           exists B.
           split; Col.
-        spliter.
+        分离合取式.
         Col.
     assert(C <> C').
       intro.
@@ -1835,7 +1835,7 @@ Proof.
         apply H20.
         exists C.
         split; Col.
-      spliter.
+      分离合取式.
       apply H16.
       exists C.
       split; Col.
@@ -1848,7 +1848,7 @@ Proof.
         apply H19.
         exists D.
         split; Col.
-      spliter.
+      分离合取式.
       apply H16.
       exists D.
       split; Col.
@@ -1863,7 +1863,7 @@ Proof.
         apply H40.
         exists B.
         split; Col.
-      spliter.
+      分离合取式.
       apply H16.
       exists B.
       split; ColR.
@@ -1876,7 +1876,7 @@ Proof.
         apply H41.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       apply H16.
       exists A.
       split; Col.
@@ -1913,7 +1913,7 @@ Proof.
     assert(严格平行 A E A' E').
       induction H46.
         Par.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply H47.
       apply (l6_21_两线交点的唯一性 X A' B' E'); Col.
@@ -1929,7 +1929,7 @@ Proof.
       apply(l13_15_par A D E A' D' E'); Par.
         induction H19.
           Par.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H16.
         exists D.
@@ -1964,7 +1964,7 @@ Proof.
         split; ColR.
         induction H20.
           Par.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H16.
         exists B'.
@@ -1982,7 +1982,7 @@ Proof.
           Par.
         induction H49.
           Par.
-        spliter.
+        分离合取式.
         apply False_ind.
         assert(Col B' A' B) by ColR.
         apply H16.
@@ -2039,7 +2039,7 @@ Proof.
         apply H17.
         exists B'.
         split; Col.
-      spliter.
+      分离合取式.
       assert(A' = C').
         apply (l6_21_两线交点的唯一性 X A B' A'); Col.
         intro.
@@ -2057,7 +2057,7 @@ Proof.
         apply H18.
         exists A'.
         split; Col.
-      spliter.
+      分离合取式.
       assert(B' = D').
         apply (l6_21_两线交点的唯一性 Y B A' B'); Col.
         intro.
@@ -2073,7 +2073,7 @@ Proof.
         apply H14.
         exists A.
         split; Col.
-      spliter.
+      分离合取式.
       assert(B = B').
         apply (l6_21_两线交点的唯一性 Y B A B); Col.
         intro.
@@ -2087,7 +2087,7 @@ Proof.
           apply H16.
           exists B.
           split; Col.
-        spliter.
+        分离合取式.
         apply (l6_21_两线交点的唯一性 X A B C); Col.
         intro.
         apply H13.
@@ -2100,7 +2100,7 @@ Proof.
           apply H15.
           exists A.
           split; Col.
-        spliter.
+        分离合取式.
         apply (l6_21_两线交点的唯一性 Y B A D); Col.
         intro.
         apply H13.
@@ -2124,7 +2124,7 @@ Proof.
       apply H21.
       Par.
     apply par_distincts in H14.
-    spliter.
+    分离合取式.
     apply par_symmetry.
     eapply (l13_19_par_aux A' B' C' D' A B C D X Y); sfinish.
       intro.
@@ -2142,7 +2142,7 @@ Proof.
           apply H24.
           exists B.
           split; Col.
-        spliter.
+        分离合取式.
         Col.
       intro.
       apply H18.
@@ -2159,10 +2159,10 @@ Proof.
           apply H24.
           exists A.
           split; Col.
-        spliter.
+        分离合取式.
         Col.
       unfold 严格平行 in H13.
-      spliter.
+      分离合取式.
       unfold 严格平行.
       split.
         apply coplanar_perm_16, col_cop__cop with A; Col.

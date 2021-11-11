@@ -12,16 +12,16 @@ Lemma lemma_TTflip2 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists J, (BetS E F J /\ Cong F J G H /\ TG A B C D E J)) by (conclude_def TT );destruct Tf as [J];spliter.
+assert (Tf:exists J, (BetS E F J /\ Cong F J G H /\ TG A B C D E J)) by (conclude_def TT );destruct Tf as [J];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists K, (BetS A B K /\ Cong B K C D /\ Lt E J A K)) by (conclude_def TG );destruct Tf as [K];spliter.
+assert (Tf:exists K, (BetS A B K /\ Cong B K C D /\ Lt E J A K)) by (conclude_def TG );destruct Tf as [K];分离合取式.
 assert (neq F J) by (forward_using lemma_betweennotequal).
 assert (neq G H) by (conclude axiom_nocollapse).
 assert (neq H G) by (conclude lemma_inequalitysymmetric).
 assert (neq E F) by (forward_using lemma_betweennotequal).
 assert (neq F E) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists L, (BetS H G L /\ Cong G L F E)) by (conclude lemma_extension);destruct Tf as [L];spliter.
+assert (Tf:exists L, (BetS H G L /\ Cong G L F E)) by (conclude lemma_extension);destruct Tf as [L];分离合取式.
 assert (Cong L G E F) by (forward_using lemma_congruenceflip).
 assert (Cong G H F J) by (conclude lemma_congruencesymmetric).
 assert (BetS L G H) by (conclude axiom_betweennesssymmetry).

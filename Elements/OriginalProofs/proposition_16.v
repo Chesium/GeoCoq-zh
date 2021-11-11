@@ -29,7 +29,7 @@ assert (~ eq B C).
  }
 assert (neq C B) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS A E C /\ Cong E A E C)) by (conclude proposition_10);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS A E C /\ Cong E A E C)) by (conclude proposition_10);destruct Tf as [E];分离合取式.
 assert (~ eq B E).
  {
  intro.
@@ -39,7 +39,7 @@ assert (~ eq B E).
  }
 assert (neq E B) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists F, (BetS B E F /\ Cong E F E B)) by (conclude lemma_extension);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS B E F /\ Cong E F E B)) by (conclude lemma_extension);destruct Tf as [F];分离合取式.
 assert (~ eq A C).
  {
  intro.
@@ -49,7 +49,7 @@ assert (~ eq A C).
 assert (neq C A) by (conclude lemma_inequalitysymmetric).
 assert (neq E C) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists G, (BetS A C G /\ Cong C G E C)) by (conclude lemma_extension);destruct Tf as [G];spliter.
+assert (Tf:exists G, (BetS A C G /\ Cong C G E C)) by (conclude lemma_extension);destruct Tf as [G];分离合取式.
 assert (~ Col B E A).
  {
  intro.
@@ -159,7 +159,7 @@ assert (~ Col D B F).
  }
 rename_H H;
 let Tf:=fresh in
-assert (Tf:exists H, (BetS D H E /\ BetS F H C)) by (conclude postulate_Pasch_inner);destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS D H E /\ BetS F H C)) by (conclude postulate_Pasch_inner);destruct Tf as [H];分离合取式.
 assert (BetS C H F) by (conclude axiom_betweennesssymmetry).
 assert (Out C F H) by (conclude lemma_ray4).
 assert (eq A A) by (conclude cn_equalityreflexive).
@@ -176,7 +176,7 @@ assert (等角 B A C A C H) by (conclude lemma_equalanglestransitive).
 assert (角度小于 B A C A C D) by (conclude_def 角度小于 ).
 assert (neq B C) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists e, (BetS B e C /\ Cong e B e C)) by (conclude proposition_10);destruct Tf as [e];spliter.
+assert (Tf:exists e, (BetS B e C /\ Cong e B e C)) by (conclude proposition_10);destruct Tf as [e];分离合取式.
 assert (Col B e C) by (conclude_def Col ).
 assert (~ eq A e).
  {
@@ -187,7 +187,7 @@ assert (~ eq A e).
  }
 assert (neq e A) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists f, (BetS A e f /\ Cong e f e A)) by (conclude lemma_extension);destruct Tf as [f];spliter.
+assert (Tf:exists f, (BetS A e f /\ Cong e f e A)) by (conclude lemma_extension);destruct Tf as [f];分离合取式.
 assert (~ eq B C).
  {
  intro.
@@ -301,7 +301,7 @@ assert (~ Col G A f).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists h, (BetS G h e /\ BetS f h C)) by (conclude postulate_Pasch_inner);destruct Tf as [h];spliter.
+assert (Tf:exists h, (BetS G h e /\ BetS f h C)) by (conclude postulate_Pasch_inner);destruct Tf as [h];分离合取式.
 assert (BetS C h f) by (conclude axiom_betweennesssymmetry).
 assert (neq h C) by (forward_using lemma_betweennotequal).
 assert (neq C h) by (conclude lemma_inequalitysymmetric).

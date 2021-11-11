@@ -38,7 +38,7 @@ assert (~ Lt D E A B).
  assert (Cong A B B A) by (conclude cn_equalityreverse).
  assert (Lt D E B A) by (conclude lemma_lessthancongruence).
  let Tf:=fresh in
- assert (Tf:exists G, (BetS B G A /\ Cong B G D E)) by (conclude_def Lt );destruct Tf as [G];spliter.
+ assert (Tf:exists G, (BetS B G A /\ Cong B G D E)) by (conclude_def Lt );destruct Tf as [G];分离合取式.
  assert (neq B G) by (forward_using lemma_betweennotequal).
  assert (Cong B G E D) by (forward_using lemma_congruenceflip).
  assert (Out B A G) by (conclude lemma_ray4).
@@ -70,7 +70,7 @@ assert (~ Lt A B D E).
  assert (Cong D E E D) by (conclude cn_equalityreverse).
  assert (Lt A B E D) by (conclude lemma_lessthancongruence).
  let Tf:=fresh in
- assert (Tf:exists G, (BetS E G D /\ Cong E G A B)) by (conclude_def Lt );destruct Tf as [G];spliter.
+ assert (Tf:exists G, (BetS E G D /\ Cong E G A B)) by (conclude_def Lt );destruct Tf as [G];分离合取式.
  assert (Cong E G B A) by (forward_using lemma_congruenceflip).
  assert (neq E D) by (forward_using lemma_betweennotequal).
  assert (Out E D G) by (conclude lemma_ray4).

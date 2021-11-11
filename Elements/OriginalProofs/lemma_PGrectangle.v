@@ -34,11 +34,11 @@ assert (TP A B C D) by (conclude lemma_paralleldef2B).
 assert (OS C D A B) by (conclude_def TP ).
 assert (neq C A) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS B A E /\ Cong A E A B)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS B A E /\ Cong A E A B)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (BetS E A B) by (conclude axiom_betweennesssymmetry).
 assert (RT C A B A B D) by (conclude proposition_29C).
 let Tf:=fresh in
-assert (Tf:exists p q r s t, (Supp p q r s t /\ 等角 C A B p q r /\ 等角 A B D s q t)) by (conclude_def RT );destruct Tf as [p[q[r[s[t]]]]];spliter.
+assert (Tf:exists p q r s t, (Supp p q r s t /\ 等角 C A B p q r /\ 等角 A B D s q t)) by (conclude_def RT );destruct Tf as [p[q[r[s[t]]]]];分离合取式.
 assert (等角 p q r C A B) by (conclude lemma_equalanglessymmetric).
 assert (Per p q r) by (conclude lemma_equaltorightisright).
 assert (Per s q t) by (conclude lemma_supplementofright).
@@ -49,7 +49,7 @@ assert (等角 D C A A B D) by (conclude lemma_equalanglessymmetric).
 assert (Per D C A) by (conclude lemma_equaltorightisright).
 assert (Per A C D) by (conclude lemma_8_2).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M D /\ BetS C M B)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M D /\ BetS C M B)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];分离合取式.
 assert (neq A D) by (forward_using lemma_betweennotequal).
 assert (neq C B) by (forward_using lemma_betweennotequal).
 assert (CR A D C B) by (conclude_def CR ).

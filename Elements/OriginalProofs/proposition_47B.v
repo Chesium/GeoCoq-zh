@@ -13,10 +13,10 @@ Lemma proposition_47B :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists M L, (PG B M L D /\ BetS B M C /\ PG M C E L /\ BetS D L E /\ BetS L M A /\ Per D L A)) by (conclude proposition_47A);destruct Tf as [M[L]];spliter.
+assert (Tf:exists M L, (PG B M L D /\ BetS B M C /\ PG M C E L /\ BetS D L E /\ BetS L M A /\ Per D L A)) by (conclude proposition_47A);destruct Tf as [M[L]];分离合取式.
 
 let Tf:=fresh in
-assert (Tf:exists N, (BetS D N A /\ Col C B N /\ nCol C B D)) by (conclude_def TS );destruct Tf as [N];spliter.
+assert (Tf:exists N, (BetS D N A /\ Col C B N /\ nCol C B D)) by (conclude_def TS );destruct Tf as [N];分离合取式.
 assert (Per G A B) by (conclude_def SQ ).
 assert (BetS G A C) by (conclude lemma_righttogether).
 assert (Per A B F) by (conclude_def SQ ).
@@ -32,7 +32,7 @@ assert (OS F G A B) by (forward_using lemma_samesidesymmetric).
 assert (TS G A B C) by (conclude lemma_oppositesideflip).
 assert (TS F A B C) by (conclude lemma_planeseparation).
 let Tf:=fresh in
-assert (Tf:exists a, (BetS F a C /\ Col A B a /\ nCol A B F)) by (conclude_def TS );destruct Tf as [a];spliter.
+assert (Tf:exists a, (BetS F a C /\ Col A B a /\ nCol A B F)) by (conclude_def TS );destruct Tf as [a];分离合取式.
 assert (Col B A a) by (forward_using lemma_collinearorder).
 assert (Par A G B F) by (conclude_def PG ).
 assert (Par A G F B) by (forward_using lemma_parallelflip).
@@ -68,7 +68,7 @@ assert (等角 A B C A B C) by (conclude lemma_equalanglesreflexive).
 assert (等角 A B C a B C) by (conclude lemma_equalangleshelper).
 assert (和角 F B A A B C F B C) by (conclude_def 和角 ).
 let Tf:=fresh in
-assert (Tf:exists c, (BetS D c A /\ Col C B c /\ nCol C B D)) by (conclude_def TS );destruct Tf as [c];spliter.
+assert (Tf:exists c, (BetS D c A /\ Col C B c /\ nCol C B D)) by (conclude_def TS );destruct Tf as [c];分离合取式.
 assert (PG B C E D) by (conclude lemma_squareparallelogram).
 assert (Par B D C E) by (conclude_def PG ).
 assert (Par C E B D) by (conclude lemma_parallelsymmetric).
@@ -190,12 +190,12 @@ assert (ET D M B A B F) by (conclude axiom_ETsymmetric).
 assert (ET D M B F A B) by (forward_using axiom_ETpermutation).
 assert (ET F A B D M B) by (conclude axiom_ETsymmetric).
 let Tf:=fresh in
-assert (Tf:exists m, (中点 A m F /\ 中点 B m G)) by (conclude lemma_diagonalsbisect);destruct Tf as [m];spliter.
+assert (Tf:exists m, (中点 A m F /\ 中点 B m G)) by (conclude lemma_diagonalsbisect);destruct Tf as [m];分离合取式.
 assert (BetS A m F) by (conclude_def 中点 ).
 assert (BetS B m G) by (conclude_def 中点 ).
 assert (BetS F m A) by (conclude axiom_betweennesssymmetry).
 let Tf:=fresh in
-assert (Tf:exists n, (中点 B n L /\ 中点 M n D)) by (conclude lemma_diagonalsbisect);destruct Tf as [n];spliter.
+assert (Tf:exists n, (中点 B n L /\ 中点 M n D)) by (conclude lemma_diagonalsbisect);destruct Tf as [n];分离合取式.
 assert (BetS B n L) by (conclude_def 中点 ).
 assert (BetS M n D) by (conclude_def 中点 ).
 assert (BetS D n M) by (conclude axiom_betweennesssymmetry).

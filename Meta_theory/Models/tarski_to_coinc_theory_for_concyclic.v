@@ -32,7 +32,7 @@ unfold 共圆或共线; simpl; intros A B C.
 elim (共线的决定性 A B C); intro; [right; repeat split; Col|].
 left.
 split; Cop.
-destruct (triangle_circumscription A B C H) as [O]; spliter.
+destruct (triangle_circumscription A B C H) as [O]; 分离合取式.
 exists O, A; unfold 在圆上; repeat split; Cong.
 Qed.
 

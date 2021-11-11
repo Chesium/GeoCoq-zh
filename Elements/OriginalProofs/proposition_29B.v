@@ -11,7 +11,7 @@ Lemma proposition_29B :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists a d g h m, (neq A G /\ neq H D /\ Col A G a /\ Col A G g /\ neq a g /\ Col H D h /\ Col H D d /\ neq h d /\ ~ Meet A G H D /\ BetS a m d /\ BetS h m g)) by (conclude_def Par );destruct Tf as [a[d[g[h[m]]]]];spliter.
+assert (Tf:exists a d g h m, (neq A G /\ neq H D /\ Col A G a /\ Col A G g /\ neq a g /\ Col H D h /\ Col H D d /\ neq h d /\ ~ Meet A G H D /\ BetS a m d /\ BetS h m g)) by (conclude_def Par );destruct Tf as [a[d[g[h[m]]]]];分离合取式.
 assert (neq D H) by (conclude lemma_inequalitysymmetric).
 assert (~ eq H G).
  {
@@ -25,11 +25,11 @@ assert (~ eq H G).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists B, (BetS A G B /\ Cong G B A G)) by (conclude lemma_extension);destruct Tf as [B];spliter.
+assert (Tf:exists B, (BetS A G B /\ Cong G B A G)) by (conclude lemma_extension);destruct Tf as [B];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists C, (BetS D H C /\ Cong H C D H)) by (conclude lemma_extension);destruct Tf as [C];spliter.
+assert (Tf:exists C, (BetS D H C /\ Cong H C D H)) by (conclude lemma_extension);destruct Tf as [C];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists E, (BetS H G E /\ Cong G E H G)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS H G E /\ Cong G E H G)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (neq A B) by (forward_using lemma_betweennotequal).
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 assert (neq D C) by (forward_using lemma_betweennotequal).
@@ -51,7 +51,7 @@ assert (~ Meet A B C D).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists M, (neq A B /\ neq C D /\ Col A B M /\ Col C D M)) by (conclude_def Meet );destruct Tf as [M];spliter.
+ assert (Tf:exists M, (neq A B /\ neq C D /\ Col A B M /\ Col C D M)) by (conclude_def Meet );destruct Tf as [M];分离合取式.
  assert (Col B A G) by (forward_using lemma_collinearorder).
  assert (Col B A M) by (forward_using lemma_collinearorder).
  assert (Col A G M) by (conclude lemma_collinear4).

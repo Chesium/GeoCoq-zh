@@ -27,20 +27,20 @@ Lemma proposition_22 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists P, (BetS A a P /\ Cong a P B b /\ Lt C c A P)) by (conclude_def TG );destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS A a P /\ Cong a P B b /\ Lt C c A P)) by (conclude_def TG );destruct Tf as [P];分离合取式.
 assert (neq A a) by (forward_using lemma_betweennotequal).
 assert (neq a P) by (forward_using lemma_betweennotequal).
 assert (neq B b) by (conclude axiom_nocollapse).
 assert (neq C c) by (forward_using lemma_lessthannotequal).
 let Tf:=fresh in
-assert (Tf:exists G, (Out F E G /\ Cong F G B b)) by (conclude lemma_layoff);destruct Tf as [G];spliter.
+assert (Tf:exists G, (Out F E G /\ Cong F G B b)) by (conclude lemma_layoff);destruct Tf as [G];分离合取式.
 assert (Cong B b F G) by (conclude lemma_congruencesymmetric).
 assert (neq F G) by (conclude axiom_nocollapse).
 assert (neq G F) by (conclude lemma_inequalitysymmetric).
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (BetS F G H /\ Cong G H C c)) by (conclude lemma_extension);destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS F G H /\ Cong G H C c)) by (conclude lemma_extension);destruct Tf as [H];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists D, (BetS G F D /\ Cong F D A a)) by (conclude lemma_extension);destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS G F D /\ Cong F D A a)) by (conclude lemma_extension);destruct Tf as [D];分离合取式.
 assert (Cong D F A a) by (forward_using lemma_congruenceflip).
 assert (BetS D F G) by (conclude axiom_betweennesssymmetry).
 
@@ -48,14 +48,14 @@ assert (BetS D F G) by (conclude axiom_betweennesssymmetry).
 assert (neq F D) by (forward_using lemma_betweennotequal).
 assert (neq G H) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists L, CI L F F D) by (conclude postulate_Euclid3);destruct Tf as [L];spliter.
+assert (Tf:exists L, CI L F F D) by (conclude postulate_Euclid3);destruct Tf as [L];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists R, CI R G G H) by (conclude postulate_Euclid3);destruct Tf as [R];spliter.
+assert (Tf:exists R, CI R G G H) by (conclude postulate_Euclid3);destruct Tf as [R];分离合取式.
 assert (Cong G H G H) by (conclude cn_congruencereflexive).
 assert (OnCirc H R) by (conclude_def OnCirc ).
 assert (Lt D F F H) by (conclude lemma_together).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS F M H /\ Cong F M D F)) by (conclude_def Lt );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS F M H /\ Cong F M D F)) by (conclude_def Lt );destruct Tf as [M];分离合取式.
 assert (Cong F M A a) by (conclude lemma_congruencetransitive).
 assert (Cong A a F M) by (conclude lemma_congruencesymmetric).
 assert (Cong A a F D) by (conclude lemma_congruencesymmetric).
@@ -66,14 +66,14 @@ assert (OutCirc H L) by (conclude_def OutCirc ).
 assert (neq F D) by (forward_using lemma_betweennotequal).
 assert (neq G H) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists L, CI L F F D) by (conclude postulate_Euclid3);destruct Tf as [L];spliter.
+assert (Tf:exists L, CI L F F D) by (conclude postulate_Euclid3);destruct Tf as [L];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists R, CI R G G H) by (conclude postulate_Euclid3);destruct Tf as [R];spliter.
+assert (Tf:exists R, CI R G G H) by (conclude postulate_Euclid3);destruct Tf as [R];分离合取式.
 assert (Cong G H G H) by (conclude cn_congruencereflexive).
 assert (OnCirc H R) by (conclude_def OnCirc ).
 assert (Lt D F F H) by (conclude lemma_together).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS F M H /\ Cong F M D F)) by (conclude_def Lt );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS F M H /\ Cong F M D F)) by (conclude_def Lt );destruct Tf as [M];分离合取式.
 assert (Cong F M A a) by (conclude lemma_congruencetransitive).
 assert (Cong A a F M) by (conclude lemma_congruencesymmetric).
 assert (Cong A a F D) by (conclude lemma_congruencesymmetric).
@@ -84,18 +84,18 @@ assert (Lt C c D G) by (conclude lemma_togethera).
 assert (Cong D G G D) by (conclude cn_equalityreverse).
 assert (Lt C c G D) by (conclude lemma_lessthancongruence).
 let Tf:=fresh in
-assert (Tf:exists N, (BetS G N D /\ Cong G N C c)) by (conclude_def Lt );destruct Tf as [N];spliter.
+assert (Tf:exists N, (BetS G N D /\ Cong G N C c)) by (conclude_def Lt );destruct Tf as [N];分离合取式.
 assert (BetS D F H) by (conclude lemma_3_7b).
 assert (BetS D F M) by (conclude axiom_innertransitivity).
 assert (Cong F D A a) by (forward_using lemma_congruenceflip).
 assert (BetS D N G) by (conclude axiom_betweennesssymmetry).
 assert (neq F M) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists J, (BetS F M J /\ Cong M J C c)) by (conclude lemma_extension);destruct Tf as [J];spliter.
+assert (Tf:exists J, (BetS F M J /\ Cong M J C c)) by (conclude lemma_extension);destruct Tf as [J];分离合取式.
 assert (BetS D F J) by (conclude lemma_3_7b).
 assert ((Lt F G F J /\ neq A a /\ neq C c /\ neq B b)) by (conclude lemma_together).
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS F Q J /\ Cong F Q F G)) by (conclude_def Lt );destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS F Q J /\ Cong F Q F G)) by (conclude_def Lt );destruct Tf as [Q];分离合取式.
 assert (neq F J) by (forward_using lemma_betweennotequal).
 assert (Out F J Q) by (conclude lemma_ray4).
 assert (Out F G J) by (conclude_def Out ).
@@ -116,7 +116,7 @@ assert (Cong C c G N) by (conclude lemma_congruencesymmetric).
 assert (Cong G N G H) by (conclude cn_congruencetransitive).
 assert (OnCirc N R) by (conclude_def OnCirc ).
 let Tf:=fresh in
-assert (Tf:exists K, (OnCirc K L /\ OnCirc K R)) by (conclude postulate_circle_circle);destruct Tf as [K];spliter.
+assert (Tf:exists K, (OnCirc K L /\ OnCirc K R)) by (conclude postulate_circle_circle);destruct Tf as [K];分离合取式.
 assert (Cong F K F D) by (conclude axiom_circle_center_radius).
 assert (Cong F K A a) by (conclude lemma_congruencetransitive).
 assert (Cong G K G H) by (conclude axiom_circle_center_radius).
@@ -159,7 +159,7 @@ assert (~ Col F G K).
   assert (BetS K F G) by (conclude axiom_betweennesssymmetry).
   assert (Cong K F A a) by (forward_using lemma_congruenceflip).
   let Tf:=fresh in
-  assert (Tf:exists S, (BetS A a S /\ Cong a S B b /\ Lt C c A S)) by (conclude_def TG );destruct Tf as [S];spliter.
+  assert (Tf:exists S, (BetS A a S /\ Cong a S B b /\ Lt C c A S)) by (conclude_def TG );destruct Tf as [S];分离合取式.
   assert (Cong A a K F) by (conclude lemma_congruencesymmetric).
   assert (Cong a S F G) by (conclude lemma_congruencetransitive).
   assert (Cong A S K G) by (conclude cn_sumofparts).
@@ -177,7 +177,7 @@ assert (~ Col F G K).
   }
  {
   let Tf:=fresh in
-  assert (Tf:exists S, (BetS B b S /\ Cong b S C c /\ Lt A a B S)) by (conclude_def TG );destruct Tf as [S];spliter.
+  assert (Tf:exists S, (BetS B b S /\ Cong b S C c /\ Lt A a B S)) by (conclude_def TG );destruct Tf as [S];分离合取式.
   assert (Cong C c b S) by (conclude lemma_congruencesymmetric).
   assert (Cong G K b S) by (conclude lemma_congruencetransitive).
   assert (Cong F K B S) by (conclude cn_sumofparts).
@@ -195,7 +195,7 @@ assert (~ Col F G K).
   }
  {
   let Tf:=fresh in
-  assert (Tf:exists S, (BetS A a S /\ Cong a S C c /\ Lt B b A S)) by (conclude_def TG );destruct Tf as [S];spliter.
+  assert (Tf:exists S, (BetS A a S /\ Cong a S C c /\ Lt B b A S)) by (conclude_def TG );destruct Tf as [S];分离合取式.
   assert (Lt F G A S) by (conclude lemma_lessthancongruence2).
   assert (Cong C c a S) by (conclude lemma_congruencesymmetric).
   assert (Cong G K a S) by (conclude lemma_congruencetransitive).

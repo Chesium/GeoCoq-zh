@@ -13,7 +13,7 @@ intros.
 assert (Cong A B E F) by (conclude lemma_congruencesymmetric).
 assert (Lt C D E F) by (conclude lemma_lessthancongruence).
 let Tf:=fresh in
-assert (Tf:exists G, (BetS E G F /\ Cong E G C D)) by (conclude_def Lt );destruct Tf as [G];spliter.
+assert (Tf:exists G, (BetS E G F /\ Cong E G C D)) by (conclude_def Lt );destruct Tf as [G];分离合取式.
 close.
 Qed.
 

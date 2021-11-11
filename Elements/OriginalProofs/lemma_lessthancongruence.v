@@ -12,7 +12,7 @@ Lemma lemma_lessthancongruence :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists G, (BetS C G D /\ Cong C G A B)) by (conclude_def Lt );destruct Tf as [G];spliter.
+assert (Tf:exists G, (BetS C G D /\ Cong C G A B)) by (conclude_def Lt );destruct Tf as [G];分离合取式.
 assert (neq C D) by (forward_using lemma_betweennotequal).
 assert (neq E F) by (conclude axiom_nocollapse).
 assert (~ eq F E).
@@ -22,13 +22,13 @@ assert (~ eq F E).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists P, (BetS F E P /\ Cong E P F E)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS F E P /\ Cong E P F E)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
 assert (BetS P E F) by (conclude axiom_betweennesssymmetry).
 assert (neq P E) by (forward_using lemma_betweennotequal).
 assert (neq C G) by (forward_using lemma_betweennotequal).
 assert (neq A B) by (conclude axiom_nocollapse).
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (BetS P E H /\ Cong E H A B)) by (conclude lemma_extension);destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS P E H /\ Cong E H A B)) by (conclude lemma_extension);destruct Tf as [H];分离合取式.
 assert (~ eq D C).
  {
  intro.
@@ -39,7 +39,7 @@ assert (~ eq D C).
 assert (neq P E) by (forward_using lemma_betweennotequal).
 assert (neq E P) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS D C Q /\ Cong C Q E P)) by (conclude lemma_extension);destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS D C Q /\ Cong C Q E P)) by (conclude lemma_extension);destruct Tf as [Q];分离合取式.
 assert (BetS Q C D) by (conclude axiom_betweennesssymmetry).
 assert (Cong Q C C Q) by (conclude cn_equalityreverse).
 assert (Cong Q C E P) by (conclude lemma_congruencetransitive).

@@ -16,10 +16,10 @@ Proof.
 intros.
 assert (nCol A B C) by (conclude_def OS ).
 let Tf:=fresh in
-assert (Tf:exists F, 垂直于 C F A B F) by (conclude proposition_12);destruct Tf as [F];spliter.
+assert (Tf:exists F, 垂直于 C F A B F) by (conclude proposition_12);destruct Tf as [F];分离合取式.
 rename_H H;
 let Tf:=fresh in
-assert (Tf:exists H, (Col C F F /\ Col A B F /\ Col A B H /\ Per H F C)) by (conclude_def 垂直于 );destruct Tf as [H];spliter.
+assert (Tf:exists H, (Col C F F /\ Col A B F /\ Col A B H /\ Per H F C)) by (conclude_def 垂直于 );destruct Tf as [H];分离合取式.
 assert (~ eq C F).
  {
  intro.
@@ -28,7 +28,7 @@ assert (~ eq C F).
  }
 assert (neq F C) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS C F E /\ Cong F E F C)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS C F E /\ Cong F E F C)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (Cong A C A E).
 by cases on (eq A F \/ neq A F).
 {
@@ -45,7 +45,7 @@ by cases on (eq A F \/ neq A F).
  assert (Per A F C) by (conclude lemma_collinearright).
  assert (Per C F A) by (conclude lemma_8_2).
  let Tf:=fresh in
- assert (Tf:exists P, (BetS C F P /\ Cong C F P F /\ Cong C A P A /\ neq F A)) by (conclude_def Per );destruct Tf as [P];spliter.
+ assert (Tf:exists P, (BetS C F P /\ Cong C F P F /\ Cong C A P A /\ neq F A)) by (conclude_def Per );destruct Tf as [P];分离合取式.
  assert (Cong F E C F) by (forward_using lemma_congruenceflip).
  assert (Cong F E P F) by (conclude lemma_congruencetransitive).
  assert (Cong F E F P) by (forward_using lemma_congruenceflip).
@@ -72,7 +72,7 @@ by cases on (eq B F \/ neq B F).
  assert (Per B F C) by (conclude lemma_collinearright).
  assert (Per C F B) by (conclude lemma_8_2).
  let Tf:=fresh in
- assert (Tf:exists P, (BetS C F P /\ Cong C F P F /\ Cong C B P B /\ neq F B)) by (conclude_def Per );destruct Tf as [P];spliter.
+ assert (Tf:exists P, (BetS C F P /\ Cong C F P F /\ Cong C B P B /\ neq F B)) by (conclude_def Per );destruct Tf as [P];分离合取式.
  assert (Cong F E C F) by (forward_using lemma_congruenceflip).
  assert (Cong F E P F) by (conclude lemma_congruencetransitive).
  assert (Cong F E F P) by (forward_using lemma_congruenceflip).
@@ -86,7 +86,7 @@ assert (TS C A B E) by (conclude_def TS ).
 assert (OS D C A B) by (forward_using lemma_samesidesymmetric).
 assert (TS D A B E) by (conclude lemma_planeseparation).
 let Tf:=fresh in
-assert (Tf:exists G, (BetS D G E /\ Col A B G /\ nCol A B D)) by (conclude_def TS );destruct Tf as [G];spliter.
+assert (Tf:exists G, (BetS D G E /\ Col A B G /\ nCol A B D)) by (conclude_def TS );destruct Tf as [G];分离合取式.
 assert (Cong E A C A) by (forward_using lemma_doublereverse).
 assert (Cong A E C A) by (forward_using lemma_congruenceflip).
 assert (Cong A E D A) by (conclude lemma_congruencetransitive).
@@ -168,7 +168,7 @@ by cases on (eq A G \/ neq A G).
   assert (BetS E B C) by (conclude cn_equalitysub).
   assert (Per E B A) by (conclude_def Per ).
   let Tf:=fresh in
-  assert (Tf:exists J, (BetS B A J /\ Cong A J A B)) by (conclude lemma_extension);destruct Tf as [J];spliter.
+  assert (Tf:exists J, (BetS B A J /\ Cong A J A B)) by (conclude lemma_extension);destruct Tf as [J];分离合取式.
   assert (Out B A J) by (conclude lemma_ray4).
   assert (Per E B J) by (conclude lemma_8_3).
   assert (Per J B E) by (conclude lemma_8_2).
@@ -219,7 +219,7 @@ by cases on (eq A G \/ neq A G).
    assert (Per E A B) by (conclude_def Per ).
    assert (Per B A E) by (conclude lemma_8_2).
    let Tf:=fresh in
-   assert (Tf:exists K, (BetS A B K /\ Cong B K B A)) by (conclude lemma_extension);destruct Tf as [K];spliter.
+   assert (Tf:exists K, (BetS A B K /\ Cong B K B A)) by (conclude lemma_extension);destruct Tf as [K];分离合取式.
    assert (Out A B K) by (conclude lemma_ray4).
    assert (Per E A K) by (conclude lemma_8_3).
    assert (Per K A E) by (conclude lemma_8_2).

@@ -32,7 +32,7 @@ assert (Par A G H F) by (conclude lemma_parallelsymmetric).
 assert (Par A G F H) by (forward_using lemma_parallelflip).
 assert (CR A H F G) by (conclude lemma_crisscross).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M H /\ BetS F M G)) by (conclude_def CR );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M H /\ BetS F M G)) by (conclude_def CR );destruct Tf as [M];分离合取式.
 assert (neq A H) by (forward_using lemma_betweennotequal).
 assert (neq F G) by (forward_using lemma_betweennotequal).
 assert (BetS G M F) by (conclude axiom_betweennesssymmetry).
@@ -40,7 +40,7 @@ assert (nCol A E F) by (forward_using lemma_parallelNC).
 assert (nCol F E A) by (forward_using lemma_NCorder).
 assert (BetS F H E) by (conclude axiom_betweennesssymmetry).
 let Tf:=fresh in
-assert (Tf:exists p, (BetS A p E /\ BetS F M p)) by (conclude postulate_Pasch_outer);destruct Tf as [p];spliter.
+assert (Tf:exists p, (BetS A p E /\ BetS F M p)) by (conclude postulate_Pasch_outer);destruct Tf as [p];分离合取式.
 assert (nCol A G H) by (forward_using lemma_parallelNC).
 assert (nCol A H G) by (forward_using lemma_NCorder).
 assert (Col F M G) by (conclude_def Col ).
@@ -65,7 +65,7 @@ assert (BetS G p M) by (conclude axiom_betweennesssymmetry).
 assert (nCol A G H) by (forward_using lemma_parallelNC).
 assert (nCol A H G) by (forward_using lemma_NCorder).
 let Tf:=fresh in
-assert (Tf:exists m, (BetS G m H /\ BetS A p m)) by (conclude postulate_Pasch_outer);destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS G m H /\ BetS A p m)) by (conclude postulate_Pasch_outer);destruct Tf as [m];分离合取式.
 assert (Col A p m) by (conclude_def Col ).
 assert (Col A p E) by (conclude_def Col ).
 assert (neq A p) by (forward_using lemma_betweennotequal).

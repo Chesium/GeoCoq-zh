@@ -15,7 +15,7 @@ Lemma grada_distincts : forall A B C D E F,
 Proof.
   induction 1.
     统计不重合点; repeat split; trivial.
-  apply 和角推出不重合 in H2; spliter; repeat split; auto.
+  apply 和角推出不重合 in H2; 分离合取式; repeat split; auto.
 Qed.
 
 Lemma conga2_grada__grada : forall A B C D E F A' B' C' D' E' F',
@@ -68,7 +68,7 @@ Proof.
     apply (等角保持和角性质 D E F G H I K L M D E F A B C K L M) in HSuma; 等角.
     apply 角度线性刻度_步进 with D E F; trivial.
   }
-  assert (Hd1 := 和角不大于平角推出不重合 D0 E0 F0 A B C H0); assert (Hd2 := 和角不大于平角推出不重合 D E F G H I HIsi); spliter.
+  assert (Hd1 := 和角不大于平角推出不重合 D0 E0 F0 A B C H0); assert (Hd2 := 和角不大于平角推出不重合 D E F G H I HIsi); 分离合取式.
   destruct (和角的存在性 D E F D0 E0 F0) as [K [L [M HSuma]]]; auto.
   intros K0 L0 M0 HSuma2.
   assert (HIsi2 : 和角不大于平角 D E F D0 E0 F0).
@@ -146,7 +146,7 @@ Lemma acute_archi_aux1 : forall O A0 A1 B P Q R,
   角度小于等于 A0 O B P Q R \/ exists A, Bet A0 A1 A /\ Bet A0 A B /\ 等角 P Q R A0 O A.
 Proof.
   intros O A0 A1 B P Q R HPer HBA0 HBet HGA HA0A1.
-  assert (Hdiff := grada_distincts A0 O A1 P Q R HGA); spliter.
+  assert (Hdiff := grada_distincts A0 O A1 P Q R HGA); 分离合取式.
   assert (HNCol : ~ Col O A0 B) by (apply 成直角三点不共线; auto).
   统计不重合点.
   elim (lea_total A0 O B P Q R); auto.
@@ -314,7 +314,7 @@ Proof.
   destruct (archi D0 D1 D0 F') as [G [HG1 HG2]]; auto.
   destruct (acute_archi_aux2 E D0 D1 F G) as [P [Q [R [HGA HUn]]]]; auto.
   exists P; exists Q; exists R; split.
-    assert (Hdistincts := grada_distincts D0 E D1 P Q R HGA); spliter.
+    assert (Hdistincts := grada_distincts D0 E D1 P Q R HGA); 分离合取式.
     apply (conga2_grada__grada D0 E D1 P Q R); 等角.
   destruct HUn as [HLea2|Habs].
     统计不重合点; apply (l11_30_等角保持小于等于 D0 E F P Q R); 等角.
@@ -337,12 +337,12 @@ Proof.
   intros A B C D E F G H I HGA1 HGA2.
   induction HGA2.
     intro HNIsi; exists D; exists E; exists F; split; trivial.
-    assert (Hd := grada_distincts A B C D E F HGA1); spliter.
+    assert (Hd := grada_distincts A B C D E F HGA1); 分离合取式.
     intro HIsi; apply HNIsi, (等角保持和角不大于平角性质 D E F A B C); 等角.
   intro HNIsi.
   elim (和角不大于平角的决定性 D E F D0 E0 F0); [|apply IHHGA2; trivial].
   intro HIsi; clear IHHGA2.
-  assert (Hd := 和角不大于平角推出不重合 D E F D0 E0 F0 HIsi); spliter.
+  assert (Hd := 和角不大于平角推出不重合 D E F D0 E0 F0 HIsi); 分离合取式.
   destruct (和角的存在性 D E F D0 E0 F0) as [P [Q [R HSuma]]]; auto.
   exists P; exists Q; exists R; split.
     apply grada2_sams_suma__grada with D E F D0 E0 F0; trivial.
@@ -356,7 +356,7 @@ Lemma angles_archi_aux1 :
     exists P Q R, 角度在线性刻度上 A B C P Q R /\ (角度小于等于 D E F P Q R \/ ~ 和角不大于平角 P Q R A B C).
 Proof.
   intros archi A B C D E F HNCol HNBet.
-  assert (Hdiff : D <> E /\ F <> E) by (split; intro; subst E; Between); spliter.
+  assert (Hdiff : D <> E /\ F <> E) by (split; intro; subst E; Between); 分离合取式.
   统计不重合点.
   destruct (angle_bisector D E F) as [F1 [HInangle HConga]]; auto.
   assert(HNOS : ~ OS E F1 D F).
@@ -450,7 +450,7 @@ Proof.
   induction 1.
     统计不重合点; exists D; exists E; exists F; split; [apply 角度对数刻度_初始化|right]; Lea.
   destruct IH角度在线性刻度上 as [P [Q [R [HGAE HUn]]]].
-  assert (Hd := HGAE); apply gradaexp__grada, grada_distincts in Hd; spliter.
+  assert (Hd := HGAE); apply gradaexp__grada, grada_distincts in Hd; 分离合取式.
   destruct (和角不大于平角的决定性 P Q R P Q R) as [HIsi|HNIsi].
   { destruct HUn as [Habs|HLea].
       absurd (和角不大于平角 P Q R P Q R); trivial; apply 钝角的倍角大于平角, Habs.

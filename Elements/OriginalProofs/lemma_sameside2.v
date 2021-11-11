@@ -15,7 +15,7 @@ Lemma lemma_sameside2 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists Q U V, (Col A C U /\ Col A C V /\ BetS E U Q /\ BetS F V Q /\ nCol A C E /\ nCol A C F)) by (conclude_def OS );destruct Tf as [Q[U[V]]];spliter.
+assert (Tf:exists Q U V, (Col A C U /\ Col A C V /\ BetS E U Q /\ BetS F V Q /\ nCol A C E /\ nCol A C F)) by (conclude_def OS );destruct Tf as [Q[U[V]]];分离合取式.
 assert (TS F A C Q) by (conclude_def TS ).
 assert (Col A C B) by (forward_using lemma_collinearorder).
 assert (~ eq A C).
@@ -157,7 +157,7 @@ assert (~ ~ TS G A C Q).
  }
 rename_H H;
 let Tf:=fresh in
-assert (Tf:exists H, (BetS G H Q /\ Col A C H /\ nCol A C G)) by (conclude_def TS );destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS G H Q /\ Col A C H /\ nCol A C G)) by (conclude_def TS );destruct Tf as [H];分离合取式.
 assert (OS E G A C) by (conclude_def OS ).
 close.
 Qed.

@@ -12,7 +12,7 @@ Lemma lemma_lessthanbetween :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M C /\ Cong A M A B)) by (conclude_def Lt );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M C /\ Cong A M A B)) by (conclude_def Lt );destruct Tf as [M];分离合取式.
 assert (neq A M) by (forward_using lemma_betweennotequal).
 assert (Out A M C) by (conclude lemma_ray4).
 assert (Out A C M) by (conclude lemma_ray5).

@@ -11,7 +11,7 @@ Lemma lemma_samesidesymmetric :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists E F G, (Col A B E /\ Col A B F /\ BetS P E G /\ BetS Q F G /\ nCol A B P /\ nCol A B Q)) by (conclude_def OS );destruct Tf as [E[F[G]]];spliter.
+assert (Tf:exists E F G, (Col A B E /\ Col A B F /\ BetS P E G /\ BetS Q F G /\ nCol A B P /\ nCol A B Q)) by (conclude_def OS );destruct Tf as [E[F[G]]];分离合取式.
 assert (OS Q P A B) by (conclude_def OS ).
 assert (Col B A E) by (forward_using lemma_collinearorder).
 assert (Col B A F) by (forward_using lemma_collinearorder).

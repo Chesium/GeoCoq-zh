@@ -17,7 +17,7 @@ assert ((Cong A B C D /\ Cong A B B C /\ Cong A B D A /\ Per D A B /\ Per A B C 
 assert (nCol D A B) by (conclude lemma_rightangleNC).
 assert (neq D A) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists R, (BetS D A R /\ Cong A R D A)) by (conclude lemma_extension);destruct Tf as [R];spliter.
+assert (Tf:exists R, (BetS D A R /\ Cong A R D A)) by (conclude lemma_extension);destruct Tf as [R];分离合取式.
 assert (BetS R A D) by (conclude axiom_betweennesssymmetry).
 assert (neq A B) by (forward_using lemma_NCdistinct).
 assert (Col D A R) by (conclude_def Col ).
@@ -27,7 +27,7 @@ assert (neq R A) by (forward_using lemma_betweennotequal).
 assert (nCol R A B) by (conclude lemma_NChelper).
 assert (nCol A B R) by (forward_using lemma_NCorder).
 let Tf:=fresh in
-assert (Tf:exists c E, (SQ A B c E /\ TS E A B R /\ PG A B c E)) by (conclude proposition_46);destruct Tf as [c[E]];spliter.
+assert (Tf:exists c E, (SQ A B c E /\ TS E A B R /\ PG A B c E)) by (conclude proposition_46);destruct Tf as [c[E]];分离合取式.
 assert ((Cong A B c E /\ Cong A B B c /\ Cong A B E A /\ Per E A B /\ Per A B c /\ Per B c E /\ Per c E A)) by (conclude_def SQ ).
 assert (Col R A D) by (conclude_def Col ).
 assert (Col D A R) by (forward_using lemma_collinearorder).
@@ -61,7 +61,7 @@ assert (Per B c D) by (conclude_def SQ ).
 assert (等角 B c D B C D) by (conclude lemma_Euclid4).
 assert ((Cong B D B D /\ 等角 c B D C B D /\ 等角 c D B C D B)) by (conclude proposition_04).
 let Tf:=fresh in
-assert (Tf:exists m, (中点 A m c /\ 中点 B m D)) by (conclude lemma_diagonalsbisect);destruct Tf as [m];spliter.
+assert (Tf:exists m, (中点 A m c /\ 中点 B m D)) by (conclude lemma_diagonalsbisect);destruct Tf as [m];分离合取式.
 assert ((BetS A m c /\ Cong A m m c)) by (conclude_def 中点 ).
 assert ((BetS B m D /\ Cong B m m D)) by (conclude_def 中点 ).
 assert (等角 C D B c D B) by (conclude lemma_equalanglessymmetric).

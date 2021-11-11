@@ -13,13 +13,13 @@ Lemma lemma_TGflip :
 Proof.
 intros.
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (BetS A a H /\ Cong a H B b /\ Lt C c A H)) by (conclude_def TG );destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS A a H /\ Cong a H B b /\ Lt C c A H)) by (conclude_def TG );destruct Tf as [H];分离合取式.
 assert (neq A a) by (forward_using lemma_betweennotequal).
 assert (neq a A) by (conclude lemma_inequalitysymmetric).
 assert (neq a H) by (forward_using lemma_betweennotequal).
 assert (neq B b) by (conclude axiom_nocollapse).
 let Tf:=fresh in
-assert (Tf:exists h, (BetS a A h /\ Cong A h B b)) by (conclude lemma_extension);destruct Tf as [h];spliter.
+assert (Tf:exists h, (BetS a A h /\ Cong A h B b)) by (conclude lemma_extension);destruct Tf as [h];分离合取式.
 assert (Cong A a a A) by (conclude cn_equalityreverse).
 assert (Cong B b A h) by (conclude lemma_congruencesymmetric).
 assert (Cong a H A h) by (conclude lemma_congruencetransitive).

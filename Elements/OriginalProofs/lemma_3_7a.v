@@ -13,7 +13,7 @@ intros.
 assert (neq A C) by (forward_using lemma_betweennotequal).
 assert (neq C D) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS A C E /\ Cong C E C D)) by (conclude lemma_localextension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS A C E /\ Cong C E C D)) by (conclude lemma_localextension);destruct Tf as [E];分离合取式.
 assert (Cong C D C E) by (conclude lemma_congruencesymmetric).
 assert (BetS B C E) by (conclude lemma_3_6a).
 assert (eq D E) by (conclude lemma_extensionunique).

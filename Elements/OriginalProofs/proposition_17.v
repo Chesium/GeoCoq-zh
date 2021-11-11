@@ -18,7 +18,7 @@ intros.
 assert (nCol A B C) by (conclude_def Triangle ).
 assert (neq B C) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists D, (BetS B C D /\ Cong C D B C)) by (conclude lemma_extension);destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS B C D /\ Cong C D B C)) by (conclude lemma_extension);destruct Tf as [D];分离合取式.
 assert (nCol B C A) by (forward_using lemma_NCorder).
 assert (Col B C D) by (conclude_def Col ).
 assert (eq B B) by (conclude cn_equalityreflexive).
@@ -30,7 +30,7 @@ assert (角度小于 C B A A C D) by (conclude proposition_16).
 assert (等角 A B C C B A) by (conclude lemma_ABCequalsCBA).
 assert (角度小于 A B C A C D) by (conclude lemma_angleorderrespectscongruence2).
 let Tf:=fresh in
-assert (Tf:exists a d e, (BetS a e d /\ Out C A a /\ Out C D d /\ 等角 A B C A C e)) by (conclude_def 角度小于 );destruct Tf as [a[d[e]]];spliter.
+assert (Tf:exists a d e, (BetS a e d /\ Out C A a /\ Out C D d /\ 等角 A B C A C e)) by (conclude_def 角度小于 );destruct Tf as [a[d[e]]];分离合取式.
 assert (Out C a A) by (conclude lemma_ray5).
 assert (Out C d D) by (conclude lemma_ray5).
 assert (Col B C D) by (conclude_def Col ).
@@ -52,7 +52,7 @@ assert (nCol a C d) by (forward_using lemma_NCorder).
 assert (nCol D A C) by (forward_using lemma_NCorder).
 assert (Triangle a C d) by (conclude_def Triangle ).
 let Tf:=fresh in
-assert (Tf:exists E, (Out C e E /\ BetS A E D)) by (conclude lemma_crossbar);destruct Tf as [E];spliter.
+assert (Tf:exists E, (Out C e E /\ BetS A E D)) by (conclude lemma_crossbar);destruct Tf as [E];分离合取式.
 assert (Out C E e) by (conclude lemma_ray5).
 assert (Col A E D) by (conclude_def Col ).
 assert (Col D A E) by (forward_using lemma_collinearorder).
@@ -87,7 +87,7 @@ assert (等角 A B C a C e) by (conclude lemma_equalanglestransitive).
 assert (等角 A B C A C E) by (conclude lemma_equalanglestransitive).
 assert (eq B B) by (conclude cn_equalityreflexive).
 let Tf:=fresh in
-assert (Tf:exists F, (BetS A F C /\ BetS B F E)) by (conclude postulate_Pasch_inner);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS A F C /\ BetS B F E)) by (conclude postulate_Pasch_inner);destruct Tf as [F];分离合取式.
 assert (nCol A C B) by (forward_using lemma_NCorder).
 assert (Col A F C) by (conclude_def Col ).
 assert (Col A C F) by (forward_using lemma_collinearorder).

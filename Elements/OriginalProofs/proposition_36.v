@@ -36,7 +36,7 @@ assert (EF A B C D E F G H).
 by cases on (CR E C B H \/ CR E B H C).
 {
  let Tf:=fresh in
- assert (Tf:exists M, (BetS E M C /\ BetS B M H)) by (conclude_def CR );destruct Tf as [M];spliter.
+ assert (Tf:exists M, (BetS E M C /\ BetS B M H)) by (conclude_def CR );destruct Tf as [M];分离合取式.
  assert (BetS H M B) by (conclude axiom_betweennesssymmetry).
  assert ((Par E B H C /\ Cong E B H C)) by (conclude proposition_33).
  assert (Par E B C H) by (forward_using lemma_parallelflip).
@@ -67,7 +67,7 @@ by cases on (CR E C B H \/ CR E B H C).
  }
 {
  let Tf:=fresh in
- assert (Tf:exists M, (BetS E M B /\ BetS H M C)) by (conclude_def CR );destruct Tf as [M];spliter.
+ assert (Tf:exists M, (BetS E M B /\ BetS H M C)) by (conclude_def CR );destruct Tf as [M];分离合取式.
  assert (Par H E B C) by (forward_using lemma_parallelflip).
  assert (Cong H E B C) by (forward_using lemma_congruenceflip).
  assert ((Par H B E C /\ Cong H B E C)) by (conclude proposition_33).

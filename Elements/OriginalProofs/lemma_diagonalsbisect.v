@@ -14,7 +14,7 @@ Lemma lemma_diagonalsbisect :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];分离合取式.
 assert ((Par A B C D /\ Par A D B C)) by (conclude_def PG ).
 assert (neq A C) by (forward_using lemma_betweennotequal).
 assert (neq B D) by (forward_using lemma_betweennotequal).

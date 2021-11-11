@@ -11,7 +11,7 @@ Lemma lemma_oppositesidesymmetric :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists R, (BetS P R Q /\ Col A B R /\ nCol A B P)) by (conclude_def TS );destruct Tf as [R];spliter.
+assert (Tf:exists R, (BetS P R Q /\ Col A B R /\ nCol A B P)) by (conclude_def TS );destruct Tf as [R];分离合取式.
 assert (~ eq A B).
  {
  intro.

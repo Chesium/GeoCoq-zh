@@ -9,7 +9,7 @@ Lemma coplanar_perm_1 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_2 : forall A B C D,
@@ -17,7 +17,7 @@ Lemma coplanar_perm_2 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_3 : forall A B C D,
@@ -25,7 +25,7 @@ Lemma coplanar_perm_3 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_4 : forall A B C D,
@@ -33,7 +33,7 @@ Lemma coplanar_perm_4 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_5 : forall A B C D,
@@ -41,7 +41,7 @@ Lemma coplanar_perm_5 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_6 : forall A B C D,
@@ -49,7 +49,7 @@ Lemma coplanar_perm_6 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_7 : forall A B C D,
@@ -57,7 +57,7 @@ Lemma coplanar_perm_7 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_8 : forall A B C D,
@@ -65,7 +65,7 @@ Lemma coplanar_perm_8 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_9 : forall A B C D,
@@ -73,7 +73,7 @@ Lemma coplanar_perm_9 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_10 : forall A B C D,
@@ -81,7 +81,7 @@ Lemma coplanar_perm_10 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_11 : forall A B C D,
@@ -89,7 +89,7 @@ Lemma coplanar_perm_11 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_12 : forall A B C D,
@@ -97,7 +97,7 @@ Lemma coplanar_perm_12 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_13 : forall A B C D,
@@ -105,7 +105,7 @@ Lemma coplanar_perm_13 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_14 : forall A B C D,
@@ -113,7 +113,7 @@ Lemma coplanar_perm_14 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_15 : forall A B C D,
@@ -121,7 +121,7 @@ Lemma coplanar_perm_15 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_16 : forall A B C D,
@@ -129,7 +129,7 @@ Lemma coplanar_perm_16 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_17 : forall A B C D,
@@ -137,7 +137,7 @@ Lemma coplanar_perm_17 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_18 : forall A B C D,
@@ -145,7 +145,7 @@ Lemma coplanar_perm_18 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_19 : forall A B C D,
@@ -153,7 +153,7 @@ Lemma coplanar_perm_19 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_20 : forall A B C D,
@@ -161,7 +161,7 @@ Lemma coplanar_perm_20 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_21 : forall A B C D,
@@ -169,7 +169,7 @@ Lemma coplanar_perm_21 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_22 : forall A B C D,
@@ -177,7 +177,7 @@ Lemma coplanar_perm_22 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma coplanar_perm_23 : forall A B C D,
@@ -185,7 +185,7 @@ Lemma coplanar_perm_23 : forall A B C D,
 Proof.
 intros A B C D HCop.
 destruct HCop as [X H]; exists X.
-induction H; try (induction H); spliter; Col5.
+induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
 Lemma ncoplanar_perm_1 : forall A B C D,
@@ -405,7 +405,7 @@ Lemma perp__coplanar : forall A B C D,
   Perp A B C D -> 共面 A B C D.
 Proof.
 intros A B C D [P HP].
-unfold 垂直于 in HP; spliter.
+unfold 垂直于 in HP; 分离合取式.
 exists P; left; Col.
 Qed.
 
@@ -436,7 +436,7 @@ Lemma inangle__coplanar : forall A B C D,
   在角内 A B C D -> 共面 A B C D.
 Proof.
 intros A B C D H.
-unfold 在角内 in H; spliter.
+unfold 在角内 in H; 分离合取式.
 destruct H2 as [X [HBet Dij]].
 exists X; right; left.
 split; Col.
@@ -446,7 +446,7 @@ Qed.
 Lemma pars__coplanar : forall A B C D,
   严格平行 A B C D -> 共面 A B C D.
 Proof.
-  unfold 严格平行; intros; spliter; assumption.
+  unfold 严格平行; intros; 分离合取式; assumption.
 Qed.
 
 Lemma par__coplanar : forall A B C D,
@@ -455,7 +455,7 @@ Proof.
   intros A B C D H.
   destruct H.
     apply pars__coplanar; assumption.
-  spliter; exists A; left; Col.
+  分离合取式; exists A; left; Col.
 Qed.
 
 Lemma plg__coplanar : forall A B C D,
@@ -491,28 +491,28 @@ Lemma rhombus__coplanar : forall A B C D,
   菱形 A B C D -> 共面 A B C D.
 Proof.
   unfold 菱形.
-  intros; spliter; apply plg__coplanar; assumption.
+  intros; 分离合取式; apply plg__coplanar; assumption.
 Qed.
 
 Lemma rectangle__coplanar : forall A B C D,
   长方形 A B C D -> 共面 A B C D.
 Proof.
   unfold 长方形.
-  intros; spliter; apply plg__coplanar; assumption.
+  intros; 分离合取式; apply plg__coplanar; assumption.
 Qed.
 
 Lemma square__coplanar : forall A B C D,
   正方形 A B C D -> 共面 A B C D.
 Proof.
   unfold 正方形.
-  intros; spliter; apply rectangle__coplanar; assumption.
+  intros; 分离合取式; apply rectangle__coplanar; assumption.
 Qed.
 
 Lemma lambert__coplanar : forall A B C D,
   Lambert四边形 A B C D -> 共面 A B C D.
 Proof.
   unfold Lambert四边形.
-  intros; spliter; assumption.
+  intros; 分离合取式; assumption.
 Qed.
 
 End 共面.

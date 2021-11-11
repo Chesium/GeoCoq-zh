@@ -71,7 +71,7 @@ assert (A<>H).
  treat_equalities.
  assert (Lt A B B C /\ Lt A C B C).
  apply (l11_46 B A C);Col; left;apply L形垂直转直角2;auto.
- spliter.
+ 分离合取式.
  unfold 等腰三角形 in *.
  apply (等长推出不小于 A B B C);auto.
  }
@@ -81,7 +81,7 @@ assert (C<>H).
  treat_equalities.
  assert (Lt C B B A /\ Lt C A B A).
  apply (l11_46 B C A);Col; left;apply L形垂直转直角2;finish.
- spliter.
+ 分离合取式.
  unfold 等腰三角形 in *.
  apply (等长推出不小于 C B B A);finish.
  } 
@@ -92,7 +92,7 @@ assert (Per C H B) by (apply 垂直于转直角3 with A H;finish).
 (* We prove that A H B and C H B are congruent triangles *)
 assert (Cong H A H C /\ 等角 H A B H C B /\ 等角 H B A H B C)
  by (apply (cong2_per2__cong_conga2 A H B C H B);finish).
-spliter.
+分离合取式.
 assert (中点 H A C)
  by (apply 不重合共线点间距相同则为中点组1;finish).
 auto.
@@ -279,7 +279,7 @@ intros.
 assert (T:=(严格等边三角形三顶点不重合 H)).
 unfold 严格等边三角形 in *.
 unfold 等边三角形 in *.
-spliter.
+分离合取式.
 intro.
 assert (中点 B A C) by (apply (不重合共线点间距相同则为中点组1 B A C);finish).
 assert (中点 C A B) by (apply (不重合共线点间距相同则为中点组1 C A B);finish).

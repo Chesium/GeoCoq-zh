@@ -12,7 +12,7 @@ Lemma proposition_47 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists M L, (PG B M L D /\ BetS B M C /\ PG M C E L /\ BetS D L E /\ BetS L M A /\ Per D L A /\ EF A B F G B M L D)) by (conclude proposition_47B);destruct Tf as [M[L]];spliter.
+assert (Tf:exists M L, (PG B M L D /\ BetS B M C /\ PG M C E L /\ BetS D L E /\ BetS L M A /\ Per D L A /\ EF A B F G B M L D)) by (conclude proposition_47B);destruct Tf as [M[L]];分离合取式.
 assert (nCol A B C) by (conclude_def Triangle ).
 assert (nCol A C B) by (forward_using lemma_NCorder).
 assert (Triangle A C B) by (conclude_def Triangle ).
@@ -25,7 +25,7 @@ assert (TP B C E D) by (conclude lemma_paralleldef2B).
 assert (OS E D B C) by (conclude_def TP ).
 assert (TS E B C A) by (conclude lemma_planeseparation).
 let Tf:=fresh in
-assert (Tf:exists m l, (PG C m l E /\ BetS C m B /\ PG m B D l /\ BetS E l D /\ BetS l m A /\ Per E l A /\ EF A C K H C m l E)) by (conclude proposition_47B);destruct Tf as [m[l]];spliter.
+assert (Tf:exists m l, (PG C m l E /\ BetS C m B /\ PG m B D l /\ BetS E l D /\ BetS l m A /\ Per E l A /\ EF A C K H C m l E)) by (conclude proposition_47B);destruct Tf as [m[l]];分离合取式.
 assert (neq E D) by (forward_using lemma_betweennotequal).
 assert (neq D E) by (conclude lemma_inequalitysymmetric).
 assert (Col E l D) by (conclude_def Col ).

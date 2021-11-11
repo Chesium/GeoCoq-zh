@@ -32,7 +32,7 @@ assert (~ eq B C).
  }
 assert (neq C B) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists P Q T, (BetS P T Q /\ Out A B P /\ Out A C Q /\ 等角 E D F B A T)) by (conclude_def 角度小于 );destruct Tf as [P[Q[T]]];spliter.
+assert (Tf:exists P Q T, (BetS P T Q /\ Out A B P /\ Out A C Q /\ 等角 E D F B A T)) by (conclude_def 角度小于 );destruct Tf as [P[Q[T]]];分离合取式.
 assert (nCol B A T) by (conclude lemma_equalanglesNC).
 assert (~ eq A T).
  {
@@ -47,7 +47,7 @@ assert (~ eq A C).
  contradict.
  }
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (Out A T H /\ Cong A H A C)) by (conclude lemma_layoff);destruct Tf as [H];spliter.
+assert (Tf:exists H, (Out A T H /\ Cong A H A C)) by (conclude lemma_layoff);destruct Tf as [H];分离合取式.
 assert (Cong A H D F) by (conclude lemma_congruencetransitive).
 assert (~ Col H A B).
  {
@@ -95,7 +95,7 @@ assert (~ Col Q A P).
 assert (Triangle Q A P) by (conclude_def Triangle ).
 assert (BetS Q T P) by (conclude axiom_betweennesssymmetry).
 let Tf:=fresh in
-assert (Tf:exists J, (Out A T J /\ BetS C J B)) by (conclude lemma_crossbar);destruct Tf as [J];spliter.
+assert (Tf:exists J, (Out A T J /\ BetS C J B)) by (conclude lemma_crossbar);destruct Tf as [J];分离合取式.
 assert (Out A J H) by (conclude lemma_ray3).
 assert (Cong A C A H) by (conclude lemma_congruencesymmetric).
 assert (~ Col A C H).

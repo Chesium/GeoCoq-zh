@@ -42,7 +42,7 @@ intros.
 unfold CI,OnCirc in *.
 destruct J.
 destruct p.
-spliter.
+分离合取式.
 congruence.
 Qed.
 
@@ -58,7 +58,7 @@ intros.
 unfold InCirc, CI.
 destruct J;destruct p.
 split.
-intros;spliter.
+intros;分离合取式.
 decompose [ex and] H0;clear H0.
 exists x. exists x0.
 inversion H; subst; auto.
@@ -78,7 +78,7 @@ intros.
 unfold OutCirc, CI.
 destruct J;destruct p.
 split.
-intros;spliter.
+intros;分离合取式.
 decompose [ex and] H0;clear H0.
 exists x.
 inversion H; subst; auto.
@@ -104,17 +104,17 @@ Lemma 中间性的各排列情况 : forall B C D1 D2,
 Proof.
 intros.
 assert (T:Bet D1 C B \/ Bet D1 B C).
-  apply (l5_3 D1 C B D2);unfold Definitions.BetS in *;spliter;Between.
+  apply (l5_3 D1 C B D2);unfold Definitions.BetS in *;分离合取式;Between.
  destruct T.
  right.
- unfold Definitions.BetS in *;spliter.
+ unfold Definitions.BetS in *;分离合取式.
  assert (Bet C B D2)
   by (eBetween).
  unfold Definitions.BetS.
  repeat split;auto.
  left.
  unfold Definitions.BetS.
- unfold Definitions.BetS in *;spliter;repeat split;auto.
+ unfold Definitions.BetS in *;分离合取式;repeat split;auto.
 Qed.
 
 Lemma circle_line :
@@ -131,7 +131,7 @@ apply one_point_line_circle__two_points_line_circle in H.
 unfold CI in *.
 destruct K.
 destruct p.
-spliter.
+分离合取式.
 injection H0.
 intros;subst.
 unfold InCirc in *.
@@ -144,10 +144,10 @@ assert (HColD: Definitions.Col A C C)
    by (unfold Definitions.Col;Between).
 assert (HBet: Bet C C D2) by Between.
 destruct (H C D2 A C C HColD H2 HBet) as [Z1 [Z2 HZ]].
-spliter.
+分离合取式.
 exists Z1, Z2.
 assert (C<>D2)
- by (unfold Definitions.BetS in *;spliter;auto).
+ by (unfold Definitions.BetS in *;分离合取式;auto).
 repeat split;try assumption; try (intro; treat_equalities; auto); unfold OnCirc;CongR.
 
 assert (TwoCases:Definitions.BetS D1 B C \/ Definitions.BetS C B D2)
@@ -156,14 +156,14 @@ destruct TwoCases.
 - assert (HColD: Definitions.Col A B B)
    by (unfold Definitions.Col;Between).
 assert (HBet:Bet C B D1)
- by (unfold Definitions.BetS in *;spliter;Between).
+ by (unfold Definitions.BetS in *;分离合取式;Between).
 destruct (H C D1 A B B HColD H2 HBet)
  as [Z1 [Z2 HZ]].
 exists Z1.
 exists Z2.
-spliter.
+分离合取式.
 assert (B<>D1)
- by (unfold Definitions.BetS in *;spliter;auto).
+ by (unfold Definitions.BetS in *;分离合取式;auto).
 assert (Z1<>Z2) by auto.
 assert (Z1<>B).
 {
@@ -177,7 +177,7 @@ assert (B<>Z2).
 {
  intro. subst.
  assert (Bet C Z2 D1)
-  by (unfold BetS in *;spliter;auto).
+  by (unfold BetS in *;分离合取式;auto).
  unfold 在圆上 in *.
  assert (Z2=D1)
   by (apply between_cong with C;auto).
@@ -190,14 +190,14 @@ repeat split; CongR.
 - assert (HColD: Definitions.Col A B B)
    by (unfold Definitions.Col;Between).
 assert (HBet:Bet C B D2)
- by (unfold Definitions.BetS in *;spliter;auto).
+ by (unfold Definitions.BetS in *;分离合取式;auto).
 destruct (H C D2 A B B HColD H2 HBet)
  as [Z1 [Z2 HZ]].
 exists Z1.
 exists Z2.
-spliter.
+分离合取式.
 assert (B<>D2)
- by (unfold Definitions.BetS in *;spliter;auto).
+ by (unfold Definitions.BetS in *;分离合取式;auto).
 assert (Z1<>Z2) by auto.
 assert (Z1<>B).
 {
@@ -211,7 +211,7 @@ assert (B<>Z2).
 {
  intro. subst.
  assert (Bet C Z2 D2)
-  by (unfold BetS in *;spliter;auto).
+  by (unfold BetS in *;分离合取式;auto).
  unfold 在圆上 in *.
  assert (Z2=D2)
   by (apply between_cong with C;auto).
@@ -238,17 +238,17 @@ destruct p.
 destruct K.
 destruct p.
 unfold CI in *.
-spliter.
+分离合取式.
 injection H0;intros;subst.
 injection H3;intros;subst.
 clear H0 H3.
 unfold OnCirc in *.
 unfold InCirc in *.
 destruct H1 as [D1 [D2 HD]].
-spliter.
+分离合取式.
 unfold OutCirc in *.
 destruct H2 as [X HX].
-spliter.
+分离合取式.
 assert (在圆上 P D Q) by CongR.
 assert (在圆上 Q D Q) by CongR.
 assert (在圆上或圆内 P C D1).
@@ -260,10 +260,10 @@ assert (在圆上或圆内 P C D1).
   by (apply 中间性的各排列情况;auto).
  destruct TwoCases.
  exists P.
- split; Cong; unfold Definitions.BetS in *;spliter; Between.
+ split; Cong; unfold Definitions.BetS in *;分离合取式; Between.
  apply l5_6_等长保持小于等于关系 with C P C D2.
  exists P.
- split; Cong; unfold Definitions.BetS in *;spliter; auto.
+ split; Cong; unfold Definitions.BetS in *;分离合取式; auto.
  Cong.
  apply 等长的传递性 with R S; Cong.
 }
@@ -271,7 +271,7 @@ assert (在圆上或圆外 Q C D1).
 {
  unfold 在圆上或圆外.
  exists X.
- split; [unfold Definitions.BetS in *;spliter; auto|CongR].
+ split; [unfold Definitions.BetS in *;分离合取式; auto|CongR].
 }
 assert (Hex: exists Z : Tpoint, 在圆上 Z C D1 /\ 在圆上 Z D Q) by eauto.
 destruct Hex as [Z []].
@@ -297,7 +297,7 @@ eapply (Build_euclidean_neutral Tpoint Tcircle tarski_axioms.Cong Tarski_dev.Def
 - intros.
   decompose [ex and] H0.
   unfold CI in *.
-  spliter.
+  分离合取式.
   congruence.
 - assert (T:=防降维公理).
   split.
@@ -310,13 +310,13 @@ eapply (Build_euclidean_neutral Tpoint Tcircle tarski_axioms.Cong Tarski_dev.Def
   unfold Definitions.BetS in *;intuition.
   unfold Definitions.BetS in *;intuition.
 - intros; unfold Definitions.BetS;
-intro;spliter;treat_equalities;intuition.
+intro;分离合取式;treat_equalities;intuition.
 - intros;unfold Definitions.BetS in *;
-intros;spliter;Between.
+intros;分离合取式;Between.
 - intros;unfold Definitions.BetS in *;
-intros;spliter;try assumption;eBetween.
+intros;分离合取式;try assumption;eBetween.
 - intros;unfold Definitions.BetS in *;
-intros;spliter .
+intros;分离合取式 .
 assert (Bet A B C \/ Bet A C B) by (apply l5_3 with D;auto).
 assert (~ (Bet A C B /\ A <> C /\ B <> C)) by intuition.
 assert (T3:=两点重合的决定性 A B).
@@ -327,9 +327,9 @@ tauto.
 - intros.
 assert (tarski_axioms.Cong C D c d)
  by (apply (五线段公理_等价SAS A a B b C c D d);
-unfold Definitions.BetS in *;spliter;auto).
+unfold Definitions.BetS in *;分离合取式;auto).
 Cong.
-- intros;unfold Definitions.BetS in *;spliter.
+- intros;unfold Definitions.BetS in *;分离合取式.
   destruct (帕施公理 A B C P Q H H0) as [X [HXa HXb]].
   exists X.
   统计不重合点.
@@ -345,7 +345,7 @@ Cong.
  assert (HCol:Definitions.Col A B C) by ColR;
  unfold Definitions.Col in HCol;
  tauto.
-- intros;unfold Definitions.BetS in *;spliter.
+- intros;unfold Definitions.BetS in *;分离合取式.
   assert (~ Bet B Q A) by tauto.
   assert (A<>Q) by auto.
   assert (~ Bet B A Q) by tauto.
@@ -411,7 +411,7 @@ right;right;right;right;left;auto.
 right;right;right;right;right;Between.
 right;right;right;left;Between.
 intros.
-decompose [or] H;subst;spliter;Between.
+decompose [or] H;subst;分离合取式;Between.
 Qed.
 
 Lemma nCol_not_Col : forall A B C,
@@ -429,9 +429,9 @@ unfold InCirc, OnCirc in *.
 intros A J.
 destruct J as [[X C] D].
 intros.
-destruct H as [U [V HUV]];spliter.
+destruct H as [U [V HUV]];分离合取式.
 intro.
-unfold Definitions.BetS in *;spliter.
+unfold Definitions.BetS in *;分离合取式.
 assert (tarski_axioms.Cong X U X V) by CongR.
 assert (中点 X U V) by (split;Cong).
 assert (中点 X A V).
@@ -453,7 +453,7 @@ destruct HW2.
 - unfold eq in *;subst.
 unfold euclidean_axioms.CI in *;simpl in *.
 unfold CI in *.
-spliter.
+分离合取式.
 inversion H;subst.
 destruct (两点重合的决定性 C0 V).
 subst.
@@ -479,8 +479,8 @@ apply 等长的传递性 with C0 X0; Cong.
 split.
 auto.
 split;auto.
-- spliter.
-unfold euclidean_axioms.CI in *;simpl in *;unfold CI in *;spliter.
+- 分离合取式.
+unfold euclidean_axioms.CI in *;simpl in *;unfold CI in *;分离合取式.
 inversion H2;subst.
 assert (C0 <> A).
  {
@@ -494,7 +494,7 @@ assert (A <> X0).
   intro.
   subst.
   assert (HCong: tarski_axioms.Cong C0 Y C0 X) by CongR.
-  unfold Definitions.BetS in *;spliter.
+  unfold Definitions.BetS in *;分离合取式.
   assert (eq:= between_cong C0 X Y H HCong).
   contradiction.
  }
@@ -504,7 +504,7 @@ assert (A <> Y0).
  {
   intro.
   subst.
-  unfold Definitions.BetS in *;spliter.
+  unfold Definitions.BetS in *;分离合取式.
   assert (HCong: tarski_axioms.Cong C0 Y C0 X) by CongR.
   assert (eq:= between_cong C0 X Y H HCong).
   contradiction.
@@ -522,7 +522,7 @@ split;auto.
 assert_bets; eBetween.
 
 assert (Lt C0 Y C0 X)
- by (unfold Definitions.BetS in *;spliter;apply (bet__lt1213);auto).
+ by (unfold Definitions.BetS in *;分离合取式;apply (bet__lt1213);auto).
 assert (Le C0 X0 C0 A)
  by (apply (bet__le1213);auto).
 assert (HCong: tarski_axioms.Cong C0 X0 C0 X) by CongR.
@@ -555,9 +555,9 @@ destruct K.
 destruct p.
 unfold euclidean_axioms.OnCirc in *.
 destruct H as [X [Y [U HXY]]].
-spliter.
+分离合取式.
 unfold euclidean_axioms.CI in *;simpl in *;unfold CI in *.
-spliter.
+分离合取式.
 inversion H;subst; auto.
 Qed.
 
@@ -568,9 +568,9 @@ destruct K.
 destruct p.
 unfold euclidean_axioms.OutCirc in *.
 destruct H as [X [Y [U [V HV]]]].
-spliter.
+分离合取式.
 unfold euclidean_axioms.CI in *;simpl in *;unfold CI in *.
-spliter.
+分离合取式.
 inversion H;subst.
 exists X;auto.
 Qed.
@@ -591,7 +591,7 @@ unfold Definitions.BetS.
 repeat split;Between;Cong.
 destruct (由一点往一方向构造等长线段_3 U V V W H0 H) as [X HX].
 destruct (构造对称点 X U) as [Y HY].
-spliter.
+分离合取式.
 统计不重合点.
 assert_bets.
 exists X. exists Y.
@@ -616,7 +616,7 @@ split.
 - intros.
   apply InCirc_InCirc in H0.
   destruct (circle_line cc A B C K P Q H H0 H1) as [X [Y HXY]].
-  spliter.
+  分离合取式.
   destruct (中间性的决定性 A B Y).
   exists X.
   exists Y.
@@ -629,7 +629,7 @@ split.
   assumption.
   split.
   assumption.
-  unfold Definitions.BetS in *;spliter;auto.
+  unfold Definitions.BetS in *;分离合取式;auto.
 
 
   split.
@@ -638,7 +638,7 @@ split.
   apply OnCirc_OnCirc.
   {
    unfold euclidean_axioms.CI in *;simpl in *;unfold CI in *.
-   spliter.
+   分离合取式.
    inversion H;subst;auto.
   }
   assumption.
@@ -648,7 +648,7 @@ split.
   apply OnCirc_OnCirc.
   {
   unfold euclidean_axioms.CI in *;simpl in *;unfold CI in *.
-   spliter.
+   分离合取式.
    inversion H;subst;auto.
   }
   assumption.
@@ -660,7 +660,7 @@ split.
  split.
  apply (Col_Col A B Y); auto.
  split.
- unfold Definitions.BetS in *;spliter;统计不重合点.
+ unfold Definitions.BetS in *;分离合取式;统计不重合点.
  unfold Definitions.Col in H2.
  destruct H2.
  unfold BetS;simpl;unfold Definitions.BetS.
@@ -676,7 +676,7 @@ split.
   apply OnCirc_OnCirc.
   {
    unfold euclidean_axioms.CI in *;simpl in *;unfold CI in *.
-   spliter.
+   分离合取式.
    inversion H;subst;auto.
   }
   assumption.
@@ -686,11 +686,11 @@ split.
   apply OnCirc_OnCirc.
   {
    unfold euclidean_axioms.CI in *;simpl in *;unfold CI in *.
-   spliter.
+   分离合取式.
    inversion H;subst;auto.
   }
   assumption.
-  unfold BetS;simpl;unfold Definitions.BetS in *;spliter;Between.
+  unfold BetS;simpl;unfold Definitions.BetS in *;分离合取式;Between.
 
 - simpl.
   intros.
@@ -699,19 +699,19 @@ split.
   apply eOnCirc_OnCirc in H4.
   apply eOutCirc_OutCirc in H1.
   destruct (circle_circle' cc C D F G J K P Q R S H) as [X HX];auto.
-  spliter.
+  分离合取式.
   exists X.
   split.
   destruct J.
   destruct p.
   unfold CI in *.
-  spliter.
+  分离合取式.
   inversion H;subst.
   apply OnCirc_OnCirc;auto.
   destruct K.
   destruct p.
   unfold CI in *.
-  spliter.
+  分离合取式.
   inversion H2;subst.
   apply OnCirc_OnCirc;auto.
 Defined.
@@ -746,13 +746,13 @@ assert (T3:exists I : Tpoint, Definitions.BetS s q I /\ Definitions.BetS p a I).
 apply (T2 p q r s t a);
 auto using BetS_BetS.
 unfold BetS in *;simpl in *;
-unfold Definitions.BetS in *;spliter;Between.
+unfold Definitions.BetS in *;分离合取式;Between.
 intro HnCol.
 apply Col_Col in HnCol.
 apply nCol_not_Col in H4;intuition.
 Cong.
 destruct T3 as [X HX].
-exists X;spliter;auto.
+exists X;分离合取式;auto.
 Qed.
 
 Global Instance Euclid_follows_from_塔斯基公理系统_欧几里得几何 :

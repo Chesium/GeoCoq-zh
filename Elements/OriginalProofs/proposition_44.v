@@ -15,12 +15,12 @@ assert (neq A B) by (forward_using lemma_NCdistinct).
 assert (nCol a b c) by (conclude_def Triangle ).
 assert (neq b c) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists m, (BetS b m c /\ Cong m b m c)) by (conclude proposition_10);destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS b m c /\ Cong m b m c)) by (conclude proposition_10);destruct Tf as [m];分离合取式.
 assert (Cong b m m c) by (forward_using lemma_congruenceflip).
 assert (中点 b m c) by (conclude_def 中点 ).
 assert (neq m c) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS A B E /\ Cong B E m c)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS A B E /\ Cong B E m c)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (neq B E) by (forward_using lemma_betweennotequal).
 assert (Col A B E) by (conclude_def Col ).
 assert (Col B A E) by (forward_using lemma_collinearorder).
@@ -29,15 +29,15 @@ assert (Col B A B) by (conclude_def Col ).
 assert (nCol B A R) by (forward_using lemma_NCorder).
 assert (nCol B E R) by (conclude lemma_NChelper).
 let Tf:=fresh in
-assert (Tf:exists g e, (Out B E e /\ 等角 g B e J D N /\ OS g R B E)) by (conclude proposition_23C);destruct Tf as [g[e]];spliter.
+assert (Tf:exists g e, (Out B E e /\ 等角 g B e J D N /\ OS g R B E)) by (conclude proposition_23C);destruct Tf as [g[e]];分离合取式.
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists P, (BetS B A P /\ Cong A P B A)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS B A P /\ Cong A P B A)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
 assert (neq B E) by (forward_using lemma_betweennotequal).
 assert (neq E B) by (conclude lemma_inequalitysymmetric).
 assert (neq b m) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS E B Q /\ Cong B Q b m)) by (conclude lemma_extension);destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS E B Q /\ Cong B Q b m)) by (conclude lemma_extension);destruct Tf as [Q];分离合取式.
 assert (Cong b m m c) by (forward_using lemma_congruenceflip).
 assert (Cong B Q m c) by (conclude lemma_congruencetransitive).
 assert (Cong m c B E) by (conclude lemma_congruencesymmetric).
@@ -52,10 +52,10 @@ assert (neq B E) by (forward_using lemma_betweennotequal).
 assert (nCol B E R) by (conclude lemma_NChelper).
 assert (nCol R B E) by (forward_using lemma_NCorder).
 let Tf:=fresh in
-assert (Tf:exists G F, (PG G B E F /\ EF a b m c G B E F /\ 等角 E B G J D N /\ OS R G B E)) by (conclude proposition_42B);destruct Tf as [G[F]];spliter.
+assert (Tf:exists G F, (PG G B E F /\ EF a b m c G B E F /\ 等角 E B G J D N /\ OS R G B E)) by (conclude proposition_42B);destruct Tf as [G[F]];分离合取式.
 assert (PG B E F G) by (conclude lemma_PGrotate).
 let Tf:=fresh in
-assert (Tf:exists M L, (PG A B M L /\ 等角 A B M J D N /\ EF B E F G L M B A /\ BetS G B M)) by (conclude proposition_44A);destruct Tf as [M[L]];spliter.
+assert (Tf:exists M L, (PG A B M L /\ 等角 A B M J D N /\ EF B E F G L M B A /\ BetS G B M)) by (conclude proposition_44A);destruct Tf as [M[L]];分离合取式.
 assert (eq B B) by (conclude cn_equalityreflexive).
 assert (Col A B B) by (conclude_def Col ).
 assert (Par G B E F) by (conclude_def PG ).

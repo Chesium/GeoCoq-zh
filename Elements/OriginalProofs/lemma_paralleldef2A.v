@@ -12,7 +12,7 @@ Proof.
 intros.
 assert ((neq A B /\ neq C D /\ ~ Meet A B C D /\ OS C D A B)) by (conclude_def TP ).
 let Tf:=fresh in
-assert (Tf:exists a b e, (Col A B a /\ Col A B b /\ BetS C a e /\ BetS D b e /\ nCol A B C /\ nCol A B D)) by (conclude_def OS );destruct Tf as [a[b[e]]];spliter.
+assert (Tf:exists a b e, (Col A B a /\ Col A B b /\ BetS C a e /\ BetS D b e /\ nCol A B C /\ nCol A B D)) by (conclude_def OS );destruct Tf as [a[b[e]]];分离合取式.
 assert (Col C a e) by (conclude_def Col ).
 assert (Col D b e) by (conclude_def Col ).
 assert (neq a e) by (forward_using lemma_betweennotequal).
@@ -49,7 +49,7 @@ assert (~ Col C e D).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists M, (BetS C M b /\ BetS D M a)) by (conclude postulate_Pasch_inner);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS C M b /\ BetS D M a)) by (conclude postulate_Pasch_inner);destruct Tf as [M];分离合取式.
 assert (BetS a M D) by (conclude axiom_betweennesssymmetry).
 assert (eq C C) by (conclude cn_equalityreflexive).
 assert (Col C D C) by (conclude_def Col ).

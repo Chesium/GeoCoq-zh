@@ -12,7 +12,7 @@ Lemma lemma_parallelflip :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists M a b c d, (neq A B /\ neq C D /\ Col A B a /\ Col A B b /\ neq a b /\ Col C D c /\ Col C D d /\ neq c d /\ ~ Meet A B C D /\ BetS a M d /\ BetS c M b)) by (conclude_def Par );destruct Tf as [M[a[b[c[d]]]]];spliter.
+assert (Tf:exists M a b c d, (neq A B /\ neq C D /\ Col A B a /\ Col A B b /\ neq a b /\ Col C D c /\ Col C D d /\ neq c d /\ ~ Meet A B C D /\ BetS a M d /\ BetS c M b)) by (conclude_def Par );destruct Tf as [M[a[b[c[d]]]]];分离合取式.
 assert (Col B A a) by (forward_using lemma_collinearorder).
 assert (Col B A b) by (forward_using lemma_collinearorder).
 assert (Col D C c) by (forward_using lemma_collinearorder).
@@ -27,7 +27,7 @@ assert (~ Meet A B D C).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists P, (neq A B /\ neq D C /\ Col A B P /\ Col D C P)) by (conclude_def Meet );destruct Tf as [P];spliter.
+ assert (Tf:exists P, (neq A B /\ neq D C /\ Col A B P /\ Col D C P)) by (conclude_def Meet );destruct Tf as [P];分离合取式.
  assert (Col C D P) by (forward_using lemma_collinearorder).
  assert (Meet A B C D) by (conclude_def Meet ).
  contradict.
@@ -36,7 +36,7 @@ assert (~ Meet B A C D).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists P, (neq B A /\ neq C D /\ Col B A P /\ Col C D P)) by (conclude_def Meet );destruct Tf as [P];spliter.
+ assert (Tf:exists P, (neq B A /\ neq C D /\ Col B A P /\ Col C D P)) by (conclude_def Meet );destruct Tf as [P];分离合取式.
  assert (Col A B P) by (forward_using lemma_collinearorder).
  assert (Meet A B C D) by (conclude_def Meet ).
  contradict.
@@ -45,7 +45,7 @@ assert (~ Meet B A D C).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists P, (neq B A /\ neq D C /\ Col B A P /\ Col D C P)) by (conclude_def Meet );destruct Tf as [P];spliter.
+ assert (Tf:exists P, (neq B A /\ neq D C /\ Col B A P /\ Col D C P)) by (conclude_def Meet );destruct Tf as [P];分离合取式.
  assert (Col A B P) by (forward_using lemma_collinearorder).
  assert (Col C D P) by (forward_using lemma_collinearorder).
  assert (Meet A B C D) by (conclude_def Meet ).

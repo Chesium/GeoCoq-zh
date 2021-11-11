@@ -43,11 +43,11 @@ assert (~ Lt a b A B).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists E, (BetS A E B /\ Cong A E a b)) by (conclude_def Lt );destruct Tf as [E];spliter.
+ assert (Tf:exists E, (BetS A E B /\ Cong A E a b)) by (conclude_def Lt );destruct Tf as [E];分离合取式.
  assert (Lt a d A B) by (conclude lemma_lessthancongruence2).
  assert (Lt a d A D) by (conclude lemma_lessthancongruence).
  let Tf:=fresh in
- assert (Tf:exists F, (BetS A F D /\ Cong A F a d)) by (conclude_def Lt );destruct Tf as [F];spliter.
+ assert (Tf:exists F, (BetS A F D /\ Cong A F a d)) by (conclude_def Lt );destruct Tf as [F];分离合取式.
  assert (Per D A B) by (conclude_def SQ ).
  assert (Per d a b) by (conclude_def SQ ).
  assert (neq A D) by (forward_using lemma_betweennotequal).
@@ -77,11 +77,11 @@ assert (~ Lt A B a b).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists e, (BetS a e b /\ Cong a e A B)) by (conclude_def Lt );destruct Tf as [e];spliter.
+ assert (Tf:exists e, (BetS a e b /\ Cong a e A B)) by (conclude_def Lt );destruct Tf as [e];分离合取式.
  assert (Lt A D a b) by (conclude lemma_lessthancongruence2).
  assert (Lt A D a d) by (conclude lemma_lessthancongruence).
  let Tf:=fresh in
- assert (Tf:exists f, (BetS a f d /\ Cong a f A D)) by (conclude_def Lt );destruct Tf as [f];spliter.
+ assert (Tf:exists f, (BetS a f d /\ Cong a f A D)) by (conclude_def Lt );destruct Tf as [f];分离合取式.
  assert (Per d a b) by (conclude_def SQ ).
  assert (Per D A B) by (conclude_def SQ ).
  assert (neq a d) by (forward_using lemma_betweennotequal).

@@ -15,7 +15,7 @@ Lemma lemma_supplementinequality :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists P Q R, (BetS P R Q /\ Out B A P /\ Out B C Q /\ 等角 a b c A B R)) by (conclude_def 角度小于 );destruct Tf as [P[Q[R]]];spliter.
+assert (Tf:exists P Q R, (BetS P R Q /\ Out B A P /\ Out B C Q /\ 等角 a b c A B R)) by (conclude_def 角度小于 );destruct Tf as [P[Q[R]]];分离合取式.
 assert (nCol A B R) by (conclude lemma_equalanglesNC).
 assert ((Out B C D /\ BetS A B F)) by (conclude_def Supp ).
 assert (BetS Q R P) by (conclude axiom_betweennesssymmetry).
@@ -66,7 +66,7 @@ assert (~ Col F P Q).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists M, (BetS F M R /\ BetS Q M B)) by (conclude postulate_Pasch_inner);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS F M R /\ BetS Q M B)) by (conclude postulate_Pasch_inner);destruct Tf as [M];分离合取式.
 assert (eq R R) by (conclude cn_equalityreflexive).
 assert (~ eq B R).
  {

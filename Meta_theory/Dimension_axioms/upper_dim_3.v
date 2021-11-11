@@ -94,7 +94,7 @@ Proof.
     exfalso.
     destruct (由一点往一方向构造等长线段 P X P X) as [P' []].
     统计不重合点.
-    destruct (ex_四点成首末边等长双直角S形则对边等长 P X X Q P' X) as [Q']; Col; spliter.
+    destruct (ex_四点成首末边等长双直角S形则对边等长 P X X Q P' X) as [Q']; Col; 分离合取式.
     assert (HAXQ' : Per Q' X A) by (apply (l11_60 P Q X); Perp; Cop).
     assert (HBXQ' : Per Q' X B) by (apply (l11_60 P Q X); Perp; Cop).
     assert (HNCol' : ~ Col P X Q') by (apply one_side_not_col123 with Q; assumption).
@@ -107,7 +107,7 @@ Proof.
     clear dependent A.
     rename A' into A.
     destruct (ex_四点成首末边等长双直角S形则对边等长 A X X B P' X) as [B']; Col; [统计不重合点; auto|].
-    spliter.
+    分离合取式.
     assert (HBXP' : Per B' X P) by (apply (l11_60 A B X); Perp; Cop).
     assert (HBXQ : Per B' X Q) by (apply (l11_60 A B X); Perp; Cop).
     clear dependent B.
@@ -117,7 +117,7 @@ Proof.
       (apply 等长的传递性 with P Q; [|Cong]);
       apply l10_12 with X X; Perp;
       apply 等长的传递性 with P' X; Cong.
-  - intros p4col S U1' U1 U2 U3 U4 H; spliter.
+  - intros p4col S U1' U1 U2 U3 U4 H; 分离合取式.
     assert (HMid : 中点 S U1 U1') by (split; Cong).
     assert (HPer21 : Per U2 S U1) by (exists U1'; split; Cong).
     统计不重合点.
@@ -159,7 +159,7 @@ Proof.
   intros up A B C P Q X HP HQ.
   apply orth_at_chara in HP.
   apply orth_at_chara in HQ.
-  spliter; clean.
+  分离合取式; clean.
   destruct (ex_ncol_cop2 A B C X) as [D [E [HD [HE HNCol]]]].
   apply up with D E; [Col|apply 直角的对称性..]; auto.
 Qed.
@@ -214,7 +214,7 @@ Proof.
   }
   intros A B C D E F P HP1 HP2.
   destruct (ex_ncol_cop2 D E F P) as [D' [E']].
-  spliter.
+  分离合取式.
   destruct (Haux A B C D' E' P) as [Q [HQ1 [HQ2 HPQ]]]; Col.
   exists Q.
   repeat split; auto.

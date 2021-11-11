@@ -13,12 +13,12 @@ Lemma proposition_01 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists J, CI J A A B) by (conclude postulate_Euclid3);destruct Tf as [J];spliter.
+assert (Tf:exists J, CI J A A B) by (conclude postulate_Euclid3);destruct Tf as [J];分离合取式.
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists K, CI K B B A) by (conclude postulate_Euclid3);destruct Tf as [K];spliter.
+assert (Tf:exists K, CI K B B A) by (conclude postulate_Euclid3);destruct Tf as [K];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists D, (BetS B A D /\ Cong A D A B)) by (conclude lemma_localextension);destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS B A D /\ Cong A D A B)) by (conclude lemma_localextension);destruct Tf as [D];分离合取式.
 assert (Cong B A B A) by (conclude cn_congruencereflexive).
 assert (OutCirc D K) by (conclude_def OutCirc) .
 assert (eq B B) by (conclude cn_equalityreflexive).
@@ -29,7 +29,7 @@ assert (OnCirc D J) by (conclude_def OnCirc ).
 assert (eq A A) by (conclude cn_equalityreflexive).
 assert (InCirc A J) by (conclude_def InCirc ).
 let Tf:=fresh in
-assert (Tf:exists C, (OnCirc C K /\ OnCirc C J)) by (conclude postulate_circle_circle);destruct Tf as [C];spliter.
+assert (Tf:exists C, (OnCirc C K /\ OnCirc C J)) by (conclude postulate_circle_circle);destruct Tf as [C];分离合取式.
 assert (Cong A C A B) by (conclude axiom_circle_center_radius).
 assert (Cong A B A C) by (conclude lemma_congruencesymmetric).
 assert (Cong B C B A) by (conclude axiom_circle_center_radius). 

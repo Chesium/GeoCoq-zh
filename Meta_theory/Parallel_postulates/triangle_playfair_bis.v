@@ -67,7 +67,7 @@ Proof.
     apply (角度小于等于保持和角不大于平角性质 _ _ _ _ _ _ B' P R R P B); Lea.
   }
   apply Habs.
-  apply 和角推出不重合 in Hsuma1; spliter.
+  apply 和角推出不重合 in Hsuma1; 分离合取式.
   apply 成中间性三点组的角相等; Between.
   apply (triangle R Q P); auto.
 Qed.

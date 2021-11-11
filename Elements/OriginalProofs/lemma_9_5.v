@@ -48,7 +48,7 @@ by cases on (nCol C P R \/ Col C P R).
  }
 {
  let Tf:=fresh in
- assert (Tf:exists L, (BetS P L C /\ Col A B L /\ nCol A B P)) by (conclude_def TS );destruct Tf as [L];spliter.
+ assert (Tf:exists L, (BetS P L C /\ Col A B L /\ nCol A B P)) by (conclude_def TS );destruct Tf as [L];分离合取式.
  assert (Col R Q P) by (conclude lemma_rayimpliescollinear).
  assert (Col P C L) by (conclude_def Col ).
  assert (Col C P L) by (forward_using lemma_collinearorder).

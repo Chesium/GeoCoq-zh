@@ -9,7 +9,7 @@ Lemma existential_triangle__rah : postulate_of_existence_of_a_triangle_whose_ang
 Proof.
   intro et.
   destruct et as [A [B [C [D [E [F]]]]]].
-  spliter.
+  分离合取式.
   apply (t22_14__rah A B C D E F); auto.
 Qed.
 

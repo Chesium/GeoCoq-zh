@@ -12,7 +12,7 @@ Proof.
 intros.
 assert (PG A B C D) by (conclude lemma_squareparallelogram).
 let Tf:=fresh in
-assert (Tf:exists M, (中点 A M C /\ 中点 B M D)) by (conclude lemma_diagonalsbisect);destruct Tf as [M];spliter.
+assert (Tf:exists M, (中点 A M C /\ 中点 B M D)) by (conclude lemma_diagonalsbisect);destruct Tf as [M];分离合取式.
 assert (BetS B M D) by (conclude_def 中点 ).
 assert (BetS A M C) by (conclude_def 中点 ).
 assert (Per D A B) by (conclude_def SQ ).
@@ -31,7 +31,7 @@ assert (等角 A B D A B E) by (conclude lemma_equalanglessymmetric).
 assert (neq B E) by (forward_using lemma_NCdistinct).
 assert (neq B M) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists N, (Out B E N /\ Cong B N B M)) by (conclude lemma_layoff);destruct Tf as [N];spliter.
+assert (Tf:exists N, (Out B E N /\ Cong B N B M)) by (conclude lemma_layoff);destruct Tf as [N];分离合取式.
 assert (Cong B M B N) by (conclude lemma_congruencesymmetric).
 assert (eq A A) by (conclude cn_equalityreflexive).
 assert (neq B A) by (forward_using lemma_NCdistinct).

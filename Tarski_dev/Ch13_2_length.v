@@ -92,7 +92,7 @@ Lemma is_len_cong : forall A B C D l, Len A B l -> Len C D l -> Cong A B C D.
 Proof.
     intros.
     unfold Len in *.
-    spliter.
+    分离合取式.
     eapply (lg_cong l); auto.
 Qed.
 
@@ -100,7 +100,7 @@ Lemma is_len_cong_is_len : forall A B C D l, Len A B l -> Cong A B C D -> Len C 
 Proof.
     intros.
     unfold Len in *.
-    spliter.
+    分离合取式.
     split.
       auto.
     unfold Q_Cong in H.
@@ -119,7 +119,7 @@ Lemma not_cong_is_len : forall A B C D l , ~(Cong A B C D) -> Len A B l -> ~(l C
 Proof.
     intros.
     unfold Len in H0.
-    spliter.
+    分离合取式.
     intro.
     apply H.
     apply (lg_cong l); auto.
@@ -130,7 +130,7 @@ Proof.
     intros.
     intro.
     unfold Len in *.
-    spliter.
+    分离合取式.
     apply H.
     apply (lg_cong l); auto.
 Qed.
@@ -139,7 +139,7 @@ Lemma lg_null_instance : forall l A, 零长谓词 l -> l A A.
 Proof.
     intros.
     unfold 零长谓词 in H.
-    spliter.
+    分离合取式.
     unfold Q_Cong in H.
     ex_and H X.
     ex_and H1 Y.
@@ -185,7 +185,7 @@ Proof.
     right.
     intro.
     unfold 零长谓词 in H1.
-    spliter.
+    分离合取式.
     ex_and H2 P.
     apply H0.
     assert(Cong A B P P).
@@ -362,7 +362,7 @@ Ltac lg_instance_not_col l P A B :=
                                                             elim tempo_HR;
                                                             intro B;
                                                             intro;
-                                                            spliter;
+                                                            分离合取式;
                                                             clear tempo_HR tempo_HQ
                             end
   end;
@@ -389,7 +389,7 @@ Proof.
     assert(HH0:=H0).
     unfold Len in HH.
     unfold Len in HH0.
-    spliter.
+    分离合取式.
     unfold 谓词等长.
     repeat split; auto.
       intro.
@@ -403,7 +403,7 @@ Proof.
           apply H0.
         auto.
       unfold Len in H8.
-      spliter.
+      分离合取式.
       auto.
     intro.
     assert(Len A0 B0 l2).
@@ -416,7 +416,7 @@ Proof.
         apply H.
       auto.
     unfold Len in H8.
-    spliter.
+    分离合取式.
     auto.
 Qed.
 

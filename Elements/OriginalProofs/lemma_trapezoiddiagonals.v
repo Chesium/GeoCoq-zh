@@ -16,7 +16,7 @@ assert (~ Meet A B C D) by (conclude_def Par ).
 assert (neq A B) by (conclude_def Par ).
 assert (neq C D) by (conclude_def Par ).
 let Tf:=fresh in
-assert (Tf:exists M, (中点 A M C /\ 中点 B M D)) by (conclude lemma_diagonalsbisect);destruct Tf as [M];spliter.
+assert (Tf:exists M, (中点 A M C /\ 中点 B M D)) by (conclude lemma_diagonalsbisect);destruct Tf as [M];分离合取式.
 assert (BetS A M C) by (conclude_def 中点 ).
 assert (Cong A M M C) by (conclude_def 中点 ).
 assert (BetS B M D) by (conclude_def 中点 ).
@@ -33,7 +33,7 @@ assert (~ Col B D C).
  }
 assert (Cong M A M C) by (forward_using lemma_congruenceflip).
 let Tf:=fresh in
-assert (Tf:exists P, (BetS B E P /\ BetS C D P)) by (conclude postulate_Euclid5);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS B E P /\ BetS C D P)) by (conclude postulate_Euclid5);destruct Tf as [P];分离合取式.
 assert (~ Col B P C).
  {
  intro.
@@ -49,7 +49,7 @@ assert (~ Col B P C).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists H', (BetS B H' D /\ BetS C H' E)) by (conclude postulate_Pasch_inner);destruct Tf as [H'];spliter.
+assert (Tf:exists H', (BetS B H' D /\ BetS C H' E)) by (conclude postulate_Pasch_inner);destruct Tf as [H'];分离合取式.
 close.
 Qed.
 

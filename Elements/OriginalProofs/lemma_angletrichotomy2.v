@@ -30,7 +30,7 @@ assert (~ Col B A C).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists G J, (Out B A J /\ 等角 G B J D E F /\ OS G C B A)) by (conclude proposition_23C);destruct Tf as [G[J]];spliter.
+assert (Tf:exists G J, (Out B A J /\ 等角 G B J D E F /\ OS G C B A)) by (conclude proposition_23C);destruct Tf as [G[J]];分离合取式.
 assert (nCol B A G) by (conclude_def OS ).
 assert (~ eq B G).
  {
@@ -73,7 +73,7 @@ assert (~ eq G A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists P, (BetS G A P /\ Cong A P G A)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS G A P /\ Cong A P G A)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
 assert (eq A A) by (conclude cn_equalityreflexive).
 assert (Col B A A) by (conclude_def Col ).
 assert (~ Col B A G).
@@ -86,13 +86,13 @@ assert (OS C G B A) by (forward_using lemma_samesidesymmetric).
 assert (TS G B A P) by (conclude_def TS ).
 assert (TS C B A P) by (conclude lemma_planeseparation).
 let Tf:=fresh in
-assert (Tf:exists R, (BetS C R P /\ Col B A R /\ nCol B A C)) by (conclude_def TS );destruct Tf as [R];spliter.
+assert (Tf:exists R, (BetS C R P /\ Col B A R /\ nCol B A C)) by (conclude_def TS );destruct Tf as [R];分离合取式.
 assert (BetS P R C) by (conclude axiom_betweennesssymmetry).
 assert (角度小于 A B C D E F).
 by cases on (TS G B C A \/ ~ TS G B C A).
 {
  rename_H H;let Tf:=fresh in
- assert (Tf:exists H, (BetS G H A /\ Col B C H /\ nCol B C G)) by (conclude_def TS );destruct Tf as [H];spliter.
+ assert (Tf:exists H, (BetS G H A /\ Col B C H /\ nCol B C G)) by (conclude_def TS );destruct Tf as [H];分离合取式.
  assert (BetS A H G) by (conclude axiom_betweennesssymmetry).
  assert (Out B A A) by (conclude lemma_ray4).
  assert (~ Col A B H).
@@ -143,7 +143,7 @@ by cases on (TS G B C A \/ ~ TS G B C A).
   assert (TS H B A C) by (conclude lemma_oppositesidesymmetric).
   assert (TS C B A C) by (conclude lemma_planeseparation).
   let Tf:=fresh in
-  assert (Tf:exists M, (BetS C M C /\ Col B A M /\ nCol B A C)) by (conclude_def TS );destruct Tf as [M];spliter.
+  assert (Tf:exists M, (BetS C M C /\ Col B A M /\ nCol B A C)) by (conclude_def TS );destruct Tf as [M];分离合取式.
   assert (~ BetS C M C) by (conclude axiom_betweennessidentity).
   contradict.
   }
@@ -258,7 +258,7 @@ by cases on (TS G B C A \/ ~ TS G B C A).
    contradict.
    }
   let Tf:=fresh in
-  assert (Tf:exists Q, (BetS C Q A /\ BetS G Q R)) by (conclude postulate_Pasch_inner);destruct Tf as [Q];spliter.
+  assert (Tf:exists Q, (BetS C Q A /\ BetS G Q R)) by (conclude postulate_Pasch_inner);destruct Tf as [Q];分离合取式.
   assert (BetS G Q B) by (conclude cn_equalitysub).
   assert (BetS B Q G) by (conclude axiom_betweennesssymmetry).
   assert (neq B Q) by (forward_using lemma_betweennotequal).
@@ -349,7 +349,7 @@ by cases on (TS G B C A \/ ~ TS G B C A).
    contradict.
    }
   let Tf:=fresh in
-  assert (Tf:exists M, (BetS A M P /\ BetS C B M)) by (conclude postulate_Pasch_outer);destruct Tf as [M];spliter.
+  assert (Tf:exists M, (BetS A M P /\ BetS C B M)) by (conclude postulate_Pasch_outer);destruct Tf as [M];分离合取式.
   assert (BetS P A G) by (conclude axiom_betweennesssymmetry).
   assert (BetS P M A) by (conclude axiom_betweennesssymmetry).
   assert (BetS M A G) by (conclude lemma_3_6a).
@@ -374,7 +374,7 @@ by cases on (TS G B C A \/ ~ TS G B C A).
    contradict.
    }
   let Tf:=fresh in
-  assert (Tf:exists Q, (BetS C Q A /\ BetS G Q B)) by (conclude postulate_Pasch_inner);destruct Tf as [Q];spliter.
+  assert (Tf:exists Q, (BetS C Q A /\ BetS G Q B)) by (conclude postulate_Pasch_inner);destruct Tf as [Q];分离合取式.
   assert (BetS B Q G) by (conclude axiom_betweennesssymmetry).
   assert (neq B Q) by (forward_using lemma_betweennotequal).
   assert (neq B G) by (forward_using lemma_betweennotequal).
@@ -420,7 +420,7 @@ by cases on (TS G B C A \/ ~ TS G B C A).
    contradict.
    }
   let Tf:=fresh in
-  assert (Tf:exists Q, (BetS B Q C /\ BetS P A Q)) by (conclude postulate_Pasch_outer);destruct Tf as [Q];spliter.
+  assert (Tf:exists Q, (BetS B Q C /\ BetS P A Q)) by (conclude postulate_Pasch_outer);destruct Tf as [Q];分离合取式.
   assert (Col B C Q) by (conclude_def Col ).
   assert (~ eq G Q).
    {
@@ -501,7 +501,7 @@ by cases on (TS G B C A \/ ~ TS G B C A).
     contradict.
     }
    let Tf:=fresh in
-   assert (Tf:exists Q, (BetS B Q G /\ BetS P R Q)) by (conclude postulate_Pasch_outer);destruct Tf as [Q];spliter.
+   assert (Tf:exists Q, (BetS B Q G /\ BetS P R Q)) by (conclude postulate_Pasch_outer);destruct Tf as [Q];分离合取式.
    assert (neq Q G) by (forward_using lemma_betweennotequal).
    assert (neq B Q) by (forward_using lemma_betweennotequal).
    assert (Out B A A) by (conclude lemma_ray4).

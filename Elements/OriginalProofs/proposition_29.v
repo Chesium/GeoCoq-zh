@@ -19,7 +19,7 @@ assert (neq G H) by (forward_using lemma_betweennotequal).
 assert (neq A B) by (forward_using lemma_betweennotequal).
 assert (neq C D) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists R, (BetS A R D /\ Col G H R /\ nCol G H A)) by (conclude_def TS );destruct Tf as [R];spliter.
+assert (Tf:exists R, (BetS A R D /\ Col G H R /\ nCol G H A)) by (conclude_def TS );destruct Tf as [R];分离合取式.
 assert (TS D G H A) by (conclude lemma_oppositesidesymmetric).
 assert (nCol G H D) by (conclude_def TS ).
 assert (nCol D H G) by (forward_using lemma_NCorder).
@@ -33,7 +33,7 @@ assert (Col C H C) by (conclude_def Col ).
 assert (neq C D) by (forward_using lemma_betweennotequal).
 assert (nCol C D G) by (conclude lemma_NChelper).
 let Tf:=fresh in
-assert (Tf:exists P Q S, (BetS P G Q /\ 等角 Q G H G H C /\ 等角 Q G H C H G /\ 等角 H G Q C H G /\ 等角 P G H G H D /\ 等角 P G H D H G /\ 等角 H G P D H G /\ Par P Q C D /\ Cong P G H D /\ Cong G Q C H /\ Cong G S S H /\ Cong P S S D /\ Cong C S S Q /\ BetS P S D /\ BetS C S Q /\ BetS G S H)) by (conclude proposition_31);destruct Tf as [P[Q[S]]];spliter.
+assert (Tf:exists P Q S, (BetS P G Q /\ 等角 Q G H G H C /\ 等角 Q G H C H G /\ 等角 H G Q C H G /\ 等角 P G H G H D /\ 等角 P G H D H G /\ 等角 H G P D H G /\ Par P Q C D /\ Cong P G H D /\ Cong G Q C H /\ Cong G S S H /\ Cong P S S D /\ Cong C S S Q /\ BetS P S D /\ BetS C S Q /\ BetS G S H)) by (conclude proposition_31);destruct Tf as [P[Q[S]]];分离合取式.
 assert (~ Meet A B C D) by (conclude_def Par ).
 assert (eq P P) by (conclude cn_equalityreflexive).
 assert (neq P G) by (forward_using lemma_betweennotequal).
@@ -52,11 +52,11 @@ assert (~ 角度小于 H G A H G P).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists M, (BetS P M H /\ Out G A M)) by (conclude lemma_crossbar2);destruct Tf as [M];spliter.
+ assert (Tf:exists M, (BetS P M H /\ Out G A M)) by (conclude lemma_crossbar2);destruct Tf as [M];分离合取式.
  assert (Cong G S H S) by (forward_using lemma_congruenceflip).
  assert (Cong S P S D) by (forward_using lemma_congruenceflip).
  let Tf:=fresh in
- assert (Tf:exists K, (BetS G M K /\ BetS D H K)) by (conclude postulate_Euclid5);destruct Tf as [K];spliter.
+ assert (Tf:exists K, (BetS G M K /\ BetS D H K)) by (conclude postulate_Euclid5);destruct Tf as [K];分离合取式.
  assert (Col G A M) by (conclude lemma_rayimpliescollinear).
  assert (Col G M K) by (conclude_def Col ).
  assert (Col M G A) by (forward_using lemma_collinearorder).
@@ -128,7 +128,7 @@ assert (~ 角度小于 H G P H G A).
  assert (OS P A G H) by (forward_using lemma_samesidesymmetric).
  assert (TS P G H B) by (conclude lemma_planeseparation).
  let Tf:=fresh in
- assert (Tf:exists L, (BetS P L B /\ Col G H L /\ nCol G H P)) by (conclude_def TS );destruct Tf as [L];spliter.
+ assert (Tf:exists L, (BetS P L B /\ Col G H L /\ nCol G H P)) by (conclude_def TS );destruct Tf as [L];分离合取式.
  assert (BetS B L P) by (conclude axiom_betweennesssymmetry).
  assert (等角 G H C H G Q) by (conclude lemma_equalanglessymmetric).
  assert (nCol H G Q) by (conclude lemma_equalanglesNC).
@@ -145,14 +145,14 @@ assert (~ 角度小于 H G P H G A).
  assert (neq G Q) by (conclude lemma_inequalitysymmetric).
  assert (Out G Q Q) by (conclude lemma_ray4).
  let Tf:=fresh in
- assert (Tf:exists M, (BetS Q M H /\ Out G B M)) by (conclude lemma_crossbar2);destruct Tf as [M];spliter.
+ assert (Tf:exists M, (BetS Q M H /\ Out G B M)) by (conclude lemma_crossbar2);destruct Tf as [M];分离合取式.
  assert (Cong G S H S) by (forward_using lemma_congruenceflip).
  assert (BetS Q S C) by (conclude axiom_betweennesssymmetry).
  assert (Cong S Q C S) by (conclude lemma_congruencesymmetric).
  assert (Cong S Q S C) by (forward_using lemma_congruenceflip).
  assert (nCol G H C) by (forward_using lemma_NCorder).
  let Tf:=fresh in
- assert (Tf:exists K, (BetS G M K /\ BetS C H K)) by (conclude postulate_Euclid5);destruct Tf as [K];spliter.
+ assert (Tf:exists K, (BetS G M K /\ BetS C H K)) by (conclude postulate_Euclid5);destruct Tf as [K];分离合取式.
  assert (Col G B M) by (conclude lemma_rayimpliescollinear).
  assert (Col G M K) by (conclude_def Col ).
  assert (Col M G B) by (forward_using lemma_collinearorder).

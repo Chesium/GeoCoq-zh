@@ -45,7 +45,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma PlgLeft: forall A B C D, Plg A B C D -> (A <> C \/ B <> D).
 Proof.
   intros.
-  unfold Plg in H. spliter.
+  unfold Plg in H. 分离合取式.
 assumption.
 Qed.
 
@@ -110,14 +110,14 @@ Proof.
   apply 中垂线左对称性.
   assumption.
   unfold 中垂线 in HAB.
-  spliter.
+  分离合取式.
   unfold 严格对称 in *.
-  spliter.
+  分离合取式.
   destruct H0 as [M H0];
-  spliter.
+  分离合取式.
   assert(H10 := H).
   unfold 中点 in H10.
-  spliter.
+  分离合取式.
   assert (exists x, Bet C1 M x /\ Cong M x C1 M) by (apply 由一点往一方向构造等长线段).
   ex_and H8 x.
   exists A.
@@ -145,9 +145,9 @@ Lemma 菱形Unicity: forall A B C D E, 菱形 A B C D -> 菱形 A B C E -> D = E
 Proof.
   intros.
   unfold 菱形 in *.
-  spliter.
+  分离合取式.
   unfold Plg in *.
-  spliter.
+  分离合取式.
   ex_and H4 M.
   ex_and H3 N.
   assert (M = N). 

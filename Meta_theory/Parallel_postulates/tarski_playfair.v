@@ -18,7 +18,7 @@ assert (HAux:  tarski_s_parallel_postulate ->
 intros HTE; intros.
 apply par_distincts in H0.
 apply par_distincts in H2.
-spliter.
+分离合取式.
 assert(HPar1 : 严格平行 A1 A2 B1 B2) by (apply (par_not_col_strict _ _ _ _ P); Col; intro; apply H; Col).
 assert(HPar2 : 严格平行 A1 A2 C1 C2) by (apply (par_not_col_strict _ _ _ _ P); Col; intro; apply H; Col).
 elim (line_dec B1 B2 C1 C2); intro HLine.
@@ -44,12 +44,12 @@ elim (line_dec B1 B2 C1 C2); intro HLine.
     }
   ex_and HC' C'.
   unfold TS in H9.
-  assert (~ Col A1 B1 B2) by (spliter; auto).
-  spliter.
+  assert (~ Col A1 B1 B2) by (分离合取式; auto).
+  分离合取式.
   ex_and H12 B.
   double C' P C.
   unfold 中点 in H14.
-  spliter.
+  分离合取式.
   assert(HD : exists D, Bet B D C /\ Bet P D A1) by (apply 帕施公理 with C'; Between).
   ex_and HD D.
   assert(C' <> P) by (intro; subst C'; contradiction).
@@ -93,7 +93,7 @@ elim (line_dec B1 B2 C1 C2); intro HLine.
 intros HTE A1; intros.
 assert( A1 <> A2 /\ B1 <> B2) by (apply par_distinct;auto).
 assert( A1 <> A2 /\ C1 <> C2) by (apply par_distinct;auto).
-spliter.
+分离合取式.
 clear H4.
 induction(共线的决定性 P A1 A2).
   (** If P is one line A1A2 then line A1A2=B1B2=C1C2 and we can conclude. *)
@@ -111,7 +111,7 @@ induction(共线的决定性 P A1 A2).
       exists P.
       split; Col.
 
-      spliter.
+      分离合取式.
       split;ColR.
   (** In the other case we use the previous lemma. *)
   apply (HAux HTE A1 A2 _ _ _ _ P); auto.

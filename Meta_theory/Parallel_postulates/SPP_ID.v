@@ -45,7 +45,7 @@ elim (共线的决定性 P R U); intro HPRU.
       }
     assert (HI := HSPP P Q R S T U); destruct HI as [I [HCol1 HCol2]]; Cong;
     [|left; exists I; Col].
-    unfold BetS in *; spliter.
+    unfold BetS in *; 分离合取式.
     apply coplanar_trans_1 with S; [Col|exists T; right; right; split; Col|Cop].
     }
 

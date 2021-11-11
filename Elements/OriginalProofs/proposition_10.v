@@ -14,7 +14,7 @@ Lemma proposition_10 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists C, (等边三角形 A B C /\ Triangle A B C)) by (conclude proposition_01);destruct Tf as [C];spliter.
+assert (Tf:exists C, (等边三角形 A B C /\ Triangle A B C)) by (conclude proposition_01);destruct Tf as [C];分离合取式.
 assert (nCol A B C) by (conclude_def Triangle ).
 assert ((Cong A B B C /\ Cong B C C A)) by (conclude_def 等边三角形 ).
 assert (Cong A C C B) by (forward_using lemma_doublereverse).
@@ -27,7 +27,7 @@ assert (~ eq C B).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists D, (BetS C B D /\ Cong B D A B)) by (conclude lemma_extension);destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS C B D /\ Cong B D A B)) by (conclude lemma_extension);destruct Tf as [D];分离合取式.
 assert (~ eq C A).
  {
  intro.
@@ -36,7 +36,7 @@ assert (~ eq C A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists E, (BetS C A E /\ Cong A E A B)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS C A E /\ Cong A E A B)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (BetS D B C) by (conclude axiom_betweennesssymmetry).
 assert (BetS E A C) by (conclude axiom_betweennesssymmetry).
 assert (~ Col D C E).
@@ -58,7 +58,7 @@ assert (~ Col D C E).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists F, (BetS D F A /\ BetS E F B)) by (conclude postulate_Pasch_inner);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS D F A /\ BetS E F B)) by (conclude postulate_Pasch_inner);destruct Tf as [F];分离合取式.
 assert (BetS B F E) by (conclude axiom_betweennesssymmetry).
 assert (BetS A F D) by (conclude axiom_betweennesssymmetry).
 assert (neq C D) by (forward_using lemma_betweennotequal).
@@ -74,7 +74,7 @@ assert (~ Col A D C).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M B /\ BetS C M F)) by (conclude postulate_Pasch_inner);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M B /\ BetS C M F)) by (conclude postulate_Pasch_inner);destruct Tf as [M];分离合取式.
 assert (Cong C A C B) by (forward_using lemma_congruenceflip).
 assert (Cong A B A E) by (conclude lemma_congruencesymmetric).
 assert (Cong B D A E) by (conclude lemma_congruencetransitive).
@@ -86,7 +86,7 @@ assert (Cong B F B F) by (conclude cn_congruencereflexive).
 assert (Lt B F B E) by (conclude_def Lt ).
 assert (Cong A D B E) by (conclude lemma_congruencesymmetric).
 let Tf:=fresh in
-assert (Tf:exists G, (BetS A G D /\ Cong A G B F)) by (conclude proposition_03);destruct Tf as [G];spliter.
+assert (Tf:exists G, (BetS A G D /\ Cong A G B F)) by (conclude proposition_03);destruct Tf as [G];分离合取式.
 assert (Cong G D F E) by (conclude lemma_differenceofparts).
 assert (Cong E F D G) by (forward_using lemma_doublereverse).
 assert (Cong F B G A) by (forward_using lemma_doublereverse).

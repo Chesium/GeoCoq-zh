@@ -155,7 +155,7 @@ assert_cols.
 assert (~ Col B A C /\
        B <> H /\ C <> H /\ 中点 H B C /\ 等角 H A B H A C)
  by (apply (等腰三角形底边垂线也是底边中线 B A C );finish).
-spliter.
+分离合取式.
 assert (Plg A I H J).
  {
  assert (Plg J H I A).
@@ -163,7 +163,7 @@ assert (Plg A I H J).
  apply parallelogram_to_plg. (* todo simplify plg vs parallelogram *)
  apply plg_to_parallelogram in H14.
  apply Plg_perm in H14.
- spliter;auto.
+ 分离合取式;auto.
  }
 assert (Par I J B C)
   by (perm_apply (广义三角形中位线平行于第三边 B C A J I)).
@@ -263,7 +263,7 @@ intros.
 assert_cols.
 assert (Cong C S T S /\ Cong T S A S /\ Cong A S C S)
   by ( apply(外心与三角形顶点距离相等 S C T A);finish).
-spliter.
+分离合取式.
 assert(Per C A T)
   by (perm_apply(泰勒斯定理 S C T A);finish).
 assert(Perp T A A C) by finish.
@@ -489,7 +489,7 @@ assert(Par D I B J)
 assert(exists M : Tpoint, 中点 M A C /\ 中点 M B D)
   by (apply(plg_mid A B C D);finish).
 destruct H31.
-spliter.
+分离合取式.
 assert(Par D C I x)
   by(apply(广义三角形中位线平行于第三边 D C A x I);finish).
 assert(Par A B x J)
@@ -513,7 +513,7 @@ assert(Par A B J x /\ Cong A x0 J x)
   by(apply(广义三角形中位线平行于第三边且与其一半相等 C A B x0 J x);finish).
 assert(Par B A I x /\ Cong B x0 I x)
   by(apply(广义三角形中位线平行于第三边且与其一半相等 D B A x0 I x);finish).
-spliter.
+分离合取式.
 
 assert(Cong A x0 I x)
   by(apply(等长的传递性 A x0 x0 B I x);finish).
@@ -556,7 +556,7 @@ intros.
 assert_cols.
 assert (~ Col C I A)
   by (intro;apply H;ColR).
-spliter.
+分离合取式.
 split.
 assert(中点 K C I).
   (apply(过三角形一边中点的一边平行线过第三边中点 C A I J K);finish).

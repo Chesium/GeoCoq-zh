@@ -11,7 +11,7 @@ Lemma lemma_rayimpliescollinear :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists J, (BetS J A C /\ BetS J A B)) by (conclude_def Out );destruct Tf as [J];spliter.
+assert (Tf:exists J, (BetS J A C /\ BetS J A B)) by (conclude_def Out );destruct Tf as [J];分离合取式.
 assert (neq J A) by (forward_using lemma_betweennotequal).
 assert (Col J A B) by (conclude_def Col ).
 assert (Col J A C) by (conclude_def Col ).

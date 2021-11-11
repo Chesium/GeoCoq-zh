@@ -43,7 +43,7 @@ assert_bets.
 elim (帕施公理 A B C J I)...
 intro G;intros.
 exists G.
-spliter;assert_cols;split...
+分离合取式;assert_cols;split...
 Qed.
 
 Lemma 三角形两中线交点的唯一性 :
@@ -53,12 +53,12 @@ forall A B C I J,
  exists! G, Col G A I /\ Col G B J.
 Proof with finish.
 intros.
-elim (三角形两中线交点的存在性 A B C I J H H0 H1); intros G HG; spliter.
+elim (三角形两中线交点的存在性 A B C I J H H0 H1); intros G HG; 分离合取式.
 exists G.
 unfold unique.
 assert_all.
 repeat split...
-intros G' HG'; spliter.
+intros G' HG'; 分离合取式.
 apply l6_21_两线交点的唯一性 with A I B J...
 intro; search_contradiction.
 show_distinct' B J...
@@ -72,7 +72,7 @@ Lemma 重心与三角形共面 : forall A B C G,
   重心 G A B C -> 共面 G A B C.
 Proof.
 intros.
-destruct H as [HNCol [I [J]]]; spliter.
+destruct H as [HNCol [I [J]]]; 分离合取式.
 exists I; left; split; Col.
 Qed.
 
@@ -84,10 +84,10 @@ intros.
 统计不重合点.
 Name I the midpoint of B and C.
 Name J the midpoint of A and C.
-elim (三角形两中线交点的存在性 A B C I J H H1 H4); intros G HG; spliter.
+elim (三角形两中线交点的存在性 A B C I J H H1 H4); intros G HG; 分离合取式.
 exists G; unfold unique; unfold 重心; repeat split...
 exists I;  exists J; do 3 (split; finish).
-intros G' HG'; spliter; decompose [ex and] H8;clear H8.
+intros G' HG'; 分离合取式; decompose [ex and] H8;clear H8.
 assert_all.
 apply l6_21_两线交点的唯一性 with A x B x0...
 intro;search_contradiction.
@@ -146,17 +146,17 @@ Lemma 重心在中线上 : forall A B C G I,
 Proof.
 intros.
 unfold 重心 in *.
-spliter.
+分离合取式.
 destruct H1 as [J [K [Ha [Hb [Hc Hd]]]]].
 elim (三中线交于一点 A B C J K I H);try assumption.
 intro G';intros.
-spliter.
+分离合取式.
 assert (T:=重心的唯一性 A B C H).
 elim T.
 intros G''.
 intros.
 unfold unique in *.
-spliter.
+分离合取式.
 assert (G''=G).
 apply H5.
 unfold 重心.
@@ -180,7 +180,7 @@ Proof.
 intros.
 intro.
 unfold 重心 in *.
-spliter.
+分离合取式.
 decompose [ex and] H1.
 assert_cols.
 apply H.
@@ -197,7 +197,7 @@ Proof.
 intros.
 intro.
 unfold 重心 in *.
-spliter.
+分离合取式.
 decompose [ex and] H1.
 assert_cols.
 apply H.
@@ -214,7 +214,7 @@ Proof.
 intros.
 intro.
 unfold 重心 in *.
-spliter.
+分离合取式.
 decompose [ex and] H1.
 assert_cols.
 apply H.
@@ -237,9 +237,9 @@ intros.
 Name C' the midpoint of A and B.
 assert (Col G C' C) by (apply 重心在中线上 with A B; Col).
 unfold 重心 in *.
-spliter.
+分离合取式.
 destruct H4 as [A'' [B' HIJ]].
-spliter.
+分离合取式.
 treat_equalities.
 统计不重合点.
 Name G'' the midpoint of C and G.
@@ -252,7 +252,7 @@ show_distinct G A; [apply H; ColR|].
 assert (~ Col A G C) by (intro; apply H; ColR).
 assert (C' <> G'' /\ A' <> G')
   by (elim HDiff; clear HDiff; intro; split; trivial; intro; apply H; ColR).
-spliter.
+分离合取式.
 统计不重合点.
 apply l6_21_两线交点的唯一性 with A G C G; trivial; ColR.
 Qed.
@@ -278,7 +278,7 @@ destruct HB' as [B''' HB'].
 assert (HPar1 : Par B A A' B').
   {
   apply 广义三角形中位线平行于第三边 with C; 统计不重合点; try split;
-  unfold 中点 in *; spliter; Between; Cong.
+  unfold 中点 in *; 分离合取式; Between; Cong.
   }
 assert (HCong1 : Cong A C' A' B').
   {
@@ -288,7 +288,7 @@ assert (HCong1 : Cong A C' A' B').
 assert (HPar2 : Par A B A'' B'').
   {
   apply 广义三角形中位线平行于第三边 with G; 统计不重合点; try split;
-  unfold 中点 in *; spliter; Between; Cong.
+  unfold 中点 in *; 分离合取式; Between; Cong.
   }
 assert (HCong2 : Cong A C' A'' B'').
   {
@@ -301,13 +301,13 @@ assert (HPar3 : Par A'' B'' A' B''').
   {
   apply plg_par_1; try (intro; treat_equalities; Col; 统计不重合点; assert_cols; apply HNC; ColR).
   apply mid_plg_1 with G; try (intro; treat_equalities; assert_cols; Col);
-  unfold 中点 in *; spliter; split; Between; Cong.
+  unfold 中点 in *; 分离合取式; split; Between; Cong.
   }
 assert (Cong3 : Cong A'' B'' A' B''').
   {
   apply plg_cong_1.
   apply mid_plg_1 with G; try (intro; treat_equalities; assert_cols; Col);
-  unfold 中点 in *; spliter; split; Between; Cong.
+  unfold 中点 in *; 分离合取式; split; Between; Cong.
   }
 assert (HCol : Col A' B' B''').
   {
@@ -338,7 +338,7 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
       split; try (intro; apply HABG; ColR).
       split; Col.
       split; try (intro; treat_equalities; Col).
-      unfold 中点 in *; spliter; Between.
+      unfold 中点 in *; 分离合取式; Between.
       }
 
       {
@@ -353,7 +353,7 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
       split; try (intro; apply HABG; ColR).
       split; Col.
       split; try (intro; treat_equalities; Col).
-      unfold 中点 in *; spliter; Between.
+      unfold 中点 in *; 分离合取式; Between.
       }
     }
   apply l9_9_bis in HFalse; exfalso; apply HFalse; clear HFalse.
@@ -367,7 +367,7 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
     统计不重合点; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
     split; try (intro; apply HABG; ColR).
     split; try (intro; apply HABG; ColR).
-    exists A'; unfold 中点 in *; spliter; split; Col; Between.
+    exists A'; unfold 中点 in *; 分离合取式; split; Col; Between.
     }
 
     {
@@ -375,7 +375,7 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
 
       {
       apply one_side_symmetry; apply l9_17 with C;
-      try (unfold 中点 in *; spliter; assumption).
+      try (unfold 中点 in *; 分离合取式; assumption).
       apply one_side_transitivity with G.
 
         {
@@ -391,7 +391,7 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
         split; try (intro; apply HABG; ColR).
         split; Col.
         split; try (intro; treat_equalities; Col).
-        unfold 中点 in *; spliter; eBetween.
+        unfold 中点 in *; 分离合取式; eBetween.
         }
 
         {
@@ -405,7 +405,7 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
           统计不重合点; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
           split; try (intro; apply HABG; ColR).
           split; try (intro; apply HABG; ColR).
-          exists B''; unfold 中点 in *; spliter; split; Col; Between.
+          exists B''; unfold 中点 in *; 分离合取式; split; Col; Between.
           }
 
           {
@@ -416,7 +416,7 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
           统计不重合点; assert_cols; assert (HABG : ~ Col A B G) by (intro; apply HNC; ColR).
           split; try (intro; apply HABG; ColR).
           split; try (intro; apply HABG; ColR).
-          exists A'; unfold 中点 in *; spliter; split; Col; Between.
+          exists A'; unfold 中点 in *; 分离合取式; split; Col; Between.
           }
         }
       }
@@ -434,7 +434,7 @@ assert (HElim := 共线点间距相同要么重合要么中点 A' B' B'''); elim
       split; try (intro; apply HABG; ColR).
       split; Col.
       split; try (intro; treat_equalities; Col).
-      unfold 中点 in *; spliter; eBetween.
+      unfold 中点 in *; 分离合取式; eBetween.
       }
     }
   }
@@ -451,7 +451,7 @@ Name I the midpoint of A and B.
 assert (Col G I C)
  by (apply 重心在中线上 with A B;finish).
 unfold 重心 in *.
-spliter.
+分离合取式.
 destruct H2 as [J [K [Ha [Hb [Hc Hd]]]]].
  repeat split;Col.
 exists J; exists K;repeat (split;finish).
@@ -564,7 +564,7 @@ Ltac finish := repeat match goal with
 end.
 *)
 
-Ltac sfinish := spliter; repeat match goal with
+Ltac sfinish := 分离合取式; repeat match goal with
  | |- Bet ?A ?B ?C => Between; eBetween
  | |- Col ?A ?B ?C => ColR
  | |- ~ Col ?A ?B ?C => Col

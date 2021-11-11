@@ -109,15 +109,15 @@ eapply (Build_无维度中性塔斯基公理系统 Point Bet TCong) with (PA:=PA
   unfold TCong in *.
   destruct H;destruct H0.
   left;apply cn_congruencetransitive with A B;auto.
-  spliter;subst.
+  分离合取式;subst.
   apply cong_sym in H.
   apply cong_eq in H.
   subst;auto.
-  spliter;subst.
+  分离合取式;subst.
    apply cong_sym in H0.
   apply cong_eq in H0.
   subst;auto.
-  spliter;subst.
+  分离合取式;subst.
   auto.
 - intros.
   unfold TCong in *.
@@ -230,7 +230,7 @@ eapply (Build_无维度中性塔斯基公理系统 Point Bet TCong) with (PA:=PA
   unfold eq in *;subst.
   * exists B;split;unfold Bet;auto.
   * exfalso; apply lemma_betweennotequal in H.
-    unfold neq,eq in *;spliter.
+    unfold neq,eq in *;分离合取式.
     intuition.
   * exfalso;apply lemma_betweennotequal in H0.
     unfold neq,eq in *;intuition.
@@ -274,7 +274,7 @@ eapply (Build_无维度中性塔斯基公理系统 Point Bet TCong) with (PA:=PA
   unfold Bet;auto.
 - assert (T:=axiom_防降维公理).
   unfold nCol,Bet,neq,eq in *.
-  intro;spliter.
+  intro;分离合取式.
   decompose [or] H;try
   solve [auto using  axiom_betweennesssymmetry].
 Qed.

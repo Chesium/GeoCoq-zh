@@ -26,7 +26,7 @@ assert (~ eq C B).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists E, (BetS B A E /\ Cong A E C B)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS B A E /\ Cong A E C B)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (~ eq B C).
  {
  intro.
@@ -35,7 +35,7 @@ assert (~ eq B C).
  }
 assert (neq A B) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists F, (BetS B C F /\ Cong C F A B)) by (conclude lemma_extension);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS B C F /\ Cong C F A B)) by (conclude lemma_extension);destruct Tf as [F];分离合取式.
 assert (Cong B A F C) by (forward_using lemma_doublereverse).
 assert (BetS F C B) by (conclude axiom_betweennesssymmetry).
 assert (Cong B E F B) by (conclude cn_sumofparts).

@@ -81,7 +81,7 @@ Lemma is_ang_conga : forall A B C A' B' C' a, Ang A B C a -> Ang A' B' C' a -> �
 Proof.
     intros.
     unfold Ang in *.
-    spliter.
+    分离合取式.
     eapply (ang_conga a); auto.
 Qed.
 
@@ -89,7 +89,7 @@ Lemma is_ang_conga_is_ang : forall A B C A' B' C' a, Ang A B C a -> 等角 A B C
 Proof.
     intros.
     unfold Ang in *.
-    spliter.
+    分离合取式.
     split.
       auto.
     unfold 角谓词 in H.
@@ -119,7 +119,7 @@ Lemma not_conga_is_ang : forall A B C A' B' C' a , ~(等角 A B C A' B' C') -> A
 Proof.
     intros.
     unfold Ang in H0.
-    spliter.
+    分离合取式.
     intro.
     apply H.
     apply (ang_conga a); auto.
@@ -130,7 +130,7 @@ Proof.
     intros.
     intro.
     unfold Ang in *.
-    spliter.
+    分离合取式.
     apply H.
     apply (ang_conga a); auto.
 Qed.
@@ -145,7 +145,7 @@ Proof.
     assert(HH0:=H0).
     unfold Ang in HH.
     unfold Ang in HH0.
-    spliter.
+    分离合取式.
     unfold EqA.
     repeat split; auto; intro.
       assert(等角 A B C A0 B0 C0).
@@ -178,7 +178,7 @@ Lemma is_ang_distinct : forall A B C a , Ang A B C a -> A <> B /\ C <> B.
 Proof.
     intros.
     unfold Ang in H.
-    spliter.
+    分离合取式.
     unfold 角谓词 in H.
     ex_and H A0.
     ex_and H1 B0.
@@ -187,7 +187,7 @@ Proof.
     destruct HH.
     apply H4 in H0.
     unfold 等角 in H0.
-    spliter.
+    分离合取式.
     tauto.
 Qed.
 
@@ -217,7 +217,7 @@ Proof.
       apply H2.
     apply is_ang_distinct in H1.
     apply is_ang_distinct in H2.
-    spliter.
+    分离合取式.
     eapply 成中间性三点组的角相等; auto.
 Qed.
 
@@ -281,7 +281,7 @@ Proof.
     exists B.
     exists C.
     apply acute_distincts in H.
-    spliter.
+    分离合取式.
     split.
       auto.
     split.
@@ -305,7 +305,7 @@ Proof.
         apply HH.
         auto.
       unfold Ang in H3.
-      spliter.
+      分离合取式.
       auto.
     intro.
     apply H0.
@@ -359,7 +359,7 @@ Proof.
     intros.
     unfold 锐角 in H.
     unfold Ang.
-    spliter.
+    分离合取式.
     split.
       apply anga_is_ang.
       auto.
@@ -370,7 +370,7 @@ Lemma is_anga_conga : forall A B C A' B' C' a, 锐角 A B C a -> 锐角 A' B' C'
 Proof.
     intros.
     unfold 锐角 in *.
-    spliter.
+    分离合取式.
     apply (anga_conga a); auto.
 Qed.
 
@@ -378,7 +378,7 @@ Lemma is_anga_conga_is_anga : forall A B C A' B' C' a, 锐角 A B C a -> 等角 
 Proof.
     intros.
     unfold 锐角 in *.
-    spliter.
+    分离合取式.
     split.
       auto.
     apply anga_is_ang in H.
@@ -401,7 +401,7 @@ Lemma not_conga_is_anga : forall A B C A' B' C' a , ~ 等角 A B C A' B' C' -> �
 Proof.
     intros.
     unfold 锐角 in H0.
-    spliter.
+    分离合取式.
     intro.
     apply H.
     apply (anga_conga a); auto.
@@ -412,7 +412,7 @@ Proof.
     intros.
     intro.
     unfold 锐角 in *.
-    spliter.
+    分离合取式.
     apply H.
     apply (anga_conga a); auto.
 Qed.
@@ -495,7 +495,7 @@ Proof.
       apply (is_len_cong _ _ _ _ l); auto.
     assert(A <> C).
       unfold Out in H.
-      spliter.
+      分离合取式.
       auto.
     eapply (l6_11_uniqueness A A C C ); Cong.
     apply out_trivial.
@@ -517,7 +517,7 @@ Proof.
     exists (fun X Y Z => 等角 A B C X Y Z).
     unfold 锐角谓词.
     assert (HH := acute_distincts A B C H).
-    spliter.
+    分离合取式.
     split.
       exists A.
       exists B.
@@ -537,7 +537,7 @@ Lemma not_null_ang_ang : forall a, 非零角谓词 a -> 角谓词 a.
 Proof.
     intros.
     unfold 非零角谓词  in H.
-    spliter; auto.
+    分离合取式; auto.
 Qed.
 
 Lemma not_null_ang_def_equiv : forall a, 非零角谓词 a <-> (角谓词 a /\ exists A, exists B, exists C, a A B C /\  ~Out B A C).
@@ -546,7 +546,7 @@ Proof.
     split.
       intro.
       unfold 非零角谓词 in H.
-      spliter.
+      分离合取式.
       assert(HH:= H).
       unfold 角谓词 in HH.
       ex_and HH A.
@@ -567,7 +567,7 @@ Proof.
       apply (H0 A B C).
       auto.
     intros.
-    spliter.
+    分离合取式.
     ex_and H0 A.
     ex_and H1 B.
     ex_and H0 C.
@@ -587,7 +587,7 @@ Proof.
     split.
       intro.
       unfold 非平角谓词 in H.
-      spliter.
+      分离合取式.
       assert(HH:= H).
       unfold 角谓词 in HH.
       ex_and HH A.
@@ -608,7 +608,7 @@ Proof.
       apply (H0 A B C).
       auto.
     intros.
-    spliter.
+    分离合取式.
     ex_and H0 A.
     ex_and H1 B.
     ex_and H0 C.
@@ -687,7 +687,7 @@ Proof.
     intro.
     unfold 角谓词 in H.
     unfold 零长谓词 in H3.
-    spliter.
+    分离合取式.
     unfold Q_Cong in H0.
     ex_and H A0.
     ex_and H5 B0.
@@ -698,7 +698,7 @@ Proof.
       apply H8.
       auto.
     apply conga_distinct in H8.
-      spliter.
+      分离合取式.
       ex_and H0 A1.
       ex_and H14 B1.
       assert(HH:= H0 A B).
@@ -770,7 +770,7 @@ Proof.
     intro.
     unfold 锐角谓词 in H.
     unfold 零长谓词 in H3.
-    spliter.
+    分离合取式.
     unfold Q_Cong in H0.
     ex_and H A0.
     ex_and H5 B0.
@@ -781,7 +781,7 @@ Proof.
       apply H7.
       auto.
     apply conga_distinct in H8.
-    spliter.
+    分离合取式.
     ex_and H0 A1.
     ex_and H13 B1.
     assert(HH:= H0 A B).
@@ -847,11 +847,11 @@ Proof.
       intro.
       subst C0.
       unfold 非零角谓词 in H1.
-      spliter.
+      分离合取式.
       assert(HH:=H11 A0 B0 A0 H8).
       apply HH.
       apply out_trivial; auto.
-    spliter.
+    分离合取式.
     assert(A <> B).
       intro.
       subst B.
@@ -870,14 +870,14 @@ Proof.
     induction H14.
       auto.
     unfold 非零角谓词 in H1.
-    spliter.
+    分离合取式.
     assert(HH:= H16 A B C H15).
     unfold 非平角谓词 in H2.
-    spliter.
+    分离合取式.
     assert(Hh:=H17 A B C H15).
     apply False_ind.
     assert(HH0:=ang_distincts a A B C H0 H15).
-    spliter.
+    分离合取式.
     assert(HP:=or_bet_out A B C).
     induction HP.
       contradiction.
@@ -913,7 +913,7 @@ Proof.
       intro.
       unfold 锐零角谓词 in H.
       unfold 零角谓词'.
-      spliter.
+      分离合取式.
       split.
         auto.
       anga_instance a A B C.
@@ -925,7 +925,7 @@ Proof.
     intro.
     unfold 零角谓词' in H.
     unfold 锐零角谓词.
-    spliter.
+    分离合取式.
     ex_and H0 A.
     ex_and H1 B.
     ex_and H0 C.
@@ -940,7 +940,7 @@ Lemma is_null_anga_out : forall a A B C, 锐角谓词 a -> a A B C -> 锐零角�
 Proof.
     intros.
     unfold 锐零角谓词 in H1.
-    spliter.
+    分离合取式.
     assert(HH:= (H2 A B C)).
     apply HH.
     auto.
@@ -955,15 +955,15 @@ Proof.
     ex_and H0 B0.
     ex_and H C0.
     unfold 角度小于 in H0.
-    spliter.
+    分离合取式.
     unfold 角度小于等于 in H0.
     ex_and H0 P.
     unfold 在角内 in H0.
-    spliter.
+    分离合取式.
     ex_and H5 X.
     intro.
     apply conga_distinct in H2.
-    spliter.
+    分离合取式.
     assert(A<>C) by (intro; treat_equalities; auto).
     induction H6.
       subst X.
@@ -973,7 +973,7 @@ Proof.
       apply (bet_conga__bet A B C); auto.
     assert(Bet A0 B0 C0).
       unfold Out in H6.
-      spliter.
+      分离合取式.
       induction H15.
         eBetween.
       eBetween.
@@ -996,7 +996,7 @@ Proof.
     split.
       unfold 在角内.
       apply acute_distincts in H.
-      spliter.
+      分离合取式.
       repeat split; auto.
       exists C0.
       split.
@@ -1045,7 +1045,7 @@ Lemma is_null_ang_out : forall a A B C, 角谓词 a -> a A B C -> 零角谓词 a
 Proof.
     intros.
     unfold 零角谓词 in H1.
-    spliter.
+    分离合取式.
     assert(HH:= (H2 A B C)).
     apply HH.
     auto.
@@ -1160,7 +1160,7 @@ Proof.
       apply H6.
       auto.
     assert(HP:= anga_distincts a A B C H H0).
-    spliter.
+    分离合取式.
     assert(等角 A B C A' B C').
       apply out2__conga; apply l6_6; assumption.
     assert(HH:= H4 A' B C').
@@ -1181,14 +1181,14 @@ Lemma is_null_all : forall a A B, A <> B -> 锐零角谓词 a -> a A B A.
 Proof.
     intros.
     unfold 锐零角谓词 in H0.
-    spliter.
+    分离合取式.
     assert(HH:= H0).
     unfold 锐角谓词 in HH.
     ex_and HH A0.
     ex_and H2 B0.
     ex_and H3 C0.
     apply acute_distincts in H2.
-    spliter.
+    分离合取式.
     apply H3.
     assert (a A0 B0 C0).
       apply H3.
@@ -1210,7 +1210,7 @@ Proof.
       contradiction.
     unfold Out.
     apply (anga_distinct a A B C) in H.
-      spliter.
+      分离合取式.
       repeat split; auto.
       induction H1.
         right.
@@ -1225,18 +1225,18 @@ Lemma ang_not_lg_null : forall a la lc A B C, Q_Cong la -> Q_Cong lc -> 角谓�
 Proof.
     intros.
     assert(HH:=ang_distincts a A B C H1 H4).
-    spliter.
+    分离合取式.
     split.
       intro.
       unfold 零长谓词 in H7.
-      spliter.
+      分离合取式.
       ex_and H8 P.
       assert(HH:= lg_cong la A B P P H H2 H9).
       apply 等长的同一性 in HH.
       contradiction.
     intro.
     unfold 零长谓词 in H7.
-    spliter.
+    分离合取式.
     ex_and H8 P.
     assert(HH:= lg_cong lc C B P P H0 H3 H9).
     apply 等长的同一性 in HH.
@@ -1255,7 +1255,7 @@ Lemma anga_col_null : forall a A B C, 锐角谓词 a -> a A B C -> Col A B C -> 
 Proof.
     intros.
     assert(HH:= anga_distincts a A B C H H0).
-    spliter.
+    分离合取式.
     assert(Out B A C).
       induction H1.
         assert(HP:=anga_acute a A B C H H0).
@@ -1319,7 +1319,7 @@ Proof.
             split; auto.
           auto.
         unfold Ang in H10.
-        spliter.
+        分离合取式.
         auto.
       apply (acute_lea_acute _ _ _ A' B' C').
         auto.
@@ -1327,7 +1327,7 @@ Proof.
       exists C'.
       split.
         assert (HH:= acute_distincts A' B' C' H).
-        spliter.
+        分离合取式.
         apply C在角ABC内; auto.
       apply (is_ang_conga _ _ _ _ _ _ a).
         split; auto.
@@ -1342,7 +1342,7 @@ Proof.
           split; auto.
         auto.
       unfold Ang in H9.
-      spliter.
+      分离合取式.
       auto.
     intro.
     assert(HH:= H1 X Y Z).

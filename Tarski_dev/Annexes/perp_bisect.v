@@ -21,7 +21,7 @@ intros; unfold 中垂线; unfold 中垂线_另一定义; unfold 严格对称; sp
   统计不重合点; split; Col.
   split; try (left; apply l8_14_2_1a_垂直于转垂直 with I); Perp.
   exists I; split; 中点.
-  unfold 垂直于 in *; spliter; Col.
+  unfold 垂直于 in *; 分离合取式; Col.
   }
 Qed.
 
@@ -167,13 +167,13 @@ assert (Per P I A)
 
 show_distinct A I.
 unfold 中点 in *.
-spliter.
+分离合取式.
 treat_equalities.
 intuition.
 
 show_distinct B I.
 unfold 中点 in *.
-spliter.
+分离合取式.
 treat_equalities.
 intuition.
 

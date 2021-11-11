@@ -55,7 +55,7 @@ by cases on (eq A B \/ eq A C \/ eq B C \/ BetS B A C \/ BetS A B C \/ BetS A C 
  }
 {
  let Tf:=fresh in
- assert (Tf:exists E, (BetS A B E /\ Cong A B E B /\ Cong A D E D /\ neq B D)) by (conclude_def Per );destruct Tf as [E];spliter.
+ assert (Tf:exists E, (BetS A B E /\ Cong A B E B /\ Cong A D E D /\ neq B D)) by (conclude_def Per );destruct Tf as [E];分离合取式.
  assert (BetS E B A) by (conclude axiom_betweennesssymmetry).
  assert (Cong E B A B) by (conclude lemma_congruencesymmetric).
  assert (Cong E D A D) by (conclude lemma_congruencesymmetric).

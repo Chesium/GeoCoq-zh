@@ -11,7 +11,7 @@ Lemma proposition_31short :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists E F S, (BetS E A F /\ 等角 F A D A D B /\ 等角 F A D B D A /\ 等角 D A F B D A /\ 等角 E A D A D C /\ 等角 E A D C D A /\ 等角 D A E C D A /\ Par E F B C /\ Cong E A D C /\ Cong A F B D /\ Cong A S S D /\ Cong E S S C /\ Cong B S S F /\ BetS E S C /\ BetS B S F /\ BetS A S D)) by (conclude proposition_31);destruct Tf as [E[F[S]]];spliter.
+assert (Tf:exists E F S, (BetS E A F /\ 等角 F A D A D B /\ 等角 F A D B D A /\ 等角 D A F B D A /\ 等角 E A D A D C /\ 等角 E A D C D A /\ 等角 D A E C D A /\ Par E F B C /\ Cong E A D C /\ Cong A F B D /\ Cong A S S D /\ Cong E S S C /\ Cong B S S F /\ BetS E S C /\ BetS B S F /\ BetS A S D)) by (conclude proposition_31);destruct Tf as [E[F[S]]];分离合取式.
 close.
 Qed.
 

@@ -56,7 +56,7 @@ assert (~ BetS E F H).
   contradict.
   }
  let Tf:=fresh in
- assert (Tf:exists Q, (BetS E Q A /\ BetS D F Q)) by (conclude postulate_Pasch_outer);destruct Tf as [Q];spliter.
+ assert (Tf:exists Q, (BetS E Q A /\ BetS D F Q)) by (conclude postulate_Pasch_outer);destruct Tf as [Q];分离合取式.
  assert (Col E Q A) by (conclude_def Col ).
  assert (Col D F Q) by (conclude_def Col ).
  assert (Col E A Q) by (forward_using lemma_collinearorder).
@@ -87,7 +87,7 @@ assert (~ BetS F E H).
   contradict.
   }
  let Tf:=fresh in
- assert (Tf:exists R, (BetS F R D /\ BetS A E R)) by (conclude postulate_Pasch_outer);destruct Tf as [R];spliter.
+ assert (Tf:exists R, (BetS F R D /\ BetS A E R)) by (conclude postulate_Pasch_outer);destruct Tf as [R];分离合取式.
  assert (Col F R D) by (conclude_def Col ).
  assert (Col A E R) by (conclude_def Col ).
  assert (Col F D R) by (forward_using lemma_collinearorder).

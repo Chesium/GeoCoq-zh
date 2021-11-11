@@ -41,12 +41,12 @@ by cases on (eq B A \/ neq B A).
   }
  assert (neq A C) by (conclude lemma_inequalitysymmetric).
  let Tf:=fresh in
- assert (Tf:exists E, (BetS C A E /\ Cong A E A C)) by (conclude lemma_localextension);destruct Tf as [E];spliter.
+ assert (Tf:exists E, (BetS C A E /\ Cong A E A C)) by (conclude lemma_localextension);destruct Tf as [E];分离合取式.
  assert (neq A C) by (conclude lemma_inequalitysymmetric).
  assert (neq a c) by (conclude axiom_nocollapse).
  assert (neq c a) by (conclude lemma_inequalitysymmetric).
  let Tf:=fresh in
- assert (Tf:exists e, (BetS c a e /\ Cong a e a c)) by (conclude lemma_localextension);destruct Tf as [e];spliter.
+ assert (Tf:exists e, (BetS c a e /\ Cong a e a c)) by (conclude lemma_localextension);destruct Tf as [e];分离合取式.
  assert (Cong E A A E) by (conclude cn_equalityreverse).
  assert (Cong E A A C) by (conclude lemma_congruencetransitive).
  assert (Cong E A a c) by (conclude lemma_congruencetransitive).

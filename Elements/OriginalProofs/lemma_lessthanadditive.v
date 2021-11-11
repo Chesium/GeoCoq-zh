@@ -15,13 +15,13 @@ Lemma lemma_lessthanadditive :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists b, (BetS C b D /\ Cong C b A B)) by (conclude_def Lt );destruct Tf as [b];spliter.
+assert (Tf:exists b, (BetS C b D /\ Cong C b A B)) by (conclude_def Lt );destruct Tf as [b];分离合取式.
 assert (Cong A B C b) by (conclude lemma_congruencesymmetric).
 assert (neq C b) by (forward_using lemma_betweennotequal).
 assert (neq b C) by (conclude lemma_inequalitysymmetric).
 assert (neq B E) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists e, (BetS C b e /\ Cong b e B E)) by (conclude lemma_extension);destruct Tf as [e];spliter.
+assert (Tf:exists e, (BetS C b e /\ Cong b e B E)) by (conclude lemma_extension);destruct Tf as [e];分离合取式.
 assert (Cong B E b e) by (conclude lemma_congruencesymmetric).
 assert (Cong A E C e) by (conclude cn_sumofparts).
 assert (Cong e D e D) by (conclude cn_congruencereflexive).
@@ -44,7 +44,7 @@ assert (~ BetS b F e).
  assert (Cong D F b e) by (conclude lemma_congruencesymmetric).
  assert (Lt b e b F) by (conclude lemma_lessthancongruence2).
  let Tf:=fresh in
- assert (Tf:exists q, (BetS b q F /\ Cong b q b e)) by (conclude_def Lt );destruct Tf as [q];spliter.
+ assert (Tf:exists q, (BetS b q F /\ Cong b q b e)) by (conclude_def Lt );destruct Tf as [q];分离合取式.
  assert (neq b q) by (forward_using lemma_betweennotequal).
  assert (neq b F) by (forward_using lemma_betweennotequal).
  assert (Out b F q) by (conclude lemma_ray4).

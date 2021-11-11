@@ -27,21 +27,21 @@ elim (中间性的决定性 A B C); intro HBet; elim (两点重合的决定性 A
   exfalso.
   apply HNNBet.
   intro.
-  spliter.
+  分离合取式.
   intuition.
 
   subst.
   exfalso.
   apply HNNBet.
   intro.
-  spliter.
+  分离合取式.
   intuition.
 
   subst.
   exfalso.
   apply HNNBet.
   intro.
-  spliter.
+  分离合取式.
   intuition.
 
   repeat split; assumption.
@@ -49,25 +49,25 @@ elim (中间性的决定性 A B C); intro HBet; elim (两点重合的决定性 A
   exfalso.
   apply HNNBet.
   intro.
-  spliter.
+  分离合取式.
   contradiction.
 
   exfalso.
   apply HNNBet.
   intro.
-  spliter.
+  分离合取式.
   contradiction.
 
   exfalso.
   apply HNNBet.
   intro.
-  spliter.
+  分离合取式.
   contradiction.
 
   exfalso.
   apply HNNBet.
   intro.
-  spliter.
+  分离合取式.
   contradiction.
 Qed.
 
@@ -153,10 +153,10 @@ repeat split.
   apply 中间性的内传递性1 with D; assumption.
 
   unfold BetH in HBet1.
-  spliter; assumption.
+  分离合取式; assumption.
 
   unfold BetH in HBet2.
-  spliter; assumption.
+  分离合取式; assumption.
 Qed.
 
 Lemma ColB_Col : forall A B C, ColB A B C -> Col A B C.

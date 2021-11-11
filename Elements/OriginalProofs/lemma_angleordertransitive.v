@@ -13,17 +13,17 @@ Lemma lemma_angleordertransitive :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists U V W, (BetS U W V /\ Out Q P U /\ Out Q R V /\ 等角 D E F P Q W)) by (conclude_def 角度小于 );destruct Tf as [U[V[W]]];spliter.
+assert (Tf:exists U V W, (BetS U W V /\ Out Q P U /\ Out Q R V /\ 等角 D E F P Q W)) by (conclude_def 角度小于 );destruct Tf as [U[V[W]]];分离合取式.
 assert (等角 P Q W D E F) by (conclude lemma_equalanglessymmetric).
 assert (neq D E) by (forward_using lemma_angledistinct).
 assert (neq E D) by (conclude lemma_inequalitysymmetric).
 assert (neq E F) by (forward_using lemma_angledistinct).
 assert (neq Q U) by (conclude lemma_raystrict).
 let Tf:=fresh in
-assert (Tf:exists G, (Out E D G /\ Cong E G Q U)) by (conclude lemma_layoff);destruct Tf as [G];spliter.
+assert (Tf:exists G, (Out E D G /\ Cong E G Q U)) by (conclude lemma_layoff);destruct Tf as [G];分离合取式.
 assert (neq Q W) by (forward_using lemma_angledistinct).
 let Tf:=fresh in
-assert (Tf:exists J, (Out E F J /\ Cong E J Q W)) by (conclude lemma_layoff);destruct Tf as [J];spliter.
+assert (Tf:exists J, (Out E F J /\ Cong E J Q W)) by (conclude lemma_layoff);destruct Tf as [J];分离合取式.
 assert (nCol D E F) by (conclude lemma_equalanglesNC).
 assert (等角 D E F D E F) by (conclude lemma_equalanglesreflexive).
 assert (等角 D E F G E J) by (conclude lemma_equalangleshelper).
@@ -44,7 +44,7 @@ assert (等角 D E F U Q W) by (conclude lemma_equalangleshelper).
 assert (角度小于 A B C U Q W) by (conclude lemma_angleorderrespectscongruence).
 rename_H H;
 let Tf:=fresh in
-assert (Tf:exists H S T, (BetS S H T /\ Out Q U S /\ Out Q W T /\ 等角 A B C U Q H)) by (conclude_def 角度小于 );destruct Tf as [H[S[T]]];spliter.
+assert (Tf:exists H S T, (BetS S H T /\ Out Q U S /\ Out Q W T /\ 等角 A B C U Q H)) by (conclude_def 角度小于 );destruct Tf as [H[S[T]]];分离合取式.
 assert (Out Q U P) by (conclude lemma_ray5).
 assert (neq Q H) by (forward_using lemma_angledistinct).
 assert (eq H H) by (conclude cn_equalityreflexive).
@@ -75,7 +75,7 @@ assert (~ Col S Q T).
 assert (Triangle S Q T) by (conclude_def Triangle ).
 assert (Out Q S U) by (conclude lemma_ray5).
 let Tf:=fresh in
-assert (Tf:exists K, (Out Q H K /\ BetS U K W)) by (conclude lemma_crossbar);destruct Tf as [K];spliter.
+assert (Tf:exists K, (Out Q H K /\ BetS U K W)) by (conclude lemma_crossbar);destruct Tf as [K];分离合取式.
 assert (BetS U K V) by (conclude lemma_3_6b).
 assert (eq P P) by (conclude cn_equalityreflexive).
 assert (Out Q P P) by (conclude lemma_ray4).

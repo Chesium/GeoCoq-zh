@@ -43,7 +43,7 @@ assert (neq B G) by (forward_using lemma_betweennotequal).
 assert (neq A B) by (forward_using lemma_betweennotequal).
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists e, (BetS B A e /\ Cong A e B A)) by (conclude lemma_extension);destruct Tf as [e];spliter.
+assert (Tf:exists e, (BetS B A e /\ Cong A e B A)) by (conclude lemma_extension);destruct Tf as [e];分离合取式.
 assert (BetS e A B) by (conclude axiom_betweennesssymmetry).
 assert (OS D C A B) by (forward_using lemma_samesidesymmetric).
 assert (RT D A B A B C) by (conclude proposition_29C).
@@ -87,7 +87,7 @@ assert (Par E K B G) by (conclude proposition_28D).
 assert (Par E K G B) by (forward_using lemma_parallelflip).
 assert (neq B C) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists c, (BetS B C c /\ Cong C c B C)) by (conclude lemma_extension);destruct Tf as [c];spliter.
+assert (Tf:exists c, (BetS B C c /\ Cong C c B C)) by (conclude lemma_extension);destruct Tf as [c];分离合取式.
 assert (BetS c C B) by (conclude axiom_betweennesssymmetry).
 assert (Par C D B A) by (forward_using lemma_parallelflip).
 assert (RT D C B C B A) by (conclude proposition_29C).

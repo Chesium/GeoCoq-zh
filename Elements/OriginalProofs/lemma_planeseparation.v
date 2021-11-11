@@ -16,7 +16,7 @@ Proof.
 intros.
 rename_H H;
 let Tf:=fresh in
-assert (Tf:exists G H Q, (Col A B G /\ Col A B H /\ BetS C G Q /\ BetS D H Q /\ nCol A B C /\ nCol A B D)) by (conclude_def OS );destruct Tf as [G[H[Q]]];spliter.
+assert (Tf:exists G H Q, (Col A B G /\ Col A B H /\ BetS C G Q /\ BetS D H Q /\ nCol A B C /\ nCol A B D)) by (conclude_def OS );destruct Tf as [G[H[Q]]];分离合取式.
 assert (~ eq A B).
  {
  intro.
@@ -25,7 +25,7 @@ assert (~ eq A B).
  }
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists W, (BetS D W E /\ Col A B W /\ nCol A B D)) by (conclude_def TS );destruct Tf as [W];spliter.
+assert (Tf:exists W, (BetS D W E /\ Col A B W /\ nCol A B D)) by (conclude_def TS );destruct Tf as [W];分离合取式.
 assert (neq C G) by (forward_using lemma_betweennotequal).
 assert (neq G C) by (conclude lemma_inequalitysymmetric).
 assert (neq G Q) by (forward_using lemma_betweennotequal).
@@ -298,7 +298,7 @@ by cases on (Col C Q D \/ nCol C Q D).
    contradict.
    }
   let Tf:=fresh in
-  assert (Tf:exists F, (BetS C F H /\ BetS D F G)) by (conclude postulate_Pasch_inner);destruct Tf as [F];spliter.
+  assert (Tf:exists F, (BetS C F H /\ BetS D F G)) by (conclude postulate_Pasch_inner);destruct Tf as [F];分离合取式.
   assert (BetS H F C) by (conclude axiom_betweennesssymmetry).
   assert (BetS G F D) by (conclude axiom_betweennesssymmetry).
   assert (~ Col E D G).
@@ -390,7 +390,7 @@ by cases on (Col C Q D \/ nCol C Q D).
     contradict.
     }
    let Tf:=fresh in
-   assert (Tf:exists M, (BetS E M C /\ BetS H G M)) by (conclude postulate_Pasch_outer);destruct Tf as [M];spliter.
+   assert (Tf:exists M, (BetS E M C /\ BetS H G M)) by (conclude postulate_Pasch_outer);destruct Tf as [M];分离合取式.
    assert (Col H G M) by (conclude_def Col ).
    assert (Col B H G) by (conclude lemma_collinear4).
    assert (Col H G B) by (forward_using lemma_collinearorder).
@@ -444,7 +444,7 @@ by cases on (Col C Q D \/ nCol C Q D).
    {
    intro.
    let Tf:=fresh in
-   assert (Tf:exists K, (BetS G K H /\ Cong K G K H)) by (conclude proposition_10);destruct Tf as [K];spliter.
+   assert (Tf:exists K, (BetS G K H /\ Cong K G K H)) by (conclude proposition_10);destruct Tf as [K];分离合取式.
    assert (~ Col G D E).
     {
     intro.
@@ -454,7 +454,7 @@ by cases on (Col C Q D \/ nCol C Q D).
    assert (BetS E W D) by (conclude axiom_betweennesssymmetry).
    assert (BetS G F D) by (conclude axiom_betweennesssymmetry).
    let Tf:=fresh in
-   assert (Tf:exists J, (BetS E J F /\ BetS G J W)) by (conclude postulate_Pasch_inner);destruct Tf as [J];spliter.
+   assert (Tf:exists J, (BetS E J F /\ BetS G J W)) by (conclude postulate_Pasch_inner);destruct Tf as [J];分离合取式.
    assert (Col G J W) by (conclude_def Col ).
    assert (Col E F J) by (conclude_def Col ).
    assert (Col E C H) by (forward_using lemma_collinearorder).

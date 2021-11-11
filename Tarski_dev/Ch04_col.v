@@ -192,14 +192,14 @@ Proof.
     intros.
     decompose [or and] H; clear H.
       assert (Bet A' B' C') by (eapply l4_6;eauto).
-      unfold 三角形全等 in *; spliter.
+      unfold 三角形全等 in *; 分离合取式.
       assert(外五线段形式 A B C D A' B' C' D') by (unfold 外五线段形式;repeat split; assumption).
       eapply 五线段公理_等价SAS_with_def; eauto.
       assert(Bet B' C' A') by (apply (l4_6 B C A B' C' A'); Cong;auto with cong3).
       apply (l4_2 B C A D B' C' A' D').
-      unfold 内五线段形式; unfold 三角形全等 in *; spliter; repeat split;Between;Cong.
+      unfold 内五线段形式; unfold 三角形全等 in *; 分离合取式; repeat split;Between;Cong.
     assert (Bet C' A' B') by (eapply (l4_6 C A B C' A' B'); auto with cong3).
-    eapply (五线段公理_等价SAS_with_def B A C D B' A'); unfold 外五线段形式; unfold 三角形全等 in *; spliter; repeat split; Between; Cong.
+    eapply (五线段公理_等价SAS_with_def B A C D B' A'); unfold 外五线段形式; unfold 三角形全等 in *; 分离合取式; repeat split; Between; Cong.
 Qed.
 
 Lemma l4_17 : forall A B C P Q,
@@ -261,7 +261,7 @@ Lemma col_cong_3_cong_3_eq : forall A B C A' B' C1 C2,
 Proof.
 intros A B C A' B' C1 C2 HAB HCol HCong1 HCong2.
 apply l4_18 with A' B'; try apply 全等于退化的三角形 with A B C; Col;
-unfold 三角形全等 in *; spliter.
+unfold 三角形全等 in *; 分离合取式.
   intro; treat_equalities; intuition.
   apply 等长的传递性 with A C; Cong.
   apply 等长的传递性 with B C; Cong.

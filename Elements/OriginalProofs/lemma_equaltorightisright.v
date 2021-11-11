@@ -13,7 +13,7 @@ Proof.
 intros.
 assert (等角 A B C a b c) by (conclude lemma_equalanglessymmetric).
 let Tf:=fresh in
-assert (Tf:exists E F e f, (Out B A E /\ Out B C F /\ Out b a e /\ Out b c f /\ Cong B E b e /\ Cong B F b f /\ Cong E F e f /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [E[F[e[f]]]];spliter.
+assert (Tf:exists E F e f, (Out B A E /\ Out B C F /\ Out b a e /\ Out b c f /\ Cong B E b e /\ Cong B F b f /\ Cong E F e f /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [E[F[e[f]]]];分离合取式.
 assert (Per A B F) by (conclude lemma_8_3).
 assert (Per F B A) by (conclude lemma_8_2).
 assert (Per F B E) by (conclude lemma_8_3).
@@ -21,11 +21,11 @@ assert (Per E B F) by (conclude lemma_8_2).
 assert (neq B E) by (conclude lemma_raystrict).
 assert (neq E B) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists W, (BetS E B W /\ Cong E B W B /\ Cong E F W F /\ neq B F)) by (conclude_def Per );destruct Tf as [W];spliter.
+assert (Tf:exists W, (BetS E B W /\ Cong E B W B /\ Cong E F W F /\ neq B F)) by (conclude_def Per );destruct Tf as [W];分离合取式.
 assert (neq b e) by (conclude axiom_nocollapse).
 assert (neq e b) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists w, (BetS e b w /\ Cong b w e b)) by (conclude lemma_extension);destruct Tf as [w];spliter.
+assert (Tf:exists w, (BetS e b w /\ Cong b w e b)) by (conclude lemma_extension);destruct Tf as [w];分离合取式.
 assert (Cong e b E B) by (forward_using lemma_doublereverse).
 assert (Cong b w E B) by (conclude lemma_congruencetransitive).
 assert (Cong E B B W) by (forward_using lemma_congruenceflip).

@@ -66,7 +66,7 @@ intros.
 
 assert(~Col O E E').
 unfold Prod in H0.
-spliter.
+分离合取式.
 unfold Ar2  in H0.
 tauto.
 
@@ -100,12 +100,12 @@ Proof.
 intros.
 
 unfold PythRel in H.
-spliter.
+分离合取式.
 unfold Ar2 in H.
-spliter.
+分离合取式.
 
 induction H3.
-spliter.
+分离合取式.
 subst B.
 
 assert(B2=O).
@@ -125,7 +125,7 @@ subst C2.
 
 apply (sum_A_O O E E' ); auto.
 unfold Prod in H0.
-spliter.
+分离合取式.
 unfold Ar2 in H0; tauto.
 
 (*
@@ -135,7 +135,7 @@ apply (prod_O_l_eq O E E' O); auto.
 subst B2.
 apply (sum_A_O O E E' ); auto.
 unfold Prod in H0.
-spliter.
+分离合取式.
 unfold Ar2 in H0; tauto.
 *)
 
@@ -175,7 +175,7 @@ apply prod_0_l; auto.
 subst A2.
 apply sum_O_B; Col.
 unfold Prod in H2.
-spliter.
+分离合取式.
 unfold Ar2 in H2.
 tauto.
 assert(A2=O).
@@ -191,7 +191,7 @@ apply (opp_same_square O E E' B C); auto.
 subst C2.
 apply sum_O_B; auto.
 unfold Prod in H2.
-spliter.
+分离合取式.
 unfold Ar2 in H2.
 tauto.
 unfold Ar2.
@@ -283,7 +283,7 @@ Col.
 
 apply opp_midpoint in H16.
 unfold 中点 in H16.
-spliter.
+分离合取式.
 apply 等长的传递性 with O C; Cong.
 
 unfold Length.
@@ -374,7 +374,7 @@ apply diff_A_O; auto.
 Col.
 apply opp_midpoint in H16.
 unfold 中点 in H16.
-spliter.
+分离合取式.
 apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' B OB B2 H16 H1).
 
@@ -443,7 +443,7 @@ unfold Ps in H17.
 Col.
 apply opp_midpoint in H16.
 unfold 中点 in H16.
-spliter.
+分离合取式.
 apply 等长的传递性 with O C; Cong.
 
 unfold Length.
@@ -470,7 +470,7 @@ apply diff_A_O; auto.
 Col.
 apply opp_midpoint in H19.
 unfold 中点 in H19.
-spliter.
+分离合取式.
 apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' B OB B2 H19 H1).
 apply(opp_same_square O E E' C OC C2 H16 H2).
@@ -505,7 +505,7 @@ assumption.
 assert(Col O E OA).
 unfold Opp in H16.
 unfold Sum in H16.
-spliter.
+分离合取式.
 unfold Ar2 in H16.
 tauto.
 
@@ -521,7 +521,7 @@ apply sum_O_B; Col.
 unfold Ps.
 apply opp_midpoint in H16.
 unfold 中点 in H16.
-spliter.
+分离合取式.
 apply not_out_bet in H12.
 assert(HP:=l5_2 A O E OA H11 H12 H16).
 unfold Out.
@@ -539,7 +539,7 @@ unfold Opp in H16.
 apply opp_midpoint in H16.
 unfold 中点 in H16.
 unfold Sum in H16.
-spliter.
+分离合取式.
 Cong.
 
 unfold Length.
@@ -595,7 +595,7 @@ Col.
 assert(Col O E OA).
 unfold Opp in H19.
 unfold Sum in H19.
-spliter.
+分离合取式.
 unfold Ar2 in H19.
 tauto.
 
@@ -616,7 +616,7 @@ unfold Ps in H17.
 Col.
 apply opp_midpoint in H16.
 unfold 中点 in H16.
-spliter.
+分离合取式.
 apply 等长的传递性 with O C; Cong.
 
 unfold Length.
@@ -631,7 +631,7 @@ apply sum_O_B; Col.
 unfold Ps.
 apply opp_midpoint in H19.
 unfold 中点 in H19.
-spliter.
+分离合取式.
 apply not_out_bet in H12.
 assert(HP:=l5_2 A O E OA H11 H12 H19).
 unfold Out.
@@ -646,7 +646,7 @@ left; auto.
 Col.
 apply opp_midpoint in H19.
 unfold 中点 in H19.
-spliter.
+分离合取式.
 Cong.
 
 unfold Length.
@@ -700,7 +700,7 @@ Col.
 assert(Col O E OA).
 unfold Opp in H19.
 unfold Sum in H19.
-spliter.
+分离合取式.
 unfold Ar2 in H19.
 tauto.
 
@@ -729,7 +729,7 @@ apply sum_O_B; Col.
 unfold Ps.
 apply opp_midpoint in H19.
 unfold 中点 in H19.
-spliter.
+分离合取式.
 apply not_out_bet in H12.
 assert(HP:=l5_2 A O E OA H11 H12 H19).
 unfold Out.
@@ -744,7 +744,7 @@ left; auto.
 Col.
 apply opp_midpoint in H19.
 unfold 中点 in H19.
-spliter.
+分离合取式.
 Cong.
 
 unfold Length.
@@ -759,7 +759,7 @@ apply diff_A_O; auto.
 Col.
 apply opp_midpoint in H16.
 unfold 中点 in H16.
-spliter.
+分离合取式.
 apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' A OA A2 H19 H0).
 apply(opp_same_square O E E' B OB B2 H16 H1).
@@ -805,7 +805,7 @@ Col.
 assert(Col O E OA).
 unfold Opp in H19.
 unfold Sum in H19.
-spliter.
+分离合取式.
 unfold Ar2 in H19.
 tauto.
 
@@ -848,7 +848,7 @@ unfold Ps in H17.
 Col.
 apply opp_midpoint in H16.
 unfold 中点 in H16.
-spliter.
+分离合取式.
 apply 等长的传递性 with O C; Cong.
 
 unfold Length.
@@ -863,7 +863,7 @@ apply sum_O_B; Col.
 unfold Ps.
 apply opp_midpoint in H19.
 unfold 中点 in H19.
-spliter.
+分离合取式.
 apply not_out_bet in H12.
 assert(HP:=l5_2 A O E OA H11 H12 H19).
 unfold Out.
@@ -878,7 +878,7 @@ left; auto.
 Col.
 apply opp_midpoint in H19.
 unfold 中点 in H19.
-spliter.
+分离合取式.
 Cong.
 
 unfold Length.
@@ -893,7 +893,7 @@ apply diff_A_O; auto.
 Col.
 apply opp_midpoint in H22.
 unfold 中点 in H22.
-spliter.
+分离合取式.
 apply 等长的传递性 with O B; Cong.
 apply(opp_same_square O E E' A OA A2 H19 H0).
 apply(opp_same_square O E E' B OB B2 H22 H1).
@@ -911,12 +911,12 @@ Lemma PythRel_uniqueness : forall O E E' A B C1 C2,
 Proof.
 intros.
 unfold PythRel in *.
-spliter.
+分离合取式.
 unfold Ar2 in *.
-spliter.
+分离合取式.
 clean_duplicated_hyps;
 induction H2; induction H3.
-spliter.
+分离合取式.
 subst B.
 
 induction H4; induction H3.
@@ -925,7 +925,7 @@ subst C2.
 auto.
 subst A.
 induction H1.
-spliter.
+分离合取式.
 unfold Opp in H3.
 apply sum_comm in H3; auto.
 
@@ -941,7 +941,7 @@ apply (sum_A_O_eq O E E') in H3; auto.
 
 subst C2.
 induction H1.
-spliter.
+分离合取式.
 unfold Opp in H2.
 assert(HP:=sum_pos_pos O E E' C1 A O H1 H3 H2).
 assert(HQ:=O_not_positive O E).
@@ -955,12 +955,12 @@ eapply (sum_uniquenessA O E E' H A C1 C2 O); auto.
 
 
 ex_and H2 B'.
-spliter.
+分离合取式.
 subst B.
 apply 垂直推出不重合 in H2.
 tauto.
 ex_and H0 B'.
-spliter.
+分离合取式.
 subst B.
 apply 垂直推出不重合 in H0.
 tauto.
@@ -999,17 +999,17 @@ induction H1.
 
 unfold Ps in H1.
 unfold Ps in H2.
-spliter.
+分离合取式.
 assert(Out O C1 C2).
 apply (l6_7 _ _ E); Out.
 unfold 中点 in H5.
-spliter.
+分离合取式.
 apply l6_4_1 in H5; auto.
 tauto.
 
 subst C1.
 unfold 中点 in H5.
-spliter.
+分离合取式.
 apply 等长的对称性 in H5.
 apply (等长的同一性 O C2 O);auto.
 
@@ -1029,11 +1029,11 @@ induction H1.
 
 unfold Ps in H1.
 unfold Ps in H2.
-spliter.
+分离合取式.
 assert(Out O C1 C2).
 apply (l6_7 _ _ E); Out.
 unfold 中点 in H15.
-spliter.
+分离合取式.
 apply l6_4_1 in H15; auto.
 tauto.
 
@@ -1071,14 +1071,14 @@ induction H18.
 assumption.
 
 induction H1.
-spliter.
+分离合取式.
 
 unfold Ps in H1.
 unfold Ps in H19.
 assert(Out O C1 C2).
 apply (l6_7 _ _ E); Out.
 unfold 中点 in H18.
-spliter.
+分离合取式.
 apply l6_4_1 in H18; auto.
 tauto.
 

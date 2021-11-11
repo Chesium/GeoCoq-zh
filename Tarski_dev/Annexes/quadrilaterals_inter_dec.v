@@ -63,7 +63,7 @@ Ltac symmetric A B A' :=
 Tactic Notation "Name" ident(X) "the" "symmetric" "of" ident(A) "wrt" ident(C) :=
  symmetric A C X.
 
-Ltac sfinish := spliter; repeat match goal with
+Ltac sfinish := 分离合取式; repeat match goal with
  | |- Bet ?A ?B ?C => Between; eBetween
  | |- Col ?A ?B ?C => ColR
  | |- ~ Col ?A ?B ?C => Col
@@ -301,14 +301,14 @@ intros.
 assert(HH:= H1).
 unfold TS in HH.
 assert(~ Col B A A').
-spliter; assumption.
-spliter.
+分离合取式; assumption.
+分离合取式.
 ex_and H5 M.
 exists M.
 
 assert(HH:= H).
 unfold 严格平行 in HH.
-spliter.
+分离合取式.
 
 assert(HH:=(中点的存在性 A A')).
 ex_and HH X.
@@ -334,7 +334,7 @@ unfold Par.
 left.
 assumption.
 Col.
-spliter.
+分离合取式.
 
 assert(Cong A B A' B'').
 eapply l7_13_同中点组两侧等长.
@@ -424,7 +424,7 @@ Proof.
 intros.
 assert(HH:= H).
 unfold 严格平行 in HH.
-spliter.
+分离合取式.
 
 assert(HH:=(中点的存在性 A' B)).
 ex_and HH X.
@@ -463,7 +463,7 @@ unfold Par.
 left.
 assumption.
 Col.
-spliter.
+分离合取式.
 
 assert(Cong A B  B'' A').
 eapply l7_13_同中点组两侧等长.
@@ -517,13 +517,13 @@ split; Col.
 unfold OS in H15.
 ex_and H15 T.
 unfold TS in H16.
-spliter.
+分离合取式.
 assumption.
 exists A'.
 split.
 Col.
 unfold 中点 in H14.
-spliter.
+分离合取式.
 assumption.
 
 assert(TS A A' X B').
@@ -574,7 +574,7 @@ destruct (中点的存在性 A A') as [M1 HM1].
 destruct (构造对称点 B M1) as [B'' HB''].
 assert (HCol1 : Col B'' A' B').
   {
-  assert (Col A' A' B' /\ Col B'' A' B'); [|spliter; Col].
+  assert (Col A' A' B' /\ Col B'' A' B'); [|分离合取式; Col].
   assert (HPar := par_strict_par A B A' B' HParS).
   apply HP with A B A'; Col.
   统计不重合点; apply l12_17 with M1; Col.
@@ -585,7 +585,7 @@ destruct (中点的存在性 A B') as [M2 HM2].
 destruct (构造对称点 B M2) as [A'' HA''].
 assert (HCol2 : Col A'' A' B').
   {
-  assert (Col B' A' B' /\ Col A'' A' B'); [|spliter; Col].
+  assert (Col B' A' B' /\ Col A'' A' B'); [|分离合取式; Col].
   assert (HPar := par_strict_par A B A' B' HParS).
   apply HP with A B B'; Col.
   统计不重合点; apply l12_17 with M2; Col.
@@ -608,7 +608,7 @@ elim (共线点间距相同要么重合要么中点 A' B' B''); Col; intro HElim
 
     {
     exfalso; destruct (outer_pasch B' A A' B'' M1) as [I [HAIB' HA''IM1]];
-    unfold 中点 in*; spliter; Between.
+    unfold 中点 in*; 分离合取式; Between.
     assert (HM1I : M1 <> I).
       {
       intro; treat_equalities.
@@ -711,7 +711,7 @@ Proof.
 intros.
 assert(HH:= H).
 unfold 严格平行 in HH.
-spliter.
+分离合取式.
 destruct (cop__one_or_two_sides A A' B B').
 Cop.
 intro.
@@ -748,7 +748,7 @@ right.
 assumption.
 intro.
 unfold 严格平行 in H1.
-spliter.
+分离合取式.
 apply H2.
 exists A.
 split; Col.
@@ -763,19 +763,19 @@ Lemma ts_cong_par_cong_par :
  Cong A B' A' B /\ Par A B' A' B.
 Proof.
 intros A B A' B' HTS HCong HPar.
-assert(HAB : A <> B) by (intro; treat_equalities; unfold TS in *; spliter; Col).
+assert(HAB : A <> B) by (intro; treat_equalities; unfold TS in *; 分离合取式; Col).
 destruct (par_cong_mid A B A' B') as [M HM]; Col.
 elim HM; clear HM; intro HM; destruct HM as [HMid1 HMid2].
 
   {
-  assert(HAB' : A <> B') by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
+  assert(HAB' : A <> B') by (intro; treat_equalities; unfold TS in HTS; 分离合取式; Col).
   split; try apply l7_13_同中点组两侧等长 with M; try apply l12_17 with M; 中点.
   }
 
   {
-  assert(HAA' : A <> A') by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
+  assert(HAA' : A <> A') by (intro; treat_equalities; unfold TS in HTS; 分离合取式; Col).
   assert (HFalse := HTS); apply l9_9 in HFalse; exfalso; apply HFalse; clear HFalse.
-  unfold TS in HTS; spliter; apply l12_6; apply par_not_col_strict with B; Col.
+  unfold TS in HTS; 分离合取式; apply l12_6; apply par_not_col_strict with B; Col.
   assert (Par  A A' B' B); Par; apply l12_17 with M; 中点.
   }
 Qed.
@@ -810,10 +810,10 @@ Lemma rmb_cong :
 Proof.
 intros.
 unfold 菱形 in H.
-spliter.
+分离合取式.
 assert(HH:= plg_to_parallelogram A B C D H).
 assert(HH1:= plg_cong A B C D HH).
-spliter.
+分离合取式.
 repeat split; trivial.
 apply 等长的传递性 with B C; Cong.
 Qed.
@@ -827,10 +827,10 @@ Proof.
 intros.
 assert(HH:=H0).
 unfold 菱形 in HH.
-spliter.
+分离合取式.
 assert(HH:=H1).
 unfold Plg in HH.
-spliter.
+分离合取式.
 ex_and H4 M'.
 assert(M = M').
 eapply 中点的唯一性1.
@@ -843,7 +843,7 @@ split.
 apply M是AB中点则M是BA中点.
 assumption.
 apply rmb_cong in H0.
-spliter.
+分离合取式.
 Cong.
 Qed.
 
@@ -859,7 +859,7 @@ unfold Per in H1.
 ex_and H1 D'.
 assert(HH:=H).
 unfold Plg in HH.
-spliter.
+分离合取式.
 ex_and H4 M'.
 assert(M = M').
 eapply 中点的唯一性1.
@@ -877,7 +877,7 @@ assumption.
 assert(Cong A D B C).
 apply plg_to_parallelogram in H.
 assert(HH:=plg_cong A B C D H).
-spliter.
+分离合取式.
 assumption.
 eapply 等长的传递性.
 apply H2.
@@ -898,7 +898,7 @@ assumption.
 assumption.
 apply L形垂直于转直角.
 unfold Plg in H.
-spliter.
+分离合取式.
 ex_and H2 M'.
 assert(M = M').
 eapply 中点的唯一性1.
@@ -924,11 +924,11 @@ tauto.
 apply 垂直的对称性.
 apply H0.
 unfold 中点 in H3.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H3.
 Col.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H2.
 Col.
 apply 垂直的左交换性 in H4.
@@ -943,7 +943,7 @@ intros.
 apply 三角形全等推角等1; auto.
 assert(HH := plg_to_parallelogram A B C D H1).
 apply plg_cong in HH.
-spliter.
+分离合取式.
 repeat split; Cong.
 Qed.
 
@@ -962,7 +962,7 @@ assert(A <> B /\ A <> A').
 unfold OS in H.
 ex_and H C.
 unfold TS in H.
-spliter.
+分离合取式.
 split.
 intro.
 subst B.
@@ -971,29 +971,29 @@ Col.
 intro.
 subst A'.
 Col.
-spliter.
+分离合取式.
 
 assert(HH:= (par_strict_cong_mid1 A B A' B' H1 H0 )).
 induction HH.
-spliter.
+分离合取式.
 apply l9_9 in H4.
 contradiction.
-spliter.
+分离合取式.
 ex_and H5 M.
 assert(HH:= mid_par_cong A B B' A' M H2 H3).
 assert(Cong A B B' A' /\ Cong A A' B' B /\ Par A B B' A' /\ Par A A' B' B).
 apply HH.
 assumption.
 assumption.
-spliter.
+分离合取式.
 split.
 Cong.
 Par.
-spliter.
+分离合取式.
 unfold OS in H.
 ex_and H C.
 unfold TS in H5.
-spliter.
+分离合取式.
 apply False_ind.
 apply H5.
 Col.
@@ -1011,8 +1011,8 @@ destruct (par_cong_mid A B C D) as [M HM]; Col.
 elim HM; clear HM; intro HM; destruct HM as [HMid1 HMid2].
 
   {
-  assert (HAM : A <> M) by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
-  assert (HCM : C <> M) by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
+  assert (HAM : A <> M) by (intro; treat_equalities; unfold TS in HTS; 分离合取式; Col).
+  assert (HCM : C <> M) by (intro; treat_equalities; unfold TS in HTS; 分离合取式; Col).
   assert (HBD : B <> D) by (intro; subst D; apply (not_two_sides_id B A C HTS)).
   destruct HTS as [HAC [HABC HTS]].
   repeat split; [intro; apply HABC; ColR..| |Par|Cong].
@@ -1021,7 +1021,7 @@ elim HM; clear HM; intro HM; destruct HM as [HMid1 HMid2].
 
   {
   exfalso; apply (l9_9 A C B D HTS).
-  unfold TS in HTS; spliter.
+  unfold TS in HTS; 分离合取式.
   apply l12_6; apply par_not_col_strict with B; Col.
   apply par_right_comm; apply l12_17 with M; 中点.
   intro; subst; Col.
@@ -1053,10 +1053,10 @@ intros A B C D HPara.
 destruct HPara as [HTS [HCong HPar]].
 destruct (par_cong_mid A B C D) as [M HM]; Col.
 elim HM; clear HM; intro HM; destruct HM as [HMid1 HMid2]; try (exists M; Col).
-assert(HAB : A <> B) by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
-assert(HAC : A <> C) by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
+assert(HAB : A <> B) by (intro; treat_equalities; unfold TS in HTS; 分离合取式; Col).
+assert(HAC : A <> C) by (intro; treat_equalities; unfold TS in HTS; 分离合取式; Col).
 assert (HFalse := HTS); apply l9_9 in HFalse; exfalso; apply HFalse; clear HFalse.
-unfold TS in HTS; spliter; apply l12_6; apply par_not_col_strict with B; Col.
+unfold TS in HTS; 分离合取式; apply l12_6; apply par_not_col_strict with B; Col.
 assert (Par A C D B); Par; apply l12_17 with M; 中点.
 Qed.
 
@@ -1087,7 +1087,7 @@ Proof.
 intros.
 elim (plg_mid A B C D).
 intros I' HI'.
-spliter.
+分离合取式.
 treat_equalities.
 assumption.
 assumption.
@@ -1103,21 +1103,21 @@ intros.
 unfold 严格平行四边形 in *.
 split.
 intro.
-spliter.
+分离合取式.
 assert(HH:=
 ts_cong_par_cong_par A B C D H H4 H3).
-spliter.
+分离合取式.
 
 assert(严格平行 A D C B).
 induction H6.
 assumption.
-spliter.
+分离合取式.
 
 unfold 严格平行.
 repeat split; Cop.
 intro.
 unfold TS in *.
-spliter.
+分离合取式.
 apply H.
 Col.
 apply l12_6 in H7.
@@ -1126,20 +1126,20 @@ apply one_side_symmetry in H7.
 contradiction.
 
 intro.
-spliter.
+分离合取式.
 assert(HH:=ts_cong_par_cong_par A B C D H H4 H3).
-spliter.
+分离合取式.
 apply par_symmetry in H6.
 
 assert(严格平行 C B A D).
 induction H6.
 assumption.
-spliter.
+分离合取式.
 unfold 严格平行.
 repeat split; Cop.
 intro.
 unfold TS in *.
-spliter.
+分离合取式.
 apply H13.
 Col.
 apply l12_6 in H7.
@@ -1161,62 +1161,62 @@ split.
 intro.
 induction H1.
 apply plgs_not_comm in H0.
-spliter.
+分离合取式.
 contradiction.
 unfold 严格平行四边形 in H0.
-spliter.
+分离合取式.
 unfold 退化平行四边形 in H1.
-spliter.
+分离合取式.
 apply par_symmetry in H2.
 induction H2.
 unfold 严格平行 in H2.
-spliter.
+分离合取式.
 apply H8.
 exists D; Col.
-spliter.
+分离合取式.
 unfold TS in H0.
-spliter.
+分离合取式.
 apply H0.
 Col.
 intro.
 assert(~ 严格平行四边形 A B D C /\ ~ 严格平行四边形 B A C D).
 apply plgs_not_comm.
 assumption.
-spliter.
+分离合取式.
 induction H1.
 contradiction.
 unfold 严格平行四边形 in H0.
 unfold 退化平行四边形 in H1.
-spliter.
+分离合取式.
 unfold TS in H0.
-spliter.
+分离合取式.
 contradiction.
 assert(~ 退化平行四边形 A B D C /\ ~ 退化平行四边形 B A C D).
 apply plgf_not_comm.
 assumption.
 assumption.
-spliter.
+分离合取式.
 split.
 intro.
 induction H3.
 unfold 严格平行四边形 in H3.
 unfold 退化平行四边形 in H0.
-spliter.
+分离合取式.
 unfold TS in H3.
-spliter.
+分离合取式.
 apply H3.
 Col.
 apply plgf_not_comm in H0.
-spliter.
+分离合取式.
 contradiction.
 assumption.
 intro.
 induction H3.
 unfold 严格平行四边形 in H3.
 unfold 退化平行四边形 in H0.
-spliter.
+分离合取式.
 unfold TS in H3.
-spliter.
+分离合取式.
 contradiction.
 contradiction.
 Qed.
@@ -1226,8 +1226,8 @@ Proof.
 intros A B C D HPara.
 destruct (plg_mid A B C D) as [M HM]; Col.
 split; try (exists M; Col).
-elim HPara; clear HPara; intro HPara; try (apply plgs_diff in HPara; spliter; Col);
-unfold 退化平行四边形 in HPara; spliter; Col.
+elim HPara; clear HPara; intro HPara; try (apply plgs_diff in HPara; 分离合取式; Col);
+unfold 退化平行四边形 in HPara; 分离合取式; Col.
 Qed.
 
 Lemma parallelogram_equiv_plg : forall A B C D, 平行四边形 A B C D <-> Plg A B C D.
@@ -1244,7 +1244,7 @@ intros.
 assert(Cong A B C D /\ Cong A D B C).
 apply plg_cong.
 assumption.
-spliter.
+分离合取式.
 assert(HH:= plg_mid A B C D H0).
 ex_and HH M.
 split.
@@ -1298,7 +1298,7 @@ assumption.
 subst Q'.
 assert(HH:=H).
 unfold 严格平行四边形 in HH.
-spliter.
+分离合取式.
 
 assert(Cong A P D Q).
 eapply 两中点组全段等长则前半段等长.
@@ -1316,7 +1316,7 @@ subst B.
 apply par_neq1 in H9.
 auto.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H0.
 apply 等价共线ACB.
 apply H0.
@@ -1332,7 +1332,7 @@ subst B.
 apply par_neq1 in H9.
 auto.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H1.
 apply 等价共线CAB.
 apply H1.
@@ -1345,9 +1345,9 @@ apply(os_cong_par_cong_par A P D Q).
 
 unfold TS in H8.
 assert(~ Col B A C).
-spliter.
+分离合取式.
 assumption.
-spliter.
+分离合取式.
 
 assert(OS A D P B).
 eapply out_one_side_1.
@@ -1364,7 +1364,7 @@ subst D.
 apply H14.
 Col.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H0.
 Col.
 Col.
@@ -1372,12 +1372,12 @@ Col.
 assert(HH:=H).
 apply plgs_permut in HH.
 unfold 严格平行四边形 in HH.
-spliter.
+分离合取式.
 unfold TS in H18.
 assert(~ Col C B D).
-spliter.
+分离合取式.
 assumption.
-spliter.
+分离合取式.
 apply H22.
 apply 等价共线BCA.
 eapply (共线的传递性2 _ P).
@@ -1385,14 +1385,14 @@ intro.
 subst P.
 apply H22.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H0.
 Col.
 Col.
 Col.
 Col.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 
 repeat split.
 intro.
@@ -1432,7 +1432,7 @@ apply H14.
 Col.
 Col.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H1.
 Col.
 apply ABB型共线;Col.
@@ -1445,7 +1445,7 @@ subst P.
 unfold OS in H16.
 ex_and H16 K.
 unfold TS in H11.
-spliter.
+分离合取式.
 apply H11.
 Col.
 intro.
@@ -1456,26 +1456,26 @@ apply H14.
 Col.
 
 unfold 中点 in H1.
-spliter.
+分离合取式.
 left.
 Between.
 
 assert(OS A D B C).
 
 apply ts_cong_par_cong_par in H9.
-spliter.
+分离合取式.
 
 induction H18.
 apply l12_6.
 unfold 严格平行 in *.
-spliter.
+分离合取式.
 split; Cop.
 intro.
 apply H19.
 ex_and H20 X.
 exists X.
 split; Col.
-spliter.
+分离合取式.
 apply False_ind.
 apply H13.
 Col.
@@ -1489,7 +1489,7 @@ apply one_side_symmetry.
 assumption.
 assumption.
 Par.
-spliter.
+分离合取式.
 apply par_symmetry in H14.
 split; auto.
 Qed.
@@ -1503,14 +1503,14 @@ intros.
 assert(HH:= plgs_mid A B C D H).
 ex_and HH M.
 unfold 严格平行四边形 in H.
-spliter.
+分离合取式.
 split.
 assumption.
 
 unfold TS.
 assert(~Col B A C).
 unfold TS in H.
-spliter.
+分离合取式.
 Col.
 assert(B <> D).
 intro.
@@ -1520,14 +1520,14 @@ subst D.
 contradiction.
 unfold TS in H.
 assert(~ Col B A C).
-spliter.
+分离合取式.
 assumption.
-spliter.
+分离合取式.
 repeat split.
 intro.
 assert(Col M A B).
 unfold 中点 in H1.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H1.
 ColR.
 
@@ -1540,14 +1540,14 @@ apply A是AB中点则A与B重合 in H0.
 subst C.
 Col.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1.
 assumption.
 Col.
 intro.
 assert(Col M B C).
 unfold 中点 in H1.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H1.
 ColR.
 apply H6.
@@ -1561,12 +1561,12 @@ subst C.
 Col.
 Col.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H0.
 Col.
 exists M.
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H1.
 split; Col.
 Qed.
@@ -1579,9 +1579,9 @@ Proof.
 intros A B C D HPara.
 destruct (plgs_mid A B C D) as [M [HMid1 HMid2]]; Col.
 destruct HPara as [HTS [HCong HPar]].
-assert(HAB : A <> B) by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
-assert(HAC : A <> D) by (intro; treat_equalities; unfold TS in HTS; spliter; Col).
-unfold TS in HTS; spliter; split; try apply par_not_col_strict with C; Col.
+assert(HAB : A <> B) by (intro; treat_equalities; unfold TS in HTS; 分离合取式; Col).
+assert(HAC : A <> D) by (intro; treat_equalities; unfold TS in HTS; 分离合取式; Col).
+unfold TS in HTS; 分离合取式; split; try apply par_not_col_strict with C; Col.
 assert (Par A D C B); Par; apply l12_17 with M; 中点.
 Qed.
 
@@ -1597,24 +1597,24 @@ assert(HH:= H).
 apply plgs_mid in HH.
 ex_and HH M.
 assert(HH:=half_plgs A B C D P Q M H H0 H1 H2).
-spliter.
+分离合取式.
 
 assert(HH:=H).
 apply plgs_par_strict in HH.
-spliter.
+分离合取式.
 
 assert(HH:=par_cong_mid P Q A D H4 (等长的对称性 A D P Q H6)).
 ex_and HH N.
 induction H9.
-spliter.
+分离合取式.
 apply False_ind.
 unfold 严格平行 in H7.
-spliter.
+分离合取式.
 apply H11.
 exists N.
 统计不重合点; split; ColR.
 
-spliter.
+分离合取式.
 
 assert(A <> P).
 intro.
@@ -1622,7 +1622,7 @@ subst P.
 apply A是AB中点则A与B重合 in H0.
 subst B.
 apply par_strict_distinct in H7.
-spliter.
+分离合取式.
 auto.
 
 assert(D <> Q).
@@ -1632,13 +1632,13 @@ apply M是AB中点则M是BA中点 in H1.
 apply A是AB中点则A与B重合 in H1.
 subst D.
 apply par_strict_distinct in H7.
-spliter.
+分离合取式.
 auto.
 
 eapply mid_plgs.
 intro.
 unfold 严格平行 in H7.
-spliter.
+分离合取式.
 apply H14.
 exists Q.
 split.
@@ -1657,11 +1657,11 @@ Proof.
 intros.
 assert(HH:= H).
 apply plgs_two_sides in HH.
-spliter.
+分离合取式.
 unfold 严格平行四边形 in *.
 split.
 assumption.
-spliter.
+分离合取式.
 split.
 apply par_comm.
 assumption.
@@ -1675,7 +1675,7 @@ Lemma plgf_comm2 :
 Proof.
 intros.
 unfold 退化平行四边形 in *.
-spliter.
+分离合取式.
 repeat split; Col.
 Cong.
 Cong.
@@ -1707,7 +1707,7 @@ assert(HH:= H2).
 unfold OS in HH.
 ex_and HH T.
 unfold TS in *.
-spliter.
+分离合取式.
 
 prolong C D C' C D.
 
@@ -1795,7 +1795,7 @@ intros.
 
 assert(HH0:=par_distinct B A B' A' H1).
 assert(HH1:=par_distinct B C B' C' H2).
-spliter.
+分离合取式.
 
 assert(HH:=中点的存在性 B B').
 ex_and HH M.
@@ -1837,7 +1837,7 @@ apply False_ind.
 apply H17.
 exists B'.
 split; Col.
-spliter.
+分离合取式.
 Col.
 
 assert(Col B' C' C'').
@@ -1847,7 +1847,7 @@ apply False_ind.
 apply H18.
 exists B'.
 split; Col.
-spliter.
+分离合取式.
 Col.
 
 assert(Cong B A B' A'').
@@ -1865,7 +1865,7 @@ apply M是AB中点则M是BA中点.
 assumption.
 
 unfold 三角形全等 in H0.
-spliter.
+分离合取式.
 
 assert(A' = A'' \/ 中点 B' A' A'').
 eapply 共线点间距相同要么重合要么中点.
@@ -1890,7 +1890,7 @@ intro.
 apply H27.
 exists M.
 unfold 中点 in *.
-spliter.
+分离合取式.
 split.
 apply 中间性蕴含共线1 in H7.
 Col.
@@ -1910,11 +1910,11 @@ apply H15.
 exists M.
 split.
 unfold 中点 in H7.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in  H7.
 Col.
 unfold 中点 in H13.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in  H13.
 Col.
 
@@ -2006,7 +2006,7 @@ Lemma plg_cong_1 : forall A B C D, 平行四边形 A B C D -> Cong A B C D.
 Proof.
 intros.
 apply plg_cong in H.
-spliter.
+分离合取式.
 assumption.
 Qed.
 
@@ -2014,7 +2014,7 @@ Lemma plg_cong_2 : forall A B C D, 平行四边形 A B C D -> Cong A D B C.
 Proof.
 intros.
 apply plg_cong in H.
-spliter.
+分离合取式.
 assumption.
 Qed.
 
@@ -2022,7 +2022,7 @@ Lemma plgs_cong_1 : forall A B C D, 严格平行四边形 A B C D -> Cong A B C 
 Proof.
 intros.
 apply plgs_cong in H.
-spliter.
+分离合取式.
 assumption.
 Qed.
 
@@ -2030,7 +2030,7 @@ Lemma plgs_cong_2 : forall A B C D, 严格平行四边形 A B C D -> Cong A D B 
 Proof.
 intros.
 apply plgs_cong in H.
-spliter.
+分离合取式.
 assumption.
 Qed.
 
@@ -2057,7 +2057,7 @@ Lemma plg_not_comm_1 :
   平行四边形 A B C D -> ~ 平行四边形 A B D C.
 Proof.
 intros.
-assert (HNC := plg_not_comm A B C D H H0); spliter; assumption.
+assert (HNC := plg_not_comm A B C D H H0); 分离合取式; assumption.
 Qed.
 
 Lemma plg_not_comm_2 :
@@ -2066,7 +2066,7 @@ Lemma plg_not_comm_2 :
   平行四边形 A B C D -> ~ 平行四边形 B A C D.
 Proof.
 intros.
-assert (HNC := plg_not_comm A B C D H H0); spliter; assumption.
+assert (HNC := plg_not_comm A B C D H H0); 分离合取式; assumption.
 Qed.
 
 End Quadrilateral_inter_dec_1.
@@ -2074,18 +2074,18 @@ End Quadrilateral_inter_dec_1.
 Ltac permutation_intro_in_hyps_aux :=
  repeat
  match goal with
- | H : Plg_tagged ?A ?B ?C ?D |- _ => apply Plg_tagged_Plg in H; apply Plg_perm in H; spliter
- | H : Par_tagged ?A ?B ?C ?D |- _ => apply Par_tagged_Par in H; apply Par_perm in H; spliter
- | H : 严格平行_tagged ?A ?B ?C ?D |- _ => apply 严格平行_tagged_严格平行 in H; apply 严格平行_perm in H; spliter
- | H : Perp_tagged ?A ?B ?C ?D |- _ => apply Perp_tagged_Perp in H; apply 垂直的等价排列 in H; spliter
- | H : Perp_in_tagged ?X ?A ?B ?C ?D |- _ => apply Perp_in_tagged_Perp_in in H; apply 垂直于的等价排列 in H; spliter
- | H : Per_tagged ?A ?B ?C |- _ => apply Per_tagged_Per in H; apply 直角的等价排列 in H; spliter
- | H : Mid_tagged ?A ?B ?C |- _ => apply Mid_tagged_Mid in H; apply 中点的等价排列 in H; spliter
- | H : NCol_tagged ?A ?B ?C |- _ => apply NCol_tagged_NCol in H; apply 共线否定的等价排列 in H; spliter
- | H : Col_tagged ?A ?B ?C |- _ => apply Col_tagged_Col in H; apply 共线的等价排列 in H; spliter
- | H : Bet_tagged ?A ?B ?C |- _ => apply Bet_tagged_Bet in H; apply 中间性的等价排列 in H; spliter
- | H : Cong_tagged ?A ?B ?C ?D |- _ => apply Cong_tagged_Cong in H; apply 等长的等价排列 in H; spliter
- | H : Diff_tagged ?A ?B |- _ => apply Diff_tagged_Diff in H; apply Diff_perm in H; spliter
+ | H : Plg_tagged ?A ?B ?C ?D |- _ => apply Plg_tagged_Plg in H; apply Plg_perm in H; 分离合取式
+ | H : Par_tagged ?A ?B ?C ?D |- _ => apply Par_tagged_Par in H; apply Par_perm in H; 分离合取式
+ | H : 严格平行_tagged ?A ?B ?C ?D |- _ => apply 严格平行_tagged_严格平行 in H; apply 严格平行_perm in H; 分离合取式
+ | H : Perp_tagged ?A ?B ?C ?D |- _ => apply Perp_tagged_Perp in H; apply 垂直的等价排列 in H; 分离合取式
+ | H : Perp_in_tagged ?X ?A ?B ?C ?D |- _ => apply Perp_in_tagged_Perp_in in H; apply 垂直于的等价排列 in H; 分离合取式
+ | H : Per_tagged ?A ?B ?C |- _ => apply Per_tagged_Per in H; apply 直角的等价排列 in H; 分离合取式
+ | H : Mid_tagged ?A ?B ?C |- _ => apply Mid_tagged_Mid in H; apply 中点的等价排列 in H; 分离合取式
+ | H : NCol_tagged ?A ?B ?C |- _ => apply NCol_tagged_NCol in H; apply 共线否定的等价排列 in H; 分离合取式
+ | H : Col_tagged ?A ?B ?C |- _ => apply Col_tagged_Col in H; apply 共线的等价排列 in H; 分离合取式
+ | H : Bet_tagged ?A ?B ?C |- _ => apply Bet_tagged_Bet in H; apply 中间性的等价排列 in H; 分离合取式
+ | H : Cong_tagged ?A ?B ?C ?D |- _ => apply Cong_tagged_Cong in H; apply 等长的等价排列 in H; 分离合取式
+ | H : Diff_tagged ?A ?B |- _ => apply Diff_tagged_Diff in H; apply Diff_perm in H; 分离合取式
  end.
 
 Ltac permutation_intro_in_hyps := clean_reap_hyps; clean_trivial_hyps; tag_hyps; permutation_intro_in_hyps_aux.
@@ -2103,7 +2103,7 @@ repeat
      not_exist_hyp_perm_col4 X1 X2 X3 X4;exist_hyp_perm_col4 X1 X2 X3 X4;
      assert (Col X1 X2 X3 /\ Col X1 X2 X4 /\ Col X1 X3 X4 /\ Col X2 X3 X4)
      by (solve [apply col2_par__col4 with X1; Col|apply col2_par__col4 with X2; Col|
-                apply col2_par__col4 with X1; Col|apply col2_par__col4 with X1; Col]); spliter
+                apply col2_par__col4 with X1; Col|apply col2_par__col4 with X1; Col]); 分离合取式
  end.
 
 Ltac assert_cols_perm := assert_cols; assert_cols_aux; clean_reap_hyps.
@@ -2458,7 +2458,7 @@ Proof.
 intros.
 assert (T:=严格平行四边形_平行四边形 A B C D H).
 assert (HpF := plg_mid A B C D T).
-elim HpF; intros I' HI;spliter;clear HpF.
+elim HpF; intros I' HI;分离合取式;clear HpF.
 assert (H01 : Col A C I).
  Col.
 assert (H02 : Col D B I).
@@ -2505,7 +2505,7 @@ Proof.
 intros.
 assert(HH:= H1).
 unfold 菱形 in HH.
-spliter.
+分离合取式.
 apply plg_to_parallelogram in H2.
 apply plg_mid in H2.
 ex_and H2 M.
@@ -2518,7 +2518,7 @@ induction HH.
 apply 垂直推出不重合1 in H5.
 tauto.
 unfold 中点 in *.
-spliter.
+分离合取式.
 eapply 垂线共线点也构成垂直1.
 assumption.
 apply 垂直的对称性.
@@ -2549,7 +2549,7 @@ Lemma rect_permut : forall A B C D, 长方形 A B C D -> 长方形 B C D A.
 Proof.
 intros.
 unfold 长方形 in *.
-spliter.
+分离合取式.
 split.
 apply plg_to_parallelogram in H.
 apply plg_permut in H.
@@ -2562,7 +2562,7 @@ Lemma rect_comm2 : forall A B C D, 长方形 A B C D -> 长方形 B A D C.
 Proof.
 intros.
 unfold 长方形 in *.
-spliter.
+分离合取式.
 apply plg_to_parallelogram in H.
 
 apply plg_comm2 in H.
@@ -2576,7 +2576,7 @@ Lemma rect_per1 : forall A B C D, 长方形 A B C D -> Per B A D.
 Proof.
 intros.
 unfold 长方形 in H.
-spliter.
+分离合取式.
 
 assert(HH:= 中点的存在性 A B).
 ex_and HH P.
@@ -2584,13 +2584,13 @@ assert(HH:= 中点的存在性 C D).
 ex_and HH Q.
 assert(HH:=H).
 unfold Plg in HH.
-spliter.
+分离合取式.
 ex_and H4 M.
 apply plg_to_parallelogram in H.
 induction H.
 
 assert(HH:=half_plgs A B C D P Q M H H1 H2 H4).
-spliter.
+分离合取式.
 assert(Per A P Q).
 eapply (直角边共线点也构成直角2 _  _ M).
 intro.
@@ -2606,9 +2606,9 @@ apply H5.
 中点.
 subst C.
 unfold 严格平行四边形 in H.
-spliter.
+分离合取式.
 unfold TS in H.
-spliter.
+分离合取式.
 apply H9.
 Col.
 apply 直角的对称性.
@@ -2621,7 +2621,7 @@ Cong.
 assumption.
 assumption.
 unfold 中点 in H7.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1.
 assumption.
 
@@ -2631,9 +2631,9 @@ subst B.
 apply M是AA中点则M与A重合 in H1.
 subst P.
 unfold 严格平行四边形 in H.
-spliter.
+分离合取式.
 unfold TS in H.
-spliter.
+分离合取式.
 apply H.
 Col.
 
@@ -2661,7 +2661,7 @@ eapply 垂线共线点也构成垂直1.
 assumption.
 apply H9.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1.
 assumption.
 assumption.
@@ -2670,7 +2670,7 @@ apply par_neq1 in H6.
 assumption.
 Cop.
 unfold 退化平行四边形 in H.
-spliter.
+分离合取式.
 
 assert(A = B /\ C = D \/ A = D /\ C = B).
 apply(中点蕴含等长_uniqueness A C B D M).
@@ -2678,11 +2678,11 @@ Col.
 split; assumption.
 assumption.
 induction H10.
-spliter.
+分离合取式.
 subst B.
 apply 直角的对称性.
 apply 角ABB成直角.
-spliter.
+分离合取式.
 subst D.
 apply 角ABB成直角.
 Qed.
@@ -2723,27 +2723,27 @@ assert(HH:= 中点的存在性 C D).
 ex_and HH Q.
 assert(HH:=H).
 unfold Plg in HH.
-spliter.
+分离合取式.
 ex_and H4 M.
 apply plg_to_parallelogram in H.
 induction H.
 
 assert(HH:=half_plgs A B C D P Q M H H1 H2 H4).
-spliter.
+分离合取式.
 
 assert(A <> D /\ P <> Q).
 apply par_distincts in H6.
-spliter.
+分离合取式.
 split; assumption.
-spliter.
+分离合取式.
 
 assert(A <> B).
 intro.
 subst B.
 unfold 严格平行四边形 in H.
-spliter.
+分离合取式.
 unfold TS in H.
-spliter.
+分离合取式.
 apply H.
 Col.
 assert(A <> P).
@@ -2775,7 +2775,7 @@ apply A是AB中点则A与B重合 in H7.
 contradiction.
 apply H13.
 unfold 中点 in H7.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H7.
 Col.
 
@@ -2785,7 +2785,7 @@ assumption.
 apply 垂直的对称性.
 apply H14.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H1.
 Col.
 
@@ -2812,9 +2812,9 @@ assumption.
 subst B'.
 
 unfold 中点 in H4.
-spliter.
+分离合取式.
 unfold 中点 in H5.
-spliter.
+分离合取式.
 eapply 两组连续三点分段等则全体等.
 apply H4.
 apply H5.
@@ -2829,7 +2829,7 @@ right.
 assumption.
 
 unfold 退化平行四边形 in H.
-spliter.
+分离合取式.
 
 assert(D = A \/ B = A).
 apply (l8_9_直角三点共线则必有两点重合 D A B).
@@ -2912,12 +2912,12 @@ Lemma plgf_rect_id : forall A B C D, 退化平行四边形 A B C D -> 长方形 
 Proof.
 intros.
 unfold 退化平行四边形 in H.
-spliter.
+分离合取式.
 assert(Per B A D /\ Per A B C /\ Per B C D /\ Per A D C).
 
 apply rect_per.
 assumption.
-spliter.
+分离合取式.
 
 assert(HH:=l8_9_直角三点共线则必有两点重合 A B C H6 H).
 induction HH.
@@ -3005,25 +3005,25 @@ Qed.
 Lemma plg_par_1 : forall A B C D, A <> B -> B <> C -> 平行四边形 A B C D -> Par A B C D.
 Proof.
 intros.
-assert (HPar := plg_par A B C D H H0 H1); spliter; assumption.
+assert (HPar := plg_par A B C D H H0 H1); 分离合取式; assumption.
 Qed.
 
 Lemma plg_par_2 : forall A B C D, A <> B -> B <> C -> 平行四边形 A B C D -> Par A D B C.
 Proof.
 intros.
-assert (HPar := plg_par A B C D H H0 H1); spliter; assumption.
+assert (HPar := plg_par A B C D H H0 H1); 分离合取式; assumption.
 Qed.
 
 Lemma plgs_pars_1: forall A B C D : Tpoint, 严格平行四边形 A B C D -> 严格平行 A B C D.
 Proof.
 intros.
-assert (HPar := plgs_par_strict A B C D H); spliter; assumption.
+assert (HPar := plgs_par_strict A B C D H); 分离合取式; assumption.
 Qed.
 
 Lemma plgs_pars_2: forall A B C D : Tpoint, 严格平行四边形 A B C D -> 严格平行 A D B C.
 Proof.
 intros.
-assert (HPar := plgs_par_strict A B C D H); spliter; assumption.
+assert (HPar := plgs_par_strict A B C D H); 分离合取式; assumption.
 Qed.
 
 End Quadrilateral_inter_dec_2.
@@ -3101,11 +3101,11 @@ unfold Par in H.
 induction H.
 apply False_ind.
 unfold 严格平行 in H.
-spliter.
+分离合取式.
 apply H2.
 exists A.
 split; Col.
-spliter.
+分离合取式.
 Col.
 Cong.
 induction H2.
@@ -3113,18 +3113,18 @@ subst C.
 left.
 Cong.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 left.
 Cong.
 
 assert(HH:=par_cong_mid A B C D H H0).
 ex_and HH M.
 induction H3.
-spliter.
+分离合取式.
 right.
 
 assert(HH:=mid_par_cong A B C D M H1 H2 H3 H4).
-spliter.
+分离合取式.
 Cong.
 
 induction(两点重合的决定性 A C).
@@ -3135,11 +3135,11 @@ unfold Par in H.
 induction H.
 apply False_ind.
 unfold 严格平行 in H.
-spliter.
+分离合取式.
 apply H5.
 exists A.
 split; Col.
-spliter.
+分离合取式.
 Col.
 Cong.
 induction H4.
@@ -3147,14 +3147,14 @@ subst D.
 right.
 Cong.
 unfold 中点 in H4.
-spliter.
+分离合取式.
 right.
 Cong.
 
 left.
-spliter.
+分离合取式.
 assert(HH:=mid_par_cong A B D C M H1 H4 H3 H5).
-spliter.
+分离合取式.
 Cong.
 Qed.
 
@@ -3239,13 +3239,13 @@ induction H0.
 assert(HH:=par_strict_cong_mid1 A B C D H0 H1).
 
 induction HH.
-spliter.
+分离合取式.
 left.
 unfold 长方形.
 split; auto.
 unfold Plg.
 split; auto.
-spliter.
+分离合取式.
 ex_and H5 M.
 
 right.
@@ -3258,14 +3258,14 @@ left.
 intro.
 subst D.
 unfold 严格平行 in H0.
-spliter.
+分离合取式.
 apply H7.
 exists A.
 split; Col.
 exists M.
 split; auto.
 
-spliter.
+分离合取式.
 left.
 unfold 长方形.
 split; auto.
@@ -3288,12 +3288,12 @@ Proof.
 intros.
 induction H0.
 assumption.
-spliter.
+分离合取式.
 repeat split; Cop.
 intro.
 ex_and H4 X.
 unfold 严格平行 in H.
-spliter.
+分离合取式.
 apply H6.
 exists C.
 split; Col.
@@ -3312,15 +3312,15 @@ assumption.
 assert(A <> B /\ C <> D /\ A <> D /\ B <> C).
 apply par_distinct in H0.
 apply par_distinct in H2.
-spliter.
+分离合取式.
 auto.
-spliter.
+分离合取式.
 
 assert(A <> C).
 intro.
 subst C.
 unfold 严格平行 in H.
-spliter.
+分离合取式.
 apply H7.
 exists A.
 split; Col.
@@ -3329,7 +3329,7 @@ assert(B <> D).
 intro.
 subst D.
 unfold 严格平行 in H.
-spliter.
+分离合取式.
 apply H8.
 exists B.
 split; Col.
@@ -3365,12 +3365,12 @@ assert(平行四边形 A B C D').
 apply plg_to_parallelogram.
 assumption.
 assert(HH:=plg_par A B C D' H3 H6 H14).
-spliter.
+分离合取式.
 
 assert(~Col C A B).
 intro.
 unfold 严格平行 in H.
-spliter.
+分离合取式.
 apply H18.
 exists C.
 split; Col.
@@ -3381,19 +3381,19 @@ apply (parallel_uniqueness A B C D C D' C H2).
 Col.
 assumption.
 Col.
-spliter.
+分离合取式.
 
 assert(A <> D').
 intro.
 subst D'.
 unfold 严格平行 in H1.
-spliter.
+分离合取式.
 apply H20.
 exists C.
 split; Col.
 
 assert(HH:=mid_par_cong A B C D' M H3 H20 H9 H12).
-spliter.
+分离合取式.
 
 assert(Col A A D /\ Col D' A D).
 apply (parallel_uniqueness B C A D A D' A).
@@ -3403,14 +3403,14 @@ Col.
 apply par_left_comm.
 Par.
 Col.
-spliter.
+分离合取式.
 
 assert(D = D').
 
 eapply (l6_21_两线交点的唯一性 A D C D D D'); Col.
 intro.
 unfold 严格平行 in H.
-spliter.
+分离合取式.
 apply H28.
 exists A.
 split; Col.
@@ -3427,7 +3427,7 @@ assert(A <> B).
 intro.
 subst B.
 unfold 严格平行 in H1.
-spliter.
+分离合取式.
 apply H3.
 exists A.
 split; Col.
@@ -3436,19 +3436,19 @@ assert(A' <> B').
 intro.
 subst B'.
 unfold 严格平行 in H1.
-spliter.
+分离合取式.
 apply H4.
 exists A'.
 split; Col.
 
 assert(O <> A).
 unfold Out in H.
-spliter.
+分离合取式.
 auto.
 
 assert(O <> A').
 unfold Out in H0.
-spliter.
+分离合取式.
 auto.
 
 assert(~Col O A A').
@@ -3458,7 +3458,7 @@ apply out_col in H0.
 assert(Col O B A').
 ColR.
 unfold 严格平行 in H1.
-spliter.
+分离合取式.
 apply H9.
 exists O.
 split.
@@ -3482,11 +3482,11 @@ left.
 assumption.
 
 assert(HH:=os_cong_par_cong_par A A' B B' H8 H2 H9).
-spliter.
+分离合取式.
 unfold Par in H11.
 induction H11.
 unfold 严格平行 in H11.
-spliter.
+分离合取式.
 apply H12.
 exists O.
 split.
@@ -3494,7 +3494,7 @@ apply out_col in H.
 assumption.
 apply out_col in H0.
 assumption.
-spliter.
+分离合取式.
 apply H7.
 apply out_col in H.
 apply out_col in H0.
@@ -3533,7 +3533,7 @@ assumption.
 subst B'.
 apply plg_trivial.
 apply plgs_diff in H.
-spliter.
+分离合取式.
 assumption.
 Qed.
 
@@ -3557,7 +3557,7 @@ eapply (plgs_trans_trivial A B C D); assumption.
 
 apply plgs_diff in H.
 apply plgs_diff in H0.
-spliter.
+分离合取式.
 
 clean_duplicated_hyps.
 
@@ -3573,7 +3573,7 @@ tauto.
 
 assert(HH1:=plgs_par_strict A B C D H).
 assert(HH2:=plgs_par_strict C D E F H0).
-spliter.
+分离合取式.
 
 apply par_strict_symmetry in H18.
 
@@ -3683,7 +3683,7 @@ assumption.
 
 assert(HP0:=plgs_cong A B C D H).
 assert(HP1:=plgs_cong C D E F H0).
-spliter.
+分离合取式.
 apply 等长的对称性 in H27.
 
 assert(HP:=等角两边等长则端点间距相等 A D E B C F H25 H29 H27).
@@ -3703,7 +3703,7 @@ apply False_ind.
 apply H30.
 exists A.
 split; Col.
-spliter.
+分离合取式.
 
 right.
 unfold 退化平行四边形.
@@ -3724,13 +3724,13 @@ assert(HQ:=par_strict_cong_mid C A D B H17 H27).
 ex_and HQ M.
 induction H35.
 unfold 中点 in *.
-spliter.
+分离合取式.
 
 apply H16.
 exists M.
 split; Col.
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply H19.
 exists M.
 split.
@@ -3764,7 +3764,7 @@ left.
 assumption.
 induction H33.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 apply H31.
 Col.
@@ -3811,10 +3811,10 @@ intros.
 induction(两点重合的决定性 A D).
 subst D.
 induction H0.
-spliter.
+分离合取式.
 apply 等长的对称性 in H4.
 apply 等长的同一性 in H4.
-spliter.
+分离合取式.
 subst C.
 apply plgs_comm2.
 assumption.
@@ -3822,35 +3822,35 @@ assumption.
 induction(两点重合的决定性 B C).
 subst C.
 induction H0.
-spliter.
+分离合取式.
 apply 等长的同一性 in H5.
-spliter.
+分离合取式.
 subst D.
 apply plgs_comm2.
 assumption.
 
 assert(HH:=plgs_par_strict C D E F H1).
-spliter.
+分离合取式.
 
 assert(HH:=plgs_cong C D E F H1).
-spliter.
+分离合取式.
 
 assert(HH2:= l12_6 C D E F H4).
 
 assert(HOS := HH2).
 induction HH2.
-spliter.
+分离合取式.
 
 unfold TS in H9.
 assert(~ Col F C D).
-spliter.
+分离合取式.
 assumption.
-spliter.
+分离合取式.
 unfold TS in H8.
 assert(~ Col E C D).
-spliter.
+分离合取式.
 assumption.
-spliter.
+分离合取式.
 
 assert(D <> E).
 intro.
@@ -3860,7 +3860,7 @@ Col.
 assert(HH0:=H0).
 
 induction HH0.
-spliter.
+分离合取式.
 
 prolong D C D' D C.
 
@@ -3910,7 +3910,7 @@ tauto.
 contradiction.
 
 unfold 严格平行四边形.
-spliter.
+分离合取式.
 split.
 
 apply l9_2.
@@ -3937,7 +3937,7 @@ split.
 eapply (par_col_par_2 _ D).
 auto.
 unfold 中点 in H27.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H27.
 Col.
 apply par_right_comm.
@@ -3984,7 +3984,7 @@ split.
 eapply (par_col_par_2 _ C).
 auto.
 unfold 中点 in H28.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H28.
 Col.
 apply par_left_comm.
@@ -3997,7 +3997,7 @@ assert(HH:=plgf_bet A B D C H0).
 assert(等角 A D E B C F).
 
 induction HH.
-spliter.
+分离合取式.
 eapply l11_10.
 apply 等角的交换性.
 apply H26.
@@ -4039,7 +4039,7 @@ Col.
 
 induction H29.
 
-spliter.
+分离合取式.
 
 apply (l11_10 D' D E D' C F).
 apply 等角的交换性.
@@ -4065,7 +4065,7 @@ apply H10.
 Col.
 
 induction H29.
-spliter.
+分离合取式.
 
 eapply l11_13.
 
@@ -4087,7 +4087,7 @@ Between.
 Between.
 auto.
 
-spliter.
+分离合取式.
 
 eapply l11_13.
 
@@ -4143,7 +4143,7 @@ assert(OS A B E F).
 eapply l12_6.
 induction H32.
 assumption.
-spliter.
+分离合取式.
 assert(Col A B E).
 ColR.
 apply False_ind.
@@ -4186,7 +4186,7 @@ apply 等长的同一性 in H37.
 contradiction.
 
 induction H35.
-spliter.
+分离合取式.
 
 prolong A B A' A B.
 apply (conga_to_par_os _ _ _ _ A');
@@ -4216,7 +4216,7 @@ apply 等长的同一性 in H38.
 contradiction.
 
 induction H35.
-spliter.
+分离合取式.
 prolong A B A' A B.
 
 apply (conga_to_par_os _ _ _ _ A');
@@ -4257,7 +4257,7 @@ subst F.
 apply H10.
 ColR.
 
-spliter.
+分离合取式.
 prolong A B A' A C.
 
 apply (conga_to_par_os _ _ _ _ A');
@@ -4317,7 +4317,7 @@ apply pars_par_plg.
 induction H32.
 apply par_strict_right_comm.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 assert(Col A B E).
 ColR.
@@ -4328,7 +4328,7 @@ apply plg_to_parallelogram in H36.
 induction H36.
 assumption.
 unfold 退化平行四边形 in H36.
-spliter.
+分离合取式.
 
 assert(Col A B E).
 ColR.
@@ -4343,14 +4343,14 @@ Proof.
 intros.
 assert(C <> D).
 unfold 退化平行四边形 in H0.
-spliter.
+分离合取式.
 intro.
 subst D.
 apply 等长的同一性 in H3.
 contradiction.
 assert(E <> F).
 unfold 退化平行四边形 in H1.
-spliter.
+分离合取式.
 intro.
 subst F.
 apply 等长的同一性 in H4.
@@ -4375,9 +4375,9 @@ assumption.
 induction H7.
 induction H7.
 unfold TS in H7.
-spliter.
+分离合取式.
 unfold 退化平行四边形 in *.
-spliter.
+分离合取式.
 apply False_ind.
 apply H10.
 
@@ -4396,28 +4396,28 @@ induction(两点重合的决定性 A B).
 subst B.
 induction H.
 unfold 严格平行四边形 in H.
-spliter.
+分离合取式.
 unfold TS in H.
-spliter.
+分离合取式.
 apply False_ind.
 apply H.
 Col.
 assert(C = D).
 assert(HH:=plgf_trivial_neq A C D H).
-spliter.
+分离合取式.
 assumption.
 subst D.
 induction H0.
 unfold 严格平行四边形 in H0.
-spliter.
+分离合取式.
 unfold TS in H0.
-spliter.
+分离合取式.
 apply False_ind.
 apply H0.
 Col.
 assert(E=F).
 assert(HH:=plgf_trivial_neq C E F H0).
-spliter.
+分离合取式.
 assumption.
 subst F.
 induction (两点重合的决定性 A E).
@@ -4433,14 +4433,14 @@ intro.
 subst D.
 induction H.
 unfold 严格平行四边形 in H.
-spliter.
+分离合取式.
 unfold TS in H.
-spliter.
+分离合取式.
 apply H4.
 Col.
 apply plgf_sym in H.
 apply plgf_trivial_neq in H.
-spliter.
+分离合取式.
 contradiction.
 
 assert(E <> F).
@@ -4448,14 +4448,14 @@ intro.
 subst F.
 induction H0.
 unfold 严格平行四边形 in H0.
-spliter.
+分离合取式.
 unfold TS in H0.
-spliter.
+分离合取式.
 apply H5.
 Col.
 apply plgf_sym in H0.
 apply plgf_trivial_neq in H0.
-spliter.
+分离合取式.
 contradiction.
 
 left.
@@ -4501,23 +4501,23 @@ assumption.
 
 unfold 严格平行四边形 in H.
 unfold Plg in H0.
-spliter.
+分离合取式.
 ex_and H1 M.
 
 assert(A <> B /\ C <> B).
 unfold TS in H.
-spliter.
+分离合取式.
 
 split;
 intro;
 subst B;
 apply H;
 Col.
-spliter.
+分离合取式.
 
 assert(HH:=H).
 unfold TS in HH.
-spliter.
+分离合取式.
 ex_and H9 T.
 
 unfold 在角内.
@@ -4542,7 +4542,7 @@ repeat split.
 intro.
 subst M.
 unfold 中点 in H4.
-spliter.
+分离合取式.
 apply 等长的对称性 in H11.
 apply 等长的同一性 in H11.
 subst D.
@@ -4579,12 +4579,12 @@ induction H5.
 apply Plg_perm in H4.
 apply Plg_perm in H5.
 统计不重合点.
-spliter.
+分离合取式.
 apply plg_not_comm in H8.
 intuition.
 auto.
 apply Plg_perm in H5.
-spliter.
+分离合取式.
 assumption.
 Qed.
 
@@ -4626,9 +4626,9 @@ elim (两点重合的决定性 C1 C2); intro HC1C2; treat_equalities.
 
     {
     elim HPara1; clear HPara1; intro HPara1;
-    [|unfold 退化平行四边形 in HPara1; spliter; intuition].
+    [|unfold 退化平行四边形 in HPara1; 分离合取式; intuition].
     elim HPara2; clear HPara2; intro HPara2;
-    [|unfold 退化平行四边形 in HPara2; spliter; intuition].
+    [|unfold 退化平行四边形 in HPara2; 分离合取式; intuition].
     apply parallelogram_to_plg; apply plgs_pseudo_trans with B A;
     apply plgs_comm2; auto; do 2 (apply plgs_permut); auto.
     }
@@ -4644,7 +4644,7 @@ elim (两点重合的决定性 C1 C2); intro HC1C2; treat_equalities.
     }
 
     {
-    apply rect_per in HRect1; apply rect_per in HRect2; spliter.
+    apply rect_per in HRect1; apply rect_per in HRect2; 分离合取式.
     destruct (两点重合的决定性 C2 D2); [subst; Perp|].
     assert (HOrth : 垂直平面于 C2 B C1 C2 C2 D2);
       [|destruct HOrth as [_ [_ [_ [_ HOrth]]]]; apply HOrth; Col; Cop].
@@ -4659,28 +4659,28 @@ Lemma ncol123_plg__plgs : forall A B C D,
   ~ Col A B C -> 平行四边形 A B C D -> 严格平行四边形 A B C D.
 Proof.
 intros A B C D HNC H; induction H; auto.
-exfalso; apply HNC; unfold 退化平行四边形 in *; spliter; Col.
+exfalso; apply HNC; unfold 退化平行四边形 in *; 分离合取式; Col.
 Qed.
 
 Lemma ncol124_plg__plgs : forall A B C D,
   ~ Col A B D -> 平行四边形 A B C D -> 严格平行四边形 A B C D.
 Proof.
 intros A B C D HNC H; induction H; auto.
-exfalso; apply HNC; unfold 退化平行四边形 in *; spliter; Col.
+exfalso; apply HNC; unfold 退化平行四边形 in *; 分离合取式; Col.
 Qed.
 
 Lemma ncol134_plg__plgs : forall A B C D,
   ~ Col A C D -> 平行四边形 A B C D -> 严格平行四边形 A B C D.
 Proof.
 intros A B C D HNC H; induction H; auto.
-exfalso; apply HNC; unfold 退化平行四边形 in *; spliter; ColR.
+exfalso; apply HNC; unfold 退化平行四边形 in *; 分离合取式; ColR.
 Qed.
 
 Lemma ncol234_plg__plgs : forall A B C D,
   ~ Col B C D -> 平行四边形 A B C D -> 严格平行四边形 A B C D.
 Proof.
 intros A B C D HNC H; induction H; auto.
-exfalso; apply HNC; unfold 退化平行四边形 in *; spliter; ColR.
+exfalso; apply HNC; unfold 退化平行四边形 in *; 分离合取式; ColR.
 Qed.
 
 Lemma ncol123_plg__pars1234 : forall A B C D,
@@ -4748,7 +4748,7 @@ apply parallelogram_to_plg in H0.
 apply plg_per_rect1.
 assumption.
 unfold 萨凯里四边形 in H.
-spliter; Perp.
+分离合取式; Perp.
 Qed.
 
 Lemma exists_square : forall A B, A<>B -> exists C D,  正方形 A B C D.

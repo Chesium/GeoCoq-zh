@@ -12,7 +12,7 @@ Lemma lemma_together :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists R, (BetS A a R /\ Cong a R B b /\ Lt C c A R)) by (conclude_def TG );destruct Tf as [R];spliter.
+assert (Tf:exists R, (BetS A a R /\ Cong a R B b /\ Lt C c A R)) by (conclude_def TG );destruct Tf as [R];分离合取式.
 assert (Cong A a A a) by (conclude cn_congruencereflexive).
 assert (Cong B b a R) by (conclude lemma_congruencesymmetric).
 assert (Cong F G a R) by (conclude lemma_congruencetransitive).
@@ -25,7 +25,7 @@ assert (neq A a) by (forward_using lemma_betweennotequal).
 assert (neq a R) by (forward_using lemma_betweennotequal).
 assert (neq B b) by (conclude axiom_nocollapse).
 let Tf:=fresh in
-assert (Tf:exists S, (BetS A S R /\ Cong A S C c)) by (conclude_def Lt );destruct Tf as [S];spliter.
+assert (Tf:exists S, (BetS A S R /\ Cong A S C c)) by (conclude_def Lt );destruct Tf as [S];分离合取式.
 assert (neq A S) by (forward_using lemma_betweennotequal).
 assert (neq C c) by (conclude axiom_nocollapse).
 close.

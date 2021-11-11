@@ -15,13 +15,13 @@ assert (Par E F C D) by (conclude lemma_parallelsymmetric).
 assert (neq G H) by (forward_using lemma_betweennotequal).
 assert (neq H G) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists P, (BetS H G P /\ Cong G P G H)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS H G P /\ Cong G P G H)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
 assert (BetS P G H) by (conclude axiom_betweennesssymmetry).
 assert (BetS P G K) by (conclude lemma_3_7b).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M F /\ Col G H M /\ nCol G H A)) by (conclude_def TS );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M F /\ Col G H M /\ nCol G H A)) by (conclude_def TS );destruct Tf as [M];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists N, (BetS F N C /\ Col H K N /\ nCol H K F)) by (conclude_def TS );destruct Tf as [N];spliter.
+assert (Tf:exists N, (BetS F N C /\ Col H K N /\ nCol H K F)) by (conclude_def TS );destruct Tf as [N];分离合取式.
 assert (~ Meet C D E F) by (conclude_def Par ).
 assert (nCol G H A) by (conclude_def TS ).
 assert (neq A G) by (forward_using lemma_betweennotequal).

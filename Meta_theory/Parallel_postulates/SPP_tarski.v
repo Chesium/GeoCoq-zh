@@ -23,14 +23,14 @@ assert (HOS : OS Q S R U).
   {
   assert (HQS : Q <> S) by (统计不重合点; auto).
   assert (HQSQ : Col Q S Q) by Col.
-  assert (HRUQ : Col R U Q) by (spliter; Col).
+  assert (HRUQ : Col R U Q) by (分离合取式; Col).
   rewrite (l9_19 Q S R U Q HQSQ HRUQ).
-  spliter.
+  分离合取式.
   split; [Out|apply par_strict_not_col_4 with P, HPar].
   }
 apply (l9_9 Q S P U); [|apply one_side_transitivity with R; Side].
 apply one_side_not_col124 in HOS.
-spliter; repeat split; Col.
+分离合取式; repeat split; Col.
 exists I; split; [Col|Between].
 Qed.
 
@@ -48,7 +48,7 @@ apply 中间性的对称性 in HPUI.
 destruct (帕施公理 S U I Q P HSQI HPUI) as [J [HBet1 HBet2]].
 assert (HParS : 严格平行 P S Q U).
   {
-  spliter.
+  分离合取式.
   apply par_strict_col_par_strict with R; Col.
   apply par_not_col_strict with Q; Col.
   }
@@ -73,14 +73,14 @@ apply l9_17 with S; [|assumption].
 destruct HQUR as [HQUR HDiff].
 apply 中间性的对称性 in HQUR.
 exists R; split.
-  spliter; apply l9_2, invert_two_sides, bet__ts; Col.
+  分离合取式; apply l9_2, invert_two_sides, bet__ts; Col.
 apply l9_31.
   {
   apply one_side_symmetry, l9_17 with Q; [|assumption].
   apply l12_6, par_not_col_strict with Q; Par; Col.
   }
 apply one_side_transitivity with Q.
-  spliter; apply invert_one_side, out_one_side; [Col|Out].
+  分离合取式; apply invert_one_side, out_one_side; [Col|Out].
 apply l12_6, par_strict_symmetry, par_not_col_strict with P; Par; Col.
 Qed.
 
@@ -176,11 +176,11 @@ assert (H4 : BetS T B''' B') by (repeat split; Between).
 assert (HNC : ~ Col B B' B''') by (intro; apply H1; ColR).
 destruct (HSPP B T B' B'' MB B''') as [X [HBetS HX]]; Cong; [Cop|].
 assert (HPar1 : Par B B' T B'')
-  by (unfold BetS in *; spliter; apply l12_17 with MB; [|split..]; auto).
+  by (unfold BetS in *; 分离合取式; apply l12_17 with MB; [|split..]; auto).
 assert (HPar2 : Par B B'' T B').
   {
-  apply 不共线则不重合 in H1; spliter.
-  unfold BetS in *; spliter; apply l12_17 with MB; [|split..]; Between; Cong.
+  apply 不共线则不重合 in H1; 分离合取式.
+  unfold BetS in *; 分离合取式; apply l12_17 with MB; [|split..]; Between; Cong.
   }
 elim HBetS; clear HBetS; intro HBetS.
 
@@ -197,13 +197,13 @@ elim HBetS; clear HBetS; intro HBetS.
     assert (H : BetS B B''' X).
       {
       repeat split; [|intro; treat_equalities..]; Col.
-      unfold BetS in *; spliter; apply H1; ColR.
+      unfold BetS in *; 分离合取式; apply H1; ColR.
       }
     clear HX; rename H into HX.
     apply 严格中间性的等价 in HBetS; destruct HBetS as [HB''TX [HB''T [HB''X HBTX]]].
     exists B', B'', MB, X.
     split.
-      unfold BetS in HX; spliter; eBetween.
+      unfold BetS in HX; 分离合取式; eBetween.
     split.
       apply par_strict_col_par_strict with B'; Col.
       apply par_strict_symmetry, par_strict_col_par_strict with B''; Col.
@@ -274,11 +274,11 @@ elim (共线的决定性 X T Y); intro HXTY.
   apply (par_strict_col_par_strict T X B D C) in HPar'; Col.
   assert (HCop : 共面 T B B'' Y).
     {
-    apply 不共线则不重合 in HXTY; spliter.
+    apply 不共线则不重合 in HXTY; 分离合取式.
     apply coplanar_perm_13, col_cop__cop with X; Col.
     apply coplanar_perm_4, coplanar_trans_1 with C; Col; Cop.
     }
-  unfold BetS in *; spliter.
+  unfold BetS in *; 分离合取式.
   destruct (HSPP T B B'' B' MB Y) as [I [HCol1 HCol2]]; Cong; [repeat split; Between..|].
   exfalso; apply HPar; exists I; split; ColR.
   }

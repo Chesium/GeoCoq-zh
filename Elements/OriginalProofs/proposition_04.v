@@ -15,7 +15,7 @@ Proof.
 intros.
 assert (nCol b a c) by (conclude lemma_equalanglesNC).
 let Tf:=fresh in
-assert (Tf:exists U V u v, (Out A B U /\ Out A C V /\ Out a b u /\ Out a c v /\ Cong A U a u /\ Cong A V a v /\ Cong U V u v /\ nCol B A C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];spliter.
+assert (Tf:exists U V u v, (Out A B U /\ Out A C V /\ Out a b u /\ Out a c v /\ Cong A U a u /\ Cong A V a v /\ Cong U V u v /\ nCol B A C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];分离合取式.
 assert (neq a b) by (conclude lemma_ray2).
 assert (neq b a) by (conclude lemma_inequalitysymmetric).
 assert (~ Col A B C).
@@ -69,7 +69,7 @@ by cases on (BetS A U B \/ eq B U \/ BetS A B U).
  assert (Lt A U A B) by (conclude_def Lt ).
  assert (Lt A U a b) by (conclude lemma_lessthancongruence).
  let Tf:=fresh in
- assert (Tf:exists w, (BetS a w b /\ Cong a w A U)) by (conclude_def Lt );destruct Tf as [w];spliter.
+ assert (Tf:exists w, (BetS a w b /\ Cong a w A U)) by (conclude_def Lt );destruct Tf as [w];分离合取式.
  assert (Cong a w a u) by (conclude lemma_congruencetransitive).
  assert (neq a b) by (forward_using lemma_betweennotequal).
  assert (Out a b w) by (conclude lemma_ray4).
@@ -127,7 +127,7 @@ by cases on (BetS A U B \/ eq B U \/ BetS A B U).
  assert (Lt A B A U) by (conclude_def Lt ).
  assert (Lt A B a u) by (conclude lemma_lessthancongruence).
  let Tf:=fresh in
- assert (Tf:exists f, (BetS a f u /\ Cong a f A B)) by (conclude_def Lt );destruct Tf as [f];spliter.
+ assert (Tf:exists f, (BetS a f u /\ Cong a f A B)) by (conclude_def Lt );destruct Tf as [f];分离合取式.
  assert (neq a u) by (forward_using lemma_betweennotequal).
  assert (Out a u f) by (conclude lemma_ray4).
  assert (Out a u b) by (conclude lemma_ray5).
@@ -150,7 +150,7 @@ by cases on (BetS A V C \/ eq C V \/ BetS A C V).
  assert (Lt A V A C) by (conclude_def Lt ).
  assert (Lt A V a c) by (conclude lemma_lessthancongruence).
  let Tf:=fresh in
- assert (Tf:exists g, (BetS a g c /\ Cong a g A V)) by (conclude_def Lt );destruct Tf as [g];spliter.
+ assert (Tf:exists g, (BetS a g c /\ Cong a g A V)) by (conclude_def Lt );destruct Tf as [g];分离合取式.
  assert (neq a g) by (forward_using lemma_betweennotequal).
  assert (Out a g c) by (conclude lemma_ray4).
  assert (Out a c g) by (conclude lemma_ray5).
@@ -180,7 +180,7 @@ by cases on (BetS A V C \/ eq C V \/ BetS A C V).
  assert (Lt A C A V) by (conclude_def Lt ).
  assert (Lt A C a v) by (conclude lemma_lessthancongruence).
  let Tf:=fresh in
- assert (Tf:exists g, (BetS a g v /\ Cong a g A C)) by (conclude_def Lt );destruct Tf as [g];spliter.
+ assert (Tf:exists g, (BetS a g v /\ Cong a g A C)) by (conclude_def Lt );destruct Tf as [g];分离合取式.
  assert (neq a g) by (forward_using lemma_betweennotequal).
  assert (Out a g v) by (conclude lemma_ray4).
  assert (Out a v g) by (conclude lemma_ray5).

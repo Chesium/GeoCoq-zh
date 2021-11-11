@@ -31,7 +31,7 @@ Lemma out_diff1 : forall A B C, Out A B C -> B <> A.
 Proof.
     intros.
     unfold Out in H.
-    spliter.
+    分离合取式.
     assumption.
 Qed.
 
@@ -39,7 +39,7 @@ Lemma out_diff2 : forall A B C, Out A B C -> C <> A.
 Proof.
     intros.
     unfold Out in H.
-    spliter.
+    分离合取式.
     assumption.
 Qed.
 
@@ -56,7 +56,7 @@ Proof.
     intros.
     unfold Col.
     unfold Out in H.
-    spliter.
+    分离合取式.
     induction H1;Between.
 Qed.
 
@@ -67,7 +67,7 @@ Proof.
     split.
       intros.
       repeat split; try assumption; eapply l5_2;eBetween.
-    intro; spliter; induction H5; eBetween.
+    intro; 分离合取式; induction H5; eBetween.
 Qed.
 
 Lemma bet_out__bet : forall A B C P, Bet A P C -> Out P A B -> Bet B P C.
@@ -82,7 +82,7 @@ Lemma l6_3_1 : forall A B P, Out P A B -> (A<>P /\ B<>P /\ exists C, C<>P /\ Bet
 Proof.
     unfold Out.
     intros.
-    spliter.
+    分离合取式.
     repeat split; try assumption.
     induction H1.
       assert(exists C, Bet A P C /\ P <> C) by (apply 构造满足中间性的不重合点).
@@ -99,7 +99,7 @@ Lemma l6_3_2 : forall A B P,
   (A<>P /\ B<>P /\ exists C, C<>P /\ Bet A P C /\ Bet B P C) -> Out P A B.
 Proof.
     intros.
-    spliter.
+    分离合取式.
     ex_and H1 C.
     unfold Out.
     repeat split; try assumption; eapply l5_2; eBetween.
@@ -109,7 +109,7 @@ Lemma l6_4_1 : forall A B P, Out P A B -> Col A P B /\ ~ Bet A P B.
 Proof.
     unfold Out.
     intros.
-    spliter.
+    分离合取式.
     unfold Col.
     induction H1; split.
       Between.
@@ -122,7 +122,7 @@ Lemma l6_4_2 : forall A B P, Col A P B /\ ~ Bet A P B -> Out P A B.
 Proof.
     unfold Col.
     intros.
-    spliter.
+    分离合取式.
     unfold Out.
     induction H.
       contradiction.
@@ -156,7 +156,7 @@ Lemma l6_7 : forall P A B C, Out P A B -> Out P B C -> Out P A C.
 Proof.
     unfold Out.
     intros.
-    spliter.
+    分离合取式.
     repeat split; try assumption.
     induction H4; induction H2.
       left; eapply 中间性的交换传递性2; eauto.
@@ -170,7 +170,7 @@ Lemma bet_out_out_bet : forall A B C A' C',
 Proof.
     intros.
     unfold Out in *.
-    spliter.
+    分离合取式.
     induction H5; induction H3.
       assert(Bet A' B C) by (apply 中间性的外传递性1 with A; Between).
       apply 中间性的外传递性2 with C; auto.
@@ -187,7 +187,7 @@ Lemma out2_bet_out : forall A B C X P,
 Proof.
     intros.
     unfold Out in *.
-    spliter.
+    分离合取式.
     induction H5; induction H3.
       repeat split; try assumption.
         left; eapply 中间性的交换传递性2 with X; try assumption.
@@ -218,7 +218,7 @@ Lemma l6_11_uniqueness : forall A B C R X Y,
 Proof.
     unfold Out.
     intros.
-    spliter.
+    分离合取式.
     assert (Cong A X A Y) by CongR.
     induction H6; induction H4.
       apply l4_19 with A R; try assumption.
@@ -256,7 +256,7 @@ Lemma l6_13_1 : forall P A B, Out P A B -> Le
 Proof.
     unfold Out.
     intros.
-    spliter.
+    分离合取式.
     induction H2; try assumption.
     unfold Le
  in H0.
@@ -323,7 +323,7 @@ Proof.
     cut False.
       intro; intuition.
     apply 不共线则不重合 in H.
-    spliter.
+    分离合取式.
     assert (Col C P Q) by (apply 共线的传递性2 with D; Col).
     assert (Col Q B C).
       induction (两点重合的决定性 Q A).
@@ -527,7 +527,7 @@ Lemma cong_preserves_bet : forall B A' A0 E D' D0,
 Proof.
     intros.
     unfold Out in H2.
-    spliter.
+    分离合取式.
     induction H4.
       assumption.
     assert (Le
@@ -564,7 +564,7 @@ Lemma out_cong_cong : forall B A A0 E D D0,
 Proof.
     intros.
     unfold Out in H.
-    spliter.
+    分离合取式.
     induction H4.
       assert (Bet E D D0).
         apply (cong_preserves_bet B A A0); assumption.
@@ -625,9 +625,9 @@ Lemma not_bet_and_out :
 Proof.
     intros.
     intro.
-    spliter.
+    分离合取式.
     unfold Out in H0.
-    spliter.
+    分离合取式.
     induction H2.
       assert ( A = B).
         eapply 双中间性推出点重合.
@@ -652,7 +652,7 @@ Proof.
     intros.
     induction(out_dec B A C).
       unfold Out in H2.
-      spliter.
+      分离合取式.
       induction H4.
         assert( A = B).
           eapply 双中间性推出点重合.
@@ -701,10 +701,10 @@ Proof.
           apply H1.
         apply bet_out.
           unfold Out in *.
-          spliter.
+          分离合取式.
           assumption.
           unfold Out in *.
-          spliter.
+          分离合取式.
           assumption.
       apply 等价共线BAC.
       apply out_col.
@@ -720,10 +720,10 @@ Proof.
         apply H0.
       apply bet_out.
         unfold Out in *.
-        spliter.
+        分离合取式.
         assumption.
         unfold Out in *.
-        spliter.
+        分离合取式.
       apply 中间性的对称性.
       assumption.
     apply 等价共线BAC.
@@ -737,7 +737,7 @@ Proof.
     induction(两点重合的决定性 B' C').
       subst C'.
       unfold Out in *.
-      spliter.
+      分离合取式.
       repeat split; try assumption.
       induction H5.
         left.
@@ -748,7 +748,7 @@ Proof.
         apply H2.
       assumption.
     unfold Out in *.
-    spliter.
+    分离合取式.
     repeat split.
       assumption.
       assumption.
@@ -792,7 +792,7 @@ Proof.
       apply (not_bet_and_out A B C).
       split; assumption.
     unfold Out in *.
-    spliter.
+    分离合取式.
     repeat split.
       assumption.
       assumption.

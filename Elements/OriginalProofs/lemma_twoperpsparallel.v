@@ -15,7 +15,7 @@ intros.
 assert (nCol A B C) by (conclude lemma_rightangleNC).
 assert (neq B C) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS B C E /\ Cong C E B C)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS B C E /\ Cong C E B C)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (Col B C E) by (conclude_def Col ).
 assert (neq C E) by (forward_using lemma_betweennotequal).
 assert (neq E C) by (conclude lemma_inequalitysymmetric).

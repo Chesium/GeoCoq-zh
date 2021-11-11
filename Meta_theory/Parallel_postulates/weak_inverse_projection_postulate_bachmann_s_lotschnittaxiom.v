@@ -29,7 +29,7 @@ assert (HPar : 严格平行 B1 B2 C1 C2).
   assert (Col A1 P Q /\ Col A2 P Q /\ Col B1 R Q /\ Col B2 R Q)
     by (repeat split; [apply 共线的传递性2 with A2|apply (共线的传递性3 A1)
                       |apply 共线的传递性2 with B2|apply (共线的传递性3 B1)]; auto).
-  spliter.
+  分离合取式.
   assert (共面 Q P R A1) by Cop.
   assert (共面 Q P R A2) by Cop.
   assert (共面 Q P R B1) by Cop.
@@ -52,7 +52,7 @@ assert (H为锐角 : 为锐角 P Q M).
   apply 角度小于等于保持和角不大于平角性质 with P Q R P Q R; 和角.
 }
 assert (HC3 : exists C3, Col C1 C2 C3 /\ OS P Q R C3).
-{ destruct (每组共线三点都有另一共线点 C1 C2 P) as [C0]; Col; spliter.
+{ destruct (每组共线三点都有另一共线点 C1 C2 P) as [C0]; Col; 分离合取式.
   destruct (cop_not_par_same_side P Q C0 P P R) as [C3 []]; Col.
     intro; apply HNCol3; ColR.
     apply coplanar_perm_1, col_cop2__cop with C1 C2; Col; Cop.
@@ -60,7 +60,7 @@ assert (HC3 : exists C3, Col C1 C2 C3 /\ OS P Q R C3).
 }
 destruct HC3 as [C3 [HCol6 HOS]].
 destruct (hrap P Q M P Q R P C3) as [S [HS1 HS2]]; trivial;
-  [apply out_trivial; auto|apply os_distincts in HOS; spliter; auto|
+  [apply out_trivial; auto|apply os_distincts in HOS; 分离合取式; auto|
   |apply coplanar_trans_1 with R; Col; Cop|].
 { assert (HP := HPerpAC); destruct HP as [P' [_ [_ [HP1 [HP2 HP3]]]]].
   assert (P = P'); [|treat_equalities; apply HP3; Col].

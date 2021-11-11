@@ -185,12 +185,12 @@ cut(forall P Q A B,
       intros P Q A B fPQ HAB HLt HBet1 HBet2.
       cut (exists C, Grad (f P) (f Q) C /\ Bet A C B /\ C <> A /\ C <> B);
       [intros [C []]; destruct (extension_grad _ _ _ fPQ P Q C) as [X]; Col;
-       exists X; spliter; subst; auto|].
+       exists X; 分离合取式; subst; auto|].
       assert (Hdiff : f P <> f Q) by (intro; destruct fPQ as [? []]; Col).
-      destruct (reach__grad_min (f P) (f Q) A) as [D [E]]; auto; spliter.
+      destruct (reach__grad_min (f P) (f Q) A) as [D [E]]; auto; 分离合取式.
       assert (Bet D A E) by (apply (中间性的交换传递性1 (f P)); assumption).
       exists E; repeat split; [apply 线性刻度_步进 with D| | |intro; subst E]; auto;
-      [|apply 小于推出反向不小于等于 in HLt; apply HLt, 长度小于等于的传递性 with D B; spliter; Le].
+      [|apply 小于推出反向不小于等于 in HLt; apply HLt, 长度小于等于的传递性 with D B; 分离合取式; Le].
       apply l6_13_1; [destruct (两点重合的决定性 A D); [subst D|]|];
       [apply l6_2 with (f P); 统计不重合点|apply l6_2 with D|]; eBetween.
       apply 长度小于等于的传递性 with D E; Le.

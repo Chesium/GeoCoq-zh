@@ -167,7 +167,7 @@ Proof.
     destruct (两点重合的决定性 X Y).
       subst; Between.
     exfalso.
-    spliter.
+    分离合取式.
     apply (小于推出反向不小于等于 A Y0 A X0).
       apply (Haux Y X); auto.
     apply 长度小于等于的传递性 with A B; trivial.

@@ -165,7 +165,7 @@ Lemma 五线段公理_等价SAS_with_def : forall A B C D A' B' C' D',
  外五线段形式 A B C D A' B' C' D' -> A<>B -> Cong C D C' D'.
 Proof.
     unfold 外五线段形式.
-    intros;spliter.
+    intros;分离合取式.
     apply (五线段公理_等价SAS A A' B B'); assumption.
 Qed.
 
@@ -234,7 +234,7 @@ Lemma 三角形全等的传递性 : forall A0 B0 C0 A1 B1 C1 A2 B2 C2,
 Proof.
     unfold 三角形全等.
     intros.
-    spliter.
+    分离合取式.
     repeat split; eapply 等长的传递性; eCong.
 Qed.
 

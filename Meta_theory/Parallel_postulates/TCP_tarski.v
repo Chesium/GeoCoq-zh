@@ -126,7 +126,7 @@ assert (HOS : OS B C A x).
   assert (HBCB : Col B C B) by Col.
   assert (HABx' : Col A x B) by Col.
   assert (H := l9_19 B C A x B HBCB HABx'); rewrite H.
-  apply 不共线则不重合 in HABC; spliter.
+  apply 不共线则不重合 in HABC; 分离合取式.
   split; [Out|Col].
 }
 assert (HTS' : TS B C x T) by (apply l9_8_2 with A; assumption);
@@ -392,7 +392,7 @@ elim (两点重合的决定性 C Y); intro HCY.
 
   {
   treat_equalities.
-  assert (HCT : C <> T) by (apply 不共线则不重合 in HBCT; spliter; auto).
+  assert (HCT : C <> T) by (apply 不共线则不重合 in HBCT; 分离合取式; auto).
   assert (HY := 中点的存在性 C T); destruct HY as [Y HY].
   assert (HAY : A <> Y) by (intro; treat_equalities; apply HABC; ColR).
   assert (H := 严格中点组推论1 Y C T HCT HY); destruct H as [HCY HTY];

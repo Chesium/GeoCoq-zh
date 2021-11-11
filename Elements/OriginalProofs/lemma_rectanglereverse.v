@@ -16,7 +16,7 @@ assert (Per D C B) by (conclude lemma_8_2).
 assert (Per C B A) by (conclude lemma_8_2).
 assert (Per B A D) by (conclude lemma_8_2).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude_def CR );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude_def CR );destruct Tf as [M];分离合取式.
 assert (BetS C M A) by (conclude axiom_betweennesssymmetry).
 assert (BetS D M B) by (conclude axiom_betweennesssymmetry).
 assert (CR D B C A) by (conclude_def CR ).

@@ -45,7 +45,7 @@ assert (~ Col B Q A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists E, (BetS A E Q /\ BetS B P E)) by (conclude postulate_Pasch_outer);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS A E Q /\ BetS B P E)) by (conclude postulate_Pasch_outer);destruct Tf as [E];分离合取式.
 close.
 Qed.
 

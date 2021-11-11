@@ -13,14 +13,14 @@ Lemma lemma_lessthantransitive :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists G, (BetS C G D /\ Cong C G A B)) by (conclude_def Lt );destruct Tf as [G];spliter.
+assert (Tf:exists G, (BetS C G D /\ Cong C G A B)) by (conclude_def Lt );destruct Tf as [G];分离合取式.
 rename_H H;
 let Tf:=fresh in
-assert (Tf:exists H, (BetS E H F /\ Cong E H C D)) by (conclude_def Lt );destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS E H F /\ Cong E H C D)) by (conclude_def Lt );destruct Tf as [H];分离合取式.
 assert (neq E H) by (forward_using lemma_betweennotequal).
 assert (neq C G) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists K, (Out E H K /\ Cong E K C G)) by (conclude lemma_layoff);destruct Tf as [K];spliter.
+assert (Tf:exists K, (Out E H K /\ Cong E K C G)) by (conclude lemma_layoff);destruct Tf as [K];分离合取式.
 assert (Cong E K A B) by (conclude lemma_congruencetransitive).
 assert ((BetS E K H \/ eq H K \/ BetS E H K)) by (conclude lemma_ray1).
 assert (BetS E K H).
@@ -50,7 +50,7 @@ by cases on (BetS E K H \/ eq H K \/ BetS E H K).
  assert (neq C D) by (forward_using lemma_betweennotequal).
  assert (neq H K) by (forward_using lemma_betweennotequal).
  let Tf:=fresh in
- assert (Tf:exists J, (BetS C D J /\ Cong D J H K)) by (conclude lemma_extension);destruct Tf as [J];spliter.
+ assert (Tf:exists J, (BetS C D J /\ Cong D J H K)) by (conclude lemma_extension);destruct Tf as [J];分离合取式.
  assert (Out C D J) by (conclude lemma_ray4).
  assert (Out C D G) by (conclude lemma_ray4).
  assert (Cong C J E K) by (conclude cn_sumofparts).

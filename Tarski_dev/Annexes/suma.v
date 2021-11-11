@@ -9,7 +9,7 @@ Lemma 和角推出不重合 : forall A B C D E F G H I, 和角 A B C D E F G H I
 Proof.
   intros A B C D E F G H I Hsuma.
   destruct Hsuma as [J HJ].
-  spliter.
+  分离合取式.
   统计不重合点.
   repeat split; auto.
 Qed.
@@ -21,7 +21,7 @@ Proof.
   destruct HTri as [G [H [I [HSuma HSuma1]]]].
   apply 和角推出不重合 in HSuma.
   apply 和角推出不重合 in HSuma1.
-  spliter; repeat split; auto.
+  分离合取式; repeat split; auto.
 Qed.
 
 Lemma 和角的存在性 : forall A B C D E F, A<>B -> B<>C -> D<>E -> E<>F ->
@@ -243,7 +243,7 @@ Lemma 任何角加上零角大小不变 : forall A B C D E F G H I, 和角 A B C
 Proof.
   intros A B C D E F G H I Hsuma Hout.
   assert(A<>B/\B<>C/\D<>E/\E<>F/\G<>H/\H<>I) by (apply 和角推出不重合; auto).
-  spliter.
+  分离合取式.
   apply (和角的唯一性 A B C D E F A B C); auto.
   exists C.
   split.
@@ -284,7 +284,7 @@ Lemma 和角的左交换性 : forall A B C D E F G H I,
 Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := 和角推出不重合 A B C D E F G H I Hsuma).
-  spliter.
+  分离合取式.
   apply (等角保持和角性质 A B C D E F G H I); 等角.
 Qed.
 
@@ -293,7 +293,7 @@ Lemma 和角的中交换性 : forall A B C D E F G H I,
 Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := 和角推出不重合 A B C D E F G H I Hsuma).
-  spliter.
+  分离合取式.
   apply (等角保持和角性质 A B C D E F G H I); 等角.
 Qed.
 
@@ -302,7 +302,7 @@ Lemma 和角的右交换性 : forall A B C D E F G H I,
 Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := 和角推出不重合 A B C D E F G H I Hsuma).
-  spliter.
+  分离合取式.
   apply (等角保持和角性质 A B C D E F G H I); 等角.
 Qed.
 
@@ -311,7 +311,7 @@ Lemma 和角的交换性 : forall A B C D E F G H I,
 Proof.
   intros A B C D E F G H I Hsuma.
   assert(Hd := 和角推出不重合 A B C D E F G H I Hsuma).
-  spliter.
+  分离合取式.
   apply (等角保持和角性质 A B C D E F G H I); 等角.
 Qed.
 
@@ -513,7 +513,7 @@ Lemma 和角不大于平角推出不重合 : forall A B C D E F, 和角不大于
 Proof.
   intros A B C D E F Hisi.
   destruct Hisi as [HP1 [HP2 [J HJ]]].
-  spliter.
+  分离合取式.
   统计不重合点.
   repeat split; auto.
 Qed.
@@ -523,7 +523,7 @@ Lemma 和角不大于平角的对称性 : forall A B C D E F, 和角不大于平
 Proof.
   intros A B C D E F Hisi.
   assert(A<>B/\B<>C/\D<>E/\E<>F) by (apply 和角不大于平角推出不重合; auto).
-  spliter.
+  分离合取式.
   assert(HD' : exists D', 中点 E D D') by apply 构造对称点.
   destruct HD' as [D'].
   assert(HA' : exists A', 中点 B A A') by apply 构造对称点.
@@ -883,7 +883,7 @@ Lemma 原角小于等于和角 : forall A B C D E F G H I, 和角 A B C D E F G 
 Proof.
   intros A B C D E F G H I Hsuma Hisi.
   统计不重合点.
-  spliter.
+  分离合取式.
   elim(共线的决定性 A B C).
   { intro HColB.
     elim(中间性的决定性 A B C).
@@ -1055,10 +1055,10 @@ Proof.
   }
   intro HNColH'.
   destruct Hisi' as [_[_[F'1]]].
-  spliter.
+  分离合取式.
   apply(l11_30_等角保持小于等于 _ _ _ _ _ _ D E F C B F'1) in Hlea; 等角.
   destruct Hlea as [F1].
-  spliter.
+  分离合取式.
   统计不重合点.
   assert(等角 A B F'1 G' H' I').
     apply (和角的唯一性 A B C D' E' F'); auto; exists F'1; repeat (split; 等角).
@@ -1072,7 +1072,7 @@ Proof.
     apply l11_24_在角内的对称性; auto.
     assert(Hts : TS B C A F'1) by (apply cop_nos__ts; Col; Cop).
     destruct Hts as [_ [_ [X]]].
-    spliter.
+    分离合取式.
     repeat split; auto.
     exists X.
     split; Between.
@@ -1291,7 +1291,7 @@ Proof.
       assert(HJ : 和角不大于平角 C B A0 G H I) by (apply (等角保持和角不大于平角性质 D E F G H I); try (apply 同角相等); auto).
       destruct HJ as [_ [_ [J]]].
       destruct HisiEH as [_ [_ [F1]]].
-      spliter.
+      分离合取式.
       统计不重合点.
       assert(等角 C B J D' E' F').
       { apply (角等的传递性 _ _ _ D E F1); auto.
@@ -1335,7 +1335,7 @@ Proof.
   intro HNColB'.
   clear dependent A0.
   destruct HisiBE as [_ [_ [C1 HC1]]].
-  spliter.
+  分离合取式.
   统计不重合点.
   assert(等角 A' B' C' A B C1).
   { apply (和角的唯一性 A B C D E F); auto.
@@ -1388,7 +1388,7 @@ Proof.
   assert(HJ : 和角不大于平角 C B C1 G H I) by (apply (等角保持和角不大于平角性质 D E F G H I); 等角).
   destruct HJ as [_ [_ [J]]].
   destruct HisiEH as [_ [_ [F1 HF1]]].
-  spliter.
+  分离合取式.
   统计不重合点.
   assert(等角 C B J D' E' F').
   { apply (角等的传递性 _ _ _ D E F1); auto.
@@ -1517,7 +1517,7 @@ Proof.
   assert(HC1 : exists C1, 等角 C B C1 D E F /\ ~ OS B C A C1 /\ ~ TS A B C C1 /\ 共面 A B C C1).
     destruct Hsams1 as [_ []]; auto.
   destruct HC1 as [C1].
-  spliter.
+  分离合取式.
   统计不重合点.
   assert(等角 A B C1 A' B' C').
     apply (和角的唯一性 A B C D E F); auto; exists C1; repeat (split; 等角).
@@ -1526,10 +1526,10 @@ Proof.
     destruct Hsams2 as [_ [_ HJ]]; auto.
   }
   destruct HJ as [J [HJ1 [HJ2 [HJ3 HJ4]]]].
-  spliter.
+  分离合取式.
   apply (等角保持和角不大于平角性质 _ _ _ _ _ _ A B C1 C1 B J) in Hsams1'; 等角.
   destruct Hsams1' as [_ [_ [J']]].
-  spliter.
+  分离合取式.
   统计不重合点.
   assert (~ Col A B C1) by (apply (不共线三点构成的角的等角三点也不共线 A' B' C'); 等角).
   assert (~ Col C B C1) by (apply (不共线三点构成的角的等角三点也不共线 D E F); 等角).
@@ -1556,7 +1556,7 @@ Proof.
       apply cop_nts__os; Col; Cop.
 
     - elim(共线的决定性 A B J).
-        intro; intro Hts; destruct Hts; spliter; Col.
+        intro; intro Hts; destruct Hts; 分离合取式; Col.
       intro.
       apply l9_9_bis.
       apply (one_side_transitivity _ _ _ C1).
@@ -2239,7 +2239,7 @@ Qed.
 Lemma 两角和与其补角和相等_中间性表述 : forall A B C D E F G H I A' D', A' <> B -> D' <> E ->
   Bet A B A' -> Bet D E D' -> 和角 A B C D E F G H I -> 和角 A' B C D' E F G H I.
 Proof.
-  intros A B C D E F G H I A' D' HBA' HED' HBetA HBetD [J [HJ1 [HJ2 [HJ3 HJ4]]]]; spliter.
+  intros A B C D E F G H I A' D' HBA' HED' HBetA HBetD [J [HJ1 [HJ2 [HJ3 HJ4]]]]; 分离合取式.
   destruct (由一点往一方向构造等长线段 C B B C) as [C' []].
   统计不重合点.
   apply (等角保持和角性质 A B C' D' E F G H I); [|apply l11_14; Between|等角..].

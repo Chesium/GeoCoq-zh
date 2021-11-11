@@ -20,7 +20,7 @@ Proof.
   - left.
     split.
     { apply par_symmetry in HBC.
-      destruct HBC; [destruct HAB|]; [|spliter..].
+      destruct HBC; [destruct HAB|]; [|分离合取式..].
       - CopR.
       - apply coplanar_perm_16, col2_cop__cop with B1 B2; Col; Cop.
       - apply col2_cop__cop with B1 B2; Col; Cop.

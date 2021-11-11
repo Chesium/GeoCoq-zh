@@ -16,7 +16,7 @@ assert (nCol D C E) by (forward_using lemma_parallelNC).
 assert (neq D C) by (forward_using lemma_NCdistinct).
 assert (neq C D) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists B, (BetS C D B /\ Cong D B C D)) by (conclude lemma_extension);destruct Tf as [B];spliter.
+assert (Tf:exists B, (BetS C D B /\ Cong D B C D)) by (conclude lemma_extension);destruct Tf as [B];分离合取式.
 assert (BetS B D C) by (conclude axiom_betweennesssymmetry).
 assert (nCol C E F) by (forward_using lemma_parallelNC).
 assert (neq E F) by (forward_using lemma_NCdistinct).
@@ -33,18 +33,18 @@ assert (~ Col B C A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists c b M, (BetS c A b /\ 等角 b A D A D B /\ 等角 b A D B D A /\ 等角 D A b B D A /\ 等角 c A D A D C /\ 等角 c A D C D A /\ 等角 D A c C D A /\ Par c b B C /\ Cong c A D C /\ Cong A b B D /\ Cong A M M D /\ Cong c M M C /\ Cong B M M b /\ BetS c M C /\ BetS B M b /\ BetS A M D)) by (conclude proposition_31);destruct Tf as [c[b[M]]];spliter.
+assert (Tf:exists c b M, (BetS c A b /\ 等角 b A D A D B /\ 等角 b A D B D A /\ 等角 D A b B D A /\ 等角 c A D A D C /\ 等角 c A D C D A /\ 等角 D A c C D A /\ Par c b B C /\ Cong c A D C /\ Cong A b B D /\ Cong A M M D /\ Cong c M M C /\ Cong B M M b /\ BetS c M C /\ BetS B M b /\ BetS A M D)) by (conclude proposition_31);destruct Tf as [c[b[M]]];分离合取式.
 assert (BetS b M B) by (conclude axiom_betweennesssymmetry).
 assert (nCol b B C) by (forward_using lemma_parallelNC).
 let Tf:=fresh in
-assert (Tf:exists R, (BetS b R D /\ BetS C R M)) by (conclude postulate_Pasch_inner);destruct Tf as [R];spliter.
+assert (Tf:exists R, (BetS b R D /\ BetS C R M)) by (conclude postulate_Pasch_inner);destruct Tf as [R];分离合取式.
 assert (BetS C M c) by (conclude axiom_betweennesssymmetry).
 assert (BetS C R c) by (conclude lemma_3_6b).
 assert (BetS b A c) by (conclude axiom_betweennesssymmetry).
 assert (nCol c b C) by (forward_using lemma_parallelNC).
 assert (nCol b c C) by (forward_using lemma_NCorder).
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS b Q R /\ BetS C Q A)) by (conclude postulate_Pasch_inner);destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS b Q R /\ BetS C Q A)) by (conclude postulate_Pasch_inner);destruct Tf as [Q];分离合取式.
 assert (BetS b Q D) by (conclude lemma_3_6b).
 assert (Col C D B) by (conclude_def Col ).
 assert (Col B C D) by (forward_using lemma_collinearorder).

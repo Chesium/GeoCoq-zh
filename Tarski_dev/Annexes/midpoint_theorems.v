@@ -125,7 +125,7 @@ Proof.
 intros.
 assert (严格平行 A B Q P /\ Cong A R P Q /\ Cong B R P Q)
   by (apply 三角形中位线平行于第三边2且与其两半相等 with C; assumption).
-spliter.
+分离合取式.
 split; assumption.
 Qed.
 (* 无用 *)
@@ -139,7 +139,7 @@ Proof.
 intros.
 assert (严格平行 A B Q P /\ Cong A R P Q /\ Cong B R P Q)
   by (apply 三角形中位线平行于第三边2且与其两半相等 with C; assumption).
-spliter.
+分离合取式.
 split; assumption.
 Qed.
 
@@ -169,7 +169,7 @@ assert (严格平行 A C R P /\ Cong A Q P R /\ Cong C Q P R)
   by (apply 三角形中位线平行于第三边2且与其两半相等 with B; Col).
 assert (严格平行 C B Q R /\ Cong C P R Q /\ Cong B P R Q)
   by (apply 三角形中位线平行于第三边2且与其两半相等 with A; Col).
-spliter.
+分离合取式.
 
 split; trivial.
 split; Par.
@@ -244,7 +244,7 @@ Proof.
 intros.
 assert (Par A B Q P /\ Cong A R P Q /\ Cong B R P Q)
   by (apply 退化三角形中位线平行于第三边且与其两半相等 with C; assumption).
-spliter.
+分离合取式.
 split; assumption.
 Qed.
 
@@ -259,7 +259,7 @@ Proof.
 intros.
 assert (Par A B Q P /\ Cong A R P Q /\ Cong B R P Q)
   by (apply 退化三角形中位线平行于第三边且与其两半相等 with C; assumption).
-spliter.
+分离合取式.
 split; assumption.
 Qed.
 
@@ -279,7 +279,7 @@ permutation_intro_in_hyps.
 assert (Par A B Q P /\ Cong A R P Q /\ Cong B R P Q) by (apply 退化三角形中位线平行于第三边且与其两半相等 with C; assumption).
 assert (Par A C R P /\ Cong A Q P R /\ Cong C Q P R) by (apply 退化三角形中位线平行于第三边且与其两半相等 with B; Col).
 assert (Par C B Q R /\ Cong C P R Q /\ Cong B P R Q) by (apply 退化三角形中位线平行于第三边且与其两半相等 with A; Col).
-spliter.
+分离合取式.
 
 repeat split; Cong; Par.
 
@@ -294,7 +294,7 @@ Lemma 退化三角形中位线平行于第三边 : forall A B C P Q,
 Proof.
 intros.
 elim (中点的存在性 A B); intro R; intro.
-assert (HTMT := 退化三角形中位线平行于第三边且与其两半相等 A B C P Q R H H0 H1 H2 H3); spliter.
+assert (HTMT := 退化三角形中位线平行于第三边且与其两半相等 A B C P Q R H H0 H1 H2 H3); 分离合取式.
 assumption.
 Qed.
 
@@ -327,7 +327,7 @@ intros.
 elim (共线的决定性 A B C); intro.
   apply 退化三角形中位线定理综合; assumption.
 
-  assert (HTMT := 三角形中位线定理综合 A B C P Q R H5 H2 H3 H4); spliter.
+  assert (HTMT := 三角形中位线定理综合 A B C P Q R H5 H2 H3 H4); 分离合取式.
   repeat split; try apply par_strict_par; assumption.
 Qed.
 
@@ -345,9 +345,9 @@ perm_apply (广义三角形中位线平行于第三边 B C A Q R).
 induction (共线的决定性 A B C).
  assert (Par C B Q R /\ Cong B P R Q).
   apply (退化三角形中位线平行于第三边2且与其一半相等2 C B A R Q P); 中点; Col.
-  spliter.
+  分离合取式.
   Cong.
- assert (HTMT := 三角形中位线定理综合 A B C P Q R H3 H0 H1 H2); spliter.
+ assert (HTMT := 三角形中位线定理综合 A B C P Q R H3 H0 H1 H2); 分离合取式.
  assumption.
 Qed.
 

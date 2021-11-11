@@ -11,14 +11,14 @@ Lemma lemma_paralleldef2B :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists a b c d e, (neq A B /\ neq C D /\ Col A B a /\ Col A B b /\ neq a b /\ Col C D c /\ Col C D d /\ neq c d /\ ~ Meet A B C D /\ BetS a e d /\ BetS c e b)) by (conclude_def Par );destruct Tf as [a[b[c[d[e]]]]];spliter.
+assert (Tf:exists a b c d e, (neq A B /\ neq C D /\ Col A B a /\ Col A B b /\ neq a b /\ Col C D c /\ Col C D d /\ neq c d /\ ~ Meet A B C D /\ BetS a e d /\ BetS c e b)) by (conclude_def Par );destruct Tf as [a[b[c[d[e]]]]];分离合取式.
 assert (neq b a) by (conclude lemma_inequalitysymmetric).
 assert (neq e b) by (forward_using lemma_betweennotequal).
 assert (~ Meet a b C D).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists R, (neq a b /\ neq C D /\ Col a b R /\ Col C D R)) by (conclude_def Meet );destruct Tf as [R];spliter.
+ assert (Tf:exists R, (neq a b /\ neq C D /\ Col a b R /\ Col C D R)) by (conclude_def Meet );destruct Tf as [R];分离合取式.
  assert (Col b a R) by (forward_using lemma_collinearorder).
  assert (Col B a b) by (conclude lemma_collinear4).
  assert (Col b a B) by (forward_using lemma_collinearorder).
@@ -51,7 +51,7 @@ assert (~ Meet a b C D).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists P, (BetS e b P /\ Cong b P e b)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS e b P /\ Cong b P e b)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
 assert (BetS P b e) by (conclude axiom_betweennesssymmetry).
 assert (BetS b e c) by (conclude axiom_betweennesssymmetry).
 assert (BetS P b c) by (conclude lemma_3_7b).
@@ -106,7 +106,7 @@ assert (~ Col a d P).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists M, (BetS P M d /\ BetS a b M)) by (conclude postulate_Pasch_outer);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS P M d /\ BetS a b M)) by (conclude postulate_Pasch_outer);destruct Tf as [M];分离合取式.
 assert (BetS M b a) by (conclude axiom_betweennesssymmetry).
 assert (BetS P b c) by (conclude axiom_betweennesssymmetry).
 assert (Col a b M) by (conclude_def Col ).
@@ -154,7 +154,7 @@ assert (~ Meet A B c d).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists R, (neq A B /\ neq c d /\ Col A B R /\ Col c d R)) by (conclude_def Meet );destruct Tf as [R];spliter.
+ assert (Tf:exists R, (neq A B /\ neq c d /\ Col A B R /\ Col c d R)) by (conclude_def Meet );destruct Tf as [R];分离合取式.
  assert (Col D c d) by (conclude lemma_collinear4).
  assert (Col D C c) by (forward_using lemma_collinearorder).
  assert (Col D C d) by (forward_using lemma_collinearorder).

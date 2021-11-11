@@ -18,7 +18,7 @@ assert (~ ~ (CR A D B C \/ CR A C B D)).
  assert (Par A B D C) by (forward_using lemma_parallelflip).
  assert (CR A C D B) by (conclude lemma_crisscross).
  let Tf:=fresh in
- assert (Tf:exists p, (BetS A p C /\ BetS D p B)) by (conclude_def CR );destruct Tf as [p];spliter.
+ assert (Tf:exists p, (BetS A p C /\ BetS D p B)) by (conclude_def CR );destruct Tf as [p];分离合取式.
  assert (neq D B) by (forward_using lemma_betweennotequal).
  assert (neq B D) by (conclude lemma_inequalitysymmetric).
  assert (BetS B p D) by (conclude axiom_betweennesssymmetry).
@@ -33,7 +33,7 @@ by cases on (CR A D B C \/ CR A C B D).
  }
 {
  let Tf:=fresh in
- assert (Tf:exists p, (BetS A p C /\ BetS B p D)) by (conclude_def CR );destruct Tf as [p];spliter.
+ assert (Tf:exists p, (BetS A p C /\ BetS B p D)) by (conclude_def CR );destruct Tf as [p];分离合取式.
  assert (CR B D A C) by (conclude_def CR ).
  assert (Par B A C D) by (forward_using lemma_parallelflip).
  assert (Par B A C E) by (forward_using lemma_parallelflip).

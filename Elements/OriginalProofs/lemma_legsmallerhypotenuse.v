@@ -13,7 +13,7 @@ Proof.
 intros.
 assert (Per C B A) by (conclude lemma_8_2).
 let Tf:=fresh in
-assert (Tf:exists D, (BetS C B D /\ Cong C B D B /\ Cong C A D A /\ neq B A)) by (conclude_def Per );destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS C B D /\ Cong C B D B /\ Cong C A D A /\ neq B A)) by (conclude_def Per );destruct Tf as [D];分离合取式.
 assert (nCol A B C) by (conclude lemma_rightangleNC).
 assert (Triangle A B C) by (conclude_def Triangle ).
 assert (~ Col A C B).

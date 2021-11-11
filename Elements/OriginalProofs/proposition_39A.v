@@ -13,7 +13,7 @@ intros.
 assert (nCol A B C) by (conclude_def Triangle ).
 assert (neq A B) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists m, (BetS A m B /\ Cong m A m B)) by (conclude proposition_10);destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS A m B /\ Cong m A m B)) by (conclude proposition_10);destruct Tf as [m];分离合取式.
 assert (Col A m B) by (conclude_def Col ).
 assert (Col A B m) by (forward_using lemma_collinearorder).
 assert (eq A A) by (conclude cn_equalityreflexive).
@@ -23,7 +23,7 @@ assert (nCol A m C) by (conclude lemma_NChelper).
 assert (neq m C) by (forward_using lemma_NCdistinct).
 assert (neq C m) by (conclude lemma_inequalitysymmetric).
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (BetS C m H /\ Cong m H m C)) by (conclude lemma_extension);destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS C m H /\ Cong m H m C)) by (conclude lemma_extension);destruct Tf as [H];分离合取式.
 assert (BetS B m A) by (conclude axiom_betweennesssymmetry).
 assert (BetS C M A) by (conclude axiom_betweennesssymmetry).
 assert (Cong m B m A) by (conclude lemma_congruencesymmetric).
@@ -49,7 +49,7 @@ assert (~ Col B A H).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists E, (BetS B M E /\ BetS H A E)) by (conclude postulate_Euclid5);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS B M E /\ BetS H A E)) by (conclude postulate_Euclid5);destruct Tf as [E];分离合取式.
 assert (BetS H m C) by (conclude axiom_betweennesssymmetry).
 assert (Col C m H) by (conclude_def Col ).
 assert (Col m C H) by (forward_using lemma_collinearorder).

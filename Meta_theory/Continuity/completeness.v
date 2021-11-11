@@ -56,7 +56,7 @@ Lemma extension__line_extension : forall {Tm: 无维度中性塔斯基公理系�
   P <> Q -> extension f -> line_extension f P Q.
 Proof.
   unfold extension, inj, pres_bet, pres_cong, line_extension, inj_line, pres_bet_line, pres_cong_line.
-  intros Tm f P Q HPQ fext; spliter.
+  intros Tm f P Q HPQ fext; 分离合取式.
   repeat split; auto.
 Qed.
 
@@ -110,7 +110,7 @@ Proof.
   assert (fext' := fext).
   assert (Haux : forall X Y, X <> Y -> line_extension f X Y).
     intros; apply extension__line_extension; assumption.
-  unfold extension, inj, pres_bet, pres_cong in fext'; spliter.
+  unfold extension, inj, pres_bet, pres_cong in fext'; 分离合取式.
   destruct (@中点的存在性 Tn TnEQD P Q) as [S HS].
   统计不重合点.
   destruct (共线的决定性 (f R) (f S) A).
@@ -205,7 +205,7 @@ Lemma extension_to_plane__plane : forall {Tm: 无维度中性塔斯基公理系�
 Proof.
   intros Tm Tm2 M f fext A B C P Q HPQ H1 H2 H3.
   apply (extension_reverse_col f); trivial.
-  unfold extension, inj, pres_cong in fext; spliter.
+  unfold extension, inj, pres_cong in fext; 分离合取式.
   unfold Col; apply 防升维公理 with (f P) (f Q); auto.
 Qed.
 
@@ -225,7 +225,7 @@ Lemma extension_to_3d__三维防升维公理 : forall {Tm: 无维度中性塔斯
 Proof.
   intros Tm Tm2 M f fext A B C P Q R; intros.
   apply (extension_reverse_col f); trivial.
-  unfold extension, inj, pres_cong in fext; spliter.
+  unfold extension, inj, pres_cong in fext; 分离合取式.
   unfold Col; apply 三维防升维公理 with (f P) (f Q) (f R); auto.
 Qed.
 

@@ -14,7 +14,7 @@ intros.
 assert (BetS d C c) by (conclude axiom_betweennesssymmetry).
 assert ((neq A B /\ neq c d /\ ~ Meet A B c d /\ OS c d A B)) by (conclude_def TP ).
 let Tf:=fresh in
-assert (Tf:exists p q r, (Col A B p /\ Col A B r /\ BetS c p q /\ BetS d r q /\ nCol A B c /\ nCol A B d)) by (conclude_def OS );destruct Tf as [p[q[r]]];spliter.
+assert (Tf:exists p q r, (Col A B p /\ Col A B r /\ BetS c p q /\ BetS d r q /\ nCol A B c /\ nCol A B d)) by (conclude_def OS );destruct Tf as [p[q[r]]];分离合取式.
 assert (neq C d) by (forward_using lemma_betweennotequal).
 assert (BetS q p c) by (conclude axiom_betweennesssymmetry).
 assert (BetS q r d) by (conclude axiom_betweennesssymmetry).
@@ -62,11 +62,11 @@ assert (neq q c) by (forward_using lemma_betweennotequal).
 assert (nCol q c d) by (conclude lemma_NChelper).
 assert (BetS q p c) by (conclude axiom_betweennesssymmetry).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS q E C /\ BetS d E p)) by (conclude postulate_Pasch_inner);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS q E C /\ BetS d E p)) by (conclude postulate_Pasch_inner);destruct Tf as [E];分离合取式.
 assert (BetS p E d) by (conclude axiom_betweennesssymmetry).
 assert (BetS q r d) by (conclude axiom_betweennesssymmetry).
 let Tf:=fresh in
-assert (Tf:exists F, (BetS q F E /\ BetS p F r)) by (conclude postulate_Pasch_inner);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS q F E /\ BetS p F r)) by (conclude postulate_Pasch_inner);destruct Tf as [F];分离合取式.
 assert (Col p r F) by (conclude_def Col ).
 assert (Col B r p) by (conclude lemma_collinear4).
 assert (Col B A p) by (forward_using lemma_collinearorder).
@@ -135,7 +135,7 @@ assert (~ Meet A B C d).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists R, (neq A B /\ neq C d /\ Col A B R /\ Col C d R)) by (conclude_def Meet );destruct Tf as [R];spliter.
+ assert (Tf:exists R, (neq A B /\ neq C d /\ Col A B R /\ Col C d R)) by (conclude_def Meet );destruct Tf as [R];分离合取式.
  assert (Col c C d) by (conclude_def Col ).
  assert (Col C d c) by (forward_using lemma_collinearorder).
  assert (neq C d) by (forward_using lemma_betweennotequal).

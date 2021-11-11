@@ -41,9 +41,9 @@ assert (~ eq B C).
 assert (neq B U) by (conclude lemma_raystrict).
 assert (neq B V) by (conclude lemma_raystrict).
 let Tf:=fresh in
-assert (Tf:exists P, (BetS B A P /\ Cong A P B U)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS B A P /\ Cong A P B U)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS B C Q /\ Cong C Q B V)) by (conclude lemma_extension);destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS B C Q /\ Cong C Q B V)) by (conclude lemma_extension);destruct Tf as [Q];分离合取式.
 assert (~ Col B Q A).
  {
  intro.
@@ -57,7 +57,7 @@ assert (~ Col B Q A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists F, (BetS A F Q /\ BetS B E F)) by (conclude postulate_Pasch_outer);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS A F Q /\ BetS B E F)) by (conclude postulate_Pasch_outer);destruct Tf as [F];分离合取式.
 assert (BetS Q F A) by (conclude axiom_betweennesssymmetry).
 assert (~ Col B P Q).
  {
@@ -71,10 +71,10 @@ assert (~ Col B P Q).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists W, (BetS Q W P /\ BetS B F W)) by (conclude postulate_Pasch_outer);destruct Tf as [W];spliter.
+assert (Tf:exists W, (BetS Q W P /\ BetS B F W)) by (conclude postulate_Pasch_outer);destruct Tf as [W];分离合取式.
 assert (BetS B E W) by (conclude lemma_3_6b).
 let Tf:=fresh in
-assert (Tf:exists J, (BetS J B U /\ BetS J B A)) by (conclude_def Out );destruct Tf as [J];spliter.
+assert (Tf:exists J, (BetS J B U /\ BetS J B A)) by (conclude_def Out );destruct Tf as [J];分离合取式.
 assert (Cong A P P A) by (conclude cn_equalityreverse).
 assert (Cong B U A P) by (conclude lemma_congruencesymmetric).
 assert (Cong B U P A) by (conclude lemma_congruencetransitive).
@@ -84,13 +84,13 @@ assert (Lt B U P B) by (conclude_def Lt ).
 assert (Cong P B B P) by (conclude cn_equalityreverse).
 assert (Lt B U B P) by (conclude lemma_lessthancongruence).
 let Tf:=fresh in
-assert (Tf:exists S, (BetS B S P /\ Cong B S B U)) by (conclude_def Lt );destruct Tf as [S];spliter.
+assert (Tf:exists S, (BetS B S P /\ Cong B S B U)) by (conclude_def Lt );destruct Tf as [S];分离合取式.
 assert (BetS J B P) by (conclude lemma_3_7b).
 assert (BetS J B S) by (conclude axiom_innertransitivity).
 assert (eq S U) by (conclude lemma_extensionunique).
 assert (BetS B U P) by (conclude cn_equalitysub).
 let Tf:=fresh in
-assert (Tf:exists K, (BetS K B V /\ BetS K B C)) by (conclude_def Out );destruct Tf as [K];spliter.
+assert (Tf:exists K, (BetS K B V /\ BetS K B C)) by (conclude_def Out );destruct Tf as [K];分离合取式.
 assert (Cong B V C Q) by (conclude lemma_congruencesymmetric).
 assert (Cong C Q Q C) by (conclude cn_equalityreverse).
 assert (Cong B V Q C) by (conclude lemma_congruencetransitive).
@@ -100,7 +100,7 @@ assert (Lt B V Q B) by (conclude_def Lt ).
 assert (Cong Q B B Q) by (conclude cn_equalityreverse).
 assert (Lt B V B Q) by (conclude lemma_lessthancongruence).
 let Tf:=fresh in
-assert (Tf:exists R, (BetS B R Q /\ Cong B R B V)) by (conclude_def Lt );destruct Tf as [R];spliter.
+assert (Tf:exists R, (BetS B R Q /\ Cong B R B V)) by (conclude_def Lt );destruct Tf as [R];分离合取式.
 assert (BetS K B Q) by (conclude lemma_3_7b).
 assert (BetS K B R) by (conclude axiom_innertransitivity).
 assert (eq R V) by (conclude lemma_extensionunique).
@@ -112,7 +112,7 @@ assert (~ Col Q P B).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists M, (BetS Q M U /\ BetS B M W)) by (conclude postulate_Pasch_inner);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS Q M U /\ BetS B M W)) by (conclude postulate_Pasch_inner);destruct Tf as [M];分离合取式.
 assert (BetS U M Q) by (conclude axiom_betweennesssymmetry).
 assert (~ Col U Q B).
  {
@@ -128,7 +128,7 @@ assert (~ Col U Q B).
  contradict.
  }
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (BetS U H V /\ BetS B H M)) by (conclude postulate_Pasch_inner);destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS U H V /\ BetS B H M)) by (conclude postulate_Pasch_inner);destruct Tf as [H];分离合取式.
 assert (~ eq E B).
  {
  intro.
@@ -136,7 +136,7 @@ assert (~ eq E B).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists N, (BetS E B N /\ Cong B N B E)) by (conclude lemma_extension);destruct Tf as [N];spliter.
+assert (Tf:exists N, (BetS E B N /\ Cong B N B E)) by (conclude lemma_extension);destruct Tf as [N];分离合取式.
 assert (BetS N B E) by (conclude axiom_betweennesssymmetry).
 assert (BetS B H W) by (conclude lemma_3_6b).
 assert (BetS N B W) by (conclude lemma_3_7b).

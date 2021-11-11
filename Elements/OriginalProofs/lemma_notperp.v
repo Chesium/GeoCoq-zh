@@ -25,7 +25,7 @@ assert (~ eq C P).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS B C Q /\ Cong C Q C P)) by (conclude lemma_extension);destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS B C Q /\ Cong C Q C P)) by (conclude lemma_extension);destruct Tf as [Q];分离合取式.
 assert (~ eq P Q).
  {
  intro.
@@ -39,7 +39,7 @@ assert (~ eq P Q).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists M, (BetS P M Q /\ Cong M P M Q)) by (conclude proposition_10);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS P M Q /\ Cong M P M Q)) by (conclude proposition_10);destruct Tf as [M];分离合取式.
 assert (Col A C B) by (conclude_def Col ).
 assert (Col C B A) by (forward_using lemma_collinearorder).
 assert (neq C B) by (forward_using lemma_betweennotequal).
@@ -72,9 +72,9 @@ assert (~ Col A B M).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists R, 垂直于 M R A B R) by (conclude proposition_12);destruct Tf as [R];spliter.
+assert (Tf:exists R, 垂直于 M R A B R) by (conclude proposition_12);destruct Tf as [R];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists E, (Col M R R /\ Col A B R /\ Col A B E /\ Per E R M)) by (conclude_def 垂直于 );destruct Tf as [E];spliter.
+assert (Tf:exists E, (Col M R R /\ Col A B R /\ Col A B E /\ Per E R M)) by (conclude_def 垂直于 );destruct Tf as [E];分离合取式.
 assert (Per M R E) by (conclude lemma_8_2).
 assert (~ eq M R).
  {

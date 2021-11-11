@@ -9,8 +9,8 @@ Lemma par_dec_NID : decidability_of_parallelism <-> decidability_of_not_intersec
 Proof.
 split; intros Hdec A B C D; destruct (cop_dec A B C D) as [|HNCop].
 - destruct (Hdec A B C D) as [[HParS|Heq]|HNPar].
-  * left; unfold 严格平行 in HParS; spliter; assumption.
-  * right; intro Habs; apply Habs; exists B; spliter; Col.
+  * left; unfold 严格平行 in HParS; 分离合取式; assumption.
+  * right; intro Habs; apply Habs; exists B; 分离合取式; Col.
   * right; intro Habs.
     destruct (两点重合的决定性 A B).
       apply Habs; exists C; subst; split; Col.
@@ -31,15 +31,15 @@ split; intros Hdec A B C D; destruct (cop_dec A B C D) as [|HNCop].
       left; right; repeat split; assumption.
     right; intros [[_ Habs]|].
       apply Habs; exists A; split; Col.
-    spliter; auto.
+    分离合取式; auto.
   }
 
   destruct (Hdec A B C D) as [HPar|HNPar].
     left; left; repeat split; assumption.
   right.
   intros [HParS|Heq].
-    apply HNPar; unfold 严格平行 in HParS; spliter; assumption.
-  spliter; auto.
+    apply HNPar; unfold 严格平行 in HParS; 分离合取式; assumption.
+  分离合取式; auto.
 
 - right; intro HPar; apply HNCop, par__coplanar, HPar.
 Qed.
@@ -191,7 +191,7 @@ elim (共线的决定性 A1 B1 B2); intro HNC1.
   assert (HC : C1 <> C2) by (统计不重合点; auto).
   apply (not_strict_par _ _ _ _ A1) in HPar1; Col.
   destruct HPar1 as [HC1 HC2]; clear HNC1.
-  apply (not_strict_par _ _ _ _ P) in HPar2; spliter; [split|..]; ColR.
+  apply (not_strict_par _ _ _ _ P) in HPar2; 分离合取式; [split|..]; ColR.
   }
 
   {
@@ -203,7 +203,7 @@ elim (共线的决定性 A1 B1 B2); intro HNC1.
     assert (HC : C1 <> C2) by (统计不重合点; auto).
     apply (not_strict_par _ _ _ _ A1) in HPar2; Col.
     destruct HPar2 as [HC1 HC2]; clear HNC2.
-    apply (not_strict_par _ _ _ _ P) in HPar1; spliter; [split|..]; ColR.
+    apply (not_strict_par _ _ _ _ P) in HPar1; 分离合取式; [split|..]; ColR.
     }
 
     {
@@ -220,9 +220,9 @@ elim (共线的决定性 A1 B1 B2); intro HNC1.
       destruct HPar1 as [[IAB HIAB] _].
       exists IAB; intros [HIAB1 [HIAB2 HIAB3]].
       elim HIAB; clear HIAB; intro HIAB; [apply HIAB1|].
-        spliter; split; Col.
+        分离合取式; split; Col.
       elim HIAB; clear HIAB; intro HIAB; [apply HIAB2|apply HIAB3];
-      spliter; split; Col.
+      分离合取式; split; Col.
       }
 
       {
@@ -231,9 +231,9 @@ elim (共线的决定性 A1 B1 B2); intro HNC1.
       destruct HPar2 as [[IAC HIAC] _].
       exists IAC; intros [HIAC1 [HIAC2 HIAC3]].
       elim HIAC; clear HIAC; intro HIAC; [apply HIAC1|].
-        spliter; split; Col.
+        分离合取式; split; Col.
       elim HIAC; clear HIAC; intro HIAC; [apply HIAC2|apply HIAC3];
-      spliter; split; Col.
+      分离合取式; split; Col.
       }
 
       {
@@ -278,14 +278,14 @@ repeat (split; [assumption|]).
 assert (HNC1 : ~ Col A1 B1 B2).
   {
   intro.
-  apply (not_strict_par _ _ _ _ A1) in HPar1; Col; spliter.
-  apply (not_strict_par _ _ _ _ P) in HPar2; spliter; [apply HNC; split|..]; ColR.
+  apply (not_strict_par _ _ _ _ A1) in HPar1; Col; 分离合取式.
+  apply (not_strict_par _ _ _ _ P) in HPar2; 分离合取式; [apply HNC; split|..]; ColR.
   }
 assert (HNC2 : ~ Col A1 C1 C2).
   {
   intro.
-  apply (not_strict_par _ _ _ _ A1) in HPar2; Col; spliter.
-  apply (not_strict_par _ _ _ _ P) in HPar1; spliter; [apply HNC; split|..]; ColR.
+  apply (not_strict_par _ _ _ _ A1) in HPar2; Col; 分离合取式.
+  apply (not_strict_par _ _ _ _ P) in HPar1; 分离合取式; [apply HNC; split|..]; ColR.
   }
 apply par_symmetry in HPar1; apply (par_not_col_strict _ _ _ _ A1) in HPar1;
 Col; apply par_strict_symmetry in HPar1; destruct HPar1 as [HCop1 HPar1].
@@ -297,18 +297,18 @@ repeat (split; [tauto|]); intuition.
   destruct HCop1 as [IAB HIAB].
   exists IAB; intros [HIAB1 [HIAB2 HIAB3]].
   elim HIAB; clear HIAB; intro HIAB.
-    apply HIAB1; spliter; split; Col.
+    apply HIAB1; 分离合取式; split; Col.
   elim HIAB; clear HIAB; intro HIAB; [apply HIAB2|apply HIAB3];
-  spliter; split; Col.
+  分离合取式; split; Col.
   }
 
   {
   destruct HCop2 as [IAC HIAC].
   exists IAC; intros [HIAC1 [HIAC2 HIAC3]].
   elim HIAC; clear HIAC; intro HIAC.
-    apply HIAC1; spliter; split; Col.
+    apply HIAC1; 分离合取式; split; Col.
   elim HIAC; clear HIAC; intro HIAC; [apply HIAC2|apply HIAC3];
-  spliter; split; Col.
+  分离合取式; split; Col.
   }
 Qed.
 

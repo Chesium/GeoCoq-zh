@@ -47,7 +47,7 @@ Proof.
 intros.
 destruct (line_existence A B H) as [l []].
 elim (cong_existence A B A B l); auto; intros B' H2.
-spliter.
+分离合取式.
 apply cong_pseudo_transitivity with A B'.
 assumption.
 apply 等长的等价排列r.
@@ -108,7 +108,7 @@ intros.
 unfold ColH in *.
 induction H.
 exists x.
-spliter.
+分离合取式.
 repeat split; assumption.
 Qed.
 
@@ -126,7 +126,7 @@ intros.
 unfold ColH in *.
 induction H.
 exists x.
-spliter.
+分离合取式.
 repeat split; assumption.
 Qed.
 
@@ -215,7 +215,7 @@ Ltac line_col A B C := match goal with
                           => let HH := fresh in assert(ColH A B C) by (unfold ColH; exists l; repeat split; auto); auto
                        end.
 
-Ltac col_line H l := assert(HH:=H); unfold ColH in HH; destruct HH as [l HH]; spliter.
+Ltac col_line H l := assert(HH:=H); unfold ColH in HH; destruct HH as [l HH]; 分离合取式.
 
 Ltac lines_eq l m :=
 match goal with
@@ -240,7 +240,7 @@ repeat split; assumption.
 right.
 intro.
 apply H2.
-destruct H3 as [l00]; spliter.
+destruct H3 as [l00]; 分离合取式.
 rewrite (line_uniqueness A B l l00 H); assumption.
 Qed.
 
@@ -251,7 +251,7 @@ destruct H0 as [l].
 destruct H1 as [m].
 destruct H2 as [o].
 exists l.
-spliter.
+分离合取式.
 repeat split.
 assumption.
 rewrite (line_uniqueness X Y l m); assumption.
@@ -269,7 +269,7 @@ intros.
 unfold Bet in H.
 induction H.
 apply between_col in H.
-spliter.
+分离合取式.
 assumption.
 induction H;subst B.
 apply colH_trivial112.
@@ -284,14 +284,14 @@ Hint Resolve colH_trivial121 colH_trivial122 colH_trivial112 colH_trivial111 col
 
 Ltac Col := auto 3 with col.
 
-Ltac line A B l Hdiff := let H:=fresh in (assert(H:= line_existence A B Hdiff); destruct H as [l]; spliter).
+Ltac line A B l Hdiff := let H:=fresh in (assert(H:= line_existence A B Hdiff); destruct H as [l]; 分离合取式).
 
 Ltac line_col A B C := match goal with
                           |H1:(IncidL A ?l), H2:(IncidL B ?l), H3:(IncidL C ?l) |- _ 
                           => let HH := fresh in assert(ColH A B C) by (unfold ColH; exists l; repeat split; auto); auto
                        end.
 
-Ltac col_line H l := assert(HH:=H); unfold ColH in HH; destruct HH as [l HH]; spliter.
+Ltac col_line H l := assert(HH:=H); unfold ColH in HH; destruct HH as [l HH]; 分离合取式.
 
 Ltac lines_eq l m :=
 match goal with
@@ -311,7 +311,7 @@ Hint Resolve between_comm : bet.
 
 Ltac Bet := auto 3 with bet.
 
-Ltac two_points l X Y := assert(_H := two_points_on_line l); destruct _H as [X _H]; destruct _H as [Y _H]; spliter.
+Ltac two_points l X Y := assert(_H := two_points_on_line l); destruct _H as [X _H]; destruct _H as [Y _H]; 分离合取式.
 
 Section HilbertContext_2.
 
@@ -353,7 +353,7 @@ Proof.
 intros.
 assert (HH0:= H).
 apply betH_distincts in HH0.
-spliter.
+分离合取式.
 repeat split; auto.
 apply between_col in H.
 tauto.
@@ -436,11 +436,11 @@ Lemma cut_comm : forall A B l, cut l A B -> cut l B A.
 Proof.
 intros.
 unfold cut in *.
-spliter.
+分离合取式.
 repeat split; auto.
 destruct H1 as [I H1].
 exists I.
-spliter.
+分离合取式.
 apply between_comm in H2.
 split; auto.
 Qed.
@@ -450,7 +450,7 @@ Lemma line_on_plane' : forall A B C p, A <> B ->
 Proof.
 intros.
 destruct H2 as [l].
-spliter.
+分离合取式.
 apply (line_on_plane A B l); assumption.
 Qed.
 
@@ -466,8 +466,8 @@ elim (两点重合的决定性H Q A);intros HQA.
 subst.
 exfalso.
 apply H.
-apply betH_expand in H1;spliter.
-apply betH_expand in H0;spliter.
+apply betH_expand in H1;分离合取式.
+apply betH_expand in H0;分离合取式.
 ColHR.
 
 line Q A l HQA.
@@ -497,7 +497,7 @@ intro.
 apply H.
 apply between_col in H0.
 apply between_col in H1.
-spliter.
+分离合取式.
 line_col A P Q.
 assert(ColH P C Q).
 eapply (colH_trans A P); Col.
@@ -524,12 +524,12 @@ line_col A B Q.
 assert(ColH A B C).
 apply between_col in H0.
 apply between_col in H1.
-spliter.
+分离合取式.
 apply(colH_trans B Q);
 Col.
 apply between_col in H0.
 apply between_col in H1.
-spliter.
+分离合取式.
 apply H.
 
 apply (colH_trans A C); Col.
@@ -539,13 +539,13 @@ intro.
 line_col A C Q.
 assert(ColH A B C).
 apply between_col in H1.
-spliter.
+分离合取式.
 apply(colH_trans C Q);
 Col.
 apply H.
 apply between_col in H0.
 apply between_col in H1.
-spliter.
+分离合取式.
 apply (colH_trans A C); Col.
 
 assert(cut l B C).
@@ -555,16 +555,16 @@ exists Q.
 split; auto.
 
 destruct (plane_existence B C P H) as [p].
-spliter.
+分离合取式.
 assert(PH:=pasch B C P l p).
 induction PH; trivial.
 
 clear dependent p.
 unfold cut in H14.
-spliter.
+分离合取式.
 destruct H13 as [X HX].
 exists X.
-spliter.
+分离合取式.
 split.
 left.
 apply between_comm.
@@ -578,7 +578,7 @@ subst Q.
 (*unfold Bet*)
 apply between_col in  H0.
 apply between_col in  H1.
-spliter.
+分离合取式.
 apply H.
 apply (colH_trans A C); Col.
 assert(P <> C).
@@ -590,7 +590,7 @@ assert(A <> B).
   intro.
   subst B.
   apply between_col in H0.
-  spliter.
+  分离合取式.
   apply H.
   Col.
 assert(X <> Q).
@@ -599,7 +599,7 @@ subst X.
 apply H.
 apply between_col in H1.
 apply between_col in H14.
-spliter.
+分离合取式.
 apply (colH_trans B Q); Col.
 assert(ColH A X Q).
 unfold ColH.
@@ -627,7 +627,7 @@ unfold ColH.
 exists m.
 repeat split; try assumption.
 apply between_col in H1.
-spliter.
+分离合取式.
 col_line H1 m0.
 lines_eq m m0.
 assumption.
@@ -656,27 +656,27 @@ exists P.
 split; auto.
 
 destruct (plane_existence A C Q HN) as [p].
-spliter.
+分离合取式.
 assert(HH:= pasch A C Q m p).
 induction HH; trivial.
 
 clear dependent p.
 unfold cut in H29.
-spliter.
+分离合取式.
 destruct H28 as [Y H28].
-spliter.
+分离合取式.
 
 assert(X=Y).
 apply(inter_incid_uniquenessH B X Y l m); auto.
 apply between_col in H29.
-spliter.
+分离合取式.
 unfold ColH in H29.
 destruct H29 as [l0 H29].
-spliter.
+分离合取式.
 lines_eq l0 l.
 assumption.
 apply between_col in H14.
-spliter.
+分离合取式.
 col_line H14 m0.
 lines_eq m m0.
 assumption.
@@ -687,10 +687,10 @@ assumption.
 
 clear dependent p.
 unfold cut in H29.
-spliter.
+分离合取式.
 
 destruct H28 as [I H28].
-spliter.
+分离合取式.
 assert(ColH C I Q).
 apply between_col in H29.
 tauto.
@@ -705,7 +705,7 @@ repeat split; auto.
 
 assert(IncidL B o).
 apply between_col in H1.
-spliter.
+分离合取式.
 col_line H1 n0.
 lines_eq o n0.
 assumption.
@@ -714,7 +714,7 @@ assert(HH:= inter_incid_uniquenessH C I B m o H34 H31 H28 H22 H32 H35).
 subst I.
 apply False_ind.
 apply between_only_one' in H1.
-spliter.
+分离合取式.
 apply H36.
 apply between_comm.
 assumption.
@@ -728,9 +728,9 @@ apply (line_on_plane' Q C); Col.
 
 clear dependent p.
 unfold cut in H14.
-spliter.
+分离合取式.
 destruct H13 as [I H13].
-spliter.
+分离合取式.
 assert(A = I).
 
 line A C s H7.
@@ -742,33 +742,33 @@ assert( A <> Q).
 intro.
 subst Q.
 apply between_col in H1.
-spliter.
+分离合取式.
 apply H.
 apply between_col in H0.
 unfold ColH.
-spliter.
+分离合取式.
 apply (colH_trans A C); Col.
 
 lines_eq l s.
 unfold cut in H10.
-spliter.
+分离合取式.
 contradiction.
 apply between_col in H14.
-spliter.
+分离合取式.
 apply between_col in H0.
-spliter.
+分离合取式.
 unfold ColH in H0.
 destruct H0 as [s0 H0].
-spliter.
+分离合取式.
 lines_eq s s0.
 
 col_line H14 s1.
-apply ncolH_distincts in H;spliter.
+apply ncolH_distincts in H;分离合取式.
 lines_eq s s1.
 assumption.
 subst I.
 apply between_only_one in H14.
-spliter.
+分离合取式.
 
 contradiction.
 
@@ -779,7 +779,7 @@ assumption.
 apply (line_on_plane' B C); Col.
 apply (between_diff B Q C H1).
 apply betH_colH in H0.
-spliter.
+分离合取式.
 apply (line_on_plane' P C); Col.
 
 induction H1.
@@ -825,7 +825,7 @@ assert(HH0 := H).
 assert(HH1:= H0).
 apply betH_distincts in HH0.
 apply betH_distincts in HH1.
-spliter.
+分离合取式.
 clean_duplicated_hyps.
 assert(HH:=ncolH_exists A C H6).
 destruct HH as [E HE].
@@ -836,7 +836,7 @@ assert(HF:=between_out C E H1).
 destruct HF as [F HF].
 assert(HHF:=HF).
 apply betH_distincts in HHF.
-spliter.
+分离合取式.
 
 assert(ColH A B C).
 apply between_col in H.
@@ -862,7 +862,7 @@ left; assumption.
 unfold Bet.
 left; apply between_comm; assumption.
 destruct H14 as [G H14].
-spliter.
+分离合取式.
 
 
 induction H14.
@@ -871,7 +871,7 @@ assert(HH15:=H14).
 apply between_col in HH15.
 assert(HH16:=H15).
 apply between_col in HH16.
-spliter.
+分离合取式.
 
 assert(~ColH D B G).
 intro.
@@ -894,7 +894,7 @@ assert(~(cut m A G \/ cut m B G)).
 intro.
 induction H19.
 unfold cut in H19.
-spliter.
+分离合取式.
 ex_and H21 E'.
 assert(E = E').
 apply (inter_uniquenessH A G C F E E'); Col.
@@ -910,11 +910,11 @@ subst E'.
 apply between_only_one in H22.
 tauto.
 unfold cut in H19.
-spliter.
+分离合取式.
 ex_and H21 F'.
 assert(F = F').
 apply betH_distincts in H14.
-spliter.
+分离合取式.
 apply (inter_uniquenessH C E B G); Col.
 intro.
 apply HE.
@@ -922,7 +922,7 @@ apply (colH_trans B C); Col.
 line_col C E F'.
 subst F'.
 apply between_only_one in H22.
-spliter.
+分离合取式.
 apply between_comm in H14.
 contradiction.
 
@@ -931,13 +931,13 @@ intro.
 apply H16. Col.
 
 assert(~IncidL G m).
-spliter.
+分离合取式.
 intro.
 assert(ColH C E G).
 unfold ColH.
 exists m; split; auto.
 apply betH_distincts in H15.
-spliter.
+分离合取式.
 apply HE.
 apply (colH_trans E G); Col.
 
@@ -966,7 +966,7 @@ assumption.
 apply cut_comm in H22.
 
 destruct (plane_existence B D G H20) as [p].
-spliter.
+分离合取式.
 assert(HP:= pasch B D G m p).
 induction HP; trivial.
 
@@ -977,9 +977,9 @@ right.
 assumption.
 clear dependent p.
 unfold cut in H26.
-spliter.
+分离合取式.
 destruct H25 as [HX H25].
-spliter.
+分离合取式.
 
 assert(~ ColH G D A).
 intro.
@@ -990,7 +990,7 @@ apply (colH_trans A D); Col.
 intro.
 subst D.
 apply between_only_one' in H0.
-spliter.
+分离合取式.
 apply between_comm in H.
 contradiction.
 
@@ -1008,7 +1008,7 @@ apply between_comm.
 assumption.
 
 destruct (plane_existence G D A H27) as [p].
-spliter.
+分离合取式.
 assert(HP:=pasch G D A m p).
 induction HP; trivial.
 
@@ -1020,7 +1020,7 @@ assumption.
 
 clear dependent p.
 unfold cut in H33.
-spliter.
+分离合取式.
 ex_and H32 C'.
 
 assert(C'= C).
@@ -1035,7 +1035,7 @@ subst D.
 apply H27.
 Col.
 apply between_col in H33;
-spliter.
+分离合取式.
 Col.
 apply (colH_trans B C); Col.
 unfold ColH in H12.
@@ -1054,30 +1054,30 @@ assert (ColH A C D) by (apply (colH_trans B C); Col).
 apply (line_on_plane' A D); Col.
 intro; apply (between_only_one A B C); subst; assumption.
 apply betH_distincts in H15.
-spliter.
+分离合取式.
 apply (line_on_plane' G A); Col.
 
 assert (IncidP C p).
 apply betH_distincts in H0.
-spliter.
+分离合取式.
 apply (line_on_plane' B D); Col.
 apply (line_on_plane C E); trivial.
 apply (line_on_plane' C F); Col.
 apply betH_distincts in H14.
-spliter.
+分离合取式.
 apply (line_on_plane' B G); Col.
 
 induction H15.
 subst G.
 apply False_ind.
 apply between_col in H14.
-spliter.
+分离合取式.
 apply H13.
 apply (colH_trans E F); Col.
 subst G.
 apply False_ind.
 apply between_col in H14.
-spliter.
+分离合取式.
 apply H13.
 apply (colH_trans A B); Col.
 induction H14.
@@ -1085,7 +1085,7 @@ induction H15.
 subst G.
 apply False_ind.
 apply between_col in H15.
-spliter.
+分离合取式.
 apply HE.
 apply(colH_trans A B); Col.
 subst G.
@@ -1098,7 +1098,7 @@ subst B; tauto.
 subst G.
 induction H15.
 apply between_col in H14.
-spliter.
+分离合取式.
 apply False_ind.
 apply HE.
 apply (colH_trans E F); Col.
@@ -1152,7 +1152,7 @@ Proof.
 intros.
 apply betH_expand in H.
 apply betH_expand in H0.
-spliter.
+分离合取式.
 clean_duplicated_hyps.
 assert(HH:=ncolH_exists A B H5).
 destruct HH as [G HE].
@@ -1162,7 +1162,7 @@ tauto.
 assert(HF:=between_out B G H1).
 ex_and HF F.
 apply betH_expand in H9.
-spliter.
+分离合取式.
 
 elim (两点重合的决定性H C F).
 intros HCF.
@@ -1177,7 +1177,7 @@ line C F l HCF.
 assert(~cut l A B).
 intro.
 unfold cut in H16.
-spliter.
+分离合取式.
 ex_and H18 X.
 assert(X=C).
 apply (inter_uniquenessH A B F C); Col.
@@ -1186,21 +1186,21 @@ intro.
 apply HE.
 apply(colH_trans B F); Col.
 apply between_col in H19.
-spliter; Col.
+分离合取式; Col.
 line_col F C X.
 subst X.
 apply between_only_one in H19.
-spliter.
+分离合取式.
 apply between_comm in H.
 contradiction.
 
 assert(~cut l B G).
 intro.
 unfold cut in H17.
-spliter.
+分离合取式.
 ex_and H19 X.
 apply betH_expand in H20.
-spliter.
+分离合取式.
 assert(ColH B X F).
 apply (colH_trans B G); Col.
 col_line H25 l00.
@@ -1208,14 +1208,14 @@ assert(X <> F).
 intro.
 subst X.
 apply between_only_one in H20.
-spliter.
+分离合取式.
 apply between_comm in H9.
 contradiction.
 lines_eq l l00.
 contradiction.
 assert(~cut l A G).
 destruct (plane_existence A B G HE) as [p].
-spliter.
+分离合取式.
 apply not_cut3 with B p; trivial.
 apply (line_on_plane C F); trivial.
 apply (line_on_plane' A B); Col.
@@ -1239,7 +1239,7 @@ apply HE.
 apply(colH_trans A D); Col.
 apply (colH_trans A C) ; Col.
 destruct (plane_existence A D G H19) as [p].
-spliter.
+分离合取式.
 apply(pasch A D G l p); trivial.
 assert (IncidP C p).
 apply (line_on_plane' A D); Col.
@@ -1285,7 +1285,7 @@ apply (colH_trans B D); Col.
 intro.
 subst D.
 apply between_only_one in H0.
-spliter.
+分离合取式.
 apply between_comm in H.
 contradiction.
 assert(~ IncidL B l).
@@ -1297,12 +1297,12 @@ apply HE.
 apply (colH_trans B C); Col.
 
 destruct (plane_existence D G B H20) as [p].
-spliter.
+分离合取式.
 assert(HH:=pasch D G B l p).
 induction HH; trivial.
 clear dependent p.
 unfold cut in H25.
-spliter.
+分离合取式.
 ex_and H24 C'.
 assert(C = C').
 assert(ColH C C' F).
@@ -1312,7 +1312,7 @@ intro.
 apply HE.
 apply (colH_trans B F); Col.
 apply betH_expand in H25.
-spliter.
+分离合取式.
 apply (colH_trans B D); Col.
 apply (colH_trans A C); Col.
 subst C'.
@@ -1351,7 +1351,7 @@ destruct H0.
       (apply between_comm;
       apply (betH_trans0 A A' B C);auto using between_comm).
    apply (betH_trans A' B C C');auto using between_comm.
-   spliter;subst.
+   分离合取式;subst.
     apply between_comm;
    apply (betH_trans C' C B A');auto using between_comm.
  - destruct H0.
@@ -1364,14 +1364,14 @@ destruct H0.
    assert (BetH A B C').
      apply between_comm; apply (betH_trans0 C C' B A);auto using between_comm.
    apply (betH_trans0 A A' B C');auto using between_comm.
-   spliter;subst.
+   分离合取式;subst.
    apply between_comm;apply (betH_trans0 C C' B A');auto using between_comm.
-   spliter;subst.
+   分离合取式;subst.
    destruct H1.
    apply (betH_trans A' A B C');auto using between_comm.
    destruct H1.
    apply (betH_trans0 A A' B C');auto using between_comm.
-   spliter;subst.
+   分离合取式;subst.
    assumption.
 Qed.
 
@@ -1408,7 +1408,7 @@ split.
 unfold Bet.
 left.
 assumption.
-spliter.
+分离合取式.
 repeat split; assumption.
 Qed.
 
@@ -1430,7 +1430,7 @@ unfold Bet in H.
 induction H.
 apply False_ind.
 apply betH_distincts in H.
-spliter.
+分离合取式.
 tauto.
 induction H.
 tauto.
@@ -1468,11 +1468,11 @@ split; auto.
 assert(HH:= between_out A B H1).
 destruct HH as [C HH].
 apply betH_colH in HH.
-spliter.
+分离合取式.
 exists C.
 unfold ColH in H3.
 destruct H2 as [m H2].
-spliter.
+分离合取式.
 lines_eq l m.
 split; auto.
 Qed.
@@ -1492,7 +1492,7 @@ Proof.
 intros.
 unfold Cong in H.
 induction H.
-spliter;
+分离合取式;
 tauto.
 tauto.
 Qed.
@@ -1505,14 +1505,14 @@ intros.
 unfold Cong in *.
 induction H.
 induction H0.
-spliter.
+分离合取式.
 left.
 repeat split; auto.
 apply (cong_pseudo_transitivity A B); auto.
-spliter.
+分离合取式.
 contradiction.
 induction H0.
-spliter.
+分离合取式.
 contradiction.
 right.
 tauto.
@@ -1524,7 +1524,7 @@ intros.
 assert(HH:= two_points_on_line l).
 destruct HH as [X HH].
 destruct HH as [Y HH].
-spliter.
+分离合取式.
 induction(两点重合的决定性H A X).
 exists Y.
 subst X.
@@ -1539,9 +1539,9 @@ unfold disjoint.
 intro.
 destruct H0 as [P []].
 assert(HP:= betH_trans0 A P B C H0 H).
-spliter.
+分离合取式.
 apply between_only_one' in H1.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -1570,16 +1570,16 @@ unfold same_side.
 unfold cut.
 destruct (two_points_on_line l).
 destruct s.
-spliter.
+分离合取式.
 destruct (between_out A x).
 intro;subst. intuition.
 exists x1.
 repeat split;try assumption.
 intro.
 apply betH_expand in H3.
-spliter.
+分离合取式.
 destruct H8.
-spliter.
+分离合取式.
 assert (谓词等长 x2 l).
 apply line_uniqueness with x x1;try assumption.
 apply H.
@@ -1587,9 +1587,9 @@ rewrite H11 in H8;auto.
 exists x;auto.
  intro.
 apply betH_expand in H3.
-spliter.
+分离合取式.
 destruct H8.
-spliter.
+分离合取式.
 assert (谓词等长 x2 l).
 apply line_uniqueness with x x1;try assumption.
 apply H.
@@ -1631,7 +1631,7 @@ Lemma 点的唯一构造 : forall A B D E,
   BetH A B D -> BetH A B E -> CongH B D B E -> D = E.
 Proof.
 intros A B D E HBet1 HBet2 HCong.
-assert (HD1 : A <> B) by (apply betH_expand in HBet1; spliter; auto).
+assert (HD1 : A <> B) by (apply betH_expand in HBet1; 分离合取式; auto).
 destruct (ncolH_exists _ _ HD1) as [C HNC].
 assert (HConga : CongaH A C D A C E).
   {
@@ -1655,23 +1655,23 @@ assert (Hout : outH C D E).
 
     {
     split; [intro; assert (ColH A C D) by (exists l; auto); apply HNC; ColHR|].
-    apply betH_expand in HBet3; spliter.
+    apply betH_expand in HBet3; 分离合取式.
     split; [intro; assert (ColH A C F) by (exists l; auto); apply HNC; ColHR|].
     exists A; split; trivial.
     apply betH_trans1 with B; Bet.
     }
 
     {
-    apply betH_expand in HBet2; spliter.
+    apply betH_expand in HBet2; 分离合取式.
     split; [intro; assert (ColH A C E) by (exists l; auto); apply HNC; ColHR|].
-    apply betH_expand in HBet3; spliter.
+    apply betH_expand in HBet3; 分离合取式.
     split; [intro; assert (ColH A C F) by (exists l; auto); apply HNC; ColHR|].
     exists A; split; trivial.
     apply betH_trans1 with B; Bet.
     }
   }
 apply betH_expand in HBet1; apply betH_expand in HBet2;
-apply outH_expand in Hout; spliter; apply inter_uniquenessH with A B C D; Col.
+apply outH_expand in Hout; 分离合取式; apply inter_uniquenessH with A B C D; Col.
 Qed.
 
 Lemma out_distinct : forall A B C, outH A B C -> A <> B /\ A <> C.
@@ -1684,7 +1684,7 @@ intuition.
 induction H.
 apply betH_distincts in H.
 intuition.
-spliter.
+分离合取式.
 subst C.
 intuition.
 Qed.
@@ -1701,7 +1701,7 @@ exists P.
 assert(~IncidL P l).
 intro.
 apply betH_expand in H3.
-spliter.
+分离合取式.
 col_line H8 ll.
 lines_eq l ll.
 contradiction.
@@ -1716,17 +1716,17 @@ unfold outH in H1.
 induction H1.
 
 apply betH_expand in H1.
-spliter.
+分离合取式.
 col_line H9 m.
 lines_eq l m.
 contradiction.
 induction H1.
 apply betH_expand in H1.
-spliter.
+分离合取式.
 col_line H9 m.
 lines_eq l m.
 contradiction.
-spliter.
+分离合取式.
 subst C.
 contradiction.
 exists A.
@@ -1737,13 +1737,13 @@ induction H1.
 
 assert(BetH P A C /\ BetH P B C).
 apply(betH_trans P A B C); Bet.
-spliter.
+分离合取式.
 Bet.
 induction H1.
 assert(BetH C A P /\ BetH B C P).
 apply(betH_trans0 B C A P); Bet.
 tauto.
-spliter.
+分离合取式.
 subst C.
 auto.
 Qed.
@@ -1759,41 +1759,41 @@ destruct (between_out _ _ HD4) as [G HBet1].
 assert (HD5 : A <> D) by (intro; subst; Col); line A D lAD HD5.
 assert (HD6 : C <> D) by (intro; subst; Col); line C D lCD HD6.
 assert (HNC2 : ~ ColH B G C)
-  by (intro; apply betH_expand in HBet1; spliter; apply HNC1; ColHR).
+  by (intro; apply betH_expand in HBet1; 分离合取式; apply HNC1; ColHR).
 assert (HNC3 : ~ ColH B G A)
-  by (intro; apply betH_expand in HBet1; spliter; apply HNC1; ColHR).
+  by (intro; apply betH_expand in HBet1; 分离合取式; apply HNC1; ColHR).
 assert (HNI1 : ~ IncidL C lAD) by (intro; apply HNC1; exists lAD; auto).
 assert (HNI2 : ~ IncidL A lCD) by (intro; apply HNC1; exists lCD; auto).
 assert (HCut1 : cut lAD B G).
   {
-  apply betH_expand in HBet1; spliter.
+  apply betH_expand in HBet1; 分离合取式.
   split; [intro; assert (ColH A B D) by (exists lAD; auto); apply HNC1; ColHR|].
   split; [intro; assert (ColH A D G) by (exists lAD; auto); apply HNC1; ColHR|].
   exists D; auto.
   }
 assert (HCut2 : cut lCD B G).
   {
-  apply betH_expand in HBet1; spliter.
+  apply betH_expand in HBet1; 分离合取式.
   split; [intro; assert (ColH B C D) by (exists lCD; auto); apply HNC1; ColHR|].
   split; [intro; assert (ColH C D G) by (exists lCD; auto); apply HNC1; ColHR|].
   exists D; auto.
   }
 destruct (plane_existence B G C HNC2) as [bgc].
-spliter.
+分离合取式.
 destruct (plane_existence B G A HNC3) as [bga].
-spliter.
+分离合取式.
 assert (HLP1 : IncidLP lAD bgc).
   {
   apply (line_on_plane A D); trivial.
   apply (line_on_plane' B C); Col.
-  apply betH_colH in HBet1; spliter.
+  apply betH_colH in HBet1; 分离合取式.
   apply (line_on_plane' B G); Col.
   }
   assert (HLP2 : IncidLP lCD bga).
   {
   apply (line_on_plane C D); trivial.
   apply (line_on_plane' A B); Col.
-  apply betH_colH in HBet1; spliter.
+  apply betH_colH in HBet1; 分离合取式.
   apply (line_on_plane' B G); Col.
   }
 elim (pasch B G C lAD bgc); trivial; clear dependent bgc; intro HCut3;
@@ -1803,7 +1803,7 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
   destruct HCut3 as [_ [_ [I [HI3 HBet2]]]].
   elim (两点重合的决定性H A I); intro HD7; [subst; right; right; auto|].
   assert (I = A); [|subst; right; right; auto].
-  apply betH_expand in HBet2; spliter.
+  apply betH_expand in HBet2; 分离合取式.
   assert (ColH A D I) by (exists lAD; auto).
   apply inter_uniquenessH with B C D A; try (intro; apply HNC1); Col; ColHR.
   }
@@ -1812,7 +1812,7 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
   destruct HCut3 as [_ [_ [I [HI3 HBet2]]]].
   elim (两点重合的决定性H A I); intro HD7; [subst; right; right; auto|].
   assert (I = A); [|subst; right; right; auto].
-  apply betH_expand in HBet2; spliter.
+  apply betH_expand in HBet2; 分离合取式.
   assert (ColH A D I) by (exists lAD; auto).
   apply inter_uniquenessH with B C D A; try (intro; apply HNC1); Col; ColHR.
   }
@@ -1821,7 +1821,7 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
   destruct HCut4 as [_ [_ [I [HI3 HBet2]]]].
   elim (两点重合的决定性H C I); intro HD7; [subst; right; left; auto|].
   assert (I = C); [|subst; right; left; auto].
-  apply betH_expand in HBet2; spliter.
+  apply betH_expand in HBet2; 分离合取式.
   assert (ColH C D I) by (exists lCD; auto).
   apply inter_uniquenessH with A B D C; try (intro; apply HNC1); Col; ColHR.
   }
@@ -1831,36 +1831,36 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
   destruct HCut4 as [_ [_ [F [HI4 HBet3]]]].
   assert (HNC4 : ~ ColH A G E).
     {
-    intro; apply betH_expand in HBet1; apply betH_expand in HBet2; spliter.
+    intro; apply betH_expand in HBet1; apply betH_expand in HBet2; 分离合取式.
     apply HNC1; ColHR.
     }
   assert (HD7 : C <> F); [|line C F lCF HD7].
     {
-    apply betH_expand in HBet2; apply betH_expand in HBet3; spliter.
+    apply betH_expand in HBet2; apply betH_expand in HBet3; 分离合取式.
     intro; subst; apply HNC4; ColHR.
     }
   assert (HNI3 : ~ IncidL E lCF).
     {
     apply betH_expand in HBet1; apply betH_expand in HBet2;
-    apply betH_expand in HBet3; spliter.
+    apply betH_expand in HBet3; 分离合取式.
     intro; assert (ColH C E F) by (exists lCF; auto); apply HNC1; ColHR.
     }
   assert (HCut3 : cut lCF A G).
     {
     apply betH_expand in HBet1; apply betH_expand in HBet2;
-    apply betH_expand in HBet3; spliter.
+    apply betH_expand in HBet3; 分离合取式.
     split; [intro; assert (ColH A C F) by (exists lCF; auto); apply HNC1; ColHR|].
     split; [intro; assert (ColH C F G) by (exists lCF; auto); apply HNC1; ColHR|].
     exists F; auto; split; try apply between_comm; auto.
     }
   destruct (plane_existence A G E HNC4) as [p].
-  spliter.
+  分离合取式.
   assert (HLP : IncidLP lCF p).
   {
   apply (line_on_plane C F); trivial.
-  apply betH_colH in HBet2; spliter.
+  apply betH_colH in HBet2; 分离合取式.
   apply (line_on_plane' G E); Col.
-  apply betH_colH in HBet3; spliter.
+  apply betH_colH in HBet3; 分离合取式.
   apply (line_on_plane' G A); Col.
   }
   elim (pasch A G E lCF p); trivial; clear dependent p; intro HCut4.
@@ -1869,31 +1869,31 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
     destruct HCut4 as [_ [_ [I [HI5 HBet4]]]].
     assert (I = D); [|subst].
       {
-      apply betH_expand in HBet4; spliter.
+      apply betH_expand in HBet4; 分离合取式.
       apply inter_uniquenessH with C D A E; try intro; subst; Col;
       [|exists lAD]; auto.
       assert (ColH C D F) by (exists lCD; auto).
       assert (ColH C F I) by (exists lCF; auto); ColHR.
       }
     assert (HNC5 : ~ ColH A E C)
-      by (intro; apply betH_expand in HBet4; spliter; apply HNC1; ColHR).
+      by (intro; apply betH_expand in HBet4; 分离合取式; apply HNC1; ColHR).
     assert (HD8 : B <> D) by (intro; subst; apply HNC1; Col).
     line B D lBD HD8; assert (HNI4 : ~ IncidL C lBD)
       by (intro; assert (ColH B C D) by (exists lBD; auto); apply HNC1; ColHR).
     assert (HCut4 : cut lBD A E).
       {
-      apply betH_expand in HBet4; spliter.
+      apply betH_expand in HBet4; 分离合取式.
       split; [intro; assert (ColH A B D) by (exists lBD; auto); apply HNC1; ColHR|].
       split; [intro; assert (ColH B D E) by (exists lBD; auto); apply HNC1; ColHR|].
       exists D; auto.
       }
     destruct (plane_existence A E C HNC5) as [p].
-    spliter.
+    分离合取式.
     assert (HLP : IncidLP lBD p).
     {
     apply (line_on_plane B D); trivial.
     apply (line_on_plane' A C); Col.
-    apply betH_colH in HBet4; spliter.
+    apply betH_colH in HBet4; 分离合取式.
     apply (line_on_plane' A E); Col.
     }
     elim (pasch A E C lBD p); trivial; clear dependent p; intro HCut5.
@@ -1901,7 +1901,7 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
       {
       destruct HCut5 as [_ [_ [I [HI6 HBet5]]]].
       assert (I = B); [|subst; left; auto].
-      apply betH_expand in HBet5; spliter.
+      apply betH_expand in HBet5; 分离合取式.
       apply inter_uniquenessH with A C D B; Col; exists lBD; auto.
       }
 
@@ -1910,11 +1910,11 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
       assert (I = G); [|subst].
         {
         apply betH_expand in HBet1; apply betH_expand in HBet2;
-        apply betH_expand in HBet5; spliter.
+        apply betH_expand in HBet5; 分离合取式.
         apply inter_uniquenessH with D B C E; Col; try exists lBD; auto.
         intro; apply HNC1; ColHR.
         }
-      apply between_only_one' in HBet5; spliter; intuition.
+      apply between_only_one' in HBet5; 分离合取式; intuition.
       }
     }
 
@@ -1923,11 +1923,11 @@ elim (pasch B G A lCD bga); trivial; clear dependent bga; intro HCut4.
     assert (I = C); [|subst].
       {
       apply betH_expand in HBet1; apply betH_expand in HBet2;
-      apply betH_expand in HBet3; apply betH_expand in HBet4; spliter.
+      apply betH_expand in HBet3; apply betH_expand in HBet4; 分离合取式.
       apply inter_uniquenessH with G E F C; Col; try exists lCF; auto.
       intro; apply HNC4; ColHR.
       }
-    apply between_only_one' in HBet4; spliter; intuition.
+    apply between_only_one' in HBet4; 分离合取式; intuition.
     }
   }
 Qed.
@@ -1941,21 +1941,21 @@ induction HH.
 left; assumption.
 induction H3.
 apply between_only_one' in H3.
-spliter.
+分离合取式.
 right.
 intro.
 apply H4.
 apply between_comm.
 assumption.
 apply between_only_one' in H3.
-spliter.
+分离合取式.
 right.
 assumption.
 right.
 intro.
 apply H2.
 apply between_col in H3.
-spliter.
+分离合取式.
 assumption.
 Qed.
 
@@ -1964,11 +1964,11 @@ Proof.
 intros.
 unfold cut in *.
 intro.
-spliter.
+分离合取式.
 destruct H8 as [AB Hab].
 destruct H6 as [AC Hac].
 destruct H4 as [BC Hbc].
-spliter.
+分离合取式.
 assert(ColH A AB B /\ ColH A AC C /\ ColH B BC C).
 repeat split.
 apply between_col in H11.
@@ -1977,7 +1977,7 @@ apply between_col in H9.
 tauto.
 apply between_col in H6.
 tauto.
-spliter.
+分离合取式.
 assert(ColH AB AC BC).
 line_col AB AC BC.
 
@@ -1987,7 +1987,7 @@ assert(AB <> AC /\ AB <> BC /\ AC <> BC).
 apply betH_distincts in H11.
 apply betH_distincts in H9.
 apply betH_distincts in H6.
-spliter.
+分离合取式.
 repeat split;
 intro;
 apply H.
@@ -1998,7 +1998,7 @@ apply(colH_trans B AB); Col.
 subst BC.
 apply(colH_trans C AC); Col.
 }
-spliter.
+分离合取式.
 
 assert(HH:=between_one AB AC BC H16 H17 H18 H15).
 assert(HH12:= H11).
@@ -2007,7 +2007,7 @@ assert(HH7:=H6).
 apply betH_distincts in HH12.
 apply betH_distincts in HH10.
 apply betH_distincts in HH7.
-spliter.
+分离合取式.
 
 induction HH.
 
@@ -2048,19 +2048,19 @@ assumption.
 assumption.
 
 destruct (plane_existence AB BC B H31) as [p].
-spliter.
+分离合取式.
 assert(HH:= pasch AB BC B m p).
 
 induction HH; trivial.
 clear dependent p.
 unfold cut in H37.
-spliter.
+分离合取式.
 destruct H36 as [I H36].
-spliter.
+分离合取式.
 
 assert(HH37:= H37).
 apply between_col in HH37.
-spliter.
+分离合取式.
 apply H.
 assert(ColH A I B).
 apply(colH_trans B AB); Col.
@@ -2074,22 +2074,22 @@ tauto.
 
 clear dependent p.
 unfold cut in H37.
-spliter.
+分离合取式.
 destruct H36 as [C' H36].
-spliter.
+分离合取式.
 
 assert(HH38:=H37).
 apply between_col in HH38.
-spliter.
+分离合取式.
 assert(ColH B C C').
 apply(colH_trans B BC); Col.
 assert(C <> C').
 intro.
 subst C'.
 unfold cut in H33.
-spliter.
+分离合取式.
 destruct H40 as [I H42].
-spliter.
+分离合取式.
 assert(I = AC).
 apply(inter_uniquenessH A C AB BC); Col.
 intro.
@@ -2097,12 +2097,12 @@ apply H.
 apply (colH_trans A AB); Col.
 line_col A C I.
 apply between_col in H41.
-spliter.
+分离合取式.
 Col.
 subst I.
 clean_duplicated_hyps.
 apply between_only_one' in H37.
-spliter.
+分离合取式.
 apply between_comm in H6.
 tauto.
 
@@ -2155,28 +2155,28 @@ assumption.
 apply cut_comm in H33.
 
 destruct (plane_existence AB AC A H31) as [p].
-spliter.
+分离合取式.
 assert(HH:= pasch AB AC A m p).
 
 induction HH; trivial.
 clear dependent p.
 unfold cut in H37.
-spliter.
+分离合取式.
 destruct H36 as [B' H36].
-spliter.
+分离合取式.
 
 assert(HH38:=H37).
 apply between_col in HH38.
-spliter.
+分离合取式.
 assert(ColH A B B').
 apply(colH_trans A AB); Col.
 assert(B <> B').
 intro.
 subst B'.
 unfold cut in H33.
-spliter.
+分离合取式.
 destruct H40 as [I H42].
-spliter.
+分离合取式.
 assert(I = BC).
 apply(inter_uniquenessH C B AC AB); Col.
 intro.
@@ -2184,11 +2184,11 @@ apply H.
 apply (colH_trans C AC); Col.
 line_col C B I.
 apply between_col in H41.
-spliter.
+分离合取式.
 Col.
 subst I.
 apply between_only_one' in H37.
-spliter.
+分离合取式.
 apply between_comm in H11.
 tauto.
 
@@ -2198,13 +2198,13 @@ line_col B B' C.
 
 clear dependent p.
 unfold cut in H37.
-spliter.
+分离合取式.
 destruct H36 as [I H36].
-spliter.
+分离合取式.
 
 assert(HH38:= H37).
 apply between_col in HH38.
-spliter.
+分离合取式.
 apply H.
 assert(ColH C I A).
 apply(colH_trans A AC); Col.
@@ -2214,7 +2214,7 @@ apply (colH_trans C I); Col.
 intro.
 subst I.
 apply between_only_one' in H37.
-spliter.
+分离合取式.
 apply between_comm in H9.
 tauto.
 
@@ -2259,19 +2259,19 @@ apply between_comm.
 assumption.
 
 destruct (plane_existence BC AC C H31) as [p].
-spliter.
+分离合取式.
 assert(HH:= pasch BC AC C m p).
 
 induction HH; trivial.
 clear dependent p.
 unfold cut in H37.
-spliter.
+分离合取式.
 destruct H36 as [I H36].
-spliter.
+分离合取式.
 
 assert(HH38:= H37).
 apply between_col in HH38.
-spliter.
+分离合取式.
 apply H.
 assert(ColH B I C).
 apply(colH_trans C BC); Col.
@@ -2285,22 +2285,22 @@ tauto.
 
 clear dependent p.
 unfold cut in H37.
-spliter.
+分离合取式.
 destruct H36 as [A' H36].
-spliter.
+分离合取式.
 
 assert(HH38:=H37).
 apply between_col in HH38.
-spliter.
+分离合取式.
 assert(ColH C A A').
 apply(colH_trans C AC); Col.
 assert(A <> A').
 intro.
 subst A'.
 unfold cut in H33.
-spliter.
+分离合取式.
 destruct H40 as [I H42].
-spliter.
+分离合取式.
 assert(I = AB).
 apply(inter_uniquenessH B A BC AC); Col.
 intro.
@@ -2308,12 +2308,12 @@ apply H.
 apply (colH_trans B BC); Col.
 line_col B A I.
 apply between_col in H41.
-spliter.
+分离合取式.
 Col.
 subst I.
 clean_duplicated_hyps.
 apply between_only_one' in H37.
-spliter.
+分离合取式.
 tauto.
 
 apply H.
@@ -2322,7 +2322,7 @@ line_col A A' B.
 
 apply (line_on_plane A B); trivial.
 apply (line_on_plane' AC C); Col.
-destruct H14 as [n]; spliter.
+destruct H14 as [n]; 分离合取式.
 apply (line_on_plane' BC C); Col.
 Qed.
 
@@ -2349,7 +2349,7 @@ Proof.
 intros.
 apply betH_expand in H0.
 apply betH_expand in H1.
-spliter.
+分离合取式.
 assert(ColH B C D).
 apply (colH_trans A B); Col.
 apply between_one in H10; auto.
@@ -2365,25 +2365,25 @@ induction H11.
 assert(BetH B C D /\ BetH A B D).
 apply betH_trans0; assumption.
 Bet.
-spliter.
+分离合取式.
 apply between_only_one' in H12.
-spliter.
+分离合取式.
 contradiction.
 induction H11.
 assert(BetH B D C /\ BetH A B C).
 apply betH_trans0; Bet.
 Bet.
-spliter.
+分离合取式.
 apply between_only_one' in H12.
-spliter.
+分离合取式.
 apply between_comm in H10.
 contradiction.
 assert(BetH B A C /\ BetH D B C).
 apply betH_trans0; Bet.
 Bet.
-spliter.
+分离合取式.
 apply between_only_one' in H12.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -2392,7 +2392,7 @@ Proof.
 intros.
 apply betH_expand in H0.
 apply betH_expand in H1.
-spliter.
+分离合取式.
 assert(ColH A C D).
 apply(colH_trans A B); Col.
 apply between_one in H10; auto.
@@ -2404,9 +2404,9 @@ intuition.
 
 assert(BetH B A D /\ BetH C B D).
 apply(betH_trans0 C B A D); Bet.
-spliter.
+分离合取式.
 apply between_only_one' in H1.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -2415,7 +2415,7 @@ Proof.
 intros.
 apply betH_expand in H0.
 apply betH_expand in H1.
-spliter.
+分离合取式.
 assert(ColH A B C).
 apply (colH_trans A D); Col.
 apply between_one in H10; auto.
@@ -2428,7 +2428,7 @@ assert(BetH C A D /\ BetH C B D).
 apply(betH_trans C A B D); Bet.
 induction H11.
 apply between_only_one' in H11.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -2453,7 +2453,7 @@ destruct (两点重合的决定性H A B) as [HAB|HAB].
    ex_and HH F.
    ex_and H2 F'.
    apply betH_expand in H4.
-   spliter.
+   分离合取式.
    exists F.
    split.
    unfold Bet.
@@ -2466,7 +2466,7 @@ assert(HH:= cong_existence' C D l B H H1).
 ex_and HH F.
 ex_and H2 F'.
 apply betH_expand in H4.
-spliter.
+分离合取式.
 assert(ColH A F F').
 line_col A F F'.
 
@@ -2493,7 +2493,7 @@ split.
 assert(BetH B F A /\ BetH F' B A).
 apply betH_trans0; Bet.
 Bet.
-spliter.
+分离合取式.
 left.
 Bet.
 left.
@@ -2502,7 +2502,7 @@ induction H11.
 exists F.
 assert(BetH B F' A /\ BetH F B A).
 apply betH_trans0; Bet.
-spliter.
+分离合取式.
 split.
 left.
 Bet.
@@ -2530,7 +2530,7 @@ apply(out2_out B A F F' H9); Bet.
 induction H17;
 apply between_only_one' in H17.
 tauto.
-spliter.
+分离合取式.
 apply between_comm in H11.
 tauto.
 exists F.
@@ -2552,7 +2552,7 @@ induction H17.
 apply between_only_one' in H17.
 tauto.
 apply between_only_one' in H17.
-spliter.
+分离合取式.
 apply between_comm in H4.
 tauto.
 Qed.
@@ -2560,7 +2560,7 @@ Qed.
 Lemma 防降维公理_e : exists A, exists B, exists C, ~ (Bet A B C \/ Bet B C A \/ Bet C A B).
 Proof.
 assert(HH:=防降维公理_2).
-spliter.
+分离合取式.
 exists PP.
 exists PQ.
 exists PR.
@@ -2574,10 +2574,10 @@ tauto.
 induction H3;
 rewrite H3; Col.
 induction H3.
-apply between_col in H3; spliter; Col.
+apply between_col in H3; 分离合取式; Col.
 induction H3; rewrite H3; Col.
 induction H3.
-apply between_col in H3; spliter; Col.
+apply between_col in H3; 分离合取式; Col.
 induction H3; rewrite H3; Col.
 Qed.
 
@@ -2609,7 +2609,7 @@ tauto.
 induction H1.
 apply betH_distincts in H1.
 tauto.
-spliter.
+分离合取式.
 subst B.
 tauto.
 induction(两点重合的决定性H B C).
@@ -2636,7 +2636,7 @@ induction H3.
 apply between_only_one' in H.
 tauto.
 apply betH_distincts in H.
-spliter.
+分离合取式.
 contradiction.
 right.
 intro.
@@ -2647,9 +2647,9 @@ apply between_col in H0.
 tauto.
 induction H0.
 apply between_col in H0.
-spliter.
+分离合取式.
 Col.
-spliter.
+分离合取式.
 subst C.
 Col.
 Qed.
@@ -2668,7 +2668,7 @@ exists P'.
 split; auto.
 line_col A B P'.
 apply betH_expand in H5.
-spliter.
+分离合取式.
 induction (两点重合的决定性H B  P').
 subst P'.
 right; right.
@@ -2709,10 +2709,10 @@ assert(HH:= 由一点往一方向构造等长线段 A B C D).
 ex_and HH E.
 induction H1.
 induction H2.
-spliter.
+分离合取式.
 exists E.
 split; auto.
-spliter.
+分离合取式.
 subst E.
 apply betH_distincts in H1.
 tauto.
@@ -2772,7 +2772,7 @@ unfold cut.
 repeat split; auto.
 intro.
 apply betH_expand in H4.
-spliter.
+分离合取式.
 assert(ColH X Y P).
 line_col X Y P.
 assert(ColH A X Y).
@@ -2795,7 +2795,7 @@ auto.
 induction H.
 apply between_col in H.
 Col.
-spliter.
+分离合取式.
 subst C.
 Col.
 Qed.
@@ -2804,7 +2804,7 @@ Lemma cut_distinct : forall A B l, cut l A B -> A <> B.
 Proof.
 intros.
 unfold cut in H.
-spliter.
+分离合取式.
 ex_and H1 M.
 apply betH_distincts in H2.
 intuition.
@@ -2820,7 +2820,7 @@ destruct H as [P].
 induction(colH_dec P A B).
 intro.
 unfold cut in *.
-spliter.
+分离合取式.
 clean_duplicated_hyps.
 ex_and H8 M.
 ex_and H6 N.
@@ -2838,7 +2838,7 @@ assert(ColH A B M).
 induction H8;
 apply between_col in H8;
 Col.
-apply betH_expand in H9; spliter.
+apply betH_expand in H9; 分离合取式.
 assert(R = M).
 line A B m H13.
 col_line H0 mm.
@@ -2851,7 +2851,7 @@ apply(inter_incid_uniquenessH P R M l m H7 H17); Col.
 subst R.
 induction H8;
 apply between_only_one' in H9;
-spliter;
+分离合取式;
 contradiction.
 assert(A <> B).
 ex_and H3 T.
@@ -2860,11 +2860,11 @@ intuition.
 col_line H0 m.
 apply H8.
 apply betH_expand in H2.
-spliter.
+分离合取式.
 col_line H16 mm.
 lines_eq m mm.
 apply betH_expand in H6.
-spliter.
+分离合取式.
 col_line H22 nn.
 lines_eq m nn.
 apply(inter_incid_uniquenessH P M N l m); auto.
@@ -2930,37 +2930,37 @@ Proof.
 unfold same_side, cut.
 intros.
 destruct H as [P].
-spliter.
+分离合取式.
 destruct H4 as [X []].
 destruct (colH_dec A B P).
 destruct (other_point_on_line X l H4) as [Y []].
 assert (~ ColH X Y A).
 intro.
 apply H7.
-destruct H9 as [m]; spliter.
+destruct H9 as [m]; 分离合取式.
 apply inter_incid_uniquenessH with A l m; trivial.
-destruct (plane_existence X Y A H9) as [p]; spliter.
+destruct (plane_existence X Y A H9) as [p]; 分离合取式.
 exists p; repeat split.
 assumption.
-apply betH_colH in H5; spliter.
+apply betH_colH in H5; 分离合取式.
 apply (line_on_plane' A P); Col.
 apply (line_on_plane' A X); Col.
 apply (line_on_plane X Y); assumption.
 
-destruct (plane_existence A B P H6) as [p]; spliter.
+destruct (plane_existence A B P H6) as [p]; 分离合取式.
 exists p.
 repeat split.
 assumption.
 assumption.
 destruct (ncolH_distincts A B P H6).
-spliter.
+分离合取式.
 destruct H2 as [Y []].
 apply (line_on_plane X Y); trivial.
 intro.
 subst Y.
 apply H6.
 apply betH_colH in H5.
-spliter.
+分离合取式.
 apply colH_trans with X P; Col.
 apply (line_on_plane' A P); Col.
 apply (line_on_plane' B P); Col.
@@ -2972,7 +2972,7 @@ Proof.
 intros.
 destruct H.
 destruct (line_existence C D H) as [l].
-destruct (same_side__plane A B l) as [p]; spliter; auto.
+destruct (same_side__plane A B l) as [p]; 分离合取式; auto.
 exists p; repeat split; auto.
 Qed.
 
@@ -2985,11 +2985,11 @@ subst Y.
 assumption.
 assert(HH0:=H).
 unfold cut in H.
-spliter.
+分离合取式.
 ex_and H3 A.
 
 apply betH_expand in H4.
-spliter.
+分离合取式.
 
 induction(colH_dec P X Y).
 unfold cut.
@@ -3002,10 +3002,10 @@ subst Y.
 unfold same_side in H0.
 ex_and H0 M.
 unfold cut in H11.
-spliter.
+分离合取式.
 contradiction.
 apply betH_expand in H4.
-spliter.
+分离合取式.
 assert(ColH A X Y).
 apply (colH_trans P X); Col.
 col_line H16 m.
@@ -3026,7 +3026,7 @@ subst Y.
 unfold same_side in H0.
 ex_and H0 T.
 unfold cut in H10.
-spliter.
+分离合取式.
 contradiction.
 assert(BetH P A Y \/ BetH P Y A).
 apply(betH2_out P A Y X H10 H4); Bet.
@@ -3070,15 +3070,15 @@ intro.
 unfold same_side in H0.
 ex_and H0 T.
 unfold cut in H11.
-spliter.
+分离合取式.
 contradiction.
 
 destruct (plane_existence P X Y H9) as [p].
-spliter.
+分离合取式.
 induction (pasch P X Y l p); trivial.
 contradiction.
 assert (IncidP A p) by (apply (line_on_plane' P X); Col).
-destruct (same_side__plane X Y l H0) as [q]; spliter.
+destruct (same_side__plane X Y l H0) as [q]; 分离合取式.
 assert (EqP p q).
 apply (plane_uniqueness P X Y); trivial.
 apply (line_on_plane' A X); Col.
@@ -3096,7 +3096,7 @@ assumption.
 intro;apply H;Col.
 assumption.
 apply congH_sym;auto.
-apply ncolH_distincts in H;spliter;auto.
+apply ncolH_distincts in H;分离合取式;auto.
 apply 等角的交换性.
 intro;apply H;Col.
 Qed.
@@ -3106,7 +3106,7 @@ Proof.
 intros.
 intro.
 unfold Cong in H1.
-spliter.
+分离合取式.
 subst D.
 induction H0;
 tauto.
@@ -3137,10 +3137,10 @@ apply congH_sym.
 auto.
 auto.
 auto.
-spliter.
+分离合取式.
 subst D.
 tauto.
-spliter.
+分离合取式.
 subst B.
 contradiction.
 right.
@@ -3152,7 +3152,7 @@ Proof.
 intros.
 intro.
 apply betH_expand in H.
-spliter.
+分离合取式.
 apply H2.
 assert(exists P : Point, BetH B A P).
 apply(between_out B A); auto.
@@ -3190,7 +3190,7 @@ Qed.
 Lemma congH_perml : forall A B C D,
   A <> B -> C <> D -> CongH A B C D ->
   CongH B A C D.
-Proof. intros A B C D HD1 HD2 HC; apply congH_perms in HC; spliter; auto. Qed.
+Proof. intros A B C D HD1 HD2 HC; apply congH_perms in HC; 分离合取式; auto. Qed.
 
 Lemma bet_cong3_bet : forall A B C A' B' C', A' <> B' -> B' <> C' -> A' <> C' ->
  BetH A B C -> ColH A' B' C' ->
@@ -3204,17 +3204,17 @@ assumption.
 induction H3.
 apply between_comm in H3.
 apply betH_expand in H2.
-spliter.
+分离合取式.
 
 assert(HH:=由一点往一方向构造等长线段H B C B C H8 H8).
 ex_and HH B''.
 
 apply betH_expand in H3.
 apply betH_expand in H11.
-spliter.
+分离合取式.
 assert(BetH A B B'' /\ BetH A C B'').
 apply(betH_trans A B C B'' H2 H11 ).
-spliter.
+分离合取式.
 
 assert(CongH A B'' A' B').
    {
@@ -3227,7 +3227,7 @@ assert(CongH A B'' A' B').
 
 assert(CongH A B'' A B).
    {
-     apply betH_distincts in H21; spliter.
+     apply betH_distincts in H21; 分离合取式.
      apply (cong_pseudo_transitivity A' B'); apply congH_sym; auto.
    }
 
@@ -3237,13 +3237,13 @@ assert(~CongH A B A B'').
    }
 exfalso.
 apply H25.
-apply betH_distincts in H21; spliter.
+apply betH_distincts in H21; 分离合取式.
 apply congH_sym; assumption.
 
 apply between_comm in H3.
 apply betH_expand in H2.
 apply betH_expand in H3.
-spliter.
+分离合取式.
 clean_duplicated_hyps.
 assert(exists E : Point, BetH C A E /\ CongH A E A B).
    {
@@ -3251,7 +3251,7 @@ assert(exists E : Point, BetH C A E /\ CongH A E A B).
    }
 ex_and H8 B''.
 apply betH_expand in H8.
-spliter.
+分离合取式.
 assert(CongH C B'' C' B').
    {
      apply(addition C A B'' C' A' B'); auto.
@@ -3266,7 +3266,7 @@ assert(BetH B A B'' /\ BetH C B B'').
       apply(betH_trans0 C B A B'');
       Bet.
    }
-spliter.
+分离合取式.
 
 assert(~CongH C B C B'').
    {
@@ -3275,7 +3275,7 @@ assert(~CongH C B C B'').
    }
 exfalso.
 apply H23.
-apply betH_distincts in H3; spliter.
+apply betH_distincts in H3; 分离合取式.
 apply (cong_pseudo_transitivity C' B'); apply congH_sym; auto.
 apply 等长的等价排列r, congH_perml; auto.
 Qed.
@@ -3285,7 +3285,7 @@ Lemma betH_congH3_outH_betH : forall A B C A' B' C',
 Proof.
 intros.
 apply betH_expand in H.
-spliter.
+分离合取式.
 unfold outH in *.
 induction H0.
 assumption.
@@ -3293,7 +3293,7 @@ induction H0.
 assert(HH:=由一点往一方向构造等长线段H A' B' B C).
 ex_and HH C''.
 apply betH_expand in H7.
-spliter.
+分离合取式.
 exfalso.
 assert(CongH A' C'' A C).
 eapply(addition A' B' C'' A B C); auto.
@@ -3304,7 +3304,7 @@ assert(BetH C' B' C'' /\ BetH A' C' C'').
    {
       apply(betH_trans0 A' C' B' C''); auto.
    }
-spliter.
+分离合取式.
 assert(HH:= betH_not_congH A' C' C'' H15).
 apply HH.
 apply(cong_pseudo_transitivity A C); auto using congH_sym.
@@ -3312,7 +3312,7 @@ apply betH_expand in H0.
 tauto.
 apply betH_expand in H0.
 tauto.
-spliter.
+分离合取式.
 subst C'.
 assert(HH:=betH_not_congH A B C H).
 exfalso.
@@ -3328,7 +3328,7 @@ unfold outH in *.
 decompose [or] H0;clear H0.
 auto.
 auto.
-spliter;subst;auto.
+分离合取式;subst;auto.
 Qed.
 
 Lemma soustraction_betH :
@@ -3340,11 +3340,11 @@ Proof.
 intros.
 apply betH_expand in H.
 apply betH_expand in H0.
-spliter.
+分离合取式.
 elim (由一点往一方向构造等长线段H A' B' B C H3 H8).
 intros C1 [HC1 HC2].
 assert (CongH A C A' C1).
-assert(HD := betH_distincts _ _ _ HC1); spliter.
+assert(HD := betH_distincts _ _ _ HC1); 分离合取式.
 apply addition_betH with B B';auto using congH_sym.
 elim (between_out B A).
 intros X HX.
@@ -3392,9 +3392,9 @@ unfold outH.
 right;left.
 apply between_comm;
 apply (betH_trans0 C D B A);auto using between_comm.
-spliter. subst.
+分离合取式. subst.
 apply outH_trivial.
-apply betH_expand in H;spliter;auto.
+apply betH_expand in H;分离合取式;auto.
 Qed.
 
 (** First case of congruence of triangles *)
@@ -3416,7 +3416,7 @@ intro;apply H0;Col.
 apply conga_permlr;auto.
 assert (T:=ncolH_distincts A B C H).
 assert (U:=ncolH_distincts A' B' C' H0).
-spliter.
+分离合取式.
 elim (out_construction B' C' B C H8 H5).
 intros D' [HD1 HD2].
 destruct (两点重合的决定性H B' D').
@@ -3462,11 +3462,11 @@ apply H0;exists l;auto.
 intro.
 apply outH_col in HD2.
 destruct HD2.
-spliter.
+分离合取式.
 apply betH_expand in H15.
-spliter.
+分离合取式.
 destruct H23.
-spliter.
+分离合取式.
 assert (谓词等长 x1 l).
 apply line_uniqueness with B' x;auto.
 rewrite H26 in *.
@@ -3483,7 +3483,7 @@ destruct HD2.
 apply (betH_trans0 D' C' B' x);auto using between_comm.
 destruct H16.
 apply between_comm;apply (betH_trans2 x B' D' C');auto using between_comm.
-spliter;subst;auto.
+分离合取式;subst;auto.
 intro.
 apply outH_col in HD2.
 assert (ColH A' B' D').
@@ -3493,11 +3493,11 @@ apply (colH_trans B' D' A' B' C');Col.
 intro.
 apply outH_col in HD2.
 destruct HD2.
-spliter.
+分离合取式.
 apply betH_expand in H15.
-spliter.
+分离合取式.
 destruct H23.
-spliter.
+分离合取式.
 assert (谓词等长 x1 l).
 apply line_uniqueness with B' x;auto.
 rewrite H26 in *.
@@ -3522,14 +3522,14 @@ apply H0.
 exists lB'C';auto.
 apply outH_col in HD2.
 destruct HD2.
-spliter.
+分离合取式.
 assert (谓词等长 x lB'C').
 apply line_uniqueness with B' C';auto.
 rewrite H21 in H20.
 auto.
 apply outH_col in H13.
 destruct H13.
-spliter.
+分离合取式.
 assert (谓词等长 x lA'C').
 apply line_uniqueness with A' C';auto.
 rewrite H20 in H19.
@@ -3549,10 +3549,10 @@ Proof.
 intros.
 apply betH_expand in H2.
 apply betH_expand in H3.
-spliter.
+分离合取式.
 assert (T:=ncolH_distincts A B C H).
 assert (U:=ncolH_distincts A' B' C' H0).
-spliter.
+分离合取式.
 elim (out_construction B' A' A B);try solve [auto].
 intros A'' [HA1 HA2].
 elim (out_construction B' C' B C);try solve [auto].
@@ -3569,61 +3569,61 @@ assert (CongaH B A C B' A'' C'' /\
 
   destruct HA2.
    apply betH_expand in H19.
-   spliter.
+   分离合取式.
   destruct HC2.
    apply betH_expand in H24.
-   spliter.
+   分离合取式.
    apply colH_trans with B' A'';Col.
    apply colH_trans with B' C'';Col.
    destruct H24.
    apply betH_expand in H24.
-   spliter.
+   分离合取式.
    apply colH_trans with B' A'';Col.
    apply colH_trans with B' C'';Col.
-   spliter;subst.
+   分离合取式;subst.
    exfalso. apply H0.
    apply colH_trans with B' A'';Col.
   destruct H19.
   apply betH_expand in H19.
-  spliter.
+  分离合取式.
   destruct HC2.
      apply betH_expand in H24.
-   spliter.
+   分离合取式.
    apply colH_trans with B' A'';Col.
    apply colH_trans with B' C'';Col.
    destruct H24.
    apply betH_expand in H24.
-   spliter.
+   分离合取式.
    apply colH_trans with B' A'';Col.
    apply colH_trans with B' C'';Col.
-   spliter;subst.
+   分离合取式;subst.
    exfalso. apply H0.
    apply colH_trans with B' A'';Col.
-   spliter;subst.
+   分离合取式;subst.
    exfalso. apply H0.
    destruct HC2.
-   apply betH_expand in H20;spliter.
+   apply betH_expand in H20;分离合取式.
    apply colH_trans with B' C'';Col.
    destruct H20.
-   apply betH_expand in H20;spliter.
+   apply betH_expand in H20;分离合取式.
    apply colH_trans with B' C'';Col.
-   spliter;subst.
+   分离合取式;subst.
    apply colH_trans with A'' B';Col.
   }
-  apply outH_expand in HA2; spliter.
+  apply outH_expand in HA2; 分离合取式.
   apply congH_sym; auto.
   apply cong_pseudo_transitivity with A B.
   auto using congH_sym.
   apply congH_perm; auto.
-  apply outH_expand in HC2; spliter.
+  apply outH_expand in HC2; 分离合取式.
   auto using congH_sym.
   apply conga_out_conga with A C A' C'; auto using outH_trivial.
  }
-spliter.
+分离合取式.
 assert (BetH A'' B' D'')
   by (apply betH_outH2__betH with A' D';auto).
 apply betH_expand in H21.
-spliter.
+分离合取式.
 assert (CongH A D A'' D'').
  {
    apply addition_betH with B B';auto.
@@ -3637,10 +3637,10 @@ assert (~ ColH A'' C'' D'').
    apply outH_expand in HA2.
    apply outH_expand in HC2.
    apply outH_expand in HD2.
-   spliter;ColHR.
+   分离合取式;ColHR.
 assert (T:=ncolH_distincts A C D H27).
 assert (U:=ncolH_distincts A'' C'' D'' H28).
-spliter.
+分离合取式.
 assert (CongaH A C D A'' C'' D'' /\
        CongaH A D C A'' D'' C'' /\ CongH C D C'' D'').
  {
@@ -3650,24 +3650,24 @@ assert (CongaH A C D A'' C'' D'' /\
   left.
   apply betH_outH2__betH with A' D';auto.
  }
-spliter.
+分离合取式.
 
 assert (~ ColH D B C) by (intro; apply H; ColHR).
 assert (~ ColH D'' B' C'').
   apply outH_expand in HA2.
    apply outH_expand in HC2.
    apply outH_expand in HD2.
-  intro;apply  H0;spliter;ColHR.
+  intro;apply  H0;分离合取式;ColHR.
 assert (T:=ncolH_distincts D B C H38).
 assert (U:=ncolH_distincts D'' B' C'' H39).
-spliter.
+分离合取式.
 assert (CongaH D B C D'' B' C'').
   {
    apply (cong_5 D B C D'' B' C'').
    assumption.
    assumption.
-   apply congH_perms in HD1;spliter;auto.
-   apply congH_perms in H37;spliter;auto.
+   apply congH_perms in HD1;分离合取式;auto.
+   apply congH_perms in H37;分离合取式;auto.
    apply conga_out_conga with A C A'' C'';auto using outH_trivial.
    unfold outH.
    right;left;auto using between_comm.
@@ -3711,8 +3711,8 @@ unfold cut.
 rewrite H .
 intuition.
 
-elim H3;intros I;intros;spliter;exists I;split;try rewrite <- H;auto.
-elim H3;intros I;intros;spliter;exists I;split;try rewrite H;auto.
+elim H3;intros I;intros;分离合取式;exists I;split;try rewrite <- H;auto.
+elim H3;intros I;intros;分离合取式;exists I;split;try rewrite H;auto.
 Defined.
 
 Global Instance same_side_morphism : Proper(eq ==> eq ==> 谓词等长 ==> iff) same_side.
@@ -3782,7 +3782,7 @@ elim (两点重合的决定性H B C).
     assert (IncidP C p).
       {
       destruct HC1 as [_ [_ [I [ HI1 HI2]]]].
-      apply betH_colH in HI2; spliter.
+      apply betH_colH in HI2; 分离合取式.
       apply (line_on_plane' A I); trivial.
       apply (line_on_plane X Y l); assumption.
       }
@@ -3800,7 +3800,7 @@ Proof.
 intros.
 unfold same_side in *.
 elim H;intros.
-exists x;spliter;split;auto using cut_comm.
+exists x;分离合取式;split;auto using cut_comm.
 Qed.
 
 Lemma same_side_not_incid : forall A B l,
@@ -3810,7 +3810,7 @@ intros.
 unfold same_side in *.
 destruct H as [P [HP1 HP2]].
 unfold cut in *.
-spliter;auto.
+分离合取式;auto.
 Qed.
 
 Lemma out_same_side' : forall X Y A B C l , X <> Y ->
@@ -3849,7 +3849,7 @@ Proof.
 intros.
 elim H2.
 intros.
-spliter.
+分离合取式.
 assert (谓词等长 l x) by (eauto using line_uniqueness).
 rewrite H6 in *.
 assumption.
@@ -3873,12 +3873,12 @@ Lemma same_side_prime_not_colH : forall A B C D,
 Proof.
 intros.
 unfold same_side' in *.
-spliter.
+分离合取式.
 elim (line_existence C D H).
 intros l [HL1 HL2].
 assert (same_side A B l) by auto.
 apply same_side_not_incid in H1.
-spliter.
+分离合取式.
 split.
 assert (~ ColH C D A).
 apply IncidL_not_IncidL__not_colH with l;auto.
@@ -3892,11 +3892,11 @@ Lemma OS2__TS : forall O X Y Z,
   same_side' Y Z O X -> same_side' X Y O Z -> cut' X Z O Y.
 Proof.
 intros O X Y Z HOS1 HOS2.
-destruct (between_out Z O) as [Z' HZ']; [unfold same_side' in *; spliter; auto|].
+destruct (between_out Z O) as [Z' HZ']; [unfold same_side' in *; 分离合取式; auto|].
 assert (HTS : cut' Y Z' O X).
   {
-  assert (HD1 : O <> X) by (unfold same_side' in *; spliter; auto).
-  assert (HD2 : O <> Z) by (unfold same_side' in *; spliter; auto).
+  assert (HD1 : O <> X) by (unfold same_side' in *; 分离合取式; auto).
+  assert (HD2 : O <> Z) by (unfold same_side' in *; 分离合取式; auto).
   split; [auto|intro l; intros].
   apply cut_comm; apply cut_same_side_cut with Z;
   [|destruct HOS1 as [_ HOS1]; apply same_side_comm; apply HOS1; auto].
@@ -3906,7 +3906,7 @@ assert (HTS : cut' Y Z' O X).
   split; [|split; auto; exists O; split; try apply between_comm; auto].
   intro; apply HNC; auto.
   assert (HC1 : ColH O X Z') by (exists l; auto).
-  assert (HD3 := betH_distincts _ _ _ HZ'); spliter.
+  assert (HD3 := betH_distincts _ _ _ HZ'); 分离合取式.
   assert (HC2 := between_col _ _ _ HZ'); ColHR.
   }
 split; [destruct (same_side_prime_not_colH _ _ _ _ HOS1) as [HNC _];
@@ -3914,13 +3914,13 @@ split; [destruct (same_side_prime_not_colH _ _ _ _ HOS1) as [HNC _];
 apply cut_comm; apply cut_same_side_cut with Z'.
 
   {
-  assert (HD1 : O <> X) by (unfold same_side' in *; spliter; auto).
-  assert (HD2 : O <> Z) by (unfold same_side' in *; spliter; auto).
+  assert (HD1 : O <> X) by (unfold same_side' in *; 分离合取式; auto).
+  assert (HD2 : O <> Z) by (unfold same_side' in *; 分离合取式; auto).
   destruct (same_side_prime_not_colH _ _ _ _ HOS2) as [_ HNC].
   split; [intro; apply HNC; exists l; auto|].
   assert (HD3 : O <> Y) by (intro; subst; apply HNC; Col).
   split; [intro|exists O; auto].
-  assert (HD4 := betH_distincts _ _ _ HZ'); spliter.
+  assert (HD4 := betH_distincts _ _ _ HZ'); 分离合取式.
   assert (HC1 : ColH O Y Z') by (exists l; auto).
   assert (HC2 := between_col _ _ _ HZ').
   apply HNC; apply between_col in HZ'; ColHR.
@@ -3936,7 +3936,7 @@ apply cut_comm; apply cut_same_side_cut with Z'.
     apply out_same_side with Y; try (right; left); auto.
     destruct (same_side_prime_not_colH _ _ _ _ HOS2) as [_ HNC].
     intro; assert (HC1 : ColH O Y Z') by (exists l; auto).
-    assert (HD3 := betH_distincts _ _ _ HZ'); spliter.
+    assert (HD3 := betH_distincts _ _ _ HZ'); 分离合取式.
     assert (HC2 := between_col _ _ _ HZ').
     apply HNC; apply between_col in HZ'; ColHR.
     }
@@ -3948,7 +3948,7 @@ apply cut_comm; apply cut_same_side_cut with Z'.
     [intro; apply HNC1; exists l; auto|].
     elim (两点重合的决定性H X X'); intro HD2; [subst; apply outH_trivial; auto|].
     destruct (same_side_prime_not_colH _ _ _ _ HOS2) as [_ HNC2].
-    assert (HD3 := betH_distincts _ _ _ HZ'); spliter.
+    assert (HD3 := betH_distincts _ _ _ HZ'); 分离合取式.
     assert (HC2 := between_col _ _ _ HZ').
     assert (HC3 := between_col _ _ _ HBet).
     elim (两点重合的决定性H O X'); intro HD3; [subst; exfalso; apply HNC2; ColHR|].
@@ -3972,7 +3972,7 @@ apply cut_comm; apply cut_same_side_cut with Z'.
       apply out_same_side with Z'; try (left; apply between_comm; auto).
 
         {
-        destruct HC2 as [p [HI' ]]; spliter.
+        destruct HC2 as [p [HI' ]]; 分离合取式.
         apply (line_uniqueness _ O o) in HI'; auto; rewrite HI'; auto.
         }
 
@@ -4063,13 +4063,13 @@ assert (th15_aux : forall H K O L H' K' O' L',
       apply (conga_out_conga _ _ _ _ _ _ I L I' L'') in HConga1; auto;
       try apply outH_sym; try apply outH_trivial;
         auto; try (intro; subst; Col).
-      assert (O' <> I') by (apply outH_expand in Hout4; spliter; auto).
+      assert (O' <> I') by (apply outH_expand in Hout4; 分离合取式; auto).
       assert (I' <> L'').
         {
         intro; subst; apply same_side_prime_not_colH in HOS2;
         destruct HOS2 as [HNC _]; apply HNC.
         apply outH_expand in Hout2;
-        apply outH_expand in Hout4; spliter; ColHR.
+        apply outH_expand in Hout4; 分离合取式; ColHR.
         }
       exists I'; split; auto; split; auto; split; [apply outH_sym; auto|].
       split; auto; split; try apply outH_col; try apply outH_sym; auto.
@@ -4080,8 +4080,8 @@ assert (th15_aux : forall H K O L H' K' O' L',
                  CongH I L I' L'').
       {
       assert (O <> L) by (intro; subst; Col).
-      assert (O' <> L'') by (apply outH_expand in Hout2; spliter; auto).
-      apply outH_expand in Hout2; spliter.
+      assert (O' <> L'') by (apply outH_expand in Hout2; 分离合取式; auto).
+      apply outH_expand in Hout2; 分离合取式.
       apply th12; auto using congH_sym; try intro; [apply HNC1|apply HNC2]; ColHR.
       }
     destruct HT as [_ [HConga3 HCong4]].
@@ -4090,7 +4090,7 @@ assert (th15_aux : forall H K O L H' K' O' L',
       {
       assert (O <> K) by (intro; subst; Col).
       assert (O <> L) by (intro; subst; Col).
-      apply outH_expand in Hout1; apply outH_expand in Hout2; spliter.
+      apply outH_expand in Hout1; apply outH_expand in Hout2; 分离合取式.
       apply th12; auto using congH_sym; intro; [apply HNC3|apply HNC4]; Col; ColHR.
       }
     destruct HT as [HConga4 [HConga5 HCong5]].
@@ -4100,7 +4100,7 @@ assert (th15_aux : forall H K O L H' K' O' L',
         {
         assert (O <> K) by (intro; subst; Col).
         assert (O <> L) by (intro; subst; Col).
-        apply outH_expand in Hout1; apply outH_expand in Hout2; spliter.
+        apply outH_expand in Hout1; apply outH_expand in Hout2; 分离合取式.
         apply cong_4_uniqueness with O L K H' O'; auto;
         [intro; apply HNC2; ColHR|intro; apply HNC3; Col| | |].
 
@@ -4125,7 +4125,7 @@ assert (th15_aux : forall H K O L H' K' O' L',
           }
         }
       apply between_comm; assert (K <> L) by (intro; subst; Col).
-      apply outH_expand in Hout5; apply betH_expand in HBet1; spliter.
+      apply outH_expand in Hout5; apply betH_expand in HBet1; 分离合取式.
       apply betH_congH3_outH_betH with L I K; try apply between_comm;
         try apply 等长的等价排列r, congH_perml; auto.
       }
@@ -4134,7 +4134,7 @@ assert (th15_aux : forall H K O L H' K' O' L',
       {
       assert (K <> O) by (intro; subst; Col).
       apply outH_expand in Hout1; apply outH_expand in Hout2;
-      apply betH_expand in HBet1; apply betH_expand in HBet2; spliter.
+      apply betH_expand in HBet1; apply betH_expand in HBet2; 分离合取式.
       assert (CongH I' K'' I K)
         by (apply soustraction_betH with L'' L;
             try apply between_comm; auto using congH_sym, 等长的等价排列r, congH_perml).
@@ -4144,12 +4144,12 @@ assert (th15_aux : forall H K O L H' K' O' L',
       }
     destruct HT as [HConga6 _]; apply conga_permlr.
     apply outH_expand in Hout1; apply outH_expand in Hout3;
-    apply outH_expand in Hout4; spliter.
+    apply outH_expand in Hout4; 分离合取式.
     apply conga_out_conga with K I K'' I'; try apply outH_trivial;
     try apply outH_sym; auto; intro; subst; Col.
     }
   intros H K O L H' K' O' L' HNC1 HNC2 HNC3 HNC4 HNC5 HNC6 HOS1 HOS2 HConga1 HConga2.
-  destruct (same_side_prime__plane H K O L HOS1) as [p]; spliter.
+  destruct (same_side_prime__plane H K O L HOS1) as [p]; 分离合取式.
   elim (plane_separation K L O H p); trivial; intro HS;
   [apply th15_aux with L L'; auto| |apply HNC5; Col|apply HNC1; Col].
   apply conga_permlr; apply th15_aux with L L'; try solve[intro; Col]; auto;
@@ -4165,8 +4165,8 @@ assert (HConga3 : CongaH SH O L SH' O' L')
   by (apply conga_permlr; apply th14 with H H'; auto).
 assert (HConga4 : CongaH SH O K SH' O' K').
   {
-  assert (HD1 := betH_distincts _ _ _ HSH); spliter.
-  assert (HD2 := betH_distincts _ _ _ HSH'); spliter.
+  assert (HD1 := betH_distincts _ _ _ HSH); 分离合取式.
+  assert (HD2 := betH_distincts _ _ _ HSH'); 分离合取式.
   assert (HC1 := between_col _ _ _ HSH).
   assert (HC2 := between_col _ _ _ HSH').
   apply th15_aux with L L'; auto;
@@ -4189,8 +4189,8 @@ assert (HConga4 : CongaH SH O K SH' O' K').
             exists O'; split; try apply between_comm; auto].
     }
   }
-assert (HD1 := betH_distincts _ _ _ HSH); spliter.
-assert (HD2 := betH_distincts _ _ _ HSH'); spliter.
+assert (HD1 := betH_distincts _ _ _ HSH); 分离合取式.
+assert (HD2 := betH_distincts _ _ _ HSH'); 分离合取式.
 assert (HC1 := between_col _ _ _ HSH).
 assert (HC2 := between_col _ _ _ HSH').
 apply conga_permlr; apply th14 with SH SH'; try apply between_comm; auto;
@@ -4212,7 +4212,7 @@ induction (colH_dec Y Z1 Z2).
  induction (colH_dec X Z1 Z2).
  {
   apply betH_expand in H2.
-  spliter.
+  分离合取式.
   exfalso.
   apply H0;ColHR.
  }
@@ -4224,19 +4224,19 @@ induction (colH_dec Y Z1 Z2).
  apply (cong_5 Z1 Y X Z2 Y X).
   intro;apply H;Col.
   intro;apply H0;Col.
-  apply congH_perms in H4;spliter; auto; try (intro; subst; Col).
-  apply congH_perms in H3;spliter; auto; try (intro; subst; Col).
+  apply congH_perms in H4;分离合取式; auto; try (intro; subst; Col).
+  apply congH_perms in H3;分离合取式; auto; try (intro; subst; Col).
   apply conga_permlr.
   assert (BetH Z1 Y Z2).
     {
      apply ncolH_distincts in H;
      apply ncolH_distincts in H0;
-     apply congH_colH_betH;apply betH_expand in H2;spliter;auto.
+     apply congH_colH_betH;apply betH_expand in H2;分离合取式;auto.
     }
   apply conga_out_conga with X Z2 X Z1;auto using outH_trivial.
-  apply ncolH_distincts in H;spliter;auto using outH_trivial.
+  apply ncolH_distincts in H;分离合取式;auto using outH_trivial.
   unfold outH. right;left;auto.
-   apply ncolH_distincts in H0;spliter;auto using outH_trivial.
+   apply ncolH_distincts in H0;分离合取式;auto using outH_trivial.
   unfold outH. right;left;auto using between_comm.
   }
   induction (colH_dec X Z1 Z2).
@@ -4248,14 +4248,14 @@ induction (colH_dec Y Z1 Z2).
  apply (cong_5 Z1 Y X Z2 Y X).
   intro;apply H;Col.
   intro;apply H0;Col.
-  apply congH_perms in H4;spliter; auto; try (intro; subst; Col).
-  apply congH_perms in H3;spliter; auto; try (intro; subst; Col).
+  apply congH_perms in H4;分离合取式; auto; try (intro; subst; Col).
+  apply congH_perms in H3;分离合取式; auto; try (intro; subst; Col).
   assert (BetH Z1 X Z2) by (apply ncolH_distincts in H;
-     apply ncolH_distincts in H0;apply congH_colH_betH;apply betH_expand in H2;spliter;auto).
+     apply ncolH_distincts in H0;apply congH_colH_betH;apply betH_expand in H2;分离合取式;auto).
   apply conga_out_conga with Y Z2 Y Z1;auto using outH_trivial.
-  apply ncolH_distincts in H;spliter;auto using outH_trivial.
+  apply ncolH_distincts in H;分离合取式;auto using outH_trivial.
   unfold outH. right;left;auto.
-   apply ncolH_distincts in H0;spliter;auto using outH_trivial.
+   apply ncolH_distincts in H0;分离合取式;auto using outH_trivial.
   unfold outH. right;left;auto using between_comm.
   }
 
@@ -4268,12 +4268,12 @@ assert (CongaH X Z1 Y X Z2 Y).
   apply th15 with Z2 Z1; auto;
   try solve[intro; apply H5; Col]; try solve[intro; apply H6; Col];
   try solve[intro; apply H; Col]; try solve[intro; apply H0; Col].
-  destruct (plane_existence X Y Z1 H) as [p]; spliter.
+  destruct (plane_existence X Y Z1 H) as [p]; 分离合取式.
   assert (IncidP Z2 p).
     {
-    apply betH_colH in H2; spliter.
+    apply betH_colH in H2; 分离合取式.
     apply (line_on_plane' Z1 I); trivial.
-    apply ncolH_distincts in H; spliter.
+    apply ncolH_distincts in H; 分离合取式.
     apply (line_on_plane' X Y); Col.
     }
   elim (plane_separation X Y Z1 Z2 p); Col; intro HS; [left|right]; split; auto;
@@ -4283,8 +4283,8 @@ apply conga_permlr.
 apply (cong_5 Z1 Y X Z2 Y X);auto using conga_permlr, congH_perms.
  intro;apply H;Col.
  intro;apply H0;Col.
- apply congH_perms in H4;spliter; auto; try (intro; subst; Col).
- apply congH_perms in H3;spliter; auto; try (intro; subst; Col).
+ apply congH_perms in H4;分离合取式; auto; try (intro; subst; Col).
+ apply congH_perms in H3;分离合取式; auto; try (intro; subst; Col).
 Qed.
 
 Lemma congaH_existence_congH :
@@ -4297,7 +4297,7 @@ Proof.
 intros.
 assert (T:=ncolH_distincts A B C H1).
 assert (T':=ncolH_distincts P O X H0).
-spliter.
+分离合取式.
 elim (cong_4_existence A B C O X P); auto.
 intros Yaux [HA HB].
 assert (O<>Yaux).
@@ -4317,14 +4317,14 @@ split.
   {
    apply (out_same_side O Y Yaux);auto.
    apply (same_side_prime_not_colH P Yaux O X) in HB.
-   spliter.
+   分离合取式.
    apply outH_expand in HD.
    intro;apply H10.
-   spliter.
+   分离合取式.
    assert (ColH O X Y) by (exists l;auto).
    ColHR.
    apply outH_sym;auto.
-   apply outH_expand in HD;spliter;auto.
+   apply outH_expand in HD;分离合取式;auto.
   }
   unfold same_side'.
   split;auto.
@@ -4332,7 +4332,7 @@ split.
   assert (谓词等长 l0 l).
    apply line_uniqueness with O X;auto.
   rewrite H12.
-  unfold same_side' in HB;spliter.
+  unfold same_side' in HB;分离合取式.
   specialize H14 with l.
   apply same_side_trans with Yaux;auto using same_side_comm.
 assumption.
@@ -4350,7 +4350,7 @@ Proof.
 intros.
 assert (T:=ncolH_distincts A B C H).
 assert (U:=ncolH_distincts A' B' C' H0).
-spliter.
+分离合取式.
 elim (congaH_existence_congH C A B A' C' B' A B);try solve [intuition Col].
 intros B0 [HA [HB HC]].
 elim (between_out B' C');auto.
@@ -4368,7 +4368,7 @@ assert (CongH B C B0 C').
   apply (th12 A B C A' B0 C').
   intuition Col.
   intuition Col.
-  apply ncolH_expand in H10; spliter.
+  apply ncolH_expand in H10; 分离合取式.
   auto using congH_sym.
   auto.
   apply conga_permlr;auto.
@@ -4378,13 +4378,13 @@ assert (CongH B C B'' C').
   apply (th12 A B C A' B'' C').
   intuition Col.
   intuition Col.
-  apply ncolH_expand in H11; spliter.
+  apply ncolH_expand in H11; 分离合取式.
   auto using congH_sym.
   auto.
   apply conga_permlr;auto.
  }
-assert (HA'B'' : A' <> B'') by (apply ncolH_expand in H11; spliter; auto).
-assert (HA'B0 : A' <> B0) by (apply ncolH_expand in H10; spliter; auto).
+assert (HA'B'' : A' <> B'') by (apply ncolH_expand in H11; 分离合取式; auto).
+assert (HA'B0 : A' <> B0) by (apply ncolH_expand in H10; 分离合取式; auto).
 assert (CongH A' B'' A' B0)
   by (apply cong_pseudo_transitivity with A B;auto using congH_sym).
 assert (CongH B'' C' B0 C')
@@ -4401,17 +4401,17 @@ assert (cut l B' P).
    split.
    intro; apply H0.
    assert (ColH A' C' P) by (exists l;auto).
-   apply betH_expand in HP;spliter;ColHR.
+   apply betH_expand in HP;分离合取式;ColHR.
    exists C';split;assumption.
  }
 assert (cut l B' B'').
  {
     apply (cut_same_side_cut B' P B'' l);auto.
-    unfold same_side' in *;spliter.
+    unfold same_side' in *;分离合取式.
     specialize H20 with l. auto.
  }
 assert (exists I', ColH A' I' C' /\ BetH B' I' B'').
-  { unfold cut in H19;spliter.
+  { unfold cut in H19;分离合取式.
     elim H21;intros I' [HI1 HI2].
     exists I';split.
     exists l;auto.
@@ -4425,12 +4425,12 @@ assert (exists I, ColH A' I C' /\ BetH B0 I B'').
      apply (cut_same_side_cut B'' B' B0 l).
      auto using cut_comm.
      unfold same_side' in HB.
-     spliter.
+     分离合取式.
      specialize H21 with l.
      apply H21;auto.
      }
    unfold cut in H20.
-   spliter.
+   分离合取式.
    destruct H22 as [I [HI1 HI2]].
    exists I;split.
    exists l;auto.
@@ -4441,11 +4441,11 @@ destruct H20 as [I [HI1 HI2]].
 
 assert (CongaH C' A' B'' C' A' B0).
  { apply (th17 C' A' B'' B0 I);intuition (Col || auto using between_comm).
-   apply congH_perms in H15;spliter;auto; intro; subst; Col.
+   apply congH_perms in H15;分离合取式;auto; intro; subst; Col.
  }
 assert (CongaH C' A' B'' C' A' B').
  { apply (th17 C' A' B'' B' I');intuition (Col || auto using between_comm).
-   apply congH_perms in H17;spliter;auto;intro;subst;Col.
+   apply congH_perms in H17;分离合取式;auto;intro;subst;Col.
  }
 assert (outH A' B0 B').
  {
@@ -4453,7 +4453,7 @@ assert (outH A' B0 B').
   apply same_side_prime_refl;intuition Col.
  }
   apply conga_permlr; apply conga_out_conga with C B C' B0;auto using outH_trivial.
- intro;apply betH_expand in HP;spliter;apply H0;ColHR.
+ intro;apply betH_expand in HP;分离合取式;apply H0;ColHR.
 Qed.
 
 Lemma th19: forall O A B O1 A1 B1 O2 A2 B2,
@@ -4468,7 +4468,7 @@ intros.
 assert (T1:=ncolH_distincts O A B H).
 assert (T2:=ncolH_distincts O1 A1 B1 H0).
 assert (T3:=ncolH_distincts O2 A2 B2 H1).
-spliter.
+分离合取式.
 elim (out_construction O1 A1 O A);auto.
 intros A1' [T1 T2].
 elim (out_construction O2 A2 O A);auto.
@@ -4483,17 +4483,17 @@ assert (T4' := T4).
 apply outH_expand in T4'.
 assert (T6':=T6).
 apply outH_expand in T6'.
-spliter.
+分离合取式.
 assert (T8':=T8).
 apply outH_expand in T8'.
-spliter.
+分离合取式.
 assert (CongH A B A1' B1').
  {
  apply (th12 O A B O1 A1' B1' ).
   intro;apply H;Col.
   intro;apply H0;ColHR.
-  apply congH_perms in T1;spliter;auto.
-  apply congH_perms in T5;spliter;auto.
+  apply congH_perms in T1;分离合取式;auto.
+  apply congH_perms in T5;分离合取式;auto.
   apply conga_out_conga with A B A1 B1;auto using outH_trivial.
  }
 assert (CongH A B A2' B2').
@@ -4501,8 +4501,8 @@ assert (CongH A B A2' B2').
  apply (th12 O A B O2 A2' B2' ).
   intro;apply H;Col.
   intro;apply H1;ColHR.
-  apply congH_perms in T3;spliter;auto.
-  apply congH_perms in T7;spliter;auto.
+  apply congH_perms in T3;分离合取式;auto.
+  apply congH_perms in T7;分离合取式;auto.
   apply conga_out_conga with A B A2 B2;auto using outH_trivial.
  }
 assert (CongH A1' B1' A2' B2')
@@ -4513,11 +4513,11 @@ assert (CongaH A1' O1 B1' A2' O2 B2').
  intro;apply H0;ColHR.
  intro;apply H1;ColHR.
  apply cong_pseudo_transitivity with O A.
- apply congH_perms in T1;spliter;auto.
- apply congH_perms in T3;spliter;auto.
+ apply congH_perms in T1;分离合取式;auto.
+ apply congH_perms in T3;分离合取式;auto.
  apply cong_pseudo_transitivity with O B.
- apply congH_perms in T5;spliter;auto.
- apply congH_perms in T7;spliter;auto.
+ apply congH_perms in T5;分离合取式;auto.
+ apply congH_perms in T7;分离合取式;auto.
  assumption.
 }
 apply conga_out_conga with A1' B1' A2' B2';auto using outH_trivial, outH_sym.
@@ -4557,7 +4557,7 @@ induction(colH_dec A' B' C').
 assumption.
 exfalso.
 apply betH_expand in H.
-spliter.
+分离合取式.
 
 assert(A' <> C').
   {
@@ -4571,7 +4571,7 @@ assert(exists C0 : Point, CongH A' C0 A B /\ outH A' C' C0).
 apply(out_construction A' C' A B); auto.
 ex_and H9 B''.
 apply outH_expand in H10.
-spliter.
+分离合取式.
 apply outH_sym in H10; auto.
 assert(BetH A' B'' C').
    {
@@ -4595,7 +4595,7 @@ ex_and H16 C''.
 
 apply betH_expand in H14.
 apply betH_expand in H16.
-spliter.
+分离合取式.
 
 assert(CongH B C B'' C').
    {
@@ -4734,7 +4734,7 @@ Proof.
 intros.
 apply betH_expand in H.
 apply betH_expand in H0.
-spliter.
+分离合取式.
 elim (由一点往一方向构造等长线段H A' B' B C);auto.
 intros C0 [HA HB].
 assert (CongH A' C0 A C)
@@ -4742,7 +4742,7 @@ assert (CongH A' C0 A C)
 
 assert (BetH A' C' C0)
  by (apply (betH_trans0 A' C' B' C0);auto).
-apply betH_expand in H12; spliter.
+apply betH_expand in H12; 分离合取式.
 assert (CongH A' C' A' C0)
  by (apply cong_pseudo_transitivity with A C;auto using congH_sym).
 apply (betH_not_congH A' C' C0);auto.
@@ -4755,7 +4755,7 @@ Proof.
 intros A B C A' B' C' HD1 HD2 HD3 HBet1 HCong1 HCong2 HCong3.
 assert (HCol : ColH A' B' C').
   {
-  apply betH_expand in HBet1; spliter;
+  apply betH_expand in HBet1; 分离合取式;
   apply cong_preserves_col_stronger with A B C; Col.
   }
 assert (HElim : outH A' B' C' \/ BetH B' A' C').
@@ -4766,7 +4766,7 @@ assert (HElim : outH A' B' C' \/ BetH B' A' C').
   }
 elim HElim; clear HElim; intro;[apply betH_congH3_outH_betH with A B C; auto|].
 exfalso; apply betH_congH2__False with C B A C' B' A';
-try apply between_comm; apply betH_expand in HBet1; spliter; auto using 等长的等价排列r, congH_perml.
+try apply between_comm; apply betH_expand in HBet1; 分离合取式; auto using 等长的等价排列r, congH_perml.
 Qed.
 
 Lemma axiom_五线段公理_等价SASsH:
@@ -4782,7 +4782,7 @@ intros.
 induction (colH_dec A B D).
 - apply betH_expand in H9.
   apply betH_expand in H10.
-  spliter.
+  分离合取式.
   apply between_one in H12; try assumption.
   assert (CongH A C A' C') by (apply addition_betH with B B';assumption).
   decompose [or] H12;clear H12.
@@ -4801,7 +4801,7 @@ induction (colH_dec A B D).
        apply betH_congH2__False with B C D B' C' D';try assumption.
        apply (betH_trans0 A' B' D' C');auto.
 
-   apply congH_permlr; apply betH_expand in H24; spliter; auto.
+   apply congH_permlr; apply betH_expand in H24; 分离合取式; auto.
    apply (soustraction_betH A D C A' D' C');assumption.
       assert (BetH A C D).
         assert (HB:BetH A D C \/ BetH A C D)
@@ -4821,15 +4821,15 @@ induction (colH_dec A B D).
     assert (T:=betH_trans0 A D B C).
     apply between_comm in H23.
     assert (U:=T H23 H9).
-    spliter.
+    分离合取式.
     apply between_comm;auto.
   assert (BetH C' D' A').
     assert (T:=betH_trans0 A' D' B' C').
     apply between_comm in H12.
     assert (U:=T H12 H10).
-    spliter.
+    分离合取式.
     apply between_comm;auto.
-  apply congH_permlr; apply betH_expand in H24; spliter; auto.
+  apply congH_permlr; apply betH_expand in H24; 分离合取式; auto.
   apply (soustraction_betH A D C A' D' C'); auto using between_comm.
   }
   {
@@ -4848,7 +4848,7 @@ induction (colH_dec A B D).
     apply congH_permlr;auto.
     assumption.
   }
-- apply betH_expand in H9;apply betH_expand in H10; spliter.
+- apply betH_expand in H9;apply betH_expand in H10; 分离合取式.
   assert (~ ColH A' B' D')
     by (intro;apply H12;apply cong_preserves_col_stronger with A' B' D';auto using congH_sym).
   assert (CongaH B A D B' A' D') by (apply th18_aux;assumption).
@@ -4862,7 +4862,7 @@ induction (colH_dec A B D).
   apply between_col in H9;Col.
   intro;apply H12.
   apply cong_preserves_col_stronger with A' B' D';auto using congH_sym.
-  apply betH_expand in H10;spliter;  ColHR.
+  apply betH_expand in H10;分离合取式;  ColHR.
   assert (T:=ncolH_distincts A B D H12).
   decompose [and] T;clear T.
   apply conga_out_conga with B D B' D';
@@ -4881,7 +4881,7 @@ unfold Bet in H3.
 decompose [or and] H3; clear H3.
 - unfold Bet in H4;decompose [or and] H4;clear H4.
    apply betH_expand in H6;
-   apply betH_expand in H3;spliter.
+   apply betH_expand in H3;分离合取式.
    unfold Cong in *.
    decompose [or and] H; decompose [or and] H0;
    decompose [or and] H1; decompose [or and] H2; subst; auto using 等长的等价排列r, congH_permlr.
@@ -5077,19 +5077,19 @@ Qed.
 Lemma coplanar_plane0 : forall A B C D X, ColH A B X -> ColH C D X ->
   exists p, IncidP A p /\ IncidP B p /\ IncidP C p /\ IncidP D p.
 Proof.
-intros A B C D X [l] [m]; spliter.
+intros A B C D X [l] [m]; 分离合取式.
 destruct (other_point_on_line X l) as [Y [HXY ]]; [assumption|].
 destruct (谓词等长_dec l m) as [Heq|Hneq].
 rewrite <- Heq in *.
 destruct (ncolH_exists X Y HXY) as [Z HNCol].
-destruct (plane_existence X Y Z HNCol) as [p]; spliter.
+destruct (plane_existence X Y Z HNCol) as [p]; 分离合取式.
 assert (Hlp : IncidLP l p) by (apply (line_on_plane X Y); assumption).
 exists p; repeat split; auto.
 destruct (other_point_on_line X m) as [Z [HXZ ]]; [assumption|].
 assert (HNCol : ~ ColH X Y Z).
 apply IncidL_not_IncidL__not_colH with l; [assumption..|].
 intro; apply Hneq, (line_uniqueness X Z); assumption.
-destruct (plane_existence X Y Z HNCol) as [p]; spliter.
+destruct (plane_existence X Y Z HNCol) as [p]; 分离合取式.
 assert (Hlp : IncidLP l p) by (apply (line_on_plane X Y); assumption).
 assert (Hmp : IncidLP m p) by (apply (line_on_plane X Z); assumption).
 exists p; repeat split; auto.
@@ -5110,8 +5110,8 @@ Lemma coplanar_plane : forall A B C D, 共面 A B C D ->
 Proof.
 intros A B C D [X [[H1 H2]|[[H1 H2]|[H1 H2]]]].
 apply coplanar_plane1 with X; assumption.
-destruct (coplanar_plane1 A C B D X) as [p]; [..|spliter; exists p]; repeat split; assumption.
-destruct (coplanar_plane1 A D B C X) as [p]; [..|spliter; exists p]; repeat split; assumption.
+destruct (coplanar_plane1 A C B D X) as [p]; [..|分离合取式; exists p]; repeat split; assumption.
+destruct (coplanar_plane1 A D B C X) as [p]; [..|分离合取式; exists p]; repeat split; assumption.
 Qed.
 
 Lemma plane_coplanar : forall A B C D p, IncidP A p -> IncidP B p -> IncidP C p -> IncidP D p ->
@@ -5132,13 +5132,13 @@ destruct (两点重合的决定性H D M) as [|HDM].
   exists D; subst; left; split; Col.
 destruct (line_existence D M HDM) as [l []].
 destruct (IncidL_dec A l).
-  destruct HM as [m]; spliter.
+  destruct HM as [m]; 分离合取式.
   assert (Heq : hilbert_axioms.谓词等长 m l) by (apply (line_uniqueness M A); auto).
   rewrite Heq in *.
   exists A; right; left; split; [|apply line_col with l]; Col.
 assert (~ IncidL B l).
   intro.
-  destruct HM as [m]; spliter.
+  destruct HM as [m]; 分离合取式.
   assert (Heq : hilbert_axioms.谓词等长 m l) by (apply (line_uniqueness M B); auto).
   rewrite Heq in *; auto.
 destruct (IncidL_dec C l).
@@ -5171,7 +5171,7 @@ intros [X []].
 apply HNI; exists X.
 rewrite 2 col_colh; split; [exists l|exists m]; repeat split; assumption.
 apply coplanar_plane in HCop.
-destruct HCop as [p]; spliter.
+destruct HCop as [p]; 分离合取式.
 exists p.
 split; [apply (line_on_plane A B)|apply (line_on_plane C D)]; assumption.
 Qed.
@@ -5182,7 +5182,7 @@ Proof.
   intros A B C D l m HA HB HC HD [HParS|Heq].
     left; apply (pars__para A B C D); assumption.
   right.
-  spliter.
+  分离合取式.
   rewrite col_colh in *.
   apply (line_uniqueness A B); trivial; apply (colH_IncidL__IncidL C D); Col.
 Qed.
@@ -5308,24 +5308,24 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
     {
     intro; subst; assert (HC : ColH B Q C)
       by (apply cong_preserves_col with B I C; Cong).
-    apply HNC1; apply betH_expand in HBet'; spliter; ColHR.
+    apply HNC1; apply betH_expand in HBet'; 分离合取式; ColHR.
     }
   assert (HD12 : Q <> I).
     {
     intro; subst; assert (HC : ColH B P C)
       by (apply cong_preserves_col with B I C; auto with cong).
-    apply HNC1; apply betH_expand in HBet'; spliter; ColHR.
+    apply HNC1; apply betH_expand in HBet'; 分离合取式; ColHR.
     }
   assert (HC' : ColH P Q I) by (exists l; auto).
   assert (HConga : CongaH I B P I B Q).
     {
     apply betH_expand in HBet'; apply conga_out_conga with C P C Q;
-    try apply outH_trivial; unfold outH; spliter; auto; apply th18_aux; Cong;
+    try apply outH_trivial; unfold outH; 分离合取式; auto; apply th18_aux; Cong;
     intro; [apply HNC1|apply HNC2]; ColHR.
     }
   assert (HCong4 : CongH I P I Q).
     {
-    apply betH_expand in HBet'; spliter.
+    apply betH_expand in HBet'; 分离合取式.
     destruct (th12 B I P B I Q) as [_ [_ ]]; Cong;
     try (intro; apply HNC1; ColHR).
     }
@@ -5378,7 +5378,7 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
     intros _ [_ [I [HI HBet']]].
     assert (HBet2 : ColH B I C) by (exists lBC; auto).
     apply between_one in HBet2;
-    try solve[intro; subst; apply betH_expand in HBet'; spliter; Col].
+    try solve[intro; subst; apply betH_expand in HBet'; 分离合取式; Col].
     elim HBet2; clear HBet2; intro HBet''.
 
       {
@@ -5398,7 +5398,7 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
         assert (HConga : CongaH P C I Q C I).
           {
           apply th14 with B B; Bet; apply betH_expand in HBet';
-          apply betH_expand in HBet''; spliter;
+          apply betH_expand in HBet''; 分离合取式;
           assert (HD11 : P <> I) by auto; assert (HD12 : Q <> I) by auto;
           [intro; apply HD11; apply inter_uniquenessH with P Q C B; try intro; Col|
            intro; apply HD12; apply inter_uniquenessH with P Q C B; try intro; Col|].
@@ -5408,24 +5408,24 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
           }
         assert (HCong4 : CongH I P I Q).
           {
-          apply betH_expand in HBet'; apply betH_expand in HBet''; spliter.
+          apply betH_expand in HBet'; apply betH_expand in HBet''; 分离合取式.
           destruct (th12 C P I C Q I) as [_ [_ ]]; Cong; try (intro; apply HNC1; ColHR).
           }
         elim (两点重合的决定性H A I); intro HD13; [subst; right; left; unfold Bet; Bet|].
         assert (HBet''' : ColH I P Q)
-          by (apply betH_expand in HBet'; spliter; Col).
+          by (apply betH_expand in HBet'; 分离合取式; Col).
         apply congH_colH_betH in HBet''';
-        try solve[apply betH_expand in HBet'; spliter; Col].
+        try solve[apply betH_expand in HBet'; 分离合取式; Col].
         elim (betH2_out P A I Q); auto; intro HF; exfalso.
 
           {
-          apply betH_expand in HBet'; spliter.
+          apply betH_expand in HBet'; 分离合取式.
           assert (BetH Q I A) by (destruct (betH_trans0 P A I Q); Bet).
           apply betH_congH2__False with P A I Q A I; Cong.
           }
 
           {
-          apply betH_expand in HBet'; spliter.
+          apply betH_expand in HBet'; 分离合取式.
           assert (BetH Q A I) by (destruct (betH_trans0 P I A Q); Bet).
           apply betH_congH2__False with P I A Q I A; Cong.
           }
@@ -5435,7 +5435,7 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
         assert (HConga : CongaH P B I Q B I).
           {
           apply th14 with C C; Bet; apply betH_expand in HBet';
-          apply betH_expand in HBet''; spliter;
+          apply betH_expand in HBet''; 分离合取式;
           assert (HD11 : P <> I) by auto; assert (HD12 : Q <> I) by auto;
           [intro; apply HD11; apply inter_uniquenessH with P Q B C; try intro; Col|
            intro; apply HD12; apply inter_uniquenessH with P Q B C; try intro; Col|].
@@ -5445,24 +5445,24 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
           }
         assert (HCong4 : CongH I P I Q).
           {
-          apply betH_expand in HBet'; apply betH_expand in HBet''; spliter.
+          apply betH_expand in HBet'; apply betH_expand in HBet''; 分离合取式.
           destruct (th12 B P I B Q I) as [_ [_ ]]; Cong; try (intro; apply HNC1; ColHR).
           }
         elim (两点重合的决定性H A I); intro HD13; [subst; left; unfold Bet; Bet|].
         assert (HBet''' : ColH I P Q)
-          by (apply betH_expand in HBet'; spliter; Col).
+          by (apply betH_expand in HBet'; 分离合取式; Col).
         apply congH_colH_betH in HBet''';
-        try solve[apply betH_expand in HBet'; spliter; Col].
+        try solve[apply betH_expand in HBet'; 分离合取式; Col].
         elim (betH2_out P A I Q); auto; intro HF; exfalso.
 
           {
-          apply betH_expand in HBet'; spliter.
+          apply betH_expand in HBet'; 分离合取式.
           assert (BetH Q I A) by (destruct (betH_trans0 P A I Q); Bet).
           apply betH_congH2__False with P A I Q A I; Cong.
           }
 
           {
-          apply betH_expand in HBet'; spliter.
+          apply betH_expand in HBet'; 分离合取式.
           assert (BetH Q A I) by (destruct (betH_trans0 P I A Q); Bet).
           apply betH_congH2__False with P I A Q I A; Cong.
           }
@@ -5472,7 +5472,7 @@ elim (plane_separation_2D _ _ _ _ HNC1 HNC2); intro HS.
 
     {
     assert (H : outH B P Q);
-    [|apply outH_expand in H; spliter; exfalso; apply HNC1; Col].
+    [|apply outH_expand in H; 分离合取式; exfalso; apply HNC1; Col].
     apply cong_4_uniqueness with C B P P C; try apply 同角相等;
     try apply same_side_prime_refl; try (intro; apply HNC3; Col); auto.
     apply th18_aux; Cong; intro; [apply HNC3|apply HNC4]; Col.
@@ -5497,31 +5497,31 @@ assert (HD11 : P <> I).
   {
   intro; subst; assert (HC : ColH A Q B)
     by (apply cong_preserves_col with A I B; Cong).
-  apply HNC1; apply betH_expand in HBet; spliter; ColHR.
+  apply HNC1; apply betH_expand in HBet; 分离合取式; ColHR.
   }
 assert (HD12 : Q <> I).
   {
   intro; subst; assert (HC : ColH A P B)
     by (apply cong_preserves_col with A I B; auto with cong).
-  apply HNC1; apply betH_expand in HBet; spliter; ColHR.
+  apply HNC1; apply betH_expand in HBet; 分离合取式; ColHR.
   }
 assert (HConga : CongaH I A P I A Q).
   {
   apply betH_expand in HBet; apply conga_out_conga with B P B Q;
-  try apply outH_trivial; unfold outH; spliter; auto; apply th18_aux; Cong;
+  try apply outH_trivial; unfold outH; 分离合取式; auto; apply th18_aux; Cong;
   intro; [apply HNC1|apply HNC2]; ColHR.
   }
 assert (HCong4 : CongH I P I Q).
   {
-  apply betH_expand in HBet; spliter.
+  apply betH_expand in HBet; 分离合取式.
   destruct (th12 A I P A I Q) as [_ [_ ]]; Cong; try (intro; apply HNC1; ColHR).
   }
 assert (HC : ColH A B C).
   {
   elim (两点重合的决定性H C I); intro HD13; subst;
   try solve[apply between_col in HBet; Col].
-  assert (HC : ColH A C I); [|apply betH_expand in HBet; spliter; ColHR].
-  apply betH_expand in HBet; spliter.
+  assert (HC : ColH A C I); [|apply betH_expand in HBet; 分离合取式; ColHR].
+  apply betH_expand in HBet; 分离合取式.
   elim (col_防升维公理 I A C P Q); Col; intro HE;
   elim HE; clear HE; intro HE; apply 中间性蕴含共线1H in HE; Col.
   }
@@ -5548,7 +5548,7 @@ elim (colH_dec B P Q); intro HNC2; [destruct (col_防升维公理 B C A P Q) as 
 assert (HConga : CongaH P B I Q B I).
   {
   apply th14 with A A; Bet; apply betH_expand in HBet1;
-  apply betH_expand in HBet2; spliter;
+  apply betH_expand in HBet2; 分离合取式;
   assert (HD11 : P <> I) by auto; assert (HD12 : Q <> I) by auto;
   [intro; apply HD11; apply inter_uniquenessH with P Q A B; try intro; Col|
    intro; apply HD12; apply inter_uniquenessH with P Q A B; try intro; Col|].
@@ -5558,19 +5558,19 @@ assert (HConga : CongaH P B I Q B I).
   }
 assert (HCong4 : CongH I P I Q).
   {
-  apply betH_expand in HBet1; apply betH_expand in HBet2; spliter.
+  apply betH_expand in HBet1; apply betH_expand in HBet2; 分离合取式.
   destruct (th12 B P I B Q I) as [_ [_ ]]; Cong; try (intro; apply HNC1; ColHR).
   }
 assert (HC : ColH A B C).
   {
   assert (HC1 : ColH A B I).
     {
-    apply betH_expand in HBet1; apply betH_expand in HBet2; spliter.
+    apply betH_expand in HBet1; apply betH_expand in HBet2; 分离合取式.
     elim (col_防升维公理 I A B P Q); Col.
     }
   elim (两点重合的决定性H C I); intro HD11; subst; Col.
-  assert (HC2 : ColH A C I); [|apply betH_expand in HBet2; spliter; ColHR].
-  apply betH_expand in HBet1; apply betH_expand in HBet2; spliter.
+  assert (HC2 : ColH A C I); [|apply betH_expand in HBet2; 分离合取式; ColHR].
+  apply betH_expand in HBet1; apply betH_expand in HBet2; 分离合取式.
   elim (col_防升维公理 I A C P Q); Col; intro HE;
   elim HE; clear HE; intro HE; apply 中间性蕴含共线1H in HE; Col.
   }
@@ -5585,9 +5585,9 @@ Lemma 防升维公理 : forall A B C P Q,
   (Bet A B C \/ Bet B C A \/ Bet C A B).
 Proof.
 unfold Cong; intros A B C P Q HD1 HD2 HD3 HD4 HCong1 HCong2 HCong3.
-elim HCong1; clear HCong1; intro HCong1; [|spliter; repeat subst; intuition].
-elim HCong2; clear HCong2; intro HCong2; [|spliter; repeat subst; intuition].
-elim HCong3; clear HCong3; intro HCong3; [|spliter; repeat subst; intuition].
+elim HCong1; clear HCong1; intro HCong1; [|分离合取式; repeat subst; intuition].
+elim HCong2; clear HCong2; intro HCong2; [|分离合取式; repeat subst; intuition].
+elim HCong3; clear HCong3; intro HCong3; [|分离合取式; repeat subst; intuition].
 destruct HCong1 as [HCong1 [HD5 HD6]].
 destruct HCong2 as [HCong2 [HD7 HD8]].
 destruct HCong3 as [HCong3 [HD9 HD10]].
@@ -5629,7 +5629,7 @@ elim (plane_separation_2D _ _ _ _ HNC4 HNC5); intro HS3.
   destruct HS3 as [_ HS3]; line A B lAB HD2; elim (HS3 lAB); auto.
   intros _ [_ [I [HI HBet1]]]; assert (HBet2 : ColH A I B) by (exists lAB; auto).
   apply between_one in HBet2; try (elim HBet2; clear HBet2; intro HBet2);
-  try (intro; intro; subst; apply betH_expand in HBet1; spliter; Col).
+  try (intro; intro; subst; apply betH_expand in HBet1; 分离合取式; Col).
 
     {
     line P Q lPQ HD1; destruct HS1 as [_ HS1]; assert (HS4 : same_side A B lPQ)
@@ -5650,7 +5650,7 @@ elim (plane_separation_2D _ _ _ _ HNC4 HNC5); intro HS3.
 
   {
   assert (H : outH A P Q);
-  [|apply outH_expand in H; spliter; exfalso; apply HNC1; Col].
+  [|apply outH_expand in H; 分离合取式; exfalso; apply HNC1; Col].
   apply cong_4_uniqueness with B A P P B; try apply 同角相等;
   try apply same_side_prime_refl; try (intro; apply HNC4; Col); auto.
   apply th18_aux; Cong; intro; [apply HNC4|apply HNC5]; Col.
@@ -5690,9 +5690,9 @@ apply coplanar_plane in HP1.
 apply coplanar_plane in HP2.
 destruct HP1 as [p].
 destruct HP2 as [q].
-spliter.
+分离合取式.
 destruct (plane_intersection P p q) as [Q]; [assumption..|].
-spliter.
+分离合取式.
 exists Q.
 repeat split; [..|assumption].
   apply plane_coplanar with p; assumption.

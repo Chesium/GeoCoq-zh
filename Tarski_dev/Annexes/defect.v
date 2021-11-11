@@ -147,7 +147,7 @@ Proof.
   intros noah A B C C1 D E F G H I K L M HBet HDefA HDefC HSuma.
   assert (HDA := defect_distincts A B C1 D E F HDefA).
   assert (HDC := defect_distincts B C1 C G H I HDefC).
-  spliter; clean.
+  分离合取式; clean.
   apply defect_perm_321 in HDefA.
   destruct HDefA as [P [Q [R [HTri HSuppa]]]].
   assert (HSuma1 : 和角 P Q R D E F A C1 C) by 和角.
@@ -237,7 +237,7 @@ Proof.
   intros noah A B C C1 D E F G H I K L M HBet HDefA HDefB HDef.
   assert (Hd := defect_distincts A B C1 D E F HDefA).
   assert (Hd' := defect_distincts B C1 C G H I HDefB).
-  spliter.
+  分离合取式.
   destruct (和角的存在性 D E F G H I) as [K' [L' [M' HSuma]]]; auto.
   destruct (t22_16_1 noah A B C C1 D E F G H I K' L' M') as [HIsi HDef']; trivial.
   split; trivial.
@@ -259,7 +259,7 @@ Proof.
   assert (Hd := defect_distincts A B D C1 C2 C3 HDefC).
   assert (Hd' := defect_distincts C B D A1 A2 A3 HDefA).
   assert (Hd'' := defect_distincts A B C D1 D2 D3 HDefD).
-  spliter; suma.统计不重合点.
+  分离合取式; suma.统计不重合点.
   apply col_defect__out in HDefD; trivial.
   destruct (共线的决定性 A D C) as [HCol1|HNCol].
   { assert (Col C B D) by ColR.
@@ -293,7 +293,7 @@ Proof.
     HDefD HDefC HDefB HDefA HBet HBet2 HCol HSuma.
   assert (Hd := defect_distincts A B D C1 C2 C3 HDefC).
   assert (Hd' := defect_distincts C B D A1 A2 A3 HDefA).
-  spliter; suma.统计不重合点.
+  分离合取式; suma.统计不重合点.
   assert (HOut : Out C2 C1 C3) by (apply (col_defect__out A B D); trivial).
   split; [和角|].
   assert (HSuma1 : 和角 C1 C2 C3 A1 A2 A3 A1 A2 A3) by (apply 零角加上任何角即为该角; auto).
@@ -318,7 +318,7 @@ Proof.
     HDefD HDefC HDefB HDefA HBet HBet2 HIsi HSuma.
   assert (Hd := defect_distincts A B D C1 C2 C3 HDefC).
   assert (Hd' := defect_distincts C B D A1 A2 A3 HDefA).
-  spliter; suma.统计不重合点.
+  分离合取式; suma.统计不重合点.
 
   destruct (共线的决定性 A B C) as [HCol|HNCol].
     apply (t22_16_2aux noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O); trivial.
@@ -332,7 +332,7 @@ Proof.
     apply defect_perm_321; trivial.
   assert (Hdiff : O <> A /\ O <> B /\ O <> C /\ O <> D).
     assert_cols; repeat split; intro; subst O; Col.
-  spliter.
+  分离合取式.
 
   destruct (ex_defect A B O) as [S1 [T1 [U1 HDef1]]]; auto.
   destruct (ex_defect B C O) as [S2 [T2 [U2 HDef2]]]; auto.

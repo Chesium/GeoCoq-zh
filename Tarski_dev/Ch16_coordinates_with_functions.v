@@ -53,7 +53,7 @@ exact 防降维公理.
 Qed.
 
 Lemma sum_col: forall A B C, Sum O E E' A B C -> Col O E C.
-Proof. intros; unfold Sum, Ar2 in *; spliter; Col. Qed.
+Proof. intros; unfold Sum, Ar2 in *; 分离合取式; Col. Qed.
 
 Lemma sum_f : forall A B, Col O E A -> Col O E B -> {C | Sum O E E' A B C}.
 Proof.
@@ -64,7 +64,7 @@ Qed.
 
 Lemma prod_col: forall A B C, Prod O E E' A B C -> Col O E C.
 Proof.
- intros;  unfold Prod, Ar2 in *; spliter; Col.
+ intros;  unfold Prod, Ar2 in *; 分离合取式; Col.
 Qed.
 
 Lemma prod_f : forall A B, Col O E A -> Col O E B -> {C | Prod O E E' A B C}.
@@ -77,7 +77,7 @@ Qed.
 
 Lemma diff_col: forall A B C, Diff O E E' A B C -> Col O E C.
 Proof.
-intros A B C H; destruct H as [MB HMB]; spliter; apply sum_col with A MB; auto.
+intros A B C H; destruct H as [MB HMB]; 分离合取式; apply sum_col with A MB; auto.
 Qed.
 
 Lemma diff_f : forall A B, Col O E A -> Col O E B -> {C | Diff O E E' A B C}.
@@ -89,7 +89,7 @@ Qed.
 
 Lemma opp_col : forall A B, Opp O E E' A B -> Col O E B.
 Proof.
-intros; unfold Opp, Sum, Ar2 in *; spliter; Col.
+intros; unfold Opp, Sum, Ar2 in *; 分离合取式; Col.
 Qed.
 
 Lemma opp_f : forall A, Col O E A -> {B | Opp O E E' A B}.
@@ -105,24 +105,24 @@ Proof.
 intros.
 
 unfold PythRel in *.
-spliter.
+分离合取式.
 split.
 unfold Ar2 in *.
-spliter.
+分离合取式.
 repeat split; auto.
 unfold Opp in H.
 unfold Sum in H.
-spliter.
+分离合取式.
 unfold Ar2 in H.
-spliter.
+分离合取式.
 tauto.
 
 unfold Ar2 in H0.
-spliter.
+分离合取式.
 
 induction H1.
 left.
-spliter.
+分离合取式.
 induction H5.
 subst A.
 split.
@@ -144,7 +144,7 @@ repeat split; auto.
 
 apply opp_midpoint in H.
 unfold 中点 in H.
-spliter.
+分离合取式.
 apply 等长的传递性 with O0 C; Cong.
 Qed.
 
@@ -152,14 +152,14 @@ Lemma pythrel_null : forall O E E' A B, PythRel O E E' A B O -> A = O /\ B = O.
 Proof.
 intros.
 unfold PythRel in H.
-spliter.
+分离合取式.
 induction H0.
-spliter.
+分离合取式.
 induction H1.
 split; auto.
 apply opp_midpoint in H1.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 apply 等长的同一性 in H2.
 split; auto.
 
@@ -168,7 +168,7 @@ apply 等长的对称性 in H2.
 apply 等长的同一性 in H2.
 subst B'.
 unfold Ar2 in H.
-spliter.
+分离合取式.
 apply 垂直的右交换性 in H0.
 apply L形垂直推出不共线 in H0.
 apply False_ind.
@@ -183,10 +183,10 @@ Qed.
 Lemma pythrel_not_null : forall O E E' A B C, C <> O -> PythRel O E E' A B C -> A <> O \/ B <> O.
 intros.
 unfold PythRel in H0.
-spliter.
-unfold Ar2 in H0; spliter.
+分离合取式.
+unfold Ar2 in H0; 分离合取式.
 induction H1.
-spliter.
+分离合取式.
 left.
 intro.
 subst A.
@@ -196,7 +196,7 @@ tauto.
 subst B.
 apply opp_midpoint in H5.
 unfold 中点 in H5.
-spliter.
+分离合取式.
 apply 等长的对称性 in H5.
 apply 等长的同一性 in H5.
 subst C.
@@ -212,14 +212,14 @@ Qed.
 Lemma pythrelOO : forall O E E' C, PythRel O E E' O O C -> C = O.
 intros.
 unfold PythRel in H.
-spliter.
+分离合取式.
 induction H0.
-spliter.
+分离合取式.
 induction H1.
 auto.
 apply opp_midpoint in H1.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 apply 等长的对称性 in H2.
 apply 等长的同一性 in H2.
 auto.
@@ -238,7 +238,7 @@ ex_and HE C.
 
 assert(HC:Col O E C).
 unfold PythRel in *.
-spliter.
+分离合取式.
 unfold Ar2 in H1.
 tauto.
 
@@ -266,7 +266,7 @@ left.
 unfold Ps.
 apply opp_midpoint in H4.
 unfold 中点 in H4.
-spliter.
+分离合取式.
 unfold Out.
 repeat split.
 intro.
@@ -282,7 +282,7 @@ apply(l5_2 C O C' E H3 H4); Between.
 Col.
 unfold uniqueness.
 intros.
-spliter.
+分离合取式.
 
 apply (PythRel_uniqueness O E E' A B); auto.
 induction H4; induction H3.
@@ -291,7 +291,7 @@ split; auto.
 
 subst y.
 apply pythrel_null in H2.
-spliter.
+分离合取式.
 subst A.
 subst B.
 
@@ -302,7 +302,7 @@ unfold Out in H4.
 tauto.
 subst x.
 apply pythrel_null in H1.
-spliter.
+分离合取式.
 subst A.
 subst B.
 assert(HH:= pythrelOO O E E' y H2).
@@ -313,7 +313,7 @@ tauto.
 right.
 subst y.
 apply pythrel_null in H2.
-spliter.
+分离合取式.
 subst A.
 subst B.
 assert(HH:= pythrelOO O E E' x H1).
@@ -335,20 +335,20 @@ Qed.
 Lemma inv_col : forall A B, inv O E E' A B -> Col O E B.
 Proof.
 intros A B H; elim (两点重合的决定性 A O); intro HNEq;
-[induction H; spliter;[subst; intuition|treat_equalities; Col]|].
+[induction H; 分离合取式;[subst; intuition|treat_equalities; Col]|].
 try (subst;Col).
-elim H; clear H; intro H; [clear HNEq|spliter; subst; intuition].
-destruct H as [IA [HNEq HIA]]; unfold Ar2 in *; spliter; Col.
+elim H; clear H; intro H; [clear HNEq|分离合取式; subst; intuition].
+destruct H as [IA [HNEq HIA]]; unfold Ar2 in *; 分离合取式; Col.
 Qed.
 
 Lemma inv_uniqueness : forall A B1 B2,
   inv O E E' A B1 -> inv O E E' A B2 -> B1 = B2.
 Proof.
 intros A B1 B2 HB1 HB2; elim (两点重合的决定性 A O); intro HNEq;
-[induction HB1; induction HB2; spliter; treat_equalities; intuition|].
+[induction HB1; induction HB2; 分离合取式; treat_equalities; intuition|].
 subst;auto.
-elim HB1; clear HB1; intro HB1; [clear HNEq|spliter; subst; intuition].
-elim HB2; clear HB2; intro HB2; [|spliter; subst; intuition].
+elim HB1; clear HB1; intro HB1; [clear HNEq|分离合取式; subst; intuition].
+elim HB2; clear HB2; intro HB2; [|分离合取式; subst; intuition].
 destruct HB1 as [HNEq HB1]; destruct HB2 as [H HB2]; clear H.
 apply prod_uniquenessA with O E E' A E; assumption.
 Qed.
@@ -730,7 +730,7 @@ split; unfold OF, OneF, MulF, DivF, InvF, EqF, sig_rect; simpl;
   destruct (prod_f Ip (proj1_sig p)
                    (inv_col (proj1_sig p) Ip HIp) (proj2_sig p)) as [E'' HE''].
   simpl; elim HIp; clear HIp; intro HIp;
-  [|spliter; treat_equalities; intuition].
+  [|分离合取式; treat_equalities; intuition].
   destruct HIp as [H HIp]; clear H.
   apply prod_uniqueness with O E E' Ip (proj1_sig p); assumption.
   }
@@ -1011,7 +1011,7 @@ intros A B; unfold EqF.
 elim (coordinates_of_point_F A); intros [[Ax HAx] [Ay HAy]] HAc.
 elim (coordinates_of_point_F B); intros [[Bx HBx] [By HBy]] HBc.
 rewrite (eq_points_coordinates O E SS U1 U2 A Ax Ay B Bx By HAc HBc).
-split; intro; spliter; split; treat_equalities; simpl; auto.
+split; intro; 分离合取式; split; treat_equalities; simpl; auto.
 Qed.
 
 Lemma characterization_of_neq_F_bis : forall A B,
@@ -1025,7 +1025,7 @@ Proof.
 intros A B; rewrite characterization_of_equality_F; unfold EqF.
 elim (coordinates_of_point_F A); intros [[Ax HAx] [Ay HAy]] _.
 elim (coordinates_of_point_F B); intros [[Bx HBx] [By HBy]] _.
-simpl; split; intro; spliter; [|intuition].
+simpl; split; intro; 分离合取式; [|intuition].
 destruct (两点重合的决定性 Ax Bx); destruct (两点重合的决定性 Ay By); intuition.
 Qed.
 
@@ -1045,7 +1045,7 @@ destruct (prod_f AyMBy AyMBy
 destruct (sum_f ABx ABy
                 (prod_col AxMBx AxMBx ABx HABx)
                 (prod_col AyMBy AyMBy ABy HABy)) as [s Hs]; simpl.
-split; intro H; [|apply eq_sym in H]; spliter; try split; treat_equalities.
+split; intro H; [|apply eq_sym in H]; 分离合取式; try split; treat_equalities.
 
   {
   apply sum_uniqueness with O E E' O O; [|apply sum_A_O; Col].
@@ -1056,8 +1056,8 @@ split; intro H; [|apply eq_sym in H]; spliter; try split; treat_equalities.
     apply ncolOEE'.
     apply ncolOEE'.
     }
-  spliter; subst; assert (ABx = O /\ ABy = O);
-  [|spliter; subst; assumption].
+  分离合取式; subst; assert (ABx = O /\ ABy = O);
+  [|分离合取式; subst; assumption].
   split; apply prod_uniqueness with O E E' O O;
   [|apply prod_0_l| |apply prod_0_l]; Col; auto using ncolOEE'.
   apply ncolOEE'.
@@ -1156,7 +1156,7 @@ intros; elim (两点重合的决定性 A B); intro HAB.
     elim (coordinates_of_point_F I); intros Ic HIc.
     destruct Ac as [[Ax HAx] [Ay HAy]].
     destruct Ic as [[Ix HIx] [Iy HIy]].
-    intro; spliter; split; nsatz; apply neq20.
+    intro; 分离合取式; split; nsatz; apply neq20.
     }
   }
 
@@ -1187,7 +1187,7 @@ intros; elim (两点重合的决定性 A B); intro HAB.
     elim (coordinates_of_point_F A); intros [Ax Ay] _.
     elim (coordinates_of_point_F B); intros [Bx By] _.
     elim (coordinates_of_point_F I); intros [Ix Iy] _.
-    intro; spliter; split; nsatz; apply neq20.
+    intro; 分离合取式; split; nsatz; apply neq20.
     }
   }
 Qed.
@@ -1215,7 +1215,7 @@ split; [clear H; clear D;
         intro H1; exists D; split;
         [assumption|revert H1; revert H]];
 elim (coordinates_of_point_F D); intros Dc _;
-destruct Dc as [Dx Dy]; intros; spliter; nsatz.
+destruct Dc as [Dx Dy]; intros; 分离合取式; nsatz.
 simpl; apply neqO_mul_neqO; apply neq20.
 Qed.
 
@@ -1378,7 +1378,7 @@ intros; split; [intro H; destruct H as [X [HAB [HCD [HC1 [HC2 HPer]]]]]|].
       elim (coordinates_of_point_F B); intros [Bx By] _.
       elim (coordinates_of_point_F C); intros [Cx Cy] _.
       elim (coordinates_of_point_F D); intros [Dx Dy] _.
-      intro; spliter; auto.
+      intro; 分离合取式; auto.
       }
     rewrite characterization_of_parallelism_F_bis.
     rewrite characterization_of_neq_F in HAB; revert HAB.
@@ -1510,7 +1510,7 @@ Lemma centroid_theorem : forall A B C A1 B1 C1 G,
   Col C C1 G \/ Col A B C.
 Proof.
 intros A B C A1 B1 C1 G; convert_to_algebra; decompose_coordinates.
-intros; spliter. express_disj_as_a_single_poly; nsatz.
+intros; 分离合取式. express_disj_as_a_single_poly; nsatz.
 Qed.
 
 Lemma put_neg_in_goal : forall A B, A \/ B -> (~ A -> B).
@@ -1540,11 +1540,11 @@ Lemma nine_point_circle : forall A B C A1 B1 C1 A2 B2 C2 A3 B3 C3 H O,
   Cong O A3 O A1 /\ Cong O B3 O A1 /\ Cong O C3 O A1.
 Proof.
 intros A B C A1 B1 C1 A2 B2 C2 A3 B3 C3 H O0; convert_to_algebra.
-decompose_coordinates; intros; spliter.
+decompose_coordinates; intros; 分离合取式.
 clear H24; clear H25; clear H26; clear H27; clear H28; clear H29;
 clear H30; clear H31; clear H32; clear H33; clear H34; clear H35;
 put_negs_in_goal.
-scnf; [| | | | | |spliter; rtauto]; express_disj_as_a_single_poly;
+scnf; [| | | | | |分离合取式; rtauto]; express_disj_as_a_single_poly;
 nsatz; prove_discr_for_powers_of_2.
 Qed.
 
@@ -2098,7 +2098,7 @@ rewrite characterization_of_midpoint_F.
 decompose_coordinates.
 unfold cross_product.
 simpl.
-intros;spliter.
+intros;分离合取式.
 nsatz.
 prove_discr_for_powers_of_2.
 Qed.
@@ -2113,11 +2113,11 @@ destruct (中点的存在性 A Q) as [R HR].
 destruct (中点的存在性 A B) as [I HI].
 destruct (exists_cong_per A I A R) as [C HC].
 exists C.
-spliter.
+分离合取式.
 revert dependent A .
 intro A.
 convert_to_algebra.
-decompose_coordinates; intros; spliter;
+decompose_coordinates; intros; 分离合取式;
 split;
 nsatz;
 prove_discr_for_powers_of_2.
@@ -2136,7 +2136,7 @@ Proof.
 intros.
 unfold signed_area4.
 convert_to_algebra.
-decompose_coordinates; intros; spliter.
+decompose_coordinates; intros; 分离合取式.
 *)
 
 
@@ -2159,14 +2159,14 @@ intros.
 
 apply plg_par in H4;[idtac|auto|auto].
 apply plg_par in H5;[idtac|auto|auto].
-spliter.
+分离合取式.
 revert H4 H10 H5 H9 H6 H7 H9.
 setoid_rewrite characterization_of_parallelism_F.
 setoid_rewrite characterization_of_collinearity_F.
 setoid_rewrite characterization_of_congruence_F.
 unfold signed_area4, signed_area, cross_product.
 decompose_coordinates;simpl.
-intros;spliter.
+intros;分离合取式.
 put_negs_in_goal;
 express_disj_as_a_single_poly.
 right.
@@ -2191,7 +2191,7 @@ setoid_rewrite characterization_of_parallelism_F.
 decompose_coordinates;simpl.
 unfold cross_product;simpl.
 intros.
-spliter.
+分离合取式.
 nsatz.
 Qed.
 
@@ -2214,7 +2214,7 @@ setoid_rewrite characterization_of_collinearity_F.
 setoid_rewrite characterization_of_congruence_F.
 decompose_coordinates;simpl.
 unfold cross_product;simpl.
-intros;spliter.
+intros;分离合取式.
 put_negs_in_goal;
 express_disj_as_a_single_poly.
 *)

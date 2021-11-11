@@ -259,7 +259,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 Lemma 四点中间性的对称性 : forall A1 A2 A3 A4, 四点中间性 A1 A2 A3 A4 -> 四点中间性 A4 A3 A2 A1.
 Proof.
     unfold 四点中间性.
-    intros;spliter; auto with between.
+    intros;分离合取式; auto with between.
 Qed.
 
 Lemma l3_17_三中间性推交点存在性 : forall A B C A' B' P,
@@ -378,7 +378,7 @@ Qed.
 
 Lemma 严格中间性的等价 : forall A B C, BetS A B C <-> Bet A B C /\ A <> B /\ A <> C /\ B <> C.
 Proof.
-intros; unfold BetS; split; intro; spliter;
+intros; unfold BetS; split; intro; 分离合取式;
 repeat split; auto; intro; treat_equalities; auto.
 Qed.
 

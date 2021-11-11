@@ -12,7 +12,7 @@ Proof.
 intros.
 assert (OS D B G H) by (forward_using lemma_samesidesymmetric).
 let Tf:=fresh in
-assert (Tf:exists a b c d e, (Supp a b c e d /\ 等角 B G H a b c /\ 等角 G H D e b d)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];spliter.
+assert (Tf:exists a b c d e, (Supp a b c e d /\ 等角 B G H a b c /\ 等角 G H D e b d)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];分离合取式.
 assert (等角 a b c B G H) by (conclude lemma_equalanglessymmetric).
 assert (neq G H) by (forward_using lemma_angledistinct).
 assert (等角 e b d G H D) by (conclude lemma_equalanglessymmetric).

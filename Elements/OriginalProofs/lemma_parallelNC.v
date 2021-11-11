@@ -11,7 +11,7 @@ Lemma lemma_parallelNC :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists M a b c d, (neq A B /\ neq C D /\ Col A B a /\ Col A B b /\ neq a b /\ Col C D c /\ Col C D d /\ neq c d /\ ~ Meet A B C D /\ BetS a M d /\ BetS c M b)) by (conclude_def Par );destruct Tf as [M[a[b[c[d]]]]];spliter.
+assert (Tf:exists M a b c d, (neq A B /\ neq C D /\ Col A B a /\ Col A B b /\ neq a b /\ Col C D c /\ Col C D d /\ neq c d /\ ~ Meet A B C D /\ BetS a M d /\ BetS c M b)) by (conclude_def Par );destruct Tf as [M[a[b[c[d]]]]];分离合取式.
 assert (~ Col A C D).
  {
  intro.

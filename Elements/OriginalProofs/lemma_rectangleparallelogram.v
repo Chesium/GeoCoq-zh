@@ -16,12 +16,12 @@ assert (nCol D A B) by (conclude lemma_rightangleNC).
 assert (nCol A B C) by (conclude lemma_rightangleNC).
 assert (nCol C D A) by (conclude lemma_rightangleNC).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude_def CR );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude_def CR );destruct Tf as [M];分离合取式.
 assert (~ Meet A B C D).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists P, (neq A B /\ neq C D /\ Col A B P /\ Col C D P)) by (conclude_def Meet );destruct Tf as [P];spliter.
+ assert (Tf:exists P, (neq A B /\ neq C D /\ Col A B P /\ Col C D P)) by (conclude_def Meet );destruct Tf as [P];分离合取式.
  assert (~ eq A P).
   {
   intro.
@@ -62,7 +62,7 @@ assert (~ Meet A D B C).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists P, (neq A D /\ neq B C /\ Col A D P /\ Col B C P)) by (conclude_def Meet );destruct Tf as [P];spliter.
+ assert (Tf:exists P, (neq A D /\ neq B C /\ Col A D P /\ Col B C P)) by (conclude_def Meet );destruct Tf as [P];分离合取式.
  assert (~ eq A P).
   {
   intro.

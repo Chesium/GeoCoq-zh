@@ -102,7 +102,7 @@ assert (Par B C A F) by (apply par_col_par with X3; finish).
 
 assert (~ (D = E /\ D = F)).
 
-  intro; spliter; treat_equalities.
+  intro; 分离合取式; treat_equalities.
   assert_paras_perm.
   assert_nparas_perm.
   permutation_intro_in_hyps.
@@ -163,7 +163,7 @@ intros A A1 B B1 C C1 O HNC HPerp1 HPerp2 HPerp3 HC1 HC2.
 assert (HT := HNC).
 apply 反构造中点三角形 in HT.
 destruct HT as [D [E [F HT]]].
-spliter.
+分离合取式.
 
 assert (中点 A E F) by (apply diff_not_col_col_par4_mid with B C; finish).
 assert (中点 B D F) by (apply diff_not_col_col_par4_mid with A C; finish).
@@ -216,7 +216,7 @@ Lemma 垂心的各排列情况 :
 Proof.
 intros.
 decompose [or] H;clear H;
-unfold 垂心 in *;spliter;
+unfold 垂心 in *;分离合取式;
 repeat (split; finish).
 Qed.
 
@@ -228,7 +228,7 @@ Lemma 垂心的等价排列 : forall A B C G,
 Proof.
 intros.
 unfold 垂心 in *.
-spliter.
+分离合取式.
 repeat split;finish.
 Qed.
 
@@ -274,7 +274,7 @@ Lemma 直角三角形的垂心与直角顶点重合 :
  H=B.
 Proof.
 intros.
-unfold 垂心 in *;spliter.
+unfold 垂心 in *;分离合取式.
 统计不重合点.
 assert (Perp A B B C) by (apply 直角转L形垂直;finish).
 assert (Par A H A B)
@@ -297,7 +297,7 @@ Lemma 垂心与一边共线则必与该边一端点重合 :
 Proof.
 intros.
 unfold 垂心 in *.
-spliter.
+分离合取式.
 assert (垂直于 H B C A H).
 apply l8_14_2_1b_bis_交点是垂点;finish.
 induction (两点重合的决定性 B H).

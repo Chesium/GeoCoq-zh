@@ -181,7 +181,7 @@ Lemma euclid : forall A B C,
   ~ (Bet A B C \/ Bet B C A \/ Bet C A B) -> exists CC, Cong A CC B CC /\ Cong A CC C CC.
 Proof.
 intros.
-apply not_bet_diff in H; spliter; unfold Cong.
+apply not_bet_diff in H; 分离合取式; unfold Cong.
 destruct A; destruct B; destruct C; try tauto;
 try (exists P3; split; right; split; discriminate);
 try (exists P2; split; right; split; discriminate);

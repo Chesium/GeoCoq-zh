@@ -17,7 +17,7 @@ assert (~ TS A C D B).
  intro.
  assert (TS B C D B) by (conclude lemma_planeseparation).
  let Tf:=fresh in
- assert (Tf:exists M, BetS B M B) by (conclude_def TS );destruct Tf as [M];spliter.
+ assert (Tf:exists M, BetS B M B) by (conclude_def TS );destruct Tf as [M];分离合取式.
  assert (~ BetS B M B) by (conclude axiom_betweennessidentity).
  contradict.
  }

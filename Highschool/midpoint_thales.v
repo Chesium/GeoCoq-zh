@@ -74,12 +74,12 @@ assert (Per o x c)
 (* Depliage de Per pour obtenir Cong o b o c *)
 unfold Per in H8.
 destruct H8.
-spliter.
+分离合取式.
 apply M是AB中点则M是BA中点 in H8.
 assert(HmidU := 中点组的唯一性2 a x0 x c H2 H8).
 subst.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 eCong.
 Qed.
 

@@ -12,7 +12,7 @@ Lemma lemma_TTflip :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists J, (BetS E F J /\ Cong F J G H /\ TG A B C D E J)) by (conclude_def TT );destruct Tf as [J];spliter.
+assert (Tf:exists J, (BetS E F J /\ Cong F J G H /\ TG A B C D E J)) by (conclude_def TT );destruct Tf as [J];分离合取式.
 assert (TG B A C D E J) by (forward_using lemma_TGflip).
 assert (TG C D B A E J) by (conclude lemma_TGsymmetric).
 assert (TG D C B A E J) by (forward_using lemma_TGflip).

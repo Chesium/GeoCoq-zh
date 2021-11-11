@@ -11,7 +11,7 @@ Lemma lemma_oppositesideflip :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists r, (BetS P r Q /\ Col A B r /\ nCol A B P)) by (conclude_def TS );destruct Tf as [r];spliter.
+assert (Tf:exists r, (BetS P r Q /\ Col A B r /\ nCol A B P)) by (conclude_def TS );destruct Tf as [r];分离合取式.
 assert (nCol B A P) by (forward_using lemma_NCorder).
 assert (Col B A r) by (forward_using lemma_collinearorder).
 assert (TS P B A Q) by (conclude_def TS ).

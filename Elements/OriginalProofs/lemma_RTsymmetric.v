@@ -13,7 +13,7 @@ Lemma lemma_RTsymmetric :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists a b c d e, (Supp a b c d e /\ 等角 A B C a b c /\ 等角 D E F d b e)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];spliter.
+assert (Tf:exists a b c d e, (Supp a b c d e /\ 等角 A B C a b c /\ 等角 D E F d b e)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];分离合取式.
 assert (Supp e b d c a) by (conclude lemma_supplementsymmetric).
 assert (nCol d b e) by (conclude lemma_equalanglesNC).
 assert (等角 d b e e b d) by (conclude lemma_ABCequalsCBA).

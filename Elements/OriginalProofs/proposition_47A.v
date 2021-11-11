@@ -16,7 +16,7 @@ Lemma proposition_47A :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists N, (BetS D N A /\ Col C B N /\ nCol C B D)) by (conclude_def TS );destruct Tf as [N];spliter.
+assert (Tf:exists N, (BetS D N A /\ Col C B N /\ nCol C B D)) by (conclude_def TS );destruct Tf as [N];分离合取式.
 assert (Per C A B) by (conclude lemma_8_2).
 assert (nCol C A B) by (conclude lemma_rightangleNC).
 assert (neq A B) by (forward_using lemma_NCdistinct).
@@ -26,7 +26,7 @@ assert (Cong B C E D) by (conclude_def SQ ).
 assert (neq E D) by (conclude axiom_nocollapse).
 assert (neq D E) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists q, (BetS D q A /\ Col C B q /\ nCol C B D)) by (conclude_def TS );destruct Tf as [q];spliter.
+assert (Tf:exists q, (BetS D q A /\ Col C B q /\ nCol C B D)) by (conclude_def TS );destruct Tf as [q];分离合取式.
 assert (PG B C E D) by (conclude lemma_squareparallelogram).
 assert (Par B C E D) by (conclude_def PG ).
 assert (~ Meet B C E D) by (conclude_def Par ).
@@ -59,9 +59,9 @@ assert (~ Col D E A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists L, 垂直于 A L D E L) by (conclude proposition_12);destruct Tf as [L];spliter.
+assert (Tf:exists L, 垂直于 A L D E L) by (conclude proposition_12);destruct Tf as [L];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists p, (Col A L L /\ Col D E L /\ Col D E p /\ Per p L A)) by (conclude_def 垂直于 );destruct Tf as [p];spliter.
+assert (Tf:exists p, (Col A L L /\ Col D E L /\ Col D E p /\ Per p L A)) by (conclude_def 垂直于 );destruct Tf as [p];分离合取式.
 assert (Per A L p) by (conclude lemma_8_2).
 assert (~ eq B N).
  {
@@ -124,7 +124,7 @@ assert (Col B C N) by (forward_using lemma_collinearorder).
 assert (TS D B C A) by (conclude_def TS ).
 assert (TS L B C A) by (conclude lemma_planeseparation).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS L M A /\ Col B C M /\ nCol B C L)) by (conclude_def TS );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS L M A /\ Col B C M /\ nCol B C L)) by (conclude_def TS );destruct Tf as [M];分离合取式.
 assert (neq D E) by (forward_using lemma_NCdistinct).
 assert (neq E D) by (conclude lemma_inequalitysymmetric).
 assert (neq L M) by (forward_using lemma_betweennotequal).

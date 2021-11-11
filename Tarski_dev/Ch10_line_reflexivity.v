@@ -105,7 +105,7 @@ Proof.
         apply M是AA中点则M与A重合 in H2.
         subst X.
         apply 垂直推出不重合 in H1.
-        spliter.
+        分离合取式.
         absurde.
         apply 垂直的对称性.
         apply H1.
@@ -164,7 +164,7 @@ Proof.
         apply M是AA中点则M与A重合 in H3.
         subst X.
         apply 垂直推出不重合 in H2.
-        spliter.
+        分离合取式.
         absurde.
         apply 垂直的对称性.
         apply H2.
@@ -194,7 +194,7 @@ Proof.
       apply M是AA中点则M与A重合 in H3.
       subst Z.
       apply 垂直推出不重合 in H2.
-      spliter.
+      分离合取式.
       absurde.
       apply 垂直的对称性.
       apply H2.
@@ -215,11 +215,11 @@ Proof.
         intuition.
       induction H0.
         intuition.
-      spliter.
+      分离合取式.
       eapply 中点组的唯一性1 with P B;auto.
     rewrite -> (is_image_is_image_spec) in * by apply H1.
     unfold 严格对称 in *.
-    spliter.
+    分离合取式.
     ex_and H X.
     ex_and H0 Y.
     induction H2; induction H3.
@@ -229,7 +229,7 @@ Proof.
         apply A是AB中点则A与B重合 in H.
         subst P1.
         apply 垂直推出不重合 in H3.
-        spliter.
+        分离合取式.
         absurde.
       assert (P <> Y).
         intro.
@@ -237,7 +237,7 @@ Proof.
         apply A是AB中点则A与B重合 in H0.
         subst P2.
         apply 垂直推出不重合 in H2.
-        spliter.
+        分离合取式.
         absurde.
       assert (Perp P X A B).
         eapply 垂线共线点也构成垂直1.
@@ -268,7 +268,7 @@ Proof.
             auto.
           apply 垂直的对称性.
           assumption.
-        spliter.
+        分离合取式.
         assert (Y = A).
           eapply l8_18_过一点垂线之垂点的唯一性.
             apply H10.
@@ -289,7 +289,7 @@ Proof.
           auto.
         apply 垂直的对称性.
         assumption.
-      spliter.
+      分离合取式.
       assert (Y = X).
         eapply l8_18_过一点垂线之垂点的唯一性.
           apply H11.
@@ -312,7 +312,7 @@ Proof.
         apply A是AB中点则A与B重合 in H0.
         subst P2.
         eapply 垂直推出不重合 in H2.
-        spliter.
+        分离合取式.
         absurde.
       assert (Perp P Y A B).
         eapply 垂线共线点也构成垂直1.
@@ -335,7 +335,7 @@ Proof.
             auto; auto.
           apply 垂直的对称性.
           assumption.
-        spliter.
+        分离合取式.
         contradiction.
       assert (~ Col A B P /\ Per P Y A).
         eapply l8_16_1_共线四点和一垂直推另一直角.
@@ -344,7 +344,7 @@ Proof.
           auto.
         apply 垂直的对称性.
         assumption.
-      spliter.
+      分离合取式.
       contradiction.
       subst P2.
       assert (P <> X).
@@ -355,7 +355,7 @@ Proof.
         apply A是AB中点则A与B重合 in H.
         subst P1.
         eapply 垂直推出不重合 in H3.
-        spliter.
+        分离合取式.
         absurde.
       assert (Perp P X A B).
         eapply 垂线共线点也构成垂直1.
@@ -378,7 +378,7 @@ Proof.
             auto.
           apply 垂直的对称性.
           assumption.
-        spliter.
+        分离合取式.
         contradiction.
       assert (~ Col A B P /\ Per P X A).
         eapply l8_16_1_共线四点和一垂直推另一直角.
@@ -387,7 +387,7 @@ Proof.
           auto.
         apply 垂直的对称性.
         assumption.
-      spliter.
+      分离合取式.
       contradiction.
     subst P1.
     subst P2.
@@ -439,7 +439,7 @@ Proof.
       apply M是AA中点则M与A重合 in H2.
       subst X.
       apply 垂直推出不重合 in H1.
-      spliter.
+      分离合取式.
       absurde.
       apply 垂直的对称性.
       apply H1.
@@ -473,7 +473,7 @@ Lemma l10_4_spec : forall A B P P',
 Proof.
     intros.
     unfold 严格对称 in *.
-    spliter.
+    分离合取式.
     ex_and H X.
     split.
       exists X.
@@ -497,7 +497,7 @@ Proof.
       elim H;intros.
         intuition.
       right.
-      spliter.
+      分离合取式.
       split.
         assumption.
       apply M是AB中点则M是BA中点.
@@ -518,7 +518,7 @@ Proof.
         intuition.
       induction H0.
         intuition.
-      spliter.
+      分离合取式.
       apply 中点组的唯一性1 with P' B.
         apply M是AB中点则M是BA中点.
         assumption.
@@ -544,7 +544,7 @@ Proof.
         intuition.
       induction H0.
         intuition.
-      spliter.
+      分离合取式.
       apply 中点组的唯一性1 with P B.
         apply M是AB中点则M是BA中点.
         assumption.
@@ -612,12 +612,12 @@ Proof.
     unfold 对称 in H.
     unfold 严格对称 in H.
     induction H.
-      spliter.
+      分离合取式.
       ex_and H1 X.
       apply M是AA中点则M与A重合 in H1.
       subst X.
       Col.
-    spliter. subst. Col.
+    分离合取式. subst. Col.
 Qed.
 
 Lemma col__refl : forall A B P, Col P A B -> 严格对称 P P A B.
@@ -636,16 +636,16 @@ Proof.
     intros.
     rewrite is_image_is_image_spec in H0 by apply H.
     unfold 严格对称 in *.
-    spliter.
+    分离合取式.
     ex_and H0 M0.
     induction H2.
       assert (HH:= H2).
       apply 垂直推出不重合 in HH.
-      spliter.
+      分离合取式.
       induction (两点重合的决定性 M0 X).
         subst X.
         unfold 中点 in *.
-        spliter.
+        分离合取式.
         Cong.
       assert (Perp M0 X P' P).
         eapply 与垂线共线之线也为垂线2;eauto.
@@ -669,7 +669,7 @@ Proof.
         right; left.
         apply midpoint_bet.
         assumption.
-      spliter.
+      分离合取式.
       eapply 直角的对称性 in H9.
       unfold Per in H9.
       ex_and H9 P0.
@@ -690,16 +690,16 @@ Lemma is_image_spec_col_cong : forall A B P P' X,
 Proof.
     intros.
     unfold 严格对称 in *.
-    spliter.
+    分离合取式.
     ex_and H M0.
     induction H1.
       assert (HH:= H1).
       apply 垂直推出不重合 in HH.
-      spliter.
+      分离合取式.
       induction (两点重合的决定性 M0 X).
         subst X.
         unfold 中点 in *.
-        spliter.
+        分离合取式.
         Cong.
       assert (Perp M0 X P' P) by (eauto using 与垂线共线之线也为垂线2).
       assert(~ Col A B P /\ Per P M0 X).
@@ -722,7 +722,7 @@ Proof.
         right; left.
         apply midpoint_bet.
         assumption.
-      spliter.
+      分离合取式.
       eapply 直角的对称性 in H8.
       unfold Per in H8.
       ex_and H8 P0.
@@ -746,14 +746,14 @@ Proof.
     intros.
     rewrite is_image_is_image_spec in H1 by apply H.
     unfold 严格对称 in H1.
-    spliter.
+    分离合取式.
     ex_and H1 X.
     induction H2.
       assert (A <> B /\ T' <> T).
         apply 垂直推出不重合 in H2.
-        spliter.
+        分离合取式.
         split; assumption.
-      spliter.
+      分离合取式.
       induction (两点重合的决定性 A X).
         subst X.
         assert (Perp A B T' A).
@@ -872,10 +872,10 @@ Proof.
     intros.
     unfold 对称 in *.
     induction H.
-      spliter.
+      分离合取式.
       assert ( HH:= H1).
       unfold 严格对称 in HH.
-      spliter.
+      分离合取式.
       ex_and H2 T.
       intro.
       induction H3.
@@ -889,12 +889,12 @@ Proof.
           assumption.
         subst P'.
         apply 垂直推出不重合 in H3.
-        spliter.
+        分离合取式.
         absurde.
       apply H0.
       subst P'.
       assumption.
-    spliter. subst. Col5.
+    分离合取式. subst. Col5.
 Qed.
 
 Lemma midpoint_preserves_image : forall A B P P' Q Q' M,
@@ -905,7 +905,7 @@ Proof.
     rewrite is_image_is_image_spec in * by apply H.
     assert (HH1:=H1).
     unfold 严格对称 in H1.
-    spliter.
+    分离合取式.
     ex_and H1 X.
     induction H4.
       double X M Y.
@@ -920,7 +920,7 @@ Proof.
         intro.
         subst P'.
         apply 垂直推出不重合 in H4.
-        spliter.
+        分离合取式.
         absurde.
       assert (Q <> Q').
         intro.
@@ -933,7 +933,7 @@ Proof.
           apply H3.
         subst P'.
         apply 垂直推出不重合 in H4.
-        spliter.
+        分离合取式.
         absurde.
       split.
         exists Y.
@@ -952,7 +952,7 @@ Proof.
         split.
           assumption.
         unfold 中点 in *.
-        spliter.
+        分离合取式.
         eapply 等长的传递性.
           apply 等长的对称性.
           apply H14.
@@ -1020,7 +1020,7 @@ Proof.
         apply 垂直于转T形垂直 in H10.
         induction H10.
           apply 垂直推出不重合 in H10.
-          spliter.
+          分离合取式.
           absurde.
         apply 垂直的交换性.
         apply 垂直的对称性.
@@ -1031,7 +1031,7 @@ Proof.
             intro.
             subst Q.
             apply 垂直推出不重合 in H10.
-            spliter.
+            分离合取式.
             absurde.
             apply 垂直的对称性.
             induction (两点重合的决定性 A M).
@@ -1159,7 +1159,7 @@ Lemma image_in_is_image_spec :
 Proof.
     intros.
     unfold 严格对称于 in H.
-    spliter.
+    分离合取式.
     unfold 严格对称.
     split.
       exists M.
@@ -1173,11 +1173,11 @@ Proof.
     intros.
     unfold 对称于 in H.
     induction H.
-      spliter.
+      分离合取式.
       apply image_in_is_image_spec in H0.
       unfold 对称.
       tauto.
-    spliter.
+    分离合取式.
     subst.
     subst.
     unfold 对称.
@@ -1195,7 +1195,7 @@ Proof.
       split.
         assert(HH:=H0).
         unfold 严格对称 in H0.
-        spliter.
+        分离合取式.
         ex_and H0 M'.
         induction H3.
           assert (Perp P M' A B).
@@ -1206,7 +1206,7 @@ Proof.
               apply A是AB中点则A与B重合 in H0.
               subst P'.
               apply 垂直推出不重合 in H3.
-              spliter.
+              分离合取式.
               absurde.
               apply 垂直的对称性.
               apply 垂直的右交换性.
@@ -1224,11 +1224,11 @@ Proof.
                     apply ABA型共线.
                     apply ABB型共线.
                     apply 垂直推出不重合 in H3.
-                    spliter.
+                    分离合取式.
                     auto.
                   apply 垂直的对称性.
                   assumption.
-                spliter.
+                分离合取式.
                 intro.
                 apply H6.
                 assumption.
@@ -1238,12 +1238,12 @@ Proof.
                   apply ABA型共线.
                 apply 垂直的对称性.
                 assumption.
-              spliter.
+              分离合取式.
               intro.
               apply H7.
               assumption.
             apply 垂直推出不重合 in H3.
-            spliter.
+            分离合取式.
             auto.
           subst M'.
           assumption.
@@ -1252,7 +1252,7 @@ Proof.
       assumption.
     assert (HH:=H0).
     unfold 严格对称 in H0.
-    spliter.
+    分离合取式.
     induction H3.
       left.
       assumption.
@@ -1265,7 +1265,7 @@ Lemma image_in_col : forall A B P P' Y : Tpoint,
 Proof.
     intros.
     unfold 严格对称于 in *.
-    spliter.
+    分离合取式.
     assert_cols.
     Col.
 Qed.
@@ -1274,7 +1274,7 @@ Lemma is_image_spec_rev : forall P P' A B, 严格对称 P P' A B -> 严格对称
 Proof.
     unfold 严格对称.
     intros.
-    spliter.
+    分离合取式.
     split.
       ex_and H M0.
       exists M0.
@@ -1296,14 +1296,14 @@ Proof.
     intros.
     unfold 对称 in *.
     induction H.
-      spliter.
+      分离合取式.
       left.
       split.
         auto.
       apply is_image_spec_rev.
       assumption.
     right.
-    spliter. subst. tauto.
+    分离合取式. subst. tauto.
 Qed.
 
 Lemma midpoint_preserves_per : forall A B C A1 B1 C1 M,
@@ -1371,7 +1371,7 @@ Proof.
       apply 严格中点组推论1.
         assumption.
       assumption.
-    spliter.
+    分离合取式.
       apply 直角加共线转L形垂直; Col.
     exists Y.
     split.
@@ -1401,7 +1401,7 @@ Qed.
 
 Lemma image__midpoint : forall A P P', 对称 P P' A A -> 中点 A P' P.
 Proof.
-    induction 1; spliter.
+    induction 1; 分离合取式.
       contradiction.
       assumption.
 Qed.
@@ -1444,7 +1444,7 @@ Proof.
     intros.
     rewrite is_image_is_image_spec in H1 by apply H0.
     unfold 严格对称 in H1.
-    spliter.
+    分离合取式.
     ex_and H1 M0.
     induction H2.
       assert (P <> M0).
@@ -1479,7 +1479,7 @@ Proof.
           repeat split.
           subst B.
           apply 垂直推出不重合 in H2.
-          spliter.
+          分离合取式.
           absurde.
         assert (~Col B M0 P).
           eapply 成直角三点不共线.
@@ -1592,7 +1592,7 @@ Proof.
         apply 等价共线BCA.
         eapply 共线的传递性2.
           apply 垂直推出不重合 in H2.
-          spliter.
+          分离合取式.
           apply H2.
           assumption.
         apply 等价共线BCA.
@@ -1625,7 +1625,7 @@ Proof.
         apply 等价共线BCA.
         eapply 共线的传递性2.
           apply 垂直推出不重合 in H2.
-          spliter.
+          分离合取式.
           apply H2.
           assumption.
         apply 等价共线BCA.
@@ -1676,7 +1676,7 @@ Proof.
         apply 等价共线BCA.
         assumption.
         unfold TS in H3.
-        spliter.
+        分离合取式.
         assumption.
       exists T.
       split.
@@ -1711,7 +1711,7 @@ Proof.
         assumption.
       assumption.
       unfold TS in H3.
-      spliter.
+      分离合取式.
       assumption.
     exists T.
     split.
@@ -1749,12 +1749,12 @@ intros.
 destruct (两点重合的决定性 A B).
 subst.
 destruct (由一点往一方向构造等长线段 X B X Y).
-exists x;split;spliter;Perp.
+exists x;split;分离合取式;Perp.
 destruct (两点不重合则存在不共线的点 A B H) as [P HP].
 destruct (两点重合的决定性 X Y).
 subst;exists B;split;[Perp|Cong].
 destruct (ex_四点成首末边等长双直角S形则对边等长 A B B P X Y); Col.
-spliter.
+分离合取式.
 exists x;split;[Perp|Cong].
 Qed.
 

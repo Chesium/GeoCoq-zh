@@ -11,7 +11,7 @@ Lemma lemma_TTorder :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists J, (BetS E F J /\ Cong F J G H /\ TG A B C D E J)) by (conclude_def TT );destruct Tf as [J];spliter.
+assert (Tf:exists J, (BetS E F J /\ Cong F J G H /\ TG A B C D E J)) by (conclude_def TT );destruct Tf as [J];分离合取式.
 assert (TG C D A B E J) by (conclude lemma_TGsymmetric).
 assert (TT C D A B E F G H) by (conclude_def TT ).
 close.

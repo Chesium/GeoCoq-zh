@@ -17,7 +17,7 @@ assert (~ eq C A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists M, (BetS C A M /\ Cong A M B C)) by (conclude lemma_extension);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS C A M /\ Cong A M B C)) by (conclude lemma_extension);destruct Tf as [M];分离合取式.
 assert (Cong A M M A) by (conclude cn_equalityreverse).
 assert (Cong M A A M) by (conclude lemma_congruencesymmetric).
 assert (Cong M A B C) by (conclude lemma_congruencetransitive).
@@ -30,7 +30,7 @@ assert (~ eq c a).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists m, (BetS c a m /\ Cong a m b c)) by (conclude lemma_extension);destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS c a m /\ Cong a m b c)) by (conclude lemma_extension);destruct Tf as [m];分离合取式.
 assert (Cong m a a m) by (conclude cn_equalityreverse).
 assert (Cong m a b c) by (conclude lemma_congruencetransitive).
 assert (Cong b c m a) by (conclude lemma_congruencesymmetric).

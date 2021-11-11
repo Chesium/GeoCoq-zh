@@ -12,10 +12,10 @@ Lemma lemma_9_5a :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists S, (BetS P S C /\ Col A B S /\ nCol A B P)) by (conclude_def TS );destruct Tf as [S];spliter.
+assert (Tf:exists S, (BetS P S C /\ Col A B S /\ nCol A B P)) by (conclude_def TS );destruct Tf as [S];分离合取式.
 assert (BetS C S P) by (conclude axiom_betweennesssymmetry).
 let Tf:=fresh in
-assert (Tf:exists F, (BetS C F Q /\ BetS R S F)) by (conclude postulate_Pasch_outer);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS C F Q /\ BetS R S F)) by (conclude postulate_Pasch_outer);destruct Tf as [F];分离合取式.
 assert (Col R S F) by (conclude_def Col ).
 assert (~ eq A B).
  {

@@ -4,7 +4,7 @@ Require Export GeoCoq.Tarski_dev.Tactics.CongR.
 Ltac CongR :=
  let tpoint := constr:(Tpoint) in
  let cong := constr:(Cong) in
-   treat_equalities; unfold 中点 in *; spliter; Cong; Cong_refl tpoint cong.
+   treat_equalities; unfold 中点 in *; 分离合取式; Cong; Cong_refl tpoint cong.
 
 Section T3.
 
@@ -14,7 +14,7 @@ Lemma l4_2 : forall A B C D A' B' C' D', 内五线段形式 A B C D A' B' C' D' 
 Proof.
 unfold 内五线段形式.
 intros.
-spliter.
+分离合取式.
 
 induction (两点重合的决定性 A C).
 
@@ -93,13 +93,13 @@ intros.
 assert (exists B'', Bet A' B'' C' /\ 三角形全等 A B C A' B'' C')
   by (eapply l4_5;intuition).
 ex_and H1 x.
-unfold 三角形全等 in *;spliter.
+unfold 三角形全等 in *;分离合取式.
 
 assert (三角形全等 A' x C' A' B' C').
   unfold 三角形全等;repeat split; Cong.
   apply 等长的传递性 with A B; Cong.
   apply 等长的传递性 with B C; Cong.
-unfold 三角形全等 in H7;spliter.
+unfold 三角形全等 in H7;分离合取式.
 
 assert (内五线段形式 A' x C' x  A' x C' B')
  by (unfold 内五线段形式;repeat split;Cong).
@@ -114,7 +114,7 @@ Lemma cong3_bet_eq : forall  A B C X,
 Proof.
 unfold 三角形全等.
 intros.
-spliter.
+分离合取式.
 assert (内五线段形式 A B C B A B C X)
  by (unfold 内五线段形式;intuition).
 assert (Cong B B B X)

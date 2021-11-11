@@ -15,23 +15,23 @@ Lemma lemma_Euclid4 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists D, (BetS A B D /\ Cong A B D B /\ Cong A C D C /\ neq B C)) by (conclude_def Per );destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS A B D /\ Cong A B D B /\ Cong A C D C /\ neq B C)) by (conclude_def Per );destruct Tf as [D];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists d, (BetS a b d /\ Cong a b d b /\ Cong a c d c /\ neq b c)) by (conclude_def Per );destruct Tf as [d];spliter.
+assert (Tf:exists d, (BetS a b d /\ Cong a b d b /\ Cong a c d c /\ neq b c)) by (conclude_def Per );destruct Tf as [d];分离合取式.
 assert (neq a b) by (forward_using lemma_betweennotequal).
 assert (neq b a) by (conclude lemma_inequalitysymmetric).
 assert (neq A B) by (forward_using lemma_betweennotequal).
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists p, (Out b a p /\ Cong b p B A)) by (conclude lemma_layoff);destruct Tf as [p];spliter.
+assert (Tf:exists p, (Out b a p /\ Cong b p B A)) by (conclude lemma_layoff);destruct Tf as [p];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists q, (Out b c q /\ Cong b q B C)) by (conclude lemma_layoff);destruct Tf as [q];spliter.
+assert (Tf:exists q, (Out b c q /\ Cong b q B C)) by (conclude lemma_layoff);destruct Tf as [q];分离合取式.
 assert (Per a b q) by (conclude lemma_8_3).
 assert (Per q b a) by (conclude lemma_8_2).
 assert (Per q b p) by (conclude lemma_8_3).
 assert (Per p b q) by (conclude lemma_8_2).
 let Tf:=fresh in
-assert (Tf:exists r, (BetS p b r /\ Cong p b r b /\ Cong p q r q /\ neq b q)) by (conclude_def Per );destruct Tf as [r];spliter.
+assert (Tf:exists r, (BetS p b r /\ Cong p b r b /\ Cong p q r q /\ neq b q)) by (conclude_def Per );destruct Tf as [r];分离合取式.
 assert (Cong q p q r) by (forward_using lemma_congruenceflip).
 assert (nCol p b q) by (conclude lemma_rightangleNC).
 assert (~ Col b q p).
@@ -59,7 +59,7 @@ assert (TG b q p q p b) by (forward_using lemma_TGflip).
 assert (TG b q p q b p) by (forward_using lemma_TGflip).
 assert (TG b p p q q b) by (forward_using lemma_TGflip).
 let Tf:=fresh in
-assert (Tf:exists E F, (Cong B E b p /\ Cong B F b q /\ Cong E F p q /\ Out B A E /\ Triangle B E F)) by (conclude proposition_22);destruct Tf as [E[F]];spliter.
+assert (Tf:exists E F, (Cong B E b p /\ Cong B F b q /\ Cong E F p q /\ Out B A E /\ Triangle B E F)) by (conclude proposition_22);destruct Tf as [E[F]];分离合取式.
 assert (BetS D B A) by (conclude axiom_betweennesssymmetry).
 assert (eq A A) by (conclude cn_equalityreflexive).
 assert (Out B A A) by (conclude lemma_ray4).

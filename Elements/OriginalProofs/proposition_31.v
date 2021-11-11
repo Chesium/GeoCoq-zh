@@ -21,7 +21,7 @@ assert (~ eq A D).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M D /\ Cong M A M D)) by (conclude proposition_10);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M D /\ Cong M A M D)) by (conclude proposition_10);destruct Tf as [M];分离合取式.
 assert (Cong A M M D) by (forward_using lemma_congruenceflip).
 assert (Col C B D) by (forward_using lemma_collinearorder).
 assert (eq B B) by (conclude cn_equalityreflexive).
@@ -51,7 +51,7 @@ assert (~ eq C M).
  }
 assert (neq M C) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS C M E /\ Cong M E M C)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS C M E /\ Cong M E M C)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (Cong M C M E) by (conclude lemma_congruencesymmetric).
 assert (Cong C M M E) by (forward_using lemma_congruenceflip).
 assert (中点 C M E) by (conclude_def 中点 ).
@@ -67,7 +67,7 @@ assert (~ eq B M).
  }
 assert (neq M B) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists F, (BetS B M F /\ Cong M F M B)) by (conclude lemma_extension);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS B M F /\ Cong M F M B)) by (conclude lemma_extension);destruct Tf as [F];分离合取式.
 assert (Cong M F B M) by (forward_using lemma_congruenceflip).
 assert (Cong B M M F) by (conclude lemma_congruencesymmetric).
 assert (中点 B M F) by (conclude_def 中点 ).

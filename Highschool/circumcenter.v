@@ -9,7 +9,7 @@ Definition 外心 G A B C := Cong A G B G /\ Cong B G C G /\ 共面 G A B C.
 
 Lemma 外心与三角形共面 : forall A B C G, 外心 G A B C -> 共面 G A B C.
 Proof.
-unfold 外心; intros; spliter; assumption.
+unfold 外心; intros; 分离合取式; assumption.
 Qed.
 
 Lemma 外心与三角形顶点距离相等 : forall G A B C,
@@ -29,7 +29,7 @@ Lemma 外心的等价排列 : forall A B C G,
 Proof.
 unfold 外心.
 intros.
-spliter.
+分离合取式.
 repeat split;eauto using 等长的传递性 with cong;Cop.
 Qed.
 
@@ -45,7 +45,7 @@ Lemma 外心的各排列情况 :
 Proof.
 intros.
 decompose [or] H;clear H; first [apply 外心的等价排列 in H0|apply 外心的等价排列 in H1];
-spliter; assumption.
+分离合取式; assumption.
 Qed.
 
 Lemma 等价外心ACB : forall A B C G,
@@ -177,7 +177,7 @@ Lemma 外心与一边中点连线是该边中垂线 : forall A B C A' G,
 Proof.
 intros.
 apply 距线两端点等距两点连线为该线中垂线; try assumption;
-unfold 中点, 外心 in *; spliter; Cong; Cop.
+unfold 中点, 外心 in *; 分离合取式; Cong; Cop.
 Qed.
 
 
@@ -194,7 +194,7 @@ unfold triangle_circumscription_principle in *.
 destruct (H0 A B C H) as [G HG].
 exists G.
 unfold 外心.
-spliter.
+分离合取式.
 repeat split;Cop;CongR.
 Qed.
 
@@ -207,7 +207,7 @@ Lemma 外心与任一边中点连线是该边中垂线 : forall A B C A' B' C' G
   中垂线 G A' B C /\ 中垂线 G B' A C /\ 中垂线 G C' A B.
 Proof.
 intros.
-unfold 外心 in *; spliter.
+unfold 外心 in *; 分离合取式.
 split; [|split]; apply 距线两端点等距点与中点连线为该线中垂线; trivial; CongR.
 Qed.
 
@@ -251,7 +251,7 @@ elim (共线的决定性 A B C); intro HABC.
   Name C' the midpoint of A and B.
   assert (HPer1 : 中垂线 O C' A B).
     {
-    unfold 外心 in *; spliter; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
+    unfold 外心 in *; 分离合取式; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
     intro; treat_equalities; assert (HFalse := 共线点间距相同要么重合要么中点 O B C).
     destruct HFalse; Cong.
       ColR.
@@ -260,7 +260,7 @@ elim (共线的决定性 A B C); intro HABC.
   Name A' the midpoint of B and C.
   assert (HPer2 : 中垂线 O A' B C).
     {
-    unfold 外心 in *; spliter; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
+    unfold 外心 in *; 分离合取式; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
     intro; treat_equalities; assert (HFalse := 共线点间距相同要么重合要么中点 O A B).
     destruct HFalse; Cong.
       ColR.
@@ -278,9 +278,9 @@ elim (共线的决定性 A B C); intro HABC.
 
       {
       show_distinct A' C'; try (apply HAC; apply 中点组的唯一性1 with B A';
-      unfold 中点 in *; spliter; split; Cong; Between).
+      unfold 中点 in *; 分离合取式; split; Cong; Between).
       intro; assert (HFalse := 共线点间距相同要么重合要么中点 O A B); elim HFalse; clear HFalse; try intro HFalse;
-      unfold 外心 in *; spliter; Cong; 统计不重合点; assert_cols; try ColR.
+      unfold 外心 in *; 分离合取式; Cong; 统计不重合点; assert_cols; try ColR.
       assert (HOC' : O <> C').
         {
         apply 中垂线两定义等价 in HPer1.
@@ -303,7 +303,7 @@ elim (共线的决定性 A B C); intro HABC.
     assert (HPer : Per A C B).
       {
       apply 泰勒斯定理 with O; Col.
-      apply 外心与三角形顶点距离相等 in HIC1; spliter; Cong.
+      apply 外心与三角形顶点距离相等 in HIC1; 分离合取式; Cong.
       }
     Name B' the midpoint of A and C.
     assert (HO'B' : O' <> B').
@@ -312,7 +312,7 @@ elim (共线的决定性 A B C); intro HABC.
       assert (HPer2 : Per A B C).
         {
         apply 泰勒斯定理 with O'; Col.
-        unfold 外心 in *; spliter; Cong.
+        unfold 外心 in *; 分离合取式; Cong.
         }
       assert (HPar : 严格平行 A B A C).
         {
@@ -328,7 +328,7 @@ elim (共线的决定性 A B C); intro HABC.
       assert (HPer2 : Per B A C).
         {
         apply 泰勒斯定理 with O'; Col.
-        unfold 外心 in *; spliter; Cong.
+        unfold 外心 in *; 分离合取式; Cong.
         }
       assert (HPar : 严格平行 B A B C).
         {
@@ -344,13 +344,13 @@ elim (共线的决定性 A B C); intro HABC.
     destruct H as [HPer3 [HPer4 Hc]]; clear Hc.
     assert (HPer1 : 中垂线 O A' B C).
       {
-      unfold 外心 in *; spliter.
+      unfold 外心 in *; 分离合取式.
       apply 距线两端点等距点与中点连线为该线中垂线; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
     assert (HPer2 : 中垂线 O B' A C).
       {
-      apply 外心与三角形顶点距离相等 in HIC1; spliter.
+      apply 外心与三角形顶点距离相等 in HIC1; 分离合取式.
       apply 距线两端点等距点与中点连线为该线中垂线; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
@@ -359,7 +359,7 @@ elim (共线的决定性 A B C); intro HABC.
       {
       assert (HRect : 长方形 C B' O A').
         {
-        apply 直角三角形三边中点和直角顶点形成长方形 with B A; Perp; unfold 中点 in *; spliter;
+        apply 直角三角形三边中点和直角顶点形成长方形 with B A; Perp; unfold 中点 in *; 分离合取式;
         split; Between; Cong.
         }
       destruct HRect as [HPara Hc]; clear Hc.
@@ -383,7 +383,7 @@ elim (共线的决定性 A B C); intro HABC.
     assert (HPer : Per A C B).
       {
       apply 泰勒斯定理 with O'; Col.
-      apply 外心与三角形顶点距离相等 in HIC2; spliter; Cong.
+      apply 外心与三角形顶点距离相等 in HIC2; 分离合取式; Cong.
       }
     Name B' the midpoint of A and C.
     assert (HOB' : O <> B').
@@ -392,7 +392,7 @@ elim (共线的决定性 A B C); intro HABC.
       assert (HPer2 : Per A B C).
         {
         apply 泰勒斯定理 with O; Col.
-        unfold 外心 in *; spliter; Cong.
+        unfold 外心 in *; 分离合取式; Cong.
         }
       assert (HPar : 严格平行 A B A C).
         {
@@ -408,7 +408,7 @@ elim (共线的决定性 A B C); intro HABC.
       assert (HPer2 : Per B A C).
         {
         apply 泰勒斯定理 with O; Col.
-        unfold 外心 in *; spliter; Cong.
+        unfold 外心 in *; 分离合取式; Cong.
         }
       assert (HPar : 严格平行 B A B C).
         {
@@ -424,13 +424,13 @@ elim (共线的决定性 A B C); intro HABC.
     destruct H as [HPer3 [HPer4 Hc]]; clear Hc.
     assert (HPer1 : 中垂线 O' A' B C).
       {
-      unfold 外心 in *; spliter.
+      unfold 外心 in *; 分离合取式.
       apply 距线两端点等距点与中点连线为该线中垂线; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
     assert (HPer2 : 中垂线 O' B' A C).
       {
-      apply 外心与三角形顶点距离相等 in HIC2; spliter.
+      apply 外心与三角形顶点距离相等 in HIC2; 分离合取式.
       apply 距线两端点等距点与中点连线为该线中垂线; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
@@ -467,7 +467,7 @@ elim (共线的决定性 A B C); intro HABC.
       assert (HPer : Per A B C).
         {
         apply 泰勒斯定理 with O; Col.
-        unfold 外心 in *; spliter; Cong.
+        unfold 外心 in *; 分离合取式; Cong.
         }
       Name A' the midpoint of B and C.
       assert (HO'A' : O' <> A').
@@ -476,7 +476,7 @@ elim (共线的决定性 A B C); intro HABC.
         assert (HPer2 : Per B A C).
           {
           apply 泰勒斯定理 with O'; Col.
-          unfold 外心 in *; spliter; Cong.
+          unfold 外心 in *; 分离合取式; Cong.
           }
         assert (HPar : 严格平行 A C B C).
           {
@@ -492,13 +492,13 @@ elim (共线的决定性 A B C); intro HABC.
       destruct H as [HPer3 [Hc HPer4]]; clear Hc.
       assert (HPer1 : 中垂线 O A' B C).
         {
-        unfold 外心 in *; spliter.
+        unfold 外心 in *; 分离合取式.
         apply 距线两端点等距点与中点连线为该线中垂线; Cong.
         intro; treat_equalities; apply HABC; Col.
         }
       assert (HPer2 : 中垂线 O C' A B).
         {
-        unfold 外心 in *; spliter.
+        unfold 外心 in *; 分离合取式.
         apply 距线两端点等距点与中点连线为该线中垂线; Cong.
         }
       apply l6_21_两线交点的唯一性 with O A' C' O'; Col.
@@ -529,7 +529,7 @@ elim (共线的决定性 A B C); intro HABC.
       assert (HPer : Per A B C).
         {
         apply 泰勒斯定理 with O'; Col.
-        unfold 外心 in *; spliter; Cong.
+        unfold 外心 in *; 分离合取式; Cong.
         }
       Name A' the midpoint of B and C.
       assert (HOA' : O <> A').
@@ -538,7 +538,7 @@ elim (共线的决定性 A B C); intro HABC.
         assert (HPer2 : Per B A C).
           {
           apply 泰勒斯定理 with O; Col.
-          unfold 外心 in *; spliter; Cong.
+          unfold 外心 in *; 分离合取式; Cong.
           }
         assert (HPar : 严格平行 A C B C).
           {
@@ -554,13 +554,13 @@ elim (共线的决定性 A B C); intro HABC.
       destruct H as [HPer3 [Hc HPer4]]; clear Hc.
       assert (HPer1 : 中垂线 O' A' B C).
         {
-        unfold 外心 in *; spliter.
+        unfold 外心 in *; 分离合取式.
         apply 距线两端点等距点与中点连线为该线中垂线; Cong.
         intro; treat_equalities; apply HABC; Col.
         }
       assert (HPer2 : 中垂线 O' C' A B).
         {
-        unfold 外心 in *; spliter.
+        unfold 外心 in *; 分离合取式.
         apply 距线两端点等距点与中点连线为该线中垂线; Cong.
         }
       apply l6_21_两线交点的唯一性 with O' A' C' O; Col.
@@ -594,7 +594,7 @@ elim (共线的决定性 A B C); intro HABC.
         {
         assert (HPer : Per C A B).
           {
-          unfold 外心 in *; spliter.
+          unfold 外心 in *; 分离合取式.
           apply 直角的对称性, 泰勒斯定理 with O; Col; Cong.
           }
         assert (H : 中垂线 O' O B C /\ 中垂线 O' B' A C /\ 中垂线 O' C' A B).
@@ -604,12 +604,12 @@ elim (共线的决定性 A B C); intro HABC.
         destruct H as [Hc [HPer3 HPer4]]; clear Hc.
         assert (HPer1 : 中垂线 O B' A C).
           {
-          apply 外心与三角形顶点距离相等 in HIC1; spliter.
+          apply 外心与三角形顶点距离相等 in HIC1; 分离合取式.
           apply 距线两端点等距点与中点连线为该线中垂线; Cong.
           }
         assert (HPer2 : 中垂线 O C' A B).
           {
-          unfold 外心 in *; spliter.
+          unfold 外心 in *; 分离合取式.
           apply 距线两端点等距点与中点连线为该线中垂线; Cong.
           }
         apply l6_21_两线交点的唯一性 with O B' C' O'; Col.
@@ -639,7 +639,7 @@ elim (共线的决定性 A B C); intro HABC.
         {
         assert (HPer : Per C A B).
           {
-          unfold 外心 in *; spliter.
+          unfold 外心 in *; 分离合取式.
           apply 直角的对称性, 泰勒斯定理 with O'; Col; Cong.
           }
         assert (H : 中垂线 O O' B C /\ 中垂线 O B' A C /\ 中垂线 O C' A B).
@@ -649,11 +649,11 @@ elim (共线的决定性 A B C); intro HABC.
         destruct H as [Hc [HPer3 HPer4]]; clear Hc.
         assert (HPer1 : 中垂线 O' B' A C).
           {
-          apply 外心与三角形顶点距离相等 in HIC2; spliter; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
+          apply 外心与三角形顶点距离相等 in HIC2; 分离合取式; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
           }
         assert (HPer2 : 中垂线 O' C' A B).
           {
-          unfold 外心 in *; spliter; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
+          unfold 外心 in *; 分离合取式; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
           }
         apply l6_21_两线交点的唯一性 with O' B' C' O; Col.
 
@@ -731,7 +731,7 @@ Lemma 直角三角形斜边中点是其外心 :
 Proof.
 intros.
 assert (T:= 直角三角形斜边中线是斜边一半 A B C O H H0).
-spliter.
+分离合取式.
 split;finish.
 Qed.
 

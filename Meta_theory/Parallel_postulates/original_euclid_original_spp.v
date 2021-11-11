@@ -14,7 +14,7 @@ Proof.
   destruct HD' as [D'].
   assert (Hdiff := HSuma).
   apply 和角推出不重合 in Hdiff.
-  spliter.
+  分离合取式.
   统计不重合点.
   elim(lea_total B C D C B A'); auto.
   { intro.
@@ -30,7 +30,7 @@ Proof.
   destruct HSuma' as [P' [Q' [R' HSuma']]]; auto.
   assert(Hdiff := HSuma').
   apply 和角推出不重合 in Hdiff.
-  spliter.
+  分离合取式.
   assert(HY := oe A' B C D' P' Q' R').
   destruct HY as [Y []]; 和角; [..|exists Y; split; ColR].
   { assert(HNCol1 : ~ Col B C A) by (apply (one_side_not_col123 _ _ _ D); auto).

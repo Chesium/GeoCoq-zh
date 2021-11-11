@@ -27,12 +27,12 @@ assert (neq A F) by (forward_using lemma_betweennotequal).
 assert (neq F A) by (conclude lemma_inequalitysymmetric).
 assert (Col A E D) by (conclude lemma_collinear4).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M C /\ BetS B M D)) by (conclude lemma_diagonalsmeet);destruct Tf as [M];分离合取式.
 assert (BetS D M B) by (conclude axiom_betweennesssymmetry).
 assert (BetS C M A) by (conclude axiom_betweennesssymmetry).
 assert (BetS B M D) by (conclude axiom_betweennesssymmetry).
 let Tf:=fresh in
-assert (Tf:exists m, (BetS E m C /\ BetS B m F)) by (conclude lemma_diagonalsmeet);destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS E m C /\ BetS B m F)) by (conclude lemma_diagonalsmeet);destruct Tf as [m];分离合取式.
 assert (BetS F m B) by (conclude axiom_betweennesssymmetry).
 assert (BetS B m F) by (conclude axiom_betweennesssymmetry).
 assert (nCol A D B) by (forward_using lemma_parallelNC).
@@ -41,7 +41,7 @@ assert (eq A A) by (conclude cn_equalityreflexive).
 assert (Col A D A) by (conclude_def Col ).
 assert (nCol A F B) by (conclude lemma_NChelper).
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS B Q F /\ BetS A M Q)) by (conclude postulate_Pasch_outer);destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS B Q F /\ BetS A M Q)) by (conclude postulate_Pasch_outer);destruct Tf as [Q];分离合取式.
 assert (Col A M Q) by (conclude_def Col ).
 assert (Col A M C) by (conclude_def Col ).
 assert (Col M A Q) by (forward_using lemma_collinearorder).
@@ -61,7 +61,7 @@ assert (~ Meet F A C B).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists p, (neq F A /\ neq C B /\ Col F A p /\ Col C B p)) by (conclude_def Meet );destruct Tf as [p];spliter.
+ assert (Tf:exists p, (neq F A /\ neq C B /\ Col F A p /\ Col C B p)) by (conclude_def Meet );destruct Tf as [p];分离合取式.
  assert (Col A D F) by (conclude_def Col ).
  assert (Col F A D) by (forward_using lemma_collinearorder).
  assert (neq A D) by (forward_using lemma_betweennotequal).
@@ -99,12 +99,12 @@ assert (~ BetS A F E).
  assert (nCol A E C) by (conclude lemma_NChelper).
  assert (nCol C A E) by (forward_using lemma_NCorder).
  let Tf:=fresh in
- assert (Tf:exists r, (BetS C r F /\ BetS E r Q)) by (conclude postulate_Pasch_inner);destruct Tf as [r];spliter.
+ assert (Tf:exists r, (BetS C r F /\ BetS E r Q)) by (conclude postulate_Pasch_inner);destruct Tf as [r];分离合取式.
  assert (BetS Q r E) by (conclude axiom_betweennesssymmetry).
  assert (nCol E B F) by (forward_using lemma_parallelNC).
  assert (nCol F B E) by (forward_using lemma_NCorder).
  rename_H H;let Tf:=fresh in
- assert (Tf:exists H, (BetS E H B /\ BetS F r H)) by (conclude postulate_Pasch_outer);destruct Tf as [H];spliter.
+ assert (Tf:exists H, (BetS E H B /\ BetS F r H)) by (conclude postulate_Pasch_outer);destruct Tf as [H];分离合取式.
  assert (Col E H B) by (conclude_def Col ).
  assert (Col F r H) by (conclude_def Col ).
  assert (Col E B H) by (forward_using lemma_collinearorder).

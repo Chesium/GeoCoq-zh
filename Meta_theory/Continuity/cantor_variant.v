@@ -19,7 +19,7 @@ Definition cantor_variant := forall A B, Nested_bis A B ->
 
 Lemma nested_bis__nested : forall A B, Nested_bis A B -> Nested A B.
 Proof.
-  unfold Nested_bis, Nested; intros; spliter; split; assumption.
+  unfold Nested_bis, Nested; intros; 分离合取式; split; assumption.
 Qed.
 
 Lemma cantor__cantor_variant : FunctionalChoice_on nat Tpoint ->

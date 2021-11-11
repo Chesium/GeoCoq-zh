@@ -80,10 +80,10 @@ Proof.
       eapply (两组连续三点分段等则全体等 D' E D P R Q); Between; Cong.
     assert (Cong D C Q C).
       induction (两点重合的决定性 D' E).
-        unfold 内五线段形式, 三角形全等 in *; spliter; treat_equalities; Cong.
+        unfold 内五线段形式, 三角形全等 in *; 分离合取式; treat_equalities; Cong.
       apply l4_16_五线段形式推论 with D' E P R; assumption.
     assert (Cong C P C Q).
-      unfold 五线段形式, 三角形全等 in *; spliter.
+      unfold 五线段形式, 三角形全等 in *; 分离合取式.
       apply 等长的传递性 with C D; Cong.
       apply 等长的传递性 with C D'; Cong.
     show_distinct R C.
@@ -189,14 +189,14 @@ Lemma l5_6_等长保持小于等于关系 : forall A B C D A' B' C' D',
 Proof.
     unfold Le.
     intros.
-    spliter.
+    分离合取式.
     ex_and H y.
     assert (exists z : Tpoint, Bet C' z D' /\ 三角形全等 C y D C' z D') by (eapply l4_5;auto).
     ex_and H3 z.
     exists z.
     split.
       assumption.
-    unfold 三角形全等 in *; spliter.
+    unfold 三角形全等 in *; 分离合取式.
     apply 等长的传递性 with A B; Cong.
     apply 等长的传递性 with C y; assumption.
 Qed.
@@ -220,7 +220,7 @@ Proof.
     exists P.
     split.
       eBetween.
-    unfold 三角形全等 in H4; spliter; apply 等长的传递性 with C y; Cong.
+    unfold 三角形全等 in H4; 分离合取式; apply 等长的传递性 with C y; Cong.
 Qed.
 
 Lemma between_cong : forall A B C, Bet A C B -> Cong A C A B -> C = B.
@@ -282,7 +282,7 @@ Proof.
     right; intro; apply H; apply 等长的同一性 with D; Cong.
     elim (由一点往一方向构造等长线段_2 B A C D).
     intros D' HD'.
-    spliter.
+    分离合取式.
     elim (两点重合的决定性 B D');intro.
     subst; left; assumption.
     right; intro.
@@ -299,7 +299,7 @@ Lemma 中间性的决定性 : forall A B C, Bet A B C  \/  ~ Bet A B C.
 Proof.
     intros.
     elim (由一点往一方向构造等长线段 A B B C); intros C' HC'.
-    spliter.
+    分离合取式.
     elim (两点重合的决定性 C C'); intro.
     subst; tauto.
     elim (两点重合的决定性 A B);intro.
@@ -448,7 +448,7 @@ Lemma 长度小于的右交换性 : forall A B C D, Lt A B C D -> Lt A B D C.
 Proof.
     intros.
     unfold Lt in *.
-    spliter.
+    分离合取式.
     split.
       apply 长度小于等于的右交换性.
       assumption.
@@ -462,7 +462,7 @@ Lemma 长度小于的左交换性 : forall A B  C D, Lt A B C D -> Lt B A C D.
 Proof.
     intros.
     unfold Lt in *.
-    spliter.
+    分离合取式.
     split.
       unfold Le in *.
       ex_and H P.
@@ -602,7 +602,7 @@ Proof.
       assert(Le B C B A /\ Le C A B A).
         apply l5_12_a.
           assumption.
-      spliter.
+      分离合取式.
       assert(Cong A B A C).
         apply 长度小于等于的反对称性.
           assumption.
@@ -620,7 +620,7 @@ Proof.
       apply l5_12_a.
         apply 中间性的对称性.
         assumption.
-    spliter.
+    分离合取式.
     assert(Cong B C A C).
       apply 长度小于等于的反对称性.
         assumption.
@@ -743,7 +743,7 @@ Proof.
     intros A B C D HLe HLt.
     apply (两长度不可能互相小于对方 A B C D); split; auto.
     split; auto.
-    unfold Lt in *; spliter; auto with cong.
+    unfold Lt in *; 分离合取式; auto with cong.
 Qed.
 
 Lemma 等长推出不小于 : forall A B C D,

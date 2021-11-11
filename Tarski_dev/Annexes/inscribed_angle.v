@@ -24,7 +24,7 @@ Proof.
   destruct (三角形内角和的存在性 A B C) as [P [Q [R HTri]]]; auto.
   apply 等角保持三角形内角和性质 with P Q R; trivial.
   assert (Hd := HTri).
-  apply 三角形内角和推出不重合 in Hd; spliter.
+  apply 三角形内角和推出不重合 in Hd; 分离合取式.
   apply 成中间性三点组的角相等; auto.
   apply (trisuma__bet A B C); trivial.
 Qed.
@@ -581,7 +581,7 @@ Proof.
   assert (HNCol1' : ~ Col A B O') by (apply one_side_not_col124 with O, HOS1).
   destruct (bet_cop_onc2__ex_onc_os_out O P A B C M) as [C1]; Between; Col; [suma.统计不重合点; auto..|].
   destruct (bet_cop_onc2__ex_onc_os_out O' P' A B D M) as [D1]; Between; Col; [suma.统计不重合点; auto..|].
-  spliter.
+  分离合取式.
   assert (HNCol2 : ~ Col A B C1) by (apply one_side_not_col124 with C; assumption).
   assert (HOut : Out M C1 D1).
   { apply (l9_19 A B); [Col| |
@@ -635,10 +635,10 @@ Proof.
   intros A B C D O P HA HB HC HCop HOS HConga.
   destruct (triangle_circumscription A B D) as [O'].
     apply one_side_not_col124 in HOS; Col.
-  spliter.
+  分离合取式.
   assert (在圆上 A O' A /\ 在圆上 B O' A /\ 在圆上 D O' A).
     unfold 在圆上; repeat split; Cong.
-  spliter.
+  分离合取式.
   apply (conga_cop_onc6_os__eqc A B C D O P O' A); trivial.
 Qed.
 
@@ -651,11 +651,11 @@ Proof.
   intros A B C D HOS HConga.
   split.
     apply os__coplanar, HOS.
-  destruct (triangle_circumscription A B C) as [O]; spliter.
+  destruct (triangle_circumscription A B C) as [O]; 分离合取式.
     apply one_side_not_col123 with D, HOS.
   assert (在圆上 A O A /\ 在圆上 B O A /\ 在圆上 C O A).
     unfold 在圆上; repeat split; Cong.
-  spliter.
+  分离合取式.
   exists O, A; repeat split; trivial.
   apply (conga_cop_onc3_os__onc A B C); assumption.
 Qed.
@@ -672,10 +672,10 @@ Proof.
     split.
       apply ts__coplanar, HTS.
     assert (HNCol : ~ Col A B C) by (destruct HTS; Col).
-    destruct (triangle_circumscription A B C HNCol) as [O]; spliter.
+    destruct (triangle_circumscription A B C HNCol) as [O]; 分离合取式.
     assert (在圆上 A O A /\ 在圆上 B O A /\ 在圆上 C O A).
       unfold 在圆上; repeat split; Cong.
-    spliter.
+    分离合取式.
     exists O, A; repeat split; trivial.
     destruct (由圆上圆内两点补全一弦 O A C O) as [C'[HC' HBet]]; Circle.
     assert (TS A B C C').
@@ -693,7 +693,7 @@ Proof.
       apply (acute_suppa__obtuse A C B); trivial.
       apply suppa_sym, HSuppa.
     exists O, P.
-    spliter; repeat split; trivial.
+    分离合取式; repeat split; trivial.
   }
   destruct (中点的存在性 A B) as [M].
   exists M, A.
@@ -712,7 +712,7 @@ Proof.
   intros A B C D HTS1 HTS2 HSuppa.
   assert (HCon : 共圆 A C B D) by (apply suppa_ts__concyclic; trivial).
   apply 共圆定义_辅助 in HCon.
-  destruct HCon as [O [P]]; spliter.
+  destruct HCon as [O [P]]; 分离合取式.
   apply (cop_onc4_ts__suppa O P); trivial.
   apply coplanar_perm_2, coplanar_trans_1 with C; [destruct HTS1; Col|Cop..].
 Qed.
@@ -741,7 +741,7 @@ induction H7.
 apply H7.
 exists O.
 split; Col.
-spliter.
+分离合取式.
 assert(Perp A U  O U).
 {
   apply 垂直的对称性 in H6.
@@ -755,7 +755,7 @@ apply 垂直的左交换性 in H18.
 apply L形垂直推出不共线 in H18.
 apply H18; Col.
 unfold 直径 in H1.
-spliter.
+分离合取式.
 assert(HH:=弦中点与圆心连线垂直于弦 O P A C' A' H15 H13 H3 H17 H2).
 assert(Perp O U O A').
 {
@@ -781,7 +781,7 @@ assert(Col O O' A').
   apply H21.
   exists A'.
   split; Col.
-  spliter.
+  分离合取式.
   Col.
 }
 
@@ -801,7 +801,7 @@ induction H24.
 apply H24.
 exists C'.
 split;Col.
-spliter.
+分离合取式.
 apply H0.
 Col.
 Qed.

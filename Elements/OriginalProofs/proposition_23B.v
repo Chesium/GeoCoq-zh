@@ -16,7 +16,7 @@ Proof.
 intros.
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists F G, (Out A B G /\ 等角 F A G D C E)) by (conclude proposition_23);destruct Tf as [F[G]];spliter.
+assert (Tf:exists F G, (Out A B G /\ 等角 F A G D C E)) by (conclude proposition_23);destruct Tf as [F[G]];分离合取式.
 assert (neq A G) by (conclude lemma_raystrict).
 assert (~ Col A B F).
  {
@@ -39,9 +39,9 @@ assert (~ Col A B F).
  contradict.
  }
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, 垂直于 F H A B H) by (conclude proposition_12);destruct Tf as [H];spliter.
+assert (Tf:exists H, 垂直于 F H A B H) by (conclude proposition_12);destruct Tf as [H];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists J, (Col F H H /\ Col A B H /\ Col A B J /\ Per J H F)) by (conclude_def 垂直于 );destruct Tf as [J];spliter.
+assert (Tf:exists J, (Col F H H /\ Col A B H /\ Col A B J /\ Per J H F)) by (conclude_def 垂直于 );destruct Tf as [J];分离合取式.
 assert (nCol J H F) by (conclude lemma_rightangleNC).
 assert (~ eq F H).
  {
@@ -57,7 +57,7 @@ assert (~ eq J H).
  }
 assert (neq H J) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists T, (BetS J H T /\ Cong H T H J)) by (conclude lemma_extension);destruct Tf as [T];spliter.
+assert (Tf:exists T, (BetS J H T /\ Cong H T H J)) by (conclude lemma_extension);destruct Tf as [T];分离合取式.
 assert (Col J H T) by (conclude_def Col ).
 assert (Col B J H) by (conclude lemma_collinear4).
 assert (neq J T) by (forward_using lemma_betweennotequal).
@@ -80,7 +80,7 @@ assert (~ Col J T P).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists Q, (Per J H Q /\ TS Q J T P)) by (conclude proposition_11B);destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (Per J H Q /\ TS Q J T P)) by (conclude proposition_11B);destruct Tf as [Q];分离合取式.
 assert (nCol J H Q) by (conclude lemma_rightangleNC).
 assert (~ eq H Q).
  {
@@ -95,7 +95,7 @@ assert (~ eq H F).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists S, (Out H Q S /\ Cong H S H F)) by (conclude lemma_layoff);destruct Tf as [S];spliter.
+assert (Tf:exists S, (Out H Q S /\ Cong H S H F)) by (conclude lemma_layoff);destruct Tf as [S];分离合取式.
 assert (eq F F) by (conclude cn_equalityreflexive).
 assert (neq D C) by (forward_using lemma_angledistinct).
 assert (neq C D) by (conclude lemma_inequalitysymmetric).
@@ -265,7 +265,7 @@ assert (Out H S Q) by (conclude lemma_ray5).
 assert (Col J T H) by (forward_using lemma_collinearorder).
 assert (TS S J T P) by (conclude lemma_9_5).
 let Tf:=fresh in
-assert (Tf:exists M, (BetS S M P /\ Col J T M /\ nCol J T S)) by (conclude_def TS );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS S M P /\ Col J T M /\ nCol J T S)) by (conclude_def TS );destruct Tf as [M];分离合取式.
 assert (Col T A B) by (conclude lemma_collinear4).
 assert (Col A B T) by (forward_using lemma_collinearorder).
 assert (Col B A T) by (forward_using lemma_collinearorder).

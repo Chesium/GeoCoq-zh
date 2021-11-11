@@ -15,9 +15,9 @@ Lemma lemma_Playfairhelper :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M D /\ BetS B M C)) by (conclude_def CR );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M D /\ BetS B M C)) by (conclude_def CR );destruct Tf as [M];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists m, (BetS A m E /\ BetS B m C)) by (conclude_def CR );destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS A m E /\ BetS B m C)) by (conclude_def CR );destruct Tf as [m];分离合取式.
 assert (neq B C) by (forward_using lemma_betweennotequal).
 assert (BetS E m A) by (conclude axiom_betweennesssymmetry).
 assert (BetS D M A) by (conclude axiom_betweennesssymmetry).
@@ -42,7 +42,7 @@ assert (等角 E C B D C B) by (conclude lemma_equalanglestransitive).
 assert (neq C E) by (forward_using lemma_NCdistinct).
 assert (neq C D) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists e, (Out C E e /\ Cong C e C D)) by (conclude lemma_layoff);destruct Tf as [e];spliter.
+assert (Tf:exists e, (Out C E e /\ Cong C e C D)) by (conclude lemma_layoff);destruct Tf as [e];分离合取式.
 assert (eq B B) by (conclude cn_equalityreflexive).
 assert (neq C B) by (conclude lemma_inequalitysymmetric).
 assert (Out C B B) by (conclude lemma_ray4).

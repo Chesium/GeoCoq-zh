@@ -9,7 +9,7 @@ Lemma proclus_s_postulate_implies_strong_parallel_postulate :
   proclus_postulate -> strong_parallel_postulate.
 Proof.
 intros HP P Q R S T U HPTQ HRTS HNC1 HCop HCong1 Hcong2.
-unfold BetS in *; spliter.
+unfold BetS in *; 分离合取式.
 elim (共线的决定性 P Q R); [exists P; split; ColR|intro HNC2].
 destruct (HP P R Q S P U) as [I [HCol1 HCol2]]; [..|exists I; split]; Col.
 apply l12_17 with T; [统计不重合点|split..]; Cong.

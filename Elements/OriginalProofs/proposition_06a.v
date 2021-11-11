@@ -22,7 +22,7 @@ assert (~ Lt A C A B).
  intro.
  assert (Cong B A A B) by (conclude cn_equalityreverse).
  let Tf:=fresh in
- assert (Tf:exists D, (BetS B D A /\ Cong B D A C)) by (conclude proposition_03);destruct Tf as [D];spliter.
+ assert (Tf:exists D, (BetS B D A /\ Cong B D A C)) by (conclude proposition_03);destruct Tf as [D];分离合取式.
  assert (Cong D B A C) by (forward_using lemma_congruenceflip).
  assert (Cong B C B C) by (conclude cn_congruencereflexive).
  assert (Out B A D) by (conclude lemma_ray4).

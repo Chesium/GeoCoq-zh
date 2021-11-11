@@ -55,7 +55,7 @@ elim HPar1; clear HPar1; intro HPar1; elim HPar2; clear HPar2; intro HPar2.
         assert (Col B1 B2 B3) by ColR.
         exists B3; split; trivial.
         unfold BetS in *.
-        induction HBet; spliter; [|exfalso; apply HPar1; exists B3; split; Col].
+        induction HBet; 分离合取式; [|exfalso; apply HPar1; exists B3; split; Col].
         split; [repeat split; Between|].
         apply par_strict_col2_par_strict with B1 B2; Col.
         intro; treat_equalities; apply HPar1; exists P; split; ColR.
@@ -64,8 +64,8 @@ elim HPar1; clear HPar1; intro HPar1; elim HPar2; clear HPar2; intro HPar2.
   intros B1 B2 C1 C2 HCol1 HCol2 HPar1 HPar2.
   destruct (Haux B1 B2 HCol1 HPar1) as [B3 [HCol3 [HBet1 HPar3]]].
   destruct (Haux C1 C2 HCol2 HPar2) as [C3 [HCol4 [HBet2 HPar4]]].
-  assert (HCol5 : Col A2 X B3) by (unfold BetS in *; spliter; Col).
-  assert (HCol6 : Col A2 X C3) by (unfold BetS in *; spliter; Col).
+  assert (HCol5 : Col A2 X B3) by (unfold BetS in *; 分离合取式; Col).
+  assert (HCol6 : Col A2 X C3) by (unfold BetS in *; 分离合取式; Col).
   assert (HNC' : ~ Col A1 A2 X)
     by (intro; apply HPar1; exists P; split; ColR).
   assert (B3 = C3) by (apply 中点的唯一性1 with A2 X; apply HT with A1 P; Col; Par).
@@ -73,17 +73,17 @@ elim HPar1; clear HPar1; intro HPar1; elim HPar2; clear HPar2; intro HPar2.
   }
 
   {
-  spliter; exfalso; apply HPar1.
+  分离合取式; exfalso; apply HPar1.
   exists P; split; ColR.
   }
 
   {
-  spliter; exfalso; apply HPar2.
+  分离合取式; exfalso; apply HPar2.
   exists P; split; ColR.
   }
 
   {
-  spliter; split; ColR.
+  分离合取式; split; ColR.
   }
 Qed.
 

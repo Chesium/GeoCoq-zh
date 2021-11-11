@@ -18,7 +18,7 @@ Qed.
 Lemma Cs_not_Col : forall O E S U1 U2, Cs O E S U1 U2 -> ~ Col U1 S U2.
 Proof.
 unfold Cs; intros O E S U1 U2 HCs.
-spliter; 统计不重合点; apply 成直角三点不共线; Perp.
+分离合取式; 统计不重合点; apply 成直角三点不共线; Perp.
 Qed.
 
 (** As we are in dimension 2, we skip 16.3
@@ -29,7 +29,7 @@ Lemma exists_grid : exists O E E' S U1 U2, ~ Col O E E' /\ Cs O E S U1 U2.
 Proof.
 destruct 防降维公理_老版本 as [O [I [X HNC]]].
 assert (H : ~ Col O I X) by auto; clear HNC; rename H into HNC.
-统计不重合点; destruct (ex_四点成首末边等长双直角S形则对边等长 I O O X O I) as [J HJ]; Col; spliter.
+统计不重合点; destruct (ex_四点成首末边等长双直角S形则对边等长 I O O X O I) as [J HJ]; Col; 分离合取式.
 exists O; exists I; exists X; exists O; exists I; exists J.
 repeat (split; finish).
 Qed.
@@ -38,7 +38,7 @@ Lemma exists_grid_spec : exists S U1 U2, Cs PA PB S U1 U2.
 Proof.
 assert (~ Col PA PB PC) by (apply 防降维公理).
 统计不重合点.
-destruct (ex_四点成首末边等长双直角S形则对边等长 PB PA PA PC PA PB) as [J HJ]; Col; spliter.
+destruct (ex_四点成首末边等长双直角S形则对边等长 PB PA PA PC PA PB) as [J HJ]; Col; 分离合取式.
 exists PA; exists PB; exists J.
 repeat (split; finish).
 Qed.
@@ -61,7 +61,7 @@ unfold Cd; unfold Projp; intros O E S U1 U2 P X Y HCd.
 destruct HCd as [HCs [HC [[PX HPX] [PY HPY]]]]; clear HC.
 destruct HPX as [[HDiff1 HElim1] HCong1]; destruct HPY as [[HDiff2 HElim2] HCong2].
 split; [apply 全等于退化的三角形 with S U1 PX|apply 全等于退化的三角形 with S U2 PY]; Cong;
-[induction HElim1|induction HElim2]; spliter; treat_equalities; Col.
+[induction HElim1|induction HElim2]; 分离合取式; treat_equalities; Col.
 Qed.
 
 Lemma exists_projp : forall A B P, A <> B -> exists P', Projp P P' A B.
@@ -79,7 +79,7 @@ Proof.
 intros O E S U P HSU HCong.
 destruct (exists_projp S U P HSU) as [PX Hprojp].
 assert (HCol : Col S U PX)
-  by (destruct Hprojp as [H' H]; induction H; spliter; treat_equalities; Col).
+  by (destruct Hprojp as [H' H]; induction H; 分离合取式; treat_equalities; Col).
 destruct (l4_14_退化三角形有其全等形 S U PX O E) as [X HCong']; Cong.
 exists PX; exists X; auto with cong.
 Qed.
@@ -123,7 +123,7 @@ split; try apply all_coplanar.
 left; split; Col.
 apply 直角转L形垂直 in HPer; auto.
 apply 与垂线共线之线也为垂线1 with S U1; Col; Perp;
-[unfold 三角形全等 in *; spliter; 统计不重合点|apply 全等于退化的三角形 with O E X]; Col.
+[unfold 三角形全等 in *; 分离合取式; 统计不重合点|apply 全等于退化的三角形 with O E X]; Col.
 Qed.
 
 Lemma point_of_coordinates : forall O E S U1 U2 X Y,
@@ -155,8 +155,8 @@ split; [exists PX|exists PY]; split; Cong.
   {
   统计不重合点; split; auto.
   left; split; [apply 全等于退化的三角形 with O E X; Col|].
-  unfold 垂直于 in *; spliter; apply 与垂线共线之线也为垂线1 with PX PX'; Col.
-  assert (HPYS : PY <> S) by (unfold 三角形全等 in *; spliter; 统计不重合点; auto).
+  unfold 垂直于 in *; 分离合取式; apply 与垂线共线之线也为垂线1 with PX PX'; Col.
+  assert (HPYS : PY <> S) by (unfold 三角形全等 in *; 分离合取式; 统计不重合点; auto).
   intro; treat_equalities; apply HPYS.
   apply l6_21_两线交点的唯一性 with S U1 U2 S; Col;
   [destruct HCs as [H' [H'' [H''' HPer]]]; apply L形垂直推出不共线;
@@ -164,7 +164,7 @@ split; [exists PX|exists PY]; split; Cong.
   |apply 全等于退化的三角形 with E O Y; try apply 三角形全等的BAC交换性; Col].
   assert (HPar : Par S U1 PY PY')
     by (apply l12_9_2D with P PX'; Perp).
-  elim HPar; clear HPar; intro HParS; [|spliter; ColR].
+  elim HPar; clear HPar; intro HParS; [|分离合取式; ColR].
   exfalso; apply HParS; exists P; split; Col.
   apply 全等于退化的三角形 with X O E; try (apply 三角形全等的BAC交换性; apply 三角形全等的ACB交换性); Col.
   }
@@ -172,8 +172,8 @@ split; [exists PX|exists PY]; split; Cong.
   {
   统计不重合点; split; auto.
   left; split; [apply 全等于退化的三角形 with O E Y; Col|].
-  unfold 垂直于 in *; spliter; apply 与垂线共线之线也为垂线1 with PY PY'; Col.
-  assert (HPXS : PX <> S) by (unfold 三角形全等 in *; spliter; 统计不重合点; auto).
+  unfold 垂直于 in *; 分离合取式; apply 与垂线共线之线也为垂线1 with PY PY'; Col.
+  assert (HPXS : PX <> S) by (unfold 三角形全等 in *; 分离合取式; 统计不重合点; auto).
   intro; treat_equalities; apply HPXS.
   apply l6_21_两线交点的唯一性 with S U2 U1 S; Col;
   [destruct HCs as [H' [H'' [H''' HPer]]]; apply L形垂直推出不共线;
@@ -181,7 +181,7 @@ split; [exists PX|exists PY]; split; Cong.
   |apply 全等于退化的三角形 with E O X; try apply 三角形全等的BAC交换性; Col].
   assert (HPar : Par S U2 PX PX')
     by (apply l12_9_2D with P PY'; Perp).
-  elim HPar; clear HPar; intro HParS; [|spliter; ColR].
+  elim HPar; clear HPar; intro HParS; [|分离合取式; ColR].
   exfalso; apply HParS; exists P; split; Col.
   apply 全等于退化的三角形 with Y O E; try (apply 三角形全等的BAC交换性; apply 三角形全等的ACB交换性); Col.
   }
@@ -192,24 +192,24 @@ Lemma eq_points_coordinates : forall O E S U1 U2 P1 X1 Y1 P2 X2 Y2,
   (P1 = P2 <-> (X1 = X2 /\ Y1 = Y2)).
 Proof.
 intros O E S U1 U2 P1 X1 Y1 P2 X2 Y2 HCd1 HCd2.
-split; intro; spliter; treat_equalities.
+split; intro; 分离合取式; treat_equalities.
 
   {
   destruct HCd1 as [HCs [H [[PX HPX1] [PY HPY1]]]]; clear H.
   destruct HCd2 as [H [H' [[PX2 HPX2] [PY2 HPY2]]]]; clear H; clear H'.
-  assert (PX = PX2) by (spliter; apply projp_id with P1 S U1; auto); treat_equalities;
-  assert (PY = PY2) by (spliter; apply projp_id with P1 S U2; auto); treat_equalities.
+  assert (PX = PX2) by (分离合取式; apply projp_id with P1 S U1; auto); treat_equalities;
+  assert (PY = PY2) by (分离合取式; apply projp_id with P1 S U2; auto); treat_equalities.
   destruct HPX1 as [H HCong1]; assert (H' : Col PX S U1)
-    by (destruct H as [H' H]; induction H; spliter; treat_equalities; Col).
+    by (destruct H as [H' H]; induction H; 分离合取式; treat_equalities; Col).
   clear H; assert (HCol1 : Col O E X1) by (apply 全等于退化的三角形 with S U1 PX; Col; Cong).
   clear H'; destruct HPX2 as [H HCong3]; clear H.
   destruct HPY1 as [H HCong2]; assert (H' : Col PY S U2)
-    by (destruct H as [H' H]; induction H; spliter; treat_equalities; Col).
+    by (destruct H as [H' H]; induction H; 分离合取式; treat_equalities; Col).
   clear H; assert (HCol2 : Col O E Y1) by (apply 全等于退化的三角形 with S U2 PY; Col; Cong).
   clear H'; destruct HPY2 as [H HCong4]; clear H.
-  unfold Cs in HCs; spliter.
+  unfold Cs in HCs; 分离合取式.
   split; apply l4_18 with O E; Col;
-  unfold 三角形全等 in *; spliter; eapply 等长的传递性; eCong.
+  unfold 三角形全等 in *; 分离合取式; eapply 等长的传递性; eCong.
   }
 
   {
@@ -218,16 +218,16 @@ split; intro; spliter; treat_equalities.
   assert (PX = PX2); treat_equalities.
     {
     destruct HPX1 as [[H HElim] H0]; unfold Cs in HCs; unfold 三角形全等 in *;
-    spliter; 统计不重合点; apply l4_18 with S U1; auto.
-    induction HElim; spliter; treat_equalities; Col.
+    分离合取式; 统计不重合点; apply l4_18 with S U1; auto.
+    induction HElim; 分离合取式; treat_equalities; Col.
     apply 等长的传递性 with O X1; Cong.
     apply 等长的传递性 with E X1; Cong.
     }
   assert (PY = PY2); treat_equalities.
     {
     destruct HPY1 as [[H HElim] H0]; unfold Cs in HCs; unfold 三角形全等 in *;
-    spliter; 统计不重合点; apply l4_18 with S U2; auto.
-    induction HElim; spliter; treat_equalities; Col.
+    分离合取式; 统计不重合点; apply l4_18 with S U2; auto.
+    induction HElim; 分离合取式; treat_equalities; Col.
     apply 等长的传递性 with O Y1; Cong.
     apply 等长的传递性 with E Y1; Cong.
     }
@@ -243,35 +243,35 @@ split; intro; spliter; treat_equalities.
 
       {
       destruct HProjp2 as [H H1]; clear H; elim H1; clear H1; intro H1;
-      [destruct H1 as [H1 HPerp1]|spliter; intuition].
+      [destruct H1 as [H1 HPerp1]|分离合取式; intuition].
       destruct HProjp4 as [H H2]; clear H; elim H2; clear H2; intro H2;
-      [destruct H2 as [H2 HPerp2]|spliter; intuition].
+      [destruct H2 as [H2 HPerp2]|分离合取式; intuition].
       apply l12_9_2D with P2 P1; Perp.
       }
 
       {
       destruct HProjp2 as [H H1]; clear H; elim H1; clear H1; intro H1;
-      [destruct H1 as [H1 HPerp1]|spliter; intuition].
+      [destruct H1 as [H1 HPerp1]|分离合取式; intuition].
       destruct HProjp3 as [H H2]; clear H; elim H2; clear H2; intro H2;
-      [destruct H2 as [H2 HPerp2]|spliter; intuition].
+      [destruct H2 as [H2 HPerp2]|分离合取式; intuition].
       apply l12_9_2D with P2 P1; Perp.
       apply 与垂线共线之线也为垂线1 with P1 PY; Perp; Col.
       }
 
       {
       destruct HProjp1 as [H H1]; clear H; elim H1; clear H1; intro H1;
-      [destruct H1 as [H1 HPerp1]|spliter; intuition].
+      [destruct H1 as [H1 HPerp1]|分离合取式; intuition].
       destruct HProjp4 as [H H2]; clear H; elim H2; clear H2; intro H2;
-      [destruct H2 as [H2 HPerp2]|spliter; intuition].
+      [destruct H2 as [H2 HPerp2]|分离合取式; intuition].
       apply l12_9_2D with P2 P1; Perp.
       apply 与垂线共线之线也为垂线1 with P1 PX; Perp; Col.
       }
 
       {
       destruct HProjp1 as [H H1]; clear H; elim H1; clear H1; intro H1;
-      [destruct H1 as [H1 HPerp1]|spliter; intuition].
+      [destruct H1 as [H1 HPerp1]|分离合取式; intuition].
       destruct HProjp3 as [H H2]; clear H; elim H2; clear H2; intro H2;
-      [destruct H2 as [H2 HPerp2]|spliter; intuition].
+      [destruct H2 as [H2 HPerp2]|分离合取式; intuition].
       apply l12_9_2D with P2 P1;
       [apply 与垂线共线之线也为垂线1 with P1 PX|apply 与垂线共线之线也为垂线1 with P1 PY];Perp; Col.
       }
@@ -279,10 +279,10 @@ split; intro; spliter; treat_equalities.
   assert (HFalse : ~ ~ Col U1 S U2).
     {
     intro HF; apply HF;
-    elim HPar; clear HPar; intro HPar; spliter; Col.
+    elim HPar; clear HPar; intro HPar; 分离合取式; Col.
     exfalso; apply HPar; exists S; Col.
     }
-  unfold Cs in HCs; spliter; 统计不重合点; apply HFalse; apply 成直角三点不共线; Col.
+  unfold Cs in HCs; 分离合取式; 统计不重合点; apply HFalse; apply 成直角三点不共线; Col.
   }
 Qed.
 
@@ -294,16 +294,16 @@ Lemma l16_9_1 : forall O E E' X Y XY XMY,
 Proof.
 intros O E E' X Y XY XMY HCol1 HCol2 HXY HLe1 HXMY.
 assert (HNC : ~ Col O E E')
-  by (apply diff_ar2 in HXMY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HXMY; unfold Ar2 in *; 分离合取式; Col).
 assert (HOE : O <> E) by (统计不重合点; auto).
 assert (HCol3 : Col O E XMY).
   {
   unfold Diff, Opp, Sum, Ar2 in *;
   destruct HXMY as [MB [H1 [H2 [H3 H4]]]];
-  spliter; Col.
+  分离合取式; Col.
   }
 assert (HCong1 := HXMY); apply diff_sum in HCong1; apply l15_3 in HCong1.
-elim HXY; clear HXY; intro HXY; [|spliter; intuition].
+elim HXY; clear HXY; intro HXY; [|分离合取式; intuition].
 destruct HXY as [H [HCol4 [HLe2 HCong2]]].
 elim (共线点间距相同要么重合要么中点 O XY XMY); [auto|intro HMid; clear H|ColR|apply 等长的传递性 with X Y; Cong].
 elim HLe1; clear HLe1; intro HLt1; [clear HCong1|treat_equalities; auto].
@@ -318,9 +318,9 @@ Lemma length_eq_or_opp : forall O E E' A B L1 L2,
   Length O E E' A B L1 -> Diff O E E' A B L2 -> L1 = L2 \/ Opp O E E' L1 L2.
 Proof.
 intros O E E' A B L1 L2 HL1 HL2.
-assert (HNC : ~ Col O E E') by (apply diff_ar2 in HL2; unfold Ar2 in *; spliter; Col).
-assert (HColA : Col O E A) by (apply diff_ar2 in HL2; unfold Ar2 in *; spliter; Col).
-assert (HColB : Col O E B) by (apply diff_ar2 in HL2; unfold Ar2 in *; spliter; Col).
+assert (HNC : ~ Col O E E') by (apply diff_ar2 in HL2; unfold Ar2 in *; 分离合取式; Col).
+assert (HColA : Col O E A) by (apply diff_ar2 in HL2; unfold Ar2 in *; 分离合取式; Col).
+assert (HColB : Col O E B) by (apply diff_ar2 in HL2; unfold Ar2 in *; 分离合取式; Col).
 elim (col_2_le_or_ge O E E' A B); auto; intro HLe;
 [right|left; apply l16_9_1 with O E E' A B; auto; left; auto].
 apply diff_opp with B A; auto.
@@ -337,8 +337,8 @@ Lemma l16_9_2 : forall O E E' X Y XY XMY XY2 XMY2,
 Proof.
 intros O E E' X Y XY XMY XY2 XMY2 HCol1 HCol2 HXY HXMY HXY2 HXMY2.
 assert (HNC : ~ Col O E E')
-  by (apply diff_ar2 in HXMY; unfold Ar2 in *; spliter; Col).
-assert (H:= HXY); elim H; clear H; intro HXY'; [|spliter; 统计不重合点; intuition].
+  by (apply diff_ar2 in HXMY; unfold Ar2 in *; 分离合取式; Col).
+assert (H:= HXY); elim H; clear H; intro HXY'; [|分离合取式; 统计不重合点; intuition].
 elim (length_eq_or_opp O E E' X Y XY XMY); auto; intro HOpp1; treat_equalities;
 apply prod_uniqueness with O E E' XY XY; auto.
 destruct (opp_exists O E E' HNC E) as [ME HOpp2]; Col.
@@ -392,7 +392,7 @@ assert (PY' = QY')
 treat_equalities;
 assert (HPerp1 : Perp P Q S U2) by (apply projp_projp_perp with PY'; auto).
 assert (HPerp2 : Perp U1 S S U2)
-  by (unfold Cs in HCs; spliter; 统计不重合点; apply 直角转L形垂直; Perp).
+  by (unfold Cs in HCs; 分离合取式; 统计不重合点; apply 直角转L形垂直; Perp).
 destruct HProjp1 as [H H1]; clear H; destruct HProjp3 as [H H2]; clear H.
 elim H1; clear H1; intro H1; elim H2; clear H2; intro H2;
 destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
@@ -402,24 +402,24 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
   elim (两点重合的决定性 S QX'); intro HDiff2; treat_equalities.
 
     {
-    exfalso; unfold 三角形全等 in *; spliter; treat_equalities.
+    exfalso; unfold 三角形全等 in *; 分离合取式; treat_equalities.
     assert (HPar1 : Par P Q S U1)
       by (apply l12_9_2D with S U2; Perp).
     assert (HPar2 : Par P S Q S)
       by (apply l12_9_2D with S U1; Perp).
     elim HPar2; clear HPar2; intro HCol1; [apply HCol1; exists S; Col|].
-    elim HPar1; clear HPar1; intro HCol2; [apply HCol2; exists S; spliter; Col|].
-    spliter; apply 垂直推出不共线 in HPerp3;
+    elim HPar1; clear HPar1; intro HCol2; [apply HCol2; exists S; 分离合取式; Col|].
+    分离合取式; apply 垂直推出不共线 in HPerp3;
     elim HPerp3; intro HNC'; apply HNC'; Col.
     }
 
     {
-    assert (O = PX) by (unfold 三角形全等 in HCong1; spliter; treat_equalities; auto).
+    assert (O = PX) by (unfold 三角形全等 in HCong1; 分离合取式; treat_equalities; auto).
     treat_equalities; assert (HCol7 : Col S U2 P).
       {
       assert (H : Par P S S U2)
         by (apply l12_9_2D with S U1; Perp).
-      elim H; clear H; intro H; [exfalso; apply H; exists S|spliter]; Col.
+      elim H; clear H; intro H; [exfalso; apply H; exists S|分离合取式]; Col.
       }
     assert (HNC' : ~ Col S U1 U2) by (apply L形垂直推出不共线; Perp).
     assert (H : 长方形 P S QX' Q).
@@ -432,16 +432,16 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       }
     apply 长方形_Plg in H; apply plg_to_parallelogram in H;
     apply plg_cong_2 in H.
-    unfold 三角形全等 in HCong3; spliter; apply 等长的传递性 with S QX'; Cong.
+    unfold 三角形全等 in HCong3; 分离合取式; apply 等长的传递性 with S QX'; Cong.
     }
 
     {
-    assert (O = QX) by (unfold 三角形全等 in HCong3; spliter; treat_equalities; auto).
+    assert (O = QX) by (unfold 三角形全等 in HCong3; 分离合取式; treat_equalities; auto).
     treat_equalities; assert (HCol7 : Col S U2 Q).
       {
       assert (H : Par Q S S U2)
         by (apply l12_9_2D with S U1; Perp).
-      elim H; clear H; intro H; [exfalso; apply H; exists S|spliter]; Col.
+      elim H; clear H; intro H; [exfalso; apply H; exists S|分离合取式]; Col.
       }
     assert (HNC' : ~ Col S U1 U2) by (apply L形垂直推出不共线; Perp).
     assert (H : 长方形 Q S PX' P).
@@ -454,7 +454,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       }
     apply 长方形_Plg in H; apply plg_to_parallelogram in H;
     apply plg_cong_2 in H.
-    unfold 三角形全等 in HCong1; spliter; apply 等长的传递性 with S PX'; Cong.
+    unfold 三角形全等 in HCong1; 分离合取式; apply 等长的传递性 with S PX'; Cong.
     }
 
     {
@@ -464,12 +464,12 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       assert (HNC' := HPerp3); apply 垂直推出不共线 in HNC'.
       elim HNC'; clear HNC'; intro HNC'; [exfalso; apply HNC'|intuition].
       destruct HProjp2 as [H' H]; clear H'.
-      elim H; clear H; intro H; [|spliter; subst; Col].
+      elim H; clear H; intro H; [|分离合取式; subst; Col].
       destruct H as [H HPerp5]; clear H.
       assert (HPar : Par P S S U1)
         by (apply l12_9_2D with S U2; Perp).
       elim HPar; clear HPar; intro HPar;
-      [exfalso; apply HPar; exists S|spliter]; Col.
+      [exfalso; apply HPar; exists S|分离合取式]; Col.
       }
 
       {
@@ -484,7 +484,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
         assert (HPar : Par P PX' S U2)
           by (apply l12_9_2D with S U1; Perp).
         elim HPar; clear HPar; intro HPar;
-        [exfalso; apply HPar; exists P|]; spliter; Col.
+        [exfalso; apply HPar; exists P|]; 分离合取式; Col.
         }
       assert (HDiff5 : Q <> PY').
         {
@@ -493,7 +493,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
         assert (HPar : Par Q QX' S U2)
           by (apply l12_9_2D with S U1; Perp).
         elim HPar; clear HPar; intro HPar;
-        [exfalso; apply HPar; exists Q|]; spliter; Col.
+        [exfalso; apply HPar; exists Q|]; 分离合取式; Col.
         }
       assert (HRect1 : 长方形 PX' S PY' P).
         {
@@ -542,7 +542,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       apply 长方形_平行四边形 in HRect3; apply plg_cong_2 in HRect3.
       统计不重合点;
       apply cong_3_2_cong_4 with O E PX QX S U1 PX' QX' in HCong1; Col.
-      unfold 四边形全等 in HCong1; spliter; apply 等长的传递性 with PX' QX'; Cong.
+      unfold 四边形全等 in HCong1; 分离合取式; apply 等长的传递性 with PX' QX'; Cong.
       }
     }
   }
@@ -550,20 +550,20 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
   {
   exfalso; elim (垂直推出不共线 S U1 P PX'); Perp; intro H; apply H; Col; clear H.
   assert (HPar : Par P Q S U1) by (apply l12_9_2D with S U2; Perp).
-  elim HPar; clear HPar; intro HPar; spliter; Col.
+  elim HPar; clear HPar; intro HPar; 分离合取式; Col.
   exfalso; apply HPar; exists Q; Col.
   }
 
   {
   exfalso; elim (垂直推出不共线 S U1 Q QX'); Perp; intro H; apply H; Col; clear H.
   assert (HPar : Par P Q S U1) by (apply l12_9_2D with S U2; Perp).
-  elim HPar; clear HPar; intro HPar; spliter; Col.
+  elim HPar; clear HPar; intro HPar; 分离合取式; Col.
   exfalso; apply HPar; exists P; Col.
   }
 
   {
   assert (四边形全等 O E PX QX S U1 P Q) by (统计不重合点; apply cong_3_2_cong_4; Col).
-  unfold 四边形全等 in *; spliter; Cong.
+  unfold 四边形全等 in *; 分离合取式; Cong.
   }
 Qed.
 
@@ -578,32 +578,32 @@ Proof.
 intros O E E' S U1 U2 P Q PX PY QX QY PQ PQ2 PXMQX PYMQY PXMQX2 PYMQY2 F.
 intros HCd1 HCd2 HPQ HPQ2 HPXMQX HPXMQX2 HPYMQY HPYMQY2 HF.
 assert (HNC : ~ Col O E E')
-  by (apply diff_ar2 in HPXMQX; unfold Ar2 in *; spliter; Col).
-assert (HCol1 : Col O E PX) by (apply Cd_Col in HCd1; spliter; Col).
-assert (HCol2 : Col O E QX) by (apply Cd_Col in HCd2; spliter; Col).
-assert (HCol3 : Col O E PY) by (apply Cd_Col in HCd1; spliter; Col).
-assert (HCol4 : Col O E QY) by (apply Cd_Col in HCd2; spliter; Col).
+  by (apply diff_ar2 in HPXMQX; unfold Ar2 in *; 分离合取式; Col).
+assert (HCol1 : Col O E PX) by (apply Cd_Col in HCd1; 分离合取式; Col).
+assert (HCol2 : Col O E QX) by (apply Cd_Col in HCd2; 分离合取式; Col).
+assert (HCol3 : Col O E PY) by (apply Cd_Col in HCd1; 分离合取式; Col).
+assert (HCol4 : Col O E QY) by (apply Cd_Col in HCd2; 分离合取式; Col).
 destruct (is_length_exists O E E' PX QX) as [PXQX HPXQX]; Col.
 assert (HCol5 : Col O E PXQX).
   {
-  unfold Is_length, Length in HPXQX; induction HPXQX; spliter; treat_equalities; Col.
+  unfold Is_length, Length in HPXQX; induction HPXQX; 分离合取式; treat_equalities; Col.
   }
 destruct (prod_exists O E E' HNC PXQX PXQX) as [PXQX2 HPXQX2]; Col.
 assert (PXQX2 = PXMQX2) by (apply l16_9_2 with O E E' PX QX PXQX PXMQX; Col).
 destruct (is_length_exists O E E' PY QY) as [PYQY HPYQY]; Col.
 assert (HCol6 : Col O E PYQY).
   {
-  unfold Is_length, Length in HPYQY; induction HPYQY; spliter; treat_equalities; Col.
+  unfold Is_length, Length in HPYQY; induction HPYQY; 分离合取式; treat_equalities; Col.
   }
 destruct (prod_exists O E E' HNC PYQY PYQY) as [PYQY2 HPYQY2]; Col.
 assert (PYQY2 = PYMQY2) by (apply l16_9_2 with O E E' PY QY PYQY PYMQY; Col).
 treat_equalities; apply sum_uniqueness with O E E' PXQX2 PYQY2; auto; clear HF; clear F.
 clear HPXMQX2; clear HPXMQX; clear PXMQX; clear HPYMQY2; clear HPYMQY; clear PYMQY.
-assert (HCs : Cs O E S U1 U2) by (unfold Cd in HCd1; spliter; auto).
+assert (HCs : Cs O E S U1 U2) by (unfold Cd in HCd1; 分离合取式; auto).
 destruct (point_of_coordinates O E S U1 U2 PX QY) as [R HCd3]; Col.
-elim HPQ; clear HPQ; intro HPQ; [|spliter; treat_equalities; exfalso; Col].
-elim HPXQX; clear HPXQX; intro HPXQX; [|spliter; treat_equalities; exfalso; Col].
-elim HPYQY; clear HPYQY; intro HPYQY; [|spliter; treat_equalities; exfalso; Col].
+elim HPQ; clear HPQ; intro HPQ; [|分离合取式; treat_equalities; exfalso; Col].
+elim HPXQX; clear HPXQX; intro HPXQX; [|分离合取式; treat_equalities; exfalso; Col].
+elim HPYQY; clear HPYQY; intro HPYQY; [|分离合取式; treat_equalities; exfalso; Col].
 elim (两点重合的决定性 P R); intro HPR; [assert (HPR' := HPR);
 rewrite eq_points_coordinates in HPR; [|apply HCd1|apply HCd3]|];
 elim (两点重合的决定性 Q R); intro HQR; [assert (HQR' := HQR);
@@ -670,7 +670,7 @@ try clear HPX; try clear HPY; try clear HQX; try clear HQY.
   assert (HPerp1 : Perp P R S U1) by (apply projp_projp_perp with PX'; auto);
   assert (HPerp2 : Perp Q R S U2) by (apply projp_projp_perp with QY'; auto);
   assert (HPerp3 : Perp U1 S S U2)
-    by (unfold Cs in HCs; spliter; 统计不重合点; apply 直角转L形垂直; Perp).
+    by (unfold Cs in HCs; 分离合取式; 统计不重合点; apply 直角转L形垂直; Perp).
   apply L形垂直转直角2; apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
   apply l12_9_2D with S U2; Perp.
   }
@@ -709,12 +709,12 @@ intros AXMBX AXMBX2 AYMBY AYMBY2 AB2' CXMDX CXMDX2 CYMDY CYMDY2 CD2'.
 intros HCdA HCdB HCdC HCdD HAXMBX HAXMBX2 HAYMBY HAYMBY2 HAB2.
 intros HCXMDX HCXMDX2 HCYMDY HCYMDY2 HCD2.
 assert (HNC : ~ Col O E E')
-  by (apply diff_ar2 in HAXMBX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAXMBX; unfold Ar2 in *; 分离合取式; Col).
 destruct (is_length_exists O E E' A B) as [AB HLengthAB]; Col.
 assert (HColAB : Col O E AB).
   {
   unfold Is_length, Length in *; induction HLengthAB;
-  spliter; treat_equalities; Col.
+  分离合取式; treat_equalities; Col.
   }
 destruct (prod_exists O E E' HNC AB AB) as [AB2 HLengthAB2]; Col.
 assert (AB2 = AB2').
@@ -729,7 +729,7 @@ destruct (is_length_exists O E E' C D) as [CD HLengthCD]; Col.
 assert (HColCD : Col O E CD).
   {
   unfold Is_length, Length in *; induction HLengthCD;
-  spliter; treat_equalities; Col.
+  分离合取式; treat_equalities; Col.
   }
 destruct (prod_exists O E E' HNC CD CD) as [CD2 HLengthCD2]; Col.
 assert (CD2 = CD2').
@@ -746,9 +746,9 @@ split; [intro HCong|intro; treat_equalities].
   assert (H : Cong O AB O CD).
     {
     unfold Is_length, Length in *;
-    induction HLengthAB; [|spliter; treat_equalities; exfalso; apply HNC; Col];
-    induction HLengthCD; [|spliter; treat_equalities; exfalso; apply HNC; Col].
-    spliter; apply 等长的传递性 with A B; trivial.
+    induction HLengthAB; [|分离合取式; treat_equalities; exfalso; apply HNC; Col];
+    induction HLengthCD; [|分离合取式; treat_equalities; exfalso; apply HNC; Col].
+    分离合取式; apply 等长的传递性 with A B; trivial.
     apply 等长的传递性 with C D; Cong.
     }
   clear HLengthAB; clear HLengthCD; clear HCong; rename H into HCong.
@@ -776,13 +776,13 @@ split; [intro HCong|intro; treat_equalities].
 
   {
   elim HLengthAB; clear HLengthAB; intro HLengthAB;
-  [|spliter; treat_equalities; exfalso; apply HNC; Col].
+  [|分离合取式; treat_equalities; exfalso; apply HNC; Col].
   elim HLengthCD; clear HLengthCD; intro HLengthCD;
-  [|spliter; treat_equalities; exfalso; apply HNC; Col].
+  [|分离合取式; treat_equalities; exfalso; apply HNC; Col].
   elim (eq_squares_eq_or_opp O E E' AB CD AB2); auto; intro HOpp; treat_equalities;
   [apply length_eq_cong_1 with O E E' AB; auto|].
-  unfold Length, LeP, LtP in *; spliter; apply opp_midpoint in HOpp.
-  unfold 中点 in *; spliter.
+  unfold Length, LeP, LtP in *; 分离合取式; apply opp_midpoint in HOpp.
+  unfold 中点 in *; 分离合取式.
   apply 等长的传递性 with O CD; trivial.
   apply 等长的传递性 with O AB; Cong.
   }
@@ -795,7 +795,7 @@ Lemma bet_betCood_aux : forall O E S U1 U2 A AX AY B BX BY C CX CY,
 Proof.
 intros O E S U1 U2 A AX AY B BX BY C CX CY HCdA HCdB HCdC HBet.
 destruct (parallel_existence S U1 A) as [A1 [A2 [HDiff4 [HPar HCol]]]];
-try (intro; unfold Cd, Cs in *; spliter; treat_equalities; intuition).
+try (intro; unfold Cd, Cs in *; 分离合取式; treat_equalities; intuition).
 assert (HAX' := HCdA).
 destruct HAX' as [H [H' [HAX' H'']]]; clear H; clear H'; clear H''.
 destruct HAX' as [AX' [HProjpAX' H等角X']].
@@ -805,7 +805,7 @@ assert (HA : Projp AX' A A1 A2).
   [treat_equalities; right|left; split]; Col.
   apply par_perp__perp with S U1; auto.
   destruct HProjpAX' as [Hclear HAX']; clear Hclear.
-  induction HAX'; spliter; Perp; intuition.
+  induction HAX'; 分离合取式; Perp; intuition.
   }
 assert (HBX' := HCdB).
 destruct HBX' as [H [H' [HBX' H'']]]; clear H; clear H'; clear H''.
@@ -815,7 +815,7 @@ assert (HCX' := HCdC).
 destruct HCX' as [H [H' [HCX' H'']]]; clear H; clear H'; clear H''.
 destruct HCX' as [CX' [HProjpCX' HCongCX']].
 destruct (exists_projp A1 A2 CX') as [CX'' HCX'']; auto.
-assert (HDiff : O <> E) by (unfold Cd, Cs in *; spliter; auto).
+assert (HDiff : O <> E) by (unfold Cd, Cs in *; 分离合取式; auto).
 assert (HColAX : Col O E AX).
   {
   unfold Cd in *; destruct HCdA as [H [H' [[PX [HProjp HCong]] H'']]].
@@ -840,7 +840,7 @@ apply l4_6 with AX' BX' CX'.
   {
   assert (五边形全等 O E AX BX CX S U1 AX' BX' CX')
     by (apply cong_3_3_cong_5; 统计不重合点; auto).
-  unfold 五边形全等 in *; spliter; repeat (split; Cong).
+  unfold 五边形全等 in *; 分离合取式; repeat (split; Cong).
   }
 Qed.
 
@@ -872,7 +872,7 @@ intros O E E' S U1 U2 A AX AY B BX BY C CX CY BXMAX CXMAX AB AC IAC T.
 intros HCdA HCdB HCdC HNC HColAX HColBX HColCX HColBXMAX HColCXMAX HColT.
 intros HColAB HColAC HColIAC HBXMAX HCXMAX HAB HAC HT HIAC HBet HDiff1 HDiff2 HDiff3.
 destruct (parallel_existence S U1 A) as [A1 [A2 [HDiff4 [HPar HCol]]]];
-try (intro; unfold Cd, Cs in *; spliter; treat_equalities; intuition).
+try (intro; unfold Cd, Cs in *; 分离合取式; treat_equalities; intuition).
 assert (HAX' := HCdA).
 destruct HAX' as [H [H' [HAX' H'']]]; clear H; clear H'; clear H''.
 destruct HAX' as [AX' [HProjpAX' H等角X']].
@@ -882,7 +882,7 @@ assert (HA : Projp AX' A A1 A2).
   [treat_equalities; right|left; split]; Col.
   apply par_perp__perp with S U1; auto.
   destruct HProjpAX' as [Hclear HAX']; clear Hclear.
-  induction HAX'; spliter; Perp; intuition.
+  induction HAX'; 分离合取式; Perp; intuition.
   }
 assert (HBX' := HCdB).
 destruct HBX' as [H [H' [HBX' H'']]]; clear H; clear H'; clear H''.
@@ -904,10 +904,10 @@ elim (共线的决定性 A B BX''); intro HABBX''.
 
         {
         assert (A = AX') by (apply col_projp_eq with S U1;
-                             auto; 统计不重合点; spliter; ColR).
+                             auto; 统计不重合点; 分离合取式; ColR).
         treat_equalities; apply eq_sym; apply col_projp_eq with A1 A2; auto.
         assert (Col S U1 BX') by (apply projp_col with B; auto).
-        统计不重合点; spliter; ColR.
+        统计不重合点; 分离合取式; ColR.
         }
 
         {
@@ -946,7 +946,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
       by (apply diff_uniqueness with O E E' AX AX; auto; apply diff_null; Col);
     assert (O = CXMAX)
       by (apply diff_uniqueness with O E E' AX AX; auto; apply diff_null; Col);
-    treat_equalities; apply prod_0_r; unfold Prod, Ar2 in *; spliter; Col.
+    treat_equalities; apply prod_0_r; unfold Prod, Ar2 in *; 分离合取式; Col.
     }
 
     {
@@ -973,7 +973,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
         assert (Cong AX BX AX' BX').
           {
           apply cong_3_2_cong_4 with O E AX BX S U1 AX' BX' in HCongBX';
-          try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
+          try intro; treat_equalities; Col; unfold 四边形全等 in *; 分离合取式; Cong.
           }
         assert (Cong A B AX' BX').
           {
@@ -999,7 +999,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
           {
           apply cong_3_2_cong_4 with O E AX CX S U1 AX' CX' in HCongCX';
           try intro; treat_equalities; Col;
-          unfold 四边形全等 in *; spliter; Cong.
+          unfold 四边形全等 in *; 分离合取式; Cong.
           }
         assert (Cong A C AX' CX').
           {
@@ -1031,7 +1031,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
         assert (Cong AX BX AX' BX').
           {
           apply cong_3_2_cong_4 with O E AX BX S U1 AX' BX' in HCongBX';
-          try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
+          try intro; treat_equalities; Col; unfold 四边形全等 in *; 分离合取式; Cong.
           }
         assert (Cong A B AX' BX').
           {
@@ -1058,7 +1058,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
           {
           apply cong_3_2_cong_4 with O E AX CX S U1 AX' CX' in HCongCX';
           try intro; treat_equalities; Col;
-          unfold 四边形全等 in *; spliter; Cong.
+          unfold 四边形全等 in *; 分离合取式; Cong.
           }
         assert (Cong A C AX' CX').
           {
@@ -1091,14 +1091,14 @@ elim (共线的决定性 A B BX''); intro HABBX''.
     destruct HABX'' as [H [H' [HElim H'']]]; clear H; clear H'; clear H''.
     elim HElim; clear HElim; intro HLt; treat_equalities; Col.
     destruct HLt as [D [HDiff H]]; clear H.
-    apply diff_ar2 in HDiff; unfold Ar2 in *; spliter; Col.
+    apply diff_ar2 in HDiff; unfold Ar2 in *; 分离合取式; Col.
     }
   assert (HColACX'' : Col O E ACX'').
     {
     destruct HACX'' as [H [H' [HElim H'']]]; clear H; clear H'; clear H''.
     elim HElim; clear HElim; intro HLt; treat_equalities; Col.
     destruct HLt as [D [HDiff H]]; clear H.
-    apply diff_ar2 in HDiff; unfold Ar2 in *; spliter; Col.
+    apply diff_ar2 in HDiff; unfold Ar2 in *; 分离合取式; Col.
     }
   destruct (prod_exists O E E' HNC AB ACX'') as [F HF]; Col.
   assert (HF' : Prodg O E E' ABX'' AC F).
@@ -1141,12 +1141,12 @@ elim (共线的决定性 A B BX''); intro HABBX''.
 
           {
           apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with BX' BX''; Perp;
-          统计不重合点; spliter; Col.
+          统计不重合点; 分离合取式; Col.
           }
 
           {
           apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with CX' CX''; Perp;
-          统计不重合点; spliter; Col.
+          统计不重合点; 分离合取式; Col.
           intro; treat_equalities; assert_cols; apply HABBX''; ColR.
           }
         }
@@ -1158,7 +1158,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
         [exfalso; apply HCol1; exists BX'; Col|].
         left; apply l12_9_2D with A1 A2; Perp.
         apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with BX' BX''; Perp;
-        统计不重合点; spliter; Col.
+        统计不重合点; 分离合取式; Col.
         }
 
         {
@@ -1168,7 +1168,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
         [exfalso; apply HCol1; exists BX'; Col|].
         left; apply l12_9_2D with A1 A2; Perp.
         apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with BX' BX''; Perp;
-        统计不重合点; spliter; Col.
+        统计不重合点; 分离合取式; Col.
         apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
         }
 
@@ -1183,7 +1183,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
         [exfalso; apply HCol2; exists CX'; Col|].
         left; apply l12_9_2D with A1 A2; Perp.
         apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with CX' CX''; Perp;
-        统计不重合点; spliter; Col.
+        统计不重合点; 分离合取式; Col.
         intro; treat_equalities; assert_cols; apply HABBX''; ColR.
         }
 
@@ -1213,7 +1213,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
 
           {
           apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with CX' CX''; Perp;
-          统计不重合点; spliter; Col.
+          统计不重合点; 分离合取式; Col.
           intro; treat_equalities; assert_cols; apply HABBX''; ColR.
           }
         }
@@ -1258,7 +1258,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
                                     exfalso; apply HFalse; do 3 (split; Col)].
   assert (HProd : Prod O E E' T ACX'' ABX'').
     {
-    assert (HColF : Col O E F) by (unfold Prod, Ar2 in *; spliter; Col).
+    assert (HColF : Col O E F) by (unfold Prod, Ar2 in *; 分离合取式; Col).
     destruct (prod_exists O E E' HNC F IAC) as [G HG]; Col.
     assert (Prod O E E' ABX'' E G)
       by (apply prod_assoc2 with AC IAC F; auto; apply prod_comm; auto).
@@ -1283,7 +1283,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
       assert (Cong AX BX AX' BX').
         {
         apply cong_3_2_cong_4 with O E AX BX S U1 AX' BX' in HCongBX';
-        try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
+        try intro; treat_equalities; Col; unfold 四边形全等 in *; 分离合取式; Cong.
         }
       assert (Cong A BX'' AX' BX').
         {
@@ -1308,7 +1308,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
       assert (Cong AX CX AX' CX').
         {
         apply cong_3_2_cong_4 with O E AX CX S U1 AX' CX' in HCongCX';
-        try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
+        try intro; treat_equalities; Col; unfold 四边形全等 in *; 分离合取式; Cong.
         }
       assert (Cong A CX'' AX' CX').
         {
@@ -1329,7 +1329,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
       assert (Cong AX BX AX' BX').
         {
         apply cong_3_2_cong_4 with O E AX BX S U1 AX' BX' in HCongBX';
-        try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
+        try intro; treat_equalities; Col; unfold 四边形全等 in *; 分离合取式; Cong.
         }
       assert (Cong A BX'' AX' BX').
         {
@@ -1355,7 +1355,7 @@ elim (共线的决定性 A B BX''); intro HABBX''.
       assert (Cong AX CX AX' CX').
         {
         apply cong_3_2_cong_4 with O E AX CX S U1 AX' CX' in HCongCX';
-        try intro; treat_equalities; Col; unfold 四边形全等 in *; spliter; Cong.
+        try intro; treat_equalities; Col; unfold 四边形全等 in *; 分离合取式; Cong.
         }
       assert (Cong A CX'' AX' CX').
         {
@@ -1393,27 +1393,27 @@ Proof.
 intros O E E' S U1 U2 A AX AY B BX BY C CX CY BXMAX BYMAY CXMAX CYMAY.
 intros HCdA HCdB HCdC HBXMAX HBYMAY HCXMAX HCYMAY.
 assert (HNC : ~ Col O E E')
-  by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColAX : Col O E AX)
-  by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColAY : Col O E AY)
-  by (apply diff_ar2 in HBYMAY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBYMAY; unfold Ar2 in *; 分离合取式; Col).
 assert (HColBX : Col O E BX)
-  by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColBY : Col O E BY)
-  by (apply diff_ar2 in HBYMAY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBYMAY; unfold Ar2 in *; 分离合取式; Col).
 assert (HColCX : Col O E CX)
-  by (apply diff_ar2 in HCXMAX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HCXMAX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColCY : Col O E CY)
-  by (apply diff_ar2 in HCYMAY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HCYMAY; unfold Ar2 in *; 分离合取式; Col).
 assert (HColBXMAX : Col O E BXMAX)
-  by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColBYMAY : Col O E BYMAY)
-  by (apply diff_ar2 in HBYMAY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBYMAY; unfold Ar2 in *; 分离合取式; Col).
 assert (HColCXMAX : Col O E CXMAX)
-  by (apply diff_ar2 in HCXMAX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HCXMAX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColCYMAY : Col O E CYMAY)
-  by (apply diff_ar2 in HCYMAY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HCYMAY; unfold Ar2 in *; 分离合取式; Col).
 split; [intro HBet|intro HT].
 
   {
@@ -1422,7 +1422,7 @@ split; [intro HBet|intro HT].
     {
     assert (AX = BX /\ AY = BY)
       by (rewrite <- eq_points_coordinates; [|apply HCdA|apply HCdB]; auto).
-    spliter; treat_equalities.
+    分离合取式; treat_equalities.
     assert (O = BXMAX)
       by (apply diff_uniqueness with O E E' AX AX; auto; apply diff_null; Col).
     assert (O = BYMAY)
@@ -1440,7 +1440,7 @@ split; [intro HBet|intro HT].
       {
       assert (BX = CX /\ BY = CY)
         by (rewrite <- eq_points_coordinates; [|apply HCdB|apply HCdC]; auto).
-      spliter; treat_equalities.
+      分离合取式; treat_equalities.
       assert (BXMAX = CXMAX) by (apply diff_uniqueness with O E E' BX AX; auto).
       assert (BYMAY = CYMAY) by (apply diff_uniqueness with O E E' BY AY; auto).
       treat_equalities; exists E; split; try (intro; treat_equalities; Col).
@@ -1458,23 +1458,23 @@ split; [intro HBet|intro HT].
       assert (HLe1 : LeP O E E' O AB) by (apply length_pos with A B; auto).
       assert (HLe2 : LeP O E E' AB AC)
         by (apply length_leP_le_2 with A B A C; try (apply l5_5_2; exists C); Cong).
-      assert (HColAB : Col O E AB) by (unfold Length in *; spliter; Col).
-      assert (HColAC : Col O E AC) by (unfold Length in *; spliter; Col).
+      assert (HColAB : Col O E AB) by (unfold Length in *; 分离合取式; Col).
+      assert (HColAC : Col O E AC) by (unfold Length in *; 分离合取式; Col).
       destruct (inv_exists O E E' AC) as [IAC HIAC]; Col;
-      try (intro; unfold Length in *; spliter; treat_equalities; auto).
-      assert (HColIAC : Col O E IAC) by (unfold Prod, Ar2 in *; spliter; Col).
+      try (intro; unfold Length in *; 分离合取式; treat_equalities; auto).
+      assert (HColIAC : Col O E IAC) by (unfold Prod, Ar2 in *; 分离合取式; Col).
       assert (HLe3 : LeP O E E' O IAC).
         {
         apply pos_inv_pos with AC; auto;
-        try (intro; unfold Length in *; spliter; treat_equalities; auto).
+        try (intro; unfold Length in *; 分离合取式; treat_equalities; auto).
         apply length_pos with A C; auto.
         }
       destruct (prod_exists O E E' HNC AB IAC) as [T HT]; Col.
       exists T; split; try (intro; treat_equalities; Col).
-      split; [unfold Prod, Ar2 in *; spliter; Col|].
+      split; [unfold Prod, Ar2 in *; 分离合取式; Col|].
       split; [apply compatibility_of_prod_with_order with AB IAC; auto|].
       split; [apply le_pos_prod_le with AB AC IAC; auto; apply prod_comm; auto|].
-      assert (HColT : Col O E T) by (unfold Prod, Ar2 in *; spliter; Col).
+      assert (HColT : Col O E T) by (unfold Prod, Ar2 in *; 分离合取式; Col).
       assert (HT' : Prod O E E' T AC AB)
         by (apply prod_assoc1 with AB IAC E; auto; apply prod_1_r; Col).
       split;
@@ -1495,10 +1495,10 @@ split; [intro HBet|intro HT].
   rename HColBX into HColB'X; rename HColBY into HColB'Y.
   rename HColBXMAX into HColB'XMAX; rename HColBYMAY into HColB'YMAY.
   destruct (length_existence O E E' A C) as [AC HAC]; Col.
-  assert (HColAC : Col O E AC) by (unfold Length in *; spliter; Col).
+  assert (HColAC : Col O E AC) by (unfold Length in *; 分离合取式; Col).
   assert (HLe1 : LeP O E E' O AC) by (apply length_pos with A C; auto).
   destruct (prod_exists O E E' HNC T AC) as [AB HT]; Col.
-  assert (HColAB : Col O E AB) by (unfold Prod, Ar2 in *; spliter; Col).
+  assert (HColAB : Col O E AB) by (unfold Prod, Ar2 in *; 分离合取式; Col).
   assert (HLe2 : LeP O E E' O AB)
     by (apply compatibility_of_prod_with_order with T AC; auto).
   assert (HB : exists B, Bet A B C /\ Length O E E' A B AB).
@@ -1518,7 +1518,7 @@ split; [intro HBet|intro HT].
     {
     assert (AX = CX /\ AY = CY)
       by (rewrite <- eq_points_coordinates; [|apply HCdA|apply HCdC]; auto).
-    spliter; treat_equalities.
+    分离合取式; treat_equalities.
     assert (O = CXMAX)
       by (apply diff_uniqueness with O E E' AX AX; auto; apply diff_null; Col).
     assert (O = CYMAY)
@@ -1539,7 +1539,7 @@ split; [intro HBet|intro HT].
 
     {
     assert (HCdB : exists BX, exists BY, Cd O E S U1 U2 B BX BY)
-      by (apply coordinates_of_point; unfold Cd in *; spliter; auto).
+      by (apply coordinates_of_point; unfold Cd in *; 分离合取式; auto).
     destruct HCdB as [BX [BY HCdB]].
     elim (两点重合的决定性 A B); intro HDiff1; treat_equalities;
     try (elim (两点重合的决定性 B C); intro HDiff3; treat_equalities).
@@ -1547,7 +1547,7 @@ split; [intro HBet|intro HT].
       {
       assert (AX = BX /\ AY = BY)
         by (rewrite <- eq_points_coordinates; [|apply HCdA|apply HCdB]; auto).
-      assert (O = AB); spliter; treat_equalities.
+      assert (O = AB); 分离合取式; treat_equalities.
         {
         apply length_uniqueness with O E E' A A; auto; apply length_id_2;
         统计不重合点; auto.
@@ -1571,16 +1571,16 @@ split; [intro HBet|intro HT].
         {
         apply prod_null in HT; elim HT; clear HT; intro H; [intuition|].
         apply eq_sym in H; treat_equalities; exfalso; apply HDiff2.
-        apply length_id in HAC; spliter; auto.
+        apply length_id in HAC; 分离合取式; auto.
         }
       }
 
       {
       assert (BX = CX /\ BY = CY)
         by (rewrite <- eq_points_coordinates; [|apply HCdB|apply HCdC]; auto).
-      spliter; treat_equalities.
+      分离合取式; treat_equalities.
       assert (AB = AC) by (apply length_uniqueness with O E E' A B; auto).
-      spliter; treat_equalities.
+      分离合取式; treat_equalities.
       assert (E = T); treat_equalities.
         {
         apply prod_uniquenessA with O E E' AB AB; try apply prod_1_l; auto.
@@ -1600,22 +1600,22 @@ split; [intro HBet|intro HT].
 
       {
       destruct (inv_exists O E E' AC) as [IAC HIAC]; Col;
-      try (intro; unfold Length in *; spliter; treat_equalities; auto).
-      assert (HColIAC : Col O E IAC) by (unfold Prod, Ar2 in *; spliter; Col).
-      assert (HColBX : Col O E BX) by (apply Cd_Col in HCdB; spliter; Col).
+      try (intro; unfold Length in *; 分离合取式; treat_equalities; auto).
+      assert (HColIAC : Col O E IAC) by (unfold Prod, Ar2 in *; 分离合取式; Col).
+      assert (HColBX : Col O E BX) by (apply Cd_Col in HCdB; 分离合取式; Col).
       destruct (diff_exists O E E' BX AX) as [BXMAX HBXMAX]; Col.
       assert (HColBXMAX : Col O E BXMAX)
-        by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; spliter; Col).
+        by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; 分离合取式; Col).
       assert (HX' : Prod O E E' T CXMAX BXMAX).
         {
         apply characterization_of_betweenness_aux
         with S U1 U2 A AX AY B BX BY C CX CY AB AC IAC; auto.
         }
       assert (BXMAX = B'XMAX) by (apply prod_uniqueness with O E E' T CXMAX; auto).
-      assert (HColBY : Col O E BY) by (apply Cd_Col in HCdB; spliter; Col).
+      assert (HColBY : Col O E BY) by (apply Cd_Col in HCdB; 分离合取式; Col).
       destruct (diff_exists O E E' BY AY) as [BYMAY HBYMAY]; Col.
       assert (HColBYMAY : Col O E BYMAY)
-        by (apply diff_ar2 in HBYMAY; unfold Ar2 in *; spliter; Col).
+        by (apply diff_ar2 in HBYMAY; unfold Ar2 in *; 分离合取式; Col).
       assert (HY' : Prod O E E' T CYMAY BYMAY).
         {
         apply characterization_of_betweenness_aux
@@ -1643,7 +1643,7 @@ intros O E S U1 U2 A AX AY B BY C CY HCdA HCdB HCdC.
 destruct HCdA as [HCs [H [[PXA [HProjpA H等角]] H']]]; clear H; clear H'.
 destruct HCdB as [H [H' [[PXB [HProjpB HCongB]] H'']]]; clear H; clear H'; clear H''.
 destruct HCdC as [H [H' [[PXC [HProjpC HCongC]] H'']]]; clear H; clear H'; clear H''.
-assert (HDiff1 : O <> E) by (unfold Cs in *; spliter; auto).
+assert (HDiff1 : O <> E) by (unfold Cs in *; 分离合取式; auto).
 assert (HColAX : Col O E AX)
   by (apply 全等于退化的三角形 with S U1 PXA; Cong; apply projp_col with A; auto).
 eapply col_cong_3_cong_3_eq in HCongB; [| | |apply H等角]; treat_equalities; auto.
@@ -1668,53 +1668,53 @@ Proof.
 intros O E E' S U1 U2 A AX AY B BX BY C CX CY AXMBX AYMBY BXMCX BYMCY XProd YProd.
 intros HCdA HCdB HCdC HAXMBX HAYMBY HBXMCX HBYMCY HXProd HYProd.
 assert (HNC : ~ Col O E E')
-  by (apply diff_ar2 in HAXMBX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAXMBX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColAX : Col O E AX)
-  by (apply diff_ar2 in HAXMBX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAXMBX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColAY : Col O E AY)
-  by (apply diff_ar2 in HAYMBY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAYMBY; unfold Ar2 in *; 分离合取式; Col).
 assert (HColBX : Col O E BX)
-  by (apply diff_ar2 in HBXMCX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBXMCX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColBY : Col O E BY)
-  by (apply diff_ar2 in HBYMCY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBYMCY; unfold Ar2 in *; 分离合取式; Col).
 assert (HColCX : Col O E CX)
-  by (apply diff_ar2 in HBXMCX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBXMCX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColCY : Col O E CY)
-  by (apply diff_ar2 in HBYMCY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBYMCY; unfold Ar2 in *; 分离合取式; Col).
 assert (HColAXMBX : Col O E AXMBX)
-  by (apply diff_ar2 in HAXMBX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAXMBX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColAYMBY : Col O E AYMBY)
-  by (apply diff_ar2 in HAYMBY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAYMBY; unfold Ar2 in *; 分离合取式; Col).
 assert (HColBXMCX : Col O E BXMCX)
-  by (apply diff_ar2 in HBXMCX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBXMCX; unfold Ar2 in *; 分离合取式; Col).
 assert (HColBYMCY : Col O E BYMCY)
-  by (apply diff_ar2 in HBYMCY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBYMCY; unfold Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' BX AX) as [BXMAX HBXMAX]; Col.
 assert (HColBXMAX : Col O E BXMAX)
-  by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBXMAX; unfold Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' BY AY) as [BYMAY HBYMAY]; Col.
 assert (HColBYMAY : Col O E BYMAY)
-  by (apply diff_ar2 in HBYMAY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HBYMAY; unfold Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' CX AX) as [CXMAX HCXMAX]; Col.
 assert (HColCXMAX : Col O E CXMAX)
-  by (apply diff_ar2 in HCXMAX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HCXMAX; unfold Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' CY AY) as [CYMAY HCYMAY]; Col.
 assert (HColCYMAY : Col O E CYMAY)
-  by (apply diff_ar2 in HCYMAY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HCYMAY; unfold Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' CX BX) as [CXMBX HCXMBX]; Col.
 assert (HColCXMBX : Col O E CXMBX)
-  by (apply diff_ar2 in HCXMBX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HCXMBX; unfold Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' CY BY) as [CYMBY HCYMBY]; Col.
 assert (HColCYMBY : Col O E CYMBY)
-  by (apply diff_ar2 in HCYMBY; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HCYMBY; unfold Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' AX CX) as [AXMCX HAXMCX]; Col.
 assert (HColAXMCX : Col O E AXMCX)
-  by (apply diff_ar2 in HAXMCX; unfold Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAXMCX; unfold Ar2 in *; 分离合取式; Col).
 destruct (diff_exists O E E' AY CY) as [AYMCY HAYMCY]; Col.
 assert (HColAYMCY : Col O E AYMCY)
-  by (apply diff_ar2 in HAYMCY; unfold Ar2 in *; spliter; Col).
-assert (HColXProd : Col O E XProd) by (unfold Prod, Ar2 in *; spliter; Col).
-assert (HColYProd : Col O E YProd) by (unfold Prod, Ar2 in *; spliter; Col).
+  by (apply diff_ar2 in HAYMCY; unfold Ar2 in *; 分离合取式; Col).
+assert (HColXProd : Col O E XProd) by (unfold Prod, Ar2 in *; 分离合取式; Col).
+assert (HColYProd : Col O E YProd) by (unfold Prod, Ar2 in *; 分离合取式; Col).
 split; intro HCol; treat_equalities.
 
   {
@@ -1798,13 +1798,13 @@ split; intro HCol; treat_equalities.
       assert (HSumY : Sum O E E' AYMBY BYMCY AYMCY)
         by (apply sum_diff_diff with AY BY CY; auto).
       destruct (prod_exists O E E' HNC AXMBX AYMBY) as [P1 HP1]; Col.
-      assert (HColP1 : Col O E P1) by (unfold Prod, Ar2 in *; spliter; Col).
+      assert (HColP1 : Col O E P1) by (unfold Prod, Ar2 in *; 分离合取式; Col).
       destruct (opp_exists O E E' HNC E) as [ME HME]; Col.
-      assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+      assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
       destruct (prod_exists O E E' HNC ME T) as [P2 HP2]; Col.
-      assert (HColP2 : Col O E P2) by (unfold Prod, Ar2 in *; spliter; Col).
+      assert (HColP2 : Col O E P2) by (unfold Prod, Ar2 in *; 分离合取式; Col).
       destruct (sum_exists O E E' HNC XProd P1) as [XProd' HXProd']; Col.
-      assert (HColXProd' : Col O E XProd') by (unfold Sum, Ar2 in *; spliter; Col).
+      assert (HColXProd' : Col O E XProd') by (unfold Sum, Ar2 in *; 分离合取式; Col).
       destruct (prod_exists O E E' HNC AXMBX AYMCY) as [D HProdX']; Col.
       assert (XProd' = D); treat_equalities.
         {
@@ -1813,7 +1813,7 @@ split; intro HCol; treat_equalities.
         apply sum_comm; auto.
         }
       destruct (sum_exists O E E' HNC YProd P1) as [YProd' HYProd']; Col.
-      assert (HColYProd' : Col O E YProd') by (unfold Sum, Ar2 in *; spliter; Col).
+      assert (HColYProd' : Col O E YProd') by (unfold Sum, Ar2 in *; 分离合取式; Col).
       destruct (prod_exists O E E' HNC AYMBY AXMCX) as [D HProdY']; Col.
       assert (YProd' = D); treat_equalities.
         {
@@ -1875,7 +1875,7 @@ split; intro HCol; treat_equalities.
       destruct HBet' as [T [HDiff4 [HColT [HLe1 [HLe2 [HProd1 HProd2]]]]]].
       apply prod_uniqueness with O E E' AXMBX BYMCY; auto.
       destruct (opp_exists O E E' HNC E) as [ME HME]; Col.
-      assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+      assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
       destruct (prod_exists O E E' HNC ME T) as [P HP]; Col.
       apply prod_assoc2 with P AYMBY BXMCX; apply prod_comm; auto.
 
@@ -1912,7 +1912,7 @@ split; intro HCol; treat_equalities.
         {
         apply prod_uniqueness with O E E' CXMAX BYMCY; auto.
         destruct (opp_exists O E E' HNC E) as [ME HME]; Col.
-        assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+        assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
         destruct (prod_exists O E E' HNC ME T) as [P HP]; Col.
         apply prod_assoc1 with BXMCX P CYMAY; apply prod_comm; auto.
 
@@ -1928,7 +1928,7 @@ split; intro HCol; treat_equalities.
           apply diff_opp with AY CY; auto.
           }
         }
-      assert (HColP1 : Col O E P1) by (unfold Prod, Ar2 in *; spliter; Col).
+      assert (HColP1 : Col O E P1) by (unfold Prod, Ar2 in *; 分离合取式; Col).
       destruct (sum_exists O E E' HNC XProd P1) as [XProd' HXProd']; Col.
       destruct (prod_exists O E E' HNC CXMBX BYMCY) as [P2 HP2]; Col.
       assert (P2 = XProd'); treat_equalities.
@@ -1945,7 +1945,7 @@ split; intro HCol; treat_equalities.
         apply distr_r with CYMAY AYMBY BXMCX CYMBY; auto.
         apply prod_comm; auto.
         destruct (opp_exists O E E' HNC E) as [ME HME]; Col.
-        assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+        assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
         apply prod_assoc1 with CXMBX ME BYMCY; auto.
 
           {
@@ -2055,11 +2055,11 @@ split; intro HCol; treat_equalities.
 
     {
     destruct (length_existence O E E' AX BX) as [L1 HL1]; Col.
-    assert (HColL1 : Col O E L1) by (unfold Length in *; spliter; Col).
+    assert (HColL1 : Col O E L1) by (unfold Length in *; 分离合取式; Col).
     destruct (length_existence O E E' AX CX) as [L2 HL2]; Col.
-    assert (HColL2 : Col O E L2) by (unfold Length in *; spliter; Col).
+    assert (HColL2 : Col O E L2) by (unfold Length in *; 分离合取式; Col).
     destruct (length_existence O E E' BX CX) as [L3 HL3]; Col.
-    assert (HColL3 : Col O E L3) by (unfold Length in *; spliter; Col).
+    assert (HColL3 : Col O E L3) by (unfold Length in *; 分离合取式; Col).
     assert (HElim : LeP O E E' L1 L3 /\ LeP O E E' L2 L3 \/
                     LeP O E E' L1 L2 /\ LeP O E E' L3 L2 \/
                     LeP O E E' L2 L1 /\ LeP O E E' L3 L1).
@@ -2095,17 +2095,17 @@ split; intro HCol; treat_equalities.
        apply HAXMCX|apply HAYMCY|apply HBXMCX|apply HBYMCY].
       assert (HDiff5 : O <> L3).
         {
-        intro; treat_equalities; apply length_id in HL3; spliter; treat_equalities.
+        intro; treat_equalities; apply length_id in HL3; 分离合取式; treat_equalities.
         apply HDiff1; apply diff_uniqueness with O E E' BX BX; auto;
         apply diff_null; Col.
         }
       assert (HLe3 : LeP O E E' O L3) by (apply length_pos with BX CX; auto).
       destruct (inv_exists O E E' L3) as [IBC HIBC]; Col.
-      assert (HColIBC : Col O E IBC) by (unfold Prod, Ar2 in *; spliter; Col).
+      assert (HColIBC : Col O E IBC) by (unfold Prod, Ar2 in *; 分离合取式; Col).
       assert (HLe4 : LeP O E E' O IBC) by (apply pos_inv_pos with L3; auto).
       destruct (prod_exists O E E' HNC L2 IBC) as [T HT]; Col; exists T.
       split; try (intro; treat_equalities; Col).
-      split; [unfold Prod, Ar2 in *; spliter; Col|].
+      split; [unfold Prod, Ar2 in *; 分离合取式; Col|].
       assert (HLe5 : LeP O E E' O L2) by (apply length_pos with AX CX; auto).
       split; [apply compatibility_of_prod_with_order with L2 IBC; auto|].
       split; [apply le_pos_prod_le with L2 L3 IBC; auto; apply prod_comm; auto|].
@@ -2134,7 +2134,7 @@ split; intro HCol; treat_equalities.
         {
         assert (O = T)
           by (apply prod_uniqueness with O E E' O IBC; auto; apply prod_0_l; Col).
-        apply length_id in HL2; spliter; treat_equalities.
+        apply length_id in HL2; 分离合取式; treat_equalities.
         assert (O = AXMCX)
           by (apply diff_uniqueness with O E E' AX AX; auto; apply diff_null; Col).
         treat_equalities; split; [apply prod_0_l; Col|].
@@ -2206,8 +2206,8 @@ split; intro HCol; treat_equalities.
             left; auto; apply length_sym; auto.
             }
           destruct (opp_exists O E E' HNC E) as [ME HME]; Col.
-          assert (HColT : Col O E T) by (unfold Prod, Ar2 in *; spliter; Col).
-          assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+          assert (HColT : Col O E T) by (unfold Prod, Ar2 in *; 分离合取式; Col).
+          assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
           destruct (prod_exists O E E' HNC ME T) as [OppT HMT]; Col.
           assert (Prod O E E' T BXMCX AXMCX); [|split; auto].
             {
@@ -2226,7 +2226,7 @@ split; intro HCol; treat_equalities.
 
             {
             destruct (opp_exists O E E' HNC Pr) as [MProd HMProd]; Col;
-            [unfold Prod, Ar2 in *; spliter; Col|].
+            [unfold Prod, Ar2 in *; 分离合取式; Col|].
             apply prod_assoc2 with ME IBC MProd; auto;
             [apply opp_prod|apply prod_comm; apply opp_prod|]; auto.
             apply prod_assoc1 with AYMCY L3 E; auto; apply prod_comm; auto;
@@ -2251,17 +2251,17 @@ split; intro HCol; treat_equalities.
        apply HBXMAX|apply HBYMAY|apply HCXMAX|apply HCYMAY].
       assert (HDiff5 : O <> L2).
         {
-        intro; treat_equalities; apply length_id in HL2; spliter; treat_equalities.
+        intro; treat_equalities; apply length_id in HL2; 分离合取式; treat_equalities.
         apply HDiff1; apply diff_uniqueness with O E E' AX AX; auto;
         apply diff_null; Col.
         }
       assert (HLe3 : LeP O E E' O L2) by (apply length_pos with AX CX; auto).
       destruct (inv_exists O E E' L2) as [IAC HIAC]; Col.
-      assert (HColIAC : Col O E IAC) by (unfold Prod, Ar2 in *; spliter; Col).
+      assert (HColIAC : Col O E IAC) by (unfold Prod, Ar2 in *; 分离合取式; Col).
       assert (HLe4 : LeP O E E' O IAC) by (apply pos_inv_pos with L2; auto).
       destruct (prod_exists O E E' HNC L1 IAC) as [T HT]; Col; exists T.
       split; try (intro; treat_equalities; Col).
-      split; [unfold Prod, Ar2 in *; spliter; Col|].
+      split; [unfold Prod, Ar2 in *; 分离合取式; Col|].
       assert (HLe5 : LeP O E E' O L1) by (apply length_pos with AX BX; auto).
       split; [apply compatibility_of_prod_with_order with L1 IAC; auto|].
       split; [apply le_pos_prod_le with L1 L2 IAC; auto; apply prod_comm; auto|].
@@ -2288,7 +2288,7 @@ split; intro HCol; treat_equalities.
       elim (两点重合的决定性 O L1); intro HDiff7; treat_equalities.
 
         {
-        apply length_id in HL1; spliter; treat_equalities.
+        apply length_id in HL1; 分离合取式; treat_equalities.
         assert (O = AXMBX)
           by (apply diff_uniqueness with O E E' AX AX; auto; apply diff_null; Col).
         treat_equalities; intuition.
@@ -2316,14 +2316,14 @@ split; intro HCol; treat_equalities.
           assert (HProd4 : Prod O E E' T CXMAX BXMAX); [|split; auto].
             {
             destruct (opp_exists O E E' HNC E) as [ME HME]; Col.
-            assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+            assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
             apply prod_assoc1 with L1 IAC ME; auto;
             [|apply opp_prod; auto; apply diff_opp with AX BX; auto].
             apply prod_assoc2 with L2 ME E; auto; apply opp_prod; auto.
             apply diff_opp with AX CX; auto.
             }
           destruct (opp_exists O E E' HNC E) as [ME HME]; Col.
-          assert (HColProd : Col O E Pr) by (unfold Prod, Ar2 in *; spliter; Col).
+          assert (HColProd : Col O E Pr) by (unfold Prod, Ar2 in *; 分离合取式; Col).
           destruct (opp_exists O E E' HNC Pr) as [MProd HMProd]; Col.
           apply prod_assoc1 with IAC L1 MProd; auto; apply prod_comm; auto;
           [apply prod_assoc1 with ME AYMCY Pr; auto; apply prod_comm;
@@ -2382,17 +2382,17 @@ split; intro HCol; treat_equalities.
        apply HCXMBX|apply HCYMBY|apply HAXMBX|apply HAYMBY].
       assert (HDiff5 : O <> L1).
         {
-        intro; treat_equalities; apply length_id in HL1; spliter; treat_equalities.
+        intro; treat_equalities; apply length_id in HL1; 分离合取式; treat_equalities.
         apply HDiff1; apply diff_uniqueness with O E E' AX AX; auto;
         apply diff_null; Col.
         }
       assert (HLe3 : LeP O E E' O L1) by (apply length_pos with AX BX; auto).
       destruct (inv_exists O E E' L1) as [IAB HIAB]; Col.
-      assert (HColIAB : Col O E IAB) by (unfold Prod, Ar2 in *; spliter; Col).
+      assert (HColIAB : Col O E IAB) by (unfold Prod, Ar2 in *; 分离合取式; Col).
       assert (HLe4 : LeP O E E' O IAB) by (apply pos_inv_pos with L1; auto).
       destruct (prod_exists O E E' HNC L3 IAB) as [T HT]; Col; exists T.
       split; try (intro; treat_equalities; Col).
-      split; [unfold Prod, Ar2 in *; spliter; Col|].
+      split; [unfold Prod, Ar2 in *; 分离合取式; Col|].
       assert (HLe5 : LeP O E E' O L3) by (apply length_pos with BX CX; auto).
       split; [apply compatibility_of_prod_with_order with L3 IAB; auto|].
       split; [apply le_pos_prod_le with L3 L1 IAB; auto; apply prod_comm; auto|].
@@ -2404,7 +2404,7 @@ split; intro HCol; treat_equalities.
       elim (两点重合的决定性 O L3); intro HDiff7; treat_equalities.
 
         {
-        apply length_id in HL3; spliter; treat_equalities.
+        apply length_id in HL3; 分离合取式; treat_equalities.
         assert (O = BXMCX)
           by (apply diff_uniqueness with O E E' BX BX; auto; apply diff_null; Col).
         treat_equalities; intuition.
@@ -2433,7 +2433,7 @@ split; intro HCol; treat_equalities.
           assert (HProd2 : Prod O E E' T AXMBX CXMBX); [|split; auto].
             {
             destruct (opp_exists O E E' HNC E) as [ME HME]; Col.
-            assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; spliter; Col).
+            assert (HColME : Col O E ME) by (unfold Opp, Sum, Ar2 in *; 分离合取式; Col).
             apply prod_assoc1 with L3 IAB ME; auto;
             [|apply opp_prod; auto; apply diff_opp with BX CX; auto].
             apply prod_assoc2 with L1 ME E; auto; apply opp_prod; auto.

@@ -12,7 +12,7 @@ Lemma proposition_33 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists a b c d m, (neq A B /\ neq C D /\ Col A B a /\ Col A B b /\ neq a b /\ Col C D c /\ Col C D d /\ neq c d /\ ~ Meet A B C D /\ BetS a m d /\ BetS c m b)) by (conclude_def Par );destruct Tf as [a[b[c[d[m]]]]];spliter.
+assert (Tf:exists a b c d m, (neq A B /\ neq C D /\ Col A B a /\ Col A B b /\ neq a b /\ Col C D c /\ Col C D d /\ neq c d /\ ~ Meet A B C D /\ BetS a m d /\ BetS c m b)) by (conclude_def Par );destruct Tf as [a[b[c[d[m]]]]];分离合取式.
 assert (Col B M C) by (conclude_def Col ).
 assert (Col B C M) by (forward_using lemma_collinearorder).
 assert (~ Col B C A).

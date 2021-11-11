@@ -17,9 +17,9 @@ Proof.
 intros HUD A B C X HPer1 HDiff HPer2.
 destruct HPer1 as [C' HPer1].
 destruct HPer2 as [C'' HPer2].
-assert (C' = C'') by (apply 中点组的唯一性1 with C X; spliter; auto); treat_equalities.
+assert (C' = C'') by (apply 中点组的唯一性1 with C X; 分离合取式; auto); treat_equalities.
 unfold 防升维公理_axiom in HUD.
-spliter; 统计不重合点; unfold 中点 in *; spliter; apply HUD with C C'; Cong.
+分离合取式; 统计不重合点; unfold 中点 in *; 分离合取式; apply HUD with C C'; Cong.
 Qed.
 
 Lemma 防升维公理_implies_col_perp2__col :
@@ -63,7 +63,7 @@ induction(共线的决定性 A B X).
     subst A.
     assert(X <> B).
       apply 垂直推出不重合 in H.
-      spliter.
+      分离合取式.
       assumption.
     apply 垂直的右交换性 in H.
     apply L形垂直转垂直于 in H.
@@ -123,7 +123,7 @@ assert(HH2:=H).
 assert(HH3:=H2).
 apply 垂点是交点 in H.
 apply 垂点是交点 in H2.
-spliter.
+分离合取式.
 assert(Perp X Y0 A B).
   eapply 垂线共线点也构成垂直1.
     intro.

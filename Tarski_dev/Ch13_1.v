@@ -158,7 +158,7 @@ apply(l9_8_2 B B' C C' A); auto.
 apply l9_2.
 assumption.
 unfold TS in H16.
-spliter.
+分离合取式.
 ex_and H18 T.
 assert(T = B').
 apply 中间性蕴含共线1 in H19.
@@ -166,7 +166,7 @@ apply (l6_21_两线交点的唯一性 B B' A B'); Col.
 ColR.
 subst T.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 apply H12.
 ColR.
@@ -272,7 +272,7 @@ apply(l9_8_2 B' B C' C A); auto.
 apply l9_2.
 assumption.
 unfold TS in H12.
-spliter.
+分离合取式.
 ex_and H14 T.
 
 assert(A <> C).
@@ -295,7 +295,7 @@ subst T.
 Between.
 
 
-spliter.
+分离合取式.
 assert_cols.
 assert(Col A B' B).
 ColR.
@@ -384,7 +384,7 @@ subst A.
 unfold OS in H10.
 ex_and H10 X.
 unfold TS in H13.
-spliter.
+分离合取式.
 apply H13.
 Col.
 intro.
@@ -392,7 +392,7 @@ subst C.
 unfold OS in H10.
 ex_and H10 X.
 unfold TS in H10.
-spliter.
+分离合取式.
 apply H10.
 Col.
 left.
@@ -411,7 +411,7 @@ subst C.
 unfold OS in H10.
 ex_and H10 X.
 unfold TS in H10.
-spliter.
+分离合取式.
 apply H10.
 Col.
 left.
@@ -429,7 +429,7 @@ assert(Out C' B A').
 apply(col_one_side_out C' C B A'); Col.
 
 unfold Out in *.
-spliter.
+分离合取式.
 
 induction H19.
 Between.
@@ -438,7 +438,7 @@ Between.
 apply False_ind.
 apply H18.
 apply (双中间性推出点重合 _ _ B); Between.
-spliter.
+分离合取式.
 
 induction(两点重合的决定性 A C).
 subst C.
@@ -535,7 +535,7 @@ apply one_side_symmetry in H10.
 unfold OS in H10.
 ex_and H10 X.
 unfold TS in H10.
-spliter.
+分离合取式.
 apply H10.
 Col.
 left.
@@ -555,7 +555,7 @@ apply one_side_symmetry in H10.
 unfold OS in H10.
 ex_and H10 X.
 unfold TS in H10.
-spliter.
+分离合取式.
 apply H10.
 Col.
 left.
@@ -582,7 +582,7 @@ assert(Out C B A).
 apply(col_one_side_out C C' B A); Col.
 
 unfold Out in *.
-spliter.
+分离合取式.
 
 induction H19.
 Between.
@@ -594,7 +594,7 @@ apply (双中间性推出点重合 _ _ B); Between.
 
 (****************************)
 
-spliter.
+分离合取式.
 assert(Perp A' C' A A').
 apply (垂线共线点也构成垂直1 _ B); Perp.
 intro.
@@ -720,7 +720,7 @@ apply l9_2.
 assumption.
 assumption.
 unfold TS in H18.
-spliter.
+分离合取式.
 ex_and H20 T.
 assert(B'=T).
 apply (l6_21_两线交点的唯一性 B B' A C'); Col.
@@ -732,7 +732,7 @@ contradiction.
 subst T.
 apply 中间性的对称性.
 assumption.
-spliter.
+分离合取式.
 
 assert(Per O C' B).
 apply(直角边共线点也构成直角2 O C' C B); Col.
@@ -837,7 +837,7 @@ clean_trivial_hyps.
 unfold OS in H18.
 ex_and H18 T.
 unfold TS in H4.
-spliter.
+分离合取式.
 apply H4.
 Col.
 intro.
@@ -857,7 +857,7 @@ intro.
 unfold OS in H19.
 ex_and H19 T.
 unfold TS in H22.
-spliter.
+分离合取式.
 contradiction.
 intro.
 apply H17.
@@ -906,7 +906,7 @@ auto.
 
 induction H6.
 unfold Out in H21.
-spliter.
+分离合取式.
 unfold Out.
 repeat split.
 intro.
@@ -953,7 +953,7 @@ intro.
 unfold OS in H22.
 ex_and H22 T.
 unfold TS in H22.
-spliter.
+分离合取式.
 contradiction.
 intro.
 apply H17.
@@ -967,7 +967,7 @@ apply l9_9_bis in H23.
 contradiction.
 
 unfold Out in *.
-spliter.
+分离合取式.
 clean_duplicated_hyps.
 
 induction H26; induction H24.
@@ -981,7 +981,7 @@ apply(双中间性推出点重合 _ _ C'); Between.
 apply False_ind.
 apply H25.
 apply(双中间性推出点重合 _ _ B); Between.
-spliter.
+分离合取式.
 
 
 assert(~Col O C' C).
@@ -1060,7 +1060,7 @@ assert(HP:= l9_8_2 B B' A A' C H16 H17).
 induction(两点重合的决定性 C C').
 subst C'.
 unfold TS in HP.
-spliter.
+分离合取式.
 ex_and H20 T.
 
 assert(T = B').
@@ -1107,7 +1107,7 @@ apply(l9_8_2 B B' C C' A'); auto.
 apply l9_2.
 assumption.
 unfold TS in H21.
-spliter.
+分离合取式.
 ex_and H23 T.
 assert(T = B').
 apply (l6_21_两线交点的唯一性 B B' A' C'); Col.
@@ -1118,13 +1118,13 @@ subst T.
 contradiction.
 subst T.
 Between.
-spliter.
+分离合取式.
 unfold TS in HP.
-spliter.
+分离合取式.
 apply False_ind.
 apply H25.
 ColR.
-spliter.
+分离合取式.
 
 apply 垂直的左交换性 in H13.
 apply L形垂直推出不共线 in H13.
@@ -1221,7 +1221,7 @@ apply(l9_8_2 B B' C' C A).
 apply l9_2; auto.
 apply one_side_symmetry; auto.
 unfold TS in H18.
-spliter.
+分离合取式.
 ex_and H20 T.
 assert(B = T).
 apply (l6_21_两线交点的唯一性 A C B' B); Col.
@@ -1238,7 +1238,7 @@ ColR.
 subst T.
 Between.
 
-spliter.
+分离合取式.
 
 assert(B' <> C').
 intro.
@@ -1356,7 +1356,7 @@ apply one_side_symmetry in H18.
 assert(Out C A B).
 apply (col_one_side_out C C');Col.
 unfold Out in *.
-spliter.
+分离合取式.
 
 
 induction H23; induction H21.
@@ -1443,7 +1443,7 @@ apply l9_2 in HH1.
 apply one_side_symmetry in HR.
 assert(HH2:= l9_8_2 B B' C' C A HH1 HR).
 unfold TS in HH2.
-spliter.
+分离合取式.
 ex_and H21 T.
 assert(B = T).
 apply (l6_21_两线交点的唯一性 B B' A C); Col.
@@ -1454,7 +1454,7 @@ exists A.
 split; Col.
 subst T.
 Between.
-spliter.
+分离合取式.
 
 induction(两点重合的决定性 B C).
 subst C.
@@ -1465,7 +1465,7 @@ apply False_ind.
 apply H13.
 exists A.
 split; Col.
-spliter.
+分离合取式.
 
 induction(两点重合的决定性 A B).
 subst B.
@@ -1476,7 +1476,7 @@ apply False_ind.
 apply H13.
 exists C.
 split; Col.
-spliter.
+分离合取式.
 
 assert(A <> C).
 intro.
@@ -1513,7 +1513,7 @@ assert(X = C).
 apply(中点组的唯一性1 A P X C); auto.
 subst X.
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply (等长的传递性 _ _ B A).
 Cong.
 apply(等长的传递性 _ _ B C).
@@ -1530,7 +1530,7 @@ assert(Q <> C).
 intro.
 subst Q.
 unfold 中点 in MAC.
-spliter.
+分离合取式.
 apply 等长的同一性 in H0.
 subst C.
 apply HC.
@@ -1539,7 +1539,7 @@ assert(P <> C).
 intro.
 subst P.
 unfold 中点 in MBC.
-spliter.
+分离合取式.
 apply 等长的同一性 in H1.
 subst C.
 apply HC.
@@ -1558,7 +1558,7 @@ assert(D2:R <> B).
 intro.
 subst R.
 unfold 中点 in MAB.
-spliter.
+分离合取式.
 apply 等长的同一性 in H2.
 subst B.
 apply HC.
@@ -1568,7 +1568,7 @@ assert(~Col P Q C).
 intro.
 apply HC.
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H2.
 apply 中间性蕴含共线1 in H4.
 apply 中间性蕴含共线1 in H6.
@@ -1591,7 +1591,7 @@ assert(Per P B' B).
 induction(两点重合的决定性 P C').
 subst C'.
 unfold 中点 in H5.
-spliter.
+分离合取式.
 apply 等长的对称性 in H8.
 apply 等长的同一性 in H8.
 subst B'.
@@ -1609,7 +1609,7 @@ assert(Per Q A' A).
 induction(两点重合的决定性 Q C').
 subst C'.
 unfold 中点 in H4.
-spliter.
+分离合取式.
 apply 等长的对称性 in H9.
 apply 等长的同一性 in H9.
 subst A'.
@@ -1625,13 +1625,13 @@ Perp.
 
 assert(Cl1: Col A' C' Q).
 unfold 中点 in H4.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H4.
 Col.
 
 assert(Cl2: Col B' C' P).
 unfold 中点 in H5.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H5.
 Col.
 
@@ -1648,7 +1648,7 @@ assert(Cl3: Col A' B' P).
 induction(两点重合的决定性 P C').
 subst P.
 unfold 中点 in  H5.
-spliter.
+分离合取式.
 apply 等长的对称性 in H10.
 apply 等长的同一性 in H10.
 subst C'.
@@ -1656,7 +1656,7 @@ Col.
 induction(两点重合的决定性 Q C').
 subst Q.
 unfold 中点 in  H4.
-spliter.
+分离合取式.
 apply 等长的对称性 in H11.
 apply 等长的同一性 in H11.
 subst C'.
@@ -1667,7 +1667,7 @@ assert(Cl4: Col A' B' Q).
 induction(两点重合的决定性 P C').
 subst P.
 unfold 中点 in  H5.
-spliter.
+分离合取式.
 apply 等长的对称性 in H10.
 apply 等长的同一性 in H10.
 subst C'.
@@ -1675,7 +1675,7 @@ Col.
 induction(两点重合的决定性 Q C').
 subst Q.
 unfold 中点 in  H4.
-spliter.
+分离合取式.
 apply 等长的对称性 in H11.
 apply 等长的同一性 in H11.
 subst C'.
@@ -1705,7 +1705,7 @@ assert(Per P A' A).
 induction(两点重合的决定性 A' Q).
 subst Q.
 unfold 中点 in H4.
-spliter.
+分离合取式.
 apply 等长的同一性 in H10.
 subst C'.
 clean_trivial_hyps.
@@ -1714,7 +1714,7 @@ apply L形垂直转垂直于 in H3.
 apply 垂直于的交换性 in H3.
 apply L形垂直于转直角 in H3.
 unfold 中点 in MAC.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H2.
 apply (直角边共线点也构成直角2 P A' C A); Col.
 apply 直角的对称性.
@@ -1725,7 +1725,7 @@ assert(Per Q B' B).
 induction(两点重合的决定性 B' P).
 subst P.
 unfold 中点 in H5.
-spliter.
+分离合取式.
 apply 等长的同一性 in H11.
 subst C'.
 clean_trivial_hyps.
@@ -1733,7 +1733,7 @@ apply L形垂直转垂直于 in H3.
 apply 垂直于的交换性 in H3.
 apply L形垂直于转直角 in H3.
 unfold 中点 in MBC.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H2.
 apply (直角边共线点也构成直角2 Q B' C B); Col.
 apply 直角的对称性.
@@ -1745,7 +1745,7 @@ apply 直角的对称性.
 induction(两点重合的决定性 B' P).
 subst P.
 unfold 中点 in H5.
-spliter.
+分离合取式.
 apply 等长的同一性 in H12.
 subst C'.
 clean_trivial_hyps.
@@ -1757,7 +1757,7 @@ apply 直角的对称性.
 induction(两点重合的决定性 A' Q).
 subst Q.
 unfold 中点 in H4.
-spliter.
+分离合取式.
 apply 等长的同一性 in H13.
 subst C'.
 clean_trivial_hyps.
@@ -1787,7 +1787,7 @@ ex_and HH B''.
 
 assert( X <> y).
 apply 垂直推出不重合 in H15.
-spliter.
+分离合取式.
 auto.
 
 
@@ -1815,21 +1815,21 @@ assert(HH:= l10_10 X y B''  B' A A' H20 H21).
 assert(Per A' B' B'').
 unfold 对称 in *.
 induction H20; induction H21.
-spliter.
+分离合取式.
 
 apply(image_spec_preserves_per B' A' A A' B' B'' X y); auto.
 apply l10_4_spec.
 assumption.
-spliter.
+分离合取式.
 contradiction.
-spliter.
+分离合取式.
 contradiction.
-spliter.
+分离合取式.
 contradiction.
 
 unfold 对称 in H21.
 induction H21.
-spliter.
+分离合取式.
 unfold 严格对称 in H23.
 
 
@@ -1853,7 +1853,7 @@ Cop.
 apply coplanar_trans_1 with A; Cop.
 induction H24.
 apply( l12_6 A' B' A B'' H24).
-spliter.
+分离合取式.
 
 apply 成直角三点不共线 in H22; auto.
 apply False_ind.
@@ -1929,7 +1929,7 @@ apply HC; Col.
 
 assert(Col R A B).
 unfold 中点 in MAB.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H31.
 Col.
 
@@ -1960,10 +1960,10 @@ apply H32.
 exists R.
 
 unfold 中点 in H14.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H14.
 split; Col.
-spliter.
+分离合取式.
 apply NC1.
 Col.
 
@@ -2013,13 +2013,13 @@ Col.
 intro.
 subst B''.
 unfold 中点 in H28.
-spliter.
+分离合取式.
 apply 等长的同一性 in H30.
 subst B'.
 unfold OS in H24.
 ex_and H24 T.
 unfold TS in H30.
-spliter.
+分离合取式.
 apply H30.
 Col.
 exists B'.
@@ -2033,7 +2033,7 @@ assumption.
 assumption.
 apply l9_9 in H29.
 contradiction.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -2043,7 +2043,7 @@ Lemma l13_1 : forall A B C P Q R,
 Proof.
 intros.
 destruct (l13_1_aux A B C P Q R) as [X [Y]]; trivial.
-spliter.
+分离合取式.
 exists X.
 exists Y.
 split; assumption.
@@ -2056,7 +2056,7 @@ Lemma per_lt : forall A B C, A <> B ->  C <> B -> Per A B C -> Lt A B A C /\ Lt 
     intros.
     assert(Lt B A A C /\ Lt B C A C).
       apply( l11_46 A B C); auto.
-    spliter.
+    分离合取式.
     split; apply 长度小于的左交换性; assumption.
   Qed.
 
@@ -2069,7 +2069,7 @@ Proof.
         assumption.
       apply 垂直推出不重合2 in H0.
       assumption.
-    spliter.
+    分离合取式.
     assert(A <> B).
       intro.
       subst B.
@@ -2119,13 +2119,13 @@ Proof.
         ColR.
       exists B.
       unfold 中点 in H9.
-      spliter.
+      分离合取式.
       split; [Col|Between].
     assert(HH:= H0).
     unfold Perp in HH.
     ex_and HH T.
     apply 垂点是交点 in H6.
-    spliter.
+    分离合取式.
     assert(B <> T).
       intro.
       subst T.
@@ -2142,9 +2142,9 @@ Proof.
       apply L形垂直于转直角 in H9.
       assert(Lt B A B C /\ Lt C A B C).
         apply( per_lt B A C); auto.
-      spliter.
+      分离合取式.
       unfold Lt in H10.
-      spliter.
+      分离合取式.
       apply H12.
       Cong.
     assert(C <> T).
@@ -2156,9 +2156,9 @@ Proof.
       apply L形垂直于转直角 in H9.
       assert(Lt B C B A /\ Lt A C B A).
         apply( per_lt B C A); auto.
-      spliter.
+      分离合取式.
       unfold Lt in H11.
-      spliter.
+      分离合取式.
       apply H13.
       Cong.
     assert(垂直于 T B T T A).
@@ -2196,12 +2196,12 @@ Proof.
         apply( per_lt B T A); auto.
         apply L形垂直于转直角.
         assumption.
-      spliter.
+      分离合取式.
       apply 长度小于等于的交换性.
       unfold Lt in H14.
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     split.
       induction(中间性的决定性 P B T).
         apply 等角的交换性.
@@ -2289,9 +2289,9 @@ intros.
 assert(HTS:= H).
     unfold TS in H.
     assert (~ Col C A B).
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     clear H.
     assert (A <> B).
       intro.
@@ -2427,14 +2427,14 @@ Proof.
     assert(HH:= H).
     unfold TS in HH.
     assert (~ Col C A B).
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     assert(A <> C /\ A <> B /\ A <> D).
       unfold 等角 in H4.
-      spliter.
+      分离合取式.
       repeat split; auto.
-    spliter.
+    分离合取式.
     assert(Cong B C B D /\ Cong A C A D /\ 等角 C B A D B A).
       apply(l11_50_2 B A C B A D).
         intro.
@@ -2456,7 +2456,7 @@ Proof.
         apply 等角的交换性.
         auto.
       Cong.
-    spliter.
+    分离合取式.
     assert(Perp C D A B).
       apply( cong_conga_perp C A D B); Cong.
     assert(Col A B E).
@@ -2470,7 +2470,7 @@ Proof.
     assert(TS C D A B).
       apply ts_per_per_ts; auto.
     unfold TS in H17.
-    spliter.
+    分离合取式.
     ex_and H19 T1.
     ex_and H8 T.
     assert(T = T1).
@@ -2528,12 +2528,12 @@ assert(共面 X Y A P /\ 共面 X Y A Q /\ 共面 X Y B P /\ 共面 X Y B Q).
   left.
   split; Col.
   repeat split; apply coplanar_pseudo_trans with A B C; assumption.
-spliter.
+分离合取式.
 assert(HH:= 垂点是交点 X Y A B R H3).
-spliter.
+分离合取式.
    apply 垂直于转T形垂直 in H3.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H2.
 assert(X <> Y).
 apply 垂直推出不重合 in H4.
@@ -2548,13 +2548,13 @@ assert(Par A B P Q).
    apply(l12_9 A B P Q X Y);Perp.
 induction H16.
 Par.
-spliter.
+分离合取式.
 assert(Col A B P).
 ColR.
 assert(P = B).
 apply (l6_21_两线交点的唯一性 A B C P); Col.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H0.
 Col.
 intro.
@@ -2562,7 +2562,7 @@ subst P.
 contradiction.
 subst P.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 apply 等长的对称性 in H21.
 apply 等长的同一性 in H21.
 subst C.
@@ -2575,13 +2575,13 @@ assert(Par A B P Q).
    apply(l12_9 A B P Q X Y);Perp.
 induction H16.
 Par.
-spliter.
+分离合取式.
 assert(Col A B P).
 ColR.
 assert(P = B).
 apply (l6_21_两线交点的唯一性 A B C P); Col.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H0.
 Col.
 intro.
@@ -2589,7 +2589,7 @@ subst P.
 contradiction.
 subst P.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 apply 等长的对称性 in H21.
 apply 等长的同一性 in H21.
 subst C.
@@ -2606,12 +2606,12 @@ assert(HP1:= H3).
 assert(HP2:=H4).
 assert(Col A B P /\ Col X Y P).
 apply 垂点是交点 in H3.
-spliter.
+分离合取式.
 split; Col.
-spliter.
+分离合取式.
 unfold 垂直于 in H3.
 unfold 垂直于 in H4.
-spliter.
+分离合取式.
 induction(两点重合的决定性 A P);
 induction(两点重合的决定性 P X).
 subst A.
@@ -2677,9 +2677,9 @@ Proof.
     assert(HH:= H).
     unfold TS in HH.
     assert(~ Col C A B).
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     assert(C <> D).
       intro.
       subst D.
@@ -2699,15 +2699,15 @@ Proof.
     ex_and H9 E'.
     assert(A <> B /\ A <> C /\ A <> D).
       unfold 等角 in H9.
-      spliter; auto.
-    spliter.
+      分离合取式; auto.
+    分离合取式.
     assert(HH:=l11_22 C A E' B D A B E').
     assert(HH1:=ts_per_per_ts A B C D H H0 H1).
     unfold TS in HH1.
     assert (~ Col A C D).
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     ex_and H7 T.
     ex_and H17 T2.
     assert(T = T2).
@@ -2729,7 +2729,7 @@ Proof.
             Col.
           apply 垂直的对称性.
           assumption.
-        spliter.
+        分离合取式.
         apply H20.
         Col.
         auto.
@@ -2762,7 +2762,7 @@ Proof.
       apply one_side_symmetry.
       assumption.
     unfold 在角内 in H22.
-    spliter.
+    分离合取式.
     ex_and H25 E''.
     induction H26.
       subst E''.
@@ -3194,7 +3194,7 @@ Proof.
         assumption.
         apply coplanar_pseudo_trans with B C D; Cop.
         unfold 三角形全等 in *.
-        spliter.
+        分离合取式.
         apply 等长的传递性 with B A; Cong.
       apply 等角的左交换性.
       assumption.
@@ -3281,7 +3281,7 @@ assert(R <> C').
 intro.
 subst R.
 unfold 中点 in H58.
-spliter.
+分离合取式.
 apply 等长的对称性 in H64.
 apply 等长的同一性 in H64.
 subst D'.
@@ -3495,22 +3495,22 @@ Proof.
     assert(Col X X' Y').
       induction H6.
         unfold 严格平行 in H6.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H7.
         exists P.
         split; Col.
-      spliter.
+      分离合取式.
       auto.
     assert(Col Y X' Y').
       induction H6.
         unfold 严格平行 in H6.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H8.
         exists P.
         split; Col.
-      spliter.
+      分离合取式.
       auto.
     repeat split; auto.
     assert(X <> Y).
@@ -3532,12 +3532,12 @@ Proof.
     apply par_symmetry in H6.
     induction H6.
       unfold 严格平行 in H6.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply H11.
       exists P.
       split; Col.
-    spliter.
+    分离合取式.
     Col.
 Qed.
 
@@ -3626,7 +3626,7 @@ apply l9_2.
 auto.
 
 unfold TS in H8.
-spliter.
+分离合取式.
 ex_and H10 T.
 assert(T = A').
 apply (l6_21_两线交点的唯一性 A A' O B'); Col.
@@ -3638,7 +3638,7 @@ contradiction.
 subst T.
 Between.
 
-spliter.
+分离合取式.
 apply False_ind.
 apply H1.
 ColR.
@@ -3707,7 +3707,7 @@ apply coplanar_trans_1 with B; Cop.
 assert(严格平行 B C' C B').
 induction H9.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 apply H1.
 ColR.
@@ -3798,7 +3798,7 @@ induction H22.
 apply H22.
 exists B.
 split; Col.
-spliter.
+分离合取式.
 apply H1.
 ColR.
 
@@ -3811,7 +3811,7 @@ induction H23.
 apply H23.
 exists C.
 split; Col.
-spliter.
+分离合取式.
 apply H1.
 ColR.
 
@@ -3865,7 +3865,7 @@ apply False_ind.
 apply H25.
 exists C.
 split; Col.
-spliter.
+分离合取式.
 Col.
 intro.
 apply H1.
@@ -3897,7 +3897,7 @@ apply False_ind.
 apply H26.
 exists B.
 split; Col.
-spliter.
+分离合取式.
 Col.
 
 assert(Col C C0 B').
@@ -3972,9 +3972,9 @@ Proof.
 intros.
 unfold 对称 in H.
 induction H1.
-spliter.
+分离合取式.
 unfold 严格对称 in H2.
-spliter.
+分离合取式.
 ex_and H2 P.
 induction H3.
 exists P.
@@ -3986,7 +3986,7 @@ assert_cols.
 Col.
 subst A'.
 tauto.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -3999,7 +3999,7 @@ intros.
 assert(A <> B /\ C <> D).
 apply 垂直推出不重合 in H.
 tauto.
-spliter.
+分离合取式.
 induction(共线的决定性 A B C).
 exists C.
 split; Col.
@@ -4116,7 +4116,7 @@ Proof.
 split.
 intro.
 unfold Out in H7.
-spliter.
+分离合取式.
 induction H9.
 
 assert(HH:= per23_preserves_bet O P Q U V).
@@ -4133,7 +4133,7 @@ Perp.
 
 intro.
 unfold Out in H7.
-spliter.
+分离合取式.
 
 repeat split.
 intro.
@@ -4160,7 +4160,7 @@ Lemma perp_in_rewrite : forall A B C D P, 垂直于 P A B C D ->
 Proof.
 intros.
 assert(HH:= 垂点是交点 A B C D P H).
-spliter.
+分离合取式.
 induction(两点重合的决定性 A P);
 induction(两点重合的决定性 C P).
 subst A .
@@ -4191,7 +4191,7 @@ intros.
 assert(A <> B /\ C' <> B).
 apply out_distinct.
 assumption.
-spliter.
+分离合取式.
 
 assert(Perp B C' C C').
 apply(垂线共线点也构成垂直1 _ A); Perp.
@@ -4211,7 +4211,7 @@ auto.
 auto.
 left.
 assumption.
-spliter.
+分离合取式.
 
 assert(C <> B).
 intro.
@@ -4275,22 +4275,22 @@ Proof.
     assert(Col X X' Y').
       induction H5.
         unfold 严格平行 in H5.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H6.
         exists P.
         split; Col.
-      spliter.
+      分离合取式.
       auto.
     assert(Col Y X' Y').
       induction H5.
         unfold 严格平行 in H5.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H7.
         exists P.
         split; Col.
-      spliter.
+      分离合取式.
       auto.
     repeat split; auto.
     assert(X <> Y).
@@ -4315,12 +4315,12 @@ Proof.
     apply par_symmetry in H5.
     induction H5.
       unfold 严格平行 in H5.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply H10.
       exists P.
       split; Col.
-    spliter.
+    分离合取式.
     Col.
 Qed.
 

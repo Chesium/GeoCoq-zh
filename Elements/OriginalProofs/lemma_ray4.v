@@ -17,7 +17,7 @@ assert (~ eq B A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists J, (BetS B A J /\ Cong A J A B)) by (conclude lemma_extension);destruct Tf as [J];spliter.
+assert (Tf:exists J, (BetS B A J /\ Cong A J A B)) by (conclude lemma_extension);destruct Tf as [J];分离合取式.
 assert (BetS J A B) by (conclude axiom_betweennesssymmetry).
 assert (Out A B E).
 by cases on (BetS A E B \/ eq E B \/ BetS A B E).

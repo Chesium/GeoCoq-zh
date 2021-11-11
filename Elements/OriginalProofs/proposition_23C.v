@@ -18,7 +18,7 @@ assert (~ eq P A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists Q, (BetS P A Q /\ Cong A Q P A)) by (conclude lemma_extension);destruct Tf as [Q];spliter.
+assert (Tf:exists Q, (BetS P A Q /\ Cong A Q P A)) by (conclude lemma_extension);destruct Tf as [Q];分离合取式.
 assert (eq A A) by (conclude cn_equalityreflexive).
 assert (Col A B A) by (conclude_def Col ).
 assert (~ Col A B Q).
@@ -33,9 +33,9 @@ assert (~ Col A B Q).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists F G, (Out A B G /\ 等角 F A G D C E /\ TS F A B Q)) by (conclude proposition_23B);destruct Tf as [F[G]];spliter.
+assert (Tf:exists F G, (Out A B G /\ 等角 F A G D C E /\ TS F A B Q)) by (conclude proposition_23B);destruct Tf as [F[G]];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists J, (BetS F J Q /\ Col A B J /\ nCol A B F)) by (conclude_def TS );destruct Tf as [J];spliter.
+assert (Tf:exists J, (BetS F J Q /\ Col A B J /\ nCol A B F)) by (conclude_def TS );destruct Tf as [J];分离合取式.
 assert (OS F P A B) by (conclude_def OS ).
 close.
 Qed.

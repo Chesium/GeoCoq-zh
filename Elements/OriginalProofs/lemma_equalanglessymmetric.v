@@ -14,7 +14,7 @@ Lemma lemma_equalanglessymmetric :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists U V u v, (Out B A U /\ Out B C V /\ Out b a u /\ Out b c v /\ Cong B U b u /\ Cong B V b v /\ Cong U V u v /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];spliter.
+assert (Tf:exists U V u v, (Out B A U /\ Out B C V /\ Out b a u /\ Out b c v /\ Cong B U b u /\ Cong B V b v /\ Cong U V u v /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];分离合取式.
 assert (Cong b u B U) by (conclude lemma_congruencesymmetric).
 assert (Cong b v B V) by (conclude lemma_congruencesymmetric).
 assert (Cong v u V U) by (forward_using lemma_doublereverse).

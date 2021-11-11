@@ -146,7 +146,7 @@ Proof.
   assert (Hd := defect_distincts A B1 C G H I HDef2).
   assert (Hd2 := defect_distincts C B B1 M N O HDef4).
   assert (Hd3 := defect_distincts B1 C D A' B' C' HDef5).
-  spliter; clean.
+  分离合取式; clean.
   destruct (和角的存在性 G H I A' B' C') as [G' [H' [I' HSuma1]]]; auto.
   destruct (和角的存在性 M N O A' B' C') as [J' [K' [L' HSuma2]]]; auto.
 
@@ -231,7 +231,7 @@ Proof.
   destruct (legendre_aux1 A B C B' C') as [D' [HInangle [HConga [HCong HTS]]]]; trivial.
   assert (HNCol' : ~ Col A B' C') by (destruct HTS; Col).
   destruct (legendre D' HInangle) as [B'' [C'' [HOutB' [HOutC' HBet]]]].
-  assert (Hd := defect_distincts A B' C' P' Q' R' HDef'); spliter; 统计不重合点.
+  assert (Hd := defect_distincts A B' C' P' Q' R' HDef'); 分离合取式; 统计不重合点.
   destruct (ex_defect A B'' C'') as [P'' [Q'' [R'' HDef'']]]; auto.
     intro; subst; apply HNCol; ColR.
   exists B''; exists C''; exists P''; exists Q''; exists R''.

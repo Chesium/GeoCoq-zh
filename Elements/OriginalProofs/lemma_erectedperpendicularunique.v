@@ -13,10 +13,10 @@ Lemma lemma_erectedperpendicularunique :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists D, (BetS A B D /\ Cong A B D B /\ Cong A C D C /\ neq B C)) by (conclude_def Per );destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS A B D /\ Cong A B D B /\ Cong A C D C /\ neq B C)) by (conclude_def Per );destruct Tf as [D];分离合取式.
 assert (neq B E) by (conclude_def Per ).
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (Out B E H /\ Cong B H B C)) by (conclude lemma_layoff);destruct Tf as [H];spliter.
+assert (Tf:exists H, (Out B E H /\ Cong B H B C)) by (conclude lemma_layoff);destruct Tf as [H];分离合取式.
 assert (eq B B) by (conclude cn_equalityreflexive).
 assert (Col A B B) by (conclude_def Col ).
 assert (OS C H A B) by (conclude lemma_sameside2).

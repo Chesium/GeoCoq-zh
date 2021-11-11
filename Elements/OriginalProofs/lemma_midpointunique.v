@@ -30,7 +30,7 @@ assert (~ BetS C D B).
  assert (Cong B C A B) by (conclude lemma_congruencesymmetric).
  assert (Lt A B A B) by (conclude lemma_lessthancongruence).
  let Tf:=fresh in
- assert (Tf:exists E, (BetS A E B /\ Cong A E A B)) by (conclude_def Lt );destruct Tf as [E];spliter.
+ assert (Tf:exists E, (BetS A E B /\ Cong A E A B)) by (conclude_def Lt );destruct Tf as [E];分离合取式.
  assert (~ Cong A E A B) by (conclude lemma_partnotequalwhole).
  contradict.
  }
@@ -55,7 +55,7 @@ assert (~ BetS C B D).
  assert (Cong C D A D) by (forward_using lemma_congruenceflip).
  assert (Lt A D A D) by (conclude lemma_lessthancongruence).
  let Tf:=fresh in
- assert (Tf:exists F, (BetS A F D /\ Cong A F A D)) by (conclude_def Lt );destruct Tf as [F];spliter.
+ assert (Tf:exists F, (BetS A F D /\ Cong A F A D)) by (conclude_def Lt );destruct Tf as [F];分离合取式.
  assert (~ Cong A F A D) by (conclude lemma_partnotequalwhole).
  contradict.
  }

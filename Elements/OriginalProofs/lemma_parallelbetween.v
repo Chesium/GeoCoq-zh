@@ -79,7 +79,7 @@ by cases on (eq L M \/ eq L K \/ eq M K \/ BetS M L K \/ BetS L M K \/ BetS L K 
   intro.
   assert (nCol H K M) by (forward_using lemma_NCorder).
   let Tf:=fresh in
-  assert (Tf:exists E, (BetS H E L /\ BetS M E B)) by (conclude postulate_Pasch_inner);destruct Tf as [E];spliter.
+  assert (Tf:exists E, (BetS H E L /\ BetS M E B)) by (conclude postulate_Pasch_inner);destruct Tf as [E];分离合取式.
   assert (Col H E L) by (conclude_def Col ).
   assert (Col M E B) by (conclude_def Col ).
   assert (Col H L E) by (forward_using lemma_collinearorder).
@@ -98,7 +98,7 @@ by cases on (eq L M \/ eq L K \/ eq M K \/ BetS M L K \/ BetS L M K \/ BetS L K 
   intro.
   assert (BetS M K L) by (conclude axiom_betweennesssymmetry).
   let Tf:=fresh in
-  assert (Tf:exists E, (BetS H E L /\ BetS M B E)) by (conclude postulate_Pasch_outer);destruct Tf as [E];spliter.
+  assert (Tf:exists E, (BetS H E L /\ BetS M B E)) by (conclude postulate_Pasch_outer);destruct Tf as [E];分离合取式.
   assert (Col H E L) by (conclude_def Col ).
   assert (Col M B E) by (conclude_def Col ).
   assert (Col H L E) by (forward_using lemma_collinearorder).

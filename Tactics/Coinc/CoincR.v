@@ -478,7 +478,7 @@ induction m.
   unfold InCP in HIn.
   simpl in *.
   rewrite andb_true_iff in Hmem.
-  do 2 (elim HIn; clear HIn; intro HIn; try (subst; spliter; auto)).
+  do 2 (elim HIn; clear HIn; intro HIn; try (subst; 分离合取式; auto)).
 
   intros cp s e Hmem HIn.
   apply InCPOK in HIn.
@@ -487,13 +487,13 @@ induction m.
     subst.
     simpl in Hmem.
     rewrite andb_true_iff in Hmem.
-    spliter.
+    分离合取式.
     auto.
 
     apply IHm with (tailCP cp); try assumption.
     simpl in Hmem.
     rewrite andb_true_iff in Hmem.
-    spliter.
+    分离合取式.
     assumption.
 Qed.
 
@@ -579,7 +579,7 @@ induction m; simpl; do 2 (rewrite andb_true_iff); intro Hhtspa.
   destruct Hhtspa as [Hmem Hhtspa].
   rewrite SWP.FM.inter_b in Hmem.
   rewrite andb_true_iff in Hmem.
-  split; try (spliter; assumption).
+  split; try (分离合取式; assumption).
   apply IHm; assumption.
 Qed.
 
@@ -597,7 +597,7 @@ induction m; simpl; do 2 (rewrite andb_true_iff); intro Hhtspa.
   destruct Hhtspa as [Hmem Hhtspa].
   rewrite SWP.FM.inter_b in Hmem.
   rewrite andb_true_iff in Hmem.
-  split; try (spliter; assumption).
+  split; try (分离合取式; assumption).
   apply IHm; assumption.
 Qed.
 

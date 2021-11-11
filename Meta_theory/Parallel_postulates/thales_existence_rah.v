@@ -10,7 +10,7 @@ Lemma thales_existence__rah : existential_thales_postulate -> postulate_of_right
 Proof.
   intro thales.
   destruct thales as [A [B [C [M]]]].
-  spliter.
+  分离合取式.
   apply (t22_17__rah A B C M); assumption.
 Qed.
 

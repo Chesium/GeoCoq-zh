@@ -11,7 +11,7 @@ Lemma lemma_samesideflip :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists p q r, (Col A B p /\ Col A B q /\ BetS P p r /\ BetS Q q r /\ nCol A B P /\ nCol A B Q)) by (conclude_def OS );destruct Tf as [p[q[r]]];spliter.
+assert (Tf:exists p q r, (Col A B p /\ Col A B q /\ BetS P p r /\ BetS Q q r /\ nCol A B P /\ nCol A B Q)) by (conclude_def OS );destruct Tf as [p[q[r]]];分离合取式.
 assert (Col B A p) by (forward_using lemma_collinearorder).
 assert (Col B A q) by (forward_using lemma_collinearorder).
 assert (nCol B A P) by (forward_using lemma_NCorder).

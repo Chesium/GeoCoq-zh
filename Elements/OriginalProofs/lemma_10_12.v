@@ -11,10 +11,10 @@ Lemma lemma_10_12 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists D, (BetS A B D /\ Cong A B D B /\ Cong A C D C /\ neq B C)) by (conclude_def Per );destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS A B D /\ Cong A B D B /\ Cong A C D C /\ neq B C)) by (conclude_def Per );destruct Tf as [D];分离合取式.
 assert (neq B H) by (conclude_def Per ).
 let Tf:=fresh in
-assert (Tf:exists F, (BetS A B F /\ Cong A B F B /\ Cong A H F H /\ neq B H)) by (conclude_def Per );destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS A B F /\ Cong A B F B /\ Cong A H F H /\ neq B H)) by (conclude_def Per );destruct Tf as [F];分离合取式.
 assert (neq A B) by (forward_using lemma_betweennotequal).
 assert (Cong D B A B) by (conclude lemma_congruencesymmetric).
 assert (Cong D B F B) by (conclude lemma_congruencetransitive).
@@ -30,7 +30,7 @@ by cases on (eq C H \/ neq C H).
  }
 {
  let Tf:=fresh in
- assert (Tf:exists M, (BetS C M H /\ Cong M C M H)) by (conclude proposition_10);destruct Tf as [M];spliter.
+ assert (Tf:exists M, (BetS C M H /\ Cong M C M H)) by (conclude proposition_10);destruct Tf as [M];分离合取式.
  assert (Cong C B H B) by (forward_using lemma_doublereverse).
  assert (Cong A C A H).
  by cases on (eq B M \/ neq B M).

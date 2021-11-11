@@ -31,7 +31,7 @@ assert (nCol C D A) by (forward_using lemma_NCorder).
 assert (TS A C D E) by (conclude_def TS ).
 assert (TS B C D E) by (conclude lemma_planeseparation).
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (BetS B H E /\ Col C D H /\ nCol C D B)) by (conclude_def TS );destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS B H E /\ Col C D H /\ nCol C D B)) by (conclude_def TS );destruct Tf as [H];分离合取式.
 assert (BetS E H B) by (conclude axiom_betweennesssymmetry).
 assert (Col D C H) by (forward_using lemma_collinearorder).
 assert (neq A D) by (conclude_def Par ).
@@ -40,7 +40,7 @@ assert (~ Meet E D C B).
  {
  intro.
  let Tf:=fresh in
- assert (Tf:exists p, (neq E D /\ neq C B /\ Col E D p /\ Col C B p)) by (conclude_def Meet );destruct Tf as [p];spliter.
+ assert (Tf:exists p, (neq E D /\ neq C B /\ Col E D p /\ Col C B p)) by (conclude_def Meet );destruct Tf as [p];分离合取式.
  assert (neq B C) by (conclude lemma_inequalitysymmetric).
  assert (Col B C p) by (forward_using lemma_collinearorder).
  assert (Col E D A) by (forward_using lemma_collinearorder).

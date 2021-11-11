@@ -14,7 +14,7 @@ Lemma proposition_02 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists D, (等边三角形 A B D /\ Triangle A B D)) by (conclude proposition_01);destruct Tf as [D];spliter.
+assert (Tf:exists D, (等边三角形 A B D /\ Triangle A B D)) by (conclude proposition_01);destruct Tf as [D];分离合取式.
 assert (Cong A B B D) by (conclude_def 等边三角形 ).
 assert (Cong B D A B) by (conclude lemma_congruencesymmetric).
 assert (Cong B D B A) by (forward_using lemma_congruenceflip).
@@ -22,15 +22,15 @@ assert (Cong B D D A) by (conclude_def 等边三角形 ).
 assert (nCol A B D) by (conclude_def Triangle ).
 assert (eq B B) by (conclude cn_equalityreflexive).
 let Tf:=fresh in
-assert (Tf:exists J, CI J B B C) by (conclude postulate_Euclid3);destruct Tf as [J];spliter.
+assert (Tf:exists J, CI J B B C) by (conclude postulate_Euclid3);destruct Tf as [J];分离合取式.
 
 assert (InCirc B J) by (conclude_def InCirc ).
 assert (neq D B) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists P G, (Col D B P /\ BetS D B G /\ OnCirc P J /\ OnCirc G J /\ BetS P B G)) by (conclude postulate_line_circle);destruct Tf as [P[G]];spliter.
+assert (Tf:exists P G, (Col D B P /\ BetS D B G /\ OnCirc P J /\ OnCirc G J /\ BetS P B G)) by (conclude postulate_line_circle);destruct Tf as [P[G]];分离合取式.
 assert (neq D G) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists R, CI R D D G) by (conclude postulate_Euclid3);destruct Tf as [R];spliter.
+assert (Tf:exists R, CI R D D G) by (conclude postulate_Euclid3);destruct Tf as [R];分离合取式.
 assert (Cong B G B C) by (conclude axiom_circle_center_radius).
 assert (Cong B C B G) by (conclude lemma_congruencesymmetric).
 assert (eq D D) by (conclude cn_equalityreflexive).
@@ -40,7 +40,7 @@ assert (Cong D G D G) by (conclude cn_congruencereflexive).
 assert (InCirc A R) by (conclude_def InCirc ).
 assert (neq D A) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists Q L, (Col D A Q /\ BetS D A L /\ OnCirc Q R /\ OnCirc L R /\ BetS Q A L)) by (conclude postulate_line_circle);destruct Tf as [Q[L]];spliter.
+assert (Tf:exists Q L, (Col D A Q /\ BetS D A L /\ OnCirc Q R /\ OnCirc L R /\ BetS Q A L)) by (conclude postulate_line_circle);destruct Tf as [Q[L]];分离合取式.
 assert (Cong D L D G) by (conclude axiom_circle_center_radius).
 assert (Cong D B D B) by (conclude cn_congruencereflexive).
 assert (Cong D B D A) by (conclude lemma_congruencesymmetric).

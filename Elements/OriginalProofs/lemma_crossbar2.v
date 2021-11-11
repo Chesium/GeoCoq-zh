@@ -15,7 +15,7 @@ Proof.
 intros.
 assert (nCol G H P) by (conclude_def OS ).
 let Tf:=fresh in
-assert (Tf:exists J K L, (BetS L K J /\ Out G H L /\ Out G P J /\ 等角 H G A H G K)) by (conclude_def 角度小于 );destruct Tf as [J[K[L]]];spliter.
+assert (Tf:exists J K L, (BetS L K J /\ Out G H L /\ Out G P J /\ 等角 H G A H G K)) by (conclude_def 角度小于 );destruct Tf as [J[K[L]]];分离合取式.
 assert (nCol H G K) by (conclude lemma_equalanglesNC).
 assert (~ Col L G J).
  {
@@ -37,13 +37,13 @@ assert (Triangle L G J) by (conclude_def Triangle ).
 assert (Out G J T) by (conclude lemma_ray3).
 assert (Out G L S) by (conclude lemma_ray3).
 let Tf:=fresh in
-assert (Tf:exists M, (Out G K M /\ BetS S M T)) by (conclude lemma_crossbar);destruct Tf as [M];spliter.
+assert (Tf:exists M, (Out G K M /\ BetS S M T)) by (conclude lemma_crossbar);destruct Tf as [M];分离合取式.
 assert (BetS T M S) by (conclude axiom_betweennesssymmetry).
 assert (等角 H G K H G A) by (conclude lemma_equalanglessymmetric).
 assert (neq G A) by (forward_using lemma_angledistinct).
 assert (neq G M) by (conclude lemma_raystrict).
 let Tf:=fresh in
-assert (Tf:exists N, (Out G A N /\ Cong G N G M)) by (conclude lemma_layoff);destruct Tf as [N];spliter.
+assert (Tf:exists N, (Out G A N /\ Cong G N G M)) by (conclude lemma_layoff);destruct Tf as [N];分离合取式.
 assert (eq H H) by (conclude cn_equalityreflexive).
 assert (~ eq G H).
  {

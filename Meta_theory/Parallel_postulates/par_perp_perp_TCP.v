@@ -66,7 +66,7 @@ elim HInter; clear HInter; intro HInter.
     unfold Par; left.
     split.
 
-      spliter; CopR.
+      分离合取式; CopR.
 
       intro HInter'; apply HInter.
       destruct HInter' as [I HInter'].
@@ -76,7 +76,7 @@ elim HInter; clear HInter; intro HInter.
   apply 中垂线蕴含垂直 in HAB; apply 中垂线蕴含垂直 in HAC.
   assert (HPerp := HPTP B1 B2 C1 C2 A C HPar HAC).
   apply par_id.
-  spliter.
+  分离合取式.
   apply l12_9 with C1 C2; Perp; Cop; try CopR.
   apply 垂直的对称性, HPerp; CopR.
 Qed.

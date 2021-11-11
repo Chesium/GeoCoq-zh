@@ -11,7 +11,7 @@ Lemma lemma_lessthancongruence2 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists G, (BetS C G D /\ Cong C G A B)) by (conclude_def Lt );destruct Tf as [G];spliter.
+assert (Tf:exists G, (BetS C G D /\ Cong C G A B)) by (conclude_def Lt );destruct Tf as [G];分离合取式.
 assert (Cong C G E F) by (conclude lemma_congruencetransitive).
 assert (Lt E F C D) by (conclude_def Lt ).
 close.

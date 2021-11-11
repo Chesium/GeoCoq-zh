@@ -23,7 +23,7 @@ Proof.
     intros.
     intro.
     unfold 严格平行 in H.
-    spliter.
+    分离合取式.
     apply H0.
     exists A.
     split; apply AAB型共线.
@@ -35,7 +35,7 @@ Proof.
     intros.
     intro.
     unfold 严格平行 in H.
-    spliter.
+    分离合取式.
     apply H0.
     exists A.
     split; Col.
@@ -49,7 +49,7 @@ Proof.
     induction H.
       exfalso.
       apply (not_par_strict_id A B C H).
-    spliter;Col.
+    分离合取式;Col.
 Qed.
 
 Lemma par_strict_not_col_1 : forall A B C D,
@@ -57,7 +57,7 @@ Lemma par_strict_not_col_1 : forall A B C D,
 Proof.
     intros.
     unfold 严格平行 in *.
-    spliter.
+    分离合取式.
     intro.
     apply H0.
     exists C.
@@ -69,7 +69,7 @@ Lemma par_strict_not_col_2 : forall A B C D,
 Proof.
     intros.
     unfold 严格平行 in *.
-    spliter.
+    分离合取式.
     intro.
     apply H0.
     exists B.
@@ -81,7 +81,7 @@ Lemma par_strict_not_col_3 : forall A B C D,
 Proof.
     intros.
     unfold 严格平行 in *.
-    spliter.
+    分离合取式.
     intro.
     apply H0.
     exists A.
@@ -93,7 +93,7 @@ Lemma par_strict_not_col_4 : forall A B C D,
 Proof.
     intros.
     unfold 严格平行 in *.
-    spliter.
+    分离合取式.
     intro.
     apply H0.
     exists D.
@@ -116,7 +116,7 @@ Lemma par_strict_symmetry :forall A B C D,
 Proof.
     unfold 严格平行.
     intros.
-    spliter.
+    分离合取式.
     split.
       apply coplanar_perm_16;assumption.
     intro.
@@ -135,7 +135,7 @@ Proof.
       left.
       apply par_strict_symmetry.
       assumption.
-    spliter.
+    分离合取式.
     right.
     repeat split; try assumption.
       eapply (共线的传递性2 _ D);Col.
@@ -188,7 +188,7 @@ Proof.
       left.
       apply par_strict_left_comm; assumption.
     right.
-    spliter.
+    分离合取式.
     Col5.
 Qed.
 
@@ -216,7 +216,7 @@ Lemma par_strict_distinct : forall A B C D,
   A<>B /\ A<>C /\ A<>D /\ B<>C /\ B<>D /\ C<>D.
 Proof.
     unfold 严格平行.
-    intros; spliter.
+    intros; 分离合取式.
     repeat split; intro; apply H0; [exists C|exists A|exists A|exists B..]; subst; split; Col.
 Qed.
 
@@ -224,8 +224,8 @@ Lemma par_neq1 : forall A B C D, Par A B C D -> A <> B.
 Proof.
     intros.
     induction H.
-      apply par_strict_distinct in H; spliter; auto.
-    spliter; auto.
+      apply par_strict_distinct in H; 分离合取式; auto.
+    分离合取式; auto.
 Qed.
 
 Lemma par_neq2 : forall A B C D, Par A B C D -> C <> D.
@@ -512,7 +512,7 @@ Lemma l12_6 : forall A B C D,
 Proof.
     intros.
     unfold 严格平行 in H.
-    spliter.
+    分离合取式.
     assert(HH:= cop_nts__os A B C D).
     apply HH.
       assumption.
@@ -525,7 +525,7 @@ Proof.
     intro.
     apply H0.
     unfold TS in H1.
-    spliter.
+    分离合取式.
     ex_and H3 T.
     exists T.
     split; Col.
@@ -556,7 +556,7 @@ Proof.
         intuition.
       apply 垂直的右交换性;assumption.
     elim (l8_18_过一点垂线之垂点的存在性 A B C H); intros P HP.
-    spliter.
+    分离合取式.
     induction (两点重合的决定性 C D).
       subst.
       right.
@@ -566,7 +566,7 @@ Proof.
     induction (共线的决定性 P C D).
       left.
       assert (A <> B /\ C <> P) by (apply 垂直推出不重合;assumption).
-      spliter.
+      分离合取式.
       apply 垂线共线点也构成垂直2 with P;Col.
     right.
     intro.
@@ -646,7 +646,7 @@ Proof.
     unfold 严格平行.
     assert(A1 <> A2 /\ C1 <> C2) by (apply 垂直推出不重合;assumption).
     assert(B1 <> B2 /\ C1 <> C2) by (apply 垂直推出不重合;assumption).
-    spliter.
+    分离合取式.
     induction(共线的决定性 A1 B1 B2).
       right.
       repeat split; auto.
@@ -715,7 +715,7 @@ Proof.
           apply 垂直于转T形垂直 in H4.
           induction H4.
             apply 垂直推出不重合 in H4.
-            spliter.
+            分离合取式.
             absurde.
           apply 垂直的左交换性.
           assumption.
@@ -752,7 +752,7 @@ Proof.
         apply 垂直于转T形垂直 in H5.
         induction H5.
           apply 垂直推出不重合 in H5.
-          spliter.
+          分离合取式.
           absurde.
         apply 垂直的左交换性.
         assumption.
@@ -770,7 +770,7 @@ Proof.
       left.
       统计不重合点.
       unfold 严格平行 in *.
-      spliter.
+      分离合取式.
       split.
         apply col_cop__cop with D; auto.
       intro.
@@ -785,7 +785,7 @@ Proof.
         Col.
       Col.
     right.
-    spliter.
+    分离合取式.
     repeat split.
       assumption.
       assumption.
@@ -821,7 +821,7 @@ Proof.
     intros.
     unfold 严格平行 in H.
     intro.
-    spliter.
+    分离合取式.
     apply H2.
     exists X; Col.
 Qed.
@@ -832,12 +832,12 @@ Proof.
     unfold Par in H.
     induction H.
       unfold 严格平行 in H.
-      spliter.
+      分离合取式.
       assert(exists X, Col X A B /\ Col X C D).
         exists X.
         split; Col.
       contradiction.
-    spliter.
+    分离合取式.
     apply 等价共线BCA.
     eapply 共线的传递性2.
       apply H2.
@@ -925,11 +925,11 @@ Proof.
     unfold Par in H2.
     induction H2.
       unfold 严格平行 in H2.
-      spliter.
+      分离合取式.
       apply H3.
       exists P.
       Col5.
-    spliter.
+    分离合取式.
     apply H.
     ColR.
 Qed.
@@ -946,11 +946,11 @@ Proof.
     unfold Par in H3.
     induction H3.
       unfold 严格平行 in H3.
-      spliter.
+      分离合取式.
       apply H4.
       exists P.
       Col5.
-    spliter.
+    分离合取式.
     apply H2.
     eapply 共线的传递性4.
       apply H4.
@@ -969,7 +969,7 @@ Proof.
     induction H.
       统计不重合点.
       split; assumption.
-    spliter.
+    分离合取式.
     split; assumption.
 Qed.
 
@@ -979,7 +979,7 @@ Proof.
     intros.
     induction H.
       assumption.
-    spliter.
+    分离合取式.
     exfalso.
     apply H1.
     apply (共线的传递性4 C D); Col.
@@ -1012,7 +1012,7 @@ Proof.
     assert(HH:= H0 X (等价共线BCA _ _ _ H2) ).
     ex_and HH M.
     unfold TS in H4.
-    spliter.
+    分离合取式.
     contradiction.
 Qed.
 
@@ -1046,7 +1046,7 @@ Proof.
     apply 等价共线CAB.
     eapply 共线的传递性2.
       apply par_distincts in H0.
-      spliter.
+      分离合取式.
       apply H5.
       assumption.
     assumption.
@@ -1075,7 +1075,7 @@ Proof.
       apply par_strict_symmetry.
       assumption.
     unfold 严格平行 in H0.
-    spliter.
+    分离合取式.
     apply False_ind.
     apply H6.
     exists C.
@@ -1089,7 +1089,7 @@ Proof.
     intros.
     统计不重合点.
     unfold 严格平行 in *.
-    spliter.
+    分离合取式.
     split.
       apply col2_cop__cop with C D; assumption.
     intro.
@@ -1183,7 +1183,7 @@ Lemma inter_sym : forall A B C D X, Inter A B C D X -> Inter C D A B X.
 Proof.
     intros.
     unfold Inter in *.
-    spliter.
+    分离合取式.
     ex_and H0 P.
     assert(A <> B).
       intro.
@@ -1224,7 +1224,7 @@ Lemma inter_left_comm : forall A B C D X, Inter A B C D X -> Inter B A C D X.
 Proof.
     intros.
     unfold Inter in *.
-    spliter.
+    分离合取式.
     ex_and H0 P.
     split.
       assumption.
@@ -1242,7 +1242,7 @@ Lemma inter_right_comm : forall A B C D X, Inter A B C D X -> Inter A B D C X.
 Proof.
     intros.
     unfold Inter in *.
-    spliter.
+    分离合取式.
     ex_and H0 P.
     split.
       auto.
@@ -1282,7 +1282,7 @@ Proof.
           auto.
           apply AAB型共线.
         unfold 中点 in H1.
-        spliter.
+        分离合取式.
         apply 中间性蕴含共线1.
         assumption.
       induction(两点重合的决定性 B P).
@@ -1297,7 +1297,7 @@ Proof.
           apply A是AB中点则A与B重合 in H0.
           auto.
           unfold 中点 in H0.
-          spliter.
+          分离合取式.
           apply 中间性蕴含共线1 in H0 .
           Col.
         apply ABA型共线.
@@ -1305,7 +1305,7 @@ Proof.
       assert(HH1:= H1).
       unfold 中点 in H0.
       unfold 中点 in H1.
-      spliter.
+      分离合取式.
       apply 中间性蕴含共线1 in H1.
       apply 中间性蕴含共线1 in H0.
       assert(Col B C P).
@@ -1396,7 +1396,7 @@ Proof.
       assert(Cong P D P D').
         apply  (等长的传递性 _ _ B P).
           unfold 中点 in H1.
-          spliter.
+          分离合取式.
           Cong.
         apply  (等长的传递性 _ _ B' P).
           Cong.
@@ -1416,7 +1416,7 @@ Proof.
           auto.
           apply H14.
         unfold 中点 in H0.
-        spliter.
+        分离合取式.
         apply 中间性蕴含共线1 in H0.
         Col.
         intro.
@@ -1468,7 +1468,7 @@ Proof.
     assert(Cong P C P C').
       eapply (等长的传递性 _ _ P A).
         unfold 中点 in H0.
-        spliter.
+        分离合取式.
         Cong.
       eapply (等长的传递性 _ _ P A').
         unfold Per in H15.
@@ -1513,7 +1513,7 @@ Proof.
             intro.
             treat_equalities.
             apply 垂直推出不重合 in H17.
-            spliter.
+            分离合取式.
             auto.
             apply 垂直的左交换性.
             apply H17.
@@ -1521,12 +1521,12 @@ Proof.
           Col.
         Col.
       apply 垂直推出不重合 in H17.
-      spliter.
+      分离合取式.
       tauto.
       intro.
       treat_equalities.
       apply 垂直推出不重合 in H4.
-      spliter.
+      分离合取式.
       tauto.
     intro.
     subst C.
@@ -1553,7 +1553,7 @@ Lemma l12_18_a :
 Proof.
     intros.
     assert(中点 P A C /\ 中点 P B D) by (apply 四点对边等长则对角线交点平分对角线; assumption).
-    spliter.
+    分离合取式.
     eapply l12_17.
       intro.
       subst B.
@@ -1585,7 +1585,7 @@ Proof.
       eapply (共线的传递性2 _ P).
         intro.
         subst P.
-        spliter.
+        分离合取式.
         apply M是AB中点则M是BA中点 in H5.
         apply A是AB中点则A与B重合 in H5.
         subst C.
@@ -1622,7 +1622,7 @@ Proof.
       eapply (共线的传递性2 _ P).
         intro.
         subst P.
-        spliter.
+        分离合取式.
         apply A是AB中点则A与B重合 in H5.
         subst C.
         apply H1.
@@ -1640,7 +1640,7 @@ Proof.
       eapply (共线的传递性2 _ P).
         intro.
         subst P.
-        spliter.
+        分离合取式.
         apply M是AB中点则M是BA中点 in H5.
         apply A是AB中点则A与B重合 in H5.
         subst C.
@@ -1651,7 +1651,7 @@ Proof.
     exists P.
     split.
       Col.
-    spliter.
+    分离合取式.
     unfold 中点 in H5.
     tauto.
 Qed.
@@ -1678,7 +1678,7 @@ Proof.
       eapply (共线的传递性2 _ P).
         intro.
         subst P.
-        spliter.
+        分离合取式.
         apply A是AB中点则A与B重合 in H5.
         subst C.
         contradiction.
@@ -1715,12 +1715,12 @@ Lemma par_two_sides_two_sides :
 Proof.
     intros.
     apply par_distincts in H.
-    spliter.
+    分离合取式.
     unfold Par in H.
     induction H.
       统计不重合点.
       unfold TS in *.
-      spliter.
+      分离合取式.
       ex_and H6 T.
       repeat split.
         intro.
@@ -1757,7 +1757,7 @@ Proof.
         assert(HH:= outer_pasch C D T A B (中间性的对称性 _ _ _ H8) (中间性的对称性 _ _ _ H6)).
         ex_and HH X.
         unfold 严格平行 in H.
-        spliter.
+        分离合取式.
         apply False_ind.
         apply H12.
         exists X.
@@ -1767,14 +1767,14 @@ Proof.
         ex_and HH X.
         apply False_ind.
         unfold 严格平行 in H.
-        spliter.
+        分离合取式.
         apply H12.
         exists X.
         split; Col.
       apply 中间性的对称性.
       assumption.
     unfold TS in H0.
-    spliter.
+    分离合取式.
     apply False_ind.
     apply H3.
     Col.
@@ -1799,7 +1799,7 @@ Proof.
     right.
     assert(HH:=H).
     unfold 严格平行 in H.
-    spliter.
+    分离合取式.
     split.
       apply cop_nts__os; Cop.
         intro.
@@ -1833,11 +1833,11 @@ Lemma l12_21_b : forall A B C D,
 Proof.
     intros.
     apply conga_distinct in H0.
-    spliter.
+    分离合取式.
     assert(~Col A B C).
       intro.
       unfold TS in H.
-      spliter.
+      分离合取式.
       apply 等价共线BAC in H5.
       assert(Col D C A).
         eapply 共线三点构成的角的等角三点也共线.
@@ -1846,7 +1846,7 @@ Proof.
       contradiction.
     assert(A <> B /\ C <> D).
       auto.
-    spliter.
+    分离合取式.
     assert(HH:=由一点往一方向构造等长线段_3 C D A B H7 H6).
     ex_and HH D'.
     assert(等角 B A C D' C A).
@@ -1873,7 +1873,7 @@ Proof.
         apply ABA型共线.
       assumption.
     unfold TS in H12.
-    spliter.
+    分离合取式.
     ex_and H14 M.
     assert(B <> D').
       intro.
@@ -1888,7 +1888,7 @@ Proof.
         Col.
       apply 中间性蕴含共线1 in H15.
       Col.
-    spliter.
+    分离合取式.
     assert(Par A B C D').
       eapply l12_17.
         assumption.
@@ -1910,7 +1910,7 @@ Proof.
     intros.
     assert (P<>C) by (intro; treat_equalities; auto).
     prolong B A B' B A .
-    spliter.
+    分离合取式.
     assert(等角 P A B C A B').
       apply l11_14.
         assumption.
@@ -1918,7 +1918,7 @@ Proof.
         auto.
         assumption.
         unfold 等角 in H3.
-        spliter.
+        分离合取式.
         auto.
         intro.
         treat_equalities.
@@ -1985,7 +1985,7 @@ Proof.
     apply par_symmetry.
     apply par_col_par with B'.
       unfold 等角 in H3.
-      spliter.
+      分离合取式.
       auto.
       apply par_symmetry.
       apply H9.
@@ -2006,16 +2006,16 @@ Proof.
       right.
       repeat split.
         unfold 等角 in H1.
-        spliter.
+        分离合取式.
         auto.
         unfold 等角 in H1.
-        spliter.
+        分离合取式.
         auto.
         Col.
       apply 等角的交换性 in H1.
       apply conga_os__out in H1; Col.
     unfold Out in H.
-    spliter.
+    分离合取式.
     induction H4.
       apply l12_22_aux with P; auto.
     apply par_symmetry.
@@ -2187,9 +2187,9 @@ Proof.
       apply H1.
       exists P.
       apply 垂点是交点 in H0.
-      spliter.
+      分离合取式.
       split; Col.
-    spliter.
+    分离合取式.
     induction(两点重合的决定性 A Y).
       subst Y.
       assert(P = A).
@@ -2215,9 +2215,9 @@ Proof.
     assert(HH:=H).
     unfold TS in HH.
     assert (~ Col A B P).
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     ex_and H5 T.
     assert(B <> P).
       intro.

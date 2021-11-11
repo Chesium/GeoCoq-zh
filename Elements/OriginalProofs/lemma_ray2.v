@@ -11,7 +11,7 @@ Lemma lemma_ray2 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists E, (BetS E A C /\ BetS E A B)) by (conclude_def Out );destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS E A C /\ BetS E A B)) by (conclude_def Out );destruct Tf as [E];分离合取式.
 assert (neq A B) by (forward_using lemma_betweennotequal).
 close.
 Qed.

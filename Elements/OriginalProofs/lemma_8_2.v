@@ -14,10 +14,10 @@ Lemma lemma_8_2 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists D, (BetS A B D /\ Cong A B D B /\ Cong A C D C /\ neq B C)) by (conclude_def Per );destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS A B D /\ Cong A B D B /\ Cong A C D C /\ neq B C)) by (conclude_def Per );destruct Tf as [D];分离合取式.
 assert (neq C B) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists E, (BetS C B E /\ Cong B E B C)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS C B E /\ Cong B E B C)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (neq A B) by (forward_using lemma_betweennotequal).
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 assert (eq C C) by (conclude cn_equalityreflexive).

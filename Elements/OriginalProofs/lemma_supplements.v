@@ -19,17 +19,17 @@ assert (Out B C D) by (conclude_def Supp ).
 assert (BetS a b f) by (conclude_def Supp ).
 assert (Out b c d) by (conclude_def Supp ).
 let Tf:=fresh in
-assert (Tf:exists U V u v, (Out B A U /\ Out B C V /\ Out b a u /\ Out b c v /\ Cong B U b u /\ Cong B V b v /\ Cong U V u v /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];spliter.
+assert (Tf:exists U V u v, (Out B A U /\ Out B C V /\ Out b a u /\ Out b c v /\ Cong B U b u /\ Cong B V b v /\ Cong U V u v /\ nCol A B C)) by (conclude_def 等角 );destruct Tf as [U[V[u[v]]]];分离合取式.
 assert (neq A B) by (forward_using lemma_betweennotequal).
 assert (neq B U) by (conclude lemma_raystrict).
 assert (neq U B) by (conclude lemma_inequalitysymmetric).
 assert (neq b u) by (conclude lemma_raystrict).
 assert (neq u b) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists W, (BetS U B W /\ Cong B W U B)) by (conclude lemma_extension);destruct Tf as [W];spliter.
+assert (Tf:exists W, (BetS U B W /\ Cong B W U B)) by (conclude lemma_extension);destruct Tf as [W];分离合取式.
 assert (neq a b) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists w, (BetS u b w /\ Cong b w U B)) by (conclude lemma_extension);destruct Tf as [w];spliter.
+assert (Tf:exists w, (BetS u b w /\ Cong b w U B)) by (conclude lemma_extension);destruct Tf as [w];分离合取式.
 assert (Cong U B b w) by (conclude lemma_congruencesymmetric).
 assert (Cong B W b w) by (conclude lemma_congruencetransitive).
 assert (Cong U B u b) by (forward_using lemma_congruenceflip).

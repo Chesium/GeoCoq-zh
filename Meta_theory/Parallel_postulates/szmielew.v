@@ -38,8 +38,8 @@ Proof.
     repeat split; auto; try (intro; apply HNCol; ColR).
     exists Q; split; Col; Between.
   }
-  assert (B1 <> P) by (apply sac_distincts in HSac; spliter; auto).
-  assert (C1 <> P) by (apply sac_distincts in HSac'; spliter; auto).
+  assert (B1 <> P) by (apply sac_distincts in HSac; 分离合取式; auto).
+  assert (C1 <> P) by (apply sac_distincts in HSac'; 分离合取式; auto).
   assert (HLta : 角度小于 B1 P C1 X Q Y); [|destruct HLta as [_ HNConga]; apply HNConga; 等角].
   assert (~ Col P Q X) by (apply 成直角三点不共线; auto).
   assert (HTS : TS Q P X Y) by (apply bet__ts; Col).

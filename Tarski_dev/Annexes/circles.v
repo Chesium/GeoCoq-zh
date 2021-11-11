@@ -173,7 +173,7 @@ end.
 Ltac CongR :=
  let tpoint := constr:(Tpoint) in
  let cong := constr:(Cong) in
-   treat_equalities; unfold 在圆上, 中点 in *; spliter; Cong; Cong_refl tpoint cong.
+   treat_equalities; unfold 在圆上, 中点 in *; 分离合取式; Cong; Cong_refl tpoint cong.
 
 Section Circle_2.
 
@@ -463,7 +463,7 @@ intros.
 assert(Per O X A).
 apply (弦中点与圆心连线形成直角 O P A B X); auto.
 unfold 中点 in *.
-spliter.
+分离合取式.
 
 apply 直角转L形垂直于 in H4; auto.
 apply 垂直于转垂直 in H4.
@@ -652,7 +652,7 @@ eapply (两中点组全段等长则前半段等长 _ _ A _ _ C); 中点.
 Cong.
 unfold 中点 in *.
 unfold 在圆上 in *.
-spliter.
+分离合取式.
 apply 等长的交换性.
 apply 等长的对称性.
 apply(l4_2 A M B O C N D O).
@@ -712,7 +712,7 @@ Proof.
 intros.
 unfold 在圆上 in *.
 unfold 直径 in *.
-spliter.
+分离合取式.
 apply(triangle_inequality_2 U O V A O B); trivial;
 apply 等长的传递性 with O P; Cong.
 Qed.
@@ -731,7 +731,7 @@ unfold 直径 in *.
 assert(HP:=中点的存在性 U V).
 ex_and HP O'.
 unfold 中点 in *.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 assert(Cong O A O B) by (apply 等长的传递性 with O P; Cong).
 assert(Cong A O U O').
@@ -750,7 +750,7 @@ Proof.
 intros.
 unfold 在圆上或圆内 in *.
 unfold 直径 in *.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 assert(HH:= 由一点往一方向构造等长线段 U O O V).
 ex_and HH W.
@@ -774,7 +774,7 @@ Lemma 直径与圆的交点为直径两端点 : forall O P A B X, 直径 A B O P
 Proof.
 intros.
 unfold 直径 in *.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 induction(两点重合的决定性 O P).
 treat_equalities.
@@ -801,7 +801,7 @@ Lemma 直径上一点距圆上一点小于等于距较远的直径端点 : foral
 Proof.
 intros.
 unfold 直径 in*.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 assert(Cong O X O A) by (apply 等长的传递性 with O P; Cong).
 induction(两点重合的决定性 P O).
@@ -834,7 +834,7 @@ assert(Lt T A T X \/ Cong T A T X).
 }
 induction H5; auto.
 unfold 直径 in*.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 统计不重合点.
 assert(Bet O A T \/ Bet O T A).
@@ -869,7 +869,7 @@ Lemma bet_onc_le_b : forall O P A B T X,
 Proof.
 intros.
 unfold 直径 in *.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 apply(triangle_inequality T O X A).
 Between.
@@ -892,7 +892,7 @@ assert(Lt T X  T A \/ Cong T A T X).
   split; Cong.
 }
 unfold 直径 in *.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 induction H4; auto.
 apply False_ind.
@@ -916,14 +916,14 @@ Lemma incs2_lt_diam : forall O P A B U V, 直径 A B O P -> 在圆内 U O P -> �
 Proof.
 intros.
 unfold 直径 in H.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 unfold 在圆内 in *.
 
 induction(两点重合的决定性 O P).
 treat_equalities.
 unfold Lt in H0.
-spliter.
+分离合取式.
 apply AB小于等于CC推出A与B重合 in H.
 treat_equalities.
 apply False_ind.
@@ -938,11 +938,11 @@ assert(Lt A O A B /\ Lt B O A B).
   assert (Lt B O B A) by (统计不重合点; apply 严格中点组半段小于全段; 中点).
   auto using 长度小于的右交换性.
 }
-spliter.
+分离合取式.
 
 induction(两点重合的决定性 O U).
 treat_equalities.
-spliter.
+分离合取式.
 assert(Lt O V O A).
 {
   apply(等长保持小于关系 O V O P); Cong.
@@ -971,7 +971,7 @@ Lemma incs_onc_diam__lt : forall O P A B U V, 直径 A B O P -> 在圆内 U O P 
 Proof.
 intros.
 unfold 直径 in *.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 unfold 在圆内 in *.
 
@@ -999,7 +999,7 @@ treat_equalities.
 unfold 在圆内 in H1.
 
 unfold Lt in H1.
-spliter.
+分离合取式.
 apply AB小于等于CC推出A与B重合 in H1.
 treat_equalities.
 apply False_ind.
@@ -1009,14 +1009,14 @@ assert(HH:= 点与圆的位置关系的决定性 O P V).
 induction HH.
 assert(Lt U V A B) by  apply(incs_onc_diam__lt O P A B U V H H1 H3).
 unfold Lt in H4.
-spliter.
+分离合取式.
 apply False_ind.
 apply H5; Cong.
 
 induction H3.
 assert(HH:=incs2_lt_diam O P A B U V H H1 H3).
 unfold Lt in HH.
-spliter.
+分离合取式.
 apply False_ind.
 apply H5; Cong.
 assumption.
@@ -1026,7 +1026,7 @@ Lemma diam_uniqueness : forall O P A B X, 直径 A B O P -> Cong A X A B -> 在�
 Proof.
 intros.
 unfold 直径 in *.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 induction(两点重合的决定性 O P).
 treat_equalities; auto.
@@ -1065,7 +1065,7 @@ Lemma chord_intersection : forall O P A B X Y,
 Proof.
 intros.
 unfold TS in H3.
-spliter.
+分离合取式.
 ex_and H5 T.
 repeat split.
 apply (onc3__ncol O P); Circle; try(intro; treat_equalities; Col).
@@ -1084,7 +1084,7 @@ Lemma ray_cut_chord : forall O P A B X Y,
 Proof.
 intros.
 unfold 直径 in *.
-spliter.
+分离合取式.
 apply(l9_8_2 X Y A O B); [|Side].
 apply (chord_intersection O P); assumption.
 Qed.
@@ -1108,7 +1108,7 @@ Lemma diam__midpoint: forall O P A B, 直径 A B O P -> 中点 O A B.
 Proof.
 intros.
 unfold 直径 in *.
-spliter.
+分离合取式.
 unfold 中点.
 unfold 在圆上 in *.
 split.
@@ -1120,7 +1120,7 @@ Lemma diam_sym : forall O P A B, 直径 A B O P -> 直径 B A O P.
 Proof.
 intros.
 unfold 直径 in *.
-spliter.
+分离合取式.
 repeat split; Between.
 Qed.
 
@@ -1142,7 +1142,7 @@ intros.
 intro.
 统计不重合点.
 unfold 中点 in H3.
-spliter.
+分离合取式.
 apply H0.
 ColR.
 Qed.
@@ -1170,7 +1170,7 @@ Lemma mid_chord__diam_or_ncol : forall O P A B T,
 Proof.
 intros.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 apply(bet_chord__diam_or_ncol);auto.
 intro.
 treat_equalities; tauto.
@@ -1247,7 +1247,7 @@ Proof.
   intros O P Q HOP.
   destruct (两点重合的决定性 O Q).
     subst Q.
-    destruct (tree_points_onc_cop O P HOP) as [A [B [C]]]; spliter.
+    destruct (tree_points_onc_cop O P HOP) as [A [B [C]]]; 分离合取式.
     exists A, B, C; repeat split; auto.
   destruct (两点不重合则存在不共线的点 O Q) as [X HNCol]; auto.
   destruct (存在两端点在圆心两侧的直径 O P X) as [B [C [HBet [HCol []]]]].
@@ -1265,7 +1265,7 @@ Lemma tree_points_onc : forall O P, O <> P -> exists A B C,
   A <> B /\ A <> C /\ B <> C /\ 在圆上 A O P /\ 在圆上 B O P /\ 在圆上 C O P.
 Proof.
   intros O P HOP.
-  destruct (tree_points_onc_cop O P HOP) as [A [B [C]]]; spliter.
+  destruct (tree_points_onc_cop O P HOP) as [A [B [C]]]; 分离合取式.
   exists A, B, C; repeat split; assumption.
 Qed.
 
@@ -1292,7 +1292,7 @@ Proof.
     split; [|split; trivial; exists C1; Side].
     apply bet2__out with C1; Between.
       intro; treat_equalities; auto.
-      destruct HTS as [_ [HNCol3 _]]; spliter; intro; subst; apply HNCol3; Col.
+      destruct HTS as [_ [HNCol3 _]]; 分离合取式; intro; subst; apply HNCol3; Col.
   - exists C1.
     split; [|split; trivial].
     apply bet2__out with C2; trivial.
@@ -1318,7 +1318,7 @@ Proof.
         assert (Cong A A' A A) by (rewrite Heq; Cong).
         treat_equalities; auto.
       - destruct (tree_points_onc_cop2 A B C Hd) as [B0 [B1 [B2]]].
-        spliter.
+        分离合取式.
         assert (HCong := 在同圆上的两点与圆心等距 C D).
         apply cong2_cop2_onc3__eq with B B0 B1 B2; try (apply HCong; apply Heq); auto.
     }
@@ -1347,7 +1347,7 @@ Proof.
         exfalso; apply Hneq, eqc_chara; split; auto.
         subst C; exists B; split; Circle.
     }
-    destruct (tree_points_onc_cop2 A B C HAB) as [B0 [B1 [B2]]]; spliter.
+    destruct (tree_points_onc_cop2 A B C HAB) as [B0 [B1 [B2]]]; 分离合取式.
     destruct (等长的决定性 C B0 C D); [destruct (等长的决定性 C B1 C D);[destruct (等长的决定性 C B2 C D)|]|].
     - exfalso.
       apply HCA.
@@ -1407,7 +1407,7 @@ Qed.
 Lemma 共圆定义_辅助 : forall A B C D, 共圆 A B C D -> exists O P,
   在圆上 A O P /\ 在圆上 B O P /\ 在圆上 C O P /\ 在圆上 D O P /\ 共面 A B C O.
 Proof.
-  intros A B C D [HCop [O1 [P1]]]; spliter.
+  intros A B C D [HCop [O1 [P1]]]; 分离合取式.
   destruct (共线的决定性 A B C).
     exists O1, P1; repeat split; Cop.
   destruct (l11_62_existence A B C O1) as [O []].
@@ -1423,7 +1423,7 @@ Proof.
   split.
     Cop.
   exists O, P.
-  spliter; repeat split; assumption.
+  分离合取式; repeat split; assumption.
 Qed.
 
 Lemma concyclic_gen_perm_1 : forall A B C D,
@@ -1431,7 +1431,7 @@ Lemma concyclic_gen_perm_1 : forall A B C D,
 Proof.
   intros A B C D [H|].
     left; apply 等价共圆ABDC, H.
-    right; spliter; repeat split; Col.
+    right; 分离合取式; repeat split; Col.
 Qed.
 
 Lemma 等价共圆ACBD : forall A B C D, 共圆 A B C D -> 共圆 B A C D.
@@ -1441,7 +1441,7 @@ Proof.
   split.
     Cop.
   exists O, P.
-  spliter; repeat split; assumption.
+  分离合取式; repeat split; assumption.
 Qed.
 
 Lemma concyclic_gen_perm_2 : forall A B C D,
@@ -1449,7 +1449,7 @@ Lemma concyclic_gen_perm_2 : forall A B C D,
 Proof.
   intros A B C D [H|].
     left; apply 等价共圆ACBD, H.
-    right; spliter; repeat split; Col.
+    right; 分离合取式; repeat split; Col.
 Qed.
 
 Lemma 共圆的传递性_1 : forall P Q R A B, ~ Col P Q R ->
@@ -1457,10 +1457,10 @@ Lemma 共圆的传递性_1 : forall P Q R A B, ~ Col P Q R ->
 Proof.
   intros P Q R A B HNC H1 H2.
   split.
-    unfold 共圆 in *; spliter; apply coplanar_trans_1 with P; assumption.
+    unfold 共圆 in *; 分离合取式; apply coplanar_trans_1 with P; assumption.
   destruct (共圆定义_辅助 P Q R A H1) as [O [M]].
   destruct (共圆定义_辅助 P Q R B H2) as [O' [M']].
-  spliter.
+  分离合取式.
   exists O, M; repeat split; trivial.
   统计不重合点.
   apply (cop2_onc6__eqc P Q R O' M'); auto.
@@ -1471,7 +1471,7 @@ Lemma concyclic_gen_trans_1 : forall P Q R A B,
   共圆或共线 P Q R A -> 共圆或共线 P Q R B ->
   共圆或共线 Q R A B.
 Proof.
-  intros P Q R A B HNC [|] [|]; [|spliter; exfalso; apply HNC; Col..].
+  intros P Q R A B HNC [|] [|]; [|分离合取式; exfalso; apply HNC; Col..].
   left.
   apply (共圆的传递性_1 P); assumption.
 Qed.
@@ -1481,14 +1481,14 @@ Lemma concyclic_pseudo_trans : forall A B C D P Q R, ~ Col P Q R ->
   共圆 A B C D.
 Proof.
   intros A B C D P Q R HNCol HA HB HC HD.
-  spliter.
+  分离合取式.
   split.
-    unfold 共圆 in *; spliter; apply coplanar_pseudo_trans with P Q R; assumption.
+    unfold 共圆 in *; 分离合取式; apply coplanar_pseudo_trans with P Q R; assumption.
   destruct (共圆定义_辅助 P Q R A HA) as [OA [MA]].
   destruct (共圆定义_辅助 P Q R B HB) as [OB [MB]].
   destruct (共圆定义_辅助 P Q R C HC) as [OC [MC]].
   destruct (共圆定义_辅助 P Q R D HD) as [OD [MD]].
-  spliter.
+  分离合取式.
   统计不重合点.
   exists OA, MA; repeat split; [|apply (cop2_onc6__eqc P Q R OB MB)|
     apply (cop2_onc6__eqc P Q R OC MC)|apply (cop2_onc6__eqc P Q R OD MD)]; auto.
@@ -1502,7 +1502,7 @@ Lemma concyclic_gen_pseudo_trans : forall A B C D P Q R,
   共圆或共线 P Q R D ->
   共圆或共线 A B C D.
 Proof.
-  intros A B C D P Q R HNC [|] [|] [|] [|]; [|spliter; exfalso; apply HNC; Col..].
+  intros A B C D P Q R HNC [|] [|] [|] [|]; [|分离合取式; exfalso; apply HNC; Col..].
   left.
   apply concyclic_pseudo_trans with P Q R; assumption.
 Qed.
@@ -1547,7 +1547,7 @@ auto.
 assert(Col A B X).
 apply(per2__col A B O X); Perp.
 unfold 中点 in *.
-spliter.
+分离合取式.
 assert(Col B X D).
 apply 中间性蕴含共线1; auto.
 assert(Col A X C).
@@ -1568,7 +1568,7 @@ left; Between.
 
 unfold 在圆外 in *.
 unfold Lt in *.
-spliter.
+分离合取式.
 unfold 在圆上 in H3.
 apply False_ind.
 absurd (Cong O P O D);Cong.
@@ -1658,7 +1658,7 @@ Col.
 left.
 
 unfold 中点 in *.
-spliter.
+分离合取式.
 
 induction(两点重合的决定性 M O).
 subst M.
@@ -1711,7 +1711,7 @@ assert(等角 T O X T O Y /\ 等角 O T X O T Y /\ 等角 T X O T Y O).
     treat_equalities; tauto.
   apply 等长的传递性 with O P; Cong.
 }
-spliter.
+分离合取式.
 assert(Out T A O).
 {
   repeat split; auto.
@@ -1737,7 +1737,7 @@ Proof.
 intros.
 assert(HD:=H).
 unfold 直径 in H.
-spliter.
+分离合取式.
 unfold 在圆上 in *.
 induction(两点重合的决定性 O P).
 subst P.
@@ -1761,7 +1761,7 @@ apply 等长的对称性.
 apply 等长的交换性.
 apply(is_image_spec_col_cong O A X Y T); auto.
 unfold 直径 in *.
-spliter.
+分离合取式.
 ColR.
 
 assert(Le T X T A).
@@ -1905,7 +1905,7 @@ induction HH.
 apply H9.
 exists C.
 split; Col.
-spliter; contradiction.
+分离合取式; contradiction.
 Qed.
 
 (** Euclid Book III Prop 9.
@@ -1982,7 +1982,7 @@ apply False_ind.
 apply H1.
 apply (l12_9_2D _ _ _ _ O M); Perp.
 
-spliter.
+分离合取式.
 apply 垂直于转垂直 in H15.
 induction(共线的决定性 O A B).
 assert(A = B \/ 中点 O A B).
@@ -2001,7 +2001,7 @@ apply H1.
 apply (l12_9_2D _ _ _ _ O M); Perp.
 induction HH2.
 subst X.
-spliter.
+分离合取式.
 
 induction(共线的决定性 O C D).
 assert(C = D \/ 中点 O C D).
@@ -2019,7 +2019,7 @@ apply H1.
 apply(垂线共线点也构成垂直1 N M A B O) in H15; Col.
 
 apply (l12_9_2D _ _ _ _ O N); Perp.
-spliter.
+分离合取式.
 apply 垂直于转垂直 in H17.
 apply 垂直于转垂直 in H16.
 

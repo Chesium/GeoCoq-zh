@@ -44,13 +44,13 @@ match goal with
    |H : (?X <> ?X) |- _ => apply False_ind; apply H; reflexivity
 end.
 
-Ltac spliter := repeat
+Ltac 分离合取式 := repeat
 match goal with
    | H:(?X1 /\ ?X2) |- _ => induction H
 end.
 
-Ltac ex_and H x := elim H; intro x; intros; clear H;spliter.
-(* Ltac ex_and H x := ex_elim H x; spliter. *)
+Ltac ex_and H x := elim H; intro x; intros; clear H;分离合取式.
+(* Ltac ex_and H x := ex_elim H x; 分离合取式. *)
 
 Ltac use H := decompose [and] H;clear H.
 

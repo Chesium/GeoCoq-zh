@@ -11,11 +11,11 @@ Lemma par_perp_2_par_implies_par_perp_perp :
 Proof.
 intros HPPP A B C D P Q HPar HPerp HCop.
 elim HPar; clear HPar; intro HPar;
-[|spliter; apply 与垂线共线之线也为垂线2 with A B; auto; ColR].
+[|分离合取式; apply 与垂线共线之线也为垂线2 with A B; auto; ColR].
 assert (HX := HPerp); destruct HX as [X HX].
 elim (共线的决定性 C D X); intro HCDX.
 
-  exfalso; apply HPar; exists X; unfold 垂直于 in HX; spliter; Col.
+  exfalso; apply HPar; exists X; unfold 垂直于 in HX; 分离合取式; Col.
 
   assert (HY := l8_18_过一点垂线之垂点的存在性 C D X HCDX); destruct HY as [Y [HCDY HPerp']].
   assert (HPar' : Par P Q X Y).
@@ -35,7 +35,7 @@ elim (共线的决定性 C D X); intro HCDX.
     }
   elim HPar'; clear HPar'; intro HPar'.
 
-    exfalso; apply HPar'; exists X; unfold 垂直于 in HX; spliter; Col.
+    exfalso; apply HPar'; exists X; unfold 垂直于 in HX; 分离合取式; Col.
 
     destruct HPar' as [HPQ [HXY [HCol1 HCol2]]].
     apply 垂直的对称性; apply 与垂线共线之线也为垂线2 with X Y; Col; Perp.

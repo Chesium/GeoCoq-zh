@@ -9,7 +9,7 @@ Definition 共圆 A B C D := 共面 A B C D /\ exists O, Cong O A O B /\ Cong O 
 Lemma 共圆定义_辅助 : forall A B C D, 共圆 A B C D ->
   exists O, Cong O A O B /\ Cong O A O C /\ Cong O A O D /\ 共面 A B C O.
 Proof.
-  intros A B C D [HCop [O1]]; spliter.
+  intros A B C D [HCop [O1]]; 分离合取式.
   destruct (共线的决定性 A B C).
     exists O1; repeat split; Cop.
   destruct (l11_62_existence A B C O1) as [O []].
@@ -23,7 +23,7 @@ Lemma 共圆的传递性 : forall A B C D E,
 Proof.
 intros.
 split.
-unfold 共圆 in *; spliter; CopR.
+unfold 共圆 in *; 分离合取式; CopR.
 apply 共圆定义_辅助 in H0.
 apply 共圆定义_辅助 in H1.
 decompose [ex and] H0;clear H0.
@@ -44,7 +44,7 @@ Lemma 等价共圆ABDC: forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆ACBD : forall A B C D,
@@ -52,7 +52,7 @@ Lemma 等价共圆ACBD : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆ACDB : forall A B C D,
@@ -60,7 +60,7 @@ Lemma 等价共圆ACDB : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆ADBC : forall A B C D,
@@ -68,7 +68,7 @@ Lemma 等价共圆ADBC : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆ADCB : forall A B C D,
@@ -76,7 +76,7 @@ Lemma 等价共圆ADCB : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆BACD : forall A B C D,
@@ -84,7 +84,7 @@ Lemma 等价共圆BACD : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆BADC : forall A B C D,
@@ -92,7 +92,7 @@ Lemma 等价共圆BADC : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆BCAD : forall A B C D,
@@ -100,7 +100,7 @@ Lemma 等价共圆BCAD : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆BCDA : forall A B C D,
@@ -108,7 +108,7 @@ Lemma 等价共圆BCDA : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆BDAC : forall A B C D,
@@ -116,7 +116,7 @@ Lemma 等价共圆BDAC : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆BDCA : forall A B C D,
@@ -124,7 +124,7 @@ Lemma 等价共圆BDCA : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆CABD : forall A B C D,
@@ -132,7 +132,7 @@ Lemma 等价共圆CABD : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆CADB : forall A B C D,
@@ -140,7 +140,7 @@ Lemma 等价共圆CADB : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆CBAD : forall A B C D,
@@ -148,7 +148,7 @@ Lemma 等价共圆CBAD : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆CBDA : forall A B C D,
@@ -156,7 +156,7 @@ Lemma 等价共圆CBDA : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆CDAB : forall A B C D,
@@ -164,7 +164,7 @@ Lemma 等价共圆CDAB : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆CDBA : forall A B C D,
@@ -172,7 +172,7 @@ Lemma 等价共圆CDBA : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆DABC : forall A B C D,
@@ -180,7 +180,7 @@ Lemma 等价共圆DABC : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆DACB : forall A B C D,
@@ -188,7 +188,7 @@ Lemma 等价共圆DACB : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆DBAC : forall A B C D,
@@ -196,7 +196,7 @@ Lemma 等价共圆DBAC : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆DBCA : forall A B C D,
@@ -204,7 +204,7 @@ Lemma 等价共圆DBCA : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆DCAB : forall A B C D,
@@ -212,7 +212,7 @@ Lemma 等价共圆DCAB : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma 等价共圆DCBA : forall A B C D,
@@ -220,7 +220,7 @@ Lemma 等价共圆DCBA : forall A B C D,
 Proof.
 intros A B C D H.
 destruct H as [H1 [X H2]].
-split; [Cop|spliter; exists X; repeat split; CongR..].
+split; [Cop|分离合取式; exists X; repeat split; CongR..].
 Qed.
 
 Lemma AABC共圆 : forall A B C,
@@ -233,7 +233,7 @@ split.
 apply coplanar_trivial.
 destruct (外心的存在性 A B C HABC) as [G HG].
 exists G.
-apply 外心与三角形顶点距离相等 in HG;spliter;repeat split;Cong.
+apply 外心与三角形顶点距离相等 in HG;分离合取式;repeat split;Cong.
 Qed.
 
 End 共圆.

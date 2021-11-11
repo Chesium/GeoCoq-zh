@@ -131,9 +131,9 @@ assert (HOM2 : O <> M2).
   }
 assert (HM1M2 : M1 <> M2) by (intro; treat_equalities; Col).
 assert (HPerp1 : 中垂线 O M1 A B)
-  by (apply 距线两端点等距点与中点连线为该线中垂线; spliter; Cong).
+  by (apply 距线两端点等距点与中点连线为该线中垂线; 分离合取式; Cong).
 assert (HPerp2 : 中垂线 O M2 A C)
-  by (apply 距线两端点等距点与中点连线为该线中垂线; spliter; Cong).
+  by (apply 距线两端点等距点与中点连线为该线中垂线; 分离合取式; Cong).
 assert (HOM1M2 : ~ Col O M1 M2).
   {
   intro HOM1M2; assert (H := 共线点间距相同要么重合要么中点 O A B); elim H; clear H; try intro H; Cong;
@@ -181,8 +181,8 @@ assert (H=B).
 subst.
 assert (中点 O A C).
  apply 直角三角形的外心是斜边中点 with B;finish.
- unfold 垂心 in *;spliter;统计不重合点;finish.
- unfold 垂心 in *;spliter;统计不重合点;finish.
+ unfold 垂心 in *;分离合取式;统计不重合点;finish.
+ unfold 垂心 in *;分离合取式;统计不重合点;finish.
 assert (重心 G A C B).
  apply 重心的等价排列 in H1;intuition.
 perm_apply (重心在中线上 A C B G O).
@@ -222,9 +222,9 @@ assert (中垂线 A A' B C)
   by (apply 距线两端点等距点与中点连线为该线中垂线; Cong; intro; treat_equalities; apply H0; Col).
 
 assert (Col G A' A)
-  by (apply 重心的等价排列 in H1; apply 重心在中线上 with B C; spliter; Col).
+  by (apply 重心的等价排列 in H1; apply 重心在中线上 with B C; 分离合取式; Col).
 
-unfold 垂心 in *; spliter.
+unfold 垂心 in *; 分离合取式.
 
 elim (两点重合的决定性 O G); intro; treat_equalities; Col;
 elim (两点重合的决定性 O H); intro; treat_equalities; Col.
@@ -259,21 +259,21 @@ assert (共圆 A B C A').
  apply coplanar_perm_12, col_cop__cop with O; Col; Cop.
  exists O.
  apply 外心与三角形顶点距离相等 in H3.
- spliter.
+ 分离合取式.
  assert_congs_perm.
- spliter;repeat (split;finish).
+ 分离合取式;repeat (split;finish).
 
 assert (T:=concyclic_not_col_or_eq A B C A' H5).
 decompose [or] T;clear T;try contradiction.
  - subst.
    assert (Per A B C).
     apply 泰勒斯定理 with O;finish.
-    unfold 外心 in *;spliter;finish.
+    unfold 外心 in *;分离合取式;finish.
    apply (直角三角形上的欧拉线定理 A B C G H O);finish.
  - subst.
    assert (Per A C B).
     apply 泰勒斯定理 with O;finish.
-    unfold 外心 in *;spliter.
+    unfold 外心 in *;分离合取式.
     apply 等长的传递性 with O B;finish.
 
    apply (直角三角形上的欧拉线定理 A C B G H O);finish.
@@ -281,42 +281,42 @@ decompose [or] T;clear T;try contradiction.
    auto with Orthocenter.
    auto with Circumcenter.
 
- - unfold 外心 in *;spliter.
+ - unfold 外心 in *;分离合取式.
    treat_equalities.
    intuition.
- - spliter.
+ - 分离合取式.
 
 统计不重合点.
 
 assert (Per A B A').
  apply 泰勒斯定理 with O;finish.
- unfold 外心 in *;spliter;finish.
+ unfold 外心 in *;分离合取式;finish.
 
 assert (Perp C H A B)
- by (unfold 垂心 in *;spliter;finish).
+ by (unfold 垂心 in *;分离合取式;finish).
 
 assert (Perp A' B B A)
  by (apply 直角转L形垂直;finish).
 
 assert (Par C H A' B).
- unfold 共圆 in *; spliter.
+ unfold 共圆 in *; 分离合取式.
  apply 垂心与三角形共面 in H2.
  apply l12_9 with A B; try CopR; Perp.
 
 assert (Perp B H A C)
- by (unfold 垂心 in *;spliter;finish).
+ by (unfold 垂心 in *;分离合取式;finish).
 
 assert (Per A C A').
  {
  apply 泰勒斯定理 with O;finish.
- unfold 外心 in *;spliter;finish.
+ unfold 外心 in *;分离合取式;finish.
  apply 等长的传递性 with B O;finish.
  }
 
 assert (Perp A' C C A) by (apply 直角转L形垂直;finish).
 
 assert (Par B H C A').
- unfold 共圆 in *; spliter.
+ unfold 共圆 in *; 分离合取式.
  apply l12_9 with A C; try CopR; Perp.
 
 induction (共线的决定性 B H C).
@@ -350,7 +350,7 @@ induction (共线的决定性 B H C).
      {
      apply gravity_center_change_triangle with B C I;finish.
      show_distinct A' H; treat_equalities.
-     apply plg_par in H26; spliter; 统计不重合点; Col.
+     apply plg_par in H26; 分离合取式; 统计不重合点; Col.
      intro.
      Name A'' the midpoint of B and C.
      show_distinct A'' O; treat_equalities.

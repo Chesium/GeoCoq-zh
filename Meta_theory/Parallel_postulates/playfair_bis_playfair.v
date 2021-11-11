@@ -46,7 +46,7 @@ elim (共线的决定性 A1 A2 P); [intro HCol; treat_equalities|intro HNC1].
     by (apply (playfair_bis A1 A2 _ _ _ _ P); Col; CopR).
   assert(Col C1 P D /\ Col C2 P D)
     by (apply (playfair_bis A1 A2 _ _ _ _ P); Col; CopR).
-  spliter.
+  分离合取式.
   split; apply(共线的传递性4 P D); Col.
   }
 Qed.

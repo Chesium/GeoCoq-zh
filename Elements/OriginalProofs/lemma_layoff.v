@@ -17,12 +17,12 @@ assert (~ eq B A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists E, (BetS B A E /\ Cong A E C D)) by (conclude lemma_extension);destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS B A E /\ Cong A E C D)) by (conclude lemma_extension);destruct Tf as [E];分离合取式.
 assert (BetS E A B) by (conclude axiom_betweennesssymmetry).
 assert (neq E A) by (forward_using lemma_betweennotequal).
 assert (BetS E A B) by (conclude axiom_betweennesssymmetry).
 let Tf:=fresh in
-assert (Tf:exists P, (BetS E A P /\ Cong A P C D)) by (conclude lemma_extension);destruct Tf as [P];spliter.
+assert (Tf:exists P, (BetS E A P /\ Cong A P C D)) by (conclude lemma_extension);destruct Tf as [P];分离合取式.
 assert (Out A B P) by (conclude_def Out ).
 close.
 Qed.

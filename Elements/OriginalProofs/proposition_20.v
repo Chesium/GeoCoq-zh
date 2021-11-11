@@ -33,7 +33,7 @@ assert (~ eq C A).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists D, (BetS B A D /\ Cong A D C A)) by (conclude lemma_extension);destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS B A D /\ Cong A D C A)) by (conclude lemma_extension);destruct Tf as [D];分离合取式.
 assert (neq A D) by (forward_using lemma_betweennotequal).
 assert (neq D A) by (conclude lemma_inequalitysymmetric).
 assert (neq B D) by (forward_using lemma_betweennotequal).

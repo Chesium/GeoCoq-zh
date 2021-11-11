@@ -27,7 +27,7 @@ elim (两点重合的决定性 A C); intro; apply plg_per_rect.
   assert( Par A B J I /\ Par A C I K /\ Par B C J K /\
     Cong A K I J /\ Cong B K I J /\ Cong A J I K /\ Cong C J I K /\ Cong B I J K /\ Cong C I J K)
   by (apply 广义三角形中位线定理综合; intuition).
-  spliter.
+  分离合取式.
 
   elim (共线的决定性 A B C); intro; 统计不重合点.
 
@@ -45,7 +45,7 @@ elim (两点重合的决定性 A C); intro; apply plg_per_rect.
       assert (严格平行 A B J I /\ 严格平行 A C I K /\ 严格平行 B C J K /\
         Cong A K I J /\ Cong B K I J /\ Cong A J I K /\ Cong C J I K /\ Cong B I J K /\ Cong C I J K)
       by (apply 三角形中位线定理综合; intuition).
-      spliter.
+      分离合取式.
       apply par_strict_symmetry; apply par_strict_col_par_strict with C; intuition; apply par_strict_symmetry; apply par_strict_right_comm; assumption; Col.
       Par.
       Col.
@@ -53,7 +53,7 @@ elim (两点重合的决定性 A C); intro; apply plg_per_rect.
       assert (严格平行 A B J I /\ 严格平行 A C I K /\ 严格平行 B C J K /\
         Cong A K I J /\ Cong B K I J /\ Cong A J I K /\ Cong C J I K /\ Cong B I J K /\ Cong C I J K)
       by (apply 三角形中位线定理综合; intuition).
-      spliter.
+      分离合取式.
       apply par_symmetry; apply par_col_par with B; intuition; apply par_symmetry; apply par_strict_par; assumption.
 
   left; apply l8_3_直角边共线点也构成直角1 with B; try apply 直角的对称性; try apply l8_3_直角边共线点也构成直角1 with C; try apply 直角的对称性; try assumption; intuition; Col.

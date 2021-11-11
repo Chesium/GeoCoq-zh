@@ -14,7 +14,7 @@ Proof.
   intros rah A1 A2 A3 B1 B2 B3 HPer1 HPer2 HCong HOS HA HB HPerp.
   assert (HSac : 萨凯里四边形 A1 B1 B2 A2) by (repeat split; Perp; Cong).
   assert(Hdiff := sac_distincts A1 B1 B2 A2 HSac).
-  spliter.
+  分离合取式.
   统计不重合点.
   elim(两点重合的决定性 A1 A3).
   { intro.
@@ -22,7 +22,7 @@ Proof.
     assert(B1 = B3); [|subst; Cong].
     apply (l6_21_两线交点的唯一性 B1 B2 A1 B1); Col.
       apply 共线否定排列BCA, par_strict_not_col_1 with A2, sac__pars1234, HSac.
-      unfold 萨凯里四边形 in HSac; spliter; apply (cop_perp2__col _ _ _ A1 A2); Perp.
+      unfold 萨凯里四边形 in HSac; 分离合取式; apply (cop_perp2__col _ _ _ A1 A2); Perp.
       apply col_cop__cop with B2; Cop.
   }
   intro.
@@ -47,7 +47,7 @@ Proof.
     apply (rah _ _ _ A2); auto.
   apply (rah _ _ _ A3).
   unfold 萨凯里四边形 in *.
-  spliter.
+  分离合取式.
   assert(B1 <> B3).
   { intro.
     subst B3.
@@ -73,7 +73,7 @@ intro HP.
 destruct ex_saccheri as [A1 [B1 [B2 [A2 [HPer1 [HPer2 [HCong HOS]]]]]]].
 exists A1; exists A2; exists B1; exists B2.
 assert (HNE : A1 <> A2) by (destruct HOS as [X [[H ?] ?]]; intro; subst A2; Col).
-split; [destruct HOS; unfold TS in *; spliter; Col|].
+split; [destruct HOS; unfold TS in *; 分离合取式; Col|].
 split; [intro; treat_equalities; apply ABC和ACB均直角则B与C重合 in HPer1; intuition|split; [Cop|]].
 intros A3 A4 B3 B4 HC1 HC2 HPerp1 HC3 HC4 HPerp2.
 assert (HCong1 := rah__posidonius_aux HP A1 A2 A3 B1 B2 B3).

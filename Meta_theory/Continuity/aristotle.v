@@ -253,7 +253,7 @@ Proof.
   destruct ex_lambert as [Q' [C' [P [Q HLam]]]].
   assert (H为钝角 : 为钝角 C' P Q) by (apply <- (lam_obtuse__oah Q'); trivial).
   assert (HPar : 严格平行 Q' Q C' P) by (apply lam__pars1423, HLam).
-  destruct HLam; spliter.
+  destruct HLam; 分离合取式.
   destruct (l10_15 P Q P C') as [A' [HPerp HOS]]; Col.
     apply 共线否定排列BCA.
     apply par_strict_not_col_1 with Q'; Par.
@@ -289,7 +289,7 @@ Proof.
     apply HNCol2; Col.
   }
 
-  spliter.
+  分离合取式.
   apply (两长度不可能互相小于对方 P Q X Y).
   split; trivial.
   destruct (l8_18_过一点垂线之垂点的存在性 P Q Y) as [Z [HZ1 HZ2]].

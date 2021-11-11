@@ -90,16 +90,16 @@ match goal with
 end.
 
 Ltac forward_using thm :=
- remove_not_nCol;spliter;splits;
+ remove_not_nCol;分离合取式;splits;
  match goal with
-  H: ?X |- _ => apply thm in H;spliter;assumption
+  H: ?X |- _ => apply thm in H;分离合取式;assumption
  end.
 
 Ltac contradict := 
  (solve [eauto using Col_nCol_False]) || contradiction || (unfold nCol in *;intuition).
 
 Ltac conclude t :=
- spliter;
+ 分离合取式;
  remove_double_neg;
  solve [unfold eq in *;mysubst;assumption |
         pose t; eauto |
@@ -127,7 +127,7 @@ Ltac conclude_def_aux t := (remove_double_neg;
           intuition
          ])) 
  || 
- solve [unfold t in *;spliter;assumption |
+ solve [unfold t in *;分离合取式;assumption |
         unfold t in *;destruct_all;assumption |
         unfold t in *;remove_double_neg;destruct_all;remove_exists;eauto 11  ].
 

@@ -39,7 +39,7 @@ assert(HH0:= H0).
 assert(HH1:= H1).
 unfold 中点 in HH0.
 unfold 中点 in HH1.
-spliter.
+分离合取式.
 
 assert(Col M A A').
 apply 中间性蕴含共线1 in H6.
@@ -104,14 +104,14 @@ Proof.
 intros.
 assert (A <> B).
 apply 不共线则不重合 in H.
-spliter.
+分离合取式.
 assumption.
 
 assert(Par A B A' B').
 eapply (l12_17 A B A' B' M); assumption.
 induction H3.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 
 assert(HH:=midpoint_中点蕴含共线 B' A' B A M).
@@ -123,7 +123,7 @@ assumption.
 apply M是AB中点则M是BA中点.
 assumption.
 Col.
-spliter.
+分离合取式.
 apply H.
 Col.
 Qed.
@@ -197,7 +197,7 @@ Lemma bet_double_bet :
 Proof.
 intros.
 unfold 中点 in *.
-spliter.
+分离合取式.
 assert(Le A B' A C').
 unfold Le.
 exists B'.
@@ -288,7 +288,7 @@ assert(HH0:= H0).
 assert(HH1:= H1).
 unfold 中点 in H0.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 
 induction(两点重合的决定性 A B).
 subst B.
@@ -358,7 +358,7 @@ eapply l5_3.
 apply H9.
 assumption.
 eapply l6_4_1 in H10.
-spliter.
+分离合取式.
 apply 中间性的对称性 in H8.
 contradiction.
 Qed.
@@ -445,7 +445,7 @@ assert(D = C /\ A = B).
 eapply (bet_cong_eq A B D C); auto.
 eBetween.
 Cong.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -461,7 +461,7 @@ intros.
 unfold Par in H.
 induction H.
 contradiction.
-spliter.
+分离合取式.
 
 induction (两点重合的决定性 A A').
 subst A'.
@@ -563,7 +563,7 @@ exists M.
 right.
 assert(HH:= H11).
 unfold 中点 in HH.
-spliter.
+分离合取式.
 split.
 
 assert(Bet B M B').
@@ -605,7 +605,7 @@ left.
 
 assert(HH:= H11).
 unfold 中点 in HH.
-spliter.
+分离合取式.
 
 split.
 
@@ -656,7 +656,7 @@ exists M.
 right.
 assert(HH:=H12).
 unfold 中点 in HH.
-spliter.
+分离合取式.
 
 split.
 assert(Bet B M A).
@@ -716,7 +716,7 @@ eapply bet_cong_eq.
 assumption.
 Between.
 Cong.
-spliter.
+分离合取式.
 contradiction.
 induction H3.
 
@@ -733,7 +733,7 @@ exists M.
 
 assert(HH:=H12).
 unfold 中点 in HH.
-spliter.
+分离合取式.
 left.
 
 split.
@@ -788,7 +788,7 @@ ex_and HH M.
 exists M.
 assert(HH:=H11).
 unfold 中点 in HH.
-spliter.
+分离合取式.
 right.
 split.
 assumption.
@@ -841,7 +841,7 @@ eapply bet_cong_eq.
 assumption.
 assumption.
 Cong.
-spliter.
+分离合取式.
 subst A'.
 tauto.
 
@@ -852,7 +852,7 @@ ex_and HH M.
 exists M.
 assert(HH:=H11).
 unfold 中点 in HH.
-spliter.
+分离合取式.
 left.
 split.
 assumption.
@@ -908,7 +908,7 @@ ex_and HH M.
 exists M.
 assert(HH:=H12).
 unfold 中点 in HH.
-spliter.
+分离合取式.
 right.
 split.
 assumption.
@@ -955,7 +955,7 @@ ex_and HH M.
 exists M.
 assert(HH:=H12).
 unfold 中点 in HH.
-spliter.
+分离合取式.
 left.
 split.
 assumption.
@@ -1015,7 +1015,7 @@ Lemma mid_par_cong2 :
   Cong A B' A' B /\ Par A B' A' B.
 Proof.
 intros.
-spliter.
+分离合取式.
 split.
 apply (l7_13_同中点组两侧等长 M); 中点.
 eapply (l12_17 _ _ _ _ M); 中点.
@@ -1030,12 +1030,12 @@ Lemma mid_par_cong :
   Cong A B A' B' /\ Cong A B' A' B /\ Par A B A' B' /\ Par A B' A' B.
 Proof.
 intros.
-spliter.
+分离合取式.
 assert(Cong A B A' B' /\ Par A B A' B').
 eapply (mid_par_cong1 _  _ _ _ M); 中点.
 assert(Cong A B' A' B /\ Par A B' A' B).
 apply (mid_par_cong2 _ _ _ _ M);中点.
-spliter.
+分离合取式.
 repeat split;
 assumption.
 Qed.
@@ -1055,7 +1055,7 @@ Lemma plgf_permut :
 Proof.
 intros.
 unfold 退化平行四边形 in *.
-spliter.
+分离合取式.
 induction(两点重合的决定性 A B).
 subst B.
 apply 等长的对称性 in H1.
@@ -1100,7 +1100,7 @@ Proof.
 intros.
 unfold 退化平行四边形.
 intro.
-spliter.
+分离合取式.
 induction H3; tauto.
 Qed.
 
@@ -1111,9 +1111,9 @@ Proof.
 intros.
 intro.
 unfold 严格平行四边形 in H.
-spliter.
+分离合取式.
 unfold TS in H.
-spliter.
+分离合取式.
 apply H2.
 Col.
 Qed.
@@ -1138,7 +1138,7 @@ Lemma plgf_mid :
 Proof.
 intros.
 unfold 退化平行四边形 in H.
-spliter.
+分离合取式.
 
 induction(两点重合的决定性 A B).
 subst B.
@@ -1164,7 +1164,7 @@ repeat split; Col.
 assert(~严格平行 A B C D).
 intro.
 unfold 严格平行 in H7.
-spliter.
+分离合取式.
 apply H8.
 exists C.
 split; Col.
@@ -1174,7 +1174,7 @@ ex_and HH M.
 induction H8.
 exists M.
 assumption.
-spliter.
+分离合取式.
 induction(两点重合的决定性 B C).
 subst C.
 apply 等长的同一性 in H2.
@@ -1194,7 +1194,7 @@ tauto.
 apply False_ind.
 assert(Col A B M).
 unfold 中点 in *.
-spliter.
+分离合取式.
 eapply (共线的传递性2 _ D).
 assumption.
 Col.
@@ -1224,13 +1224,13 @@ clear H15 H16.
 
 assert(B = A /\ D = C).
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply bet_cong_eq.
 
 eBetween.
 eBetween.
 Cong.
-spliter.
+分离合取式.
 subst B.
 tauto.
 
@@ -1238,7 +1238,7 @@ induction H12.
 
 assert(Bet M A C \/ Bet M C A).
 unfold 中点 in *.
-spliter.
+分离合取式.
 eapply (l5_2 B); assumption.
 induction H15.
 
@@ -1254,12 +1254,12 @@ clear H17 H16.
 
 assert(A = C /\ B = D).
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply bet_cong_eq.
 eBetween.
 eBetween.
 Cong.
-spliter.
+分离合取式.
 subst C.
 induction H3.
 tauto.
@@ -1276,12 +1276,12 @@ clear H16 H17.
 
 assert(C = A /\ D = B).
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply bet_cong_eq.
 eBetween.
 eBetween.
 Cong.
-spliter.
+分离合取式.
 subst C.
 induction H3.
 tauto.
@@ -1297,13 +1297,13 @@ clear H15 H16.
 
 assert(A = B /\ C = D).
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply bet_cong_eq.
 
 eBetween.
 eBetween.
 Cong.
-spliter.
+分离合取式.
 subst B.
 tauto.
 Qed.
@@ -1328,7 +1328,7 @@ subst D.
 apply M是AA中点则M与A重合 in H1.
 subst M.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H0.
 contradiction.
 
@@ -1352,7 +1352,7 @@ apply H.
 Col.
 intro.
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H0.
 apply 中间性蕴含共线1 in H1.
 apply H.
@@ -1363,7 +1363,7 @@ ColR.
 ColR.
 exists M.
 unfold 中点 in *.
-spliter.
+分离合取式.
 split.
 apply 中间性蕴含共线1 in H0.
 Col.
@@ -1392,14 +1392,14 @@ subst D.
 apply M是AA中点则M与A重合 in H2.
 subst M.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 repeat split; Col.
 Cong.
 Cong.
 
 assert(Col A B M).
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H1.
 apply 中间性蕴含共线1 in H2.
 ColR.
@@ -1427,7 +1427,7 @@ clear H8 H7.
 repeat split.
 Col.
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H2.
 apply 中间性蕴含共线1 in H1.
 apply 中间性蕴含共线1 in H4.
@@ -1438,14 +1438,14 @@ apply H4.
 apply 中间性的对称性.
 apply H9.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 Cong.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 Cong.
 
 unfold 中点 in *.
-spliter.
+分离合取式.
 eapply (两组连续三点分段等则全体等 _ M _ _ M _).
 eBetween.
 eBetween.
@@ -1461,7 +1461,7 @@ eapply (l5_2 B).
 auto.
 assumption.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 assumption.
 induction H7.
 
@@ -1477,7 +1477,7 @@ assumption.
 clear H9 H8.
 
 unfold 中点 in *.
-spliter.
+分离合取式.
 repeat split.
 assumption.
 apply 中间性蕴含共线1 in H4.
@@ -1511,7 +1511,7 @@ apply H9.
 assumption.
 clear H8 H9.
 unfold 中点 in *.
-spliter.
+分离合取式.
 repeat split.
 assumption.
 apply 中间性蕴含共线1 in H4.
@@ -1547,7 +1547,7 @@ clear H8 H7.
 repeat split.
 Col.
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H2.
 apply 中间性蕴含共线1 in H1.
 apply 中间性蕴含共线1 in H4.
@@ -1559,14 +1559,14 @@ apply H4.
 apply 中间性的对称性.
 apply H9.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 Cong.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 Cong.
 
 unfold 中点 in *.
-spliter.
+分离合取式.
 eapply (两组连续三点分段等则全体等 _ M _ _ M _).
 eBetween.
 eBetween.
@@ -1590,11 +1590,11 @@ eapply (mid_plgf_aux A B C D M); assumption.
 apply plgf_sym.
 induction(两点重合的决定性 A C).
 subst C.
-spliter.
+分离合取式.
 apply M是AA中点则M与A重合 in H1.
 subst M.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 unfold 退化平行四边形.
 repeat split.
 Col.
@@ -1604,11 +1604,11 @@ Cong.
 Cong.
 right.
 auto.
-spliter.
+分离合取式.
 eapply (mid_plgf_aux C D A B M).
 auto.
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H1.
 apply 中间性蕴含共线1 in H2.
 
@@ -1678,7 +1678,7 @@ intros.
 
 induction (两点重合的决定性 A B).
 subst B.
-spliter.
+分离合取式.
 apply M是AA中点则M与A重合 in H0.
 subst M.
 apply 等长的对称性 in H1.
@@ -1693,17 +1693,17 @@ left.
 split.
 assumption.
 subst C.
-spliter.
+分离合取式.
 eapply 中点组的唯一性1.
 apply H0.
 assumption.
 right.
-spliter.
+分离合取式.
 assert(HH:=两中点组全段等长则前半段等长 A M B C M D H0 H4 H1).
 assert(A = C \/ 中点 M A C).
 apply 共线点间距相同要么重合要么中点.
 unfold 中点 in *.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H0.
 apply 中间性蕴含共线1 in H4.
 ColR.
@@ -1738,7 +1738,7 @@ intro.
 assert(HH1:=plgf_mid  A B D C H1).
 
 unfold 退化平行四边形 in *.
-spliter.
+分离合取式.
 ex_and HH0 M.
 
 assert(A = B /\ C = D \/ A = D /\ C = B).
@@ -1747,9 +1747,9 @@ Col.
 split; assumption.
 Cong.
 induction H12.
-spliter.
+分离合取式.
 contradiction.
-spliter.
+分离合取式.
 subst D.
 subst C.
 induction H5; tauto.
@@ -1757,16 +1757,16 @@ induction H5; tauto.
 ex_and HH0 M.
 unfold 退化平行四边形 in *.
 intro.
-spliter.
+分离合取式.
 assert(A = B /\ C = D \/ A = D /\ C = B).
 apply(中点蕴含等长_uniqueness A C B D M).
 Col.
 split; assumption.
 Cong.
 induction H12.
-spliter.
+分离合取式.
 contradiction.
-spliter.
+分离合取式.
 subst D.
 subst C.
 induction H7; tauto.
@@ -1779,7 +1779,7 @@ Lemma plgf_cong :
 Proof.
 intros.
 unfold 退化平行四边形 in H.
-spliter.
+分离合取式.
 split; Cong.
 Qed.
 
@@ -1787,7 +1787,7 @@ Lemma plg_to_parallelogram : forall A B C D, Plg A B C D -> 平行四边形 A B 
 Proof.
 intros.
 unfold Plg in H.
-spliter.
+分离合取式.
 ex_and H0 M.
 eapply (mid_plg _ _ _ _ M).
 induction H;[left|right]; assumption.
@@ -1802,7 +1802,7 @@ Lemma plgs_one_side :
 Proof.
 intros.
 unfold 严格平行四边形 in H.
-spliter.
+分离合取式.
 induction H0.
 split.
 apply l12_6.
@@ -1811,9 +1811,9 @@ apply par_strict_symmetry in H0.
 apply l12_6.
 assumption.
 apply False_ind.
-spliter.
+分离合取式.
 unfold TS in H.
-spliter.
+分离合取式.
 apply H5.
 Col.
 Qed.
@@ -1824,7 +1824,7 @@ Lemma parallelogram_strict_not_col : forall A B C D,
 Proof.
 unfold 严格平行四边形.
 intros.
-spliter.
+分离合取式.
 apply two_sides_not_col in H.
 Col.
 Qed.
@@ -1846,7 +1846,7 @@ Lemma parallelogram_strict_not_col_3 : forall A B C D,
 Proof.
 unfold 严格平行四边形, TS.
 intros.
-spliter.
+分离合取式.
 Col.
 Qed.
 
@@ -1868,8 +1868,8 @@ Lemma plgs__pars :
 Proof.
 intros.
 assert (HH := H).
-unfold 严格平行四边形 in HH; spliter.
-destruct H1; auto; spliter.
+unfold 严格平行四边形 in HH; 分离合取式.
+destruct H1; auto; 分离合取式.
 apply parallelogram_strict_not_col_2 in H.
 contradiction.
 Qed.
@@ -1880,7 +1880,7 @@ Lemma plgs_sym :
   严格平行四边形 C D A B.
 Proof.
 unfold 严格平行四边形.
-intros; spliter.
+intros; 分离合取式.
 repeat (split; finish).
 Qed.
 
@@ -1957,10 +1957,10 @@ Proof.
 intros.
 intro.
 unfold 严格平行四边形 in H0.
-spliter.
+分离合取式.
 unfold TS in H0.
 repeat split.
-spliter.
+分离合取式.
 apply H0.
 Col.
 Qed.
@@ -1984,7 +1984,7 @@ intros.
 
 apply plg_col_plgf in H.
 unfold 退化平行四边形 in H.
-spliter.
+分离合取式.
 apply 中间性的对称性.
 apply (col_cong2_bet1 B).
 Col.
@@ -2011,7 +2011,7 @@ Lemma plgf_not_point : forall A B, 退化平行四边形 A A B B -> A <> B.
 Proof.
 intros.
 unfold 退化平行四边形 in H.
-spliter.
+分离合取式.
 intro.
 subst B.
 induction H3; tauto.
@@ -2021,7 +2021,7 @@ Lemma plgf_trivial_neq : forall A C D, 退化平行四边形 A A C D -> C = D /\
 Proof.
 intros.
 unfold 退化平行四边形 in H.
-spliter.
+分离合取式.
 apply 等长的对称性 in H1.
 apply 等长的同一性 in H1.
 subst D.
@@ -2040,7 +2040,7 @@ right.
 assumption.
 left.
 unfold 退化平行四边形 in *.
-spliter.
+分离合取式.
 repeat split; Col; Cong.
 Qed.
 
@@ -2059,7 +2059,7 @@ Lemma plgf3_mid : forall A B C, 退化平行四边形 A B A C -> 中点 A B C.
 Proof.
 intros.
 unfold 退化平行四边形 in H.
-spliter.
+分离合取式.
 
 assert(B=C \/ 中点 A B C).
 eapply 共线点间距相同要么重合要么中点.
@@ -2101,7 +2101,7 @@ ColR.
 ColR.
 intro.
 unfold 严格平行 in H6.
-spliter.
+分离合取式.
 apply H7.
 exists A.
 split; Col.
@@ -2112,7 +2112,7 @@ induction H7.
 
 eapply 中点蕴含等长_uniqueness.
 Col.
-spliter.
+分离合取式.
 split.
 apply H6.
 apply M是AB中点则M是BA中点.
@@ -2127,9 +2127,9 @@ Cong.
 
 assert(HH:= 中点蕴含等长_uniqueness A D C B M H7 H6 H8).
 induction HH.
-spliter.
+分离合取式.
 contradiction.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -2165,7 +2165,7 @@ right.
 repeat split; ColR.
 intro.
 unfold 严格平行 in H6.
-spliter.
+分离合取式.
 apply H7.
 exists C.
 split; Col.
@@ -2180,12 +2180,12 @@ Col.
 assumption.
 assumption.
 induction H5.
-spliter.
+分离合取式.
 subst B.
 subst D.
 exists M.
 tauto.
-spliter.
+分离合取式.
 contradiction.
 exists M.
 assumption.
@@ -2222,7 +2222,7 @@ right.
 repeat split; ColR.
 intro.
 unfold 严格平行 in H6.
-spliter.
+分离合取式.
 apply H7.
 exists C.
 split; Col.
@@ -2239,12 +2239,12 @@ Col.
 assumption.
 assumption.
 induction H5.
-spliter.
+分离合取式.
 subst B.
 subst D.
 exists M.
 tauto.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -2267,7 +2267,7 @@ intros.
 intro.
 apply H.
 unfold 中点 in H0.
-spliter.
+分离合取式.
 assert(A <> B).
 intro.
 subst B.
@@ -2321,9 +2321,9 @@ intros.
 split.
 assumption.
 unfold 严格平行四边形 in H.
-spliter.
+分离合取式.
 unfold TS in H.
-spliter.
+分离合取式.
 repeat split; intro.
 subst B.
 apply H.
@@ -2361,12 +2361,12 @@ intros.
 
 assert(X <> Y /\ ~Col A X Y /\ ~Col B X Y).
 unfold TS in H0.
-spliter.
+分离合取式.
 repeat split; auto.
 intro.
 subst Y.
 Col.
-spliter.
+分离合取式.
 
 assert(A <> M).
 intro.
@@ -2404,7 +2404,7 @@ repeat split; auto.
 intro.
 apply H4.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H1.
 
 assert(Col M A' X).
@@ -2426,7 +2426,7 @@ repeat split; auto.
 intro.
 apply H5.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H2.
 
 assert(Col M B' X).
@@ -2464,12 +2464,12 @@ unfold OS in H0.
 ex_and H0 P.
 unfold TS in H0.
 unfold TS in H3.
-spliter.
+分离合取式.
 repeat split; auto.
 intro.
 subst Y.
 Col.
-spliter.
+分离合取式.
 
 assert(A <> M).
 intro.
@@ -2507,7 +2507,7 @@ repeat split; auto.
 intro.
 apply H4.
 unfold 中点 in H1.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H1.
 
 assert(Col M A' X).
@@ -2529,7 +2529,7 @@ repeat split; auto.
 intro.
 apply H5.
 unfold 中点 in H2.
-spliter.
+分离合取式.
 apply 中间性蕴含共线1 in H2.
 
 assert(Col M B' X).
@@ -2564,7 +2564,7 @@ Lemma plgf_bet : forall A B A' B', 退化平行四边形 A B B' A'
 Proof.
 intros.
 induction H.
-spliter.
+分离合取式.
 
 induction(两点重合的决定性 A B).
 subst B.
@@ -2612,7 +2612,7 @@ eapply (中间性的外传递性1 _ A); auto.
 assert(B = B' /\ A' = A).
 apply(bet_cong_eq A' A B B' H0 H8).
 Cong.
-spliter.
+分离合取式.
 subst B'.
 subst A'.
 right;left.
@@ -2660,7 +2660,7 @@ assumption.
 
 assert(A = B /\ B' = A').
 apply(bet_cong_eq); Between; Cong.
-spliter.
+分离合取式.
 contradiction.
 assumption.
 Qed.
@@ -2678,7 +2678,7 @@ exists D.
 induction H1.
 assumption.
 unfold 退化平行四边形 in H1.
-spliter.
+分离合取式.
 contradiction.
 Qed.
 
@@ -2713,7 +2713,7 @@ Proof.
 intros.
 unfold 长方形.
 intro.
-spliter.
+分离合取式.
 unfold Plg in H.
 intuition.
 Qed.
@@ -2724,7 +2724,7 @@ Proof.
 intros.
 unfold 正方形.
 intro.
-spliter.
+分离合取式.
 firstorder using 长方形_not_triv.
 Qed.
 
@@ -2734,7 +2734,7 @@ Proof.
 intros.
 unfold 正方形.
 intro.
-spliter.
+分离合取式.
 treat_equalities.
 firstorder using 长方形_not_triv.
 Qed.
@@ -2745,7 +2745,7 @@ Proof.
 intros.
 unfold 正方形.
 intro.
-spliter.
+分离合取式.
 firstorder using 长方形_not_triv_2.
 Qed.
 

@@ -12,9 +12,9 @@ Lemma lemma_ray3 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists E, (BetS E B D /\ BetS E B C)) by (conclude_def Out );destruct Tf as [E];spliter.
+assert (Tf:exists E, (BetS E B D /\ BetS E B C)) by (conclude_def Out );destruct Tf as [E];分离合取式.
 rename_H H;let Tf:=fresh in
-assert (Tf:exists H, (BetS H B V /\ BetS H B C)) by (conclude_def Out );destruct Tf as [H];spliter.
+assert (Tf:exists H, (BetS H B V /\ BetS H B C)) by (conclude_def Out );destruct Tf as [H];分离合取式.
 assert (~ ~ BetS E B V).
  {
  intro.

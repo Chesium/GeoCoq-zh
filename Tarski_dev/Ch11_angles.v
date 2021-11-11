@@ -13,7 +13,7 @@ Lemma l11_3 : forall A B C D E F,
 Proof.
     intros.
     unfold 等角 in H.
-    spliter.
+    分离合取式.
     ex_and H3 A'.
     ex_and H4 C'.
     ex_and H3 D'.
@@ -37,7 +37,7 @@ Proof.
     intros.
     assert (A <> B).
       unfold Out in H.
-      spliter.
+      分离合取式.
       assumption.
     assert(Cong B A0 E D0).
       apply 等长的右交换性.
@@ -45,7 +45,7 @@ Proof.
     split.
       apply H7.
     unfold Out in *.
-    spliter.
+    分离合取式.
     induction H9; induction H11.
       assert(Bet B A' A0 \/ Bet B A0 A').
         eauto using l5_1.
@@ -136,7 +136,7 @@ Proof.
     unfold Out in HH0.
     unfold Out in HH1.
     unfold Out in HH2.
-    spliter.
+    分离合取式.
     repeat split;try assumption.
     repeat split;try assumption.
     exists A0.
@@ -145,12 +145,12 @@ Proof.
     exists F0.
     repeat split; try (assumption).
     unfold 三角形全等 in H3.
-    spliter.
+    分离合取式.
     assert(Cong B A0 E D0 /\ Cong A' A0 D' D0).
       apply l11_aux with A D; Out; Cong.
     assert(Cong B C0 E F0 /\ Cong C' C0 F' F0).
       apply l11_aux with C F; Out.
-    spliter.
+    分离合取式.
     assert (三角形全等 B A' A0 E D' D0)
       by (repeat split;Cong).
     assert (三角形全等 B C' C0 E F' F0)
@@ -171,7 +171,7 @@ Proof.
     assert (HH:=H).
     apply l11_3 in HH.
     unfold 等角 in H.
-    spliter.
+    分离合取式.
     repeat split; try assumption.
     clear H3.
     intros.
@@ -180,7 +180,7 @@ Proof.
     ex_and H10 D0.
     ex_and H4 F0.
     unfold 三角形全等 in H13.
-    spliter.
+    分离合取式.
     assert (Out B A' A0).
       eapply l6_7.
         apply H3.
@@ -210,7 +210,7 @@ Proof.
       intro.
       subst A0.
       unfold Out in H4.
-      spliter.
+      分离合取式.
       absurde.
     assert (Out B C' C0).
       eapply l6_7.
@@ -237,7 +237,7 @@ Lemma l11_4_2 : forall A B C D E F,
   Cong B A' E D' /\ Cong B C' E F' -> Cong A' C' D' F')) ->  等角 A B C D E F.
 Proof.
     intros.
-    spliter.
+    分离合取式.
     apply l11_3_bis.
     prolong B A A' E D.
     prolong B C C' E F.
@@ -274,7 +274,7 @@ Lemma 等角的对称性 : forall A B C A' B' C', 等角 A B C A' B' C' -> 等�
 Proof.
     unfold 等角.
     intros.
-    spliter.
+    分离合取式.
     ex_and H3 A0.
     ex_and H4 C0.
     ex_and H3 D0.
@@ -293,12 +293,12 @@ Lemma l11_10 : forall A B C D E F A' C' D' F',
 Proof.
     intros.
     apply l11_4_1 in H.
-    spliter.
+    分离合取式.
     apply l11_4_2.
     统计不重合点.
     repeat split; auto.
     intros.
-    spliter.
+    分离合取式.
     apply H7.
     统计不重合点.
     repeat split;Cong.
@@ -321,7 +321,7 @@ Lemma 三角形全等推点不重合_AB : forall A B C A' B' C',
 Proof.
 unfold 三角形全等 in *.
 intros.
-spliter.
+分离合取式.
 统计不重合点.
 auto.
 Qed.
@@ -331,7 +331,7 @@ Lemma 三角形全等推点不重合_BC: forall A B C A' B' C',
 Proof.
 unfold 三角形全等 in *.
 intros.
-spliter.
+分离合取式.
 统计不重合点.
 auto.
 Qed.
@@ -356,13 +356,13 @@ Lemma 三角形全等推角等2 : forall A B C A' B' C' A'' B'' C'',
 Proof.
     intros.
     unfold 等角 in H0.
-    spliter.
+    分离合取式.
     ex_and H4 A0.
     ex_and H5 C0.
     ex_and H4 A2.
     ex_and H5 C2.
     unfold 三角形全等 in H.
-    spliter.
+    分离合取式.
     unfold 等角.
     统计不重合点.
     repeat split; auto.
@@ -396,7 +396,7 @@ Lemma 角等推AB不重合 : forall A B C A' B' C', 等角 A B C A' B' C' -> A <
 Proof.
     intros.
     unfold 等角 in H.
-    spliter.
+    分离合取式.
     assumption.
 Qed.
 
@@ -404,7 +404,7 @@ Lemma 角等推CB不重合 : forall A B C A' B' C', 等角 A B C A' B' C' -> C <
 Proof.
     intros.
     unfold 等角 in H.
-    spliter.
+    分离合取式.
     assumption.
 Qed.
 
@@ -427,7 +427,7 @@ Proof.
     intros.
     assert (HH:=H).
     unfold 等角 in H.
-    spliter.
+    分离合取式.
     ex_and H4 A0.
     ex_and H5 C0.
     ex_and H4 A1.
@@ -435,9 +435,9 @@ Proof.
     统计不重合点.
     assert(A'' <> B'' /\ C'' <> B'').
       unfold 等角 in H0.
-      spliter.
+      分离合取式.
       split; assumption.
-    spliter.
+    分离合取式.
     assert(等角 A1 B' C1 A'' B'' C'')
       by (apply l11_10 with A' C' A'' C'';Out).
     assert (等角 A0 B C0 A' B' C')
@@ -455,7 +455,7 @@ Proof.
     assert (Cong A0 C0 A1 C1).
     {
       apply (l11_4_1) in H24.
-      spliter.
+      分离合取式.
       apply H30.
       repeat split;Between.
     }
@@ -503,7 +503,7 @@ Lemma l11_13 : forall A B C D E F A' D',
 Proof.
     intros.
     unfold 等角 in H.
-    spliter.
+    分离合取式.
     ex_and H7 A''.
     ex_and H8 C''.
     ex_and H7 D''.
@@ -563,7 +563,7 @@ Proof.
     apply 角等的传递性 with D E F.
     apply H.
     unfold 等角 in H.
-    spliter.
+    分离合取式.
     apply 角ABC等于角CBA;auto.
 Qed.
 
@@ -735,7 +735,7 @@ Lemma l11_17_等于直角的角是直角 : forall A B C A' B' C',
 Proof.
     intros.
     unfold 等角 in H0.
-    spliter.
+    分离合取式.
     ex_and H4 A0.
     ex_and H5 C0.
     ex_and H4 A1.
@@ -814,7 +814,7 @@ Lemma l11_18_1 : forall A B C D,
   Bet C B D -> B <> C -> B <> D -> A <> B -> Per A B C -> 等角 A B C A B D.
 Proof.
     intros.
-    spliter.
+    分离合取式.
     assert (Per A B D).
       eapply 直角边共线点也构成直角2.
         apply H0.
@@ -836,7 +836,7 @@ Lemma l11_18_2 : forall A B C D,
 Proof.
     intros.
     unfold 等角 in H0.
-    spliter.
+    分离合取式.
     ex_and H4 A0.
     ex_and H5 C0.
     ex_and H4 A1.
@@ -896,10 +896,10 @@ Lemma cong3_preserves_out : forall A B C A' B' C',
 Proof.
     intros.
     unfold Out in *.
-    spliter.
+    分离合取式.
     assert(HH:=H0).
     unfold 三角形全等 in H0.
-    spliter.
+    分离合取式.
     repeat split.
       intro.
       subst A'.
@@ -925,7 +925,7 @@ Lemma l11_21_a : forall A B C A' B' C', Out B A C -> 等角 A B C A' B' C' -> Ou
 Proof.
     intros.
     unfold 等角 in H0.
-    spliter.
+    分离合取式.
     ex_and H4 A0.
     ex_and H5 C0.
     ex_and H4 A1.
@@ -944,7 +944,7 @@ Proof.
         subst C.
         absurde.
       unfold Out in H.
-      spliter.
+      分离合取式.
       induction H14.
         apply l5_1 with A; auto.
         eapply 中间性的交换传递性2.
@@ -992,7 +992,7 @@ Proof.
         intro.
         subst A1.
         unfold Out in H14.
-        spliter.
+        分离合取式.
         absurde.
         assumption.
       right.
@@ -1004,7 +1004,7 @@ Proof.
       intro.
       subst C1.
       unfold Out in H14.
-      spliter.
+      分离合取式.
       absurde.
       assumption.
     right.
@@ -1024,22 +1024,22 @@ Proof.
         intro.
         treat_equalities.
         unfold Out in H.
-        spliter.
+        分离合取式.
         absurde.
         unfold Out in H.
-        spliter.
+        分离合取式.
         auto.
         intro.
         treat_equalities.
         unfold Out in H0.
-        spliter.
+        分离合取式.
         absurde.
         intro.
         unfold Out in H0.
-        spliter.
+        分离合取式.
         auto.
       unfold Out in H.
-      spliter.
+      分离合取式.
       induction H10.
         eapply 中间性的内传递性1.
           apply 中间性的对称性.
@@ -1051,10 +1051,10 @@ Proof.
         assumption.
       auto.
       unfold Out in H.
-      spliter.
+      分离合取式.
       auto.
       unfold Out in H0.
-      spliter.
+      分离合取式.
       induction H10.
         eapply 中间性的内传递性1.
           apply 中间性的对称性.
@@ -1066,7 +1066,7 @@ Proof.
         assumption.
       auto.
     unfold Out in H0.
-    spliter.
+    分离合取式.
     auto.
 Qed.
 
@@ -1075,7 +1075,7 @@ Lemma conga_cop__or_out_ts : forall A B C C', 共面 A B C C' -> 等角 A B C A 
 Proof.
     intros.
     unfold 等角 in H0.
-    spliter.
+    分离合取式.
     ex_and H4 A0.
     ex_and H5 C0.
     ex_and H4 A1.
@@ -1323,7 +1323,7 @@ Lemma 等角两边等长则端点间距相等 : forall A B C A' B' C',
 Proof.
     intros.
     unfold 等角 in H.
-    spliter.
+    分离合取式.
     ex_and H5 A0.
     ex_and H6 C0.
     ex_and H5 A1.
@@ -1465,14 +1465,14 @@ Proof.
           intro.
           subst C0'.
           unfold Out in H5.
-          spliter.
+          分离合取式.
           absurde.
           intro.
           subst C0.
           unfold Perp in H2.
           ex_and H2 X.
           unfold 垂直于 in H7.
-          spliter.
+          分离合取式.
           absurde.
           apply ABB型共线.
         intro.
@@ -1482,7 +1482,7 @@ Proof.
           intro.
           subst C0'.
           unfold Out in H5.
-          spliter.
+          分离合取式.
           absurde.
           assumption.
         apply out_col.
@@ -1504,7 +1504,7 @@ Proof.
               intro.
               subst C0.
               apply 垂直推出不重合 in H2.
-              spliter.
+              分离合取式.
               absurde.
               apply H2.
             assumption.
@@ -1545,7 +1545,7 @@ Proof.
         apply ABA直角则A与B重合 in H7.
         subst C0'.
         unfold Out in H5.
-        spliter.
+        分离合取式.
         absurde.
       apply invert_one_side.
       apply col_one_side with C0'.
@@ -1571,7 +1571,7 @@ Proof.
           intro.
           subst C0.
           apply 垂直推出不重合 in H2.
-          spliter.
+          分离合取式.
           absurde.
           apply ABB型共线.
         intro.
@@ -1603,7 +1603,7 @@ Proof.
                 intro.
                 subst C0.
                 apply 垂直推出不重合 in H2.
-                spliter.
+                分离合取式.
                 absurde.
                 apply H2.
               assumption.
@@ -1655,7 +1655,7 @@ Lemma 给定角一边可作出与给定点同侧一点构成等角_可平角 : f
  exists C', 等角 A B C A' B' C' /\ (OS A' B' C' P \/ Col A' B' C').
 Proof.
     intros.
-    spliter.
+    分离合取式.
     induction (共线的决定性 A B C).
       induction (out_dec B A C).
         exists A'.
@@ -1748,7 +1748,7 @@ Proof.
       apply invert_one_side.
       assumption.
     intros.
-    spliter.
+    分离合取式.
     apply (conga_os__out D).
       apply 角等的传递性 with A B C.
         apply 等角的对称性.
@@ -1774,7 +1774,7 @@ Proof.
       unfold OS in *.
       decompose [ex and] H1.
       unfold TS in *.
-      spliter.
+      分离合取式.
       assert (Col B A B) by Col.
       intuition.
     induction (共线的决定性 A B P2).
@@ -1788,7 +1788,7 @@ Proof.
         unfold OS in *.
         decompose [ex and] H1.
         unfold TS in *.
-        spliter.
+        分离合取式.
         assert (Col B A B) by Col.
         intuition.
       Col.
@@ -1819,14 +1819,14 @@ Lemma l11_22_bet :
   Bet A' B' C'.
 Proof.
     intros.
-    spliter.
+    分离合取式.
     prolong A' B' C'' B C.
     assert(等角 C B P C'' B' P').
       eapply l11_13.
         apply H1.
         assumption.
         unfold 等角 in H2.
-        spliter.
+        分离合取式.
         assumption.
         assumption.
       intro.
@@ -1835,7 +1835,7 @@ Proof.
       apply 等长的同一性 in H4.
       subst C.
       unfold 等角 in H2.
-      spliter.
+      分离合取式.
       absurde.
     assert (等角 C'' B' P' C' B' P').
       eapply 角等的传递性.
@@ -1847,14 +1847,14 @@ Proof.
       apply conga_cop__or_out_ts.
       apply coplanar_perm_2, col_cop__cop with A'; Col; Cop.
       apply ts_distincts in H0.
-      spliter.
+      分离合取式.
       auto.
       apply 等角的交换性.
       apply 等角的对称性.
       assumption.
     induction H7.
       unfold Out in H7.
-      spliter.
+      分离合取式.
       induction H9.
         eapply 中间性的内传递性1.
           apply H3.
@@ -1865,7 +1865,7 @@ Proof.
       auto.
     induction (共线的决定性 C' B' P').
       unfold TS in H7.
-      spliter.
+      分离合取式.
       apply False_ind.
       apply H7.
       apply 等价共线ACB.
@@ -1879,14 +1879,14 @@ Proof.
       unfold TS.
       repeat split.
         unfold TS in H0.
-        spliter.
+        分离合取式.
         intro.
         apply H0.
         apply 等价共线ACB.
         assumption.
         intro.
         unfold TS in H7.
-        spliter.
+        分离合取式.
         apply H11.
         apply 等价共线ACB.
         assumption.
@@ -1913,14 +1913,14 @@ Lemma l11_22a :
  等角 A B C A' B' C'.
 Proof.
     intros.
-    spliter.
+    分离合取式.
     assert (A <> B /\ A' <> B' /\ P <> B /\ P' <> B' /\ C <> B /\ C' <> B').
       unfold 等角 in *.
-      spliter.
+      分离合取式.
       repeat split; assumption.
     assert(A <> C /\ A' <> C').
       unfold TS in *.
-      spliter.
+      分离合取式.
       ex_and H12 T.
       ex_and H10 T'.
       split.
@@ -1934,15 +1934,15 @@ Proof.
       apply 中间性的同一律 in H14.
       subst T'.
       contradiction.
-    spliter.
+    分离合取式.
     assert(exists A'', Out B' A' A'' /\ Cong B' A'' B A).
       eapply 由一点往一方向构造等长线段_3; auto.
     ex_and H11 A''.
     unfold TS in H.
     assert (~ Col A B P).
-      spliter.
+      分离合取式.
       assumption.
-    spliter.
+    分离合取式.
     ex_and H15 T.
     induction (两点重合的决定性 B T).
       subst T.
@@ -2024,7 +2024,7 @@ Proof.
         auto.
       assert(Cong A T A'' T'').
         assert(HH:= l11_4_1 A B T A'' B' T'' H27).
-        spliter.
+        分离合取式.
         apply H32.
         split.
           apply out_trivial.
@@ -2144,16 +2144,16 @@ Proof.
           intro.
           unfold TS in H0.
           assert (~ Col A' B' P').
-            spliter.
+            分离合取式.
             assumption.
-          spliter.
+          分离合取式.
           apply H39.
           apply 等价共线CAB.
           eapply (共线的传递性2 _ A'').
             intro.
             subst A''.
             unfold Out in H11.
-            spliter.
+            分离合取式.
             absurde.
             apply 等价共线BAC.
             assumption.
@@ -2162,7 +2162,7 @@ Proof.
           assumption.
           intro.
           unfold TS in H35.
-          spliter.
+          分离合取式.
           apply H35.
           assumption.
         exists T''.
@@ -2228,7 +2228,7 @@ Proof.
         auto.
       assert(Cong A T A'' T'').
         assert(HH:= l11_4_1 A B T A'' B' T'' H27).
-        spliter.
+        分离合取式.
         apply H32.
         split.
           apply out_trivial.
@@ -2344,12 +2344,12 @@ Proof.
         repeat split.
           intro.
           unfold TS in H34.
-          spliter.
+          分离合取式.
           apply H34.
           assumption.
           intro.
           unfold TS in H33.
-          spliter.
+          分离合取式.
           apply H37.
           apply 等价共线ACB.
           assumption.
@@ -2372,7 +2372,7 @@ Lemma l11_22b :
  等角 A B C A' B' C'.
 Proof.
     intros.
-    spliter.
+    分离合取式.
     prolong A B D A B.
     prolong A' B' D' A' B'.
     assert(等角 D B P D' B' P').
@@ -2385,7 +2385,7 @@ Proof.
         apply 等长的同一性 in H4.
         subst A.
         unfold 等角 in H1.
-        spliter.
+        分离合取式.
         absurde.
         assumption.
       intro.
@@ -2394,7 +2394,7 @@ Proof.
       apply 等长的同一性 in H6.
       subst A'.
       unfold 等角 in H1.
-      spliter.
+      分离合取式.
       absurde.
     assert (等角 D B C D' B' C').
       eapply (l11_22a _ _ _ P _ _ _ P').
@@ -2405,7 +2405,7 @@ Proof.
         ex_and H T.
         unfold TS in H.
         unfold TS in H8.
-        spliter.
+        分离合取式.
         repeat split.
           assumption.
           intro.
@@ -2415,7 +2415,7 @@ Proof.
             intro.
             subst D.
             unfold 等角 in H7.
-            spliter.
+            分离合取式.
             absurde.
             apply 等价共线BAC.
             assumption.
@@ -2433,7 +2433,7 @@ Proof.
         ex_and H0 T'.
         unfold TS in H0.
         unfold TS in H8.
-        spliter.
+        分离合取式.
         repeat split.
           assumption.
           intro.
@@ -2443,7 +2443,7 @@ Proof.
             intro.
             subst D'.
             unfold 等角 in H7.
-            spliter.
+            分离合取式.
             absurde.
             apply 等价共线BAC.
             assumption.
@@ -2462,14 +2462,14 @@ Proof.
       intro.
       subst A.
       unfold 等角 in H1.
-      spliter.
+      分离合取式.
       absurde.
       apply 中间性的对称性.
       assumption.
     intro.
     subst A'.
     unfold 等角 in H1.
-    spliter.
+    分离合取式.
     absurde.
 Qed.
 
@@ -2481,7 +2481,7 @@ Lemma l11_22 :
  等角 A B C A' B' C'.
 Proof.
     intros.
-    spliter.
+    分离合取式.
     induction H.
       apply (l11_22a _ _ _ P _ _ _ P');tauto.
     apply (l11_22b _ _ _ P _ _ _ P');tauto.
@@ -2493,7 +2493,7 @@ Lemma l11_24_在角内的对称性 :
 Proof.
     unfold 在角内.
     intros.
-    spliter.
+    分离合取式.
     ex_and H2 X.
     repeat split; try assumption.
     exists X.
@@ -2579,7 +2579,7 @@ Lemma 角端点在角内点与顶点连线两侧 :
 Proof.
     intros.
     unfold 在角内 in H1.
-    spliter.
+    分离合取式.
     ex_and H4 X.
     induction H5.
       subst X.
@@ -2622,7 +2622,7 @@ Lemma in_angle_out :
 Proof.
     intros.
     unfold 在角内 in H0.
-    spliter.
+    分离合取式.
     ex_and H3 X.
     induction H4.
       subst X.
@@ -2631,7 +2631,7 @@ Proof.
       apply not_bet_and_out in H4.
       contradiction.
     unfold Out in *.
-    spliter.
+    分离合取式.
     induction H8; induction H6.
       repeat split; try assumption.
       left.
@@ -2678,7 +2678,7 @@ Lemma col_in_angle_out :
 Proof.
     intros.
     unfold 在角内 in H1.
-    spliter.
+    分离合取式.
     ex_and H4 X.
     induction H5.
       subst X.
@@ -2692,7 +2692,7 @@ Proof.
           assumption.
           apply H5.
         assumption.
-      spliter.
+      分离合取式.
       assumption.
     assert (Col B A X).
       apply 共线的传递性2 with P; Col.
@@ -2708,7 +2708,7 @@ Proof.
     intros.
     unfold Out in H1.
     unfold 在角内 in H.
-    spliter.
+    分离合取式.
     repeat  split ; try assumption.
     induction H3.
       ex_and H6 X.
@@ -2726,7 +2726,7 @@ Proof.
         subst B.
         contradiction.
       unfold Out in *.
-      spliter.
+      分离合取式.
       repeat split.
         intro.
         subst T.
@@ -2764,7 +2764,7 @@ Proof.
       assumption.
     right.
     unfold Out in H7.
-    spliter.
+    分离合取式.
     repeat split.
       intro.
       subst T.
@@ -2791,13 +2791,13 @@ Proof.
     induction (中间性的决定性 A B C).
       repeat split.
         unfold Out in H0.
-        spliter.
+        分离合取式.
         assumption.
         unfold Out in H1.
-        spliter.
+        分离合取式.
         assumption.
         unfold Out in H2.
-        spliter.
+        分离合取式.
         assumption.
       exists B.
       split.
@@ -2826,12 +2826,12 @@ Proof.
           apply H5.
           apply out_trivial.
           unfold 在角内 in H.
-          spliter.
+          分离合取式.
           auto.
         assumption.
       assumption.
     unfold 在角内 in H5.
-    spliter.
+    分离合取式.
     ex_and H8 X.
     induction H9.
       subst X.
@@ -2847,7 +2847,7 @@ Proof.
       intro.
       subst P'.
       unfold Out in H2.
-      spliter.
+      分离合取式.
       absurde.
     exists X.
     split.
@@ -2862,7 +2862,7 @@ Qed.
 Lemma 在角内推出点不重合 : forall A B C P, 在角内 P A B C ->
   A <> B /\ C <> B /\ P <> B.
 Proof.
-  intros; unfold 在角内 in *; spliter; repeat split; assumption.
+  intros; unfold 在角内 in *; 分离合取式; repeat split; assumption.
 Qed.
 
 Lemma 由一点构造等长线段 : forall A B A', exists B', Cong A' B' A B.
@@ -2915,7 +2915,7 @@ Proof.
     induction (两点重合的决定性 A C).
       subst C.
       unfold 三角形全等 in H.
-      spliter.
+      分离合取式.
       apply 等长的对称性 in H1.
       apply 等长的同一性 in H1.
       subst C'.
@@ -2956,7 +2956,7 @@ Proof.
       assert(exists D', Out A' D'' D' /\ Cong A' D' A D).
         apply 由一点往一方向构造等长线段_3.
           unfold 等角 in H6.
-          spliter.
+          分离合取式.
           auto.
         assumption.
       ex_and H5 D'.
@@ -2969,7 +2969,7 @@ Proof.
             intro.
             subst B'.
             unfold 等角 in H6.
-            spliter.
+            分离合取式.
             absurde.
           apply l6_6.
           assumption.
@@ -2979,7 +2979,7 @@ Proof.
         Cong.
       Cong.
     unfold 三角形全等 in H.
-    spliter.
+    分离合取式.
     (*****************)
     induction(两点重合的决定性 A D).
       subst D.
@@ -3016,7 +3016,7 @@ Proof.
         assumption.
       ex_and H5 D'.
       unfold 三角形全等 in H6.
-      spliter.
+      分离合取式.
       exists D'.
       repeat split.
         assumption.
@@ -3064,7 +3064,7 @@ Lemma bet_conga__bet :
 Proof.
     intros.
     unfold 等角 in H0.
-    spliter.
+    分离合取式.
     ex_and H4 A0.
     ex_and H5 C0.
     ex_and H4 A1.
@@ -3116,7 +3116,7 @@ Lemma 角内点和一端点在角另一边同侧 :
 Proof.
     intros.
     unfold 在角内 in H1.
-    spliter.
+    分离合取式.
     ex_and H4 X.
     induction H5.
       subst X.
@@ -3177,7 +3177,7 @@ Proof.
         intro.
         subst C'.
         unfold TS in H8.
-        spliter.
+        分离合取式.
         apply H10.
         apply AAB型共线.
         apply 等价共线BAC.
@@ -3197,7 +3197,7 @@ Lemma 角内两点在角一边同侧 : forall A B C P Q , ~ Col A B C -> ~ Col A
 Proof.
     intros.
     unfold 在角内 in *.
-    spliter.
+    分离合取式.
     ex_and H9 P'.
     ex_and H6 Q'.
     induction H10.
@@ -3224,7 +3224,7 @@ Proof.
         apply H0.
         assert(P' <> B).
           unfold Out in H10.
-          spliter.
+          分离合取式.
           assumption.
         apply out_col in H10.
         ColR.
@@ -3248,7 +3248,7 @@ Proof.
         apply H1.
         assert(Q' <> B).
           unfold Out in H11.
-          spliter.
+          分离合取式.
           assumption.
         apply out_col in H11.
         ColR.
@@ -3325,10 +3325,10 @@ Proof.
           apply l6_6.
           assumption.
           unfold 等角 in H0.
-          spliter.
+          分离合取式.
           assumption.
       unfold Out in H1.
-      spliter.
+      分离合取式.
       unfold Col.
       induction H3.
         right; right.
@@ -3341,11 +3341,11 @@ Proof.
       apply 中间性的对称性 in H.
       apply bet_out.
         unfold 等角 in H0.
-        spliter.
+        分离合取式.
         auto.
         assumption.
     unfold Out in H1.
-    spliter.
+    分离合取式.
     unfold Col.
     induction H3.
       right; right.
@@ -3404,17 +3404,17 @@ Proof.
     assert(E <> D /\ B <> A /\ E <> F /\ E <> P /\ B <> C).
       unfold 等角 in *.
       unfold 在角内 in H.
-      spliter.
+      分离合取式.
       repeat split.
         auto.
         auto.
         auto.
         auto.
       auto.
-    spliter.
+    分离合取式.
     assert(A <> B /\ C <> B).
       intuition.
-    spliter.
+    分离合取式.
     assert(HH:=or_bet_out A B C).
     induction HH.
       assert(Bet D E P).
@@ -3426,7 +3426,7 @@ Proof.
         apply C在角ABC内; assumption.
       assert(HH:=H).
       unfold 在角内 in HH.
-      spliter.
+      分离合取式.
       ex_and H13 X.
       induction H14.
         subst X.
@@ -3449,7 +3449,7 @@ Proof.
         assumption.
       assert(Out E P F).
         unfold Out in H14.
-        spliter.
+        分离合取式.
         induction H16.
           assert( Bet D X P).
             eapply 中间性的内传递性2.
@@ -3510,7 +3510,7 @@ Proof.
           intro.
           subst Q.
           unfold 等角 in H10.
-          spliter.
+          分离合取式.
           intuition.
           auto.
         exists A.
@@ -3522,7 +3522,7 @@ Proof.
       assumption.
     assert(D <> E /\ F <> E).
       intuition.
-    spliter.
+    分离合取式.
     assert(HH:=or_bet_out D E F).
     induction HH.
       prolong A B Q E F.
@@ -3569,7 +3569,7 @@ Proof.
       eapply 由一点往一方向构造等长线段_3.
         auto.
       unfold 等角 in H12.
-      spliter.
+      分离合取式.
       auto.
     ex_and H16 FF.
     assert(在角内 P DD E FF).
@@ -3583,7 +3583,7 @@ Proof.
       auto.
     assert(HH18:=H18).
     unfold 在角内 in H18.
-    spliter.
+    分离合取式.
     ex_and H21 X.
     induction H22.
       subst X.
@@ -3603,7 +3603,7 @@ Proof.
       apply 由一点往一方向构造等长线段_3.
         auto.
       unfold Out in H22.
-      spliter.
+      分离合取式.
       auto.
     ex_and H23 CC.
     assert (等角 A B CC DD E X).
@@ -3712,12 +3712,12 @@ Proof.
           intro.
           subst Q.
           unfold 等角 in H12.
-          spliter.
+          分离合取式.
           absurde.
           intro.
           subst CC.
           unfold 等角 in H25.
-          spliter.
+          分离合取式.
           auto.
         exists CC.
         split.
@@ -3727,7 +3727,7 @@ Proof.
         right.
         apply out_trivial.
         unfold Out in H23.
-        spliter.
+        分离合取式.
         auto.
       eapply l11_25.
         apply H31.
@@ -3735,7 +3735,7 @@ Proof.
         auto.
         apply out_trivial.
         unfold 等角 in H27.
-        spliter.
+        分离合取式.
         auto.
       assumption.
     apply 等角的对称性.
@@ -3762,7 +3762,7 @@ Proof.
     unfold 角度小于等于.
     assert(HH:=H).
     unfold 在角内 in HH.
-    spliter.
+    分离合取式.
     ex_and H4 X.
     induction H5.
       subst X.
@@ -3771,7 +3771,7 @@ Proof.
           assumption.
           assumption.
         unfold 等角 in H0.
-        spliter.
+        分离合取式.
         assumption.
       ex_and H5 P.
       exists P.
@@ -3782,35 +3782,35 @@ Proof.
           assumption.
         apply 任何点都在平角内.
           unfold 等角 in H6.
-          spliter.
+          分离合取式.
           assumption.
           unfold 等角 in H6.
-          spliter.
+          分离合取式.
           assumption.
           unfold 等角 in H0.
-          spliter.
+          分离合取式.
           assumption.
         assumption.
       assumption.
     assert(exists DD, Out E D DD /\ Cong E DD B A).
       apply 由一点往一方向构造等长线段_3.
         unfold 等角 in H0.
-        spliter.
+        分离合取式.
         auto.
       auto.
     ex_and H6 DD.
     assert(exists FF, Out E F FF /\ Cong E FF B Q).
       apply 由一点往一方向构造等长线段_3.
         unfold 等角 in H0.
-        spliter.
+        分离合取式.
         auto.
       auto.
     ex_and H8 FF.
     assert(D <> E /\ DD <> E /\ F <> E /\ FF <> E).
       unfold Out in *.
-      spliter.
+      分离合取式.
       repeat split; try assumption.
-    spliter.
+    分离合取式.
     assert(HI:=or_bet_out A B C).
     induction HI.
       exists F.
@@ -3823,7 +3823,7 @@ Proof.
           apply out_trivial.
           auto.
         unfold Out in H5.
-        spliter.
+        分离合取式.
         induction H16.
           assert(Bet A B X).
             eapply 中间性的内传递性1.
@@ -3882,14 +3882,14 @@ Proof.
           auto.
           auto.
         unfold Out in H6.
-        spliter.
+        分离合取式.
         auto.
       ex_and H16 P.
       exists P.
       split.
         apply 任何点都在平角内.
           unfold 等角 in H17.
-          spliter.
+          分离合取式.
           assumption.
           assumption.
           assumption.
@@ -3905,7 +3905,7 @@ Proof.
       apply False_ind.
       apply H14.
       unfold Out in H16.
-      spliter.
+      分离合取式.
       unfold Col.
       induction H18.
         right; right.
@@ -3925,10 +3925,10 @@ Proof.
       assert(exists PP, Out E P PP /\ Cong E PP B X).
         eapply 由一点往一方向构造等长线段_3.
           unfold 等角 in H16.
-          spliter.
+          分离合取式.
           auto.
         unfold Out in H5.
-        spliter.
+        分离合取式.
         auto.
       ex_and H18 PP.
       apply l11_25 with PP DD FF; trivial.
@@ -3936,7 +3936,7 @@ Proof.
         auto.
         auto.
         unfold Out in H18.
-        spliter.
+        分离合取式.
         auto.
       exists PP.
       split.
@@ -4017,9 +4017,9 @@ Proof.
       right.
       apply out_trivial.
       unfold Out in H15.
-      spliter.
+      分离合取式.
       unfold Out in H18.
-      spliter.
+      分离合取式.
       auto.
     assumption.
 Qed.
@@ -4028,13 +4028,13 @@ Lemma 角一边反向延长线上点在角内则该角为平角 : forall A B C P
 Proof.
     intros.
     unfold 在角内 in H0.
-    spliter.
+    分离合取式.
     ex_and H3 X.
     induction H4.
       subst X.
       assumption.
     unfold Out in H4.
-    spliter.
+    分离合取式.
     induction H6.
       assert(Bet A X P).
         eapply 中间性的内传递性2.
@@ -4079,7 +4079,7 @@ Proof.
     ex_and H0 PP.
     assert (HH:=H0).
     unfold 在角内 in H0.
-    spliter.
+    分离合取式.
     ex_and H4 X.
     induction H5.
       subst X.
@@ -4099,7 +4099,7 @@ Proof.
     intros.
     assert(HH:=H).
     unfold 等角 in H.
-    spliter.
+    分离合取式.
     ex_and H3 A'.
     ex_and H4 C'.
     ex_and H3 D'.
@@ -4156,9 +4156,9 @@ Proof.
     intros.
     assert(B <> A /\ B <> C /\ B' <> A' /\ B' <> C').
       unfold 等角 in H.
-      spliter.
+      分离合取式.
       repeat split; auto.
-    spliter.
+    分离合取式.
     assert(exists AA, Out B A AA /\ Cong B AA B' A').
       apply 由一点往一方向构造等长线段_3; assumption.
     assert(exists CC, Out B C CC /\ Cong B CC B' C').
@@ -4195,9 +4195,9 @@ Proof.
     intros.
     assert(A <> B /\ C <> B /\ A' <> B' /\ C' <> B' /\ I <> B /\ I' <> B').
       unfold 等角 in *.
-      spliter.
+      分离合取式.
       repeat split; assumption.
-    spliter.
+    分离合取式.
     assert(HH1:= or_bet_out A B C).
     induction HH1.
       assert(Bet A' B' C').
@@ -4245,7 +4245,7 @@ Proof.
     ex_and H12 CC'.
     assert(HH:=H1).
     unfold 在角内 in H1.
-    spliter.
+    分离合取式.
     ex_and H17 J.
     induction H18.
       subst J.
@@ -4255,7 +4255,7 @@ Proof.
       assumption.
     assert(B <> J).
       unfold Out in H18.
-      spliter.
+      分离合取式.
       auto.
     assert(~Col A B J).
       intro.
@@ -4274,7 +4274,7 @@ Proof.
         apply 等价共线CAB.
         eapply (共线的传递性2 _ J).
           unfold Out in H18.
-          spliter.
+          分离合取式.
           auto.
           apply out_col.
           assumption.
@@ -4286,7 +4286,7 @@ Proof.
     ex_and H21 J'.
     assert(B' <> J').
       unfold 等角 in H21.
-      spliter.
+      分离合取式.
       auto.
     assert(exists JJ', Out B' J' JJ' /\ Cong B' JJ' B J).
       apply 由一点往一方向构造等长线段_3.
@@ -4312,7 +4312,7 @@ Proof.
       assumption.
     assert(B' <> JJ').
       unfold Out in H24.
-      spliter.
+      分离合取式.
       auto.
     assert(~Col A' B' JJ').
       intro.
@@ -4448,10 +4448,10 @@ Proof.
       apply l11_25 with JJ' AA' CC'; trivial.
         repeat split; auto.
           unfold Out in H11.
-          spliter.
+          分离合取式.
           auto.
           unfold Out in H12.
-          spliter.
+          分离合取式.
           auto.
       exists JJ'.
       split.
@@ -4483,9 +4483,9 @@ Proof.
     apply l11_29_b_能在其内找一点构造等角之角较大.
     assert(A <> B /\ C <> B /\ A' <> B' /\ C' <> B' /\ D <> E /\ F <> E /\ D' <> E' /\ F' <> E').
       unfold 等角 in *.
-      spliter.
+      分离合取式.
       repeat split; assumption.
-    spliter.
+    分离合取式.
     assert(Hi:=or_bet_out A' B' C').
     induction Hi.
       prolong A' B' Q' A' B'.
@@ -4522,7 +4522,7 @@ Proof.
         apply 同角相等.
           assumption.
         unfold 等角 in H2.
-        spliter.
+        分离合取式.
         assumption.
       assert(Bet D E F).
         eapply bet_conga__bet.
@@ -4543,7 +4543,7 @@ Proof.
       split.
         apply col_in_angle; try assumption.
           unfold 等角 in H13.
-          spliter.
+          分离合取式.
           assumption.
         left.
         assumption.
@@ -4562,7 +4562,7 @@ Proof.
       split.
         apply 任何点都在平角内; try assumption.
         unfold 等角 in H14.
-        spliter.
+        分离合取式.
         assumption.
       apply 等角的对称性.
       assumption.
@@ -4595,7 +4595,7 @@ Proof.
       split.
         apply out321__inangle.
           apply out_distinct in H13.
-          spliter.
+          分离合取式.
           auto.
         assumption.
       apply 等角的对称性.
@@ -4640,7 +4640,7 @@ Lemma l11_31_1_任何角小于等于平角_Bet表述 : forall A B C D E F,
  角度小于等于 A B C D E F.
 Proof.
 intros; destruct (给定角一边可作出等角 A B C D E) as [P H等角]; auto.
-exists P; split; try apply 任何点都在平角内; unfold 等角 in *; spliter; auto.
+exists P; split; try apply 任何点都在平角内; unfold 等角 in *; 分离合取式; auto.
 Qed.
 
 Lemma 任何角小于等于自己 : forall A B C,
@@ -4710,7 +4710,7 @@ Lemma 角度小于的左交换性 : forall A B C D E F, 角度小于 A B C D E F
 Proof.
     unfold 角度小于.
     intros.
-    spliter.
+    分离合取式.
     split.
       apply 角度小于等于的左交换性.
       assumption.
@@ -4724,7 +4724,7 @@ Lemma 角度小于的右交换性 : forall A B C D E F, 角度小于 A B C D E F
 Proof.
     unfold 角度小于.
     intros.
-    spliter.
+    分离合取式.
     split.
       apply 角度小于等于的右交换性.
       assumption.
@@ -4760,7 +4760,7 @@ Lemma inangle__lea : forall A B C P, 在角内 P A B C -> 角度小于等于 A B
 Proof.
   intros A B C P HIn.
   exists P; split; trivial.
-  unfold 在角内 in HIn; spliter.
+  unfold 在角内 in HIn; 分离合取式.
   apply 同角相等; auto.
 Qed.
 
@@ -4792,7 +4792,7 @@ Proof.
     assert(HA2:= H0).
     unfold 在角内 in H.
     unfold 在角内 in H0.
-    spliter.
+    分离合取式.
     ex_and H3 DD.
     ex_and H6 CC.
     induction H8; induction H7.
@@ -4816,7 +4816,7 @@ Proof.
       apply out_trivial.
       auto.
     unfold 在角内 in H9.
-    spliter.
+    分离合取式.
     ex_and H12 CC'.
     induction H13.
       subst CC'.
@@ -4828,7 +4828,7 @@ Proof.
     apply l11_25 with CC' A E; [|apply out_trivial..|apply l6_6]; auto.
       repeat split; auto.
         unfold Out in H13.
-        spliter.
+        分离合取式.
         auto.
       exists CC'.
       split.
@@ -4838,7 +4838,7 @@ Proof.
       right.
       apply out_trivial.
       unfold Out in H13.
-      spliter.
+      分离合取式.
       auto.
 Qed.
 
@@ -4857,9 +4857,9 @@ Proof.
     assert( A <> B /\ C <> B /\ A1 <> B1 /\ C1 <> B1 /\ A2 <> B2 /\ C2 <> B2).
       unfold 等角 in *.
       unfold 在角内 in H0.
-      spliter.
+      分离合取式.
       repeat split; assumption.
-    spliter.
+    分离合取式.
     assert(HH1 := or_bet_out A B C).
     induction HH1.
       assert(Bet A1 B1 P1).
@@ -4995,7 +4995,7 @@ Lemma in_angle_asym : forall A B C D,
 Proof.
     intros.
     unfold 在角内 in *.
-    spliter.
+    分离合取式.
     ex_and H3 CC.
     ex_and H6 DD.
     induction H7; induction H8.
@@ -5006,7 +5006,7 @@ Proof.
         auto.
       subst CC.
       unfold Out in H8.
-      spliter.
+      分离合取式.
       induction H9.
         assert(Bet A B C).
           apply 中间性的交换传递性2 with DD; trivial.
@@ -5029,7 +5029,7 @@ Proof.
       subst DD.
       assert(Bet A B D).
         unfold Out in H7.
-        spliter.
+        分离合取式.
         induction H9.
           eapply 中间性的交换传递性2.
             eapply 中间性的内传递性1.
@@ -5078,7 +5078,7 @@ Proof.
     intros.
     induction (共线的决定性 A B C).
       induction (中间性的决定性 A B C).
-        apply 角度小于等于推出点不重合 in H0; spliter.
+        apply 角度小于等于推出点不重合 in H0; 分离合取式.
         apply 成中间性三点组的角相等; auto.
         ex_and H P.
         apply 角一边反向延长线上点在角内则该角为平角 with P; trivial.
@@ -5095,9 +5095,9 @@ Proof.
     ex_and H0 P.
     assert(A <> B /\ Q <> B /\ P <> B /\ D <> E /\ F <> E).
       unfold 等角 in *.
-      spliter.
+      分离合取式.
       repeat split; assumption.
-    spliter.
+    分离合取式.
     assert(等角 A B Q A B P).
       eapply 角等的传递性.
         apply H2.
@@ -5118,7 +5118,7 @@ Proof.
         assumption.
       eapply 成中间性三点组的角相等; try assumption.
         unfold 在角内 in H0.
-        spliter.
+        分离合取式.
         auto.
         auto.
     induction H10.
@@ -5150,7 +5150,7 @@ Proof.
         assumption.
       apply 成中间性三点组的角相等; try assumption.
         unfold 在角内 in H0.
-        spliter.
+        分离合取式.
         auto.
         auto.
     induction H11.
@@ -5186,7 +5186,7 @@ Proof.
         intro.
         subst C.
         unfold 在角内 in H0.
-        spliter.
+        分离合取式.
         absurde.
       assert(等角 A B C A B P).
         apply in_angle_asym; assumption.
@@ -5198,7 +5198,7 @@ Proof.
       assumption.
     assert(C <> B).
       unfold 在角内 in H0.
-      spliter.
+      分离合取式.
       assumption.
     assert(HH:=or_bet_out A B C).
     induction HH.
@@ -5254,7 +5254,7 @@ Proof.
     apply lea_asym.
       assumption.
     apply 角度小于等于推出点不重合 in H0.
-    spliter.
+    分离合取式.
     apply l11_31_1_任何角小于等于平角_Out表述; auto.
 Qed.
 
@@ -5269,7 +5269,7 @@ Proof.
     apply lea_asym.
       assumption.
     apply 角度小于等于推出点不重合 in H0.
-    spliter.
+    分离合取式.
     apply l11_31_1_任何角小于等于平角_Bet表述; auto.
 Qed.
 
@@ -5279,7 +5279,7 @@ Proof.
   intros A B C D E F Hlta.
   assert (Hlea : 角度小于等于 A B C D E F) by (destruct Hlta; assumption).
   apply 角度小于等于推出点不重合 in Hlea.
-  spliter.
+  分离合取式.
   repeat split; auto.
   intro.
   subst F.
@@ -5292,7 +5292,7 @@ Lemma gta_distincts : forall A B C D E F, 角度大于 A B C D E F ->
 Proof.
   intros A B C D E F Hgta.
   apply lta_distincts in Hgta.
-  spliter.
+  分离合取式.
   repeat split; auto.
 Qed.
 
@@ -5301,7 +5301,7 @@ Proof.
   intros A B C Hacute.
   destruct Hacute as [x [y [z [HPer Hlta]]]].
   apply lta_distincts in Hlta.
-  spliter.
+  分离合取式.
   split; auto.
 Qed.
 
@@ -5310,7 +5310,7 @@ Proof.
   intros A B C Hobtuse.
   destruct Hobtuse as [x [y [z [HPer Hgta]]]].
   apply gta_distincts in Hgta.
-  spliter.
+  分离合取式.
   split; auto.
 Qed.
 
@@ -5322,7 +5322,7 @@ Lemma two_sides_in_angle : forall A B C P P',
 Proof.
     intros.
     unfold TS in H0.
-    spliter.
+    分离合取式.
     ex_and H3 T.
     assert(A <> B).
       intro.
@@ -5354,14 +5354,14 @@ Proof.
         subst B.
         Col.
       auto.
-    spliter.
+    分离合取式.
     assert(HH:= or_bet_out P B T).
     induction HH.
       right.
       unfold 在角内.
       repeat split; try assumption.
         unfold Out in H1.
-        spliter.
+        分离合取式.
         auto.
       exists T.
       split.
@@ -5397,7 +5397,7 @@ Proof.
     intros.
     assert (Hd := H1).
     apply 在角内推出点不重合 in Hd.
-    spliter.
+    分离合取式.
     induction (共线的决定性 B A C).
       assert(HH:=or_bet_out C B A).
       induction HH.
@@ -5428,7 +5428,7 @@ Proof.
         exists B.
         split.
           unfold Out in H6.
-          spliter.
+          分离合取式.
           induction H8.
             eapply 中间性的内传递性1.
               apply 中间性的对称性.
@@ -5497,7 +5497,7 @@ Proof.
     apply 角端点在角内点与顶点连线两侧 in HH.
       assert(HH1:=H1).
       unfold 在角内 in H1.
-      spliter.
+      分离合取式.
       ex_and H9 X.
       induction H10.
         subst X.
@@ -5511,11 +5511,11 @@ Proof.
       assert(HH0:= HH).
       unfold TS in HH.
       assert (C <> B).
-        spliter.
+        分离合取式.
         intro.
         subst B.
         Col.
-      spliter.
+      分离合取式.
       assert(OS D B C A).
         apply 角内点和一端点在角另一边同侧.
           intro.
@@ -5523,7 +5523,7 @@ Proof.
           apply 等价共线BCA.
           eapply (共线的传递性2 _ X).
             unfold Out in H10.
-            spliter.
+            分离合取式.
             auto.
             apply 等价共线BCA.
             eapply (共线的传递性2 _ D).
@@ -5554,7 +5554,7 @@ Proof.
         apply 等价共线BCA.
         eapply (共线的传递性2 _ X).
           unfold Out in H10.
-          spliter.
+          分离合取式.
           auto.
           apply 等价共线BCA.
           eapply (共线的传递性2 _ D).
@@ -5596,9 +5596,9 @@ Proof.
         assumption.
       unfold TS in H19.
       assert (~ Col C D B).
-        spliter.
+        分离合取式.
         assumption.
-      spliter.
+      分离合取式.
       ex_and H22 Y.
       repeat split; try assumption.
       exists Y.
@@ -5642,7 +5642,7 @@ Proof.
               unfold OS in H24.
               ex_and H24 C0.
               unfold TS in H26.
-              spliter.
+              分离合取式.
               apply H26.
               apply ABA型共线.
               apply 等价共线CAB.
@@ -5720,7 +5720,7 @@ Proof.
   destruct (由一点往一方向构造等长线段 E B E B) as [E' [HE1 HE2]].
   assert (Hd := HD).
   apply 在角内推出点不重合 in Hd.
-  spliter; 统计不重合点.
+  分离合取式; 统计不重合点.
   apply l11_24_在角内的对称性, in_angle_reverse with E'; Between.
   apply l11_24_在角内的对称性, in_angle_trans with A; apply l11_24_在角内的对称性; trivial.
   apply in_angle_reverse with E; auto.
@@ -5836,7 +5836,7 @@ Proof.
             intro.
             subst P.
             unfold 等角 in H9.
-            spliter.
+            分离合取式.
             absurde.
           exists X.
           split.
@@ -5872,7 +5872,7 @@ Proof.
           auto.
         apply out_trivial.
         unfold 等角 in H9.
-        spliter.
+        分离合取式.
         auto.
       assumption.
     intro.
@@ -6046,7 +6046,7 @@ Proof.
     assert(等角 D A C E A B)
       by (eapply l11_13 with B C;统计不重合点;auto).
     unfold 角度小于 in *.
-    spliter.
+    分离合取式.
     repeat split.
       apply l11_30_等角保持小于等于 with A B C B A E; trivial.
         apply 同角相等;统计不重合点;auto.
@@ -6090,7 +6090,7 @@ Proof.
     intros.
     intro.
     unfold 角度小于 in *.
-    spliter.
+    分离合取式.
     assert(等角 A B C D E F).
       apply lea_asym.
         assumption.
@@ -6106,7 +6106,7 @@ Lemma conga_preserves_lta : forall A B C D E F A' B' C' D' E' F',
 Proof.
     intros.
     unfold 角度小于 in *.
-    spliter.
+    分离合取式.
     split.
       eapply l11_30_等角保持小于等于.
         apply H1.
@@ -6132,7 +6132,7 @@ Proof.
     assert(HH2:= H0).
     unfold 角度小于 in H.
     unfold 角度小于 in H0.
-    spliter.
+    分离合取式.
     assert(角度小于等于 A B C A2 B2 C2).
       eapply lea_trans.
         apply H.
@@ -6147,12 +6147,12 @@ Proof.
           unfold 角度小于等于 in H0.
           ex_and H0 X.
           unfold 等角 in H5.
-          spliter.
+          分离合取式.
           assumption.
         unfold 角度小于等于 in H0.
         ex_and H0 X.
         unfold 等角 in H5.
-        spliter.
+        分离合取式.
         assumption.
       assumption.
     apply (两长度不可能互相小于对方a A1 B1 C1 A2 B2 C2).
@@ -6270,13 +6270,13 @@ Proof.
       apply 等价共线BAC.
       assumption.
     apply 不共线则不重合 in H6.
-    spliter.
+    分离合取式.
     assert(角度小于 A C B C A B'/\ 角度小于 A B C C A B').
       apply l11_41.
         assumption.
         assumption.
       auto.
-    spliter.
+    分离合取式.
     induction H1.
       unfold 为锐角.
       exists C.
@@ -6285,10 +6285,10 @@ Proof.
       split.
         apply 直角的对称性.
         assumption.
-      spliter.
+      分离合取式.
       unfold 角度小于.
       unfold 角度小于 in H11.
-      spliter.
+      分离合取式.
       assert(Per B' A C).
         apply 直角的对称性.
         eapply (直角边共线点也构成直角2 _ _ B).
@@ -6328,7 +6328,7 @@ Proof.
     ex_and H1 c.
     assert(HH1:= H12).
     unfold 角度小于 in H12.
-    spliter.
+    分离合取式.
     unfold 角度小于等于 in H12.
     ex_and H12 P.
     exists B.
@@ -6355,7 +6355,7 @@ Proof.
         intro.
         subst P.
         unfold 等角 in H14.
-        spliter.
+        分离合取式.
         absurde.
         apply 直角的对称性.
         assumption.
@@ -6363,7 +6363,7 @@ Proof.
       intro.
       subst P.
       unfold 等角 in H14.
-      spliter.
+      分离合取式.
       absurde.
     assert(角度小于 C A B' P A B).
       assert(B <> A).
@@ -6375,7 +6375,7 @@ Proof.
         eapply l11_30_等角保持小于等于.
           apply H19.
           unfold 角度小于 in HH1.
-          spliter.
+          分离合取式.
           eapply l11_30_等角保持小于等于.
             apply H21.
             assumption.
@@ -6408,10 +6408,10 @@ Proof.
       apply l11_16_直角相等.
         assumption.
         unfold 等角 in H14.
-        spliter.
+        分离合取式.
         assumption.
         unfold 等角 in H14.
-        spliter.
+        分离合取式.
         assumption.
         apply 直角的对称性.
         assumption.
@@ -6446,7 +6446,7 @@ Proof.
       assumption.
     assert(HH1:=H1).
     unfold 角度小于 in H1.
-    spliter.
+    分离合取式.
     unfold 角度小于.
     split.
       eapply lea_trans.
@@ -6460,13 +6460,13 @@ Proof.
           unfold 角度小于等于 in H0.
           ex_and H0 X.
           unfold 等角 in H4.
-          spliter.
+          分离合取式.
           assumption.
         apply 角度小于等于的交换性 in H0.
         unfold 角度小于等于 in H0.
         ex_and H0 X.
         unfold 等角 in H4.
-        spliter.
+        分离合取式.
         assumption.
       split.
         assumption.
@@ -6491,7 +6491,7 @@ Proof.
       assumption.
     assert(HH1:=H1).
     unfold 角度小于 in H1.
-    spliter.
+    分离合取式.
     split.
       eapply lea_trans.
         apply H1.
@@ -6503,13 +6503,13 @@ Proof.
           unfold 角度小于等于 in H0.
           ex_and H0 X.
           unfold 等角 in H4.
-          spliter.
+          分离合取式.
           assumption.
         apply 角度小于等于的交换性 in H0.
           unfold 角度小于等于 in H0.
           ex_and H0 X.
           unfold 等角 in H4.
-          spliter.
+          分离合取式.
           assumption.
       apply 等角的对称性.
       apply H3.
@@ -6544,9 +6544,9 @@ Lemma l11_44_2_a : forall A B C, ~ Col A B C -> Lt B A B C -> 角度小于 B C A
 Proof.
     intros.
     apply 不共线则不重合 in H.
-    spliter.
+    分离合取式.
     unfold Lt in H0.
-    spliter.
+    分离合取式.
     unfold Le in H0.
     ex_and H0 C'.
     assert(C <> C').
@@ -6594,7 +6594,7 @@ Proof.
         assumption.
       assumption.
     clear HH.
-    spliter.
+    分离合取式.
     assert(角度小于 B A C' B A C).
       split.
         unfold 角度小于等于.
@@ -6650,9 +6650,9 @@ Lemma not_lta_and_conga : forall A B C D E F, ~ (角度小于 A B C D E F /\ 等
 Proof.
     intros.
     intro.
-    spliter.
+    分离合取式.
     unfold 角度小于 in H.
-    spliter.
+    分离合取式.
     contradiction.
 Qed.
 
@@ -6706,7 +6706,7 @@ Proof.
     intros.
     intro.
     unfold 角度小于 in H.
-    spliter.
+    分离合取式.
     contradiction.
 Qed.
 
@@ -6749,7 +6749,7 @@ Lemma l11_44_1_b : forall A B C, ~ Col A B C -> 等角 B A C B C A -> Cong B A B
 Proof.
     intros.
     apply 不共线则不重合 in H.
-    spliter.
+    分离合取式.
     assert(HH:= 两长度必大于小于或等于 B A B C).
     induction HH.
       apply l11_44_2_a in H4.
@@ -6776,10 +6776,10 @@ Proof.
     intros.
     induction (共线的决定性 A B C).
       assert (Hd := H).
-      apply lta_distincts in Hd; spliter; clean_reap_hyps.
+      apply lta_distincts in Hd; 分离合取式; clean_reap_hyps.
       apply col_lta__bet in H; Col; Le.
     apply 不共线则不重合 in H0.
-    spliter.
+    分离合取式.
     assert(HH:= 两长度必大于小于或等于 B A B C).
     induction HH.
       apply l11_44_2_a in H4.
@@ -6839,7 +6839,7 @@ Proof.
     统计不重合点.
     assert(HH:= H1).
     apply l11_43 in H1; auto.
-      spliter.
+      分离合取式.
       split.
         apply 长度小于的左交换性.
         apply l11_44_2_b.
@@ -6849,7 +6849,7 @@ Proof.
         ex_and H3 C'.
         assert (Hd := H4).
         apply lta_distincts in Hd.
-        spliter.
+        分离合取式.
         induction HH.
          {
             eapply conga_preserves_lta with A C B A' B' C'.
@@ -6868,7 +6868,7 @@ Proof.
         eapply conga_preserves_lta with A'' B'' C'' A B C.
           assert (Hd := H12).
           apply lta_distincts in Hd.
-          spliter.
+          分离合取式.
           apply l11_16_直角相等; auto.
           apply 同角相等; auto.
         assumption.
@@ -6881,7 +6881,7 @@ Proof.
       ex_and H1 C'.
       assert (Hd := H4).
       apply lta_distincts in Hd.
-      spliter.
+      分离合取式.
       induction HH.
         eapply conga_preserves_lta.
           apply 同角相等; auto.
@@ -6904,7 +6904,7 @@ Proof.
         apply H4.
       eapply conga_preserves_lta.
         apply lta_distincts in H12.
-        spliter.
+        分离合取式.
         apply (l11_16_直角相等 A'' B'' C''); auto.
         apply 同角相等; auto.
       apply 角度小于的右交换性.
@@ -6917,7 +6917,7 @@ Proof.
     intros.
     assert(HH1:= H1).
     unfold 垂直于 in H1.
-    spliter.
+    分离合取式.
     assert(Per C H A).
       apply H5.
         apply AAB型共线.
@@ -6951,7 +6951,7 @@ Proof.
         apply (共线的传递性2 _ B); Col.
       auto.
     apply 不共线则不重合 in H8.
-    spliter.
+    分离合取式.
     assert(A <> H).
       intro.
       subst A.
@@ -6987,7 +6987,7 @@ Proof.
       Perp.
     split.
       unfold Lt in *.
-      spliter.
+      分离合取式.
       apply l5_12_b.
         Col.
         eapply 长度小于等于的传递性.
@@ -7021,9 +7021,9 @@ Proof.
     intro.
     assert(A <> B /\ C <> B /\ A' <> B'  /\ C' <> B').
       unfold 等角 in H.
-      spliter.
+      分离合取式.
       repeat split; assumption.
-    spliter.
+    分离合取式.
     split.
       apply l11_3_bis.
       exists B.
@@ -7078,7 +7078,7 @@ Lemma l11_50_1  : forall A B C A' B' C',
 Proof.
     intros.
     assert(A <> B /\ C <> B /\ A' <> B'  /\ C' <> B') by (unfold 等角 in *;intuition).
-    spliter.
+    分离合取式.
     assert(exists C'', Out B' C'' C' /\ Cong B' C'' B C).
       apply l6_11_existence;auto.
     ex_and H7 C''.
@@ -7095,7 +7095,7 @@ Proof.
       apply 等价共线BCA.
       assumption.
     assert(HH:=l11_4_1 A B C A' B' C' H1).
-    spliter.
+    分离合取式.
     assert(Cong A C A' C'').
       apply H16.
       assert (C''<> B') by auto.
@@ -7108,7 +7108,7 @@ Proof.
         apply ABB中间性.
         auto.
         unfold Out in  H7.
-        spliter.
+        分离合取式.
         assumption.
         apply 等长的交换性.
         assumption.
@@ -7125,7 +7125,7 @@ Proof.
       apply 三角形全等推角等1.
         auto.
         apply 不共线则不重合 in H.
-        spliter.
+        分离合取式.
         auto.
       assumption.
     assert(等角 B' A' C' B' A' C'').
@@ -7165,7 +7165,7 @@ Proof.
       assumption.
     apply 三角形全等推角等1.
       apply 不共线则不重合 in H.
-      spliter.
+      分离合取式.
       assumption.
       auto.
     unfold 三角形全等.
@@ -7186,9 +7186,9 @@ Proof.
     intros.
     assert(A <> B /\ C <> B /\ A' <> B'  /\ C' <> B').
       unfold 等角 in H1.
-      spliter.
+      分离合取式.
       repeat split; assumption.
-    spliter.
+    分离合取式.
     assert(exists C'',  Out B' C'' C' /\ Cong B' C'' B C).
       apply l6_11_existence.
         assumption.
@@ -7196,7 +7196,7 @@ Proof.
     ex_and H7 C''.
     assert(B' <> C'').
       unfold Out in H7.
-      spliter.
+      分离合取式.
       auto.
     assert(~Col A' B' C').
       eapply 不共线三点构成的角的等角三点也不共线.
@@ -7213,7 +7213,7 @@ Proof.
       apply 等价共线BCA.
       assumption.
     assert(HH:=l11_4_1 A B C A' B' C' H1).
-    spliter.
+    分离合取式.
     assert(Cong A C A' C'').
       apply H16.
       repeat (split; [Out|]); Cong.
@@ -7223,7 +7223,7 @@ Proof.
       apply 三角形全等推角等1.
         auto.
         apply 不共线则不重合 in H.
-        spliter.
+        分离合取式.
         auto.
       assumption.
     assert(等角 B' C' A' B' C'' A').
@@ -7233,7 +7233,7 @@ Proof.
       assumption.
     apply 不共线则不重合 in H.
     apply 不共线则不重合 in H10.
-    spliter.
+    分离合取式.
     clear H16.
     induction(两点重合的决定性 C' C'').
       induction (两点重合的决定性 C' C'').
@@ -7270,13 +7270,13 @@ Proof.
       apply out_col.
       assumption.
     apply 不共线则不重合 in H27.
-    spliter.
+    分离合取式.
     unfold Out in H7.
-    spliter.
+    分离合取式.
     induction H32.
       assert(HH:=l11_41).
       assert(HH1:=l11_41 C'' C' A' B' H27 (中间性的对称性 _ _ _ H32) H7).
-      spliter.
+      分离合取式.
       assert(等角 B' C' A' C'' C' A').
         eapply (l11_10 B' C' A' B' C' A').
           apply 同角相等.
@@ -7301,7 +7301,7 @@ Proof.
           auto.
         assumption.
       unfold 角度小于 in H36.
-      spliter.
+      分离合取式.
       apply 等角的右交换性 in H20.
       contradiction.
     assert(~Col C' C'' A').
@@ -7310,7 +7310,7 @@ Proof.
       apply 等价共线BAC.
       assumption.
     assert(HH1:=l11_41 C' C'' A' B' H33 (中间性的对称性 _ _ _ H32) H15).
-    spliter.
+    分离合取式.
     assert(等角 B' C'' A' C' C'' A').
       apply out2__conga.
         apply bet_out.
@@ -7328,7 +7328,7 @@ Proof.
         auto.
       assumption.
     unfold 角度小于 in H37.
-    spliter.
+    分离合取式.
     apply 等角的对称性 in H20.
     apply 等角的右交换性 in H20.
     contradiction.
@@ -7343,7 +7343,7 @@ Proof.
     intros.
     assert(三角形全等 B A C B' A' C' /\ 三角形全等 A B C A' B' C' /\ 三角形全等 B C A B' C' A').
       repeat split; Cong.
-    spliter.
+    分离合取式.
     split; [|split]; apply 三角形全等推角等1; auto.
 Qed.
 
@@ -7353,7 +7353,7 @@ Proof.
     split.
       assumption.
     unfold 等角 in H.
-    spliter.
+    分离合取式.
     repeat split; assumption.
 Qed.
 
@@ -7365,7 +7365,7 @@ Lemma l11_52 : forall A B C A' B' C',
 Proof.
     intros.
     apply conga_distinct in H.
-    spliter.
+    分离合取式.
     assert(Cong B A B' A').
       induction(共线的决定性 A B C).
         unfold Col in H7.
@@ -7389,7 +7389,7 @@ Proof.
             apply 等角的左交换性.
             assumption.
           unfold Out in H8.
-          spliter.
+          分离合取式.
           induction H10.
             assert(Le B' C' A' C').
               eapply l5_6_等长保持小于等于关系.
@@ -7459,25 +7459,25 @@ Proof.
           intro.
           subst A''.
           unfold Out in H8.
-          spliter.
+          分离合取式.
           absurde.
           Col.
         Col.
       induction(两点重合的决定性 A'' A').
         subst A''.
         unfold 三角形全等 in H13.
-        spliter.
+        分离合取式.
         Cong.
       unfold Out in H8.
-      spliter.
+      分离合取式.
       induction H19.
         assert(HH:= l11_41 A'' B' C' A' H16 H19 H17).
-        spliter.
+        分离合取式.
         assert(Cong A' C' A'' C').
           apply (等长的传递性 _ _ A C).
             Cong.
           unfold 三角形全等 in H13.
-          spliter.
+          分离合取式.
           Cong.
         assert(~ Col A'' C' A').
           intro.
@@ -7516,7 +7516,7 @@ Proof.
           assumption.
         assert(Lt C' A'' C' B').
           unfold Lt in H31.
-          spliter.
+          分离合取式.
           unfold Lt.
           split.
             eapply l5_6_等长保持小于等于关系.
@@ -7531,7 +7531,7 @@ Proof.
             apply H14.
           assumption.
         unfold Lt in H32.
-        spliter.
+        分离合取式.
         assert(Le C A C B).
           eapply l5_6_等长保持小于等于关系.
           repeat split.
@@ -7558,12 +7558,12 @@ Proof.
       assert(A' <> A'').
         auto.
       assert(HH:= l11_41 A' B' C' A'' H15 H19 H20).
-      spliter.
+      分离合取式.
       assert(Cong A' C' A'' C').
         apply (等长的传递性 _ _ A C).
           Cong.
         unfold 三角形全等 in H13.
-        spliter.
+        分离合取式.
         Cong.
       assert(~ Col A'' C' A').
         intro.
@@ -7604,7 +7604,7 @@ Proof.
         assumption.
       assert(Lt C' A' C' B').
         unfold Lt in H32.
-        spliter.
+        分离合取式.
         unfold Lt.
         split.
           eapply l5_6_等长保持小于等于关系.
@@ -7618,7 +7618,7 @@ Proof.
           apply H14.
         assumption.
       unfold Lt in H33.
-      spliter.
+      分离合取式.
       assert(Le C A C B).
         eapply l5_6_等长保持小于等于关系.
         repeat split.
@@ -7671,7 +7671,7 @@ Lemma l11_53 : forall A B C D,
 Proof.
     intros.
     assert(A<>C) by (intro; treat_equalities; auto).
-    spliter.
+    分离合取式.
     assert(~ Col B A D).
       intro.
       assert(Col B C D).
@@ -7690,7 +7690,7 @@ Proof.
       apply ABB型共线.
     assert(角度小于 C A D C B D).
       assert(HH:=l11_41 B A D C H5 H3 H2).
-      spliter.
+      分离合取式.
       assert(等角 C A D B A D).
         apply out2__conga.
           apply bet_out.
@@ -7714,7 +7714,7 @@ Proof.
     unfold Per in H.
     ex_and H B'.
     unfold 中点 in H.
-    spliter.
+    分离合取式.
     assert(HH:= H8).
     assert(~Col B D B').
       intro.
@@ -7822,7 +7822,7 @@ Proof.
       apply 角度小于的交换性.
       assumption.
     unfold Lt in H17.
-    spliter.
+    分离合取式.
     unfold Lt.
     split.
       eapply l5_6_等长保持小于等于关系.
@@ -8117,14 +8117,14 @@ Lemma orth_at_symmetry : forall A B C U V X,
   垂直平面于 X A B C U V -> 垂直平面于 X A B C V U.
 Proof.
   unfold 垂直平面于.
-  intros A B C U V X HX; spliter.
+  intros A B C U V X HX; 分离合取式.
   repeat split; Col.
 Qed.
 
 Lemma orth_at_distincts : forall A B C U V X, 垂直平面于 X A B C U V ->
   A <> B /\ B <> C /\ A <> C /\ U <> V.
 Proof.
-  unfold 垂直平面于; intros; spliter; 统计不重合点.
+  unfold 垂直平面于; intros; 分离合取式; 统计不重合点.
   repeat split; auto.
 Qed.
 
@@ -8132,9 +8132,9 @@ Lemma orth_at_chara : forall A B C P X, 垂直平面于 X A B C X P <->
   ~ Col A B C /\ X <> P /\ 共面 A B C X /\ (forall D, 共面 A B C D -> Per D X P).
 Proof.
   intros A B C P X; split.
-  - unfold 垂直平面于; intro; spliter.
+  - unfold 垂直平面于; intro; 分离合取式.
     repeat split; Col.
-  - intro; spliter.
+  - intro; 分离合取式.
     repeat split; Col.
     intros; apply 直角边共线点也构成直角2 with P; auto.
 Qed.
@@ -8193,7 +8193,7 @@ Lemma l11_60_aux : forall A B C D P Q, ~ Col A B C ->
 Proof.
   intros A B C D P Q HNCol HA HB HC HCop.
   destruct (中点的存在性 P Q) as [M []].
-  统计不重合点; destruct HCop as [X [|[|]]]; spliter.
+  统计不重合点; destruct HCop as [X [|[|]]]; 分离合取式.
   - apply l4_17 with C X; Col.
       intro; subst; apply HNCol; assumption.
     apply l4_17 with A B; auto.
@@ -8305,7 +8305,7 @@ Lemma l11_62_unicity_bis : forall A B C U X Y,
 Proof.
   unfold 垂直平面于.
   intros A B C U X Y HX HY.
-  spliter.
+  分离合取式.
   apply l11_62_unicity with A B C U; trivial; intros; Col.
 Qed.
 
@@ -8314,7 +8314,7 @@ Lemma orth_at2__eq : forall A B C U V X Y,
 Proof.
   unfold 垂直平面于.
   intros A B C U V X Y HX HY.
-  spliter.
+  分离合取式.
   apply l11_62_unicity with A B C U; trivial; intros; Col.
 Qed.
 
@@ -8344,7 +8344,7 @@ Lemma orth_at__ncop : forall A B C P X,
   垂直平面于 X A B C X P -> ~ 共面 A B C P.
 Proof.
   intros A B C P X HOrth.
-  assert (Hd := HOrth); apply orth_at_distincts in Hd; spliter.
+  assert (Hd := HOrth); apply orth_at_distincts in Hd; 分离合取式.
   apply orth_at__ncop2 with X X; auto.
 Qed.
 
@@ -8367,7 +8367,7 @@ Proof.
     统计不重合点; apply coplanar_perm_12, col_cop__cop with D0; Col; Cop.
   }
   destruct (每组共线三点都有另一共线点 A B D0 HCol0) as [A0].
-  spliter.
+  分离合取式.
   assert (HCopA : 共面 A B C A0) by (exists A0; left; split; Col).
   assert (Per P D0 A0) by (destruct (l8_16_1_共线四点和一垂直推另一直角 A B P A0 D0); auto).
   destruct (直角的决定性 P D0 D1) as [|HNPer].
@@ -8477,7 +8477,7 @@ Proof.
   destruct (l11_63_aux A B C D E X) as [P' [HOS HP']]; auto.
   destruct HE as [HNCol [HEX [HE [_ HOrth]]]].
   assert (HOrth' : 垂直平面于 D A B C D P') by (apply col_cop_orth__orth_at; Col).
-  assert (HDP' : D <> P') by (apply orth_distincts in HP'; spliter; auto).
+  assert (HDP' : D <> P') by (apply orth_distincts in HP'; 分离合取式; auto).
   assert (HNCop : ~ 共面 A B C P').
     apply orth_at__ncop2 with D D; auto; apply col_cop_orth__orth_at; Col.
   destruct HOrth' as [_ [_ [_ [_ HOrth']]]].
@@ -8519,9 +8519,9 @@ Lemma orth_at2_tsp__ts : forall A B C X Y P Q, P <> Q ->
 Proof.
   intros A B C X Y P Q HPQ HP HQ [HX [HY [T [HT HBet]]]].
   assert (HP1 := HP).
-  apply orth_at_chara in HP1; spliter.
+  apply orth_at_chara in HP1; 分离合取式.
   assert (HQ1 := HQ).
-  apply orth_at_chara in HQ1; spliter.
+  apply orth_at_chara in HQ1; 分离合取式.
   repeat split.
     intro; apply HX, col_cop2__cop with P Q; Col.
     intro; apply HY, col_cop2__cop with P Q; Col.
@@ -8540,7 +8540,7 @@ Lemma orth_dec : forall A B C U V, Orth A B C U V \/ ~ Orth A B C U V.
 Proof.
   intros A B C U V.
   destruct (两点重合的决定性 U V).
-    unfold Orth, 垂直平面于; right; intros [X []]; spliter; auto.
+    unfold Orth, 垂直平面于; right; intros [X []]; 分离合取式; auto.
   revert dependent V.
   revert U.
   assert (Haux : forall U V, U <> V -> ~ 共面 A B C U -> Orth A B C U V \/ ~ Orth A B C U V).
@@ -8551,15 +8551,15 @@ Proof.
     right; intros [Y HY].
     assert (X = Y).
     { apply l11_62_unicity_bis with A B C U; [assumption|].
-      apply orth_at_symmetry, col_orth_at__orth_at with V; [destruct HY; spliter..|]; trivial.
+      apply orth_at_symmetry, col_orth_at__orth_at with V; [destruct HY; 分离合取式..|]; trivial.
       intro; subst Y; absurd (共面 A B C U); [|assumption].
       统计不重合点; apply orth_at__ncop2 with X X; auto.
     }
-    subst; destruct HY; spliter; Col.
+    subst; destruct HY; 分离合取式; Col.
   }
   intros U V HUV.
   destruct (共线的决定性 A B C).
-    unfold Orth, 垂直平面于; right; intros [X []]; spliter; auto.
+    unfold Orth, 垂直平面于; right; intros [X []]; 分离合取式; auto.
   destruct (cop_dec A B C U); [|auto].
   destruct (cop_dec A B C V).
   - right; intro.
@@ -8572,8 +8572,8 @@ Lemma orth_at_dec : forall A B C U V X, 垂直平面于 X A B C U V \/ ~ 垂直�
 Proof.
   intros A B C U V X.
   destruct (orth_dec A B C U V) as [|HNOrth]; [|right; intro HX; apply HNOrth; exists X; apply HX].
-  destruct (cop_dec A B C X); [|unfold 垂直平面于; right; intro; spliter; auto].
-  destruct (共线的决定性 U V X) as [HCol|]; [|unfold 垂直平面于; right; intro; spliter; auto].
+  destruct (cop_dec A B C X); [|unfold 垂直平面于; right; intro; 分离合取式; auto].
+  destruct (共线的决定性 U V X) as [HCol|]; [|unfold 垂直平面于; right; intro; 分离合取式; auto].
   left; apply col_cop_orth__orth_at; assumption.
 Qed.
 
@@ -8587,9 +8587,9 @@ Proof.
   destruct (l11_62_existence_bis A B C X HX) as [P HP].
   destruct (l11_62_existence_bis A B C Y HY) as [Q HQ].
   assert (HP1 := HP).
-  apply orth_at_chara in HP1; spliter.
+  apply orth_at_chara in HP1; 分离合取式.
   assert (HQ1 := HQ).
-  apply orth_at_chara in HQ1; spliter.
+  apply orth_at_chara in HQ1; 分离合取式.
   destruct (两点重合的决定性 P Q).
   { subst Q; clear HQ; destruct (中间性的决定性 X P Y) as [|HNBet].
       left; repeat split; trivial; exists P; split; trivial.
@@ -8620,7 +8620,7 @@ Lemma ts2__inangle : forall A B C P, TS A C B P -> TS B P A C ->
 Proof.
   intros A B C P HTS1 HTS2.
   destruct (ts2__ex_bet2 A B C P) as [X [HBet1 HBet2]]; trivial.
-  apply ts_distincts in HTS2; spliter.
+  apply ts_distincts in HTS2; 分离合取式.
   repeat split; auto.
   exists X; split; trivial.
   right; apply bet_out; auto.
@@ -8694,7 +8694,7 @@ Proof.
   apply (bet_conga__bet A B C); auto.
   apply lea_asym; auto.
   apply 角度小于等于推出点不重合 in Hlea.
-  spliter.
+  分离合取式.
   apply l11_31_1_任何角小于等于平角_Bet表述; auto.
 Qed.
 
@@ -8704,7 +8704,7 @@ Proof.
   apply (l11_21_a D E F); auto.
   apply lea_asym; auto.
   apply 角度小于等于推出点不重合 in Hlea.
-  spliter.
+  分离合取式.
   apply l11_31_1_任何角小于等于平角_Out表述; auto.
 Qed.
 
@@ -8717,7 +8717,7 @@ Proof.
   assert (Hd := Hlta).
   apply lta_distincts in Hd.
   unfold 角度小于 in *.
-  spliter.
+  分离合取式.
   split.
   apply (l11_36 A _ _ D); auto.
   intro.
@@ -8740,7 +8740,7 @@ Proof.
     assumption.
     apply (l11_30_等角保持小于等于 A B C D E F); auto.
     apply 角度小于等于推出点不重合 in Hlea.
-    spliter.
+    分离合取式.
     apply 同角相等; assumption.
 Qed.
 
@@ -8759,7 +8759,7 @@ Proof.
     assumption.
     apply (l11_30_等角保持小于等于 D E F G H I); auto; [|apply 等角的对称性; assumption].
     apply 角度小于等于推出点不重合 in Hlea.
-    spliter.
+    分离合取式.
     apply 同角相等; assumption.
 Qed.
 
@@ -8770,7 +8770,7 @@ Proof.
   intros.
   destruct Hacute as [G [H [I [HPer2 Hlta]]]].
   assert(Hdiff := lta_distincts A B C G H I Hlta).
-  spliter.
+  分离合取式.
   apply (conga_preserves_lta A B C G H I); try (apply 同角相等); auto.
   apply l11_16_直角相等; auto.
 Qed.
@@ -8782,7 +8782,7 @@ Proof.
   intros.
   destruct Hobtuse as [G [H [I [HPer2 Hlta]]]].
   assert(Hdiff := lta_distincts G H I A B C Hlta).
-  spliter.
+  分离合取式.
   apply (conga_preserves_lta G H I A B C); try (apply 同角相等); auto.
   apply l11_16_直角相等; auto.
 Qed.
@@ -8793,7 +8793,7 @@ Proof.
   destruct Hacute as [G [H [I [HPer Hlta]]]].
   apply (lta_trans _ _ _ G H I); auto.
   apply lta_distincts in Hlta.
-  spliter.
+  分离合取式.
   apply obtuse_per__lta; auto.
 Qed.
 
@@ -8813,14 +8813,14 @@ Proof.
     apply (conga_preserves_in_angle A B C T).
       apply 同角相等.
         unfold 等角 in H0.
-        spliter.
+        分离合取式.
         auto.
       intro.
       subst C.
       unfold OS in H1.
       ex_and H1 X.
       unfold TS in H1.
-      spliter.
+      分离合取式.
       apply H1.
       Col.
       eapply 角等的传递性; apply 等角的对称性.
@@ -8894,7 +8894,7 @@ Lemma bet_obtuse__acute : forall A B C A', Bet A B A' -> A' <> B -> 为钝角 A 
 Proof.
   intros A B C A' HBet HA'B Hobtuse.
   assert(Hd := obtuse_distincts A B C Hobtuse).
-  spliter.
+  分离合取式.
   elim(共线的决定性 A B C).
   { intro.
     elim(中间性的决定性 A B C).
@@ -8955,13 +8955,13 @@ Proof.
   elim(cop_dec A B C P).
   { intro HCop.
     elim(两点重合的决定性 A B).
-      intro; subst; right; unfold 在角内; intro; spliter; auto.
+      intro; subst; right; unfold 在角内; intro; 分离合取式; auto.
     intro.
     elim(两点重合的决定性 C B).
-      intro; subst; right; unfold 在角内; intro; spliter; auto.
+      intro; subst; right; unfold 在角内; intro; 分离合取式; auto.
     intro.
     elim(两点重合的决定性 P B).
-      intro; subst; right; unfold 在角内; intro; spliter; auto.
+      intro; subst; right; unfold 在角内; intro; 分离合取式; auto.
     intro.
     elim(共线的决定性 A B C).
     { intro HColB.
@@ -9063,16 +9063,16 @@ Lemma lea_dec : forall A B C D E F, 角度小于等于 A B C D E F \/ ~ 角度�
 Proof.
   intros A B C D E F.
   elim(两点重合的决定性 A B).
-    intro; right; intro Hlea; apply 角度小于等于推出点不重合 in Hlea; spliter; auto.
+    intro; right; intro Hlea; apply 角度小于等于推出点不重合 in Hlea; 分离合取式; auto.
   intro.
   elim(两点重合的决定性 B C).
-    intro; right; intro Hlea; apply 角度小于等于推出点不重合 in Hlea; spliter; auto.
+    intro; right; intro Hlea; apply 角度小于等于推出点不重合 in Hlea; 分离合取式; auto.
   intro.
   elim(两点重合的决定性 D E).
-    intro; right; intro Hlea; apply 角度小于等于推出点不重合 in Hlea; spliter; auto.
+    intro; right; intro Hlea; apply 角度小于等于推出点不重合 in Hlea; 分离合取式; auto.
   intro.
   elim(两点重合的决定性 E F).
-    intro; right; intro Hlea; apply 角度小于等于推出点不重合 in Hlea; spliter; auto.
+    intro; right; intro Hlea; apply 角度小于等于推出点不重合 in Hlea; 分离合取式; auto.
   intro.
   elim(共线的决定性 A B C).
   { intro.
@@ -9123,7 +9123,7 @@ Proof.
     right.
     unfold 角度小于.
     intro.
-    spliter.
+    分离合取式.
     auto.
   }
   intro.
@@ -9136,7 +9136,7 @@ Proof.
   right.
   unfold 角度小于.
   intro.
-  spliter.
+  分离合取式.
   auto.
 Qed.
 
@@ -9233,14 +9233,14 @@ Proof.
   split.
   - intro Hacute.
     assert(Hdiff := acute_distincts A B C Hacute).
-    spliter.
+    分离合取式.
     apply acute_obtuse__lta; auto.
     apply (acute_bet__obtuse A); auto.
 
   - intro Hlta.
     assert (Hd := Hlta).
     apply lta_distincts in Hd.
-    spliter.
+    分离合取式.
     elim(angle_partition A B C); auto.
     intro Habs.
     exfalso.
@@ -9263,14 +9263,14 @@ Proof.
   split.
   - intro Hobtuse.
     assert(Hdiff := obtuse_distincts A B C Hobtuse).
-    spliter.
+    分离合取式.
     apply acute_obtuse__lta; auto.
     apply (bet_obtuse__acute A); auto.
 
   - intro Hlta.
     assert (Hd := Hlta).
     apply lta_distincts in Hd.
-    spliter.
+    分离合取式.
     elim(angle_partition A B C); auto.
     { intro.
       exfalso.
@@ -9298,12 +9298,12 @@ Proof.
   { apply out__acute, not_bet_out; trivial.
     intro.
     absurd (B = C).
-      apply conga_distinct in H等角; spliter; auto.
+      apply conga_distinct in H等角; 分离合取式; auto.
     apply 双中间性推出点重合 with A; apply 中间性的对称性; trivial.
     apply (bet_conga__bet A B C); assumption.
   }
   destruct (由一点往一方向构造等长线段 C B C B) as [C' []].
-  apply conga_distinct in H等角; spliter.
+  apply conga_distinct in H等角; 分离合取式.
   统计不重合点.
   apply acute_sym, acute_chara with C'; auto.
   destruct (l11_41 B C A C'); Col.
@@ -9691,7 +9691,7 @@ Proof.
     { assert (共面 A B C D) by Cop.
       apply cong3_cop2__col with A B; Cong; apply coplanar_pseudo_trans with A B C; Cop.
     }
-    destruct (每组共线三点都有另一共线点 P Q D HCol1) as [R1]; spliter.
+    destruct (每组共线三点都有另一共线点 P Q D HCol1) as [R1]; 分离合取式.
     destruct (由一点往一方向构造等长线段 R1 D R1 D) as [R2 []].
     统计不重合点.
     assert (Col P Q R2) by ColR.
@@ -9714,7 +9714,7 @@ Proof.
   intros A B C D E F H等角B H等角C Hlta HNCol1 HNCol2 Hle.
   assert (Hd := Hlta).
   apply lta_distincts in Hd.
-  spliter.
+  分离合取式.
   assert(HG0 := 给定角一边可作出与给定点同侧一点构成等角_非平角 C A B F D E).
   destruct HG0 as [G0 []]; Col.
   assert(~ Col F D G0) by (apply (one_side_not_col123 _ _ _ E); auto).
@@ -9818,7 +9818,7 @@ Proof.
   intros A B C D E F H等角B H等角C Hlta.
   assert (Hd := Hlta).
   apply lta_distincts in Hd.
-  spliter.
+  分离合取式.
   elim(共线的决定性 A B C).
   { intro.
     elim(中间性的决定性 B A C).
@@ -9937,18 +9937,18 @@ Proof.
     ex_and H0 B'.
     ex_and H C'.
     unfold 角度小于 in H0.
-    spliter.
+    分离合取式.
     intro.
     apply H1.
     assert(A <> B /\ C <> B /\ A' <> B' /\ C' <> B').
       unfold 角度小于等于 in H0.
       ex_and H0 X.
       apply conga_distinct in H3.
-      spliter.
+      分离合取式.
       repeat split; auto.
       unfold 在角内 in H0.
-      spliter; auto.
-    spliter.
+      分离合取式; auto.
+    分离合取式.
     apply(l11_16_直角相等 A B C A' B' C'); auto.
 Qed.
 
@@ -10019,11 +10019,11 @@ Lemma conga_cop_out_reflectl__out : forall A B C P T T',
   Out B C T'.
 Proof.
   intros A B C P T T' HNOut HCop HConga HOut HRefl.
-  apply conga_distinct in HConga; spliter; clean.
+  apply conga_distinct in HConga; 分离合取式; clean.
   统计不重合点.
   assert (HConga1 : 等角 P B T P B T') by (apply reflectl__conga; auto; apply is_image_spec_rev, HRefl).
   apply is_image_is_image_spec in HRefl; auto.
-  apply conga_distinct in HConga1; spliter; clean.
+  apply conga_distinct in HConga1; 分离合取式; clean.
   apply (conga_os__out P).
   - apply 角等的传递性 with P B A.
     apply 等角的对称性; assumption.
@@ -10056,7 +10056,7 @@ Proof.
   destruct (由一点往一方向构造等长线段 A B A B) as [A' [HA'1 HA'2]].
   destruct (由一点往一方向构造等长线段 C B C B) as [C' [HC'1 HC'2]].
   assert (Out B C' T'); try ColR.
-  apply conga_distinct in HConga; spliter; 统计不重合点.
+  apply conga_distinct in HConga; 分离合取式; 统计不重合点.
   apply conga_cop_out_reflectl__out with A' P T; trivial.
   - intro; apply HNOut.
     apply l6_2 with A'; auto.
@@ -10075,7 +10075,7 @@ Lemma conga2_cop2__col : forall A B C P P', ~ Out B A C ->
   Col B P P'.
 Proof.
   intros A B C P P' HNOut HP HP' HCopA HCopC.
-  apply conga_distinct in HP; apply conga_distinct in HP'; spliter; clean.
+  apply conga_distinct in HP; apply conga_distinct in HP'; 分离合取式; clean.
   destruct (l6_11_existence B B A C) as [C' [HC'1 HC'2]]; auto.
   destruct (l11_49 P B A P B C'); Cong.
     apply l11_10 with P A P C; try apply out_trivial; auto.
@@ -10105,7 +10105,7 @@ Proof.
     apply l11_13 with P P; auto.
   apply not_bet_out in HNBet; Col.
   apply l6_6 in HNBet.
-  apply conga_distinct in HConga; spliter.
+  apply conga_distinct in HConga; 分离合取式.
   apply l11_10 with P A P C; try (apply out_trivial); auto.
 Qed.
 
@@ -10114,7 +10114,7 @@ Lemma cop_inangle__ex_col_inangle : forall A B C P Q,
   exists R, 在角内 R A B C /\ P <> R /\ Col P Q R.
 Proof.
   intros A B C P Q HNOut HIn HCop.
-  assert (h := 在角内推出点不重合 A B C P HIn); spliter.
+  assert (h := 在角内推出点不重合 A B C P HIn); 分离合取式.
   assert (A <> C) by (intro; subst; apply HNOut, out_trivial; auto).
   destruct (两点重合的决定性 P Q).
   { subst Q.
@@ -10139,7 +10139,7 @@ Proof.
   - assert (HNCol3 : ~ Col B A P) by (intro; apply HNCol2; ColR).
     destruct (cop_not_par_same_side B P Q P P A) as [Q0 [HCol1 HOS]]; Col.
       apply coplanar_perm_16, col_cop__cop with C; Cop.
-    assert (Hd := os_distincts B P A Q0 HOS); spliter; clean.
+    assert (Hd := os_distincts B P A Q0 HOS); 分离合取式; clean.
     destruct (one_side_dec B A P Q0).
     { assert (HIn' : 在角内 Q0 A B P) by (apply os2__inangle; assumption).
       exists Q0; split; Col.
@@ -10163,7 +10163,7 @@ Proof.
     apply l6_6, bet_out; auto.
   - destruct (cop_not_par_same_side B P Q P P C) as [Q0 [HCol1 HOS]]; Col.
       apply coplanar_perm_3, coplanar_trans_1 with A; Cop.
-    assert (Hd := os_distincts B P C Q0 HOS); spliter; clean.
+    assert (Hd := os_distincts B P C Q0 HOS); 分离合取式; clean.
     destruct (one_side_dec B C P Q0).
     { assert (HIn' : 在角内 Q0 C B P) by (apply os2__inangle; assumption).
       exists Q0; split; Col.
@@ -10195,7 +10195,7 @@ Proof.
   intros A B C P Q HNBet HP HQ HCol.
   assert (Hd := 在角内推出点不重合 A B C P HP);
   assert (Hd' := 在角内推出点不重合 A B C Q HQ);
-  spliter; clean.
+  分离合取式; clean.
   destruct (共线的决定性 A B C).
     assert (Out B A C) by (apply not_bet_out; assumption).
     apply l6_7 with A; [apply l6_6|]; apply in_angle_out with C; auto.
@@ -10215,7 +10215,7 @@ Proof.
   assert (HQ' := l11_24_在角内的对称性 Q A B C HQ).
   assert (Hd := 在角内推出点不重合 A B C P HP);
   assert (Hd' := 在角内推出点不重合 A B C Q HQ);
-  spliter; clean.
+  分离合取式; clean.
   destruct (共线的决定性 A B C) as [HCol|HNCol].
   { destruct (中间性的决定性 A B C).
       apply l11_31_1_任何角小于等于平角_Bet表述; auto.
@@ -10269,7 +10269,7 @@ Lemma conga_inangle_per__acute : forall A B C P,
   为锐角 A B P.
 Proof.
   intros A B C P HPer HP1 HP2.
-  assert (Hd := 在角内推出点不重合 A B C P HP1); spliter; clean.
+  assert (Hd := 在角内推出点不重合 A B C P HP1); 分离合取式; clean.
   assert (HNCol : ~ Col A B C) by (apply 成直角三点不共线; auto).
   exists A, B, C; split; trivial.
   split.
@@ -10290,7 +10290,7 @@ Proof.
   assert (HQ' := l11_24_在角内的对称性 Q A B C HQ).
   assert (Hd := 在角内推出点不重合 A B C P HP1);
   assert (Hd' := 在角内推出点不重合 A B C Q HQ);
-  spliter; clean.
+  分离合取式; clean.
   assert (HNCol : ~ Col A B C) by (apply 成直角三点不共线; auto).
   assert (H为锐角 : 为锐角 A B P) by (apply conga_inangle_per__acute with C; assumption).
   assert (HNCol1 : ~ Col P B A).
@@ -10332,7 +10332,7 @@ Lemma lta_os__ts : forall A O B P, ~ Col A O P -> 角度小于 A O P A O B -> OS
 Proof.
 intros.
 unfold 角度小于 in *.
-spliter.
+分离合取式.
 unfold 角度小于等于 in *.
 ex_and H0 P'.
 assert(~Col A O B).
@@ -10340,7 +10340,7 @@ assert(~Col A O B).
   unfold OS in H1.
   ex_and H1 R.
   unfold TS in H1.
-  spliter; Col.
+  分离合取式; Col.
 }
 unfold TS.
 repeat split; Col.
@@ -10364,7 +10364,7 @@ right; Between.
 left; auto.
 Between.
 unfold 在角内 in *.
-spliter.
+分离合取式.
 ex_and H7 T.
 exists T.
 split; auto.
@@ -10388,7 +10388,7 @@ assert(A <> T).
   intro.
   treat_equalities.
   unfold TS in H9.
-  spliter.
+  分离合取式.
   apply H9.
   Col.
 }
@@ -10442,16 +10442,16 @@ Lemma suppa_distincts : forall A B C D E F, 互为补角 A B C D E F ->
   A <> B /\ B <> C /\ D <> E /\ E <> F.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 ex_and H0 A'.
-apply conga_distinct in H1; spliter.
+apply conga_distinct in H1; 分离合取式.
 repeat split; auto.
 Qed.
 
 Lemma suppa_right_comm : forall A B C D E F, 互为补角 A B C D E F -> 互为补角 A B C F E D.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 split; auto.
 ex_and H0 A'.
 exists A'.
@@ -10462,10 +10462,10 @@ Qed.
 Lemma suppa_left_comm : forall A B C D E F, 互为补角 A B C D E F -> 互为补角 C B A D E F.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 ex_and H0 A'.
 apply conga_distinct in H1.
-spliter.
+分离合取式.
 split; auto.
 destruct (由一点往一方向构造等长线段 C B C B) as [C' []].
 exists C'.
@@ -10484,9 +10484,9 @@ Qed.
 Lemma suppa_sym : forall A B C D E F, 互为补角 A B C D E F -> 互为补角 D E F A B C.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 ex_and H0 A'.
-apply conga_distinct in H1; spliter.
+apply conga_distinct in H1; 分离合取式.
 split; auto.
 destruct (由一点往一方向构造等长线段 D E D E) as [D' []].
 exists D'.
@@ -10503,7 +10503,7 @@ Proof.
 intros.
 assert (互为补角 A B C D' E' F').
 {
-  unfold 互为补角 in *; spliter.
+  unfold 互为补角 in *; 分离合取式.
   split; auto.
   ex_and H2 A0.
   exists A0.
@@ -10512,7 +10512,7 @@ assert (互为补角 A B C D' E' F').
 }
 apply suppa_sym.
 apply suppa_sym in H2.
-unfold 互为补角 in H2; spliter.
+unfold 互为补角 in H2; 分离合取式.
 split; auto.
 ex_and H3 D0.
 exists D0.
@@ -10524,14 +10524,14 @@ Lemma suppa2__conga456 : forall A B C D E F D' E' F',
   互为补角 A B C D E F -> 互为补角 A B C D' E' F' -> 等角 D E F D' E' F'.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 ex_and H2 A'.
 ex_and H1 A''.
 apply 角等的传递性 with C B A'; trivial.
 apply 角等的传递性 with C B A''; [|apply 等角的对称性, H4].
 apply conga_distinct in H3.
 apply conga_distinct in H4.
-spliter.
+分离合取式.
 apply out2__conga.
   apply out_trivial; auto.
   apply l6_2 with A; Between.
@@ -10560,7 +10560,7 @@ Lemma bet_suppa__out : forall A B C D E F,
 Proof.
 intros.
 assert (Hd := H0).
-apply suppa_distincts in Hd; spliter.
+apply suppa_distincts in Hd; 分离合取式.
 apply (l11_21_a C B C).
   apply out_trivial; auto.
 apply (suppa2__conga456 A B C); trivial.
@@ -10585,10 +10585,10 @@ Lemma per_suppa__per : forall A B C D E F,
   Per A B C -> 互为补角 A B C D E F -> Per D E F.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 ex_and H1 A'.
 apply (l11_17_等于直角的角是直角 C B A'); [|apply 等角的对称性, H2].
-apply conga_distinct in H2; spliter.
+apply conga_distinct in H2; 分离合取式.
 apply 直角边共线点也构成直角2 with A; Perp; Col.
 Qed.
 
@@ -10599,7 +10599,7 @@ intros.
 destruct (ex_suppa A B C) as [D' [E' [F']]]; auto.
 apply (conga2_suppa__suppa A B C D' E' F'); try apply 同角相等; auto.
 assert (Hd := H5).
-apply suppa_distincts in Hd; spliter.
+apply suppa_distincts in Hd; 分离合取式.
 apply l11_16_直角相等; auto.
 apply (per_suppa__per A B C); assumption.
 Qed.
@@ -10607,7 +10607,7 @@ Qed.
 Lemma suppa__per : forall A B C, 互为补角 A B C A B C -> Per A B C.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 ex_and H0 A'.
 apply 直角的对称性, l11_18_2 with A'; trivial.
 apply 等角的左交换性, H1.
@@ -10617,10 +10617,10 @@ Lemma acute_suppa__obtuse : forall A B C D E F,
   为锐角 A B C -> 互为补角 A B C D E F -> 为钝角 D E F.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 ex_and H1 A'.
 apply (conga_obtuse__obtuse C B A'); [|apply 等角的对称性, H2].
-apply conga_distinct in H2; spliter.
+apply conga_distinct in H2; 分离合取式.
 apply obtuse_sym, (acute_bet__obtuse A); auto.
 Qed.
 
@@ -10628,10 +10628,10 @@ Lemma obtuse_suppa__acute : forall A B C D E F,
   为钝角 A B C -> 互为补角 A B C D E F -> 为锐角 D E F.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 ex_and H1 A'.
 apply (acute_conga__acute C B A'); [|apply 等角的对称性, H2].
-apply conga_distinct in H2; spliter.
+apply conga_distinct in H2; 分离合取式.
 apply acute_sym, (bet_obtuse__acute A); auto.
 Qed.
 
@@ -10640,13 +10640,13 @@ Lemma lea_suppa2__lea : forall A B C D E F A' B' C' D' E' F',
   角度小于等于 D' E' F' A' B' C'.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 ex_and H3 A0.
 ex_and H2 D0.
 apply (l11_30_等角保持小于等于 F E D0 C B A0); [|apply 等角的对称性; assumption..].
 apply conga_distinct in H4.
 apply conga_distinct in H5.
-spliter.
+分离合取式.
 apply 角度小于等于的交换性, l11_36 with D A; Between.
 Qed.
 
@@ -10655,13 +10655,13 @@ Lemma lta_suppa2__lta : forall A B C D E F A' B' C' D' E' F',
   角度小于 D' E' F' A' B' C'.
 Proof.
 unfold 互为补角.
-intros; spliter.
+intros; 分离合取式.
 ex_and H3 A0.
 ex_and H2 D0.
 apply (conga_preserves_lta F E D0 C B A0); [apply 等角的对称性; assumption..|].
 apply conga_distinct in H4.
 apply conga_distinct in H5.
-spliter.
+分离合取式.
 apply 角度小于的交换性, bet2_lta__lta with A D; Between.
 Qed.
 
@@ -10671,7 +10671,7 @@ intros.
 induction (两点重合的决定性 A B).
   right; intros []; auto.
 induction (两点重合的决定性 B C).
-  right; intro Habs; apply suppa_distincts in Habs; spliter; auto.
+  right; intro Habs; apply suppa_distincts in Habs; 分离合取式; auto.
 destruct (ex_suppa A B C) as [D' [E' [F']]]; auto.
 induction (conga_dec D' E' F' D E F).
   left; apply (conga2_suppa__suppa A B C D' E' F'); try apply 同角相等; auto.
@@ -10910,7 +10910,7 @@ assert(~Col P O B).
     apply (直角边共线点也构成直角2 A O B P); Col.
   }
   unfold 角度小于 in H4.
-  spliter.
+  分离合取式.
   apply H7.
   统计不重合点.
   apply(l11_16_直角相等); auto.
@@ -10921,7 +10921,7 @@ assert(NC:~Col A O P).
   unfold OS in HOS.
   ex_and HOS R.
   unfold TS in H6.
-  spliter.
+  分离合取式.
   Col.
 }
 
@@ -10932,7 +10932,7 @@ assert(TS O B A P \/ OS O B A P).
 }
 induction H6.
 unfold TS in H6.
-spliter.
+分离合取式.
 ex_and H8 T.
 
 assert(O <> T).
@@ -10983,7 +10983,7 @@ assert(OS O A T B).
 
 destruct(l9_19 O A T B O); Col.
 apply H14 in H13.
-spliter.
+分离合取式.
 assert(在角内 B A O P).
 {
   统计不重合点.
@@ -11057,7 +11057,7 @@ induction H4.
 assert(HC:=构造对称点 B O).
 ex_and HC Bs.
 unfold 中点 in *.
-spliter.
+分离合取式.
 assert(TS O A Bs B).
 {
   repeat split; Col.

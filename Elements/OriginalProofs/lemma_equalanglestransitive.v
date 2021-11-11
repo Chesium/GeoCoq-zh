@@ -23,17 +23,17 @@ assert (neq B C) by (forward_using lemma_angledistinct).
 assert (neq P Q) by (forward_using lemma_angledistinct).
 assert (neq Q P) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists U, (Out E D U /\ Cong E U B A)) by (conclude lemma_layoff);destruct Tf as [U];spliter.
+assert (Tf:exists U, (Out E D U /\ Cong E U B A)) by (conclude lemma_layoff);destruct Tf as [U];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists V, (Out E F V /\ Cong E V B C)) by (conclude lemma_layoff);destruct Tf as [V];spliter.
+assert (Tf:exists V, (Out E F V /\ Cong E V B C)) by (conclude lemma_layoff);destruct Tf as [V];分离合取式.
 assert (neq E U) by (conclude lemma_raystrict).
 assert (neq E V) by (conclude lemma_raystrict).
 assert (等角 P Q R D E F) by (conclude lemma_equalanglessymmetric).
 assert (neq Q R) by (forward_using lemma_angledistinct).
 let Tf:=fresh in
-assert (Tf:exists u, (Out Q P u /\ Cong Q u E U)) by (conclude lemma_layoff);destruct Tf as [u];spliter.
+assert (Tf:exists u, (Out Q P u /\ Cong Q u E U)) by (conclude lemma_layoff);destruct Tf as [u];分离合取式.
 let Tf:=fresh in
-assert (Tf:exists v, (Out Q R v /\ Cong Q v E V)) by (conclude lemma_layoff);destruct Tf as [v];spliter.
+assert (Tf:exists v, (Out Q R v /\ Cong Q v E V)) by (conclude lemma_layoff);destruct Tf as [v];分离合取式.
 assert (nCol A B C) by (conclude_def 等角 ).
 assert (等角 A B C U E V) by (conclude lemma_equalangleshelper).
 assert (Cong B A E U) by (conclude lemma_congruencesymmetric).

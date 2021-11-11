@@ -14,7 +14,7 @@ intros.
 assert (neq A B) by (forward_using lemma_betweennotequal).
 assert (neq B A) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists D, BetS B A D) by (conclude postulate_Euclid2);destruct Tf as [D];spliter.
+assert (Tf:exists D, BetS B A D) by (conclude postulate_Euclid2);destruct Tf as [D];分离合取式.
 assert (BetS D A B) by (conclude axiom_betweennesssymmetry).
 assert (BetS D A C) by (conclude lemma_3_7b).
 assert (neq B C) by (forward_using lemma_betweennotequal).

@@ -20,7 +20,7 @@ assert (~ eq P A).
  }
 assert (neq A P) by (conclude lemma_inequalitysymmetric).
 let Tf:=fresh in
-assert (Tf:exists C, (BetS P A C /\ Cong A C A P)) by (conclude lemma_extension);destruct Tf as [C];spliter.
+assert (Tf:exists C, (BetS P A C /\ Cong A C A P)) by (conclude lemma_extension);destruct Tf as [C];分离合取式.
 assert (Col A B A) by (conclude_def Col ).
 assert (OS P P A B) by (conclude_def OS ).
 close.

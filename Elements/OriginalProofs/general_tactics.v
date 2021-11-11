@@ -14,7 +14,7 @@ Ltac mysubst :=
  | H1:?a=?b |- _ => (subst a;try revert H1)
  end);intros.
    
-Ltac spliter := repeat
+Ltac 分离合取式 := repeat
 match goal with
    | H:(?X1 /\ ?X2) |- _ => induction H
 end.

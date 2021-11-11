@@ -14,7 +14,7 @@ Lemma proposition_14 :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists a b c d e, (Supp a b c d e /\ 等角 A B C a b c /\ 等角 D B E d b e)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];spliter.
+assert (Tf:exists a b c d e, (Supp a b c d e /\ 等角 A B C a b c /\ 等角 D B E d b e)) by (conclude_def RT );destruct Tf as [a[b[c[d[e]]]]];分离合取式.
 assert (等角 a b c A B C) by (conclude lemma_equalanglessymmetric).
 assert (等角 d b e D B E) by (conclude lemma_equalanglessymmetric).
 assert (nCol A B C) by (conclude lemma_equalanglesNC).
@@ -22,7 +22,7 @@ assert (neq A B) by (forward_using lemma_NCdistinct).
 assert (nCol D B E) by (conclude lemma_equalanglesNC).
 assert (neq B E) by (forward_using lemma_NCdistinct).
 let Tf:=fresh in
-assert (Tf:exists T, (BetS A B T /\ Cong B T B E)) by (conclude lemma_extension);destruct Tf as [T];spliter.
+assert (Tf:exists T, (BetS A B T /\ Cong B T B E)) by (conclude lemma_extension);destruct Tf as [T];分离合取式.
 assert (Cong B D B D) by (conclude cn_congruencereflexive).
 assert (Supp A B C D T) by (conclude_def Supp ).
 assert (等角 a b c A B C) by (conclude lemma_equalanglessymmetric).
@@ -48,7 +48,7 @@ assert (Cong T B E B) by (forward_using lemma_congruenceflip).
 assert (Col D B B) by (conclude_def Col ).
 assert (TS A D B E) by (conclude lemma_oppositesidesymmetric).
 let Tf:=fresh in
-assert (Tf:exists m, (BetS A m E /\ Col D B m /\ nCol D B A)) by (conclude_def TS );destruct Tf as [m];spliter.
+assert (Tf:exists m, (BetS A m E /\ Col D B m /\ nCol D B A)) by (conclude_def TS );destruct Tf as [m];分离合取式.
 assert (BetS E m A) by (conclude axiom_betweennesssymmetry).
 assert (BetS T B A) by (conclude axiom_betweennesssymmetry).
 assert (OS T E D B) by (conclude_def OS ).

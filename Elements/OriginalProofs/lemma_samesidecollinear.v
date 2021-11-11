@@ -12,7 +12,7 @@ Lemma lemma_samesidecollinear :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists p q r, (Col A B p /\ Col A B q /\ BetS P p r /\ BetS Q q r /\ nCol A B P /\ nCol A B Q)) by (conclude_def OS );destruct Tf as [p[q[r]]];spliter.
+assert (Tf:exists p q r, (Col A B p /\ Col A B q /\ BetS P p r /\ BetS Q q r /\ nCol A B P /\ nCol A B Q)) by (conclude_def OS );destruct Tf as [p[q[r]]];分离合取式.
 assert (neq A B) by (forward_using lemma_NCdistinct).
 assert (eq A A) by (conclude cn_equalityreflexive).
 assert (Col A B A) by (conclude_def Col ).

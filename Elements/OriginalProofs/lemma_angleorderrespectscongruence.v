@@ -15,16 +15,16 @@ Lemma lemma_angleorderrespectscongruence :
 Proof.
 intros.
 rename_H H;let Tf:=fresh in
-assert (Tf:exists G H J, (BetS G H J /\ Out E D G /\ Out E F J /\ 等角 A B C D E H)) by (conclude_def 角度小于 );destruct Tf as [G[H[J]]];spliter.
+assert (Tf:exists G H J, (BetS G H J /\ Out E D G /\ Out E F J /\ 等角 A B C D E H)) by (conclude_def 角度小于 );destruct Tf as [G[H[J]]];分离合取式.
 assert ((neq P Q /\ neq Q R /\ neq P R /\ neq D E /\ neq E F /\ neq D F)) by (forward_using lemma_angledistinct).
 assert (neq Q P) by (conclude lemma_inequalitysymmetric).
 assert ((neq A B /\ neq B C /\ neq A C /\ neq D E /\ neq E H /\ neq D H)) by (forward_using lemma_angledistinct).
 assert (neq E G) by (conclude lemma_raystrict).
 let Tf:=fresh in
-assert (Tf:exists U, (Out Q P U /\ Cong Q U E G)) by (conclude lemma_layoff);destruct Tf as [U];spliter.
+assert (Tf:exists U, (Out Q P U /\ Cong Q U E G)) by (conclude lemma_layoff);destruct Tf as [U];分离合取式.
 assert (neq E J) by (conclude lemma_raystrict).
 let Tf:=fresh in
-assert (Tf:exists V, (Out Q R V /\ Cong Q V E J)) by (conclude lemma_layoff);destruct Tf as [V];spliter.
+assert (Tf:exists V, (Out Q R V /\ Cong Q V E J)) by (conclude lemma_layoff);destruct Tf as [V];分离合取式.
 assert (Cong G H G H) by (conclude cn_congruencereflexive).
 assert (Lt G H G J) by (conclude_def Lt ).
 assert (等角 D E F P Q R) by (conclude lemma_equalanglessymmetric).
@@ -38,7 +38,7 @@ assert ((Cong G J U V /\ 等角 E G J Q U V /\ 等角 E J G Q V U)) by (conclude
 assert (Cong U V G J) by (conclude lemma_congruencesymmetric).
 assert (neq G J) by (forward_using lemma_betweennotequal).
 let Tf:=fresh in
-assert (Tf:exists W, (BetS U W V /\ Cong U W G H)) by (conclude proposition_03);destruct Tf as [W];spliter.
+assert (Tf:exists W, (BetS U W V /\ Cong U W G H)) by (conclude proposition_03);destruct Tf as [W];分离合取式.
 assert (eq H H) by (conclude cn_equalityreflexive).
 assert (Out E H H) by (conclude lemma_ray4).
 assert (等角 A B C G E H) by (conclude lemma_equalangleshelper).

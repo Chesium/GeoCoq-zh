@@ -12,7 +12,7 @@ Lemma lemma_crossimpliesopposite :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists M, (BetS A M B /\ BetS C M D)) by (conclude_def CR );destruct Tf as [M];spliter.
+assert (Tf:exists M, (BetS A M B /\ BetS C M D)) by (conclude_def CR );destruct Tf as [M];分离合取式.
 assert (Col C M D) by (conclude_def Col ).
 assert (Col C D M) by (forward_using lemma_collinearorder).
 assert (nCol C D A) by (forward_using lemma_NCorder).

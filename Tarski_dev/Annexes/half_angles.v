@@ -11,7 +11,7 @@ Lemma halfa_distincts : forall P A O B, HalfA P A O B -> O <> A /\ O <> B /\ O <
 Proof.
   unfold HalfA.
   intros.
-  spliter.
+  分离合取式.
   统计不重合点.
   repeat split; auto.
 Qed.
@@ -20,7 +20,7 @@ Lemma halfa__suma : forall P A O B, HalfA P A O B -> 和角 A O P A O P A O B.
 Proof.
   unfold HalfA.
   intros P A O B H.
-  spliter.
+  分离合取式.
   统计不重合点.
   apply (等角保持和角性质 A O P B O P A O B); [和角|等角..].
 Qed.
@@ -38,7 +38,7 @@ Lemma halfa_sym : forall A O B P, HalfA P A O B -> HalfA P B O A.
 Proof.
   unfold HalfA.
   intros.
-  spliter.
+  分离合取式.
   split; [|split].
     intro; Between.
     apply l11_24_在角内的对称性; assumption.
@@ -49,7 +49,7 @@ Lemma halfa__nbet : forall A O B P, HalfA P A O B -> ~ Bet A O P.
 Proof.
   unfold HalfA.
   intros A O B P H.
-  spliter.
+  分离合取式.
   intro HBet.
   apply (not_bet_and_out A O P).
   split.
@@ -89,7 +89,7 @@ Lemma halfa_chara1 : forall P A O B, HalfA P A O B ->
 Proof.
   unfold HalfA.
   intros P A O B H.
-  spliter.
+  分离合取式.
   统计不重合点.
   destruct (l6_11_existence O O A B) as [A' []]; auto.
   destruct (中点的存在性 A A') as [M].
@@ -161,7 +161,7 @@ Proof.
   apply halfa_chara1 in HP'.
   destruct HP as [A1 [M1]].
   destruct HP' as [A2 [M2]].
-  spliter.
+  分离合取式.
   assert (A1 = A2).
   { 统计不重合点.
     apply (l6_11_uniqueness O O A B); auto.
@@ -186,7 +186,7 @@ Lemma null_halfa__null : forall P A O B, Col A O B -> HalfA P A O B -> Out O A P
 Proof.
   unfold HalfA.
   intros P A O B HCol H.
-  spliter.
+  分离合取式.
   assert (Out O A B) by (apply not_bet_out; assumption).
   apply(in_angle_out A O B P); assumption.
 Qed.
@@ -207,7 +207,7 @@ Lemma halfa__sams : forall P A O B, HalfA P A O B -> 和角不大于平角 A O P
 Proof.
   unfold HalfA.
   intros P A O B H.
-  spliter.
+  分离合取式.
   统计不重合点.
   apply (等角保持和角不大于平角性质 A O P P O B); [等角..|和角].
 Qed.
@@ -225,7 +225,7 @@ Lemma halfa__lea : forall P A O B, HalfA P A O B -> 角度小于等于 A O P A O
 Proof.
   unfold HalfA.
   intros.
-  spliter.
+  分离合取式.
   apply (inangle__lea); assumption.
 Qed.
 
@@ -260,7 +260,7 @@ Proof.
     apply halfa__suma; assumption.
   assert (Hd := HP').
   apply halfa_distincts in Hd.
-  spliter.
+  分离合取式.
   apply (等角保持和角性质 A' O' P' A' O' P' A' O' B'); [|等角..].
   apply halfa__suma; assumption.
 Qed.
@@ -297,7 +297,7 @@ Proof.
   apply halfa_distincts in Hd.
   assert (Hd' := HP').
   apply halfa_distincts in Hd'.
-  spliter.
+  分离合取式.
   destruct (lea_total A O P A' O' P'); auto.
   apply 等角小于等于自己.
   apply conga_halfa__conga2 with B' B; [assumption..|].
@@ -320,7 +320,7 @@ Lemma col_halfa__out : forall P A O B, Col A O B -> HalfA P A O B -> Out O A B.
 Proof.
   unfold HalfA.
   intros.
-  spliter.
+  分离合取式.
   apply not_bet_out; assumption.
 Qed.
 
@@ -338,7 +338,7 @@ Lemma halfa__coplanar : forall A B C D,
 Proof.
   unfold HalfA.
   intros.
-  spliter.
+  分离合取式.
   apply inangle__coplanar; assumption.
 Qed.
 
@@ -380,7 +380,7 @@ Proof.
   apply halfa_sym in HC'.
   destruct (共线的决定性 B O C).
   { apply out341__inangle.
-      apply halfa_distincts in HA'; spliter; auto.
+      apply halfa_distincts in HA'; 分离合取式; auto.
     apply null_halfa__null with C; assumption.
   }
   apply l11_24_在角内的对称性, lea_in_angle.
@@ -402,7 +402,7 @@ Lemma ghalfa_distincts : forall A' O' B' A O B, gHalfA A' O' B' A O B ->
 Proof.
   intros A' O' B' A O B [P [HP]].
   apply halfa_distincts in HP.
-  spliter.
+  分离合取式.
   统计不重合点.
   repeat split; auto.
 Qed.
@@ -413,7 +413,7 @@ Proof.
   exists P.
   split; [assumption|].
   apply halfa_distincts in HP.
-  spliter.
+  分离合取式.
   apply 同角相等; auto.
 Qed.
 
@@ -459,7 +459,7 @@ Proof.
   intros A' O' B' A O B [P [HHalf HConga]].
   assert (Hd := HHalf).
   apply halfa_distincts in HHalf.
-  spliter.
+  分离合取式.
   apply (等角保持和角性质 A O P A O P A O B); [|等角..].
   apply halfa__suma; assumption.
 Qed.
@@ -490,7 +490,7 @@ Qed.
 Lemma ghalfa__out : forall A O B, gHalfA A O B A O B -> Out O A B.
 Proof.
   intros A O B HHalf.
-  rewrite ghalfa_chara in HHalf; spliter.
+  rewrite ghalfa_chara in HHalf; 分离合取式.
   apply (和角与原角等则加角为零角 A O B); 和角.
 Qed.
 

@@ -25,7 +25,7 @@ assert (HRAH : postulate_of_right_saccheri_quadrilaterals).
   destruct (中点的存在性 E G) as [M1 HM1].
   destruct (中点的存在性 F H) as [M2 HM2].
   assert (HLamb := mid2_sac__lam6521 _ _ _ _ _ _ HSacc HM2 HM1).
-  unfold Lambert四边形 in HLamb; spliter.
+  unfold Lambert四边形 in HLamb; 分离合取式.
   assert (萨凯里四边形 M1 M2 F E).
     {
     repeat split; Perp.
@@ -79,7 +79,7 @@ assert (HSacc2 : 萨凯里四边形 E F S R).
 统计不重合点.
 apply 垂线共线点也构成垂直1 with S; Col.
 assert (Hd := HSacc2).
-apply sac_distincts in Hd; spliter.
+apply sac_distincts in Hd; 分离合取式.
 apply 垂直的对称性, 垂直的交换性, 垂线共线点也构成垂直1 with S; Col.
 apply 直角转L形垂直; auto.
 apply HRAH with E, sac_perm, HSacc2.
@@ -98,7 +98,7 @@ cut (forall P Q, Perp A B P Q -> 共面 C D P Q -> ~ Col A B P -> Perp C D P Q).
   }
 intros P Q HPerp HCop HNCol.
 assert (HH := HPar).
-destruct HH as [HPars|]; [|spliter; apply (与垂线共线之线也为垂线2 A B); auto; ColR].
+destruct HH as [HPars|]; [|分离合取式; apply (与垂线共线之线也为垂线2 A B); auto; ColR].
 assert (HH := HPerp); destruct HH as [R HR];
 apply 垂点是交点 in HR; destruct HR as [HR1 HR2].
 destruct (l8_18_过一点垂线之垂点的存在性 A B C) as [E [HE1 HE2]].
@@ -123,7 +123,7 @@ assert (P <> Q) by (apply 垂直推出不重合 in HPerp; apply HPerp).
 apply 垂直的对称性, 垂线共线点也构成垂直1 with R; Col.
 apply 垂直的对称性.
 assert (P <> R) by (intro; subst; apply HNCol, HR1).
-apply par_distinct in HPar; spliter.
+apply par_distinct in HPar; 分离合取式.
 apply universal_posidonius_postulate__perpendicular_transversal_postulate_aux with E G; trivial.
   apply 与垂线共线之线也为垂线2 with A B; Col; apply 垂直的对称性, 垂直的左交换性, 垂线共线点也构成垂直1 with Q; Perp.
   apply col_cop__cop with Q; trivial.

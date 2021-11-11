@@ -435,7 +435,7 @@ Proof.
 unfold Between_H in |- *.
 intros.
 intro;
-spliter.
+分离合取式.
 assert (B=C) by
  (apply (双中间性推出点重合 B C A);Between).
 solve [intuition].
@@ -477,7 +477,7 @@ unfold cut.
 unfold TS.
 split.
 intros.
-spliter.
+分离合取式.
 repeat split; intuition.
 ex_and H1 T.
 exists T.
@@ -486,7 +486,7 @@ unfold Between_H in *.
 intuition.
 
 intros.
-spliter.
+分离合取式.
 ex_and H1 T.
 unfold IncidentL.
 repeat split; try assumption.
@@ -534,9 +534,9 @@ Proof.
     destruct (cop_plane_aux D E E E) as [p []]; Cop.
     subst; exists p; repeat split; assumption.
   - destruct (cop_plane_aux A D B C) as [p]; Cop.
-    spliter; exists p; repeat split; assumption.
+    分离合取式; exists p; repeat split; assumption.
   - destruct (cop_plane_aux A C B D) as [p]; Cop.
-    spliter; exists p; repeat split; assumption.
+    分离合取式; exists p; repeat split; assumption.
   - apply (cop_plane_aux A B C D HCop HAB).
 Qed.
 
@@ -562,7 +562,7 @@ assumption.
 
 assert(HH:=H5).
 unfold TS in HH.
-spliter.
+分离合取式.
 
 unfold IncidentL in H4.
 assert (HCop : 共面 (P1 l) (P2 l) A C).
@@ -606,7 +606,7 @@ Lemma out_outH : forall P A B, Out P A B -> outH P A B.
 unfold Out.
 unfold outH.
 intros.
-spliter.
+分离合取式.
 induction H1.
 
 induction (两点重合的决定性 A B).
@@ -647,11 +647,11 @@ Proof.
 unfold Between_H.
 unfold IncidentL.
 intros.
-spliter.
+分离合取式.
 
 assert(A' <> M /\ A'' <> M /\ B' <> M /\ B'' <> M /\ A' <> B' /\ A'' <> B'').
 repeat split; intro; treat_equalities; tauto.
-spliter.
+分离合取式.
 
 induction(out_dec M A' A'').
 left.
@@ -785,7 +785,7 @@ assert(exists M, 中点 M B C) by(apply 中点的存在性).
 ex_and H3 M.
 exists M.
 unfold 中点 in H4.
-spliter.
+分离合取式.
 split.
 unfold Between_H.
 repeat split.
@@ -826,7 +826,7 @@ assert(exists M, 中点 M A B) by(apply 中点的存在性).
 ex_and H3 M.
 exists M.
 unfold 中点 in H4.
-spliter.
+分离合取式.
 split.
 unfold Between_H.
 repeat split.
@@ -917,7 +917,7 @@ unfold cut.
 unfold IncidentL.
 unfold TS in H.
 unfold TS in H0.
-spliter.
+分离合取式.
 repeat split; auto.
 ex_and H4 T.
 exists T.
@@ -1005,13 +1005,13 @@ unfold Out.
 intros.
 induction H.
 unfold Between_H in H.
-spliter.
+分离合取式.
 repeat split; auto.
 induction H.
 unfold Between_H in H.
-spliter.
+分离合取式.
 repeat split; auto.
-spliter.
+分离合取式.
 repeat split.
 auto.
 subst B.
@@ -1228,7 +1228,7 @@ Lemma 三维防降维公理' : {A : Tpoint & {B : Tpoint & {C : Tpoint & {D |
   ~ exists p, IncidentP A p /\ IncidentP B p /\ IncidentP C p /\ IncidentP D p}}}}.
 Proof.
 exists S1, S2, S3, S4.
-intros [p]; spliter.
+intros [p]; 分离合取式.
 apply tarski_axioms.三维防降维公理, plane_cop with p; assumption.
 Qed.
 

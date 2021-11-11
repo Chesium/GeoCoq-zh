@@ -38,7 +38,7 @@ Proof.
     assert (OS P C S A).
       apply one_side_transitivity with D; Side.
     assert (严格平行 P A S C).
-    { apply lta_distincts in HS1; spliter.
+    { apply lta_distincts in HS1; 分离合取式.
       apply par_strict_right_comm, par_strict_col_par_strict with D; Col.
     }
     assert (HTS : TS P S C A) by (apply l9_31; Side).

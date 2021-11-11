@@ -10,7 +10,7 @@ Lemma lemma_rightangleNC :
 Proof.
 intros.
 let Tf:=fresh in
-assert (Tf:exists D, (BetS A B D /\ Cong A B D B /\ Cong A C D C /\ neq B C)) by (conclude_def Per );destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS A B D /\ Cong A B D B /\ Cong A C D C /\ neq B C)) by (conclude_def Per );destruct Tf as [D];分离合取式.
 assert (Cong A B B D) by (forward_using lemma_congruenceflip).
 assert (中点 A B D) by (conclude_def 中点 ).
 assert (~ BetS A C D).

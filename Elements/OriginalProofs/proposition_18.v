@@ -29,7 +29,7 @@ assert (~ eq A C).
 assert (neq C A) by (conclude lemma_inequalitysymmetric).
 assert (Cong A C A C) by (conclude cn_congruencereflexive).
 let Tf:=fresh in
-assert (Tf:exists D, (BetS A D C /\ Cong A D A B)) by (conclude proposition_03);destruct Tf as [D];spliter.
+assert (Tf:exists D, (BetS A D C /\ Cong A D A B)) by (conclude proposition_03);destruct Tf as [D];分离合取式.
 assert (~ Col B C D).
  {
  intro.

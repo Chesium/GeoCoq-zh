@@ -11,7 +11,7 @@ Lemma project_id : forall A B X Y P P', Proj P P' A B X Y -> Col A B P -> P = P'
 Proof.
 intros.
 unfold Proj in H.
-spliter.
+分离合取式.
 induction H4.
 
 apply False_ind.
@@ -37,7 +37,7 @@ intro.
 apply H0.
 subst P'.
 unfold Proj in H.
-spliter.
+分离合取式.
 assumption.
 Qed.
 
@@ -45,7 +45,7 @@ Lemma project_col : forall A B X Y P , Proj P P A B X Y -> Col A B P.
 Proof.
 intros.
 unfold Proj in H.
-spliter.
+分离合取式.
 assumption.
 Qed.
 
@@ -66,10 +66,10 @@ assert(HH:=H).
 assert(HH0:=H0).
 unfold Proj in HH.
 unfold Proj in HH0.
-spliter.
+分离合取式.
 
 apply par_distincts in H1.
-spliter.
+分离合取式.
 
 induction H11.
 
@@ -77,10 +77,10 @@ assert(Col P P P' /\ Col Q P P').
 apply(parallel_uniqueness X Y P P' P Q P); Col.
 Par.
 Par.
-spliter.
+分离合取式.
 
 apply par_distincts in H11.
-spliter.
+分离合取式.
 
 induction H6.
 
@@ -88,14 +88,14 @@ assert(Col P Q Q' /\ Col Q Q Q').
 apply(parallel_uniqueness X Y Q Q' P Q Q); Col.
 Par.
 Par.
-spliter.
+分离合取式.
 
 clean_duplicated_hyps.
 clear H14.
 clear H19.
 
 apply par_distincts in H6.
-spliter.
+分离合取式.
 
 eapply (l6_21_两线交点的唯一性 A B P Q); Col.
 intro.
@@ -111,13 +111,13 @@ apply(project_id A B X Y P P'); Col.
 
 induction H6.
 apply par_distincts in H6.
-spliter.
+分离合取式.
 
 assert(Col P Q Q' /\ Col Q Q Q').
 apply(parallel_uniqueness X Y Q Q' P Q Q); Col.
 Par.
 Par.
-spliter.
+分离合取式.
 clear H17.
 
 subst P'.
@@ -147,7 +147,7 @@ Lemma ker_col : forall P Q P' A B X Y, Proj P P' A B X Y -> Proj Q P' A B X Y ->
 Proof.
 intros.
 unfold Proj in *.
-spliter.
+分离合取式.
 clean_duplicated_hyps.
 induction H8; induction H4; try(subst P';Col).
 assert(Par P P' Q P').
@@ -158,7 +158,7 @@ induction H2.
 apply False_ind.
 apply H2.
 exists P'; Col.
-spliter.
+分离合取式.
 Col.
 Qed.
 
@@ -172,7 +172,7 @@ apply H0.
 apply H1.
 
 unfold Proj in *.
-spliter.
+分离合取式.
 clean_duplicated_hyps.
 induction H10; induction H6.
 eapply (par_col_par_2 _ P').
@@ -196,21 +196,21 @@ assert(HH:=H).
 assert(HH0:=H0).
 unfold Proj in HH.
 unfold Proj in HH0.
-spliter.
+分离合取式.
 clean_duplicated_hyps.
 
 induction H10; induction H5.
 
 apply par_distincts in H1.
 apply par_distincts in H2.
-spliter.
+分离合取式.
 clear H5.
 
 assert(Col P P P' /\ Col Q' P P').
 apply(parallel_uniqueness  X Y P P' P Q' P); Col.
 Par.
 Par.
-spliter.
+分离合取式.
 clear H3.
 
 apply (l6_21_两线交点的唯一性 A B P P'); Col.
@@ -290,7 +290,7 @@ eapply project_par.
 apply H1.
 apply H2.
 unfold Proj in *.
-spliter.
+分离合取式.
 induction H11; induction H7.
 eapply (par_col_par_2 _ P'); Col.
 subst Q'.
@@ -310,7 +310,7 @@ Lemma par_col_project :
 Proof.
 intros.
 apply par_distincts in H1.
-spliter.
+分离合取式.
 unfold Proj.
 repeat split;auto.
 Qed.
@@ -331,7 +331,7 @@ assert(HH2:=H2).
 unfold Proj in HH0.
 unfold Proj in HH1.
 unfold Proj in HH2.
-spliter.
+分离合取式.
 clean_duplicated_hyps.
 
 assert(Col P' Q' R').
@@ -364,11 +364,11 @@ Between.
 
 induction H17.
 apply par_distincts in H10.
-spliter.
+分离合取式.
 
 induction H12.
 apply par_distincts in H12.
-spliter.
+分离合取式.
 clear H20.
 
 assert(Par P P' Q Q').
@@ -380,7 +380,7 @@ assert(严格平行  Q Q' P P').
 induction H20.
 apply par_strict_symmetry.
 assumption.
-spliter.
+分离合取式.
 assert(Q'=P').
 
 apply (project_col_eq Q P Q' P' A B X Y); Col.
@@ -402,7 +402,7 @@ assert(严格平行 Q Q' R R' ).
 induction H23.
 apply par_strict_symmetry.
 assumption.
-spliter.
+分离合取式.
 assert(Q'=R').
 
 apply(project_col_eq Q R Q' R' A B X Y); Col.
@@ -436,7 +436,7 @@ apply H26.
 assumption.
 
 unfold TS in H27.
-spliter.
+分离合取式.
 ex_and H29 QQ.
 
 assert(QQ=Q').
@@ -473,7 +473,7 @@ tauto.
 exists Q.
 split; Col.
 unfold TS in H7.
-spliter.
+分离合取式.
 ex_and H24 QQ.
 
 assert(QQ=Q').
@@ -507,7 +507,7 @@ Par.
 assert(严格平行 Qx Qy P P').
 induction H21.
 assumption.
-spliter.
+分离合取式.
 assert(P' = Q).
 
 induction(两点重合的决定性 Qx Q).
@@ -536,7 +536,7 @@ Par.
 assert(严格平行 Qx Qy R R').
 induction H24.
 assumption.
-spliter.
+分离合取式.
 assert(R' = Q).
 
 induction(两点重合的决定性 Qx Q).
@@ -579,7 +579,7 @@ eapply l9_2.
 apply H27.
 assumption.
 unfold TS in H28.
-spliter.
+分离合取式.
 ex_and H30 QQ.
 
 assert(QQ=Q).
@@ -622,7 +622,7 @@ induction H7.
 
 apply par_distincts in H10.
 apply par_distincts in H7.
-spliter.
+分离合取式.
 
 assert(Par Q Q' R R').
 eapply par_trans.
@@ -631,7 +631,7 @@ Par.
 assert(严格平行 Q Q' R R').
 induction H20.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 apply H9.
 eapply (project_col_eq R Q _ _ A B X Y); Col.
@@ -655,7 +655,7 @@ split; Col.
 Between.
 
 unfold TS in H23.
-spliter.
+分离合取式.
 ex_and H25 QQ.
 
 assert(QQ=Q').
@@ -675,7 +675,7 @@ assumption.
 
 subst R'.
 apply par_distincts in H10.
-spliter.
+分离合取式.
 assert(Q' = Q).
 
 eapply (l6_21_两线交点的唯一性 P R Q Q'); Col.
@@ -701,7 +701,7 @@ subst Q'.
 induction H7.
 
 apply par_distincts in H7.
-spliter.
+分离合取式.
 
 assert(R = R').
 
@@ -748,14 +748,14 @@ assert(A' <> B').
 intro.
 subst A'.
 apply par_distincts in H0.
-spliter.
+分离合取式.
 tauto.
 
 assert(C' <> B').
 intro.
 subst C'.
 apply par_distincts in H1.
-spliter.
+分离合取式.
 tauto.
 
 assert(Par B' C' B C'').
@@ -773,7 +773,7 @@ apply par_symmetry.
 apply par_comm.
 assumption.
 
-spliter.
+分离合取式.
 clear H13.
 clear H15.
 
@@ -806,14 +806,14 @@ apply par_distincts in H2.
 tauto.
 
 apply par_distincts in H21.
-spliter.
+分离合取式.
 
 
 induction H17.
 assert(严格平行 A C A'' C'').
 induction H21.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 apply H.
 
@@ -872,7 +872,7 @@ apply l9_2.
 apply H26.
 assumption.
 unfold TS in H28.
-spliter.
+分离合取式.
 ex_and H30 T.
 apply H24.
 exists T.
@@ -919,7 +919,7 @@ repeat split; auto.
 intro.
 subst.
 unfold 严格平行 in H24.
-spliter.
+分离合取式.
 apply H27.
 exists C''; split; Col.
 
@@ -930,7 +930,7 @@ apply l9_2.
 apply H26.
 assumption.
 unfold TS in H28.
-spliter.
+分离合取式.
 ex_and H30 T.
 apply H24.
 exists T.
@@ -943,7 +943,7 @@ induction H16.
 assert(严格平行 A C A'' C'').
 induction H21.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 apply H.
 
@@ -995,7 +995,7 @@ apply l9_2.
 apply H26.
 assumption.
 unfold TS in H28.
-spliter.
+分离合取式.
 ex_and H30 T.
 apply H24.
 exists T.
@@ -1021,7 +1021,7 @@ induction H16.
 assert(严格平行 A C A'' C'').
 induction H21.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 apply H.
 
@@ -1086,7 +1086,7 @@ repeat split; auto.
 intro.
 subst.
 unfold 严格平行 in H24.
-spliter.
+分离合取式.
 apply H27.
 exists A''.
 split; Col.
@@ -1097,7 +1097,7 @@ apply l9_2.
 apply H26.
 assumption.
 unfold TS in H28.
-spliter.
+分离合取式.
 ex_and H30 T.
 apply H24.
 exists T.
@@ -1163,10 +1163,10 @@ Lemma cong_conga3_cong3 :
 Proof.
 intros.
 unfold 等角_3 in H1.
-spliter.
+分离合取式.
 assert(Cong A C A' C' /\ Cong B C B' C' /\ 等角 C A B C' A' B').
 apply( l11_50_2 A B C A' B' C' H); auto.
-spliter.
+分离合取式.
 repeat split; auto.
 Qed.
 
@@ -1182,10 +1182,10 @@ assert(HH:=H).
 assert(HH0:=H0).
 unfold Proj in HH.
 unfold Proj in HH0.
-spliter.
+分离合取式.
 unfold EqV.
 apply par_distincts in H1.
-spliter.
+分离合取式.
 
 left.
 induction H1.
@@ -1206,7 +1206,7 @@ induction H14.
 apply H14.
 exists P'.
 split; Col.
-spliter.
+分离合取式.
 
 apply H1.
 exists P'.
@@ -1225,7 +1225,7 @@ apply par_symmetry in H2.
 induction H2.
 apply par_strict_symmetry.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 apply H1.
 exists P'.
@@ -1251,10 +1251,10 @@ subst Q'.
 apply plg_trivial.
 assumption.
 
-spliter.
+分离合取式.
 assert(P = P' /\ Q = Q').
 split; eapply (project_id A B X Y); Col.
-spliter.
+分离合取式.
 subst P'.
 subst Q'.
 apply plg_trivial.
@@ -1273,7 +1273,7 @@ Lemma eqv_project_eq_eq :
   Q' = S'.
 Proof.
 intros.
-spliter.
+分离合取式.
 
 induction(两点重合的决定性 P Q).
 subst Q.
@@ -1326,7 +1326,7 @@ apply eqv_par in H6; auto.
 apply H6.
 unfold Proj in H0.
 unfold Proj in H2.
-spliter.
+分离合取式.
 induction H16; induction H12.
 
 assert(Col R P P' /\ Col P' P P').
@@ -1334,7 +1334,7 @@ assert(Col R P P' /\ Col P' P P').
 apply(parallel_uniqueness X Y P P' R P' P'); Col.
 Par.
 Par.
-spliter.
+分离合取式.
 clear H18.
 
 eapply (par_col_par_2 _ P'); Col.
@@ -1359,7 +1359,7 @@ Proof.
 intros.
 assert(HH1:=H1).
 unfold Proj in HH1.
-spliter.
+分离合取式.
 repeat split; Col.
 apply eqv_permut in H.
 
@@ -1373,7 +1373,7 @@ subst R.
 apply null_vector in H.
 subst S.
 unfold Proj in H1.
-spliter.
+分离合取式.
 induction H11.
 assumption.
 contradiction.
@@ -1386,7 +1386,7 @@ apply H0.
 assumption.
 
 unfold Proj in H0.
-spliter.
+分离合取式.
 
 induction H14.
 assert(Par P R X Y).
@@ -1399,7 +1399,7 @@ apply(parallel_uniqueness X Y Q Q' Q S Q); Col.
 Par.
 eapply par_trans; [|apply H].
 Par.
-spliter.
+分离合取式.
 apply par_left_comm.
 eapply (par_col_par_2 _ Q); Col.
 Par.
@@ -1414,7 +1414,7 @@ subst P'.
 
 assert(Par P R X Y).
 unfold Proj in H2.
-spliter.
+分离合取式.
 induction H17.
 Par.
 subst R.
@@ -1429,7 +1429,7 @@ eapply par_trans.
 apply par_symmetry.
 apply H14.
 assumption.
-spliter.
+分离合取式.
 apply (par_col_par_2 _ Q); Col.
 eapply par_trans.
 apply par_left_comm.
@@ -1448,14 +1448,14 @@ Qed.
 Lemma project_par_dir : forall P P' A B X Y, P <> P' -> Proj P P' A B X Y -> Par P P' X Y.
 intros.
 unfold Proj in H0.
-spliter.
+分离合取式.
 induction H4; tauto.
 Qed.
 
 Lemma project_idem : forall P P' A B X Y, Proj P P' A B X Y -> Proj P' P' A B X Y.
 intros.
 unfold Proj in *.
-spliter.
+分离合取式.
 repeat split; Col.
 Qed.
 
@@ -1467,7 +1467,7 @@ apply plg_cong.
 apply plg_permut.
 apply plg_comm2.
 assumption.
-spliter.
+分离合取式.
 subst B.
 subst D.
 Cong.
@@ -1604,7 +1604,7 @@ apply eqv_par in H13; auto.
 assert(Par P' Q' A B).
 right.
 unfold Proj in *.
-spliter.
+分离合取式.
 repeat split; Col.
 
 eapply par_trans.
@@ -1631,7 +1631,7 @@ apply eqv_par in H13; auto.
 assert(Par R' S' A B).
 right.
 unfold Proj in *.
-spliter.
+分离合取式.
 repeat split; Col.
 apply H6.
 
@@ -1681,7 +1681,7 @@ assert(~ Col P' Q'' Q').
 intro.
 apply H19.
 unfold Proj in *.
-spliter.
+分离合取式.
 assert(Col P' Q' A).
 ColR.
 assert(Col P' Q' B).
@@ -1706,7 +1706,7 @@ assumption.
 assumption.
 right.
 unfold Proj in *.
-spliter.
+分离合取式.
 repeat split; try assumption.
 
 apply (共线的传递性4 A B); Col.
@@ -1760,13 +1760,13 @@ intro.
 subst Q''.
 apply H19.
 unfold Proj in *.
-spliter.
+分离合取式.
 Col.
 
 eapply par_cong_mid_os.
 induction H18.
 assumption.
-spliter.
+分离合取式.
 apply False_ind.
 
 assert(~ Col A B S'').
@@ -1776,14 +1776,14 @@ auto.
 apply H27.
 
 unfold Proj in *.
-spliter.
+分离合取式.
 assert(Col Q' S' A).
 ColR.
 assert(Col Q' S' B).
 ColR.
 apply (共线的传递性4 Q' S'); Col.
 unfold 三角形全等 in H21.
-spliter.
+分离合取式.
 Cong.
 unfold EqV in H13.
 induction H13.
@@ -1795,12 +1795,12 @@ apply plg_sym in H13.
 induction H13.
 assumption.
 unfold 退化平行四边形 in H13.
-spliter.
+分离合取式.
 apply False_ind.
 apply H19.
 
 unfold Proj in *.
-spliter.
+分离合取式.
 
 assert(Col P' R' A).
 ColR.
@@ -1809,7 +1809,7 @@ ColR.
 apply (共线的传递性4 P' R'); Col.
 
 assert(HH:= plgs_par_strict R' P' Q'' S'' H24).
-spliter.
+分离合取式.
 
 assert(严格平行 Q'' S'' Q' S').
 eapply par_strict_col2_par_strict.
@@ -1817,15 +1817,15 @@ auto.
 apply par_strict_symmetry.
 apply H25.
 unfold Proj in *.
-spliter.
+分离合取式.
 apply (共线的传递性4 A B); Col.
 unfold Proj in *.
-spliter.
+分离合取式.
 apply (共线的传递性4 A B); Col.
 apply l12_6.
 assumption.
 
-spliter.
+分离合取式.
 subst Q''.
 apply False_ind.
 apply H20.
@@ -1846,7 +1846,7 @@ assumption.
 left.
 split.
 apply 垂点是交点 in H.
-spliter.
+分离合取式.
 assumption.
 apply l8_14_2_1a_垂直于转垂直 in H.
 assumption.
@@ -1855,9 +1855,9 @@ Qed.
 Lemma proj_distinct : forall P P' A B, Projp P P' A B -> P' <> A \/ P' <> B.
 intros.
 unfold Projp in H.
-spliter.
+分离合取式.
 induction H0.
-spliter.
+分离合取式.
 induction(两点重合的决定性 P' A).
 subst P'.
 right.
@@ -1865,7 +1865,7 @@ apply 垂直推出不重合1 in H1.
 assumption.
 left.
 assumption.
-spliter.
+分离合取式.
 
 subst P'.
 induction(两点重合的决定性 P A).
@@ -1901,17 +1901,17 @@ repeat split; auto.
 apply perp_not_par.
 assumption.
 unfold Projp in H.
-spliter.
+分离合取式.
 induction H3.
 tauto.
-spliter.
+分离合取式.
 subst P'.
 assumption.
 
 unfold Projp in H.
-spliter.
+分离合取式.
 induction H3.
-spliter.
+分离合取式.
 left.
 eapply l12_9_2D.
 apply 垂直的对称性.
@@ -1947,17 +1947,17 @@ repeat split; auto.
 apply perp_not_par.
 assumption.
 unfold Projp in H.
-spliter.
+分离合取式.
 induction H3.
 tauto.
-spliter.
+分离合取式.
 subst P'.
 assumption.
 
 unfold Projp in H.
-spliter.
+分离合取式.
 induction H3.
-spliter.
+分离合取式.
 left.
 eapply l12_9_2D.
 apply 垂直的对称性.
@@ -1985,23 +1985,23 @@ apply H.
 apply perp_not_par.
 assumption.
 unfold Projp in H0.
-spliter.
+分离合取式.
 induction H1.
-spliter.
+分离合取式.
 assumption.
-spliter.
+分离合取式.
 subst P'.
 assumption.
 unfold Projp in H0.
-spliter.
+分离合取式.
 induction H1.
-spliter.
+分离合取式.
 left.
 eapply l12_9_2D.
 apply 垂直的对称性.
 apply H2.
 Perp.
-spliter.
+分离合取式.
 right.
 assumption.
 Qed.
@@ -2014,7 +2014,7 @@ Lemma project_to_projp :
 Proof.
 intros.
 unfold Proj in H.
-spliter.
+分离合取式.
 unfold Projp.
 split.
 apply 垂直推出不重合1 in H0.
@@ -2044,16 +2044,16 @@ Proof.
 intros.
 unfold Projp in H0.
 unfold Proj in H1.
-spliter.
+分离合取式.
 induction H6;
 induction H5.
-spliter.
+分离合取式.
 apply 垂直的对称性.
 eapply par_perp__perp.
 apply H5.
 Perp.
 contradiction.
-spliter.
+分离合取式.
 contradiction.
 contradiction.
 Qed.
@@ -2066,9 +2066,9 @@ Lemma project_par_project :
 Proof.
 intros.
 unfold Proj in *.
-spliter.
+分离合取式.
 apply par_distincts in H0.
-spliter.
+分离合取式.
 repeat split; Col.
 intro.
 apply H2.
@@ -2093,7 +2093,7 @@ Lemma project_project_par :
 Proof.
 intros.
 unfold Proj in *.
-spliter.
+分离合取式.
 induction H9;
 induction H5;
 try contradiction.
@@ -2107,24 +2107,24 @@ Qed.
 Lemma projp_id : forall P P' Q' A B, Projp P P' A B -> Projp P Q' A B -> P' = Q'.
 intros.
 unfold Projp in *.
-spliter.
+分离合取式.
 induction H1; induction H2.
-spliter.
+分离合取式.
 apply (l8_18_过一点垂线之垂点的唯一性 A B P); Col.
 apply 垂直推出不共线 in H4.
 induction H4.
 assumption.
 contradiction.
-spliter.
+分离合取式.
 subst P'.
 apply 垂直推出不共线 in H3.
 
 induction H3; contradiction.
-spliter.
+分离合取式.
 subst Q'.
 apply 垂直推出不共线 in H4.
 induction H4; contradiction.
-spliter.
+分离合取式.
 subst P'.
 subst Q'.
 auto.
@@ -2191,17 +2191,17 @@ Lemma projp_idem : forall P P' A B,
 Proof.
 intros.
 unfold Projp in *.
-spliter.
+分离合取式.
 split.
 auto.
 induction H0.
 right.
-spliter.
+分离合取式.
 split.
 assumption.
 auto.
 right.
-spliter.
+分离合取式.
 subst P'.
 tauto.
 Qed.
@@ -2211,7 +2211,7 @@ Lemma projp2_col : forall A B C P Q,
 Proof.
 intros A B C P Q H1 H2.
 destruct H1 as [H1 H3]; destruct H2 as [H2 H4];
-induction H3; induction H4; spliter; treat_equalities; Col.
+induction H3; induction H4; 分离合取式; treat_equalities; Col.
 apply perp2__col with B C; Perp.
 Qed.
 
@@ -2221,7 +2221,7 @@ Proof.
 intros P P1 P2 Q1 Q2 HP1P2 H1 H2.
 destruct H1 as [H H1]; clear H; destruct H2 as [H H2]; clear H.
 elim H1; clear H1; intro H1; elim H2; clear H2; intro H2;
-spliter; treat_equalities; Perp; [|intuition].
+分离合取式; treat_equalities; Perp; [|intuition].
 apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with P1 P; Perp; Col.
 apply 等价共线CAB; apply perp2__col with Q1 Q2; Perp.
 Qed.
@@ -2230,14 +2230,14 @@ Lemma col_projp_eq : forall A B P P', Col A B P -> Projp P P' A B -> P = P'.
 Proof.
 intros A B P P' HCol1 HProjp.
 destruct HProjp as [HDiff HProjp]; elim HProjp; clear HProjp; intro HProjp;
-[exfalso;  destruct HProjp as [HCol2 HPerp]|spliter; auto].
+[exfalso;  destruct HProjp as [HCol2 HPerp]|分离合取式; auto].
 apply 垂直推出不共线 in HPerp; induction HPerp; intuition.
 Qed.
 
 Lemma projp_col : forall A B P P', Projp P P' A B -> Col A B P'.
 Proof.
 intros A B P P' H; destruct H as [H' H]; clear H'.
-induction H; spliter; treat_equalities; Col.
+induction H; 分离合取式; treat_equalities; Col.
 Qed.
 
 Lemma perp_projp2_eq : forall A A' B B' C D,
@@ -2260,13 +2260,13 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
       {
       assert (HPar : Par A B A A')
         by (apply l12_9_2D with C D; Perp).
-      elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists A|spliter]; Col.
+      elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists A|分离合取式]; Col.
       }
 
       {
       assert (HPar : Par A B B B')
         by (apply l12_9_2D with C D; Perp).
-      elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists B|spliter]; Col.
+      elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists B|分离合取式]; Col.
       }
     }
 
@@ -2276,13 +2276,13 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
       {
       assert (HPar : Par A B A A')
         by (apply l12_9_2D with C D; Perp).
-      elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists A|spliter]; Col.
+      elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists A|分离合取式]; Col.
       }
 
       {
       assert (HPar : Par A B B B')
         by (apply l12_9_2D with C D; Perp).
-      elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists B|spliter]; Col.
+      elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists B|分离合取式]; Col.
       }
     }
   }
@@ -2294,7 +2294,7 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
   apply l6_21_两线交点的唯一性 with C D A B; Col; try (intro; 统计不重合点; intuition).
   assert (HPar : Par A B A A')
     by (apply l12_9_2D with C D; Perp).
-  elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists A|spliter]; Col.
+  elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists A|分离合取式]; Col.
   }
 
   {
@@ -2304,11 +2304,11 @@ elim HA'; clear HA'; intro HA'; elim HB'; clear HB'; intro HB'.
   apply l6_21_两线交点的唯一性 with C D B A; Col; try (intro; 统计不重合点; intuition).
   assert (HPar : Par A B B B')
     by (apply l12_9_2D with C D; Perp).
-  elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists B|spliter]; Col.
+  elim HPar; clear HPar; intro HPar; [exfalso; apply HPar; exists B|分离合取式]; Col.
   }
 
   {
-  spliter; treat_equalities; apply 垂直的对称性 in HPerp;
+  分离合取式; treat_equalities; apply 垂直的对称性 in HPerp;
   elim (垂直推出不共线 C D A B HPerp); intuition.
   }
 Qed.
@@ -2351,7 +2351,7 @@ elim HP'; clear HP'; intro HP'; elim HP''; clear HP''; intro HP''.
   }
 
   {
-  spliter; treat_equalities; auto.
+  分离合取式; treat_equalities; auto.
   }
 Qed.
 
@@ -2399,15 +2399,15 @@ elim HPar; clear HPar; intro HPar.
         apply l12_9_2D with L21 L22; Perp.
         }
       }
-    apply plg_to_parallelogram in HPara; apply plg_cong in HPara; spliter; Cong.
+    apply plg_to_parallelogram in HPara; apply plg_cong in HPara; 分离合取式; Cong.
     }
   }
 
   {
   assert (A = A')
-    by (apply eq_sym; apply col_projp_eq with L21 L22; auto; spliter; ColR).
+    by (apply eq_sym; apply col_projp_eq with L21 L22; auto; 分离合取式; ColR).
   assert (B = B')
-    by (apply eq_sym; apply col_projp_eq with L21 L22; auto; spliter; ColR).
+    by (apply eq_sym; apply col_projp_eq with L21 L22; auto; 分离合取式; ColR).
   treat_equalities; Cong.
   }
 Qed.

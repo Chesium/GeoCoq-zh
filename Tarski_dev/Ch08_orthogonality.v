@@ -200,7 +200,7 @@ end.
 Ltac CongR :=
  let tpoint := constr:(Tpoint) in
  let cong := constr:(Cong) in
-   treat_equalities; unfold 中点 in *; spliter; Cong; Cong_refl tpoint cong.
+   treat_equalities; unfold 中点 in *; 分离合取式; Cong; Cong_refl tpoint cong.
 
 Ltac ColR :=
  let tpoint := constr:(Tpoint) in
@@ -407,7 +407,7 @@ Proof.
     exists C'.
     split.
       assumption.
-    unfold 中点 in *;spliter.
+    unfold 中点 in *;分离合取式.
     apply l4_17 with A B; Col; Cong.
 Qed.
 
@@ -478,7 +478,7 @@ Proof.
         apply H0.
         assumption.
       unfold 中点 in H.
-      spliter.
+      分离合取式.
       unfold Col.
       left.
       assumption.
@@ -489,7 +489,7 @@ Proof.
       subst Z.
       Cong.
     unfold 中点 in *.
-    spliter.
+    分离合取式.
     assert (Cong A' C A' C').
       eapply 等长的传递性.
         apply 等长的对称性.
@@ -571,7 +571,7 @@ Proof.
         assumption.
       Cong.
     unfold 三角形全等, 中点 in *.
-    spliter.
+    分离合取式.
     induction (两点重合的决定性 C B).
       treat_equalities;Cong.
     assert(外五线段形式 C B D A C' B' D' A').
@@ -623,16 +623,16 @@ Proof.
     elim (两点重合的决定性 B X);intro; elim (两点重合的决定性 D X);intro;subst;treat_equalities.
       elim (直角的决定性 A X C);intro.
         left;repeat split;Col;intros; apply 双共线与一直角推出另一直角 with A C;Col.
-      right;intro;spliter;apply H3;apply H8;Col.
+      right;intro;分离合取式;apply H3;apply H8;Col.
       elim (直角的决定性 A X D);intro.
         left;repeat split;Col;intros; apply 双共线与一直角推出另一直角 with A D;ColR.
-      right;intro;spliter;apply H3;apply H9;Col.
+      right;intro;分离合取式;apply H3;apply H9;Col.
       elim (直角的决定性 B X C);intro.
         left;repeat split;Col;intros; apply 双共线与一直角推出另一直角 with B C;ColR.
-      right;intro;spliter;apply H4;apply H9;Col.
+      right;intro;分离合取式;apply H4;apply H9;Col.
     elim (直角的决定性 B X D);intro.
       left;repeat split;Col;intros; apply 双共线与一直角推出另一直角 with B D;ColR.
-    right;intro;spliter;apply H5;apply H10;Col.
+    right;intro;分离合取式;apply H5;apply H10;Col.
 Qed.
 
 Lemma 垂直推出不重合 : forall A B C D, Perp A B C D -> A <> B /\ C <> D.
@@ -648,7 +648,7 @@ Lemma l8_12_垂直于的对称性 : forall A B C D X, 垂直于 X A B C D -> 垂
 Proof.
     unfold 垂直于.
     intros.
-    spliter.
+    分离合取式.
     repeat split;try assumption.
     intros;eapply 直角的对称性;eauto.
 Qed.
@@ -750,7 +750,7 @@ Proof.
     intro.
     ex_and H X.
     unfold 垂直于 in H0.
-    spliter.
+    分离合取式.
     assert (Per A X A).
       apply H3.
         Col.
@@ -790,7 +790,7 @@ Lemma l8_14_2_1b_垂点是交点 : forall X A B C D Y, 垂直于 X A B C D -> Co
 Proof.
     intros.
     unfold 垂直于 in H.
-    spliter.
+    分离合取式.
     apply (H5 Y Y) in H1.
       apply eq_sym, ABA直角则A与B重合; assumption.
     assumption.
@@ -815,7 +815,7 @@ Proof.
       unfold Perp in H.
       ex_and H Y.
       unfold 垂直于 in H1.
-      spliter.
+      分离合取式.
       assert (Col Y C D) by assumption.
       apply (H0 Y H2) in H3.
       subst Y.
@@ -823,7 +823,7 @@ Proof.
     unfold Perp in H.
     ex_and H Y.
     unfold 垂直于 in H1.
-    spliter.
+    分离合取式.
     assert (Col Y C D).
       assumption.
     apply (H0 Y H2) in H3.
@@ -860,7 +860,7 @@ Lemma L形垂直于转直角 : forall A B C, 垂直于 B A B B C-> Per A B C.
 Proof.
     intros.
     unfold 垂直于 in H.
-    spliter.
+    分离合取式.
     apply H3;Col.
 Qed.
 
@@ -881,7 +881,7 @@ Proof.
     ex_and H X0.
     exists X0.
     unfold 垂直于 in *.
-    spliter.
+    分离合取式.
     repeat split.
       assumption.
       assumption.
@@ -969,7 +969,7 @@ Lemma 垂直于的对称性 :
 Proof.
     unfold 垂直于.
     intros.
-    spliter.
+    分离合取式.
     repeat split.
       assumption.
       assumption.
@@ -1082,7 +1082,7 @@ Proof.
       apply L形垂直转垂直于.
       assumption.
     unfold 垂直于 in H0.
-    spliter.
+    分离合取式.
     apply H4.
     Col.
     Col.
@@ -1109,7 +1109,7 @@ Proof.
     intros.
     assert(HH:=H).
     apply 垂直推出不重合 in HH.
-    spliter.
+    分离合取式.
     induction (两点重合的决定性 A C).
       subst A.
       apply 垂线共线点也构成垂直1 with B; Col.
@@ -1234,7 +1234,7 @@ Proof.
       assumption.
     apply H2.
     apply 垂直推出不重合 in H.
-    spliter.
+    分离合取式.
     apply 成直角三点不共线.
       auto.
       auto.
@@ -1247,7 +1247,7 @@ Lemma 垂线共线点也构成垂直_垂直于 : forall A B C D E P, C <> E -> C
 Proof.
     intros.
     unfold 垂直于 in *.
-    spliter.
+    分离合取式.
     repeat split; auto.
       ColR.
     intros.
@@ -1282,7 +1282,7 @@ Proof.
     unfold Perp.
     exists X.
     unfold 垂直于 in *.
-    spliter.
+    分离合取式.
     repeat split.
       intro.
       apply H0.
@@ -1313,7 +1313,7 @@ Proof.
       apply 垂直于转T形垂直 in H4.
       induction H4.
         apply 垂直推出不重合 in H4.
-        spliter.
+        分离合取式.
         absurde.
       eapply (垂线共线点也构成垂直1 _ B).
         auto.
@@ -1429,7 +1429,7 @@ right.
 split; auto.
 assert(Col M A B).
 unfold 中点 in *.
-spliter; Col.
+分离合取式; Col.
 
 统计不重合点.
 assert(Per X M A)
@@ -1483,12 +1483,12 @@ Proof.
             apply H4.
             Col.
           eapply 共线的传递性4 with A B;Col.
-          apply 垂直推出不重合 in H1; spliter; auto.
+          apply 垂直推出不重合 in H1; 分离合取式; auto.
         intuition.
       apply l8_14_2_1b_bis_交点是垂点 with C X U X; Col.
       assert (Col A X U).
         eapply (共线的传递性4 A B);Col.
-        apply 垂直推出不重合 in H1; spliter; auto.
+        apply 垂直推出不重合 in H1; 分离合取式; auto.
       eapply 与垂线共线之线也为垂线1 with A B;Col.
 Qed.
 (* 小半无用 *)
@@ -1524,7 +1524,7 @@ Proof.
     assert (垂直于 X A B C X) by (eapply l8_15_1_垂线顶点在该线上则其为垂点;assumption).
     assert (垂直于 Y A B C Y) by (eapply l8_15_1_垂线顶点在该线上则其为垂点;assumption).
     unfold 垂直于 in *.
-    spliter.
+    分离合取式.
     apply ABC和ACB均直角则B与C重合 with C;apply 直角的对称性;[apply H14 |apply H10];Col.
 Qed.
 (* 半无用，不翻译 *)
@@ -1535,7 +1535,7 @@ Proof.
     subst C'.
     apply H.
     unfold 中点 in H1.
-    spliter.
+    分离合取式.
     treat_equalities.
     assumption.
 Qed.
@@ -1550,7 +1550,7 @@ Proof.
     induction (两点重合的决定性 A B).
       subst B.
       unfold 中点 in H5.
-      spliter.
+      分离合取式.
       eapply 直角的对称性.
       eapply 角ABB成直角.
     assert (Per B' B C).
@@ -1641,7 +1641,7 @@ Proof.
       eapply 等长的传递性.
         apply H16.
       unfold 中点 in H10.
-      spliter.
+      分离合取式.
       apply 等长的右交换性.
       apply 等长的对称性.
       assumption.
@@ -1691,12 +1691,12 @@ Lemma 垂线共线点也构成垂直2 : forall A B C D X,
 Proof.
     intros.
     assert (T:=垂直推出不重合 A B C D H0).
-    spliter.
+    分离合取式.
     unfold Perp in *.
     ex_and H0 P.
     exists P.
     unfold 垂直于 in *.
-    spliter.
+    分离合取式.
     repeat split.
       assumption.
       assumption.
@@ -1773,7 +1773,7 @@ Proof.
       assumption.
     assert(Col P Y C).
       unfold 中点 in H3.
-      spliter.
+      分离合取式.
       unfold Col.
       right; right.
       assumption.
@@ -1788,7 +1788,7 @@ Proof.
       intro.
       subst Q.
       unfold 中点 in *.
-      spliter.
+      分离合取式.
       apply H.
       assert (Bet B Y Z) by (apply 中间性的外传递性1 with A;auto).
       apply 中间性的对称性 in H3.
@@ -1804,7 +1804,7 @@ Proof.
     assert (Q <> Q').
       intro.
       unfold 外五线段形式, 三角形全等 in *.
-      spliter.
+      分离合取式.
       treat_equalities.
       apply H.
       ColR.
@@ -1818,7 +1818,7 @@ Proof.
         intro.
         subst Z.
         unfold 外五线段形式, 三角形全等, 中点 in *.
-        spliter.
+        分离合取式.
         treat_equalities.
         intuition.
       apply H.
@@ -1828,7 +1828,7 @@ Proof.
       unfold 外五线段形式.
       repeat split;Between;Cong.
       unfold 外五线段形式, 中点 in *.
-      spliter.
+      分离合取式.
       eapply 中间性的外传递性2 with P;Between;Cong.
     assert (Cong C Z C' Z) by (eauto using 五线段公理_等价SAS_with_def).
     assert (Col Z Y X) by Col.
@@ -1837,14 +1837,14 @@ Proof.
       intro.
       subst X.
       unfold 外五线段形式,三角形全等,中点 in *.
-      spliter.
+      分离合取式.
       treat_equalities.
       intuition.
     assert(X <> Y).
       intro.
       subst X.
       unfold 外五线段形式,三角形全等,中点 in *.
-      spliter.
+      分离合取式.
       clean_duplicated_hyps.
       clean_trivial_hyps.
       show_distinct C' Y.
@@ -1881,7 +1881,7 @@ Proof.
     repeat split;Col.
     intros.
     unfold 垂直于 in H52.
-    spliter.
+    分离合取式.
     apply H57;ColR.
 Qed.
 
@@ -1909,7 +1909,7 @@ Proof.
       eapply l8_15_1_垂线顶点在该线上则其为垂点; 统计不重合点; auto.
     assert (Per A X C).
       unfold 垂直于 in H2.
-      spliter.
+      分离合取式.
       apply H6.
         apply AAB型共线.
       apply AAB型共线.
@@ -1920,12 +1920,12 @@ Proof.
     assert (exists P, 中点 P C' C'').
       eapply 一点与两点等距则该两点存在中点.
       unfold 中点 in *.
-      spliter.
+      分离合取式.
       eapply 等长的传递性.
         apply 等长的对称性.
         apply H4.
       apply 等长的左交换性.
-      assumption; spliter.
+      assumption; 分离合取式.
     ex_elim H6 P.
     assert (Per X A P).
       eapply 直角端点关于另两点对称点的中点与该两点构成直角.
@@ -1991,7 +1991,7 @@ Proof.
         apply AAB型共线.
         apply ABA型共线.
       unfold 垂直于 in H2.
-      spliter.
+      分离合取式.
       intros.
       eapply 直角边共线点也构成直角2 in H6.
         apply 直角的对称性 in H6.
@@ -2178,7 +2178,7 @@ Proof.
       apply ABA直角则A与B重合 in H12.
       treat_equalities.
       unfold 中点 in *.
-      spliter.
+      分离合取式.
       treat_equalities.
       intuition.
     assert (X <> R').
@@ -2353,9 +2353,9 @@ Proof.
     intros.
     induction(共线的决定性 A B O).
       destruct (每组共线三点都有另一共线点 A B O H0) as [C].
-      spliter.
+      分离合取式.
       destruct (十字上的中间性 O C O H3) as [P [T]].
-      spliter.
+      分离合取式.
       exists P.
       apply 垂直的交换性.
       apply 垂直的对称性.
@@ -2408,7 +2408,7 @@ Proof.
         eapply A是AA中点.
       treat_equalities.
       apply 垂直推出不重合 in H1.
-      spliter.
+      分离合取式.
       absurde.
     assert (B <> R).
       intro.
@@ -2441,7 +2441,7 @@ Proof.
     induction (两点重合的决定性 A P).
       subst P.
       apply 垂直推出不重合 in H1.
-      spliter.
+      分离合取式.
       absurde.
     assert (Perp A B R B).
       eapply 垂线共线点也构成垂直1.
@@ -2460,7 +2460,7 @@ Proof.
       apply (四点成首末边等长双垂直S形则对边等长 A B P R X); assumption.
     assert (中点 X A B /\ 中点 X P R).
       apply (四点对边等长则对角线交点平分对角线 A P B R X); Col; Cong.
-    spliter. exists X.
+    分离合取式. exists X.
     assumption.
 Qed.
 
@@ -2496,7 +2496,7 @@ Proof.
     assert (exists P : Tpoint, (exists T : Tpoint, Perp B A P B /\ Col B A T /\ Bet A T P)) by (apply (十字上的中间性 B A);auto).
     ex_elim H0 P.
     ex_elim H1 T.
-    spliter.
+    分离合取式.
     exists P.
     Perp.
 Qed.
@@ -2512,15 +2512,15 @@ Proof.
     assert (A <> B /\ C <> A).
       apply 垂直推出不重合.
       assumption.
-    spliter.
+    分离合取式.
     assert (HH:=H0).
     apply L形垂直转垂直于 in HH.
     assert (l8_16_1_共线四点和一垂直推另一直角:=l8_16_1_共线四点和一垂直推另一直角 A B C B A).
     assert (~Col A B C /\ Per C A B).
       apply l8_16_1_共线四点和一垂直推另一直角;Col.
-    spliter.
+    分离合取式.
     unfold 垂直于 in H.
-    spliter.
+    分离合取式.
     apply l8_18_过一点垂线之垂点的唯一性 with A B C; Col.
       apply 垂直的对称性.
       eapply 垂线共线点也构成垂直1 with A; Col; Perp.
@@ -2586,20 +2586,20 @@ Proof.
     exists X.
     split.
       unfold 垂直于 in H1.
-      spliter.
+      分离合取式.
       apply 等价共线BCA.
       assumption.
     eapply 垂线共线点也构成垂直1.
       intro.
       subst X.
       unfold 垂直于 in H1.
-      spliter.
+      分离合取式.
       apply H0.
       assumption.
       apply 垂直于转垂直 in H1.
       apply H1.
     unfold 垂直于 in H1.
-    spliter.
+    分离合取式.
     apply 等价共线BCA.
     assumption.
 Qed.
@@ -2659,11 +2659,11 @@ Proof.
       assumption.
     assert (A <> B).
       apply 垂直推出不重合 in H.
-      spliter.
+      分离合取式.
       assumption.
     assert (A <> P).
       apply 垂直推出不重合 in H.
-      spliter.
+      分离合取式.
       auto.
     induction(共线的决定性 A B P).
       assert (B=A \/ P=A).
@@ -2687,7 +2687,7 @@ Proof.
       absurde.
     assert (Q <> B).
       apply 垂直推出不重合 in H0.
-      spliter.
+      分离合取式.
       assumption.
     assert (~Col A B Q).
       intro.
@@ -2725,7 +2725,7 @@ Proof.
     induction (两点重合的决定性 A P).
       subst P.
       apply 垂直推出不重合 in H.
-      spliter.
+      分离合取式.
       absurde.
     assert (Perp A B R B).
       eapply 垂线共线点也构成垂直1.

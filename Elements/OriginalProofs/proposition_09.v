@@ -26,7 +26,7 @@ assert (~ eq A C).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists E, (Out A C E /\ Cong A E A B)) by (conclude lemma_layoff);destruct Tf as [E];spliter.
+assert (Tf:exists E, (Out A C E /\ Cong A E A B)) by (conclude lemma_layoff);destruct Tf as [E];分离合取式.
 assert (~ eq B E).
  {
  intro.
@@ -41,7 +41,7 @@ assert (~ eq B E).
  contradict.
  }
 let Tf:=fresh in
-assert (Tf:exists F, (BetS B F E /\ Cong F B F E)) by (conclude proposition_10);destruct Tf as [F];spliter.
+assert (Tf:exists F, (BetS B F E /\ Cong F B F E)) by (conclude proposition_10);destruct Tf as [F];分离合取式.
 assert (eq B B) by (conclude cn_equalityreflexive).
 assert (eq F F) by (conclude cn_equalityreflexive).
 assert (Cong A F A F) by (conclude cn_congruencereflexive).
