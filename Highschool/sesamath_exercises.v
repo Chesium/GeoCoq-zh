@@ -93,7 +93,7 @@ assert (~Col A R F)
   by (intro;apply HnCol;ColR).
 assert (严格平行 A R E F)
  by (apply par_not_col_strict with F;finish).
-assert (Plg F E R A)
+assert (平四 F E R A)
   by (apply pars_par_plg;finish).
 assert (Per F A R)
  by (apply 双共线与一直角推出另一直角 with Z G;finish).
@@ -119,7 +119,7 @@ Lemma sesamath_4ieme_G2_ex36_aux :
  中点 I A B ->
  中点 J A C ->
  中点 K B C ->
- Plg I J K B.
+ 平四 I J K B.
 Proof.
 intros.
 统计不重合点.
@@ -135,7 +135,7 @@ assert (~ Col B K J)
   by (intro;apply H;ColR).
 assert (严格平行 B K I J)
  by (apply par_not_col_strict with J;finish).
-assert (Plg I J K B)
+assert (平四 I J K B)
  by  (apply pars_par_plg;finish).
 assumption.
 Qed.
@@ -156,13 +156,13 @@ assert (~ Col B A C /\
        B <> H /\ C <> H /\ 中点 H B C /\ 等角 H A B H A C)
  by (apply (等腰三角形底边垂线也是底边中线 B A C );finish).
 分离合取式.
-assert (Plg A I H J).
+assert (平四 A I H J).
  {
- assert (Plg J H I A).
+ assert (平四 J H I A).
   apply (sesamath_4ieme_G2_ex36_aux C A B J H I);finish.
  apply parallelogram_to_plg. (* todo simplify plg vs parallelogram *)
  apply plg_to_parallelogram in H14.
- apply Plg_perm in H14.
+ apply 平四_perm in H14.
  分离合取式;auto.
  }
 assert (Par I J B C)
@@ -229,7 +229,7 @@ intros.
 统计不重合点.
 assert_cols.
 assert( ~Col U E A);finish.
-assert (Plg M L N E)
+assert (平四 M L N E)
   by (apply (sesamath_4ieme_G2_ex36_aux U E A M L N);finish).
 assert (平行四边形 M L N E)
   by (apply(plg_to_parallelogram M L N E);finish).
@@ -313,20 +313,20 @@ assert(Par C B N M)
 destruct (两点重合的决定性 R B).
 {
 treat_equalities.
-assert(Plg M N T S)
+assert(平四 M N T S)
  by(apply(sesamath_4ieme_G2_ex36_aux A S C M N T);finish).
 assert(平行四边形 M N T S)
  by(apply(plg_to_parallelogram M N T S);finish).
-apply(Plg_perm M N T S);finish.
+apply(平四_perm M N T S);finish.
 }
 destruct (两点重合的决定性 R C).
 {
 treat_equalities.
-assert(Plg N M S T)
+assert(平四 N M S T)
  by(apply(sesamath_4ieme_G2_ex36_aux A T B N M S);finish).
 assert(平行四边形 N M S T)
  by(apply(plg_to_parallelogram N M S T);finish).
-apply(Plg_perm N M S T);finish.
+apply(平四_perm N M S T);finish.
 }
 assert_all_diffs_by_contradiction.
 
@@ -447,7 +447,7 @@ assert(中点 G J L)
 统计不重合点.
 assert(平行四边形 I L K J)
   by(apply(varignon.瓦里尼翁平行四边形1 A C G B I L K J);finish).
-apply(Plg_perm I L K J);finish. (* todo improve finish to include permuations of Plg and other quadrilaterals *)
+apply(平四_perm I L K J);finish. (* todo improve finish to include permuations of 平四 and other quadrilaterals *)
 Qed.
 
 (**

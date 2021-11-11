@@ -967,14 +967,14 @@ Lemma l13_15_par : forall A B C A' B' C', ~Col A B C
                                          -> Par B C B' C'.
 Proof.
     intros.
-    assert(Plg B' A' A B).
+    assert(平四 B' A' A B).
       apply(pars_par_plg B' A' A B).
         apply par_strict_left_comm.
         Par.
       Par.
     apply plg_to_parallelogram in H4.
     apply plg_permut in H4.
-    assert(Plg  A' C' C A).
+    assert(平四  A' C' C A).
       apply(pars_par_plg  A' C' C A).
         apply par_strict_right_comm.
         Par.

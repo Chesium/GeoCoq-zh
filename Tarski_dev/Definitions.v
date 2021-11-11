@@ -556,16 +556,16 @@ Definition 退化平行四边形 A B A' B' :=
 Definition 平行四边形 A B A' B' :=
   严格平行四边形 A B A' B' \/ 退化平行四边形 A B A' B'.
 
-Definition Plg A B C D :=
+Definition 平四 A B C D :=
   (A <> C \/ B <> D) /\ exists M, 中点 M A C /\ 中点 M B D.
 
 (** 菱形 *)
 
-Definition 菱形 A B C D := Plg A B C D /\ Cong A B B C.
+Definition 菱形 A B C D := 平四 A B C D /\ Cong A B B C.
 
 (** 长方形 *)
 
-Definition 长方形 A B C D := Plg A B C D /\ Cong A C B D.
+Definition 长方形 A B C D := 平四 A B C D /\ Cong A C B D.
 
 (** 正方形 *)
 

@@ -1684,7 +1684,7 @@ Proof.
       split.
         ColR.
       ColR.
-    assert(Plg A C A' C').
+    assert(平四 A C A' C').
       apply(pars_par_plg A C A' C').
         auto.
       apply par_right_comm.
@@ -1756,7 +1756,7 @@ Proof.
         subst O'.
         ColR.
       ColR.
-    assert(Plg B C B' C').
+    assert(平四 B C B' C').
       apply(pars_par_plg B C B' C').
         auto.
       apply par_right_comm.

@@ -168,7 +168,7 @@ Ltac tag_hyps :=
     | H : Perp ?A ?B ?C ?D |- _ => apply Perp_Perp_tagged in H
     | H : 严格平行 ?A ?B ?C ?D |- _ => apply 严格平行_严格平行_tagged in H
     | H : Par ?A ?B ?C ?D |- _ => apply Par_Par_tagged in H
-    | H : 平行四边形 ?A ?B ?C ?D |- _ => apply Plg_Plg_tagged in H
+    | H : 平行四边形 ?A ?B ?C ?D |- _ => apply 平四_平四_tagged in H
   end.
 
 Ltac permutation_intro_in_goal :=
@@ -829,7 +829,7 @@ assert(HH:=H0).
 unfold 菱形 in HH.
 分离合取式.
 assert(HH:=H1).
-unfold Plg in HH.
+unfold 平四 in HH.
 分离合取式.
 ex_and H4 M'.
 assert(M = M').
@@ -849,7 +849,7 @@ Qed.
 
 Lemma per_rmb :
  forall A B C D M,
-  Plg A B C D ->
+  平四 A B C D ->
   中点 M A C ->
   Per A M B ->
   菱形 A B C D.
@@ -858,7 +858,7 @@ intros.
 unfold Per in H1.
 ex_and H1 D'.
 assert(HH:=H).
-unfold Plg in HH.
+unfold 平四 in HH.
 分离合取式.
 ex_and H4 M'.
 assert(M = M').
@@ -886,7 +886,7 @@ Qed.
 
 Lemma perp_rmb :
  forall A B C D,
-  Plg A B C D ->
+  平四 A B C D ->
   Perp A C B D ->
   菱形 A B C D.
 Proof.
@@ -897,7 +897,7 @@ apply (per_rmb A B C D M).
 assumption.
 assumption.
 apply L形垂直于转直角.
-unfold Plg in H.
+unfold 平四 in H.
 分离合取式.
 ex_and H2 M'.
 assert(M = M').
@@ -937,7 +937,7 @@ apply 垂直于的交换性.
 assumption.
 Qed.
 
-Lemma plg_conga1 : forall A B C D, A <> B -> A <> C -> Plg A B C D -> 等角 B A C D C A.
+Lemma plg_conga1 : forall A B C D, A <> B -> A <> C -> 平四 A B C D -> 等角 B A C D C A.
 Proof.
 intros.
 apply 三角形全等推角等1; auto.
@@ -1221,7 +1221,7 @@ contradiction.
 contradiction.
 Qed.
 
-Lemma parallelogram_to_plg : forall A B C D, 平行四边形 A B C D -> Plg A B C D.
+Lemma parallelogram_to_plg : forall A B C D, 平行四边形 A B C D -> 平四 A B C D.
 Proof.
 intros A B C D HPara.
 destruct (plg_mid A B C D) as [M HM]; Col.
@@ -1230,7 +1230,7 @@ elim HPara; clear HPara; intro HPara; try (apply plgs_diff in HPara; 分离合�
 unfold 退化平行四边形 in HPara; 分离合取式; Col.
 Qed.
 
-Lemma parallelogram_equiv_plg : forall A B C D, 平行四边形 A B C D <-> Plg A B C D.
+Lemma parallelogram_equiv_plg : forall A B C D, 平行四边形 A B C D <-> 平四 A B C D.
 Proof.
 intros.
 split.
@@ -2034,7 +2034,7 @@ apply plgs_cong in H.
 assumption.
 Qed.
 
-Lemma Plg_perm :
+Lemma 平四_perm :
   forall A B C D,
   平行四边形 A B C D ->
   平行四边形 A B C D /\ 平行四边形 B C D A /\ 平行四边形 C D A B /\平行四边形 D A B C /\ 
@@ -2074,7 +2074,7 @@ End Quadrilateral_inter_dec_1.
 Ltac permutation_intro_in_hyps_aux :=
  repeat
  match goal with
- | H : Plg_tagged ?A ?B ?C ?D |- _ => apply Plg_tagged_Plg in H; apply Plg_perm in H; 分离合取式
+ | H : 平四_tagged ?A ?B ?C ?D |- _ => apply 平四_tagged_平四 in H; apply 平四_perm in H; 分离合取式
  | H : Par_tagged ?A ?B ?C ?D |- _ => apply Par_tagged_Par in H; apply Par_perm in H; 分离合取式
  | H : 严格平行_tagged ?A ?B ?C ?D |- _ => apply 严格平行_tagged_严格平行 in H; apply 严格平行_perm in H; 分离合取式
  | H : Perp_tagged ?A ?B ?C ?D |- _ => apply Perp_tagged_Perp in H; apply 垂直的等价排列 in H; 分离合取式
@@ -2175,7 +2175,7 @@ repeat
       not_exist_hyp_perm_para X1 X2 X3 X4;
       assert (h := 严格平行四边形_平行四边形 X1 X2 X3 X4 H)
 
-      | H:Plg ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:平四 ?X1 ?X2 ?X3 ?X4 |- _ =>
       let h := fresh in
       not_exist_hyp_perm_para X1 X2 X3 X4;
       assert (h := plg_to_parallelogram X1 X2 X3 X4 H)
@@ -2583,7 +2583,7 @@ ex_and HH P.
 assert(HH:= 中点的存在性 C D).
 ex_and HH Q.
 assert(HH:=H).
-unfold Plg in HH.
+unfold 平四 in HH.
 分离合取式.
 ex_and H4 M.
 apply plg_to_parallelogram in H.
@@ -2713,7 +2713,7 @@ apply rect_permut.
 apply H.
 Qed.
 
-Lemma plg_per_rect1 : forall A B C D, Plg A B C D -> Per D A B -> 长方形 A B C D.
+Lemma plg_per_rect1 : forall A B C D, 平四 A B C D -> Per D A B -> 长方形 A B C D.
 Proof.
 intros.
 
@@ -2722,7 +2722,7 @@ ex_and HH P.
 assert(HH:= 中点的存在性 C D).
 ex_and HH Q.
 assert(HH:=H).
-unfold Plg in HH.
+unfold 平四 in HH.
 分离合取式.
 ex_and H4 M.
 apply plg_to_parallelogram in H.
@@ -2848,7 +2848,7 @@ subst D.
 Cong.
 Qed.
 
-Lemma plg_per_rect2 : forall A B C D, Plg A B C D -> Per C B A -> 长方形 A B C D.
+Lemma plg_per_rect2 : forall A B C D, 平四 A B C D -> Per C B A -> 长方形 A B C D.
 Proof.
 intros.
 apply rect_comm2.
@@ -2860,7 +2860,7 @@ assumption.
 assumption.
 Qed.
 
-Lemma plg_per_rect3 : forall A B C D, Plg A B C D -> Per A D C -> 长方形 A B C D.
+Lemma plg_per_rect3 : forall A B C D, 平四 A B C D -> Per A D C -> 长方形 A B C D.
 Proof.
 intros.
 apply rect_permut.
@@ -2874,7 +2874,7 @@ apply 直角的对称性.
 assumption.
 Qed.
 
-Lemma plg_per_rect4 : forall A B C D, Plg A B C D -> Per B C D -> 长方形 A B C D.
+Lemma plg_per_rect4 : forall A B C D, 平四 A B C D -> Per B C D -> 长方形 A B C D.
 Proof.
 intros.
 apply rect_comm2.
@@ -2886,7 +2886,7 @@ assumption.
 assumption.
 Qed.
 
-Lemma plg_per_rect : forall A B C D, Plg A B C D -> (Per D A B \/ Per C B A \/ Per A D C \/ Per B C D) -> 长方形 A B C D.
+Lemma plg_per_rect : forall A B C D, 平四 A B C D -> (Per D A B \/ Per C B A \/ Per A D C \/ Per B C D) -> 长方形 A B C D.
 Proof.
 intros.
 induction H0.
@@ -3193,7 +3193,7 @@ destruct HM as [[]|[]]; [left|right]; split; Col.
 Qed.
 
 Lemma par_cong_plg :
-  forall A B C D, Par A B C D -> Cong A B C D -> Plg A B C D \/ Plg A B D C.
+  forall A B C D, Par A B C D -> Cong A B C D -> 平四 A B C D \/ 平四 A B D C.
 Proof.
 intros A B C D HPar HCong.
 destruct (par_cong_mid A B C D) as [M HM]; trivial.
@@ -3221,7 +3221,7 @@ Lemma par_cong_plg_2 :
   平行四边形 A B C D \/ 平行四边形 A B D C.
 Proof.
 intros.
-assert (HElim : Plg A B C D \/ Plg A B D C)
+assert (HElim : 平四 A B C D \/ 平四 A B D C)
   by (apply par_cong_plg; assumption).
 elim HElim; intro.
 
@@ -3243,7 +3243,7 @@ induction HH.
 left.
 unfold 长方形.
 split; auto.
-unfold Plg.
+unfold 平四.
 split; auto.
 分离合取式.
 ex_and H5 M.
@@ -3251,7 +3251,7 @@ ex_and H5 M.
 right.
 unfold 长方形.
 split; auto.
-unfold Plg.
+unfold 平四.
 split; auto.
 
 left.
@@ -3299,7 +3299,7 @@ exists C.
 split; Col.
 Qed.
 
-Lemma pars_par_plg : forall A B C D, 严格平行 A B C D -> Par A D B C -> Plg A B C D.
+Lemma pars_par_plg : forall A B C D, 严格平行 A B C D -> Par A D B C -> 平四 A B C D.
 Proof.
 intros.
 assert(严格平行 A D B C).
@@ -3334,7 +3334,7 @@ apply H8.
 exists B.
 split; Col.
 
-unfold Plg.
+unfold 平四.
 split.
 
 left.
@@ -3350,8 +3350,8 @@ assert(中点 M B D').
 unfold 中点.
 split; auto.
 Cong.
-assert(Plg A B C D').
-unfold Plg.
+assert(平四 A B C D').
+unfold 平四.
 repeat split.
 induction H.
 left.
@@ -4312,7 +4312,7 @@ subst F.
 apply H10.
 ColR.
 
-assert(Plg A B F E).
+assert(平四 A B F E).
 apply pars_par_plg.
 induction H32.
 apply par_strict_right_comm.
@@ -4494,13 +4494,13 @@ Qed.
 Lemma plgs_in_angle : forall A B C D, 严格平行四边形 A B C D -> 在角内 D A B C.
 Proof.
 intros.
-assert(Plg A B C D).
+assert(平四 A B C D).
 apply parallelogram_to_plg.
 left.
 assumption.
 
 unfold 严格平行四边形 in H.
-unfold Plg in H0.
+unfold 平四 in H0.
 分离合取式.
 ex_and H1 M.
 
@@ -4576,14 +4576,14 @@ assert (平行四边形 B C A D \/ 平行四边形 B C D A)
 induction H4.
 assumption.
 induction H5.
-apply Plg_perm in H4.
-apply Plg_perm in H5.
+apply 平四_perm in H4.
+apply 平四_perm in H5.
 统计不重合点.
 分离合取式.
 apply plg_not_comm in H8.
 intuition.
 auto.
-apply Plg_perm in H5.
+apply 平四_perm in H5.
 分离合取式.
 assumption.
 Qed.

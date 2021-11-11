@@ -12,7 +12,7 @@
      
       29 march 2018 - In Euclidean geometry, construction of a rhombus from 3 determined points. DONE
                     - What about rhombus in non-euclidean geometry case ?
-      04 april 2018 - MOVE all "Plg"'s lemma in quadrialterals.v 
+      04 april 2018 - MOVE all "平四"'s lemma in quadrialterals.v 
                        (after modify context Tarski_2D by 
                           无维度中性塔斯基公理系统_带两点重合决定性 
                           in quadrilaterals.v) ?
@@ -32,7 +32,7 @@
    1) See JNarboux, comments about pull requests 菱形.
    2) ADD End 菱形_Existence_Unicity.
    2) MODIFY CONTEXT: Tarski_2D by 无维度中性塔斯基公理系统_带两点重合决定性.
-   3) ADD Existence Plg, 菱形.
+   3) ADD Existence 平四, 菱形.
 
 *)
 
@@ -41,16 +41,16 @@ Require Export GeoCoq.Tarski_dev.Annexes.perp_bisect.
 Section 菱形_Existence_Unicity.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
-
-Lemma PlgLeft: forall A B C D, Plg A B C D -> (A <> C \/ B <> D).
+(* 无用 *)
+Lemma 平四推点不重合: forall A B C D, 平四 A B C D -> (A <> C \/ B <> D).
 Proof.
   intros.
-  unfold Plg in H. 分离合取式.
+  unfold 平四 in H. 分离合取式.
 assumption.
 Qed.
-
-Lemma PlgEquivDef: forall A B C D, (A <> C \/ B <> D) -> ((exists M,
-在圆上 C M A /\ 在圆上 D M B /\ Bet C M A /\ Bet D M B) <-> Plg A B C D).
+(* 无用 *)
+Lemma 平四_等价定义: forall A B C D, (A <> C \/ B <> D) -> ((exists M,
+在圆上 C M A /\ 在圆上 D M B /\ Bet C M A /\ Bet D M B) <-> 平四 A B C D).
 Proof.
   intros.
   split.
@@ -79,25 +79,25 @@ Proof.
     split;[Cong|Between].
 Qed.
 
-Lemma PlgAABB: forall A B, A <> B -> Plg A A B B.
+Lemma AABB平四: forall A B, A <> B -> 平四 A A B B.
 Proof.
   intros.
-  unfold Plg.
+  unfold 平四.
   split;auto.
   midpoint M A B.
   exists M.
   split;auto.
 Qed.
 
-Lemma PlgEx: exists A B C D, Plg A B C D.
+Lemma 平四的存在性: exists A B C D, 平四 A B C D.
 Proof.
   destruct 存在不重合的点 as [A [B H]].
   exists A, A, B, B.
-  apply PlgAABB.
+  apply AABB平四.
   assumption.
 Qed.
 
-Lemma 菱形Ex: exists A B C D, 菱形 A B C D.
+Lemma 菱形的存在性: exists A B C D, 菱形 A B C D.
 Proof.
   destruct 防降维公理_老版本 as [A [B [C HNC]]].
   assert (H1 : ~ Col A B C) by auto.
@@ -124,8 +124,8 @@ Proof.
   exists C1.
   exists B.
   exists x.
-  assert(Plg A C1 B x).
-  unfold Plg.
+  assert(平四 A C1 B x).
+  unfold 平四.
   split.
   tauto.
   exists M.
@@ -140,13 +140,13 @@ Proof.
   assumption.
   Cong.
 Qed.
-
-Lemma 菱形Unicity: forall A B C D E, 菱形 A B C D -> 菱形 A B C E -> D = E.
+(* 无用 *)
+Lemma 确定三点后菱形的唯一性: forall A B C D E, 菱形 A B C D -> 菱形 A B C E -> D = E.
 Proof.
   intros.
   unfold 菱形 in *.
   分离合取式.
-  unfold Plg in *.
+  unfold 平四 in *.
   分离合取式.
   ex_and H4 M.
   ex_and H3 N.
@@ -156,7 +156,7 @@ Proof.
   apply 中点组的唯一性1 with B N;assumption.
 Qed.
 
-Lemma ColCongMid: forall A B C, A <> C -> Col A B C -> Cong A B B C -> 中点 B A C.
+Lemma 不重合共线点间距相同则为中点: forall A B C, A <> C -> Col A B C -> Cong A B B C -> 中点 B A C.
 Proof.
   intros.
   assert(Col A B C). Col.
@@ -165,16 +165,16 @@ Proof.
   apply 共线点间距相同要么重合要么中点; tauto. 
   tauto.
 Qed.
-
-Lemma PlgExABC1: forall A B C, A <> C -> Col A B C -> Cong A B B C -> exists D, Plg A B C D.
+(* 无用 *)
+Lemma 共线等距三点可构造平四: forall A B C, A <> C -> Col A B C -> Cong A B B C -> exists D, 平四 A B C D.
 Proof.
   intros.
   unfold Col in H0.
   assert(中点 B A C).
-  apply ColCongMid;
+  apply 不重合共线点间距相同则为中点;
   trivial.
   exists B.
-  unfold Plg in *.
+  unfold 平四 in *.
   split.
   tauto.
   exists B.
@@ -183,10 +183,10 @@ Proof.
   中点.
 Qed.
 
-Lemma PlgExABC2: forall A B C, ~Col A B C -> Cong A B B C -> exists D, Plg A B C D.
+Lemma 不共线等距三点可构造平四: forall A B C, ~Col A B C -> Cong A B B C -> exists D, 平四 A B C D.
 Proof.
   intros A B C HC H.
-  unfold Plg in *.
+  unfold 平四 in *.
   assert(在中垂线上 B A C). exact H.
   destruct (中点的存在性 A B) as [X H1].
   destruct (l10_2_existence A C B) as [D H3].
@@ -234,16 +234,16 @@ Proof.
       exists A.
       tauto.
 Qed.
-
-Lemma 菱形ExABC1: forall A B C, A <> C -> Col A B C -> Cong A B B C -> exists D, 菱形 A B C D.
+(* 无用 *)
+Lemma 共线等距三点可构造菱形: forall A B C, A <> C -> Col A B C -> Cong A B B C -> exists D, 菱形 A B C D.
 Proof.
   intros.
   assert(中点 B A C).
-  apply ColCongMid; tauto.
+  apply 不重合共线点间距相同则为中点; tauto.
   exists B.
   unfold 菱形 in *.
   split.
-  unfold Plg in *.
+  unfold 平四 in *.
   split.
   tauto.
   exists B.
@@ -252,12 +252,12 @@ Proof.
   中点. 
   assumption.
 Qed.
-
-Lemma 菱形ExABC2: forall A B C, ~Col A B C -> Cong A B B C -> exists D, 菱形 A B C D.
+(* 无用 *)
+Lemma 不共线等距三点可构造菱形: forall A B C, ~Col A B C -> Cong A B B C -> exists D, 菱形 A B C D.
 Proof.
   intros.
-  assert(exists D, Plg A B C D).
-  apply PlgExABC2;trivial.
+  assert(exists D, 平四 A B C D).
+  apply 不共线等距三点可构造平四;trivial.
   destruct H1 as [D H2].
   exists D.
   unfold 菱形 in *.

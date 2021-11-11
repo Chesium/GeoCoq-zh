@@ -2127,8 +2127,8 @@ Qed.
 (** This is Euclid Book I, Prop 35 *)
 Lemma parallelograms_same_base :
  forall A B C D E F,
- Plg A B C D ->
- Plg E B C F ->
+ 平四 A B C D ->
+ 平四 E B C F ->
  Col A E F ->
  Col D E F ->
  signed_area4 A B C D =F= signed_area4 E B C F.

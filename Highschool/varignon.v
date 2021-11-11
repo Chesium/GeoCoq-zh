@@ -216,8 +216,8 @@ induction (两点重合的决定性 I K).
   assert (平行四边形 A D B C) by (apply mid_plg with I;中点).
   assert (平行四边形 A B D C) by (apply mid_plg with L;中点).
   exfalso.
-  apply Plg_perm in H35.
-  apply Plg_perm in H39.
+  apply 平四_perm in H35.
+  apply 平四_perm in H39.
   分离合取式.
   apply (plg_not_comm_1 B D A C);auto.
 

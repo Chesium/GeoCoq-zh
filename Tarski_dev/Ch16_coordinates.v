@@ -430,7 +430,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
       apply l12_9_2D with S U2; Perp.
       }
-    apply 长方形_Plg in H; apply plg_to_parallelogram in H;
+    apply 长方形_平四 in H; apply plg_to_parallelogram in H;
     apply plg_cong_2 in H.
     unfold 三角形全等 in HCong3; 分离合取式; apply 等长的传递性 with S QX'; Cong.
     }
@@ -452,7 +452,7 @@ destruct H1 as [HCol5 HPerp3]; destruct H2 as [HCol6 HPerp4]; treat_equalities.
       apply 垂直的对称性; apply par_perp__perp with S U1; Perp.
       apply l12_9_2D with S U2; Perp.
       }
-    apply 长方形_Plg in H; apply plg_to_parallelogram in H;
+    apply 长方形_平四 in H; apply plg_to_parallelogram in H;
     apply plg_cong_2 in H.
     unfold 三角形全等 in HCong1; 分离合取式; apply 等长的传递性 with S PX'; Cong.
     }

@@ -1783,10 +1783,10 @@ unfold 退化平行四边形 in H.
 split; Cong.
 Qed.
 
-Lemma plg_to_parallelogram : forall A B C D, Plg A B C D -> 平行四边形 A B C D.
+Lemma plg_to_parallelogram : forall A B C D, 平四 A B C D -> 平行四边形 A B C D.
 Proof.
 intros.
-unfold Plg in H.
+unfold 平四 in H.
 分离合取式.
 ex_and H0 M.
 eapply (mid_plg _ _ _ _ M).
@@ -1899,15 +1899,15 @@ apply plgf_sym.
 assumption.
 Qed.
 
-Lemma 菱形_Plg : forall A B C D, 菱形 A B C D -> Plg A B C D.
+Lemma 菱形_平四 : forall A B C D, 菱形 A B C D -> 平四 A B C D.
 Proof.
 unfold 菱形.
 tauto.
 Qed.
 
-Lemma 长方形_Plg : forall A B C D,
+Lemma 长方形_平四 : forall A B C D,
   长方形 A B C D ->
-  Plg A B C D.
+  平四 A B C D.
 Proof.
 unfold 长方形;tauto.
 Qed.
@@ -1925,7 +1925,7 @@ Qed.
 
 Lemma plg_cong_rectangle :
  forall A B C D,
-  Plg A B C D ->
+  平四 A B C D ->
   Cong A C B D ->
   长方形 A B C D.
 Proof.
@@ -2687,7 +2687,7 @@ Lemma 长方形_not_triv : forall A,
 Proof.
 intros.
 unfold 长方形.
-unfold Plg.
+unfold 平四.
 intuition.
 Qed.
 
@@ -2698,7 +2698,7 @@ Proof.
 intros.
 unfold 长方形.
 split;Cong.
-unfold Plg.
+unfold 平四.
 split.
 intuition.
 elim (中点的存在性 A B).
@@ -2714,7 +2714,7 @@ intros.
 unfold 长方形.
 intro.
 分离合取式.
-unfold Plg in H.
+unfold 平四 in H.
 intuition.
 Qed.
 
@@ -2785,7 +2785,7 @@ Proof.
 intros.
 apply 菱形_长方形_正方形.
 assumption.
-apply 菱形_Plg in H.
+apply 菱形_平四 in H.
 apply plg_cong_rectangle;auto.
 Qed.
 

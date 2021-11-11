@@ -592,7 +592,7 @@ Proof.
       apply 等长的对称性 in H2.
       apply 等长的同一性 in H2.
       contradiction.
-    assert(Plg A C' A' O).
+    assert(平四 A C' A' O).
       apply pars_par_plg.
         induction H18.
           assert(Par A C' A' O).
@@ -1672,7 +1672,7 @@ Proof.
     apply(sum_uniquenessA B A O B); auto.
 Qed.
 
-Lemma sum_plg : forall A B C, Sum O E E' A B C -> (A <> O ) \/ ( B <> O) -> exists A', exists C', Plg O B C' A' /\ Plg C' A' A C.
+Lemma sum_plg : forall A B C, Sum O E E' A B C -> (A <> O ) \/ ( B <> O) -> exists A', exists C', 平四 O B C' A' /\ 平四 C' A' A C.
 Proof.
     intros.
     assert(HS:=H).
@@ -1844,7 +1844,7 @@ Proof.
         apply par_distincts in H2.
         tauto.
       assumption.
-    assert(exists A' C' : Tpoint, Plg O B C' A' /\ Plg C' A' A C).
+    assert(exists A' C' : Tpoint, 平四 O B C' A' /\ 平四 C' A' A C).
       apply(sum_plg A B C); auto.
     ex_and H2 A'.
     ex_and H3 C'.
@@ -2042,7 +2042,7 @@ Proof.
       apply H20.
       exists A.
       split; Col.
-    assert(Plg O A D' B').
+    assert(平四 O A D' B').
       apply(pars_par_plg O A D' B' ); Par.
     assert(HT:=sum_cong A B C H H2).
     assert(平行四边形 D' B' B C \/ D' = B' /\ O = A /\ C = B /\ D' = C).
@@ -2211,7 +2211,7 @@ Proof.
       apply H21.
       exists B.
       split; Col.
-    assert(Plg O B C' A').
+    assert(平四 O B C' A').
       apply(pars_par_plg O B C' A').
         apply par_strict_right_comm.
         apply(par_strict_col_par_strict _ _ _ P').
@@ -2233,7 +2233,7 @@ Proof.
       apply H21.
       exists B.
       split; Col.
-    assert(Plg O B C A).
+    assert(平四 O B C A).
       apply(parallelogram_to_plg).
       right.
       unfold 退化平行四边形.

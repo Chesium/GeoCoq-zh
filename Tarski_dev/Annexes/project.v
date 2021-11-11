@@ -1752,7 +1752,7 @@ apply plg_trivial.
 auto.
 
 apply plg_to_parallelogram.
-unfold Plg.
+unfold 平四.
 
 split.
 left.
@@ -2377,7 +2377,7 @@ elim HPar; clear HPar; intro HPar.
     }
 
     {
-    assert (HPara : Plg A B B' A').
+    assert (HPara : 平四 A B B' A').
       {
       apply pars_par_plg.
 

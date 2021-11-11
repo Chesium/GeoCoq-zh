@@ -112,7 +112,7 @@ Ltac 推导四点共面 :=
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 严格平行蕴含共面, H)
       | H:Par ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 平行蕴含共面, H)
-      | H:Plg ?X1 ?X2 ?X3 ?X4 |- _ =>
+      | H:平四 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 平四蕴含共面, H)
       | H:严格平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 严格平行四边形蕴含共面, H)
