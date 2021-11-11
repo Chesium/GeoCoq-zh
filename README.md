@@ -323,7 +323,7 @@ Coq 中的几何形式化
 
   引理数：33
 
-- **中点定理*** ![0%](https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/00_percent.svg/14px-00_percent.svg.png)
+- **中点定理*** ![100%](https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/100_percent.svg/14px-100_percent.svg.png)
 
   `/Tarski_dev/Annexes/midpoint_theorems.v`
 
@@ -383,7 +383,7 @@ Coq 中的几何形式化
 
   引理数：25
 
-- **相切*** ![0%](https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/00_percent.svg/14px-00_percent.svg.png)
+- **相切圆和相交圆** ![100%](https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/100_percent.svg/14px-100_percent.svg.png)
 
   `/Tarski_dev/Annexes/tangency.v`
 

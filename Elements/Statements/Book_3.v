@@ -82,7 +82,7 @@ Lemma prop_5 :  forall A B C D,
  两圆相交 A B C D ->
  A <> C.
 Proof.
-exact intercc__neq.
+exact 相交圆圆心不同.
 Qed.
 
 
@@ -95,7 +95,7 @@ Lemma prop_6: forall A B C D,
  两圆相切 A B C D ->
  A <> C.
 Proof.
-exact tangentcc__neq.
+exact 相切圆圆心不同.
 Qed.
 
 (** * Proposition 9
@@ -130,7 +130,7 @@ Lemma prop_11_12 : forall A B C D X,
  在圆上 X C D ->
  Col X A C.
 Proof.
-exact 两圆相切_Col.
+exact 两圆切点与两圆心共线.
 Qed.
 
 
@@ -144,7 +144,7 @@ forall A B O P T,
  圆的切线切于 A B O P T ->
  Perp A B O T.
 Proof.
-exact tangentat_perp.
+exact 切点所在半径与切线垂直于切点.
 Qed.
 
 End Book_3.

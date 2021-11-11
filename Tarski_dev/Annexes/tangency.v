@@ -10,7 +10,7 @@ Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
 (** If two circles are tangent, the common point is on the line joining the centers. *)
 
-Lemma 两圆相切_Col : forall A B C D X,
+Lemma 两圆切点与两圆心共线 : forall A B C D X,
  两圆相切 A B C D ->
  在圆上 X A B ->
  在圆上 X C D ->
@@ -66,7 +66,7 @@ spliter.
 contradiction.
 Qed.
 
-Lemma tangent_neq : forall A B O P,
+Lemma 非退化圆切线两端点不重合 : forall A B O P,
  O<>P -> 圆的切线 A B O P -> A<>B.
 Proof.
 intros.
@@ -92,7 +92,7 @@ Qed.
 
 (** A line going through the center is not tangent to the circle. *)
 
-Lemma diam_not_tangent : forall O P A B, 
+Lemma 过非退化圆心之线非其切线 : forall O P A B, 
   P <> O -> Col O A B -> ~ 圆的切线 A B O P.
 Proof.
 intros O P A B HOP HCol HTan.
@@ -113,7 +113,7 @@ Qed.
 
 (** Every point on the tangent different from the point of tangency is strictly outside the circle. *)
 
-Lemma tangent_out : forall A B O P T X,
+Lemma 切线上的非切点均在圆外 : forall A B O P T X,
   X <> T -> Col A B X -> 圆的切线切于 A B O P T -> 在圆外 X O P.
 Proof.
 intros.
@@ -142,7 +142,7 @@ intro.
 assert(HH:= 由圆上圆内两点补全一弦 O P T X H3 H5).
 ex_and HH T'.
 assert(A <> B).
-apply (tangent_neq A B O P); auto.
+apply (非退化圆切线两端点不重合 A B O P); auto.
 unfold 圆的切线 in *.
 unfold unique in *.
 ex_and H1 TT.
@@ -172,7 +172,7 @@ Qed.
 (** If line AB is tangent to a circle of center O at a point T, then OT is perpendicular to AB.
 This is Euclid Book III, Prop 18 *)
 
-Lemma tangentat_perp : 
+Lemma 切点所在半径与切线垂直于切点 : 
 forall A B O P T, O <> P -> 圆的切线切于 A B O P T -> Perp A B O T.
 Proof.
 intros.
@@ -180,11 +180,11 @@ assert(TA:=H0).
 unfold 圆的切线切于 in H0.
 spliter.
 assert(A <> B).
-apply (tangent_neq A B O P); auto.
+apply (非退化圆切线两端点不重合 A B O P); auto.
 assert(~Col A B O).
 intro.
 assert(~圆的切线 A B O P).
-apply(diam_not_tangent); Col.
+apply(过非退化圆心之线非其切线); Col.
 contradiction.
 
 assert(HH:= l8_18_过一点垂线之垂点的存在性 A B O H4).
@@ -227,7 +227,7 @@ unfold 在圆上 in *.
 apply 等长的传递性 with O T; Cong.
 
 assert(在圆外 T' O P).
-apply (tangent_out R B O P T T'); ColR.
+apply (切线上的非切点均在圆外 R B O P T T'); ColR.
 unfold 在圆外 in *.
 unfold Lt in *.
 spliter.
@@ -276,7 +276,7 @@ assert(在圆外 T' O P).
 unfold 中点 in *.
 spliter.
 apply 中间性蕴含共线1 in H12.
-apply (tangent_out A B O P T T'); auto.
+apply (切线上的非切点均在圆外 A B O P T T'); auto.
 ColR.
 unfold 在圆外 in *.
 unfold Lt in *.
@@ -290,7 +290,7 @@ Qed.
 (** AB is tangent to the circle (O,P) iff they intersect at a point X
 such that AB is perpendicular to OX. *)
 
-Lemma tangency_chara : forall A B O P, P <> O ->
+Lemma 一线是切线等价于圆上一点所在半径垂直该线于该点 : forall A B O P, P <> O ->
  (exists X, 在圆上 X O P /\ 垂直于 X A B O X) <-> 圆的切线 A B O P.
 Proof.
 intros.
@@ -351,7 +351,7 @@ unfold 圆的切线切于.
 repeat split; auto.
 exists T.
 split; auto.
-assert(HH:=tangentat_perp A B O P T).
+assert(HH:=切点所在半径与切线垂直于切点 A B O P T).
 assert(Perp A B O T).
 apply HH; auto.
 
@@ -359,7 +359,7 @@ apply(l8_14_2_1b_bis_交点是垂点 A B O T T H4); Col.
 Qed.
 
 
-Lemma tangency_chara2 : forall A B O P Q,
+Lemma 过圆上点一线是切线等价于其上点要么为该圆上点要么在圆外 : forall A B O P Q,
  在圆上 Q O P -> Col Q A B -> 
  ((forall X, Col A B X -> X = Q \/ 在圆外 X O P) <-> 圆的切线 A B O P).
 Proof.
@@ -393,11 +393,11 @@ left; auto;
 unfold 圆的切线 in H1.
 right.
 
-apply(tangent_out A B O P Q X); auto.
+apply(切线上的非切点均在圆外 A B O P Q X); auto.
 Qed.
 
-
-Lemma tangency_chara3 : forall A B O P Q, A <> B ->
+(* 无用 *)
+Lemma 过圆上点一线是切线等价于其上点全在圆上或圆外 : forall A B O P Q, A <> B ->
  在圆上 Q O P -> Col Q A B -> 
  ((forall X, Col A B X -> 在圆上或圆外 X O P) <-> 圆的切线 A B O P).
 Proof.
@@ -406,7 +406,7 @@ intros.
 split.
 intros.
 
-assert(HT:= (tangency_chara2 A B O P Q H0 H1)); auto.
+assert(HT:= (过圆上点一线是切线等价于其上点要么为该圆上点要么在圆外 A B O P Q H0 H1)); auto.
 apply HT.
 intros.
 induction(两点重合的决定性 X Q).
@@ -462,7 +462,7 @@ spliter.
 apply 在圆上蕴含在圆上或圆外; auto.
 
 assert(在圆外 X O P).
-apply(tangent_out A B O P Q X); auto.
+apply(切线上的非切点均在圆外 A B O P Q X); auto.
 unfold 在圆外 in *.
 unfold 在圆上或圆外.
 unfold Lt in H6.
@@ -472,7 +472,7 @@ Qed.
 (** Euclid Book III Prop 5 
  If two circles cut one another, then they do not have the same center. *)
 
-Lemma intercc__neq :  forall A B C D,
+Lemma 相交圆圆心不同 :  forall A B C D,
  两圆相交 A B C D -> A<>C.
 Proof.
 intros.
@@ -500,7 +500,7 @@ Qed.
 If two circles touch one another, then they do not have the same center.
 *)
 
-Lemma tangentcc__neq: forall A B C D,
+Lemma 相切圆圆心不同: forall A B C D,
  A<>B ->
  两圆相切 A B C D ->
  A<>C.
@@ -527,17 +527,17 @@ subst B'.
 treat_equalities; tauto.
 Qed.
 
-Lemma interccat__neq : forall A B C D P Q, 两圆相交于 A B C D P Q -> A <> C.
+Lemma 相交于两点之圆圆心不同 : forall A B C D P Q, 两圆相交于 A B C D P Q -> A <> C.
 Proof.
 intros.
-apply intercc__neq  with B D.
+apply 相交圆圆心不同  with B D.
 unfold 两圆相交.
 exists P; exists Q;auto.
 Qed.
 
 (** Prop 17 construction of the tangent to a circle at a given point *)
 
-Lemma tangent_construction : forall O P X, segment_circle -> 在圆上或圆外 X O P 
+Lemma 过圆上或圆外一点构造切线 : forall O P X, segment_circle -> 在圆上或圆外 X O P 
                                                   -> exists Y, 圆的切线 X Y O P.
 Proof.
 intros.
@@ -568,7 +568,7 @@ assert(HH:= 垂点的存在性 X O X H2).
 ex_and HH Y.
 unfold 在圆上 in *.
 exists Y.
-apply tangency_chara; auto.
+apply 一线是切线等价于圆上一点所在半径垂直该线于该点; auto.
 exists X.
 apply L形垂直转垂直于 in H4.
 split; Circle.
@@ -746,7 +746,7 @@ assert(Per O V X).
   assumption.
 }
 
-apply tangency_chara; auto.
+apply 一线是切线等价于圆上一点所在半径垂直该线于该点; auto.
 exists V.
 split; auto.
 apply 直角转L形垂直于 in H24; Cong.
@@ -762,7 +762,7 @@ unfold 等角 in H23.
 tauto.
 Qed.
 
-Lemma interccat__ncol : forall A B C D P Q,
+Lemma 两圆非切点交点不与两圆心共线 : forall A B C D P Q,
  两圆相交于 A B C D P Q -> ~ Col A C P.
 Proof.
 intros.
@@ -772,7 +772,7 @@ unfold 两圆相交于 in HH.
 spliter.
 apply H2.
 apply (l4_18 A C).
-apply interccat__neq in H.
+apply 相交于两点之圆圆心不同 in H.
 auto.
 assumption.
 apply 等长的传递性 with A B; Cong.
@@ -782,7 +782,7 @@ Qed.
 (** Euclid Book III Prop 10
  A circle does not cut a circle at more than two points.
  *)
-Lemma cop_onc2__oreq : forall A B C D P Q,
+Lemma 两圆共面交点不多于两个 : forall A B C D P Q,
  两圆相交于 A B C D P Q -> 共面 A C P Q ->
  forall Z, 在圆上 Z A B -> 在圆上 Z C D -> 共面 A C P Z -> Z=P \/ Z=Q.
 Proof.
@@ -826,13 +826,13 @@ apply coplanar_perm_12, col_cop__cop with P; Col; Cop.
 统计不重合点;auto.
 
 assert(A <> C).
-apply(interccat__neq A B C D P Q); auto.
+apply(相交于两点之圆圆心不同 A B C D P Q); auto.
 
 assert(Col A C N).
 apply cop_per2__col with Q; auto.
 apply coplanar_perm_12, col_cop__cop with Z; Col.
 apply coplanar_trans_1 with P; Cop.
-apply interccat__ncol in HIC.
+apply 两圆非切点交点不与两圆心共线 in HIC.
 Col.
 统计不重合点;auto.
 
@@ -889,7 +889,7 @@ assert (HH : Par Q P Q Z).
 apply (l12_9 _ _ _ _ A C); auto.
 Cop.
 apply coplanar_trans_1 with P; Cop.
-apply interccat__ncol in HIC.
+apply 两圆非切点交点不与两圆心共线 in HIC.
 Col.
 induction HH.
 unfold 严格平行 in H22.
@@ -910,14 +910,14 @@ Section Tangency_2D.
 
 Context `{T2D:Tarski_2D}.
 
-Lemma onc2__oreq : forall A B C D P Q,
+Lemma 两圆交点不多于两个 : forall A B C D P Q,
  两圆相交于 A B C D P Q ->
  forall Z, 在圆上 Z A B -> 在圆上 Z C D  -> Z=P \/ Z=Q.
 Proof.
 intros.
 assert(HCop := all_coplanar A C P Q).
 assert(HCop1 := all_coplanar A C P Z).
-apply(cop_onc2__oreq A B C D); assumption.
+apply(两圆共面交点不多于两个 A B C D); assumption.
 Qed.
 
 End Tangency_2D.
