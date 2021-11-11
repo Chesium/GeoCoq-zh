@@ -81,7 +81,7 @@ Proof.
 Qed.
 
 Lemma legendre_aux :
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+  ~ 钝角萨凯里四边形假设 ->
   forall A B C D B1 C1 P Q R S T U V W X,
     ~ Col A B C -> 等角 A C B C B D ->
     Cong A C B D -> TS B C A D -> Out A B B1 -> Out A C C1 -> Bet B1 D C1 ->
@@ -137,24 +137,24 @@ Proof.
     }
 
   rename H into HAB1.
-  destruct (ex_defect A B1 C) as [G [H [I HDef2]]]; auto.
-  destruct (ex_defect B1 C C1) as [J [K [L HDef3]]]; auto.
-  destruct (ex_defect C B B1) as [M [N [O HDef4]]]; auto.
-  destruct (ex_defect B1 C D) as [A' [B' [C' HDef5]]]; auto.
-  destruct (ex_defect C D C1) as [D' [E' [F' HDef6]]]; auto.
-  destruct (ex_defect B1 B D) as [M' [N' [O' HDef7]]]; auto.
-  assert (Hd := defect_distincts A B1 C G H I HDef2).
-  assert (Hd2 := defect_distincts C B B1 M N O HDef4).
-  assert (Hd3 := defect_distincts B1 C D A' B' C' HDef5).
+  destruct (三角形内角和与平角之差的存在性 A B1 C) as [G [H [I HDef2]]]; auto.
+  destruct (三角形内角和与平角之差的存在性 B1 C C1) as [J [K [L HDef3]]]; auto.
+  destruct (三角形内角和与平角之差的存在性 C B B1) as [M [N [O HDef4]]]; auto.
+  destruct (三角形内角和与平角之差的存在性 B1 C D) as [A' [B' [C' HDef5]]]; auto.
+  destruct (三角形内角和与平角之差的存在性 C D C1) as [D' [E' [F' HDef6]]]; auto.
+  destruct (三角形内角和与平角之差的存在性 B1 B D) as [M' [N' [O' HDef7]]]; auto.
+  assert (Hd := 三角形内角和与平角之差推点不重合 A B1 C G H I HDef2).
+  assert (Hd2 := 三角形内角和与平角之差推点不重合 C B B1 M N O HDef4).
+  assert (Hd3 := 三角形内角和与平角之差推点不重合 B1 C D A' B' C' HDef5).
   分离合取式; clean.
   destruct (和角的存在性 G H I A' B' C') as [G' [H' [I' HSuma1]]]; auto.
   destruct (和角的存在性 M N O A' B' C') as [J' [K' [L' HSuma2]]]; auto.
 
-  destruct (t22_16_1bis noah A B1 C1 C G H I J K L S T U) as [HIsi3 HSuma3]; trivial.
-  destruct (t22_16_1bis noah B1 C C1 D A' B' C' D' E' F' J K L) as [HIsi4 HSuma4]; trivial.
-  destruct (t22_16_1bis noah A C B1 B P Q R M N O G H I) as [HIsi5 HSuma5]; trivial.
-    apply defect_perm_132, HDef.
-    apply defect_perm_132, HDef2.
+  destruct (t22_16_1_三角形内角和与平角之差的可加性2 noah A B1 C1 C G H I J K L S T U) as [HIsi3 HSuma3]; trivial.
+  destruct (t22_16_1_三角形内角和与平角之差的可加性2 noah B1 C C1 D A' B' C' D' E' F' J K L) as [HIsi4 HSuma4]; trivial.
+  destruct (t22_16_1_三角形内角和与平角之差的可加性2 noah A C B1 B P Q R M N O G H I) as [HIsi5 HSuma5]; trivial.
+    apply 等价三角形内角和与平角之差排列ACB, HDef.
+    apply 等价三角形内角和与平角之差排列ACB, HDef2.
   assert (HIsi1 : 和角不大于平角 G H I A' B' C').
     apply 角度小于等于保持和角不大于平角性质 with G H I J K L; Lea.
     apply 原角小于等于和角 with D' E' F'; trivial.
@@ -169,9 +169,9 @@ Proof.
     apply 和角结合律1 with M N O A' B' C' G H I; trivial.
   assert (HIsi7 : 和角不大于平角 P Q R J' K' L').
     apply 和角不大于平角结合律1 with M N O A' B' C' G H I; trivial.
-  destruct (t22_16_2 noah C B B1 D M' N' O' A' B' C' P Q R M N O Z J' K' L') as [HIsi8 HSuma8]; trivial.
-    apply defect_perm_231, (conga3_defect__defect A B C); 等角.
-    apply defect_perm_231, HDef5.
+  destruct (t22_16_2_四边形内三角形内角和与平角之差的可加性 noah C B B1 D M' N' O' A' B' C' P Q R M N O Z J' K' L') as [HIsi8 HSuma8]; trivial.
+    apply 等价三角形内角和与平角之差排列BCA, (等内角三角形内角和与平角之差相等 A B C); 等角.
+    apply 等价三角形内角和与平角之差排列BCA, HDef5.
   assert (HLea : 角度小于等于 P Q R J' K' L') by (apply 原角小于等于和角 with M' N' O'; trivial).
 
   split.
@@ -210,7 +210,7 @@ Proof.
 Qed.
 
 Lemma legendre_aux2 :
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+  ~ 钝角萨凯里四边形假设 ->
   forall A B C,
     ~ Col A B C ->  为锐角 B A C ->
     (forall T,
@@ -231,8 +231,8 @@ Proof.
   destruct (legendre_aux1 A B C B' C') as [D' [HInangle [HConga [HCong HTS]]]]; trivial.
   assert (HNCol' : ~ Col A B' C') by (destruct HTS; Col).
   destruct (legendre D' HInangle) as [B'' [C'' [HOutB' [HOutC' HBet]]]].
-  assert (Hd := defect_distincts A B' C' P' Q' R' HDef'); 分离合取式; 统计不重合点.
-  destruct (ex_defect A B'' C'') as [P'' [Q'' [R'' HDef'']]]; auto.
+  assert (Hd := 三角形内角和与平角之差推点不重合 A B' C' P' Q' R' HDef'); 分离合取式; 统计不重合点.
+  destruct (三角形内角和与平角之差的存在性 A B'' C'') as [P'' [Q'' [R'' HDef'']]]; auto.
     intro; subst; apply HNCol; ColR.
   exists B''; exists C''; exists P''; exists Q''; exists R''.
   repeat (split; trivial).
@@ -252,14 +252,14 @@ Proof.
   intros archi legendre.
   destruct legendre as [B [A [C [HNCol [H为锐角 legendre]]]]].
   统计不重合点.
-  destruct (ex_defect A B C) as [P [Q [R HDef]]]; auto.
+  destruct (三角形内角和与平角之差的存在性 A B C) as [P [Q [R HDef]]]; auto.
   destruct (共线的决定性 P Q R) as [HCol|HNCol1].
   - apply archi__obtuse_case_elimination in archi.
-    apply (defect_ncol_out__rah A B C P Q R); Col.
+    apply (非退化三角形内角和与平角之差为零角蕴含直角萨凯里四边形假设 A B C P Q R); Col.
     apply not_bet_out; Col.
     intro HBet.
     apply HNCol.
-    apply defect_perm_213 in HDef.
+    apply 等价三角形内角和与平角之差排列BAC in HDef.
     destruct HDef as [D [E [F [[G [H [I [HSuma1 HSuma2]]]] HSuppa]]]].
     apply out_col, l6_6, out_lea__out with D E F.
       apply (bet_suppa__out P Q R); [|apply suppa_sym]; assumption.
@@ -277,7 +277,7 @@ Proof.
     assert (HNCol' : ~ Col A B' C') by (destruct HTS; Col).
     destruct (legendre D' HInangle) as [B'' [C'' [HOutB' [HOutC' HBet]]]].
     统计不重合点.
-    destruct (ex_defect A B'' C'') as [S' [T' [U' HDef'']]]; auto.
+    destruct (三角形内角和与平角之差的存在性 A B'' C'') as [S' [T' [U' HDef'']]]; auto.
       intro; subst; apply HNCol; ColR.
     destruct (和角的存在性 P' Q' R' P' Q' R') as [V [W [X HSuma]]]; auto.
     destruct (legendre_aux archi A B' C' D' B'' C'' P' Q' R' S' T' U' V W X); trivial;

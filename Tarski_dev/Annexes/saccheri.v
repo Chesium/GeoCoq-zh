@@ -1523,14 +1523,14 @@ Qed.
 
 (** 萨凯里四边形's three hypotheses *)
 
-Definition hypothesis_of_right_saccheri_quadrilaterals := forall A B C D, 萨凯里四边形 A B C D -> Per A B C.
+Definition 直角萨凯里四边形假设 := forall A B C D, 萨凯里四边形 A B C D -> Per A B C.
 
-Definition hypothesis_of_acute_saccheri_quadrilaterals := forall A B C D, 萨凯里四边形 A B C D -> 为锐角 A B C.
+Definition 锐角萨凯里四边形假设 := forall A B C D, 萨凯里四边形 A B C D -> 为锐角 A B C.
 
-Definition hypothesis_of_obtuse_saccheri_quadrilaterals := forall A B C D, 萨凯里四边形 A B C D -> 为钝角 A B C.
+Definition 钝角萨凯里四边形假设 := forall A B C D, 萨凯里四边形 A B C D -> 为钝角 A B C.
 
 Lemma per_sac__rah : forall A B C D,
-  萨凯里四边形 A B C D -> Per A B C -> hypothesis_of_right_saccheri_quadrilaterals.
+  萨凯里四边形 A B C D -> Per A B C -> 直角萨凯里四边形假设.
 Proof.
   intros A B C D HSac HPer A' B' C' D' HSac'.
   assert(HM := 中点的存在性 B C).
@@ -1549,7 +1549,7 @@ Proof.
 Qed.
 
 Lemma acute_sac__aah : forall A B C D,
-  萨凯里四边形 A B C D -> 为锐角 A B C -> hypothesis_of_acute_saccheri_quadrilaterals.
+  萨凯里四边形 A B C D -> 为锐角 A B C -> 锐角萨凯里四边形假设.
 Proof.
   intros A B C D HSac HPer A' B' C' D' HSac'.
   assert(HM := 中点的存在性 B C).
@@ -1568,7 +1568,7 @@ Proof.
 Qed.
 
 Lemma obtuse_sac__oah : forall A B C D,
-  萨凯里四边形 A B C D -> 为钝角 A B C -> hypothesis_of_obtuse_saccheri_quadrilaterals.
+  萨凯里四边形 A B C D -> 为钝角 A B C -> 钝角萨凯里四边形假设.
 Proof.
   intros A B C D HSac HPer A' B' C' D' HSac'.
   assert(Hdiff := sac_distincts A B C D HSac).
@@ -1627,7 +1627,7 @@ Proof.
 Qed.
 
 Lemma saccheri_s_three_hypotheses :
-  hypothesis_of_acute_saccheri_quadrilaterals \/ hypothesis_of_right_saccheri_quadrilaterals \/ hypothesis_of_obtuse_saccheri_quadrilaterals.
+  锐角萨凯里四边形假设 \/ 直角萨凯里四边形假设 \/ 钝角萨凯里四边形假设.
 Proof.
   destruct ex_saccheri as [A [B [C [D HSac]]]].
   assert(Hdiff := sac_distincts A B C D HSac).
@@ -1639,7 +1639,7 @@ Proof.
 Qed.
 
 Lemma not_aah :
-  hypothesis_of_right_saccheri_quadrilaterals \/ hypothesis_of_obtuse_saccheri_quadrilaterals -> ~ hypothesis_of_acute_saccheri_quadrilaterals.
+  直角萨凯里四边形假设 \/ 钝角萨凯里四边形假设 -> ~ 锐角萨凯里四边形假设.
 Proof.
   intros HUn aah.
   destruct ex_saccheri as [A [B [C [D HSac]]]].
@@ -1656,7 +1656,7 @@ Proof.
 Qed.
 
 Lemma not_rah :
-  hypothesis_of_acute_saccheri_quadrilaterals \/ hypothesis_of_obtuse_saccheri_quadrilaterals -> ~ hypothesis_of_right_saccheri_quadrilaterals.
+  锐角萨凯里四边形假设 \/ 钝角萨凯里四边形假设 -> ~ 直角萨凯里四边形假设.
 Proof.
   intros HUn rah.
   destruct ex_saccheri as [A [B [C [D HSac]]]].
@@ -1673,7 +1673,7 @@ Proof.
 Qed.
 
 Lemma not_oah :
-  hypothesis_of_acute_saccheri_quadrilaterals \/ hypothesis_of_right_saccheri_quadrilaterals -> ~ hypothesis_of_obtuse_saccheri_quadrilaterals.
+  锐角萨凯里四边形假设 \/ 直角萨凯里四边形假设 -> ~ 钝角萨凯里四边形假设.
 Proof.
   intros HUn oah.
   destruct ex_saccheri as [A [B [C [D HSac]]]].
@@ -1691,7 +1691,7 @@ Qed.
 
 
 Lemma lam_per__rah : forall A B C D,
-  Lambert四边形 A B C D -> (Per B C D <-> hypothesis_of_right_saccheri_quadrilaterals).
+  Lambert四边形 A B C D -> (Per B C D <-> 直角萨凯里四边形假设).
 Proof.
   intros A B C D HLam.
   assert(HC' := 构造对称点 C B).
@@ -1715,7 +1715,7 @@ Proof.
 Qed.
 
 Lemma lam_acute__aah : forall A B C D,
-  Lambert四边形 A B C D -> (为锐角 B C D <-> hypothesis_of_acute_saccheri_quadrilaterals).
+  Lambert四边形 A B C D -> (为锐角 B C D <-> 锐角萨凯里四边形假设).
 Proof.
   intros A B C D HLam.
   assert(HC' := 构造对称点 C B).
@@ -1742,7 +1742,7 @@ Proof.
 Qed.
 
 Lemma lam_obtuse__oah : forall A B C D,
-  Lambert四边形 A B C D -> (为钝角 B C D <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
+  Lambert四边形 A B C D -> (为钝角 B C D <-> 钝角萨凯里四边形假设).
 Proof.
   intros A B C D HLam.
   assert(HC' := 构造对称点 C B).
@@ -1839,7 +1839,7 @@ Qed.
 
 Lemma t22_12__rah : forall A B C,
   A <> B -> B <> C -> Per A B C ->
-  (和角 B C A C A B A B C <-> hypothesis_of_right_saccheri_quadrilaterals).
+  (和角 B C A C A B A B C <-> 直角萨凯里四边形假设).
 Proof.
   intros A B C HAB HBC HPer.
   destruct (per__ex_saccheri B A C) as [D HSac]; auto.
@@ -1869,7 +1869,7 @@ Qed.
 
 Lemma t22_12__aah : forall A B C P Q R,
   Per A B C -> 和角 B C A C A B P Q R ->
-  (为锐角 P Q R <-> hypothesis_of_acute_saccheri_quadrilaterals).
+  (为锐角 P Q R <-> 锐角萨凯里四边形假设).
 Proof.
   intros A B C P Q R HPer HSuma.
   suma.统计不重合点.
@@ -1901,7 +1901,7 @@ Qed.
 
 Lemma t22_12__oah : forall A B C P Q R,
   Per A B C -> 和角 B C A C A B P Q R ->
-  (为钝角 P Q R <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
+  (为钝角 P Q R <-> 钝角萨凯里四边形假设).
 Proof.
   intros A B C P Q R HPer HSuma.
   suma.统计不重合点.
@@ -1951,7 +1951,7 @@ Proof.
 Qed.
 
 Lemma t22_14__bet_aux : forall A B C P Q R,
-  hypothesis_of_right_saccheri_quadrilaterals ->
+  直角萨凯里四边形假设 ->
   ~ Col A B C -> 三角形内角和 A B C P Q R -> 为锐角 A B C -> 为锐角 A C B -> Bet P Q R.
 Proof.
   intros A B C P Q R rah HNCol HTri HacuteB HacuteC.
@@ -1980,7 +1980,7 @@ Qed.
  *)
 
 Lemma t22_14__bet :
-  hypothesis_of_right_saccheri_quadrilaterals ->
+  直角萨凯里四边形假设 ->
   forall A B C P Q R, 三角形内角和 A B C P Q R -> Bet P Q R.
 Proof.
   intros rah A B C P Q R HTri.
@@ -2002,7 +2002,7 @@ Qed.
 
 
 Lemma t22_14__sams_nbet_aux : forall A B C D E F P Q R,
-  hypothesis_of_acute_saccheri_quadrilaterals ->
+  锐角萨凯里四边形假设 ->
   ~ Col A B C ->
   和角 C A B A B C D E F -> 和角 D E F B C A P Q R ->
   为锐角 A B C -> 为锐角 A C B ->
@@ -2065,7 +2065,7 @@ Qed.
  *)
 
 Lemma t22_14__sams_nbet :
-  hypothesis_of_acute_saccheri_quadrilaterals ->
+  锐角萨凯里四边形假设 ->
   forall A B C D E F P Q R, ~ Col A B C ->
   和角 C A B A B C D E F -> 和角 D E F B C A P Q R ->
   和角不大于平角 D E F B C A /\ ~ Bet P Q R.
@@ -2092,7 +2092,7 @@ Proof.
 Qed.
 
 Lemma t22_14__nsams_aux : forall A B C D E F,
-  hypothesis_of_obtuse_saccheri_quadrilaterals ->
+  钝角萨凯里四边形假设 ->
   ~ Col A B C ->
   和角 C A B A B C D E F -> 为锐角 A B C -> 为锐角 A C B ->
   ~ 和角不大于平角 D E F B C A.
@@ -2151,7 +2151,7 @@ Qed.
  *)
 
 Lemma t22_14__nsams :
-  hypothesis_of_obtuse_saccheri_quadrilaterals ->
+  钝角萨凯里四边形假设 ->
   forall A B C D E F, ~ Col A B C ->
   和角 C A B A B C D E F ->
   ~ 和角不大于平角 D E F B C A.
@@ -2191,7 +2191,7 @@ Qed.
  *)
 
 Lemma t22_14__rah : forall A B C P Q R,
-  ~ Col A B C -> 三角形内角和 A B C P Q R -> Bet P Q R -> hypothesis_of_right_saccheri_quadrilaterals.
+  ~ Col A B C -> 三角形内角和 A B C P Q R -> Bet P Q R -> 直角萨凯里四边形假设.
 Proof.
   intros A B C P Q R HNCol HTri HBet.
   apply 等价三角形内角和CAB in HTri.
@@ -2218,7 +2218,7 @@ Lemma t22_14__aah : forall A B C D E F P Q R,
   和角 C A B A B C D E F -> 和角 D E F B C A P Q R ->
   和角不大于平角 D E F B C A ->
   ~ Bet P Q R ->
-  hypothesis_of_acute_saccheri_quadrilaterals.
+  锐角萨凯里四边形假设.
 Proof.
   intros A B C D E F P Q R HSuma1 HSuma2 HIsi HNBet.
   destruct(saccheri_s_three_hypotheses) as [|[rah|oah]]; auto; exfalso.
@@ -2243,7 +2243,7 @@ Qed.
  *)
 
 Lemma t22_14__oah : forall A B C D E F,
-  和角 C A B A B C D E F -> ~ 和角不大于平角 D E F B C A -> hypothesis_of_obtuse_saccheri_quadrilaterals.
+  和角 C A B A B C D E F -> ~ 和角不大于平角 D E F B C A -> 钝角萨凯里四边形假设.
 Proof.
   intros A B C D E F HSuma1 HNIsi.
   suma.统计不重合点.
@@ -2298,7 +2298,7 @@ Qed.
 Lemma t22_17__rah : forall A B C M,
   ~ Col A B C ->
   中点 M A B -> Cong M A M C ->
-  (Per A C B <-> hypothesis_of_right_saccheri_quadrilaterals).
+  (Per A C B <-> 直角萨凯里四边形假设).
 Proof.
   intros A B C M HNCol HM HCong.
   统计不重合点.
@@ -2318,7 +2318,7 @@ Qed.
 Lemma t22_17__oah : forall A B C M,
   ~ Col A B C ->
   中点 M A B -> Cong M A M C ->
-  (为钝角 A C B <-> hypothesis_of_obtuse_saccheri_quadrilaterals).
+  (为钝角 A C B <-> 钝角萨凯里四边形假设).
 Proof.
   intros A B C M HNCol HM HCong.
   统计不重合点.
@@ -2337,7 +2337,7 @@ Qed.
 Lemma t22_17__aah : forall A B C M,
   ~ Col A B C ->
   中点 M A B -> Cong M A M C ->
-  (为锐角 A C B <-> hypothesis_of_acute_saccheri_quadrilaterals).
+  (为锐角 A C B <-> 锐角萨凯里四边形假设).
 Proof.
   intros A B C M HNCol HM HCong.
   统计不重合点.
@@ -2347,12 +2347,12 @@ Proof.
       apply (acute_obtuse__lta); auto; rewrite (t22_17__oah _ _ _ M); auto.
 
   - destruct (angle_partition A C B) as [|[|]]; auto;
-    absurd(hypothesis_of_acute_saccheri_quadrilaterals); auto; apply not_aah.
+    absurd(锐角萨凯里四边形假设); auto; apply not_aah.
       left; apply (t22_17__rah A B C M); auto.
       right; apply (t22_17__oah A B C M); auto.
 Qed.
 
-Lemma t22_20 : ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+Lemma t22_20 : ~ 钝角萨凯里四边形假设 ->
   forall A B C D E F, 和角 A B C B C A D E F -> 和角不大于平角 D E F C A B.
 Proof.
   intros noah A B C D E F HS.
@@ -2361,7 +2361,7 @@ Proof.
   apply noah, (t22_14__oah B C A D E F); trivial.
 Qed.
 
-Lemma absolute_exterior_angle_theorem : ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+Lemma absolute_exterior_angle_theorem : ~ 钝角萨凯里四边形假设 ->
   forall A B C D E F B', Bet B A B' -> A <> B' -> 和角 A B C B C A D E F ->
   角度小于等于 D E F C A B'.
 Proof.

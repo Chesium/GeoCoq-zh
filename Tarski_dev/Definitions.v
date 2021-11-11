@@ -576,7 +576,15 @@ Definition 正方形 A B C D := 长方形 A B C D /\ Cong A B B C.
 Definition 筝形 A B C D := Cong B C C D /\ Cong D A A B.
 
 (** 萨凯里四边形 *)
-
+(* 
+  C- - - -B -
+  |      *| ^         *---saccheri.v中有公理决定该角的类型：为锐角、直角还是钝角
+  =       = |同侧 等距
+  |90   90| v
+  D-------A -
+  |
+  x
+*)
 Definition 萨凯里四边形 A B C D :=
   Per B A D /\ Per A D C /\ Cong A B C D /\ OS A D B C.
 

@@ -12,7 +12,7 @@ Definition hyperbolic_plane_postulate := forall A1 A2 P,
     ~ Col C1 B1 B2.
 
 Lemma aah__hpp :
-  hypothesis_of_acute_saccheri_quadrilaterals ->
+  锐角萨凯里四边形假设 ->
   hyperbolic_plane_postulate.
 Proof.
   intros aah A1 A2 P HNCol.

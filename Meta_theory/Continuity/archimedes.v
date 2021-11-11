@@ -233,7 +233,7 @@ Qed.
 
 Lemma archi__obtuse_case_elimination :
   archimedes_axiom ->
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals.
+  ~ 钝角萨凯里四边形假设.
 Proof.
   intros archi obtuse.
   destruct ex_saccheri as [A [B [C [D HSac]]]].
@@ -270,7 +270,7 @@ Proof.
 Qed.
 
 Lemma t22_23 :
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+  ~ 钝角萨凯里四边形假设 ->
   forall A B C M N L,
     ~ Col A M N -> Per B C A -> A <> C -> 中点 M A B ->
     Per M N A -> Col A C N -> 中点 M N L ->
@@ -294,7 +294,7 @@ Qed.
 (** For every n, 2^n times B0C0 is lower than or equal to BnCn *)
 (** B0 is introduced twice for the induction tactic to work properly *)
 Lemma t22_24_aux :
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+  ~ 钝角萨凯里四边形假设 ->
   forall A B0 B00 C0 B C E,
     ~ Col A B0 C0 -> Perp A C0 B0 C0 -> B0 = B00 ->
     在同样的对数刻度上 A B0 B B00 C0 E -> Perp A C0 B C -> Col A C0 C ->

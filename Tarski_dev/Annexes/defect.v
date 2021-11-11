@@ -4,7 +4,7 @@ Section 三角形内角和与平角之差.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma defect_distincts : forall A B C D E F,
+Lemma 三角形内角和与平角之差推点不重合 : forall A B C D E F,
   三角形内角和与平角之差 A B C D E F ->
   A <> B /\ B <> C /\ A <> C /\ D <> E /\ E <> F.
 Proof.
@@ -14,7 +14,7 @@ Proof.
   repeat split; auto.
 Qed.
 
-Lemma ex_defect : forall A B C,
+Lemma 三角形内角和与平角之差的存在性 : forall A B C,
   A <> B -> B <> C -> A <> C -> exists D E F, 三角形内角和与平角之差 A B C D E F.
 Proof.
   intros A B C HAB HBC HAC.
@@ -25,7 +25,7 @@ Proof.
   split; assumption.
 Qed.
 
-Lemma conga_defect__defect : forall A B C D E F D' E' F',
+Lemma 等角保持三角形内角和与平角之差性质 : forall A B C D E F D' E' F',
   三角形内角和与平角之差 A B C D E F -> 等角 D E F D' E' F' ->
   三角形内角和与平角之差 A B C D' E' F'.
 Proof.
@@ -37,7 +37,7 @@ Proof.
   apply (conga2_suppa__suppa G H I D E F); 等角.
 Qed.
 
-Lemma defect2__conga : forall A B C D E F D' E' F',
+Lemma 同三角形内角和与平角之差唯一 : forall A B C D E F D' E' F',
   三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 A B C D' E' F' ->
   等角 D E F D' E' F'.
 Proof.
@@ -50,7 +50,7 @@ Proof.
   apply (三角形内角和的唯一性 A B C); assumption.
 Qed.
 
-Lemma defect_perm_231 : forall A B C D E F,
+Lemma 等价三角形内角和与平角之差排列BCA : forall A B C D E F,
   三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 B C A D E F.
 Proof.
   intros A B C D E F HDef.
@@ -60,14 +60,14 @@ Proof.
   apply 等价三角形内角和BCA, HTri.
 Qed.
 
-Lemma defect_perm_312 : forall A B C D E F,
+Lemma 等价三角形内角和与平角之差排列CAB : forall A B C D E F,
   三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 C A B D E F.
 Proof.
   intros.
-  do 2 apply defect_perm_231; trivial.
+  do 2 apply 等价三角形内角和与平角之差排列BCA; trivial.
 Qed.
 
-Lemma defect_perm_321 : forall A B C D E F,
+Lemma 等价三角形内角和与平角之差排列CBA : forall A B C D E F,
   三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 C B A D E F.
 Proof.
   intros A B C D E F HDef.
@@ -77,21 +77,21 @@ Proof.
   apply 等价三角形内角和CBA, HTri.
 Qed.
 
-Lemma defect_perm_213 : forall A B C D E F,
+Lemma 等价三角形内角和与平角之差排列BAC : forall A B C D E F,
   三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 B A C D E F.
 Proof.
   intros.
-  apply defect_perm_321, defect_perm_312; trivial.
+  apply 等价三角形内角和与平角之差排列CBA, 等价三角形内角和与平角之差排列CAB; trivial.
 Qed.
 
-Lemma defect_perm_132 : forall A B C D E F,
+Lemma 等价三角形内角和与平角之差排列ACB : forall A B C D E F,
   三角形内角和与平角之差 A B C D E F -> 三角形内角和与平角之差 A C B D E F.
 Proof.
   intros.
-  apply defect_perm_321, defect_perm_231; trivial.
+  apply 等价三角形内角和与平角之差排列CBA, 等价三角形内角和与平角之差排列BCA; trivial.
 Qed.
 
-Lemma conga3_defect__defect : forall A B C D E F A' B' C',
+Lemma 等内角三角形内角和与平角之差相等 : forall A B C D E F A' B' C',
   三角形内角和与平角之差 A B C D E F ->
   等角 A B C A' B' C' -> 等角 B C A B' C' A' -> 等角 C A B C' A' B' ->
   三角形内角和与平角之差 A' B' C' D E F.
@@ -103,7 +103,7 @@ Proof.
   apply (两三角形内角对应相等则内角和相等 A B C); trivial.
 Qed.
 
-Lemma col_defect__out : forall A B C D E F,
+Lemma 退化三角形内角和与平角之差为零角 : forall A B C D E F,
   Col A B C -> 三角形内角和与平角之差 A B C D E F -> Out E D F.
 Proof.
   intros A B C D E F HCol HDef.
@@ -111,9 +111,9 @@ Proof.
   apply (bet_suppa__out G H I); trivial.
   apply (退化三角形的内角和为平角 A B C); Col.
 Qed.
-
-Lemma rah_defect__out :
-  hypothesis_of_right_saccheri_quadrilaterals ->
+(* 无用 *)
+Lemma 直角萨凯里四边形假设蕴含三角形内角和与平角之差为零角 :
+  直角萨凯里四边形假设 ->
   forall A B C D E F, 三角形内角和与平角之差 A B C D E F -> Out E D F.
 Proof.
   intros rah A B C D E F HDef.
@@ -122,9 +122,9 @@ Proof.
   apply (t22_14__bet rah A B C), HTri.
 Qed.
 
-Lemma defect_ncol_out__rah : forall A B C D E F,
+Lemma 非退化三角形内角和与平角之差为零角蕴含直角萨凯里四边形假设 : forall A B C D E F,
   ~ Col A B C -> 三角形内角和与平角之差 A B C D E F -> Out E D F ->
-  hypothesis_of_right_saccheri_quadrilaterals.
+  直角萨凯里四边形假设.
 Proof.
   intros A B C D E F HNCol HDef HOut.
   destruct HDef as [G [H [I [HTri HSuppa]]]].
@@ -137,18 +137,29 @@ Qed.
 (** Additivity of the defect : if C1 is between A and C, the defect of ABC is
     the sum of the defects of ABC1 and BC1C.
     In this proof, we have to exclude the semi-elliptical case so that the sums of angles behave. *)
-Lemma t22_16_1 :
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+(* 
+         B
+        / \_
+       /   |\_
+      /     \ \_
+     /      |   \_
+    /  DEFECT\    \_
+   /  =defect+defect\_
+  /          \        \
+ A------------C1-------C
+*)
+    Lemma t22_16_1_三角形内角和与平角之差的可加性1 :
+  ~ 钝角萨凯里四边形假设 ->
   forall A B C C1 D E F G H I K L M,
     Bet A C1 C -> 三角形内角和与平角之差 A B C1 D E F -> 三角形内角和与平角之差 B C1 C G H I ->
     和角 D E F G H I K L M ->
     和角不大于平角 D E F G H I /\ 三角形内角和与平角之差 A B C K L M.
 Proof.
   intros noah A B C C1 D E F G H I K L M HBet HDefA HDefC HSuma.
-  assert (HDA := defect_distincts A B C1 D E F HDefA).
-  assert (HDC := defect_distincts B C1 C G H I HDefC).
+  assert (HDA := 三角形内角和与平角之差推点不重合 A B C1 D E F HDefA).
+  assert (HDC := 三角形内角和与平角之差推点不重合 B C1 C G H I HDefC).
   分离合取式; clean.
-  apply defect_perm_321 in HDefA.
+  apply 等价三角形内角和与平角之差排列CBA in HDefA.
   destruct HDefA as [P [Q [R [HTri HSuppa]]]].
   assert (HSuma1 : 和角 P Q R D E F A C1 C) by 和角.
   destruct HTri as [S [T [U [HSuma2 HSuma3]]]].
@@ -176,7 +187,7 @@ Proof.
   clear dependent P; clear Q R.
 
   destruct HInter as [HSuma3 HIsi3].
-  apply defect_perm_231 in HDefC.
+  apply 等价三角形内角和与平角之差排列BCA in HDefC.
   destruct HDefC as [P [Q [R [HTri HSuppa]]]].
   assert (HSuma1 : 和角 P Q R G H I A C1 C) by 和角.
   destruct HTri as [V [W [X [HSuma4 HSuma5]]]].
@@ -227,27 +238,27 @@ Proof.
     apply 和角结合律2 with V W X C1 B A S T U; 和角.
 Qed.
 
-Lemma t22_16_1bis :
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+Lemma t22_16_1_三角形内角和与平角之差的可加性2 :
+  ~ 钝角萨凯里四边形假设 ->
   forall A B C C1 D E F G H I K L M,
     Bet A C1 C ->
     三角形内角和与平角之差 A B C1 D E F -> 三角形内角和与平角之差 B C1 C G H I -> 三角形内角和与平角之差 A B C K L M ->
     和角不大于平角 D E F G H I /\ 和角 D E F G H I K L M.
 Proof.
   intros noah A B C C1 D E F G H I K L M HBet HDefA HDefB HDef.
-  assert (Hd := defect_distincts A B C1 D E F HDefA).
-  assert (Hd' := defect_distincts B C1 C G H I HDefB).
+  assert (Hd := 三角形内角和与平角之差推点不重合 A B C1 D E F HDefA).
+  assert (Hd' := 三角形内角和与平角之差推点不重合 B C1 C G H I HDefB).
   分离合取式.
   destruct (和角的存在性 D E F G H I) as [K' [L' [M' HSuma]]]; auto.
-  destruct (t22_16_1 noah A B C C1 D E F G H I K' L' M') as [HIsi HDef']; trivial.
+  destruct (t22_16_1_三角形内角和与平角之差的可加性1 noah A B C C1 D E F G H I K' L' M') as [HIsi HDef']; trivial.
   split; trivial.
   apply (等角保持和角性质 D E F G H I K' L' M'); try (apply 同角相等); auto.
-  apply (defect2__conga A B C); trivial.
+  apply (同三角形内角和与平角之差唯一 A B C); trivial.
 Qed.
 
 
-Lemma t22_16_2aux :
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+Lemma t22_16_2_证明辅助定理1 :
+  ~ 钝角萨凯里四边形假设 ->
   forall A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R,
     三角形内角和与平角之差 A B C D1 D2 D3 -> 三角形内角和与平角之差 A B D C1 C2 C3 ->
     三角形内角和与平角之差 A D C B1 B2 B3 -> 三角形内角和与平角之差 C B D A1 A2 A3 ->
@@ -256,17 +267,17 @@ Lemma t22_16_2aux :
 Proof.
   intros noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R
     HDefD HDefC HDefB HDefA HBet HBet2 HCol HSuma.
-  assert (Hd := defect_distincts A B D C1 C2 C3 HDefC).
-  assert (Hd' := defect_distincts C B D A1 A2 A3 HDefA).
-  assert (Hd'' := defect_distincts A B C D1 D2 D3 HDefD).
+  assert (Hd := 三角形内角和与平角之差推点不重合 A B D C1 C2 C3 HDefC).
+  assert (Hd' := 三角形内角和与平角之差推点不重合 C B D A1 A2 A3 HDefA).
+  assert (Hd'' := 三角形内角和与平角之差推点不重合 A B C D1 D2 D3 HDefD).
   分离合取式; suma.统计不重合点.
-  apply col_defect__out in HDefD; trivial.
+  apply 退化三角形内角和与平角之差为零角 in HDefD; trivial.
   destruct (共线的决定性 A D C) as [HCol1|HNCol].
   { assert (Col C B D) by ColR.
     assert (Col A B D) by ColR.
-    apply col_defect__out in HDefA; trivial.
-    apply col_defect__out in HDefB; trivial.
-    apply col_defect__out in HDefC; trivial.
+    apply 退化三角形内角和与平角之差为零角 in HDefA; trivial.
+    apply 退化三角形内角和与平角之差为零角 in HDefB; trivial.
+    apply 退化三角形内角和与平角之差为零角 in HDefC; trivial.
     split; [和角|].
     apply (等角保持和角性质 D1 D2 D3 B1 B2 B3 P Q R); try (apply 同角相等); auto;
     apply l11_21_b; trivial.
@@ -274,15 +285,15 @@ Proof.
   assert (B = O) by (apply (l6_21_两线交点的唯一性 A C D B); Col).
   subst O.
   apply 零角加上任何角后者大小不变 in HSuma; trivial.
-  destruct (t22_16_1bis noah A D C B C1 C2 C3 A1 A2 A3 B1 B2 B3) as [HIsi HSuma1]; trivial.
-    apply defect_perm_132, HDefC.
-    apply defect_perm_321, HDefA.
+  destruct (t22_16_1_三角形内角和与平角之差的可加性2 noah A D C B C1 C2 C3 A1 A2 A3 B1 B2 B3) as [HIsi HSuma1]; trivial.
+    apply 等价三角形内角和与平角之差排列ACB, HDefC.
+    apply 等价三角形内角和与平角之差排列CBA, HDefA.
   split; trivial.
   apply (等角保持和角性质 C1 C2 C3 A1 A2 A3 B1 B2 B3); 等角.
 Qed.
 
-Lemma t22_16_2aux1 :
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+Lemma t22_16_2_证明辅助定理2 :
+  ~ 钝角萨凯里四边形假设 ->
   forall A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R,
     三角形内角和与平角之差 A B C D1 D2 D3 -> 三角形内角和与平角之差 A B D C1 C2 C3 ->
     三角形内角和与平角之差 A D C B1 B2 B3 -> 三角形内角和与平角之差 C B D A1 A2 A3 ->
@@ -291,22 +302,35 @@ Lemma t22_16_2aux1 :
 Proof.
   intros noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R
     HDefD HDefC HDefB HDefA HBet HBet2 HCol HSuma.
-  assert (Hd := defect_distincts A B D C1 C2 C3 HDefC).
-  assert (Hd' := defect_distincts C B D A1 A2 A3 HDefA).
+  assert (Hd := 三角形内角和与平角之差推点不重合 A B D C1 C2 C3 HDefC).
+  assert (Hd' := 三角形内角和与平角之差推点不重合 C B D A1 A2 A3 HDefA).
   分离合取式; suma.统计不重合点.
-  assert (HOut : Out C2 C1 C3) by (apply (col_defect__out A B D); trivial).
+  assert (HOut : Out C2 C1 C3) by (apply (退化三角形内角和与平角之差为零角 A B D); trivial).
   split; [和角|].
   assert (HSuma1 : 和角 C1 C2 C3 A1 A2 A3 A1 A2 A3) by (apply 零角加上任何角即为该角; auto).
   apply (等角保持和角性质 C1 C2 C3 A1 A2 A3 A1 A2 A3); try (apply 同角相等); auto.
   apply (和角的唯一性 D1 D2 D3 B1 B2 B3); trivial.
-  destruct (t22_16_2aux noah B A D C B1 B2 B3 A1 A2 A3 D1 D2 D3 C1 C2 C3 O A1 A2 A3); Col;
-  apply defect_perm_213; trivial.
+  destruct (t22_16_2_证明辅助定理1 noah B A D C B1 B2 B3 A1 A2 A3 D1 D2 D3 C1 C2 C3 O A1 A2 A3); Col;
+  apply 等价三角形内角和与平角之差排列BAC; trivial.
 Qed.
 
 (** In a convex quadrilateral ABCD, the sum of the defects of ABC and ADC is equal to
     the sum of the defects of ABD and CBD. We add some hypotheses to make the proof easier *)
-Lemma t22_16_2 :
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals ->
+(* 
+ A---------B
+ |\       /|
+ | \     / |
+ |  \   /  |
+ |   \ /   |
+ |    O    |
+ |   / \   |
+ |  /   \  |
+ | /     \ |
+ |/       \|
+ D---------C
+*)
+Lemma t22_16_2_四边形内三角形内角和与平角之差的可加性 :
+  ~ 钝角萨凯里四边形假设 ->
   forall A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R,
     三角形内角和与平角之差 A B C D1 D2 D3 -> 三角形内角和与平角之差 A B D C1 C2 C3 ->
     三角形内角和与平角之差 A D C B1 B2 B3 -> 三角形内角和与平角之差 C B D A1 A2 A3 ->
@@ -316,39 +340,39 @@ Lemma t22_16_2 :
 Proof.
   intros noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O P Q R
     HDefD HDefC HDefB HDefA HBet HBet2 HIsi HSuma.
-  assert (Hd := defect_distincts A B D C1 C2 C3 HDefC).
-  assert (Hd' := defect_distincts C B D A1 A2 A3 HDefA).
+  assert (Hd := 三角形内角和与平角之差推点不重合 A B D C1 C2 C3 HDefC).
+  assert (Hd' := 三角形内角和与平角之差推点不重合 C B D A1 A2 A3 HDefA).
   分离合取式; suma.统计不重合点.
 
   destruct (共线的决定性 A B C) as [HCol|HNCol].
-    apply (t22_16_2aux noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O); trivial.
+    apply (t22_16_2_证明辅助定理1 noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O); trivial.
   destruct (共线的决定性 A D C) as [HCol1|HNCol1].
-    apply (t22_16_2aux noah A D C B A1 A2 A3 D1 D2 D3 C1 C2 C3 B1 B2 B3 O); Between; 和角;
-    apply defect_perm_132; trivial.
+    apply (t22_16_2_证明辅助定理1 noah A D C B A1 A2 A3 D1 D2 D3 C1 C2 C3 B1 B2 B3 O); Between; 和角;
+    apply 等价三角形内角和与平角之差排列ACB; trivial.
   destruct (共线的决定性 A B D) as [HCol2|HNCol2].
-    apply (t22_16_2aux1 noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O); trivial.
+    apply (t22_16_2_证明辅助定理2 noah A B C D A1 A2 A3 B1 B2 B3 C1 C2 C3 D1 D2 D3 O); trivial.
   destruct (共线的决定性 C B D) as [HCol3|HNCol3].
-    destruct (t22_16_2aux1 noah C B A D C1 C2 C3 B1 B2 B3 A1 A2 A3 D1 D2 D3 O P Q R); Between; 和角;
-    apply defect_perm_321; trivial.
+    destruct (t22_16_2_证明辅助定理2 noah C B A D C1 C2 C3 B1 B2 B3 A1 A2 A3 D1 D2 D3 O P Q R); Between; 和角;
+    apply 等价三角形内角和与平角之差排列CBA; trivial.
   assert (Hdiff : O <> A /\ O <> B /\ O <> C /\ O <> D).
     assert_cols; repeat split; intro; subst O; Col.
   分离合取式.
 
-  destruct (ex_defect A B O) as [S1 [T1 [U1 HDef1]]]; auto.
-  destruct (ex_defect B C O) as [S2 [T2 [U2 HDef2]]]; auto.
-  destruct (ex_defect C D O) as [S3 [T3 [U3 HDef3]]]; auto.
-  destruct (ex_defect A D O) as [S4 [T4 [U4 HDef4]]]; auto.
-  destruct (t22_16_1bis noah A B C O S1 T1 U1 S2 T2 U2 D1 D2 D3) as [HIsi12 HSuma12]; trivial.
-    apply defect_perm_132, HDef2.
-  destruct (t22_16_1bis noah A D C O S4 T4 U4 S3 T3 U3 B1 B2 B3) as [HIsi34 HSuma34]; trivial.
-    apply defect_perm_231, HDef3.
-  destruct (t22_16_1bis noah B A D O S1 T1 U1 S4 T4 U4 C1 C2 C3) as [HIsi14 HSuma14]; trivial.
-    apply defect_perm_213, HDef1.
-    apply defect_perm_132, HDef4.
-    apply defect_perm_213, HDefC.
-  destruct (t22_16_1bis noah B C D O S2 T2 U2 S3 T3 U3 A1 A2 A3) as [HIsi23 HSuma23]; trivial.
-    apply defect_perm_132, HDef3.
-    apply defect_perm_213, HDefA.
+  destruct (三角形内角和与平角之差的存在性 A B O) as [S1 [T1 [U1 HDef1]]]; auto.
+  destruct (三角形内角和与平角之差的存在性 B C O) as [S2 [T2 [U2 HDef2]]]; auto.
+  destruct (三角形内角和与平角之差的存在性 C D O) as [S3 [T3 [U3 HDef3]]]; auto.
+  destruct (三角形内角和与平角之差的存在性 A D O) as [S4 [T4 [U4 HDef4]]]; auto.
+  destruct (t22_16_1_三角形内角和与平角之差的可加性2 noah A B C O S1 T1 U1 S2 T2 U2 D1 D2 D3) as [HIsi12 HSuma12]; trivial.
+    apply 等价三角形内角和与平角之差排列ACB, HDef2.
+  destruct (t22_16_1_三角形内角和与平角之差的可加性2 noah A D C O S4 T4 U4 S3 T3 U3 B1 B2 B3) as [HIsi34 HSuma34]; trivial.
+    apply 等价三角形内角和与平角之差排列BCA, HDef3.
+  destruct (t22_16_1_三角形内角和与平角之差的可加性2 noah B A D O S1 T1 U1 S4 T4 U4 C1 C2 C3) as [HIsi14 HSuma14]; trivial.
+    apply 等价三角形内角和与平角之差排列BAC, HDef1.
+    apply 等价三角形内角和与平角之差排列ACB, HDef4.
+    apply 等价三角形内角和与平角之差排列BAC, HDefC.
+  destruct (t22_16_1_三角形内角和与平角之差的可加性2 noah B C D O S2 T2 U2 S3 T3 U3 A1 A2 A3) as [HIsi23 HSuma23]; trivial.
+    apply 等价三角形内角和与平角之差排列ACB, HDef3.
+    apply 等价三角形内角和与平角之差排列BAC, HDefA.
   suma.统计不重合点.
 
   destruct (和角的存在性 D1 D2 D3 S3 T3 U3) as [V [W [X HSuma1]]]; auto.

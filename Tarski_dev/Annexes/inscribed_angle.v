@@ -34,10 +34,10 @@ Proof.
   apply postulates_in_euclidean_context; simpl; repeat (try (left; reflexivity); right).
 Qed.
 
-Lemma not_obtuse_saccheris : ~ hypothesis_of_obtuse_saccheri_quadrilaterals.
+Lemma not_obtuse_saccheris : ~ 钝角萨凯里四边形假设.
 Proof.
   apply not_oah; right.
-  unfold hypothesis_of_right_saccheri_quadrilaterals; apply right_saccheris.
+  unfold 直角萨凯里四边形假设; apply right_saccheris.
 Qed.
 
 Lemma suma123231__sams : forall A B C D E F, 和角 A B C B C A D E F -> 和角不大于平角 D E F C A B.

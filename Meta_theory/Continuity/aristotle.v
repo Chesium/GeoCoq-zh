@@ -247,7 +247,7 @@ Qed.
 
 Lemma aristotle__obtuse_case_elimination :
   aristotle_s_axiom ->
-  ~ hypothesis_of_obtuse_saccheri_quadrilaterals.
+  ~ 钝角萨凯里四边形假设.
 Proof.
   intros aristotle obtuse.
   destruct ex_lambert as [Q' [C' [P [Q HLam]]]].
@@ -341,7 +341,7 @@ Qed.
 
 Lemma aristotle__acute_or_right :
   aristotle_s_axiom ->
-  hypothesis_of_acute_saccheri_quadrilaterals \/ hypothesis_of_right_saccheri_quadrilaterals.
+  锐角萨凯里四边形假设 \/ 直角萨凯里四边形假设.
 Proof.
   intros aristotle.
   destruct saccheri_s_three_hypotheses as [Ha|[Hr|Ho]]; auto.
