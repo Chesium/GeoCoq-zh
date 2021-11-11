@@ -329,7 +329,7 @@ Coq 中的几何形式化
 
   引理数：22
 
-- **中垂线** ![0%](https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/00_percent.svg/14px-00_percent.svg.png)
+- **中垂线** ![100%](https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/100_percent.svg/14px-100_percent.svg.png)
 
   `/Tarski_dev/Annexes/perp_bisect.v`
 

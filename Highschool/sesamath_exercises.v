@@ -189,7 +189,7 @@ forall S E L I M A O,
 中点 I L S ->
 中点 M S E ->
 中点 A E L ->
-Perp_bisect A O L E ->
+中垂线 A O L E ->
 共面 S E L O ->
 Perp A O I M.
 Proof.
@@ -199,7 +199,7 @@ assert_cols.
 assert (Par L E I M) 
   by (perm_apply (triangle_mid_par L E S M I);finish).
 assert (Perp A O L E)
-  by(apply(perp_bisect_perp A O L E);finish).
+  by(apply(中垂线蕴含垂直 A O L E);finish).
 assert (Perp I M O A).
   apply(cop_par_perp__perp L E I M O A);Perp; CopR.
 assert (Perp A O I M);finish.

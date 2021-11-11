@@ -198,7 +198,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
       assert (共面 A B C I) by (apply col_cop2__cop with P Q; Cop).
       统计不重合点.
       apply cop_perp2__col with A C;
-      [Cop|apply perp_bisect_perp, perp_bisect_sym_1, cong_mid_perp_bisect; Cong..].
+      [Cop|apply 中垂线蕴含垂直, 中垂线左对称性, 距线两端点等距点与中点连线为该线中垂线; Cong..].
       assert (HPerp4 : Perp P I B P).
         {
         apply 与垂线共线之线也为垂线1 with A B; [apply 与垂线共线之线也为垂线1 with P Q|..]; Col; Perp.

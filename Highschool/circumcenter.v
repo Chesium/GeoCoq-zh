@@ -173,10 +173,10 @@ Lemma 外心与一边中点连线是该边中垂线 : forall A B C A' G,
   A<>B -> B<>C -> A<>C -> G <> A' ->
   外心 G A B C ->
   中点 A' B C ->
-  Perp_bisect G A' B C.
+  中垂线 G A' B C.
 Proof.
 intros.
-apply cong_cop_perp_bisect; try assumption;
+apply 距线两端点等距两点连线为该线中垂线; try assumption;
 unfold 中点, 外心 in *; spliter; Cong; Cop.
 Qed.
 
@@ -204,11 +204,11 @@ Lemma 外心与任一边中点连线是该边中垂线 : forall A B C A' B' C' G
   中点 A' B C ->
   中点 B' A C ->
   中点 C' A B ->
-  Perp_bisect G A' B C /\ Perp_bisect G B' A C /\ Perp_bisect G C' A B.
+  中垂线 G A' B C /\ 中垂线 G B' A C /\ 中垂线 G C' A B.
 Proof.
 intros.
 unfold 外心 in *; spliter.
-split; [|split]; apply cong_mid_perp_bisect; trivial; CongR.
+split; [|split]; apply 距线两端点等距点与中点连线为该线中垂线; trivial; CongR.
 Qed.
 
 Lemma 三角形的三条中垂线交于一点 : forall A B C A' B' C' G,
@@ -216,17 +216,17 @@ Lemma 三角形的三条中垂线交于一点 : forall A B C A' B' C' G,
   中点 A' B C ->
   中点 B' A C ->
   中点 C' A B ->
-  Perp_bisect G A' B C ->
-  Perp_bisect G B' A C ->
+  中垂线 G A' B C ->
+  中垂线 G B' A C ->
   Perp G C' A B.
 Proof.
 intros.
 assert (Cong B G C G).
- apply (perp_bisect_cong2 G A' B C ).
+ apply (中垂线顶点距线两端等长 G A' B C ).
  assumption.
 assert (Cong A G B G).
  assert (Cong A G C G).
-  apply (perp_bisect_cong2 G B' A C).
+  apply (中垂线顶点距线两端等长 G B' A C).
   assumption.
  CongR.
 apply 垂线共线点也构成垂直2 with C'; Col.
@@ -249,18 +249,18 @@ elim (共线的决定性 A B C); intro HABC.
 
   {
   Name C' the midpoint of A and B.
-  assert (HPer1 : Perp_bisect O C' A B).
+  assert (HPer1 : 中垂线 O C' A B).
     {
-    unfold 外心 in *; spliter; apply cong_mid_perp_bisect; Cong.
+    unfold 外心 in *; spliter; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
     intro; treat_equalities; assert (HFalse := 共线点间距相同要么重合要么中点 O B C).
     destruct HFalse; Cong.
       ColR.
     treat_equalities; auto.
     }
   Name A' the midpoint of B and C.
-  assert (HPer2 : Perp_bisect O A' B C).
+  assert (HPer2 : 中垂线 O A' B C).
     {
-    unfold 外心 in *; spliter; apply cong_mid_perp_bisect; Cong.
+    unfold 外心 in *; spliter; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
     intro; treat_equalities; assert (HFalse := 共线点间距相同要么重合要么中点 O A B).
     destruct HFalse; Cong.
       ColR.
@@ -271,7 +271,7 @@ elim (共线的决定性 A B C); intro HABC.
     apply par_not_col_strict with C'; Col.
 
       {
-      apply l12_9 with A B; [Cop..| |Cop| |apply perp_bisect_perp; assumption].
+      apply l12_9 with A B; [Cop..| |Cop| |apply 中垂线蕴含垂直; assumption].
         apply col__coplanar; ColR.
       apply 与垂线共线之线也为垂线1 with B C; Perp; Col.
       }
@@ -283,9 +283,9 @@ elim (共线的决定性 A B C); intro HABC.
       unfold 外心 in *; spliter; Cong; 统计不重合点; assert_cols; try ColR.
       assert (HOC' : O <> C').
         {
-        apply perp_bisect_equiv_def in HPer1.
-        apply perp_bisect_equiv_def in HPer2.
-        unfold Perp_bisect in *; unfold 垂直于 in *;
+        apply 中垂线两定义等价 in HPer1.
+        apply 中垂线两定义等价 in HPer2.
+        unfold 中垂线 in *; unfold 垂直于 in *;
         destruct HPer1 as [I [HOC' Hc1]]; 统计不重合点; Col.
         }
       apply HOC'; apply 中点的唯一性1 with A B; Col.
@@ -337,21 +337,21 @@ elim (共线的决定性 A B C); intro HABC.
         }
       assert (HFalse := not_par_strict_id B A C); exfalso; apply HFalse; Col.
       }
-    assert (H : Perp_bisect O' A' B C /\ Perp_bisect O' B' A C /\ Perp_bisect O' O A B).
+    assert (H : 中垂线 O' A' B C /\ 中垂线 O' B' A C /\ 中垂线 O' O A B).
       {
       apply 外心与任一边中点连线是该边中垂线; Col.
       }
     destruct H as [HPer3 [HPer4 Hc]]; clear Hc.
-    assert (HPer1 : Perp_bisect O A' B C).
+    assert (HPer1 : 中垂线 O A' B C).
       {
       unfold 外心 in *; spliter.
-      apply cong_mid_perp_bisect; Cong.
+      apply 距线两端点等距点与中点连线为该线中垂线; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
-    assert (HPer2 : Perp_bisect O B' A C).
+    assert (HPer2 : 中垂线 O B' A C).
       {
       apply 外心与三角形顶点距离相等 in HIC1; spliter.
-      apply cong_mid_perp_bisect; Cong.
+      apply 距线两端点等距点与中点连线为该线中垂线; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
     apply l6_21_两线交点的唯一性 with O A' B' O'; Col.
@@ -417,21 +417,21 @@ elim (共线的决定性 A B C); intro HABC.
         }
       assert (HFalse := not_par_strict_id B A C); exfalso; apply HFalse; Col.
       }
-    assert (H : Perp_bisect O A' B C /\ Perp_bisect O B' A C /\ Perp_bisect O O' A B).
+    assert (H : 中垂线 O A' B C /\ 中垂线 O B' A C /\ 中垂线 O O' A B).
       {
       apply 外心与任一边中点连线是该边中垂线; Col.
       }
     destruct H as [HPer3 [HPer4 Hc]]; clear Hc.
-    assert (HPer1 : Perp_bisect O' A' B C).
+    assert (HPer1 : 中垂线 O' A' B C).
       {
       unfold 外心 in *; spliter.
-      apply cong_mid_perp_bisect; Cong.
+      apply 距线两端点等距点与中点连线为该线中垂线; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
-    assert (HPer2 : Perp_bisect O' B' A C).
+    assert (HPer2 : 中垂线 O' B' A C).
       {
       apply 外心与三角形顶点距离相等 in HIC2; spliter.
-      apply cong_mid_perp_bisect; Cong.
+      apply 距线两端点等距点与中点连线为该线中垂线; Cong.
       intro; treat_equalities; apply HABC; Col.
       }
     apply l6_21_两线交点的唯一性 with O' A' B' O; Col.
@@ -485,21 +485,21 @@ elim (共线的决定性 A B C); intro HABC.
           }
         assert (HFalse := not_par_strict_id C A B); exfalso; apply HFalse; Par.
         }
-      assert (H : Perp_bisect O' A' B C /\ Perp_bisect O' O A C /\ Perp_bisect O' C' A B).
+      assert (H : 中垂线 O' A' B C /\ 中垂线 O' O A C /\ 中垂线 O' C' A B).
         {
         apply 外心与任一边中点连线是该边中垂线; Col.
         }
       destruct H as [HPer3 [Hc HPer4]]; clear Hc.
-      assert (HPer1 : Perp_bisect O A' B C).
+      assert (HPer1 : 中垂线 O A' B C).
         {
         unfold 外心 in *; spliter.
-        apply cong_mid_perp_bisect; Cong.
+        apply 距线两端点等距点与中点连线为该线中垂线; Cong.
         intro; treat_equalities; apply HABC; Col.
         }
-      assert (HPer2 : Perp_bisect O C' A B).
+      assert (HPer2 : 中垂线 O C' A B).
         {
         unfold 外心 in *; spliter.
-        apply cong_mid_perp_bisect; Cong.
+        apply 距线两端点等距点与中点连线为该线中垂线; Cong.
         }
       apply l6_21_两线交点的唯一性 with O A' C' O'; Col.
 
@@ -547,21 +547,21 @@ elim (共线的决定性 A B C); intro HABC.
           }
         assert (HFalse := not_par_strict_id C A B); exfalso; apply HFalse; Par.
         }
-      assert (H : Perp_bisect O A' B C /\ Perp_bisect O O' A C /\ Perp_bisect O C' A B).
+      assert (H : 中垂线 O A' B C /\ 中垂线 O O' A C /\ 中垂线 O C' A B).
         {
         apply 外心与任一边中点连线是该边中垂线; Col.
         }
       destruct H as [HPer3 [Hc HPer4]]; clear Hc.
-      assert (HPer1 : Perp_bisect O' A' B C).
+      assert (HPer1 : 中垂线 O' A' B C).
         {
         unfold 外心 in *; spliter.
-        apply cong_mid_perp_bisect; Cong.
+        apply 距线两端点等距点与中点连线为该线中垂线; Cong.
         intro; treat_equalities; apply HABC; Col.
         }
-      assert (HPer2 : Perp_bisect O' C' A B).
+      assert (HPer2 : 中垂线 O' C' A B).
         {
         unfold 外心 in *; spliter.
-        apply cong_mid_perp_bisect; Cong.
+        apply 距线两端点等距点与中点连线为该线中垂线; Cong.
         }
       apply l6_21_两线交点的唯一性 with O' A' C' O; Col.
 
@@ -597,20 +597,20 @@ elim (共线的决定性 A B C); intro HABC.
           unfold 外心 in *; spliter.
           apply 直角的对称性, 泰勒斯定理 with O; Col; Cong.
           }
-        assert (H : Perp_bisect O' O B C /\ Perp_bisect O' B' A C /\ Perp_bisect O' C' A B).
+        assert (H : 中垂线 O' O B C /\ 中垂线 O' B' A C /\ 中垂线 O' C' A B).
           {
           apply 外心与任一边中点连线是该边中垂线; Col.
           }
         destruct H as [Hc [HPer3 HPer4]]; clear Hc.
-        assert (HPer1 : Perp_bisect O B' A C).
+        assert (HPer1 : 中垂线 O B' A C).
           {
           apply 外心与三角形顶点距离相等 in HIC1; spliter.
-          apply cong_mid_perp_bisect; Cong.
+          apply 距线两端点等距点与中点连线为该线中垂线; Cong.
           }
-        assert (HPer2 : Perp_bisect O C' A B).
+        assert (HPer2 : 中垂线 O C' A B).
           {
           unfold 外心 in *; spliter.
-          apply cong_mid_perp_bisect; Cong.
+          apply 距线两端点等距点与中点连线为该线中垂线; Cong.
           }
         apply l6_21_两线交点的唯一性 with O B' C' O'; Col.
 
@@ -642,18 +642,18 @@ elim (共线的决定性 A B C); intro HABC.
           unfold 外心 in *; spliter.
           apply 直角的对称性, 泰勒斯定理 with O'; Col; Cong.
           }
-        assert (H : Perp_bisect O O' B C /\ Perp_bisect O B' A C /\ Perp_bisect O C' A B).
+        assert (H : 中垂线 O O' B C /\ 中垂线 O B' A C /\ 中垂线 O C' A B).
           {
           apply 外心与任一边中点连线是该边中垂线; auto.
           }
         destruct H as [Hc [HPer3 HPer4]]; clear Hc.
-        assert (HPer1 : Perp_bisect O' B' A C).
+        assert (HPer1 : 中垂线 O' B' A C).
           {
-          apply 外心与三角形顶点距离相等 in HIC2; spliter; apply cong_mid_perp_bisect; Cong.
+          apply 外心与三角形顶点距离相等 in HIC2; spliter; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
           }
-        assert (HPer2 : Perp_bisect O' C' A B).
+        assert (HPer2 : 中垂线 O' C' A B).
           {
-          unfold 外心 in *; spliter; apply cong_mid_perp_bisect; Cong.
+          unfold 外心 in *; spliter; apply 距线两端点等距点与中点连线为该线中垂线; Cong.
           }
         apply l6_21_两线交点的唯一性 with O' B' C' O; Col.
 
@@ -680,12 +680,12 @@ elim (共线的决定性 A B C); intro HABC.
         }
 
         {
-        assert (H : Perp_bisect O A' B C /\ Perp_bisect O B' A C /\ Perp_bisect O C' A B).
+        assert (H : 中垂线 O A' B C /\ 中垂线 O B' A C /\ 中垂线 O C' A B).
           {
           apply 外心与任一边中点连线是该边中垂线; auto.
           }
         destruct H as [HPer1 [HPer2 Hc]]; clear Hc.
-        assert (H : Perp_bisect O' A' B C /\ Perp_bisect O' B' A C /\ Perp_bisect O' C' A B).
+        assert (H : 中垂线 O' A' B C /\ 中垂线 O' B' A C /\ 中垂线 O' C' A B).
           {
           apply 外心与任一边中点连线是该边中垂线; auto.
           }

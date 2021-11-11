@@ -142,10 +142,10 @@ Qed.
 (* 看上去像废话 *)
 Lemma altitude_is_perp_bisect : forall A B C O A1 E F,
   A <> O -> E <> F -> Perp A A1 B C -> Col O A1 A -> Col A E F -> Par B C A E -> 中点 A E F ->
-  Perp_bisect A O E F.
+  中垂线 A O E F.
 Proof with finish.
 intros.
-apply perp_mid_perp_bisect...
+apply 过一线中点的垂线是该线中垂线...
 apply 垂直的对称性.
 apply cop_par_perp__perp with B C...
 apply par_col_par with A...
@@ -184,14 +184,14 @@ elim (两点重合的决定性 C O); intro.
 
   subst; Col.
 
-assert (Perp_bisect A O E F) by (apply altitude_is_perp_bisect with B C A1; finish).
-assert (Perp_bisect B O D F) by (apply altitude_is_perp_bisect with A C B1; finish).
+assert (中垂线 A O E F) by (apply altitude_is_perp_bisect with B C A1; finish).
+assert (中垂线 B O D F) by (apply altitude_is_perp_bisect with A C B1; finish).
 
 assert (Perp O C D E).
 
   apply 三角形的三条中垂线交于一点 with F A B; finish.
-  apply perp_bisect_sym_1; assumption.
-  apply perp_bisect_sym_1; assumption.
+  apply 中垂线左对称性; assumption.
+  apply 中垂线左对称性; assumption.
 
 assert (Perp C1 C D E).
 

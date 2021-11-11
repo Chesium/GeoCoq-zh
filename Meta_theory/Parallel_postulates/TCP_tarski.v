@@ -271,7 +271,7 @@ assert (HCopx : 共面 B C T x).
   apply coplanar_pseudo_trans with X Y Z1; trivial; apply coplanar_pseudo_trans with B C T; assumption.
 assert (Col A B x).
   {
-  apply cong_cop2_perp_bisect_col with Y Z1; trivial.
+  apply 距线两端等长的点在中垂线上 with Y Z1; trivial.
     apply coplanar_pseudo_trans with B C T; assumption.
     apply coplanar_pseudo_trans with B C T; assumption.
     apply 等长的传递性 with X x; Cong.
@@ -282,7 +282,7 @@ do 2 (split; trivial).
 apply par_not_col_strict with T; Col.
 apply l12_9 with X Y; [apply coplanar_pseudo_trans with B C T; assumption..| |].
   apply 垂直的对称性, 与垂线共线之线也为垂线2 with T Z; Perp; ColR.
-apply perp_bisect_perp; apply cong_cop_perp_bisect; Cong; [|Cop].
+apply 中垂线蕴含垂直; apply 距线两端点等距两点连线为该线中垂线; Cong; [|Cop].
 intro; subst; apply HABC; ColR.
 Qed.
 
@@ -324,7 +324,7 @@ assert (HxTy : Col x T y).
   elim (两点重合的决定性 T x); intro; [|elim (两点重合的决定性 T y); intro]; [subst; Col..|].
   统计不重合点.
   apply 等价共线BAC, cop_perp2__col with X Y;
-    [|apply perp_bisect_perp, cong_cop_perp_bisect; Cong; Cop..].
+    [|apply 中垂线蕴含垂直, 距线两端点等距两点连线为该线中垂线; Cong; Cop..].
   assert (共面 B C T Y) by (apply col_cop__cop with Z; Col; Cop).
   assert (共面 B C T X) by (apply col_cop__cop with Y; Col).
   apply coplanar_pseudo_trans with B C T; Cop.

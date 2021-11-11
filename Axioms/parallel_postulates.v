@@ -246,7 +246,7 @@ Definition weak_tarski_s_parallel_postulate := forall A B C T,
 
 Definition weak_triangle_circumscription_principle := forall A B C A1 A2 B1 B2,
   ~ Col A B C -> Per A C B ->
-  Perp_bisect A1 A2 B C -> Perp_bisect B1 B2 A C ->
+  中垂线 A1 A2 B C -> 中垂线 B1 B2 A C ->
   共面 A B C A1 -> 共面 A B C A2 ->
   共面 A B C B1 -> 共面 A B C B2 ->
   exists I, Col A1 A2 I /\ Col B1 B2 I.

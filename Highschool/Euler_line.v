@@ -130,10 +130,10 @@ assert (HOM2 : O <> M2).
   assert_cols; ColR.
   }
 assert (HM1M2 : M1 <> M2) by (intro; treat_equalities; Col).
-assert (HPerp1 : Perp_bisect O M1 A B)
-  by (apply cong_mid_perp_bisect; spliter; Cong).
-assert (HPerp2 : Perp_bisect O M2 A C)
-  by (apply cong_mid_perp_bisect; spliter; Cong).
+assert (HPerp1 : 中垂线 O M1 A B)
+  by (apply 距线两端点等距点与中点连线为该线中垂线; spliter; Cong).
+assert (HPerp2 : 中垂线 O M2 A C)
+  by (apply 距线两端点等距点与中点连线为该线中垂线; spliter; Cong).
 assert (HOM1M2 : ~ Col O M1 M2).
   {
   intro HOM1M2; assert (H := 共线点间距相同要么重合要么中点 O A B); elim H; clear H; try intro H; Cong;
@@ -144,8 +144,8 @@ assert (H严格平行 : 严格平行 O M1 O M2).
   apply par_not_col_strict with M2; Col.
   apply l12_9 with A B; try CopR.
     apply coplanar_perm_16, col_cop__cop with C; Col; Cop.
-    apply perp_bisect_perp; Col.
-  apply 与垂线共线之线也为垂线1 with A C; Col; perm_apply perp_bisect_perp.
+    apply 中垂线蕴含垂直; Col.
+  apply 与垂线共线之线也为垂线1 with A C; Col; perm_apply 中垂线蕴含垂直.
 
   }
 assert (H := not_par_strict_id O M1 M2); Col.
@@ -218,8 +218,8 @@ Name A' the midpoint of B and C.
 Name B' the midpoint of A and C.
 Name C' the midpoint of A and B.
 
-assert (Perp_bisect A A' B C)
-  by (apply cong_mid_perp_bisect; Cong; intro; treat_equalities; apply H0; Col).
+assert (中垂线 A A' B C)
+  by (apply 距线两端点等距点与中点连线为该线中垂线; Cong; intro; treat_equalities; apply H0; Col).
 
 assert (Col G A' A)
   by (apply 重心的等价排列 in H1; apply 重心在中线上 with B C; spliter; Col).
@@ -231,16 +231,16 @@ elim (两点重合的决定性 O H); intro; treat_equalities; Col.
 
 elim (两点重合的决定性 O A'); intro; treat_equalities.
 
-assert (Col A H O) by (apply cop_perp2__col with B C; Col; Cop; apply perp_bisect_perp; Col).
+assert (Col A H O) by (apply cop_perp2__col with B C; Col; Cop; apply 中垂线蕴含垂直; Col).
 apply 重心与三角形共面 in H1.
 apply 等价共线BCA; apply cop_perp2__col with B C.
 
 CopR.
-apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with A O; try apply perp_bisect_perp; Col.
+apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with A O; try apply 中垂线蕴含垂直; Col.
 apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with A H; Col.
 
-assert (Col A A' H) by (apply cop_perp2__col with B C; Cop; apply perp_bisect_perp; auto).
-assert (Perp_bisect O A' B C) by (统计不重合点; apply 外心与一边中点连线是该边中垂线 with A; auto).
+assert (Col A A' H) by (apply cop_perp2__col with B C; Cop; apply 中垂线蕴含垂直; auto).
+assert (中垂线 O A' B C) by (统计不重合点; apply 外心与一边中点连线是该边中垂线 with A; auto).
 assert (Col A' A O)
   by (apply cop_perp2__col with B C; Perp; Cop).
 show_distinct A A'.
@@ -355,14 +355,14 @@ induction (共线的决定性 B H C).
      Name A'' the midpoint of B and C.
      show_distinct A'' O; treat_equalities.
      apply H27; apply L形垂直转直角1; 统计不重合点; Perp.
-     assert (Perp_bisect O A'' B C) by (apply 外心与一边中点连线是该边中垂线 with A; Col).
+     assert (中垂线 O A'' B C) by (apply 外心与一边中点连线是该边中垂线 with A; Col).
      elim (两点重合的决定性 A A''); intro; treat_equalities.
-     eauto using perp_bisect_cong_2 with cong.
-     assert (Perp_bisect A'' A B C).
-     apply perp_mid_perp_bisect; Col.
+     eauto using 中垂线顶点距线两端等长2 with cong.
+     assert (中垂线 A'' A B C).
+     apply 过一线中点的垂线是该线中垂线; Col.
      apply 垂直的对称性; apply 与垂线共线之线也为垂线1 with O A''; Col;
-     try (apply perp_bisect_perp; assumption); assert_cols; try ColR.
-     eauto using perp_bisect_cong_2 with cong.
+     try (apply 中垂线蕴含垂直; assumption); assert_cols; try ColR.
+     eauto using 中垂线顶点距线两端等长2 with cong.
      }
 
    assert (重心 G A A' H)

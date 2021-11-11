@@ -103,13 +103,13 @@ Proof.
   assert (H1 : ~ Col A B C) by auto.
   clear HNC.
   统计不重合点.
-  assert (HAB := perp_bisect_existence A B);
+  assert (HAB := 中垂线的存在性 A B);
   destruct HAB as [C1 [C2 HAB]]; try (统计不重合点; assumption).
   assert(Cong A C1 B C1).
-  apply perp_bisect_cong_2 with C2.
-  apply perp_bisect_sym_1.
+  apply 中垂线顶点距线两端等长2 with C2.
+  apply 中垂线左对称性.
   assumption.
-  unfold Perp_bisect in HAB.
+  unfold 中垂线 in HAB.
   spliter.
   unfold 严格对称 in *.
   spliter.

@@ -12,9 +12,9 @@ Lemma inter_dec_plus_par_perp_perp_imply_triangle_circumscription :
   triangle_circumscription_principle.
 Proof.
 intros HID HPTP A B C HNC.
-assert (HAB := perp_bisect_existence_cop A B C);
+assert (HAB := 共面中垂线的存在性 A B C);
 destruct HAB as [C1 [C2 [HAB HCop1]]]; try (统计不重合点; assumption).
-assert (HAC := perp_bisect_existence_cop A C B);
+assert (HAC := 共面中垂线的存在性 A C B);
 destruct HAC as [B1 [B2 [HAC HCop2]]]; try (统计不重合点; assumption).
 assert (HInter := HID B1 B2 C1 C2).
 elim HInter; clear HInter; intro HInter.
@@ -25,13 +25,13 @@ elim HInter; clear HInter; intro HInter.
 
       elim (两点重合的决定性 CC C1); intro HEq; try subst.
 
-        apply perp_bisect_cong_1 with C2; assumption.
+        apply 中垂线顶点距线两端等长1 with C2; assumption.
 
-        apply perp_bisect_cong_1 with C1.
-        apply perp_bisect_sym_1.
-        apply perp_bisect_equiv_def in HAB.
+        apply 中垂线顶点距线两端等长1 with C1.
+        apply 中垂线左对称性.
+        apply 中垂线两定义等价 in HAB.
         destruct HAB as [I [HPerp HMid]].
-        apply perp_bisect_equiv_def.
+        apply 中垂线两定义等价.
         exists I; split; try assumption.
         apply 垂直于的对称性.
         apply 垂线共线点也构成垂直_垂直于 with C2; Col.
@@ -42,13 +42,13 @@ elim HInter; clear HInter; intro HInter.
 
         elim (两点重合的决定性 CC B1); intro HEq; try subst.
 
-          apply perp_bisect_cong_1 with B2; assumption.
+          apply 中垂线顶点距线两端等长1 with B2; assumption.
 
-          apply perp_bisect_cong_1 with B1.
-          apply perp_bisect_sym_1.
-          apply perp_bisect_equiv_def in HAC.
+          apply 中垂线顶点距线两端等长1 with B1.
+          apply 中垂线左对称性.
+          apply 中垂线两定义等价 in HAC.
           destruct HAC as [I [HPerp HMid]].
-          apply perp_bisect_equiv_def.
+          apply 中垂线两定义等价.
           exists I; split; try assumption.
           apply 垂直于的对称性.
           apply 垂线共线点也构成垂直_垂直于 with B2; Col.
@@ -73,7 +73,7 @@ elim HInter; clear HInter; intro HInter.
       exists I; assumption.
 
   clear HInter.
-  apply perp_bisect_perp in HAB; apply perp_bisect_perp in HAC.
+  apply 中垂线蕴含垂直 in HAB; apply 中垂线蕴含垂直 in HAC.
   assert (HPerp := HPTP B1 B2 C1 C2 A C HPar HAC).
   apply par_id.
   spliter.

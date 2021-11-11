@@ -385,7 +385,7 @@ Definition SumS A B C D E F := exists P Q R,
 
 (** PQ is the perpendicular bisector of segment AB *)
 
-Definition Perp_bisect P Q A B := 严格对称 A B P Q /\ A <> B.
+Definition 中垂线 P Q A B := 严格对称 A B P Q /\ A <> B.
 
 Definition 中垂线_另一定义 P Q A B :=
   exists I, 垂直于 I P Q A B /\ 中点 I A B.
