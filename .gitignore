@@ -4,4 +4,3 @@ Makefile
 *.glob
 *.v.d
 *.aux
-*.test.log
