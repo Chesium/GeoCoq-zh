@@ -91,7 +91,7 @@ Definition circle_circle_two := forall A B C D P Q,
 *)
 
 Definition euclid_s_prop_1_22 := forall A B C D E F A' B' C' D' E' F',
-  SumS A B C D E' F' -> SumS A B E F C' D' -> SumS C D E F A' B' ->
+  长度之和 A B C D E' F' -> 长度之和 A B E F C' D' -> 长度之和 C D E F A' B' ->
   Le E F E' F' -> Le C D C' D' -> Le A B A' B' ->
   exists P Q R, Cong P Q A B /\ Cong P R C D /\ Cong Q R E F.
 

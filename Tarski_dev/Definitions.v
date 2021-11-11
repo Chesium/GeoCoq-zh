@@ -378,9 +378,9 @@ Definition Cd O E S U1 U2 P X Y :=
 Definition BetS A B C : Prop := Bet A B C /\ A <> B /\ B <> C.
 
 (** Definition of the sum of segments.
-    SumS A B C D E F means that AB + CD = EF. *)
+    长度之和 A B C D E F means that AB + CD = EF. *)
 
-Definition SumS A B C D E F := exists P Q R,
+Definition 长度之和 A B C D E F := exists P Q R,
   Bet P Q R /\ Cong P Q A B /\ Cong Q R C D /\ Cong P R E F.
 
 (** PQ is the perpendicular bisector of segment AB *)

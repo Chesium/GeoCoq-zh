@@ -255,7 +255,7 @@ Proof.
 Qed.
 
 Lemma euclid_22_aux : forall A B C D E F A' B' E' F' C1 C2 E1,
-  SumS A B C D E' F' -> SumS C D E F A' B' -> Le E F E' F' -> Le A B A' B' ->
+  长度之和 A B C D E' F' -> 长度之和 C D E F A' B' -> Le E F E' F' -> Le A B A' B' ->
   Out A B C1 -> Cong A C1 C D -> Bet B A C2 -> Cong A C2 C D ->
   Out B A E1 -> Cong B E1 E F ->
   Bet C1 E1 C2.
@@ -271,7 +271,7 @@ Proof.
       apply l6_7 with C1; apply l6_6; trivial.
       统计不重合点; apply bet_out; trivial.
     apply (长度小于等于推出反向不小于 A B A' B'); trivial.
-    apply le_lt12_sums2__lt with C D E F A E1 E1 B; Sums; Le.
+    apply 长度一全序一偏序则和长保持全序 with C D E F A E1 E1 B; Sums; Le.
     split.
       exists C1; split; Cong.
     intro HCong.
@@ -284,7 +284,7 @@ Proof.
       split; [exists C2; Cong|].
       intro HCong.
       apply HC2E1, between_cong with B; trivial.
-    apply (sums2__cong56 A B C D); trivial; exists B, A, C2; repeat split; Cong.
+    apply (长度之和的唯一性 A B C D); trivial; exists B, A, C2; repeat split; Cong.
 Qed.
 
 Lemma circle_circle_bis__euclid_22 : circle_circle_bis -> euclid_s_prop_1_22.
@@ -297,16 +297,16 @@ Proof.
     subst B.
     apply 等长的传递性 with C D; trivial.
     apply 长度小于等于的反对称性.
-      apply (l5_6_等长保持小于等于关系 C D C' D'); Cong; apply (sums2__cong56 A A E F); Sums.
-      apply (l5_6_等长保持小于等于关系 E F E' F'); Cong; apply (sums2__cong56 A A C D); Sums.
+      apply (l5_6_等长保持小于等于关系 C D C' D'); Cong; apply (长度之和的唯一性 A A E F); Sums.
+      apply (l5_6_等长保持小于等于关系 E F E' F'); Cong; apply (长度之和的唯一性 A A C D); Sums.
   - exists A; treat_equalities; repeat split; Cong.
     apply 长度小于等于的反对称性.
-      apply (l5_6_等长保持小于等于关系 A B A' B'); Cong; apply (sums2__cong56 C C E F); Sums.
-      apply (l5_6_等长保持小于等于关系 E F E' F'); Cong; apply (sums2__cong56 A B C C); Sums.
+      apply (l5_6_等长保持小于等于关系 A B A' B'); Cong; apply (长度之和的唯一性 C C E F); Sums.
+      apply (l5_6_等长保持小于等于关系 E F E' F'); Cong; apply (长度之和的唯一性 A B C C); Sums.
   - exists B; treat_equalities; repeat split; Cong.
     apply 长度小于等于的反对称性.
-      apply (l5_6_等长保持小于等于关系 A B A' B'); Cong; apply (sums2__cong56 C D E E); Sums.
-      apply (l5_6_等长保持小于等于关系 C D C' D'); Cong; apply (sums2__cong56 A B E E); Sums.
+      apply (l5_6_等长保持小于等于关系 A B A' B'); Cong; apply (长度之和的唯一性 C D E E); Sums.
+      apply (l5_6_等长保持小于等于关系 C D C' D'); Cong; apply (长度之和的唯一性 A B E E); Sums.
   - destruct (由一点往一方向构造等长线段_3 A B C D) as [C1 [HC1 HC1']]; auto.
     destruct (由一点往一方向构造等长线段_3 B A E F) as [E1 [HE1 HE1']]; auto.
     destruct (由一点往一方向构造等长线段 B A C D) as [C2 [HC2 HC2']].
@@ -321,13 +321,13 @@ Proof.
       apply 等长的传递性 with B E1; Cong.
 Qed.
 
-Lemma triangle_inequality1 : forall A B C D E, SumS A B B C D E -> Le A C D E.
+Lemma triangle_inequality1 : forall A B C D E, 长度之和 A B B C D E -> Le A C D E.
 Proof.
   intros A B C D E HSum.
   destruct (由一点往一方向构造等长线段 A B B C) as [D' [HBet HCong]].
   apply (l5_6_等长保持小于等于关系 A C A D'); Cong.
     apply triangle_inequality with B; Cong.
-  apply (sums2__cong56 A B B C); trivial.
+  apply (长度之和的唯一性 A B B C); trivial.
   exists A, B, D'; repeat split; Cong.
 Qed.
 
@@ -335,21 +335,21 @@ Lemma euclid_22__circle_circle : euclid_s_prop_1_22 -> circle_circle.
 Proof.
   intros p22 A B C D P Q HPOn HQOn HPIn HQOut.
   assert (HXYZ : exists X Y Z : Tpoint, Cong X Y A C /\ Cong X Z A B /\ Cong Y Z C D).
-  { destruct (ex_sums A B C D) as [L1 [R1]].
-    destruct (ex_sums A C C D) as [L2 [R2]].
-    destruct (ex_sums A C A B) as [L3 [R3]].
+  { destruct (长度之和的存在性 A B C D) as [L1 [R1]].
+    destruct (长度之和的存在性 A C C D) as [L2 [R2]].
+    destruct (长度之和的存在性 A C A B) as [L3 [R3]].
     apply p22 with L1 R1 L2 R2 L3 R3; trivial.
-    - destruct (ex_sums C A A P) as [R [S]].
+    - destruct (长度之和的存在性 C A A P) as [R [S]].
       apply 长度小于等于的传递性 with R S.
         apply (l5_6_等长保持小于等于关系 C P R S); Cong; apply triangle_inequality1 with A; trivial.
-        apply le2_sums2__le with C A A P A C A B; Le.
+        apply 长度之和保持小于等于性质 with C A A P A C A B; Le.
     - apply 长度小于等于的传递性 with A Q; Le.
       apply (triangle_inequality1 A C Q).
-      apply (cong3_sums__sums A C C D L2 R2); Cong.
-    - destruct (ex_sums A P P C) as [R [S]].
+      apply (等长保持长度之和性质 A C C D L2 R2); Cong.
+    - destruct (长度之和的存在性 A P P C) as [R [S]].
       apply 长度小于等于的传递性 with R S.
         apply triangle_inequality1 with P; trivial.
-      apply le2_sums2__le with A P P C A B C D; Le.
+      apply 长度之和保持小于等于性质 with A P P C A B C D; Le.
   }
   destruct (两点重合的决定性 A C).
   { subst C.

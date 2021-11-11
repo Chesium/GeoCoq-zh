@@ -475,13 +475,13 @@ Qed.
        *)
 	    (** # <div style="width:748px;height:397px;display:block" id="applet_container20"></div> # **)
 
-Lemma prop_20 : forall A B C P Q, ~ Bet B A C -> SumS A B A C P Q -> Lt B C P Q.
+Lemma prop_20 : forall A B C P Q, ~ Bet B A C -> 长度之和 A B A C P Q -> Lt B C P Q.
 Proof.
   intros A B C P Q HNBet HSum.
   destruct (由一点往一方向构造等长线段 B A A C) as [D [HBet HCong]].
   apply (等长保持小于关系 B C B D); Cong.
     apply triangle_strict_inequality with A; Cong.
-  apply (sums2__cong56 A B A C); trivial.
+  apply (长度之和的唯一性 A B A C); trivial.
   exists B, A, D; repeat split; Cong.
 Qed.
 
@@ -500,7 +500,7 @@ Proof.
 Qed.
 
 Lemma prop_21_2 : forall A B C D A1 A2 D1 D2, OS A B C D -> OS B C A D -> OS A C B D ->
-  SumS A B A C A1 A2 -> SumS D B D C D1 D2 -> Lt D1 D2 A1 A2.
+  长度之和 A B A C A1 A2 -> 长度之和 D B D C D1 D2 -> Lt D1 D2 A1 A2.
 Proof.
   intros A B C D A1 A2 D1 D2; intros.
   assert (HNCol : ~ Col A B C) by (apply one_side_not_col123 with D; assumption).
@@ -514,18 +514,18 @@ Proof.
     apply out2__bet; [apply l6_6, HOut|].
     apply col_one_side_out with A; Col.
     apply invert_one_side, col_one_side with C; Col.
-  destruct (ex_sums E B E C) as [P [Q]].
+  destruct (长度之和的存在性 E B E C) as [P [Q]].
   apply 长度小于的传递性 with P Q.
-  - destruct (ex_sums E C E D) as [R [S]].
-    apply le_lt34_sums2__lt with D B D C D B R S; Le.
+  - destruct (长度之和的存在性 E C E D) as [R [S]].
+    apply 长度一偏序一全序则和长保持全序 with D B D C D B R S; Le.
       apply prop_20 with E; Sums.
       intro; apply HNCol; ColR.
-    apply sums_assoc_1 with E D E C E B; Sums.
-  - destruct (ex_sums A B A E) as [R [S]].
-    apply le_lt12_sums2__lt with E B E C R S E C; Le.
+    apply 长度之和的结合律1 with E D E C E B; Sums.
+  - destruct (长度之和的存在性 A B A E) as [R [S]].
+    apply 长度一全序一偏序则和长保持全序 with E B E C R S E C; Le.
       apply prop_20 with A; Sums.
       intro; apply HNCol; ColR.
-    apply sums_assoc_2 with A B A E A C; Sums.
+    apply 长度之和的结合律2 with A B A E A C; Sums.
 Qed.
 
 
@@ -540,7 +540,7 @@ Qed.
       (** This needs Circle/Circle intersection axiom *)
 
 Lemma prop_22 : circle_circle -> forall A1 A2 B1 B2 C1 C2 A1' A2' B1' B2' C1' C2',
-  SumS A1 A2 B1 B2 C1' C2' -> SumS A1 A2 C1 C2 B1' B2' -> SumS B1 B2 C1 C2 A1' A2' ->
+  长度之和 A1 A2 B1 B2 C1' C2' -> 长度之和 A1 A2 C1 C2 B1' B2' -> 长度之和 B1 B2 C1 C2 A1' A2' ->
   Le C1 C2 C1' C2' -> Le B1 B2 B1' B2' -> Le A1 A2 A1' A2' ->
   exists F G K, Cong F G A1 A2 /\ Cong F K B1 B2 /\ Cong G K C1 C2.
 Proof.
