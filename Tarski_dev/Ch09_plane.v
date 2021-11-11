@@ -2968,12 +2968,12 @@ Proof.
   destruct (共线的决定性 T B C) as [|HNCol3].
     exists B; left; split; ColR.
   destruct (中间性的决定性 T B A) as [|HOut].
-  - apply coplanar_perm_18, ts__coplanar.
+  - apply 等价共面DABC, 异侧蕴含共面.
     apply l9_8_2 with T.
       repeat split; Col; exists B; split; Col.
     apply out_one_side_1 with C'; Col.
     apply bet_out; Between.
-  - apply coplanar_perm_19, ts__coplanar, l9_31; [|apply one_side_symmetry, invert_one_side, HOS].
+  - apply 等价共面DACB, 异侧蕴含共面, l9_31; [|apply one_side_symmetry, invert_one_side, HOS].
     apply one_side_transitivity with T.
       apply out_one_side_1 with C'; [intro; apply HNCol3; ColR|Col|apply l6_6, bet_out; Between].
       apply out_one_side; Col; apply not_bet_out; Col.
@@ -2998,7 +2998,7 @@ Proof.
     - left; apply l9_8_2 with P; assumption.
     - right; apply one_side_transitivity with P; [apply one_side_symmetry|]; assumption.
   }
-  destruct HDij; [apply ts__coplanar|apply os__coplanar]; assumption.
+  destruct HDij; [apply 异侧蕴含共面|apply os__coplanar]; assumption.
 Qed.
 
 Lemma col_cop__cop : forall A B C D E, 共面 A B C D -> C <> D -> Col C D E -> 共面 A B C E.
@@ -3006,7 +3006,7 @@ Proof.
   intros A B C D E HCop HCD HCol.
   destruct (共线的决定性 D A C).
     assert (Col A C E) by (apply 共线的传递性1 with D; Col); Cop.
-  apply coplanar_perm_2, (coplanar_trans_1 D); Cop.
+  apply 等价共面ACBD, (coplanar_trans_1 D); Cop.
 Qed.
 
 Lemma bet_cop__cop : forall A B C D E, 共面 A B C E -> Bet C D E -> 共面 A B C D.
@@ -3023,7 +3023,7 @@ Proof.
   intros A B C D E F HCop HCD HE HF.
   destruct (两点重合的决定性 E C).
     subst; apply col_cop__cop with D; Col; Cop.
-  apply col_cop__cop with C; [apply coplanar_perm_1, col_cop__cop with D| |apply 共线的传递性1 with D]; Col.
+  apply col_cop__cop with C; [apply 等价共面ABDC, col_cop__cop with D| |apply 共线的传递性1 with D]; Col.
 Qed.
 
 Lemma col_cop2__cop : forall A B C U V P, U <> V ->
@@ -3032,21 +3032,21 @@ Lemma col_cop2__cop : forall A B C U V P, U <> V ->
 Proof.
   intros A B C U V P HUV HU HV HCol.
   destruct (共线的决定性 A B C) as [HCol1|HNCol].
-    apply col__coplanar, HCol1.
+    apply 共线三点和任一点共面, HCol1.
   revert dependent C.
   revert A B.
   assert (Haux : forall A B C, ~ Col A B C -> ~ Col U A B ->
   共面 A B C U -> 共面 A B C V -> 共面 A B C P).
   { intros A B C HNCol HNCol' HU HV.
     apply (coplanar_trans_1 U); [Cop..|].
-    apply coplanar_perm_12, col_cop__cop with V; auto.
+    apply 等价共面CABD, col_cop__cop with V; auto.
     apply (coplanar_trans_1 C); Col; Cop.
   }
   intros A B C HU HV HNCol.
   destruct (共线的决定性 U A B); [destruct (共线的决定性 U A C)|].
-  - apply coplanar_perm_12, Haux; Col; Cop.
+  - apply 等价共面CABD, Haux; Col; Cop.
     intro; apply HNCol; destruct (两点重合的决定性 U A); ColR.
-  - apply coplanar_perm_2, Haux; Col; Cop.
+  - apply 等价共面ACBD, Haux; Col; Cop.
   - apply Haux; assumption.
 Qed.
 
@@ -3074,9 +3074,9 @@ assert (Haux : forall P Q R A B C,
   intros P Q R A B C HNC HCop1 HCop2 HCop3.
   统计不重合点.
   elim (共线的决定性 R Q A); intro HQRA.
-    apply coplanar_perm_18, col_cop__cop with Q; auto.
-    apply coplanar_perm_17, (coplanar_trans_1 P); assumption.
-  apply coplanar_perm_9, (coplanar_trans_1 Q); [Col|apply (coplanar_trans_1 P); assumption..].
+    apply 等价共面DABC, col_cop__cop with Q; auto.
+    apply 等价共面CDBA, (coplanar_trans_1 P); assumption.
+  apply 等价共面BCDA, (coplanar_trans_1 Q); [Col|apply (coplanar_trans_1 P); assumption..].
   }
 intros A B C D P Q R HNC HCop1 HCop2 HCop3 HCop4.
 elim (共线的决定性 P Q D); intro HPQD.
@@ -3092,7 +3092,7 @@ Lemma l9_30 : forall A B C D E F P X Y Z,
 Proof.
   intros A B C D E F P X Y Z HNCop HNCol HP HX1 HY1 HZ1 HX2 HY2 HZ2.
   destruct (共线的决定性 X Y Z); [assumption|].
-  assert (~ Col A B C) by (apply ncop__ncol with P, HNCop).
+  assert (~ Col A B C) by (apply 四点不共面则前三点不共线 with P, HNCop).
   exfalso.
   apply HNCop.
   apply coplanar_pseudo_trans with X Y Z; [assumption|apply coplanar_pseudo_trans with A B C; Cop..|];
@@ -3284,7 +3284,7 @@ Proof.
         assumption.
       apply 等价共线CAB.
       apply cop_per2__col with A.
-        统计不重合点; apply coplanar_perm_12, col_cop__cop with B; Cop.
+        统计不重合点; apply 等价共面CABD, col_cop__cop with B; Cop.
         auto.
         apply L形垂直于转直角.
         apply 垂直于的交换性.
@@ -3434,7 +3434,7 @@ Proof.
   destruct (共线的决定性 D A B).
     left; exists D; left; split; Col.
   destruct (two_sides_dec A B C D).
-    left; apply ts__coplanar; assumption.
+    left; apply 异侧蕴含共面; assumption.
   destruct (one_side_dec A B C D).
     left; apply os__coplanar; assumption.
   right; intro; destruct (cop__one_or_two_sides A B C D); auto.
@@ -3498,11 +3498,11 @@ Proof.
     统计不重合点; apply 等价共线CAB, cop_per2__col with P; Cop.
   assert (Col A B M).
     apply cop_per2__col with P; try apply HUD; 统计不重合点; auto.
-    apply coplanar_perm_12, col_cop__cop with Q; Col.
+    apply 等价共面CABD, col_cop__cop with Q; Col.
     apply coplanar_trans_1 with C; Cop; Col.
   assert (Col A C M).
     apply cop_per2__col with P; try apply HUD; 统计不重合点; auto.
-    apply coplanar_perm_12, col_cop__cop with Q; Col.
+    apply 等价共面CABD, col_cop__cop with Q; Col.
     apply coplanar_trans_1 with B; Cop; Col.
   apply 共线的传递性2 with M; Col.
 Qed.
@@ -3518,7 +3518,7 @@ Lemma l9_39 : forall A B C D P Q R, 在平面异侧 A B C P R -> 共面 A B C D 
   在平面异侧 A B C Q R.
 Proof.
   intros A B C D P Q R [HP [HR [T [HT HBet]]]] HCop HOut.
-  assert (HNCol : ~ Col A B C) by (apply ncop__ncol with P, HP).
+  assert (HNCol : ~ Col A B C) by (apply 四点不共面则前三点不共线 with P, HP).
   split.
     intro; 统计不重合点; apply HP, col_cop2__cop with D Q; Col.
   split; [assumption|].
@@ -3596,7 +3596,7 @@ Lemma cop3_tsp__tsp : forall A B C D E F P Q, ~ Col D E F ->
   在平面异侧 A B C P Q -> 在平面异侧 D E F P Q.
 Proof.
   intros A B C D E F P Q HNCol HD HE HF [HP [HQ [T [HT HBet]]]].
-  assert (~ Col A B C) by (apply ncop__ncol with P, HP).
+  assert (~ Col A B C) by (apply 四点不共面则前三点不共线 with P, HP).
   assert (共面 D E F A /\ 共面 D E F B /\ 共面 D E F C /\ 共面 D E F T).
     repeat split; apply coplanar_pseudo_trans with A B C; Cop.
   分离合取式.
@@ -3854,7 +3854,7 @@ Proof.
       apply osp_symmetry, H在平面同侧.
   }
   exists Q; repeat split; auto.
-  apply coplanar_perm_2, coplanar_trans_1 with E'; Col; Cop.
+  apply 等价共面ACBD, coplanar_trans_1 with E'; Col; Cop.
 Qed.
 
 Lemma sac__coplanar : forall A B C D, 萨凯里四边形 A B C D -> 共面 A B C D.
@@ -3893,5 +3893,5 @@ repeat
       | H:~ 共面 ?A ?B ?C ?D |- _ =>
       let h := fresh in
       not_exist_hyp_perm_ncol4 A B C D;
-      assert (h := ncop__ncols A B C D H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 四点不共面则任三点不共线 A B C D H);decompose [and] h;clear h;clean_reap_hyps
   end.

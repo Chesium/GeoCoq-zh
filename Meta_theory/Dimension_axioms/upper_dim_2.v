@@ -316,7 +316,7 @@ intro HUD; unfold all_coplanar_axiom; intros.
 elim (共线的决定性 A B C); Cop; intro HABC.
 elim (共线的决定性 A B D); Cop; intro HABD.
 elim (共线的决定性 A C D); Cop; intro HACD.
-elim (防升维公理_implies_one_or_two_sides HUD A B C D); Col; [apply ts__coplanar|apply os__coplanar].
+elim (防升维公理_implies_one_or_two_sides HUD A B C D); Col; [apply 异侧蕴含共面|apply os__coplanar].
 Qed.
 
 Lemma all_coplanar_implies_防升维公理 : all_coplanar_axiom -> 防升维公理_axiom.

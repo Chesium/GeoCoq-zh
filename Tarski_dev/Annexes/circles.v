@@ -1201,17 +1201,17 @@ Proof.
   destruct (l10_15 A C M2 B) as [P2 [HPerp2 HOS2]]; Col.
   assert (HColX1 : Col M1 P1 X).
     apply (cop_mid_onc2_perp__col X A A B); Circle; Perp.
-    apply coplanar_perm_12, coplanar_trans_1 with C; Cop.
+    apply 等价共面CABD, coplanar_trans_1 with C; Cop.
   assert (HColO1 : Col M1 P1 O).
     apply (cop_mid_onc2_perp__col O P A B); Perp.
-    apply coplanar_perm_12, coplanar_trans_1 with C; Cop.
+    apply 等价共面CABD, coplanar_trans_1 with C; Cop.
   apply 共线否定排列CBA in HNCol.
   assert (HColX2 : Col M2 P2 X).
     apply (cop_mid_onc2_perp__col X A A C); Circle; Perp.
-    apply coplanar_perm_12, coplanar_trans_1 with B; Cop.
+    apply 等价共面CABD, coplanar_trans_1 with B; Cop.
   assert (HColO2 : Col M2 P2 O).
     apply (cop_mid_onc2_perp__col O P A C); Perp.
-    apply coplanar_perm_12, coplanar_trans_1 with B; Cop.
+    apply 等价共面CABD, coplanar_trans_1 with B; Cop.
   统计不重合点.
   destruct (共线的决定性 M1 P1 M2); [apply (l6_21_两线交点的唯一性 M2 P2 M1 P1)|apply (l6_21_两线交点的唯一性 M1 P1 M2 P2)]; Col.
   intro.

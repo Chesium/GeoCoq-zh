@@ -332,8 +332,8 @@ Proof.
   - apply (l8_3_直角边共线点也构成直角1 D); Perp; Col.
   - apply L形垂直转直角1; auto.
     apply (垂线共线点也构成垂直2 _ _ _ C); Perp; Col.
-  - apply coplanar_perm_5, col_cop__cop with C; Col.
-    apply coplanar_perm_22, col_cop__cop with D; Col; Cop.
+  - apply 等价共面ADCB, col_cop__cop with C; Col.
+    apply 等价共面DCAB, col_cop__cop with D; Col; Cop.
 Qed.
 
 Lemma mid2_sac__lam6534 : forall A B C D M N,
@@ -652,7 +652,7 @@ Proof.
     subst Q.
     assert(Col C P D).
       apply cop_per2__col with A; Perp.
-      apply coplanar_perm_3, col_cop__cop with B; Col; Cop.
+      apply 等价共面ACDB, col_cop__cop with B; Col; Cop.
     apply (par_strict_not_col_2 A B C D HPar'); ColR.
   }
   assert(Hlta1 : 角度小于 A B C B P Q).
@@ -711,7 +711,7 @@ Proof.
     subst Q.
     assert(Col C P D).
       apply cop_per2__col with A; Perp.
-      apply coplanar_perm_3, col_cop__cop with B; Col; Cop.
+      apply 等价共面ACDB, col_cop__cop with B; Col; Cop.
     apply (par_strict_not_col_2 A B C D HPar'); ColR.
   }
   assert (角度小于 B P Q A B C).
@@ -848,7 +848,7 @@ Proof.
   - apply out_one_side_1 with R; [Col..|Out].
   - apply coplanar_trans_1 with S.
       apply 成直角三点不共线; Perp.
-      apply coplanar_perm_22, col_cop__cop with D; Col; Cop.
+      apply 等价共面DCAB, col_cop__cop with D; Col; Cop.
       Cop.
 Qed.
 
@@ -1090,7 +1090,7 @@ Proof.
     apply (l6_21_两线交点的唯一性 M P Q P); Col.
       apply (par_strict_not_col_2 N), HPar.
     apply 等价共线CAB, cop_per2__col with N; Perp.
-    apply coplanar_perm_5, col_cop__cop with M; Col; Cop.
+    apply 等价共面ADCB, col_cop__cop with M; Col; Cop.
   }
   assert(HP' := 构造对称点 P M).
   destruct HP' as [P' HP'].
@@ -1322,8 +1322,8 @@ Proof.
   }
   assert (HCop : 共面 A D M G).
   { apply coplanar_trans_1 with C; Col.
-      apply coplanar_perm_12, col_cop__cop with B; Col; Cop.
-      apply coplanar_perm_5, col_cop__cop with N; Col; Cop.
+      apply 等价共面CABD, col_cop__cop with B; Col; Cop.
+      apply 等价共面ADCB, col_cop__cop with N; Col; Cop.
   }
   assert (HNCol3 : ~ Col M N G).
   { unfold Lambert四边形 in HLam1.
@@ -1380,7 +1380,7 @@ Proof.
   assert(HNCol5 : ~ Col N M C) by (unfold Lambert四边形 in HLam1; 分离合取式; apply 成直角三点不共线; auto).
   assert(HNCol6 : ~ Col N D M) by (apply (par_strict_not_col_1 _ _ _ C); auto).
   assert (共面 M C D A).
-    apply pars__coplanar, par_strict_col_par_strict with N; Col; Par.
+    apply 严格平行蕴含共面, par_strict_col_par_strict with N; Col; Par.
   assert(HK : exists K, Col K M C /\ Bet G K H).
   { elim(两点重合的决定性 L M).
     { intro.
@@ -1434,7 +1434,7 @@ Proof.
       apply (l8_3_直角边共线点也构成直角1 L); Col.
       apply (直角边共线点也构成直角2 _ _ G); Col.
       apply (直角边共线点也构成直角2 _ _ C); Col.
-      apply coplanar_perm_7, pars__coplanar; assumption.
+      apply 等价共面BADC, 严格平行蕴含共面; assumption.
   }
   assert(HConga := sac__conga A B C D HSac).
   assert(等角 A' B' C' H G L).

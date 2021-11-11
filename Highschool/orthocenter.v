@@ -43,7 +43,7 @@ Definition 垂心 H A B C :=
 Lemma 垂心与三角形共面 : forall A B C H, 垂心 H A B C -> 共面 H A B C.
 Proof.
 intros A B C H [HNCol [HPerp]].
-apply coplanar_perm_6, perp__coplanar, HPerp.
+apply 等价共面BACD, 垂直蕴含共面, HPerp.
 Qed.
 
 Lemma 构造三角形两垂线的交点 : forall A B C X1 X2 X3,
@@ -200,7 +200,7 @@ assert (Perp C1 C D E).
 
 apply 等价共线CAB; apply cop_perp2__col with D E; Perp.
 apply coplanar_pseudo_trans with A B C; Cop.
-apply coplanar_perm_2, col_cop__cop with B1; Col; Cop.
+apply 等价共面ACBD, col_cop__cop with B1; Col; Cop.
 
 Qed.
 

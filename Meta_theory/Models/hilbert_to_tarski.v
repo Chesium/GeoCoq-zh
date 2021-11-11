@@ -5119,7 +5119,7 @@ Lemma plane_coplanar : forall A B C D p, IncidP A p -> IncidP B p -> IncidP C p 
 Proof.
 intros A B C D p HA HB HC HD.
 destruct (colH_dec A B C) as [HCol|HNCol].
-  apply col__coplanar, col_colh, HCol.
+  apply 共线三点和任一点共面, col_colh, HCol.
 assert (HAB : A <> B).
   intro; subst; apply HNCol; Col.
 assert (HM : exists M, 中点 M A B).
@@ -5154,7 +5154,7 @@ destruct (pasch A B C l p) as [HI|HI]; trivial.
     exists I; right; left; split; apply col_colh; Col.
     exists M; right; right; split; apply col_colh; [exists l|]; Col.
 - destruct HI as [_ [_ [I []]]].
-  apply coplanar_perm_6, coplanar_trans_1 with I.
+  apply 等价共面BACD, coplanar_trans_1 with I.
     rewrite col_colh; intro HCol; apply HNCol, (colH_trans B I); Col; intro; subst; auto.
     exists I; right; left; split; apply col_colh; Col.
     exists M; right; right; split; apply col_colh; [exists l|]; Col.

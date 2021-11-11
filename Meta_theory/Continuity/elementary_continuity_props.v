@@ -185,7 +185,7 @@ Proof.
     - apply 等长的传递性 with A B; trivial.
       apply 等长的传递性 with C D; Cong.
       apply 等长的对称性, l10_10 with U V; assumption.
-    - apply coplanar_perm_2.
+    - apply 等价共面ACBD.
       apply coplanar_trans_1 with C; Cop.
       intro.
       destruct (两点重合的决定性 A C).

@@ -38,9 +38,9 @@ Proof.
     apply (par_strict_not_col_4 _ _ A1); auto.
   apply 等价共线CAB.
   assert (共面 A1 B2 B'3 B1).
-  { apply coplanar_perm_15, coplanar_trans_1 with A3.
+  { apply 等价共面CBDA, coplanar_trans_1 with A3.
       apply 共线否定排列CAB, par_strict_not_col_4 with A1; assumption.
-      apply coplanar_perm_18, pars__coplanar; assumption.
+      apply 等价共面DABC, 严格平行蕴含共面; assumption.
     exists B3; right; right; split; Col.
   }
   apply cop_per2__col with A1; auto; apply 直角的对称性.

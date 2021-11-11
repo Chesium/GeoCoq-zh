@@ -41,7 +41,7 @@ split; intros Hdec A B C D; destruct (cop_dec A B C D) as [|HNCop].
     apply HNPar; unfold 严格平行 in HParS; 分离合取式; assumption.
   分离合取式; auto.
 
-- right; intro HPar; apply HNCop, par__coplanar, HPar.
+- right; intro HPar; apply HNCop, 平行蕴含共面, HPar.
 Qed.
 
 Lemma par_trans__par_dec :

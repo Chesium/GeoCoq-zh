@@ -1489,9 +1489,9 @@ Proof.
             auto.
           left.
           auto.
-          apply coplanar_perm_16.
+          apply 等价共面CDAB.
           apply col_cop__cop with N; Col.
-          apply coplanar_perm_5.
+          apply 等价共面ADCB.
           apply col_cop__cop with B'; Col.
           exists A.
           right.
@@ -1543,9 +1543,9 @@ Proof.
               contradiction.
             left.
             auto.
-            apply coplanar_perm_16.
+            apply 等价共面CDAB.
             apply col_cop__cop with N; Col.
-            apply coplanar_perm_5.
+            apply 等价共面ADCB.
             apply col_cop__cop with B'; Col.
             exists A.
             right.
@@ -1592,7 +1592,7 @@ Proof.
       apply par_strict_not_col_3 with D.
       assumption.
     分离合取式.
-    apply coplanar_perm_16, col2_cop__cop with A B; Col; Cop.
+    apply 等价共面CDAB, col2_cop__cop with A B; Col; Cop.
 Qed.
 
 Lemma l13_11 : forall A B C A' B' C' O,
@@ -1605,7 +1605,7 @@ Lemma l13_11 : forall A B C A' B' C' O,
 Proof.
     intros.
     assert (共面 B C' C O) by Cop.
-    assert (共面 C A' A O) by (apply coplanar_perm_1, col_cop__cop with B; Col; Cop).
+    assert (共面 C A' A O) by (apply 等价共面ABDC, col_cop__cop with B; Col; Cop).
     assert(HH:=cop_par__perp2 B C' C B' O H10 H8).
     assert(HP:=cop_par__perp2 C A' A C' O H11 H9).
     assert(HQ : Perp2 A B' B A' O).
@@ -1614,11 +1614,11 @@ Proof.
     ex_and H12 Y.
     统计不重合点.
     assert (共面 O A A' X).
-      apply coplanar_perm_13, col_cop__cop with B'; Col.
-      apply coplanar_perm_3, col_cop__cop with Y; Col; Cop.
+      apply 等价共面CADB, col_cop__cop with B'; Col.
+      apply 等价共面ACDB, col_cop__cop with Y; Col; Cop.
     assert (共面 O A A' Y).
-      apply coplanar_perm_13, col_cop__cop with B'; Col.
-      apply coplanar_perm_3, col_cop__cop with X; Col; Cop.
+      apply 等价共面CADB, col_cop__cop with B'; Col.
+      apply 等价共面ACDB, col_cop__cop with X; Col; Cop.
     apply l12_9 with X Y; Perp; apply coplanar_pseudo_trans with O A A'; Cop.
 Qed.
 

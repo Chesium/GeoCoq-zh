@@ -210,7 +210,7 @@ repeat
       | H:~ 共面 ?A ?B ?C ?D |- _ =>
       let h := fresh in
       not_exist_hyp_perm_ncol4 A B C D;
-      assert (h := ncop__ncols A B C D H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 四点不共面则任三点不共线 A B C D H);decompose [and] h;clear h;clean_reap_hyps
 
       | H:严格平行 ?A ?B ?C ?D |- _ =>
       let h := fresh in
@@ -280,9 +280,9 @@ Ltac CopR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
  let cop := constr:(共面) in
-   treat_equalities; assert_cols; clean; assert_ncols; 推导四点共面; auto 2 with cop_perm;
-   solve[apply col__coplanar; Col|apply coplanar_perm_1, col__coplanar; Col
-        |apply coplanar_perm_4, col__coplanar; Col|apply coplanar_perm_18, col__coplanar; Col
+   treat_equalities; assert_cols; clean; assert_ncols; 推导四点共面; auto 2 with 共面的排列;
+   solve[apply 共线三点和任一点共面; Col|apply 等价共面ABDC, 共线三点和任一点共面; Col
+        |apply 等价共面ADBC, 共线三点和任一点共面; Col|apply 等价共面DABC, 共线三点和任一点共面; Col
         |copr_aux; Cop_refl tpoint col cop] || fail "Can not be deduced".
 
 Section Quadrilateral_inter_dec_1.
@@ -3789,9 +3789,9 @@ apply (cop3_osp__os A D E); Cop.
 assert (~ Col D A B) by (apply (par_strict_not_col_2 C), H18).
 apply osp_transitivity with C.
   apply cop2_os__osp with A D; [|Cop..|Side].
-  intro; apply H24, coplanar_perm_12, coplanar_trans_1 with B; Col; Cop.
+  intro; apply H24, 等价共面CABD, coplanar_trans_1 with B; Col; Cop.
 apply cop2_os__osp with D E; [|Cop..|Side].
-intro; apply H24, coplanar_perm_12, coplanar_trans_1 with C; Col; Cop.
+intro; apply H24, 等价共面CABD, coplanar_trans_1 with C; Col; Cop.
 
 apply (l9_9 A E B F); [|assumption].
 repeat split.
@@ -4650,7 +4650,7 @@ elim (两点重合的决定性 C1 C2); intro HC1C2; treat_equalities.
       [|destruct HOrth as [_ [_ [_ [_ HOrth]]]]; apply HOrth; Col; Cop].
     apply l11_61_bis with B A; Perp; Cop.
     apply l11_60_bis; Perp; Cop.
-    apply ncop__ncol with A; Cop.
+    apply 四点不共面则前三点不共线 with A; Cop.
     }
   }
 Qed.

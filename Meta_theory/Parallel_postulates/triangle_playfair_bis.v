@@ -107,16 +107,16 @@ Proof.
     - apply cop_nts__os; Col; [|apply (par_strict_not_col_2 A2); Par].
       apply coplanar_pseudo_trans with A1 A2 P.
         assumption.
-        apply coplanar_perm_1, col_cop__cop with B2; Col.
-        apply coplanar_perm_1, col_cop__cop with B1; Col; Cop.
+        apply 等价共面ABDC, col_cop__cop with B2; Col.
+        apply 等价共面ABDC, col_cop__cop with B1; Col; Cop.
         Cop.
-        apply coplanar_perm_1, col_cop__cop with C2; Col; Cop.
+        apply 等价共面ABDC, col_cop__cop with C2; Col; Cop.
   }
   assert(~ Col Q C1 P) by (apply (par_not_col A1 A2); auto; apply par_strict_col_par_strict with C2; Col).
   assert(HQNotB : ~ Col B1 B2 Q) by (apply one_side_not_col123 with C1; auto).
   assert(HB3 : exists B3, Col B1 B2 B3 /\ OS P Q C1 B3).
   { destruct (共线的决定性 P Q B1);
-    [|apply cop_not_par_same_side with P; Col; apply coplanar_perm_12, coplanar_trans_1 with B2; Col; Cop].
+    [|apply cop_not_par_same_side with P; Col; apply 等价共面CABD, coplanar_trans_1 with B2; Col; Cop].
     assert (P = B1) by (apply (l6_21_两线交点的唯一性 B1 B2 Q P); Col).
     treat_equalities.
     destruct (cop_not_par_same_side P Q B2 P P C1) as [B3 []]; Col; Cop.
@@ -127,7 +127,7 @@ Proof.
   assert(HA3 : exists A3, Col A1 A2 A3 /\ OS P Q C1 A3).
   { assert (共面 A1 A2 C1 P) by (apply col_cop__cop with C2; Col; Cop).
     destruct (共线的决定性 P Q A1);
-    [|apply cop_not_par_same_side with Q; Col; apply coplanar_perm_5, col_cop__cop with A2; Col; Cop].
+    [|apply cop_not_par_same_side with Q; Col; apply 等价共面ADCB, col_cop__cop with A2; Col; Cop].
     assert (Q = A1) by (apply (l6_21_两线交点的唯一性 A1 A2 P Q); Col).
     treat_equalities.
     destruct (cop_not_par_same_side P Q A2 Q Q C1) as [A3 []]; Col; Cop.

@@ -74,7 +74,7 @@ Proof.
     apply (l6_11_uniqueness A1 A0 B0 B1); Cong; [|apply out_trivial; auto].
     apply (col_one_side_out _ A0).
       apply 等价共线CAB, cop_per2__col with A0; Perp.
-      apply coplanar_perm_3, coplanar_trans_1 with B0; Cop.
+      apply 等价共面ACDB, coplanar_trans_1 with B0; Cop.
       apply 共线否定排列CAB, one_side_not_col123 with B1; assumption.
     apply (one_side_transitivity _ _ _ B0); Side.
   }
@@ -265,8 +265,8 @@ Proof.
   - apply l11_17_等于直角的角是直角 with M N A; auto.
     apply (l11_10 M N A M L B); auto; try (apply out_trivial; auto).
     apply l6_6, bet_out; Between.
-  - apply coplanar_perm_16, col_cop__cop with M; Col.
-    apply coplanar_perm_12, col_cop__cop with A; Col; Cop.
+  - apply 等价共面CDAB, col_cop__cop with M; Col.
+    apply 等价共面CABD, col_cop__cop with A; Col; Cop.
 Qed.
 
 Lemma t22_23 :

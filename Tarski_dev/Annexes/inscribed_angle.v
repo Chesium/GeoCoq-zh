@@ -149,8 +149,8 @@ Proof.
       assert (HOS1 : OS A B C H).
       { apply l12_6, par_not_col_strict with C; Col.
         apply l12_9 with O M; Perp; [|Cop| |Cop].
-          apply coplanar_perm_5, col_cop__cop with B; Col; Cop.
-          apply coplanar_perm_5, col_cop__cop with A; Col; Cop.
+          apply 等价共面ADCB, col_cop__cop with B; Col; Cop.
+          apply 等价共面ADCB, col_cop__cop with A; Col; Cop.
       }
       assert (M <> H) by (intro; subst; apply one_side_not_col124 in HOS1; apply HOS1; Col).
       assert (Per M H C) by (apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with O; Col).
@@ -454,7 +454,7 @@ Proof.
   intros O P A B C HAB HA HB HC HCop H为锐角.
   suma.统计不重合点.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
-  apply coplanar_perm_1 in HCop.
+  apply 等价共面ABDC in HCop.
   apply cop_nts__os; Col; intro Habs; apply (nlta A C B).
   - apply acute_per__lta; auto.
     apply thales_theorem with O; trivial.
@@ -474,7 +474,7 @@ Proof.
   intros O P A B C HA HB HC HCop H为钝角.
   suma.统计不重合点.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
-  apply coplanar_perm_1 in HCop.
+  apply 等价共面ABDC in HCop.
   apply cop_nos__ts; Col; intro Habs; apply (nlta A C B).
   - apply obtuse_per__lta; auto.
     apply thales_theorem with O; trivial.
@@ -593,7 +593,7 @@ Proof.
       [|apply 弦中点与圆心连线形成直角 with P B; auto|apply 弦中点与圆心连线形成直角 with P' B; auto].
     apply coplanar_trans_1 with B; Col; [|Cop].
     apply coplanar_trans_1 with C; Col; [Cop|].
-    apply coplanar_perm_12, coplanar_trans_1 with D; Col; Cop.
+    apply 等价共面CABD, coplanar_trans_1 with D; Col; Cop.
   }
   destruct (两点重合的决定性 C1 D1).
   { subst D1.
@@ -670,7 +670,7 @@ Proof.
   assert (Haux : forall C D, TS A B C D -> 为钝角 A C B -> 互为补角 A C B A D B -> 共圆 A B C D).
   { intros C D HTS H为钝角 HSuppa.
     split.
-      apply ts__coplanar, HTS.
+      apply 异侧蕴含共面, HTS.
     assert (HNCol : ~ Col A B C) by (destruct HTS; Col).
     destruct (triangle_circumscription A B C HNCol) as [O]; 分离合取式.
     assert (在圆上 A O A /\ 在圆上 B O A /\ 在圆上 C O A).
@@ -686,7 +686,7 @@ Proof.
       apply (suppa2__conga456 A C B); [apply (cop_onc4_ts__suppa O A)|]; assumption.
   }
   intros C D HTS HSuppa.
-  assert (HCop : 共面 A B C D) by (apply ts__coplanar, HTS).
+  assert (HCop : 共面 A B C D) by (apply 异侧蕴含共面, HTS).
   suma.统计不重合点; destruct (angle_partition A C B) as [|[|]]; auto; split; trivial.
   { destruct (Haux D C) as [_ [O [P]]].
       Side.
@@ -714,7 +714,7 @@ Proof.
   apply 共圆定义_辅助 in HCon.
   destruct HCon as [O [P]]; 分离合取式.
   apply (cop_onc4_ts__suppa O P); trivial.
-  apply coplanar_perm_2, coplanar_trans_1 with C; [destruct HTS1; Col|Cop..].
+  apply 等价共面ACBD, coplanar_trans_1 with C; [destruct HTS1; Col|Cop..].
 Qed.
 
 End Inscribed_angle.

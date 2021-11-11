@@ -27,11 +27,11 @@ assert (HPar1 : Par A1 A2 P R).
   统计不重合点.
   apply l12_9 with P Q; Perp.
     Cop.
-    apply coplanar_perm_3, col_cop__cop with A3; Cop; ColR.
+    apply 等价共面ACDB, col_cop__cop with A3; Cop; ColR.
     Cop.
-    apply coplanar_perm_3, col_cop__cop with A3; Cop; ColR.
+    apply 等价共面ACDB, col_cop__cop with A3; Cop; ColR.
 }
-assert (HCop1 : 共面 A1 A2 P R) by (apply par__coplanar, HPar1).
+assert (HCop1 : 共面 A1 A2 P R) by (apply 平行蕴含共面, HPar1).
 assert (HNC2 : 严格平行 A1 A2 P R)
   by (apply par_not_col_strict with P; Col).
 apply par_strict_not_col_4 in HNC2.
@@ -45,9 +45,9 @@ assert (HPar3 : Par A1 A2 P R').
 {
   统计不重合点.
   apply l12_9 with R S; Perp.
-    apply coplanar_perm_5, col_cop__cop with A2; Col; Cop.
+    apply 等价共面ADCB, col_cop__cop with A2; Col; Cop.
     exists R'; left; split; Col.
-    apply coplanar_perm_5, col_cop__cop with A1; Col; Cop.
+    apply 等价共面ADCB, col_cop__cop with A1; Col; Cop.
     exists R'; left; split; Col.
 }
 destruct (HP P R P R') as [_ HCol4]; Col.

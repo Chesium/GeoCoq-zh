@@ -339,7 +339,7 @@ Proof.
   unfold HalfA.
   intros.
   分离合取式.
-  apply inangle__coplanar; assumption.
+  apply 在角内蕴含共面; assumption.
 Qed.
 
 Lemma cop_halfa_perp__os : forall P A O B T, HalfA P A O B -> Perp O P T O -> 共面 A O P T ->
@@ -367,7 +367,7 @@ Proof.
     apply (共线三点构成的角的等角三点也共线 A O P); assumption.
   }
   apply halfa__coplanar in HP.
-  apply coplanar_perm_12, coplanar_trans_1 with A; Cop.
+  apply 等价共面CABD, coplanar_trans_1 with A; Cop.
 Qed.
 
 Lemma inangle_halfa2__inangle : forall O A B C A' C',

@@ -35,9 +35,9 @@ elim HPar1; clear HPar1; intro HPar1; elim HPar2; clear HPar2; intro HPar2.
     [..|repeat split; Between|].
 
         {
-        apply coplanar_perm_22, col_cop__cop with P; Col.
-        apply coplanar_perm_2, col_cop__cop with B2; Col.
-        apply par__coplanar; Par.
+        apply 等价共面DCAB, col_cop__cop with P; Col.
+        apply 等价共面ACBD, col_cop__cop with B2; Col.
+        apply 平行蕴含共面; Par.
         }
 
         {

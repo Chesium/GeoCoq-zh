@@ -35,19 +35,19 @@ elim (共线的决定性 A1 A2 P); intro HCol.
 
   {
   assert(HI := l8_18_过一点垂线之垂点的存在性 A1 A2 P HCol); destruct HI as [I [HCol' HPerp]].
-  assert (HCop1 : 共面 B1 B2 P I) by (apply col__coplanar; Col).
-  assert (HCop2 : 共面 C1 C2 P I) by (apply col__coplanar; Col).
+  assert (HCop1 : 共面 B1 B2 P I) by (apply 共线三点和任一点共面; Col).
+  assert (HCop2 : 共面 C1 C2 P I) by (apply 共线三点和任一点共面; Col).
   assert (HPerp1 := HPTP A1 A2 B1 B2 P I HPar1 HPerp HCop1).
   assert (HPerp2 := HPTP A1 A2 C1 C2 P I HPar2 HPerp HCop2).
   assert (HCop3 : 共面 A1 A2 P B1)
-    by (统计不重合点; apply coplanar_perm_1, col_cop__cop with B2;
-        Col; apply par__coplanar, HPar1).
+    by (统计不重合点; apply 等价共面ABDC, col_cop__cop with B2;
+        Col; apply 平行蕴含共面, HPar1).
   assert (HCop4 : 共面 A1 A2 P B2)
-    by (统计不重合点; apply coplanar_perm_1, col_cop__cop with B1;
-        Col; apply coplanar_perm_1, par__coplanar, HPar1).
+    by (统计不重合点; apply 等价共面ABDC, col_cop__cop with B1;
+        Col; apply 等价共面ABDC, 平行蕴含共面, HPar1).
   assert (HCop5 : 共面 A1 A2 P C1)
-    by (统计不重合点; apply coplanar_perm_1, col_cop__cop with C2;
-        Col; apply par__coplanar, HPar2).
+    by (统计不重合点; apply 等价共面ABDC, col_cop__cop with C2;
+        Col; apply 平行蕴含共面, HPar2).
   assert (HCop6 : 共面 A1 A2 P I) by Cop.
   assert (Perp P C1 P I)
     by (apply 垂直的左交换性, 垂线共线点也构成垂直1 with C2; Col).

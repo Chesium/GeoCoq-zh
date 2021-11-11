@@ -30,12 +30,12 @@ elim (line_dec B1 B2 C1 C2); intro HLine.
   assert(HC' : exists C', Col C1 C2 C' /\ TS B1 B2 A1 C').
     {
     assert (共面 A1 A2 P A1) by (exists A1; left; split; Col).
-    apply par__coplanar in H0.
-    apply par__coplanar in H2.
-    assert (共面 A1 A2 P B1) by (apply coplanar_perm_1, col_cop__cop with B2; Col).
-    assert (共面 A1 A2 P B2) by (apply coplanar_perm_1, col_cop__cop with B1; Col; Cop).
-    assert (共面 A1 A2 P C1) by (apply coplanar_perm_1, col_cop__cop with C2; Col).
-    assert (共面 A1 A2 P C2) by (apply coplanar_perm_1, col_cop__cop with C1; Col; Cop).
+    apply 平行蕴含共面 in H0.
+    apply 平行蕴含共面 in H2.
+    assert (共面 A1 A2 P B1) by (apply 等价共面ABDC, col_cop__cop with B2; Col).
+    assert (共面 A1 A2 P B2) by (apply 等价共面ABDC, col_cop__cop with B1; Col; Cop).
+    assert (共面 A1 A2 P C1) by (apply 等价共面ABDC, col_cop__cop with C2; Col).
+    assert (共面 A1 A2 P C2) by (apply 等价共面ABDC, col_cop__cop with C1; Col; Cop).
     elim HLine; clear HLine; intro HNC;
     [destruct (cop_not_par_other_side B1 B2 C1 C2 P A1) as [C' [HCol HTS]]|
      destruct (cop_not_par_other_side B1 B2 C2 C1 P A1) as [C' [HCol HTS]]];

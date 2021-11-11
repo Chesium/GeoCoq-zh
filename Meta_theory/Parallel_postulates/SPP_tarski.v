@@ -275,8 +275,8 @@ elim (共线的决定性 X T Y); intro HXTY.
   assert (HCop : 共面 T B B'' Y).
     {
     apply 不共线则不重合 in HXTY; 分离合取式.
-    apply coplanar_perm_13, col_cop__cop with X; Col.
-    apply coplanar_perm_4, coplanar_trans_1 with C; Col; Cop.
+    apply 等价共面CADB, col_cop__cop with X; Col.
+    apply 等价共面ADBC, coplanar_trans_1 with C; Col; Cop.
     }
   unfold BetS in *; 分离合取式.
   destruct (HSPP T B B'' B' MB Y) as [I [HCol1 HCol2]]; Cong; [repeat split; Between..|].

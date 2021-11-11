@@ -30,7 +30,7 @@ destruct (由一点往一方向构造等长线段_2 B3 A3 A1' B1) as [B3' [HC4 H
   assert (HC1 : Col A1' B1 B3).
     apply cop_perp2__col with A1 A2; Perp.
     统计不重合点; apply col_cop__cop with B2; Col.
-    apply par__coplanar, HPar.
+    apply 平行蕴含共面, HPar.
   assert (B1 = B3); treat_equalities; Cong.
   统计不重合点; apply l6_21_两线交点的唯一性 with B1 B2 A1' B1; Col.
   elim (两点重合的决定性 A1' A1); intro HD1.

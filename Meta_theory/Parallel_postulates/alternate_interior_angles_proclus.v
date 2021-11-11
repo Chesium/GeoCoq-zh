@@ -82,7 +82,7 @@ Proof.
   assert(HQ1 : exists Q1, Col Q P Q1 /\ OS A B C0 Q1).
   { apply cop_not_par_same_side with P; Col.
       apply 共线否定排列BCA, (par_not_col C D); Col; Par.
-    apply coplanar_pseudo_trans with C D P; trivial; apply coplanar_perm_1;
+    apply coplanar_pseudo_trans with C D P; trivial; apply 等价共面ABDC;
       [apply col_cop__cop with B|apply col_cop__cop with A; Col|]; Cop.
   }
   destruct HQ1 as [Q1 [HCol1 HOS1]].
@@ -92,19 +92,19 @@ Proof.
   { destruct (共线的决定性 P C0 A).
     - destruct (cop_not_par_same_side P C0 B A P Q1) as [A1 []]; Col.
         intro; apply HParS; exists C0; split; ColR.
-       apply coplanar_perm_19, col_cop__cop with A; Col; Cop.
+       apply 等价共面DACB, col_cop__cop with A; Col; Cop.
       exists A1; split; Col.
     - apply (cop_not_par_same_side _ _ _ _ P); Col.
-      apply coplanar_perm_19, col_cop__cop with B; Cop.
+      apply 等价共面DACB, col_cop__cop with B; Cop.
   }
   destruct HA1 as [A1 []].
   assert(HC1 : exists C1, Col C D C1 /\ OS P C0 Q1 C1).
   { assert (共面 C D P Q1) by (apply col_cop__cop with Q; Col).
     destruct (垂直推出不共线 P C0 C D); Perp.
       apply (cop_not_par_same_side _ _ _ _ C0); Col.
-      apply coplanar_perm_5, col_cop__cop with D; Cop.
+      apply 等价共面ADCB, col_cop__cop with D; Cop.
     destruct (cop_not_par_same_side P C0 D C C0 Q1) as [C1 []]; Col.
-      apply coplanar_perm_5, col_cop__cop with C; Col; Cop.
+      apply 等价共面ADCB, col_cop__cop with C; Col; Cop.
     exists C1; split; Col.
   }
   destruct HC1 as [C1 []].

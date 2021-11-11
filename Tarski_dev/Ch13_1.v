@@ -1902,7 +1902,7 @@ tauto.
 
 assert( Col B B'' B').
 apply cop_per2__col with A'; Perp.
-apply coplanar_perm_3.
+apply 等价共面ACDB.
 apply coplanar_trans_1 with A; Col; Cop.
 assert(Cong B B' A A').
 apply 等长的传递性 with C C'; Cong.
@@ -2629,7 +2629,7 @@ assert(Per A' P X).
 apply(H10 A' X); Col.
 apply 等价共线CAB.
 apply cop_per2__col with X; auto.
-apply coplanar_perm_12.
+apply 等价共面CABD.
 apply col_cop__cop with Y; Col; Cop.
 subst X.
 assert(Per A P Y).
@@ -2656,7 +2656,7 @@ assert(Per B' P X).
 apply(H10 B' X); Col.
 assert(Col A B' P).
 apply cop_per2__col with X; auto.
-apply coplanar_perm_12.
+apply 等价共面CABD.
 apply col_cop__cop with Y; Col; Cop.
 ColR.
 
@@ -2664,7 +2664,7 @@ assert(Per A' P X).
 apply(H10 A' X); Col.
 assert(Col A A' P).
 apply cop_per2__col with X; auto.
-apply coplanar_perm_12.
+apply 等价共面CABD.
 apply col_cop__cop with Y; Col; Cop.
 ColR.
 Qed.
@@ -3459,8 +3459,8 @@ Proof.
         exists P.
         left.
         split; Col.
-      apply coplanar_perm_9.
-      apply perp__coplanar.
+      apply 等价共面BCDA.
+      apply 垂直蕴含共面.
       apply 垂线共线点也构成垂直1 with Y; Col.
       assert(共面 P C D Y).
       induction(两点重合的决定性 Y P).
@@ -3468,8 +3468,8 @@ Proof.
         exists P.
         left.
         split; Col.
-      apply coplanar_perm_9.
-      apply perp__coplanar.
+      apply 等价共面BCDA.
+      apply 垂直蕴含共面.
       apply 垂线共线点也构成垂直1 with X; Perp; Col.
       assert(共面 P C D X').
       induction(两点重合的决定性 X' P).
@@ -3477,8 +3477,8 @@ Proof.
         exists P.
         left.
         split; Col.
-      apply coplanar_perm_9.
-      apply perp__coplanar.
+      apply 等价共面BCDA.
+      apply 垂直蕴含共面.
       apply 垂线共线点也构成垂直1 with Y'; Col.
       assert(共面 P C D Y').
       induction(两点重合的决定性 Y' P).
@@ -3486,8 +3486,8 @@ Proof.
         exists P.
         left.
         split; Col.
-      apply coplanar_perm_9.
-      apply perp__coplanar.
+      apply 等价共面BCDA.
+      apply 垂直蕴含共面.
       apply 垂线共线点也构成垂直1 with X'; Perp; Col.
       apply (l12_9 _ _ _ _ C D); Perp; apply coplanar_trans_1 with P; Col.
     exists X.

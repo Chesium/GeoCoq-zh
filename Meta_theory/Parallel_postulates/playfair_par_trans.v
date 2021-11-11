@@ -22,7 +22,7 @@ Proof.
     { apply par_symmetry in HBC.
       destruct HBC; [destruct HAB|]; [|分离合取式..].
       - CopR.
-      - apply coplanar_perm_16, col2_cop__cop with B1 B2; Col; Cop.
+      - apply 等价共面CDAB, col2_cop__cop with B1 B2; Col; Cop.
       - apply col2_cop__cop with B1 B2; Col; Cop.
     }
     intros [X []].
@@ -30,7 +30,7 @@ Proof.
 
   - apply (par_not_col_strict A1 A2 B1 B2 B1) in HAB; [|Col|intro; apply HNCop; Cop].
     apply (par_not_col_strict B1 B2 C1 C2 C1) in HBC;
-      [|Col|intro; apply HNCop, coplanar_perm_1, col_cop__cop with B2; Cop].
+      [|Col|intro; apply HNCop, 等价共面ABDC, col_cop__cop with B2; Cop].
     destruct (cop_osp__ex_cop2 A1 A2 C1 B1 B2 C1) as [C' [HCop1 [HCop2 HC1C']]]; Cop.
       apply cop2_os__osp with A1 A2; Side; Cop.
     assert (HC' : forall X, 共面 A1 A2 B1 X -> ~ Col X C1 C').

@@ -10,7 +10,7 @@ Lemma inverse_projection_postulate__proclus_bis :
 Proof.
   intros ip A B C D P Q HPerp2 HNC1 HCop1 HInter HNC2 HCop2.
   assert(严格平行 C D A B)
-    by (apply (col_cop_perp2__pars_bis P); [..|apply coplanar_perm_16|apply perp2_sym]; assumption).
+    by (apply (col_cop_perp2__pars_bis P); [..|apply 等价共面CDAB|apply perp2_sym]; assumption).
   destruct HPerp2 as [P1 [P2 [HP [HPerpAP HPerpCP]]]].
   assert(HC0 := HPerpCP); auto.
   destruct HC0 as [C0 [_ [_ [HC0P [HC0C _]]]]].
@@ -49,12 +49,12 @@ Proof.
       assert(~ Col P C0 B) by (intro; apply HNCol2; ColR).
       assert (HA0 := cop_not_par_same_side P C0 B A P Q0).
       destruct HA0 as [A0 []]; Col.
-        apply coplanar_perm_22, col_cop__cop with A; Col; Cop.
+        apply 等价共面DCAB, col_cop__cop with A; Col; Cop.
       exists A0.
       split; Col.
     - intro.
       apply (cop_not_par_same_side _ _ _ _ P); Col.
-      apply coplanar_perm_16, coplanar_trans_1 with B; [Col|Cop..].
+      apply 等价共面CDAB, coplanar_trans_1 with B; [Col|Cop..].
   }
   destruct HA0 as [A0 []].
   assert(HNCol6 : ~ Col P C0 A0) by (apply (one_side_not_col123 _ _ _ Q0); Side).

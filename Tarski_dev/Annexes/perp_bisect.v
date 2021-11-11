@@ -197,7 +197,7 @@ destruct(共线的决定性 B A P).
 exists I.
 left.
 split; ColR.
-apply coplanar_perm_12, col_cop__cop with B; Col; Cop.
+apply 等价共面CABD, col_cop__cop with B; Col; Cop.
 exists B; split; Cong.
 
 apply 中点蕴含共线;auto.

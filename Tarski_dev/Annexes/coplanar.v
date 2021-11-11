@@ -4,7 +4,7 @@ Section 共面.
 
 Context `{Tn:无维度中性塔斯基公理系统}.
 
-Lemma coplanar_perm_1 : forall A B C D,
+Lemma 等价共面ABDC : forall A B C D,
   共面 A B C D -> 共面 A B D C.
 Proof.
 intros A B C D HCop.
@@ -12,7 +12,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_2 : forall A B C D,
+Lemma 等价共面ACBD : forall A B C D,
   共面 A B C D -> 共面 A C B D.
 Proof.
 intros A B C D HCop.
@@ -20,7 +20,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_3 : forall A B C D,
+Lemma 等价共面ACDB : forall A B C D,
   共面 A B C D -> 共面 A C D B.
 Proof.
 intros A B C D HCop.
@@ -28,7 +28,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_4 : forall A B C D,
+Lemma 等价共面ADBC : forall A B C D,
   共面 A B C D -> 共面 A D B C.
 Proof.
 intros A B C D HCop.
@@ -36,7 +36,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_5 : forall A B C D,
+Lemma 等价共面ADCB : forall A B C D,
   共面 A B C D -> 共面 A D C B.
 Proof.
 intros A B C D HCop.
@@ -44,7 +44,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_6 : forall A B C D,
+Lemma 等价共面BACD : forall A B C D,
   共面 A B C D -> 共面 B A C D.
 Proof.
 intros A B C D HCop.
@@ -52,7 +52,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_7 : forall A B C D,
+Lemma 等价共面BADC : forall A B C D,
   共面 A B C D -> 共面 B A D C.
 Proof.
 intros A B C D HCop.
@@ -60,7 +60,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_8 : forall A B C D,
+Lemma 等价共面BCAD : forall A B C D,
   共面 A B C D -> 共面 B C A D.
 Proof.
 intros A B C D HCop.
@@ -68,7 +68,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_9 : forall A B C D,
+Lemma 等价共面BCDA : forall A B C D,
   共面 A B C D -> 共面 B C D A.
 Proof.
 intros A B C D HCop.
@@ -76,7 +76,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_10 : forall A B C D,
+Lemma 等价共面BDAC : forall A B C D,
   共面 A B C D -> 共面 B D A C.
 Proof.
 intros A B C D HCop.
@@ -84,7 +84,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_11 : forall A B C D,
+Lemma 等价共面BDCA : forall A B C D,
   共面 A B C D -> 共面 B D C A.
 Proof.
 intros A B C D HCop.
@@ -92,7 +92,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_12 : forall A B C D,
+Lemma 等价共面CABD : forall A B C D,
   共面 A B C D -> 共面 C A B D.
 Proof.
 intros A B C D HCop.
@@ -100,7 +100,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_13 : forall A B C D,
+Lemma 等价共面CADB : forall A B C D,
   共面 A B C D -> 共面 C A D B.
 Proof.
 intros A B C D HCop.
@@ -108,7 +108,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_14 : forall A B C D,
+Lemma 等价共面CBAD : forall A B C D,
   共面 A B C D -> 共面 C B A D.
 Proof.
 intros A B C D HCop.
@@ -116,7 +116,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_15 : forall A B C D,
+Lemma 等价共面CBDA : forall A B C D,
   共面 A B C D -> 共面 C B D A.
 Proof.
 intros A B C D HCop.
@@ -124,7 +124,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_16 : forall A B C D,
+Lemma 等价共面CDAB : forall A B C D,
   共面 A B C D -> 共面 C D A B.
 Proof.
 intros A B C D HCop.
@@ -132,7 +132,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_17 : forall A B C D,
+Lemma 等价共面CDBA : forall A B C D,
   共面 A B C D -> 共面 C D B A.
 Proof.
 intros A B C D HCop.
@@ -140,7 +140,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_18 : forall A B C D,
+Lemma 等价共面DABC : forall A B C D,
   共面 A B C D -> 共面 D A B C.
 Proof.
 intros A B C D HCop.
@@ -148,7 +148,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_19 : forall A B C D,
+Lemma 等价共面DACB : forall A B C D,
   共面 A B C D -> 共面 D A C B.
 Proof.
 intros A B C D HCop.
@@ -156,7 +156,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_20 : forall A B C D,
+Lemma 等价共面DBAC : forall A B C D,
   共面 A B C D -> 共面 D B A C.
 Proof.
 intros A B C D HCop.
@@ -164,7 +164,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_21 : forall A B C D,
+Lemma 等价共面DBCA : forall A B C D,
   共面 A B C D -> 共面 D B C A.
 Proof.
 intros A B C D HCop.
@@ -172,7 +172,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_22 : forall A B C D,
+Lemma 等价共面DCAB : forall A B C D,
   共面 A B C D -> 共面 D C A B.
 Proof.
 intros A B C D HCop.
@@ -180,7 +180,7 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma coplanar_perm_23 : forall A B C D,
+Lemma 等价共面DCBA : forall A B C D,
   共面 A B C D -> 共面 D C B A.
 Proof.
 intros A B C D HCop.
@@ -188,220 +188,220 @@ destruct HCop as [X H]; exists X.
 induction H; try (induction H); 分离合取式; Col5.
 Qed.
 
-Lemma ncoplanar_perm_1 : forall A B C D,
+Lemma 等价共面否定ABDC : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 A B D C.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_1, HCop.
+apply 等价共面ABDC, HCop.
 Qed.
 
-Lemma ncoplanar_perm_2 : forall A B C D,
+Lemma 等价共面否定ACBD : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 A C B D.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_2, HCop.
+apply 等价共面ACBD, HCop.
 Qed.
 
-Lemma ncoplanar_perm_3 : forall A B C D,
+Lemma 等价共面否定ACDB : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 A C D B.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_4, HCop.
+apply 等价共面ADBC, HCop.
 Qed.
 
-Lemma ncoplanar_perm_4 : forall A B C D,
+Lemma 等价共面否定ADBC : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 A D B C.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_3, HCop.
+apply 等价共面ACDB, HCop.
 Qed.
 
-Lemma ncoplanar_perm_5 : forall A B C D,
+Lemma 等价共面否定ADCB : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 A D C B.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_5, HCop.
+apply 等价共面ADCB, HCop.
 Qed.
 
-Lemma ncoplanar_perm_6 : forall A B C D,
+Lemma 等价共面否定BACD : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 B A C D.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_6, HCop.
+apply 等价共面BACD, HCop.
 Qed.
 
-Lemma ncoplanar_perm_7 : forall A B C D,
+Lemma 等价共面否定BADC : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 B A D C.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_7, HCop.
+apply 等价共面BADC, HCop.
 Qed.
 
-Lemma ncoplanar_perm_8 : forall A B C D,
+Lemma 等价共面否定BCAD : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 B C A D.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_12, HCop.
+apply 等价共面CABD, HCop.
 Qed.
 
-Lemma ncoplanar_perm_9 : forall A B C D,
+Lemma 等价共面否定BCDA : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 B C D A.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_18, HCop.
+apply 等价共面DABC, HCop.
 Qed.
 
-Lemma ncoplanar_perm_10 : forall A B C D,
+Lemma 等价共面否定BDAC : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 B D A C.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_13, HCop.
+apply 等价共面CADB, HCop.
 Qed.
 
-Lemma ncoplanar_perm_11 : forall A B C D,
+Lemma 等价共面否定BDCA : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 B D C A.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_19, HCop.
+apply 等价共面DACB, HCop.
 Qed.
 
-Lemma ncoplanar_perm_12 : forall A B C D,
+Lemma 等价共面否定CABD : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 C A B D.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_8, HCop.
+apply 等价共面BCAD, HCop.
 Qed.
 
-Lemma ncoplanar_perm_13 : forall A B C D,
+Lemma 等价共面否定CADB : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 C A D B.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_10, HCop.
+apply 等价共面BDAC, HCop.
 Qed.
 
-Lemma ncoplanar_perm_14 : forall A B C D,
+Lemma 等价共面否定CBAD : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 C B A D.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_14, HCop.
+apply 等价共面CBAD, HCop.
 Qed.
 
-Lemma ncoplanar_perm_15 : forall A B C D,
+Lemma 等价共面否定CBDA : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 C B D A.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_20, HCop.
+apply 等价共面DBAC, HCop.
 Qed.
 
-Lemma ncoplanar_perm_16 : forall A B C D,
+Lemma 等价共面否定CDAB : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 C D A B.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_16, HCop.
+apply 等价共面CDAB, HCop.
 Qed.
 
-Lemma ncoplanar_perm_17 : forall A B C D,
+Lemma 等价共面否定CDBA : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 C D B A.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_22, HCop.
+apply 等价共面DCAB, HCop.
 Qed.
 
-Lemma ncoplanar_perm_18 : forall A B C D,
+Lemma 等价共面否定DABC : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 D A B C.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_9, HCop.
+apply 等价共面BCDA, HCop.
 Qed.
 
-Lemma ncoplanar_perm_19 : forall A B C D,
+Lemma 等价共面否定DACB : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 D A C B.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_11, HCop.
+apply 等价共面BDCA, HCop.
 Qed.
 
-Lemma ncoplanar_perm_20 : forall A B C D,
+Lemma 等价共面否定DBAC : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 D B A C.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_15, HCop.
+apply 等价共面CBDA, HCop.
 Qed.
 
-Lemma ncoplanar_perm_21 : forall A B C D,
+Lemma 等价共面否定DBCA : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 D B C A.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_21, HCop.
+apply 等价共面DBCA, HCop.
 Qed.
 
-Lemma ncoplanar_perm_22 : forall A B C D,
+Lemma 等价共面否定DCAB : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 D C A B.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_17, HCop.
+apply 等价共面CDBA, HCop.
 Qed.
 
-Lemma ncoplanar_perm_23 : forall A B C D,
+Lemma 等价共面否定DCBA : forall A B C D,
   ~ 共面 A B C D -> ~ 共面 D C B A.
 Proof.
 intros A B C D HNCop HCop; apply HNCop.
-apply coplanar_perm_23, HCop.
+apply 等价共面DCBA, HCop.
 Qed.
 
-Lemma coplanar_trivial : forall A B C, 共面 A A B C.
+Lemma AABC共面 : forall A B C, 共面 A A B C.
 Proof.
 intros.
 exists B; Col5.
 Qed.
 
-Lemma col__coplanar : forall A B C D,
+Lemma 共线三点和任一点共面 : forall A B C D,
   Col A B C -> 共面 A B C D.
 Proof.
 intros.
 exists C; Col5.
 Qed.
 
-Lemma ncop__ncol : forall A B C D,
+Lemma 四点不共面则前三点不共线 : forall A B C D,
   ~ 共面 A B C D -> ~ Col A B C.
 Proof.
 intros.
 intro.
-apply H, col__coplanar, H0.
+apply H, 共线三点和任一点共面, H0.
 Qed.
 
-Lemma ncop__ncols : forall A B C D,
+Lemma 四点不共面则任三点不共线 : forall A B C D,
   ~ 共面 A B C D -> ~ Col A B C /\ ~ Col A B D /\ ~ Col A C D /\ ~ Col B C D.
 Proof.
 intros; repeat split.
-apply ncop__ncol with D, H.
-apply ncop__ncol with C, ncoplanar_perm_1, H.
-apply ncop__ncol with B, ncoplanar_perm_3, H.
-apply ncop__ncol with A, ncoplanar_perm_9, H.
+apply 四点不共面则前三点不共线 with D, H.
+apply 四点不共面则前三点不共线 with C, 等价共面否定ABDC, H.
+apply 四点不共面则前三点不共线 with B, 等价共面否定ACDB, H.
+apply 四点不共面则前三点不共线 with A, 等价共面否定BCDA, H.
 Qed.
 
-Lemma bet__coplanar : forall A B C D,
+Lemma 成中间性三点和任一点共面 : forall A B C D,
   Bet A B C -> 共面 A B C D.
 Proof.
 intros.
-apply col__coplanar; Col.
+apply 共线三点和任一点共面; Col.
 Qed.
 
-Lemma out__coplanar : forall A B C D,
+Lemma 外共线三点和任一点共面 : forall A B C D,
   Out A B C -> 共面 A B C D.
 Proof.
 intros.
-apply col__coplanar; Col.
+apply 共线三点和任一点共面; Col.
 Qed.
 
-Lemma midpoint__coplanar : forall A B C D,
+Lemma 中点组三点和任一点共面 : forall A B C D,
   中点 A B C -> 共面 A B C D.
 Proof.
 intros A B C D [].
-apply col__coplanar; Col.
+apply 共线三点和任一点共面; Col.
 Qed.
 
-Lemma perp__coplanar : forall A B C D,
+Lemma 垂直蕴含共面 : forall A B C D,
   Perp A B C D -> 共面 A B C D.
 Proof.
 intros A B C D [P HP].
@@ -409,14 +409,14 @@ unfold 垂直于 in HP; 分离合取式.
 exists P; left; Col.
 Qed.
 
-Lemma ts__coplanar : forall A B C D,
+Lemma 异侧蕴含共面 : forall A B C D,
   TS A B C D -> 共面 A B C D.
 Proof.
 intros A B C D [_ [_ [X []]]].
 exists X; left; split; Col.
 Qed.
 
-Lemma reflectl__coplanar : forall A B C D,
+Lemma 严格对称蕴含共面 : forall A B C D,
   严格对称 A B C D -> 共面 A B C D.
 Proof.
 intros A B C D [[X [[] HCol]] _].
@@ -424,15 +424,15 @@ exists X.
 left; split; Col.
 Qed.
 
-Lemma reflect__coplanar : forall A B C D,
+Lemma 对称蕴含共面 : forall A B C D,
   对称 A B C D -> 共面 A B C D.
 Proof.
 intros A B C D [[_ HR]|[Heq]].
-  apply reflectl__coplanar, HR.
-subst; apply coplanar_perm_16, coplanar_trivial.
+  apply 严格对称蕴含共面, HR.
+subst; apply 等价共面CDAB, AABC共面.
 Qed.
 
-Lemma inangle__coplanar : forall A B C D,
+Lemma 在角内蕴含共面 : forall A B C D,
   在角内 A B C D -> 共面 A B C D.
 Proof.
 intros A B C D H.
@@ -443,72 +443,72 @@ split; Col.
 induction Dij; [subst|]; Col.
 Qed.
 
-Lemma pars__coplanar : forall A B C D,
+Lemma 严格平行蕴含共面 : forall A B C D,
   严格平行 A B C D -> 共面 A B C D.
 Proof.
   unfold 严格平行; intros; 分离合取式; assumption.
 Qed.
 
-Lemma par__coplanar : forall A B C D,
+Lemma 平行蕴含共面 : forall A B C D,
   Par A B C D -> 共面 A B C D.
 Proof.
   intros A B C D H.
   destruct H.
-    apply pars__coplanar; assumption.
+    apply 严格平行蕴含共面; assumption.
   分离合取式; exists A; left; Col.
 Qed.
 
-Lemma plg__coplanar : forall A B C D,
+Lemma 平四蕴含共面 : forall A B C D,
   Plg A B C D -> 共面 A B C D.
 Proof.
   intros A B C D [H [M [[H1 _] [H2 _]]]].
   exists M; right; left; split; Col.
 Qed.
 
-Lemma plgs__coplanar : forall A B C D,
+Lemma 严格平行四边形蕴含共面 : forall A B C D,
   严格平行四边形 A B C D -> 共面 A B C D.
 Proof.
   intros A B C D [_ [HPar _]].
-  apply par__coplanar, HPar.
+  apply 平行蕴含共面, HPar.
 Qed.
 
-Lemma plgf__coplanar : forall A B C D,
+Lemma 退化平行四边形蕴含共面 : forall A B C D,
   退化平行四边形 A B C D -> 共面 A B C D.
 Proof.
   intros A B C D [HCol _].
-  apply col__coplanar, HCol.
+  apply 共线三点和任一点共面, HCol.
 Qed.
 
-Lemma parallelogram__coplanar : forall A B C D,
+Lemma 平行四边形蕴含共面 : forall A B C D,
   平行四边形 A B C D -> 共面 A B C D.
 Proof.
   intros A B C D [Hs|Hf].
-    apply plgs__coplanar, Hs.
-    apply plgf__coplanar, Hf.
+    apply 严格平行四边形蕴含共面, Hs.
+    apply 退化平行四边形蕴含共面, Hf.
 Qed.
 
-Lemma rhombus__coplanar : forall A B C D,
+Lemma 菱形蕴含共面 : forall A B C D,
   菱形 A B C D -> 共面 A B C D.
 Proof.
   unfold 菱形.
-  intros; 分离合取式; apply plg__coplanar; assumption.
+  intros; 分离合取式; apply 平四蕴含共面; assumption.
 Qed.
 
-Lemma rectangle__coplanar : forall A B C D,
+Lemma 长方形蕴含共面 : forall A B C D,
   长方形 A B C D -> 共面 A B C D.
 Proof.
   unfold 长方形.
-  intros; 分离合取式; apply plg__coplanar; assumption.
+  intros; 分离合取式; apply 平四蕴含共面; assumption.
 Qed.
 
-Lemma square__coplanar : forall A B C D,
+Lemma 正方形蕴含共面 : forall A B C D,
   正方形 A B C D -> 共面 A B C D.
 Proof.
   unfold 正方形.
-  intros; 分离合取式; apply rectangle__coplanar; assumption.
+  intros; 分离合取式; apply 长方形蕴含共面; assumption.
 Qed.
 
-Lemma lambert__coplanar : forall A B C D,
+Lemma Lambert四边形蕴含共面 : forall A B C D,
   Lambert四边形 A B C D -> 共面 A B C D.
 Proof.
   unfold Lambert四边形.
@@ -517,20 +517,20 @@ Qed.
 
 End 共面.
 
-Hint Resolve coplanar_perm_1 coplanar_perm_2 coplanar_perm_3 coplanar_perm_4 coplanar_perm_5
-coplanar_perm_6 coplanar_perm_7 coplanar_perm_8 coplanar_perm_9 coplanar_perm_10 coplanar_perm_11
-coplanar_perm_12 coplanar_perm_13 coplanar_perm_14 coplanar_perm_15 coplanar_perm_16 coplanar_perm_17
-coplanar_perm_18 coplanar_perm_19 coplanar_perm_20 coplanar_perm_21 coplanar_perm_22 coplanar_perm_23
-ncoplanar_perm_1 ncoplanar_perm_2 ncoplanar_perm_3 ncoplanar_perm_4 ncoplanar_perm_5 ncoplanar_perm_6
-ncoplanar_perm_7 ncoplanar_perm_8 ncoplanar_perm_9 ncoplanar_perm_10 ncoplanar_perm_11
-ncoplanar_perm_12 ncoplanar_perm_13 ncoplanar_perm_14 ncoplanar_perm_15 ncoplanar_perm_16
-ncoplanar_perm_17 ncoplanar_perm_18 ncoplanar_perm_19 ncoplanar_perm_20 ncoplanar_perm_21
-ncoplanar_perm_22 ncoplanar_perm_23 : cop_perm.
+Hint Resolve 等价共面ABDC 等价共面ACBD 等价共面ACDB 等价共面ADBC 等价共面ADCB
+等价共面BACD 等价共面BADC 等价共面BCAD 等价共面BCDA 等价共面BDAC 等价共面BDCA
+等价共面CABD 等价共面CADB 等价共面CBAD 等价共面CBDA 等价共面CDAB 等价共面CDBA
+等价共面DABC 等价共面DACB 等价共面DBAC 等价共面DBCA 等价共面DCAB 等价共面DCBA
+等价共面否定ABDC 等价共面否定ACBD 等价共面否定ACDB 等价共面否定ADBC 等价共面否定ADCB 等价共面否定BACD
+等价共面否定BADC 等价共面否定BCAD 等价共面否定BCDA 等价共面否定BDAC 等价共面否定BDCA
+等价共面否定CABD 等价共面否定CADB 等价共面否定CBAD 等价共面否定CBDA 等价共面否定CDAB
+等价共面否定CDBA 等价共面否定DABC 等价共面否定DACB 等价共面否定DBAC 等价共面否定DBCA
+等价共面否定DCAB 等价共面否定DCBA : 共面的排列.
 
-Hint Resolve coplanar_trivial col__coplanar bet__coplanar out__coplanar midpoint__coplanar
-perp__coplanar ts__coplanar reflectl__coplanar reflect__coplanar inangle__coplanar pars__coplanar
-par__coplanar plg__coplanar plgs__coplanar plgf__coplanar parallelogram__coplanar rhombus__coplanar
-rectangle__coplanar square__coplanar lambert__coplanar : cop.
+Hint Resolve AABC共面 共线三点和任一点共面 成中间性三点和任一点共面 外共线三点和任一点共面 中点组三点和任一点共面
+垂直蕴含共面 异侧蕴含共面 严格对称蕴含共面 对称蕴含共面 在角内蕴含共面 严格平行蕴含共面
+平行蕴含共面 平四蕴含共面 严格平行四边形蕴含共面 退化平行四边形蕴含共面 平行四边形蕴含共面 菱形蕴含共面
+长方形蕴含共面 正方形蕴含共面 Lambert四边形蕴含共面 : cop.
 
 Ltac not_exist_hyp_perm_cop_aux A B C D :=
   not_exist_hyp (共面 A B C D); not_exist_hyp (共面 A B D C); not_exist_hyp (共面 A C B D);
@@ -544,35 +544,35 @@ Ltac not_exist_hyp_perm_cop A B C D := not_exist_hyp_perm_cop_aux A B C D;
 Ltac 推导四点共面 :=
  repeat match goal with
       | H:Perp ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply perp__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 垂直蕴含共面, H)
       | H:TS ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply ts__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 异侧蕴含共面, H)
       | H:严格对称 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply reflectl__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 严格对称蕴含共面, H)
       | H:对称 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply reflect__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 对称蕴含共面, H)
       | H:在角内 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply inangle__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 在角内蕴含共面, H)
       | H:严格平行 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply pars__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 严格平行蕴含共面, H)
       | H:Par ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply par__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 平行蕴含共面, H)
       | H:Plg ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plg__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 平四蕴含共面, H)
       | H:严格平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgs__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 严格平行四边形蕴含共面, H)
       | H:退化平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgf__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 退化平行四边形蕴含共面, H)
       | H:平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply parallelogram__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 平行四边形蕴含共面, H)
       | H:菱形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rhombus__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 菱形蕴含共面, H)
       | H:长方形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rectangle__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 长方形蕴含共面, H)
       | H:正方形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply square__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 正方形蕴含共面, H)
       | H:Lambert四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply lambert__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply Lambert四边形蕴含共面, H)
  end.
 
 Ltac exist_hyp_perm_cop_aux A B C D := first
@@ -591,7 +591,7 @@ Ltac exist_hyp_perm_ncop A B C D := first
   [exist_hyp_perm_ncop_aux A B C D|exist_hyp_perm_ncop_aux B A C D
   |exist_hyp_perm_ncop_aux C A B D|exist_hyp_perm_ncop_aux D A B C].
 
-Ltac Cop := auto; try (intros; solve [apply col__coplanar; Col
-     |apply coplanar_perm_1, col__coplanar; Col|apply coplanar_perm_4, col__coplanar; Col
-     |apply coplanar_perm_18, col__coplanar; Col
-     |推导四点共面; auto 2 with cop_perm]).
+Ltac Cop := auto; try (intros; solve [apply 共线三点和任一点共面; Col
+     |apply 等价共面ABDC, 共线三点和任一点共面; Col|apply 等价共面ADBC, 共线三点和任一点共面; Col
+     |apply 等价共面DABC, 共线三点和任一点共面; Col
+     |推导四点共面; auto 2 with 共面的排列]).

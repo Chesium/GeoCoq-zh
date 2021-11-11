@@ -2197,7 +2197,7 @@ Proof.
   统计不重合点.
   apply 中间性的对称性, l6_2 with A'; Between.
   destruct (conga_cop__or_out_ts C B A' A'') as [|HTS]; auto.
-    apply coplanar_perm_3, col_cop__cop with A; Col; Cop.
+    apply 等价共面ACDB, col_cop__cop with A; Col; Cop.
     apply 角等的传递性 with D E F; 等角.
   exfalso.
   apply HNOS.
@@ -2248,7 +2248,7 @@ Proof.
     apply l11_13 with C D; Between.
   repeat (split; trivial).
     intro; apply HJ2, col_one_side with C'; Col.
-  apply coplanar_perm_3, col_cop__cop with C; Col; Cop.
+  apply 等价共面ACDB, col_cop__cop with C; Col; Cop.
 Qed.
 
 Lemma 两角和与其补角和相等 : forall A B C D E F G H I A' B' C' D' E' F',

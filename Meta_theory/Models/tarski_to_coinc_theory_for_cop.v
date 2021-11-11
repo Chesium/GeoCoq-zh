@@ -27,14 +27,14 @@ Qed.
 
 Definition cop : arity Tpoint 4 := 共面.
 
-Lemma cop_perm_1 : forall A (X : cartesianPower Tpoint 3), app_1_n cop A X -> app_n_1 cop X A.
+Lemma 共面的排列_1 : forall A (X : cartesianPower Tpoint 3), app_1_n cop A X -> app_n_1 cop X A.
 Proof.
 unfold cop.
 simpl.
 Cop.
 Qed.
 
-Lemma cop_perm_2 : forall A B (X : cartesianPower Tpoint 2), app_2_n cop A B X -> app_2_n cop B A X.
+Lemma 共面的排列_2 : forall A B (X : cartesianPower Tpoint 2), app_2_n cop A B X -> app_2_n cop B A X.
 Proof.
 unfold cop.
 unfold app_2_n.
@@ -75,7 +75,7 @@ Global Instance Tarski_is_a_Coinc_theory_for_cop :   (Coinc_theory Tarski_is_a_A
 Proof.
 exact (Build_Coinc_theory Tarski_is_a_Arity_for_cop
                           Tarski_is_a_Coinc_predicates_for_cop
-                          not_col_perm_1 not_col_perm_2 cop_perm_1 cop_perm_2
+                          not_col_perm_1 not_col_perm_2 共面的排列_1 共面的排列_2
                           cop_bd cop_3).
 Defined.
 

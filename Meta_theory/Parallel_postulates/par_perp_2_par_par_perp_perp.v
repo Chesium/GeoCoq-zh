@@ -22,13 +22,13 @@ elim (共线的决定性 C D X); intro HCDX.
     {
     destruct HX as [_ [_ [HCol [ ]]]]; 统计不重合点.
     assert (共面 C D X A)
-      by (apply col2_cop__cop with A B; Col; apply pars__coplanar; Par).
+      by (apply col2_cop__cop with A B; Col; apply 严格平行蕴含共面; Par).
     assert (共面 C D X B)
-      by (apply col2_cop__cop with A B; Col; apply pars__coplanar; Par).
+      by (apply col2_cop__cop with A B; Col; apply 严格平行蕴含共面; Par).
     assert (共面 C D X P)
-      by (apply col2_cop__cop with P Q; Col; apply perp__coplanar; Perp).
+      by (apply col2_cop__cop with P Q; Col; apply 垂直蕴含共面; Perp).
     assert (共面 C D X Q)
-      by (apply col2_cop__cop with P Q; Col; apply perp__coplanar; Perp).
+      by (apply col2_cop__cop with P Q; Col; apply 垂直蕴含共面; Perp).
     assert (共面 C D X Y) by Cop.
     apply HPPP with A B C D; Perp; try solve [left; auto];
     try solve [apply col2_cop__cop with P Q; Col; Cop]; CopR.

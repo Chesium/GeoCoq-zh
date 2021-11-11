@@ -1162,9 +1162,9 @@ Proof.
       assumption.
     assert(Col B A M).
       apply cop_per2__col with C0.
-        apply coplanar_perm_12, col_cop__cop with C1; Col.
-        apply coplanar_perm_12, col_cop__cop with C'; Col.
-        apply coplanar_perm_5, col_cop__cop with C; Col; Cop.
+        apply 等价共面CABD, col_cop__cop with C1; Col.
+        apply 等价共面CABD, col_cop__cop with C'; Col.
+        apply 等价共面ADCB, col_cop__cop with C; Col; Cop.
         intro.
         subst M.
         apply A是AB中点则A与B重合 in H15.
@@ -1845,7 +1845,7 @@ Proof.
       assumption.
     assert(Out B' C' C'' \/ TS P' B' C' C'').
       apply conga_cop__or_out_ts.
-      apply coplanar_perm_2, col_cop__cop with A'; Col; Cop.
+      apply 等价共面ACBD, col_cop__cop with A'; Col; Cop.
       apply ts_distincts in H0.
       分离合取式.
       auto.
@@ -2106,7 +2106,7 @@ Proof.
         assert (HH := H0); destruct HH as [HNCol].
         apply coplanar_trans_1 with A'; Col.
           Cop.
-        统计不重合点; apply coplanar_perm_19, col_cop__cop with A''; Col.
+        统计不重合点; apply 等价共面DACB, col_cop__cop with A''; Col.
         exists T''.
         right.
         left.
@@ -2296,7 +2296,7 @@ Proof.
         assert (HH := H0); destruct HH as [HNCol].
         apply coplanar_trans_1 with A'; Col.
           Cop.
-        统计不重合点; apply coplanar_perm_19, col_cop__cop with A''; Col.
+        统计不重合点; apply 等价共面DACB, col_cop__cop with A''; Col.
         exists T''.
         right.
         left.
@@ -4345,7 +4345,7 @@ Proof.
       assumption.
     assert(Out B' I' JJ' \/ TS A' B' I' JJ').
       apply conga_cop__or_out_ts.
-      apply coplanar_perm_2, col_cop__cop with J'; Col; Cop.
+      apply 等价共面ACBD, col_cop__cop with J'; Col; Cop.
       eapply 角等的传递性.
         apply 等角的对称性.
         apply H0.
@@ -5883,7 +5883,7 @@ Proof.
       assumption.
     assert (共面 C A D P).
       统计不重合点.
-      apply coplanar_perm_3, col_cop__cop with B; Col.
+      apply 等价共面ACDB, col_cop__cop with B; Col.
       exists M.
       right.
       left.
@@ -8054,7 +8054,7 @@ Proof.
   assert (Bet B'' A' B').
   { assert (Col B' B'' A').
     { 统计不重合点; apply (cop_per2__col A); auto.
-        apply coplanar_perm_3, coplanar_trans_1 with B; [Col|Cop|].
+        apply 等价共面ACDB, coplanar_trans_1 with B; [Col|Cop|].
         exists M; right; right; split; Col.
       apply midpoint_preserves_per with B A A' M; 中点.
     }
@@ -8068,7 +8068,7 @@ Proof.
   assert (Bet C'' A' C').
   { assert (Col C' C'' A').
     { 统计不重合点; apply (cop_per2__col A); auto.
-        apply coplanar_perm_3, coplanar_trans_1 with C; [Col|Cop|].
+        apply 等价共面ACDB, coplanar_trans_1 with C; [Col|Cop|].
         exists M; right; right; split; Col.
       apply midpoint_preserves_per with C A A' M; 中点.
     }
@@ -8092,7 +8092,7 @@ Proof.
   assert (HCop : forall M, 共面 A B C M -> 共面 D E F M);
     [intro; apply coplanar_pseudo_trans; Cop|];
   assert (forall M, 共面 D E F M -> 共面 A B C M);
-    [intro; apply coplanar_pseudo_trans; auto with cop cop_perm|
+    [intro; apply coplanar_pseudo_trans; auto with cop 共面的排列|
   intros; apply HX3; auto].
 Qed.
 
@@ -8354,7 +8354,7 @@ Proof.
   intros A B C P.
   destruct (cop_dec A B C P) as [|HNCop].
     exists P; split; [assumption|intros; Perp].
-  assert (HNCol : ~ Col A B C) by (apply ncop__ncol with P, HNCop).
+  assert (HNCol : ~ Col A B C) by (apply 四点不共面则前三点不共线 with P, HNCop).
   destruct (l8_18_过一点垂线之垂点的存在性 A B P) as [D0 [HCol0 HPerp0]].
     intro; apply HNCop; exists P; left; split; Col.
   assert (HCop0 : 共面 A B C D0) by (exists D0; left; split; Col).
@@ -8364,7 +8364,7 @@ Proof.
   assert (Haux : forall D, Col D0 D1 D -> 共面 A B C D).
   { intros D HD.
     apply coplanar_trans_1 with D1; [Col|Cop|].
-    统计不重合点; apply coplanar_perm_12, col_cop__cop with D0; Col; Cop.
+    统计不重合点; apply 等价共面CABD, col_cop__cop with D0; Col; Cop.
   }
   destruct (每组共线三点都有另一共线点 A B D0 HCol0) as [A0].
   分离合取式.
@@ -8411,7 +8411,7 @@ Proof.
   destruct (l11_62_existence A B C P) as [X [HCop HX]].
   assert (X <> P) by (intro; subst; apply (HNCop HCop)).
   exists X; repeat split; Col.
-    apply ncop__ncol with P, HNCop.
+    apply 四点不共面则前三点不共线 with P, HNCop.
   intros D Q HD HQ.
   apply 直角边共线点也构成直角2 with P; auto.
 Qed.
@@ -8532,7 +8532,7 @@ Proof.
   assert (Cong T Y T Y') by (apply 直角端点和其关于顶点的对称点与另一端点等距 with Q; auto).
   apply 等价共线BAC, 中间性蕴含共线1, M是AB中点则M是BA中点2 with X Y X' Y'; trivial.
   apply (l4_6 X T Y); repeat split; Cong.
-  assert (~ Col A B C) by (apply ncop__ncol with X, HX).
+  assert (~ Col A B C) by (apply 四点不共面则前三点不共线 with X, HX).
   apply mid2_orth_at2__cong with A B C P Q; auto.
 Qed.
 
@@ -10083,7 +10083,7 @@ Proof.
     apply l11_10 with P' A P' C; try apply out_trivial; auto.
   apply cong3_cop2__col with A C'; Cong.
     Cop.
-    apply coplanar_perm_12, col_cop__cop with C; Col; Cop.
+    apply 等价共面CABD, col_cop__cop with C; Col; Cop.
   intro; subst; auto.
 Qed.
 
@@ -10138,7 +10138,7 @@ Proof.
   destruct (共线的决定性 B C P) as [HCol|HNCol3].
   - assert (HNCol3 : ~ Col B A P) by (intro; apply HNCol2; ColR).
     destruct (cop_not_par_same_side B P Q P P A) as [Q0 [HCol1 HOS]]; Col.
-      apply coplanar_perm_16, col_cop__cop with C; Cop.
+      apply 等价共面CDAB, col_cop__cop with C; Cop.
     assert (Hd := os_distincts B P A Q0 HOS); 分离合取式; clean.
     destruct (one_side_dec B A P Q0).
     { assert (HIn' : 在角内 Q0 A B P) by (apply os2__inangle; assumption).
@@ -10162,7 +10162,7 @@ Proof.
     apply invert_one_side, out_one_side; Col.
     apply l6_6, bet_out; auto.
   - destruct (cop_not_par_same_side B P Q P P C) as [Q0 [HCol1 HOS]]; Col.
-      apply coplanar_perm_3, coplanar_trans_1 with A; Cop.
+      apply 等价共面ACDB, coplanar_trans_1 with A; Cop.
     assert (Hd := os_distincts B P C Q0 HOS); 分离合取式; clean.
     destruct (one_side_dec B C P Q0).
     { assert (HIn' : 在角内 Q0 C B P) by (apply os2__inangle; assumption).
@@ -10252,7 +10252,7 @@ Proof.
     apply out2__conga; [|apply out_trivial]; auto.
   }
   destruct (cop__one_or_two_sides B P A Q) as [HOS|HTS]; Col.
-    apply coplanar_perm_2, coplanar_trans_1 with C; Cop; Col.
+    apply 等价共面ACBD, coplanar_trans_1 with C; Cop; Col.
   - apply lea_trans with P B C; [|apply 角度小于等于的交换性]; apply inangle__lea; trivial.
     apply os2__inangle; apply invert_one_side.
       exists A; split; Side; apply 角端点在角内点与顶点连线两侧; Col.
@@ -10311,7 +10311,7 @@ Proof.
   destruct (共线的决定性 B P Q).
     apply out__acute, col_inangle2__out with A C; assumption.
   destruct (cop__one_or_two_sides B P A Q) as [HOS|HTS]; Col.
-    apply coplanar_perm_2, coplanar_trans_1 with C; Cop; Col.
+    apply 等价共面ACBD, coplanar_trans_1 with C; Cop; Col.
   - apply acute_lea_acute with P B C.
       apply (acute_conga__acute A B P); try (apply 等角的左交换性); assumption.
     exists Q; split; [|apply 同角相等; auto].

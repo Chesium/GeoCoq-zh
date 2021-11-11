@@ -97,64 +97,64 @@ Hint Resolve 外心与三角形共面 : cop.
 Ltac 推导四点共面 :=
  repeat match goal with
       | H:Perp ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply perp__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 垂直蕴含共面, H)
       | H:TS ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply ts__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 异侧蕴含共面, H)
       | H:OS ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply os__coplanar, H)
       | H:严格对称 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply reflectl__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 严格对称蕴含共面, H)
       | H:对称 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply reflect__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 对称蕴含共面, H)
       | H:在角内 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply inangle__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 在角内蕴含共面, H)
       | H:严格平行 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply pars__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 严格平行蕴含共面, H)
       | H:Par ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply par__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 平行蕴含共面, H)
       | H:Plg ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plg__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 平四蕴含共面, H)
       | H:严格平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgs__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 严格平行四边形蕴含共面, H)
       | H:退化平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply plgf__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 退化平行四边形蕴含共面, H)
       | H:平行四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply parallelogram__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 平行四边形蕴含共面, H)
       | H:菱形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rhombus__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 菱形蕴含共面, H)
       | H:长方形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply rectangle__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 长方形蕴含共面, H)
       | H:正方形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply square__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 正方形蕴含共面, H)
       | H:萨凯里四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply sac__coplanar, H)
       | H:Lambert四边形 ?X1 ?X2 ?X3 ?X4 |- _ =>
-     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply lambert__coplanar, H)
+     not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply Lambert四边形蕴含共面, H)
       | H:外心 ?X1 ?X2 ?X3 ?X4 |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4; assert (共面 X1 X2 X3 X4) by (apply 外心与三角形共面, H)
  end.
 
-Ltac Cop := auto; try (intros; solve [apply col__coplanar; Col
-     |apply coplanar_perm_1, col__coplanar; Col|apply coplanar_perm_4, col__coplanar; Col
-     |apply coplanar_perm_18, col__coplanar; Col
-     |推导四点共面; auto 2 with cop_perm]).
+Ltac Cop := auto; try (intros; solve [apply 共线三点和任一点共面; Col
+     |apply 等价共面ABDC, 共线三点和任一点共面; Col|apply 等价共面ADBC, 共线三点和任一点共面; Col
+     |apply 等价共面DABC, 共线三点和任一点共面; Col
+     |推导四点共面; auto 2 with 共面的排列]).
 
 Ltac copr_aux :=
  repeat match goal with
       | H: ~ Col ?X1 ?X2 ?X3, X4 : Tpoint |- _ =>
      not_exist_hyp_perm_cop X1 X2 X3 X4;
-     first[exist_hyp_perm_col X1 X2 X4; assert (共面 X1 X2 X4 X3) by (apply col__coplanar; Col)
-          |exist_hyp_perm_col X2 X3 X4; assert (共面 X2 X3 X4 X1) by (apply col__coplanar; Col)
-          |exist_hyp_perm_col X1 X3 X4; assert (共面 X1 X3 X4 X2) by (apply col__coplanar; Col)]
+     first[exist_hyp_perm_col X1 X2 X4; assert (共面 X1 X2 X4 X3) by (apply 共线三点和任一点共面; Col)
+          |exist_hyp_perm_col X2 X3 X4; assert (共面 X2 X3 X4 X1) by (apply 共线三点和任一点共面; Col)
+          |exist_hyp_perm_col X1 X3 X4; assert (共面 X1 X3 X4 X2) by (apply 共线三点和任一点共面; Col)]
  end.
 
 Ltac CopR :=
  let tpoint := constr:(Tpoint) in
  let col := constr:(Col) in
  let cop := constr:(共面) in
-   treat_equalities; assert_cols; clean; assert_ncols; 推导四点共面; auto 2 with cop_perm;
-   solve[apply col__coplanar; Col|apply coplanar_perm_1, col__coplanar; Col
-        |apply coplanar_perm_4, col__coplanar; Col|apply coplanar_perm_18, col__coplanar; Col
+   treat_equalities; assert_cols; clean; assert_ncols; 推导四点共面; auto 2 with 共面的排列;
+   solve[apply 共线三点和任一点共面; Col|apply 等价共面ABDC, 共线三点和任一点共面; Col
+        |apply 等价共面ADBC, 共线三点和任一点共面; Col|apply 等价共面DABC, 共线三点和任一点共面; Col
         |copr_aux; Cop_refl tpoint col cop] || fail "Can not be deduced".
 
 Section Circumcenter2 .
@@ -272,7 +272,7 @@ elim (共线的决定性 A B C); intro HABC.
 
       {
       apply l12_9 with A B; [Cop..| |Cop| |apply 中垂线蕴含垂直; assumption].
-        apply col__coplanar; ColR.
+        apply 共线三点和任一点共面; ColR.
       apply 与垂线共线之线也为垂线1 with B C; Perp; Col.
       }
 

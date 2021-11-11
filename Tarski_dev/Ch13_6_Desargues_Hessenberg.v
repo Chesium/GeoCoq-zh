@@ -159,7 +159,7 @@ Proof.
     assert(exists L : Tpoint, Col L X Y /\ Col L A' C').
       apply(cop_npar__inter_exists X Y A' C').
       apply coplanar_pseudo_trans with O A B; [Cop..|].
-        apply coplanar_perm_12, col_cop__cop with C; Cop.
+        apply 等价共面CABD, col_cop__cop with C; Cop.
       intro.
       apply H0.
       eapply (par_trans O B X Y).
@@ -263,7 +263,7 @@ Proof.
       apply H42.
       Par.
     assert(共面 A B L B').
-      apply coplanar_perm_4, col_cop__cop with O; Col; Cop.
+      apply 等价共面ADBC, col_cop__cop with O; Col; Cop.
     assert(HH:=cop_npar__inter_exists A B L B' H44 H43).
     ex_and HH N.
     assert(严格平行 A L O B').
@@ -306,7 +306,7 @@ Proof.
         exists B.
         split; Col.
       assert(共面 A O N L).
-        统计不重合点; apply coplanar_perm_1, col_cop__cop with B'; Col; Cop.
+        统计不重合点; apply 等价共面ABDC, col_cop__cop with B'; Col; Cop.
       assert(HH:=cop_npar__inter_exists A O N L H51 H18).
       ex_and HH P.
       apply par_right_comm.
@@ -512,7 +512,7 @@ Proof.
         apply(l13_14 B' N B' L O C' M O); Par; ColR.
       assert(共面 N B' O C').
         apply coplanar_pseudo_trans with O A B; [Cop..|].
-        apply coplanar_perm_12, col_cop__cop with C; Col; Cop.
+        apply 等价共面CABD, col_cop__cop with C; Col; Cop.
       assert(HH:= cop_npar__inter_exists N B' O C' H54 H53).
       ex_and HH P.
       assert(B' <> P).
@@ -783,8 +783,8 @@ Proof.
       induction H25.
         apply coplanar_pseudo_trans with B C B'.
           apply 共线否定排列BCA, (par_not_col X Y); Par.
-          apply coplanar_perm_1, col_cop__cop with Y; Col; Cop.
-          apply coplanar_perm_1, col_cop__cop with X; Col; Cop.
+          apply 等价共面ABDC, col_cop__cop with Y; Col; Cop.
+          apply 等价共面ABDC, col_cop__cop with X; Col; Cop.
           Cop.
           Cop.
       分离合取式.
@@ -1068,7 +1068,7 @@ Proof.
       split; Col.
     assert(exists X : Tpoint, Col X B' C' /\ Col X O C).
       apply cop_npar__inter_exists.
-        统计不重合点; apply coplanar_perm_13, col_cop__cop with B; Col; Cop.
+        统计不重合点; apply 等价共面CADB, col_cop__cop with B; Col; Cop.
       apply par_not_par with B C; Par.
       intro.
       induction H6.
@@ -1153,9 +1153,9 @@ Proof.
       split; Col.
     assert(Par A C A' C'').
       apply(l13_15 B A C B' A' C'' O); Par; Col.
-      统计不重合点; apply coplanar_perm_3, coplanar_trans_1 with C'; Col.
-        apply coplanar_perm_4, col_cop__cop with A'; Col; Cop.
-        apply coplanar_perm_4, col_cop__cop with B'; Col; Cop.
+      统计不重合点; apply 等价共面ACDB, coplanar_trans_1 with C'; Col.
+        apply 等价共面ADBC, col_cop__cop with A'; Col; Cop.
+        apply 等价共面ADBC, col_cop__cop with B'; Col; Cop.
     assert(Par A' C' A' C'').
       apply (par_trans _ _ A C).
         left.
@@ -1219,7 +1219,7 @@ Proof.
         apply H7.
         apply(par_trans _ _ B' C'); Par.
       assert(共面 C P B' C').
-        apply coplanar_perm_2, coplanar_trans_1 with B; [|Cop..].
+        apply 等价共面ACBD, coplanar_trans_1 with B; [|Cop..].
         apply 共线否定排列BCA, par_not_col with B' C'; Par; Col.
       assert(HH:=cop_npar__inter_exists C P B' C' H9 H8).
       ex_and HH C''.
@@ -1650,8 +1650,8 @@ Lemma l13_19_par_aux : forall A B C D A' B' C' D' X Y,
 Proof.
     intros.
     assert(共面 A B C D).
-      apply coplanar_perm_2, col_cop__cop with Y; Col.
-      apply coplanar_perm_16, col_cop__cop with X; Col; Cop.
+      apply 等价共面ACBD, col_cop__cop with Y; Col.
+      apply 等价共面CDAB, col_cop__cop with X; Col; Cop.
     assert(HH := cop_npar__inter_exists A B C D H21 H17).
     ex_and HH E.
     assert(HH:= parallel_existence1 X A E H).
@@ -2165,8 +2165,8 @@ Proof.
       分离合取式.
       unfold 严格平行.
       split.
-        apply coplanar_perm_16, col_cop__cop with A; Col.
-        apply coplanar_perm_16, col_cop__cop with B; Col.
+        apply 等价共面CDAB, col_cop__cop with A; Col.
+        apply 等价共面CDAB, col_cop__cop with B; Col.
       intro.
       apply H24.
       ex_and H25 P.

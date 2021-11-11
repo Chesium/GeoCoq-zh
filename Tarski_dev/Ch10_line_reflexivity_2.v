@@ -95,7 +95,7 @@ Proof.
           apply ABA型共线.
         apply 等价共线CAB.
         apply cop_per2__col with A.
-          统计不重合点; apply coplanar_perm_12, col_cop__cop with B; Cop.
+          统计不重合点; apply 等价共面CABD, col_cop__cop with B; Cop.
           auto.
           apply 直角的对称性.
           apply H9.
@@ -743,7 +743,7 @@ Proof.
             subst P'.
             absurde.
           apply (cop_per2__col P).
-            apply coplanar_perm_2, col_cop__cop with B; Cop.
+            apply 等价共面ACBD, col_cop__cop with B; Cop.
             assumption.
             assumption.
           assumption.
@@ -967,7 +967,7 @@ End T10_2D.
 Hint Resolve all_coplanar : cop.
 (* the hint: eapply @all_coplanar will only be used by eauto *)
 
-Ltac Cop := auto; try (intros; solve [apply all_coplanar|apply col__coplanar; Col
-     |apply coplanar_perm_1, col__coplanar; Col|apply coplanar_perm_4, col__coplanar; Col
-     |apply coplanar_perm_18, col__coplanar; Col
-     |推导四点共面; auto 2 with cop_perm]).
+Ltac Cop := auto; try (intros; solve [apply all_coplanar|apply 共线三点和任一点共面; Col
+     |apply 等价共面ABDC, 共线三点和任一点共面; Col|apply 等价共面ADBC, 共线三点和任一点共面; Col
+     |apply 等价共面DABC, 共线三点和任一点共面; Col
+     |推导四点共面; auto 2 with 共面的排列]).

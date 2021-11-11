@@ -155,11 +155,11 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
   [exfalso; apply HNC; ColR|destruct HOut6 as [_ [_ HOut6]]].
   assert (HPar : Par Z Z' C' P'').
     {
-    apply l12_9 with B C'; Cop; [|apply col__coplanar; ColR|apply 垂直的对称性|];
+    apply l12_9 with B C'; Cop; [|apply 共线三点和任一点共面; ColR|apply 垂直的对称性|];
     [|apply 与垂线共线之线也为垂线2 with A B; 统计不重合点; finish|
     apply 与垂线共线之线也为垂线2 with C' D''; 统计不重合点; finish].
-    assert (共面 B Z C  C') by (apply col__coplanar; ColR).
-    assert (共面 C' P'' D'' B) by (apply col__coplanar; ColR).
+    assert (共面 B Z C  C') by (apply 共线三点和任一点共面; ColR).
+    assert (共面 C' P'' D'' B) by (apply 共线三点和任一点共面; ColR).
     assert (共面 C' B D'' C); [Cop|CopR].
     }
   assert (HTZ : T <> Z).
@@ -310,7 +310,7 @@ Proof.
         apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with Q; auto.
         assert (在角内 Y X P Q).
           apply l11_25 with C A Q; try (apply l6_6); trivial; apply out_trivial; auto.
-        apply coplanar_perm_12, col_cop__cop with Q; Col; Cop.
+        apply 等价共面CABD, col_cop__cop with Q; Col; Cop.
     }
     apply lam_obtuse__lt; trivial.
     apply <- (lam_obtuse__oah P); trivial.
@@ -321,7 +321,7 @@ Proof.
         统计不重合点; apply l12_6, par_strict_col_par_strict with C'; Par; ColR.
       apply l12_6, par_not_col_strict with Y; Col.
       { apply l12_9 with P Q; Perp; [Cop..| |Cop].
-        apply coplanar_perm_12, col_cop__cop with C; Col.
+        apply 等价共面CABD, col_cop__cop with C; Col.
         apply  col_cop__cop with C'; Col; Cop.
       }
       apply 共线否定排列BCA, par_not_col with P C'; Par; ColR.
@@ -333,7 +333,7 @@ Proof.
     apply one_side_transitivity with Y.
     { apply l12_6, par_not_col_strict with Y; Col.
         apply l12_9 with P Q; Perp; [Cop..|].
-        apply coplanar_perm_12, col_cop__cop with C; Col; Cop.
+        apply 等价共面CABD, col_cop__cop with C; Col; Cop.
       intro; apply HNCol1; ColR.
     }
     apply one_side_symmetry, out_out_one_side with C; Side.

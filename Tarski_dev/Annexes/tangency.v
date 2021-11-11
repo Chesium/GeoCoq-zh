@@ -822,7 +822,7 @@ induction(共线的决定性 P Q A).
 exists M.
 left.
 split; ColR.
-apply coplanar_perm_12, col_cop__cop with P; Col; Cop.
+apply 等价共面CABD, col_cop__cop with P; Col; Cop.
 统计不重合点;auto.
 
 assert(A <> C).
@@ -830,7 +830,7 @@ apply(相交于两点之圆圆心不同 A B C D P Q); auto.
 
 assert(Col A C N).
 apply cop_per2__col with Q; auto.
-apply coplanar_perm_12, col_cop__cop with Z; Col.
+apply 等价共面CABD, col_cop__cop with Z; Col.
 apply coplanar_trans_1 with P; Cop.
 apply 两圆非切点交点不与两圆心共线 in HIC.
 Col.

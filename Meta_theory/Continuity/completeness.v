@@ -164,7 +164,7 @@ Lemma line_completeness__completeness_for_3d_spaces :
   line_completeness -> completeness_for_3d_spaces.
 Proof.
   intros [P [Q [R [S HNCop]]]] lc Tm Tm2 M f archi fext A.
-  assert (~ Col P Q R) by (apply ncop__ncol with S, HNCop).
+  assert (~ Col P Q R) by (apply 四点不共面则前三点不共线 with S, HNCop).
   assert (Haux : forall X, (exists B, 共面 P Q X B /\ f B = A) -> exists B, f B = A).
     intros X [B []]; exists B; assumption.
   destruct (共线的决定性 (f P) (f Q) A).
@@ -176,12 +176,12 @@ Proof.
   }
   destruct (pi (f P) (f Q) A (f P) (f R) (f S) (f P)) as [X [HX1 [HX2 HX3]]]; Cop.
   assert (HY : exists Y, 共面 P R S Y /\ f Y = X).
-    apply line_completeness_aux; trivial; apply ncop__ncol with Q; Cop.
+    apply line_completeness_aux; trivial; apply 四点不共面则前三点不共线 with Q; Cop.
   destruct HY as [Y []]; subst.
   apply (Haux Y), line_completeness_aux; Cop.
   intro.
   apply HNCop.
-  apply coplanar_perm_16, col_cop__cop with Y; Col; Cop.
+  apply 等价共面CDAB, col_cop__cop with Y; Col; Cop.
   intro; subst; apply HX3; reflexivity.
 Qed.
 

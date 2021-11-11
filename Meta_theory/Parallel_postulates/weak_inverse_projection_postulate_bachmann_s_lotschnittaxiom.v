@@ -55,7 +55,7 @@ assert (HC3 : exists C3, Col C1 C2 C3 /\ OS P Q R C3).
 { destruct (每组共线三点都有另一共线点 C1 C2 P) as [C0]; Col; 分离合取式.
   destruct (cop_not_par_same_side P Q C0 P P R) as [C3 []]; Col.
     intro; apply HNCol3; ColR.
-    apply coplanar_perm_1, col_cop2__cop with C1 C2; Col; Cop.
+    apply 等价共面ABDC, col_cop2__cop with C1 C2; Col; Cop.
   exists C3; split; [ColR|assumption].
 }
 destruct HC3 as [C3 [HCol6 HOS]].

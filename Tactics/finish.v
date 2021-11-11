@@ -1,5 +1,5 @@
 Ltac finish := auto 4 with between between_no_eauto col le out par perp cong midpoint side conga lea
-                          suma sums circle cop cop_perm.
+                          suma sums circle cop 共面的排列.
 
 Create HintDb between.
 Create HintDb between_no_eauto.
@@ -17,4 +17,4 @@ Create HintDb suma.
 Create HintDb sums.
 Create HintDb circle.
 Create HintDb cop.
-Create HintDb cop_perm.
+Create HintDb 共面的排列.

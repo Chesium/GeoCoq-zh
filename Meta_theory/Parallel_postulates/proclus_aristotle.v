@@ -65,7 +65,7 @@ Proof.
   assert(严格平行 B D X Y).
   { apply (par_not_col_strict _ _ _ _ Y); Col.
     apply (l12_9 _ _ _ _ B A); Perp; Cop.
-      apply coplanar_perm_12, col_cop__cop with C; Col; Cop.
+      apply 等价共面CABD, col_cop__cop with C; Col; Cop.
     intro; apply HNCol2; ColR.
   }
   assert(在角内 C A B D) by (apply lea_in_angle; [Lea|Side]).

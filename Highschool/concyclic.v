@@ -230,7 +230,7 @@ Proof.
 intros A B C HABC.
 unfold 共圆.
 split.
-apply coplanar_trivial.
+apply AABC共面.
 destruct (外心的存在性 A B C HABC) as [G HG].
 exists G.
 apply 外心与三角形顶点距离相等 in HG;分离合取式;repeat split;Cong.

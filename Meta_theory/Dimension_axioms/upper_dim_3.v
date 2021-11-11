@@ -77,7 +77,7 @@ Lemma median_planes_aux :
   median_planes_axiom.
 Proof.
   intros Haux A B C D P Q; intros.
-  destruct (共线的决定性 A B C) as [HCop|]; [apply col__coplanar, HCop|].
+  destruct (共线的决定性 A B C) as [HCop|]; [apply 共线三点和任一点共面, HCop|].
   destruct (中点的存在性 P Q) as [M].
   destruct (ex_ncol_cop2 A B C M) as [A1 [A2 [HCop1 [HCop2 HNCol1]]]].
   assert (Cong A1 P A1 Q) by (apply (l11_60_aux A B C); assumption).
@@ -218,7 +218,7 @@ Proof.
   destruct (Haux A B C D' E' P) as [Q [HQ1 [HQ2 HPQ]]]; Col.
   exists Q.
   repeat split; auto.
-  destruct (共线的决定性 D E F) as [HCol|]; [apply col__coplanar, HCol|].
+  destruct (共线的决定性 D E F) as [HCol|]; [apply 共线三点和任一点共面, HCol|].
   apply coplanar_pseudo_trans with D' E' P; Col; apply coplanar_pseudo_trans with D E F; Cop.
 Qed.
 
@@ -245,7 +245,7 @@ Proof.
           Cong A P A Q -> Cong B P B Q -> 中点 M P Q -> 在平面异侧 M A B Q X -> Cong X P X Q -> False).
   { intros X P Q M HPQ HA HB HM [HQ [HX [T [HT HBet]]]].
     assert (HCong : forall C, 共面 M A B C -> Cong C P C Q).
-      intros; apply (l11_60_aux M A B); Cong; apply ncop__ncol with Q, HQ.
+      intros; apply (l11_60_aux M A B); Cong; apply 四点不共面则前三点不共线 with Q, HQ.
     apply triangle_strict_inequality with T; Between.
     intro.
     apply (not_bet_and_out P M Q); split; [Between|].
@@ -259,7 +259,7 @@ Proof.
   }
   intros C P Q M HPQ HA HB HC HM.
   destruct (cop_dec M A B C) as [HCop|HNCop]; [apply HCop|].
-  assert (~ Col M A B) by (apply ncop__ncol with C, HNCop).
+  assert (~ Col M A B) by (apply 四点不共面则前三点不共线 with C, HNCop).
   assert (HQ : ~ 共面 M A B Q).
     intro Ha; apply (l11_60_aux _ _ _ _ P Q) in Ha; Cong; treat_equalities; auto.
   exfalso.
