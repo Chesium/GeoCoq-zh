@@ -195,7 +195,7 @@ Proof.
   assert (HIsi5 : 和角不大于平角 V W X B C1 C) by (apply (t22_20 noah), HSuma4).
   assert (HIsi : 和角不大于平角 D E F G H I).
   { apply 角度小于等于保持和角不大于平角性质 with P Q R G H I; Lea.
-    apply lea_trans with B C1 C.
+    apply 角度小于等于的传递性 with B C1 C.
       apply (加角小于等于和角 S T U); trivial.
     apply (加角小于等于和角 V W X); trivial.
   }

@@ -20,7 +20,7 @@ Proof.
   assert (HIn : 在角内 P A B C)
     by (apply conga_cop_inangle_per2__inangle with T; assumption).
   assert (H为锐角 : 为锐角 P B A)
-    by (apply acute_sym, conga_inangle_per__acute with C; assumption).
+    by (apply 为锐角的对称性, conga_inangle_per__acute with C; assumption).
   assert (H为锐角' : 为锐角 P B C) by (apply (acute_conga__acute P B A); assumption).
   统计不重合点.
   assert (HPerp : Perp B P P T) by (apply 直角转L形垂直; auto).
@@ -94,7 +94,7 @@ cut (forall A B C P T,
   destruct HQ' as [Q' [HPQ' [HCol HInangle]]].
   apply l6_6 in HOut.
   assert (HInangle' : 在角内 Q' C B J).
-  { apply in_angle_trans with P; trivial.
+  { apply 在角内的传递性 with P; trivial.
     统计不重合点.
     apply l11_25 with A C J; [|apply out_trivial..|]; auto.
     apply os_ts__inangle.

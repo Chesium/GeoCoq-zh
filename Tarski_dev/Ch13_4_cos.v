@@ -46,7 +46,7 @@ Proof.
     induction(两点重合的决定性 Z1 Y1).
       subst Z1.
       assert(Out X2 Y2 Z2).
-        apply (eq_conga_out Y1 X1); auto.
+        apply (零角的等角推出外共线 Y1 X1); auto.
       assert(Y2 = Z2).
         assert(Z2 = Y2 \/ X2 = Y2).
           apply l8_9_直角三点共线则必有两点重合.
@@ -76,7 +76,7 @@ Proof.
       intro.
       subst Z2.
       assert(Out X1 Y1 Z1).
-        apply (eq_conga_out Y2 X2).
+        apply (零角的等角推出外共线 Y2 X2).
         apply 等角的对称性.
         auto.
       assert(Y1 = Z1).
@@ -199,7 +199,7 @@ Proof.
     split.
       auto.
     intros A0 B0 C0 HP.
-    apply (eq_conga_out A B).
+    apply (零角的等角推出外共线 A B).
     apply (anga_conga a); auto.
 Qed.
 
@@ -226,7 +226,7 @@ Proof.
     intros.
     apply l6_6.
     apply acute_col_perp__out with C.
-      apply acute_sym.
+      apply 为锐角的对称性.
       assumption.
       Col.
       Perp.
@@ -240,7 +240,7 @@ Section Cosinus2.
 
 Context `{TnEQD:无维度中性塔斯基公理系统_带两点重合决定性}.
 
-Lemma perp_out__acute : forall A B C C', Perp A B C C' -> Col A B C' -> (为锐角 A B C <-> Out B A C').
+Lemma perp_外共线零角为锐角 : forall A B C C', Perp A B C C' -> Col A B C' -> (为锐角 A B C <-> Out B A C').
 Proof.
     intros.
     split.
@@ -277,11 +277,11 @@ Proof.
     assert(等角 A0 B0 C0 A1 B1 C1).
       apply l11_16_直角相等; auto.
     assert(角度小于 A1 B1 C1 A B C).
-      apply (conga_preserves_lta A0 B0 C0 A B C).
+      apply (等角保持角度小于性质 A0 B0 C0 A B C).
         auto.
         apply 同角相等; auto.
       assumption.
-    assert(HH:=两长度不可能互相小于对方a A B C A1 B1 C1).
+    assert(HH:=两角度不可能互相小于对方 A B C A1 B1 C1).
     apply HH.
     split; auto.
 Qed.
@@ -712,7 +712,7 @@ Proof.
       apply (l11_10 A B C A' B' P'); auto; apply out_trivial; auto.
     apply H2.
     assert(Bet A' B' X).
-      apply (bet_conga__bet A B C); auto.
+      apply (零角的等角是零角 A B C); auto.
     apply 成中间性三点组的角相等; auto.
     apply (中间性的交换传递性2 _ _ X); auto.
 Qed.
@@ -752,12 +752,12 @@ Proof.
     ex_and H1 C1.
     assert (Hd := H3).
     assert (Hd' := H4).
-    apply lta_distincts in Hd.
-    apply lta_distincts in Hd'.
+    apply 角度小于推不重合 in Hd.
+    apply 角度小于推不重合 in Hd'.
     分离合取式.
     assert(HH:=l11_16_直角相等 A0 B0 C0 A1 B1 C1 H0 H12 H13 H1 H7 H8).
     assert(角度小于 C B D A0 B0 C0).
-      eapply(conga_preserves_lta C B D A1 B1 C1).
+      eapply(等角保持角度小于性质 C B D A1 B1 C1).
         apply 同角相等; auto.
         apply 等角的对称性.
         auto.
@@ -783,12 +783,12 @@ Proof.
     assert(HR:= 垂直推出不重合2 A C P B H17).
     assert(HQ:=l11_16_直角相等 A B P A0 B0 C0 H19 H10 HR H0 H12 H13).
     assert(角度小于 A B D A B P).
-      apply (conga_preserves_lta A B D A0 B0 C0); auto.
+      apply (等角保持角度小于性质 A B D A0 B0 C0); auto.
         apply 同角相等; auto.
       apply 等角的对称性.
       auto.
     assert(角度小于 C B D A B P).
-      apply (conga_preserves_lta C B D A0 B0 C0); auto.
+      apply (等角保持角度小于性质 C B D A0 B0 C0); auto.
         apply 同角相等; auto.
       apply 等角的对称性.
       auto.
@@ -796,7 +796,7 @@ Proof.
     unfold 角度小于 in *.
     分离合取式.
     assert((角度小于等于 A B D A B P <-> 角度小于等于 C B P C B D)).
-      apply (l11_36 A B D A B P C C); auto.
+      apply (l11_36_双补角组中的角度偏序 A B D A B P C C); auto.
     destruct H20.
     assert(角度小于等于 C B P C B D).
       apply H20.
@@ -820,7 +820,7 @@ Proof.
         apply 等角的对称性.
         auto.
       apply 同角相等; auto.
-    assert(HH:=lea_asym C B D A B P H0 H24).
+    assert(HH:=双角度偏序推等角 C B D A B P H0 H24).
     contradiction.
 Qed.
 
@@ -879,7 +879,7 @@ Proof.
     apply Hout.
     apply H.
     apply HConga.
-    apply acute_distincts in Hacute.
+    apply 角为锐角推不重合 in Hacute.
     分离合取式.
     apply 同角相等; auto.
 Qed.
@@ -1182,7 +1182,7 @@ Lemma perp_acute : forall A B C P,  Col A C P -> 垂直于 P B P A C -> 为锐�
 Proof.
     intros.
     assert(HH0:=H0).
-    assert(HH:= l11_43 P A B).
+    assert(HH:= l11_43_非锐角三角形两小内角为锐角 P A B).
     induction(共线的决定性 P A B).
       assert(Perp B A A C).
         eapply (垂线共线点也构成垂直1 _ P).
@@ -1229,9 +1229,9 @@ Proof.
         apply 垂直于转T形垂直 in H0.
         induction H0; apply 垂直推出不重合1 in H0; tauto.
       Col.
-    apply acute_sym.
+    apply 为锐角的对称性.
     统计不重合点.
-    apply l11_43; auto.
+    apply l11_43_非锐角三角形两小内角为锐角; auto.
     left.
     assert(A <> P).
       intro.
@@ -1304,7 +1304,7 @@ Proof.
           assert(HH:=H10 A B C).
           destruct HH.
           assert(HP:= H12 H4).
-          apply (acute_lea_acute _ _ _ A' B' C'); auto.
+          apply (小于等于锐角之角为锐角 _ _ _ A' B' C'); auto.
           unfold 角度小于等于.
           exists C'.
           split.
@@ -1346,7 +1346,7 @@ Proof.
           apply H5.
           Col.
         eapply (perp_acute_out _ _ A).
-          apply acute_sym.
+          apply 为锐角的对称性.
           auto.
           Perp.
         Col.

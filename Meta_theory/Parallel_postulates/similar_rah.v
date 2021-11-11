@@ -78,7 +78,7 @@ Proof.
     }
     assert(和角不大于平角 H G B B C G).
     { apply (角度小于等于保持和角不大于平角性质 _ _ _ _ _ _ H G B B C H); try (apply 任何角小于等于自己); 和角.
-      apply inangle__lea.
+      apply 角内点分角小于等于大角1.
       apply os_ts__inangle; Side.
     }
     destruct(和角的存在性 B C G H G B) as [X [Y [Z]]]; auto.
@@ -103,22 +103,22 @@ Proof.
   elim(saccheri_s_three_hypotheses).
   - intro aah.
     exfalso.
-    apply(nlta U V W).
+    apply(一角不可能小于自己 U V W).
     apply (角度双全序则和角保持全序 I J K L M N _ _ _ H G B B C H); 和角.
     { destruct (t22_14__sams_nbet aah C G B I J K O P Q) as [HIsi HNBet]; Col.
       apply (加角反偏序和角全序则原角全序 _ _ _ G B C O P Q _ _ _ G B C A G B); Lea.
-        split; Lea; intro; apply HNBet; apply (bet_conga__bet A G B); 等角.
+        split; Lea; intro; apply HNBet; apply (零角的等角是零角 A G B); 等角.
         apply (等角保持和角性质 B G H H G A A G B); 等角; 和角.
     }
     destruct (t22_14__sams_nbet aah C G H L M N R S T) as [HIsi HNBet]; Col.
     apply (加角反偏序和角全序则原角全序 _ _ _ G H C R S T _ _ _ G H C A H C); Lea.
-      split; Lea; intro; apply HNBet; apply (bet_conga__bet A H C); 等角.
+      split; Lea; intro; apply HNBet; apply (零角的等角是零角 A H C); 等角.
       apply (等角保持和角性质 A H G G H C A H C); 等角; 和角.
 
   - intro HUn.
     destruct HUn as [|oah]; auto.
     exfalso.
-    apply(nlta U V W).
+    apply(一角不可能小于自己 U V W).
     apply (角度双全序则和角保持全序 H G B B C H _ _ _ I J K L M N); 和角; apply nlea__lta; auto; intro.
     { apply (t22_14__nsams oah C G B I J K); Col.
       apply (角度小于等于保持和角不大于平角性质 _ _ _ _ _ _ H G B G B C); Lea; 和角.

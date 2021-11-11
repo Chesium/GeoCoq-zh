@@ -47,7 +47,7 @@ cut (forall A B C P T,
     - destruct (l8_18_过一点垂线之垂点的存在性 B P0 T) as [P [HP1 HP2]]; trivial.
       assert (Out B P P0).
         apply (acute_col_perp__out T); trivial.
-        apply acute_sym, conga_inangle2_per__acute with A C; trivial.
+        apply 为锐角的对称性, conga_inangle2_per__acute with A C; trivial.
       统计不重合点.
       destruct (rabp A B C P T) as [X [Y]]; auto.
         apply col_conga__conga with P0; auto.
@@ -82,7 +82,7 @@ cut (forall A B C P T,
   assert (HIn : 在角内 P A B C) by (apply conga_cop_inangle_per2__inangle with T; assumption).
   assert (H和角 : 和角 P B A P B A A B C).
     apply (等角保持和角性质 A B P P B C A B C); 等角; 和角.
-  assert (H为锐角 : 为锐角 P B A) by (apply acute_sym, conga_inangle_per__acute with C; assumption).
+  assert (H为锐角 : 为锐角 P B A) by (apply 为锐角的对称性, conga_inangle_per__acute with C; assumption).
   assert (HOut : Out B P P) by (apply out_trivial; auto).
   assert (~ Col A B C) by (apply 成直角三点不共线; auto).
   destruct (wipp P B A A B C P T) as [X [HX1 HX2]]; trivial; [CopR|].

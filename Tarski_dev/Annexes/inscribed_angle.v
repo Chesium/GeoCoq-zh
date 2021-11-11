@@ -112,7 +112,7 @@ Proof.
   suma.统计不重合点.
   apply (等角保持和角性质 A B C B C A C A B'); try apply 同角相等; auto.
     apply high_school_exterior_angle_theorem; auto.
-  apply 等角的左交换性, l11_44_1_a; Cong.
+  apply 等角的左交换性, l11_44_1_a_等腰三角形底角相等; Cong.
 Qed.
 
 (** If the angle ACB is inscribed in a circle of center O and
@@ -136,7 +136,7 @@ Proof.
       clear H.
       destruct (l8_18_过一点垂线之垂点的存在性 M O C) as [H []].
       { intro.
-        destruct (acute_col__out M O C) as [_ [_ [HBet|HBet]]]; auto.
+        destruct (共线锐角推外共线 M O C) as [_ [_ [HBet|HBet]]]; auto.
         - apply l9_9_bis in HOS.
           apply HOS.
           repeat split; Col.
@@ -154,16 +154,16 @@ Proof.
       }
       assert (M <> H) by (intro; subst; apply one_side_not_col124 in HOS1; apply HOS1; Col).
       assert (Per M H C) by (apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with O; Col).
-      apply 长度小于的传递性 with H C; [|suma.统计不重合点; apply l11_46; auto].
+      apply 长度小于的传递性 with H C; [|suma.统计不重合点; apply l11_46_非锐角三角形中大角对边最长; auto].
       apply cong_lt_per2__lt_1 with O O; Cong.
         apply 直角的对称性, 直角边共线点也构成直角2 with M; Col; Perp.
         apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直2 with B; Col.
       apply bet__lt1213; auto; apply out2__bet.
-        apply (acute_col_perp__out C); [apply acute_sym|..]; Col; Perp.
+        apply (acute_col_perp__out C); [apply 为锐角的对称性|..]; Col; Perp.
         apply (l9_19 A B); Col; apply one_side_transitivity with C; assumption.
-    - apply 长度小于的传递性 with O C; [|apply l11_46; auto].
+    - apply 长度小于的传递性 with O C; [|apply l11_46_非锐角三角形中大角对边最长; auto].
       apply (等长保持小于关系 M A O A); Cong.
-      apply l11_46; auto.
+      apply l11_46_非锐角三角形中大角对边最长; auto.
       left.
       apply 弦中点与圆心连线形成直角 with P B; auto.
   }
@@ -401,7 +401,7 @@ Proof.
   - suma.统计不重合点; destruct (cop2_onc4__or_conga_suppa O P A B C C') as [|Habs]; auto.
       apply coplanar_trans_1 with C; Col; Cop.
     exfalso.
-    apply (nlta A C' B), acute_obtuse__lta.
+    apply (一角不可能小于自己 A C' B), acute_obtuse__lta.
       apply (obtuse_suppa__acute A C B); [apply (onc3_ts__obtuse O P)|]; trivial.
       apply (onc3_ts__obtuse O P); trivial; apply l9_2, l9_8_2 with C; Side.
   - apply ghalfa2__conga_2 with A O B; apply inscribed_angle with P; trivial.
@@ -455,7 +455,7 @@ Proof.
   suma.统计不重合点.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
   apply 等价共面ABDC in HCop.
-  apply cop_nts__os; Col; intro Habs; apply (nlta A C B).
+  apply cop_nts__os; Col; intro Habs; apply (一角不可能小于自己 A C B).
   - apply acute_per__lta; auto.
     apply thales_theorem with O; trivial.
       apply 若圆心在一弦上则其平分该弦 with P; Col.
@@ -475,7 +475,7 @@ Proof.
   suma.统计不重合点.
   assert (~ Col A B C) by (apply (onc3__ncol O P); auto).
   apply 等价共面ABDC in HCop.
-  apply cop_nos__ts; Col; intro Habs; apply (nlta A C B).
+  apply cop_nos__ts; Col; intro Habs; apply (一角不可能小于自己 A C B).
   - apply obtuse_per__lta; auto.
     apply thales_theorem with O; trivial.
       apply 若圆心在一弦上则其平分该弦 with P; Col.
@@ -607,8 +607,8 @@ Proof.
   assert (Out B A M) by (suma.统计不重合点; apply l6_6, bet_out; Between).
   assert (HH := HOut).
   destruct HH as [HMC1 [HMD1 [HBet|HBet]]]; exfalso.
-  - apply (lta_not_conga A D B A C B); 等角.
-    apply (conga_preserves_lta A D1 B A C1 B); trivial.
+  - apply (一角小于另一角则两角不可能相等 A D B A C B); 等角.
+    apply (等角保持角度小于性质 A D1 B A C1 B); trivial.
     assert (Out D1 M C1) by (apply l6_6, bet_out; Between).
     apply os3__lta; [|apply one_side_symmetry, l9_19 with M; Col|];
       apply one_side_transitivity with M.
@@ -616,8 +616,8 @@ Proof.
       apply out_one_side; trivial; left; intro; apply HNCol2'; ColR.
       apply invert_one_side, out_one_side; Col.
       apply out_one_side; trivial; left; intro; apply HNCol2'; ColR.
-  - apply (lta_not_conga A C B A D B); trivial.
-    apply (conga_preserves_lta A C1 B A D1 B); trivial.
+  - apply (一角小于另一角则两角不可能相等 A C B A D B); trivial.
+    apply (等角保持角度小于性质 A C1 B A D1 B); trivial.
     assert (Out C1 M D1) by (apply l6_6, bet_out; Between).
     apply os3__lta; [|apply l9_19 with M; Col|];
       apply one_side_transitivity with M.

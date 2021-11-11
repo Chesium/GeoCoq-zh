@@ -2055,7 +2055,7 @@ Lemma per_lt : forall A B C, A <> B ->  C <> B -> Per A B C -> Lt A B A C /\ Lt 
   Proof.
     intros.
     assert(Lt B A A C /\ Lt B C A C).
-      apply( l11_46 A B C); auto.
+      apply( l11_46_非锐角三角形中大角对边最长 A B C); auto.
     分离合取式.
     split; apply 长度小于的左交换性; assumption.
   Qed.
@@ -2792,7 +2792,7 @@ Proof.
       intro.
       subst E''.
       apply 等角的对称性 in H27.
-      apply eq_conga_out in H27.
+      apply 零角的等角推出外共线 in H27.
       apply out_col in H27.
       apply H5.
       Col.
@@ -4204,7 +4204,7 @@ apply L形垂直转垂直于 in H3.
 apply 垂直于的交换性.
 assumption.
 assert(为锐角 C' C B /\ 为锐角 C' B C).
-apply(l11_43 C' C B).
+apply(l11_43_非锐角三角形两小内角为锐角 C' C B).
 
 统计不重合点.
 auto.
@@ -4228,7 +4228,7 @@ Lemma perp_bet_obtuse : forall A B C C', B <> C' -> Perp A B C C' -> Bet A B C' 
 Proof.
 intros.
 assert(HPO:=perp_out_acute).
-assert(HBO:=acute_bet__obtuse).
+assert(HBO:=acute_中间性平角为钝角).
 assert(Col A B C').
 apply 中间性蕴含共线1 in H1.
 Col.

@@ -371,15 +371,15 @@ repeat
       | H:角度小于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
-      assert (h := lta_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角度小于推不重合 A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
       | H:(为锐角 ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp2 A B B C;
-      assert (h := acute_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角为锐角推不重合 A B C H);decompose [and] h;clear h;clean_reap_hyps
       | H:(为钝角 ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp2 A B B C;
-      assert (h := obtuse_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角为钝角推不重合 A B C H);decompose [and] h;clear h;clean_reap_hyps
       | H:互为补角 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
@@ -2060,7 +2060,7 @@ Proof.
   assert(HNCol2 : ~ Col B' B C ) by (apply 成直角三点不共线; Perp).
   assert(HNCol3 : ~ Col B B' A).
   { intro.
-    apply (nlta A B C).
+    apply (一角不可能小于自己 A B C).
     apply acute_per__lta; auto.
     apply (l8_3_直角边共线点也构成直角1 B'); Col; Perp.
   }
@@ -2093,7 +2093,7 @@ Proof.
   intro.
   apply (not_bet_and_out A B A0); split; trivial.
   apply acute_col_perp__out with A'; Col.
-    apply acute_sym, (acute_conga__acute A B C); auto.
+    apply 为锐角的对称性, (acute_conga__acute A B C); auto.
     apply l11_14; auto.
     apply 中间性的对称性, l6_2 with C0; Between.
     apply l6_6; assumption.
@@ -2111,7 +2111,7 @@ Proof.
   destruct (angle_bisector A B C) as [P' [HInangle' HConga']]; auto.
   统计不重合点.
   assert (H为锐角 : 为锐角 P' B A).
-    apply acute_sym, conga_inangle_per__acute with C; trivial.
+    apply 为锐角的对称性, conga_inangle_per__acute with C; trivial.
   apply l11_25 with P' A C; try (apply out_trivial); auto.
   assert (HNCol1 : ~ Col A B C) by (apply 成直角三点不共线; auto).
   assert (HCol : Col B P P').
@@ -2120,7 +2120,7 @@ Proof.
     apply coplanar_trans_1 with C; Cop; Col.
     apply coplanar_trans_1 with A; Cop.
   apply (acute_col_perp__out T); Col.
-  { apply acute_lea_acute with P' B A; trivial.
+  { apply 小于等于锐角之角为锐角 with P' B A; trivial.
     assert (HNCol2 : ~ Col P' B A).
       intro.
       assert (Col P' B C) by (apply (共线三点构成的角的等角三点也共线 P' B A); assumption).
@@ -2133,12 +2133,12 @@ Proof.
       assert (~ Col B P T) by (apply 成直角三点不共线; auto).
       intro; 统计不重合点; apply HNCol2; ColR.
     - apply (l11_30_等角保持小于等于 P' B T P' B C); 等角.
-      apply inangle__lea, (in_angle_trans2 A); trivial.
+      apply 角内点分角小于等于大角1, (在角内的传递性2 A); trivial.
       apply os_ts__inangle; trivial.
       apply invert_one_side, 角内两点在角一边同侧 with C; Col.
       intro; apply HNCol1, 中间性蕴含共线1, 角一边反向延长线上点在角内则该角为平角 with T; trivial.
       apply col_two_sides_bet with P'; Col.
-    - apply 角度小于等于的左交换性, inangle__lea.
+    - apply 角度小于等于的左交换性, 角内点分角小于等于大角1.
       destruct (共线的决定性 B A T).
         apply out341__inangle; auto.
         apply col_one_side_out with P'; assumption.

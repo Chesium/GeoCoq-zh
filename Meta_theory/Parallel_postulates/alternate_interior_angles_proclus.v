@@ -19,7 +19,7 @@ Proof.
   assert (~ Col P A Q) by (apply one_side_not_col124 with C, HOS1).
   assert (~ Col P C Q) by (apply one_side_not_col123 with D, HOS3).
   assert (~ Col P C D) by (apply one_side_not_col124 with Q, HOS3).
-  assert (角度小于 A P Q A P C) by (apply inangle__lta; [Col|Side]).
+  assert (角度小于 A P Q A P C) by (apply 非边上角内点分角小于大角; [Col|Side]).
   assert (OS P C D A) by (apply one_side_transitivity with Q; Side).
   assert (为锐角 A P Q).
   { exists A, P, C; split; auto.
@@ -38,13 +38,13 @@ Proof.
     assert (OS P C S A).
       apply one_side_transitivity with D; Side.
     assert (严格平行 P A S C).
-    { apply lta_distincts in HS1; 分离合取式.
+    { apply 角度小于推不重合 in HS1; 分离合取式.
       apply par_strict_right_comm, par_strict_col_par_strict with D; Col.
     }
     assert (HTS : TS P S C A) by (apply l9_31; Side).
     split; trivial.
     assert (等角 A P S C S P) by (apply aia; [Side|Par]).
-    assert (HLta : 角度小于 A P S A P Q) by (apply (conga_preserves_lta P S C A P Q); 等角).
+    assert (HLta : 角度小于 A P S A P Q) by (apply (等角保持角度小于性质 P S C A P Q); 等角).
     destruct HLta as [HLea HNConga].
     apply invert_two_sides, 角端点在角内点与顶点连线两侧; [|destruct HTS as [_ []]; Col|].
     { intro.

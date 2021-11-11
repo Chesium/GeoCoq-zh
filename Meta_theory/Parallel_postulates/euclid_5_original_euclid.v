@@ -59,7 +59,7 @@ Proof.
   { intro.
     subst.
     apply HNBet.
-    apply (bet_conga__bet D' C D); Between.
+    apply (零角的等角是零角 D' C D); Between.
     apply (和角的唯一性 A B C B C D); auto.
     apply l6_6 in Hout.
     apply (等角保持和角性质 D' C B B C D D' C D); try (apply 同角相等); 和角.

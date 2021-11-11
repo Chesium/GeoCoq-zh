@@ -3056,7 +3056,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma bet_conga__bet :
+Lemma 零角的等角是零角 :
  forall A B C A' B' C',
   Bet A B C ->
   等角 A B C A' B' C' ->
@@ -3312,7 +3312,7 @@ Proof.
     intros.
     induction H.
       assert (Bet D E F).
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H.
         assumption.
       unfold Col.
@@ -3418,7 +3418,7 @@ Proof.
     assert(HH:=or_bet_out A B C).
     induction HH.
       assert(Bet D E P).
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H8.
         assumption.
       exists C.
@@ -3777,7 +3777,7 @@ Proof.
       exists P.
       split.
         assert(Bet D E F).
-          eapply bet_conga__bet.
+          eapply 零角的等角是零角.
             apply H4.
           assumption.
         apply 任何点都在平角内.
@@ -3893,7 +3893,7 @@ Proof.
           assumption.
           assumption.
           assumption.
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H15.
         assumption.
       assumption.
@@ -4085,7 +4085,7 @@ Proof.
       subst X.
       assumption.
     assert (Bet A B PP).
-      eapply bet_conga__bet.
+      eapply 零角的等角是零角.
         apply H.
       assumption.
     eapply 角一边反向延长线上点在角内则该角为平角.
@@ -4094,7 +4094,7 @@ Proof.
 Qed.
 
 
-Lemma eq_conga_out : forall A B D E F, 等角 A B A D E F -> Out E D F.
+Lemma 零角的等角推出外共线 : forall A B D E F, 等角 A B A D E F -> Out E D F.
 Proof.
     intros.
     assert(HH:=H).
@@ -4149,7 +4149,7 @@ Proof.
       assumption.
     assumption.
 Qed.
-
+(* 无用 *)
 Lemma conga_ex_cong3 : forall A B C A' B' C',
   等角 A B C A' B' C' -> exists AA, exists CC, Out B A AA -> Out B C CC -> 三角形全等 AA B CC A' B' C'.
 Proof.
@@ -4186,7 +4186,7 @@ Proof.
       assumption.
     assumption.
 Qed.
-
+(* 不翻译 *)
 Lemma conga_preserves_in_angle : forall A B C I A' B' C' I',
  等角 A B C A' B' C' -> 等角 A B I A' B' I' ->
  在角内 I A B C -> OS A' B' I' C' ->
@@ -4201,7 +4201,7 @@ Proof.
     assert(HH1:= or_bet_out A B C).
     induction HH1.
       assert(Bet A' B' C').
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H9.
         assumption.
       apply 任何点都在平角内; assumption.
@@ -4250,7 +4250,7 @@ Proof.
     induction H18.
       subst J.
       eapply 任何点都在平角内; try assumption.
-      eapply bet_conga__bet.
+      eapply 零角的等角是零角.
         apply H17.
       assumption.
     assert(B <> J).
@@ -4508,7 +4508,7 @@ Proof.
         apply 任何点都在平角内; try assumption.
         auto.
       assert(Bet A B C).
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H11.
         apply 等角的对称性.
         assumption.
@@ -4525,11 +4525,11 @@ Proof.
         分离合取式.
         assumption.
       assert(Bet D E F).
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H18.
         assumption.
       assert (Bet D' E' F').
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H19.
         assumption.
       eapply 成中间性三点组的角相等; try assumption.
@@ -4556,7 +4556,7 @@ Proof.
       ex_and H13 Q'.
       exists Q'.
       assert(Bet A' B' Q').
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H12.
         assumption.
       split.
@@ -4741,7 +4741,7 @@ Proof.
     apply 角度小于的右交换性.
     assumption.
 Qed.
-
+(* 不翻译 *)
 Lemma lea_out4__lea : forall A B C D E F A' C' D' F',
  角度小于等于 A B C D E F -> Out B A A' -> Out B C C' -> Out E D D' -> Out E F F' ->
  角度小于等于 A' B C' D' E F'.
@@ -4750,13 +4750,13 @@ Proof.
   apply (l11_30_等角保持小于等于 A B C D E F); trivial; apply out2__conga; apply l6_6; assumption.
 Qed.
 
-Lemma lea121345 : forall A B C D E, A<>B -> C<>D -> D<>E -> 角度小于等于 A B A C D E.
+Lemma 零角小于等于任何角 : forall A B C D E, A<>B -> C<>D -> D<>E -> 角度小于等于 A B A C D E.
 Proof.
   intros A B C D E HAB HCD HDE.
   apply l11_31_1_任何角小于等于平角_Out表述; try (apply out_trivial); auto.
 Qed.
 
-Lemma inangle__lea : forall A B C P, 在角内 P A B C -> 角度小于等于 A B P A B C.
+Lemma 角内点分角小于等于大角1 : forall A B C P, 在角内 P A B C -> 角度小于等于 A B P A B C.
 Proof.
   intros A B C P HIn.
   exists P; split; trivial.
@@ -4764,16 +4764,16 @@ Proof.
   apply 同角相等; auto.
 Qed.
 
-Lemma inangle__lea_1 : forall A B C P, 在角内 P A B C -> 角度小于等于 P B C A B C.
+Lemma 角内点分角小于等于大角2 : forall A B C P, 在角内 P A B C -> 角度小于等于 P B C A B C.
 Proof.
-  intros; apply 角度小于等于的交换性, inangle__lea, l11_24_在角内的对称性; assumption.
+  intros; apply 角度小于等于的交换性, 角内点分角小于等于大角1, l11_24_在角内的对称性; assumption.
 Qed.
 
-Lemma inangle__lta : forall A B C P, ~ Col P B C -> 在角内 P A B C -> 角度小于 A B P A B C.
+Lemma 非边上角内点分角小于大角 : forall A B C P, ~ Col P B C -> 在角内 P A B C -> 角度小于 A B P A B C.
 Proof.
   intros A B C P HNCol HIn.
   split.
-    apply inangle__lea, HIn.
+    apply 角内点分角小于等于大角1, HIn.
   intro HConga.
   apply conga_cop__or_out_ts in HConga; [|Cop].
   destruct HConga as [|Habs].
@@ -4784,7 +4784,7 @@ Proof.
   apply 角内点和一端点在角另一边同侧; Col.
 Qed.
 
-Lemma in_angle_trans : forall A B C D E,
+Lemma 在角内的传递性 : forall A B C D E,
  在角内 C A B D -> 在角内 D A B E -> 在角内 C A B E.
 Proof.
     intros.
@@ -4842,7 +4842,7 @@ Proof.
       auto.
 Qed.
 
-Lemma lea_trans : forall A B C A1 B1 C1 A2 B2 C2,
+Lemma 角度小于等于的传递性 : forall A B C A1 B1 C1 A2 B2 C2,
  角度小于等于 A B C A1 B1 C1 ->
  角度小于等于 A1 B1 C1 A2 B2 C2 ->
  角度小于等于 A B C A2 B2 C2.
@@ -4863,7 +4863,7 @@ Proof.
     assert(HH1 := or_bet_out A B C).
     induction HH1.
       assert(Bet A1 B1 P1).
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H9.
         assumption.
       assert(Bet A1 B1 C1).
@@ -4871,7 +4871,7 @@ Proof.
           apply H10.
         assumption.
       assert(Bet A2 B2 P2).
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H11.
         assumption.
       assert(Bet A2 B2 C2).
@@ -4979,7 +4979,7 @@ Proof.
     unfold 角度小于等于.
     exists P.
     split.
-      eapply (in_angle_trans _ _ _ P2).
+      eapply (在角内的传递性 _ _ _ P2).
         apply (conga_preserves_in_angle A1 B1 C1 P1); trivial.
           eapply 角等的传递性.
             apply 等角的对称性.
@@ -4990,7 +4990,7 @@ Proof.
 Qed.
 
 
-Lemma in_angle_asym : forall A B C D,
+Lemma 双在角内推等角 : forall A B C D,
  在角内 D A B C -> 在角内 C A B D -> 等角 A B C A B D.
 Proof.
     intros.
@@ -5072,7 +5072,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma lea_asym : forall A B C D E F,
+Lemma 双角度偏序推等角 : forall A B C D E F,
  角度小于等于 A B C D E F -> 角度小于等于 D E F A B C -> 等角 A B C D E F.
 Proof.
     intros.
@@ -5082,7 +5082,7 @@ Proof.
         apply 成中间性三点组的角相等; auto.
         ex_and H P.
         apply 角一边反向延长线上点在角内则该角为平角 with P; trivial.
-        apply (bet_conga__bet A B C); assumption.
+        apply (零角的等角是零角 A B C); assumption.
       apply not_bet_out in H2; trivial.
       apply l11_21_b; trivial.
       ex_and H0 P.
@@ -5105,7 +5105,7 @@ Proof.
     assert(HH1:= or_bet_out A B Q).
     induction HH1.
       assert(Bet A B P).
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H10.
         assumption.
       assert(Bet A B C).
@@ -5113,7 +5113,7 @@ Proof.
           apply H11.
         assumption.
       assert(Bet D E F).
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H10.
         assumption.
       eapply 成中间性三点组的角相等; try assumption.
@@ -5144,7 +5144,7 @@ Proof.
           apply H11.
         assumption.
       assert(Bet D E F).
-        eapply bet_conga__bet.
+        eapply 零角的等角是零角.
           apply H11.
         apply 等角的对称性.
         assumption.
@@ -5189,7 +5189,7 @@ Proof.
         分离合取式.
         absurde.
       assert(等角 A B C A B P).
-        apply in_angle_asym; assumption.
+        apply 双在角内推等角; assumption.
       eapply 角等的传递性.
         apply H14.
       eapply 角等的传递性.
@@ -5242,7 +5242,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma col_lta__bet : forall A B C X Y Z, Col X Y Z -> 角度小于 A B C X Y Z -> Bet X Y Z.
+Lemma 共线三点构成的角大于等于任何角则该三点构成中间性 : forall A B C X Y Z, Col X Y Z -> 角度小于 A B C X Y Z -> Bet X Y Z.
 Proof.
     intros.
     destruct H0.
@@ -5251,14 +5251,14 @@ Proof.
       assumption.
     intro.
     apply H1.
-    apply lea_asym.
+    apply 双角度偏序推等角.
       assumption.
     apply 角度小于等于推出点不重合 in H0.
     分离合取式.
     apply l11_31_1_任何角小于等于平角_Out表述; auto.
 Qed.
 
-Lemma col_lta__out : forall A B C X Y Z, Col A B C -> 角度小于 A B C X Y Z -> Out B A C.
+Lemma 共线三点构成的角大于等于任何角则该三点构成外共线 : forall A B C X Y Z, Col A B C -> 角度小于 A B C X Y Z -> Out B A C.
 Proof.
     intros.
     apply not_bet_out.
@@ -5266,14 +5266,14 @@ Proof.
     intro.
     destruct H0.
     apply H2.
-    apply lea_asym.
+    apply 双角度偏序推等角.
       assumption.
     apply 角度小于等于推出点不重合 in H0.
     分离合取式.
     apply l11_31_1_任何角小于等于平角_Bet表述; auto.
 Qed.
 
-Lemma lta_distincts : forall A B C D E F, 角度小于 A B C D E F ->
+Lemma 角度小于推不重合 : forall A B C D E F, 角度小于 A B C D E F ->
    A<>B /\ C<>B /\ D<>E /\ F<>E /\ D <> F.
 Proof.
   intros A B C D E F Hlta.
@@ -5283,38 +5283,48 @@ Proof.
   repeat split; auto.
   intro.
   subst F.
-  assert (Bet D E D) by (apply (col_lta__bet A B C); Col).
+  assert (Bet D E D) by (apply (共线三点构成的角大于等于任何角则该三点构成中间性 A B C); Col).
   treat_equalities; auto.
 Qed.
 
-Lemma gta_distincts : forall A B C D E F, 角度大于 A B C D E F ->
+Lemma 角度大于推不重合 : forall A B C D E F, 角度大于 A B C D E F ->
    A<>B /\ C<>B /\ D<>E /\ F<>E /\ A <> C.
 Proof.
   intros A B C D E F Hgta.
-  apply lta_distincts in Hgta.
+  apply 角度小于推不重合 in Hgta.
   分离合取式.
   repeat split; auto.
 Qed.
 
-Lemma acute_distincts : forall A B C, 为锐角 A B C -> A<>B /\ C<>B.
+Lemma 角为锐角推不重合 : forall A B C, 为锐角 A B C -> A<>B /\ C<>B.
 Proof.
   intros A B C Hacute.
   destruct Hacute as [x [y [z [HPer Hlta]]]].
-  apply lta_distincts in Hlta.
+  apply 角度小于推不重合 in Hlta.
   分离合取式.
   split; auto.
 Qed.
 
-Lemma obtuse_distincts : forall A B C, 为钝角 A B C -> A<>B /\ C<>B /\ A <> C.
+Lemma 角为钝角推不重合 : forall A B C, 为钝角 A B C -> A<>B /\ C<>B /\ A <> C.
 Proof.
   intros A B C Hobtuse.
   destruct Hobtuse as [x [y [z [HPer Hgta]]]].
-  apply gta_distincts in Hgta.
+  apply 角度大于推不重合 in Hgta.
   分离合取式.
   split; auto.
 Qed.
-
-Lemma two_sides_in_angle : forall A B C P P',
+(* 
+   P'
+   |
+   |
+   B
+  /|\
+ / | \
+A  |  C
+   |
+   P
+*)
+Lemma 角两侧两点必有一点在角内 : forall A B C P P',
  B <> P' ->
  TS B P A C ->
  Bet P B P' ->
@@ -5386,8 +5396,16 @@ Proof.
     apply 等价共线CBA in H3.
     contradiction.
 Qed.
-
-Lemma in_angle_reverse :
+(* 
+                     D
+      C            _//
+       \         _//
+        \      _//
+         \   _//
+          \ //
+  A--------B------------A'
+*)
+Lemma 在角内的特殊反向性 :
  forall A B A' C D,
   A' <> B ->
   Bet A B A' ->
@@ -5714,20 +5732,24 @@ Proof.
     assumption.
 Qed.
 
-Lemma in_angle_trans2 : forall A B C D E, 在角内 C A B D -> 在角内 D A B E -> 在角内 D C B E.
+Lemma 在角内的传递性2 : forall A B C D E, 在角内 C A B D -> 在角内 D A B E -> 在角内 D C B E.
 Proof.
   intros A B C D E HC HD.
   destruct (由一点往一方向构造等长线段 E B E B) as [E' [HE1 HE2]].
   assert (Hd := HD).
   apply 在角内推出点不重合 in Hd.
   分离合取式; 统计不重合点.
-  apply l11_24_在角内的对称性, in_angle_reverse with E'; Between.
-  apply l11_24_在角内的对称性, in_angle_trans with A; apply l11_24_在角内的对称性; trivial.
-  apply in_angle_reverse with E; auto.
+  apply l11_24_在角内的对称性, 在角内的特殊反向性 with E'; Between.
+  apply l11_24_在角内的对称性, 在角内的传递性 with A; apply l11_24_在角内的对称性; trivial.
+  apply 在角内的特殊反向性 with E; auto.
   apply l11_24_在角内的对称性; trivial.
 Qed.
-
-Lemma l11_36 : forall A B C D E F A' D',
+(*
+   C    D----E---D'
+    \         \
+ A---B----A'   F
+*)
+Lemma l11_36_双补角组中的角度偏序 : forall A B C D E F A' D',
  A <> B -> A' <> B -> D <> E -> D' <> E ->
  Bet A B A' -> Bet D E D' ->
  (角度小于等于 A B C D E F <-> 角度小于等于 D' E F A' B C).
@@ -5741,7 +5763,7 @@ Proof.
       ex_and H5 P.
       exists P.
       split.
-        eapply (in_angle_reverse A); try assumption.
+        eapply (在角内的特殊反向性 A); try assumption.
       eapply l11_13.
         apply 等角的对称性.
         apply H6.
@@ -5756,7 +5778,7 @@ Proof.
     ex_and H5 P.
     exists P.
     split.
-      eapply (in_angle_reverse A'); try assumption.
+      eapply (在角内的特殊反向性 A'); try assumption.
       apply 中间性的对称性.
       assumption.
     eapply l11_13.
@@ -5770,7 +5792,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma l11_41_aux : forall A B C D,
+Lemma l11_41_证明辅助定理 : forall A B C D,
  ~ Col A B C ->
  Bet B A D ->
  A <> D ->
@@ -6016,7 +6038,7 @@ Qed.
 
 (** This is exterior angle theorem *)
 
-Lemma l11_41 : forall A B C D,
+Lemma l11_41_三角形两内角小于另一外角 : forall A B C D,
   ~ Col A B C ->
   Bet B A D ->
   A <> D ->
@@ -6024,13 +6046,13 @@ Lemma l11_41 : forall A B C D,
 Proof.
     intros.
     split.
-      apply l11_41_aux.
+      apply l11_41_证明辅助定理.
         assumption.
         assumption.
       assumption.
     prolong C A E C A.
     assert(角度小于 A B C B A E).
-      eapply l11_41_aux.
+      eapply l11_41_证明辅助定理.
         intro.
         apply H.
         apply 等价共线ACB.
@@ -6061,7 +6083,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma not_conga : forall A B C A' B' C' D E F ,
+Lemma 等角保持不等角性质 : forall A B C A' B' C' D E F ,
  等角 A B C A' B' C' ->
  ~ 等角 A B C D E F ->
  ~ 等角 A' B' C' D E F.
@@ -6074,7 +6096,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma not_等角的对称性 : forall A B C D E F,
+Lemma 不等角的对称性 : forall A B C D E F,
  ~ 等角 A B C D E F ->
  ~ 等角 D E F A B C.
 Proof.
@@ -6085,20 +6107,20 @@ Proof.
     assumption.
 Qed.
 
-Lemma 两长度不可能互相小于对方a : forall A B C D E F, ~ (角度小于 A B C D E F /\ 角度小于 D E F A B C).
+Lemma 两角度不可能互相小于对方 : forall A B C D E F, ~ (角度小于 A B C D E F /\ 角度小于 D E F A B C).
 Proof.
     intros.
     intro.
     unfold 角度小于 in *.
     分离合取式.
     assert(等角 A B C D E F).
-      apply lea_asym.
+      apply 双角度偏序推等角.
         assumption.
       assumption.
     contradiction.
 Qed.
 
-Lemma conga_preserves_lta : forall A B C D E F A' B' C' D' E' F',
+Lemma 等角保持角度小于性质 : forall A B C D E F A' B' C' D' E' F',
  等角 A B C A' B' C' ->
  等角 D E F D' E' F' ->
  角度小于 A B C D E F ->
@@ -6122,7 +6144,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma lta_trans : forall A B C A1 B1 C1 A2 B2 C2,
+Lemma 角度小于的传递性 : forall A B C A1 B1 C1 A2 B2 C2,
  角度小于 A B C A1 B1 C1 ->
  角度小于 A1 B1 C1 A2 B2 C2 ->
  角度小于 A B C A2 B2 C2.
@@ -6134,14 +6156,14 @@ Proof.
     unfold 角度小于 in H0.
     分离合取式.
     assert(角度小于等于 A B C A2 B2 C2).
-      eapply lea_trans.
+      eapply 角度小于等于的传递性.
         apply H.
       assumption.
     split.
       assumption.
     intro.
     assert(角度小于 A2 B2 C2 A1 B1 C1).
-      eapply conga_preserves_lta.
+      eapply 等角保持角度小于性质.
         apply H4.
         apply 同角相等.
           unfold 角度小于等于 in H0.
@@ -6155,11 +6177,11 @@ Proof.
         分离合取式.
         assumption.
       assumption.
-    apply (两长度不可能互相小于对方a A1 B1 C1 A2 B2 C2).
+    apply (两角度不可能互相小于对方 A1 B1 C1 A2 B2 C2).
     split; assumption.
 Qed.
 
-Lemma obtuse_sym : forall A B C, 为钝角 A B C -> 为钝角 C B A.
+Lemma 为钝角的对称性 : forall A B C, 为钝角 A B C -> 为钝角 C B A.
 Proof.
     unfold 为钝角.
     intros.
@@ -6175,7 +6197,7 @@ Proof.
     assumption.
 Qed.
 
-Lemma acute_sym : forall A B C, 为锐角 A B C -> 为锐角 C B A.
+Lemma 为锐角的对称性 : forall A B C, 为锐角 A B C -> 为锐角 C B A.
 Proof.
     unfold 为锐角.
     intros.
@@ -6188,21 +6210,21 @@ Proof.
     split;auto using 角度小于的左交换性.
 Qed.
 
-Lemma acute_col__out : forall A B C, Col A B C -> 为锐角 A B C -> Out B A C.
+Lemma 共线锐角推外共线 : forall A B C, Col A B C -> 为锐角 A B C -> Out B A C.
 Proof.
     intros.
     destruct H0 as [X [Y [Z []]]].
-    apply col_lta__out with X Y Z; assumption.
+    apply 共线三点构成的角大于等于任何角则该三点构成外共线 with X Y Z; assumption.
 Qed.
 
-Lemma col_obtuse__bet : forall A B C, Col A B C -> 为钝角 A B C -> Bet A B C.
+Lemma 共线钝角推中间性 : forall A B C, Col A B C -> 为钝角 A B C -> Bet A B C.
 Proof.
     intros.
     destruct H0 as [X [Y [Z []]]].
-    apply (col_lta__bet X Y Z); assumption.
+    apply (共线三点构成的角大于等于任何角则该三点构成中间性 X Y Z); assumption.
 Qed.
 
-Lemma out__acute : forall A B C, Out B A C -> 为锐角 A B C.
+Lemma 外共线零角为锐角 : forall A B C, Out B A C -> 为锐角 A B C.
 Proof.
   intros A B C Hout.
   统计不重合点.
@@ -6223,7 +6245,7 @@ Proof.
   apply (l11_21_a A B C); auto.
 Qed.
 
-Lemma bet__obtuse : forall A B C, Bet A B C -> A <> B -> B <> C -> 为钝角 A B C.
+Lemma 中间性平角为钝角 : forall A B C, Bet A B C -> A <> B -> B <> C -> 为钝角 A B C.
 Proof.
   intros A B C HBet HAB HBC.
   assert(HD := 垂点的存在性 B A B).
@@ -6239,18 +6261,18 @@ Proof.
   assert(HNCol : ~ Col A B D) by (apply 成直角三点不共线; Perp).
   apply HNCol.
   apply 中间性蕴含共线1.
-  apply (bet_conga__bet A B C); try (apply 等角的对称性); auto.
+  apply (零角的等角是零角 A B C); try (apply 等角的对称性); auto.
 Qed.
 
-Lemma l11_43_aux : forall A B C, A <> B -> A <> C -> (Per B A C \/ 为钝角 B A C) -> 为锐角 A B C.
+Lemma l11_43_证明辅助定理 : forall A B C, A <> B -> A <> C -> (Per B A C \/ 为钝角 B A C) -> 为锐角 A B C.
 Proof.
     intros.
     induction (共线的决定性 A B C).
       induction H1.
         exfalso.
         apply (成直角三点不共线 B A C); Col.
-      apply out__acute, bet_out; auto.
-      apply col_obtuse__bet; Col.
+      apply 外共线零角为锐角, bet_out; auto.
+      apply 共线钝角推中间性; Col.
     统计不重合点.
     prolong B A B' B A.
     assert(~ Col B' A C).
@@ -6272,7 +6294,7 @@ Proof.
     apply 不共线则不重合 in H6.
     分离合取式.
     assert(角度小于 A C B C A B'/\ 角度小于 A B C C A B').
-      apply l11_41.
+      apply l11_41_三角形两内角小于另一外角.
         assumption.
         assumption.
       auto.
@@ -6368,7 +6390,7 @@ Proof.
     assert(角度小于 C A B' P A B).
       assert(B <> A).
         auto.
-      assert(HH := l11_36 B A P B A C B' B' H18 H7 H18 H7 H3 H3).
+      assert(HH := l11_36_双补角组中的角度偏序 B A P B A C B' B' H18 H7 H18 H7 H3 H3).
       destruct HH.
       unfold 角度小于.
       split.
@@ -6417,24 +6439,24 @@ Proof.
         assumption.
         auto.
       auto.
-    eapply lta_trans.
+    eapply 角度小于的传递性.
       apply H11.
     apply 角度小于的右交换性.
     assumption.
 Qed.
 
-Lemma l11_43 : forall A B C, A <> B -> A <> C -> (Per B A C \/ 为钝角 B A C) -> 为锐角 A B C /\ 为锐角 A C B.
+Lemma l11_43_非锐角三角形两小内角为锐角 : forall A B C, A <> B -> A <> C -> (Per B A C \/ 为钝角 B A C) -> 为锐角 A B C /\ 为锐角 A C B.
 Proof.
     intros.
     split.
-      apply l11_43_aux;auto.
-    apply l11_43_aux;auto.
+      apply l11_43_证明辅助定理;auto.
+    apply l11_43_证明辅助定理;auto.
     induction H1.
       left;Perp.
-    right;apply obtuse_sym;assumption.
+    right;apply 为钝角的对称性;assumption.
 Qed.
 
-Lemma acute_lea_acute : forall A B C D E F, 为锐角 D E F -> 角度小于等于 A B C D E F -> 为锐角 A B C.
+Lemma 小于等于锐角之角为锐角 : forall A B C D E F, 为锐角 D E F -> 角度小于等于 A B C D E F -> 为锐角 A B C.
 Proof.
     intros.
     unfold 为锐角 in *.
@@ -6449,12 +6471,12 @@ Proof.
     分离合取式.
     unfold 角度小于.
     split.
-      eapply lea_trans.
+      eapply 角度小于等于的传递性.
         apply H0.
       assumption.
     intro.
     assert(角度小于 A' B' C' D E F).
-      eapply conga_preserves_lta.
+      eapply 等角保持角度小于性质.
         apply H3.
         apply 同角相等.
           unfold 角度小于等于 in H0.
@@ -6476,11 +6498,11 @@ Proof.
         apply 等角的对称性.
         apply H4.
       assumption.
-    apply (两长度不可能互相小于对方a A' B' C' D E F).
+    apply (两角度不可能互相小于对方 A' B' C' D E F).
     split; assumption.
 Qed.
 
-Lemma lea_obtuse_obtuse : forall A B C D E F, 为钝角 D E F -> 角度小于等于 D E F A B C -> 为钝角 A B C.
+Lemma 一角小于等于钝角则该角为钝角 : forall A B C D E F, 为钝角 D E F -> 角度小于等于 D E F A B C -> 为钝角 A B C.
 Proof.
     intros.
     ex_and H A'.
@@ -6493,12 +6515,12 @@ Proof.
     unfold 角度小于 in H1.
     分离合取式.
     split.
-      eapply lea_trans.
+      eapply 角度小于等于的传递性.
         apply H1.
       assumption.
     intro.
     assert(角度小于 D E F A' B' C').
-      eapply conga_preserves_lta.
+      eapply 等角保持角度小于性质.
         apply 同角相等.
           unfold 角度小于等于 in H0.
           ex_and H0 X.
@@ -6521,7 +6543,7 @@ Proof.
         apply H3.
       apply 等角的对称性.
       assumption.
-    apply (两长度不可能互相小于对方a A' B' C' D E F).
+    apply (两角度不可能互相小于对方 A' B' C' D E F).
     split; assumption.
 Qed.
 
@@ -6529,7 +6551,7 @@ Qed.
     This is Euclid: Book 1, Proposition 5.
  *)
 
-Lemma l11_44_1_a : forall A B C, A <> B -> A <> C -> Cong B A B C -> 等角 B A C B C A.
+Lemma l11_44_1_a_等腰三角形底角相等 : forall A B C, A <> B -> A <> C -> Cong B A B C -> 等角 B A C B C A.
 Proof.
     intros.
     destruct (中点的存在性 A C) as [P HP].
@@ -6539,8 +6561,15 @@ Proof.
 Qed.
 
 (** This is Euclid: Book 1, Proposition 18 *)
-
-Lemma l11_44_2_a : forall A B C, ~ Col A B C -> Lt B A B C -> 角度小于 B C A B A C.
+(*
+      B
+     / \_
+    /    \_
+   /  L: < \_
+  /#  A: >  #\
+ A------------C
+*)
+Lemma l11_44_2_a_三角形长边对小角 : forall A B C, ~ Col A B C -> Lt B A B C -> 角度小于 B C A B A C.
 Proof.
     intros.
     apply 不共线则不重合 in H.
@@ -6577,7 +6606,7 @@ Proof.
       right.
       apply out_trivial.
       auto.
-    assert(HH:=l11_41 C' C A B).
+    assert(HH:=l11_41_三角形两内角小于另一外角 C' C A B).
     assert(角度小于 C' A C A C' B /\ 角度小于 C' C A A C' B).
       apply HH.
         intro.
@@ -6621,7 +6650,7 @@ Proof.
           Col.
         apply bet_out;auto.
     assert(角度小于 B C A A C' B).
-      apply (conga_preserves_lta C' C A A C' B).
+      apply (等角保持角度小于性质 C' C A A C' B).
         apply out2__conga.
           apply l6_6.
           apply bet_out.
@@ -6633,20 +6662,20 @@ Proof.
       apply 同角相等; auto.
       assumption.
     assert(等角 B A C' B C' A).
-      apply (l11_44_1_a A B C'); auto.
+      apply (l11_44_1_a_等腰三角形底角相等 A B C'); auto.
     apply 等角的右交换性 in H14.
     assert(角度小于 B C A B A C').
-      apply (conga_preserves_lta B C A A C' B).
+      apply (等角保持角度小于性质 B C A A C' B).
         apply 同角相等; auto.
         apply 等角的对称性.
         assumption.
       assumption.
-    eapply lta_trans.
+    eapply 角度小于的传递性.
       apply H15.
     assumption.
 Qed.
-
-Lemma not_lta_and_conga : forall A B C D E F, ~ (角度小于 A B C D E F /\ 等角 A B C D E F).
+(* 无用 *)
+Lemma 一角不可能既小于又等于另一角 : forall A B C D E F, ~ (角度小于 A B C D E F /\ 等角 A B C D E F).
 Proof.
     intros.
     intro.
@@ -6655,14 +6684,14 @@ Proof.
     分离合取式.
     contradiction.
 Qed.
-
-Lemma 等角的对称性_equiv : forall A B C A' B' C', 等角 A B C A' B' C' <-> 等角 A' B' C' A B C.
+(* 无用 *)
+Lemma 等角的对称等价性 : forall A B C A' B' C', 等角 A B C A' B' C' <-> 等角 A' B' C' A B C.
 Proof.
     intros.
     split; apply 等角的对称性.
 Qed.
 
-Lemma conga_dec :
+Lemma 等角的决定性 :
   forall A B C D E F,
    等角 A B C D E F \/ ~ 等角 A B C D E F.
 Proof.
@@ -6701,7 +6730,7 @@ Proof.
     contradiction.
 Qed.
 
-Lemma lta_not_conga : forall A B C D E F, 角度小于 A B C D E F -> ~ 等角 A B C D E F.
+Lemma 一角小于另一角则两角不可能相等 : forall A B C D E F, 角度小于 A B C D E F -> ~ 等角 A B C D E F.
 Proof.
     intros.
     intro.
@@ -6710,57 +6739,57 @@ Proof.
     contradiction.
 Qed.
 
-Lemma lta__lea : forall A B C D E F, 角度小于 A B C D E F -> 角度小于等于 A B C D E F.
+Lemma 角度小于蕴含角度小于等于 : forall A B C D E F, 角度小于 A B C D E F -> 角度小于等于 A B C D E F.
 Proof.
   intros.
   destruct H.
   assumption.
 Qed.
 
-Lemma nlta : forall A B C, ~ 角度小于 A B C A B C.
+Lemma 一角不可能小于自己 : forall A B C, ~ 角度小于 A B C A B C.
 Proof.
   intros A B C.
   intro.
-  apply (两长度不可能互相小于对方a A B C A B C).
+  apply (两角度不可能互相小于对方 A B C A B C).
   split; assumption.
 Qed.
 
-Lemma lea__nlta : forall A B C D E F, 角度小于等于 A B C D E F -> ~ 角度小于 D E F A B C.
+Lemma 两角成偏序关系则不可能成反全序关系 : forall A B C D E F, 角度小于等于 A B C D E F -> ~ 角度小于 D E F A B C.
 Proof.
   intros.
   intro Hlta.
   destruct Hlta as [Hlea HNConga].
   apply HNConga.
-  apply lea_asym; assumption.
+  apply 双角度偏序推等角; assumption.
 Qed.
 
-Lemma lta__nlea : forall A B C D E F, 角度小于 A B C D E F -> ~ 角度小于等于 D E F A B C.
+Lemma 角度小于蕴含反向角度小于等于的否定 : forall A B C D E F, 角度小于 A B C D E F -> ~ 角度小于等于 D E F A B C.
 Proof.
   intros A B C D E F Hlta.
   destruct Hlta as [Hlea HNConga].
   intro.
   apply HNConga.
-  apply lea_asym; assumption.
+  apply 双角度偏序推等角; assumption.
 Qed.
 
 (** If the base angles are equal, then the triangle is 等腰三角形 *)
 
-Lemma l11_44_1_b : forall A B C, ~ Col A B C -> 等角 B A C B C A -> Cong B A B C.
+Lemma l11_44_1_三角形底角相等等价于等腰_b_底角相等的三角形是等腰三角形 : forall A B C, ~ Col A B C -> 等角 B A C B C A -> Cong B A B C.
 Proof.
     intros.
     apply 不共线则不重合 in H.
     分离合取式.
     assert(HH:= 两长度必大于小于或等于 B A B C).
     induction HH.
-      apply l11_44_2_a in H4.
-        apply lta_not_conga in H4.
+      apply l11_44_2_a_三角形长边对小角 in H4.
+        apply 一角小于另一角则两角不可能相等 in H4.
           apply 等角的对称性 in H0.
           contradiction.
       assumption.
     induction H4.
       unfold Gt in H4.
-      apply l11_44_2_a in H4.
-        apply lta_not_conga in H4.
+      apply l11_44_2_a_三角形长边对小角 in H4.
+        apply 一角小于另一角则两角不可能相等 in H4.
           contradiction.
       intro.
       apply H.
@@ -6770,20 +6799,27 @@ Proof.
 Qed.
 
 (** This is Euclid Book I, Proposition 19 *)
-
-Lemma l11_44_2_b : forall A B C, 角度小于 B A C B C A -> Lt B C B A.
+(*
+      B
+     / \_
+    /    \_
+   /  L: < \_
+  /#  A: >  #\
+ C------------A
+*)
+Lemma l11_44_2_b_三角形小角对长边 : forall A B C, 角度小于 B A C B C A -> Lt B C B A.
 Proof.
     intros.
     induction (共线的决定性 A B C).
       assert (Hd := H).
-      apply lta_distincts in Hd; 分离合取式; clean_reap_hyps.
-      apply col_lta__bet in H; Col; Le.
+      apply 角度小于推不重合 in Hd; 分离合取式; clean_reap_hyps.
+      apply 共线三点构成的角大于等于任何角则该三点构成中间性 in H; Col; Le.
     apply 不共线则不重合 in H0.
     分离合取式.
     assert(HH:= 两长度必大于小于或等于 B A B C).
     induction HH.
-      apply l11_44_2_a in H4.
-        assert(HH:= 两长度不可能互相小于对方a B A C B C A).
+      apply l11_44_2_a_三角形长边对小角 in H4.
+        assert(HH:= 两角度不可能互相小于对方 B A C B C A).
         exfalso.
         apply HH.
         split; assumption.
@@ -6791,46 +6827,46 @@ Proof.
     induction H4.
       unfold Gt in H4.
       assumption.
-    apply l11_44_1_a in H4; auto.
-    apply lta_not_conga in H; auto.
+    apply l11_44_1_a_等腰三角形底角相等 in H4; auto.
+    apply 一角小于另一角则两角不可能相等 in H; auto.
     contradiction.
 Qed.
 
-Lemma l11_44_1 : forall A B C, ~ Col A B C -> (等角 B A C B C A <-> Cong B A B C).
+Lemma l11_44_1_三角形底角相等等价于等腰 : forall A B C, ~ Col A B C -> (等角 B A C B C A <-> Cong B A B C).
 Proof.
-    intros; 统计不重合点; split; intro; auto using l11_44_1_b, l11_44_1_a.
+    intros; 统计不重合点; split; intro; auto using l11_44_1_三角形底角相等等价于等腰_b_底角相等的三角形是等腰三角形, l11_44_1_a_等腰三角形底角相等.
 Qed.
 
-Lemma l11_44_2 : forall A B C, ~ Col A B C -> (角度小于 B A C B C A <-> Lt B C B A).
+Lemma l11_44_2_三角形小角对长边 : forall A B C, ~ Col A B C -> (角度小于 B A C B C A <-> Lt B C B A).
 Proof.
-    intros; split; intro; auto using l11_44_2_b, l11_44_2_a with col. 
+    intros; split; intro; auto using l11_44_2_b_三角形小角对长边, l11_44_2_a_三角形长边对小角 with col. 
 Qed.
 
-Lemma l11_44_2bis : forall A B C, ~ Col A B C -> (角度小于等于 B A C B C A <-> Le B C B A).
+Lemma l11_44_2_三角形小角对长边_偏序版 : forall A B C, ~ Col A B C -> (角度小于等于 B A C B C A <-> Le B C B A).
 Proof.
     intros; split; intro.
       apply 不小于推出反向小于等于.
       intro.
-      apply (lea__nlta B A C B C A).
+      apply (两角成偏序关系则不可能成反全序关系 B A C B C A).
         assumption.
-      apply l11_44_2; Col.
+      apply l11_44_2_三角形小角对长边; Col.
     induction (等长的决定性 B C B A).
       apply 等角小于等于自己.
-      apply l11_44_1; Cong.
-    apply lta__lea.
-    apply l11_44_2.
+      apply l11_44_1_三角形底角相等等价于等腰; Cong.
+    apply 角度小于蕴含角度小于等于.
+    apply l11_44_2_三角形小角对长边.
       assumption.
     split; assumption.
 Qed.
 
-Lemma l11_46 : forall A B C, A <> B -> B <> C -> (Per A B C \/ 为钝角 A B C) -> Lt B A A C /\ Lt B C A C.
+Lemma l11_46_非锐角三角形中大角对边最长 : forall A B C, A <> B -> B <> C -> (Per A B C \/ 为钝角 A B C) -> Lt B A A C /\ Lt B C A C.
 Proof.
     intros.
     induction (共线的决定性 A B C).
       induction H1.
         exfalso.
         apply (成直角三点不共线 A B C); auto.
-      apply col_obtuse__bet in H1; auto.
+      apply 共线钝角推中间性 in H1; auto.
       repeat split; Le.
         intro.
         apply H0, between_cong with A; Cong.
@@ -6838,21 +6874,21 @@ Proof.
       apply H, eq_sym, between_cong with C; Between; Cong.
     统计不重合点.
     assert(HH:= H1).
-    apply l11_43 in H1; auto.
+    apply l11_43_非锐角三角形两小内角为锐角 in H1; auto.
       分离合取式.
       split.
         apply 长度小于的左交换性.
-        apply l11_44_2_b.
+        apply l11_44_2_b_三角形小角对长边.
         unfold 为锐角 in H3.
         ex_and H3 A'.
         ex_and H4 B'.
         ex_and H3 C'.
         assert (Hd := H4).
-        apply lta_distincts in Hd.
+        apply 角度小于推不重合 in Hd.
         分离合取式.
         induction HH.
          {
-            eapply conga_preserves_lta with A C B A' B' C'.
+            eapply 等角保持角度小于性质 with A C B A' B' C'.
               apply 同角相等;auto.
               apply l11_16_直角相等;auto.
           apply 角度小于的左交换性.
@@ -6862,28 +6898,28 @@ Proof.
         ex_and H11 A''.
         ex_and H12 B''.
         ex_and H11 C''.
-        eapply lta_trans.
+        eapply 角度小于的传递性.
           apply 角度小于的左交换性.
           apply H4.
-        eapply conga_preserves_lta with A'' B'' C'' A B C.
+        eapply 等角保持角度小于性质 with A'' B'' C'' A B C.
           assert (Hd := H12).
-          apply lta_distincts in Hd.
+          apply 角度小于推不重合 in Hd.
           分离合取式.
           apply l11_16_直角相等; auto.
           apply 同角相等; auto.
         assumption.
       apply 长度小于的左交换性.
       apply 长度小于的右交换性.
-      apply l11_44_2_b.
+      apply l11_44_2_b_三角形小角对长边.
       unfold 为锐角 in H1.
       ex_and H1 A'.
       ex_and H4 B'.
       ex_and H1 C'.
       assert (Hd := H4).
-      apply lta_distincts in Hd.
+      apply 角度小于推不重合 in Hd.
       分离合取式.
       induction HH.
-        eapply conga_preserves_lta.
+        eapply 等角保持角度小于性质.
           apply 同角相等; auto.
           apply l11_16_直角相等.
             apply H1.
@@ -6899,11 +6935,11 @@ Proof.
       ex_and H11 A''.
       ex_and H12 B''.
       ex_and H11 C''.
-      eapply lta_trans.
+      eapply 角度小于的传递性.
         apply 角度小于的左交换性.
         apply H4.
-      eapply conga_preserves_lta.
-        apply lta_distincts in H12.
+      eapply 等角保持角度小于性质.
+        apply 角度小于推不重合 in H12.
         分离合取式.
         apply (l11_16_直角相等 A'' B'' C''); auto.
         apply 同角相等; auto.
@@ -6975,14 +7011,14 @@ Proof.
       apply 直角的对称性.
       assumption.
     assert(Lt H A A C /\ Lt H C A C).
-      apply l11_46; auto.
+      apply l11_46_非锐角三角形中大角对边最长; auto.
       left.
       apply 直角的对称性.
       assumption.
     assert(Lt C A A B /\ Lt C B A B).
-      apply l11_46; auto.
+      apply l11_46_非锐角三角形中大角对边最长; auto.
     assert(Lt H B B C /\ Lt H C B C).
-      apply l11_46; auto.
+      apply l11_46_非锐角三角形中大角对边最长; auto.
       left.
       Perp.
     split.
@@ -7274,8 +7310,8 @@ Proof.
     unfold Out in H7.
     分离合取式.
     induction H32.
-      assert(HH:=l11_41).
-      assert(HH1:=l11_41 C'' C' A' B' H27 (中间性的对称性 _ _ _ H32) H7).
+      assert(HH:=l11_41_三角形两内角小于另一外角).
+      assert(HH1:=l11_41_三角形两内角小于另一外角 C'' C' A' B' H27 (中间性的对称性 _ _ _ H32) H7).
       分离合取式.
       assert(等角 B' C' A' C'' C' A').
         eapply (l11_10 B' C' A' B' C' A').
@@ -7293,7 +7329,7 @@ Proof.
         apply out_trivial.
         auto.
       assert(角度小于 B' C' A' A' C'' B').
-        eapply conga_preserves_lta.
+        eapply 等角保持角度小于性质.
           apply 等角的对称性.
           apply H35.
           apply 同角相等.
@@ -7309,7 +7345,7 @@ Proof.
       apply H27.
       apply 等价共线BAC.
       assumption.
-    assert(HH1:=l11_41 C' C'' A' B' H33 (中间性的对称性 _ _ _ H32) H15).
+    assert(HH1:=l11_41_三角形两内角小于另一外角 C' C'' A' B' H33 (中间性的对称性 _ _ _ H32) H15).
     分离合取式.
     assert(等角 B' C'' A' C' C'' A').
       apply out2__conga.
@@ -7320,7 +7356,7 @@ Proof.
       apply out_trivial.
       auto.
     assert(角度小于 B' C'' A' A' C' B').
-      eapply conga_preserves_lta.
+      eapply 等角保持角度小于性质.
         apply 等角的对称性.
         apply H36.
         apply 同角相等.
@@ -7371,7 +7407,7 @@ Proof.
         unfold Col in H7.
         induction H7.
           assert(Bet A' B' C').
-            eapply bet_conga__bet.
+            eapply 零角的等角是零角.
               apply H7.
             assumption.
           apply 等长的交换性.
@@ -7471,7 +7507,7 @@ Proof.
       unfold Out in H8.
       分离合取式.
       induction H19.
-        assert(HH:= l11_41 A'' B' C' A' H16 H19 H17).
+        assert(HH:= l11_41_三角形两内角小于另一外角 A'' B' C' A' H16 H19 H17).
         分离合取式.
         assert(Cong A' C' A'' C').
           apply (等长的传递性 _ _ A C).
@@ -7483,7 +7519,7 @@ Proof.
           intro.
           apply H15.
           apply (共线的传递性2 _ A''); Col.
-        assert (HH:= l11_44_1 A'' C' A' H23).
+        assert (HH:= l11_44_1_三角形底角相等等价于等腰 A'' C' A' H23).
         destruct HH.
         apply 等长的交换性 in H22.
         apply 等长的对称性 in H22.
@@ -7500,11 +7536,11 @@ Proof.
             apply ABA型共线.
         assert(~Col B' C' A').
           Col.
-        assert(HH:=l11_44_2 B' C' A' H28).
+        assert(HH:=l11_44_2_三角形小角对长边 B' C' A' H28).
         destruct HH.
         assert(Lt C' A'  C' B').
           apply H29.
-          apply (conga_preserves_lta A'' B' C' C' A'' A').
+          apply (等角保持角度小于性质 A'' B' C' C' A'' A').
             apply 等角的右交换性.
             apply 等角的对称性.
             apply H10.
@@ -7557,7 +7593,7 @@ Proof.
         Cong.
       assert(A' <> A'').
         auto.
-      assert(HH:= l11_41 A' B' C' A'' H15 H19 H20).
+      assert(HH:= l11_41_三角形两内角小于另一外角 A' B' C' A'' H15 H19 H20).
       分离合取式.
       assert(Cong A' C' A'' C').
         apply (等长的传递性 _ _ A C).
@@ -7569,7 +7605,7 @@ Proof.
         intro.
         apply H15.
         eapply (共线的传递性2 _ A'' ); Col.
-      assert (HH:= l11_44_1 A'' C' A' H24 ).
+      assert (HH:= l11_44_1_三角形底角相等等价于等腰 A'' C' A' H24 ).
       destruct HH.
       apply 等长的交换性 in H23.
       apply 等长的对称性 in H23.
@@ -7586,11 +7622,11 @@ Proof.
           apply ABA型共线.
       assert(~Col B' C' A'').
         Col.
-      assert(HH:=l11_44_2 B' C' A'' H29).
+      assert(HH:=l11_44_2_三角形小角对长边 B' C' A'' H29).
       destruct HH.
       assert(Lt C' A''  C' B').
         apply H30.
-        apply (conga_preserves_lta A' B' C' C' A' A'').
+        apply (等角保持角度小于性质 A' B' C' C' A' A'').
           apply 等角的右交换性.
           apply 等角的对称性.
           apply 等角的对称性.
@@ -7689,7 +7725,7 @@ Proof.
       apply H5.
       apply ABB型共线.
     assert(角度小于 C A D C B D).
-      assert(HH:=l11_41 B A D C H5 H3 H2).
+      assert(HH:=l11_41_三角形两内角小于另一外角 B A D C H5 H3 H2).
       分离合取式.
       assert(等角 C A D B A D).
         apply out2__conga.
@@ -7698,7 +7734,7 @@ Proof.
           assumption.
         apply out_trivial.
         auto.
-      eapply conga_preserves_lta.
+      eapply 等角保持角度小于性质.
         apply 等角的对称性.
         apply H9.
         apply 等角的右交换性.
@@ -7730,10 +7766,10 @@ Proof.
           assumption.
         Col.
       Col.
-    destruct(l11_44_1 B D B').
+    destruct(l11_44_1_三角形底角相等等价于等腰 B D B').
       assumption.
     apply H12 in H8.
-    destruct(l11_44_2 A D B').
+    destruct(l11_44_2_三角形小角对长边 A D B').
       intro.
       apply H10.
       apply 等价共线BCA.
@@ -7751,7 +7787,7 @@ Proof.
         Col.
       Col.
     assert(角度小于 C A D C B' D).
-      apply (conga_preserves_lta C A D C B D).
+      apply (等角保持角度小于性质 C A D C B D).
         apply 同角相等.
           auto.
         auto.
@@ -7789,8 +7825,8 @@ Proof.
         assumption.
       contradiction.
     assert (Lt D B' D A).
-      apply l11_44_2_b.
-      apply (conga_preserves_lta D A C D B' C).
+      apply l11_44_2_b_三角形小角对长边.
+      apply (等角保持角度小于性质 D A C D B' C).
         apply out2__conga.
           apply out_trivial.
           auto.
@@ -7851,8 +7887,8 @@ Proof.
 intros.
 apply (l11_52 A B C A' B' C'); auto.
 destruct (共线的决定性 A B C).
-  apply bet__le2313, col_obtuse__bet; assumption.
-统计不重合点; apply l11_46; auto.
+  apply bet__le2313, 共线钝角推中间性; assumption.
+统计不重合点; apply l11_46_非锐角三角形中大角对边最长; auto.
 Qed.
 
 (** This is SSA congruence with a right angle *)
@@ -7868,7 +7904,7 @@ forall A B C A' B' C',
 Proof.
 intros.
 统计不重合点.
-destruct (l11_46 A B C) as [_ []]; auto using 成直角三点不共线.
+destruct (l11_46_非锐角三角形中大角对边最长 A B C) as [_ []]; auto using 成直角三点不共线.
 apply (l11_52 A B C A' B' C');auto.
 apply l11_16_直角相等;auto.
 intro.
@@ -7924,7 +7960,7 @@ destruct (两点重合的决定性 B C).
   subst C.
   apply (等长保持小于关系 B' A' C' A'); Cong.
   统计不重合点.
-  apply l11_46; Perp.
+  apply l11_46_非锐角三角形中大角对边最长; Perp.
 destruct H2 as [[C0 []] HNCong].
 统计不重合点.
 assert (Per A' B' C0) by (apply 直角边共线点也构成直角2 with C'; Col).
@@ -7962,7 +7998,7 @@ destruct (两点重合的决定性 B C).
   subst C.
   apply 长度小于的传递性 with A' B'; auto.
   统计不重合点.
-  apply 长度小于的交换性, l11_46; Perp.
+  apply 长度小于的交换性, l11_46_非锐角三角形中大角对边最长; Perp.
 apply 长度小于的交换性 in H1.
 assert (HC0 := H2).
 destruct HC0 as [[C0 []] HNCong].
@@ -8637,7 +8673,7 @@ Proof.
   destruct HP' as [P'].
   统计不重合点.
   assert(~ Col B A P') by (intro; apply HNCol; ColR).
-  assert(HUn := two_sides_in_angle A B C P P').
+  assert(HUn := 角两侧两点必有一点在角内 A B C P P').
   destruct HUn as [|Habs]; Between.
   exfalso.
   apply 角内点和一端点在角另一边同侧 in Habs; Col.
@@ -8658,7 +8694,7 @@ Qed.
 Lemma acute_conga__acute : forall A B C D E F, 为锐角 A B C -> 等角 A B C D E F -> 为锐角 D E F.
 Proof.
   intros A B C D E F Hacute HConga.
-  apply (acute_lea_acute _ _ _ A B C); auto.
+  apply (小于等于锐角之角为锐角 _ _ _ A B C); auto.
   apply 等角小于等于自己.
   apply 等角的对称性; assumption.
 Qed.
@@ -8675,7 +8711,7 @@ Qed.
 Lemma conga_obtuse__obtuse : forall A B C D E F, 为钝角 A B C -> 等角 A B C D E F -> 为钝角 D E F.
 Proof.
   intros A B C D E F Hobtuse HConga.
-  apply (lea_obtuse_obtuse _ _ _ A B C); auto.
+  apply (一角小于等于钝角则该角为钝角 _ _ _ A B C); auto.
   apply 等角小于等于自己; assumption.
 Qed.
 
@@ -8691,8 +8727,8 @@ Qed.
 Lemma bet_lea__bet : forall A B C D E F, Bet A B C -> 角度小于等于 A B C D E F -> Bet D E F.
 Proof.
   intros A B C D E F HBet Hlea.
-  apply (bet_conga__bet A B C); auto.
-  apply lea_asym; auto.
+  apply (零角的等角是零角 A B C); auto.
+  apply 双角度偏序推等角; auto.
   apply 角度小于等于推出点不重合 in Hlea.
   分离合取式.
   apply l11_31_1_任何角小于等于平角_Bet表述; auto.
@@ -8702,7 +8738,7 @@ Lemma out_lea__out : forall A B C D E F, Out E D F -> 角度小于等于 A B C D
 Proof.
   intros A B C D E F Hout Hlea.
   apply (l11_21_a D E F); auto.
-  apply lea_asym; auto.
+  apply 双角度偏序推等角; auto.
   apply 角度小于等于推出点不重合 in Hlea.
   分离合取式.
   apply l11_31_1_任何角小于等于平角_Out表述; auto.
@@ -8715,11 +8751,11 @@ Proof.
   intros A B C D E F A' D' Hlta.
   intros.
   assert (Hd := Hlta).
-  apply lta_distincts in Hd.
+  apply 角度小于推不重合 in Hd.
   unfold 角度小于 in *.
   分离合取式.
   split.
-  apply (l11_36 A _ _ D); auto.
+  apply (l11_36_双补角组中的角度偏序 A _ _ D); auto.
   intro.
   assert(等角 A B C D E F); auto.
   apply (l11_13 A' _ _ D'); try (apply 等角的对称性); Between.
@@ -8730,13 +8766,13 @@ Lemma lea123456_lta__lta : forall A B C D E F G H I, 角度小于等于 A B C D 
 Proof.
   intros A B C D E F G H I Hlea Hlta.
   split.
-  - apply (lea_trans _ _ _ D E F).
+  - apply (角度小于等于的传递性 _ _ _ D E F).
     assumption.
-    apply lta__lea; assumption.
+    apply 角度小于蕴含角度小于等于; assumption.
   - intro.
     destruct Hlta as [Hlea' HNConga].
     apply HNConga.
-    apply lea_asym.
+    apply 双角度偏序推等角.
     assumption.
     apply (l11_30_等角保持小于等于 A B C D E F); auto.
     apply 角度小于等于推出点不重合 in Hlea.
@@ -8749,13 +8785,13 @@ Lemma lea456789_lta__lta : forall A B C D E F G H I, 角度小于 A B C D E F ->
 Proof.
   intros A B C D E F G H I Hlta Hlea.
   split.
-  - apply (lea_trans _ _ _ D E F).
-    apply lta__lea; assumption.
+  - apply (角度小于等于的传递性 _ _ _ D E F).
+    apply 角度小于蕴含角度小于等于; assumption.
     assumption.
   - intro.
     destruct Hlta as [Hlea' HNConga].
     apply HNConga.
-    apply lea_asym.
+    apply 双角度偏序推等角.
     assumption.
     apply (l11_30_等角保持小于等于 D E F G H I); auto; [|apply 等角的对称性; assumption].
     apply 角度小于等于推出点不重合 in Hlea.
@@ -8769,9 +8805,9 @@ Proof.
   intros A B C D E F Hacute HDE HEF HPer.
   intros.
   destruct Hacute as [G [H [I [HPer2 Hlta]]]].
-  assert(Hdiff := lta_distincts A B C G H I Hlta).
+  assert(Hdiff := 角度小于推不重合 A B C G H I Hlta).
   分离合取式.
-  apply (conga_preserves_lta A B C G H I); try (apply 同角相等); auto.
+  apply (等角保持角度小于性质 A B C G H I); try (apply 同角相等); auto.
   apply l11_16_直角相等; auto.
 Qed.
 
@@ -8781,9 +8817,9 @@ Proof.
   intros A B C D E F Hobtuse HDE HEF HPer.
   intros.
   destruct Hobtuse as [G [H [I [HPer2 Hlta]]]].
-  assert(Hdiff := lta_distincts G H I A B C Hlta).
+  assert(Hdiff := 角度小于推不重合 G H I A B C Hlta).
   分离合取式.
-  apply (conga_preserves_lta G H I A B C); try (apply 同角相等); auto.
+  apply (等角保持角度小于性质 G H I A B C); try (apply 同角相等); auto.
   apply l11_16_直角相等; auto.
 Qed.
 
@@ -8791,8 +8827,8 @@ Lemma acute_obtuse__lta : forall A B C D E F, 为锐角 A B C -> 为钝角 D E F
 Proof.
   intros A B C D E F Hacute Hobtuse.
   destruct Hacute as [G [H [I [HPer Hlta]]]].
-  apply (lta_trans _ _ _ G H I); auto.
-  apply lta_distincts in Hlta.
+  apply (角度小于的传递性 _ _ _ G H I); auto.
+  apply 角度小于推不重合 in Hlta.
   分离合取式.
   apply obtuse_per__lta; auto.
 Qed.
@@ -8831,22 +8867,22 @@ Proof.
     assumption.
 Qed.
 
-Lemma acute_bet__obtuse : forall A B C A', Bet A B A' -> A' <> B -> 为锐角 A B C -> 为钝角 A' B C.
+Lemma acute_中间性平角为钝角 : forall A B C A', Bet A B A' -> A' <> B -> 为锐角 A B C -> 为钝角 A' B C.
 Proof.
   intros A B C A' HBet HA'B Hacute.
-  assert(Hd := acute_distincts A B C Hacute).
+  assert(Hd := 角为锐角推不重合 A B C Hacute).
   destruct Hd.
   elim(共线的决定性 A B C).
   { intro.
     elim(中间性的决定性 A B C).
     - intro.
       exfalso.
-      apply (nlta A B C).
+      apply (一角不可能小于自己 A B C).
       apply acute_obtuse__lta; auto.
-      apply bet__obtuse; auto.
+      apply 中间性平角为钝角; auto.
 
     - intro.
-      apply bet__obtuse; auto.
+      apply 中间性平角为钝角; auto.
       apply 中间性的对称性.
       apply (l6_2 A); auto.
       apply not_bet_out; auto.
@@ -8857,7 +8893,7 @@ Proof.
   统计不重合点.
   assert(HNCol2 : ~ Col C B D).
   { intro.
-    apply (nlta A B C).
+    apply (一角不可能小于自己 A B C).
     apply acute_per__lta; auto.
     apply (直角边共线点也构成直角2 _ _ D); Perp; Col.
   }
@@ -8878,7 +8914,7 @@ Proof.
     apply 角端点在角内点与顶点连线两侧; Col.
     apply l11_24_在角内的对称性.
     apply lea_in_angle; try (apply 同角相等); Side.
-    apply lta__lea.
+    apply 角度小于蕴含角度小于等于.
     apply acute_per__lta; Perp.
 
   - intro.
@@ -8893,20 +8929,20 @@ Qed.
 Lemma bet_obtuse__acute : forall A B C A', Bet A B A' -> A' <> B -> 为钝角 A B C -> 为锐角 A' B C.
 Proof.
   intros A B C A' HBet HA'B Hobtuse.
-  assert(Hd := obtuse_distincts A B C Hobtuse).
+  assert(Hd := 角为钝角推不重合 A B C Hobtuse).
   分离合取式.
   elim(共线的决定性 A B C).
   { intro.
     elim(中间性的决定性 A B C).
     - intro.
-      apply out__acute.
+      apply 外共线零角为锐角.
       apply (l6_2 _ _ A); Between.
 
     - intro.
       exfalso.
-      apply (nlta A B C).
+      apply (一角不可能小于自己 A B C).
       apply acute_obtuse__lta; auto.
-      apply out__acute.
+      apply 外共线零角为锐角.
       apply not_bet_out; auto.
   }
   intro HNCol1.
@@ -8915,7 +8951,7 @@ Proof.
   统计不重合点.
   assert(HNCol2 : ~ Col C B D).
   { intro.
-    apply (nlta A B C).
+    apply (一角不可能小于自己 A B C).
     apply obtuse_per__lta; auto.
     apply (直角边共线点也构成直角2 _ _ D); Perp; Col.
   }
@@ -8940,7 +8976,7 @@ Proof.
     apply 角端点在角内点与顶点连线两侧; Col.
     apply l11_24_在角内的对称性.
     apply lea_in_angle; try (apply 同角相等); auto.
-    apply lta__lea.
+    apply 角度小于蕴含角度小于等于.
     apply obtuse_per__lta; Perp.
 
   - intro Habs.
@@ -8993,7 +9029,7 @@ Proof.
     统计不重合点.
     elim(two_sides_dec B P A C).
     { intro.
-      assert(HUn := two_sides_in_angle A B C P P').
+      assert(HUn := 角两侧两点必有一点在角内 A B C P P').
       destruct HUn as [H在角内|H在角内]; Between.
       destruct H在角内 as [_ [_ [_ [X [HXBet HUn]]]]].
       destruct HUn as [HXB|HBout].
@@ -9118,7 +9154,7 @@ Qed.
 Lemma lta_dec : forall A B C D E F, 角度小于 A B C D E F \/ ~ 角度小于 A B C D E F.
 Proof.
   intros A B C D E F.
-  elim(conga_dec A B C D E F).
+  elim(等角的决定性 A B C D E F).
   { intro.
     right.
     unfold 角度小于.
@@ -9189,12 +9225,12 @@ Proof.
     intros.
     assert(HH:=lea_total A B C D E F).
     induction HH; auto.
-      induction(conga_dec A B C D E F).
+      induction(等角的决定性 A B C D E F).
         right; right.
         assumption.
       left.
       split; assumption.
-    induction(conga_dec A B C D E F).
+    induction(等角的决定性 A B C D E F).
       right; right.
       assumption.
     right; left.
@@ -9232,14 +9268,14 @@ Proof.
   intros A B C A' HBet HBA'.
   split.
   - intro Hacute.
-    assert(Hdiff := acute_distincts A B C Hacute).
+    assert(Hdiff := 角为锐角推不重合 A B C Hacute).
     分离合取式.
     apply acute_obtuse__lta; auto.
-    apply (acute_bet__obtuse A); auto.
+    apply (acute_中间性平角为钝角 A); auto.
 
   - intro Hlta.
     assert (Hd := Hlta).
-    apply lta_distincts in Hd.
+    apply 角度小于推不重合 in Hd.
     分离合取式.
     elim(angle_partition A B C); auto.
     intro Habs.
@@ -9247,12 +9283,12 @@ Proof.
     assert(Hlta1 : 角度小于 A B C A B C);
     [|destruct Hlta1 as [_ HNConga]; apply HNConga; apply 同角相等; auto].
     destruct Habs.
-    { apply (conga_preserves_lta A B C A' B C); try (apply 同角相等); auto.
+    { apply (等角保持角度小于性质 A B C A' B C); try (apply 同角相等); auto.
       apply 等角的对称性.
       apply 等角的交换性.
       apply l11_18_1; Perp.
     }
-    apply (lta_trans _ _ _ A' B C); auto.
+    apply (角度小于的传递性 _ _ _ A' B C); auto.
     apply acute_obtuse__lta; auto.
     apply (bet_obtuse__acute A); auto.
 Qed.
@@ -9262,30 +9298,30 @@ Proof.
   intros A B C A' HBet HBA'.
   split.
   - intro Hobtuse.
-    assert(Hdiff := obtuse_distincts A B C Hobtuse).
+    assert(Hdiff := 角为钝角推不重合 A B C Hobtuse).
     分离合取式.
     apply acute_obtuse__lta; auto.
     apply (bet_obtuse__acute A); auto.
 
   - intro Hlta.
     assert (Hd := Hlta).
-    apply lta_distincts in Hd.
+    apply 角度小于推不重合 in Hd.
     分离合取式.
     elim(angle_partition A B C); auto.
     { intro.
       exfalso.
       assert(Hlta1 : 角度小于 A B C A B C);
       [|destruct Hlta1 as [_ HNConga]; apply HNConga; apply 同角相等; auto].
-      apply (lta_trans _ _ _ A' B C); auto.
+      apply (角度小于的传递性 _ _ _ A' B C); auto.
       apply acute_obtuse__lta; auto.
-      apply (acute_bet__obtuse A); auto.
+      apply (acute_中间性平角为钝角 A); auto.
     }
     intro HUn.
     destruct HUn; auto.
     exfalso.
     assert(Hlta1 : 角度小于 A B C A B C);
     [|destruct Hlta1 as [_ HNConga]; apply HNConga; apply 同角相等; auto].
-    apply (conga_preserves_lta A' B C A B C); try (apply 同角相等); auto.
+    apply (等角保持角度小于性质 A' B C A B C); try (apply 同角相等); auto.
     apply 等角的对称性.
     apply 等角的交换性.
     apply l11_18_1; Between; Perp.
@@ -9295,19 +9331,19 @@ Lemma conga__acute : forall A B C, 等角 A B C A C B -> 为锐角 A B C.
 Proof.
   intros A B C H等角.
   destruct (共线的决定性 A B C).
-  { apply out__acute, not_bet_out; trivial.
+  { apply 外共线零角为锐角, not_bet_out; trivial.
     intro.
     absurd (B = C).
       apply conga_distinct in H等角; 分离合取式; auto.
     apply 双中间性推出点重合 with A; apply 中间性的对称性; trivial.
-    apply (bet_conga__bet A B C); assumption.
+    apply (零角的等角是零角 A B C); assumption.
   }
   destruct (由一点往一方向构造等长线段 C B C B) as [C' []].
   apply conga_distinct in H等角; 分离合取式.
   统计不重合点.
-  apply acute_sym, acute_chara with C'; auto.
-  destruct (l11_41 B C A C'); Col.
-  apply (conga_preserves_lta B C A A B C'); trivial.
+  apply 为锐角的对称性, acute_chara with C'; auto.
+  destruct (l11_41_三角形两内角小于另一外角 B C A C'); Col.
+  apply (等角保持角度小于性质 B C A A B C'); trivial.
     apply 等角的交换性, 等角的对称性; assumption.
     apply 角ABC等于角CBA; auto.
 Qed.
@@ -9320,12 +9356,12 @@ Proof.
   destruct (l11_51 A B C A C B) as [_ []]; Cong.
 Qed.
 
-Lemma nlta__lea : forall A B C D E F, ~ 角度小于 A B C D E F -> A <> B -> B <> C -> D <> E -> E <> F ->
+Lemma n角度小于蕴含角度小于等于 : forall A B C D E F, ~ 角度小于 A B C D E F -> A <> B -> B <> C -> D <> E -> E <> F ->
    角度小于等于 D E F A B C.
 Proof.
   intros A B C D E F HNlta.
   intros.
-  elim(conga_dec D E F A B C).
+  elim(等角的决定性 D E F A B C).
     apply 等角小于等于自己.
   intro.
   elim(lea_total D E F A B C); auto.
@@ -9333,7 +9369,7 @@ Proof.
   exfalso.
   apply HNlta.
   split; auto.
-  apply not_等角的对称性; assumption.
+  apply 不等角的对称性; assumption.
 Qed.
 
 Lemma nlea__lta : forall A B C D E F, ~ 角度小于等于 A B C D E F  -> A <> B -> B <> C -> D <> E -> E <> F ->
@@ -9391,11 +9427,11 @@ Proof.
   assert(~ Col A C D) by (intro; apply HNCol; ColR).
   统计不重合点.
   apply 中间性的对称性 in HBet.
-  apply l11_44_2; Col.
+  apply l11_44_2_三角形小角对长边; Col.
   assert(等角 C D A D C B).
   { apply (l11_10 C D B D C B); try (apply out_trivial); auto; [|apply l6_6, bet_out; auto].
     apply 等角的交换性.
-    apply l11_44_1; Cong.
+    apply l11_44_1_三角形底角相等等价于等腰; Cong.
     intro; apply HNCol; ColR.
   }
   split.
@@ -9498,11 +9534,11 @@ Proof.
   assert(HNCol2 : ~ Col B C D) by (intro; apply HNCol; ColR).
   assert(HNCol3 : ~ Col A C D) by (intro; apply HNCol; ColR).
   统计不重合点.
-  apply l11_44_2; Col.
-  assert(等角 A C D A D C) by (apply l11_44_1; Cong; Col).
+  apply l11_44_2_三角形小角对长边; Col.
+  assert(等角 A C D A D C) by (apply l11_44_1_三角形底角相等等价于等腰; Cong; Col).
   destruct HABD as [_ [_ [HABD|HADB]]].
   - apply 中间性的对称性 in HABD.
-    apply (conga_preserves_lta D C B D C A).
+    apply (等角保持角度小于性质 D C B D C A).
       apply 角ABC等于角CBA; auto.
       apply (l11_10 D C A A D C); [apply 等角的左交换性|try (apply out_trivial)..]; auto.
       apply bet_out; auto.
@@ -9532,7 +9568,7 @@ Proof.
         intro; apply HNCol2; ColR.
         exists C; split; finish.
     }
-    apply (conga_preserves_lta A C D E C D); try (apply 同角相等); auto.
+    apply (等角保持角度小于性质 A C D E C D); try (apply 同角相等); auto.
     split.
     { apply 角度小于等于的交换性.
       exists A.
@@ -9576,10 +9612,10 @@ Proof.
   assert(A <> E) by (intro; subst; Col5).
   assert(C <> E) by (intro; subst; Col5).
   统计不重合点.
-  apply (lta_trans _ _ _ B E C).
-  - destruct (l11_41 E A B C); auto.
+  apply (角度小于的传递性 _ _ _ B E C).
+  - destruct (l11_41_三角形两内角小于另一外角 E A B C); auto.
       intro; apply HNCol; ColR.
-    apply (conga_preserves_lta E A B B E C); try (apply 同角相等); auto.
+    apply (等角保持角度小于性质 E A B B E C); try (apply 同角相等); auto.
     apply 等角的左交换性, out2__conga.
       apply out_trivial; auto.
       apply l6_6, bet_out; auto.
@@ -9587,10 +9623,10 @@ Proof.
   - assert(Out E D B).
       apply (col_one_side_out _ A); Col; apply invert_one_side; apply (col_one_side _ C); Col; Side.
     统计不重合点.
-    destruct (l11_41 D E C B); auto.
+    destruct (l11_41_三角形两内角小于另一外角 D E C B); auto.
       intro; apply HNCol; ColR.
       apply out2__bet; auto.
-    apply (conga_preserves_lta D E C C D B); try (apply 角ABC等于角CBA); auto.
+    apply (等角保持角度小于性质 D E C C D B); try (apply 角ABC等于角CBA); auto.
     apply out2__conga.
       apply l6_6; assumption.
       apply out_trivial; auto.
@@ -9646,17 +9682,17 @@ Proof.
   }
   intro HNCol.
   统计不重合点.
-  apply l11_44_2.
+  apply l11_44_2_三角形小角对长边.
     intro; apply HNCol; ColR.
   apply (lea123456_lta__lta _ _ _ C A B).
   - apply lea_out4__lea with C A C B; try apply out_trivial; auto; [|apply l6_6, bet_out; Between].
-    apply l11_44_2bis; Col; Le.
+    apply l11_44_2_三角形小角对长边_偏序版; Col; Le.
 
   - assert(~ Col D A C) by (intro; apply HNCol; ColR).
     统计不重合点.
-    assert(HInter := l11_41 D A C B).
+    assert(HInter := l11_41_三角形两内角小于另一外角 D A C B).
     destruct HInter; auto.
-    apply (conga_preserves_lta D A C C D B); try (apply 同角相等); auto.
+    apply (等角保持角度小于性质 D A C C D B); try (apply 同角相等); auto.
     apply (l11_10 D A C C A D); try (apply out_trivial); try (apply 角ABC等于角CBA); auto.
     apply l6_6, bet_out; auto.
 Qed.
@@ -9713,7 +9749,7 @@ Lemma t18_18_aux : forall A B C D E F,
 Proof.
   intros A B C D E F H等角B H等角C Hlta HNCol1 HNCol2 Hle.
   assert (Hd := Hlta).
-  apply lta_distincts in Hd.
+  apply 角度小于推不重合 in Hd.
   分离合取式.
   assert(HG0 := 给定角一边可作出与给定点同侧一点构成等角_非平角 C A B F D E).
   destruct HG0 as [G0 []]; Col.
@@ -9736,7 +9772,7 @@ Proof.
   assert(HSAS := l11_49 C A B F D G).
   destruct HSAS as [HCongBC _]; Cong.
   apply (等长保持小于关系 F E F G); Cong.
-  apply (conga_preserves_lta _ _ _ _ _ _ F D E F D G) in Hlta; try (apply 同角相等); auto.
+  apply (等角保持角度小于性质 _ _ _ _ _ _ F D E F D G) in Hlta; try (apply 同角相等); auto.
   assert(Cong D G D E) by (apply (等长的传递性 _ _ A B); auto).
   clear dependent A.
   clear dependent B.
@@ -9757,7 +9793,7 @@ Proof.
     apply (l11_10 F D G F D G); try (apply out_trivial); try (apply 同角相等); auto.
     apply (col_one_side_out _ F); Col; Side.
   }
-  apply l11_44_2; Col.
+  apply l11_44_2_三角形小角对长边; Col.
   assert(H在角内 : 在角内 E F D G) by (apply lea_in_angle; destruct Hlta; auto).
   rename H into HFD.
   destruct H在角内 as [_ [_ [_ [H [HH HUn]]]]].
@@ -9780,9 +9816,9 @@ Proof.
     apply out_one_side; Col;
     apply bet_out; Between.
   }
-  apply (lta_trans _ _ _ D E G).
-  - apply(conga_preserves_lta F G E D G E); try (apply 同角相等); auto.
-      apply l11_44_1; Col.
+  apply (角度小于的传递性 _ _ _ D E G).
+  - apply(等角保持角度小于性质 F G E D G E); try (apply 同角相等); auto.
+      apply l11_44_1_三角形底角相等等价于等腰; Col.
     split.
     { apply 角度小于等于的交换性.
       exists F.
@@ -9817,7 +9853,7 @@ Lemma t18_18 : forall A B C D E F, Cong A B D E -> Cong A C D F -> 角度小于 
 Proof.
   intros A B C D E F H等角B H等角C Hlta.
   assert (Hd := Hlta).
-  apply lta_distincts in Hd.
+  apply 角度小于推不重合 in Hd.
   分离合取式.
   elim(共线的决定性 A B C).
   { intro.
@@ -9835,7 +9871,7 @@ Proof.
 
     - intro.
       exfalso.
-      apply (nlta C A B).
+      apply (一角不可能小于自己 C A B).
       apply (lea123456_lta__lta _ _ _ F D E); auto.
       apply l11_31_1_任何角小于等于平角_Out表述; auto.
       apply not_bet_out; Col; Between.
@@ -9846,7 +9882,7 @@ Proof.
     elim(中间性的决定性 F D E).
     - intro.
       exfalso.
-      apply (nlta F D E).
+      apply (一角不可能小于自己 F D E).
       apply (lea456789_lta__lta _ _ _ C A B); auto.
       apply l11_31_1_任何角小于等于平角_Bet表述; auto.
 
@@ -9878,7 +9914,7 @@ Proof.
   统计不重合点.
   apply nlea__lta; auto.
   intro Hlea.
-  elim(conga_dec C A B F D E).
+  elim(等角的决定性 C A B F D E).
   - intro.
     exfalso.
     destruct Hlt as [Hle HNCong].
@@ -10143,7 +10179,7 @@ Proof.
     destruct (one_side_dec B A P Q0).
     { assert (HIn' : 在角内 Q0 A B P) by (apply os2__inangle; assumption).
       exists Q0; split; Col.
-      apply in_angle_trans with P; trivial.
+      apply 在角内的传递性 with P; trivial.
     }
     assert (HR : exists R, Bet P R Q0 /\ Col P Q R /\ Col B A R).
     { destruct (共线的决定性 B A Q0).
@@ -10167,7 +10203,7 @@ Proof.
     destruct (one_side_dec B C P Q0).
     { assert (HIn' : 在角内 Q0 C B P) by (apply os2__inangle; assumption).
       exists Q0; split; Col.
-      apply l11_24_在角内的对称性, in_angle_trans with P; trivial.
+      apply l11_24_在角内的对称性, 在角内的传递性 with P; trivial.
       apply l11_24_在角内的对称性, HIn.
     }
     assert (HR : exists R, Bet P R Q0 /\ Col P Q R /\ Col B C R).
@@ -10253,12 +10289,12 @@ Proof.
   }
   destruct (cop__one_or_two_sides B P A Q) as [HOS|HTS]; Col.
     apply 等价共面ACBD, coplanar_trans_1 with C; Cop; Col.
-  - apply lea_trans with P B C; [|apply 角度小于等于的交换性]; apply inangle__lea; trivial.
+  - apply 角度小于等于的传递性 with P B C; [|apply 角度小于等于的交换性]; apply 角内点分角小于等于大角1; trivial.
     apply os2__inangle; apply invert_one_side.
       exists A; split; Side; apply 角端点在角内点与顶点连线两侧; Col.
     apply one_side_transitivity with A; [|apply one_side_symmetry];
     apply 角内点和一端点在角另一边同侧; Col.
-  - apply lea_trans with A B P; [apply 角度小于等于的右交换性|]; apply inangle__lea; trivial.
+  - apply 角度小于等于的传递性 with A B P; [apply 角度小于等于的右交换性|]; apply 角内点分角小于等于大角1; trivial.
     apply os2__inangle; trivial.
     apply invert_one_side, one_side_transitivity with C; [|apply one_side_symmetry];
     apply 角内点和一端点在角另一边同侧; Col.
@@ -10273,7 +10309,7 @@ Proof.
   assert (HNCol : ~ Col A B C) by (apply 成直角三点不共线; auto).
   exists A, B, C; split; trivial.
   split.
-    apply inangle__lea, HP1.
+    apply 角内点分角小于等于大角1, HP1.
   intro Habs.
   assert (Per A B P) by (apply l11_17_等于直角的角是直角 with A B C, 等角的对称性; trivial).
   apply HNCol, 等价共线BCA, cop_per2__col with P; Cop.
@@ -10309,17 +10345,17 @@ Proof.
     apply 等角的左交换性, l11_10 with P A P C; try (apply out_trivial); auto.
     apply l6_6; assumption.
   destruct (共线的决定性 B P Q).
-    apply out__acute, col_inangle2__out with A C; assumption.
+    apply 外共线零角为锐角, col_inangle2__out with A C; assumption.
   destruct (cop__one_or_two_sides B P A Q) as [HOS|HTS]; Col.
     apply 等价共面ACBD, coplanar_trans_1 with C; Cop; Col.
-  - apply acute_lea_acute with P B C.
+  - apply 小于等于锐角之角为锐角 with P B C.
       apply (acute_conga__acute A B P); try (apply 等角的左交换性); assumption.
     exists Q; split; [|apply 同角相等; auto].
     apply os2__inangle; apply invert_one_side.
       exists A; split; Side; apply 角端点在角内点与顶点连线两侧; Col.
     apply one_side_transitivity with A; [|apply one_side_symmetry];
     apply 角内点和一端点在角另一边同侧; Col.
-  - apply acute_lea_acute with A B P; trivial.
+  - apply 小于等于锐角之角为锐角 with A B P; trivial.
     apply 角度小于等于的交换性.
     exists Q; split; [|apply 角ABC等于角CBA; auto].
     apply os2__inangle; trivial.
@@ -10575,7 +10611,7 @@ Lemma out_suppa__bet : forall A B C D E F,
 Proof.
 intros.
 destruct (由一点往一方向构造等长线段 A B A B) as [B' []].
-apply (bet_conga__bet A B B'); trivial.
+apply (零角的等角是零角 A B B'); trivial.
 apply (suppa2__conga456 A B C); trivial.
 统计不重合点.
 apply suppa_sym, bet_out__suppa; auto.
@@ -10621,7 +10657,7 @@ intros; 分离合取式.
 ex_and H1 A'.
 apply (conga_obtuse__obtuse C B A'); [|apply 等角的对称性, H2].
 apply conga_distinct in H2; 分离合取式.
-apply obtuse_sym, (acute_bet__obtuse A); auto.
+apply 为钝角的对称性, (acute_中间性平角为钝角 A); auto.
 Qed.
 
 Lemma obtuse_suppa__acute : forall A B C D E F,
@@ -10632,7 +10668,7 @@ intros; 分离合取式.
 ex_and H1 A'.
 apply (acute_conga__acute C B A'); [|apply 等角的对称性, H2].
 apply conga_distinct in H2; 分离合取式.
-apply acute_sym, (bet_obtuse__acute A); auto.
+apply 为锐角的对称性, (bet_obtuse__acute A); auto.
 Qed.
 
 Lemma lea_suppa2__lea : forall A B C D E F A' B' C' D' E' F',
@@ -10647,7 +10683,7 @@ apply (l11_30_等角保持小于等于 F E D0 C B A0); [|apply 等角的对称�
 apply conga_distinct in H4.
 apply conga_distinct in H5.
 分离合取式.
-apply 角度小于等于的交换性, l11_36 with D A; Between.
+apply 角度小于等于的交换性, l11_36_双补角组中的角度偏序 with D A; Between.
 Qed.
 
 Lemma lta_suppa2__lta : forall A B C D E F A' B' C' D' E' F',
@@ -10658,7 +10694,7 @@ unfold 互为补角.
 intros; 分离合取式.
 ex_and H3 A0.
 ex_and H2 D0.
-apply (conga_preserves_lta F E D0 C B A0); [apply 等角的对称性; assumption..|].
+apply (等角保持角度小于性质 F E D0 C B A0); [apply 等角的对称性; assumption..|].
 apply conga_distinct in H4.
 apply conga_distinct in H5.
 分离合取式.
@@ -10673,7 +10709,7 @@ induction (两点重合的决定性 A B).
 induction (两点重合的决定性 B C).
   right; intro Habs; apply suppa_distincts in Habs; 分离合取式; auto.
 destruct (ex_suppa A B C) as [D' [E' [F']]]; auto.
-induction (conga_dec D' E' F' D E F).
+induction (等角的决定性 D' E' F' D E F).
   left; apply (conga2_suppa__suppa A B C D' E' F'); try apply 同角相等; auto.
   right; intro; apply H2, (suppa2__conga456 A B C); assumption.
 Qed.
@@ -10824,15 +10860,15 @@ repeat
       | H:角度小于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
-      assert (h := lta_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角度小于推不重合 A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
       | H:(为锐角 ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp2 A B B C;
-      assert (h := acute_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角为锐角推不重合 A B C H);decompose [and] h;clear h;clean_reap_hyps
       | H:(为钝角 ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp2 A B B C;
-      assert (h := obtuse_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角为钝角推不重合 A B C H);decompose [and] h;clear h;clean_reap_hyps
       | H:互为补角 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
@@ -10858,8 +10894,8 @@ Hint Resolve 同角相等 等角的对称性 三角形全等推角等1 角ABC等
 
 Ltac 等角 := auto 3 with conga.
 
-Hint Resolve l11_31_1_任何角小于等于平角_Out表述 l11_31_1_任何角小于等于平角_Bet表述 lta__lea 角度小于等于的交换性 角度小于等于的右交换性 角度小于等于的左交换性 角度小于的交换性
-             角度小于的右交换性 角度小于的左交换性 lea_asym lea121345 inangle__lea inangle__lea_1
+Hint Resolve l11_31_1_任何角小于等于平角_Out表述 l11_31_1_任何角小于等于平角_Bet表述 角度小于蕴含角度小于等于 角度小于等于的交换性 角度小于等于的右交换性 角度小于等于的左交换性 角度小于的交换性
+             角度小于的右交换性 角度小于的左交换性 双角度偏序推等角 零角小于等于任何角 角内点分角小于等于大角1 角内点分角小于等于大角2
              等角小于等于自己 等角小于等于自己_交换 任何角小于等于自己 acute_per__lta obtuse_per__lta acute_obtuse__lta : lea.
 
 Ltac Lea := auto 3 with lea.
@@ -10896,7 +10932,7 @@ assert(等角 A' B' C' A O B).
 }
 assert(角度小于 A O P A O B).
 {
-  apply(conga_preserves_lta A O P A' B' C' A O P A O B); auto.
+  apply(等角保持角度小于性质 A O P A' B' C' A O P A O B); auto.
   统计不重合点.
   apply 同角相等; auto.
 }
@@ -10946,7 +10982,7 @@ assert(O <> T).
   }
   assert(~角度小于 A O P A O B).
   {
-    apply lea__nlta.
+    apply 两角成偏序关系则不可能成反全序关系.
     assumption.
   }
   contradiction.
@@ -10992,9 +11028,9 @@ assert(在角内 B A O P).
   apply l6_6; auto.
 }
 
-apply inangle__lea in H17.
+apply 角内点分角小于等于大角1 in H17.
 
-apply lea__nlta in H17.
+apply 两角成偏序关系则不可能成反全序关系 in H17.
 contradiction.
 assumption.
 Qed.
@@ -11021,7 +11057,7 @@ assert(Out O A P).
   {
     apply l11_31_1_任何角小于等于平角_Bet表述; auto.
   }
-  apply lea__nlta in H3.
+  apply 两角成偏序关系则不可能成反全序关系 in H3.
   contradiction.
   repeat split; auto.
   induction H.
@@ -11096,7 +11132,7 @@ Qed.
 Lemma acute__not_obtuse : forall A B C, 为锐角 A B C -> ~ 为钝角 A B C.
 Proof.
 intros A B C HA HO.
-apply (nlta A B C), acute_obtuse__lta; assumption.
+apply (一角不可能小于自己 A B C), acute_obtuse__lta; assumption.
 Qed.
 
 End T11_3.

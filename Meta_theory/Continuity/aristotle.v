@@ -15,12 +15,12 @@ Proof.
     exists R.
     split; [|apply out_trivial; auto].
     split.
-    apply lea121345; auto.
+    apply 零角小于等于任何角; auto.
     intro.
     apply HNColB.
     apply 等价共线BAC.
     apply out_col.
-    apply (eq_conga_out P R); auto.
+    apply (零角的等角推出外共线 P R); auto.
   }
   assert (HXY : (exists X Y, Out B A X /\ Out B C Y /\ Per B X Y /\ Lt P Q X Y)) by (apply aristotle; assumption).
   destruct HXY as [X [Y [PX [PY [HXright [Hle HNcong]]]]]].
@@ -43,7 +43,7 @@ Proof.
   { intro; treat_equalities.
     assert (T=Q) by (apply ABA直角则A与B重合; auto); treat_equalities; absurde.
   }
-  apply conga_preserves_lta with P S Q T S Q; try (apply 同角相等; auto); [|split].
+  apply 等角保持角度小于性质 with P S Q T S Q; try (apply 同角相等; auto); [|split].
   - apply 角等的传递性 with X B Y; [|apply out2__conga; auto].
     assert (HInter : (Cong T S Y B /\ (T <> S -> 等角 Q T S X Y B /\ 等角 Q S T X B Y))).
     { apply (l11_49 T Q S Y X B); Cong.
@@ -91,7 +91,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
 
   {
   destruct (l8_18_过一点垂线之垂点的存在性 A B C) as [X [HCol HPerp]]; Col; exists X, C.
-  split; [apply l6_6, acute_col_perp__out with C; try apply acute_sym; finish|].
+  split; [apply l6_6, acute_col_perp__out with C; try apply 为锐角的对称性; finish|].
   split; [apply out_trivial; 统计不重合点; auto|].
   split; [|apply BC不重合则AA小于BC; 统计不重合点; auto].
   elim (两点重合的决定性 X B); intro HBX; treat_equalities; Perp.
@@ -115,7 +115,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
   [intro; apply HNC; ColR|]; assert (HOut5 : Out B Z' A).
     {
       apply acute_col_perp__out with Z; finish.
-      apply acute_sym, acute_out2__acute with A C; finish.
+      apply 为锐角的对称性, acute_out2__acute with A C; finish.
       apply out_trivial; 统计不重合点; auto.
     }
   exists Z', Z; do 2 (split; finish); split;
@@ -185,7 +185,7 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
     apply (acute__not_obtuse _ _ _ HF).
     apply acute_suppa__obtuse with B T Z';
     try (apply suppa_left_comm, bet__suppa); try solve [统计不重合点; finish].
-    apply acute_sym, l11_43; try solve [统计不重合点; auto]; left.
+    apply 为锐角的对称性, l11_43_非锐角三角形两小内角为锐角; try solve [统计不重合点; auto]; left.
     apply L形垂直转直角1; apply 与垂线共线之线也为垂线2 with A B; Col; [|统计不重合点; auto].
     apply 垂直的对称性, 与垂线共线之线也为垂线2 with Z Z'; finish.
     }
@@ -197,20 +197,20 @@ elim (两点重合的决定性 P Q); intro HPQ; treat_equalities.
       apply acute_suppa__obtuse with B T Z';
       try (apply suppa_left_comm, suppa_right_comm);
       try (apply bet__suppa); try solve [统计不重合点; finish].
-      apply acute_sym, l11_43; try solve [统计不重合点; auto]; left.
+      apply 为锐角的对称性, l11_43_非锐角三角形两小内角为锐角; try solve [统计不重合点; auto]; left.
       apply L形垂直转直角1; apply 与垂线共线之线也为垂线2 with A B; Col; [|统计不重合点; auto].
     apply 垂直的对称性, 与垂线共线之线也为垂线2 with Z Z'; finish.
       }
-    apply (两长度不可能互相小于对方a B Z T B T Z); split.
+    apply (两角度不可能互相小于对方 B Z T B T Z); split.
 
       {
-      apply acute_obtuse__lta; [|apply obtuse_sym; auto].
-      apply acute_sym, l11_43; 统计不重合点; finish.
-      right; apply obtuse_sym; auto.
+      apply acute_obtuse__lta; [|apply 为钝角的对称性; auto].
+      apply 为锐角的对称性, l11_43_非锐角三角形两小内角为锐角; 统计不重合点; finish.
+      right; apply 为钝角的对称性; auto.
       }
 
       {
-      apply l11_44_2_a; [intro; apply HNC; ColR|].
+      apply l11_44_2_a_三角形长边对小角; [intro; apply HNC; ColR|].
       apply 长度小于等于_小于_传递性 with B P''; [apply 等长则小于等于; finish|].
       apply bet__lt1213; 统计不重合点; finish.
       }
@@ -266,8 +266,8 @@ Proof.
   destruct (由一点往一方向构造等长线段 A' P A' P) as [A [HA1 HA2]].
   统计不重合点.
   assert (H在角内1 : 在角内 C A P Q).
-    apply in_angle_reverse with A'; auto.
-    apply l11_24_在角内的对称性, in_angle_reverse with C'; auto.
+    apply 在角内的特殊反向性 with A'; auto.
+    apply l11_24_在角内的对称性, 在角内的特殊反向性 with C'; auto.
     apply l11_24_在角内的对称性; trivial.
   assert (HNCol : ~ Col P C' A').
   { intro Habs.
@@ -283,7 +283,7 @@ Proof.
     apply 成直角三点不共线; auto.
   destruct (aristotle P Q A P C) as [X [Y]]; Col.
   { exists A, P, Q; split; Perp; split.
-      apply inangle__lea; trivial.
+      apply 角内点分角小于等于大角1; trivial.
     intro H等角.
     assert (Out P C Q) by (apply (conga_os__out A); assumption).
     apply HNCol2; Col.

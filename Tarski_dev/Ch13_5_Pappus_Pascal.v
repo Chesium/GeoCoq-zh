@@ -336,7 +336,7 @@ Proof.
           subst P'.
           eapply (等长的同一性 _  O' O'); Cong.
         assert(Lt P' A' A' O' /\ Lt P' O' A' O').
-          统计不重合点; apply(l11_46 A' P' O'); auto.
+          统计不重合点; apply(l11_46_非锐角三角形中大角对边最长 A' P' O'); auto.
         分离合取式.
         unfold Lt in H17.
         分离合取式.
@@ -395,7 +395,7 @@ Proof.
       assert(Cong O P O A).
         apply (等长的传递性 _ _ O' P'); Cong.
       assert(Lt P A A O /\ Lt P O A O).
-        统计不重合点; apply(l11_46 A P O); auto.
+        统计不重合点; apply(l11_46_非锐角三角形中大角对边最长 A P O); auto.
       分离合取式.
       unfold Lt in H21.
       分离合取式.
@@ -405,7 +405,7 @@ Proof.
       apply l11_16_直角相等; auto.
     assert(Cong P A P' A' /\ 等角 P A O P' A' O' /\ 等角 P O A P' O' A').
       assert(Lt P A A O /\ Lt P O A O).
-        统计不重合点; apply(l11_46 A P O); auto.
+        统计不重合点; apply(l11_46_非锐角三角形中大角对边最长 A P O); auto.
       分离合取式.
       unfold Lt in H22.
       分离合取式.

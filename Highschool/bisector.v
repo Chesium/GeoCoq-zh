@@ -240,7 +240,7 @@ assert(HMY : Cong H1 B H2 B /\ 等角 H1 B I H2 B I /\ 等角 H1 I B H2 I B).
    apply (L形垂直转直角1 H2 B I).
    assert (Perp B H2 I H2) by (apply (垂线共线点也构成垂直1 B C I H2 H2);auto;Perp;Col).
    Perp.
-   apply (l11_46 B H1 I); auto.
+   apply (l11_46_非锐角三角形中大角对边最长 B H1 I); auto.
    left.
    apply (L形垂直转直角1 H1 B I).
    assert (Perp B H1 I H1) by (apply (垂线共线点也构成垂直1 B A I H1 H1);auto;Perp;Col).
@@ -383,7 +383,7 @@ assert(HMY : Cong H1 B H2 B /\ 等角 H1 B I H2 B I /\ 等角 H1 I B H2 I B).
 Cong.
 Cong.
 {  统计不重合点.
-   apply (l11_46 B H1 I); auto.
+   apply (l11_46_非锐角三角形中大角对边最长 B H1 I); auto.
    left.
    apply (L形垂直转直角1 H1 B I).
    assert (Perp B H1 I H1) by (apply (垂线共线点也构成垂直1 B A I H1 H1);Perp;Col).

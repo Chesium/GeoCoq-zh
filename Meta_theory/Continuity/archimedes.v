@@ -358,7 +358,7 @@ Proof.
   assert (HPerp0 := 垂线共线点也构成垂直1 A D B0 C0 C0 HAC0 HPerpD HColD).
   elim (两点重合的决定性 P Q); intro HPQ.
   { subst Q; exists C0; exists B0; split; 统计不重合点.
-      apply l6_6, acute_col_perp__out with B0; trivial; apply acute_sym; trivial.
+      apply l6_6, acute_col_perp__out with B0; trivial; apply 为锐角的对称性; trivial.
     split.
       apply out_trivial; auto.
     repeat split; Perp; Le.
@@ -378,7 +378,7 @@ Proof.
     intro; subst C; 统计不重合点; apply (acute_not_per D A B); trivial.
     apply L形垂直转直角1, 垂线共线点也构成垂直1 with C0; Col.
   exists C, B; split.
-    统计不重合点; apply l6_6, acute_col_perp__out with B; [apply acute_sym; trivial|ColR|apply 垂线共线点也构成垂直1 with C0; Col].
+    统计不重合点; apply l6_6, acute_col_perp__out with B; [apply 为锐角的对称性; trivial|ColR|apply 垂线共线点也构成垂直1 with C0; Col].
   split; trivial; split.
     apply L形垂直转直角1, 垂直的左交换性, 垂线共线点也构成垂直1 with C0; trivial.
   apply 长度小于_小于等于_传递性 with P Q'.

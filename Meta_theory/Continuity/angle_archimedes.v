@@ -40,7 +40,7 @@ Proof.
   intros A B C D E F.
   induction 1.
     Lea.
-  apply lea_trans with D E F; trivial.
+  apply 角度小于等于的传递性 with D E F; trivial.
   apply 原角小于等于和角 with A B C; trivial.
 Qed.
 
@@ -100,12 +100,12 @@ Proof.
   destruct (给定角一边可作出与给定点同侧一点构成等角_非平角 A D O O D E) as [P [HP1 HP2]]; Col.
     intro; apply HNCol2; ColR.
   assert (H为锐角 : 为锐角 A D O).
-    apply l11_43_aux; Col; left; apply 直角的对称性, 直角边共线点也构成直角2 with B; auto; ColR.
+    apply l11_43_证明辅助定理; Col; left; apply 直角的对称性, 直角边共线点也构成直角2 with B; auto; ColR.
   assert (HF : 在角内 P O D E).
   { apply lea_in_angle; Side.
     apply (l11_30_等角保持小于等于 A D O E D O); 等角.
     destruct (acute_chara A D O E) as [HD HI]; eBetween.
-    apply lta__lea, HD, H为锐角.
+    apply 角度小于蕴含角度小于等于, HD, H为锐角.
   }
   destruct HF as [_ [_ [HDP [F [HBet4 [Heq|HOut]]]]]].
     exfalso; subst F; apply HNCol2; ColR.
@@ -130,14 +130,14 @@ Proof.
     exists E; repeat split; Cong.
   }
   统计不重合点.
-  apply l11_44_2_b; trivial.
-  apply lta_trans with F D O.
-  - destruct (l11_41 D E O C) as [Hlta1 Hlta2]; Between.
+  apply l11_44_2_b_三角形小角对长边; trivial.
+  apply 角度小于的传递性 with F D O.
+  - destruct (l11_41_三角形两内角小于另一外角 D E O C) as [Hlta1 Hlta2]; Between.
       intro; apply HNCol3; ColR.
-    apply (conga_preserves_lta D E O O D C); trivial;
+    apply (等角保持角度小于性质 D E O O D C); trivial;
       [apply out2__conga|apply (l11_10 O D A F D O)]; 等角;
       try (apply out_trivial; auto); apply bet_out; Between.
-  - destruct (l11_41 F O D E); Col.
+  - destruct (l11_41_三角形两内角小于另一外角 F O D E); Col.
 Qed.
 
 Lemma acute_archi_aux1 : forall O A0 A1 B P Q R,
@@ -211,7 +211,7 @@ Proof.
   destruct HA as [A [HBet1 [HConga HLe]]].
   assert (HIsi : 和角不大于平角 P Q R A0 O A1).
   { apply 角度小于等于保持和角不大于平角性质 with A0 O B A0 O B.
-    - apply 锐角的倍角不大于平角, l11_43_aux; Col.
+    - apply 锐角的倍角不大于平角, l11_43_证明辅助定理; Col.
     - apply (l11_30_等角保持小于等于 A0 O A' A0 O B); 等角.
       exists A'; 统计不重合点; split; 等角.
       repeat split; auto.
@@ -284,14 +284,14 @@ Proof.
   { intro HCol; exists A; exists B; exists C; split.
       apply 角度线性刻度_初始化; 等角.
     apply l11_31_1_任何角小于等于平角_Out表述; auto; apply not_bet_out; trivial.
-    intro HBet; apply (nlta D E F), acute_obtuse__lta; trivial.
-    apply bet__obtuse; auto.
+    intro HBet; apply (一角不可能小于自己 D E F), acute_obtuse__lta; trivial.
+    apply 中间性平角为钝角; auto.
   }
   intro HNCol1.
   elim (lea_total D E F A B C); auto; intro HLea.
     exists A; exists B; exists C; split; trivial; apply 角度线性刻度_初始化; 等角.
   destruct (l8_18_过一点垂线之垂点的存在性 D E F) as [D0 [HD0 HD0']]; trivial.
-  assert (HOut : Out E D0 D) by (apply acute_col_perp__out with F; Col; Perp; apply acute_sym; trivial).
+  assert (HOut : Out E D0 D) by (apply acute_col_perp__out with F; Col; Perp; apply 为锐角的对称性; trivial).
   统计不重合点.
   assert (HConga : 等角 D E F D0 E F) by (apply out2__conga; [|apply out_trivial]; auto).
   apply (acute_conga__acute D E F D0 E F) in H为锐角; trivial.

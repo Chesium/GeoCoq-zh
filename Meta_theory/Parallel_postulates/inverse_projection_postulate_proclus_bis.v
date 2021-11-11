@@ -67,7 +67,7 @@ Proof.
   split.
 
     {
-    apply inangle__lea.
+    apply 角内点分角小于等于大角1.
     apply os2__inangle; Side.
     apply (col2_os__os A B); auto.
     }

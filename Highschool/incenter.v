@@ -144,9 +144,9 @@ right.
 intro HCOLIN.
 destruct HCOLIN as [HNCOL [HCONGAA [HCONGAB HCONGAC]]].
 elim HNCOL;auto.
-destruct (conga_dec B A I I A C) as [HAC | HANC].
-destruct (conga_dec A B I I B C) as [HBC | HBNC].
-destruct (conga_dec A C I I C B) as [HCC | HCNC].
+destruct (等角的决定性 B A I I A C) as [HAC | HANC].
+destruct (等角的决定性 A B I I B C) as [HBC | HBNC].
+destruct (等角的决定性 A C I I C B) as [HCC | HCNC].
 left;split;auto.
 right;intro HN.
 destruct HN as [HNCOL1 [HCONGA [HCONGAB HCONGAC]]].

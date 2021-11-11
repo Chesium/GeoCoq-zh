@@ -236,7 +236,7 @@ Qed.
 Lemma prop_5_1 : forall A B C, A <> B -> B <> C -> Cong A B A C -> 等角 A B C A C B.
 Proof.
   intros.
-  apply l11_44_1_a; auto.
+  apply l11_44_1_a_等腰三角形底角相等; auto.
 Qed.
 
 Lemma prop_5_2 : forall A B C F G, A <> B -> B <> C -> Cong A B A C ->
@@ -246,7 +246,7 @@ Proof.
   intros A B C F G.
   intros.
   apply l11_13 with A A; auto.
-  apply l11_44_1_a; auto.
+  apply l11_44_1_a_等腰三角形底角相等; auto.
 Qed.
 
 
@@ -259,7 +259,7 @@ Qed.
 Lemma prop_6 : forall A B C, ~ Col A B C -> 等角 A B C A C B -> Cong A B A C.
 Proof.
   intros A B C H.
-  apply l11_44_1_b; Col.
+  apply l11_44_1_三角形底角相等等价于等腰_b_底角相等的三角形是等腰三角形; Col.
 Qed.
 
 
@@ -376,7 +376,7 @@ Lemma prop_14 : forall A B C D P Q R S T U, TS A B C D -> Per P Q R ->
   和角 A B C A B D S T U -> 和角 P Q R P Q R S T U -> Bet C B D.
 Proof.
   intros A B C D P Q R S T U HTS HP HSuma1 HSuma2.
-  apply (bet_conga__bet S T U).
+  apply (零角的等角是零角 S T U).
     apply (两直角之和为平角 P Q R P Q R); assumption.
   apply (和角的唯一性 A B C A B D).
     assumption.
@@ -408,7 +408,7 @@ Lemma prop_16 : forall A B C D, ~ Col A B C -> Bet B C D -> C <> D ->
   角度小于 C A B A C D /\ 角度小于 C B A A C D.
 Proof.
   intros.
-  apply l11_41; Col.
+  apply l11_41_三角形两内角小于另一外角; Col.
 Qed.
 
 
@@ -444,8 +444,8 @@ Lemma prop_18 : forall A B C, ~ Col A B C -> Lt A B A C -> Lt B C A C ->
 Proof.
   intros.
   split.
-  - apply 角度小于的左交换性, l11_44_2_a; Col.
-  - apply 角度小于的右交换性, l11_44_2_a.
+  - apply 角度小于的左交换性, l11_44_2_a_三角形长边对小角; Col.
+  - apply 角度小于的右交换性, l11_44_2_a_三角形长边对小角.
       Col.
     apply 长度小于的交换性; assumption.
 Qed.
@@ -461,10 +461,10 @@ Lemma prop_19 : forall A B C, ~ Col A B C -> 角度小于 B C A A B C -> 角度�
 Proof.
   intros.
   split.
-  - apply l11_44_2_b.
+  - apply l11_44_2_b_三角形小角对长边.
       Col.
     apply 角度小于的左交换性; assumption.
-  - apply 长度小于的交换性, l11_44_2_b.
+  - apply 长度小于的交换性, l11_44_2_b_三角形小角对长边.
       Col.
     apply 角度小于的右交换性; assumption.
 Qed.

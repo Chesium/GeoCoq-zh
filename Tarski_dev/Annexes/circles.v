@@ -294,7 +294,7 @@ Proof.
     assert (U <> A').
     { intro; treat_equalities.
       统计不重合点.
-      destruct (l11_46 P U A) as [_ HLt]; auto.
+      destruct (l11_46_非锐角三角形中大角对边最长 P U A) as [_ HLt]; auto.
         left; Perp.
       apply 小于推出反向不小于等于 in HLt.
       apply HLt.
@@ -1774,7 +1774,7 @@ assert(Le T X T A).
 assert(角度小于等于 Y O T X O T).
 {
   apply 角度小于等于的交换性.
-  apply(l11_36 A O X A O Y T T); auto.
+  apply(l11_36_双补角组中的角度偏序 A O X A O Y T T); auto.
 }
 
 assert(Lt T Y T X).

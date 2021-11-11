@@ -199,19 +199,19 @@ Proof.
   assert (Per B CC D) by Cop.
   assert (A <> CC).
   { intro; subst CC.
-    destruct (l11_46 B A D) as [_ []]; auto.
+    destruct (l11_46_非锐角三角形中大角对边最长 B A D) as [_ []]; auto.
     统计不重合点; apply 成直角三点不共线; auto.
   }
   assert (Per A CC D) by Cop.
   repeat split; trivial.
   - destruct (cong2_per2__cong_conga2 A CC D B CC D); Cong.
     intro; subst CC.
-    destruct (l11_46 A B D) as [_ []]; Cong.
+    destruct (l11_46_非锐角三角形中大角对边最长 A B D) as [_ []]; Cong.
     统计不重合点; apply 成直角三点不共线; auto.
   - assert (Per C CC D) by Cop.
     destruct (cong2_per2__cong_conga2 A CC D C CC D); Cong.
     intro; subst CC.
-    destruct (l11_46 A C D) as [_ []]; Cong.
+    destruct (l11_46_非锐角三角形中大角对边最长 A C D) as [_ []]; Cong.
     apply 成直角三点不共线; auto.
 Qed.
 *)

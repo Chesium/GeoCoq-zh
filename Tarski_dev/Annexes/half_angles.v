@@ -57,7 +57,7 @@ Proof.
   apply in_angle_out with B; trivial.
   统计不重合点.
   apply l6_2 with P; auto.
-  apply (bet_conga__bet A O P); assumption.
+  apply (零角的等角是零角 A O P); assumption.
 Qed.
 
 Lemma out_preserves_halfa : forall P A O B P' A' B', 
@@ -194,7 +194,7 @@ Qed.
 Lemma halfa1123__out : forall A O B, HalfA A A O B -> Out O A B.
 Proof.
   intros A O B [_ [_ H等角]].
-  apply eq_conga_out with A O; 等角.
+  apply 零角的等角推出外共线 with A O; 等角.
 Qed.
 
 Lemma halfa3123__out : forall A O B, HalfA B A O B -> Out O A B.
@@ -226,7 +226,7 @@ Proof.
   unfold HalfA.
   intros.
   分离合取式.
-  apply (inangle__lea); assumption.
+  apply (角内点分角小于等于大角1); assumption.
 Qed.
 
 Lemma halfa2_lea__lea1 : forall P A O B P' A' O' B',
@@ -301,7 +301,7 @@ Proof.
   destruct (lea_total A O P A' O' P'); auto.
   apply 等角小于等于自己.
   apply conga_halfa__conga2 with B' B; [assumption..|].
-  apply lea_asym; [assumption|].
+  apply 双角度偏序推等角; [assumption|].
   apply halfa2_lea__lea1 with P' P; assumption.
 Qed.
 
@@ -329,7 +329,7 @@ Lemma lta_nbet__ncol : forall A B C X Y Z, ~ Bet X Y Z -> 角度小于 A B C X Y
 Proof.
   intros A B C X Y Z HNBet HLta HCol.
   apply HNBet.
-  apply (col_lta__bet A B C); assumption.
+  apply (共线三点构成的角大于等于任何角则该三点构成中间性 A B C); assumption.
 Qed.
 *)
 
@@ -347,7 +347,7 @@ Lemma cop_halfa_perp__os : forall P A O B T, HalfA P A O B -> Perp O P T O -> �
 Proof.
   intros P A O B T HP HPerp HCop.
   apply acute_cop_perp__one_side.
-    apply acute_sym, halfa__acute with B; assumption.
+    apply 为锐角的对称性, halfa__acute with B; assumption.
     assumption.
     Cop.
 Qed.
@@ -385,7 +385,7 @@ Proof.
   }
   apply l11_24_在角内的对称性, lea_in_angle.
     apply halfa2_lea__lea2 with A C; [assumption..|].
-    apply inangle__lea, l11_24_在角内的对称性, HC.
+    apply 角内点分角小于等于大角1, l11_24_在角内的对称性, HC.
   apply one_side_transitivity with A; [|apply one_side_transitivity with C; apply one_side_symmetry];
     apply 角内点和一端点在角另一边同侧; Col.
     apply halfa_not_null in HA'; Col.
@@ -498,7 +498,7 @@ Lemma ghalfa_preserves_lta : forall A B C X Y Z A' B' C' X' Y' Z',
   gHalfA A' B' C' A B C -> gHalfA X' Y' Z' X Y Z -> 角度小于 A B C X Y Z -> 角度小于 A' B' C' X' Y' Z'.
 Proof.
   intros A B C X Y Z A' B' C' X' Y' Z' [P1 []] [P2 []] HLta.
-  apply (conga_preserves_lta A B P1 X Y P2); [等角..|].
+  apply (等角保持角度小于性质 A B P1 X Y P2); [等角..|].
   apply halfa2_lta__lta2 with Z C; assumption.
 Qed.
 

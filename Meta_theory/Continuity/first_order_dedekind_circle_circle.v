@@ -125,15 +125,15 @@ Proof.
   { intros X Y X0 Y0; intros.
     apply t18_18 with C C; Cong.
       apply 等长的传递性 with C D; Cong.
-    apply 角度小于的交换性, (conga_preserves_lta A C X A C Y).
+    apply 角度小于的交换性, (等角保持角度小于性质 A C X A C Y).
       apply out2__conga; [apply out_trivial|apply l6_6]; auto.
       apply out2__conga; [apply out_trivial|apply l6_6]; auto.
     split.
-    { apply inangle__lea.
+    { apply 角内点分角小于等于大角1.
       统计不重合点.
-      apply l11_24_在角内的对称性, in_angle_trans with P.
+      apply l11_24_在角内的对称性, 在角内的传递性 with P.
         repeat split; auto; exists X; split; Between; right; apply out_trivial; auto.
-      apply in_angle_trans2 with Q.
+      apply 在角内的传递性2 with Q.
         repeat split; auto.
         exists Y; split; Between.
         right; apply out_trivial; auto.
@@ -141,10 +141,10 @@ Proof.
       - apply l11_24_在角内的对称性, lea_in_angle; [Lea|Side].
       - apply out341__inangle; auto.
         apply not_bet_out; Col.
-        intro; apply (lta__nlea A C P A C Q); Lea.
+        intro; apply (角度小于蕴含反向角度小于等于的否定 A C P A C Q); Lea.
       - apply 任何点都在平角内; auto.
         apply 中间性的对称性, not_out_bet; Col.
-        intro; apply (lta__nlea A C P A C Q); trivial.
+        intro; apply (角度小于蕴含反向角度小于等于的否定 A C P A C Q); trivial.
         apply l11_31_1_任何角小于等于平角_Out表述; auto.
     }
     intro.
@@ -208,7 +208,7 @@ Proof.
     assert (HNCol3 : ~ Col I Z C) by (apply 成直角三点不共线; auto).
     destruct (onc_exists C D I) as [X0 [HX0On HX0Out]]; auto.
     assert (HLt : Lt C X0 C I).
-    { destruct (l11_46 I Z C) as [_ HLt]; auto.
+    { destruct (l11_46_非锐角三角形中大角对边最长 I Z C) as [_ HLt]; auto.
         apply (等长保持小于关系 Z C I C); trivial.
           apply 等长的传递性 with C D; Cong.
           Cong.
@@ -217,9 +217,9 @@ Proof.
     assert (HNCol4 : ~ Col I X0 Z) by (intro; apply (one_side_not_col123 C R I Q); ColR).
     assert (HLt1 : Lt X0 Z I Z).
     { 统计不重合点.
-      destruct (l11_46 I X0 Z); auto.
+      destruct (l11_46_非锐角三角形中大角对边最长 I X0 Z); auto.
       right.
-      apply acute_bet__obtuse with C; auto.
+      apply acute_中间性平角为钝角 with C; auto.
         apply l6_13_1; [apply l6_6|]; Le.
       统计不重合点; apply cong__acute; auto.
       apply 等长的传递性 with C D; Cong.
@@ -295,7 +295,7 @@ Proof.
 
     destruct (onc_exists C D I) as [Y0 [HY0On HY0Out]]; auto.
     assert (HLt : Lt C Y0 C I).
-    { destruct (l11_46 I Z C) as [_ HLt]; auto.
+    { destruct (l11_46_非锐角三角形中大角对边最长 I Z C) as [_ HLt]; auto.
         apply (等长保持小于关系 Z C I C); trivial.
           apply 等长的传递性 with C D; Cong.
           Cong.
@@ -304,9 +304,9 @@ Proof.
     assert (HNCol4 : ~ Col I Y0 Z) by (intro; apply (one_side_not_col123 C R I P); ColR).
     assert (HLt1 : Lt Y0 Z I Z).
     { 统计不重合点.
-      destruct (l11_46 I Y0 Z); auto.
+      destruct (l11_46_非锐角三角形中大角对边最长 I Y0 Z); auto.
       right.
-      apply acute_bet__obtuse with C; auto.
+      apply acute_中间性平角为钝角 with C; auto.
         apply l6_13_1; [apply l6_6|]; Le.
       统计不重合点; apply cong__acute; auto.
       apply 等长的传递性 with C D; Cong.

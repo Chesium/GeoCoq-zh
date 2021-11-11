@@ -45,7 +45,7 @@ cut (exists A B C, ~ Col A B C /\ 为锐角 A B C /\ forall P Q,
     assert (HOut1 : Out B A X).
       {
       apply l6_6, acute_col_perp__out with T; Col; Perp.
-      apply acute_lea_acute with A B C; auto.
+      apply 小于等于锐角之角为锐角 with A B C; auto.
       apply 角度小于等于的左交换性, l11_29_b_能在其内找一点构造等角之角较大.
       exists C; split; trivial.
       统计不重合点; apply 同角相等; auto.

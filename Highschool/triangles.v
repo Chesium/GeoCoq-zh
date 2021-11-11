@@ -42,7 +42,7 @@ Lemma 底角相等的三角形是等腰三角形 :
 Proof.
 intros.
 assert (Cong B A B C)
- by (apply l11_44_1_b;finish;等角).
+ by (apply l11_44_1_三角形底角相等等价于等腰_b_底角相等的三角形是等腰三角形;finish;等角).
 unfold 等腰三角形.
 Cong.
 Qed.
@@ -70,7 +70,7 @@ assert (A<>H).
  intro.
  treat_equalities.
  assert (Lt A B B C /\ Lt A C B C).
- apply (l11_46 B A C);Col; left;apply L形垂直转直角2;auto.
+ apply (l11_46_非锐角三角形中大角对边最长 B A C);Col; left;apply L形垂直转直角2;auto.
  分离合取式.
  unfold 等腰三角形 in *.
  apply (等长推出不小于 A B B C);auto.
@@ -80,7 +80,7 @@ assert (C<>H).
  intro.
  treat_equalities.
  assert (Lt C B B A /\ Lt C A B A).
- apply (l11_46 B C A);Col; left;apply L形垂直转直角2;finish.
+ apply (l11_46_非锐角三角形中大角对边最长 B C A);Col; left;apply L形垂直转直角2;finish.
  分离合取式.
  unfold 等腰三角形 in *.
  apply (等长推出不小于 C B B A);finish.

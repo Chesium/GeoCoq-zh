@@ -4041,7 +4041,7 @@ intros.
 assert(角度小于 F D E C A B \/ 等角 F D E C A B).
 {
   unfold 角度小于.
-  induction (conga_dec F D E C A B).
+  induction (等角的决定性 F D E C A B).
   {
     right; assumption.
   }
@@ -5401,7 +5401,7 @@ induction(两点重合的决定性 T M).
     {
       induction HA.
       {
-        assert(HB:= acute_bet__obtuse P T M Q HH H5 H6).
+        assert(HB:= acute_中间性平角为钝角 P T M Q HH H5 H6).
         apply(inter_circle_obtuse Q P); Cong.
         unfold Projp in *.
         分离合取式.

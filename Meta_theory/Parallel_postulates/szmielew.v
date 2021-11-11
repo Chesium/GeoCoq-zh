@@ -44,7 +44,7 @@ Proof.
   assert (~ Col P Q X) by (apply 成直角三点不共线; auto).
   assert (HTS : TS Q P X Y) by (apply bet__ts; Col).
   apply 角度双全序则和角保持全序 with B1 P Q Q P C1 P Q X P Q Y; 和角.
-  - apply acute_per__lta; auto; apply acute_sym, (aah Q P B1 X HSac).
+  - apply acute_per__lta; auto; apply 为锐角的对称性, (aah Q P B1 X HSac).
   - apply acute_per__lta; auto; apply (aah Q P C1 Y HSac').
 Qed.
 

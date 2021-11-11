@@ -177,7 +177,7 @@ Proof.
   split.
     suma.统计不重合点.
     apply 角度小于等于保持和角不大于平角性质 with P Q R J' K' L'; Lea.
-  apply lea_trans with G' H' I'.
+  apply 角度小于等于的传递性 with G' H' I'.
     apply 和角保持角度小于等于性质_右 with P Q R P Q R J' K' L'; trivial.
   apply 原角小于等于和角 with D' E' F'; trivial.
 Qed.
@@ -240,7 +240,7 @@ Proof.
   destruct (legendre_aux noah A B' C' D' B'' C'' P' Q' R' P'' Q'' R'' V W X) as [HIsi1 HLea1]; trivial.
     apply l6_7 with B; Out.
     apply l6_7 with C; Out.
-  apply lea_trans with V W X; trivial.
+  apply 角度小于等于的传递性 with V W X; trivial.
   apply 和角保持角度小于等于性质 with S T U S T U P' Q' R' P' Q' R'; trivial.
 Qed.
 
@@ -270,7 +270,7 @@ Proof.
     apply 共线否定排列BAC in HNCol.
     destruct (legendre_aux2 archi A B C HNCol H为锐角 legendre P Q R S T U HDef HGAE) as [B' [C' HInter]].
     destruct HInter as [P' [Q' [R' [HOutB [HOutC [HDef' HLea]]]]]].
-    apply (lea_obtuse_obtuse P' Q' R'), 钝角的倍角大于平角 in H为钝角; auto.
+    apply (一角小于等于钝角则该角为钝角 P' Q' R'), 钝角的倍角大于平角 in H为钝角; auto.
     exfalso.
     apply H为钝角.
     destruct (legendre_aux1 A B C B' C') as [D' [HInangle [HConga [HCong HTS]]]]; trivial.

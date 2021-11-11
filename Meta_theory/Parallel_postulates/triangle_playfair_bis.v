@@ -23,7 +23,7 @@ Proof.
   assert (~ Col P Q C) by (apply one_side_not_col123 with A, HOS2).
   assert (~ Col P Q A) by (apply one_side_not_col124 with C, HOS2).
   assert(角度小于 B P C B P Q).
-    apply inangle__lta; [Col|apply l11_24_在角内的对称性, H在角内].
+    apply 非边上角内点分角小于大角; [Col|apply l11_24_在角内的对称性, H在角内].
   assert(为锐角 B P C).
     exists B, P, Q; split; Perp.
   统计不重合点.
@@ -54,7 +54,7 @@ Proof.
   assert(Hsuma3 : 和角 B' P R R P B B' P B) by (apply 中间性推出和角; Between).
   assert(Hsams3 : 和角不大于平角 B' P R R P B) by (apply 邻补角之和不大于平角; Between).
   assert(角度小于等于 C P B R P B).
-  { apply 角度小于等于的交换性, inangle__lea, os_ts__inangle.
+  { apply 角度小于等于的交换性, 角内点分角小于等于大角1, os_ts__inangle.
     - apply l9_2, (l9_8_2 _ _ Q); trivial.
       apply invert_two_sides, 角端点在角内点与顶点连线两侧; Col.
     - apply (one_side_transitivity _ _ _ Q); trivial.

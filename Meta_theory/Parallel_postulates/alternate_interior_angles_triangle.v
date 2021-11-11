@@ -23,7 +23,7 @@ assert (HTS1 : TS B A B1 B2)
   by (repeat split; Col; [intro; apply HNCol2; ColR|exists B; Col]).
 assert (HTS2 : TS B A C B2)
   by (apply (l9_8_2 _ _ B1); auto; apply os_ts1324__os; Side).
-apply (bet_conga__bet B1 B B2); auto.
+apply (零角的等角是零角 B1 B B2); auto.
 destruct HTrisuma as [D1 [E1 [F1 []]]].
 apply (和角的唯一性 D1 E1 F1 C A B); auto.
 assert (等角 A B B2 C A B).

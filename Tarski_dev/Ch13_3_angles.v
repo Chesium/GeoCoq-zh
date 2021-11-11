@@ -107,7 +107,7 @@ Proof.
     auto.
 Qed.
 
-Lemma not_conga_not_ang : forall A B C A' B' C' a , 角谓词 a -> ~(等角 A B C A' B' C') -> a A B C -> ~(a A' B' C').
+Lemma 等角保持不等角性质_not_ang : forall A B C A' B' C' a , 角谓词 a -> ~(等角 A B C A' B' C') -> a A B C -> ~(a A' B' C').
 Proof.
     intros.
     intro.
@@ -115,7 +115,7 @@ Proof.
     contradiction.
 Qed.
 
-Lemma not_conga_is_ang : forall A B C A' B' C' a , ~(等角 A B C A' B' C') -> Ang A B C a -> ~(a A' B' C').
+Lemma 等角保持不等角性质_is_ang : forall A B C A' B' C' a , ~(等角 A B C A' B' C') -> Ang A B C a -> ~(a A' B' C').
 Proof.
     intros.
     unfold Ang in H0.
@@ -280,7 +280,7 @@ Proof.
     exists A.
     exists B.
     exists C.
-    apply acute_distincts in H.
+    apply 角为锐角推不重合 in H.
     分离合取式.
     split.
       auto.
@@ -397,7 +397,7 @@ Proof.
     auto.
 Qed.
 
-Lemma not_conga_is_anga : forall A B C A' B' C' a , ~ 等角 A B C A' B' C' -> 锐角 A B C a -> ~(a A' B' C').
+Lemma 等角保持不等角性质_is_anga : forall A B C A' B' C' a , ~ 等角 A B C A' B' C' -> 锐角 A B C a -> ~(a A' B' C').
 Proof.
     intros.
     unfold 锐角 in H0.
@@ -516,7 +516,7 @@ Proof.
     intros.
     exists (fun X Y Z => 等角 A B C X Y Z).
     unfold 锐角谓词.
-    assert (HH := acute_distincts A B C H).
+    assert (HH := 角为锐角推不重合 A B C H).
     分离合取式.
     split.
       exists A.
@@ -619,7 +619,7 @@ Proof.
       apply (ang_conga a); auto.
     intro.
     apply H1.
-    apply (bet_conga__bet A0 B0 C0); auto.
+    apply (零角的等角是零角 A0 B0 C0); auto.
 Qed.
 
 Lemma ang_const : forall a A B, 角谓词 a -> A <> B -> exists C, a A B C.
@@ -970,7 +970,7 @@ Proof.
       apply H1.
       apply 成中间性三点组的角相等; auto.
     assert(Bet A0 B0 P).
-      apply (bet_conga__bet A B C); auto.
+      apply (零角的等角是零角 A B C); auto.
     assert(Bet A0 B0 C0).
       unfold Out in H6.
       分离合取式.
@@ -988,14 +988,14 @@ Proof.
     ex_and H A0.
     ex_and H1 B0.
     ex_and H C0.
-    assert(HH:= acute_lea_acute A B C A0 B0 C0).
+    assert(HH:= 小于等于锐角之角为锐角 A B C A0 B0 C0).
     apply HH.
       auto.
     unfold 角度小于等于.
     exists C0.
     split.
       unfold 在角内.
-      apply acute_distincts in H.
+      apply 角为锐角推不重合 in H.
       分离合取式.
       repeat split; auto.
       exists C0.
@@ -1023,7 +1023,7 @@ Proof.
       apply (anga_acute a); auto.
     intros.
     assert(Out B A C).
-      apply acute_col__out; auto.
+      apply 共线锐角推外共线; auto.
     assert(HH:= anga_conga a A B C A0 B0 C0 H H1 H4).
     apply (l11_21_a A B C); auto.
 Qed.
@@ -1070,7 +1070,7 @@ Proof.
     split.
       auto.
     intros.
-    assert(HH:=bet_conga__bet A B C A0 B0 C0 H1).
+    assert(HH:=零角的等角是零角 A B C A0 B0 C0 H1).
     apply HH.
     apply (ang_conga a); auto.
 Qed.
@@ -1187,7 +1187,7 @@ Proof.
     ex_and HH A0.
     ex_and H2 B0.
     ex_and H3 C0.
-    apply acute_distincts in H2.
+    apply 角为锐角推不重合 in H2.
     分离合取式.
     apply H3.
     assert (a A0 B0 C0).
@@ -1321,12 +1321,12 @@ Proof.
         unfold Ang in H10.
         分离合取式.
         auto.
-      apply (acute_lea_acute _ _ _ A' B' C').
+      apply (小于等于锐角之角为锐角 _ _ _ A' B' C').
         auto.
       unfold 角度小于等于.
       exists C'.
       split.
-        assert (HH:= acute_distincts A' B' C' H).
+        assert (HH:= 角为锐角推不重合 A' B' C' H).
         分离合取式.
         apply C在角ABC内; auto.
       apply (is_ang_conga _ _ _ _ _ _ a).

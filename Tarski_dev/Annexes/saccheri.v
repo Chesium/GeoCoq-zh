@@ -163,17 +163,17 @@ Proof.
     apply (l12_9 _ _ _ _ A D); Perp; Cop.
   }
   统计不重合点.
-  apply (lta_trans _ _ _ B E D).
-  - assert(HInter := l11_41 E C B D).
+  apply (角度小于的传递性 _ _ _ B E D).
+  - assert(HInter := l11_41_三角形两内角小于另一外角 E C B D).
     destruct HInter; Between.
-    apply (conga_preserves_lta E C B B E D); try (apply 同角相等); auto.
+    apply (等角保持角度小于性质 E C B B E D); try (apply 同角相等); auto.
     apply (l11_10 E C B B C E); try (apply out_trivial); 等角.
     apply l6_6, bet_out; Between.
 
-  - apply (conga_preserves_lta A B E A B C); try (apply 同角相等); auto.
+  - apply (等角保持角度小于性质 A B E A B C); try (apply 同角相等); auto.
     apply sac__conga; auto.
     split.
-    { apply inangle__lea.
+    { apply 角内点分角小于等于大角1.
       apply os2__inangle.
       - apply l12_6.
         apply (par_strict_col_par_strict _ _ _ D); Par; Col.
@@ -207,7 +207,7 @@ Proof.
   destruct (两长度必大于小于或等于 A B C D) as [Hlt | [Hlt | Hcong]]; trivial; exfalso.
   - unfold Gt in Hlt.
     apply 长度小于的交换性 in Hlt.
-    apply (两长度不可能互相小于对方a B C D A B C).
+    apply (两角度不可能互相小于对方 B C D A B C).
     split; trivial.
     apply lt4321_os_per2__lta; trivial.
   - destruct H角度小于 as [H角度小于等于 HN等角].
@@ -446,7 +446,7 @@ Proof.
   unfold Lambert四边形 in HLam'.
   分离合取式.
   destruct (两长度必大于小于或等于 A D B C) as [Habs|[HCong|Habs]]; trivial;
-  exfalso; apply (nlta B C D).
+  exfalso; apply (一角不可能小于自己 B C D).
   - apply acute_per__lta; trivial.
     apply (lam_lt__acute A); trivial.
   - apply obtuse_per__lta; trivial.
@@ -460,7 +460,7 @@ Lemma acute_lam__lt : forall A B C D,
 Proof.
   intros A B C D HLam H为锐角.
   destruct (两长度必大于小于或等于 A D B C) as [|Habs]; trivial.
-  exfalso; apply (nlta B C D).
+  exfalso; apply (一角不可能小于自己 B C D).
   destruct Habs.
   - apply acute_obtuse__lta; trivial.
     apply (lam_lt__obtuse A); trivial.
@@ -477,7 +477,7 @@ Lemma lam_obtuse__lt : forall A B C D,
 Proof.
   intros A B C D HLam H为钝角.
   destruct (两长度必大于小于或等于 A D B C) as [Habs|[Habs|HLt]]; trivial;
-  exfalso; apply (nlta B C D).
+  exfalso; apply (一角不可能小于自己 B C D).
   - apply acute_obtuse__lta; trivial.
     apply (lam_lt__acute A); trivial.
   - assert (HL := HLam).
@@ -656,14 +656,14 @@ Proof.
     apply (par_strict_not_col_2 A B C D HPar'); ColR.
   }
   assert(Hlta1 : 角度小于 A B C B P Q).
-  { apply (conga_preserves_lta A B P B P Q); try (apply 同角相等); auto.
+  { apply (等角保持角度小于性质 A B P B P Q); try (apply 同角相等); auto.
       apply out2__conga; Out.
     apply lt4321_os_per2__lta; Le; Perp.
       apply (直角边共线点也构成直角2 _ _ D); Col.
     apply (col_one_side _ D); Col; apply (l9_17 _ _ C); auto.
   }
   assert(Hlta2 : 角度小于 A B C C P Q).
-  { apply (conga_preserves_lta D C P C P Q); try (apply 同角相等); auto.
+  { apply (等角保持角度小于性质 D C P C P Q); try (apply 同角相等); auto.
     - apply sac__conga in HSac.
       apply (l11_10 D C B A B C); [等角|Out..].
     - apply lt4321_os_per2__lta; auto.
@@ -673,9 +673,9 @@ Proof.
         apply (等长保持小于关系 P Q A B); Cong.
   }
   destruct (angle_partition B P Q) as [H为锐角|[HPer|H为钝角]]; auto.
-  - apply acute_lea_acute with B P Q; Lea.
+  - apply 小于等于锐角之角为锐角 with B P Q; Lea.
   - exists B, P, Q; auto.
-  - apply acute_lea_acute with C P Q; Lea.
+  - apply 小于等于锐角之角为锐角 with C P Q; Lea.
     apply (bet_obtuse__acute B); auto.
 Qed.
 
@@ -715,14 +715,14 @@ Proof.
     apply (par_strict_not_col_2 A B C D HPar'); ColR.
   }
   assert (角度小于 B P Q A B C).
-  { apply (conga_preserves_lta B P Q A B P); try (apply 同角相等); auto.
+  { apply (等角保持角度小于性质 B P Q A B P); try (apply 同角相等); auto.
       apply out2__conga; [apply out_trivial|apply l6_6, bet_out]; auto.
     apply lt_os_per2__lta; Perp.
       apply (直角边共线点也构成直角2 _ _ D); Col.
     apply (col_one_side _ D); Col; apply (l9_17 _ _ C); auto.
   }
   assert (角度小于 C P Q A B C).
-  { apply (conga_preserves_lta Q P C P C D); try (apply 角ABC等于角CBA); auto.
+  { apply (等角保持角度小于性质 Q P C P C D); try (apply 角ABC等于角CBA); auto.
     - apply sac__conga in HSac.
       apply (l11_10 B C D A B C); [等角|Out..].
     - apply lt4321_os_per2__lta.
@@ -733,10 +733,10 @@ Proof.
         apply (等长保持小于关系 A B P Q); Cong.
   }
   destruct (angle_partition B P Q) as [H为锐角|[HPer|H为钝角]]; auto.
-  - apply lea_obtuse_obtuse with C P Q; [|unfold 角度大于等于; Lea].
-    apply (acute_bet__obtuse B); auto.
+  - apply 一角小于等于钝角则该角为钝角 with C P Q; [|unfold 角度大于等于; Lea].
+    apply (acute_中间性平角为钝角 B); auto.
   - exists B, P, Q; auto.
-  - apply lea_obtuse_obtuse with B P Q; [|unfold 角度大于等于]; Lea.
+  - apply 一角小于等于钝角则该角为钝角 with B P Q; [|unfold 角度大于等于]; Lea.
 Qed.
 
 Lemma t22_7__cong : forall A B C D P Q,
@@ -751,7 +751,7 @@ Proof.
   分离合取式.
   destruct (等长的决定性 P Q A B); auto.
   exfalso.
-  apply (nlta A B C).
+  apply (一角不可能小于自己 A B C).
   elim(长度小于等于的决定性 P Q A B).
   - intro.
     apply acute_per__lta; auto.
@@ -775,14 +775,14 @@ Proof.
   分离合取式.
   destruct (等长的决定性 P Q A B).
   { exfalso.
-    apply (nlta A B C).
+    apply (一角不可能小于自己 A B C).
     apply acute_per__lta; auto.
     apply (t22_7__per _ _ _ D P Q); auto.
   }
   split; auto.
   destruct (长度小于等于的决定性 P Q A B); auto.
   exfalso.
-  apply (nlta A B C).
+  apply (一角不可能小于自己 A B C).
   apply acute_obtuse__lta; auto.
   apply (t22_7__obtuse _ _ _ D P Q); auto.
   split; Cong.
@@ -800,14 +800,14 @@ Proof.
   分离合取式.
   destruct(等长的决定性 P Q A B).
   { exfalso.
-    apply (nlta A B C).
+    apply (一角不可能小于自己 A B C).
     apply obtuse_per__lta; auto.
     apply (t22_7__per _ _ _ D P Q); auto.
   }
   split; Cong.
   destruct(长度小于等于的决定性 P Q A B); auto.
   exfalso.
-  apply (nlta A B C).
+  apply (一角不可能小于自己 A B C).
   apply acute_obtuse__lta; auto.
   apply (t22_7__acute _ _ _ D P Q); auto.
   split; auto.
@@ -892,7 +892,7 @@ Proof.
   assert(J <> R) by (intro; subst J; destruct Hlt; Cong).
   assert(等角 A B C B C D) by (apply sac__conga; auto).
   destruct (t22_8_aux A B C D R S J) as [HCR [HSac1 [HSac2 [HOS HCop]]]]; [Out; Cong..|].
-  apply (acute_lea_acute _ _ _ B C D); Lea.
+  apply (小于等于锐角之角为锐角 _ _ _ B C D); Lea.
   apply (acute_chara _ _ _ R); auto.
   assert(等角 A B J B J S) by (apply sac__conga; auto).
   assert(等角 D C J C J S) by (apply sac__conga; auto).
@@ -913,14 +913,14 @@ Proof.
   }
   assert (HNCol2 : ~ Col J B C) by (apply two_sides_not_col with S; auto).
   apply (角度双全序则和角保持全序 A B J J B C _ _ _ D C J J C R); [..|和角].
-  - apply (conga_preserves_lta S J B S J C); 等角.
+  - apply (等角保持角度小于性质 S J B S J C); 等角.
     split.
-      apply inangle__lea; Side.
+      apply 角内点分角小于等于大角1; Side.
     intro Habs.
     apply HNCol2, out_col, (conga_os__out S); Side.
 
-  - apply (conga_preserves_lta C B J J C R); 等角.
-    apply l11_41; Col.
+  - apply (等角保持角度小于性质 C B J J C R); 等角.
+    apply l11_41_三角形两内角小于另一外角; Col.
 
   - apply 同侧异侧推和角不大于平角; trivial.
     apply par_strict_all_one_side with S; Col.
@@ -954,7 +954,7 @@ Proof.
   assert(R <> S) by (intro; apply HPar; exists R; subst; split; Col).
   assert(等角 A B C B C D) by (apply sac__conga; auto).
   destruct (t22_8_aux A B C D R S I) as [HCR [HSac1 [HSac2 [HOS HCop]]]]; [Out; Cong..|].
-  apply (lea_obtuse_obtuse _ _ _ B C D); [|apply 等角小于等于自己; 等角].
+  apply (一角小于等于钝角则该角为钝角 _ _ _ B C D); [|apply 等角小于等于自己; 等角].
   apply (obtuse_chara _ _ _ R); auto.
   assert(等角 A B I B I S) by (apply sac__conga; auto).
   assert(等角 D C I C I S) by (apply sac__conga; auto).
@@ -972,10 +972,10 @@ Proof.
     apply invert_two_sides, bet__ts; Col.
   }
   apply(原角反全序和角全序则加角全序 I C R _ _ _ D C I I B C _ _ _ A B I).
-  - apply 角度小于的左交换性, l11_41; Col.
+  - apply 角度小于的左交换性, l11_41_三角形两内角小于另一外角; Col.
 
   - assert(OS R S C B) by (apply out_one_side; Out; Col).
-    apply (conga_preserves_lta S I C S I B); 等角.
+    apply (等角保持角度小于性质 S I C S I B); 等角.
     split.
     { exists C.
       split; 等角.
@@ -1016,7 +1016,7 @@ Proof.
   assert(Hdiff := sac_distincts A B C D HSac).
   分离合取式.
   exfalso.
-  apply (nlta A B C).
+  apply (一角不可能小于自己 A B C).
   destruct(长度小于等于的决定性 R S A B).
   - apply obtuse_per__lta; auto.
     apply (t22_8__obtuse _ _ _ D R S); auto.
@@ -1039,12 +1039,12 @@ Proof.
   统计不重合点.
   destruct(等长的决定性 R S A B).
   { exfalso.
-    apply (nlta A B C), acute_per__lta; auto.
+    apply (一角不可能小于自己 A B C), acute_per__lta; auto.
     apply (t22_8__per _ _ _ D R S); auto.
   }
   destruct(长度小于等于的决定性 R S A B); [|split; Cong].
   exfalso.
-  apply (nlta A B C), acute_obtuse__lta; auto.
+  apply (一角不可能小于自己 A B C), acute_obtuse__lta; auto.
   apply (t22_8__obtuse _ _ _ D R S); auto.
   split; auto.
 Qed.
@@ -1061,14 +1061,14 @@ Proof.
   统计不重合点.
   destruct(等长的决定性 R S A B).
   { exfalso.
-    apply (nlta A B C).
+    apply (一角不可能小于自己 A B C).
     apply obtuse_per__lta; auto.
     apply (t22_8__per _ _ _ D R S); auto.
   }
   destruct(长度小于等于的决定性 R S A B).
     split; auto.
   exfalso.
-  apply (nlta A B C).
+  apply (一角不可能小于自己 A B C).
   apply acute_obtuse__lta; auto.
   apply (t22_8__acute _ _ _ D R S); auto.
   split; Cong.
@@ -1188,10 +1188,10 @@ Proof.
   unfold Lambert四边形 in HLamR.
   分离合取式.
   split; intro.
-  - destruct(angle_partition Q P M) as [|[|]]; auto; exfalso; apply (nlta S R M).
+  - destruct(angle_partition Q P M) as [|[|]]; auto; exfalso; apply (一角不可能小于自己 S R M).
       apply acute_obtuse__lta; auto.
       apply obtuse_per__lta; auto.
-  - destruct(angle_partition S R M) as [|[|]]; auto; exfalso; apply (nlta Q P M).
+  - destruct(angle_partition S R M) as [|[|]]; auto; exfalso; apply (一角不可能小于自己 Q P M).
       apply acute_obtuse__lta; auto.
       apply obtuse_per__lta; auto.
 Qed.
@@ -1499,7 +1499,7 @@ Proof.
 
   - apply (acute_conga__acute L G H); 等角.
     apply (t22_9__acute N _ K M); try (apply lam_perm); Between.
-    apply acute_sym.
+    apply 为锐角的对称性.
     assert(为锐角 D C M).
     { apply (acute_conga__acute A B C); auto.
       apply (l11_10 A B C D C B); [等角|Out..].
@@ -1510,7 +1510,7 @@ Proof.
 
   - apply (acute_conga__acute D C M).
     { assert(为锐角 H K M).
-        apply acute_sym.
+        apply 为锐角的对称性.
           apply (t22_9__acute N _ _ _ G L); try (apply lam_perm); Between.
           apply (acute_conga__acute A' B' C'); 等角.
       destruct HMout as [_ [_ [HMCK|HMKC]]].
@@ -1577,7 +1577,7 @@ Proof.
   elim(angle_partition A' B' C'); auto.
   { intro Hacute'.
     exfalso.
-    apply (nlta A B C).
+    apply (一角不可能小于自己 A B C).
     apply (acute_obtuse__lta); auto.
     assert(aah := acute_sac__aah A' B' C' D' HSac' Hacute').
     apply (aah _ _ _ D); auto.
@@ -1585,7 +1585,7 @@ Proof.
   intro HUn.
   destruct HUn as [HPer'|]; auto.
   exfalso.
-  apply (nlta A B C).
+  apply (一角不可能小于自己 A B C).
   apply (obtuse_per__lta); auto.
   assert(rah := per_sac__rah A' B' C' D' HSac' HPer').
   apply (rah _ _ _ D); auto.
@@ -1645,7 +1645,7 @@ Proof.
   destruct ex_saccheri as [A [B [C [D HSac]]]].
   assert(Hdiff := sac_distincts A B C D HSac).
   分离合取式.
-  apply (nlta A B C).
+  apply (一角不可能小于自己 A B C).
   assert(为锐角 A B C) by (apply (aah _ _ _ D); auto).
   destruct HUn as [rah|oah].
   - apply (acute_per__lta); auto.
@@ -1662,7 +1662,7 @@ Proof.
   destruct ex_saccheri as [A [B [C [D HSac]]]].
   assert(Hdiff := sac_distincts A B C D HSac).
   分离合取式.
-  apply (nlta A B C).
+  apply (一角不可能小于自己 A B C).
   assert(Per A B C) by (apply (rah _ _ _ D); auto).
   destruct HUn as [aah|oah].
   - apply (acute_per__lta); auto.
@@ -1679,7 +1679,7 @@ Proof.
   destruct ex_saccheri as [A [B [C [D HSac]]]].
   assert(Hdiff := sac_distincts A B C D HSac).
   分离合取式.
-  apply (nlta A B C).
+  apply (一角不可能小于自己 A B C).
   assert(为钝角 A B C) by (apply (oah _ _ _ D); auto).
   destruct HUn as [aah|rah].
   - apply (acute_obtuse__lta); auto.
@@ -1960,7 +1960,7 @@ Proof.
   destruct (t22_14_aux A B C) as [A']; [assumption..|分离合取式].
   统计不重合点.
 
-  apply (bet_conga__bet B A' C); auto.
+  apply (零角的等角是零角 B A' C); auto.
   apply (和角的唯一性 D E F B C A); auto.
   apply (和角结合律 B A' A C A A' _ _ _ _ _ _ _ _ _ A A' C); [..|和角].
     apply (等角保持和角不大于平角性质 C A' A A' A C); 等角; 和角.
@@ -1991,11 +1991,11 @@ Proof.
   destruct (angle_partition A B C); auto; [destruct (angle_partition A C B); auto|].
   - apply (t22_14__bet_aux A B C); auto.
 
-  - destruct (l11_43 C A B); auto.
+  - destruct (l11_43_非锐角三角形两小内角为锐角 C A B); auto.
     apply (t22_14__bet_aux C A B); Col.
     apply 等价三角形内角和CAB; auto.
 
-  - destruct (l11_43 B A C); auto.
+  - destruct (l11_43_非锐角三角形两小内角为锐角 B A C); auto.
     apply (t22_14__bet_aux B A C); Col.
     apply 等价三角形内角和BAC; auto.
 Qed.
@@ -2054,9 +2054,9 @@ Proof.
   split.
     apply (角度小于等于保持和角不大于平角性质 _ _ _ _ _ _ G H I B C A); Lea.
   intro.
-  apply (nlta P Q R).
-  apply (conga_preserves_lta P Q R B A' C); 等角.
-  apply (lta_trans _ _ _ S T U); auto.
+  apply (一角不可能小于自己 P Q R).
+  apply (等角保持角度小于性质 P Q R B A' C); 等角.
+  apply (角度小于的传递性 _ _ _ S T U); auto.
   apply (角度一全序一偏序则和角保持全序 D E F B C A _ _ _ G H I B C A); Lea.
 Qed.
 
@@ -2075,7 +2075,7 @@ Proof.
   destruct (angle_partition A B C); auto; [destruct (angle_partition A C B); auto|].
   - apply (t22_14__sams_nbet_aux A B C); auto.
 
-  - destruct (l11_43 C A B); auto.
+  - destruct (l11_43_非锐角三角形两小内角为锐角 C A B); auto.
     assert(HSuma3 := 和角的存在性 B C A C A B).
     rename H into H为锐角.
     destruct HSuma3 as [G [H [I HSuma3]]]; auto.
@@ -2086,7 +2086,7 @@ Proof.
     split; auto.
     apply 和角不大于平角的对称性; apply (和角不大于平角结合律 _ _ _ C A B A B C G H I); 和角.
 
-  - destruct (l11_43 B A C); auto.
+  - destruct (l11_43_非锐角三角形两小内角为锐角 B A C); auto.
     assert(HInter := t22_14__sams_nbet_aux B A C D E F P Q R).
     destruct HInter as [HIsi HNBet]; Col; 和角.
 Qed.
@@ -2104,7 +2104,7 @@ Proof.
   assert(HSuma2 := 和角的存在性 D E F B C A).
   destruct HSuma2 as [P [Q [R HSuma2]]]; suma.统计不重合点; auto.
   absurd (角度小于 B A' C P Q R).
-    apply (lea__nlta); apply l11_31_1_任何角小于等于平角_Bet表述; auto.
+    apply (两角成偏序关系则不可能成反全序关系); apply l11_31_1_任何角小于等于平角_Bet表述; auto.
   assert(HSuma3 := 和角的存在性 B A' A C A A').
   rename H into HBet.
   destruct HSuma3 as [G [H [I HSuma3]]]; auto.
@@ -2132,7 +2132,7 @@ Proof.
   assert(HSuma5 := 和角的存在性 B A' A J K L).
   destruct HSuma5 as [S [T [U HSuma5]]]; auto.
   suma.统计不重合点.
-  apply (lta_trans _ _ _ S T U).
+  apply (角度小于的传递性 _ _ _ S T U).
   - apply (角度一偏序一全序则和角保持全序 B A' A A A' C _ _ _ B A' A J K L); Lea;
     [|exists C; repeat (split; 等角); Side; Cop].
     apply (和角不大于平角结合律 _ _ _ C A A' B C A G H I); auto.
@@ -2164,7 +2164,7 @@ Proof.
     apply (t22_14__nsams_aux A B C); auto.
 
   - intro.
-    assert(HInter := l11_43 C A B).
+    assert(HInter := l11_43_非锐角三角形两小内角为锐角 C A B).
     destruct HInter; Col.
     assert(HSuma3 := 和角的存在性 B C A C A B).
     rename H into H为锐角.
@@ -2177,7 +2177,7 @@ Proof.
       apply (和角不大于平角结合律 B C A C A B _ _ _ _ _ _ D E F); 和角.
 
   - intro.
-    assert (HInter := l11_43 B A C).
+    assert (HInter := l11_43_非锐角三角形两小内角为锐角 B A C).
     destruct HInter; Col.
     intro.
     absurd(和角不大于平角 D E F A C B).
@@ -2207,7 +2207,7 @@ Proof.
     apply 等角的对称性 in HConga1.
     统计不重合点.
     apply (用角度小于等于特征化和角不大于平角 _ _ _ _ _ _ G); Lea.
-    apply (bet_conga__bet P Q R); 等角.
+    apply (零角的等角是零角 P Q R); 等角.
 Qed.
 
 (** If the sum of the angles of a triangle is less than 180,
@@ -2277,11 +2277,11 @@ Proof.
   统计不重合点.
   assert(等角 A B C M C B).
   { apply (l11_10 M B C M C B); Out.
-    apply l11_44_1_a; auto; apply (等长的传递性 _ _ M A); Cong.
+    apply l11_44_1_a_等腰三角形底角相等; auto; apply (等长的传递性 _ _ M A); Cong.
   }
   assert(等角 B A C M C A).
   { apply (l11_10 M A C M C A); Out.
-    apply l11_44_1_a; Cong.
+    apply l11_44_1_a_等腰三角形底角相等; Cong.
   }
   apply (等角保持和角性质 A C M M C B A C B); 等角.
   assert (TS M C A B) by (apply bet__ts; Between; intro; apply HNCol; ColR).
@@ -2327,9 +2327,9 @@ Proof.
   destruct HSuma as [P [Q [R]]]; auto.
   split; intro HO.
   - apply (t22_14__oah A B C B C A); Col; 和角.
-    apply 钝角的倍角大于平角; apply obtuse_sym; auto.
+    apply 钝角的倍角大于平角; apply 为钝角的对称性; auto.
 
-  - apply obtuse_sym.
+  - apply 为钝角的对称性.
     apply 一角的倍角大于平角则该角为钝角; auto.
     apply (t22_14__nsams HO A B C); Col; 和角.
 Qed.
@@ -2342,7 +2342,7 @@ Proof.
   intros A B C M HNCol HM HCong.
   统计不重合点.
   split; intro.
-  - destruct (saccheri_s_three_hypotheses) as [|[|]]; auto; exfalso; apply (nlta A C B).
+  - destruct (saccheri_s_three_hypotheses) as [|[|]]; auto; exfalso; apply (一角不可能小于自己 A C B).
       apply (acute_per__lta); auto; rewrite (t22_17__rah _ _ _ M); auto.
       apply (acute_obtuse__lta); auto; rewrite (t22_17__oah _ _ _ M); auto.
 

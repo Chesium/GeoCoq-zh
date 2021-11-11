@@ -333,7 +333,7 @@ ColR.
 
 assert(Lt T x' x' O /\ Lt T O x' O).
 统计不重合点.
-apply(l11_46 x' T O); auto.
+apply(l11_46_非锐角三角形中大角对边最长 x' T O); auto.
 unfold 在圆上 in *.
 unfold Lt in H10.
 分离合取式.

@@ -2349,15 +2349,15 @@ repeat
       | H:角度小于 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;
-      assert (h := lta_distincts A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角度小于推不重合 A B C D E F H);decompose [and] h;clear h;clean_reap_hyps
       | H:(为锐角 ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp2 A B B C;
-      assert (h := acute_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角为锐角推不重合 A B C H);decompose [and] h;clear h;clean_reap_hyps
       | H:(为钝角 ?A ?B ?C) |- _ =>
       let h := fresh in
       not_exist_hyp2 A B B C;
-      assert (h := obtuse_distincts A B C H);decompose [and] h;clear h;clean_reap_hyps
+      assert (h := 角为钝角推不重合 A B C H);decompose [and] h;clear h;clean_reap_hyps
       | H:互为补角 ?A ?B ?C ?D ?E ?F |- _ =>
       let h := fresh in
       not_exist_hyp4 A B B C D E E F;

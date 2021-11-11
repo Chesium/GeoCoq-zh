@@ -21,7 +21,7 @@ Proof.
     intro.
     destruct Hacute as [x [y [z [HPer2 Hlta]]]].
     统计不重合点.
-    assert(HN := 两长度不可能互相小于对方a A B C x y z).
+    assert(HN := 两角度不可能互相小于对方 A B C x y z).
     apply HN.
     split; auto.
     split.
@@ -76,7 +76,7 @@ Proof.
     }
     apply l11_24_在角内的对称性.
     apply lea_in_angle; Side.
-    apply lta__lea.
+    apply 角度小于蕴含角度小于等于.
     apply acute_per__lta; auto.
     apply L形垂直转直角1; Perp.
 
