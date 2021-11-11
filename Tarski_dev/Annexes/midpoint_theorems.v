@@ -5,14 +5,14 @@ Ltac assert_all := treat_equalities; assert_cols_perm; 统计不重合点; asser
 Section Triangle中点sTheorems.
 
 Context `{TE:塔斯基公理系统_欧几里得几何}.
-
+(*
 Lemma col_permut132 : forall A B C, Col A B C -> Col A C B.
 Proof. exact 等价共线ACB. Qed.
 
 Lemma col_permut213 : forall A B C, Col A B C -> Col B A C.
 Proof. exact 等价共线BAC. Qed.
 
-Lemma col_permut231 : forall A B C, Col A B C -> Col B C A.
+Lemma 等价共线BCA : forall A B C, Col A B C -> Col B C A.
 Proof. exact 等价共线BCA. Qed.
 
 Lemma col_permut312 : forall A B C, Col A B C -> Col C A B.
@@ -21,15 +21,15 @@ Proof. exact 等价共线CAB. Qed.
 Lemma col_permut321 : forall A B C, Col A B C -> Col C B A.
 Proof. exact 等价共线CBA. Qed.
 
-Lemma col123_124__col134 : forall P Q A B,
+Lemma 共线的传递性2 : forall P Q A B,
   P <> Q -> Col P Q A -> Col P Q B -> Col P A B.
 Proof. exact 共线的传递性2. Qed.
 
-Lemma col123_124__col234 : forall P Q A B,
+Lemma 共线的传递性3 : forall P Q A B,
   P <> Q -> Col P Q A -> Col P Q B -> Col Q A B.
 Proof. exact 共线的传递性3. Qed.
-
-Lemma triangle_mid_par_strict : forall A B C P Q,
+*)
+Lemma 三角形中位线平行于第三边2 : forall A B C P Q,
  ~Col A B C ->
  中点 P B C ->
  中点 Q A C ->
@@ -59,13 +59,13 @@ apply ncol134_plg__pars1423; auto; intro; apply H; ColR.
 *)
 apply ncol123_plg__pars1423; auto; intro; apply H.
 assert (P <> x) by (intro; treat_equalities; Col).
-apply col_permut231; apply col123_124__col234 with P;
-[| |apply col_permut231]; Col.
-apply col_permut231; apply col123_124__col134 with Q; Col.
-apply col_permut231; apply col123_124__col134 with x; Col.
+apply 等价共线BCA; apply 共线的传递性3 with P;
+[| |apply 等价共线BCA]; Col.
+apply 等价共线BCA; apply 共线的传递性2 with Q; Col.
+apply 等价共线BCA; apply 共线的传递性2 with x; Col.
 Qed.
 
-Lemma triangle_mid_par_strict_cong_aux : forall A B C P Q R,
+Lemma 三角形中位线平行于第三边2且与其两半相等 : forall A B C P Q R,
  ~Col A B C ->
  中点 P B C ->
  中点 Q A C ->
@@ -102,7 +102,7 @@ apply par_not_col_strict with x; Col; Par.
 assert_congs_perm;split;CongR.
 Qed.
 
-Lemma triangle_par_mid : forall A B C P Q,
+Lemma 过三角形一边中点的一边平行线过第三边中点 : forall A B C P Q,
  ~ Col A B C ->
  中点 P B C ->
  Par A B Q P ->
@@ -114,8 +114,8 @@ unfold midpoint_converse_postulate in H; intros; apply H with B P; Col.
 unfold playfair_s_postulate.
 apply parallel_uniqueness.
 Qed.
-
-Lemma triangle_mid_par_strict_cong_1 : forall A B C P Q R,
+(* 无用 *)
+Lemma 三角形中位线平行于第三边2且与其一半相等1 : forall A B C P Q R,
  ~Col A B C ->
  中点 P B C ->
  中点 Q A C ->
@@ -124,12 +124,12 @@ Lemma triangle_mid_par_strict_cong_1 : forall A B C P Q R,
 Proof.
 intros.
 assert (严格平行 A B Q P /\ Cong A R P Q /\ Cong B R P Q)
-  by (apply triangle_mid_par_strict_cong_aux with C; assumption).
+  by (apply 三角形中位线平行于第三边2且与其两半相等 with C; assumption).
 spliter.
 split; assumption.
 Qed.
-
-Lemma triangle_mid_par_strict_cong_2 : forall A B C P Q R,
+(* 无用 *)
+Lemma 三角形中位线平行于第三边2且与其一半相等2 : forall A B C P Q R,
  ~Col A B C ->
  中点 P B C ->
  中点 Q A C ->
@@ -138,22 +138,22 @@ Lemma triangle_mid_par_strict_cong_2 : forall A B C P Q R,
 Proof.
 intros.
 assert (严格平行 A B Q P /\ Cong A R P Q /\ Cong B R P Q)
-  by (apply triangle_mid_par_strict_cong_aux with C; assumption).
+  by (apply 三角形中位线平行于第三边2且与其两半相等 with C; assumption).
 spliter.
 split; assumption.
 Qed.
 
-Lemma triangle_mid_par_strict_cong_simp :
+Lemma 三角形中位线平行于第三边3 :
  forall A B C P Q,
  ~ Col A B C ->
  中点 P B C ->
  中点 Q A C ->
  严格平行 A B Q P.
 Proof.
-apply triangle_mid_par.
+apply 广义三角形中位线平行于第三边.
 Qed.
 
-Lemma triangle_mid_par_strict_cong : forall A B C P Q R,
+Lemma 三角形中位线定理综合 : forall A B C P Q R,
  ~Col A B C ->
  中点 P B C ->
  中点 Q A C ->
@@ -164,11 +164,11 @@ Proof.
 intros.
 permutation_intro_in_hyps.
 assert (严格平行 A B Q P /\ Cong A R P Q /\ Cong B R P Q)
-  by (apply triangle_mid_par_strict_cong_aux with C; assumption).
+  by (apply 三角形中位线平行于第三边2且与其两半相等 with C; assumption).
 assert (严格平行 A C R P /\ Cong A Q P R /\ Cong C Q P R)
-  by (apply triangle_mid_par_strict_cong_aux with B; Col).
+  by (apply 三角形中位线平行于第三边2且与其两半相等 with B; Col).
 assert (严格平行 C B Q R /\ Cong C P R Q /\ Cong B P R Q)
-  by (apply triangle_mid_par_strict_cong_aux with A; Col).
+  by (apply 三角形中位线平行于第三边2且与其两半相等 with A; Col).
 spliter.
 
 split; trivial.
@@ -177,7 +177,7 @@ split; Par.
 repeat split; Cong.
 Qed.
 
-Lemma triangle_mid_par_flat_cong_aux : forall A B C P Q R,
+Lemma 退化三角形中位线平行于第三边且与其两半相等 : forall A B C P Q R,
  B <> A ->
  Col A B C ->
  中点 P B C ->
@@ -233,7 +233,7 @@ induction HElim.
  repeat split; Par; Cong.
 Qed.
 
-Lemma triangle_mid_par_flat_cong_1 : forall A B C P Q R,
+Lemma 退化三角形中位线平行于第三边2且与其一半相等1 : forall A B C P Q R,
  B <> A ->
  Col A B C ->
  中点 P B C ->
@@ -243,12 +243,12 @@ Lemma triangle_mid_par_flat_cong_1 : forall A B C P Q R,
 Proof.
 intros.
 assert (Par A B Q P /\ Cong A R P Q /\ Cong B R P Q)
-  by (apply triangle_mid_par_flat_cong_aux with C; assumption).
+  by (apply 退化三角形中位线平行于第三边且与其两半相等 with C; assumption).
 spliter.
 split; assumption.
 Qed.
 
-Lemma triangle_mid_par_flat_cong_2 : forall A B C P Q R,
+Lemma 退化三角形中位线平行于第三边2且与其一半相等2 : forall A B C P Q R,
  B <> A ->
  Col A B C ->
  中点 P B C ->
@@ -258,12 +258,12 @@ Lemma triangle_mid_par_flat_cong_2 : forall A B C P Q R,
 Proof.
 intros.
 assert (Par A B Q P /\ Cong A R P Q /\ Cong B R P Q)
-  by (apply triangle_mid_par_flat_cong_aux with C; assumption).
+  by (apply 退化三角形中位线平行于第三边且与其两半相等 with C; assumption).
 spliter.
 split; assumption.
 Qed.
 
-Lemma triangle_mid_par_flat_cong : forall A B C P Q R,
+Lemma 退化三角形中位线定理综合 : forall A B C P Q R,
  B <> A ->
  C <> A ->
  C <> B ->
@@ -276,16 +276,16 @@ Lemma triangle_mid_par_flat_cong : forall A B C P Q R,
 Proof.
 intros.
 permutation_intro_in_hyps.
-assert (Par A B Q P /\ Cong A R P Q /\ Cong B R P Q) by (apply triangle_mid_par_flat_cong_aux with C; assumption).
-assert (Par A C R P /\ Cong A Q P R /\ Cong C Q P R) by (apply triangle_mid_par_flat_cong_aux with B; Col).
-assert (Par C B Q R /\ Cong C P R Q /\ Cong B P R Q) by (apply triangle_mid_par_flat_cong_aux with A; Col).
+assert (Par A B Q P /\ Cong A R P Q /\ Cong B R P Q) by (apply 退化三角形中位线平行于第三边且与其两半相等 with C; assumption).
+assert (Par A C R P /\ Cong A Q P R /\ Cong C Q P R) by (apply 退化三角形中位线平行于第三边且与其两半相等 with B; Col).
+assert (Par C B Q R /\ Cong C P R Q /\ Cong B P R Q) by (apply 退化三角形中位线平行于第三边且与其两半相等 with A; Col).
 spliter.
 
 repeat split; Cong; Par.
 
 Qed.
 
-Lemma triangle_mid_par_flat : forall A B C P Q,
+Lemma 退化三角形中位线平行于第三边 : forall A B C P Q,
  B <> A ->
  Col A B C ->
  中点 P B C ->
@@ -294,11 +294,11 @@ Lemma triangle_mid_par_flat : forall A B C P Q,
 Proof.
 intros.
 elim (中点的存在性 A B); intro R; intro.
-assert (HTMT := triangle_mid_par_flat_cong_aux A B C P Q R H H0 H1 H2 H3); spliter.
+assert (HTMT := 退化三角形中位线平行于第三边且与其两半相等 A B C P Q R H H0 H1 H2 H3); spliter.
 assumption.
 Qed.
 
-Lemma triangle_mid_par : forall A B C P Q,
+Lemma 广义三角形中位线平行于第三边 : forall A B C P Q,
  A <> B ->
  中点 P B C ->
  中点 Q A C ->
@@ -307,12 +307,12 @@ Proof.
 intros.
 
 elim (共线的决定性 A B C); intro.
-  apply triangle_mid_par_flat with C; auto.
+  apply 退化三角形中位线平行于第三边 with C; auto.
 
-  apply par_strict_par; apply triangle_mid_par_strict with C; assumption.
+  apply par_strict_par; apply 三角形中位线平行于第三边2 with C; assumption.
 Qed.
 
-Lemma triangle_mid_par_cong : forall A B C P Q R,
+Lemma 广义三角形中位线定理综合 : forall A B C P Q R,
  B <> A ->
  C <> A ->
  C <> B ->
@@ -325,14 +325,14 @@ Proof.
 intros.
 
 elim (共线的决定性 A B C); intro.
-  apply triangle_mid_par_flat_cong; assumption.
+  apply 退化三角形中位线定理综合; assumption.
 
-  assert (HTMT := triangle_mid_par_strict_cong A B C P Q R H5 H2 H3 H4); spliter.
+  assert (HTMT := 三角形中位线定理综合 A B C P Q R H5 H2 H3 H4); spliter.
   repeat split; try apply par_strict_par; assumption.
 Qed.
 
 
-Lemma triangle_mid_par_cong_1 : forall A B C P Q R,
+Lemma 广义三角形中位线平行于第三边且与其一半相等 : forall A B C P Q R,
  C <> B ->
  中点 P B C ->
  中点 Q A C ->
@@ -341,13 +341,13 @@ Lemma triangle_mid_par_cong_1 : forall A B C P Q R,
 Proof.
 intros.
 split.
-perm_apply (triangle_mid_par B C A Q R).
+perm_apply (广义三角形中位线平行于第三边 B C A Q R).
 induction (共线的决定性 A B C).
  assert (Par C B Q R /\ Cong B P R Q).
-  apply (triangle_mid_par_flat_cong_2 C B A R Q P); 中点; Col.
+  apply (退化三角形中位线平行于第三边2且与其一半相等2 C B A R Q P); 中点; Col.
   spliter.
   Cong.
- assert (HTMT := triangle_mid_par_strict_cong A B C P Q R H3 H0 H1 H2); spliter.
+ assert (HTMT := 三角形中位线定理综合 A B C P Q R H3 H0 H1 H2); spliter.
  assumption.
 Qed.
 

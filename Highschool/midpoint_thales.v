@@ -14,7 +14,7 @@ Proof.
 intros.
 Name X the midpoint of C and A.
 assert (严格平行 O X B C)
- by perm_apply (triangle_mid_par_strict_cong_simp C B A O X).
+ by perm_apply (三角形中位线平行于第三边3 C B A O X).
 assert(Per O X A)
  by (exists C;split;finish).
 统计不重合点.
@@ -51,7 +51,7 @@ assert(Hmid := 中点的存在性 a c).
 destruct Hmid.
 (* Demonstration o x parallele à b c *)
 assert(Hpar : Par c b x o).
-apply (triangle_mid_par c b a o x);finish.
+apply (广义三角形中位线平行于第三边 c b a o x);finish.
 (* On doit effectuer Le changement d'angle perpendiculaire en appliquant par_perp_perp*)
 (* Demonstration du sous but Perp pour appliquer par_perp_perp *)
 assert(Hper : Perp c b c a)

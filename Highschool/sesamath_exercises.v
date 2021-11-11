@@ -82,9 +82,9 @@ intros G A Z F E R HnCol HPER HM1 HM2 HM3.
 统计不重合点.
 assert_cols.
 assert (Par A Z E R)
- by (perm_apply (triangle_mid_par Z A G R E)).
+ by (perm_apply (广义三角形中位线平行于第三边 Z A G R E)).
 assert (Par A G F E)
- by perm_apply (triangle_mid_par A G Z E F).
+ by perm_apply (广义三角形中位线平行于第三边 A G Z E F).
 assert (Par A F E R)
  by (apply par_col_par_2 with Z;finish).
 assert (Par A R E F)
@@ -124,11 +124,11 @@ Proof.
 intros.
 统计不重合点.
 assert (Par A B J K)
- by (perm_apply (triangle_mid_par B A C J K)).
+ by (perm_apply (广义三角形中位线平行于第三边 B A C J K)).
 assert (Par B I J K)
  by (apply par_col_par_2 with A;finish).
 assert (Par B C I J)
- by (perm_apply (triangle_mid_par B C A J I)).
+ by (perm_apply (广义三角形中位线平行于第三边 B C A J I)).
 assert (Par B K I J)
  by (apply par_col_par_2 with C;finish).
 assert (~ Col B K J)
@@ -166,7 +166,7 @@ assert (Plg A I H J).
  spliter;auto.
  }
 assert (Par I J B C)
-  by (perm_apply (triangle_mid_par B C A J I)).
+  by (perm_apply (广义三角形中位线平行于第三边 B C A J I)).
 assert (Perp A H I J)
   by (perm_apply (cop_par_perp__perp B C I J A H)).
 apply perp_rmb;finish.
@@ -197,7 +197,7 @@ intros.
 统计不重合点.
 assert_cols.
 assert (Par L E I M) 
-  by (perm_apply (triangle_mid_par L E S M I);finish).
+  by (perm_apply (广义三角形中位线平行于第三边 L E S M I);finish).
 assert (Perp A O L E)
   by(apply(中垂线蕴含垂直 A O L E);finish).
 assert (Perp I M O A).
@@ -270,7 +270,7 @@ assert(Perp T A A C) by finish.
 assert(Par S H T A)
   by (perm_apply(l12_9 S H T A A C);finish).
 assert(中点 H A C)
-  by (perm_apply(triangle_par_mid A T C S H);finish).
+  by (perm_apply(过三角形一边中点的一边平行线过第三边中点 A T C S H);finish).
 assumption.
 Qed.
 
@@ -300,15 +300,15 @@ intros.
 assert_cols.
 assert_all_diffs_by_contradiction.
 assert (Par A R M S)
- by (perm_apply (triangle_mid_par A R B S M);finish).
+ by (perm_apply (广义三角形中位线平行于第三边 A R B S M);finish).
 assert (Par A R N T)
- by (perm_apply (triangle_mid_par A R C T N);finish).
+ by (perm_apply (广义三角形中位线平行于第三边 A R C T N);finish).
 assert(Par M S N T)
  by (perm_apply(par_trans M S A R);finish).
 split.
 assumption.
 assert(Par C B N M)
- by (perm_apply (triangle_mid_par B C A N M);finish).
+ by (perm_apply (广义三角形中位线平行于第三边 B C A N M);finish).
 
 destruct (两点重合的决定性 R B).
 {
@@ -390,7 +390,7 @@ assert(OS T A H O)
 assert(OS T A O H)
   by(apply(one_side_symmetry T A H O);finish).
 assert(Par H L O E)
-  by(apply(triangle_mid_par H L T E O);finish).
+  by(apply(广义三角形中位线平行于第三边 H L T E O);finish).
 assert(Par H L O A)
   by(apply(par_col_par H L O E A);finish).
 assert(Par H S O A)
@@ -404,7 +404,7 @@ assert(等角 O A T E A S)
 assert(等角 H S T E A S)
   by(apply(角等的传递性 H S T O A T E A S);finish).
 assert(中点 A S T)
-  by(apply(triangle_par_mid S H T O A);finish).
+  by(apply(过三角形一边中点的一边平行线过第三边中点 S H T O A);finish).
 split;finish.
 Qed.
 
@@ -434,7 +434,7 @@ assert_cols.
 assert (G<>A)
   by (apply(重心不与三角形顶点重合1 A B C G);finish). (* todo improve 统计不重合点 *)
 assert (Par B C K L)
-  by(apply(triangle_mid_par B C G L K);finish).
+  by(apply(广义三角形中位线平行于第三边 B C G L K);finish).
 assert (G<>C)
   by (apply(重心不与三角形顶点重合3 A B C G);finish).
 统计不重合点.
@@ -491,9 +491,9 @@ assert(exists M : Tpoint, 中点 M A C /\ 中点 M B D)
 destruct H31.
 spliter.
 assert(Par D C I x)
-  by(apply(triangle_mid_par D C A x I);finish).
+  by(apply(广义三角形中位线平行于第三边 D C A x I);finish).
 assert(Par A B x J)
-  by(apply(triangle_mid_par A B C J x);finish).
+  by(apply(广义三角形中位线平行于第三边 A B C J x);finish).
 assert(Par A B C D)
   by (apply(plg_par_1 A B C D);finish).
 assert(Par D C x J)
@@ -510,9 +510,9 @@ show_distinct I J.
 destruct (中点的存在性 A B) as  [x0 Hx0].
 destruct (中点的存在性 D C) as  [x1 Hx1].
 assert(Par A B J x /\ Cong A x0 J x)
-  by(apply(triangle_mid_par_cong_1 C A B x0 J x);finish).
+  by(apply(广义三角形中位线平行于第三边且与其一半相等 C A B x0 J x);finish).
 assert(Par B A I x /\ Cong B x0 I x)
-  by(apply(triangle_mid_par_cong_1 D B A x0 I x);finish).
+  by(apply(广义三角形中位线平行于第三边且与其一半相等 D B A x0 I x);finish).
 spliter.
 
 assert(Cong A x0 I x)
@@ -559,7 +559,7 @@ assert (~ Col C I A)
 spliter.
 split.
 assert(中点 K C I).
-  (apply(triangle_par_mid C A I J K);finish).
+  (apply(过三角形一边中点的一边平行线过第三边中点 C A I J K);finish).
 finish.
 destruct (两点重合的决定性 I M).
 {
@@ -570,10 +570,10 @@ assert (~ Col I M C)
   by (intro;apply H14;ColR).
 统计不重合点.
 assert(中点 K C I).
- (apply(triangle_par_mid C A I J K);finish).
+ (apply(过三角形一边中点的一边平行线过第三边中点 C A I J K);finish).
 split.
 assert(Par M C A K)
-  by(apply(triangle_mid_par M C I K A);finish).
+  by(apply(广义三角形中位线平行于第三边 M C I K A);finish).
 Par.
 exists.
 assert(~ Col C M I);finish.
@@ -614,7 +614,7 @@ assert(Par B B' A A');finish.
 assert(Par B B' C C')
   by(apply(par_trans B B' A A' C C');finish;Par).
 assert(Par C C' B x)
-  by(apply(triangle_mid_par C C' A x B);finish).
+  by(apply(广义三角形中位线平行于第三边 C C' A x B);finish).
 assert(Par B B' B x)
   by(apply(par_trans B B' C C' B x);finish).
 assert(Col B B' x)
@@ -636,7 +636,7 @@ assert(Par B x B' x)
 assert( Par A A' B' x)
   by(apply(par_trans A A' B x B' x);finish).
 assert(中点 B' A' C')
-  by(apply(triangle_par_mid A' A C' x B');finish).
+  by(apply(过三角形一边中点的一边平行线过第三边中点 A' A C' x B');finish).
 assumption.
 Qed.
 

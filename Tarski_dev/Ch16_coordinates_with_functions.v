@@ -1231,12 +1231,12 @@ intros; split; intro H; [do 2 (split; try solve [统计不重合点; auto])|
   destruct (构造对称点 A C) as [P HP];
   exists P; split; [assumption|]; destruct (中点的存在性 B P) as [Q HQ].
   exists Q; split; [assumption|].
-  assert (Par B A Q C) by (统计不重合点; apply triangle_mid_par with P; Col).
+  assert (Par B A Q C) by (统计不重合点; apply 广义三角形中位线平行于第三边 with P; Col).
   destruct (parallel_uniqueness A B C D C Q C); Col; Par.
   }
 
   {
-  assert (Par B A Q C) by (apply triangle_mid_par with P; Col).
+  assert (Par B A Q C) by (apply 广义三角形中位线平行于第三边 with P; Col).
   apply par_col_par with Q; Col; Par.
   }
 Qed.

@@ -13,7 +13,7 @@ intros HP A; intros.
 destruct (中点的存在性 A C) as [X HAC].
 assert (X = Q).
  assert (严格平行 A B X P).
-  apply triangle_mid_par with C; assumption.
+  apply 广义三角形中位线平行于第三边 with C; assumption.
  统计不重合点.
  assert_cols.
  apply l6_21_两线交点的唯一性 with A C P Q.

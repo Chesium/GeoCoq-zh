@@ -120,12 +120,12 @@ Name D the symmetric of C wrt G.
 assert_all.
 show_distinct' A D.
 permutation_intro_in_hyps.
-assert (Par A D J G) by (apply (triangle_mid_par A D C G J H3 H14 H1)).
+assert (Par A D J G) by (apply (广义三角形中位线平行于第三边 A D C G J H3 H14 H1)).
 show_distinct' B G.
 assert (Par G B A D)
      by (perm_apply (par_col_par A D G J B)).
 show_distinct' B D.
-assert (Par B D I G) by (apply (triangle_mid_par B D C G I H104 H14 H0)).
+assert (Par B D I G) by (apply (广义三角形中位线平行于第三边 B D C G I H104 H14 H0)).
 show_distinct' A G.
 assert (Par G A D B)
      by (perm_apply (par_col_par B D G I A))...
@@ -277,22 +277,22 @@ assert (HB' := 构造对称点 B'' G).
 destruct HB' as [B''' HB'].
 assert (HPar1 : Par B A A' B').
   {
-  apply triangle_mid_par with C; 统计不重合点; try split;
+  apply 广义三角形中位线平行于第三边 with C; 统计不重合点; try split;
   unfold 中点 in *; spliter; Between; Cong.
   }
 assert (HCong1 : Cong A C' A' B').
   {
-  assert (H := triangle_mid_par_cong A B C A' B' C');
+  assert (H := 广义三角形中位线定理综合 A B C A' B' C');
   destruct H as [Hc1 [Hc2 [Hc3 [H Hc4]]]]; 统计不重合点; Cong.
   }
 assert (HPar2 : Par A B A'' B'').
   {
-  apply triangle_mid_par with G; 统计不重合点; try split;
+  apply 广义三角形中位线平行于第三边 with G; 统计不重合点; try split;
   unfold 中点 in *; spliter; Between; Cong.
   }
 assert (HCong2 : Cong A C' A'' B'').
   {
-  assert (H := triangle_mid_par_cong A B G B'' A'' C');
+  assert (H := 广义三角形中位线定理综合 A B G B'' A'' C');
   destruct H as [Hc1 [Hc2 [Hc3 [H Hc4]]]]; 统计不重合点; Cong;
   intro; treat_equalities; assert_cols; Col.
   统计不重合点; apply HNC; ColR.

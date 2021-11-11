@@ -2502,7 +2502,7 @@ Proof.
 Qed.
 
 
-  Lemma triangle_mid_par : forall A B C P Q, ~Col A B C -> 中点 P B C -> 中点 Q A C -> 严格平行 A B Q P.
+  Lemma 广义三角形中位线平行于第三边 : forall A B C P Q, ~Col A B C -> 中点 P B C -> 中点 Q A C -> 严格平行 A B Q P.
   Proof.
   intros.
    assert(HM:= 中点的存在性 A B).
@@ -3104,7 +3104,7 @@ Proof.
         ColR.
       ColR.
     assert(严格平行 C' D' C D).
-      apply(triangle_mid_par C' D' B D C).
+      apply(广义三角形中位线平行于第三边 C' D' B D C).
         auto.
         unfold 中点.
         split.

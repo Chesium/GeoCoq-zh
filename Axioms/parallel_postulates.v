@@ -57,7 +57,7 @@ Definition postulate_of_transitivity_of_parallelism := forall A1 A2 B1 B2 C1 C2,
   Par A1 A2 B1 B2 -> Par B1 B2 C1 C2 ->
   Par A1 A2 C1 C2.
 
-(** This is the converse of triangle_mid_par. *)
+(** This is the converse of 广义三角形中位线平行于第三边. *)
 
 Definition midpoint_converse_postulate := forall A B C P Q,
   ~ Col A B C ->

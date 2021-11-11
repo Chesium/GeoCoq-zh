@@ -27,15 +27,15 @@ Proof.
 intros.
 统计不重合点.
 assert (Par I L B D) (** Applying the midpoint theorem in the triangle BDA. *)
-  by perm_apply (triangle_mid_par B D A L I).
+  by perm_apply (广义三角形中位线平行于第三边 B D A L I).
 assert (Par J K B D) (** Applying the midpoint theorem in the triangle BDC. *)
-  by perm_apply (triangle_mid_par B D C K J).
+  by perm_apply (广义三角形中位线平行于第三边 B D C K J).
 assert (Par I L J K) (** Transitivity of parallelism *)
   by (apply par_trans with B D;finish).
 assert (Par I J A C) (** Applying the midpoint theorem in the triangle ACB. *)
-  by perm_apply (triangle_mid_par A C B J I). 
+  by perm_apply (广义三角形中位线平行于第三边 A C B J I). 
 assert (Par L K A C) (** Applying the midpoint theorem in the triangle ACD. *)
-  by perm_apply (triangle_mid_par A C D K L).
+  by perm_apply (广义三角形中位线平行于第三边 A C D K L).
 assert (Par I J K L) (** Transitivity of parallelism *)
   by (apply par_trans with A C;finish).
 apply par_2_plg;finish. (** If in the opposite side of quadrilatral are parallel and two opposite side are distinct
@@ -66,9 +66,9 @@ Name X the midpoint of B and D.
 统计不重合点.
 
 assert (Par B D L I /\ Cong B X L I)
-  by (apply (triangle_mid_par_cong_1 A B D X L I);finish).
+  by (apply (广义三角形中位线平行于第三边且与其一半相等 A B D X L I);finish).
 assert (Par B D K J /\ Cong B X K J)
-  by (apply (triangle_mid_par_cong_1 C B D X K J);finish).
+  by (apply (广义三角形中位线平行于第三边且与其一半相等 C B D X K J);finish).
 spliter.
 assert (Par I L J K)
   by (eapply par_trans with B D;finish).
@@ -77,9 +77,9 @@ assert (Cong I L J K)
 
 Name X' the midpoint of A and C.
 assert (Par A C J I /\ Cong A X' J I)
-  by (apply (triangle_mid_par_cong_1 B A C X' J  I);finish).
+  by (apply (广义三角形中位线平行于第三边且与其一半相等 B A C X' J  I);finish).
 assert (Par A C K L /\ Cong A X' K L)
-  by (apply (triangle_mid_par_cong_1 D A C X' K L);finish).
+  by (apply (广义三角形中位线平行于第三边且与其一半相等 D A C X' K L);finish).
 spliter.
 assert (Par I J K L)
   by (eapply par_trans with A C;finish).
@@ -112,9 +112,9 @@ Name X the midpoint of B and D.
 统计不重合点.
 
 assert (Par B D L I /\ Cong B X L I)
-  by (apply (triangle_mid_par_cong_1 A B D X L I);finish).
+  by (apply (广义三角形中位线平行于第三边且与其一半相等 A B D X L I);finish).
 assert (Par B D K J /\ Cong B X K J)
-  by (apply (triangle_mid_par_cong_1 C B D X K J);finish).
+  by (apply (广义三角形中位线平行于第三边且与其一半相等 C B D X K J);finish).
 spliter.
 assert (Par I L J K)
   by (eapply par_trans with B D;finish).
@@ -123,9 +123,9 @@ assert (Cong I L J K)
 
 Name X' the midpoint of A and C.
 assert (Par A C J I /\ Cong A X' J I)
-  by (apply (triangle_mid_par_cong_1 B A C X' J  I);finish).
+  by (apply (广义三角形中位线平行于第三边且与其一半相等 B A C X' J  I);finish).
 assert (Par A C K L /\ Cong A X' K L)
-  by (apply (triangle_mid_par_cong_1 D A C X' K L);finish).
+  by (apply (广义三角形中位线平行于第三边且与其一半相等 D A C X' K L);finish).
 spliter.
 assert (Par I J K L)
   by (eapply par_trans with A C;finish).
@@ -168,7 +168,7 @@ induction (两点重合的决定性 A D).
        Cong B X K L /\
        Cong L X K L /\
        Cong B L K X /\ Cong C L K X /\ Cong L K L X /\ Cong C K L X).
-  apply (triangle_mid_par_flat_cong B L C K L X);Col;中点.
+  apply (退化三角形中位线定理综合 B L C K L X);Col;中点.
    intro;treat_equalities. intuition.
    intro;treat_equalities. intuition.
    spliter.
@@ -190,7 +190,7 @@ assert (Par A B L X /\
        Cong A I X L /\
        Cong B I X L /\
        Cong A L X I /\ Cong D L X I /\ Cong B X L I /\ Cong D X L I).
-apply (triangle_mid_par_cong A B D X L I);auto.
+apply (广义三角形中位线定理综合 A B D X L I);auto.
 spliter.
 induction (两点重合的决定性 C D).
  treat_equalities.
@@ -209,7 +209,7 @@ assert (Par B C X K /\
        Cong B L K X /\
        Cong C L K X /\
        Cong B X K L /\ Cong D X K L /\ Cong C K X L /\ Cong D K X L).
-apply (triangle_mid_par_cong B C D K X L);auto.
+apply (广义三角形中位线定理综合 B C D K X L);auto.
 spliter.
 induction (两点重合的决定性 I K).
   treat_equalities.

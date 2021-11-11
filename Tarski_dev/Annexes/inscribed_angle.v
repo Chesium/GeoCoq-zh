@@ -768,7 +768,7 @@ assert(Par O A' A B).
 }
 assert(HM:=中点的存在性 B C').
 ex_and HM O'.
-assert(HP:= triangle_mid_par A B C' O' A' H0 H20 H2).
+assert(HP:= 广义三角形中位线平行于第三边 A B C' O' A' H0 H20 H2).
 apply par_strict_par in HP.
 assert(Par O A' A' O').
 {
